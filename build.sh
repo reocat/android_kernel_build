@@ -1,16 +1,82 @@
 #!/bin/bash
 
+# Copyright (C) 2019 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 # Usage:
-#   build.sh <make options>*
+#   build/build.sh <make options>*
 # or:
-#   OUT_DIR=<out dir> DIST_DIR=<dist dir> build.sh <make options>*
+#   OUT_DIR=<out dir> DIST_DIR=<dist dir> build/build.sh <make options>*
 #
 # Example:
-#   OUT_DIR=output DIST_DIR=dist build.sh -j24
+#   OUT_DIR=output DIST_DIR=dist build/build.sh -j24
+#
+#
+# The following environment variables are considered during execution:
+#
+#   BUILD_CONFIG
+#     Build config file to initialize the build environment from. The location
+#     is to be defined relative to the repo root directory.
+#     Defaults to 'build.config'.
+#
+#   OUT_DIR
+#     Base output directory for the kernel build.
+#     Defaults to <REPO_ROOT>/out/<BRANCH>.
+#
+#   DIST_DIR
+#     Base output directory for the kernel distribution.
+#     Defaults to <OUT_DIR>/dist
+#
+#   EXT_MODULES
+#     Space separated list of external kernel modules to be build.
+#
+#   UNSTRIPPED_MODULES
+#     Space separated list of modules to be copied to <DIST_DIR>/unstripped
+#     for debugging purposes.
+#
+#   CC
+#     Override compiler to be used. (e.g. CC=clang)
+#
+#   LD
+#     Override linker (flags) to be used.
+#
+# Environment variables to influence the stages of the kernel build.
+#
+#   SKIP_MRPROPER
+#     if defined, skip `make mrproper`
+#
+#   SKIP_DEFCONFIG
+#     if defined, skip `make defconfig`
+#
+#   POST_DEFCONFIG_CMDS
+#     Command evaluated after `make defconfig` and before `make`.
+#
+#   IN_KERNEL_MODULES
+#     if defined, install kernel modules
+#
+#   SKIP_EXT_MODULES
+#     if defined, skip building and installing of external modules
+#
+#   EXTRA_CMDS
+#     Command evaluated after building and installing kernel and modules.
+#
+#   SKIP_CP_KERNEL_HDR
+#     if defined, skip installing kernel headers.
 #
 # Note: For historic reasons, internally, OUT_DIR will be copied into
 # COMMON_OUT_DIR, and OUT_DIR will be then set to
-# ${COMMON_OUT_DIR}/${KERNEL_DIR}. This has been done to accomadate existing
+# ${COMMON_OUT_DIR}/${KERNEL_DIR}. This has been done to accommodate existing
 # build.config files that expect ${OUT_DIR} to point to the output directory of
 # the kernel build.
 #
@@ -44,7 +110,7 @@ function rel_path() {
 	echo ${path}${to#$stem}
 }
 
-export ROOT_DIR=$(readlink -f $(dirname $0)/.)
+export ROOT_DIR=$(readlink -f $(dirname $0)/..)
 
 # For module file Signing with the kernel (if needed)
 FILE_SIGN_BIN=scripts/sign-file
@@ -52,7 +118,7 @@ SIGN_SEC=certs/signing_key.pem
 SIGN_CERT=certs/signing_key.x509
 SIGN_ALGO=sha512
 
-source "${ROOT_DIR}/envsetup.sh"
+source "${ROOT_DIR}/build/envsetup.sh"
 
 export MAKE_ARGS=$@
 export COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
@@ -61,6 +127,7 @@ export MODULES_STAGING_DIR=$(readlink -m ${COMMON_OUT_DIR}/staging)
 export MODULES_PRIVATE_DIR=$(readlink -m ${COMMON_OUT_DIR}/private)
 export DIST_DIR=$(readlink -m ${DIST_DIR:-${COMMON_OUT_DIR}/dist})
 export UNSTRIPPED_DIR=${DIST_DIR}/unstripped
+export KERNEL_UAPI_HEADERS_DIR=$(readlink -m ${COMMON_OUT_DIR}/kernel_uapi_headers)
 
 cd ${ROOT_DIR}
 
@@ -96,9 +163,13 @@ if [ -n "${CC}" ]; then
   CC_ARG="CC=${CC}"
 fi
 
+if [ -n "${LD}" ]; then
+  LD_ARG="LD=${LD}"
+fi
+
 set -x
 (cd ${OUT_DIR} && \
- make O=${OUT_DIR} ${CC_ARG} -j$(nproc) $@)
+ make O=${OUT_DIR} ${CC_ARG} ${LD_ARG} -j$(nproc) $@)
 set +x
 
 rm -rf ${MODULES_STAGING_DIR}
@@ -109,7 +180,8 @@ if [ -n "${IN_KERNEL_MODULES}" ]; then
   echo " Installing kernel modules into staging directory"
 
   (cd ${OUT_DIR} && \
-   make O=${OUT_DIR} ${CC_ARG} INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=${MODULES_STAGING_DIR} modules_install)
+   make O=${OUT_DIR} ${CC_ARG} ${LD_ARG} INSTALL_MOD_STRIP=1 \
+        INSTALL_MOD_PATH=${MODULES_STAGING_DIR} modules_install)
 fi
 
 if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ "${EXT_MODULES}" != "" ]]; then
@@ -128,8 +200,11 @@ if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ "${EXT_MODULES}" != "" ]]; then
     # build system behaves horribly wrong.
     mkdir -p ${OUT_DIR}/${EXT_MOD_REL}
     set -x
-    make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR} O=${OUT_DIR} ${CC_ARG} -j$(nproc) "$@"
-    make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR} O=${OUT_DIR} ${CC_ARG} INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH=${MODULES_STAGING_DIR} modules_install
+    make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
+                       O=${OUT_DIR} ${CC_ARG} ${LD_ARG} -j$(nproc) "$@"
+    make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
+                       O=${OUT_DIR} ${CC_ARG} ${LD_ARG} INSTALL_MOD_STRIP=1   \
+                       INSTALL_MOD_PATH=${MODULES_STAGING_DIR} modules_install
     set +x
   done
 
@@ -194,6 +269,19 @@ if [ "${UNSTRIPPED_MODULES}" != "" ]; then
   for MODULE in ${UNSTRIPPED_MODULES}; do
     find ${MODULES_PRIVATE_DIR} -name ${MODULE} -exec cp {} ${UNSTRIPPED_DIR} \;
   done
+fi
+
+if [ -z "${SKIP_CP_KERNEL_HDR}" ]; then
+  echo "========================================================"
+  echo " Installing UAPI kernel headers:"
+  mkdir -p "${KERNEL_UAPI_HEADERS_DIR}/usr"
+  make -C ${OUT_DIR} O=${OUT_DIR} ${CC_ARG} INSTALL_HDR_PATH="${KERNEL_UAPI_HEADERS_DIR}/usr" -j$(nproc) headers_install
+  # The kernel makefiles create files named ..install.cmd and .install which
+  # are only side products. We don't want those. Let's delete them.
+  find ${KERNEL_UAPI_HEADERS_DIR} \( -name ..install.cmd -o -name .install \) -exec rm '{}' +
+  KERNEL_UAPI_HEADERS_TAR=${DIST_DIR}/kernel-uapi-headers.tar.gz
+  echo " Copying kernel UAPI headers to ${KERNEL_UAPI_HEADERS_TAR}"
+  tar -czf ${KERNEL_UAPI_HEADERS_TAR} --directory=${KERNEL_UAPI_HEADERS_DIR} usr/
 fi
 
 if [ -z "${SKIP_CP_KERNEL_HDR}" ] ; then
