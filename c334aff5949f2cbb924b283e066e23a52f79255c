@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "e1b5ea4a_7a8ed13f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-03-21T17:46:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "60b529c8_7652e249",
+      "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8864bca_650caffe",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "Other devices use GCC by having separate build.config files, where the default sets CC\u003dclang.\n\nThen you can say:\n$ BUILD_CONFIG\u003dprivate/msm-google/build.config.gcc ./build/build.sh\nfor GCC or\n$ ./build.sh\nfor Clang.",
       "parentUuid": "6666b549_45b637ef",
+      "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e94d15a_4fe61b39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-03-21T17:46:18Z",
+      "side": 1,
+      "message": "I know that that is one way of approaching that. I would like to not maintain a separate config.gcc for that use case. Then ending up with\n  $ ./build/build.sh\nand\n  $ CC\u003dgcc ./build/build.sh",
+      "parentUuid": "f54dfe86_537ce783",
       "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
