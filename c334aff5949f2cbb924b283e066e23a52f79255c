@@ -144,6 +144,24 @@
     },
     {
       "key": {
+        "uuid": "6faed691_03c26407",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2019-03-21T17:59:32Z",
+      "side": 1,
+      "message": "I think if you add that to the commit message, it will make it clearer:\n\n# Build with Clang from $PATH\n$ ./build/build.sh\n# Build with GCC from $PATH\n$ CC\u003dgcc ./build/build.sh\n\n\u003e even in case CC\u003dclang has been set by the build.config.\n\nSo build.config is going to set CC\u003dclang, but if you say `CC\u003dgcc ./build/build.sh` it\u0027s going to unset CC and use whatever GCC is used in PATH?  That feels like hacks on slacks to me.\n\nAlso, I think build.sh forwards its arguments to make (today, currently, with no changes).  If you do `./build/build.sh CC\u003dgcc`, does this already do what you want?",
+      "parentUuid": "0e94d15a_4fe61b39",
+      "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e07b28e4_ee88e77f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
