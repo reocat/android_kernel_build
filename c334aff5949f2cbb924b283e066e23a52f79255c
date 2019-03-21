@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "58930f3c_a60de816",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-03-21T17:01:26Z",
+      "side": 1,
+      "message": "Autodetected (including the triple) from PATH",
+      "parentUuid": "68c33535_0b89d2d6",
+      "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8864bca_650caffe",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2019-03-21T16:44:42Z",
       "side": 1,
       "message": "If CC\u003dclang, then we want NOTHING to do with gcc, right?",
+      "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6666b549_45b637ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-03-21T17:01:26Z",
+      "side": 1,
+      "message": "if the build.config defines CC\u003dclang, there is no sane way back to using the preubilt gcc. The prebuilt gcc toolchain provides the gcc in path, but not as \"gcc\". Instead as e.g. x86_64-linux-android-gcc.",
+      "parentUuid": "d8864bca_650caffe",
       "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -50,6 +86,24 @@
       "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "907ecbbd_8c60126a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-03-21T17:01:26Z",
+      "side": 1,
+      "message": "That is what I assumed.",
+      "parentUuid": "e07b28e4_ee88e77f",
+      "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
