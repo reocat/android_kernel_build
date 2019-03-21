@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "60b529c8_7652e249",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2019-03-21T17:06:20Z",
+      "side": 1,
+      "message": "Then please reword to say `use gcc from $PATH ...`.",
+      "parentUuid": "58930f3c_a60de816",
+      "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d8864bca_650caffe",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "if the build.config defines CC\u003dclang, there is no sane way back to using the preubilt gcc. The prebuilt gcc toolchain provides the gcc in path, but not as \"gcc\". Instead as e.g. x86_64-linux-android-gcc.",
       "parentUuid": "d8864bca_650caffe",
+      "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f54dfe86_537ce783",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2019-03-21T17:06:20Z",
+      "side": 1,
+      "message": "Other devices use GCC by having separate build.config files, where the default sets CC\u003dclang.\n\nThen you can say:\n$ BUILD_CONFIG\u003dprivate/msm-google/build.config.gcc ./build/build.sh\nfor GCC or\n$ ./build.sh\nfor Clang.",
+      "parentUuid": "6666b549_45b637ef",
       "revId": "c334aff5949f2cbb924b283e066e23a52f79255c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
