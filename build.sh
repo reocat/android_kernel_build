@@ -46,7 +46,10 @@
 #     for debugging purposes.
 #
 #   CC
-#     Override compiler to be used. (e.g. CC=clang)
+#     Override compiler to be used. (e.g. CC=clang) Specifying CC=gcc
+#     effectively unsets CC to fall back to the default gcc detected by kbuild
+#     (including any target triplet). To use a custom 'gcc' from PATH, use an
+#     absolute path, e.g.  CC=/usr/local/bin/gcc
 #
 #   LD
 #     Override linker (flags) to be used.
@@ -127,17 +130,19 @@ SIGN_ALGO=sha512
 source "${ROOT_DIR}/build/envsetup.sh"
 
 export MAKE_ARGS=$@
-export COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
-export OUT_DIR=$(readlink -m ${COMMON_OUT_DIR}/${KERNEL_DIR})
 export MODULES_STAGING_DIR=$(readlink -m ${COMMON_OUT_DIR}/staging)
 export MODULES_PRIVATE_DIR=$(readlink -m ${COMMON_OUT_DIR}/private)
-export DIST_DIR=$(readlink -m ${DIST_DIR:-${COMMON_OUT_DIR}/dist})
 export UNSTRIPPED_DIR=${DIST_DIR}/unstripped
 export KERNEL_UAPI_HEADERS_DIR=$(readlink -m ${COMMON_OUT_DIR}/kernel_uapi_headers)
 
 cd ${ROOT_DIR}
 
 export CLANG_TRIPLE CROSS_COMPILE CROSS_COMPILE_ARM32 ARCH SUBARCH
+
+# CC=gcc is effectively a fallback to the default gcc including any target
+# triplets. If the user wants to use a custom compiler, they are still able to
+# pass an absolute path, e.g. CC=/usr/bin/gcc.
+[ "${CC}" == "gcc" ] && unset CC
 
 if [ -n "${CC}" ]; then
   CC_ARG="CC=${CC}"
@@ -312,7 +317,7 @@ if [ -z "${SKIP_CP_KERNEL_HDR}" ] ; then
 	echo "========================================================"
 	KERNEL_HEADERS_TAR=${DIST_DIR}/kernel-headers.tar.gz
 	echo " Copying kernel headers to ${KERNEL_HEADERS_TAR}"
-	TMP_DIR="/tmp"
+	TMP_DIR="${OUT_DIR}/tmp"
 	TMP_KERNEL_HEADERS_CHILD="kernel-headers"
 	TMP_KERNEL_HEADERS_DIR=$TMP_DIR/$TMP_KERNEL_HEADERS_CHILD
 	CURDIR=$(pwd)
