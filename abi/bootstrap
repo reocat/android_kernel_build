@@ -29,7 +29,8 @@ fi
 
 set -x
 
-PACKAGES="autoconf elfutils libxml2-dev libdw-dev"
+PACKAGES="autoconf elfutils g++ libtool libxml2-dev libdw-dev \
+          make pkg-config python3"
 # Install the dependencies.
 if ! dpkg -s ${PACKAGES} > /dev/null 2>&1 ; then
     sudo apt-get install ${PACKAGES}
