@@ -22,6 +22,30 @@
       "revId": "198e8bd31323a89ff1fa7eef4c0f848c364d26ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ce1c6f2_86adfa57",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-04-15T20:47:19Z",
+      "side": 1,
+      "message": "I had that first, but it also pulls in dpkg dependencies. If you are ok with build-essential, that works for me as well.",
+      "parentUuid": "30a34b07_4a6ac066",
+      "range": {
+        "startLine": 33,
+        "startChar": 10,
+        "endLine": 33,
+        "endChar": 14
+      },
+      "revId": "198e8bd31323a89ff1fa7eef4c0f848c364d26ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
