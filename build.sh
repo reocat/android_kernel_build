@@ -83,6 +83,14 @@
 #   SKIP_CP_KERNEL_HDR
 #     if defined, skip installing kernel headers.
 #
+#   BUILD_BOOT_IMG
+#     if defined, build a boot.img using the following components.
+#     - MKBOOTIMG_PREBUILT=<path to mkbootimg.py>
+#     - GKI_RAMDISK_PREBUILT_BINARY=<path to GKI ramdisk prebuilt>
+#     - VENDOR_RAMDISK_BINARY=<path to vendor ramdisk binary>
+#     - KERNEL_BINARY=<name of kernel binary, eg. Image.lz4, Image.gz etc>
+#     - BOOT_IMAGE_HEADER_VERSION=<boot image header version>
+#
 # Note: For historic reasons, internally, OUT_DIR will be copied into
 # COMMON_OUT_DIR, and OUT_DIR will be then set to
 # ${COMMON_OUT_DIR}/${KERNEL_DIR}. This has been done to accommodate existing
@@ -330,6 +338,19 @@ fi
 
 echo "========================================================"
 echo " Files copied to ${DIST_DIR}"
+
+if [ -z "${BUILD_BOOT_IMG}" ] ; then
+	DTB_FILE_LIST=$(find ${DIST_DIR} -name "*.dtb")
+	cat $DTB_FILE_LIST > ${DIST_DIR}/dtb.img
+	cat ${DIST_DIR}/$GKI_RAMDISK_PREBUILT_BINARY ${DIST_DIR}/$VENDOR_RAMDISK_BINARY \
+		> ${DIST_DIR}/ramdisk.cpio
+	gzip -f ${DIST_DIR}/ramdisk.cpio > ${DIST_DIR}/ramdisk
+	$MKBOOTIMG_PREBUILT --kernel ${DIST_DIR}/$KERNEL_BINARY --ramdisk ${DIST_DIR}/ramdisk \
+		--dtb ${DIST_DIR}/dtb.img --header_version $BOOT_IMAGE_HEADER_VERSION \
+		-o ${DIST_DIR}/boot.img
+	echo "boot image created at ${DIST_DIR}/boot.img"
+fi
+
 
 # No trace_printk use on build server build
 if readelf -a ${DIST_DIR}/vmlinux 2>&1 | grep -q trace_printk_fmt; then
