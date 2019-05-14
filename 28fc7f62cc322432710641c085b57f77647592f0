@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40369a7c_70bea056",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-05-14T17:45:32Z",
+      "side": 1,
+      "message": "nit: comma",
+      "range": {
+        "startLine": 9,
+        "startChar": 28,
+        "endLine": 9,
+        "endChar": 29
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65f29c4e_072eeced",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-05-14T17:45:32Z",
+      "side": 1,
+      "message": "that might be consumed from build.config as it usually is already an entry in \"FILES\"",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 13
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2381e77b_31c4855b",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-05-14T17:45:32Z",
+      "side": 1,
+      "message": "the various variables introduced here need documentation at least at the top of this file (some might be worth documenting at https://source.android.com/setup/build/building-kernels as well).",
+      "range": {
+        "startLine": 334,
+        "startChar": 11,
+        "endLine": 334,
+        "endChar": 25
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28a589cb_9e0a7188",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-05-14T17:45:32Z",
+      "side": 1,
+      "message": "not sure this separator makes a lot of sense without immediate other output.",
+      "range": {
+        "startLine": 335,
+        "startChar": 1,
+        "endLine": 335,
+        "endChar": 63
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10382ea1_0f105abd",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-05-14T17:45:32Z",
+      "side": 1,
+      "message": "should that script be part of this repository?",
+      "range": {
+        "startLine": 341,
+        "startChar": 2,
+        "endLine": 341,
+        "endChar": 20
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "264b3209_03b6acb0",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-05-14T17:45:32Z",
+      "side": 1,
+      "message": "how about \"boot image created at ${DIST_DIR}/boot.img\" ?",
+      "range": {
+        "startLine": 344,
+        "startChar": 1,
+        "endLine": 344,
+        "endChar": 24
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
