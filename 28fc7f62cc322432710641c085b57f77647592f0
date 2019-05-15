@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b928a58c_34b17a8f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1120612
+      },
+      "writtenOn": "2019-05-15T23:33:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40369a7c_70bea056",
+      "range": {
+        "startLine": 9,
+        "startChar": 28,
+        "endLine": 9,
+        "endChar": 29
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "65f29c4e_072eeced",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-14T17:45:32Z",
       "side": 1,
       "message": "that might be consumed from build.config as it usually is already an entry in \"FILES\"",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 13
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1da08fcc_cb77d720",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1120612
+      },
+      "writtenOn": "2019-05-15T23:33:23Z",
+      "side": 1,
+      "message": "Yeah, I thought it would be safer to specify it explicitly since I have seen a combined branch add both Image.gz and Image.lz4 in the FILES list.",
+      "parentUuid": "65f29c4e_072eeced",
       "range": {
         "startLine": 19,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3edc1493_99f97fe6",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1120612
+      },
+      "writtenOn": "2019-05-15T23:33:23Z",
+      "side": 1,
+      "message": "Added documentation to the top of this file. PTAL. Will also add to SAC once finalized.",
+      "parentUuid": "2381e77b_31c4855b",
+      "range": {
+        "startLine": 334,
+        "startChar": 11,
+        "endLine": 334,
+        "endChar": 25
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "28a589cb_9e0a7188",
         "filename": "build.sh",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "8e2945e1_0f8c3ebf",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1120612
+      },
+      "writtenOn": "2019-05-15T23:33:23Z",
+      "side": 1,
+      "message": "You are right, removed it.",
+      "parentUuid": "28a589cb_9e0a7188",
+      "range": {
+        "startLine": 335,
+        "startChar": 1,
+        "endLine": 335,
+        "endChar": 63
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10382ea1_0f105abd",
         "filename": "build.sh",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2019-05-14T17:45:32Z",
       "side": 1,
       "message": "should that script be part of this repository?",
+      "range": {
+        "startLine": 341,
+        "startChar": 2,
+        "endLine": 341,
+        "endChar": 20
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2076b566_36a64252",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1120612
+      },
+      "writtenOn": "2019-05-15T23:33:23Z",
+      "side": 1,
+      "message": "We do not want to maintain a separate copy since its currently maintained by system/core. The plan is to move mkbootimg.py out of system/core into its own project(after enh@ approves it) and then add it to the GKI manifest.",
+      "parentUuid": "10382ea1_0f105abd",
       "range": {
         "startLine": 341,
         "startChar": 2,
@@ -137,6 +257,30 @@
       "revId": "28fc7f62cc322432710641c085b57f77647592f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65588181_1257de07",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1120612
+      },
+      "writtenOn": "2019-05-15T23:33:23Z",
+      "side": 1,
+      "message": "Agree, sounds better. Fixed in PS2.",
+      "parentUuid": "264b3209_03b6acb0",
+      "range": {
+        "startLine": 344,
+        "startChar": 1,
+        "endLine": 344,
+        "endChar": 24
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
