@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "594eca50_623580dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-05-16T03:44:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1da08fcc_cb77d720",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 13
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2381e77b_31c4855b",
         "filename": "build.sh",
         "patchSetId": 1
@@ -140,6 +164,30 @@
       "revId": "28fc7f62cc322432710641c085b57f77647592f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1440ca71_84b0b8f1",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-05-16T03:44:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3edc1493_99f97fe6",
+      "range": {
+        "startLine": 334,
+        "startChar": 11,
+        "endLine": 334,
+        "endChar": 25
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -234,6 +282,30 @@
       "revId": "28fc7f62cc322432710641c085b57f77647592f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5151d41d_36c8b9d8",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-05-16T03:44:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2076b566_36a64252",
+      "range": {
+        "startLine": 341,
+        "startChar": 2,
+        "endLine": 341,
+        "endChar": 20
+      },
+      "revId": "28fc7f62cc322432710641c085b57f77647592f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
