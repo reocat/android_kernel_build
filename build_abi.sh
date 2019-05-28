@@ -36,7 +36,7 @@ function update_config_for_abi_dump() {
     ${KERNEL_DIR}/scripts/config --file ${OUT_DIR}/.config \
          -e CONFIG_DEBUG_INFO
     (cd ${OUT_DIR} && \
-     make O=${OUT_DIR} $archsubarch CROSS_COMPILE=${CROSS_COMPILE} olddefconfig)
+     make O=${OUT_DIR} ${CC_LD_ARG} $archsubarch CROSS_COMPILE=${CROSS_COMPILE} olddefconfig)
 }
 
 # ensure we have a sufficient abigail installation in path before continuing
@@ -50,7 +50,7 @@ then
 fi
 
 # delegate the actual build to build.sh
-${ROOT_DIR}/build/build.sh $*
+ABI_DEFINITION= ${ROOT_DIR}/build/build.sh $*
 
 echo "========================================================"
 echo " Creating ABI dump"
