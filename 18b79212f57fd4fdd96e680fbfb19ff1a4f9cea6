@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6b477886_d21f80a4",
+        "filename": "build-tools/path/linux-x86/bison",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2019-07-11T20:51:21Z",
+      "side": 1,
+      "message": "Nit: maybe ${base}/m4 would be better? I don\u0027t know how $M4 is actually used..",
+      "revId": "18b79212f57fd4fdd96e680fbfb19ff1a4f9cea6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66335988_517c8554",
+        "filename": "build-tools/path/linux-x86/bison",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2019-07-11T20:51:21Z",
+      "side": 1,
+      "message": "Nit: you could remove all these extra newlines",
+      "revId": "18b79212f57fd4fdd96e680fbfb19ff1a4f9cea6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
