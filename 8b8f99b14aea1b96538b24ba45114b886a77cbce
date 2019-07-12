@@ -22,6 +22,70 @@
       "revId": "8b8f99b14aea1b96538b24ba45114b886a77cbce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce600712_45a5b4dc",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-07-12T09:37:14Z",
+      "side": 1,
+      "message": "not a strong opinion, but I prefer consistency then.",
+      "parentUuid": "5e6d0e9b_cc29f497",
+      "range": {
+        "startLine": 35,
+        "startChar": 11,
+        "endLine": 35,
+        "endChar": 29
+      },
+      "revId": "8b8f99b14aea1b96538b24ba45114b886a77cbce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e37c763c_c19cf6b4",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-07-12T09:37:14Z",
+      "side": 1,
+      "message": "nit: typo",
+      "range": {
+        "startLine": 42,
+        "startChar": 43,
+        "endLine": 42,
+        "endChar": 49
+      },
+      "revId": "8b8f99b14aea1b96538b24ba45114b886a77cbce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51cfcf26_19e0c6d7",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-07-12T09:37:14Z",
+      "side": 1,
+      "message": "you want to move _this_ `set -x` after the whole block to make sure it is set in every possible case.",
+      "revId": "8b8f99b14aea1b96538b24ba45114b886a77cbce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
