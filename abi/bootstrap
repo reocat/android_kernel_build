@@ -30,11 +30,23 @@ if [ -e "${OUT_DIR}" ]; then
   read
 fi
 
-set -x
-
 PACKAGES="autoconf libtool libxml2-dev pkg-config python3"
 # Install the dependencies.
-if ! dpkg -s ${PACKAGES} > /dev/null 2>&1 ; then
+if ! [ -x "$(command -v dpkg)" ]; then
+    echo "WARN: not running on a Debian compatible system!"
+    echo "      Please be sure you have the required packages installed on"
+    echo "      your system before continuing."
+    echo ""
+    echo "      The list of required packages is, at the minimum:"
+    echo "        ${PACKAGES}"
+    echo "      but some distributions may requre more."
+    echo "      You are on your own here, sorry."
+    echo ""
+    echo "Press enter to continue or Ctrl-C to abort."
+    read
+    set -x
+elif ! dpkg -s ${PACKAGES} > /dev/null 2>&1 ; then
+    set -x
     sudo apt-get install --yes ${PACKAGES}
 fi
 
