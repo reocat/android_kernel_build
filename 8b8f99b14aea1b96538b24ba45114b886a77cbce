@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e6d0e9b_cc29f497",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2019-07-12T08:33:13Z",
+      "side": 1,
+      "message": "note, do you prefer \u0027hash\u0027 or \u0027command\u0027 to be used?  I just noticed that you use hash elsewhere, so I can easily change this one as well if you prefer.",
+      "range": {
+        "startLine": 35,
+        "startChar": 11,
+        "endLine": 35,
+        "endChar": 29
+      },
+      "revId": "8b8f99b14aea1b96538b24ba45114b886a77cbce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
