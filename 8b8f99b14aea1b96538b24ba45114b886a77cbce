@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "73694217_301348f5",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2019-07-12T09:55:31Z",
+      "side": 1,
+      "message": "Ok, will change to hash.",
+      "parentUuid": "ce600712_45a5b4dc",
+      "range": {
+        "startLine": 35,
+        "startChar": 11,
+        "endLine": 35,
+        "endChar": 29
+      },
+      "revId": "8b8f99b14aea1b96538b24ba45114b886a77cbce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e37c763c_c19cf6b4",
         "filename": "abi/bootstrap",
         "patchSetId": 1
@@ -83,6 +107,24 @@
       "writtenOn": "2019-07-12T09:37:14Z",
       "side": 1,
       "message": "you want to move _this_ `set -x` after the whole block to make sure it is set in every possible case.",
+      "revId": "8b8f99b14aea1b96538b24ba45114b886a77cbce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c15d615_5a6f7a05",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2019-07-12T09:55:31Z",
+      "side": 1,
+      "message": "I did it like this as I thought you wanted to show the apt-get install stuff to the console.\nAnd I do set it in both places in this if.\nAh, I see where I missed it, nevermind...",
+      "parentUuid": "51cfcf26_19e0c6d7",
       "revId": "8b8f99b14aea1b96538b24ba45114b886a77cbce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
