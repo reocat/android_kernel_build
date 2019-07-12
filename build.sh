@@ -289,12 +289,15 @@ mkdir -p ${DIST_DIR}
 echo "========================================================"
 echo " Copying files"
 for FILE in ${FILES}; do
-  if [ -f ${OUT_DIR}/${FILE} ]; then
-    echo "  $FILE"
-    cp -p ${OUT_DIR}/${FILE} ${DIST_DIR}/
-  else
-    echo "  $FILE does not exist, skipping"
-  fi
+  # Try to expand wildcards
+  for FILEW in ${OUT_DIR}/${FILE}; do
+    if [ -f $FILEW ]; then
+      echo "  $FILEW"
+      cp -p ${FILEW} ${DIST_DIR}/
+    else
+      echo "  $FILEW does not exist, skipping"
+    fi
+  done
 done
 
 for FILE in ${OVERLAYS_OUT}; do
