@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "526eafce_71fc3432",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-07-15T21:26:51Z",
+      "side": 1,
+      "message": "Maybe we can avoid the double loop by something like \n for FILE in $(cd ${OUT_DIR} \u0026\u0026 ls -1 ${FILES})\n\nThat way we can avoid finding a name for the inner variable (I don\u0027t like FILEW) and we can also get rid of the test for existence later on.\n\nWhat do you think?",
+      "revId": "51b646beb8bc9d7f16f8d34a41d1dd08abedd106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
