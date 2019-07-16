@@ -34,6 +34,24 @@
       "revId": "f1a3430ac1c3e132b7f45a7a631aab04dd3b1568",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c4b8415_bcf9cd46",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-07-16T16:10:45Z",
+      "side": 1,
+      "message": "That sounds a bit dangerous considering that too many projects depend on this master branch. Probably I would just fix the message: \"$FILE is not a file, ignoring\"",
+      "parentUuid": "c4c1efb7_d1b9b91b",
+      "revId": "f1a3430ac1c3e132b7f45a7a631aab04dd3b1568",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
