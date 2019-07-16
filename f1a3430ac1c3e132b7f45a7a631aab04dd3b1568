@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be4dc04a_cf80710f",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-07-16T15:45:05Z",
+      "side": 1,
+      "message": "We do not need this check here anymore. (Unless we are scared somebody defines a directory name within FILES.",
+      "revId": "f1a3430ac1c3e132b7f45a7a631aab04dd3b1568",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
