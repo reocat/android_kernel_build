@@ -57,7 +57,7 @@
 #   ABI_DEFINITION
 #     Location of the abi definition file relative to <REPO_ROOT>/KERNEL_DIR
 #     If defined (usually in build.config), also copy that abi definition to
-#     <OUT_DIR>/dist/abi.out when creating the distribution.
+#     <OUT_DIR>/dist/abi.xml when creating the distribution.
 #
 # Environment variables to influence the stages of the kernel build.
 #
@@ -170,7 +170,7 @@ export CLANG_TRIPLE CROSS_COMPILE CROSS_COMPILE_ARM32 ARCH SUBARCH
 [ "${CC}" == "gcc" ] && unset CC
 
 if [ -n "${CC}" ]; then
-  CC_ARG="CC=${CC}"
+  CC_ARG="CC=${CC} HOSTCC=${CC}"
 fi
 
 if [ -n "${LD}" ]; then
@@ -288,12 +288,12 @@ done
 mkdir -p ${DIST_DIR}
 echo "========================================================"
 echo " Copying files"
-for FILE in ${FILES}; do
+for FILE in $(cd ${OUT_DIR} && ls -1 ${FILES}); do
   if [ -f ${OUT_DIR}/${FILE} ]; then
     echo "  $FILE"
     cp -p ${OUT_DIR}/${FILE} ${DIST_DIR}/
   else
-    echo "  $FILE does not exist, skipping"
+    echo "  $FILE is not a file, skipping"
   fi
 done
 
@@ -353,12 +353,12 @@ if [ -z "${SKIP_CP_KERNEL_HDR}" ] ; then
   popd
 fi
 
-# Copy the abi_${arch}.out file from the sources into the dist dir
+# Copy the abi_${arch}.xml file from the sources into the dist dir
 if [ -n "${ABI_DEFINITION}" ]; then
   echo "========================================================"
-  echo " Copying abi definition to ${DIST_DIR}/abi.out"
+  echo " Copying abi definition to ${DIST_DIR}/abi.xml"
   pushd $ROOT_DIR/$KERNEL_DIR
-    cp "${ABI_DEFINITION}" ${DIST_DIR}/abi.out
+    cp "${ABI_DEFINITION}" ${DIST_DIR}/abi.xml
   popd
 fi
 
