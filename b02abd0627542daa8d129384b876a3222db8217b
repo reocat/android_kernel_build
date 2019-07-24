@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e873f625_0e53a512",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-07-24T14:57:17Z",
+      "side": 1,
+      "message": "that slightly changes the current functionality:\nbefore:\n  CC\u003dgcc -\u003e unset CC -\u003e the triplet version is used, e.g. x86_64-linux-androidkernel-gcc\n\nnow\n  CC\u003dgcc -\u003e \u0027gcc\u0027 is used",
+      "revId": "b02abd0627542daa8d129384b876a3222db8217b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
