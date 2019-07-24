@@ -152,6 +152,14 @@ SIGN_SEC=certs/signing_key.pem
 SIGN_CERT=certs/signing_key.x509
 SIGN_ALGO=sha512
 
+# Save environment parameters before being overwritten by sourcing
+# BUILD_CONFIG.
+#
+# CC=gcc is effectively a fallback to the default gcc including any target
+# triplets. If the user wants to use a custom compiler, they are still able to
+# pass an absolute path, e.g. CC=/usr/bin/gcc.
+CC_ARG=$CC
+
 source "${ROOT_DIR}/build/envsetup.sh"
 
 export MAKE_ARGS=$@
@@ -164,10 +172,10 @@ cd ${ROOT_DIR}
 
 export CLANG_TRIPLE CROSS_COMPILE CROSS_COMPILE_ARM32 ARCH SUBARCH
 
-# CC=gcc is effectively a fallback to the default gcc including any target
-# triplets. If the user wants to use a custom compiler, they are still able to
-# pass an absolute path, e.g. CC=/usr/bin/gcc.
-[ "${CC}" == "gcc" ] && unset CC
+if [ "${CC_ARG}" == "gcc" ]; then
+  unset CC
+  unset CC_ARG
+fi
 
 if [ -n "${CC}" ]; then
   CC_ARG="CC=${CC} HOSTCC=${CC}"
