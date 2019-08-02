@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db07c1af_fbab74d6",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2019-08-02T19:24:54Z",
+      "side": 1,
+      "message": "\u003d\"${CC}\"",
+      "range": {
+        "startLine": 157,
+        "startChar": 6,
+        "endLine": 157,
+        "endChar": 10
+      },
+      "revId": "4ac491361d41ebf2e84cc38101412dea9754839d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "491db0b0_fe75d865",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2019-08-02T19:24:54Z",
+      "side": 1,
+      "message": "\"${CC_ARG}\"",
+      "range": {
+        "startLine": 173,
+        "startChar": 5,
+        "endLine": 173,
+        "endChar": 14
+      },
+      "revId": "4ac491361d41ebf2e84cc38101412dea9754839d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59f1c693_e634c291",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2019-08-02T19:24:54Z",
+      "side": 1,
+      "message": "\u003d\"${CC_ARG}\"",
+      "range": {
+        "startLine": 173,
+        "startChar": 22,
+        "endLine": 173,
+        "endChar": 30
+      },
+      "revId": "4ac491361d41ebf2e84cc38101412dea9754839d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6c516b8_0e5c4b8b",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2019-08-02T19:24:54Z",
+      "side": 1,
+      "message": "\"${CC}\"",
+      "range": {
+        "startLine": 178,
+        "startChar": 2,
+        "endLine": 178,
+        "endChar": 7
+      },
+      "revId": "4ac491361d41ebf2e84cc38101412dea9754839d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
