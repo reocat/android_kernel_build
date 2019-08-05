@@ -62,7 +62,8 @@ echo
 echo "PATH=${PATH}"
 echo
 
-export $(sed -n -e 's/\([^=]\)=.*/\1/p' ${ROOT_DIR}/${BUILD_CONFIG})
+# export variables from build config
+export $(sed -n -e 's/^\([a-zA-Z0-9_]\+\)=.*/\1/p' ${ROOT_DIR}/${BUILD_CONFIG})
 
 # verifies that defconfig matches the DEFCONFIG
 function check_defconfig() {
