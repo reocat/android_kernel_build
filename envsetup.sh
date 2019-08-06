@@ -20,6 +20,22 @@
 #     just:
 #       make -j24
 
+
+# Verifies that defconfig matches the DEFCONFIG
+function check_defconfig() {
+    (cd ${OUT_DIR} && \
+     make ${CC_LD_ARG} O=${OUT_DIR} savedefconfig)
+    [ "$ARCH" = "x86_64" -o "$ARCH" = "i386" ] && local ARCH=x86
+    echo Verifying that savedefconfig matches ${KERNEL_DIR}/arch/${ARCH}/configs/${DEFCONFIG}
+    RES=0
+    diff ${OUT_DIR}/defconfig ${KERNEL_DIR}/arch/${ARCH}/configs/${DEFCONFIG} ||
+      RES=$?
+    if [ ${RES} -ne 0 ]; then
+        echo ERROR: savedefconfig does not match ${KERNEL_DIR}/arch/${ARCH}/configs/${DEFCONFIG}
+    fi
+    return ${RES}
+}
+
 [ -n "$ENVSETUP_SH_INCLUDED" ] && return || export ENVSETUP_SH_INCLUDED=1
 
 # TODO: Use a $(gettop) style method.
@@ -63,18 +79,3 @@ echo "PATH=${PATH}"
 echo
 
 export $(sed -n -e 's/\([^=]\)=.*/\1/p' ${ROOT_DIR}/${BUILD_CONFIG})
-
-# verifies that defconfig matches the DEFCONFIG
-function check_defconfig() {
-    (cd ${OUT_DIR} && \
-     make ${CC_LD_ARG} O=${OUT_DIR} savedefconfig)
-    [ "$ARCH" = "x86_64" -o "$ARCH" = "i386" ] && local ARCH=x86
-    echo Verifying that savedefconfig matches ${KERNEL_DIR}/arch/${ARCH}/configs/${DEFCONFIG}
-    RES=0
-    diff ${OUT_DIR}/defconfig ${KERNEL_DIR}/arch/${ARCH}/configs/${DEFCONFIG} ||
-      RES=$?
-    if [ ${RES} -ne 0 ]; then
-        echo ERROR: savedefconfig does not match ${KERNEL_DIR}/arch/${ARCH}/configs/${DEFCONFIG}
-    fi
-    return ${RES}
-}
