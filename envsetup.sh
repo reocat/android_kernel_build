@@ -42,7 +42,9 @@ function check_defconfig() {
 export ROOT_DIR=$PWD
 
 export BUILD_CONFIG=${BUILD_CONFIG:-build.config}
-. ${ROOT_DIR}/${BUILD_CONFIG}
+set -a
+source ${ROOT_DIR}/${BUILD_CONFIG}
+set +a
 
 export COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
 export OUT_DIR=$(readlink -m ${COMMON_OUT_DIR}/${KERNEL_DIR})
@@ -77,5 +79,3 @@ export PATH
 echo
 echo "PATH=${PATH}"
 echo
-
-export $(sed -n -e 's/\([^=]\)=.*/\1/p' ${ROOT_DIR}/${BUILD_CONFIG})
