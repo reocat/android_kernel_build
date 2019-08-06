@@ -20,7 +20,7 @@
 #     just:
 #       make -j24
 
-[ -n "$ENVSETUP_SH_INCLUDED" ] && return || export ENVSETUP_SH_INCLUDED=1
+[ -n "$ENVSETUP_SH_INCLUDED" ] && return
 
 # TODO: Use a $(gettop) style method.
 export ROOT_DIR=$PWD

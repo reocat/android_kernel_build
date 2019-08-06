@@ -29,6 +29,7 @@ set -e
 set -a
 
 source "${ROOT_DIR}/build/envsetup.sh"
+export ENVSETUP_SH_INCLUDED=1
 
 # inject CONFIG_DEBUG_INFO=y
 export POST_DEFCONFIG_CMDS="${POST_DEFCONFIG_CMDS} : && update_config_for_abi_dump"
