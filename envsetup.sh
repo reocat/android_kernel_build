@@ -37,7 +37,7 @@ echo "= build config: ${ROOT_DIR}/${BUILD_CONFIG}"
 cat ${ROOT_DIR}/${BUILD_CONFIG}
 
 # List of prebuilt directories shell variables to incorporate into PATH
-PREBUILTS_PATHS="
+PREBUILTS_PATHS=(
 LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN
 LINUX_GCC_CROSS_COMPILE_ARM32_PREBUILTS_BIN
 CLANG_PREBUILT_BIN
@@ -45,14 +45,14 @@ LZ4_PREBUILTS_BIN
 DTC_PREBUILTS_BIN
 LIBUFDT_PREBUILTS_BIN
 BUILDTOOLS_PREBUILT_BIN
-"
+)
 
-for PREBUILT_BIN in ${PREBUILTS_PATHS}; do
+for PREBUILT_BIN in "${PREBUILTS_PATHS[@]}"; do
     PREBUILT_BIN=\${${PREBUILT_BIN}}
     eval PREBUILT_BIN="${PREBUILT_BIN}"
     if [ -n "${PREBUILT_BIN}" ]; then
         # Mitigate dup paths
-        PATH=${PATH//"${ROOT_DIR}/${PREBUILT_BIN}:"}
+        PATH=${PATH//"${ROOT_DIR}\/${PREBUILT_BIN}:"}
         PATH=${ROOT_DIR}/${PREBUILT_BIN}:${PATH}
     fi
 done
