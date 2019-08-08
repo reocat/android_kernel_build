@@ -26,9 +26,7 @@
 export ROOT_DIR=$PWD
 
 export BUILD_CONFIG=${BUILD_CONFIG:-build.config}
-set -a
-source ${ROOT_DIR}/${BUILD_CONFIG}
-set +a
+. ${ROOT_DIR}/${BUILD_CONFIG}
 
 export COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
 export OUT_DIR=$(readlink -m ${COMMON_OUT_DIR}/${KERNEL_DIR})
@@ -64,7 +62,7 @@ echo
 echo "PATH=${PATH}"
 echo
 
-#export $(sed -n -e 's/\([^=]\)=.*/\1/p' ${ROOT_DIR}/${BUILD_CONFIG})
+export $(sed -n -e 's/\([^=]\)=.*/\1/p' ${ROOT_DIR}/${BUILD_CONFIG})
 
 # verifies that defconfig matches the DEFCONFIG
 function check_defconfig() {
