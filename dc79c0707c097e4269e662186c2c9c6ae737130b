@@ -22,6 +22,30 @@
       "revId": "dc79c0707c097e4269e662186c2c9c6ae737130b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea9d6533_41280dc7",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1466604
+      },
+      "writtenOn": "2019-08-13T02:53:35Z",
+      "side": 1,
+      "message": "Good suggestion! I took it and modified it to make it a bit easier to debug in the case of the archive step failing.",
+      "parentUuid": "bdba19b6_59abae93",
+      "range": {
+        "startLine": 330,
+        "startChar": 4,
+        "endLine": 335,
+        "endChar": 75
+      },
+      "revId": "dc79c0707c097e4269e662186c2c9c6ae737130b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
