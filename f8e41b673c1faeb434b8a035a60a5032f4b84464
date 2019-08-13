@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "097d7efc_d117566d",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2019-08-13T18:11:50Z",
+      "side": 1,
+      "message": "As we discussed offline, it will probably be necessary to make \"BUILD_INITRAMFS\" itself the list of MODULES to install, rather than assuming all .ko files should be packaged. This is because gki may enable some options to resolve logical kconfig build dependencies but we do not intend to ship those modules on cuttlefish.",
+      "range": {
+        "startLine": 319,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 59
+      },
+      "revId": "f8e41b673c1faeb434b8a035a60a5032f4b84464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
