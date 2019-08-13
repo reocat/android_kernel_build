@@ -29,6 +29,7 @@ set -e
 set -a
 
 source "${ROOT_DIR}/build/envsetup.sh"
+export ENVSETUP_SH_INCLUDED=1
 
 # inject CONFIG_DEBUG_INFO=y
 export POST_DEFCONFIG_CMDS="${POST_DEFCONFIG_CMDS} : && update_config_for_abi_dump"
@@ -38,6 +39,8 @@ function update_config_for_abi_dump() {
     (cd ${OUT_DIR} && \
      make O=${OUT_DIR} ${CC_LD_ARG} $archsubarch CROSS_COMPILE=${CROSS_COMPILE} olddefconfig)
 }
+export -f check_defconfig
+export -f update_config_for_abi_dump
 
 function version_greater_than() {
     test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1";
@@ -46,7 +49,7 @@ function version_greater_than() {
 # ensure that abigail is present in path
 if ! ( hash abidiff 2>/dev/null); then
     echo "ERROR: libabigail is not found in \$PATH at all!"
-    echo "Have you run abi/bootstrap and followed the instructions?"
+    echo "Have you run build/abi/bootstrap and followed the instructions?"
     exit 1
 fi
 
@@ -54,7 +57,7 @@ fi
 if ! ( version_greater_than "$(abidiff --version | awk '{print $2}')"  \
 			    "1.6.0" ); then
     echo "ERROR: no suitable libabigail (>= 1.6.0) in \$PATH."
-    echo "Have you run abi/bootstrap and followed the instructions?"
+    echo "Have you run build/abi/bootstrap and followed the instructions?"
     exit 1
 fi
 
