@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61792e97_30b5e39b",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1409599
+      },
+      "writtenOn": "2019-08-13T13:58:28Z",
+      "side": 1,
+      "message": "Ops, I noticed that I forgot the \u0027$\u0027. You can remove it if you prefer.",
+      "range": {
+        "startLine": 331,
+        "startChar": 4,
+        "endLine": 331,
+        "endChar": 5
+      },
+      "revId": "ecc0554d5fc4c7c1ea4fc220cdfcd0afc7a154c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
