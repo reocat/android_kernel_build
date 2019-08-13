@@ -184,7 +184,7 @@ echo "========================================================"
 echo " Setting up for build"
 if [ -z "${SKIP_MRPROPER}" ] ; then
   set -x
-  (cd ${KERNEL_DIR} && make ${CC_LD_ARG} O=${OUT_DIR} mrproper)
+  (cd ${KERNEL_DIR} && make ${CC_LD_ARG} O=${OUT_DIR} -j$(nproc) mrproper $@)
   set +x
 fi
 
