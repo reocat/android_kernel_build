@@ -14,19 +14,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Usage:
-#   source build/envsetup.sh
-#     to setup your path and cross compiler so that a kernel build command is
-#     just:
-#       make -j24
 
-[ -n "$ENVSETUP_SH_INCLUDED" ] && return || export ENVSETUP_SH_INCLUDED=1
+# Usage:
+# $ build/build.sh
+#
+# Usage (deprecated):
+# $ source build/envsetup.sh  # to setup your path and cross compiler
+#                             # so that a kernel build command is just:
+# $ make -j24
+
+[ -n "$ENVSETUP_SH_INCLUDED" ] && return
 
 # TODO: Use a $(gettop) style method.
 export ROOT_DIR=$PWD
 
 export BUILD_CONFIG=${BUILD_CONFIG:-build.config}
+set -a
 . ${ROOT_DIR}/${BUILD_CONFIG}
+set +a
 
 export COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
 export OUT_DIR=$(readlink -m ${COMMON_OUT_DIR}/${KERNEL_DIR})
@@ -37,21 +42,22 @@ echo "= build config: ${ROOT_DIR}/${BUILD_CONFIG}"
 cat ${ROOT_DIR}/${BUILD_CONFIG}
 
 # List of prebuilt directories shell variables to incorporate into PATH
-PREBUILTS_PATHS="
+PREBUILTS_PATHS=(
 LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN
 LINUX_GCC_CROSS_COMPILE_ARM32_PREBUILTS_BIN
 CLANG_PREBUILT_BIN
 LZ4_PREBUILTS_BIN
 DTC_PREBUILTS_BIN
 LIBUFDT_PREBUILTS_BIN
-"
+BUILDTOOLS_PREBUILT_BIN
+)
 
-for PREBUILT_BIN in ${PREBUILTS_PATHS}; do
+for PREBUILT_BIN in "${PREBUILTS_PATHS[@]}"; do
     PREBUILT_BIN=\${${PREBUILT_BIN}}
     eval PREBUILT_BIN="${PREBUILT_BIN}"
     if [ -n "${PREBUILT_BIN}" ]; then
         # Mitigate dup paths
-        PATH=${PATH//"${ROOT_DIR}/${PREBUILT_BIN}:"}
+        PATH=${PATH//"${ROOT_DIR}\/${PREBUILT_BIN}:"}
         PATH=${ROOT_DIR}/${PREBUILT_BIN}:${PATH}
     fi
 done
@@ -60,8 +66,6 @@ export PATH
 echo
 echo "PATH=${PATH}"
 echo
-
-export $(sed -n -e 's/\([^=]\)=.*/\1/p' ${ROOT_DIR}/${BUILD_CONFIG})
 
 # verifies that defconfig matches the DEFCONFIG
 function check_defconfig() {
