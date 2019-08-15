@@ -57,7 +57,7 @@
 #   ABI_DEFINITION
 #     Location of the abi definition file relative to <REPO_ROOT>/KERNEL_DIR
 #     If defined (usually in build.config), also copy that abi definition to
-#     <OUT_DIR>/dist/abi.out when creating the distribution.
+#     <OUT_DIR>/dist/abi.xml when creating the distribution.
 #
 # Environment variables to influence the stages of the kernel build.
 #
@@ -108,6 +108,9 @@
 #     - KERNEL_BINARY=<name of kernel binary, eg. Image.lz4, Image.gz etc>
 #     - BOOT_IMAGE_HEADER_VERSION=<version of the boot image header>
 #
+#   BUILD_INITRAMFS
+#     if defined, build a ramdisk containing all .ko files and resulting depmod artifacts
+#
 # Note: For historic reasons, internally, OUT_DIR will be copied into
 # COMMON_OUT_DIR, and OUT_DIR will be then set to
 # ${COMMON_OUT_DIR}/${KERNEL_DIR}. This has been done to accommodate existing
@@ -152,6 +155,10 @@ SIGN_SEC=certs/signing_key.pem
 SIGN_CERT=certs/signing_key.x509
 SIGN_ALGO=sha512
 
+# Save environment parameters before being overwritten by sourcing
+# BUILD_CONFIG.
+CC_ARG=${CC}
+
 source "${ROOT_DIR}/build/envsetup.sh"
 
 export MAKE_ARGS=$@
@@ -159,18 +166,23 @@ export MODULES_STAGING_DIR=$(readlink -m ${COMMON_OUT_DIR}/staging)
 export MODULES_PRIVATE_DIR=$(readlink -m ${COMMON_OUT_DIR}/private)
 export UNSTRIPPED_DIR=${DIST_DIR}/unstripped
 export KERNEL_UAPI_HEADERS_DIR=$(readlink -m ${COMMON_OUT_DIR}/kernel_uapi_headers)
+export INITRAMFS_STAGING_DIR=${MODULES_STAGING_DIR}/initramfs_staging
 
 cd ${ROOT_DIR}
 
 export CLANG_TRIPLE CROSS_COMPILE CROSS_COMPILE_ARM32 ARCH SUBARCH
 
+# Restore the previously saved CC argument that might have been overridden by
+# the BUILD_CONFIG.
+[ -n "${CC_ARG}" ] && CC=${CC_ARG}
+
 # CC=gcc is effectively a fallback to the default gcc including any target
-# triplets. If the user wants to use a custom compiler, they are still able to
-# pass an absolute path, e.g. CC=/usr/bin/gcc.
-[ "${CC}" == "gcc" ] && unset CC
+# triplets. An absolute path (e.g., CC=/usr/bin/gcc) must be specified to use a
+# custom compiler.
+[ "${CC}" == "gcc" ] && unset CC && unset CC_ARG
 
 if [ -n "${CC}" ]; then
-  CC_ARG="CC=${CC}"
+  CC_ARG="CC=${CC} HOSTCC=${CC}"
 fi
 
 if [ -n "${LD}" ]; then
@@ -229,7 +241,7 @@ fi
 rm -rf ${MODULES_STAGING_DIR}
 mkdir -p ${MODULES_STAGING_DIR}
 
-if [ -n "${IN_KERNEL_MODULES}" ]; then
+if [ -n "${BUILD_INITRAMFS}" -o  -n "${IN_KERNEL_MODULES}" ]; then
   echo "========================================================"
   echo " Installing kernel modules into staging directory"
 
@@ -288,12 +300,12 @@ done
 mkdir -p ${DIST_DIR}
 echo "========================================================"
 echo " Copying files"
-for FILE in ${FILES}; do
+for FILE in $(cd ${OUT_DIR} && ls -1 ${FILES}); do
   if [ -f ${OUT_DIR}/${FILE} ]; then
     echo "  $FILE"
     cp -p ${OUT_DIR}/${FILE} ${DIST_DIR}/
   else
-    echo "  $FILE does not exist, skipping"
+    echo "  $FILE is not a file, skipping"
   fi
 done
 
@@ -306,13 +318,28 @@ done
 
 MODULES=$(find ${MODULES_STAGING_DIR} -type f -name "*.ko")
 if [ -n "${MODULES}" ]; then
-  echo "========================================================"
-  echo " Copying modules files"
   if [ -n "${IN_KERNEL_MODULES}" -o "${EXT_MODULES}" != "" ]; then
+    echo "========================================================"
+    echo " Copying modules files"
     for FILE in ${MODULES}; do
       echo "  ${FILE#${MODULES_STAGING_DIR}/}"
       cp -p ${FILE} ${DIST_DIR}
     done
+  fi
+  if [ -n "${BUILD_INITRAMFS}" ]; then
+    echo "========================================================"
+    echo " Creating initramfs"
+    set -x
+    rm -rf ${INITRAMFS_STAGING_DIR}
+    mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/kernel/
+    cp -r ${MODULES_STAGING_DIR}/lib/modules/*/kernel/* ${INITRAMFS_STAGING_DIR}/lib/modules/kernel/
+    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.* ${INITRAMFS_STAGING_DIR}/lib/modules/
+    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/modules.load
+
+    (cd ${INITRAMFS_STAGING_DIR} && find . | cpio -H newc -o > ${MODULES_STAGING_DIR}/initramfs.cpio)
+    gzip -f ${MODULES_STAGING_DIR}/initramfs.cpio
+    mv ${MODULES_STAGING_DIR}/initramfs.cpio.gz ${DIST_DIR}/initramfs.img
+    set +x
   fi
 fi
 
@@ -353,12 +380,12 @@ if [ -z "${SKIP_CP_KERNEL_HDR}" ] ; then
   popd
 fi
 
-# Copy the abi_${arch}.out file from the sources into the dist dir
+# Copy the abi_${arch}.xml file from the sources into the dist dir
 if [ -n "${ABI_DEFINITION}" ]; then
   echo "========================================================"
-  echo " Copying abi definition to ${DIST_DIR}/abi.out"
+  echo " Copying abi definition to ${DIST_DIR}/abi.xml"
   pushd $ROOT_DIR/$KERNEL_DIR
-    cp "${ABI_DEFINITION}" ${DIST_DIR}/abi.out
+    cp "${ABI_DEFINITION}" ${DIST_DIR}/abi.xml
   popd
 fi
 
