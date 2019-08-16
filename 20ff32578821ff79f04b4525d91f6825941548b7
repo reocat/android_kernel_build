@@ -16,6 +16,24 @@
       "revId": "20ff32578821ff79f04b4525d91f6825941548b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5621afe6_e14a5917",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1409599
+      },
+      "writtenOn": "2019-08-16T11:00:32Z",
+      "side": 1,
+      "message": "Hm... This is a widely accepted make option that also works well with build.sh.\nThat\u0027s why I decided to mention that in this patch.",
+      "parentUuid": "dc3b69d4_0057ded7",
+      "revId": "20ff32578821ff79f04b4525d91f6825941548b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
