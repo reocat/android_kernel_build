@@ -102,7 +102,7 @@ if ! ( version_greater_than "$(abidiff --version | awk '{print $2}')"  \
 fi
 
 # delegate the actual build to build.sh
-ABI_DEFINITION= ${ROOT_DIR}/build/build.sh $*
+ABI_DEFINITION="${ROOT_DIR}/build/build.sh $*"
 
 echo "========================================================"
 echo " Creating ABI dump"
