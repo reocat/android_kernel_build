@@ -22,7 +22,7 @@ set -e
 
 export STATIC_ANALYSIS_SRC_DIR=$(dirname $(readlink -f $0))
 
-source ${STATIC_ANALYSIS_SRC_DIR}/../envsetup.sh
+source ${STATIC_ANALYSIS_SRC_DIR}/../_setup_env.sh
 export OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
 export DIST_DIR=$(readlink -m ${DIST_DIR:-${OUT_DIR}/dist})
 
@@ -84,6 +84,17 @@ if [[ -z ${GIT_SHA1} ]]; then
   # included in presubmit without any changed files.
   echo "No changes to apply for ${KERNEL_DIR}."
   exit 0
+fi
+
+# Skip checkpatch for merge commits on common kernels
+# These are upstream merges that likely hit issues in checkpatch.pl or merges
+# from other common kernel repositories where _this_ check has been run as part
+# of the developement process.
+if [ "${KERNEL_DIR}" == "common" ]; then
+    if [ $(git -C ${KERNEL_DIR} show --no-patch --format="%p" ${GIT_SHA1} | wc -w) -gt 1 ] ; then
+        echo "Merge commit detected for a ${KERNEL_DIR} kernel. Skipping this check."
+        exit 0
+    fi
 fi
 
 ${STATIC_ANALYSIS_SRC_DIR}/checkpatch.sh --git_sha1 ${GIT_SHA1} ${FORWARDED_ARGS[*]}
