@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e -u
+
+CMD=$(basename $0)
+TMP=/tmp/$CMD$$
+
+main()
+{
+	lka-in-build-dir || exit 1
+
+	rm -f lka-all-enums.*
+}
+
+main "$@"
+

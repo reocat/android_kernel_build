@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# CWD is /usr/local/google/home/pantin/psrc/cam/1/out/android-mainline/common
+
+TOP_DIR=${PWD%%/out/android-*/common}
+
+# Don't use these toy tools:
+P1=$TOP_DIR/build/build-tools/path/linux-x86
+
+P2=$TOP_DIR/prebuilts-master/clang/host/linux-x86/clang-r353983c/bin
+P3=$TOP_DIR/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin
+P4=$TOP_DIR/build/abi/abigail-inst/d7ae619f/bin
+
+echo "$P2:$PATH"
