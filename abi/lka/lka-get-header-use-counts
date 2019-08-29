@@ -1,0 +1,93 @@
+#!/bin/bash
+
+set -e
+
+trace()
+{
+	: # echo "$@" 1>&2
+}
+
+lka-in-build-dir || exit 1
+
+#	Each line is a header file name followed by the number of kernel module
+#	files (.ko files) that make use of the header file, uses by vmlinux are
+#	not included in this count.
+
+trace "building lka-header-use-count-ko.tmp ..."
+find * -name '*.ko.lka' -print |
+	xargs egrep '^LKA_FILES_H=' |
+	sed -e "s?^.*\.lka:LKA_FILES_H='??" -e "s/'"'$//' |
+	tr ' ' '\012' |
+	sort |
+	uniq -c |
+	awk '{print $2 " " $1}' |
+	sort \
+		> lka-header-use-count-ko.tmp
+
+#	Each line is a header file name followed by the number of files, either
+#	kernel module files (.ko files) or vmlinux, that make use of the header
+#	file.
+
+trace "building lka-header-use-count-ko+vmlinux.tmp ..."
+find * -name '*.lka' -print |
+	xargs egrep '^LKA_FILES_H=' |
+	sed -e "s?^.*\.lka:LKA_FILES_H='??" -e "s/'"'$//' |
+	tr ' ' '\012' |
+	sort |
+	uniq -c |
+	awk '{print $2 " " $1}' |
+	sort \
+		> lka-header-use-count-ko+vmlinux.tmp
+
+#	Headers whose use count did not change are header files that are
+#	only used by kernel modules (.ko files) and that are not used by
+#	vmlinux.  If the header file shows up in both files with an unchanged
+#	use count, then they were not used by vmlinux because the difference
+#	between both files is that one includes vmlinux and the other one
+#	does not, both include the use count by all the kernel modules,
+#	the only way that adding vmlinux would cause their use count not to
+#	change is because vmlinux did not use them.
+
+trace "building lka-header-use-count.used-by-ko-and-unused-by-vmlinux.tmp ..."
+comm -1 -2 lka-header-use-count-ko.tmp \
+	   lka-header-use-count-ko+vmlinux.tmp \
+		> lka-header-use-count.used-by-ko-and-unused-by-vmlinux.tmp
+
+trace "building lka-header-use-count.used-by-2-or-more-ko-and-unused-by-vmlinux.tmp ..."
+egrep -v ' 1$' < lka-header-use-count.used-by-ko-and-unused-by-vmlinux.tmp \
+		> lka-header-use-count.used-by-2-or-more-ko-and-unused-by-vmlinux.tmp || true
+
+trace "building lka-header-use-count.used-by-ko-and-used-by-vmlinux.tmp ..."
+join <(comm -2 -3 lka-header-use-count-ko.tmp \
+		  lka-header-use-count-ko+vmlinux.tmp) \
+     <(comm -1 -3 lka-header-use-count-ko.tmp \
+		  lka-header-use-count-ko+vmlinux.tmp) |
+	awk '{print $1 " " $3}' \
+		> lka-header-use-count.used-by-ko-and-used-by-vmlinux.tmp
+
+trace "building lka-header-use-count.affect-ABI.tmp ..."
+cat lka-header-use-count.used-by-2-or-more-ko-and-unused-by-vmlinux.tmp \
+    lka-header-use-count.used-by-ko-and-used-by-vmlinux.tmp \
+		> lka-header-use-count.affect-ABI.tmp
+
+trace "... done building"
+trace
+
+echo $(wc -l < lka-header-use-count-ko+vmlinux.tmp) \
+	'headers used by kernel modules or vmlinux'
+echo '	lka-header-use-count-ko+vmlinux.tmp'
+echo
+
+echo $(wc -l < lka-header-use-count.used-by-2-or-more-ko-and-unused-by-vmlinux.tmp) \
+	'headers used by 2 or more kernel modules and unsused by vmlinux'
+echo '	lka-header-use-count.used-by-2-or-more-ko-and-unused-by-vmlinux.tmp'
+echo
+
+echo $(wc -l < lka-header-use-count.used-by-ko-and-used-by-vmlinux.tmp) \
+	'headers used by at least one kernel module and also by vmlinux'
+echo '	lka-header-use-count.used-by-ko-and-used-by-vmlinux.tmp'
+echo
+
+echo $(wc -l < lka-header-use-count.affect-ABI.tmp) \
+	'total headers that affect kernel ABI'
+echo '	lka-header-use-count.affect-ABI.tmp'

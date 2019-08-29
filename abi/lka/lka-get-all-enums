@@ -1,0 +1,113 @@
+#!/bin/bash
+
+set -e -u
+
+CMD=$(basename $0)
+N=4
+
+main()
+{
+	lka-in-build-dir || exit 1
+
+	echo 'aggregating ...'
+	bash -c "find . -name '*.lka.3.c' -print |
+		      xargs cat |
+		      egrep -v '^[ 	]*$'" > lka-all-enums.unsorted
+	echo 'sorting ...'
+	sort --parallel=$(nproc) lka-all-enums.unsorted > lka-all-enums.sort
+	echo 'reducing ...'
+	uniq lka-all-enums.sort > lka-all-enums.uniq
+	< lka-all-enums.uniq \
+		awk '{print $2}' |
+		uniq -c |
+		sort -nr |
+		egrep -v '^[ 	]*1[ 	]' \
+			> lka-all-enums.dups
+
+	< lka-all-enums.uniq \
+		egrep -w "$(< lka-all-enums.dups \
+			   sed -n 's/^[ 	]*\([0-9]*\)[ 	][ 	]*\(__lka_sizeof_[_a-zA-Z][_a-zA-Z0-9]*\)$/\2/p' |
+			   tr '\012' '|' |
+			   sed 's/|$//')" \
+		> lka-all-enums.dups.sizeof
+
+	< lka-all-enums.uniq \
+		egrep -w "$(< lka-all-enums.dups \
+			   sed -n 's/^[ 	]*\([0-9]*\)[ 	][ 	]*\(__lka_e[0-9][0-9]*_[_a-zA-Z][_a-zA-Z0-9]*\)$/\2/p' |
+			   tr '\012' '|' |
+			   sed 's/|$//')"  \
+		> lka-all-enums.dups.values.tmp
+
+	< lka-all-enums.uniq \
+		egrep -w "$(< lka-all-enums.dups.values.tmp \
+			    sed 's?//.*??' |
+			    sort -u |
+			    awk '{print $2}' |
+			    uniq -c |
+			    sort -nr |
+			    egrep -v '^[ 	]*1[ 	]' |
+			    awk '{print $2}' |
+			    tr '\012' '|' |
+			    sed 's/|$//')" \
+		> lka-all-enums.dups.values
+
+	if false ; then
+		echo 'lka-all-enums.dups.values.files ... (slow step)'
+		find . -name '*.lka.3.c' -print |
+			xargs egrep -w "$(< lka-all-enums.dups.values \
+					  awk '{print $2}' |
+					  egrep -v '\<__lka_e[0-9]*__' |
+					  tr '\012' '|' |
+					  sed 's/|$//')" |
+			sed 's/:/ /' |
+			awk '{print $3 " " $7 " " $1}' |
+			sort \
+				> lka-all-enums.dups.values.files
+
+		echo lka-all-enums.dups.all.values.files ...
+		find . -name '*.lka.3.c' -print |
+			xargs egrep -w "$(< lka-all-enums.dups.values \
+					  awk '{print $2}' |
+					  tr '\012' '|' |
+					  sed 's/|$//')" |
+			sed 's/:/ /' |
+			awk '{print $3 " " $7 " " $1}' |
+			sort \
+				> lka-all-enums.dups.all.values.files
+
+		echo lka-all-enums.dups.values.headers ...
+		find source/* -name '*.h' -print | xargs \
+			egrep "^[ 	]*#[ 	]*define[ 	][ 	]*($(
+					awk '{print $2}' \
+						< lka-all-enums.dups.values |
+					egrep -v '\<__lka_e[0-9]*__' |
+					sed 's/^__lka_e[0-9]*_//' |
+					tr '\012' '|' |
+					sed 's/|$//'
+				))[ 	]" |
+			sed 's/:/ /' |
+			awk '{print $3 " " $1}' |
+			sort \
+				> lka-all-enums.dups.values.headers
+
+		echo lka-all-enums.dups.all.values.headers ...
+		find source/* -name '*.h' -print | xargs \
+			egrep "^[ 	]*#[ 	]*define[ 	][ 	]*($(
+					awk '{print $2}' \
+						< lka-all-enums.dups.values |
+					sed 's/^__lka_e[0-9]*_//' |
+					tr '\012' '|' |
+					sed 's/|$//'
+				))[ 	]" |
+			sed 's/:/ /' |
+			awk '{print $3 " " $1}' |
+			sort \
+				> lka-all-enums.dups.all.values.headers
+	fi
+
+	cp lka-all-enums.uniq lka-all-enums.c
+	echo 'output to be used for #define ABI checking with libabigail:'
+	echo '	lka-all-enums.c'
+}
+
+main "$@"

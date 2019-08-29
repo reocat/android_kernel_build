@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+CMD=$(basename $0)
+TMP=/tmp/$CMD$$
+
+main()
+{
+	lka-in-build-dir || exit 1
+
+	lka-rm-info
+	lka-rm-header-use-counts
+	lka-rm-defines
+	lka-rm-all-enums
+}
+
+main "$@"
+

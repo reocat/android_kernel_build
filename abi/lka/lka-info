@@ -1,0 +1,522 @@
+#!/bin/bash
+
+#	Inspect a Linux kernel module (a *.ko file) or the Linux kernel
+#	itself to determine what source code files were used to build it.
+
+#	This file is organized as a series of functions, with main() at
+#	the end. Every variable set by a function is preset, immediately
+#	prior to the function declaration with its name followed by:
+#		_not_set_yet
+#	to more easily detect if their unset value is used incorretly.
+#	Other than these variables being set, and the setting of CMD below,
+#	there shold be no code in this file that is not in functions other
+#	than the invocation of main() at the very end of the file.
+
+set -e			# Exit on command failures not tested explicitly
+set -u			# Use of unset variables is an error.
+
+CMD=$(basename $0)
+
+usage()
+{
+	echo "usage: $CMD [-v | -s | -l] linux-kernel-module.ko" 1>&2
+}
+
+err()
+{
+	echo "$CMD: $*" 1>&2
+}
+
+errexit()
+{
+	err "$*"
+	exit 1
+}
+
+show_module()
+{
+	echo "LKA_MODULE_DIR_SOURCE=$LKA_MODULE_DIR_SOURCE"
+	echo "LKA_MODULE_DIR=$LKA_MODULE_DIR"
+	echo "LKA_MODULE_BASE=$LKA_MODULE_BASE"
+	echo "LKA_MODULE_KO_CMD=$LKA_MODULE_KO_CMD"
+	echo "LKA_MODULE_KO_CMD_NAME=$LKA_MODULE_KO_CMD_NAME"
+	echo "LKA_MODULE_KO_CMD_NAME_NO_cmd_=$LKA_MODULE_KO_CMD_NAME_NO_cmd_"
+	echo "LKA_MODULE_O=$LKA_MODULE_O"
+	echo "LKA_MODULE_O_CMD=$LKA_MODULE_O_CMD"
+	echo "LKA_MODULE_O_CMD_LINE_COUNT=$LKA_MODULE_O_CMD_LINE_COUNT"
+	echo "LKA_MODULE_O_LIST=$LKA_MODULE_O_LIST"
+}
+
+show()
+{
+	echo "LKA_BINARY=$LKA_BINARY"
+	echo "LKA_COUNT_C=$LKA_COUNT_C"
+	echo "LKA_COUNT_S=$LKA_COUNT_S"
+	echo "LKA_COUNT_H=$LKA_COUNT_H"
+	echo "LKA_COUNT_IN=$LKA_COUNT_IN"
+	echo "LKA_COUNT_INC=$LKA_COUNT_INC"
+	echo "LKA_COUNT_O=$LKA_COUNT_O"
+	echo "LKA_DIR_BUILD=$LKA_DIR_BUILD"
+	echo "LKA_DIR_SOURCE=$LKA_DIR_SOURCE"
+	echo "LKA_FILES_C=$LKA_FILES_C"
+	echo "LKA_FILES_S=$LKA_FILES_S"
+	echo "LKA_FILES_H=$LKA_FILES_H"
+	echo "LKA_FILES_IN=$LKA_FILES_IN"
+	echo "LKA_FILES_INC=$LKA_FILES_INC"
+	echo "LKA_FILES_O=$LKA_FILES_O"
+	echo "LKA_FILES_O_D_KEEP=$LKA_FILES_O_D_KEEP"
+	echo "LKA_INCLUDED_CS_FILES=$LKA_INCLUDED_CS_FILES"
+	echo "LKA_INCLUDED_CS_COUNT=$LKA_INCLUDED_CS_COUNT"
+	show_module
+}
+
+spaces_to_lines()
+{
+	sed 's/[ 	][ 	]*/ /g' | tr ' ' '\012' | sed '/^$/d'
+}
+
+lines_to_spaces()
+{
+	tr '\012' ' ' | sed 's/ *$//'
+}
+
+files_must_exist()
+{
+	for file in "$@" ; do
+		if [ ! -f "$file" ] ; then
+			errexit "file must exist, but it does not: $file"
+		fi
+	done
+}
+
+#
+# validate_opts() sets these
+#
+LKA_OPT_VARS=0
+LKA_OPT_SHOW=0
+LKA_OPT_LIST=0
+LKA_BINARY=LKA_BINARY_not_set_yet
+#
+validate_opts()
+{
+	if [ $# -eq 2 ] ; then
+		case "$1" in
+		-v)	LKA_OPT_VARS=1
+			shift 1
+			;;
+		-s)	LKA_OPT_SHOW=1
+			shift 1
+			;;
+		-l)	LKA_OPT_LIST=1
+			shift 1
+			;;
+		*)	usage
+			exit 1
+			;;
+		esac
+	fi
+
+	if [ $# -ne 1 ] ; then
+		usage
+		exit 1
+	fi
+
+	LKA_BINARY="$1"
+
+	case "$LKA_BINARY" in
+	*.ko)	if [ ! -f "$LKA_BINARY" ] ; then
+			errexit "module file does not exist: $LKA_BINARY"
+		fi
+		;;
+	vmlinux.o)
+		if [ ! -f "$LKA_BINARY" ] ; then
+			errexit "kernel file does not exist: $LKA_BINARY"
+		fi
+		;;
+	*)	errexit "not a kernel module (*.ko) or vmlinux.o: $1"
+		;;
+	esac
+}
+
+#
+# set_kernel_vars() sets these, which are also set by set_module_vars()
+#
+LKA_DIR_BUILD=LKA_DIR_BUILD_not_set_yet
+LKA_DIR_SOURCE=LKA_DIR_SOURCE_not_set_yet
+LKA_COUNT_O=LKA_COUNT_O_not_set_yet
+LKA_FILES_O=LKA_FILES_O_not_set_yet
+LKA_FILES_O_D_KEEP=LKA_FILES_O_D_KEEP_not_set_yet
+#
+set_kernel_vars()
+{
+	if [ $(wc -l < .vmlinux.cmd) -ne 1 ] ; then
+		errexit "expected .vmlinux.cmd to have a single line"
+	fi
+	# LKA_DIR_SOURCE=$(< .vmlinux.cmd \
+	#  sed 's?.*[ \t]\([^ \t]*/linux\)/scripts/link-vmlinux.sh[ \t].*?\1?')
+	LKA_DIR_SOURCE=$(readlink source)
+
+	if [ ! -d "$LKA_DIR_SOURCE" ] ; then
+		errexit "could not determine Linux source tree"
+	fi
+
+	LKA_DIR_BUILD=$(pwd)
+
+	if [ ! -f vmlinux.libs ] ; then
+		errexit "file missing in build: vmlinux.libs"
+	fi
+	if [ ! -f vmlinux.objs ] ; then
+		errexit "file missing in build: vmlinux.objs"
+	fi
+
+	LKA_FILES_O_D_KEEP=$(cat vmlinux.libs vmlinux.objs |
+		tr ' ' '\012' |
+		egrep -v '^[ 	]*$' |
+		while read f ; do
+			case "$f" in 
+			*.o)	echo $f
+				;;
+			*.a)	ar t $f
+				;;
+			*)	errexit "in vmlinux.libs or vmlinux.objs,"
+					" unexpected file: $f"
+				;;
+			esac
+		done |
+		sed 's?/\([^/]*\)$?/.\1.d.keep?' |
+		while read f ; do
+			if [ -f "$f" ] ; then
+				echo "$f"
+				continue
+			fi
+			case "$f" in
+			*/.lib-ksyms.o.d.keep)
+				;;
+			*)	errexit "unexpected file without .d.keep"
+				;;
+			esac
+		done |
+		sed "s?^?$LKA_DIR_BUILD/?")
+
+	LKA_FILES_O=$(echo "$LKA_FILES_O_D_KEEP" |
+		sed 's?^\(.*/\)\.\([^/]*\)\.d\.keep$?\1\2?' |
+		tr '\012' ' ' |
+		sed 's/  *$//')
+
+	LKA_FILES_O_D_KEEP=$(echo "$LKA_FILES_O_D_KEEP" |
+		tr '\012' ' ' |
+		sed 's/  *$//')
+
+	LKA_COUNT_O=$(echo "$LKA_FILES_O" | wc -w)
+}
+
+#
+# set_module_vars() sets these:
+#
+LKA_MODULE_DIR=LKA_MODULE_DIR_not_set_yet
+LKA_MODULE_DIR_SOURCE=LKA_MODULE_DIR_SOURCE_not_set_yet
+LKA_MODULE_BASE=LKA_MODULE_BASE_not_set_yet
+LKA_MODULE_KO_CMD=LKA_MODULE_KO_CMD_not_set_yet
+LKA_MODULE_KO_CMD_NAME=LKA_MODULE_KO_CMD_NAME_not_set_yet
+LKA_MODULE_KO_CMD_NAME_NO_cmd_=LKA_MODULE_KO_CMD_NAME_NO_cmd__not_set_yet
+LKA_MODULE_O=LKA_MODULE_O_not_set_yet
+LKA_MODULE_O_CMD=LKA_MODULE_O_CMD_not_set_yet
+LKA_MODULE_O_CMD_LINE_COUNT=LKA_MODULE_O_CMD_LINE_COUNT_not_set_yet
+LKA_MODULE_O_LINES=LKA_MODULE_O_LINES_not_set_yet
+LKA_MODULE_O_LIST=LKA_MODULE_O_LIST_not_set_yet
+#
+# also sets these, which are also set by set_kernel_vars()
+#
+LKA_DIR_BUILD=LKA_DIR_BUILD_not_set_yet
+LKA_DIR_SOURCE=LKA_DIR_SOURCE_not_set_yet
+LKA_COUNT_O=LKA_COUNT_O_not_set_yet
+LKA_FILES_O=LKA_FILES_O_not_set_yet
+LKA_FILES_O_D_KEEP=LKA_FILES_O_D_KEEP_not_set_yet
+#
+set_module_vars()
+{
+	LKA_MODULE_BASE="${LKA_BINARY%%.ko}"
+
+	LKA_MODULE_KO_CMD=".$LKA_BINARY.cmd"
+	if [ ! -f "$LKA_MODULE_KO_CMD" ] ; then
+		errexit "can not find: $LKA_MODULE_KO_CMD"
+	fi
+
+	if [ $(wc -l < "$LKA_MODULE_KO_CMD") -ne 1 ] ; then
+		errexit "module .cmd expected to have a single line:" \
+			"$LKA_MODULE_KO_CMD"
+	fi
+	LKA_MODULE_KO_CMD_NAME=$(cut -d' ' -f1 < "$LKA_MODULE_KO_CMD")
+	LKA_MODULE_KO_CMD_NAME_NO_cmd_=${LKA_MODULE_KO_CMD_NAME##cmd_}
+	LKA_MODULE_DIR=${LKA_MODULE_KO_CMD_NAME_NO_cmd_%%/$LKA_BINARY}
+	LKA_DIR_BUILD=${PWD%%/$LKA_MODULE_DIR}
+
+	# LKA_DIR_SOURCE=$(sed \
+	#  's?.*[ \t]\([^ \t]*/linux\)/scripts/module-common.lds[ \t].*?\1?' \
+	# 	< "$LKA_MODULE_KO_CMD")
+
+	LKA_DIR_SOURCE=$(sed \
+	 's?.*[ \t]\([^ \t]*\)/scripts/module-common.lds[ \t].*?\1?' \
+		< "$LKA_MODULE_KO_CMD")
+	if [ ! -d "$LKA_DIR_SOURCE" ] ; then
+		errexit "Linux source directory, is not a directory:" \
+			"$LKA_DIR_SOURCE"
+	fi
+
+	LKA_MODULE_DIR_SOURCE="$LKA_DIR_SOURCE/$LKA_MODULE_DIR"
+	if [ ! -d "$LKA_MODULE_DIR_SOURCE" ] ; then
+		errexit "Module source directory, is not a directory: " \
+			"$LKA_MODULE_DIR_SOURCE"
+	fi
+
+	LKA_MODULE_O_LINES=$(cat $LKA_MODULE_KO_CMD |
+		spaces_to_lines |
+		egrep '\.o$')
+	LKA_MODULE_O_LIST=$(echo "$LKA_MODULE_O_LINES" |
+		sort |
+		lines_to_spaces)
+
+	LKA_MODULE_O="$LKA_MODULE_BASE.o"
+	LKA_MODULE_O_CMD=".$LKA_MODULE_O.cmd"
+
+	#  We know that all Linux kernel modules are built out of two .o files,
+	#  one with the module name followed by .o another by .mod.o
+	#  The following test verifies that assumption, in case a module
+	#  built differently is detected.
+
+	if diff <(echo "$LKA_MODULE_O_LINES" | sort) \
+		<(cd "$LKA_DIR_BUILD" ;
+		  ls $LKA_MODULE_DIR/$LKA_MODULE_O \
+		     $LKA_MODULE_DIR/$LKA_MODULE_BASE.mod.o | sort) ; then
+		:
+	else
+		errexit "unexpected files in: LKA_MODULE_O_LIST:" \
+			"$LKA_MODULE_O_LIST"
+	fi
+
+	#  If the LKA_MODULE_O_CMD file has more than one line it is because
+	#  the module is made of a single file and the .cmd file has the rule
+	#  and dependecies to build it.  If the LKA_MODULE_O_CMD file has a
+	#  single line it is because it builds the .o file by linking multiple
+	#  .o files.
+
+	LKA_MODULE_O_CMD_LINE_COUNT=$(wc -l < "$LKA_MODULE_O_CMD")
+	if [ $LKA_MODULE_O_CMD_LINE_COUNT -gt 1 ] ; then
+		LKA_FILES_O="$LKA_DIR_BUILD/$LKA_MODULE_DIR/$LKA_MODULE_O"
+		temp="$LKA_DIR_BUILD/$LKA_MODULE_DIR/.$LKA_MODULE_O.d.keep"
+		LKA_FILES_O_D_KEEP="$temp"
+	else
+		temp=$(cat "$LKA_MODULE_O_CMD" |
+			spaces_to_lines |
+			egrep '\.o$' |
+			fgrep -v "cmd_$LKA_MODULE_DIR/$LKA_MODULE_O" |
+			fgrep -v "$LKA_MODULE_DIR/$LKA_MODULE_O" |
+			fold_dots |
+			sed "s?^?$LKA_DIR_BUILD/?" |
+			sort)
+		LKA_FILES_O=$(echo "$temp" |
+			sort |
+			lines_to_spaces)
+		LKA_MODULE_O_D_KEEP_FILES_LINES=$(echo "$temp" |
+			sed 's?/\([^/]*\)$?/.\1.d.keep?')
+		LKA_FILES_O_D_KEEP=$(
+			echo "$LKA_MODULE_O_D_KEEP_FILES_LINES" |
+			sort |
+			lines_to_spaces)
+	fi
+	LKA_COUNT_O=$(echo "$LKA_FILES_O" | wc -w)
+}
+
+fold_dot_dot()
+{
+	sed -e 's?/[^/][^/]*/\.\./?/?g' \
+	    -e 's?^[^/][^/]*/\.\./??g' \
+	    -e 's?/[^/][^/]*/[^/][^/]*/\.\./\.\./?/?g' \
+	    -e 's?^[^/][^/]*/[^/][^/]*/\.\./\.\./??g'
+}
+
+fold_dots()
+{
+	sed -e 's?//*?/?g' \
+	    -e 's?^\./??' \
+	    -e 's?/\./?/?g' |
+	fold_dot_dot |
+	fold_dot_dot |
+	fold_dot_dot |
+	fold_dot_dot |
+	fold_dot_dot |
+	fold_dot_dot |
+	fold_dot_dot |
+	fold_dot_dot |
+	fold_dot_dot |
+	fold_dot_dot
+}
+
+#
+# get_known_ext_files()
+#
+LKA_COUNT_C=LKA_COUNT_C_not_set_yet
+LKA_COUNT_H=LKA_COUNT_H_not_set_yet
+LKA_COUNT_S=LKA_COUNT_S_not_set_yet
+LKA_COUNT_IN=LKA_COUNT_IN_not_set_yet
+LKA_COUNT_INC=LKA_COUNT_INC_not_set_yet
+LKA_FILES_C=LKA_FILES_C_not_set_yet
+LKA_FILES_H=LKA_FILES_H_not_set_yet
+LKA_FILES_S=LKA_FILES_S_not_set_yet
+LKA_FILES_IN=LKA_FILES_IN_not_set_yet
+LKA_FILES_INC=LKA_FILES_INC_not_set_yet
+#
+get_known_ext_files()
+{
+	files=$(for file in $LKA_FILES_O_D_KEEP ; do
+		< "$file"  \
+		tr -d '\\' |
+		sed -e 's/[ 	][ 	]*/ /g' \
+		    -e 's/^[^:]*: //' |
+		tr ' ' '\012' |
+		egrep -v '^$'
+	done |
+		sed "s?^\([^/]\)?$LKA_DIR_BUILD"'/\1?' |
+		sed -e 's?//*?/?g' \
+		    -e 's?/\./?/?g' |
+		fold_dots |
+		sort -u)
+
+	files_must_exist $files
+
+	LKA_FILES_C=$(echo "$files" |
+		egrep '\.c$' |
+		lines_to_spaces)
+	LKA_FILES_H=$(echo "$files" |
+		egrep '\.h$' |
+		lines_to_spaces)
+	LKA_FILES_S=$(echo "$files" |
+		egrep '\.S$' |
+		lines_to_spaces)
+	LKA_FILES_INC=$(echo "$files" |
+		egrep '\.inc$' |
+		lines_to_spaces)
+	LKA_FILES_IN=$(echo "$files" |
+		egrep '\.in$' |
+		lines_to_spaces)
+	files_count=$(echo "$files" | wc -l)
+	LKA_COUNT_C=$(echo "$LKA_FILES_C" | wc -w)
+	LKA_COUNT_H=$(echo "$LKA_FILES_H" | wc -w)
+	LKA_COUNT_S=$(echo "$LKA_FILES_S" | wc -w)
+	LKA_COUNT_IN=$(echo "$LKA_FILES_IN" | wc -w)
+	LKA_COUNT_INC=$(echo "$LKA_FILES_INC" | wc -w)
+	known_ext_count=$[ $LKA_COUNT_C + $LKA_COUNT_H + $LKA_COUNT_S + \
+			   $LKA_COUNT_IN + $LKA_COUNT_INC ]
+
+	if [ $files_count -ne $known_ext_count ] ; then
+		err "some files are neither .c, .h, .S, or .inc files:"
+		echo "$files" | egrep -v '\.([chS]|inc)$' 1>&2
+		exit 1
+	fi
+}
+
+#
+# validate_cs_vs_o_files()
+#
+LKA_INCLUDED_CS_FILES=LKA_INCLUDED_CS_FILES_not_set_yet
+LKA_INCLUDED_CS_COUNT=LKA_INCLUDED_CS_COUNT_not_set_yet
+#
+validate_cs_vs_o_files()
+{
+	cs_files="$LKA_FILES_C $LKA_FILES_S"
+	cs_files=${cs_files%% }
+	cs_files=${cs_files## }
+
+	LKA_INCLUDED_CS_FILES=''
+	LKA_INCLUDED_CS_COUNT=0
+
+	if diffs=$(diff \
+		<(echo "$cs_files" |
+			tr ' ' '\012' |
+			sed "s?^$LKA_DIR_SOURCE/??" |
+			sed "s?^$LKA_DIR_BUILD/??" | # source produced in build
+			sed 's/\.[cS]$/.o/' |
+			sort) \
+		<(echo "$LKA_FILES_O" |
+			tr ' ' '\012' |
+			sed "s?^$LKA_DIR_BUILD/??" |
+			sort)) ; then
+		:
+	else
+		if echo "$diffs" | egrep -q '^>' ; then
+			output
+			echo
+			echo "$diffs"
+			echo
+			errexit "mismatch between .o files and .[cS] files"
+		fi
+		LKA_INCLUDED_CS_FILES="$(echo "$diffs" |
+			sed -n 's/^< //p' |
+			while read missing_o_file ; do
+				prefix=${missing_o_file%%.o}
+				if [ -f $LKA_DIR_SOURCE/$prefix.c ] ; then
+					echo $LKA_DIR_SOURCE/$prefix.c
+				elif [ -f $LKA_DIR_SOURCE/$prefix.S ] ; then
+					echo $LKA_DIR_SOURCE/$prefix.S
+				elif [ -f $LKA_DIR_BUILD/$prefix.c ] ; then
+					echo $LKA_DIR_BUILD/$prefix.c
+				elif [ -f $LKA_DIR_BUILD/$prefix.S ] ; then
+					echo $LKA_DIR_BUILD/$prefix.S
+				fi
+			done |
+			lines_to_spaces)"
+		LKA_INCLUDED_CS_COUNT=$(echo "$LKA_INCLUDED_CS_FILES" | wc -w)
+	fi
+}
+
+output()
+{
+	if [ "$LKA_OPT_VARS" -eq 1 ] ; then
+		show | sed -e "s/=/='/" -e 's/$/'"'"'/'
+	elif [ "$LKA_OPT_SHOW" -eq 1 ] ; then
+		show | tr '=' '\t' | pr -t -e48
+	elif [ "$LKA_OPT_LIST" -eq 1 ] ; then
+		show | sed 's/=.*//'
+	fi
+}
+
+main()
+{
+	validate_opts "$@"
+	if [ "$LKA_BINARY" = vmlinux.o ] ; then
+		lka-in-build-dir || exit 1
+		set_kernel_vars
+	else
+		set_module_vars
+	fi
+
+	files_must_exist $LKA_FILES_O 
+	files_must_exist $LKA_FILES_O_D_KEEP 
+
+	get_known_ext_files
+
+	files_must_exist $LKA_FILES_C
+	files_must_exist $LKA_FILES_H
+	files_must_exist $LKA_FILES_S
+	files_must_exist $LKA_FILES_IN
+	files_must_exist $LKA_FILES_INC
+
+	validate_cs_vs_o_files
+
+	files_must_exist $LKA_INCLUDED_CS_FILES
+
+	output
+
+	if [ $[ LKA_COUNT_C + LKA_COUNT_S - LKA_INCLUDED_CS_COUNT ] -ne \
+	     $LKA_COUNT_O ] ; then
+		errexit "LKA_COUNT_C + LKA_COUNT_S - LKA_INCLUDED_CS_COUNT" \
+			"!= LKA_COUNT_O" \
+			"($LKA_COUNT_C +" \
+			"$LKA_COUNT_S - $LKA_INCLUDED_CS_COUNT" \
+			"!= $LKA_COUNT_O)"
+	fi
+
+	exit 0
+}
+
+main "$@"

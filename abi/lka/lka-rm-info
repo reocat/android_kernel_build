@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e -u
+
+CMD=$(basename $0)
+TMP=/tmp/$CMD$$
+
+main()
+{
+	lka-in-build-dir || exit 1
+
+	find . \( -name '*.lka.err' -o -name '*.lka' \) -print |
+		xargs --no-run-if-empty rm -f
+}
+
+main "$@"
+

@@ -1,0 +1,1028 @@
+#!/bin/bash
+
+#	Major functions or code sections have comments prefixed with ##
+#	auxiliary functions and minor comments have a single #
+
+#	XXX marks additional work that might need to be done or areas for
+#	improvement
+
+#	For error handling the whole script depends on unchecked errors
+#	causing the script to abort (i.e. depends on: set -e).
+
+set -e		#  Do not remove!
+
+SOURCE_DIR=$(readlink source)
+CMD=$(basename $0)
+TMP=/tmp/$CMD$$
+build_dir=$(pwd)
+declare -A affects_ABI
+
+errexit()
+{
+	echo "$CMD: $@" 1>&2
+	exit 1
+}
+
+cleanup()
+{
+	if [ -d "$TMP" ] ; then
+		rm -f $TMP/o-list $TMP/o-split-*
+		rm -f $TMP/stderr-bg-jobs
+		rmdir $TMP
+	fi
+}
+
+fold_dot_dot()
+{
+	sed -e 's?/[^/][^/]*/\.\./?/?g' \
+	    -e 's?^[^/][^/]*/\.\./??g' \
+	    -e 's?/[^/][^/]*/[^/][^/]*/\.\./\.\./?/?g' \
+	    -e 's?^[^/][^/]*/[^/][^/]*/\.\./\.\./??g'
+}
+
+foo()
+{
+	obj="$1"
+	obj_dir=$(dirname $obj)
+	obj_redir=${obj_dir#$build_dir/}
+	obj_base=$(basename $obj)
+	obj_prefix=${obj_base%.o}
+}
+
+##	The following series of filters are the steps of mk_files().
+##	They are in the order in which they are used by mk_files().
+##	Each one consumes its input from standard input and produces its
+##	result in standard output.
+
+#	Standard input is the dependencies produced by the -MD flag to the
+#	compiler, prior to it being affected by the Linux build.  It is in
+#	makefile dependency syntax for the target object.
+#
+#	Standard output is the list of the source code files used to compile
+#	an object.
+#
+#	The output has one filename per line, without whitespace.
+#
+#	Other code depends on the first filename being the source code
+#	filename, it must also have the same basename prefix as the object
+#	filename, both of these conditions are verified here.
+
+mk_file_deps()
+{
+	deps="$(sed -e 's/^[^:]*:[ 	]*//' \
+		    -e 's/^[ 	]*//g' \
+		    -e 's/[ 	]\+/ /g' \
+		    -e 's/\\$//' |
+		tr ' ' '\012' |
+		egrep -v '^$')"
+	src=$(echo "$deps" | head -1)
+	src_base=$(basename $src)
+	src_prefix=${src_base%.[cS]}
+	if [ "$obj_prefix" != "$src_prefix" ] ; then
+		echo "CMD: failed: $obj:" \
+			"$obj_prefix != $src_prefix" 1>&2
+		return 1
+	fi
+	echo "$deps"
+}
+
+#	Standard input is the list of source code files used to compile the
+#	object.
+#
+#	Standard output is a C source code file based on the source files
+#	that were included, directly, or indirectly, by the base source code
+#	file. Files that don't end in a .h suffix are ignored.  The first
+#	filename is the base source filename, which is also ignored.
+#
+#	The code produced are #include directives for every file that
+#	affects the ABI.  Relative filenames are made absolute filenames.
+
+mk_file_incs_c()
+{
+	sed -n '2,$p' |
+	egrep '\.h$' |
+	while read header ; do
+		case "$header" in
+		/*)	;;
+		*)	header=$build_dir/$header
+			if [ ! -f "$header" ] ; then
+				echo "$CMD: missing header file:" \
+					" $header" 1>&2
+				return 1
+			fi
+			;;
+		esac
+		if [ "${affects_ABI[$header]}" = y ]
+		then
+			echo '#include "'$header'"'
+		fi
+	done
+}
+
+#	Standard input is the .cmd file produced by the Linux build, it
+#	contains, in its firts line, the actual command used to produce
+#	the object file.
+#
+#	Standard output is the edited command so that insteada of produceing
+#	a .o file the list of #defines visible to the source file is produced
+#	instead.
+#
+#	$1 is the name of the file that the original .c file in the .cmd
+#	file should be changed into so that the .lka.incs.c file is used
+#	when the generated commands are used in a later step.
+#
+#	The command is also edited to simplify pathnames that use /../ in
+#	the middle of them to not have the /../'s there, for example by
+#	changing a/b/c/d/../../x into a/b/x
+
+mk_file_lka_defines_cmd()
+{
+	#  The .o file name in AOSP android-4.19 uses .tmp_ for example for:
+	#	fs/pipe.c
+	#  it uses
+	#	-o fs/.tmp_pipe.o
+
+	head -1 |
+	fold_dot_dot |
+	sed \
+	   -e "s?^cmd_[^ 	]*/$obj_prefix.o := ??" \
+	   -e "s? -Wp,-MD,[^ 	]*/\.$obj_prefix\.o\.d ? -E -dM ?" \
+	   -e "s? -o [^ 	]*$obj_redir/$obj_prefix.o ? ?" \
+	   -e "s? -o [^ 	]*$obj_redir/\.tmp_$obj_prefix.o ? ?" \
+	   -e "s?[ 	][^ 	]*$obj_redir/$obj_prefix.c"'$'"? $1?"
+}
+
+#	Standard input is the cmd script file produced by
+#	mk_file_lka_defines_cmd().
+#
+#	Standard output is another cmd script which when executed causes a
+#	precompiled header file to be produced (if it doesn't already exist),
+#	and which unconditionally produces an assembly file from the C source
+#	file.
+#
+#	This function knows about intermediate filenames that it adjusts.
+#	Passsing those as arguments would make it needlessly obscure.
+#	It knows about these suffixes:
+#		.lka.incs.c
+#		.lka.2.h
+#		.lka.2.h.gch
+#		.lka.2.c
+#		.lka.2.s
+
+mk_file_lka_2_s_cmd()
+{
+	#  Precompiled header files doesn't make the script faster.
+
+	if false ; then
+		input="$(cat)"
+		echo "if [ ! -f $obj_redir/$obj_prefix.lka.2.h.gch ] ; then"
+		echo
+		echo "$input" |
+		sed -e 's?\.lka\.incs\.c$?.lka.2.h -o '"$obj_redir/$obj_prefix.lka.2.h.gch?" \
+		    -e 's/ -E -dM / /' \
+		    -e "s? -c ? -Isource/$obj_redir -c ?" \
+		    -e 's/-include [^ ]* //g'
+		echo
+		echo fi
+		echo
+		echo "$input"
+	fi
+	sed -e 's?\.lka\.incs\.c$?.lka.2.c -o '"$obj_redir/$obj_prefix.lka.2.s?" \
+	    -e 's/ -E -dM / -S -ferror-limit=10000 /' \
+	    -e "s? -c ? -Isource/$obj_redir -c ?" \
+	    -e 's/-include [^ ]* //g'
+	# -fmax-error (GCC option seems to be ignored by both GCC and CLANG)
+}
+
+#	Standard input is the cmd script file produced by
+#	mk_file_lka_defines_cmd().
+#
+#	Standard output is a C header file, which includes all the files
+#	included by '-include file' directives in the cmd script and the
+#	original .c file from which the object file was produced (i.e. from
+#	the Linux source code or from a .c file generated by the Linux build).
+#
+#	This header is produced to facilitate the use of precompiled header
+#	files and also to isolate all the code that should compile without
+#	any problems from the code that needs to be corrected when compilation
+#	errors occur on it (later on by comment_errors()).
+
+mk_file_lka_2_h()
+{
+	sed -e 's/-include \([^ ]*\) /-include=\1 /g' |
+	tr ' ' '\012' |
+	sed -n 's/^-include=\(.*\)/#include "\1"/p'
+	if [ -f "$SOURCE_DIR/$obj_redir/$obj_prefix.c" ] ; then
+		echo "#include \"$SOURCE_DIR/$obj_redir/$obj_prefix.c\""
+	elif [ -f "$obj_dir/$obj_prefix.c" ] ; then
+		echo "#include \"$obj_dir/$obj_prefix.c\""
+	elif [ -f "$SOURCE_DIR/$obj_redir/$obj_prefix.S" ] ; then
+		:			# XXX not doing anything for .S files
+	else
+		echo "CMD: failed: $obj: can not find .c file for: $obj" 1>&2
+		return 1
+	fi 
+}
+
+#	Standard input is the #defines produced by executing the commands
+#	produced by mk_file_lka_defines_cmd().
+#
+#	Standard output is either a .c or a .S file (the caller knows which)
+#	which includes the header file produced by mk_file_lka_2_h() and
+#	a series of declarations, one for each #define in standard input.
+
+mk_file_lka_2_c_or_S()
+{
+	echo "#include \"$obj_dir/$obj_prefix.lka.2.h\""
+	echo 'typeof(123321) __lka_v_LKA_DEFINE_START__' \
+		'__attribute__ ((section ("LKA_DEFINE"))) = (123321);'
+	sed -n 's/^[ 	]*#[ 	]*define[ 	]\+\([_a-zA-Z][_a-zA-Z0-9]*\)[ 	]\+\(.*\)$/typeof(\2) __lka_v_\1 __attribute__ ((section ("LKA_DEFINE"))) = (\2);/p' |
+	egrep -v '\(\);$' || true
+	echo 'typeof(123321) __lka_v_LKA_DEFINE_END__' \
+		' __attribute__ ((section ("LKA_DEFINE"))) = (123321);'
+}
+
+##	For an object file produce and invoke a series of scripts and files
+##	used later to determine which #defines define compile time constants
+##	that need to be part of the ABI.
+##
+##	Quite a few intermediate files are produced to facilitate debugging.
+##
+##	The output used by later stages are files that end in:
+##		.lka.2.c (or .lka.2.S if the source file is a .S file)
+##		.lka.2.s.cmd
+##
+##	The .lka.2.c file includes one other produced file .lka.2.h and
+##	the rest of it is a series of declarations that are only valid
+##	if they correspond to a compile time (or worst case a link time)
+##	constant.
+##
+##	The .lka.2.s.cmd will be used later, interatively while dealing with
+##	compilation errors, to produce an .lka.2.s file from the .lka.2.c file.
+
+mk_files()
+{
+	mk_file_deps \
+		< $obj_dir/.$obj_prefix.o.d.keep \
+		> $obj_dir/$obj_prefix.lka.deps
+
+	mk_file_incs_c \
+		< $obj_dir/$obj_prefix.lka.deps \
+		> $obj_dir/$obj_prefix.lka.incs.c
+
+	cmd=$obj_redir/.$obj_prefix.o.cmd
+	if [ ! -f $cmd ] ; then
+		echo "$CMD: missing .cmd file: $cmd" 1>&2
+		return 1
+	fi
+
+	mk_file_lka_defines_cmd "$obj_redir/$obj_prefix.lka.incs.c" \
+		< $cmd \
+		> $obj_redir/$obj_prefix.lka.defines.cmd
+
+	if source $obj_redir/$obj_prefix.lka.defines.cmd \
+			> $obj_redir/$obj_prefix.lka.defines \
+			2> $obj_redir/$obj_prefix.lka.defines.err ; then
+		:
+	else
+		echo "$CMD: error running:" \
+			"$obj_redir/$obj_prefix.lka.defines.cmd" 1>&2
+		cat $obj_redir/$obj_prefix.lka.defines.err 1>&2
+		return 1
+	fi
+
+	ext=c
+	src=source/$obj_redir/$obj_prefix.c
+	if [ ! -f $src ] ; then
+		ext=S
+		src=source/$obj_redir/$obj_prefix.S
+		if [ ! -f $src ] ; then
+			ext=c
+			src=$obj_redir/$obj_prefix.c
+			if [ ! -f $src ] ; then
+				echo "$CMD: can not find source file for:" \
+					"$obj_redir/$obj_prefix.o" 1>&2
+				return 1
+			fi
+		fi
+	fi
+
+	mk_file_lka_2_s_cmd \
+		< $obj_redir/$obj_prefix.lka.defines.cmd \
+		> $obj_redir/$obj_prefix.lka.2.s.cmd
+
+	mk_file_lka_2_h \
+		< $obj_redir/$obj_prefix.lka.defines.cmd \
+		> $obj_redir/$obj_prefix.lka.2.h
+  
+	mk_file_lka_2_c_or_S \
+		< $obj_redir/$obj_prefix.lka.defines \
+		> $obj_redir/$obj_prefix.lka.2.$ext
+}
+
+#	A debugging function, used to keep many intermediate files used
+#	to investigate issues when there are problems.  It is not meant
+#	to be used in production.
+
+comment_errors_keep_intermediate_files()
+{
+	cp $obj_redir/$obj_prefix.lka.2.c \
+	   $obj_redir/$obj_prefix.lka.2.c.dbg.$retries
+	cp $obj_redir/$obj_prefix.lka.2.c.tmp \
+	   $obj_redir/$obj_prefix.lka.2.c.dbg.$retries.tmp
+	echo "$SED_CMD" \
+		> $obj_redir/$obj_prefix.lka.2.c.dbg.$retries.sed
+	cp $obj_redir/$obj_prefix.lka.2.s.cmd.err \
+	   $obj_redir/$obj_prefix.lka.2.c.dbg.$retries.cmd.err
+}
+
+##	Repeatedly try to generate the assembly file.  Comment out
+##	the lines that cause a compilation error, the errors are the
+##	result of expressions that can not be used to initialize global
+##	variables, frequently because they are not compile time constants,
+##	sometimes they are link time constants, i.e. addresses, those will
+##	be dealt with later.  Sometimes the compilation errors are the result
+##	of the values not being a well formed expression, for example:
+##		#define ASM_NL ;
+##
+##	Input:
+##	  .lka.2.s.cmd	Script that invokes the compiler with -S to
+##			produce the .lka.2.s file.
+##	Input/Output:
+##	  .lka.2.c	Which will be modified in place by commenting
+##			declarations that cause compilation errors.
+##	Output:
+##	  .lka.2.s	Assembly output from compiling the .lka.2.c file
+
+comment_errors()
+{
+	if [ -f "$obj_redir/$obj_prefix.lka.2.s" ] ; then
+		return 0
+	fi
+	if [ -f "$obj_redir/$obj_prefix.lka.2.S" ] ; then
+		# XXX
+		# echo "$CMD: skipping .S file:" \
+		#	"$obj_redir/$obj_prefix.lka.2.S"
+		return 0
+	fi
+	if [ -f $obj_redir/$obj_prefix.lka.2.h.gch ] ; then
+		rm $obj_redir/$obj_prefix.lka.2.h.gch
+	fi
+
+	retries=0
+	max_retries=1000
+
+	while [ $retries -lt $max_retries ] ; do
+		retries=$[ retries + 1 ]
+		if source $obj_redir/$obj_prefix.lka.2.s.cmd \
+			> $obj_redir/$obj_prefix.lka.2.s.cmd.err 2>&1 ; then
+			break
+		fi
+
+		SED_CMD=$(
+			< $obj_redir/$obj_prefix.lka.2.s.cmd.err \
+			egrep "^$obj_redir/$obj_prefix.lka.2.c:[0-9][0-9]*:[0-9][0-9]*: error:" |
+			cut -d: -f2 |
+			sort -u |
+			sed "s?\(.*\)?-e '\1s:^:// :'?")
+
+
+		if [ -z "$SED_CMD" ] ; then
+			echo "CMD: $obj_redir/$obj_prefix: empty SED_CMD" 1>&2
+			break
+		fi
+
+		#  Uncomment for debugging to keep intermediate files:
+		#	comment_errors_keep_intermediate_files
+
+		if eval sed $SED_CMD < $obj_redir/$obj_prefix.lka.2.c \
+				     > $obj_redir/$obj_prefix.lka.2.c.tmp ; then
+			:
+		else
+			echo "$CMD: $obj_redir/$obj_prefix, error:" \
+				" sed $SED_CMD" 1>&2
+			break
+		fi
+
+		if cmp -s $obj_redir/$obj_prefix.lka.2.c.tmp \
+			  $obj_redir/$obj_prefix.lka.2.c ; then
+			echo "CMD: $obj_redir/$obj_prefix:" \
+				"failed: sed edited file was identical" 1>&2
+			break
+		fi
+
+		mv $obj_redir/$obj_prefix.lka.2.c.tmp \
+		   $obj_redir/$obj_prefix.lka.2.c
+	done
+
+	if [ -f $obj_redir/$obj_prefix.lka.2.h.gch ] ; then
+		#  Remove precompiled header files to reduce
+		#  storage used and reduce page cache impact
+		rm $obj_redir/$obj_prefix.lka.2.h.gch
+	fi
+	if [ ! -f "$obj_redir/$obj_prefix.lka.2.s" ] ; then
+		echo "retries=$retries ($obj_redir/$obj_prefix failed)" 1>&2
+		echo "$CMD: missing: $obj_redir/$obj_prefix.lka.2.s" 1>&2
+		return 1
+	fi
+}
+
+#	If the argument string is not empty exit the script.
+
+must_be_empty()
+{
+	if [ ! -z "$1" ] ; then
+		errexit "unexpected text: $1"
+	fi
+}
+
+##	The following series of filters are the steps of get_enumes().
+##	They are in the order in which they are used by get_enumes().
+##	Each one consumes its input from standard input and produces its
+##	result in standard output.
+
+#	Standard input is the .lka.2.s file.
+#
+#	Filter out everything that was not placed in the LKA_DEFINE section.
+#	The declaratiosn are delimited by two dummy declarations:
+#		__lka_v_LKA_DEFINE_START
+#		__lka_v_LKA_DEFINE_END
+#	Sometimes GCC emits the declarations in the reverse order of their
+#	declarations, so __lka_v_LKA_DEFINE_END might occur first and
+#	__lka_v_LKA_DEFINE_START might occur last.
+#
+#	Remove everything that is nore required to compute the enum values
+#	associated with the #defines.  Massage the input so that it is 	easier
+#	to consume by later stages.
+
+mk_enums_lka_2_s_subset()
+{
+		sed 's?[ 	]*//.*??' |
+		egrep -v '^[ 	]*$' |
+		sed -n '/^__lka_v_LKA_DEFINE_[A-Z]*__/,/^__lka_v_LKA_DEFINE_[A-Z]*__/p' |
+		sed -n '3,$p' |
+		egrep -v '__lka_v_LKA_DEFINE_(START|END)__' |
+		egrep -v '^[ 	]*\.(section\>|cfi_sections\>|type\>|globl\>|align\>|p2align\>)' |
+		sed \
+		\
+'s/^[ 	]*//;
+s/^\(__lka_v_[_a-zA-Z][_a-zA-Z0-9]*\):$/__lka_label \1/;
+s/^\(__compound_literal\.[0-9]*\):$/__lka_complit \1/;
+s/^\.local[ 	]\+\(__compound_literal\.[0-9]*\)$/__lka_complit \1/;
+s/^\.L\.str:$/__lka_strlabel __lka_s_strlit0/;
+s/^\.L\.str\.\([0-9]\+\):$/__lka_strlabel __lka_s_strlit_\1/;
+s/^\.size[ 	]\+\.L\.str\([ 	,]\)/.size __lka_s_strlit0\1/;
+s/^\.size[ 	]\+\.L\.str\.\([0-9]\+\)/.size __lka_s_strlit_\1/;
+s/^\.zero[ 	]\+\([^,]*\),\([0-9]\+\)/.zero \1 \2/;
+s/^\.asciz[ 	]\+/.asciz - /;
+s/^\.ascii[ 	]\+/.ascii - /;
+s/^\.string[ 	]\+/.string - /;
+s/^\.size[ 	]\+\([^,]*\),[ 	]*/.size \1 /;
+s/^\.comm[ 	]\+\([^,]*\),[ 	]*\([^,]*\),[ 	]*1$/.comm_1 \1 \2/' \
+		|
+		tr '\012' '\01' |
+		sed \
+		\
+'s/__lka_complit \(__compound_literal\.[0-9][0-9]*\)\.comm_1 __compound_literal\.[0-9][0-9]* \([0-9]*\)/.size \1 \2__lka_complit \1.comm_1 \1 \2/;
+
+s/\.bss\.size[ 	]\+__lka_v_[_0-9a-zA-Z]*[ 	]\+0__lka_label[ 	]\+__lka_v_[_0-9a-zA-Z]*\.zero[ 	]\+1/.bss/g;
+
+s/\__lka_label \([^]*\)\.string - /__lka_strlabel \1.string - /g;
+s/\__lka_label \([^]*\)\.ascii - /__lka_strlabel \1.ascii - /g;
+s/\__lka_label \([^]*\)\.asciz - /__lka_strlabel \1.asciz - /g' \
+		|
+		tr '\01' '\012'
+
+	#  The last sed command above that matches (among other things) takes
+	#  care of this assembly pattern:
+	#	.bss
+	#	.size __lka_v_NIL_COOKIE 0
+	#	__lka_label __lka_v_NIL_COOKIE
+	#	.zero	1
+	#
+	#  Corresponds to constants for zero-lengh structures, for example:
+	#	struct pin_cookie { };
+	#	#define NIL_COOKIE (struct pin_cookie){ }
+	#
+	#  Such a #define for an empty structure doesn't need to be part
+	#  of the ABI from the perspective of the value. If the structure
+	#  definition changes, to its non-empty version, then the structure
+	#  declaration change will be detected via libabigail.
+	#
+	#  In consequence it is correct to remove such declarations from the
+	#  #define ABI generation. The assembly pattern is reduced to:
+	#	.bss
+	#  just in case the .bss is required by subsequent declarations, if
+	#  it isn't it will be immediately followed by a .data
+}
+
+#	CLANG emits the size after the label and the data are emitted,
+#	GCC does not, later steps that validate the sizes and number of data
+#	items require the total size to be known ahead of time (because the
+#	code was written for GCC first).  Reorder the declarations so that
+#	the .size is first.
+
+mk_enums_lka_2_s_values()
+{
+	tr '\012' '\01' |
+	sed -e 's/\<__lka_label\>//g' \
+	    -e 's/\<__lka_strlabel\>//g' \
+	    -e 's/\.size\>//g' |
+	sed 's/\([]\) \([^]*\)\([^]*\) \([^ ]*\) \([^]*\)/ \4 \5\1 \2\3/g' |
+	sed -e 's//__lka_label/g' \
+	    -e 's//__lka_strlabel/g' \
+	    -e 's//.size/g' |
+	tr '\01' '\012'
+}
+
+#	This is not a filter, it knows about file names, the result of its
+#	work is produced in a modified version of its input file:
+#		.lka.2.s.values
+#	various temporary files are produced and kepts for debugability.
+#
+#	Some constants are actually literals stored in memory and
+#	the #define ends up being a pointer to the literal, the
+#	underlying literal value is still the constant, so those
+#	are transformed into an enum as well, for example:
+#		typedef struct {
+#			__u8 b[6];
+#		} __packed bdaddr_t;
+#		#define BDADDR_ANY  (&(bdaddr_t) {{0, 0, 0, 0, 0, 0}})
+#		#define BDADDR_NONE (&(bdaddr_t) {{0xff, 0xff, 0xff, \
+#						   0xff, 0xff, 0xff}})
+#
+#	The generated code stores the literal and then instead of a
+#	constant the value is a pointer to it, for example:
+#		.size __lka_v_BDADDR_ANY 8
+#		__lka_label __lka_v_BDADDR_ANY
+#		.quad	__compound_literal.102
+#
+#	The input has already transformed the declarations of the
+#	compound literal labels into:
+#		__lka_complit __compound_literal.102
+#	The literal is emmited first, then the pointer to it, because
+#	this is infrequent enough, its special cased here only when
+#	a file constains such a definition.
+
+gen_enums_handle_complit()
+{
+
+	< "$obj_redir/$obj_prefix.lka.2.s.values" \
+	tr '\012' '\01' |
+	sed -n 's?\.size \(__lka_v_[_a-zA-Z][_a-zA-Z0-9]*\) 8__lka_label \(__lka_v_[_a-zA-Z][_a-zA-Z0-9]*\).quad[ 	]\+__compound_literal\.\([0-9][0-9]*\)? -e s/\\<__compound_literal\\.\3/\1/?p' \
+	> "$obj_redir/$obj_prefix.lka.2.s.values.sed"
+
+	SED_DELETE=$(< "$obj_redir/$obj_prefix.lka.2.s.values" \
+		tr '\012' '\01' |
+		sed 's?\.size \(__lka_v_[_a-zA-Z][_a-zA-Z0-9]*\) 8__lka_label \(__lka_v_[_a-zA-Z][_a-zA-Z0-9]*\)\.quad[ 	]\+__compound_literal\.\([0-9][0-9]*\)?__lka_delete \1?g' |
+		tr '\01' '\012' |
+		sed -n 's?^__lka_delete \(.*\)$? -e '"'/^__lka_label \1$/d' -e '/^\\\\.size \1 [48]$/d'?p")
+
+	if [ -z "$SED_DELETE" ] ; then
+		echo "error: empty SED_DELETE: $obj" 1>&2
+		return 1
+	fi
+
+	SED_REPLACE=$(< "$obj_redir/$obj_prefix.lka.2.s.values" \
+		tr '\012' '\01' |
+		sed 's?\.size \(__lka_v_[_a-zA-Z][_a-zA-Z0-9]*\) 8__lka_label \(__lka_v_[_a-zA-Z][_a-zA-Z0-9]*\)\.quad[ 	]\+__compound_literal\.\([0-9][0-9]*\)?__lka_replace \3 \1?g' |
+		tr '\01' '\012' |
+		sed -n 's?^__lka_replace \([^ ]*\) \(.*\)$? -e '"'s/\\\\<__compound_literal\.\1/\2/'?p")
+
+	if [ -z "$SED_REPLACE" ] ; then
+		echo "error: empty SED_REPLACE: $obj" 1>&2
+		return 1
+	fi
+	echo -- "$SED_DELETE" > "$obj_redir/$obj_prefix.lka.2.s.values.sed"
+
+	< "$obj_redir/$obj_prefix.lka.2.s.values" \
+	egrep -v '^.quad[ 	]\+__compound_literal\.[0-9][0-9]*' |
+	eval sed $SED_DELETE |
+	eval sed $SED_REPLACE |
+	sed -e 's/^__lka_complit/__lka_label/' \
+	    -e 's/^\.comm_1 __lka_v_[^ ]* /.zero /' \
+		> "$obj_redir/$obj_prefix.lka.2.s.tmp3"
+	mv "$obj_redir/$obj_prefix.lka.2.s.values" \
+	   "$obj_redir/$obj_prefix.lka.2.s.values.complit"
+	mv "$obj_redir/$obj_prefix.lka.2.s.tmp3" \
+	   "$obj_redir/$obj_prefix.lka.2.s.values"
+}
+
+##	Produce enum values that represent the #define values.
+##
+##	The values are produced as GNU/CLANG C enumerations, both of which
+##	support enum values that are signed or unsigned and up to 64 bits.
+##
+##	Two values are produced, one is the size of the type of the value.
+##	The other one is the value itself. If the value is a literal not
+##	representable by a native type (i.e. larger than 64 bits) multiple
+##	values are produced, which when considered together, represent
+##	the #define value.
+##
+##	Input:
+##	  .lka.2.s	Assembly output from compiling the .lka.2.c file
+##	Output:
+##	  .lka.3.c	C source file with a series of declarations for each
+##			#define whose values are found as statically initialized
+##			values computed by the compiler for the target system.
+
+gen_enums()
+{
+	if [ -f "$obj_redir/$obj_prefix.lka.3.c" ] ; then
+		return 0
+	fi
+	if [ ! -f "$obj_redir/$obj_prefix.lka.2.s" ] ; then
+		return 0
+	fi
+
+	mk_enums_lka_2_s_subset \
+		< "$obj_redir/$obj_prefix.lka.2.s" \
+		> "$obj_redir/$obj_prefix.lka.2.s.subset"
+	mk_enums_lka_2_s_values \
+		< "$obj_redir/$obj_prefix.lka.2.s.subset" \
+		> "$obj_redir/$obj_prefix.lka.2.s.values"
+	if egrep -q '^__lka_complit ' < "$obj_redir/$obj_prefix.lka.2.s.values"
+	then
+		gen_enums_handle_complit
+	fi
+
+	sz=	index=		name=		name_in_dot_size=
+	line=0	errmsg=		name_tail=	size_in_dot_size=0
+
+	while read directive arg tail ; do
+		line=$[ line + 1 ]
+		case "$directive" in
+		.bss|.data)
+			must_be_empty "$arg$tail"
+			continue
+			;;
+		.size)	if [ "$size_in_dot_size" -ne 0 ] ; then
+				errmsg="at .size unconsumed .size $name_in_dot_size"
+				break
+			fi
+			name_in_dot_size="$arg"
+			size_in_dot_size="$tail"
+			continue
+			;;
+		__lka_label)
+			must_be_empty "$tail"
+			name="$arg"
+			if [ "$name" != "$name_in_dot_size" ] ; then
+				errmsg=".size and label name mismatch: $arg vs $name_in_dot_size"
+				break
+			fi
+			name_tail="${name##__lka_v_}"
+			echo
+			echo "enum __lka_sizeof_$name_tail { __lka_size_$name_tail = $size_in_dot_size };"
+			index=0
+			continue
+			;;
+		__lka_complit)
+			must_be_empty "$tail"
+			name="$arg"
+			if [ "$size_in_dot_size" -ne 0 -a \
+			     "$name" != "$name_in_dot_size" ] ; then
+				errmsg=".size and complit label name mismatch: $arg vs $name_in_dot_size"
+				break
+			fi
+			name_tail="${name##__lka_v_}"
+			echo
+			echo "enum __lka_sizeof_$name_tail { __lka_size_$name_tail = $size_in_dot_size };"
+			index=0
+			continue
+			;;
+		__lka_strlabel)		# XXX strings are not going into the ABI
+			must_be_empty "$tail"
+			name="$arg"
+			if [ "$name" != "$name_in_dot_size" ] ; then
+				errmsg=".size and strlabel name mismatch: $arg vs $name_in_dot_size"
+				break
+			fi
+			name_tail="${name##__lka_v_}"
+			index=0
+			continue
+			;;
+		.asciz|.ascii|.string)	# XXX strings are not going into the ABI
+			size_in_dot_size=0
+			continue
+			;;
+		.value)		# used for two-byte values with:  .size xyz 2
+			must_be_empty "$tail"
+			if [ "$size_in_dot_size" -ne 2 ] ; then
+				errmsg="$name: .value with .size != 2: $size_in_dot_size"
+				break
+			fi
+			size_in_dot_size=0
+			echo "enum __lka_e${index}_$name_tail { __lka_v${index}_$name_tail = $arg };	// 2"
+			index=
+			sz=
+			echo
+			continue
+			;;
+		.comm_1)
+			if [ "$size_in_dot_size" -ne 0 ] ; then
+				errmsg="at .comm_1 unconsumed bytes in $name_in_dot_size"
+				break
+			fi
+			name_in_dot_size="$arg"
+			size_in_dot_size="$tail"
+			echo "enum __lka_ez${index}_$name_tail { __lka_vz${index}_$name_tail = $size_in_dot_size };	// $size_in_dot_size bytes of zeroes"
+			size_in_dot_size=0
+			index=
+			sz=
+			continue
+			;;
+		.zero)
+			if [ "$size_in_dot_size" -lt "$arg" ] ; then
+				errmsg="$name: size mismatch .zero $arg: $size_in_dot_size"
+				break
+			fi
+			#  map 4 and 8 bytes of zeroes into .long and .quad
+			#  makes the output less obscure
+			mapped=n
+			if [ ! -z "$tail" ] ; then
+				#  on clang/arm64 n bytes with value m uses:
+				#	.zero n,m
+				#  __lka_vr stands for value repeated
+				#
+				echo "enum __lka_er${index}_${tail}_$name_tail { __lka_vr${index}_${tail}_$name_tail = $arg };	// $arg bytes with value: $tail"
+				index=$[ index + 1 ]
+				size_in_dot_size=$[ size_in_dot_size - arg ]
+				if [ "$size_in_dot_size" -eq 0 ] ; then
+					index=
+					sz=
+				fi
+				continue
+			fi
+			if [ "$index" -eq 0 -a \
+			     "$size_in_dot_size" -eq "$arg" ] ; then
+				if [ "$size_in_dot_size" -eq 4 ] ; then
+					directive=.long
+					sz=4
+					arg=0
+					mapped=y
+				elif [ "$size_in_dot_size" -eq 8 ] ; then
+					directive=.quad
+					sz=8
+					arg=0
+					mapped=y
+				fi
+			fi
+			if [ "$mapped" = n ] ; then
+				#  __lka_vz stands for value zero
+				echo "enum __lka_ez${index}_$name_tail { __lka_vz${index}_$name_tail = $arg };	// $arg bytes of zeroes"
+				index=$[ index + 1 ]
+				size_in_dot_size=$[ size_in_dot_size - arg ]
+				if [ "$size_in_dot_size" -eq 0 ] ; then
+					index=
+					sz=
+				fi
+				continue
+			fi
+			;;
+
+		#  All directives above must continue to the:
+		#	while read directive arg tail
+		#  with the exception of the .zero when mapped is "y"
+
+		#  These directives have common code after the esac
+		.byte)	sz=1 ;;
+		.hword)	sz=2 ;;
+		.word)	sz=4 ;;
+		.long)	sz=4 ;;
+		.quad)	sz=8 ;;
+		.xword)	sz=8 ;;
+
+		*)	errmsg="unexpected: d=$directive a=$arg t=$tail"
+			break
+			;;
+		esac
+
+		must_be_empty "$tail"
+		if [ "$size_in_dot_size" -lt $sz ] ; then
+			errmsg="$name: size mismatch $directive: $size_in_dot_size"
+			break
+		fi
+		size_in_dot_size=$[ size_in_dot_size - $sz ]
+
+		case "$arg" in
+		-9223372036854775808)
+			arg='1uLL << 63'
+			;;
+		[0-9]*|-[0-9]*)
+			;;
+		*)	if [ $size_in_dot_size -ne 0 ] ; then
+				errmsg="non constant with strange size"
+				break
+			fi
+			index=
+			sz=
+			continue
+			;;
+		esac
+
+		echo "enum __lka_e${index}_$name_tail { __lka_v${index}_$name_tail = $arg };	// $directive"
+		index=$[ index + 1 ]
+		if [ "$size_in_dot_size" -eq 0 ] ; then
+			index=
+			sz=
+		fi
+	done < "$obj_redir/$obj_prefix.lka.2.s.values" \
+		> "$obj_redir/$obj_prefix.lka.3.c"
+
+	if [ ! -z "$errmsg" ] ; then
+		rm "$obj_redir/$obj_prefix.lka.3.c"
+		echo "error: $obj_redir/$obj_prefix:$line: $errmsg" 1>&2
+	fi
+}
+
+##	Compile the .lka.3.c enumerations to ensure that no link-time
+##	constants were passed through, those are not meant to be part of
+##	the ABI.
+
+compile_enums()
+{
+	if [ ! -f "$obj_redir/$obj_prefix.lka.3.c" ] ; then
+		return 0
+	fi
+	if [ -f "$obj_redir/$obj_prefix.lka.3.o" ] ; then
+		return 0
+	fi
+	if gcc -m64 -g -O0 -c "$obj_redir/$obj_prefix.lka.3.c" \
+		-o "$obj_redir/$obj_prefix.lka.3.o" ; then
+		:
+	else
+		echo "error: $obj_redir/$obj_prefix.lka.3.c"
+		return 1
+	fi
+}
+
+##	Work on a number of object files, multiple instances of this
+##	function are run in parallel, each one works on a list of objects
+##	whose filenames are read from standard input.
+
+work_on_objs()
+{
+	while read obj ; do
+		if [ ! -f "$obj" ] ; then
+			echo "$CMD: missing .o file: $obj" 1>&2
+			return 1
+		fi
+
+		obj_dir=$(dirname $obj)
+		obj_redir=${obj_dir#$build_dir/}
+		obj_base=$(basename $obj)
+		obj_prefix=${obj_base%.o}
+
+		#  While debugging its convenient to run these steps
+		#  individually, commenting them all out but one.
+		#  The steps individually guard against recreating work
+		#  they've done previously.
+
+		mk_files
+		comment_errors
+		gen_enums
+		compile_enums
+
+		# XXX comment out to keep temporary files:
+		#	if [ "$INTERACTIVE" = y ] ; then
+		#		echo :::::
+		#		continue
+		#	fi
+
+		rm $obj_redir/$obj_prefix.lka.defines \
+		   $obj_redir/$obj_prefix.lka.defines.cmd \
+		   $obj_redir/$obj_prefix.lka.defines.err \
+		   $obj_redir/$obj_prefix.lka.deps \
+		   $obj_redir/$obj_prefix.lka.incs.c \
+		   $obj_redir/$obj_prefix.lka.2.h \
+		   $obj_redir/$obj_prefix.lka.2.s.cmd
+		if [ -f $obj_redir/$obj_prefix.lka.2.c ] ; then
+			rm $obj_redir/$obj_prefix.lka.2.c \
+			   $obj_redir/$obj_prefix.lka.2.s \
+			   $obj_redir/$obj_prefix.lka.2.s.cmd.err \
+			   $obj_redir/$obj_prefix.lka.2.s.subset \
+			   $obj_redir/$obj_prefix.lka.2.s.values \
+			   $obj_redir/$obj_prefix.lka.3.o
+			if [ "$INTERACTIVE" = y ] ; then
+				echo :::::
+			fi
+		elif [ -f $obj_redir/$obj_prefix.lka.2.S ] ; then
+			rm -f $obj_redir/$obj_prefix.lka.2.S
+		fi
+	done
+}
+
+##	
+
+main()
+{
+	lka-in-build-dir || exit 1
+
+	#  If standard output is a tty, then show progress interactively,
+	#  note that tty checks whether its standard input is tied to a
+	#  terminal, to have it check if standard output is a terminal:
+	#  file descriptor 1 is dupped to be file descriptor 0
+
+	if tty -s 0<&1 >/dev/null 2>/dev/null ; then
+		INTERACTIVE=y
+	else
+		INTERACTIVE=n
+	fi
+
+	PATH=$(lka-path-from-build)	#  Need to use the prebuilt compilers
+
+	#  affects_ABI[] is a map of header names, if a header
+	#  name affects the ABI the value of the map is: y
+	#  the map is created once and inherited by parallel
+	#  work_on_objs() scripts
+
+	for header in $(< lka-header-use-count.affect-ABI.tmp \
+			awk '{ print $1 }') ; do
+		case "$header" in
+		    */include/trace/trace_events.h|\
+		    */include/trace/perf.h|\
+		    */include/trace/bpf_probe.h|\
+		    */include/uapi/linux/patchkey.h|\
+		    */drivers/net/ethernet/chelsio/cxgb4/t4_pci_id_tbl.h|\
+		    */include/linux/wimax/debug.h|\
+		    */include/rdma/uverbs_named_ioctl.h|\
+		    */net/netfilter/ipset/ip_set_hash_gen.h|\
+		    */sound/pci/echoaudio/echoaudio_dsp.h|\
+		    */sound/pci/echoaudio/echoaudio.h|\
+		    */include/linux/cgroup_subsys.h)
+			echo "$CMD: excluding: $header"
+			continue
+			;;
+		esac
+		affects_ABI[$header]=y
+	done
+
+	trap cleanup SIGINT
+	mkdir $TMP
+
+	#  Compute the object list to work on
+
+	find . -name '*.lka' -print |
+		xargs cat |
+		egrep '^LKA_FILES_O=' |
+		sed -e 's/^LKA_FILES_O=//' \
+		    -e "s/'//g" |
+		tr ' ' '\012' > $TMP/o-list
+
+	#  Split the object list into sublists to be worked on in parallel
+
+	NOBJS=$(wc -l < $TMP/o-list)
+	NCPU=$(nproc)
+	NJOBS=$[ NCPU * 8 ]
+	NLINES=$[ NOBJS / NJOBS ]
+	if [ "$NLINES" -eq 0 ] ; then
+		NJOBS=$NOBJS
+		NLINES=1
+	fi
+	CWD=$(pwd)
+	cd $TMP
+	split -l $NLINES $TMP/o-list o-split-
+	cd $CWD
+
+	#  Work on the object lists in parallel
+
+	if [ "$INTERACTIVE" = n ] ; then
+		for s in $TMP/o-split-* ; do
+			work_on_objs < $s &
+		done 2> $TMP/stderr-bg-jobs
+	else
+		BS=
+		BS="$BS$BS$BS$BS"
+		BS="$BS$BS$BS$BS"
+		step=0
+		for s in $TMP/o-split-* ; do
+			work_on_objs < $s &
+		done 2> $TMP/stderr-bg-jobs |
+		while read line ; do
+			step=$[ step + 1 ]
+			if [ x"$line"x = 'x:::::x' ] ; then
+				if [ $[ step % 3 ] -eq 0 ] ; then
+					echo -n "$BS$step of $NOBJS done ..."
+				fi
+			else
+				echo "$line"
+			fi
+		done
+		echo '... (.S files using ABI headers were excluded)'
+	fi
+	wait
+
+	#  Errors occured if $TMP/stderr-bg-jobs is non empty
+
+	if [ -s $TMP/stderr-bg-jobs ] ; then
+		cat $TMP/stderr-bg-jobs 1>&2
+		cleanup
+		exit 1
+	fi
+
+	cleanup
+	exit 0
+}
+
+main "$@"

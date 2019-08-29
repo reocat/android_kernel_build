@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e -u
+
+CMD=$(basename $0)
+TMP=/tmp/$CMD$$
+
+main()
+{
+	lka-in-build-dir || exit 1
+
+	echo 'cleaning results of previous run ...'
+	lka-rm
+	echo
+	echo 'extract kernel component information ...'
+	lka-get-info
+	echo
+	echo 'get header use counts ...'
+	lka-get-header-use-counts
+	echo
+	echo 'get #defines and generate enums ...'
+	lka-get-defines
+	echo
+	echo 'consolidate enums for libabigail to use ...'
+	lka-get-all-enums
+	echo
+	echo 'removing leftover temporary files ...'
+	# find . -name '*.lka.3.c' -print | xargs rm -f
+	rm -f lka-all-enums.sort lka-all-enums.unsorted
+}
+
+main "$@"
+
