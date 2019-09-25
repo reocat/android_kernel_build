@@ -397,6 +397,18 @@ echo "========================================================"
 echo " Files copied to ${DIST_DIR}"
 
 if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
+	MKBOOTIMG_BASE_ADDR=
+	MKBOOTIMG_PAGE_SIZE=
+	MKBOOTIMG_CMDLINE=
+	if [ -n  "${BASE_ADDRESS}" ]; then
+		MKBOOTIMG_BASE_ADDR="--base ${BASE_ADDRESS}"
+	fi
+	if [ -n  "${PAGE_SIZE}" ]; then
+		MKBOOTIMG_PAGE_SIZE="--pagesize ${PAGE_SIZE}"
+	fi
+	if [ -n "${KERNEL_CMDLINE}" ]; then
+		MKBOOTIMG_CMDLINE="--cmdline \"${KERNEL_CMDLINE}\""
+	fi
 
 	DTB_FILE_LIST=$(find ${DIST_DIR} -name "*.dtb")
 	if [ -z "${DTB_FILE_LIST}" ]; then
@@ -405,24 +417,34 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 	fi
 	cat $DTB_FILE_LIST > ${DIST_DIR}/dtb.img
 
-	if [ ! -f "${DIST_DIR}/$GKI_RAMDISK_PREBUILT_BINARY" ]; then
-		echo "GKI ramdisk prebuilt binary" \
-			"(GKI_RAMDISK_PREBUILT_BINARY = $GKI_RAMDISK_PREBUILT_BINARY)" \
-			"not present in ${DIST_DIR}"
-		exit 1
+	MKBOOTIMG_GKI_RAMDISK="${DIST_DIR}/${GKI_RAMDISK_PREBUILT_BINARY}"
+	if [ ! -f "${MKBOOTIMG_GKI_RAMDISK}" ]; then
+		if [ -f "${GKI_RAMDISK_PREBUILT_BINARY}" ]; then
+			MKBOOTIMG_GKI_RAMDISK="${GKI_RAMDISK_PREBUILT_BINARY}"
+		else
+			echo "GKI ramdisk prebuilt binary" \
+				"(GKI_RAMDISK_PREBUILT_BINARY = $GKI_RAMDISK_PREBUILT_BINARY)" \
+				"cannot be found."
+			exit 1
+		fi
 	fi
-	if [ ! -f "${DIST_DIR}/$VENDOR_RAMDISK_BINARY" ]; then
-		echo "vendor ramdisk binary(VENDOR_RAMDISK_BINARY = $VENDOR_RAMDISK_BINARY)" \
-			"not present in ${DIST_DIR}"
-		exit 1
+	MKBOOTIMG_VENDOR_RAMDISK="${DIST_DIR}/${VENDOR_RAMDISK_BINARY}"
+	if [ ! -f "${MKBOOTIMG_VENDOR_RAMDISK}" ]; then
+		if [ -f "${VENDOR_RAMDISK_BINARY}" ]; then
+			MKBOOTIMG_VENDOR_RAMDISK="${VENDOR_RAMDISK_BINARY}"
+		else
+			echo "vendor ramdisk binary(VENDOR_RAMDISK_BINARY = $VENDOR_RAMDISK_BINARY)" \
+				"cannot be found."
+			exit 1
+		fi
 	fi
 
-	cat ${DIST_DIR}/$GKI_RAMDISK_PREBUILT_BINARY ${DIST_DIR}/$VENDOR_RAMDISK_BINARY \
+	cat ${MKBOOTIMG_GKI_RAMDISK} ${MKBOOTIMG_VENDOR_RAMDISK} \
 		> ${DIST_DIR}/ramdisk.cpio
 	gzip -f ${DIST_DIR}/ramdisk.cpio > ${DIST_DIR}/ramdisk
 
-	if [ ! -x "$MKBOOTIMG_PATH" ]; then
-		echo "mkbootimg.py script not found or not executable. MKBOOTIMG_PATH = $MKBOOTIMG_PATH"
+	if [ ! -f "$MKBOOTIMG_PATH" ]; then
+		echo "mkbootimg.py script not found. MKBOOTIMG_PATH = $MKBOOTIMG_PATH"
 		exit 1
 	fi
 
@@ -436,10 +458,11 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 		exit 1
 	fi
 
-	(set -x; $MKBOOTIMG_PATH --kernel ${DIST_DIR}/$KERNEL_BINARY \
+	(set -x; bash -c "python $MKBOOTIMG_PATH --kernel ${DIST_DIR}/$KERNEL_BINARY \
 		--ramdisk ${DIST_DIR}/ramdisk \
 		--dtb ${DIST_DIR}/dtb.img --header_version $BOOT_IMAGE_HEADER_VERSION \
-		-o ${DIST_DIR}/boot.img
+		${MKBOOTIMG_BASE_ADDR} ${MKBOOTIMG_PAGE_SIZE} ${MKBOOTIMG_CMDLINE} \
+		-o ${DIST_DIR}/boot.img"
 	)
 	set +x
 	echo "boot image created at ${DIST_DIR}/boot.img"
