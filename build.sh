@@ -397,6 +397,18 @@ echo "========================================================"
 echo " Files copied to ${DIST_DIR}"
 
 if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
+	MKBOOTIMG_BASE_ADDR=
+	MKBOOTIMG_PAGE_SIZE=
+	MKBOOTIMG_CMDLINE=
+	if [ -n  "${BASE_ADDRESS}" ]; then
+		MKBOOTIMG_BASE_ADDR="--base ${BASE_ADDRESS}"
+	fi
+	if [ -n  "${PAGE_SIZE}" ]; then
+		MKBOOTIMG_PAGE_SIZE="--pagesize ${PAGE_SIZE}"
+	fi
+	if [ -n "${KERNEL_CMDLINE}" ]; then
+		MKBOOTIMG_CMDLINE="--cmdline \"${KERNEL_CMDLINE}\""
+	fi
 
 	DTB_FILE_LIST=$(find ${DIST_DIR} -name "*.dtb")
 	if [ -z "${DTB_FILE_LIST}" ]; then
@@ -436,10 +448,11 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 		exit 1
 	fi
 
-	(set -x; $MKBOOTIMG_PATH --kernel ${DIST_DIR}/$KERNEL_BINARY \
+	(set -x; bash -c "$MKBOOTIMG_PATH --kernel ${DIST_DIR}/$KERNEL_BINARY \
 		--ramdisk ${DIST_DIR}/ramdisk \
 		--dtb ${DIST_DIR}/dtb.img --header_version $BOOT_IMAGE_HEADER_VERSION \
-		-o ${DIST_DIR}/boot.img
+		${MKBOOTIMG_BASE_ADDR} ${MKBOOTIMG_PAGE_SIZE} ${MKBOOTIMG_CMDLINE} \
+		-o ${DIST_DIR}/boot.img"
 	)
 	set +x
 	echo "boot image created at ${DIST_DIR}/boot.img"
