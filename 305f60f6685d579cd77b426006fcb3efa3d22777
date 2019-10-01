@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49d988e5_cd0aee91",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-01T17:03:04Z",
+      "side": 1,
+      "message": "-x seems like a good choice. why change?",
+      "range": {
+        "startLine": 456,
+        "startChar": 9,
+        "endLine": 456,
+        "endChar": 10
+      },
+      "revId": "305f60f6685d579cd77b426006fcb3efa3d22777",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "973d4ada_4a2ff4d5",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-01T17:03:04Z",
+      "side": 1,
+      "message": "It is not apparent what is solved with this. It feels like a hack. If there is no way around that, can you please mention that in the commit message?",
+      "revId": "305f60f6685d579cd77b426006fcb3efa3d22777",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
