@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d23fbdd_97c18516",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-02T16:20:28Z",
+      "side": 1,
+      "message": "Is that an intentional change?",
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df7dda3e_0bc11865",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-02T16:20:28Z",
+      "side": 1,
+      "message": "this is a warning, but we continue. is the user always able to address this warning? if not, then this is INFO:",
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8002d5df_f1be4689",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-02T16:20:28Z",
+      "side": 1,
+      "message": "see above",
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c39f74f7_6e7efe2c",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-02T16:20:28Z",
+      "side": 1,
+      "message": "Is it possible to avoid the code duplication? At least, please add a TODO and address in a later change.",
+      "range": {
+        "startLine": 423,
+        "startChar": 1,
+        "endLine": 444,
+        "endChar": 3
+      },
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8af83d8a_f34a8ce1",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-02T16:20:28Z",
+      "side": 1,
+      "message": "can we avoid the temporary copy and directly pipe into gzip?",
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7b30b87_0fc72c12",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-02T16:20:28Z",
+      "side": 1,
+      "message": "please mark as TODO to address this \u0027hack\u0027 later",
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
