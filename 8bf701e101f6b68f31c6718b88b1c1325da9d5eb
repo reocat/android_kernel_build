@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fe77caf1_c772d79d",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-02T16:39:44Z",
+      "side": 1,
+      "message": "ah this was intentional at first but now I\u0027m just using the initramfs.img. Thanks for asking!",
+      "parentUuid": "7d23fbdd_97c18516",
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "df7dda3e_0bc11865",
         "filename": "build.sh",
         "patchSetId": 8
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "7263322a_b024d83c",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-02T16:39:44Z",
+      "side": 1,
+      "message": "I chose a warning so that users will know that there was no GKI ramdisk supplied. The user can address this by adding GKI_RAMDISK_PREBUILT_BINARY\u003d... to their build config.",
+      "parentUuid": "df7dda3e_0bc11865",
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8002d5df_f1be4689",
         "filename": "build.sh",
         "patchSetId": 8
@@ -47,6 +83,24 @@
       "writtenOn": "2019-10-02T16:20:28Z",
       "side": 1,
       "message": "see above",
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30be0f25_738cc1eb",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-02T16:39:44Z",
+      "side": 1,
+      "message": "same as above. The user can add VENDOR_RAMDISK_BINARY\u003d... to their build config to supply a vendor ramdisk.",
+      "parentUuid": "8002d5df_f1be4689",
       "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -76,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "5dcad329_667057ab",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-02T16:39:44Z",
+      "side": 1,
+      "message": "This is not a code duplication. There are 2 things here -- GKI ramdisk and Vendor ramdisk. Both are equally important to notify the user about.",
+      "parentUuid": "c39f74f7_6e7efe2c",
+      "range": {
+        "startLine": 423,
+        "startChar": 1,
+        "endLine": 444,
+        "endChar": 3
+      },
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8af83d8a_f34a8ce1",
         "filename": "build.sh",
         "patchSetId": 8
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "2fd45e03_c82f3ae8",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-02T16:39:44Z",
+      "side": 1,
+      "message": "yeah that\u0027s possible. That\u0027s just old code.",
+      "parentUuid": "8af83d8a_f34a8ce1",
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f7b30b87_0fc72c12",
         "filename": "build.sh",
         "patchSetId": 8
@@ -104,6 +200,24 @@
       "writtenOn": "2019-10-02T16:20:28Z",
       "side": 1,
       "message": "please mark as TODO to address this \u0027hack\u0027 later",
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e023de1b_19dac417",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-02T16:39:44Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "f7b30b87_0fc72c12",
       "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
