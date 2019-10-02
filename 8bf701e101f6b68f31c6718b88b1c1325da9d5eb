@@ -178,6 +178,30 @@
     },
     {
       "key": {
+        "uuid": "b6608435_bce35ac3",
+        "filename": "build.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-02T20:21:26Z",
+      "side": 1,
+      "message": "Oh I see what you mean. I thought you were still referring to the warnings if-statement. Yeah I can consolidate the code.",
+      "parentUuid": "7ae5e613_8332bd06",
+      "range": {
+        "startLine": 423,
+        "startChar": 1,
+        "endLine": 444,
+        "endChar": 3
+      },
+      "revId": "8bf701e101f6b68f31c6718b88b1c1325da9d5eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8af83d8a_f34a8ce1",
         "filename": "build.sh",
         "patchSetId": 8
