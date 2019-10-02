@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ae15df63_8f5534c8",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-02T09:04:00Z",
+      "side": 1,
+      "message": "(would be nice if mkbootimg would then be part of the distribution for us to use since mkbootimg.py is not supposed to be used by us ...). nevermind. I am ok with the -f there.",
+      "parentUuid": "6998a719_dce648fb",
+      "range": {
+        "startLine": 456,
+        "startChar": 9,
+        "endLine": 456,
+        "endChar": 10
+      },
+      "revId": "305f60f6685d579cd77b426006fcb3efa3d22777",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "973d4ada_4a2ff4d5",
         "filename": "build.sh",
         "patchSetId": 6
@@ -81,6 +105,24 @@
       "revId": "305f60f6685d579cd77b426006fcb3efa3d22777",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dde34d8_fadf7600",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-02T09:04:00Z",
+      "side": 1,
+      "message": "I am ok if you would add some explanation to the commit message for this. That way we can look it up from the line here.",
+      "parentUuid": "b20176a2_09b87bd3",
+      "revId": "305f60f6685d579cd77b426006fcb3efa3d22777",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
