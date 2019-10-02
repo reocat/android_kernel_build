@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24f7ab3b_b8558dbf",
+        "filename": "build.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-02T21:55:13Z",
+      "side": 1,
+      "message": "@alistair is this right? After thinking about this it seems like we might want to join the initramfs with the vendor and gki ramdisks, but I\u0027m not sure if just cat\u0027ing them all together is right. For me it\u0027s not relevant since my target uses system-as-root",
+      "range": {
+        "startLine": 423,
+        "startChar": 1,
+        "endLine": 425,
+        "endChar": 5
+      },
+      "revId": "a1f29a71331632b316ceefe9aea18266174e3485",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
