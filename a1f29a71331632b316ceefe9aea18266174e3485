@@ -22,6 +22,30 @@
       "revId": "a1f29a71331632b316ceefe9aea18266174e3485",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18298c6f_d2451f33",
+        "filename": "build.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2019-10-03T02:59:52Z",
+      "side": 1,
+      "message": "This feature landed before vendor-boot, it was meant as a stop-gap for cuttlefish to enable the cuttlefish launcher program (launch_cvd) to concatenate the boot.img initramfs with this one. A final solution should probably just create vendor-boot.img instead, then the bootloader should unpack and do the concatenation.\n\nBut as for whether you can \"just cat them together\", you totally can. That\u0027s exactly what the final bootloader solution will do.",
+      "parentUuid": "24f7ab3b_b8558dbf",
+      "range": {
+        "startLine": 423,
+        "startChar": 1,
+        "endLine": 425,
+        "endChar": 5
+      },
+      "revId": "a1f29a71331632b316ceefe9aea18266174e3485",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
