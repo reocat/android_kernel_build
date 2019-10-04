@@ -70,6 +70,30 @@
       "revId": "a1f29a71331632b316ceefe9aea18266174e3485",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b255fdf7_769bbbe1",
+        "filename": "build.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2019-10-04T19:44:25Z",
+      "side": 1,
+      "message": "\u003e For me it\u0027s not relevant since my target uses system-as-root\n\nThis feature is still relevant as it does all the necessary steps of 1) building the kernel and modules 2) installing the modules 3) running depmod to generate the modules.* meta files. This is exactly what splicing a custom kernel into a system-as-root build should do.\n\nI heard that the method can\u0027t be used directly because it puts into the initramfs path of /lib and we need /vendor/lib, but this seems like a fixable problem to me. We can just add another build.sh control variable which alters the path prefix for the ramdisk.",
+      "parentUuid": "18298c6f_d2451f33",
+      "range": {
+        "startLine": 423,
+        "startChar": 1,
+        "endLine": 425,
+        "endChar": 5
+      },
+      "revId": "a1f29a71331632b316ceefe9aea18266174e3485",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
