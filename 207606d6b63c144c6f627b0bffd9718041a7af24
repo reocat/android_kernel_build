@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8950e3af_86f634ac",
+        "filename": "static_analysis/checkpatch_presubmit.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-10-05T03:09:48Z",
+      "side": 1,
+      "message": "This results in the following error message on the build server:\ngrep: Unknown option \u0027Po\u0027 (see \"grep --help\")\nExample: https://android-build.googleplex.com/builds/pending/P9853515/kernel_lint/latest/view/logs/build.log",
+      "revId": "207606d6b63c144c6f627b0bffd9718041a7af24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
