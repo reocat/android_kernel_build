@@ -34,6 +34,24 @@
       "revId": "207606d6b63c144c6f627b0bffd9718041a7af24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a04f34d5_e4955137",
+        "filename": "static_analysis/checkpatch_presubmit.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2019-10-07T17:30:20Z",
+      "side": 1,
+      "message": "Is there a way to avoid Perl-compatible regular expressions (PCREs) and use POSIX regular expressions? How about a sed script similar to the following:\nsed -nE \"s/common.*([0-9a-f]{40}).*/\\1/p\"",
+      "parentUuid": "ad03032a_7e1183b4",
+      "revId": "207606d6b63c144c6f627b0bffd9718041a7af24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
