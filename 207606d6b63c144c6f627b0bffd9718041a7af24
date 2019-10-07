@@ -16,6 +16,24 @@
       "revId": "207606d6b63c144c6f627b0bffd9718041a7af24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad03032a_7e1183b4",
+        "filename": "static_analysis/checkpatch_presubmit.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-07T11:16:08Z",
+      "side": 1,
+      "message": "That is happening for builds that use a different toolchain providing \u0027grep\u0027. E.g. android-mainline uses the Android Platform toolchain that comes with grep from toybox and this version of grep seems to not understand -P. That is followed up in b/142160044.",
+      "parentUuid": "8950e3af_86f634ac",
+      "revId": "207606d6b63c144c6f627b0bffd9718041a7af24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
