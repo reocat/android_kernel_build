@@ -76,6 +76,10 @@
 #   POST_KERNEL_BUILD_CMDS
 #     Command evaluated after `make`.
 #
+#   TAGS_CONFIG
+#     if defined, calls ./scripts/tags.sh utility with TAGS_CONFIG as argument
+#     and exit once tags have been generated
+#
 #   IN_KERNEL_MODULES
 #     if defined, install kernel modules
 #
@@ -221,6 +225,15 @@ if [ "${POST_DEFCONFIG_CMDS}" != "" ]; then
   eval ${POST_DEFCONFIG_CMDS}
   set +x
 fi
+fi
+
+if [ "${TAGS_CONFIG}" != "" ]; then
+  echo "========================================================"
+  echo " Running tags command:"
+  set -x
+  (cd ${KERNEL_DIR} && SRCARCH=${ARCH} ./scripts/tags.sh ${TAGS_CONFIG})
+  set +x
+  exit 0
 fi
 
 echo "========================================================"
