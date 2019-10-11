@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9901bed3_63b64143",
+        "filename": "abi/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-11T16:34:48Z",
+      "side": 1,
+      "message": "nit: should be --",
+      "range": {
+        "startLine": 178,
+        "startChar": 67,
+        "endLine": 178,
+        "endChar": 68
+      },
+      "revId": "1a10037191a667260ba1372bff7630cba6dd55de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e908061_8b979e1f",
+        "filename": "abi/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-11T16:34:48Z",
+      "side": 1,
+      "message": "nit: should be --",
+      "range": {
+        "startLine": 178,
+        "startChar": 10,
+        "endLine": 178,
+        "endChar": 11
+      },
+      "revId": "1a10037191a667260ba1372bff7630cba6dd55de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dae3e56a_5bbf7a8c",
+        "filename": "abi/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-11T16:34:48Z",
+      "side": 1,
+      "message": "nit: I would remove the leading \"/\". It may cause confusion since the path is suppose to be relative to $KERNEL_DIR",
+      "range": {
+        "startLine": 230,
+        "startChar": 82,
+        "endLine": 230,
+        "endChar": 83
+      },
+      "revId": "1a10037191a667260ba1372bff7630cba6dd55de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
