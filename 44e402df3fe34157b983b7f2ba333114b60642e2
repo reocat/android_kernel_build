@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "644999e8_d8a2779c",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-11T16:29:13Z",
+      "side": 1,
+      "message": "Should we check if this file actually exists? Like maybe \n\nif [ -f \"$KERNEL_DIR/$KMI_WHITELIST\" ]; then ...",
+      "range": {
+        "startLine": 127,
+        "startChar": 40,
+        "endLine": 127,
+        "endChar": 66
+      },
+      "revId": "44e402df3fe34157b983b7f2ba333114b60642e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
