@@ -140,6 +140,30 @@
       "revId": "1a10037191a667260ba1372bff7630cba6dd55de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9160f3af_d14df145",
+        "filename": "abi/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-10-14T15:29:31Z",
+      "side": 1,
+      "message": "resolving",
+      "parentUuid": "39884d24_fbddd996",
+      "range": {
+        "startLine": 230,
+        "startChar": 82,
+        "endLine": 230,
+        "endChar": 83
+      },
+      "revId": "1a10037191a667260ba1372bff7630cba6dd55de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
