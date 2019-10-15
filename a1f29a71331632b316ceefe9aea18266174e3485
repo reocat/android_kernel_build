@@ -94,6 +94,30 @@
       "revId": "a1f29a71331632b316ceefe9aea18266174e3485",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb1c58ec_ab1453e7",
+        "filename": "build.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-10-15T22:30:46Z",
+      "side": 1,
+      "message": "I verified this is working properly now with a build that can load the modules on boot from the ramfs",
+      "parentUuid": "b255fdf7_769bbbe1",
+      "range": {
+        "startLine": 423,
+        "startChar": 1,
+        "endLine": 425,
+        "endChar": 5
+      },
+      "revId": "a1f29a71331632b316ceefe9aea18266174e3485",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
