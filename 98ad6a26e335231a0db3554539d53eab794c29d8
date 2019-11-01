@@ -16,6 +16,205 @@
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5edd1a9d_16fa4f04",
+        "filename": "abi/lka/lka-get-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-01T16:42:14Z",
+      "side": 1,
+      "message": "mktemp would respect $TMPDIR set by the user and by infrastructure tools",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cd93671_5d288172",
+        "filename": "abi/lka/lka-get-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-01T16:42:14Z",
+      "side": 1,
+      "message": "what about orphan kernel modules from previous builds? Can we use modules.order for that? we might not need ko-list after all",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95caf97d_acbd20cf",
+        "filename": "abi/lka/lka-get-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-01T16:42:14Z",
+      "side": 1,
+      "message": "I see that you split this up into 100 line chunks as `mklka` is processing these in parallel. Would be nice to have something like a thread pool or at least a way to adjust the arbitrary 100 to something sensibel for the machine this is running on.\n\nHaving something like a threadpool would also allow you to submit vmlinux.o into that as well and a uniform error reporting would avoid the error log parsing below.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb5ec4b7_7edeed2e",
+        "filename": "abi/lka/lka-get-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-01T16:42:14Z",
+      "side": 1,
+      "message": "leftover debug message?",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b43e537_8412834f",
+        "filename": "abi/lka/lka-in-build-dir",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-01T16:42:14Z",
+      "side": 1,
+      "message": "that selection feels a bit arbitrary. While I agree that it probably gets the job done, I would rather suggest we test for the interface that we are using from this directory. Hence we should test for the existence of the files we will process in the following.\n\nAs such I suggest to rethink this as: \"check-preconditions\", one of which should be whether this looks like a linux build dir. \n\nFurthermore we should check for vmlinux.objs and vmlinux.libs to exist, e.g.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ada7a025_4b74d3b5",
+        "filename": "abi/lka/lka-mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-01T16:42:14Z",
+      "side": 1,
+      "message": "CMD and TMP are not used at all",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c22be35f_421890ef",
+        "filename": "abi/lka/lka-mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-01T16:42:14Z",
+      "side": 1,
+      "message": "how about functions calls, that do all the logging and calling of the actual function e.g.\n\nrun_cmd lka-get-info \"extract kernel component information ...\"",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70eb9020_e66b820c",
+        "filename": "abi/lka/lka-mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-01T16:42:14Z",
+      "side": 1,
+      "message": "is that not part of what lka-rm should do? If not, should that not be done in some sort of cleanup script?",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a205256_9ec42565",
+        "filename": "abi/lka/lka-rm",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-01T16:42:14Z",
+      "side": 1,
+      "message": "these are all single command shell scripts. can we not just put the commands in here along with a descriptive comment for each of them.\n\nOtherwise that feels hard to maintain at some point.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "177d6c3a_601cdd69",
+        "filename": "abi/lka/lka-rm-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-01T16:42:14Z",
+      "side": 1,
+      "message": "find -name \u0027*.lka.*\u0027 -delete",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 31
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a4108c0_8d557717",
+        "filename": "abi/lka/lka-rm-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-01T16:42:14Z",
+      "side": 1,
+      "message": "find -delete",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 31
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
