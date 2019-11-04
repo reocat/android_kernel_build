@@ -19,6 +19,371 @@
     },
     {
       "key": {
+        "uuid": "b6d33480_4e2d5a9d",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "I did not fully review this file as I feel it needs some general addressing of reviewability and maintainability needs.\n\nCan you please include example transformations for the various sed scripts, etc? I would really appreciate if you could add more detailed documentation. Especially to the parts that handle various corner cases and where tricky details are a bit buried in regular expressions. I would like to defer the review until then. I hope you understand.\n\nAlso, it appears we rely very much on implementation details of the current Linux Kernel build. I am afraid they will change without notice and will break the tooling every now and then. In addition, we might have to maintain the code for different kernel versions, which could be difficult. Did you consider ways to overcome this?",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47bf83b8_beaf7816",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "mktemp",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0de24bd2_6d1edbc5",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "why not just rm -rf $TMP ?",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bc996c0_b777db19",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "that function is defined elsewhere already",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d5071a4_0c408f74",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "that feels like it does not need to be here any longer",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3d48a0e_652b6c91",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "please add example transformations here to help understanding what this is capable of doing",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cbf13a1_da4d7033",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 123,
+        "startChar": 19,
+        "endLine": 123,
+        "endChar": 24
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8558967_8111ef11",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "-fmax-errors\u003dn is also ignored/",
+      "range": {
+        "startLine": 194,
+        "startChar": 3,
+        "endLine": 194,
+        "endChar": 14
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "347f553a_f0e9c2fc",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "that function is very hard to reason about. We need to find a way to make this easier to reason about.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08b7726a_4ae97c1e",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "how did you define this list? it feels a bit arbitrary and there is no comment describing why certain files are part of this list while others are not.",
+      "range": {
+        "startLine": 942,
+        "startChar": 0,
+        "endLine": 954,
+        "endChar": 0
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe189f25_68d1bc59",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "that should be processed when LKA_FILES_O is produced.",
+      "range": {
+        "startLine": 966,
+        "startChar": 1,
+        "endLine": 971,
+        "endChar": 29
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a71bc2ff_980e142b",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "Interesting, Gerrit is omitting the backspace characters making me question this piece of code for a bit :-)",
+      "range": {
+        "startLine": 995,
+        "startChar": 2,
+        "endLine": 997,
+        "endChar": 19
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a9ed35a_a8ce0bb3",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "that file does not seem to follow the style of the others. It does not have a main() etc.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5f1f9d0_37fbebc9",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "while there is trace(), the use of echo seems still dominant.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a2307e4_8cf0fd08",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": ". Uses",
+      "range": {
+        "startLine": 13,
+        "startChar": 52,
+        "endLine": 13,
+        "endChar": 55
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "510d082f_83769662",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "can you describe how this is done to produce what the counts? It would make maintenance easier.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "960bb915_14368bb5",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27e32298_8f9021f4",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "I wonder whether this criteria of having at least 2 modules import a header is sufficient for it to be considered. In my opinion, every header file that is \u0027seen\u0027 by the vmlinux build or the build of any generic kernel module needs to be considered as values from them might be passed and/or used in third_party modules only. We should rethink this limiting approach.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a2b5b83_93b2538f",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 82,
+        "startChar": 47,
+        "endLine": 82,
+        "endChar": 54
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5edd1a9d_16fa4f04",
         "filename": "abi/lka/lka-get-info",
         "patchSetId": 1
@@ -104,6 +469,354 @@
     },
     {
       "key": {
+        "uuid": "e6486152_d2f25125",
+        "filename": "abi/lka/lka-in-build-dir",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "source@ is not existing for in-tree builds",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 25
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21cf7f27_d2d17a8e",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "can you please add documentation for what output lka-info is producing? what is the interface?",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40af89b7_324056a4",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "how about moving all this initialization (also the block further below) into a separate function",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e916b216_46d14f6b",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "what if this file does not exist?\n\nalso, we do not seem to make use of this file (any more)",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 28
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32b290a0_087c00e8",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "source is not existing for in-tree builds",
+      "range": {
+        "startLine": 157,
+        "startChar": 27,
+        "endLine": 157,
+        "endChar": 33
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55940fac_cda9c32b",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "This block definitely needs some simplification and documentation. I find it personally hard to read and maintain. (The purpose of it being to identify the collection of .d.keep files for the vmlinux binary, is somewhat clear to me, though.)\n\nif we anway modify the kernel build for the .d.keep files to be available, we might as well produce LKA_FILES_O_D_KEEP as \\n separated file at kernel build time.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12ba9cc6_ace2cd4a",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "this duplicates the above initialization and is not necessary",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef87d90e_8fff06fe",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "I hit this error. Apparently, LKA_MODULE_KO_CMD was not populated correctly:\n\n$ lka-info ./drivers/usb/core/usbcore.ko\nlka-info: can not find: ../drivers/usb/core/usbcore.ko.cmd",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f48b8ef1_517ae3b4",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "this block needs documentation",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee5e2ae3_9587cbd9",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "that feels like we are depending on a lot of implementation details here. I hope there is a better way of identifying the source directory for a module.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39229a98_104c2cdf",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "I hit this error when doing\n\nallnoconfig + CONFIG_MODULES\u003dy + USB host side support \u003dm\n\n...\nlka-info: Module source directory, is not a directory:  ../fs/nls\nlka-info: mismatch between .o files and .[cS] files\nlka-info: Module source directory, is not a directory:  ../drivers/usb/core\nlka-info: Module source directory, is not a directory:  ../drivers/usb/common\n./fs/nls/nls_base.ko.lka:LKA_RC\u003d1\n./vmlinux.o.lka:LKA_RC\u003d1\n./drivers/usb/core/usbcore.ko.lka:LKA_RC\u003d1\n./drivers/usb/common/usb-common.ko.lka:LKA_RC\u003d1",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8282565_4e717af6",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "At this point I wonder what we actually need. The .mod file contains the relevant source files for every module in the first line. And from each of these we need to derive the sources and dependent sources. Is that correct?",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5460aa3_98a1d8be",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "at least two",
+      "range": {
+        "startLine": 282,
+        "startChar": 59,
+        "endLine": 282,
+        "endChar": 71
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "581a9893_7aed75f9",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "it feels like the code here and the corresponding part for the vmlinux files share some logic and this could be combined. Am I mistaken?",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f074c74_7e1b785f",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "For me it is guessing what this function is capable of folding. Can you please add more documentation. Is this something, `readlink -m` could help us with?",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 335,
+        "endChar": 46
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e67bbfa8_e62e1dc6",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "it feels like this could be done a bit more maintainable.",
+      "range": {
+        "startLine": 340,
+        "startChar": 0,
+        "endLine": 352,
+        "endChar": 13
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48b80c28_4418901a",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "this sort of preprocessing should have been done earlier.",
+      "range": {
+        "startLine": 371,
+        "startChar": 0,
+        "endLine": 384,
+        "endChar": 0
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fd32ebb_47e0e2d4",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "can you elaborate on what this error condition means? I hit it when testing, but I am not sure what it means and why it is fatal.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ada7a025_4b74d3b5",
         "filename": "abi/lka/lka-mk",
         "patchSetId": 1
@@ -149,6 +862,86 @@
       "writtenOn": "2019-11-01T16:42:14Z",
       "side": 1,
       "message": "is that not part of what lka-rm should do? If not, should that not be done in some sort of cleanup script?",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8403b0a8_81fa3c7b",
+        "filename": "abi/lka/lka-path-from-build",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "I think this should be generalized",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b73c216_8e146f9f",
+        "filename": "abi/lka/lka-path-from-build",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "that very much depends on the android common kernel build structure. It breaks with device specific builds. We should rather use the scripts around build.sh (e.g. _setup_env.sh) to get this defined properly.",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79998c19_5f73698b",
+        "filename": "abi/lka/lka-path-from-build",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "very likely outdated",
+      "range": {
+        "startLine": 10,
+        "startChar": 56,
+        "endLine": 10,
+        "endChar": 64
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c4d8897_d8652573",
+        "filename": "abi/lka/lka-path-from-build",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-04T15:29:16Z",
+      "side": 1,
+      "message": "very likely outdated",
+      "range": {
+        "startLine": 12,
+        "startChar": 23,
+        "endLine": 12,
+        "endChar": 43
+      },
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
