@@ -69,6 +69,24 @@
       "revId": "8361fdd95329fab9c15d0d9aab038a335ed3a10a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0e24d36_49a57cde",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2019-11-07T17:51:46Z",
+      "side": 1,
+      "message": "I should also add that I don\u0027t think it will be common that we have much in here. Libmodprobe should be parsing the kernel command line and taking in module options from there (as kmod\u0027s modprobe does), I\u0027ll submit a fix for that soon.",
+      "parentUuid": "7882d269_6607f520",
+      "revId": "8361fdd95329fab9c15d0d9aab038a335ed3a10a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
