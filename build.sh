@@ -86,6 +86,11 @@
 #   SKIP_EXT_MODULES
 #     if defined, skip building and installing of external modules
 #
+#   MODULES_OPTIONS
+#     if defined, a /lib/modules/modules.options file is created on the ramdisk
+#     containing the contents of this variable, lines should be of the form:
+#     options <modulename> <param1>=<val> <param2>=<val> ...
+#
 #   EXTRA_CMDS
 #     Command evaluated after building and installing kernel and modules.
 #
@@ -353,6 +358,9 @@ if [ -n "${MODULES}" ]; then
     cp -r ${MODULES_STAGING_DIR}/lib/modules/*/kernel/* ${INITRAMFS_STAGING_DIR}/lib/modules/kernel/
     cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.* ${INITRAMFS_STAGING_DIR}/lib/modules/
     cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/modules.load
+    if [ -n "${MODULES_OPTIONS}" ]; then
+      echo "${MODULES_OPTIONS}" > ${INITRAMFS_STAGING_DIR}/lib/modules/modules.options
+    fi
 
     if [ -n "${EXT_MODULES}" ]; then
       mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/extra/
