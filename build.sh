@@ -366,16 +366,24 @@ if [ -n "${MODULES}" ]; then
     echo " Creating initramfs"
     set -x
     rm -rf ${INITRAMFS_STAGING_DIR}
-    mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/kernel/
-    cp -r ${MODULES_STAGING_DIR}/lib/modules/*/kernel/* ${INITRAMFS_STAGING_DIR}/lib/modules/kernel/
-    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.* ${INITRAMFS_STAGING_DIR}/lib/modules/
-    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/modules.load
-    echo "${MODULES_OPTIONS}" > ${INITRAMFS_STAGING_DIR}/lib/modules/modules.options
+    # Force a random version number -- 0.0 -- to please depmod. This will be
+    # removed in the final directory structure for the initramfs.
+    mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/kernel/
+    cp -r ${MODULES_STAGING_DIR}/lib/modules/*/kernel/* ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/kernel/
 
     if [ -n "${EXT_MODULES}" ]; then
-      mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/extra/
-      cp -r ${MODULES_STAGING_DIR}/lib/modules/*/extra/* ${INITRAMFS_STAGING_DIR}/lib/modules/extra/
+      mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/extra/
+      cp -r ${MODULES_STAGING_DIR}/lib/modules/*/extra/* ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/extra/
     fi
+
+    # Re-run depmod to detect any dependencies between in-kernel and external
+    # modules. Then, create modules.load based on all the modules compiled.
+    (cd ${INITRAMFS_STAGING_DIR} && depmod -a -b . 0.0)
+    (cd ${INITRAMFS_STAGING_DIR}/lib/modules/0.0 && \
+        find . -type f -name *.ko | cut -c3- > modules.load)
+    echo "${MODULES_OPTIONS}" > ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.options
+    mv ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/* ${INITRAMFS_STAGING_DIR}/lib/modules/.
+    rmdir ${INITRAMFS_STAGING_DIR}/lib/modules/0.0
 
     (cd ${INITRAMFS_STAGING_DIR} && find . | cpio -H newc -o > ${MODULES_STAGING_DIR}/initramfs.cpio)
     gzip -fc ${MODULES_STAGING_DIR}/initramfs.cpio > ${MODULES_STAGING_DIR}/initramfs.cpio.gz
