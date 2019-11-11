@@ -32,6 +32,13 @@ export COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
 export OUT_DIR=$(readlink -m ${COMMON_OUT_DIR}/${KERNEL_DIR})
 export DIST_DIR=$(readlink -m ${DIST_DIR:-${COMMON_OUT_DIR}/dist})
 
+if sh -c 'which repo && repo info' >/dev/null 2>&1; then
+  # extract the repo branch name (e.g. common-android-mainline)
+  repo_branch=$(repo --color=never info -o | grep -E "Manifest merge branch" |
+                                             sed "s|.*refs/heads/\(.*\)|\1|")
+  export KBUILD_BUILD_VERSION="1 repo:$repo_branch"
+fi
+
 echo "========================================================"
 echo "= build config: ${ROOT_DIR}/${BUILD_CONFIG}"
 cat ${ROOT_DIR}/${BUILD_CONFIG}
@@ -65,7 +72,7 @@ echo
 # verifies that defconfig matches the DEFCONFIG
 function check_defconfig() {
     (cd ${OUT_DIR} && \
-     make ${CC_LD_ARG} O=${OUT_DIR} savedefconfig)
+     make "${TOOL_ARGS[@]}" O=${OUT_DIR} savedefconfig)
     [ "$ARCH" = "x86_64" -o "$ARCH" = "i386" ] && local ARCH=x86
     echo Verifying that savedefconfig matches ${KERNEL_DIR}/arch/${ARCH}/configs/${DEFCONFIG}
     RES=0
