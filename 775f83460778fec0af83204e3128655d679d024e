@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43188a12_3ae5739c",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2019-11-11T18:15:22Z",
+      "side": 1,
+      "message": "Nit, but this might be misleading to some as we\u0027re not actually using a random number. I\u0027d rephrase to the effect of \"Depmod requires a kernel version, use 0.0 instead of determining the actual kernel version and using that. This will be removed...\"",
+      "range": {
+        "startLine": 369,
+        "startChar": 6,
+        "endLine": 369,
+        "endChar": 28
+      },
+      "revId": "775f83460778fec0af83204e3128655d679d024e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8be176d7_7f3cf458",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2019-11-11T18:15:22Z",
+      "side": 1,
+      "message": "-a is the default if no filenames are given, so I believe you should be able to omit it here",
+      "range": {
+        "startLine": 381,
+        "startChar": 43,
+        "endLine": 381,
+        "endChar": 45
+      },
+      "revId": "775f83460778fec0af83204e3128655d679d024e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
