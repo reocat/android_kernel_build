@@ -22,6 +22,30 @@
       "revId": "6a0daa62ef722091bef7664afdecc02241231b0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f38290f2_c1048f31",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-11-11T17:48:14Z",
+      "side": 1,
+      "message": "yes it is odd, but necessary because depmod requires a version number. As you can see below on line 373 I remove this folder altogether. I\u0027ll add a comment.",
+      "parentUuid": "e0680037_e9813a79",
+      "range": {
+        "startLine": 369,
+        "startChar": 50,
+        "endLine": 369,
+        "endChar": 53
+      },
+      "revId": "6a0daa62ef722091bef7664afdecc02241231b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
