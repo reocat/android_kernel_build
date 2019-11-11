@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "39d3f3dc_51436f05",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-11-11T22:47:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43188a12_3ae5739c",
+      "range": {
+        "startLine": 369,
+        "startChar": 6,
+        "endLine": 369,
+        "endChar": 28
+      },
+      "revId": "775f83460778fec0af83204e3128655d679d024e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8be176d7_7f3cf458",
         "filename": "build.sh",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "775f83460778fec0af83204e3128655d679d024e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a400443_1a9818eb",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-11-11T22:47:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8be176d7_7f3cf458",
+      "range": {
+        "startLine": 381,
+        "startChar": 43,
+        "endLine": 381,
+        "endChar": 45
+      },
+      "revId": "775f83460778fec0af83204e3128655d679d024e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
