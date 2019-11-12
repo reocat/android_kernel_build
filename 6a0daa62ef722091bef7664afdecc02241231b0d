@@ -46,6 +46,30 @@
       "revId": "6a0daa62ef722091bef7664afdecc02241231b0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8dae60a_0804caf3",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-12T11:39:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f38290f2_c1048f31",
+      "range": {
+        "startLine": 369,
+        "startChar": 50,
+        "endLine": 369,
+        "endChar": 53
+      },
+      "revId": "6a0daa62ef722091bef7664afdecc02241231b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
