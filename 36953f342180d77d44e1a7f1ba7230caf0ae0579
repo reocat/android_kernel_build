@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b8c8995_5da40c1c",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-15T12:03:09Z",
+      "side": 1,
+      "message": "-n",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 13
+      },
+      "revId": "36953f342180d77d44e1a7f1ba7230caf0ae0579",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81a1f27a_bbac0843",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-15T12:03:09Z",
+      "side": 1,
+      "message": "it feels odd to introduce this function for just one error message we want to print. Please, either convert all echos (warnings, errors) to use such a function (probably in a separate change) or stick to the echoed output as above.",
+      "revId": "36953f342180d77d44e1a7f1ba7230caf0ae0579",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "086ed25d_3a7e1797",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-15T12:03:09Z",
+      "side": 1,
+      "message": "we do not use tabs here.",
+      "revId": "36953f342180d77d44e1a7f1ba7230caf0ae0579",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
