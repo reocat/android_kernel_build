@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5095e25e_2c0205c4",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-11-20T17:50:37Z",
+      "side": 1,
+      "message": "I think it would be better to just check for your new flag here.",
+      "range": {
+        "startLine": 411,
+        "startChar": 11,
+        "endLine": 411,
+        "endChar": 29
+      },
+      "revId": "cb6a8c0b0d959365cea36967fe8d1b23816337f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7c0c67a_f7982bcc",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2019-11-20T17:50:37Z",
+      "side": 1,
+      "message": "And then if your new flag is set, then use all modules and copy to the DIST_DIR",
+      "range": {
+        "startLine": 415,
+        "startChar": 18,
+        "endLine": 415,
+        "endChar": 36
+      },
+      "revId": "cb6a8c0b0d959365cea36967fe8d1b23816337f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
