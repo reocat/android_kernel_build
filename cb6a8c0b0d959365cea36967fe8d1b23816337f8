@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "492df155_59f41280",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-20T23:21:42Z",
+      "side": 1,
+      "message": "UNSTRIPPED_MODULES has to work together with the above code that copies modules into DIST_DIR. See below.",
+      "parentUuid": "5095e25e_2c0205c4",
+      "range": {
+        "startLine": 411,
+        "startChar": 11,
+        "endLine": 411,
+        "endChar": 29
+      },
+      "revId": "cb6a8c0b0d959365cea36967fe8d1b23816337f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7c0c67a_f7982bcc",
         "filename": "build.sh",
         "patchSetId": 1
@@ -69,6 +93,30 @@
       "revId": "cb6a8c0b0d959365cea36967fe8d1b23816337f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93432947_c8dd71bf",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2019-11-20T23:21:42Z",
+      "side": 1,
+      "message": "The issue is, that we already copy modules into DIST_DIR 353 and then we would overwrite them again. That is confusing already. If we end up putting the modules in DIST_DIR and then the same modules unstripped into DIST_DIR/unstripped, we are giving the tools a really hard time.\n\nHaving read through the different code paths again and again, I come to the conclusion that it isn\u0027t ideal either way, but the way I suggested is at least obvious to follow. Otherwise, we confuse tools or other humans.",
+      "parentUuid": "3bd293e0_47846ed3",
+      "range": {
+        "startLine": 415,
+        "startChar": 18,
+        "endLine": 415,
+        "endChar": 36
+      },
+      "revId": "cb6a8c0b0d959365cea36967fe8d1b23816337f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
