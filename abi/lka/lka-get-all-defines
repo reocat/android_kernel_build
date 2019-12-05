@@ -1,0 +1,109 @@
+#!/bin/bash
+
+set -e -u			#  Do not remove!
+shopt -s inherit_errexit	#  Do not remove!
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+get_all_defines()
+{
+	DEFINES="$1"
+	ENUMS="$2"
+
+	test -f "$DEFINES.unsorted"
+	test -f "$ENUMS.unsorted"
+
+	echo 'sorting ...'
+
+	#  AOSP tools are toy tools, no parallel sort support either.
+	#
+	#  Not using --parallel adds 30 seconds to the execution time of this
+	#  script (for GKI build) and minutes (for the allmodconfig build).
+
+	sort --parallel=$(nproc) $DEFINES.unsorted \
+		> $DEFINES.sort
+
+	sort --parallel=$(nproc) $ENUMS.unsorted \
+		> $ENUMS.sort
+
+	echo 'reducing ...'
+
+	uniq $DEFINES.sort > $DEFINES.uniq
+
+	uniq $ENUMS.sort > $ENUMS.uniq
+
+	< $DEFINES.uniq \
+		cut -d: -f1 |
+		uniq -c |
+		sort -nr \
+		> $DEFINES.unic.count
+
+	< $DEFINES.unic.count \
+		egrep -v '^[ 	]*1[ 	][ 	]*' |
+		awk '{print $2}' \
+		> $DEFINES.dups
+
+	if [ ! -s $DEFINES.dups ] ; then
+		#  No duplicates, so no duplicate values
+		> $DEFINES.dupvals
+		cp $DEFINES.uniq $DEFINES
+		cp $ENUMS.uniq $ENUMS.c
+	else
+		EGREP_EXPR="$(< $DEFINES.dups \
+				 tr '\012' '|' |
+				 sed 's/|$//')"
+
+		< $DEFINES.uniq \
+			egrep -w "$EGREP_EXPR"  \
+			> $DEFINES.dupvals
+
+		< $DEFINES.uniq \
+			egrep -v -w "$EGREP_EXPR"  \
+			> $DEFINES
+
+		< $ENUMS.uniq \
+			egrep -v "\<__lka_($EGREP_EXPR)(_s|_v|_v_[0-9a-f]+)\>" \
+			> $ENUMS.c
+	fi
+}
+
+main()
+{
+	in_build_dir || exit 1
+
+	echo 'Aggregating for all kernel components ...'
+	find . -name '*.lka.2.dump' -print |
+		xargs cat \
+		      > lka-all-defines.unsorted
+	find . -name '*.lka.2.enum' -print |
+		xargs cat \
+		      > lka-all-enums.unsorted
+	get_all_defines lka-all-defines lka-all-enums
+
+	DUMP_FILES="$(< vmlinux.o.lka \
+		egrep '^LKA_FILES_O=' |
+		tr ' ' '\012' |
+		sed -e 's/^LKA_FILES_O=//' -e "s/'//g" \
+		    -e 's/\.o$/.lka.2.dump/' |
+		while read DUMP ; do
+			if [ -f "$DUMP" ] ; then
+				echo "$DUMP"
+			fi
+		done)"
+	ENUM_FILES="$(echo "$DUMP_FILES" |
+		sed 's?dump$?enum?')"
+
+	echo
+	echo 'Aggregating only for the kernel ...'
+	echo "$DUMP_FILES" |
+		xargs cat \
+		      > lka-kernel-defines.unsorted
+	echo "$ENUM_FILES" |
+		xargs cat \
+		      > lka-kernel-enums.unsorted
+	get_all_defines lka-kernel-defines lka-kernel-enums
+}
+
+main "$@"
