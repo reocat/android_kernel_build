@@ -1,0 +1,50 @@
+#!/bin/bash
+
+in_build_dir()
+{
+	if [ ! -f vmlinux.o -o \
+	     ! -d drivers -o ! -d fs -o ! -d fs -o ! -d net -o \
+	     ! -d source/drivers -o ! -d source/fs -o \
+	     ! -d source/fs -o ! -d source/net ] ; then
+		echo "$CMD: current directory is not Linux build directory" 1>&2
+		return 1
+	fi
+	return 0
+}
+
+fold_dots()
+{
+	sed \
+		-e 's?//*?/?g' \
+		-e 's?^\./??' \
+		-e 's?/\./?/?g' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??'
+}
+
+#  Example standard input:
+#  	foo.o: \
+#  	  foo.c \
+#  	  h1.h \
+#  	  h2.h
+#  Get rid of the "foo.o:" part, remove trailing back-slashes, compress
+#  multi-character whitespace (space or tabs) into single space, turn
+#  spaces into newlines, and remove empty lines.
+
+get_dependents()
+{
+	sed -e 's/^[^:]*:[ 	]*//' \
+		    -e 's/^[ 	]*//g' \
+		    -e 's/[ 	]\+/ /g' \
+		    -e 's/\\$//' |
+		tr ' ' '\012' |
+		egrep -v '^$'
+}
