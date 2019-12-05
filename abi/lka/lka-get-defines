@@ -1,0 +1,618 @@
+#!/bin/bash
+
+#	Major functions or code sections have comments prefixed with ##
+#	auxiliary functions and minor comments have a single #
+
+#	XXX marks additional work that might need to be done or areas for
+#	improvement
+
+#	For error handling the whole script depends on unchecked errors
+#	causing the script to abort (i.e. depends on: set -e).
+
+set -e		#  Do not remove!
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+SOURCE_DIR=$(readlink source)
+
+MKTEMP_TEMPLATE=$CMD-$$-XXXXXXXXXX
+TMP=/dev/null/not/set/yet
+
+build_dir=$(pwd)
+declare -A affects_ABI
+
+errexit()
+{
+	echo "$CMD: $@" 1>&2
+	exit 1
+}
+
+cleanup()
+{
+	if [ -d "$TMP" ] ; then
+		rm -f $TMP/o-list $TMP/o-split-*
+		rm -f $TMP/stderr-bg-jobs
+		rmdir $TMP
+	fi
+}
+
+##	The following series of filters are the steps of mk_files().
+##	They are in the order in which they are used by mk_files().
+##	Each one consumes its input from standard input and produces its
+##	result in standard output.
+
+#	Standard input is the dependencies produced by the -MD flag to the
+#	compiler, prior to it being affected by the Linux build.  It is in
+#	makefile dependency syntax for the target object.
+#
+#	Standard output is the list of the source code files used to compile
+#	an object.
+#
+#	The output has one filename per line, without whitespace.
+#
+#	Other code depends on the first filename being the source code
+#	filename, it must also have the same basename prefix as the object
+#	filename, both of these conditions are verified here.
+
+mk_file_deps()
+{
+	deps="$(sed -e 's/^[^:]*:[ 	]*//' \
+		    -e 's/^[ 	]*//g' \
+		    -e 's/[ 	]\+/ /g' \
+		    -e 's/\\$//' |
+		tr ' ' '\012' |
+		egrep -v '^$')"
+	src=$(echo "$deps" | head -1)
+	src_base=$(basename $src)
+	src_prefix=${src_base%.[cS]}
+	if [ "$obj_prefix" != "$src_prefix" ] ; then
+		echo "CMD: failed: $obj:" \
+			"$obj_prefix != $src_prefix" 1>&2
+		return 1
+	fi
+	echo "$deps"
+}
+
+#	Standard input is the list of source code files used to compile the
+#	object.
+#
+#	Standard output is a C source code file based on the source files
+#	that were included, directly, or indirectly, by the base source code
+#	file. Files that don't end in a .h suffix are ignored.  The first
+#	filename is the base source filename, which is also ignored.
+#
+#	The code produced are #include directives for every file that
+#	affects the ABI.  Relative filenames are made absolute filenames.
+
+mk_file_incs_c()
+{
+	sed -n '2,$p' |
+	egrep '\.h$' |
+	while read header ; do
+		case "$header" in
+		/*)	;;
+		*)	header=$build_dir/$header
+			if [ ! -f "$header" ] ; then
+				echo "$CMD: missing header file:" \
+					" $header" 1>&2
+				return 1
+			fi
+			;;
+		esac
+		if [ "${affects_ABI[$header]}" = y ]
+		then
+			echo '#include "'$header'"'
+		fi
+	done
+}
+
+#	Standard input is the .cmd file produced by the Linux build, it
+#	contains, in its first line, the actual command used to produce
+#	the object file.
+#
+#	Standard output is the edited command so that insteada of produceing
+#	a .o file the list of #defines visible to the source file is produced
+#	instead.
+#
+#	$1 is the name of the file that the original .c file in the .cmd
+#	file should be changed into so that the .lka.incs.c file is used
+#	when the generated commands are used in a later step.
+#
+#	The command is also edited to simplify pathnames that use /../ in
+#	the middle of them to not have the /../'s there, for example by
+#	changing a/b/c/d/../../x into a/b/x
+
+mk_file_lka_defines_cmd()
+{
+	#  The .o file name in AOSP android-4.19 uses .tmp_ for example for:
+	#	fs/pipe.c
+	#  it uses
+	#	-o fs/.tmp_pipe.o
+
+	head -1 |
+
+	#  If fold_dots processing encounters a foo/bar/../.. name for
+	#  the .o.d file then the '-Wp,-MD,' is consumed by the fold_dots,
+	#  meaning it disappears as if it were part of the directory name:
+	#	-Wp,-MD,foo/bar/../..
+	#  The work of this first sed used to be done in one sed after the
+	#  fold_dots, it has to be done first to prevent 
+	sed \
+	   -e "s?^cmd_[^ 	]*/$obj_prefix.o := ??" \
+	   -e "s? -Wp,-MD,[^ 	]*/\.$obj_prefix\.o\.d ? -E -dM ?" |
+	tr ' ' '\012' |
+	fold_dots |
+	tr '\012' ' ' |
+	sed \
+	   -e "s? -o [^ 	]*$obj_redir/$obj_prefix.o ? ?" \
+	   -e "s? -o [^ 	]*$obj_redir/\.tmp_$obj_prefix.o ? ?" \
+	   -e "s?[ 	][^ 	]*[^ 	]*$obj_redir/$obj_prefix.c"'[ 	]*$'"? $1?"
+}
+
+#	Standard input is the cmd script file produced by
+#	mk_file_lka_defines_cmd().
+#
+#	Standard output is another cmd script which when executed causes a
+#	precompiled header file to be produced (if it doesn't already exist),
+#	and which unconditionally produces an assembly file from the C source
+#	file.
+#
+#	This function knows about intermediate filenames that it adjusts.
+#	Passsing those as arguments would make it needlessly obscure.
+#	It knows about these suffixes:
+#		.lka.incs.c
+#		.lka.2.h
+#		.lka.2.h.gch
+#		.lka.2.c
+#		.lka.2.o
+
+mk_file_lka_2_o_cmd()
+{
+	#  Precompiled header files doesn't make the script faster.
+
+	if false ; then
+		input="$(cat)"
+		echo "if [ ! -f $obj_redir/$obj_prefix.lka.2.h.gch ] ; then"
+		echo
+		echo "$input" |
+		sed -e 's?\.lka\.incs\.c$?.lka.2.h -o '"$obj_redir/$obj_prefix.lka.2.h.gch?" \
+		    -e 's/ -E -dM / /' \
+		    -e "s? -c ? -Isource/$obj_redir -c ?" \
+		    -e 's/-include [^ ]* //g'
+		echo
+		echo fi
+		echo
+		echo "$input"
+	fi
+	sed -e 's?\.lka\.incs\.c$?.lka.2.c -o '"$obj_redir/$obj_prefix.lka.2.o?" \
+	    -e 's/ -E -dM / -ferror-limit=10000 /' \
+	    -e "s? -c ? -Isource/$obj_redir -c ?" \
+	    -e 's/-include [^ ]* //g'
+	#  Using -ferror-limit=n because -fmax-error and -fmax-errors=n
+	#  options which seem to be ignored by both GCC and CLANG
+}
+
+#	Standard input is the cmd script file produced by
+#	mk_file_lka_defines_cmd().
+#
+#	Standard output is a C header file, which includes all the files
+#	included by '-include file' directives in the cmd script and the
+#	original .c file from which the object file was produced (i.e. from
+#	the Linux source code or from a .c file generated by the Linux build).
+#
+#	This header is produced to facilitate the use of precompiled header
+#	files and also to isolate all the code that should compile without
+#	any problems from the code that needs to be corrected when compilation
+#	errors occur on it (later on by comment_errors()).
+
+mk_file_lka_2_h()
+{
+	sed -e 's/-include \([^ ]*\) /-include=\1 /g' |
+	tr ' ' '\012' |
+	sed -n 's/^-include=\(.*\)/#include "\1"/p'
+	if [ -f "$SOURCE_DIR/$obj_redir/$obj_prefix.c" ] ; then
+		echo "#include \"$SOURCE_DIR/$obj_redir/$obj_prefix.c\""
+	elif [ -f "$obj_dir/$obj_prefix.c" ] ; then
+		echo "#include \"$obj_dir/$obj_prefix.c\""
+	elif [ -f "$SOURCE_DIR/$obj_redir/$obj_prefix.S" -o \
+	       -f "$obj_dir/$obj_prefix.S" ] ; then
+		:			# XXX not doing anything for .S files
+	else
+		echo "CMD: failed: $obj: can not find .c file for: $obj" 1>&2
+		return 1
+	fi 
+}
+
+#	Standard input is the #defines produced by executing the commands
+#	produced by mk_file_lka_defines_cmd().
+#
+#	Standard output is either a .c or a .S file (the caller knows which)
+#	which includes the header file produced by mk_file_lka_2_h() and
+#	a series of declarations, one for each #define in standard input.
+
+mk_file_lka_2_c_or_S()
+{
+	echo "#include \"$obj_dir/$obj_prefix.lka.2.h\""
+	sed -n 's/^[ 	]*#[ 	]*define[ 	]\+\([_a-zA-Z][_a-zA-Z0-9]*\)[ 	]\+\(.*\)$/typeof(\2) __lka_v_\1 __attribute__ ((section ("LKA_DEFINE"))) = (\2);/p' |
+	egrep -v '\(\);$' || true
+}
+
+##	For an object file produce and invoke a series of scripts and files
+##	used later to determine which #defines define compile time constants
+##	that need to be part of the ABI.
+##
+##	Quite a few intermediate files are produced to facilitate debugging.
+##
+##	The output used by later stages are files that end in:
+##		.lka.2.c (or .lka.2.S if the source file is a .S file)
+##		.lka.2.o.cmd
+##
+##	The .lka.2.c file includes one other produced file .lka.2.h and
+##	the rest of it is a series of declarations that are only valid
+##	if they correspond to a compile time (or worst case a link time)
+##	constant.
+##
+##	The .lka.2.o.cmd will be used later, interatively while dealing with
+##	compilation errors, to produce an .lka.2.o file from the .lka.2.c file.
+
+mk_files()
+{
+	if [ -f $obj_redir/$obj_prefix.lka.2.c -o \
+	     -f $obj_redir/$obj_prefix.lka.2.S ] ; then
+		return 0
+	fi
+
+	mk_file_deps \
+		< $obj_dir/.$obj_prefix.o.d.keep \
+		> $obj_dir/$obj_prefix.lka.deps
+
+	mk_file_incs_c \
+		< $obj_dir/$obj_prefix.lka.deps \
+		> $obj_dir/$obj_prefix.lka.incs.c
+
+	cmd=$obj_redir/.$obj_prefix.o.cmd
+	if [ ! -f $cmd ] ; then
+		echo "$CMD: missing .cmd file: $cmd" 1>&2
+		return 1
+	fi
+
+	mk_file_lka_defines_cmd "$obj_redir/$obj_prefix.lka.incs.c" \
+		< $cmd \
+		> $obj_redir/$obj_prefix.lka.defines.cmd
+
+	if source $obj_redir/$obj_prefix.lka.defines.cmd \
+			> $obj_redir/$obj_prefix.lka.defines \
+			2> $obj_redir/$obj_prefix.lka.defines.cmd.err ; then
+		:
+	else
+		echo "$CMD: error running:" \
+			"$obj_redir/$obj_prefix.lka.defines.cmd" 1>&2
+		cat $obj_redir/$obj_prefix.lka.defines.cmd.err 1>&2
+		return 1
+	fi
+
+	ext=c
+	src=source/$obj_redir/$obj_prefix.c
+	if [ ! -f $src ] ; then
+		ext=S
+		src=source/$obj_redir/$obj_prefix.S
+		if [ ! -f $src ] ; then
+			ext=c
+			src=$obj_redir/$obj_prefix.c
+			if [ ! -f $src ] ; then
+				ext=S
+				src=$obj_redir/$obj_prefix.S
+				if [ ! -f $src ] ; then
+					echo "$CMD: can not find source file for:" \
+						"$obj_redir/$obj_prefix.o" 1>&2
+					return 1
+				fi
+			fi
+		fi
+	fi
+
+	mk_file_lka_2_o_cmd \
+		< $obj_redir/$obj_prefix.lka.defines.cmd \
+		> $obj_redir/$obj_prefix.lka.2.o.cmd
+
+	mk_file_lka_2_h \
+		< $obj_redir/$obj_prefix.lka.defines.cmd \
+		> $obj_redir/$obj_prefix.lka.2.h
+
+	< $obj_redir/$obj_prefix.lka.defines \
+		mk_file_lka_2_c_or_S \
+		> $obj_redir/$obj_prefix.lka.2.$ext
+}
+
+#	A debugging function, used to keep many intermediate files used
+#	to investigate issues when there are problems.  It is not meant
+#	to be used in production.
+
+comment_errors_keep_intermediate_files()
+{
+	cp $obj_redir/$obj_prefix.lka.2.c \
+	   $obj_redir/$obj_prefix.lka.2.c.dbg.$retries
+	cp $obj_redir/$obj_prefix.lka.2.c.tmp \
+	   $obj_redir/$obj_prefix.lka.2.c.dbg.$retries.tmp
+	echo "$SED_CMD" \
+		> $obj_redir/$obj_prefix.lka.2.c.dbg.$retries.sed
+	cp $obj_redir/$obj_prefix.lka.2.o.cmd.err \
+	   $obj_redir/$obj_prefix.lka.2.c.dbg.$retries.cmd.err
+}
+
+##	Repeatedly try to generate the assembly file.  Comment out
+##	the lines that cause a compilation error, the errors are the
+##	result of expressions that can not be used to initialize global
+##	variables, frequently because they are not compile time constants,
+##	sometimes they are link time constants, i.e. addresses, those will
+##	be dealt with later.  Sometimes the compilation errors are the result
+##	of the values not being a well formed expression, for example:
+##		#define ASM_NL ;
+##
+##	Input:
+##	  .lka.2.o.cmd	Script that invokes the compiler to produce
+##			the .lka.2.o file.
+##	Input/Output:
+##	  .lka.2.c	Which will be modified in place by commenting
+##			declarations that cause compilation errors.
+##	Output:
+##	  .lka.2.o	Compiled output from compiling the .lka.2.c file
+
+comment_errors()
+{
+	if [ -f "$obj_redir/$obj_prefix.lka.2.o" ] ; then
+		return 0
+	fi
+	if [ -f "$obj_redir/$obj_prefix.lka.2.S" ] ; then
+		# XXX not doing work for .S files
+		# echo "$CMD: skipping .S file:" \
+		#	"$obj_redir/$obj_prefix.lka.2.S"
+		return 0
+	fi
+	if [ -f $obj_redir/$obj_prefix.lka.2.h.gch ] ; then
+		rm $obj_redir/$obj_prefix.lka.2.h.gch
+	fi
+
+	retries=0
+	max_retries=1000
+
+	while [ $retries -lt $max_retries ] ; do
+		retries=$[ retries + 1 ]
+		if source $obj_redir/$obj_prefix.lka.2.o.cmd \
+			> $obj_redir/$obj_prefix.lka.2.o.cmd.err 2>&1 ; then
+			# objdump -t -s -j LKA_DEFINE \
+			#	$obj_redir/$obj_prefix.lka.2.o \
+			#	> $obj_redir/$obj_prefix.lka.2.dump
+			lka-dump $obj_redir/$obj_prefix.lka.2.o \
+				> $obj_redir/$obj_prefix.lka.2.dump
+			lka-dump -e $obj_redir/$obj_prefix.lka.2.o \
+				> $obj_redir/$obj_prefix.lka.2.enum
+			break
+		fi
+
+		SED_CMD=$(
+			< $obj_redir/$obj_prefix.lka.2.o.cmd.err \
+			egrep "^$obj_redir/$obj_prefix.lka.2.c:[0-9][0-9]*:[0-9][0-9]*: error:" |
+			cut -d: -f2 |
+			sort -u |
+			sed "s?\(.*\)?-e '\1s:^:// :'?")
+
+
+		if [ -z "$SED_CMD" ] ; then
+			echo "CMD: $obj_redir/$obj_prefix: empty SED_CMD" 1>&2
+			break
+		fi
+
+		#  Uncomment for debugging to keep intermediate files:
+		#	comment_errors_keep_intermediate_files
+
+		if eval sed $SED_CMD < $obj_redir/$obj_prefix.lka.2.c \
+				     > $obj_redir/$obj_prefix.lka.2.c.tmp ; then
+			:
+		else
+			echo "$CMD: $obj_redir/$obj_prefix, error:" \
+				" sed $SED_CMD" 1>&2
+			break
+		fi
+
+		if cmp -s $obj_redir/$obj_prefix.lka.2.c.tmp \
+			  $obj_redir/$obj_prefix.lka.2.c ; then
+			echo "CMD: $obj_redir/$obj_prefix:" \
+				"failed: sed edited file was identical" 1>&2
+			break
+		fi
+
+		mv $obj_redir/$obj_prefix.lka.2.c.tmp \
+		   $obj_redir/$obj_prefix.lka.2.c
+	done
+
+	if [ -f $obj_redir/$obj_prefix.lka.2.h.gch ] ; then
+		#  Remove precompiled header files to reduce
+		#  storage used and reduce page cache impact
+		rm $obj_redir/$obj_prefix.lka.2.h.gch
+	fi
+	if [ ! -f "$obj_redir/$obj_prefix.lka.2.o" ] ; then
+		echo "retries=$retries ($obj_redir/$obj_prefix failed)" 1>&2
+		echo "$CMD: missing: $obj_redir/$obj_prefix.lka.2.o" 1>&2
+		return 1
+	fi
+}
+
+#	If the argument string is not empty exit the script.
+
+must_be_empty()
+{
+	if [ ! -z "$1" ] ; then
+		errexit "unexpected text: $1"
+	fi
+}
+
+##	Work on a number of object files, multiple instances of this
+##	function are run in parallel, each one works on a list of objects
+##	whose filenames are read from standard input.
+
+work_on_objs()
+{
+	while read obj ; do
+		if [ ! -f "$obj" ] ; then
+			echo "$CMD: missing .o file: $obj" 1>&2
+			return 1
+		fi
+
+		obj_dir=$(dirname $obj)
+		obj_redir=${obj_dir#$build_dir/}
+		obj_base=$(basename $obj)
+		obj_prefix=${obj_base%.o}
+
+		#  While debugging its convenient to run these steps
+		#  individually, commenting them all out but one.
+		#  The steps individually guard against recreating work
+		#  they've done previously.
+
+		mk_files
+		comment_errors
+
+		if [ "$LKA_KEEP_TEMPORARY_FILES" = y ] ; then
+			if [ "$INTERACTIVE" = y ] ; then
+				echo :::::
+			fi
+			continue
+		fi
+
+		rm $obj_redir/$obj_prefix.lka.defines \
+		   $obj_redir/$obj_prefix.lka.defines.cmd \
+		   $obj_redir/$obj_prefix.lka.defines.cmd.err \
+		   $obj_redir/$obj_prefix.lka.deps \
+		   $obj_redir/$obj_prefix.lka.incs.c \
+		   $obj_redir/$obj_prefix.lka.2.h \
+		   $obj_redir/$obj_prefix.lka.2.o.cmd
+		if [ -f $obj_redir/$obj_prefix.lka.2.c ] ; then
+			rm $obj_redir/$obj_prefix.lka.2.c \
+			   $obj_redir/$obj_prefix.lka.2.o \
+			   $obj_redir/$obj_prefix.lka.2.o.cmd.err
+			if [ "$INTERACTIVE" = y ] ; then
+				echo :::::
+			fi
+		elif [ -f $obj_redir/$obj_prefix.lka.2.S ] ; then
+			rm -f $obj_redir/$obj_prefix.lka.2.S
+		fi
+	done
+}
+
+##	
+
+main()
+{
+	in_build_dir || exit 1
+
+	#  If standard output is a tty, then show progress interactively,
+	#  note that tty checks whether its standard input is tied to a
+	#  terminal, to have it check if standard output is a terminal:
+	#  file descriptor 1 is dupped to be file descriptor 0
+
+	if tty -s 0<&1 >/dev/null 2>/dev/null ; then
+		INTERACTIVE=y
+	else
+		INTERACTIVE=n
+	fi
+
+	#  affects_ABI[] is a map of header names, if a header
+	#  name affects the ABI the value of the map is: y
+	#  the map is created once and inherited by parallel
+	#  work_on_objs() scripts
+
+	for header in $(< lka-header-use-count.affect-ABI.tmp \
+			awk '{ print $1 }') ; do
+		case "$header" in
+		    */include/trace/trace_events.h|\
+		    */include/trace/perf.h|\
+		    */include/trace/bpf_probe.h|\
+		    */include/uapi/linux/patchkey.h|\
+		    */drivers/net/ethernet/chelsio/cxgb4/t4_pci_id_tbl.h|\
+		    */include/linux/wimax/debug.h|\
+		    */include/rdma/uverbs_named_ioctl.h|\
+		    */net/netfilter/ipset/ip_set_hash_gen.h|\
+		    */sound/pci/echoaudio/echoaudio_dsp.h|\
+		    */sound/pci/echoaudio/echoaudio.h|\
+		    */include/linux/cgroup_subsys.h)
+			echo "$CMD: excluding: $header"
+			continue
+			;;
+		esac
+		affects_ABI[$header]=y
+	done
+
+	trap cleanup SIGINT SIGHUP SIGTERM
+	if TMP=$(mktemp --tmpdir -d $MKTEMP_TEMPLATE) ; then : ; else
+		errexit "mktemp failed with $?"
+	fi
+
+	#  Compute the object list to work on
+
+	if [ -z "$LKA_GET_DEFINES_LIST" ] ; then
+		LKA_GET_DEFINES_LIST="$(find . -name '*.lka' -print)"
+	fi
+
+	echo "$LKA_GET_DEFINES_LIST" |
+		xargs cat |
+		egrep '^LKA_FILES_O=' |
+		sed -e 's/^LKA_FILES_O=//' \
+		    -e "s/'//g" |
+		tr ' ' '\012' > $TMP/o-list
+
+	#  Split the object list into sublists to be worked on in parallel
+
+	NOBJS=$(wc -l < $TMP/o-list)
+	NCPU=$(nproc)
+	NJOBS=$[ NCPU * 8 ]
+	NLINES=$[ NOBJS / NJOBS ]
+	if [ "$NLINES" -eq 0 ] ; then
+		NJOBS=$NOBJS
+		NLINES=1
+	fi
+	CWD=$(pwd)
+	cd $TMP
+	split -l $NLINES $TMP/o-list o-split-
+	cd $CWD
+
+	#  Work on the object lists in parallel
+
+	if [ "$INTERACTIVE" = n ] ; then
+		for s in $TMP/o-split-* ; do
+			work_on_objs < $s &
+		done 2> $TMP/stderr-bg-jobs
+	else
+		step=0
+		echo
+		for s in $TMP/o-split-* ; do
+			work_on_objs < $s &
+		done 2> $TMP/stderr-bg-jobs |
+		while read line ; do
+			step=$[ step + 1 ]
+			if [ x"$line"x = 'x:::::x' ] ; then
+				if [ $[ step % 50 ] -eq 0 ] ; then
+					echo "$step of $NOBJS done ..."
+				fi
+			else
+				echo "$line"
+			fi
+		done
+		echo '... (.S files using ABI headers were excluded)'
+	fi
+	wait
+
+	#  Errors occured if $TMP/stderr-bg-jobs is non empty
+
+	if [ -s $TMP/stderr-bg-jobs ] ; then
+		cat $TMP/stderr-bg-jobs 1>&2
+		cleanup
+		exit 1
+	fi
+
+	cleanup
+	exit 0
+}
+
+main "$@"

@@ -1,0 +1,74 @@
+#!/bin/bash
+
+set -e -u
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+MKTEMP_TEMPLATE=$CMD-$$-XXXXXXXXXX
+TMP=/dev/null/not/set/yet
+
+cleanup()
+{
+	if [ -d "$TMP" ] ; then
+		rm $TMP/ko-list $TMP/ko-split-*
+		rmdir $TMP
+	fi
+}
+
+mklka()
+{
+	cwd=$(pwd)
+	while read ko ; do
+		dir=$(dirname $ko)
+		cd $dir
+		base=$(basename $ko)
+		(
+			if lka-info -v $base ; then
+				echo LKA_RC=0
+			else
+				echo LKA_RC=$?
+			fi
+		) > $base.lka 2> $base.lka.err &
+		cd $cwd
+	done < "$1"
+	wait
+}
+
+main()
+{
+	in_build_dir || exit 1
+
+	trap cleanup SIGINT SIGHUP SIGTERM
+	if TMP=$(mktemp --tmpdir -d $MKTEMP_TEMPLATE) ; then : ; else
+		errexit "mktemp failed with $?"
+	fi
+
+	find . -name '*.ko' -print > $TMP/ko-list
+	(cd $TMP ; split -l 100 $TMP/ko-list ko-split-)
+	for s in $TMP/ko-split-* ; do
+		# printf +
+		mklka $s
+	done
+	cleanup
+
+	if lka-info -v vmlinux.o ; then
+		echo LKA_RC=0
+	else
+		echo LKA_RC=$?
+	fi > vmlinux.o.lka 2> vmlinux.o.lka.err
+
+	find . -name '*.lka.err' -print | xargs cat 1>&2
+	if find . -name '*.lka' -print |
+	   xargs egrep '^LKA_RC=[^0]' |
+	   fgrep LKA_RC 1>&2 ; then
+		exit 1
+	fi
+
+	find . -name '*.lka.err' -print | xargs rm
+	exit 0
+}
+
+main "$@"
+
