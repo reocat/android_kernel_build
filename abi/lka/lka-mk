@@ -1,0 +1,162 @@
+#!/bin/bash
+
+set -e -u			#  Do not remove!
+shopt -s inherit_errexit	#  Do not remove!
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+validate_running_inside_build_inside_repo()
+{
+	if [ ! -d ../../../build -o \
+	     ! -f ../../../build/build.sh -o \
+	     ! -d ../../../prebuilts-master -o \
+	     ! -d ../../../prebuilts-master/clang ] ; then
+		echo "$CMD: must be invoked from inside the Linux kernel" \
+		     "build directory inside the repo project with the" \
+		     "build directory, prebuilt tools, etc." 1>&2
+		exit
+	fi
+}
+
+validate_clang_is_from_prebuilts()
+{
+	validate_running_inside_build_inside_repo
+
+	if COMPILER_TYPE="$(type clang)" ; then
+		:
+	else
+		echo "$CMD: could not find clang target compiler in PATH" 1>&2
+		exit 1
+	fi
+
+	OLD_DIR=$PWD
+	cd ../../..
+	TOP_DIR=$PWD
+	cd "$OLD_DIR"
+
+	COMPILER_BINARY="${COMPILER_TYPE#clang is }"
+	COMPILER_BINARY_WITHOUT_TOP_DIR="${COMPILER_BINARY#$TOP_DIR/}"
+
+	if [ "$COMPILER_BINARY" = "$COMPILER_BINARY_WITHOUT_TOP_DIR" ] ; then
+		echo "$CMD: target compiler binary is outside the AOSP repo:" \
+		     "$COMPILER_BINARY" 1>&2
+		exit 1
+	fi
+
+	case "$COMPILER_BINARY_WITHOUT_TOP_DIR" in
+	prebuilts-master/clang/host/linux-*/clang-*/bin/clang)
+		;;
+	*)	{
+		echo "$CMD: target compiler is in incorrect place:"
+		echo "	$COMPILER_BINARY_WITHOUT_TOP_DIR"
+		echo
+		echo "compiler should be under the directory:"
+		echo "	$PWD"
+		echo
+		echo "in a subdirectory of this form:"
+		echo "	prebuilts-master/clang/host/linux-*/clang-*/bin/clang"
+		} 1>&2
+		exit 1
+		;;
+	esac
+
+	# echo "compiler is in correct place:"
+	# echo "$COMPILER_BINARY_WITHOUT_TOP_DIR"
+}
+
+validate_single_clang_version_was_used()
+{
+	COMPILER_VERSION="$(
+		egrep '^__clang_version__:' lka-all-defines |
+		cut -d: -f4)"
+
+	if [ -z "$COMPILER_VERSION" ] ; then
+		echo "$CMD: could not determine compiler version" 1>&2
+		exit 1
+	fi
+
+	if [ $(echo "$COMPILER_VERSION" | wc -l) -ne 1 ] ; then
+		echo "$CMD: error: multiple compiler versions were used" 1>&2
+		exit 1
+	fi
+
+	if clang --version | \
+	   fgrep -q "$(egrep '^__clang_version__:' lka-all-defines |
+		       cut -d: -f4- |
+		       sed -e 's/^"//' -e 's/"$//')" ; then
+		:
+	else
+		echo "$CMD: the value of __clang_version__ in lka-all-defines" \
+		     "is not present in the output of: clang --version" 1>&2
+		exit 1
+	fi
+}
+
+compile_lka_dump()
+{
+	if [ ! -f $CMD_DIR/lka-dump -o \
+	     $CMD_DIR/lka-dump.c -nt $CMD_DIR/lka-dump ] ; then
+		echo 'building lka-dump ...'
+		clang -Wall -O3 $CMD_DIR/lka-dump.c -o $CMD_DIR/lka-dump
+		echo
+	fi
+}
+
+main()
+{
+	in_build_dir || exit 1
+
+	if [ ! -f vmlinux.libs ] ; then
+		echo "$CMD: file missing: vmlinux.libs" 1>&2
+		echo "$CMD: kernel built without patch to produce it" 1>&2
+		exit 1
+	fi
+	if [ ! -f vmlinux.objs ] ; then
+		echo "$CMD: file missing: vmlinux.objs" 1>&2
+		echo "$CMD: kernel built without patch to produce it" 1>&2
+		exit 1
+	fi
+	if [ "$LKA_CC" != clang ] ; then
+		echo "$CMD: this script assumes the compiler is clang" 1>&2
+		exit 1
+	fi
+
+	validate_clang_is_from_prebuilts
+	compile_lka_dump
+
+	echo 'cleaning results of previous run ...'
+	lka-rm
+
+	echo
+	echo 'extract kernel component information ...'
+	lka-get-info
+
+	echo
+	echo 'get header use counts ...'
+	lka-get-header-use-counts
+
+	echo
+	echo 'get defines to track for ABI ...'
+	lka-get-defines
+
+	echo
+	echo 'consolidate defines ...'
+	lka-get-all-defines
+
+	echo
+	echo 'validate that a single version of the compiler was used ...'
+	validate_single_clang_version_was_used
+
+	echo
+	echo 'removing leftover temporary files ...'
+	lka-rm-all-defines
+
+	echo
+	echo 'values of defines that could affect ABI are in:'
+	echo "$PWD/lka-all-defines"
+}
+
+main "$@"
+
