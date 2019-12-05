@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -e -u			#  Do not remove!
+shopt -s inherit_errexit	#  Do not remove!
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+make_lka()
+{
+	file="$1"
+	dir=$(dirname "$file")
+	cd $dir
+	base=$(basename "$file")
+
+	if lka-info -v $base ; then
+		echo LKA_RC=0
+	else
+		echo LKA_RC=$?
+	fi > $base.lka 2> $base.lka.err
+}
+
+main()
+{
+	in_build_dir || exit 1
+
+	( echo vmlinux.o ;
+	  find . -name '*.ko' -print ) |
+		parallel make_lka
+
+	find . -name '*.lka.err' -print | xargs cat 1>&2
+	if find . -name '*.lka' -print |
+	   xargs egrep '^LKA_RC=[^0]' |
+	   fgrep LKA_RC 1>&2 ; then
+		exit 1
+	fi
+
+	find . -name '*.lka.err' -print | xargs rm
+	exit 0
+}
+
+main "$@"
+
