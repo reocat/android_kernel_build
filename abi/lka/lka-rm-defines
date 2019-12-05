@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e -u			#  Do not remove!
+shopt -s inherit_errexit	#  Do not remove!
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+main()
+{
+	in_build_dir || exit 1
+
+	find . -name '*.lka.*' -print |
+		xargs --no-run-if-empty rm -f
+}
+
+main "$@"
+
