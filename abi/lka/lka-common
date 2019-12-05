@@ -1,0 +1,181 @@
+#!/bin/bash
+
+#  Some scripts need to know the name of the compiler, even though the Android
+#  Linux kernel is only supposed to be built with clang (not gcc), its best not
+#  to hardcode that information throughout these scripts just in case another
+#  compiler needs to be supported in the future
+
+LKA_CC=clang
+
+in_build_dir()
+{
+	if [ ! -f vmlinux.o -o \
+	     ! -d drivers -o ! -d fs -o ! -d fs -o ! -d net -o \
+	     ! -d source/drivers -o ! -d source/fs -o \
+	     ! -d source/fs -o ! -d source/net ] ; then
+		echo "$CMD: current directory is not Linux build directory" 1>&2
+		return 1
+	fi
+	return 0
+}
+
+fold_dots_broken()
+{
+	xargs realpath -m -P
+}
+
+#  Filter that remove unneeded, extraneous, uses of . and .. in pathnames.
+#  
+#  Both realpath(1) and readlink(1) end up examining the underlying filesystem,
+#  even when told not to do do so (with the -m option), this means that this
+#  dot and dot-dot cleanup work has to be done from the correct directory in
+#  the filesystem, if not, the contents of the directory hierarchy could be
+#  misunderstood and the wrong paths produced.
+#
+#  This sed implementation doesn't suffer from those problems.
+#
+#  The sed commands below might not be readily understood by the reader of
+#  this function.  The semicolon character ; is used to separate commands.
+#
+#  The -E (both POSIX and GNU sed support it) option allows for alternatives
+#  separated mutliple patterns within parentheses to be specified, separated
+#  by | for example: s/x(aa|bb)y/x_aa_or_bb_y/ only replaces these strings:
+#	xaay or xbby
+#
+#  Note that a pattern within parenthsis can be subject to other operators,
+#  e.g. * to be matched 0 or more times. The operator {n,} specifies that the
+#  previous pattern is to be matched n or more times.
+#
+#  The:
+#	: label 
+#  specifies a label that can be branched to, in this case, by the:
+#	t label
+#  command, the t command branches to the label if prior s (substitution)
+#  command succeeded, allowing the substituion to be repeated until there
+#  is no more text that can be substituted.
+#
+#  The steps in the script below are labeled L0 - L5, only L4 is used to
+#  repeat substitutions, the other labels are only for this documentation:
+#
+#  L0 - First step below, squeeze sequences of multiple / into a single /, e.g.:
+#		////a///b//c -> /a/b/c
+#
+#  L1 - Remove leading sequences of ./  e.g.:
+#		./././a./b -> a./b
+#
+#  L2 - Replace sequences of /./ into a single /, even if they share a slash
+#	between them, e.g.:
+#		/././a/././b/./c -> /a/c/c
+#
+#  L3 - Replace leading sequences of /../  with a single /, even if the share
+#       a slash between them, e.g.:
+#		/../../a/../c -> /a/../c
+#
+#  L4 - Repeatedly (uses the conditional branch commant t) replaces patterns
+#	of this form:
+#		/something_without_slash_and_not_dot_dot/../
+#	with:
+#		/
+#	for example:
+#		x/y/../../../X/Y/Z/ZZ/../../../foo -> x/../../X/foo
+#	note that step L4 and L5 transforms it into:
+#		x/y/../../../X/Y/Z/ZZ/../../../foo -> ../X/foo
+#
+#  L5 - Removes this patterns from the start of the line:
+#		something_without_slash_and_not_dot_dot/../
+#	for example:
+#		x/../ -> NOTHING
+#
+#  Both L4 and L5 use the same sub-expression to mean:
+#	something_without_slash_and_not_dot_dot/../
+#  L4 uses it as:
+#	/something_without_slash_and_not_dot_dot/../
+#  L5 uses it as:
+#	^something_without_slash_and_not_dot_dot/../
+#
+#  To express that something does not have slashes and is not .. five
+#  alternatives are used in something_without_slash_and_not_dot_dot:
+#	([^/]|[^/]{3,}|[^./][^/]|[^/][^./])
+#  they are:
+#	[^/]			single character other than /, obviously not ..
+#	[^/]{3,}		3 or more characters other than /, obviously
+#				3 characters can not be the two characters ..
+#	[^./][^/]		2 characters, neither is slash, first is not .
+#	[^/][^./]		2 characters, neither is slash, second is not .
+
+fold_dots()
+{
+	sed -E \
+': L0;	s?//*?/?g; '\
+': L1;	s?^(\./)*??g; '\
+': L2;	s?/(\./)*?/?g; '\
+': L3;	s?^/(\.\./)*?/?g; '\
+': L4;	s?/([^/]|[^/]{3,}|[^./][^/]|[^/][^./])/\.\./?/?;	t L4; '\
+': L5;	s?^([^/]|[^/]{3,}|[^./][^/]|[^/][^./])/\.\./??;'
+}
+
+#  Example standard input:
+#  	foo.o: \
+#  	  foo.c \
+#  	  h1.h \
+#  	  h2.h
+#  Get rid of the "foo.o:" part, remove trailing back-slashes, compress
+#  multi-character whitespace (space or tabs) into single space, turn
+#  spaces into newlines, and remove empty lines.
+
+get_dependents()
+{
+	sed -e 's/^[^:]*:[ \t]*//' \
+	    -e 's/^[ \t]*//g' \
+	    -e 's/[ \t]\+/ /g' \
+	    -e 's/\\$//' |
+	tr ' ' '\012' |
+	egrep -v '^$'
+}
+
+parallel()
+{
+	INTER=''
+	if [ $# -eq 2 ] ; then
+		INTER="$1"
+		shift
+	fi
+	if [ $# -ne 1 ] ; then
+		echo "$CMD: parallel() used incorrectly" 1>&2
+		exit 1
+	fi
+	PROG="$1"
+	NCPU=$(nproc)
+	N=0
+	RC=0
+	STEP=1
+
+	while read arg ; do
+		if [ $N -lt $NCPU ] ; then
+			$PROG $arg &
+			N=$[ N + 1 ]
+		fi
+		if [ $N -eq $NCPU ] ; then
+			if wait -n ; then
+				:
+			else
+				if [ $RC -ne 0 ] ; then
+					RC=1
+				fi
+			fi
+			N=$[ N - 1 ]
+			STEP=$[ $STEP + 1 ]
+		fi
+		if [ ! -z "$INTER" -a $[ STEP % 50 ] -eq 0 ] ; then
+			echo "$STEP of $INTER done ..."
+		fi
+	done
+	if wait ; then
+		:
+	else
+		if [ $RC -ne 0 ] ; then
+			RC=1
+		fi
+	fi
+	return $RC
+}
