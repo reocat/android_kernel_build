@@ -1,0 +1,86 @@
+#!/bin/bash
+
+in_build_dir()
+{
+	if [ ! -f vmlinux.o -o \
+	     ! -d drivers -o ! -d fs -o ! -d fs -o ! -d net -o \
+	     ! -d source/drivers -o ! -d source/fs -o \
+	     ! -d source/fs -o ! -d source/net ] ; then
+		echo "$CMD: current directory is not Linux build directory" 1>&2
+		return 1
+	fi
+	return 0
+}
+
+fold_dots()
+{
+	sed \
+		-e 's?//*?/?g' \
+		-e 's?^\./??' \
+		-e 's?/\./?/?g' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??' \
+		-e 's?/[^/][^/]*/\.\./?/?' -e 's?^[^/][^/]*/\.\./??'
+}
+
+#  Example standard input:
+#  	foo.o: \
+#  	  foo.c \
+#  	  h1.h \
+#  	  h2.h
+#  Get rid of the "foo.o:" part, remove trailing back-slashes, compress
+#  multi-character whitespace (space or tabs) into single space, turn
+#  spaces into newlines, and remove empty lines.
+
+get_dependents()
+{
+	sed -e 's/^[^:]*:[ 	]*//' \
+		    -e 's/^[ 	]*//g' \
+		    -e 's/[ 	]\+/ /g' \
+		    -e 's/\\$//' |
+		tr ' ' '\012' |
+		egrep -v '^$'
+}
+
+parallel()
+{
+	if [ $# -ne 1 ] ; then
+		echo "$CMD: parallel() used incorrectly" 1>&2
+		exit 1
+	fi
+	prog="$1"
+	ncpu=$(nproc)
+	n=0
+	rc=0
+	while read arg ; do
+		if [ $n -lt $ncpu ] ; then
+			$prog $arg &
+			n=$[ n + 1 ]
+		fi
+		if [ $n -eq $ncpu ] ; then
+			if wait -n ; then
+				:
+			else
+				if [ $rc -ne 0 ] ; then
+					rc=1
+				fi
+			fi
+			n=$[ n - 1 ]
+		fi
+	done
+	if wait ; then
+		:
+	else
+		if [ $rc -ne 0 ] ; then
+			rc=1
+		fi
+	fi
+	return $rc
+}
