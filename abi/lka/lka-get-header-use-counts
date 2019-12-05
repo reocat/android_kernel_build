@@ -1,0 +1,135 @@
+#!/bin/bash
+
+set -e
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+#	Given a list of .lka files as standard input, compute the use count
+#	of the headers used by the modules for the .lka files.
+#
+#	This is computed by doing the union of the LKA_FILES_H file list for
+#	each *.ko.lka file, by greping the LKA_FILES_H field for all of them,
+#	stripping the "LKA_FILES_H='" and the trailing "'", turning spaces into
+#	lines, sorting (without -u), then count the number of occurrences of
+#	each header file with uniq -c, then inverting the order of the count
+#	and header file name with awk, then sorting by filename
+
+header_use_count()
+{
+	xargs egrep '^LKA_FILES_H=' |
+	sed -e "s?^.*\.lka:LKA_FILES_H='??" -e "s/'"'$//' |
+	tr ' ' '\012' |
+	sort |
+	uniq -c |
+	awk '{print $2 " " $1}' |
+	sort
+}
+
+#	Each line is a header file name followed by the number of kernel module
+#	files (.ko files) that make use of the header file. Uses by vmlinux are
+#	not included in this count.
+
+mk_header_use_count()
+{
+	find * -name '*.ko.lka' -print |
+		header_use_count \
+			> lka-header-use-count-ko.tmp
+}
+
+#	Each line is a header file name followed by the number of files, either
+#	kernel module files (.ko files) or vmlinux, that make use of the header
+#	file.
+
+mk_header_use_count_ko_and_vmlinux()
+{
+	find * -name '*.lka' -print |
+		header_use_count \
+			> lka-header-use-count-ko+vmlinux.tmp
+}
+
+#	Headers whose use count did not change are header files that are
+#	only used by kernel modules (.ko files) and that are not used by
+#	vmlinux.  If the header file shows up in both files with an unchanged
+#	use count, then they were not used by vmlinux because the difference
+#	between both files is that one includes vmlinux and the other one
+#	does not, both include the use count by all the kernel modules,
+#	the only way that adding vmlinux would cause their use count not to
+#	change is because vmlinux did not use them.
+
+mk_header_use_count_used_by_ko_and_unused_by_vmlinux()
+{
+	comm -1 -2 lka-header-use-count-ko.tmp \
+		   lka-header-use-count-ko+vmlinux.tmp \
+		> lka-header-use-count.used-by-ko-and-unused-by-vmlinux.tmp
+}
+
+mk_header_use_count_used_by_2_or_more_ko_and_unused_by_vmlinux()
+{
+	egrep -v ' 1$' \
+	< lka-header-use-count.used-by-ko-and-unused-by-vmlinux.tmp \
+	> lka-header-use-count.used-by-2-or-more-ko-and-unused-by-vmlinux.tmp \
+		|| true
+}
+
+mk_lka_header_use_count_used_by_ko_and_used_by_vmlinux()
+{
+	join <(comm -2 -3 lka-header-use-count-ko.tmp \
+			  lka-header-use-count-ko+vmlinux.tmp) \
+	     <(comm -1 -3 lka-header-use-count-ko.tmp \
+			  lka-header-use-count-ko+vmlinux.tmp) |
+		awk '{print $1 " " $3}' \
+		> lka-header-use-count.used-by-ko-and-used-by-vmlinux.tmp
+}
+
+mk_lka_header_use_count_affect_ABI()
+{
+	cat \
+	   lka-header-use-count.used-by-2-or-more-ko-and-unused-by-vmlinux.tmp \
+	   lka-header-use-count.used-by-ko-and-used-by-vmlinux.tmp \
+		> lka-header-use-count.affect-ABI.tmp
+}
+
+count_and_print()
+{
+	F="$1"
+	N=$(wc -l < $F)
+	shift
+	echo "$N $*"
+	echo "	$F"
+	echo
+}
+
+show_stats()
+{
+	count_and_print \
+		lka-header-use-count-ko+vmlinux.tmp \
+		'headers used by kernel modules or vmlinux'
+	count_and_print \
+	   lka-header-use-count.used-by-2-or-more-ko-and-unused-by-vmlinux.tmp \
+	   'headers used by 2 or more modules and unused by vmlinux'
+	count_and_print \
+		lka-header-use-count.used-by-ko-and-used-by-vmlinux.tmp \
+		'headers used by at least one kernel module and also by vmlinux'
+	count_and_print \
+		lka-header-use-count.affect-ABI.tmp \
+		'total headers that affect kernel ABI'
+}
+
+main()
+{
+	in_build_dir || exit 1
+
+	mk_header_use_count
+	mk_header_use_count_ko_and_vmlinux
+	mk_header_use_count_used_by_ko_and_unused_by_vmlinux
+	mk_header_use_count_used_by_2_or_more_ko_and_unused_by_vmlinux
+	mk_lka_header_use_count_used_by_ko_and_used_by_vmlinux
+	mk_lka_header_use_count_affect_ABI
+
+	show_stats |
+		tee lka-header-use-count.summary
+}
+
+main "$@"

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+main()
+{
+	in_build_dir || exit 1
+
+	lka-rm-info
+	lka-rm-header-use-counts
+	lka-rm-defines
+	lka-rm-all-defines
+
+	rm -f \
+		lka-all-defines \
+		lka-all-defines.dups \
+		lka-all-defines.dupvals \
+		lka-header-use-count.summary
+}
+
+main "$@"
