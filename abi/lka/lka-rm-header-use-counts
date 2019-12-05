@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e -u
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+main()
+{
+	in_build_dir || exit 1
+
+	rm -f lka-header-use-count*
+}
+
+main "$@"
+
