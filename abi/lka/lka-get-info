@@ -1,0 +1,67 @@
+#!/bin/bash
+
+set -e -u
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+internal_call()
+{
+	if [ "$#" -ne 2 -o "$1" != --internal-call ] ; then
+		echo "$CMD: error: incorrect internal call: $*" 1>&2
+		exit 1
+	fi
+
+	file="$2"
+	dir=$(dirname "$file")
+	cd $dir
+	base=$(basename "$file")
+
+	if lka-info -v $base ; then
+		echo LKA_RC=0
+	else
+		echo LKA_RC=$?
+	fi > $base.lka 2> $base.lka.err
+}
+
+main()
+{
+	in_build_dir || exit 1
+
+	#  This script is invoked by the user without arguments.
+
+
+	#  The script invokes itself internaly (via xargs -P below) to do its
+	#  work in parallel as a performance improvement:
+	#
+	#  When it invokes intself internally a few things are adjusted and
+	#  it then nvokes lka-info to do the actual work.
+	#
+	#  When invoking itself internally it uses:
+	#	--internal-call kernel-component
+	#  where kernel-component is the name of a kernel module (a .ko file)
+	#  or vmlinux.o
+
+	if [ $# -eq 2 ] ; then
+		internal_call "$@"
+		exit 0
+	fi
+
+	( echo vmlinux.o ;
+	  find . -name '*.ko' -print ) |
+		xargs -n 1 -P $(nproc) "$0" --internal-call
+
+	find . -name '*.lka.err' -print | xargs cat 1>&2
+	if find . -name '*.lka' -print |
+	   xargs egrep '^LKA_RC=[^0]' |
+	   fgrep LKA_RC 1>&2 ; then
+		exit 1
+	fi
+
+	find . -name '*.lka.err' -print | xargs rm
+	exit 0
+}
+
+main "$@"
+
