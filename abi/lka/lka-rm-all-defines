@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -e -u			#  Do not remove!
+shopt -s inherit_errexit	#  Do not remove!
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+main()
+{
+	in_build_dir || exit 1
+
+	rm -f \
+		lka-all-defines.sort \
+		lka-all-defines.unic.count \
+		lka-all-defines.uniq \
+		lka-all-defines.unsorted \
+		lka-all-enums.o \
+		lka-all-enums.sort \
+		lka-all-enums.uniq \
+		lka-all-enums.unsorted \
+		lka-kernel-defines.sort \
+		lka-kernel-defines.unic.count \
+		lka-kernel-defines.uniq \
+		lka-kernel-defines.unsorted \
+		lka-kernel-enums.o \
+		lka-kernel-enums.sort \
+		lka-kernel-enums.uniq \
+		lka-kernel-enums.unsorted
+
+	#  Keeping these:
+	#	lka-all-defines
+	#	lka-all-defines.dups
+	#	lka-all-defines.dupvals
+	#	lka-all-enums.c
+	#	lka-kernel-defines
+	#	lka-kernel-defines.dups
+	#	lka-kernel-defines.dupvals
+	#	lka-kernel-enums.c
+}
+
+main "$@"
+
