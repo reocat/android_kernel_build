@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e -u
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+main()
+{
+	in_build_dir || exit 1
+
+	rm -f \
+		lka-all-defines.sort \
+		lka-all-defines.unic.count \
+		lka-all-defines.uniq \
+		lka-all-defines.unsorted
+
+	#  Keeping these:
+	#	lka-all-defines
+	#	lka-all-defines.dups
+	#	lka-all-defines.dupvals
+}
+
+main "$@"
+
