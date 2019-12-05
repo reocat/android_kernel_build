@@ -1,0 +1,77 @@
+#!/bin/bash
+
+set -e -u
+
+CMD=$(basename $0)
+CMD_DIR=$(dirname $0)
+source $CMD_DIR/lka-common
+
+main()
+{
+	in_build_dir || exit 1
+
+	echo 'aggregating ...'
+	find . -name '*.lka.2.dump' -print |
+		xargs cat \
+		      > lka-all-defines.unsorted
+
+	find . -name '*.lka.2.enum' -print |
+		xargs cat \
+		      > lka-all-enums.unsorted
+
+
+	echo 'sorting ...'
+
+	#  AOSP tools are toy tools, no parallel sort support either.
+	#
+	#  Not using --parallel adds 30 seconds to the execution time of this
+	#  script (for GKI build) and minutes (for the allmodconfig build).
+
+	sort --parallel=$(nproc) lka-all-defines.unsorted \
+		> lka-all-defines.sort
+
+	sort --parallel=$(nproc) lka-all-enums.unsorted \
+		> lka-all-enums.sort
+
+	echo 'reducing ...'
+
+	uniq lka-all-defines.sort > lka-all-defines.uniq
+
+	uniq lka-all-enums.sort > lka-all-enums.uniq
+
+	< lka-all-defines.uniq \
+		cut -d: -f1 |
+		uniq -c |
+		sort -nr \
+		> lka-all-defines.unic.count
+
+	< lka-all-defines.unic.count \
+		egrep -v '^[ 	]*1[ 	][ 	]*' |
+		awk '{print $2}' \
+		> lka-all-defines.dups
+
+	if [ ! -s lka-all-defines.dups ] ; then
+		#  No duplicates, so no duplicate values
+		> lka-all-defines.dupvals
+		cp lka-all-defines.uniq lka-all-defines
+		cp lka-all-enums.uniq lka-all-enums.c
+	else
+		EGREP_EXPR="$(< lka-all-defines.dups \
+				 tr '\012' '|' |
+				 sed 's/|$//')"
+
+		< lka-all-defines.uniq \
+			egrep -w "$EGREP_EXPR"  \
+			> lka-all-defines.dupvals
+
+		< lka-all-defines.uniq \
+			egrep -v -w "$EGREP_EXPR"  \
+			> lka-all-defines
+
+		< lka-all-enums.uniq \
+			egrep -v "\<(__lka_s_|__lka_d[0-9]*_)($EGREP_EXPR)\>" \
+			> lka-all-enums.c
+	fi
+}
+
+main "$@"
