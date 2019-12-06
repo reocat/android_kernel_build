@@ -6,7 +6,7 @@ CMD=$(basename $0)
 CMD_DIR=$(dirname $0)
 source $CMD_DIR/lka-common
 
-MKTEMP_TEMPLATE=/tmp/$CMD-$$-XXXXXXXXXX
+MKTEMP_TEMPLATE=$CMD-$$-XXXXXXXXXX
 TMP=/dev/null/not/set/yet
 
 cleanup()
@@ -41,7 +41,7 @@ main()
 	in_build_dir || exit 1
 
 	trap cleanup SIGINT SIGHUP SIGTERM
-	if TMP=$(mktemp -d $MKTEMP_TEMPLATE) ; then : ; else
+	if TMP=$(mktemp --tmpdir -d $MKTEMP_TEMPLATE) ; then : ; else
 		errexit "mktemp failed with $?"
 	fi
 

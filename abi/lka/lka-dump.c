@@ -399,13 +399,10 @@ void dump(section_t *lka, section_t *relalka, u32_t lkaix,
 							   nrelatab, adr))
 			continue;
 
-		unsigned char *value = data + adr;
-		if (s->st_size == 0 && (*name == '\0' || *name == '$'))
-			continue;
-
 		if (strncmp(name, LKA_V_PREFIX, LKA_V_PREFIX_LEN) != 0)
 			continue;
 
+		unsigned char *value = data + adr;
 		name += LKA_V_PREFIX_LEN;
 		print(s, name, value);
 	}

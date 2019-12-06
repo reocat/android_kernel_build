@@ -6,20 +6,35 @@ CMD=$(basename $0)
 CMD_DIR=$(dirname $0)
 source $CMD_DIR/lka-common
 
+#	Given a list of .lka files as standard input, compute the use count
+#	of the headers used by the modules for the .lka files.
+#
+#	This is computed by doing the union of the LKA_FILES_H file list for
+#	each *.ko.lka file, by greping the LKA_FILES_H field for all of them,
+#	stripping the "LKA_FILES_H='" and the trailing "'", turning spaces into
+#	lines, sorting (without -u), then count the number of occurrences of
+#	each header file with uniq -c, then inverting the order of the count
+#	and header file name with awk, then sorting by filename
+
+header_use_count()
+{
+	xargs egrep '^LKA_FILES_H=' |
+	sed -e "s?^.*\.lka:LKA_FILES_H='??" -e "s/'"'$//' |
+	tr ' ' '\012' |
+	sort |
+	uniq -c |
+	awk '{print $2 " " $1}' |
+	sort
+}
+
 #	Each line is a header file name followed by the number of kernel module
-#	files (.ko files) that make use of the header file, uses by vmlinux are
+#	files (.ko files) that make use of the header file. Uses by vmlinux are
 #	not included in this count.
 
 mk_header_use_count()
 {
 	find * -name '*.ko.lka' -print |
-		xargs egrep '^LKA_FILES_H=' |
-		sed -e "s?^.*\.lka:LKA_FILES_H='??" -e "s/'"'$//' |
-		tr ' ' '\012' |
-		sort |
-		uniq -c |
-		awk '{print $2 " " $1}' |
-		sort \
+		header_use_count \
 			> lka-header-use-count-ko.tmp
 }
 
@@ -30,13 +45,7 @@ mk_header_use_count()
 mk_header_use_count_ko_and_vmlinux()
 {
 	find * -name '*.lka' -print |
-		xargs egrep '^LKA_FILES_H=' |
-		sed -e "s?^.*\.lka:LKA_FILES_H='??" -e "s/'"'$//' |
-		tr ' ' '\012' |
-		sort |
-		uniq -c |
-		awk '{print $2 " " $1}' |
-		sort \
+		header_use_count \
 			> lka-header-use-count-ko+vmlinux.tmp
 }
 
@@ -99,7 +108,7 @@ show_stats()
 		'headers used by kernel modules or vmlinux'
 	count_and_print \
 	   lka-header-use-count.used-by-2-or-more-ko-and-unused-by-vmlinux.tmp \
-	   'headers used by 2 or more modules and unsused by vmlinux'
+	   'headers used by 2 or more modules and unused by vmlinux'
 	count_and_print \
 		lka-header-use-count.used-by-ko-and-used-by-vmlinux.tmp \
 		'headers used by at least one kernel module and also by vmlinux'

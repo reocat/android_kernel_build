@@ -171,6 +171,33 @@ aes_glue_hack()
 	fgrep -v arch/arm64/crypto/.aes-glue-neon.o.d.keep
 }
 
+
+#  Produce a list of .o files in vmlinux.libs or vmlinux.objs,
+#  of inside the ar(1) .a files listed in vmlinux.libs or vmlinux.objs
+
+kernel_o_files()
+{
+	if [ ! -f vmlinux.libs ] ; then
+		errexit "file missing in build: vmlinux.libs"
+	fi
+	if [ ! -f vmlinux.objs ] ; then
+		errexit "file missing in build: vmlinux.objs"
+	fi
+
+	for f in $(cat vmlinux.libs vmlinux.objs) ; do
+		case "$f" in 
+		*.o)	echo $f
+			;;
+		*.a)	ar t $f
+			;;
+		*)	errexit "in vmlinux.libs or vmlinux.objs,"
+				" unexpected file: $f"
+			;;
+		esac
+	done |
+	fold_dots
+}
+
 #
 # set_kernel_vars() sets these, which are also set by set_module_vars()
 #
@@ -182,6 +209,9 @@ LKA_FILES_O_D_KEEP=LKA_FILES_O_D_KEEP_not_set_yet
 #
 set_kernel_vars()
 {
+	if [ ! -f .vmlinux.cmd ] ; then
+		errexit "file missing in build: .vmlinux.cmd"
+	fi
 	if [ $(wc -l < .vmlinux.cmd) -ne 1 ] ; then
 		errexit "expected .vmlinux.cmd to have a single line"
 	fi
@@ -195,34 +225,21 @@ set_kernel_vars()
 
 	LKA_DIR_BUILD=$(pwd)
 
-	if [ ! -f vmlinux.libs ] ; then
-		errexit "file missing in build: vmlinux.libs"
-	fi
-	if [ ! -f vmlinux.objs ] ; then
-		errexit "file missing in build: vmlinux.objs"
-	fi
-
 	LKA_FILES_O_D_KEEP=$(cat vmlinux.libs vmlinux.objs |
-		tr ' ' '\012' |
-		egrep -v '^[ 	]*$' |
-		while read f ; do
-			case "$f" in 
-			*.o)	echo $f
-				;;
-			*.a)	ar t $f
-				;;
-			*)	errexit "in vmlinux.libs or vmlinux.objs,"
-					" unexpected file: $f"
-				;;
-			esac
-		done |
-		fold_dots |
+		kernel_o_files |
 		sed 's?/\([^/]*\)$?/.\1.d.keep?' |
 		while read f ; do
 			if [ -f "$f" ] ; then
+				#  name.o file has a .name.d.keep file, use it
 				echo "$f"
 				continue
 			fi
+
+			#  name.o does not have a .name.o.d.keep file because
+			#  of other processing done to the file, try to figure
+			#  out various special cases and see if their .o.d.keep
+			#  file can be found:
+
 			case "$f" in
 
 			#  A series of EFI related .o files have their symbols
@@ -334,18 +351,33 @@ set_module_vars()
 		errexit "module .cmd expected to have a single line:" \
 			"$LKA_MODULE_KO_CMD"
 	fi
-	LKA_MODULE_KO_CMD_NAME=$(cut -d' ' -f1 < "$LKA_MODULE_KO_CMD")
+
+	#  The modules .module.ko.cmd file contains a makefile snippet,
+	#  for example:
+	#	cmd_drivers/usb/gadget/udc/dummy_hcd.ko := ld.lld -r ...
+	#
+	#  Get the cmd_... value prior to the := with awk into:
+	#	LKA_MODULE_KO_CMD_NAME
+	#  then strip the cmd_ from it and store that in:
+	#	LKA_MODULE_KO_CMD_NAME_NO_cmd_
+	#  strip the /module.ko name from it (/dummy_hcd.ko in this case)
+	#  and save that in:
+	#	LKA_MODULE_DIR
+	#  then determine the build directory by stripping that from the
+	#  the tail of the current directory and save that in:
+	#	LKA_DIR_BUILD
+
+	LKA_MODULE_KO_CMD_NAME=$(awk '{print $1}'< "$LKA_MODULE_KO_CMD")
 	LKA_MODULE_KO_CMD_NAME_NO_cmd_=${LKA_MODULE_KO_CMD_NAME##cmd_}
 	LKA_MODULE_DIR=${LKA_MODULE_KO_CMD_NAME_NO_cmd_%%/$LKA_BINARY}
 	LKA_DIR_BUILD=${PWD%%/$LKA_MODULE_DIR}
 
 	# LKA_DIR_SOURCE=$(sed \
-	#  's?.*[ \t]\([^ \t]*/linux\)/scripts/module-common.lds[ \t].*?\1?' \
-	# 	< "$LKA_MODULE_KO_CMD")
+	#  's?.*[ \t]\([^ \t]*\)/scripts/module-common.lds[ \t].*?\1?' \
+	#	< "$LKA_MODULE_KO_CMD")
 
-	LKA_DIR_SOURCE=$(sed \
-	 's?.*[ \t]\([^ \t]*\)/scripts/module-common.lds[ \t].*?\1?' \
-		< "$LKA_MODULE_KO_CMD")
+	LKA_DIR_SOURCE=$(readlink $LKA_DIR_BUILD/source)
+
 	if [ ! -d "$LKA_DIR_SOURCE" ] ; then
 		errexit "Linux source directory, is not a directory:" \
 			"$LKA_DIR_SOURCE"

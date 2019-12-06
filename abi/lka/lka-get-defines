@@ -17,7 +17,7 @@ source $CMD_DIR/lka-common
 
 SOURCE_DIR=$(readlink source)
 
-MKTEMP_TEMPLATE=/tmp/$CMD-$$-XXXXXXXXXX
+MKTEMP_TEMPLATE=$CMD-$$-XXXXXXXXXX
 TMP=/dev/null/not/set/yet
 
 build_dir=$(pwd)
@@ -545,7 +545,7 @@ main()
 	done
 
 	trap cleanup SIGINT SIGHUP SIGTERM
-	if TMP=$(mktemp -d $MKTEMP_TEMPLATE) ; then : ; else
+	if TMP=$(mktemp --tmpdir -d $MKTEMP_TEMPLATE) ; then : ; else
 		errexit "mktemp failed with $?"
 	fi
 
