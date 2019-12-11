@@ -415,7 +415,7 @@ if [ -n "${MODULES}" ]; then
       set -x
     )
     (cd ${INITRAMFS_STAGING_DIR}/lib/modules/0.0 && \
-        find . -type f -name *.ko | cut -c3- > modules.load)
+        find . -type f -name *.ko | cut -c3- | sort > modules.load)
     echo "${MODULES_OPTIONS}" > ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.options
     mv ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/* ${INITRAMFS_STAGING_DIR}/lib/modules/.
     rmdir ${INITRAMFS_STAGING_DIR}/lib/modules/0.0
