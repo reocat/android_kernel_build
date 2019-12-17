@@ -15,7 +15,7 @@
 # limitations under the License.
 
 ELFUTILS_VERSION=elfutils-0.176
-ABIGAIL_VERSION=e858537d
+ABIGAIL_VERSION=c088667b
 
 NUM_CORES=$(cat /proc/cpuinfo | grep -c proc)
 BASE_DIR=$(readlink -f $(dirname $0))
@@ -29,6 +29,10 @@ if [ -e "${OUT_DIR}" ]; then
   echo "WARN: ${OUT_DIR} exists. Press enter to continue or Ctrl-C to abort."
   read
 fi
+
+# Add the future PATHs to the environment for the builds to pick up
+export PATH="${OUT_DIR}/bin:${PATH}"
+export LD_LIBRARY_PATH="${OUT_DIR}/lib:${OUT_DIR}/lib/elfutils:${LD_LIBRARY_PATH}"
 
 PACKAGES="autoconf libtool libxml2-dev pkg-config python3"
 # Install the dependencies.
@@ -86,10 +90,11 @@ pushd "${LIBABIGAIL_SRC}"
   autoreconf -i --force
   mkdir -p build/
   pushd build/
-    ../configure --prefix="${OUT_DIR}"           \
-                 --enable-cxx11=yes              \
-                 --disable-shared                \
-                 "CPPFLAGS=-I${OUT_DIR}/include" \
+    ../configure VERSION_SUFFIX="-${ABIGAIL_VERSION}-android" \
+                 --prefix="${OUT_DIR}"                        \
+                 --enable-cxx11=yes                           \
+                 --disable-shared                             \
+                 "CPPFLAGS=-I${OUT_DIR}/include"              \
                  "LDFLAGS=-L${OUT_DIR}/lib"
     make -j${NUM_CORES}
     make -j${NUM_CORES} install
