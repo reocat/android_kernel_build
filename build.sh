@@ -86,6 +86,10 @@
 #   SKIP_EXT_MODULES
 #     if defined, skip building and installing of external modules
 #
+#   DO_NOT_STRIP_MODULES
+#     Keep debug information for distributed modules.
+#     Note, modules will still be stripped when copied into the ramdisk.
+#
 #   EXTRA_CMDS
 #     Command evaluated after building and installing kernel and modules.
 #
@@ -278,12 +282,16 @@ fi
 rm -rf ${MODULES_STAGING_DIR}
 mkdir -p ${MODULES_STAGING_DIR}
 
+if [ -z "${DO_NOT_STRIP_MODULES}" ]; then
+    MODULE_STRIP_FLAG="INSTALL_MOD_STRIP=1"
+fi
+
 if [ -n "${BUILD_INITRAMFS}" -o  -n "${IN_KERNEL_MODULES}" ]; then
   echo "========================================================"
   echo " Installing kernel modules into staging directory"
 
   (cd ${OUT_DIR} &&                                                           \
-   make O=${OUT_DIR} "${TOOL_ARGS[@]}" INSTALL_MOD_STRIP=1                    \
+   make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MODULE_STRIP_FLAG}                   \
         INSTALL_MOD_PATH=${MODULES_STAGING_DIR} ${MAKE_ARGS} modules_install)
 fi
 
@@ -306,7 +314,7 @@ if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -n "${EXT_MODULES}" ]]; then
     make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
                        O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS}
     make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
-                       O=${OUT_DIR} "${TOOL_ARGS[@]}" INSTALL_MOD_STRIP=1     \
+                       O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MODULE_STRIP_FLAG}    \
                        INSTALL_MOD_PATH=${MODULES_STAGING_DIR}                \
                        ${MAKE_ARGS} modules_install
     set +x
@@ -375,17 +383,42 @@ if [ -n "${MODULES}" ]; then
     # the final initramfs image.
     mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/kernel/
     cp -r ${MODULES_STAGING_DIR}/lib/modules/*/kernel/* ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/kernel/
+    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order
+    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.builtin ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.builtin
 
     if [ -n "${EXT_MODULES}" ]; then
       mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/extra/
       cp -r ${MODULES_STAGING_DIR}/lib/modules/*/extra/* ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/extra/
+      (cd ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/ && \
+          find extra -type f -name "*.ko" | sort >> modules.order)
+    fi
+
+    if [ -n "${DO_NOT_STRIP_MODULES}" ]; then
+      # strip debug symbols off initramfs modules
+      find ${INITRAMFS_STAGING_DIR} -type f -name "*.ko" \
+        -exec ${OBJCOPY:${CROSS_COMPILE}strip} --strip-debug {} \;
     fi
 
     # Re-run depmod to detect any dependencies between in-kernel and external
     # modules. Then, create modules.load based on all the modules compiled.
-    (cd ${INITRAMFS_STAGING_DIR} && depmod -b . 0.0)
-    (cd ${INITRAMFS_STAGING_DIR}/lib/modules/0.0 && \
-        find . -type f -name *.ko | cut -c3- > modules.load)
+    (
+      set +x
+      set +e # disable exiting of error so we can add extra comments
+      cd ${INITRAMFS_STAGING_DIR}
+      DEPMOD_OUTPUT=$(depmod -e -F ${DIST_DIR}/System.map -b . 0.0 2>&1)
+      if [[ "$?" -ne 0 ]]; then
+        echo "$DEPMOD_OUTPUT"
+        exit 1;
+      fi
+      echo "$DEPMOD_OUTPUT"
+      if [[ -n $(echo $DEPMOD_OUTPUT | grep "needs unknown symbol") ]]; then
+        echo "ERROR: out-of-tree kernel module(s) need unknown symbol(s)"
+        exit 1
+      fi
+      set -e
+      set -x
+    )
+    cp ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.load
     echo "${MODULES_OPTIONS}" > ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.options
     mv ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/* ${INITRAMFS_STAGING_DIR}/lib/modules/.
     rmdir ${INITRAMFS_STAGING_DIR}/lib/modules/0.0
@@ -442,6 +475,15 @@ if [ -n "${ABI_DEFINITION}" ]; then
   echo " Copying abi definition to ${DIST_DIR}/abi.xml"
   pushd $ROOT_DIR/$KERNEL_DIR
     cp "${ABI_DEFINITION}" ${DIST_DIR}/abi.xml
+  popd
+fi
+
+# Copy the abi whitelist file from the sources into the dist dir
+if [ -n "${KMI_WHITELIST}" ]; then
+  echo "========================================================"
+  echo " Copying abi whitelist definition to ${DIST_DIR}/abi_whitelist"
+  pushd $ROOT_DIR/$KERNEL_DIR
+    cp "${KMI_WHITELIST}" ${DIST_DIR}/abi_whitelist
   popd
 fi
 

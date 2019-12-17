@@ -145,6 +145,13 @@ sed -i "s#${ROOT_DIR}/${KERNEL_DIR}/##g" ${DIST_DIR}/${abi_out_file}
 # (e.g. from the prebuilts)
 sed -i "s#${ROOT_DIR}/##g" ${DIST_DIR}/${abi_out_file}
 
+# Append debug information to abi file
+echo "
+<!--
+     libabigail: $(abidw --version)
+     built with: $CC: $($CC --version | head -n1)
+-->" >> ${DIST_DIR}/${abi_out_file}
+
 ln -sf ${abi_out_file} ${DIST_DIR}/abi.xml
 
 echo "========================================================"
@@ -160,6 +167,7 @@ if [ -n "$ABI_DEFINITION" ]; then
         ${ROOT_DIR}/build/abi/diff_abi --baseline $KERNEL_DIR/$ABI_DEFINITION \
                                        --new      ${DIST_DIR}/${abi_out_file} \
                                        --report   ${abi_report}               \
+                                       --short-report ${abi_report}.short
                                        $KMI_WHITELIST_FLAG
         rc=$?
         set -e
@@ -172,7 +180,7 @@ if [ -n "$ABI_DEFINITION" ]; then
 
         if [ $PRINT_REPORT -eq 1 ] && [ $rc -ne 0 ] ; then
             echo "========================================================"
-            cat ${abi_report}
+            cat ${abi_report}.short
         fi
     fi
     if [ $UPDATE -eq 1 ] ; then
