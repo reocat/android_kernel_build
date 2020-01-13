@@ -22,6 +22,30 @@
       "revId": "8dca33a2171a46d4719c6fb43973253ca7980333",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57aa859f_c8233a4b",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-01-13T22:49:52Z",
+      "side": 1,
+      "message": "So currently the OUT_DIR_SUFFIX is only set by the build_abi.sh script. If you are just running the build.sh script, then you won\u0027t notice any changes.",
+      "parentUuid": "65185ff9_ae099e35",
+      "range": {
+        "startLine": 31,
+        "startChar": 64,
+        "endLine": 31,
+        "endChar": 78
+      },
+      "revId": "8dca33a2171a46d4719c6fb43973253ca7980333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
