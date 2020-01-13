@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65185ff9_ae099e35",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2020-01-13T22:35:03Z",
+      "side": 1,
+      "message": "Does this mean we\u0027ll start having multiple out* directories at the top level now? People are using to rm -rf out. Don\u0027t want to break that expectation.\n\nAlso, why can\u0027t this be done under the BRANCH level? Will that allow us to cache results on a per-branch level? That way, we can switch branches and come back and not have to redo all the work?",
+      "range": {
+        "startLine": 31,
+        "startChar": 64,
+        "endLine": 31,
+        "endChar": 78
+      },
+      "revId": "8dca33a2171a46d4719c6fb43973253ca7980333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
