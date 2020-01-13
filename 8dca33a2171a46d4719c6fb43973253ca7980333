@@ -46,6 +46,30 @@
       "revId": "8dca33a2171a46d4719c6fb43973253ca7980333",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60be6527_97442180",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-13T22:56:54Z",
+      "side": 1,
+      "message": "Not sure what expectation that is. out/ stays out/, unless you explicitly set OUT_DIR or OUT_DIR_SUFFIX. So, the default remains the same.\n\nbuild_abi.sh makes use of the suffix to ensure a scratch make for ABI analysis without wiping the out/. It uses  out_abi/, which can not be cached among branches and also should not be. In particular, as part of build_abi.sh, out_abi gets wiped to make sure no leftover build or development artefacts sneak into the ABI representation.\n\nAgain, unless you specifically set OUT_DIR or OUT_DIR_SUFFIX, everything stays the same.",
+      "parentUuid": "65185ff9_ae099e35",
+      "range": {
+        "startLine": 31,
+        "startChar": 64,
+        "endLine": 31,
+        "endChar": 78
+      },
+      "revId": "8dca33a2171a46d4719c6fb43973253ca7980333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
