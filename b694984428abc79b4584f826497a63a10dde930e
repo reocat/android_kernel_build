@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1dbbe7dd_c88192c4",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-01-17T17:54:23Z",
+      "side": 1,
+      "message": "Does this exist at this point? I see on line 165 that COMMON_OUT_DIR is defined.",
+      "range": {
+        "startLine": 98,
+        "startChar": 14,
+        "endLine": 98,
+        "endChar": 28
+      },
+      "revId": "b694984428abc79b4584f826497a63a10dde930e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
