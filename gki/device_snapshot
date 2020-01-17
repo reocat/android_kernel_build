@@ -5,11 +5,12 @@
 
 progname=${0##*/}
 NUM=XX
-USAGE="USAGE: ${progname} [-s <serialno>] [-D] [-f [<input>]] [-o <output> [-d <input>]]
+USAGE="USAGE: ${progname} [-s <serialno>] [-D] [-f [<input>]] [-F [-o <output> [-d <input>]]]
 
 Collect filtered /dev and /sys details, along with dmesg and probe list.
 
--o <output> will drop the collection into a set of files.
+-o <output> will drop the collection into a set of files, and will not
+overwrite existing content.  -F will overwrite.
 
 -D will wait for the display.
 
@@ -338,6 +339,7 @@ filter=
 output=-
 input=
 display=false
+force=false
 while [ ${#} -gt 0 ]; do
   case ${1} in
     -f=* | --filter=*)
@@ -351,6 +353,9 @@ while [ ${#} -gt 0 ]; do
         shift
         filter="${1}"
       fi
+      ;;
+    -F | --force)
+      force=true
       ;;
     -h | -\? | --help)
       echo "${USAGE}"
@@ -413,6 +418,59 @@ if [ -n "${USB_SERIAL}" ]; then
   USB_ADDRESS=usb${USB_ADDRESS##*/}
 fi
 
+[ "USAGE: input= BLUE= output= NORMAL= perform_diff < ${output}
+
+Reports the differences between stdin and \${input}" ]
+perform_diff() {
+  diff -U1 "${input}" - |
+    grep '[-+ ]' ||
+    echo "${BLUE}[     INFO ]${NORMAL} no differences in /dev/ and /sys/ since last device snapshot" >&2
+  if [ -s "${output}.probed" -a -s "${input}.probed" ]; then
+    diff -U1 "${input}.probed" "${output}.probed" |
+    grep '[-+ ]' ||
+    echo "${BLUE}[     INFO ]${NORMAL} no differences in probed devices and drivers" >&2
+  fi
+  if [ -s "${output}.config" -a -s "${input}.config" ]; then
+    diff -U1 "${output}.config" "${input}.config" |
+      grep '[-+ ]' ||
+      echo "${BLUE}[     INFO ]${NORMAL} no differences in config" >&2
+  fi
+  if [ -s "${output}.getprop" -a -s "${input}.getprop" ]; then
+    TMP=`mktemp -d`
+    sed -n 's/[[]ro[.]boottime[.]\([^]]*\)[]]: [[]\([0-9]*\)[]]$/\1 \2/p' "${input}.getprop" >${TMP}/old.getprop
+    sed -n 's/[[]ro[.]boottime[.]\([^]]*\)[]]: [[]\([0-9]*\)[]]$/\2 \1/p' "${output}.getprop" |
+      sort -un |
+      while read monotonic action; do
+        [ -n "${action}" ] || continue
+        [ -n "${monotonic}" ] || continue
+        old=`sed -n "s/^${action} //p" ${TMP}/old.getprop`
+        [ -n "${old}" ] || continue
+        old="$((${monotonic} - ${old}))"
+        [ -n "${old}" -a 0 != "${old}" ] || continue
+        sign=+
+        if [ -z "${old##-*}" ]; then
+          sign=-
+          old=${old#-}
+        fi
+        printf "${action}\t${sign}%u.%09us\n" $((${old} / 1000000000)) $((${old} % 1000000000))
+      done |
+      grep '[0-9][.][0-9]' ||
+      echo "${BLUE}[     INFO ]${NORMAL} no differences in boottime" >&2
+    rm -rf ${TMP}
+  fi
+}
+
+if [ -n "${output#-}" -a -s "${output}" ]; then
+  if ! ${force}; then
+    if [ -n "${input}" ]; then
+      perform_diff <${output}
+      exit 0
+    fi
+    echo "${RED}[    ERROR ]${NORMAL} will not overwrite existing content" >&2
+    exit 1
+  fi
+fi
+
 if [ -z "${filter}" ]; then
   if inFastboot; then
     echo "${RED}[    ERROR ]${NORMAL} in fastboot mode" >&2
@@ -453,6 +511,7 @@ if [ -z "${filter}" ]; then
   done
 fi
 
+if ! ${existing}; then
 if [ -n "${filter}" ]; then
   cat ${filter}
 else
@@ -575,43 +634,7 @@ fi |
   if [ -n "${output}" -a X"${output}" != X"-" ]; then
     sort -u |
       if [ -n "${input}" ]; then
-        tee "${output}" |
-          diff -U1 "${input}" - |
-          grep '[-+ ]' ||
-          echo "${BLUE}[     INFO ]${NORMAL} no differences in /dev/ and /sys/ since last device snapshot" >&2
-        if [ -s "${output}.probed" -a -s "${input}.probed" ]; then
-          diff -U1 "${input}.probed" "${output}.probed" |
-            grep '[-+ ]' ||
-            echo "${BLUE}[     INFO ]${NORMAL} no differences in probed devices and drivers" >&2
-        fi
-        if [ -s "${output}.config" -a -s "${input}.config" ]; then
-          diff -U1 "${output}.config" "${input}.config" |
-            grep '[-+ ]' ||
-            echo "${BLUE}[     INFO ]${NORMAL} no differences in config" >&2
-        fi
-        if [ -s "${output}.getprop" -a -s "${input}.getprop" ]; then
-          TMP=`mktemp -d`
-          sed -n 's/[[]ro[.]boottime[.]\([^]]*\)[]]: [[]\([0-9]*\)[]]$/\1 \2/p' "${input}.getprop" >${TMP}/old.getprop
-          sed -n 's/[[]ro[.]boottime[.]\([^]]*\)[]]: [[]\([0-9]*\)[]]$/\2 \1/p' "${output}.getprop" |
-            sort -un |
-            while read monotonic action; do
-              [ -n "${action}" ] || continue
-              [ -n "${monotonic}" ] || continue
-              old=`sed -n "s/^${action} //p" ${TMP}/old.getprop`
-              [ -n "${old}" ] || continue
-              old="$((${new} - ${old}))"
-              [ -n "${old}" -a 0 != "${old}" ] || continue
-              sign=+
-              if [ -z "${old##-*}" ]; then
-                sign=-
-                old=${old#-}
-              fi
-              printf "${action}\t${sign}%u.%09us\n" $((${old} / 1000000000)) $((${old} % 1000000000))
-            done |
-            grep '[0-9][.][0-9]' ||
-            echo "${BLUE}[     INFO ]${NORMAL} no differences in boottime" >&2
-          rm -rf ${TMP}
-        fi
+        tee "${output}" | perform_diff
       else
         cat - >"${output}"
       fi
