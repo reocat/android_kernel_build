@@ -520,6 +520,9 @@ else
     adb_su cat /proc/config.gz </dev/null 2>/dev/null |
       gunzip >"${output}.config"
     [ -s "${output}.config" ] || rm -f "${output}.config"
+    # Generate ${output}.getprop
+    adb $QD shell su root getprop </dev/null 2>/dev/null |
+      sort -u >"${output}.getprop"
   else
     cat - >&99
   fi 99>&1
@@ -580,6 +583,34 @@ fi |
           diff -U1 "${input}.probed" "${output}.probed" |
             grep '[-+ ]' ||
             echo "${BLUE}[     INFO ]${NORMAL} no differences in probed devices and drivers" >&2
+        fi
+        if [ -s "${output}.config" -a -s "${input}.config" ]; then
+          diff -U1 "${output}.config" "${input}.config" |
+            grep '[-+ ]' ||
+            echo "${BLUE}[     INFO ]${NORMAL} no differences in config" >&2
+        fi
+        if [ -s "${output}.getprop" -a -s "${input}.getprop" ]; then
+          TMP=`mktemp -d`
+          sed -n 's/[[]ro[.]boottime[.]\([^]]*\)[]]: [[]\([0-9]*\)[]]$/\1 \2/p' "${input}.getprop" >${TMP}/old.getprop
+          sed -n 's/[[]ro[.]boottime[.]\([^]]*\)[]]: [[]\([0-9]*\)[]]$/\2 \1/p' "${output}.getprop" |
+            sort -un |
+            while read monotonic action; do
+              [ -n "${action}" ] || continue
+              [ -n "${monotonic}" ] || continue
+              old=`sed -n "s/^${action} //p" ${TMP}/old.getprop`
+              [ -n "${old}" ] || continue
+              old="$((${new} - ${old}))"
+              [ -n "${old}" -a 0 != "${old}" ] || continue
+              sign=+
+              if [ -z "${old##-*}" ]; then
+                sign=-
+                old=${old#-}
+              fi
+              printf "${action}\t${sign}%u.%09us\n" $((${old} / 1000000000)) $((${old} % 1000000000))
+            done |
+            grep '[0-9][.][0-9]' ||
+            echo "${BLUE}[     INFO ]${NORMAL} no differences in boottime" >&2
+          rm -rf ${TMP}
         fi
       else
         cat - >"${output}"
