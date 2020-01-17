@@ -22,6 +22,30 @@
       "revId": "b694984428abc79b4584f826497a63a10dde930e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77148d18_103ea4cf",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-17T20:03:01Z",
+      "side": 1,
+      "message": "it is defined in _setup_env. so, yes",
+      "parentUuid": "1dbbe7dd_c88192c4",
+      "range": {
+        "startLine": 98,
+        "startChar": 14,
+        "endLine": 98,
+        "endChar": 28
+      },
+      "revId": "b694984428abc79b4584f826497a63a10dde930e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
