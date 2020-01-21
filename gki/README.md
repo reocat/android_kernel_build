@@ -76,11 +76,13 @@ Leaves an annotated modules.dep file in the specified directory.
 device_snapshot
 ---------------
 
-    USAGE: device_snapshot [-s <serialno>] [-f [<input>]] [-o <output> [-d <input>]]
+    USAGE: device_snapshot [-s <serialno>] [-D] [-f [<input>]] [-o <output> [-d <input>]]
 
 Collect filtered /dev and /sys details, along with dmesg and probe list.
 
 -o <output> will drop the collection into a set of files.
+
+-D will wait for the display
 
 if <output> is empty ('' or last option), will not collect dmesg or probe
 list.  If no -o option is specified, then <output> will be default of -
