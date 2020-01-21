@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "519d7d5b_a45265ed",
+        "filename": "gki/device_snapshot",
+        "patchSetId": 2
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-01-21T14:55:24Z",
+      "side": 1,
+      "message": "Ooops, this should be reversed!",
+      "range": {
+        "startLine": 588,
+        "startChar": 19,
+        "endLine": 588,
+        "endChar": 56
+      },
+      "revId": "f0e363221b13b34ed5bbb21ea069bb669a96efa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a1c6c00_bd85ea19",
+        "filename": "gki/device_snapshot",
+        "patchSetId": 2
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-01-21T14:55:24Z",
+      "side": 1,
+      "message": "nit: Should be part of base original export (Assuming _all_ of the b/147894928 is not made part of the base)",
+      "range": {
+        "startLine": 587,
+        "startChar": 0,
+        "endLine": 591,
+        "endChar": 10
+      },
+      "revId": "f0e363221b13b34ed5bbb21ea069bb669a96efa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
