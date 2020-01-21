@@ -1,0 +1,1695 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb98bc64_ca7a2c1e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "drop the .py from the filename after(!) the review has completed. As last action. Until then we can have the syntax highlighting here in Gerrit.",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2da3cd4_08aada69",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "#!/usr/bin/env python3",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f61f0116_dbe8e60c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "python docstrings start without a leading whitespace and end with a punctuation.\n\n \"\"\"kmi_defines .... build.\n\n    Something else\n \"\"\"\n\nThis needs to be consistently addressed throughout the whole file. Hence not repeating later.",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb4d917f_29a7f5a6",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "make this part of the doc string.",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7d0c2bf_c4310716",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "There",
+      "range": {
+        "startLine": 20,
+        "startChar": 36,
+        "endLine": 20,
+        "endChar": 39
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ca90124_611e816b",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "I am not sure we need this comment here, but I will respond to it: In my experience it was already a big gain by annotating parameter types and return types. I am usually not annotating local variables. If their type cannot be deducted by a human from either the context, the parameter types or a comment clarifying that case, the function has a complexity problem anyway.",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9602d69_71954fb1",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "typo in typing",
+      "range": {
+        "startLine": 24,
+        "startChar": 35,
+        "endLine": 24,
+        "endChar": 42
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa96d559_e4a192e6",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "don\u0027t import it if you do not use it.",
+      "range": {
+        "startLine": 24,
+        "startChar": 44,
+        "endLine": 24,
+        "endChar": 73
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1bdcf3f_d14c912c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "use the fully qualified versions of os.path.exists() and friends throughout the code. It increases readability form people being used to python by far and is not really verbose.",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10d4fee2_16dcacce",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "imports shall be sorted alphabetically",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "797658b2_e1643c9c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "that is a good candidate for a command line option (see my argparse suggestion further down)",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 5
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50deef14_a9fb2ecd",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "that is fairly obvious",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 27
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0e9e474_1b8edf5f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "probably worth a TODO to figure out the correct compiler. Depends a bit on the environment this is embedded in.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 31
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21457687_60207a29",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "I do not see the point of this extension.\n\nIf you want a new named exception, \n\n  class ExitError(Exception):\n    pass\n\nshould do.  `e.get_message()` can be replaced by `e.message`\nIf you prefer hiding the implementation detail (which I do not see why), make message a @property.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af1bf1bf_78bbdb23",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "I do not understand the need for the stop function.\n\nIf somebody actually calls stop(), you will see a raised exception at line 63 and not much more context other than what you hopefully have stored in *args.\n\nRather than calling stop(), why not propagate exceptions up the stack and either handle them or let them be fatal to the thread or the program.",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 8
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51ae137f_738e915d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "Would the type not rather be Tuple[str] ?",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 49,
+        "endChar": 19
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9dc7125_adc77499",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "why would you want to call exit() from another thread than the main thread?",
+      "range": {
+        "startLine": 53,
+        "startChar": 24,
+        "endLine": 53,
+        "endChar": 30
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12b3c05d_9335feeb",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "That is effectively\n\n  raise ExitError(\" \".join(args))",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 28
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f10f29e_82fd2caf",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "please use logging instead\n\nhttps://docs.python.org/3.8/library/logging.html",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 38
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e25ac8f_832a1ea5",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "that interface is a bit weird as the callers are effectively doing error handling around a string rather than an exception.\n\nHow about\n\n  def assert_valid_fir(file):\n    if not os.path.exists(file):\n      raise ValueError(\"file does not exist: {}\".format(file))\n    if not os.path.is_file(file):\n      raise ValueError(\"file is not a regular file: {}\".format(file))\n\nMaybe have a named exception for that (deriving from something suitable [1]).\nLet the callers explicitly handle the exception instead.\n\n[1] https://docs.python.org/3.5/library/exceptions.html?highlight\u003dexception#exception-hierarchy",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 35
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a732ce68_cb90cedd",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "that method is not used. also, callers would use os.chdir directly as you use it here, catching the correct exception (from the docs: \"This function can raise OSError and subclasses such as FileNotFoundError, PermissionError, and NotADirectoryError.\")",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 9
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b4bd653d_182950c8",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "that comment is superfluous",
+      "range": {
+        "startLine": 125,
+        "startChar": 34,
+        "endLine": 125,
+        "endChar": 70
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64d4b499_db1c27b0",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "Rather propagate this OSError, the resulting ExitError is not going to be helpful finding this issue.\n\nI would rather remove this function and replace the call sites with:\n\n  with open(name) as file:\n    myvar \u003d file.read()\n\nand possibly handle the exception if you can recover or let it propagate if you can\u0027t",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 49
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9f049fea_eeab3a03",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "replace by the above suggestion \u0027assert_file_exists\u0027 and let the exception thrown propagate.",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 27
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89441706_035c5d3a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "this function is used exactly once and I also do not see something special in this line that it can\u0027t be inlined in the original call site.",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 40
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5f4e3ac_c719e99e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "this has exactly one caller, no need to split this into a separate function for this single line. Unless you write a test for it :-)",
+      "range": {
+        "startLine": 146,
+        "startChar": 4,
+        "endLine": 146,
+        "endChar": 26
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5144ba8_0845f4da",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "exactly one caller. No need to separate an array slice into a function.\n\nI would probably put this stuff into a MakefileDepends class. Something like\n\nclass MakefileDepends:\n\n   def __init__(self, file_to_analyze):\n     # read the file\n     # create a map for dep-\u003edep\n     # add a lookup method\n     # add iterators to iterate the dependencies\n\n(Note, at this point I did not read the whole implementation, so the above might be a bit inaccurate.)",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 37
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "49e1c056_7acb25a4",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "assignment.split(\":\u003d\", maxsplit\u003d1)",
+      "range": {
+        "startLine": 169,
+        "startChar": 13,
+        "endLine": 169,
+        "endChar": 58
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "447de408_027af3fe",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "why would you delete right?",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cdc25e3_8a6a0cc8",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "either go the way as above to build a key-value map of assignments of a file, or, probably rather useful, only have the method returning the tuple (I would it name key, value).\n\nOn the caller site, unpack the tuple and take what you need:\n\n  _, right \u003d do_the_split(...)",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 16
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cde6e1e0_e5dcf666",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "that is confusing: we are taking dependencies (for the object file) and are returning dependencies (then without the obj file).",
+      "range": {
+        "startLine": 191,
+        "startChar": 28,
+        "endLine": 191,
+        "endChar": 40
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e0e9666_d6530f4c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "that is more like an assert as something is severely odd if this is the case (i.e. an object file without a source file)",
+      "range": {
+        "startLine": 197,
+        "startChar": 4,
+        "endLine": 198,
+        "endChar": 44
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c697a340_4e065cb8",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "That can be replaced with\n\n  return lines.strip().splitlines()\n\nand as such does not need a separate function.",
+      "range": {
+        "startLine": 222,
+        "startChar": 4,
+        "endLine": 226,
+        "endChar": 17
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da316a0a_de5152d2",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "lines_to_list()[0]\n\nor what I said above, unless a performance test can proof the need for this optimization",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 79
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b36df5b_0e113663",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "The name is not exactly describing what this function does.",
+      "range": {
+        "startLine": 240,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 18
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91ddc659_d3f5b1d7",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "str.strip().split()",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 65
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01ca86da_df70d88e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "https://docs.python.org/3.8/library/stdtypes.html#str.endswith",
+      "range": {
+        "startLine": 250,
+        "startChar": 4,
+        "endLine": 250,
+        "endChar": 11
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86af2c8d_c21d31e2",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "return [entry for entry in line.strip().split() if entry.endswith(\".o\")]",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 17
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "203c3ef5_574c402e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "consider implementing Kmod.__str__(self) instead",
+      "range": {
+        "startLine": 274,
+        "startChar": 4,
+        "endLine": 274,
+        "endChar": 28
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bacd75dc_9c55deae",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "that information is not really useful when reasoning about the generation of the string representation of this object.",
+      "range": {
+        "startLine": 277,
+        "startChar": 8,
+        "endLine": 277,
+        "endChar": 44
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84e9c0af_6185eed1",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "consider making the member variables an implementation detail by using the protected naming style _lower_with_under",
+      "range": {
+        "startLine": 308,
+        "startChar": 13,
+        "endLine": 308,
+        "endChar": 17
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70a1c231_62159329",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "avoid dealing with this issue by using os.path.join() to combine them\n\nhttps://docs.python.org/3.8/library/os.path.html#os.path.join",
+      "range": {
+        "startLine": 312,
+        "startChar": 8,
+        "endLine": 313,
+        "endChar": 59
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae615b1a_bd274c08",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "That is already some work that does not belong into the constructor.",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "937e93c0_74ed966f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "that is very specific. probably rephrase this comment to read more general.",
+      "range": {
+        "startLine": 324,
+        "startChar": 49,
+        "endLine": 324,
+        "endChar": 66
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d61d21c_7efc92af",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "again, is this only applicable for this very file?",
+      "range": {
+        "startLine": 333,
+        "startChar": 24,
+        "endLine": 333,
+        "endChar": 41
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2f87b07_921723be",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "this looks very much like an assert to catch programming errors",
+      "range": {
+        "startLine": 345,
+        "startChar": 12,
+        "endLine": 345,
+        "endChar": 75
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f50d348_d1bee00f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "make the constructor the first method",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35b62aae_cc352bc5",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "__str__()",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0411a1a_48c31deb",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "not sure this is actually helpful text",
+      "range": {
+        "startLine": 449,
+        "startChar": 14,
+        "endLine": 449,
+        "endChar": 25
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdd716c5_5a9e796d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "again, that is a lot of work in a constructor.\n\nIn particular, file_must_exist() might even throw and you don\u0027t usually want to throw in a constructor something else than a ValueError",
+      "range": {
+        "startLine": 497,
+        "startChar": 8,
+        "endLine": 497,
+        "endChar": 16
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9aff94f_5631b503",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "os.path.join()",
+      "range": {
+        "startLine": 501,
+        "startChar": 16,
+        "endLine": 501,
+        "endChar": 46
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14359413_d8807b69",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "aolist is too much of an abbreviation",
+      "range": {
+        "startLine": 506,
+        "startChar": 8,
+        "endLine": 506,
+        "endChar": 14
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5deec532_aeabaf3f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "Consider\n\n  self.list_a_o \u003d [os.path.join(self.build_dir,file) \n                   for file in aolist if not file.startswith(\"/\")]",
+      "range": {
+        "startLine": 509,
+        "startChar": 1,
+        "endLine": 513,
+        "endChar": 38
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a769bf9_c6fb6244",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "In the future, we might consider https://www.attrs.org for these POD classes. No need now",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "110404bf_343f128c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "see my comments also below, but it feels like this class structure is not actually giving us a lot.\n\nWhat we effectively have is Info that carries a K object with an expected interface. These K can be acquired from a \u0027factory\u0027 or something like this.\n\nError could be set similar to K on Info itself. No need for subclassing this.",
+      "range": {
+        "startLine": 537,
+        "startChar": 6,
+        "endLine": 537,
+        "endChar": 10
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "daba7774_4bd39db9",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "consider __str__()",
+      "range": {
+        "startLine": 542,
+        "startChar": 0,
+        "endLine": 543,
+        "endChar": 46
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a173b7d2_6ff96334",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "raise NotImplementedError(\"Go implement it!\")",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a1671ab_094ec605",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "dopr the empty constructor",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60fe659d_d8b08cd4",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "that feels wrong",
+      "range": {
+        "startLine": 562,
+        "startChar": 0,
+        "endLine": 563,
+        "endChar": 19
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97d5f2d2_70bc5030",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "move the constructor up",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a50ca945_e6eb4f6e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "same comments as for InfoKernel",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f92eef36_00cf953e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "this class does not really give a lot of benefit over \u0027Kernel\u0027 itself\n\nIn particular, there is no implementation difference between {InfoKmod,InfoKernel}.{print, get_build_dir, get_files_o} other than that you call it with a different name.\n\nConsider creating kmod,kernel in a factory and giving up the deep class hierarchy.",
+      "range": {
+        "startLine": 741,
+        "startChar": 6,
+        "endLine": 741,
+        "endChar": 16
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36328cc8_2d087b51",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "implement __str__()",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "002071b5_65850dcb",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "move the constructor up.",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3785efad_b3873437",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "rather than only handling ExitError, how about handling all sorts of Exceptions here? You could at least create a backtrace if something happened that you would not expect. Otherwise this information is lost.",
+      "range": {
+        "startLine": 776,
+        "startChar": 0,
+        "endLine": 776,
+        "endChar": 74
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "125e9ad5_1d15e50e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "rather than this distinction here, you could just submit the \"vmlinux.o\" as a first element to the pool and then (while this is already running) find the kernel modules and also submit them. That would simplify the implementation and would make this function obsolete.",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3874e72f_956cd51c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "the generator effectively keeps the result of find alive, so it does not feel like there is an advantage over\n\n  return [\"vmlinux.o\"] + [str(ko) for ko in find(\".ko\")]",
+      "range": {
+        "startLine": 782,
+        "startChar": 0,
+        "endLine": 784,
+        "endChar": 25
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95c40869_e191f0e0",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "actually work_on_vmlinux_and_all_ko()",
+      "range": {
+        "startLine": 787,
+        "startChar": 4,
+        "endLine": 787,
+        "endChar": 18
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2857a1d4_b9fcfa33",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "make it a command line option to run on the main thread only",
+      "range": {
+        "startLine": 790,
+        "startChar": 1,
+        "endLine": 792,
+        "endChar": 1
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfa1c213_3a416560",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 797,
+        "startChar": 35,
+        "endLine": 797,
+        "endChar": 50
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d07014e0_fe08fcc4",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "why the distinction?\n\nheaders \u003d info.dependencies\n\nalso, there is no insertion into all_kmod_h_set happening, so, you might as well just drop all_kmod_h_set or kernel_h_set altogether.",
+      "range": {
+        "startLine": 823,
+        "startChar": 0,
+        "endLine": 827,
+        "endChar": 61
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7688f64a_06e249c7",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "print(*headers, sep\u003d\"\\n\")",
+      "range": {
+        "startLine": 828,
+        "startChar": 0,
+        "endLine": 830,
+        "endChar": 18
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c154034a_62c81d40",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "if might sounds like overkill, but consider having a look at argparse. There will be more than just 2 positional arguments. :-)\n\nhttps://docs.python.org/3.8/library/argparse.html#module-argparse",
+      "range": {
+        "startLine": 840,
+        "startChar": 4,
+        "endLine": 846,
+        "endChar": 15
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76a35df0_ee588dbb",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "I find these kind of annotations rather noisy than actually useful.\nIn particular, that this unpacks into a tuple is enforced, that it is a tuple of strings is rather obvious.",
+      "range": {
+        "startLine": 858,
+        "startChar": 44,
+        "endLine": 858,
+        "endChar": 67
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6a9da90_15b5b5f1",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 859,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "if you do not care about name in the above line, capture it as \n\n _, ext\n\n\ndel name is not actually useful here",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24f5f08b_2621915c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "given that you instantiate InfoKmod, this feels wrong (even though you derive from Info)\n\nThis type annotation is not giving any value.\n\nHence, just follow the usual duck typing here, there is no virtual dispatch.",
+      "range": {
+        "startLine": 863,
+        "startChar": 33,
+        "endLine": 863,
+        "endChar": 43
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06e5ca11_483454ac",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "rather print a (custom) string representation of info, but print it here. Only this way you can embed this representation into logging. Speaking of which, this looks much more like a DEBUG loglevel that is used with -v (hah, another command line flag).",
+      "range": {
+        "startLine": 865,
+        "startChar": 8,
+        "endLine": 865,
+        "endChar": 20
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c4349e6_107bedcf",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "you are just instantiating the objects, it feels a bit unnatural that you don\u0027t actually make use of them.",
+      "range": {
+        "startLine": 866,
+        "startChar": 4,
+        "endLine": 866,
+        "endChar": 11
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bc23367_d077131c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "prefer exiting from here:\n\n  sys.exit(main())\n\nadjust main() accordingly to return the error codes.\nAlso, prefer the full qualified version \u0027sys.exit\u0027 over just \u0027exit\u0027.",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}

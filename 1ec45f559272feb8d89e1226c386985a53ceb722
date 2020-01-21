@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b6f9a75_34668461",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "This commit message is not at all describing what this change actually does.\n\nThis change is now 2.5k lines long and is definitely too large to be reasonable reviewed.\nIt needs chunking up (not tool by tool, but incremental functionality).",
+      "revId": "1ec45f559272feb8d89e1226c386985a53ceb722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec569db7_a1a866e3",
+        "filename": "abi/lka/lka-common",
+        "patchSetId": 13
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-21T17:12:42Z",
+      "side": 1,
+      "message": "that would be os.path.normpath() in python",
+      "revId": "1ec45f559272feb8d89e1226c386985a53ceb722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
