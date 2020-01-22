@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "dc83c3dc_ee29816e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Will do then.\nKeeping this unresolved until then.",
+      "parentUuid": "eb98bc64_ca7a2c1e",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2da3cd4_08aada69",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -33,6 +51,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "691f19cf_587a0040",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d2da3cd4_08aada69",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "fe1c87cb_2aeb5729",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "f61f0116_dbe8e60c",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb4d917f_29a7f5a6",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -67,6 +121,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6da523de_e5e60e73",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cb4d917f_29a7f5a6",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -93,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "c02918f2_422b377f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "e7d0c2bf_c4310716",
+      "range": {
+        "startLine": 20,
+        "startChar": 36,
+        "endLine": 20,
+        "endChar": 39
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ca90124_611e816b",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -107,6 +203,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89c56462_4283cd76",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Thanks. Addressed enough I think. See comment.",
+      "parentUuid": "8ca90124_611e816b",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -156,6 +270,54 @@
     },
     {
       "key": {
+        "uuid": "71f766ab_ec46d30d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Thanks.",
+      "parentUuid": "a9602d69_71954fb1",
+      "range": {
+        "startLine": 24,
+        "startChar": 35,
+        "endLine": 24,
+        "endChar": 42
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a7dec73_e961181d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Its imported for typing, but the code doesn\u0027t use it otherwise. This is to make ptype happy.",
+      "parentUuid": "fa96d559_e4a192e6",
+      "range": {
+        "startLine": 24,
+        "startChar": 44,
+        "endLine": 24,
+        "endChar": 73
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1bdcf3f_d14c912c",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -173,6 +335,24 @@
     },
     {
       "key": {
+        "uuid": "9d073a35_39952bff",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done. Thanks.",
+      "parentUuid": "a1bdcf3f_d14c912c",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10d4fee2_16dcacce",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -187,6 +367,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "475ba8fb_2ea92359",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "10d4fee2_16dcacce",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -236,6 +434,54 @@
     },
     {
       "key": {
+        "uuid": "cee00786_75132949",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Yep. Trying to stick with a style for all assignments (other than type: str, see above).",
+      "parentUuid": "50deef14_a9fb2ecd",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 27
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "63b1e99b_7e3c2c5c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Will do later, left a TODO.",
+      "parentUuid": "797658b2_e1643c9c",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 5
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b0e9e474_1b8edf5f",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -259,6 +505,30 @@
     },
     {
       "key": {
+        "uuid": "44106e8b_876be5c1",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Left a TODO in the code. The TODO are highlighted by pylint3 which I run regularly with\nptype and yapf.",
+      "parentUuid": "b0e9e474_1b8edf5f",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 31
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21457687_60207a29",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -279,6 +549,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "927fd3ba_43c30f87",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Thanks. pylint3 didn\u0027t like the pass. The docstring is enough.",
+      "parentUuid": "21457687_60207a29",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -328,6 +622,54 @@
     },
     {
       "key": {
+        "uuid": "16701e65_582930fe",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Fixed. I would have ptype to catch these. Don\u0027t really know what ptype actually does.",
+      "parentUuid": "51ae137f_738e915d",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 49,
+        "endChar": 19
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5335581_f4e606c3",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Tried to explain it better in the comment.",
+      "parentUuid": "af1bf1bf_78bbdb23",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 8
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e9dc7125_adc77499",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -348,6 +690,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d60ee426_e73b17af",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "I am not calling exit() this comment was obsolete.",
+      "parentUuid": "e9dc7125_adc77499",
+      "range": {
+        "startLine": 53,
+        "startChar": 24,
+        "endLine": 53,
+        "endChar": 30
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -374,6 +740,30 @@
     },
     {
       "key": {
+        "uuid": "82f0bb36_e7594106",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "12b3c05d_9335feeb",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 28
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f10f29e_82fd2caf",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -394,6 +784,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd4ff6e1_3be5eb3d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Began using error logging, these remain to produce the errors that the user sees when the\nprogram is misused. Will deal with logging more later.",
+      "parentUuid": "0f10f29e_82fd2caf",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 38
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -420,6 +834,30 @@
     },
     {
       "key": {
+        "uuid": "a008518f_604890d1",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Removed all the callers and the function too.",
+      "parentUuid": "6e25ac8f_832a1ea5",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 35
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a732ce68_cb90cedd",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -440,6 +878,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "303c8290_48659b0a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "a732ce68_cb90cedd",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 9
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -466,6 +928,30 @@
     },
     {
       "key": {
+        "uuid": "b437cf57_41ee86f6",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Until I learned about the auto-magic close I was not superfluous to me, removed it any",
+      "parentUuid": "b4bd653d_182950c8",
+      "range": {
+        "startLine": 125,
+        "startChar": 34,
+        "endLine": 125,
+        "endChar": 70
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64d4b499_db1c27b0",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -486,6 +972,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43396812_554d6103",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "readfile() is used in 6 places, I\u0027d rather have this encapsulated than inlining the code\nin multiple places.  Mapping the errors into a stop() raised exception means that this\ncould happen (file might be missing or unreadable), its not like calling a missing member\non an object (which the code wouldn\u0027t expect to be doing).\n\nPrinting the *args of the original exception too.",
+      "parentUuid": "64d4b499_db1c27b0",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 49
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -512,6 +1022,30 @@
     },
     {
       "key": {
+        "uuid": "36b813c4_446d5f0d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "All the errors that originate with the program (or triggered by the program directly) are\nraised via stop() makes it easy to debug, set breakpoints, etc.",
+      "parentUuid": "9f049fea_eeab3a03",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 27
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "89441706_035c5d3a",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -532,6 +1066,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e650b7a0_5acd683d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "There might be more uses later, for example when deleting temporary files created by the\ncode yet to be rewritten.",
+      "parentUuid": "89441706_035c5d3a",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 40
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -581,6 +1139,30 @@
     },
     {
       "key": {
+        "uuid": "81c696ab_def8d378",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Its more meaningful from the caller location than an array slice operation there.",
+      "parentUuid": "b5144ba8_0845f4da",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 37
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49e1c056_7acb25a4",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -604,6 +1186,30 @@
     },
     {
       "key": {
+        "uuid": "3a5a0954_88e06dfb",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "The use of split that you suggested leaves the optional_spaces around the :\u003d in result[0]\nand result[1]",
+      "parentUuid": "49e1c056_7acb25a4",
+      "range": {
+        "startLine": 169,
+        "startChar": 13,
+        "endLine": 169,
+        "endChar": 58
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "447de408_027af3fe",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -618,6 +1224,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20d7be4b_8101f6d0",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "to make pylint3 happy. Turned it into _ per your other suggestion elsewhere.",
+      "parentUuid": "447de408_027af3fe",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -644,6 +1268,30 @@
     },
     {
       "key": {
+        "uuid": "92b454bc_3ad21ba3",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Using _ now, del was to make pylint3 happy",
+      "parentUuid": "5cdc25e3_8a6a0cc8",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 16
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cde6e1e0_e5dcf666",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -664,6 +1312,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0357227_61f1f7e5",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "We are taking a list of dependencies, checking if the first one is a .c file, if so returning the remaining ones, which are files that were included by the compiler, this is done on the right side of the :\u003d . The .o part is on the left of the :\u003d assignment.",
+      "parentUuid": "cde6e1e0_e5dcf666",
+      "range": {
+        "startLine": 191,
+        "startChar": 28,
+        "endLine": 191,
+        "endChar": 40
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -690,6 +1362,30 @@
     },
     {
       "key": {
+        "uuid": "6bfc358b_4a73d75a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Yes, it is odd enough, but better safe than sorry. Python asserts are turned off when scripts\nrun without debug turned on, so I\u0027d rather make it a hard error, than being optionally checked.",
+      "parentUuid": "5e0e9666_d6530f4c",
+      "range": {
+        "startLine": 197,
+        "startChar": 4,
+        "endLine": 198,
+        "endChar": 44
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c697a340_4e065cb8",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -710,6 +1406,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2d11b18_c3922341",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "That almost does the trick, but not quite:\n\n\u003e\u003e\u003e s\u003d\"\"\"\n... \n... \n... x\n... \n... y\n... \n... \n... \n... \"\"\"\n\u003e\u003e\u003e print(s)\n\n\n\nx\n\ny\n\n\n\n\n\u003e\u003e\u003e print(s.strip().splitlines())\n[\u0027x\u0027, \u0027\u0027, \u0027y\u0027]\n\u003e\u003e\u003e print(re.split(r\"\\n+\", re.sub(r\"(\\A\\n*|\\n*\\Z)\", \"\", s)))\n[\u0027x\u0027, \u0027y\u0027]\n\u003e\u003e\u003e \n\nNote the empty \u0027\u0027 between the \u0027x\u0027 and the \u0027y\u0027\nI don\u0027t want those in there\n\nI looked at the documentation, it does not have an optional argument to collapse internal\nempty lines. Also splitlines() function has a rather surprising set of characters that it\nconsiders as line separators, some I knew (the ASCII ones):\n\nLine Feed\nCarriage Return\nCarriage Return + Line Feed\nLine Tabulation\nForm Feed\nFile Separator\nGroup Separator\nRecord Separator\nNext Line (C1 Control Code)\nLine Separator\nParagraph Separator",
+      "parentUuid": "c697a340_4e065cb8",
+      "range": {
+        "startLine": 222,
+        "startChar": 4,
+        "endLine": 226,
+        "endChar": 17
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -736,6 +1456,30 @@
     },
     {
       "key": {
+        "uuid": "6d42e6f8_87015a27",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "The files in question have around 1000+ lines (lists of dependencies).\nI only want the first line. Don\u0027t see a reason to ask it to split it into a huge list to\njust use the first line.",
+      "parentUuid": "da316a0a_de5152d2",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 79
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b36df5b_0e113663",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -747,6 +1491,30 @@
       "writtenOn": "2020-01-21T17:12:42Z",
       "side": 1,
       "message": "The name is not exactly describing what this function does.",
+      "range": {
+        "startLine": 240,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 18
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85f62c23_da7e19b5",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Leaving unresolved for now. Can\u0027t think of a better name. The code will be removed and all\ncallers turned into string.split() (no need for the strip() in this case).",
+      "parentUuid": "5b36df5b_0e113663",
       "range": {
         "startLine": 240,
         "startChar": 4,
@@ -805,6 +1573,30 @@
     },
     {
       "key": {
+        "uuid": "f2462b26_46c9b4b4",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "01ca86da_df70d88e",
+      "range": {
+        "startLine": 250,
+        "startChar": 4,
+        "endLine": 250,
+        "endChar": 11
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "86af2c8d_c21d31e2",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -828,6 +1620,30 @@
     },
     {
       "key": {
+        "uuid": "bf54b68e_3913c21d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Thanks. Done.",
+      "parentUuid": "86af2c8d_c21d31e2",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 17
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "203c3ef5_574c402e",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -839,6 +1655,30 @@
       "writtenOn": "2020-01-21T17:12:42Z",
       "side": 1,
       "message": "consider implementing Kmod.__str__(self) instead",
+      "range": {
+        "startLine": 274,
+        "startChar": 4,
+        "endLine": 274,
+        "endChar": 28
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbdab992_ab0d1bed",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Will do in the future.\nLeaving unresolved for now.",
+      "parentUuid": "203c3ef5_574c402e",
       "range": {
         "startLine": 274,
         "startChar": 4,
@@ -874,6 +1714,30 @@
     },
     {
       "key": {
+        "uuid": "1337e4de_909d195d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "All the print() member functions are for debugging for now. They will go away or be turned\ninto __str__() at a later time.",
+      "parentUuid": "bacd75dc_9c55deae",
+      "range": {
+        "startLine": 277,
+        "startChar": 8,
+        "endLine": 277,
+        "endChar": 44
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "84e9c0af_6185eed1",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -885,6 +1749,30 @@
       "writtenOn": "2020-01-21T17:12:42Z",
       "side": 1,
       "message": "consider making the member variables an implementation detail by using the protected naming style _lower_with_under",
+      "range": {
+        "startLine": 308,
+        "startChar": 13,
+        "endLine": 308,
+        "endChar": 17
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c337d47_b208db15",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Will consider in next batch of changes.\nLeaving unresolved for now.",
+      "parentUuid": "84e9c0af_6185eed1",
       "range": {
         "startLine": 308,
         "startChar": 13,
@@ -920,6 +1808,30 @@
     },
     {
       "key": {
+        "uuid": "c7895f22_4424b5af",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Not dealing with Windows and \u0027\\\u0027 separators. The whole program has the invariant that \ndirectories all end in /, thus + is a simpler way to join a dir and a filename",
+      "parentUuid": "70a1c231_62159329",
+      "range": {
+        "startLine": 312,
+        "startChar": 8,
+        "endLine": 313,
+        "endChar": 59
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae615b1a_bd274c08",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -934,6 +1846,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c9737e0_4d33e2ca",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "These 3 init functions where folded into the constructor.",
+      "parentUuid": "ae615b1a_bd274c08",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -960,6 +1890,30 @@
     },
     {
       "key": {
+        "uuid": "5ab99489_694cd09b",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "No all those were examples to make it clearer to the code reader.",
+      "parentUuid": "937e93c0_74ed966f",
+      "range": {
+        "startLine": 324,
+        "startChar": 49,
+        "endLine": 324,
+        "endChar": 66
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5d61d21c_7efc92af",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -980,6 +1934,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad044685_e0b326ec",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "No all those were examples to make it clearer to the code reader.",
+      "parentUuid": "5d61d21c_7efc92af",
+      "range": {
+        "startLine": 333,
+        "startChar": 24,
+        "endLine": 333,
+        "endChar": 41
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1006,6 +1984,30 @@
     },
     {
       "key": {
+        "uuid": "1fa88a50_628db6f3",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "It is to catch malformed input.",
+      "parentUuid": "c2f87b07_921723be",
+      "range": {
+        "startLine": 345,
+        "startChar": 12,
+        "endLine": 345,
+        "endChar": 75
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f50d348_d1bee00f",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1023,6 +2025,24 @@
     },
     {
       "key": {
+        "uuid": "2d308b27_502ef9a4",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done for all classes.",
+      "parentUuid": "8f50d348_d1bee00f",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35b62aae_cc352bc5",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1037,6 +2057,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f40be733_98d629ba",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Will either remove print() or turn into __str__() at a later time.",
+      "parentUuid": "35b62aae_cc352bc5",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1063,6 +2101,30 @@
     },
     {
       "key": {
+        "uuid": "a60269eb_813ca3c5",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "All the print() member functions are for debugging for now. They will all be removed or\nturned into __str__() at a later time.",
+      "parentUuid": "e0411a1a_48c31deb",
+      "range": {
+        "startLine": 449,
+        "startChar": 14,
+        "endLine": 449,
+        "endChar": 25
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fdd716c5_5a9e796d",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1083,6 +2145,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6ace2f4_640aa594",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "I love my object as fully formed as possible when constructed. Nothing wrong with that, I hope.\nDoes it cause Python to do weird horrible things?",
+      "parentUuid": "fdd716c5_5a9e796d",
+      "range": {
+        "startLine": 497,
+        "startChar": 8,
+        "endLine": 497,
+        "endChar": 16
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1109,6 +2195,30 @@
     },
     {
       "key": {
+        "uuid": "79759fa7_921fefc6",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Plus is so much easier to read. Its an invariant of all this code that all dir variables\nalready have a trailing \u0027/\u0027 and we are really not going to be running this on Windows so\nhaving to deal with \u0027\\\u0027 as a pathname delimiter is not relevant.",
+      "parentUuid": "f9aff94f_5631b503",
+      "range": {
+        "startLine": 501,
+        "startChar": 16,
+        "endLine": 501,
+        "endChar": 46
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "14359413_d8807b69",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1129,6 +2239,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1fd9bc9_24847eae",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Its scope is very short, its a list of .a and .o files.",
+      "parentUuid": "14359413_d8807b69",
+      "range": {
+        "startLine": 506,
+        "startChar": 8,
+        "endLine": 506,
+        "endChar": 14
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1155,6 +2289,30 @@
     },
     {
       "key": {
+        "uuid": "733e9a06_bedf9cd1",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "That seems much harder to read to me. Not sure that it does the same thing.",
+      "parentUuid": "5deec532_aeabaf3f",
+      "range": {
+        "startLine": 509,
+        "startChar": 1,
+        "endLine": 513,
+        "endChar": 38
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a769bf9_c6fb6244",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1166,6 +2324,24 @@
       "writtenOn": "2020-01-21T17:12:42Z",
       "side": 1,
       "message": "In the future, we might consider https://www.attrs.org for these POD classes. No need now",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b88c320_d18fa11f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "This call will grow with methods, won\u0027t stay POD. 50% of the code is missing.",
+      "parentUuid": "7a769bf9_c6fb6244",
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -1195,6 +2371,30 @@
     },
     {
       "key": {
+        "uuid": "a427de04_99cdf261",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "There is enough of a difference between an InfoKmod and an InfoKernel to merit the difference.\nThen InfoError helps with the flow of stop() raised exceptions, which are really useful when\nrunning code in parallel.",
+      "parentUuid": "110404bf_343f128c",
+      "range": {
+        "startLine": 537,
+        "startChar": 6,
+        "endLine": 537,
+        "endChar": 10
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "daba7774_4bd39db9",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1218,6 +2418,30 @@
     },
     {
       "key": {
+        "uuid": "9009001b_a41d3fdb",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Print() code is so far to debug during development, will either remove it all or turn into\n__str__() if it needs to be kept.",
+      "parentUuid": "daba7774_4bd39db9",
+      "range": {
+        "startLine": 542,
+        "startChar": 0,
+        "endLine": 543,
+        "endChar": 46
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a173b7d2_6ff96334",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1235,6 +2459,24 @@
     },
     {
       "key": {
+        "uuid": "040fe28d_afd13560",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "This is actually meant to be invoked, see its implementation in InfoError.",
+      "parentUuid": "a173b7d2_6ff96334",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a1671ab_094ec605",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1249,6 +2491,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ce04267_29e90e2e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "This will get a few more things later.",
+      "parentUuid": "5a1671ab_094ec605",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1275,6 +2535,30 @@
     },
     {
       "key": {
+        "uuid": "e8f14ccc_a3f41c5a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Its a polymorphic way of avoiding type tests, you ask the object if it is of the type you\nare interested.",
+      "parentUuid": "60fe659d_d8b08cd4",
+      "range": {
+        "startLine": 562,
+        "startChar": 0,
+        "endLine": 563,
+        "endChar": 19
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97d5f2d2_70bc5030",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1292,6 +2576,24 @@
     },
     {
       "key": {
+        "uuid": "bda03562_973e6f88",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done for all classes.",
+      "parentUuid": "97d5f2d2_70bc5030",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a50ca945_e6eb4f6e",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1306,6 +2608,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f215226a_eed9ec6f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Ditto to comments there.",
+      "parentUuid": "a50ca945_e6eb4f6e",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1332,6 +2652,30 @@
     },
     {
       "key": {
+        "uuid": "61f49cfb_be29d2db",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Yes, see comments under Kmod and Kernel and not merging them with InfoKmod and InfoKernel\nrespectively.  This was done purposely to keep the classes small.",
+      "parentUuid": "f92eef36_00cf953e",
+      "range": {
+        "startLine": 741,
+        "startChar": 6,
+        "endLine": 741,
+        "endChar": 16
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "36328cc8_2d087b51",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1346,6 +2690,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f44e9285_1e558413",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "The print() code is for debugging while developing this. Will replace with __str__() if there\nis a need in the final code.  Leaving as is for now.",
+      "parentUuid": "36328cc8_2d087b51",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1366,6 +2728,24 @@
     },
     {
       "key": {
+        "uuid": "645c5e7f_d88f2f9a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Moved all the constructors to the start of their classes.",
+      "parentUuid": "002071b5_65850dcb",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3785efad_b3873437",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1377,6 +2757,30 @@
       "writtenOn": "2020-01-21T17:12:42Z",
       "side": 1,
       "message": "rather than only handling ExitError, how about handling all sorts of Exceptions here? You could at least create a backtrace if something happened that you would not expect. Otherwise this information is lost.",
+      "range": {
+        "startLine": 776,
+        "startChar": 0,
+        "endLine": 776,
+        "endChar": 74
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fae5e937_5547a6b3",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "I will consider this later. Leaving unresolved.",
+      "parentUuid": "3785efad_b3873437",
       "range": {
         "startLine": 776,
         "startChar": 0,
@@ -1406,6 +2810,24 @@
     },
     {
       "key": {
+        "uuid": "cd078888_eba91479",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "I will consider this later. Leaving unresolved.",
+      "parentUuid": "125e9ad5_1d15e50e",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3874e72f_956cd51c",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1426,6 +2848,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "678a2e6b_9da49b14",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Insofar as there is an underlying filesystem walk to find the *.ko files, there is at least\na bit of earlier parallelism where vmlinux.o can be worked on as soon as possible.",
+      "parentUuid": "3874e72f_956cd51c",
+      "range": {
+        "startLine": 782,
+        "startChar": 0,
+        "endLine": 784,
+        "endChar": 25
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1452,6 +2898,30 @@
     },
     {
       "key": {
+        "uuid": "156748df_76837df0",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Thanks, chose a different name.",
+      "parentUuid": "95c40869_e191f0e0",
+      "range": {
+        "startLine": 787,
+        "startChar": 4,
+        "endLine": 787,
+        "endChar": 18
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2857a1d4_b9fcfa33",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1472,6 +2942,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb0c23c6_c7a0360e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Will consider later. The code needs to run in parallel. The scripts for this ran at around\n30 seconds, this is taking over 2 minutes for the same amount of work :-(\nI will investigate why later",
+      "parentUuid": "2857a1d4_b9fcfa33",
+      "range": {
+        "startLine": 790,
+        "startChar": 1,
+        "endLine": 792,
+        "endChar": 1
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1498,6 +2992,30 @@
     },
     {
       "key": {
+        "uuid": "c52469cb_4d16791e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "dfa1c213_3a416560",
+      "range": {
+        "startLine": 797,
+        "startChar": 35,
+        "endLine": 797,
+        "endChar": 50
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d07014e0_fe08fcc4",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1521,6 +3039,30 @@
     },
     {
       "key": {
+        "uuid": "e26a4bad_a189c948",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "both start as empty sets in line 807 and 808, there is expected to be one kernel_h_set when\ngetting the set of headers used by the kernel.  There is expected to be multiple set of headers\nfor the InfoKmod (for the .ko files), those are accumulated, via the set union operator |\u003d\ninto all_kmod_h_set.  The code seems to work.  Maybe I don\u0027t understand what you mean.",
+      "parentUuid": "d07014e0_fe08fcc4",
+      "range": {
+        "startLine": 823,
+        "startChar": 0,
+        "endLine": 827,
+        "endChar": 61
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7688f64a_06e249c7",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1532,6 +3074,30 @@
       "writtenOn": "2020-01-21T17:12:42Z",
       "side": 1,
       "message": "print(*headers, sep\u003d\"\\n\")",
+      "range": {
+        "startLine": 828,
+        "startChar": 0,
+        "endLine": 830,
+        "endChar": 18
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "812679e1_47871930",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Will revisit later when print() are revisited.\nLeaving unresolved for now.",
+      "parentUuid": "7688f64a_06e249c7",
       "range": {
         "startLine": 828,
         "startChar": 0,
@@ -1567,6 +3133,30 @@
     },
     {
       "key": {
+        "uuid": "12762a58_67515745",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "I will consider later as the code evolves.",
+      "parentUuid": "c154034a_62c81d40",
+      "range": {
+        "startLine": 840,
+        "startChar": 4,
+        "endLine": 846,
+        "endChar": 15
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "76a35df0_ee588dbb",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1590,6 +3180,30 @@
     },
     {
       "key": {
+        "uuid": "7d47a800_253be805",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Trying to satisfy the Google python style which calls for use of ptype. I removed the bulk of\nthem (all that where # type: str) the rest is because the PEP about types says that this is\nhow one is supposed to do it.",
+      "parentUuid": "76a35df0_ee588dbb",
+      "range": {
+        "startLine": 858,
+        "startChar": 44,
+        "endLine": 858,
+        "endChar": 67
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6a9da90_15b5b5f1",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1604,6 +3218,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47b72182_5af3ffd4",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 859,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "This code was deleted.",
+      "parentUuid": "a6a9da90_15b5b5f1",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1630,6 +3262,30 @@
     },
     {
       "key": {
+        "uuid": "b4d65e59_4e18df48",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "There is a requirement to specify the types to make ptype happy, so I have decided to specify\nthem to follow the Google style which calls for use of the type declarations for ptype to use.\nI don\u0027t know how good is ptype at type inference, but if the PEP for types says to put a type\ndeclaration in comments, I\u0027ve tried to do so.",
+      "parentUuid": "24f5f08b_2621915c",
+      "range": {
+        "startLine": 863,
+        "startChar": 33,
+        "endLine": 863,
+        "endChar": 43
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "06e5ca11_483454ac",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1650,6 +3306,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "596cc08e_88e84ab1",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 865,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "The print() methods in the various classes are for now just to aid in debugging, they will go\naway or become __str__() methonds.  This is 50% of the whole program.",
+      "parentUuid": "06e5ca11_483454ac",
+      "range": {
+        "startLine": 865,
+        "startChar": 8,
+        "endLine": 865,
+        "endChar": 20
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1676,6 +3356,30 @@
     },
     {
       "key": {
+        "uuid": "a246bcd9_a5ee1a93",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "As I said this is the first half of the program. The second half will make use of the Info\nobjects, specifically the Target objects which will gain methods and will stop being POD",
+      "parentUuid": "2c4349e6_107bedcf",
+      "range": {
+        "startLine": 866,
+        "startChar": 4,
+        "endLine": 866,
+        "endChar": 11
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2bc23367_d077131c",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1690,6 +3394,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c061a1d1_e528942a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done. Thanks.",
+      "parentUuid": "2bc23367_d077131c",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }

@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "526a4c69_00effa12",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c36f9689_3ddaaa63",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6d33480_4e2d5a9d",
         "filename": "abi/lka/lka-get-defines",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "There is a detailed document about the tools (which you have reviewed before) here:\n\nhttps://docs.google.com/document/d/1q_QGb9miF0HLpsWT_MrU0vzlEJgWlYcUDP3Lmx0JGgc/edit?usp\u003dsharing\n\nThe rationale for the various scripts and their work is there, the high level transformations\nare explained there too.\n\nI will see what additional comments I can add, I thought I had the right balance of code\nand comments, I didn\u0027t want to over explain what the code did when the code itself seemed\nclear enough.  I agree that some of the more subtle aspects might require looking at regular\nexpressions a bit too much.\n\nAbout how much this depends on the kernel build, it mostly depends on the output files of\nthe build, the .cmd files, and simple rewrites to compile lines to invoke the compiler in\nslightly different ways.  I agree that that is a bit delicate too.  The alternative is to\nactually integrate the running of the scripts from within the Linux build make rules, and\nI think those changes would be harder to maintain.  I considered, an uber-build that lived\noutside of the Linux kernel build, but that included its make files and rules to invoke the\nLKA commands, but that seemed also too hard to maintain. The approach I took seemed like the\nright balance of intrusiveness (small) for the desired reliability, i.e. ensuring that the\nway we obtain the #define values is with all the exact flags that were used to produce the\nvarious kernel .o files.\n\nI had written a proposal under:\n\nhttps://docs.google.com/document/d/16Esigl9tHPg3O2TkB2Fuuy2CqiJKYF7yo7iS2LTEsos/edit?usp\u003dsharing\n\nabout a completely different approach to these and various other ABI issues that libabigail\nwon\u0027t be able to catch, but I have not gotten feedback for that.",
       "parentUuid": "b6d33480_4e2d5a9d",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "35394f46_fb9a6889",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c3c7726_42b13a36",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -107,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "523e1647_e946baa8",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "430f68bf_f15a1175",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0de24bd2_6d1edbc5",
         "filename": "abi/lka/lka-get-defines",
         "patchSetId": 1
@@ -136,6 +190,24 @@
       "side": 1,
       "message": "I strive to *never* put a \u0027-r\u0027 anywhere near an \u0027rm\u0027 particularly in scripts.\nThe wrong expansion, mis-edited script, etc, can lead to disasters.\nBest to remove files explicitly.",
       "parentUuid": "0de24bd2_6d1edbc5",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "494f1edb_64b3bb6a",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dd6cd8e_149189a4",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -177,6 +249,24 @@
     },
     {
       "key": {
+        "uuid": "c4a0b7be_a23c5a52",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2552c53a_0a1a26b0",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3d5071a4_0c408f74",
         "filename": "abi/lka/lka-get-defines",
         "patchSetId": 1
@@ -206,6 +296,24 @@
       "side": 1,
       "message": "Removed, thanks!",
       "parentUuid": "3d5071a4_0c408f74",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f06d63c_d34e55a8",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb34f38e_c30724a0",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -247,6 +355,24 @@
     },
     {
       "key": {
+        "uuid": "415a3f70_f1e8c28e",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Added comment with example input and explained what the code does, code factored out to be\nelsewhere together with its documentation",
+      "parentUuid": "259274b4_9620964d",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5cbf13a1_da4d7033",
         "filename": "abi/lka/lka-get-defines",
         "patchSetId": 1
@@ -282,6 +408,30 @@
       "side": 1,
       "message": "fixed, thanks",
       "parentUuid": "5cbf13a1_da4d7033",
+      "range": {
+        "startLine": 123,
+        "startChar": 19,
+        "endLine": 123,
+        "endChar": 24
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79d9779e_971f42ea",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f561b2c_fa2961e5",
       "range": {
         "startLine": 123,
         "startChar": 19,
@@ -341,6 +491,30 @@
     },
     {
       "key": {
+        "uuid": "270eece6_f7e61b92",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fd65d4e_1a05c565",
+      "range": {
+        "startLine": 194,
+        "startChar": 3,
+        "endLine": 194,
+        "endChar": 14
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "347f553a_f0e9c2fc",
         "filename": "abi/lka/lka-get-defines",
         "patchSetId": 1
@@ -370,6 +544,24 @@
       "side": 1,
       "message": "I completely agree, it grew incrementally as the code started as a prototype with x86 and gcc,\nand later moved to arm64 and clang (I wanted to cover both tool sets and architectures).\n\nThe values of the #defines are now obtained from the LKA_DEFINE data section in the .o ELF\nfile, getting the values from the .s file is no longer needed.\n\nThe lka-dump.c program is used for this purpose instead, it can produce the values in a colon\nseparated format or as a .c",
       "parentUuid": "347f553a_f0e9c2fc",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "076a6283_c32ffee8",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c5994cc_51d7fc4b",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -411,6 +603,30 @@
       "side": 1,
       "message": "These header files had some amount of preprocessing token pasting, or were multiply included\nwithin a single compilation unit in ways to produce multiple incarnations of their code (poor\nman\u0027s templates in C with the preprocessor).  I was going to revisit the list and see what\nto do about them later. If the tool ignores a header file it produces output about it so that\nit is a constant reminder that this still needs to be addressed. When I work on this more I\nwill add comments about it.",
       "parentUuid": "08b7726a_4ae97c1e",
+      "range": {
+        "startLine": 942,
+        "startChar": 0,
+        "endLine": 954,
+        "endChar": 0
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6bb5d3cf_21bfe171",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "738452e7_3457d0d4",
       "range": {
         "startLine": 942,
         "startChar": 0,
@@ -470,6 +686,30 @@
     },
     {
       "key": {
+        "uuid": "29c1b00a_f2b90086",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce0880b2_cacdef24",
+      "range": {
+        "startLine": 966,
+        "startChar": 1,
+        "endLine": 971,
+        "endChar": 29
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a71bc2ff_980e142b",
         "filename": "abi/lka/lka-get-defines",
         "patchSetId": 1
@@ -517,6 +757,30 @@
     },
     {
       "key": {
+        "uuid": "1c25ce9b_388b850b",
+        "filename": "abi/lka/lka-get-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 997,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8647229_fb2c6df4",
+      "range": {
+        "startLine": 995,
+        "startChar": 2,
+        "endLine": 997,
+        "endChar": 19
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a9ed35a_a8ce0bb3",
         "filename": "abi/lka/lka-get-header-use-counts",
         "patchSetId": 1
@@ -552,6 +816,24 @@
     },
     {
       "key": {
+        "uuid": "b8bd7c73_dbfb2dc1",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce37ba92_a11017b6",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f5f1f9d0_37fbebc9",
         "filename": "abi/lka/lka-get-header-use-counts",
         "patchSetId": 1
@@ -581,6 +863,24 @@
       "side": 1,
       "message": "Get rid of this trace stuff, it had been turned off already",
       "parentUuid": "f5f1f9d0_37fbebc9",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd33b484_e88c74de",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ac955f3_98f973af",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -634,6 +934,30 @@
     },
     {
       "key": {
+        "uuid": "2707b3e2_dbd3e227",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "282a69a0_9a2b8869",
+      "range": {
+        "startLine": 13,
+        "startChar": 52,
+        "endLine": 13,
+        "endChar": 55
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "510d082f_83769662",
         "filename": "abi/lka/lka-get-header-use-counts",
         "patchSetId": 1
@@ -666,6 +990,24 @@
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f51485f4_ed6b4b19",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "627703ce_ccf42435",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -704,6 +1046,24 @@
     },
     {
       "key": {
+        "uuid": "b7047c8b_ae853145",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d64321bf_ec718935",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27e32298_8f9021f4",
         "filename": "abi/lka/lka-get-header-use-counts",
         "patchSetId": 1
@@ -736,6 +1096,24 @@
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1aa59fc1_80be4a84",
+        "filename": "abi/lka/lka-get-header-use-counts",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f73031a5_17657179",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -821,6 +1199,24 @@
     },
     {
       "key": {
+        "uuid": "35a6ca10_0158850f",
+        "filename": "abi/lka/lka-get-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Temporary files and need for mktemp went away now that parallelism is done with parallel\nfunction",
+      "parentUuid": "8d8d407c_5b0dacc2",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6cd93671_5d288172",
         "filename": "abi/lka/lka-get-info",
         "patchSetId": 1
@@ -853,6 +1249,24 @@
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68f7dda8_76171ba7",
+        "filename": "abi/lka/lka-get-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5441c679_a446d341",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -891,6 +1305,24 @@
     },
     {
       "key": {
+        "uuid": "2d18b98c_d5ac22e9",
+        "filename": "abi/lka/lka-get-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Changed to use \"xargs -n 1 -P $(nproc)\" for the parallelism\nAlso threw in vmlinux.o into the set of files to work on (per your suggestion)",
+      "parentUuid": "f586dc2f_0b0f3e10",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb5ec4b7_7edeed2e",
         "filename": "abi/lka/lka-get-info",
         "patchSetId": 1
@@ -905,6 +1337,24 @@
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "001accd3_d1a44686",
+        "filename": "abi/lka/lka-get-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Removed, thank you!",
+      "parentUuid": "cb5ec4b7_7edeed2e",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -965,6 +1415,24 @@
     },
     {
       "key": {
+        "uuid": "66244e2e_f98a696f",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21cf7f27_d2d17a8e",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "40af89b7_324056a4",
         "filename": "abi/lka/lka-info",
         "patchSetId": 1
@@ -994,6 +1462,24 @@
       "side": 1,
       "message": "The data that eventually ends up in a .lka file is built as lists in various variables. Each\nfunction is preceded by this style of variable initialization to a _not_set_yet value for the\nvariables that the function actually sets.  This _not_set_yet stuff was a debug aid to\ndifferentiate a variable explicitly made empty and a variable that was never assigned. The\nuse of \u0027set -u\u0027 is also meant to guard against that.  Doing it this way makes the variables\nset into a bit of code and keeps that code close to each function.",
       "parentUuid": "40af89b7_324056a4",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "15feb529_f8bf31ee",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2307f14_15c14de3",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -1035,6 +1521,30 @@
       "side": 1,
       "message": "Added a test to ensure that this file exists.\n\nThis was to ensure that more commands did not creep into the link of vmlinux that should be\ninvestigated, it is a minor safety net. Weirdly, this now has two commands, in the same line...\n\n$ cat .vmlinux.cmd \ncmd_vmlinux :\u003d sh /usr/local/google/home/pantin/psrc/cam/3/common/scripts/link-vmlinux.sh ld.lld  -EL  -maarch64elf --no-undefined -X -shared -Bsymbolic -z notext -z norelro  --no-apply-dynamic-relocs --fix-cortex-a53-843419 --build-id --pack-dyn-relocs\u003drelr ;  true\n\nNote the infamous \u0027; true\u0027 aka lets ignore error codes from the prior command\n\nThe contents of the file were not used other than to police that only one program was being\ninvoked, I guess via \";\" \"\u0026\u0026\" \"||\" etc many programs could be invoked, so its not a good\nsafety net",
       "parentUuid": "e916b216_46d14f6b",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 28
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "713d21e7_b737fd2c",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e503223f_00c84798",
       "range": {
         "startLine": 152,
         "startChar": 8,
@@ -1094,6 +1604,30 @@
     },
     {
       "key": {
+        "uuid": "2415e573_d21ee73f",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd12df65_9c83587e",
+      "range": {
+        "startLine": 157,
+        "startChar": 27,
+        "endLine": 157,
+        "endChar": 33
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55940fac_cda9c32b",
         "filename": "abi/lka/lka-info",
         "patchSetId": 1
@@ -1123,6 +1657,24 @@
       "side": 1,
       "message": "The kernel build creates various .a files in various directories out of the underlying .o files\n\nI am trying to minimize the changes to the Linux build, so as long as we have:\n   vmlinux.libs\n   vmlinux.objs\n \nFactored out some of the code and added comments",
       "parentUuid": "55940fac_cda9c32b",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3da2c848_98c42493",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "692efd7c_705b41ec",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -1164,6 +1716,24 @@
     },
     {
       "key": {
+        "uuid": "3379ff4c_5fc5e910",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cf73cac_04a02353",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef87d90e_8fff06fe",
         "filename": "abi/lka/lka-info",
         "patchSetId": 1
@@ -1193,6 +1763,24 @@
       "side": 1,
       "message": "I have updated the scripts to deal with whatever issues arose from updates to the Linux kernel\ntrees",
       "parentUuid": "ef87d90e_8fff06fe",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0b38bcb_dca3d672",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1b68425_ddd3f4f0",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -1234,6 +1822,24 @@
     },
     {
       "key": {
+        "uuid": "6587d412_940023be",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71ecc83d_3275a6ec",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee5e2ae3_9587cbd9",
         "filename": "abi/lka/lka-info",
         "patchSetId": 1
@@ -1263,6 +1869,24 @@
       "side": 1,
       "message": "Thank you.\nChanged to use the source symlink at $LKA_DIR_BUILD/source",
       "parentUuid": "ee5e2ae3_9587cbd9",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d79a826f_62053bb9",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97e9cd3e_302a81a4",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -1304,6 +1928,24 @@
     },
     {
       "key": {
+        "uuid": "cff4787e_80052189",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73634a79_c2cf77f4",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8282565_4e717af6",
         "filename": "abi/lka/lka-info",
         "patchSetId": 1
@@ -1333,6 +1975,24 @@
       "side": 1,
       "message": "The Linux 4.19 build does not have .mod files for the .ko files",
       "parentUuid": "c8282565_4e717af6",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58f4261a_1edebdc0",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26d3edd3_3a14ec1d",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -1386,6 +2046,30 @@
     },
     {
       "key": {
+        "uuid": "97380d46_f98c7a28",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c4050ad_b31fbcef",
+      "range": {
+        "startLine": 282,
+        "startChar": 59,
+        "endLine": 282,
+        "endChar": 71
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "581a9893_7aed75f9",
         "filename": "abi/lka/lka-info",
         "patchSetId": 1
@@ -1400,6 +2084,24 @@
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "662d73ce_8e1b15b7",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "I think they are different enough to keep them separate",
+      "parentUuid": "581a9893_7aed75f9",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1450,6 +2152,30 @@
     },
     {
       "key": {
+        "uuid": "76fad3b9_ae235ffc",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Investigated using realink -m some more, because it works on an argument list, then to void issues it would have to be fed via xargs. The current fold_dots seems good enough.",
+      "parentUuid": "f12c6e8c_d2f739d9",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 335,
+        "endChar": 46
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e67bbfa8_e62e1dc6",
         "filename": "abi/lka/lka-info",
         "patchSetId": 1
@@ -1497,6 +2223,30 @@
     },
     {
       "key": {
+        "uuid": "61b30857_3391f6f3",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4d6ace5_fb7fd6aa",
+      "range": {
+        "startLine": 340,
+        "startChar": 0,
+        "endLine": 352,
+        "endChar": 13
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48b80c28_4418901a",
         "filename": "abi/lka/lka-info",
         "patchSetId": 1
@@ -1517,6 +2267,30 @@
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22e62db7_2422314e",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Some of the internal code was refactored with code used elsewhere and put into lka-common,",
+      "parentUuid": "48b80c28_4418901a",
+      "range": {
+        "startLine": 371,
+        "startChar": 0,
+        "endLine": 384,
+        "endChar": 0
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1549,6 +2323,24 @@
       "side": 1,
       "message": "The intent is that every leaf .o file (not the ones that are intermediate link step .o files)\nis the result of building either a .c file or a .S file\n\nSome weird drivers generated some .stub.o files, and a few other hacky things in the build\nlike that also occur, those might have been the cause of what you saw, or some confusion\ncaused by some .cmd files having \u0027; true\u0027 appended to them to ignore linker errors (nasty!)",
       "parentUuid": "6fd32ebb_47e0e2d4",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b2119dbc_fec44ab9",
+        "filename": "abi/lka/lka-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3c3c97a_8766ce48",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -1590,6 +2382,24 @@
     },
     {
       "key": {
+        "uuid": "56c85c1a_12edd9c1",
+        "filename": "abi/lka/lka-mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cba6529d_00726df7",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c22be35f_421890ef",
         "filename": "abi/lka/lka-mk",
         "patchSetId": 1
@@ -1619,6 +2429,24 @@
       "side": 1,
       "message": "That is tempting but there isn\u0027t enough of it to need that",
       "parentUuid": "c22be35f_421890ef",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d12e557d_65ef5e35",
+        "filename": "abi/lka/lka-mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ecd7799_8089ab8d",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -1660,6 +2488,24 @@
     },
     {
       "key": {
+        "uuid": "a825bd52_a8ac102e",
+        "filename": "abi/lka/lka-mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e08d7c1_4bee9acb",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8403b0a8_81fa3c7b",
         "filename": "abi/lka/lka-path-from-build",
         "patchSetId": 1
@@ -1674,6 +2520,24 @@
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2bc5780_11d0ccef",
+        "filename": "abi/lka/lka-path-from-build",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8403b0a8_81fa3c7b",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1735,6 +2599,30 @@
     },
     {
       "key": {
+        "uuid": "052b95b6_23325759",
+        "filename": "abi/lka/lka-path-from-build",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79998c19_5f73698b",
+      "range": {
+        "startLine": 10,
+        "startChar": 56,
+        "endLine": 10,
+        "endChar": 64
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c4d8897_d8652573",
         "filename": "abi/lka/lka-path-from-build",
         "patchSetId": 1
@@ -1782,6 +2670,30 @@
     },
     {
       "key": {
+        "uuid": "eb96c43c_2bb4e1b7",
+        "filename": "abi/lka/lka-path-from-build",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "490e1b90_a7193a83",
+      "range": {
+        "startLine": 12,
+        "startChar": 23,
+        "endLine": 12,
+        "endChar": 43
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a205256_9ec42565",
         "filename": "abi/lka/lka-rm",
         "patchSetId": 1
@@ -1811,6 +2723,24 @@
       "side": 1,
       "message": "I turned lka-in-build-dir into a function that comes from lka-common\n\nI sometimes use the individual lka-rm-* programs while testing, so its best\nto keep them separate",
       "parentUuid": "2a205256_9ec42565",
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d09dbe4_61d45617",
+        "filename": "abi/lka/lka-rm",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40ce3694_bac46089",
       "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -1864,6 +2794,30 @@
     },
     {
       "key": {
+        "uuid": "52c41df8_e24547ac",
+        "filename": "abi/lka/lka-rm-defines",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2982a17_50b77298",
+      "range": {
+        "startLine": 12,
+        "startChar": 1,
+        "endLine": 13,
+        "endChar": 31
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2a4108c0_8d557717",
         "filename": "abi/lka/lka-rm-info",
         "patchSetId": 1
@@ -1899,6 +2853,30 @@
       "side": 1,
       "message": "I was once witness to somebody (not me) moving a -delete earlier in a find and the -name ended\nup being AFTER the -delete, so all the files were deleted in some test systems by an errant\nupdate to some QA infrastructure, not nice.  To me -delete is or can become as dangerous as\n-r in an rm, so I try hard to keep these separate",
       "parentUuid": "2a4108c0_8d557717",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 31
+      },
+      "revId": "98ad6a26e335231a0db3554539d53eab794c29d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70d2d825_a1c6f4e8",
+        "filename": "abi/lka/lka-rm-info",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-22T19:32:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85df5790_4f8aea94",
       "range": {
         "startLine": 11,
         "startChar": 0,
