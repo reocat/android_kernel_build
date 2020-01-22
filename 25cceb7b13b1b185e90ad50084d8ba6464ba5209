@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21df1b9b_d92c6229",
+        "filename": "gki/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-01-22T16:49:05Z",
+      "side": 1,
+      "message": "nit: it might be better to highlight best practices by producing snapshots with fixed counts, eg: SEQ\u003d`printf \"$03u\" ${SEQ}`, as the arguments for the device_snapshot script?",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 6
+      },
+      "revId": "25cceb7b13b1b185e90ad50084d8ba6464ba5209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
