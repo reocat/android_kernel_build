@@ -1,0 +1,664 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7dc28dc4_b8a25c7a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "that still does not make sense to me. now you have to write this in your code:\n\n stop(something)   instead of    raise StopError(something)\n\nThe latter is much more expressive and tells what is actually happening and I don\u0027t see the point of this function.\nIn particular, the strings transformation dilutes the original error cause.\n\nPlease really reconsider raising actual meaningful Exceptions that have the full context (i.e. stack trace) of the original error. StopError and stop() feel like an awkward construction bypassing the proper exceptions. Also, you miss out on Exception chaining with this approach.\n\nSo, please drop the stop() approach.",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 38
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1097dc7d_d25d23cc",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "please use \u0027logging\u0027, the simplest form is really easy to use\n\n  import logging\n  logger \u003d logging.getLogger(\u0027kmi_defines\u0027)  # can be a global variable for now\n  logger.warning(\u0027Something went wrong!\u0027)\n\nI am not asking you to completely configure it and everything, just enable usage if you anyway have the methods already. Also, logging is intended to be thread safe.",
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "564b47cf_1882438c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "comes out of the box when using argparse",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 58
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a64859c_381442e5",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "that is not accurate as the source file itself is a dependency as well and we are not returning this one.",
+      "range": {
+        "startLine": 130,
+        "startChar": 40,
+        "endLine": 130,
+        "endChar": 74
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e324704_4cca42df",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "returning empty strings is dangerous as they can be used in exactly the same way as valid return values. So, we need to wish that all our users are always checking for whether the string is empty. That will introduce subtle bugs. Better return None or a type that ensures the invariant when working with it.\n\nE.g. introduce a type that represents this Make rule and that you feed with the necessary input once at instantiation and that you later can ask for obj, src, other_dependencies. E.g. in line 627ff. you could instantiate an array of such objects to work with.\n\nAll these helper methods will naturally end up as an implementation detail of that object and can be tested along with the object. Makes also the review a bit easier.",
+      "range": {
+        "startLine": 139,
+        "startChar": 15,
+        "endLine": 139,
+        "endChar": 17
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a13d728_10ca0930",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "there is absolutely no need to keep this around. We have source control to dig old things up. Please drop this function.",
+      "range": {
+        "startLine": 179,
+        "startChar": 4,
+        "endLine": 179,
+        "endChar": 18
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0648fd30_e47fd2c9",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "please, no",
+      "range": {
+        "startLine": 221,
+        "startChar": 52,
+        "endLine": 221,
+        "endChar": 57
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78c9b322_399567b7",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "use a temp variable, not a member",
+      "range": {
+        "startLine": 224,
+        "startChar": 8,
+        "endLine": 224,
+        "endChar": 21
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ed411bd_a1490811",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "\\s* should do",
+      "range": {
+        "startLine": 228,
+        "startChar": 34,
+        "endLine": 228,
+        "endChar": 39
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0eaf488f_d8871866",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "returned? this is a constructor",
+      "range": {
+        "startLine": 237,
+        "startChar": 15,
+        "endLine": 237,
+        "endChar": 23
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75cc2240_e314f427",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "this is using a string comparison rather than asking a CmdFile representation to check this invariant.\n\nHave a CmdFile instance that eats a command file at instantiation and does all the reading, splitting etc. (That is probably a case where the work can be done in CmdFile\u0027s constructor).",
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9bb41a7_341a7d5f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "please, don\u0027t",
+      "range": {
+        "startLine": 248,
+        "startChar": 7,
+        "endLine": 254,
+        "endChar": 31
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00e273ed_5eb2a966",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "using member functions from constructors (other than initializers) is unusual as member functions are usually relying on invariants being setup properly, but this is only guaranteed at the end of the constructor.",
+      "range": {
+        "startLine": 268,
+        "startChar": 27,
+        "endLine": 268,
+        "endChar": 42
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23f68ade_29ccc884",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "no need for this comment",
+      "range": {
+        "startLine": 270,
+        "startChar": 21,
+        "endLine": 270,
+        "endChar": 46
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93e6c128_01f4ebde",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "drop",
+      "range": {
+        "startLine": 291,
+        "startChar": 8,
+        "endLine": 293,
+        "endChar": 79
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d9d0d48_57c73391",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "why is this checked here? aren\u0027t we in an invalid state already and can we not detect this at construction time?",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 295,
+        "endChar": 75
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "400117f5_afafa3cc",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "get_object_files or get_object_file_names",
+      "range": {
+        "startLine": 300,
+        "startChar": 8,
+        "endLine": 300,
+        "endChar": 19
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad0f3127_2aa4d746",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "ocmd_file ?",
+      "range": {
+        "startLine": 309,
+        "startChar": 8,
+        "endLine": 309,
+        "endChar": 12
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34518700_1cde73c9",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "os.path.join",
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54641767_fa299926",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "use list comprehension",
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad388588_70b52fda",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "os.path.join",
+      "range": {
+        "startLine": 321,
+        "startChar": 42,
+        "endLine": 321,
+        "endChar": 57
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb004f64_823bbbb0",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "please don\u0027t",
+      "range": {
+        "startLine": 337,
+        "startChar": 53,
+        "endLine": 337,
+        "endChar": 59
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02884ae4_b8af5e9d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "you should detect unknown file types here, not only in 370",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 44
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c06f1ed_35083c68",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "consider making those @properties",
+      "range": {
+        "startLine": 352,
+        "startChar": 0,
+        "endLine": 357,
+        "endChar": 29
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f036e96_0e2b631a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "subprocess.check_output() https://docs.python.org/3.8/library/subprocess.html#subprocess.check_output",
+      "range": {
+        "startLine": 376,
+        "startChar": 40,
+        "endLine": 376,
+        "endChar": 43
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0e2e6e8_e53a9960",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "list comprehension",
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ef9ce58_e47ae77e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "if not obj.startswith(\u0027/\u0027)",
+      "range": {
+        "startLine": 387,
+        "startChar": 19,
+        "endLine": 387,
+        "endChar": 32
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31f4ed41_9155954f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "drop",
+      "range": {
+        "startLine": 406,
+        "startChar": 0,
+        "endLine": 407,
+        "endChar": 30
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1234ae24_1c874a17",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "what is the implication of this?",
+      "range": {
+        "startLine": 467,
+        "startChar": 0,
+        "endLine": 468,
+        "endChar": 24
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b61039c_7555cb63",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-24T00:24:17Z",
+      "side": 1,
+      "message": "again, drop the Info hierarchy, it is not really giving any benefit.\n\nInfo\n  .has_error()\n  .has_Kmod()\n  .has_Kernel()\n\netc.",
+      "range": {
+        "startLine": 536,
+        "startChar": 6,
+        "endLine": 536,
+        "endChar": 14
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
