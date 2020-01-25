@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7c8695e4_0d8f32fe",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Dropped, I sure liked putting a breakpoint in stop() previously, I guess pdb3 probably stops\nwhen exceptions are raised in a way that the stack can be walked with \"up\"",
+      "parentUuid": "7dc28dc4_b8a25c7a",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 38
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1097dc7d_d25d23cc",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -39,6 +63,24 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15892f57_fd46a61a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "I already started using logging. These are leftovers from the current argument handling, not\nthe most important part of the program to fiddle with right now. When the program is done\nthis will be taken care of. Added TODO about this.  The pylint3 program shows the TODO()s\nso they won\u0027t be ignored, I continuously see them.",
+      "parentUuid": "1097dc7d_d25d23cc",
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "91d763fb_0ba97473",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "I will deal with arguments at a later phase when the program is close to being done.",
+      "parentUuid": "564b47cf_1882438c",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 58
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a64859c_381442e5",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -85,6 +151,30 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbc4f603_ea8c873d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Fixed comment.",
+      "parentUuid": "1a64859c_381442e5",
+      "range": {
+        "startLine": 130,
+        "startChar": 40,
+        "endLine": 130,
+        "endChar": 74
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "3dca5bd4_b7bcc78b",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Added code explaining about why this returns \"\", []",
+      "parentUuid": "1e324704_4cca42df",
+      "range": {
+        "startLine": 139,
+        "startChar": 15,
+        "endLine": 139,
+        "endChar": 17
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a13d728_10ca0930",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -131,6 +245,30 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "801c576d_018e9f95",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0a13d728_10ca0930",
+      "range": {
+        "startLine": 179,
+        "startChar": 4,
+        "endLine": 179,
+        "endChar": 18
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "c5821b2e_015d287a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0648fd30_e47fd2c9",
+      "range": {
+        "startLine": 221,
+        "startChar": 52,
+        "endLine": 221,
+        "endChar": 57
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78c9b322_399567b7",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -177,6 +339,30 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b58c65d_8194ecde",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "I want it in the object for possible future debug ability.",
+      "parentUuid": "78c9b322_399567b7",
+      "range": {
+        "startLine": 224,
+        "startChar": 8,
+        "endLine": 224,
+        "endChar": 21
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -203,6 +389,30 @@
     },
     {
       "key": {
+        "uuid": "c10c3a4a_d4548e18",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4ed411bd_a1490811",
+      "range": {
+        "startLine": 228,
+        "startChar": 34,
+        "endLine": 228,
+        "endChar": 39
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0eaf488f_d8871866",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -226,6 +436,30 @@
     },
     {
       "key": {
+        "uuid": "1e00ab38_a9aec3cd",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Fixed the comment.",
+      "parentUuid": "0eaf488f_d8871866",
+      "range": {
+        "startLine": 237,
+        "startChar": 15,
+        "endLine": 237,
+        "endChar": 23
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75cc2240_e314f427",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -240,6 +474,24 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c17c3bcc_759e5ecb",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "For a simple one line test I don\u0027t want to invent a whole class, in other places you\u0027ve asked\nto inline trivial functions.",
+      "parentUuid": "75cc2240_e314f427",
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -266,6 +518,30 @@
     },
     {
       "key": {
+        "uuid": "22a4c322_7cd68384",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d9bb41a7_341a7d5f",
+      "range": {
+        "startLine": 248,
+        "startChar": 7,
+        "endLine": 254,
+        "endChar": 31
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "00e273ed_5eb2a966",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -286,6 +562,30 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88f96a67_3d9a6573",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Inlined the code in the two places where it was used (self.get_kofile_name()), not that this\nwould have been easily broken.",
+      "parentUuid": "00e273ed_5eb2a966",
+      "range": {
+        "startLine": 268,
+        "startChar": 27,
+        "endLine": 268,
+        "endChar": 42
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -312,6 +612,30 @@
     },
     {
       "key": {
+        "uuid": "c54227c0_d0f17cb3",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "23f68ade_29ccc884",
+      "range": {
+        "startLine": 270,
+        "startChar": 21,
+        "endLine": 270,
+        "endChar": 46
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93e6c128_01f4ebde",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -332,6 +656,30 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bcd488a_1b0e8c69",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "93e6c128_01f4ebde",
+      "range": {
+        "startLine": 291,
+        "startChar": 8,
+        "endLine": 293,
+        "endChar": 79
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -358,6 +706,30 @@
     },
     {
       "key": {
+        "uuid": "d8a01b2d_e4d3378c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Added comment.",
+      "parentUuid": "1d9d0d48_57c73391",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 295,
+        "endChar": 75
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "400117f5_afafa3cc",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -378,6 +750,30 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7609ecb6_e8cc3ea8",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "400117f5_afafa3cc",
+      "range": {
+        "startLine": 300,
+        "startChar": 8,
+        "endLine": 300,
+        "endChar": 19
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -421,6 +817,48 @@
     },
     {
       "key": {
+        "uuid": "099fc7c9_d4e0da94",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad0f3127_2aa4d746",
+      "range": {
+        "startLine": 309,
+        "startChar": 8,
+        "endLine": 309,
+        "endChar": 12
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09836aa2_51b199de",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "34518700_1cde73c9",
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54641767_fa299926",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -435,6 +873,24 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ff459f5_6f2115cf",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "54641767_fa299926",
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -461,6 +917,30 @@
     },
     {
       "key": {
+        "uuid": "f8cbe4a5_8da4b500",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad388588_70b52fda",
+      "range": {
+        "startLine": 321,
+        "startChar": 42,
+        "endLine": 321,
+        "endChar": 57
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb004f64_823bbbb0",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -481,6 +961,30 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d08b6f9c_a3e6ce21",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cb004f64_823bbbb0",
+      "range": {
+        "startLine": 337,
+        "startChar": 53,
+        "endLine": 337,
+        "endChar": 59
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -507,6 +1011,30 @@
     },
     {
       "key": {
+        "uuid": "cec38e77_65c7fbf9",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Checking here or there is equivalent.  How early an error is detected is not that important\nin this case.",
+      "parentUuid": "02884ae4_b8af5e9d",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 44
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c06f1ed_35083c68",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -527,6 +1055,30 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6c90626c_3034b501",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Don\u0027t see much the value of that right now. When the program is done I\u0027ll learn more about\nthe value of that, seems rather complicated.",
+      "parentUuid": "9c06f1ed_35083c68",
+      "range": {
+        "startLine": 352,
+        "startChar": 0,
+        "endLine": 357,
+        "endChar": 29
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -553,6 +1105,30 @@
     },
     {
       "key": {
+        "uuid": "f0c10b7d_ea952334",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "That one raises an exception if the program failed. run() only raises an exception if the\nprocess creation failed (i.e. execve(2) failed).  I prefer to check the status of the\nprogram explicitly as the code does than to have to know about yet another exception type\nand catch it for that condition.\n\nThe same will be the case with other program execution (the compiler) where I expect failures\nwhile determining which #define values are compile time constant expressions and which are not.\n\nFor that case I also prefer to check the exit status explicitly with an \"if\".  Please remember\nthat try / except is nothing more than a glorified longjmp(3) / setjmp(3) i.e. a non-local\ngoto.  And making things trigger exception can not make the code any clearer than just checking\nsomething explicitly.",
+      "parentUuid": "1f036e96_0e2b631a",
+      "range": {
+        "startLine": 376,
+        "startChar": 40,
+        "endLine": 376,
+        "endChar": 43
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0e2e6e8_e53a9960",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -567,6 +1143,24 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10c05a61_01d148b4",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "The olist list is built as a result of the actions of both for loops, one nested in the other.\nI think it would make the code incomprehensible to use list comprehension across both loops.\nDoing it across the inner for only would result in a list that would then have to be appended\nto the outer list. Instead of building a list just to append it to another list. It seems best\nto leave this as it is.",
+      "parentUuid": "a0e2e6e8_e53a9960",
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -593,6 +1187,30 @@
     },
     {
       "key": {
+        "uuid": "b70ea3bc_fbd96625",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5ef9ce58_e47ae77e",
+      "range": {
+        "startLine": 387,
+        "startChar": 19,
+        "endLine": 387,
+        "endChar": 32
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31f4ed41_9155954f",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -613,6 +1231,30 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8de78c6_e082cec7",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "31f4ed41_9155954f",
+      "range": {
+        "startLine": 406,
+        "startChar": 0,
+        "endLine": 407,
+        "endChar": 30
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -639,6 +1281,30 @@
     },
     {
       "key": {
+        "uuid": "f96b0f5b_c7e7d9bb",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Added comment explaining.",
+      "parentUuid": "1234ae24_1c874a17",
+      "range": {
+        "startLine": 467,
+        "startChar": 0,
+        "endLine": 468,
+        "endChar": 24
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b61039c_7555cb63",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 18
@@ -659,6 +1325,30 @@
       "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ed148f3_c8da0f9f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-25T02:43:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2b61039c_7555cb63",
+      "range": {
+        "startLine": 536,
+        "startChar": 6,
+        "endLine": 536,
+        "endChar": 14
+      },
+      "revId": "e6be8ec377cbb97c3f6db9ab6a8472da686b5879",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
