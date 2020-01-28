@@ -1,0 +1,181 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d298340_3fa055fc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-28T16:54:27Z",
+      "side": 1,
+      "message": "Please rework the commit message to describe what this change actually does, not it\u0027s history.",
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a770e14_278be690",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-28T16:54:27Z",
+      "side": 1,
+      "message": "I would prefer returning (None, []) or even (None, None) to avoid misuse of the API",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 21
+      },
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcf9858b_c226f7a5",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-28T16:54:27Z",
+      "side": 1,
+      "message": "return None to avoid misuse",
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3665232b_68465cee",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-28T16:54:27Z",
+      "side": 1,
+      "message": "would be nice if you could split this up a bit. e.g. replace the loop by\n\n self._targets \u003d process_object_files()\n\n\nDepending on whether my next suggestion works out (using only .cmd), you might want to split the obj file processing even further ...",
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59a2d88c_786adc98",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-28T16:54:27Z",
+      "side": 1,
+      "message": "I wonder whether we can extract this from the cmd file already. To have the .keep file around requires a kernel patch. I would like to avoid that. Is this reasonable?",
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6827fe1_01278d17",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-28T16:54:27Z",
+      "side": 1,
+      "message": "combine those",
+      "range": {
+        "startLine": 521,
+        "startChar": 0,
+        "endLine": 525,
+        "endChar": 72
+      },
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d47ad03_56e98781",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-28T16:54:27Z",
+      "side": 1,
+      "message": "I would rather like to see\n\n  raise KernelComponentCreationError\n\nhere, but I understand that this might become tricky when running this on the whole build tree with multiprocessing.",
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "76d4342a_cb356457",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-28T16:54:27Z",
+      "side": 1,
+      "message": "measurable",
+      "range": {
+        "startLine": 571,
+        "startChar": 35,
+        "endLine": 571,
+        "endChar": 44
+      },
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b54d7e9_d3e07300",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-28T16:54:27Z",
+      "side": 1,
+      "message": "with the TODO addressed and KernelComponentCreationError implemented as Exception, the code could look like this\n\n    try:\n      comp \u003d kernel_component_factory(args.file)\n    except KernelComponentCreationError as e:\n      logging(e.message()\n      return 1\n\nSimilar above in work_on_whole_build(), but that requires a bit more work to collect the error.",
+      "range": {
+        "startLine": 643,
+        "startChar": 0,
+        "endLine": 652,
+        "endChar": 16
+      },
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
