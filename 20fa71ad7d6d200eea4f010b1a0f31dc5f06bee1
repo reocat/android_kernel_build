@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "e16723ba_45b120d9",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Added in patch set 21 a TODO to ensure that this is done when the code is fully reviewed.",
+      "parentUuid": "a468d4b9_f9e8f18d",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2da3cd4_08aada69",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1065,6 +1083,30 @@
     },
     {
       "key": {
+        "uuid": "fe839852_6e466814",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "But an OSError is a very low level exception. It contains the errno and its corresponding\nerror string. Nowhere does it contain the name of the file in question. So if an open fails\nor a read fails there is only low level information. I prefer to have higher level application\ninformation.",
+      "parentUuid": "bc963890_734459a3",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 49
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f049fea_eeab3a03",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1133,6 +1175,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d569f47b_71eeac53",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "In patch set 19 the stop() function was removed and all the exceptions are raised\nwith raise directly.",
+      "parentUuid": "6afc821e_a7f9b5b0",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 27
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1207,6 +1273,30 @@
     },
     {
       "key": {
+        "uuid": "fc7b9127_bc22cebe",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Removed in patch set 21.",
+      "parentUuid": "bfa16751_9232f088",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 40
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5f4e3ac_c719e99e",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1275,6 +1365,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "815dbab1_43760242",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Combined with the one below in patch set 21.",
+      "parentUuid": "31329cba_25a18b77",
+      "range": {
+        "startLine": 146,
+        "startChar": 4,
+        "endLine": 146,
+        "endChar": 26
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1349,6 +1463,30 @@
     },
     {
       "key": {
+        "uuid": "2e53da35_53fb03aa",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Yes, but the combined function just returns a list with the dependencies already, which can\nbe iterated etc with native code in Python. No need to bury that inside a class with methods.\nIts very simple as it is. Turning this into a class is contrary to your other advice about not\ncreating abstractions (functions) that are not needed.  I don\u0027t think functionality merits\nto grow into its own class and related paraphernalia.",
+      "parentUuid": "d358e3d6_0efb5e84",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 37
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49e1c056_7acb25a4",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1417,6 +1555,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41a980b6_12514274",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "IMHO the regular expression based splitting is easier to understand, unless there is something\nparticularly bad about using regular expressions in Python, I\u0027d rather leave this one as is.\nI read that in Python the re module caches the regular expressions and their compilation so\nas to not having to recompile them in each invocation.",
+      "parentUuid": "c55f162f_5f155825",
+      "range": {
+        "startLine": 169,
+        "startChar": 13,
+        "endLine": 169,
+        "endChar": 58
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1620,6 +1782,30 @@
     },
     {
       "key": {
+        "uuid": "b127b641_b4f9ac7e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "I believe that it is better that all the error conditions raised by checks explicitly\ndone by the program are best raised as StopError() exceptions. I don\u0027t think that dispersing\nall the StopError exceptions raised into other suitable pre-existing exceptions is going to\nmake the code any cleaner, it will instead make it harder to maintain and debug. The code as\nit stands, when it catches a StopError can be sure that the issue was related with the work it\nwas doing, not some internal value error that might arise internally deep in some module.",
+      "parentUuid": "17aa357f_aff143ce",
+      "range": {
+        "startLine": 197,
+        "startChar": 4,
+        "endLine": 198,
+        "endChar": 44
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c697a340_4e065cb8",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1688,6 +1874,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80b9e828_3202afbc",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Switching to the code you suggested in patch set 21, thank you.",
+      "parentUuid": "8971f0dd_893ed929",
+      "range": {
+        "startLine": 222,
+        "startChar": 4,
+        "endLine": 226,
+        "endChar": 17
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -1762,6 +1972,30 @@
     },
     {
       "key": {
+        "uuid": "4cd98027_f86d6b7a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "I had read that the regular expressions were compiled and cached by Python so that they\nwould not have to be recompiled over and over.  Anyhow, I have switched the prior function\nto the code you suggested and this one to similar code, but simpler/faster. Fixed in patch\nset 21",
+      "parentUuid": "70bd1cc8_da1537d5",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 79
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b36df5b_0e113663",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -1806,6 +2040,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe53252b_0ac2e644",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "this function was removed in patch set 20",
+      "parentUuid": "85f62c23_da7e19b5",
+      "range": {
+        "startLine": 240,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 18
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -2187,6 +2445,30 @@
     },
     {
       "key": {
+        "uuid": "c0510f41_6dc7554f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Added _ to all data members in patch set 21.",
+      "parentUuid": "968e36bb_49514f22",
+      "range": {
+        "startLine": 308,
+        "startChar": 13,
+        "endLine": 308,
+        "endChar": 17
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "70a1c231_62159329",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -2255,6 +2537,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14fe226c_b1d96091",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Fixed in patch set 19.",
+      "parentUuid": "898d4e96_edcefa90",
+      "range": {
+        "startLine": 312,
+        "startChar": 8,
+        "endLine": 313,
+        "endChar": 59
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -2361,6 +2667,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6839644_097f51ec",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Replace all but one of the uses of dummy_hcd.ko as an example module name, now all but one\nuse modname.ko to speak generically about a module name modname. This is in patch set 21.",
+      "parentUuid": "31bfc6f3_811a687c",
+      "range": {
+        "startLine": 324,
+        "startChar": 49,
+        "endLine": 324,
+        "endChar": 66
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -2479,6 +2809,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd1cbef7_be128c9c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "I believe that it is better that all the error conditions raised by checks explicitly\ndone by the program are best raised as StopError() exceptions. I don\u0027t think that dispersing\nall the StopError exceptions raised into other suitable pre-existing exceptions is going to\nmake the code any cleaner, it will instead make it harder to maintain and debug. The code as\nit stands, when it catches a StopError can be sure that the issue was related with the work it\nwas doing, not some internal value error that might arise internally deep in some module.",
+      "parentUuid": "3f6b3de2_cf2b6fcc",
+      "range": {
+        "startLine": 345,
+        "startChar": 12,
+        "endLine": 345,
+        "endChar": 75
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -2670,6 +3024,30 @@
     },
     {
       "key": {
+        "uuid": "60abbd5b_df7cfdaa",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "As you said elsewhere, I should not code to non-requirements, there is no requirement to\nhave a quick constructor that allows get_build_dir() to be fast and that delays other\ninitialization work for a later time.  Returning fully formed objects as soon as possible\nensures that whatever errors might be raised during their construction occur as soon as\npossible, not lazily at a later time when one of their members is invoked.",
+      "parentUuid": "69473a60_69a24de8",
+      "range": {
+        "startLine": 497,
+        "startChar": 8,
+        "endLine": 497,
+        "endChar": 16
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9aff94f_5631b503",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -2738,6 +3116,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ce6ab26_5f975c0b",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Fixed in patch set 19.",
+      "parentUuid": "8e8f6f7b_34d3d023",
+      "range": {
+        "startLine": 501,
+        "startChar": 16,
+        "endLine": 501,
+        "endChar": 46
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -2812,6 +3214,30 @@
     },
     {
       "key": {
+        "uuid": "7552e3b6_9e32a022",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Changed to archives_and_objects, also changed self.list_a_o to self._archives_and_objects.\nThank you!",
+      "parentUuid": "6cd3e21e_c8fd58ca",
+      "range": {
+        "startLine": 506,
+        "startChar": 8,
+        "endLine": 506,
+        "endChar": 14
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5deec532_aeabaf3f",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -2880,6 +3306,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0a60642_f695c1a5",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Changed to a similar list comprehension in patch set 21.",
+      "parentUuid": "1dce386e_9e38862b",
+      "range": {
+        "startLine": 509,
+        "startChar": 1,
+        "endLine": 513,
+        "endChar": 38
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -3065,6 +3515,24 @@
     },
     {
       "key": {
+        "uuid": "0c524e7e_a85f7712",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Removed in patch set 21.",
+      "parentUuid": "5c1fe096_19b18ccc",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a1671ab_094ec605",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -3115,6 +3583,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "089694ed_6077ebdf",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Dropped in a later patch set.",
+      "parentUuid": "404000e9_2fa3781c",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -3186,6 +3672,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a2c06f3_22dc59ae",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "This has evolved in the newer patch sets.  The notion that there is a KernelComponent that\nwas created successfully remains complemented by the notion of a KernelComponentCreationError\nthat stands for a KernelComponent whose creation failed. This can be refined further later,\nseems clean enough to me. Please advise with respect to code in patch set 21.",
+      "parentUuid": "b79f61bb_74091582",
+      "range": {
+        "startLine": 562,
+        "startChar": 0,
+        "endLine": 563,
+        "endChar": 19
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -3423,6 +3933,30 @@
     },
     {
       "key": {
+        "uuid": "8e11d43f_2190da5e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "I attempted to do so, but it doesn\u0027t server the intended purpose I envisioned for this\ncode. See kernel_component_factory() in patch set 21 where this suggestion is encapsulated\nin a TODO comment. Please advise.",
+      "parentUuid": "fae5e937_5547a6b3",
+      "range": {
+        "startLine": 776,
+        "startChar": 0,
+        "endLine": 776,
+        "endChar": 74
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "125e9ad5_1d15e50e",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -3455,6 +3989,24 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ecda301_e74ca3e2",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Implement this suggestion with the code in the following comment. In patch set 21.",
+      "parentUuid": "cd078888_eba91479",
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -3526,6 +4078,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61f02f1e_19b1c0bd",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Implemented in patch set 21 with the code suggested above feed directly to the pool.map()\nI don\u0027t understand how giving this to the map function:\n   [\"vmlinux.o\"] + [str(ko) for ko in find(\".ko\")]\nis going to allow the directory search to continue in parallel, I\u0027d assume the list needs to\nbe formed to be able to be concatenated by + with [\"vmlinux.o\"]\n\nI will leave a todo to measure any slow down to be able to resolve this comment.",
+      "parentUuid": "995de96f_1816aa9f",
+      "range": {
+        "startLine": 782,
+        "startChar": 0,
+        "endLine": 784,
+        "endChar": 25
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -3644,6 +4220,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c8cf8c7f_8e93a8d7",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Added a TODO() to keep track of this in patch set 21.",
+      "parentUuid": "b09570e2_87d45de7",
+      "range": {
+        "startLine": 790,
+        "startChar": 1,
+        "endLine": 792,
+        "endChar": 1
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -3812,6 +4412,30 @@
     },
     {
       "key": {
+        "uuid": "83eb21e5_43939abc",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "All printing code was removed in a later patch set.",
+      "parentUuid": "812679e1_47871930",
+      "range": {
+        "startLine": 828,
+        "startChar": 0,
+        "endLine": 830,
+        "endChar": 18
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c154034a_62c81d40",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 15
@@ -3880,6 +4504,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "556fd8bf_3e9a2b1d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Argparse use will come with the 2nd half of the code, there is already a TODO() to ensure\nthat this is not missed.",
+      "parentUuid": "2a93f0df_ed2d0cea",
+      "range": {
+        "startLine": 840,
+        "startChar": 4,
+        "endLine": 846,
+        "endChar": 15
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -4127,6 +4775,30 @@
       "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04a2f51e_a0e32ff4",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-28T00:34:59Z",
+      "side": 1,
+      "message": "Yes, the Target objects are not yet used. They are going to be used in the 2nd half shortly",
+      "parentUuid": "be85bfa0_cde4bf96",
+      "range": {
+        "startLine": 866,
+        "startChar": 4,
+        "endLine": 866,
+        "endChar": 11
+      },
+      "revId": "20fa71ad7d6d200eea4f010b1a0f31dc5f06bee1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
