@@ -100,6 +100,11 @@
 #     Keep debug information for distributed modules.
 #     Note, modules will still be stripped when copied into the ramdisk.
 #
+#   TRIM_NONLISTED_KMI
+#     Trim the un-used and non-whitelisted exported symbols from the kernel
+#     image and the in-tree modules. This option depends on having
+#     CONFIG_TRIM_UNUSED_KSYMS set in the kernel configuration.
+#
 #   EXTRA_CMDS
 #     Command evaluated after building and installing kernel and modules.
 #
@@ -289,6 +294,23 @@ if [ -n "${KMI_WHITELIST}" ]; then
           echo >> ${DIST_DIR}/abi_whitelist
           cat "${whitelist}" >> ${DIST_DIR}/abi_whitelist
       done
+    fi
+
+    if [ -n "${TRIM_NONLISTED_KMI}" ]; then
+        if ! $(grep -q "CONFIG_TRIM_UNUSED_KSYMS=y" "${OUT_DIR}/.config"); then
+            echo "ERROR: symbol trimming requires CONFIG_TRIM_UNUSED_KSYMS=y"
+            exit 1
+        fi
+
+	# Create the raw whitelist - XXX: remove comments
+        sed 's/ //g' ${DIST_DIR}/abi_whitelist | grep -v "\[" > \
+                ${OUT_DIR}/abi_whitelist.raw
+
+	# Update the kernel configuration
+	./scripts/config --file ${OUT_DIR}/.config \
+                --set-str UNUSED_KSYMS_WHITELIST abi_whitelist.raw
+        (cd ${OUT_DIR} && \
+                make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS} olddefconfig)
     fi
 
   popd # $ROOT_DIR/$KERNEL_DIR
