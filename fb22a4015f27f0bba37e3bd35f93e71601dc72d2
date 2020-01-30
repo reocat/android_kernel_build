@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ef3e118_3538d0bc",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-01-30T14:43:01Z",
+      "side": 1,
+      "message": "I\u0027m guessing this is fragile -- I\u0027ll see if I can write a python script to do the conversion instead. I\u0027ll use a proper INI parser and handle all the corner cases (no \u0027whitelist\u0027 in the section name, comments, ...) in this script.",
+      "revId": "fb22a4015f27f0bba37e3bd35f93e71601dc72d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
