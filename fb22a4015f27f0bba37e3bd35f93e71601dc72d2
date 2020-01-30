@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "915ee5bb_317ca4b3",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-30T16:49:35Z",
+      "side": 1,
+      "message": "how about just enabling this option then?",
+      "range": {
+        "startLine": 300,
+        "startChar": 8,
+        "endLine": 300,
+        "endChar": 79
+      },
+      "revId": "fb22a4015f27f0bba37e3bd35f93e71601dc72d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6ef3e118_3538d0bc",
         "filename": "build.sh",
         "patchSetId": 1
@@ -13,6 +36,52 @@
       "writtenOn": "2020-01-30T14:43:01Z",
       "side": 1,
       "message": "I\u0027m guessing this is fragile -- I\u0027ll see if I can write a python script to do the conversion instead. I\u0027ll use a proper INI parser and handle all the corner cases (no \u0027whitelist\u0027 in the section name, comments, ...) in this script.",
+      "revId": "fb22a4015f27f0bba37e3bd35f93e71601dc72d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51a61049_3b5bea85",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-30T16:49:35Z",
+      "side": 1,
+      "message": "could UNUSED_KSYMS_WHITELIST not actually depend on CONFIG_TRIM_UNUSED_KSYM\u003dy ?",
+      "range": {
+        "startLine": 311,
+        "startChar": 26,
+        "endLine": 311,
+        "endChar": 48
+      },
+      "revId": "fb22a4015f27f0bba37e3bd35f93e71601dc72d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a17ec0fb_289d9efc",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-01-30T16:49:35Z",
+      "side": 1,
+      "message": "I would prefer to use the absolute path.",
+      "range": {
+        "startLine": 311,
+        "startChar": 49,
+        "endLine": 311,
+        "endChar": 66
+      },
       "revId": "fb22a4015f27f0bba37e3bd35f93e71601dc72d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
