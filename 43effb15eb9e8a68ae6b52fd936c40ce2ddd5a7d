@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "bb898371_99ba7b05",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-31T01:40:06Z",
+      "side": 1,
+      "message": "I believe I\u0027ve pointed this out previously.  Returning None here causes pytype to produce\na type error.  In Python an empty string is False when tested conditionally.  Changing the\ntype declaration of extract_c_src() to return either a str or None (or some universal\ntype compatible with None) seems overly obfuscated.  I don\u0027t see an issue with caller\nknowing what they are calling and following its documentation.",
+      "parentUuid": "9a770e14_278be690",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 21
+      },
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcf9858b_c226f7a5",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 25
@@ -56,6 +80,24 @@
       "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "330d28cc_9a228b27",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-31T01:40:06Z",
+      "side": 1,
+      "message": "I believe I\u0027ve pointed this out previously.  Returning None here causes pytype to produce\na type error.  In Python an empty string is False when tested conditionally.  Changing the\ntype declaration of get_error() to return either a str or None (or some universal\ntype compatible with None) seems overly obfuscated.  I don\u0027t see an issue with caller\nknowing what they are calling and following its documentation.  Note that get_error() is\nimplemented elsewhere and there its return type is also str.",
+      "parentUuid": "bcf9858b_c226f7a5",
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +118,24 @@
     },
     {
       "key": {
+        "uuid": "73ffd3bd_f85b0664",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-31T01:40:06Z",
+      "side": 1,
+      "message": "Yes, the code just grew over the pylint3 complexity barrier when the variable _ was used so now it has this error:\n   kmi_defines.py:463:4: R0914: Too many local variables (16/15) (too-many-locals)\n(that was from the removal of the makefile_assignment_right() function that you made).\n\nThat means that I will continue to see that error until I address this pylint3 regression.\nNo need to track it independently here because of that. Don\u0027t want to leave comments\nunresolved to track things if there is already a way to track them.",
+      "parentUuid": "3665232b_68465cee",
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59a2d88c_786adc98",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 25
@@ -90,6 +150,24 @@
       "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9767ab8a_505c6c95",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-31T01:40:06Z",
+      "side": 1,
+      "message": "So the answer is yes. I will be including that change sooner than later.",
+      "parentUuid": "59a2d88c_786adc98",
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -116,6 +194,30 @@
     },
     {
       "key": {
+        "uuid": "fadd76e7_61a0b93b",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-31T01:40:06Z",
+      "side": 1,
+      "message": "They are different errors, they don\u0027t need to be combined into a less detailed error.",
+      "parentUuid": "f6827fe1_01278d17",
+      "range": {
+        "startLine": 521,
+        "startChar": 0,
+        "endLine": 525,
+        "endChar": 72
+      },
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d47ad03_56e98781",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 25
@@ -127,6 +229,24 @@
       "writtenOn": "2020-01-28T16:54:27Z",
       "side": 1,
       "message": "I would rather like to see\n\n  raise KernelComponentCreationError\n\nhere, but I understand that this might become tricky when running this on the whole build tree with multiprocessing.",
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "90d99990_2b0753fe",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-31T01:40:06Z",
+      "side": 1,
+      "message": "I think it works ok and the flow is very comprehensible as it is. One is the error raised,\nthe other is what stands for a failed KernelComponent that when run in parallel failed.\nSequential execution is mostly for debug.",
+      "parentUuid": "9d47ad03_56e98781",
       "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -156,6 +276,30 @@
     },
     {
       "key": {
+        "uuid": "aac855e7_789b0fcf",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-31T01:40:06Z",
+      "side": 1,
+      "message": "Fixed in patch set 27",
+      "parentUuid": "76d4342a_cb356457",
+      "range": {
+        "startLine": 571,
+        "startChar": 35,
+        "endLine": 571,
+        "endChar": 44
+      },
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b54d7e9_d3e07300",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 25
@@ -176,6 +320,30 @@
       "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7f392f9_5ed6c451",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-01-31T01:40:06Z",
+      "side": 1,
+      "message": "Yes, but this single component path is for ongoing debugging. See comment above.",
+      "parentUuid": "4b54d7e9_d3e07300",
+      "range": {
+        "startLine": 643,
+        "startChar": 0,
+        "endLine": 652,
+        "endChar": 16
+      },
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
