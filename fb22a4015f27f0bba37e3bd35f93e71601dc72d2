@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "666ceee0_754de12f",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-01-31T12:43:39Z",
+      "side": 1,
+      "message": "Right, I guess that\u0027d work too. I was being overly careful I suppose, but this is just a bit confusing indeed.",
+      "parentUuid": "915ee5bb_317ca4b3",
+      "range": {
+        "startLine": 300,
+        "startChar": 8,
+        "endLine": 300,
+        "endChar": 79
+      },
+      "revId": "fb22a4015f27f0bba37e3bd35f93e71601dc72d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ef3e118_3538d0bc",
         "filename": "build.sh",
         "patchSetId": 1
@@ -85,6 +109,54 @@
       "revId": "fb22a4015f27f0bba37e3bd35f93e71601dc72d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "af0e3918_9973f45e",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-01-31T12:43:39Z",
+      "side": 1,
+      "message": "Right, it actually does depend on TRIM_UNUSED_KSYM in the current form of my patch, so just setting UNUSED_KSYMS_WHITELIST here should suffice to enable it too :)",
+      "parentUuid": "51a61049_3b5bea85",
+      "range": {
+        "startLine": 311,
+        "startChar": 26,
+        "endLine": 311,
+        "endChar": 48
+      },
+      "revId": "fb22a4015f27f0bba37e3bd35f93e71601dc72d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "160c2d41_23334986",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-01-31T12:43:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a17ec0fb_289d9efc",
+      "range": {
+        "startLine": 311,
+        "startChar": 49,
+        "endLine": 311,
+        "endChar": 66
+      },
+      "revId": "fb22a4015f27f0bba37e3bd35f93e71601dc72d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
