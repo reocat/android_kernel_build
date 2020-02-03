@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23bc48fc_ffbc1ab0",
+        "filename": "abi/flatten_whitelist",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-03T22:19:56Z",
+      "side": 1,
+      "message": "input_path, output_path",
+      "range": {
+        "startLine": 22,
+        "startChar": 22,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "e8e8faf879b6e6ed62a63790384b6b2b6616887e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd735285_91022226",
+        "filename": "abi/flatten_whitelist",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-03T22:19:56Z",
+      "side": 1,
+      "message": "prefer list comprehension:\n\n  for section in [s for s in wl.sections() if s.endswith(\u0027whitelist\u0027)]:",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 76
+      },
+      "revId": "e8e8faf879b6e6ed62a63790384b6b2b6616887e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5a71281_4ca7184e",
+        "filename": "abi/flatten_whitelist",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-03T22:19:56Z",
+      "side": 1,
+      "message": "Also, consider emitting a set to avoid duplicates naturally sneaking in the way we combine whitelists and sorted for deterministic and debuggable output.",
+      "revId": "e8e8faf879b6e6ed62a63790384b6b2b6616887e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "17247341_d5c8f4a3",
+        "filename": "abi/flatten_whitelist",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-03T22:19:56Z",
+      "side": 1,
+      "message": "f.write(\u0027\\n\u0027.join(wl[sec])",
+      "range": {
+        "startLine": 29,
+        "startChar": 12,
+        "endLine": 30,
+        "endChar": 44
+      },
+      "revId": "e8e8faf879b6e6ed62a63790384b6b2b6616887e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bc29646_718bd6da",
+        "filename": "abi/flatten_whitelist",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-03T22:19:56Z",
+      "side": 1,
+      "message": "nit:  Python docs don\u0027t have a leading blank and ends with a period [PEP 257].",
+      "revId": "e8e8faf879b6e6ed62a63790384b6b2b6616887e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
