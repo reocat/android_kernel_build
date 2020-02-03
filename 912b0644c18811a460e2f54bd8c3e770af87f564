@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ece976fb_6c3439a8",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-03T22:24:37Z",
+      "side": 1,
+      "message": "and possibly ADDITIONAL_KMI_WHITELISTS",
+      "range": {
+        "startLine": 107,
+        "startChar": 6,
+        "endLine": 107,
+        "endChar": 19
+      },
+      "revId": "912b0644c18811a460e2f54bd8c3e770af87f564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ab42935_46002af4",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-03T22:24:37Z",
+      "side": 1,
+      "message": "I wasn\u0027t sure, but flatten_whitelist could also be implemented in terms of an stdin/stdout filter: stdin \u003e flatten_whitelist \u003e stdout. That would take away the parameters. But I was not entirely sure, what do you think?",
+      "revId": "912b0644c18811a460e2f54bd8c3e770af87f564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
