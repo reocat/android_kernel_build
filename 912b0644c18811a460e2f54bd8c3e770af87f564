@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "57e2530b_92b3df00",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-02-04T09:52:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ece976fb_6c3439a8",
+      "range": {
+        "startLine": 107,
+        "startChar": 6,
+        "endLine": 107,
+        "endChar": 19
+      },
+      "revId": "912b0644c18811a460e2f54bd8c3e770af87f564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ab42935_46002af4",
         "filename": "build.sh",
         "patchSetId": 3
@@ -39,6 +63,24 @@
       "revId": "912b0644c18811a460e2f54bd8c3e770af87f564",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a56a3b6d_bd54c344",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-02-04T09:52:40Z",
+      "side": 1,
+      "message": "Sounds reasonable. I should be able to pass sys.stdin to configparser.read(), and then just print the output. That would simplify things a bit, I\u0027ll have a look :)",
+      "parentUuid": "8ab42935_46002af4",
+      "revId": "912b0644c18811a460e2f54bd8c3e770af87f564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
