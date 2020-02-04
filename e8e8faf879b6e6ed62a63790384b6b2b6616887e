@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "944b22bd_1e33dbbb",
+        "filename": "abi/flatten_whitelist",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-04T11:29:19Z",
+      "side": 1,
+      "message": "you can make it a generator expression with parentheses instead of brackets",
+      "parentUuid": "76567fb2_de3ecb68",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 76
+      },
+      "revId": "e8e8faf879b6e6ed62a63790384b6b2b6616887e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f5a71281_4ca7184e",
         "filename": "abi/flatten_whitelist",
         "patchSetId": 2
