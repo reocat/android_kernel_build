@@ -58,6 +58,7 @@ PROGRAM = os.path.basename(sys.argv[0])
 
 HIDDEN_DEP = "include/generated/autoconf.h"
 
+
 class StopError(Exception):
     """Exception raised to stop work when an unexpected error occurs."""
 
@@ -230,6 +231,26 @@ def shell_line_to_o_files_list(line: str) -> List[str]:
     return [entry for entry in line.split() if entry.endswith(".o")]
 
 
+def run(args: List[str],
+        raise_on_failure: bool = True) -> subprocess.CompletedProcess:
+    """Run the program specified in args[0] with the arguments in args[1:]."""
+    try:
+        #   This argument does not always work for subprocess.run() below:
+        #       check=False
+        #   neither that nor:
+        #       check=True
+        #   prevents an exception from being raised if the program that
+        #   will be executed is not found
+
+        completion = subprocess.run(args, capture_output=True, text=True)
+        if completion.returncode != 0 and raise_on_failure:
+            raise StopError("execution failed for: " + " ".join(args))
+        return completion
+    except OSError as os_error:
+        raise StopError("failure executing: " + " ".join(args) + "\n"
+                        "original OSError: " + str(os_error.args))
+
+
 class KernelModule:
     """A kernel module, i.e. a *.ko file."""
     def __init__(self, kofile: str) -> None:
@@ -389,19 +410,8 @@ class Kernel:
             if not file.endswith(".a"):
                 raise StopError("unknown file type: " + file)
 
-            try:
-                #   This argument does not always work: check=False
-                #   neither that nor: check=True prevents an exception from
-                #   being raised if "ar" can not be found
-                completion = subprocess.run(["ar", "t", file],
-                                            capture_output=True,
-                                            text=True)
-                if completion.returncode != 0:
-                    raise StopError("ar failed for: ar t " + file)
-                objs = lines_to_list(completion.stdout)
-            except OSError as os_error:
-                raise StopError("failure executing: ar t", file, "\n"
-                                "original OSError: " + str(os_error.args))
+            completion = run(["ar", "t", file])
+            objs = lines_to_list(completion.stdout)
 
             for obj in objs:
                 if not os.path.isabs(obj):
@@ -413,6 +423,14 @@ class Kernel:
 
 class Target:  # pylint: disable=too-few-public-methods
     """Target of build and the information used to build it."""
+
+    MIN_CC_LIST_LEN = 6
+    WP_MD_FLAG_INDEX = 1
+    C_FLAG_INDEX = -4
+    O_FLAG_INDEX = -3
+    OBJ_INDEX = -2
+    SRC_INDEX = -1
+
     def __init__(self, obj: str, src: str, cc_line: str,
                  deps: List[str]) -> None:
         self._obj = obj
@@ -458,12 +476,45 @@ class Target:  # pylint: disable=too-few-public-methods
             r"-D\1=\2", cc_line)
         cc_list = cc_cmd.split()
 
-        #   At least: cc -c -o file.o file.c (last four must be those shown)
-        if (len(cc_list) < 5 or cc_list[-4] != "-c" or cc_list[-3] != "-o"
-                or not obj.endswith(cc_list[-2])
-                or not src.endswith(cc_list[-1])):
-            raise StopError("unexpected or missing arguments for " + obj +
+        #   The compiler invocation has this form:
+        #       clang -Wp,-MD,file.o.d  ... -c -o file.o file.c
+        #
+        #   The following checks are here to ensure that if this assumption is
+        #   broken, failures occur.  The indexes *_INDEX are hardcoded, they
+        #   could in principle be determined at run time, the -o argument could
+        #   be in a future update to the Linux build could changed to be a
+        #   single argument with the object file name (as in: -ofile.o) which
+        #   could also be detected in code at a later time.
+
+        if (len(cc_list) < Target.MIN_CC_LIST_LEN
+                or not cc_list[Target.WP_MD_FLAG_INDEX].startswith("-Wp,-MD,")
+                or cc_list[Target.C_FLAG_INDEX] != "-c"
+                or cc_list[Target.O_FLAG_INDEX] != "-o"):
+            raise StopError("unexpected or missing arguments for: " + obj +
                             " cc_line: " + cc_line)
+
+        #   Instead of blindly normalizing the source and object arguments,
+        #   they are only normalized if that allows the expected invariants
+        #   to be verified, otherwise they are left undisturbed.  Note that
+        #   os.path.normpath() does not turn relative paths into absolute
+        #   paths, it just removes up-down walks (e.g. a/b/../c -> a/c).
+
+        obj_in_cc_list = cc_list[Target.OBJ_INDEX]
+        if not obj.endswith(obj_in_cc_list):
+            obj_mormalized = os.path.normpath(obj_in_cc_list)
+            if not obj.endswith(obj_mormalized):
+                raise StopError("unexpected object argument for: " + obj +
+                                " value was: " + obj_in_cc_list)
+            cc_list[Target.OBJ_INDEX] = obj_mormalized
+
+        src_in_cc_list = cc_list[Target.SRC_INDEX]
+        if not src.endswith(src_in_cc_list):
+            src_normalized = os.path.normpath(src_in_cc_list)
+            if not src.endswith(src_normalized):
+                raise StopError("unexpected source argument for: " + obj +
+                                " value was: " + src_in_cc_list)
+            cc_list[Target.SRC_INDEX] = src_normalized
+
         self._cc_list = cc_list
 
 
