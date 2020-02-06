@@ -644,12 +644,75 @@ def kernel_component_factory(filename: str) -> KernelComponentBase:
 
 def work_on_all_components(args) -> List[KernelComponentBase]:
     """Return a list of KernelComponentBase objects."""
-    files = ["vmlinux.o"] + [str(ko) for ko in pathlib.Path().rglob("*.ko")]
+    files = [str(ko) for ko in pathlib.Path().rglob("*.ko")]
     if args.sequential:
-        return [kernel_component_factory(file) for file in files]
-    with multiprocessing.Pool(os.cpu_count()) as pool:
-        components = pool.map(kernel_component_factory, files)
-    return components
+        return [
+            kernel_component_factory(file) for file in ["vmlinux.o"] + files
+        ]
+
+    #   Prior to the changes described below the CPU use time for a 4.19
+    #   allmodconfig kernel was:
+    #       real    1m53.605s
+    #       user    4m29.334s
+    #       sys     16m59.105s
+    #
+    #   Use of the chunk_size argumet to pool.map() causes very significant
+    #   system CPU usage time reduction to more than 13.5 minutes, but it
+    #   increases the real time by 35 seconds:
+    #       real    2m37.096s
+    #       user    4m32.222s
+    #       sys     3m16.068s
+    #
+    #   To address the increase in real time, the kernel_component_factory()
+    #   invocation on "vmlinux.o" is run in its own dedicated process, because
+    #   the number of .o files involved for it very large comparend to the
+    #   number of .o files for kernel modules.  The kernel_component_factory()
+    #   invocations for the kernel modules occur with a multiprocessing.Pool().
+    #
+    #   This CPU use times after separating the work for vmlinux.o is:
+    #       real    1m32.939s
+    #       user    4m28.241s
+    #       sys     3m36.381s
+    #
+    #   Note the 20 second real time speedup from the code without chunk_size
+    #   specification, and the 1 minute speedup from the code with chunk_size
+    #   specification.  This last change does increase the system CPU time by
+    #   20 seconds, but it is uses over 13 minutes less of system time.
+    #
+    #   The numbers above are representative across multiple-runs, the speedups
+    #   are enough to merit the use of chunk_size and a dedicated process for
+    #   to work on "vmlinux.o" as soon as possible and without that work
+    #   postponing the parallel work on the kernel modules.
+
+    class KernelComponentProcess(multiprocessing.Process):
+        """Process to make the KernelComponent concurrently."""
+        def __init__(self, queue: multiprocessing.Queue) -> None:
+            multiprocessing.Process.__init__(self)
+            self._queue = queue
+
+        def run(self) -> None:
+            """Create and save the KernelComponent."""
+            self._queue.put(kernel_component_factory("vmlinux.o"))
+
+    queue = multiprocessing.Queue()
+    kernel_component_process = KernelComponentProcess(queue)
+    kernel_component_process.start()
+
+    cpu_count = os.cpu_count()
+    split = cpu_count // 4
+    if split < 4:
+        split = 4
+    chunk_size = len(files) // split
+    if chunk_size == 0:
+        chunk_size = 1
+
+    with multiprocessing.Pool(cpu_count) as pool:
+        components = pool.map(kernel_component_factory, files, chunk_size)
+
+    kernel_component = queue.get()
+    kernel_component_process.join()  # after queue.get(), deadlock otherwise!
+
+    return [kernel_component] + components
 
 
 def work_on_whole_build(options) -> int:
