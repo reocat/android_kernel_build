@@ -32,7 +32,7 @@ import pathlib
 import re
 import subprocess
 import sys
-from typing import List, Tuple, Iterable
+from typing import List, Tuple
 from typing import Set  # pytype needs this, pylint: disable=unused-import
 
 COMPILER = "clang"  # TODO(pantin): should be determined at run-time
@@ -40,6 +40,23 @@ DEBUG = True  # TODO(pantin): should be a program argument
 INDENT = 4  # number of spaces to indent for each depth level
 PROGRAM = os.path.basename(sys.argv[0])
 
+#   Dependency that is hidden by the transformation of the .o.d file into
+#   the .o.cmd file as part of the Linux build environment.  This header is
+#   purposely removed and replaced by fictitious set of empty header files
+#   that were never part of the actual compilation of the .o files.  Those
+#   fictitious empty files are generated under the build environment output
+#   directory in this subdirectory:
+#       include/config
+#
+#   This is the actual header file that was part of the compilation of every
+#   .o file, the HIDDEN_DEP are added to the dependencies of every .o file.
+#
+#   It is important that this file be added because it is unknowable whether
+#   the #defines in it were depended upon by a module to alter its behaviour
+#   at compile time.  For example to pass some flags or not pass some flags
+#   to a function.
+
+HIDDEN_DEP = "include/generated/autoconf.h"
 
 class StopError(Exception):
     """Exception raised to stop work when an unexpected error occurs."""
@@ -144,25 +161,6 @@ def makefile_assignment_split(assignment: str) -> Tuple[str, str]:
     return result[0], result[1]  # left, right
 
 
-def extract_c_src(obj: str, dependencies: List[str]) -> Tuple[str, List[str]]:
-    """Separate the C source file from the other dependencies.
-
-    Returns a tuple with the C source code file and a list with the remaining
-    dependencies.  If the source file is not a C source file:
-        return "", []
-    an ealier implementation used:
-         returne None, []
-    but that caused type errors from ptype. Instead of obfuscating the type
-    of the value of this function, returning "", [] is appropriate.
-    """
-    if not dependencies:
-        raise StopError("empty dependencies for: " + obj)
-    src = dependencies[0]
-    if not src.endswith(".c"):
-        return "", []
-    return src, dependencies[1:]
-
-
 def get_src_ccline_deps(obj: str) -> Tuple[str, str, List[str]]:
     """Get the C source file, its cc_line, and non C source dependencies.
 
@@ -173,26 +171,48 @@ def get_src_ccline_deps(obj: str) -> Tuple[str, str, List[str]]:
     Otherwise it returns a triplet with the C source file name, its cc_line,
     the remaining dependencies.
     """
-    dot_obj = os.path.join(os.path.dirname(obj), "." + os.path.basename(obj))
-    cmd = dot_obj + ".cmd"
-    content = readfile(cmd)
-    line = lines_get_first_line(content)
-    _, cc_line = makefile_assignment_split(line)
+    o_cmd = os.path.join(os.path.dirname(obj),
+                         "." + os.path.basename(obj) + ".cmd")
+
+    contents = readfile(o_cmd)
+    contents = re.sub(r"\$\(wildcard[^)]*\)", " ", contents)
+    contents = re.sub(r"[ \t]*\\\n[ \t]*", " ", contents)
+    lines = lines_to_list(contents)
+
+    cc_line = ""
+    deps = ""
+    source = ""
+    for line in lines:
+        if line.startswith("cmd_"):
+            cc_line = line
+        elif line.startswith("deps_"):
+            deps = line
+        elif line.startswith("source_"):
+            source = line
+
+    if not cc_line:
+        raise StopError("missing cmd_* variable in: " + o_cmd)
+    _, cc_line = makefile_assignment_split(cc_line)
     if cc_line.split(maxsplit=1)[0] != COMPILER:
         #   The object file was made by strip, symbol renames, etc.
         #   i.e. it was not the result of running the compiler, thus
         #   it can not contribute to #define compile time constants.
         return "", "", []
 
-    odkeep = dot_obj + ".d.keep"
-    file_must_exist(odkeep)
-    content = readfile(odkeep)
-    src, dependendencies = extract_c_src(
-        obj, makefile_depends_get_dependencies(content))
-    if not src:
+    if not source:
+        raise StopError("missing source_* variable in: " + o_cmd)
+    _, source = makefile_assignment_split(source)
+    source = source.strip()
+    if not source.endswith(".c"):
         return "", "", []
 
-    return src, cc_line, dependendencies
+    if not deps:
+        raise StopError("missing deps_* variable in: " + o_cmd)
+    _, deps = makefile_assignment_split(deps)
+    dependendencies = deps.split()
+    dependendencies.append(HIDDEN_DEP)
+
+    return source, cc_line, dependendencies
 
 
 def lines_to_list(lines: str) -> List[str]:
@@ -564,24 +584,6 @@ def kernel_component_factory(filename: str) -> KernelComponentBase:
     except StopError as stop_error:
         return KernelComponentCreationError(filename,
                                             " ".join([*stop_error.args]))
-
-
-def all_ko_and_vmlinux() -> Iterable[str]:
-    """Generator that yields vmlinux.o and all the *.ko files."""
-
-    #   TODO(pantin): remove if no measurable slowdown when using (below):
-    #
-    #   components = pool.map(kernel_component_factory, ["vmlinux.o"] +
-    #                         [str(ko) for ko in pathlib.Path().rglob("*.ko")])
-    #
-    #   instead of:
-    #
-    #   components = pool.map(
-    #       kernel_component_factory, all_ko_and_vmlinux())
-    #
-    yield "vmlinux.o"  # yield vmlinux.o so its worked on first
-    for kofile in pathlib.Path().rglob("*.ko"):
-        yield str(kofile)
 
 
 def work_on_all_components() -> List[KernelComponentBase]:
