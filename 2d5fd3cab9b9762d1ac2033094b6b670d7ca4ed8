@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b66508d8_13e28b81",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:02:43Z",
+      "side": 1,
+      "message": "I just learned that typing has an Optional [1] type that lets you either return None or a proper type. In this case, you would apply this to the function signature:\n\n  def get_src_ccline_deps(obj: str) -\u003e Optional[Tuple[str, str, List[str]]]:\n\nNow you return either a tuple or None. To make this look less ugly, you could use a typed named tuple [1]:\n\n  from typing import NamedTuple\n  class CCLineAnalysis(NamedTuple):\n      src: str\n      cc_line: str\n      dependencies: List[str]\n\nAnd your function signature is then:\n\n  def get_src_ccline_deps(obj: str) -\u003e Optional[CCLineAnalysis]:\n\nAnd your callers have to just check for whether there is a value. Also, callers don\u0027t have to check each single value and they can\u0027t misuse the return value as string without checking.\n\nPlease apply this pattern and create follow up commits to correct that behaviour elsewhere (e.g. line 162)\n\n\n[1] https://docs.python.org/3.8/library/typing.html#typing.Optional\n[2] https://docs.python.org/3.8/library/typing.html#typing.NamedTuple",
+      "range": {
+        "startLine": 193,
+        "startChar": 8,
+        "endLine": 193,
+        "endChar": 25
+      },
+      "revId": "2d5fd3cab9b9762d1ac2033094b6b670d7ca4ed8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
