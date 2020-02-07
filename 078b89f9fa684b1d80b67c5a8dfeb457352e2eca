@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65143604_ba57e821",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:07:18Z",
+      "side": 1,
+      "message": "initialize with None",
+      "revId": "078b89f9fa684b1d80b67c5a8dfeb457352e2eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dae6981_52481c01",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:07:18Z",
+      "side": 1,
+      "message": "... and test with\n\n  if cc_line is None:",
+      "revId": "078b89f9fa684b1d80b67c5a8dfeb457352e2eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
