@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "c86c4a51_01ff123e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T09:01:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d298340_3fa055fc",
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a770e14_278be690",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 25
@@ -95,6 +113,24 @@
       "side": 1,
       "message": "I believe I\u0027ve pointed this out previously.  Returning None here causes pytype to produce\na type error.  In Python an empty string is False when tested conditionally.  Changing the\ntype declaration of get_error() to return either a str or None (or some universal\ntype compatible with None) seems overly obfuscated.  I don\u0027t see an issue with caller\nknowing what they are calling and following its documentation.  Note that get_error() is\nimplemented elsewhere and there its return type is also str.",
       "parentUuid": "bcf9858b_c226f7a5",
+      "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b42b89be_7c4c73c4",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T09:01:24Z",
+      "side": 1,
+      "message": "I have a different opinion on this as it requires the user of the API to read the documentation for a thing that could just be enforced by the type system. -- not requiring a change now, just saying that I conceptually disagree with this approach (regardless of what pytype says). Using String|None is equivalent to other languages std::optional e.g.",
+      "parentUuid": "330d28cc_9a228b27",
       "revId": "43effb15eb9e8a68ae6b52fd936c40ce2ddd5a7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
