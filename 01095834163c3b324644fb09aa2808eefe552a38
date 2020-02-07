@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da19922d_0d1fa3a9",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:50:59Z",
+      "side": 1,
+      "message": "use defaultdict:  https://docs.python.org/2.7/library/collections.html#collections.defaultdict",
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d39aaf8_e0d92fd8",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:50:59Z",
+      "side": 1,
+      "message": "you only need args.sequential, no need to pass the complete object",
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "688ba1b5_44edf4e7",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:50:59Z",
+      "side": 1,
+      "message": "return pool.map(...)",
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9f5ce48_31c785a2",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:50:59Z",
+      "side": 1,
+      "message": "I would not pass the whole options object if you actually just need 2 (or 3) values out of it.",
+      "range": {
+        "startLine": 655,
+        "startChar": 24,
+        "endLine": 655,
+        "endChar": 31
+      },
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7dd0de0f_bc97013b",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:50:59Z",
+      "side": 1,
+      "message": "from collections import defaultdict\nheadercount \u003d default_dict(int)",
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28e8be92_678299cb",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:50:59Z",
+      "side": 1,
+      "message": "if options.includes:\n    if options.dump:\n        dump(components)\n\n    for ...",
+      "range": {
+        "startLine": 676,
+        "startChar": 0,
+        "endLine": 678,
+        "endChar": 24
+      },
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
