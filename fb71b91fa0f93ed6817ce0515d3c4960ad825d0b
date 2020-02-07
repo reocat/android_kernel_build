@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2042db8f_74949e07",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:28:47Z",
+      "side": 1,
+      "message": "what is wrong with subprocess.check_output() ? if the executable is not found, handle the FileNotFoundError, otherwise potentially handle subprocess.CalledProcessError. I don\u0027t see why we should now deal with this ourselves?",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 0
+      },
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "075fc1de_89127f77",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:28:47Z",
+      "side": 1,
+      "message": "This following change should be in a separate commit.",
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "090bc903_0a2fb3a8",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:28:47Z",
+      "side": 1,
+      "message": "this constants seem arbitrary and have no comment whatsoever",
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40d9c99c_a8a3552b",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:28:47Z",
+      "side": 1,
+      "message": "it sounds like a problem, ArgumentParser could solve",
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a137d582_f5cd878b",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:28:47Z",
+      "side": 1,
+      "message": "why you don\u0027t just always normalize? and there is a typo, _n_ormalized",
+      "range": {
+        "startLine": 503,
+        "startChar": 8,
+        "endLine": 504,
+        "endChar": 61
+      },
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3afc48d7_0d3faf27",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-07T16:28:47Z",
+      "side": 1,
+      "message": "remove the code duplication",
+      "range": {
+        "startLine": 502,
+        "startChar": 0,
+        "endLine": 516,
+        "endChar": 54
+      },
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
