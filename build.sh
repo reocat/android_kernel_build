@@ -59,6 +59,16 @@
 #     If defined (usually in build.config), also copy that abi definition to
 #     <OUT_DIR>/dist/abi.xml when creating the distribution.
 #
+#   KMI_WHITELIST
+#     Location of the main KMI whitelist file relative to <REPO_ROOT>/KERNEL_DIR
+#     If defined (usually in build.config), also copy that whitelist definition
+#     to <OUT_DIR>/dist/abi_whitelist when creating the distribution.
+#
+#   ADDITIONAL_KMI_WHITELISTS
+#     Location of secondary KMI whitelist files relative to
+#     <REPO_ROOT>/KERNEL_DIR. If defined, these additional whitelists will be
+#     appended to the main one before proceeding to the distribution creation.
+#
 # Environment variables to influence the stages of the kernel build.
 #
 #   SKIP_MRPROPER
@@ -86,6 +96,10 @@
 #   SKIP_EXT_MODULES
 #     if defined, skip building and installing of external modules
 #
+#   DO_NOT_STRIP_MODULES
+#     Keep debug information for distributed modules.
+#     Note, modules will still be stripped when copied into the ramdisk.
+#
 #   EXTRA_CMDS
 #     Command evaluated after building and installing kernel and modules.
 #
@@ -104,6 +118,7 @@
 #     When the BUILD_BOOT_IMG flag is defined, the following flags that point to the
 #     various components needed to build a boot.img also need to be defined.
 #     - MKBOOTIMG_PATH=<path to the mkbootimg.py script which builds boot.img>
+#       (defaults to tools/mkbootimg/mkbootimg.py)
 #     - GKI_RAMDISK_PREBUILT_BINARY=<Name of the GKI ramdisk prebuilt which includes
 #       the generic ramdisk components like init and the non-device-specific rc files>
 #     - VENDOR_RAMDISK_BINARY=<Name of the vendor ramdisk binary which includes the
@@ -111,12 +126,20 @@
 #       device-specific rc files.>
 #     - KERNEL_BINARY=<name of kernel binary, eg. Image.lz4, Image.gz etc>
 #     - BOOT_IMAGE_HEADER_VERSION=<version of the boot image header>
-#     - BASE_ADDRESS=<base address to load the kernel from>
-#     - PAGE_SIZE=<kernel's page size>
+#       (defaults to 3)
 #     - KERNEL_CMDLINE=<string of kernel parameters for boot>
+#     If the BOOT_IMAGE_HEADER_VERSION is less than 3, two additional variables must
+#     be defined:
+#     - BASE_ADDRESS=<base address to load the kernel at>
+#     - PAGE_SIZE=<flash page size>
 #
 #   BUILD_INITRAMFS
 #     if defined, build a ramdisk containing all .ko files and resulting depmod artifacts
+#
+#   MODULES_OPTIONS
+#     A /lib/modules/modules.options file is created on the ramdisk containing
+#     the contents of this variable, lines should be of the form: options
+#     <modulename> <param1>=<val> <param2>=<val> ...
 #
 # Note: For historic reasons, internally, OUT_DIR will be copied into
 # COMMON_OUT_DIR, and OUT_DIR will be then set to
@@ -164,7 +187,7 @@ SIGN_ALGO=sha512
 
 # Save environment parameters before being overwritten by sourcing
 # BUILD_CONFIG.
-CC_ARG=${CC}
+CC_ARG="${CC}"
 
 source "${ROOT_DIR}/build/_setup_env.sh"
 
@@ -182,29 +205,41 @@ export CLANG_TRIPLE CROSS_COMPILE CROSS_COMPILE_ARM32 ARCH SUBARCH
 
 # Restore the previously saved CC argument that might have been overridden by
 # the BUILD_CONFIG.
-[ -n "${CC_ARG}" ] && CC=${CC_ARG}
+[ -n "${CC_ARG}" ] && CC="${CC_ARG}"
 
 # CC=gcc is effectively a fallback to the default gcc including any target
 # triplets. An absolute path (e.g., CC=/usr/bin/gcc) must be specified to use a
 # custom compiler.
 [ "${CC}" == "gcc" ] && unset CC && unset CC_ARG
 
+TOOL_ARGS=()
+
 if [ -n "${CC}" ]; then
-  CC_ARG="CC=${CC} HOSTCC=${CC}"
+  TOOL_ARGS+=("CC=${CC}" "HOSTCC=${CC}")
 fi
 
 if [ -n "${LD}" ]; then
-  LD_ARG="LD=${LD}"
+  TOOL_ARGS+=("LD=${LD}")
 fi
 
-CC_LD_ARG="${CC_ARG} ${LD_ARG}"
+if [ -n "${NM}" ]; then
+  TOOL_ARGS+=("NM=${NM}")
+fi
+
+if [ -n "${OBJCOPY}" ]; then
+  TOOL_ARGS+=("OBJCOPY=${OBJCOPY}")
+fi
+
+# Allow hooks that refer to $CC_LD_ARG to keep working until they can be
+# updated.
+CC_LD_ARG="${TOOL_ARGS[@]}"
 
 mkdir -p ${OUT_DIR}
 echo "========================================================"
 echo " Setting up for build"
 if [ -z "${SKIP_MRPROPER}" ] ; then
   set -x
-  (cd ${KERNEL_DIR} && make ${CC_LD_ARG} O=${OUT_DIR} ${MAKE_ARGS} mrproper)
+  (cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} ${MAKE_ARGS} mrproper)
   set +x
 fi
 
@@ -218,7 +253,7 @@ fi
 
 if [ -z "${SKIP_DEFCONFIG}" ] ; then
 set -x
-(cd ${KERNEL_DIR} && make ${CC_LD_ARG} O=${OUT_DIR} ${MAKE_ARGS} ${DEFCONFIG})
+(cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} ${MAKE_ARGS} ${DEFCONFIG})
 set +x
 
 if [ -n "${POST_DEFCONFIG_CMDS}" ]; then
@@ -243,7 +278,7 @@ echo "========================================================"
 echo " Building kernel"
 
 set -x
-(cd ${OUT_DIR} && make O=${OUT_DIR} ${CC_LD_ARG} ${MAKE_ARGS})
+(cd ${OUT_DIR} && make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS})
 set +x
 
 if [ -n "${POST_KERNEL_BUILD_CMDS}" ]; then
@@ -257,12 +292,16 @@ fi
 rm -rf ${MODULES_STAGING_DIR}
 mkdir -p ${MODULES_STAGING_DIR}
 
+if [ -z "${DO_NOT_STRIP_MODULES}" ]; then
+    MODULE_STRIP_FLAG="INSTALL_MOD_STRIP=1"
+fi
+
 if [ -n "${BUILD_INITRAMFS}" -o  -n "${IN_KERNEL_MODULES}" ]; then
   echo "========================================================"
   echo " Installing kernel modules into staging directory"
 
   (cd ${OUT_DIR} &&                                                           \
-   make O=${OUT_DIR} ${CC_LD_ARG} INSTALL_MOD_STRIP=1                         \
+   make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MODULE_STRIP_FLAG}                   \
         INSTALL_MOD_PATH=${MODULES_STAGING_DIR} ${MAKE_ARGS} modules_install)
 fi
 
@@ -283,9 +322,9 @@ if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -n "${EXT_MODULES}" ]]; then
     mkdir -p ${OUT_DIR}/${EXT_MOD_REL}
     set -x
     make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
-                       O=${OUT_DIR} ${CC_LD_ARG} ${MAKE_ARGS}
+                       O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS}
     make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
-                       O=${OUT_DIR} ${CC_LD_ARG} INSTALL_MOD_STRIP=1          \
+                       O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MODULE_STRIP_FLAG}    \
                        INSTALL_MOD_PATH=${MODULES_STAGING_DIR}                \
                        ${MAKE_ARGS} modules_install
     set +x
@@ -349,15 +388,50 @@ if [ -n "${MODULES}" ]; then
     echo " Creating initramfs"
     set -x
     rm -rf ${INITRAMFS_STAGING_DIR}
-    mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/kernel/
-    cp -r ${MODULES_STAGING_DIR}/lib/modules/*/kernel/* ${INITRAMFS_STAGING_DIR}/lib/modules/kernel/
-    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.* ${INITRAMFS_STAGING_DIR}/lib/modules/
-    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/modules.load
+    # Depmod requires a version number; use 0.0 instead of determining the
+    # actual kernel version since it is not necessary and will be removed for
+    # the final initramfs image.
+    mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/kernel/
+    cp -r ${MODULES_STAGING_DIR}/lib/modules/*/kernel/* ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/kernel/
+    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order
+    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.builtin ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.builtin
 
     if [ -n "${EXT_MODULES}" ]; then
-      mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/extra/
-      cp -r ${MODULES_STAGING_DIR}/lib/modules/*/extra/* ${INITRAMFS_STAGING_DIR}/lib/modules/extra/
+      mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/extra/
+      cp -r ${MODULES_STAGING_DIR}/lib/modules/*/extra/* ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/extra/
+      (cd ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/ && \
+          find extra -type f -name "*.ko" | sort >> modules.order)
     fi
+
+    if [ -n "${DO_NOT_STRIP_MODULES}" ]; then
+      # strip debug symbols off initramfs modules
+      find ${INITRAMFS_STAGING_DIR} -type f -name "*.ko" \
+        -exec ${OBJCOPY:${CROSS_COMPILE}strip} --strip-debug {} \;
+    fi
+
+    # Re-run depmod to detect any dependencies between in-kernel and external
+    # modules. Then, create modules.load based on all the modules compiled.
+    (
+      set +x
+      set +e # disable exiting of error so we can add extra comments
+      cd ${INITRAMFS_STAGING_DIR}
+      DEPMOD_OUTPUT=$(depmod -e -F ${DIST_DIR}/System.map -b . 0.0 2>&1)
+      if [[ "$?" -ne 0 ]]; then
+        echo "$DEPMOD_OUTPUT"
+        exit 1;
+      fi
+      echo "$DEPMOD_OUTPUT"
+      if [[ -n $(echo $DEPMOD_OUTPUT | grep "needs unknown symbol") ]]; then
+        echo "ERROR: out-of-tree kernel module(s) need unknown symbol(s)"
+        exit 1
+      fi
+      set -e
+      set -x
+    )
+    cp ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.load
+    echo "${MODULES_OPTIONS}" > ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.options
+    mv ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/* ${INITRAMFS_STAGING_DIR}/lib/modules/.
+    rmdir ${INITRAMFS_STAGING_DIR}/lib/modules/0.0
 
     (cd ${INITRAMFS_STAGING_DIR} && find . | cpio -H newc -o > ${MODULES_STAGING_DIR}/initramfs.cpio)
     gzip -fc ${MODULES_STAGING_DIR}/initramfs.cpio > ${MODULES_STAGING_DIR}/initramfs.cpio.gz
@@ -379,7 +453,7 @@ if [ -z "${SKIP_CP_KERNEL_HDR}" ]; then
   echo "========================================================"
   echo " Installing UAPI kernel headers:"
   mkdir -p "${KERNEL_UAPI_HEADERS_DIR}/usr"
-  make -C ${OUT_DIR} O=${OUT_DIR} ${CC_LD_ARG}                                \
+  make -C ${OUT_DIR} O=${OUT_DIR} "${TOOL_ARGS[@]}"                           \
           INSTALL_HDR_PATH="${KERNEL_UAPI_HEADERS_DIR}/usr" ${MAKE_ARGS}      \
           headers_install
   # The kernel makefiles create files named ..install.cmd and .install which
@@ -414,10 +488,31 @@ if [ -n "${ABI_DEFINITION}" ]; then
   popd
 fi
 
+# Copy the abi whitelist file from the sources into the dist dir
+if [ -n "${KMI_WHITELIST}" ]; then
+  echo "========================================================"
+  echo " Copying abi whitelist definition to ${DIST_DIR}/abi_whitelist"
+  pushd $ROOT_DIR/$KERNEL_DIR
+    cp "${KMI_WHITELIST}" ${DIST_DIR}/abi_whitelist
+
+    # If there are additional whitelists specified, append them
+    if [ -n "${ADDITIONAL_KMI_WHITELISTS}" ]; then
+      for whitelist in ${ADDITIONAL_KMI_WHITELISTS}; do
+          echo >> ${DIST_DIR}/abi_whitelist
+          cat "${whitelist}" >> ${DIST_DIR}/abi_whitelist
+      done
+    fi
+
+  popd # $ROOT_DIR/$KERNEL_DIR
+fi
+
 echo "========================================================"
 echo " Files copied to ${DIST_DIR}"
 
 if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
+	if [ -z "${BOOT_IMAGE_HEADER_VERSION}" ]; then
+		BOOT_IMAGE_HEADER_VERSION="3"
+	fi
 	MKBOOTIMG_BASE_ADDR=
 	MKBOOTIMG_PAGE_SIZE=
 	MKBOOTIMG_CMDLINE=
@@ -431,12 +526,16 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 		MKBOOTIMG_CMDLINE="--cmdline \"${KERNEL_CMDLINE}\""
 	fi
 
-	DTB_FILE_LIST=$(find ${DIST_DIR} -name "*.dtb")
-	if [ -z "${DTB_FILE_LIST}" ]; then
-		echo "No *.dtb files found in ${DIST_DIR}"
-		exit 1
+	MKBOOTIMG_DTB=
+	if [ "${BOOT_IMAGE_HEADER_VERSION}" -lt "3" ]; then
+		DTB_FILE_LIST=$(find ${DIST_DIR} -name "*.dtb")
+		if [ -z "${DTB_FILE_LIST}" ]; then
+			echo "No *.dtb files found in ${DIST_DIR}"
+			exit 1
+		fi
+		cat $DTB_FILE_LIST > ${DIST_DIR}/dtb.img
+		MKBOOTIMG_DTB="--dtb ${DIST_DIR}/dtb.img"
 	fi
-	cat $DTB_FILE_LIST > ${DIST_DIR}/dtb.img
 
 	set -x
 	MKBOOTIMG_RAMDISKS=()
@@ -468,6 +567,9 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 	fi
 	set -x
 
+	if [ -z "${MKBOOTIMG_PATH}" ]; then
+		MKBOOTIMG_PATH="tools/mkbootimg/mkbootimg.py"
+	fi
 	if [ ! -f "$MKBOOTIMG_PATH" ]; then
 		echo "mkbootimg.py script not found. MKBOOTIMG_PATH = $MKBOOTIMG_PATH"
 		exit 1
@@ -487,7 +589,7 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 	# executed outside of this "bash -c".
 	(set -x; bash -c "python $MKBOOTIMG_PATH --kernel ${DIST_DIR}/$KERNEL_BINARY \
 		--ramdisk ${DIST_DIR}/ramdisk.gz \
-		--dtb ${DIST_DIR}/dtb.img --header_version $BOOT_IMAGE_HEADER_VERSION \
+		${MKBOOTIMG_DTB} --header_version $BOOT_IMAGE_HEADER_VERSION \
 		${MKBOOTIMG_BASE_ADDR} ${MKBOOTIMG_PAGE_SIZE} ${MKBOOTIMG_CMDLINE} \
 		-o ${DIST_DIR}/boot.img"
 	)

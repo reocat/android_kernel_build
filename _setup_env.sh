@@ -21,16 +21,23 @@
 [ -n "$_SETUP_ENV_SH_INCLUDED" ] && return || _SETUP_ENV_SH_INCLUDED=1
 
 # TODO: Use a $(gettop) style method.
-export ROOT_DIR=$PWD
+export ROOT_DIR=$(readlink -f $PWD)
 
 export BUILD_CONFIG=${BUILD_CONFIG:-build.config}
 set -a
 . ${ROOT_DIR}/${BUILD_CONFIG}
 set +a
 
-export COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
+export COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out${OUT_DIR_SUFFIX}/${BRANCH}})
 export OUT_DIR=$(readlink -m ${COMMON_OUT_DIR}/${KERNEL_DIR})
 export DIST_DIR=$(readlink -m ${DIST_DIR:-${COMMON_OUT_DIR}/dist})
+
+if sh -c 'which repo && repo info' >/dev/null 2>&1; then
+  # extract the repo branch name (e.g. common-android-mainline)
+  repo_branch=$(repo --color=never info -o | grep -E "Manifest merge branch" |
+                                             sed "s|.*refs/heads/\(.*\)|\1|")
+  export KBUILD_BUILD_VERSION="1 repo:$repo_branch"
+fi
 
 echo "========================================================"
 echo "= build config: ${ROOT_DIR}/${BUILD_CONFIG}"
@@ -65,11 +72,11 @@ echo
 # verifies that defconfig matches the DEFCONFIG
 function check_defconfig() {
     (cd ${OUT_DIR} && \
-     make ${CC_LD_ARG} O=${OUT_DIR} savedefconfig)
+     make "${TOOL_ARGS[@]}" O=${OUT_DIR} savedefconfig)
     [ "$ARCH" = "x86_64" -o "$ARCH" = "i386" ] && local ARCH=x86
     echo Verifying that savedefconfig matches ${KERNEL_DIR}/arch/${ARCH}/configs/${DEFCONFIG}
     RES=0
-    diff ${OUT_DIR}/defconfig ${KERNEL_DIR}/arch/${ARCH}/configs/${DEFCONFIG} ||
+    diff -u ${KERNEL_DIR}/arch/${ARCH}/configs/${DEFCONFIG} ${OUT_DIR}/defconfig ||
       RES=$?
     if [ ${RES} -ne 0 ]; then
         echo ERROR: savedefconfig does not match ${KERNEL_DIR}/arch/${ARCH}/configs/${DEFCONFIG}
