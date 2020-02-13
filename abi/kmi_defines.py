@@ -701,7 +701,7 @@ class KernelComponentProcess(multiprocessing.Process):
 def work_on_all_components(options) -> List[KernelComponentBase]:
     """Return a list of KernelComponentBase objects."""
     files = [str(ko) for ko in pathlib.Path().rglob("*.ko")]
-    if options.sequential:
+    if options.sequential or options.components_sequential:
         return [
             kernel_component_factory(file) for file in ["vmlinux.o"] + files
         ]
@@ -781,6 +781,28 @@ def valid_compiler() -> bool:
     return True
 
 
+def init_multiprocessing_work(main_pid: int) -> bool:
+    """Dummy to get fork server started early."""
+    return main_pid != os.getpid()
+
+
+def init_multiprocessing(options) -> bool:
+    """Initialize multiprocessing."""
+
+    if options.sequential or (options.components_sequential
+                              and options.targets_sequential):
+        return True
+
+    #  Ensure fork server is created before this process gets big.
+    #  Could not find an API to cause the fork server to be created,
+    #  seems to be created lazily, this workaround is not too bad.
+
+    multiprocessing.set_start_method('forkserver')
+    with multiprocessing.Pool(2) as pool:
+        result = pool.map(init_multiprocessing_work, [os.getpid()], 1)
+    return result[0]
+
+
 def main() -> int:
     """Extract #define compile time constants from a Linux build."""
     def existing_file(file):
@@ -790,14 +812,30 @@ def main() -> int:
         return file
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-d",
-                        "--dump",
+    parser.add_argument("-o",
+                        "--components-only",
                         action="store_true",
-                        help="dump internal state")
+                        help="work on components and stop")
     parser.add_argument("-s",
                         "--sequential",
                         action="store_true",
                         help="execute without concurrency")
+    parser.add_argument("-C",
+                        "--components-sequential",
+                        action="store_true",
+                        help="work on components sequentially")
+    parser.add_argument("-T",
+                        "--targets-sequential",
+                        action="store_true",
+                        help="work on targets sequentially")
+    parser.add_argument("-d",
+                        "--dump",
+                        action="store_true",
+                        help="dump internal state")
+    parser.add_argument("-I",
+                        "--info",
+                        action="store_true",
+                        help="enable INFO log level")
     group = parser.add_mutually_exclusive_group()
     group.add_argument("-i",
                        "--includes",
@@ -808,6 +846,18 @@ def main() -> int:
                        type=existing_file,
                        help="show information for a component")
     options = parser.parse_args()
+
+    logging_kwargs = {
+        'format':
+        "%(asctime)-15s: " + os.path.basename(sys.argv[0]) + ": %(message)s: "
+    }
+    if options.info:
+        logging_kwargs["level"] = logging.INFO
+    logging.basicConfig(**logging_kwargs)
+
+    if not init_multiprocessing(options):
+        logging.error("multiprocessing initialization failed")
+        return 1
 
     if not options.component:
         if not valid_compiler():
