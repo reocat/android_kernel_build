@@ -209,8 +209,7 @@ def get_src_ccline_deps(obj: str) -> Optional[Tuple[str, str, List[str]]]:
     if deps is None:
         raise StopError("missing deps_* variable in: " + o_cmd)
     _, deps = makefile_assignment_split(deps)
-    dependendencies = deps.split()
-    dependendencies.append(HIDDEN_DEP)
+    dependendencies = [HIDDEN_DEP] + deps.split()
 
     return source, cc_line, dependendencies
 
@@ -756,6 +755,32 @@ def work_on_whole_build(options) -> int:
     return 0
 
 
+def valid_compiler() -> bool:
+    """Determine if the compiler is in the prebuilts binaries."""
+    path = os.getenv("PATH")
+    if path is None:
+        logging.error("PATH is not set")
+        return False
+    compiler = None
+    for directory in path.split(":"):
+        compiler_in_directory = os.path.join(directory, COMPILER)
+        if os.path.exists(compiler_in_directory):
+            compiler = compiler_in_directory
+            break
+    else:
+        logging.error("could not find compiler in PATH")
+        return False
+    prebuilts = os.path.realpath(
+        os.path.join(os.getcwd(), "source/../prebuilts-master"))
+    if compiler is None:
+        logging.error("cold not find compiler")
+        return False
+    if not compiler.startswith(prebuilts):
+        logging.error("compiler: " + compiler + " not inside: " + prebuilts)
+        return False
+    return True
+
+
 def main() -> int:
     """Extract #define compile time constants from a Linux build."""
     def existing_file(file):
@@ -785,6 +810,8 @@ def main() -> int:
     options = parser.parse_args()
 
     if not options.component:
+        if not valid_compiler():
+            return 1
         return work_on_whole_build(options)
 
     comp = kernel_component_factory(options.component)
