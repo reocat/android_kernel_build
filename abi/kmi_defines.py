@@ -32,6 +32,7 @@ import os
 import pathlib
 import re
 import subprocess
+import shlex
 import sys
 from typing import List, Optional, Tuple
 from typing import Set  # pytype needs this, pylint: disable=unused-import
@@ -419,116 +420,145 @@ class Kernel:
         return olist
 
 
+def find_exact(args: List[str], hint: int, value: str) -> int:
+    """Return args index where args[index] == value, -1 if nowhere.
+
+    Search first at hint."""
+    if 0 <= hint < len(args) and args[hint] == value:
+        return hint
+    for index, content in enumerate(args):
+        if content == value:
+            return index
+    return -1
+
+
+def find_prefix(args: List[str], hint: int, value: str) -> int:
+    """Return args index where args[index] has value prefix, -1 if nowhere.
+
+    Search first at hint."""
+    if 0 <= hint < len(args) and args[hint].startswith(value):
+        return hint
+    for index, content in enumerate(args):
+        if content.startswith(value):
+            return index
+    return -1
+
+
+def find_postfix(args: List[str], hint: int, value: str) -> int:
+    """Return args index where args[index] has value postfix, -1 if nowhere.
+
+    Search first at hint."""
+    if 0 <= hint < len(args) and args[hint].endswith(value):
+        return hint
+    for index, content in enumerate(args):
+        if content.endswith(value):
+            return index
+    return -1
+
+
+def get_cc_list(obj: str, src: str, cc_line: str) -> List[str]:
+    r"""Return the cc_list after validating it and removing some arguments.
+
+    These arguments are removed:
+         -Wp,-MD,file.o.d
+         -c
+         -o foo.o
+         foo.c
+    Later use of the cc_line is easier because these were removed.
+
+    The cc_line could be fed through
+    the shell to deal with the single-quotes in the cc_line that are
+    there to quote the double-quotes meant to be part of a C string
+    literal.  Specifically, this is done to pass KBUILD_MODNAME and
+    KBUILD_BASENAME, for example:
+        -DKBUILD_MODNAME='"aes_ce_cipher"'
+        -DKBUILD_BASENAME='"aes_cipher_glue"'
+
+    Some kernel modules also pass strings in -D options, and their
+    quoting varies, for example (the inner double-quotes are removed
+    by the shell, they server no purpose, the outher \ escaped ones
+    are passed throgh by the shell):
+        -DSDCARDFS_VERSION=\""0.1"\"
+
+    Causing an extra execve(2) of the shell, just for the shell to
+    deal with a few quotes is wasteful, the quotes are handled by
+    shlex.split().
+
+    Note that the cc_line comes from the .foo.o.cmd file which is a
+    makefile snippet, so the actual syntax there is also subject to
+    whatever other things make would want to do with them.  Instead
+    of doing the absolutely correct thing, which would actually be
+    to run them through make to have make run then through the shell,
+    this is good enough for now, this program already has knowledge
+    about these .cmd files and how they are formed.  This compromise,
+    or coupling of knowledge, is a source of fragility, but not
+    expected to cause much trouble when the Linux build changes.
+
+    The compiler invocation has this form:
+        clang -Wp,-MD,file.o.d  ... -c -o file.o file.c
+    there should be at least 5 entries in cc_list, i.e. if the -o
+    and file.o are in a single argument value (-ofile.o)."""
+
+    cc_list = shlex.split(cc_line)
+    cc_list_len = len(cc_list)
+    if cc_list_len < 5:
+        raise StopError("missing arguments for: " + obj + " cc_line: " +
+                        cc_line)
+
+    #   The order of the command line arguments shown above are hints
+    #   of where those arguments are in the cc_list.
+
+    wpmd_flag_ix = find_prefix(cc_list, 1, "-Wp,-MD,")
+    c_flag_ix = find_exact(cc_list, cc_list_len - 4, "-c")
+    o_flag_ix = find_prefix(cc_list, cc_list_len - 3, "-o")
+    source_ix = find_postfix(cc_list, cc_list_len - 1, ".c")
+    indexes_to_prune = [wpmd_flag_ix, c_flag_ix, o_flag_ix, source_ix]
+
+    if wpmd_flag_ix < 0 or c_flag_ix < 0 or o_flag_ix < 0 or source_ix < 0:
+        raise StopError("missing arguments for: " + obj + " cc_line: " +
+                        cc_line)
+
+    if cc_list[o_flag_ix] == "-o":
+        object_ix = o_flag_ix + 1
+        if object_ix in indexes_to_prune:
+            raise StopError("bad -o argument for: " + obj + " cc_line: " +
+                            cc_line)
+        indexes_to_prune.append(object_ix)
+    else:
+        if not cc_list[o_flag_ix].endswith(".o"):
+            raise StopError("bad -o argument for: " + obj + " cc_line: " +
+                            cc_line)
+        object_ix = o_flag_ix
+        cc_list[object_ix] = cc_list[object_ix][2:]
+
+    def verify_file(file: str, file_in_cc_list: str, kind: str,
+                    target_file: str) -> None:
+        #   Ensure file is file_in_cc_list, very few files need normalizing,
+        #   cheaper to normalize only when needed.
+
+        if not file.endswith(file_in_cc_list):
+            file_normalized = os.path.normpath(file_in_cc_list)
+            if not file.endswith(file_normalized):
+                raise StopError(f"unexpected {kind} argument for: "
+                                f"{target_file} value was: "
+                                f"{file_in_cc_list}")
+
+    verify_file(obj, cc_list[object_ix], "object", obj)
+    verify_file(src, cc_list[source_ix], "source", obj)
+    indexes_to_prune.sort(reverse=True)  # Reverse order makes indexes stable
+    for index in indexes_to_prune:
+        del cc_list[index]
+    return cc_list
+
+
 class Target:  # pylint: disable=too-few-public-methods
     """Target of build and the information used to build it."""
-
-    #   The compiler invocation has this form:
-    #       clang -Wp,-MD,file.o.d  ... -c -o file.o file.c
-    #   these constants reflect that knowledge in the code, e.g.:
-    #   - the "-Wp,_MD,file.o.d" is at WP_MD_FLAG_INDEX
-    #   - the "-c" is at index C_FLAG_INDEX
-    #   - the "-o" is at index O_FLAG_INDEX
-    #   - the "file.o" is at index OBJ_INDEX
-    #   - the "file.c" is at index SRC_INDEX
-    #
-    #   There must be at least MIN_CC_LIST_LEN options in that command line.
-    #   This knowledge is verified at run time in __init__(), see comments
-    #   there.
-
-    MIN_CC_LIST_LEN = 6
-    WP_MD_FLAG_INDEX = 1
-    C_FLAG_INDEX = -4
-    O_FLAG_INDEX = -3
-    OBJ_INDEX = -2
-    SRC_INDEX = -1
-
     def __init__(self, obj: str, src: str, cc_line: str,
                  deps: List[str]) -> None:
         self._obj = obj
         self._src = src
         self._deps = deps
-
-        #   The cc_line, eventually slightly modified, will be used to run
-        #   the compiler in various ways.  The cc_line could be fed through
-        #   the shell to deal with the single-quotes in the cc_line that are
-        #   there to quote the double-quotes meant to be part of a C string
-        #   literal.  Specifically, this occurs in to pass KBUILD_MODNAME and
-        #   KBUILD_BASENAME, for example:
-        #       -DKBUILD_MODNAME='"aes_ce_cipher"'
-        #       -DKBUILD_BASENAME='"aes_cipher_glue"'
-        #
-        #   Causing an extra execve(2) of the shell, just to deal with a few
-        #   quotes is wasteful, so instead, here the quotes, in this specific
-        #   case are removed.  This can be done, easiest just by removing the
-        #   single quotes with:
-        #       cc_cmd = re.sub(r"'", "", cc_line)
-        #
-        #   But this could mess up other quote usage in the future, for example
-        #   using double quotes or backslash to quote a single quote meant to
-        #   actually be seen by the compiler.
-        #
-        #   As an alternative, and for this to be more robust, the specific
-        #   cases that are known, i.e. the two -D shown above, are dealt with
-        #   individually and if there are any single or double quotes, or
-        #   backslashes the underlying work is stopped.
-        #
-        #   Note that the cc_line comes from the .foo.o.cmd file which is a
-        #   makefile snippet, so the actual syntax there is also subject to
-        #   whatever other things make would want to do with them.  Instead
-        #   of doing the absolutely correct thing, which would actually be
-        #   to run this through make to have make run then through the shell
-        #   this program already has knowledge about these .cmd files and how
-        #   they are formed.  This compromise, or coupling of knowledge, is a
-        #   source of fragility, but not expected to cause much trouble in the
-        #   future as the Linux build evolves.
-
-        cc_cmd = re.sub(
-            r"""-D(KBUILD_BASENAME|KBUILD_MODNAME)='("[a-zA-Z0-9_.:]*")'""",
-            r"-D\1=\2", cc_line)
-        cc_list = cc_cmd.split()
-
-        #   TODO(pantin): the handling of -D... arguments above is done better
-        #   in a later commit by using shlex.split().  Please ignore for now.
-        #   TODO(pantin): possibly use ArgumentParser to make this more robust.
-
-        #   The compiler invocation has this form:
-        #       clang -Wp,-MD,file.o.d  ... -c -o file.o file.c
-        #
-        #   The following checks are here to ensure that if this assumption is
-        #   broken, failures occur.  The indexes *_INDEX are hardcoded, they
-        #   could in principle be determined at run time, the -o argument could
-        #   be in a future update to the Linux build could changed to be a
-        #   single argument with the object file name (as in: -ofile.o) which
-        #   could also be detected in code at a later time.
-
-        if (len(cc_list) < Target.MIN_CC_LIST_LEN
-                or not cc_list[Target.WP_MD_FLAG_INDEX].startswith("-Wp,-MD,")
-                or cc_list[Target.C_FLAG_INDEX] != "-c"
-                or cc_list[Target.O_FLAG_INDEX] != "-o"):
-            raise StopError("unexpected or missing arguments for: " + obj +
-                            " cc_line: " + cc_line)
-
-        #   Instead of blindly normalizing the source and object arguments,
-        #   they are only normalized if that allows the expected invariants
-        #   to be verified, otherwise they are left undisturbed.  Note that
-        #   os.path.normpath() does not turn relative paths into absolute
-        #   paths, it just removes up-down walks (e.g. a/b/../c -> a/c).
-
-        def verify_file(file: str, index: int, kind: str, cc_list: List[str],
-                        target_file: str) -> None:
-            file_in_cc_list = cc_list[index]
-            if not file.endswith(file_in_cc_list):
-                file_normalized = os.path.normpath(file_in_cc_list)
-                if not file.endswith(file_normalized):
-                    raise StopError(f"unexpected {kind} argument for: "
-                                    f"{target_file} value was: "
-                                    f"{file_in_cc_list}")
-                cc_list[index] = file_normalized
-
-        verify_file(obj, Target.OBJ_INDEX, "object", cc_list, obj)
-        verify_file(src, Target.SRC_INDEX, "source", cc_list, obj)
-
-        self._cc_list = cc_list
+        self._cc_list = get_cc_list(obj, src, cc_line)
 
 
 class KernelComponentBase:  # pylint: disable=too-few-public-methods
