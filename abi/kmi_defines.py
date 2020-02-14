@@ -158,6 +158,17 @@ def readfile(name: str) -> str:
                         "original OSError: " + str(os_error.args))
 
 
+def writefile(name: str, lines: List[str]) -> None:
+    """Create a file and write a list of strings, one on each line, into it."""
+    try:
+        with open(name, "w+") as file:
+            if lines:
+                file.write("\n".join(lines) + "\n")
+    except OSError as os_error:
+        raise StopError("writefile() failed for: " + name + "\n"
+                        "original OSError: " + str(os_error.args))
+
+
 def file_must_exist(file: str) -> None:
     """If file is invalid print raise a StopError."""
     if not os.path.exists(file):
@@ -586,10 +597,112 @@ class Target:  # pylint: disable=too-few-public-methods
     """Target of build and the information used to build it."""
     def __init__(self, obj: str, src: str, cc_line: str,
                  deps: List[str]) -> None:
+        """Contruct a Target object."""
+        if not obj.endswith(".o") or len(obj) <= 2:
+            raise StopError("malformed obj argument: " + obj)
         self._obj = obj
         self._src = src
         self._deps = deps
         self._cc_list = get_cc_list(obj, src, cc_line)
+
+    def get_obj(self) -> str:
+        """Return the object file for this target."""
+        return self._obj
+
+    def generate_defines(self, kmi_dump: str, abi_headers: Set[str]) -> None:
+        """Generate the defines for target."""
+        object_without_dot_o = self._obj[0:-2]
+        vars_o = object_without_dot_o + ".kmi.vars.o"
+        if not os.path.isfile(vars_o):
+            self.generate_incs_and_vars(object_without_dot_o + ".kmi.incs.c",
+                                        object_without_dot_o + ".kmi.vars.c",
+                                        vars_o, abi_headers)
+        dump_enums(object_without_dot_o + ".kmi.dump", vars_o, kmi_dump)
+
+    def generate_incs_and_vars(self, incs_c: str, vars_c: str, vars_o: str,
+                               abi_headers: Set[str]) -> None:
+        """Generate the incs and vars C files, and compile the vars file."""
+        cc_run = self._cc_list.copy()
+        writefile(
+            incs_c,
+            [f'#include "{dep}"' for dep in self._deps if dep in abi_headers])
+        completion = run(cc_run + ["-E", "-dM", "-c", incs_c])
+
+        defines = lines_to_list(completion.stdout)
+        defines_without_args = []
+        for define in defines:
+            parts = define.split(maxsplit=2)
+            if len(parts) == 3 and '(' not in parts[1]:
+                defines_without_args += [(parts[1], parts[2])]
+
+        source_lines = [f'#include "{self._src}"'] + [
+            f'typeof({value}) __kmi_v_{name} '
+            f'__attribute__ ((section ("KMI_DEFINE"))) = '
+            f'({value});' for name, value in defines_without_args
+        ]
+
+        inc = os.path.dirname(self._src)
+        cc_run += [
+            "-ferror-limit=10000", "-I", inc, "-c", vars_c, "-o", vars_o
+        ]
+        create_and_compile(vars_c, source_lines, cc_run)
+
+
+def create_and_compile(vars_c: str, source_lines: List[str],
+                       cc_run: List[str]) -> None:
+    """Create and compile name vars_c with source_lines content.
+
+    Modifies the source_lines while commenting out the lines that have
+    initializers that are not constant expressions (they might be link
+    time constant expressions, e.g. the address of a varibable, those are
+    excluded by kmi_dump.c).
+    """
+    vars_c_plus_colon = vars_c + ":"
+    errors = 0
+    attempts = 0
+    while attempts < 100:
+        attempts += 1
+        writefile(vars_c, source_lines)
+        completion = run(cc_run, raise_on_failure=False)
+        if completion.returncode == 0:
+            break
+        line_numbers = []
+        for line in lines_to_list(completion.stderr):
+            if line.startswith(vars_c_plus_colon):
+                tokens = line.split(":")
+                if len(tokens) < 5 or tokens[3] != " error":
+                    continue
+                try:
+                    number = int(tokens[1])
+                    line_numbers.append(number - 1)  # zero based indexes
+                except ValueError:
+                    continue
+        errors += len(line_numbers)
+        changed = False
+        for number in line_numbers:
+            line = source_lines[number]
+            if not line.startswith("// "):
+                source_lines[number] = "// " + line
+                changed = True
+        if not changed:
+            raise StopError("error commenting impossible for: " + vars_c +
+                            ": " + " ".join(cc_run))
+    else:
+        raise StopError("too many attempts for: " + vars_c)
+
+
+def dump_enums(dump_file: str, vars_o: str, kmi_dump: str) -> None:
+    """Dump compile time constants into a dump file and into an enum file."""
+    try:
+        if not os.path.exists(dump_file):
+            program = [kmi_dump, vars_o]
+            with open(dump_file, "w+") as file:
+                completion = subprocess.run(program, stdout=file)
+            if completion.returncode != 0:
+                raise StopError("failed: " + " ".join(program))
+    except OSError as os_error:
+        raise StopError("failure executing: " + kmi_dump + "\n"
+                        "original OSError: " + str(os_error.args))
 
 
 class KernelComponentBase:  # pylint: disable=too-few-public-methods
@@ -607,6 +720,11 @@ class KernelComponentBase:  # pylint: disable=too-few-public-methods
     def get_deps_set(self) -> Set[str]:  # pylint: disable=no-self-use
         """Return the set of dependencies for the kernel component."""
         return set()
+
+    def get_targets(self) -> List[Target]:  # pylint: disable=no-self-use
+        """Return the list of targets in kernel component."""
+        #  This function is required by pytype.
+        return []
 
     def is_kernel(self) -> bool:  # pylint: disable=no-self-use
         """Is this the kernel?"""
@@ -698,6 +816,10 @@ class KernelComponent(KernelComponentBase):
         """Return the set of dependencies for the kernel component."""
         return self._deps_set
 
+    def get_targets(self) -> List[Target]:
+        """Return the list of targets in kernel component."""
+        return self._targets
+
     def is_kernel(self) -> bool:
         """Is this the kernel?"""
         return self._kernel
@@ -757,7 +879,62 @@ def work_on_all_components(options) -> List[KernelComponentBase]:
     return [kernel_component] + components
 
 
-def work_on_whole_build(options) -> int:
+def work_on_target(target: Target, kmi_dump: str,
+                   abi_headers: Set[str]) -> Optional[Tuple[str, str]]:
+    """Generate defines for target."""
+    try:
+        target.generate_defines(kmi_dump, abi_headers)
+        return None
+    except StopError as stop_error:
+        return target.get_obj(), " ".join([*stop_error.args])
+
+
+def work_on_targets(targets: List[Target], kmi_dump: str,
+                    abi_headers: Set[str]) -> Optional[Tuple[str, str]]:
+    """Generate, sequentially, defines for targets."""
+    return [
+        work_on_target(target, kmi_dump, abi_headers) for target in targets
+    ]
+
+
+def work_on_triplet(triplet: Tuple[List[Target], str, Set[str]]
+                    ) -> List[Optional[Tuple[str, str]]]:
+    """Generate defines for each target in: targets, kmi_dump, abi_headers."""
+    targets, kmi_dump, abi_headers = triplet
+    return work_on_targets(targets, kmi_dump, abi_headers)
+
+
+def work_on_all_targets(options, components: List[KernelComponentBase],
+                        kmi_dump: str, abi_headers: Set[str]
+                        ) -> List[Optional[Tuple[str, str]]]:
+    """Generate, possibly in parallel, defines for targets in components."""
+    targets = []
+    for component in components:
+        targets += component.get_targets()
+    if options.sequential or options.targets_sequential:
+        return work_on_targets(targets, kmi_dump, abi_headers)
+
+    #   To avoid using global variables (which actually do not work when
+    #   using multiprocessing with the fork server) the kmi_dump and
+    #   abi_headers are passed as values.  To avoid passing them as values
+    #   for each target, the targets are chunked into triplets which contain
+    #   a list of up to chunk_size targets, and the values of kmi_dump and
+    #   abi_headers.  Thus the cost of passing them repeatedly is amortized.
+    #   The actual chunking is done prior to pool.map(), thus its chunk_size
+    #   argument is 1.
+
+    chunk_size = 128
+    triplets = [(targets[ix:ix + chunk_size], kmi_dump, abi_headers)
+                for ix in range(0, len(targets), chunk_size)]
+    with multiprocessing.Pool(os.cpu_count()) as pool:
+        result_lists = pool.map(work_on_triplet, triplets, 1)
+    results = []
+    for result_list in result_lists:
+        results += result_list
+    return results
+
+
+def work_on_whole_build(options, kmi_dump: str) -> int:
     """Work on the whole build to extract the #define constants."""
     if not os.path.isfile("vmlinux.o"):
         logging.error("file not found: vmlinux.o")
@@ -807,7 +984,19 @@ def work_on_whole_build(options) -> int:
         for header in abi_headers_list:
             print(header)
 
-    return 0
+    if options.components_only:
+        return 0
+
+    exit_status = 0
+    logging.info("work on all targets: started")
+    results = work_on_all_targets(options, components, kmi_dump, abi_headers)
+    logging.info("work on all targets: finished")
+    for result in results:
+        if result:
+            filename, error = result
+            logging.error(filename + ": " + error)
+            exit_status = 1
+    return exit_status
 
 
 def valid_compiler() -> bool:
@@ -938,10 +1127,9 @@ def main() -> int:
         kmi_dump = update_kmi_dump()
         if kmi_dump is None:
             return 1
-        return work_on_whole_build(options)
+        return work_on_whole_build(options, kmi_dump)
 
     comp = kernel_component_factory(options.component)
-
     error = comp.get_error()
     if error:
         logging.error(error)
