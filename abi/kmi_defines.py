@@ -1,4 +1,21 @@
 #!/usr/bin/env python3
+#
+# Copyright (C) 2019 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# pylint: disable=too-many-lines
+#
 """kmi_defines extract #define compile time constants from a Linux build.
 
 The kmi_defines tool is used to examine the output of a Linux build
@@ -57,6 +74,21 @@ COMPILER = "clang"  # TODO(pantin): should be determined at run-time
 #   to a function.
 
 HIDDEN_DEP = "include/generated/autoconf.h"
+
+#   These headers are excluded, see README-kmi_defines.md
+
+EXCLUDE = {
+    "drivers/net/ethernet/chelsio/cxgb4/t4_pci_id_tbl.h",
+    "include/linux/wimax/debug.h",
+    "include/rdma/uverbs_named_ioctl.h",
+    "include/trace/bpf_probe.h",
+    "include/trace/perf.h",
+    "include/trace/trace_events.h",
+    "include/uapi/linux/patchkey.h",
+    "net/netfilter/ipset/ip_set_hash_gen.h",
+    "sound/pci/echoaudio/echoaudio.h",
+    "sound/pci/echoaudio/echoaudio_dsp.h",
+}
 
 
 class StopError(Exception):
@@ -706,8 +738,20 @@ def work_on_whole_build(options) -> int:
     if not os.path.isfile("vmlinux.o"):
         logging.error("file not found: vmlinux.o")
         return 1
+
+    exclude = {
+        header
+        for header in [
+            os.path.realpath(os.path.join("source", exclude_header))
+            for exclude_header in EXCLUDE
+        ] if os.path.isfile(header)
+    }
+
+    logging.info("work on all components: started")
     components = work_on_all_components(options)
+    logging.info("work on all components: finished")
     failed = False
+    logging.info("header counts: started")
     header_count = collections.defaultdict(int)
     for comp in components:
         error = comp.get_error()
@@ -715,19 +759,30 @@ def work_on_whole_build(options) -> int:
             logging.error(error)
             failed = True
             continue
-        deps_set = comp.get_deps_set()
-        for header in deps_set:
+        for header in comp.get_deps_set():
             header_count[header] += 1
-    if failed:
-        return 1
+    logging.info("header counts: finished")
+
     if options.dump:
         dump(components)
+    if failed:
+        return 1
+
+    logging.info("abi header set: started")
+    abi_headers = {
+        header
+        for header, count in header_count.items()
+        if count >= 2 and header not in exclude
+    }
+    logging.info("abi header set: finished")
     if options.dump and options.includes:
         print()
     if options.includes:
-        for header, count in header_count.items():
-            if count >= 2:
-                print(header)
+        abi_headers_list = list(abi_headers)
+        abi_headers_list.sort()
+        for header in abi_headers_list:
+            print(header)
+
     return 0
 
 
