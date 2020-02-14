@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "242d5e2f_0dfaeca2",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:47:46Z",
+      "side": 1,
+      "message": "There is nothing wrong with subprocess.run(), subprocess.check_output() it is a variation on it. I don\u0027t see how changing this from run() to check_output() is going to make it any better (other than the name check_output() doesn\u0027t sound like a program is being run())",
+      "parentUuid": "2042db8f_74949e07",
+      "range": {
+        "startLine": 234,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 0
+      },
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "075fc1de_89127f77",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -39,6 +63,24 @@
       "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33e63c4d_3a8e10bd",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:47:46Z",
+      "side": 1,
+      "message": "I had a good amount of trouble with the continuous: git rebase -i and percolating changes to later patches (the ones you turned from amends to individual commits, and the ones I had not yet submitted).  Splitting this commit into two seemed an extra burden, seemed easier to leave as it is.",
+      "parentUuid": "075fc1de_89127f77",
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "161092c2_55a7da14",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:47:46Z",
+      "side": 1,
+      "message": "A later commit significantly reworks this and comments this work appropriately.",
+      "parentUuid": "090bc903_0a2fb3a8",
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "40d9c99c_a8a3552b",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -73,6 +133,24 @@
       "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1153eec5_67eadd26",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:47:46Z",
+      "side": 1,
+      "message": "This was reworked in a later commit (without ArgumentParser, didn\u0027t want to incorporate the whole clang command line just to deal with a few options). Please see later commits.",
+      "parentUuid": "40d9c99c_a8a3552b",
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -99,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "b1f3e572_7c001aa1",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:47:46Z",
+      "side": 1,
+      "message": "Fixed typo. In a later commit also added a comment explaining that the files are usually normalized and that it is cheaper to only normalize when needed.",
+      "parentUuid": "a137d582_f5cd878b",
+      "range": {
+        "startLine": 503,
+        "startChar": 8,
+        "endLine": 504,
+        "endChar": 61
+      },
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3afc48d7_0d3faf27",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -119,6 +221,30 @@
       "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4657a204_4add6ce3",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:47:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3afc48d7_0d3faf27",
+      "range": {
+        "startLine": 502,
+        "startChar": 0,
+        "endLine": 516,
+        "endChar": 54
+      },
+      "revId": "fb71b91fa0f93ed6817ce0515d3c4960ad825d0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
