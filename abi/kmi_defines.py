@@ -812,6 +812,24 @@ def valid_compiler() -> bool:
     return True
 
 
+def update_kmi_dump() -> Optional[str]:
+    """Recompile kmi_dump from kmi_dump.c if it missing or out of date."""
+    kmi_dump_c = os.path.realpath(
+        os.path.join(os.getcwd(), "source/../build/abi/kmi_dump.c"))
+    kmi_dump = kmi_dump_c[0:-2]
+    if not os.path.exists(kmi_dump_c):
+        logging.error("could not find kmi_dump.c")
+        return None
+    if (not os.path.exists(kmi_dump)
+            or os.path.getmtime(kmi_dump_c) >= os.path.getmtime(kmi_dump)):
+        completion = run([COMPILER, "-O2", "-o", kmi_dump, kmi_dump_c],
+                         raise_on_failure=False)
+        if completion.returncode != 0:
+            logging.error("compilation failed for kmi_dump.c")
+            return None
+    return kmi_dump
+
+
 def init_multiprocessing_work(main_pid: int) -> bool:
     """Dummy to get fork server started early."""
     return main_pid != os.getpid()
@@ -892,6 +910,9 @@ def main() -> int:
 
     if not options.component:
         if not valid_compiler():
+            return 1
+        kmi_dump = update_kmi_dump()
+        if kmi_dump is None:
             return 1
         return work_on_whole_build(options)
 
