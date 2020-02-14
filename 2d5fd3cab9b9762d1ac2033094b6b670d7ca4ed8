@@ -70,6 +70,30 @@
       "revId": "2d5fd3cab9b9762d1ac2033094b6b670d7ca4ed8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2da181e_0628dbca",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T20:58:58Z",
+      "side": 1,
+      "message": "Thank you for asking me to revisit this.\n\nLet me try nicer words.\n\nWhen I say \"too obscure\" I mean that it requires\nmore indirection by the code reader:\n\nCode reading indirection:\n- The reader has to understand typing.NamedTuple\n  (not a native language construct).\n- The reader has to find the declaration of the\n  NamedTuple, presumably it would be immediately\n  above the function that uses it as its return\n  value (but it still requires examining 3 places\n  instead of 2).\n\nConceptual complexity when compared to the base\nPython language:\n- Some introspection code must be running where the\n  NamedTyple.__init__() finds the data declarations\n  and generates a constructor (how that might work\n  is not obvious to somebody who only understands\n  the base language)\n- So from the code reader the NamedTuple is effectively\n  extending the language by doing non obvious things\n- The comparison with argument lists is completely\n  valid.  I would not turn every function with 2 or\n  more arguments into a function that takes a NamedTuple\n  as its arguments (or that strictly requires the use\n  of keyword arguments), it would add too much noise.\n\nI agree that the syntax is nice.\n\nIt makes me actually want to declare every field\nof my objects explicitly so that the code reader\ndoesn\u0027t have to derive their knowledge about them\nfrom reading the code of the class (presumably all\nset in the __init__() but any member can add more\ndata to the object, which to me is quite special\nin its dynamism).\n\nSo two questions:\n- Can I do this kind of change on top of the last\n  commit?  Doing it deep under about 10 later commits\n  is too hard and wasteful as the code was mostly\n  ready to go during the prior weeks.\n- Should all data members of classes be declared\n  at the class declaration level?  Is that good for\n  code quality / review / understanding or is that\n  not proper Python style?",
+      "parentUuid": "22fabb62_bf1989e5",
+      "range": {
+        "startLine": 193,
+        "startChar": 8,
+        "endLine": 193,
+        "endChar": 25
+      },
+      "revId": "2d5fd3cab9b9762d1ac2033094b6b670d7ca4ed8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
