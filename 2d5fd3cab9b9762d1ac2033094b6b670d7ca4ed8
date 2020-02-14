@@ -46,6 +46,30 @@
       "revId": "2d5fd3cab9b9762d1ac2033094b6b670d7ca4ed8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22fabb62_bf1989e5",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-14T15:30:09Z",
+      "side": 1,
+      "message": "I strongly disagree. Please elaborate on \"its too obscure\"? NamedTuple is a commonly used method to capture simple types. We should also do so. And I do not see anything obscure in my example above. It is properly typed and with the Python3 syntax it even looks like a C struct ...\nhttps://github.com/search?l\u003dPython\u0026q\u003dNamedTuple\u0026type\u003dCode\n\nAnd from an API perspective: the less the user of an API needs to know, the less they can do wrong. So, I do not agree with the statement and would rather add that: if it is hard for users to pass arguments in the wrong order, then you should rather use an object there as well.\n\nNamedTuple and Optional play so well together ...",
+      "parentUuid": "d8abab28_cd47ab2c",
+      "range": {
+        "startLine": 193,
+        "startChar": 8,
+        "endLine": 193,
+        "endChar": 25
+      },
+      "revId": "2d5fd3cab9b9762d1ac2033094b6b670d7ca4ed8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
