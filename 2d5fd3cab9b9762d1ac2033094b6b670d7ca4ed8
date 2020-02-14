@@ -22,6 +22,30 @@
       "revId": "2d5fd3cab9b9762d1ac2033094b6b670d7ca4ed8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8abab28_cd47ab2c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:36:24Z",
+      "side": 1,
+      "message": "I have changed all the code to use Optional and None from the following commit forwards, there was too much change between this one and the next one and all the other commits that had pending to do that work on this one.\n\nI chose not to use NamedTuple, its too obscure.  Functions have argument lists, when called customarily by passing an argument list without the argument names the programmer has to understand the order of the arguments.  The same with tuples when returned by a function.  In the very few uses of this program of tuples using a NamedTuple adds too much noise, returning them in the right order and having the caller know the order is no different than a function caller having to know the order of the arguments.",
+      "parentUuid": "b66508d8_13e28b81",
+      "range": {
+        "startLine": 193,
+        "startChar": 8,
+        "endLine": 193,
+        "endChar": 25
+      },
+      "revId": "2d5fd3cab9b9762d1ac2033094b6b670d7ca4ed8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
