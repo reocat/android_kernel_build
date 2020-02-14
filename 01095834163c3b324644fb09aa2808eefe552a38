@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f874b8d8_6686011d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:55:49Z",
+      "side": 1,
+      "message": "It is more obscure (to have to look up a library and then use it), the native dict() already provided support for a default value.  But to not be argumentative I changed it to your choice (I find it more obscure, nothing obscure about the now defunct DictCount()).",
+      "parentUuid": "da19922d_0d1fa3a9",
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d39aaf8_e0d92fd8",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -33,6 +51,24 @@
       "revId": "01095834163c3b324644fb09aa2808eefe552a38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f25a875_94373c4b",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:55:49Z",
+      "side": 1,
+      "message": "In a later commit the args are always passed with the name options.  Passing a single reference to an object, the options, and having the functions pick the options they depend upon makes the code more stable.  Function signatures don\u0027t need to change when more options need to be passed.",
+      "parentUuid": "0d39aaf8_e0d92fd8",
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -76,6 +112,30 @@
     },
     {
       "key": {
+        "uuid": "381039b1_6186da68",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:55:49Z",
+      "side": 1,
+      "message": "See comment above.  Also, passing a single object reference (a pointer presumably) is cheaper than to pass the individual members.",
+      "parentUuid": "d9f5ce48_31c785a2",
+      "range": {
+        "startLine": 655,
+        "startChar": 24,
+        "endLine": 655,
+        "endChar": 31
+      },
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7dd0de0f_bc97013b",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -90,6 +150,24 @@
       "revId": "01095834163c3b324644fb09aa2808eefe552a38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa0c7b89_a64ae3a4",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:55:49Z",
+      "side": 1,
+      "message": "Than use of int as the generator for the default values sure is obscure! (to me)",
+      "parentUuid": "7dd0de0f_bc97013b",
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -113,6 +191,30 @@
       "revId": "01095834163c3b324644fb09aa2808eefe552a38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce57fa16_e1076d99",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T02:55:49Z",
+      "side": 1,
+      "message": "This changes in a later commit. This version was putting a newline to separate the dumped data and the includes.",
+      "parentUuid": "28e8be92_678299cb",
+      "range": {
+        "startLine": 676,
+        "startChar": 0,
+        "endLine": 678,
+        "endChar": 24
+      },
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
