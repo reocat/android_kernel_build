@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "148088c9_1f34bd68",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T03:02:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9ec163ae_7590b70e",
+      "revId": "e2a7ddd948a8c72db2dfddae68bd2db9bbcec15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a2ec2047_d924dbb6",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "a05b86a6_c6fff473",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T03:02:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a2ec2047_d924dbb6",
+      "range": {
+        "startLine": 653,
+        "startChar": 0,
+        "endLine": 685,
+        "endChar": 59
+      },
+      "revId": "e2a7ddd948a8c72db2dfddae68bd2db9bbcec15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "66eb1ec0_0fe0bbb0",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "4a611e69_6945dce5",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T03:02:41Z",
+      "side": 1,
+      "message": "Did as you requested but kept the inheritance because it is the easiest way to specify what the process should do.",
+      "parentUuid": "66eb1ec0_0fe0bbb0",
+      "revId": "e2a7ddd948a8c72db2dfddae68bd2db9bbcec15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "051fbe2b_81437c86",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -73,6 +133,24 @@
       "revId": "e2a7ddd948a8c72db2dfddae68bd2db9bbcec15b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f712caf2_fe5edbaf",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T03:02:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "051fbe2b_81437c86",
+      "revId": "e2a7ddd948a8c72db2dfddae68bd2db9bbcec15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -99,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "321cb4a3_ab50440e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T03:02:41Z",
+      "side": 1,
+      "message": "This changed, but it would have been max() not min()",
+      "parentUuid": "30ce82cb_7f62b6ae",
+      "range": {
+        "startLine": 702,
+        "startChar": 12,
+        "endLine": 702,
+        "endChar": 26
+      },
+      "revId": "e2a7ddd948a8c72db2dfddae68bd2db9bbcec15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2bb62a39_8c39d474",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -122,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "abbd5a6b_42318c06",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T03:02:41Z",
+      "side": 1,
+      "message": "This changed but it would have been max() not min().  Did use max() and min() where needed instead of if statements (not sure that makes the code cleaner).",
+      "parentUuid": "2bb62a39_8c39d474",
+      "range": {
+        "startLine": 705,
+        "startChar": 4,
+        "endLine": 705,
+        "endChar": 36
+      },
+      "revId": "e2a7ddd948a8c72db2dfddae68bd2db9bbcec15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4df2b466_790dce1b",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -139,6 +265,24 @@
     },
     {
       "key": {
+        "uuid": "15d04481_7c1f906c",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T03:02:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4df2b466_790dce1b",
+      "revId": "e2a7ddd948a8c72db2dfddae68bd2db9bbcec15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e2307b24_e243cc19",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -153,6 +297,24 @@
       "revId": "e2a7ddd948a8c72db2dfddae68bd2db9bbcec15b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fe348d7_b47d4ed5",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-14T03:02:41Z",
+      "side": 1,
+      "message": "Kernel component \u003d kernel or kernel modules\nkernel \u003d vmlinux.o\nkernel modules \u003d *.ko\n\nWhen I work on the README I will ensure to make this clear.",
+      "parentUuid": "e2307b24_e243cc19",
+      "revId": "e2a7ddd948a8c72db2dfddae68bd2db9bbcec15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
