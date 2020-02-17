@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4e70aa7_38fab6d2",
+        "filename": "abi/flatten_whitelist",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-02-17T09:59:35Z",
+      "side": 1,
+      "message": "This fails to deal with multiple sections having the same name (e.g. \u0027abi_whitelist\u0027), which is a common use-case with additional whitelists. Passing \u0027strict\u003dFalse\u0027 seems to provide the appropriate behavior (that is, merge them).\n\n/me applies fix",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 55
+      },
+      "revId": "97711008e2fc5c0d5bbec9998e48c0eba5242ba7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
