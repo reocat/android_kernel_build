@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "2d696f8c_a680e7fc",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T15:17:59Z",
+      "side": 1,
+      "message": "Thanks :-)",
+      "parentUuid": "f874b8d8_6686011d",
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d39aaf8_e0d92fd8",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 1
@@ -183,6 +201,24 @@
       "side": 1,
       "message": "Than use of int as the generator for the default values sure is obscure! (to me)",
       "parentUuid": "7dd0de0f_bc97013b",
+      "revId": "01095834163c3b324644fb09aa2808eefe552a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7962b8c_ab33e4ec",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T15:17:59Z",
+      "side": 1,
+      "message": "I am ok with the more expressive form\n  collections.defaultdict(lambda: 0)\n\nBut, I prefer the defaultdict(int) version as it is also consistent with another common use:\n  defaultdict(list)",
+      "parentUuid": "fa0c7b89_a64ae3a4",
       "revId": "01095834163c3b324644fb09aa2808eefe552a38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
