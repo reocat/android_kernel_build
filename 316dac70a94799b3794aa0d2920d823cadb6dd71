@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6834a132_ce74a443",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-18T20:43:16Z",
+      "side": 1,
+      "message": "In the code there is a class, KernelComponent, instances of which might refer to kernel modules (*.ko) and one of which refers to the kernel (vmlinux.o). Thus the *.ko and vmlinux.o are all kernel components, i.e. they all run in kernel mode, all together they make the kernel program they are its components.\n\nThe code needs a name for that class (KernelComponent) and it seems appropriate enough.",
+      "parentUuid": "04879852_c8fff41e",
+      "range": {
+        "startLine": 686,
+        "startChar": 4,
+        "endLine": 686,
+        "endChar": 28
+      },
+      "revId": "316dac70a94799b3794aa0d2920d823cadb6dd71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e84aec4c_69bd36ad",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 3
@@ -39,6 +63,24 @@
       "revId": "316dac70a94799b3794aa0d2920d823cadb6dd71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7387c4ef_d5c3aaa8",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-18T20:43:16Z",
+      "side": 1,
+      "message": "Please read comment above.",
+      "parentUuid": "e84aec4c_69bd36ad",
+      "revId": "316dac70a94799b3794aa0d2920d823cadb6dd71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
