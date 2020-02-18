@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e10adf75_750a0081",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T16:38:12Z",
+      "side": 1,
+      "message": "list.index(key) ? \n\nDid you measure the impact of not having a hint? Otherwise I would consider this premature optimization.",
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78fd7ffc_e0ce78f9",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T16:38:12Z",
+      "side": 1,
+      "message": "what if two elements of args do match this criteria? in command lines often the last occurrence wins.",
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ca7f579_c9c6e5b9",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T16:38:12Z",
+      "side": 1,
+      "message": "that seems like exactly the same function as above just with a different predicate",
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87d1add4_633a0c33",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T16:38:12Z",
+      "side": 1,
+      "message": "why don\u0027t you just iterate over the cc_list once and process the list like with a big switch? Now you are searching the list several times and then you still go a process the list.\n\nWas there an issue with:\n\n  for arg in args:\n    if arg \u003d\u003d \"-c\":\n        # do something\n\n    elif arg.startswith(\"-o\"):\n        # further -o processing\n\nindexes could be invalidated (set to None) and later filtered\n\n    args \u003d [arg for arg in args if arg]",
+      "range": {
+        "startLine": 511,
+        "startChar": 0,
+        "endLine": 515,
+        "endChar": 70
+      },
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1650c501_1acfae32",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T16:38:12Z",
+      "side": 1,
+      "message": "aren\u0027t you invalidating the indexes_to_prune with deleting an element from cc_list ?",
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
