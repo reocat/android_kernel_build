@@ -118,6 +118,30 @@
       "revId": "2d5fd3cab9b9762d1ac2033094b6b670d7ca4ed8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7dc3b8cb_5bac5f30",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-18T20:28:29Z",
+      "side": 1,
+      "message": "I originally understood that it was the case that class level declarations were per-class not per object (I read all that Python documentation prior to the rewrite of the LKA tools).\n\nThis makes the notion of NamedTuple even more strange because the members of the tuple are declared at the class level, but somehow they end up being per object.  This is syntactically hard to reconcile when a similar declarations is normally per class in non-NamedTuple inheriting classes.  The fact that the scope of declarations is being affected for the same declaration type (a class declaration) is, to me, a source of conceptual complexity that I have never seen in any other language.\n\nI will make these changes under a proposed new change.",
+      "parentUuid": "7d7787da_3a608865",
+      "range": {
+        "startLine": 193,
+        "startChar": 8,
+        "endLine": 193,
+        "endChar": 25
+      },
+      "revId": "2d5fd3cab9b9762d1ac2033094b6b670d7ca4ed8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
