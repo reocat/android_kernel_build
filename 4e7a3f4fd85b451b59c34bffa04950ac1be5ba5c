@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f93505dd_d71d3db7",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-18T23:09:33Z",
+      "side": 1,
+      "message": "Yes, its a tiny cleanup change. I hope that not every very minor adjustment of the code needs its own commit.",
+      "parentUuid": "3393aea7_4ebcab20",
+      "revId": "4e7a3f4fd85b451b59c34bffa04950ac1be5ba5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3f7cda7_75a953cc",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 2
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "b918c4bf_4c47baad",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-18T23:09:33Z",
+      "side": 1,
+      "message": "That leads to a list with an empty string in it (instead of an empty list).\n\n\u003e\u003e\u003e s \u003d os.getenv(\"GOO\", \"\")\n\u003e\u003e\u003e s.split(os.pathsep)\n[\u0027\u0027]\n\nThe later code would then confuse that with searching the current directory for the compiler, I know all of this is unlikely, but I think its best to leave the check as it is.",
+      "parentUuid": "e3f7cda7_75a953cc",
+      "range": {
+        "startLine": 760,
+        "startChar": 0,
+        "endLine": 763,
+        "endChar": 20
+      },
+      "revId": "4e7a3f4fd85b451b59c34bffa04950ac1be5ba5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4185ce1e_1fbff3fc",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 2
@@ -53,6 +95,30 @@
       "writtenOn": "2020-02-18T16:48:56Z",
       "side": 1,
       "message": "os.pathsep",
+      "range": {
+        "startLine": 765,
+        "startChar": 32,
+        "endLine": 765,
+        "endChar": 35
+      },
+      "revId": "4e7a3f4fd85b451b59c34bffa04950ac1be5ba5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3b755d2c_459bbb92",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-18T23:09:33Z",
+      "side": 1,
+      "message": "Thank you I will incorporate this",
+      "parentUuid": "4185ce1e_1fbff3fc",
       "range": {
         "startLine": 765,
         "startChar": 32,
