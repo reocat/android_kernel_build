@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3393aea7_4ebcab20",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T16:48:56Z",
+      "side": 1,
+      "message": "? seems unrelated",
+      "revId": "4e7a3f4fd85b451b59c34bffa04950ac1be5ba5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3f7cda7_75a953cc",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T16:48:56Z",
+      "side": 1,
+      "message": "I would not handle this, just do\n  os.environ.get(\"PATH\", \"\")\n\nas this will split into an empty array further down",
+      "range": {
+        "startLine": 760,
+        "startChar": 0,
+        "endLine": 763,
+        "endChar": 20
+      },
+      "revId": "4e7a3f4fd85b451b59c34bffa04950ac1be5ba5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4185ce1e_1fbff3fc",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T16:48:56Z",
+      "side": 1,
+      "message": "os.pathsep",
+      "range": {
+        "startLine": 765,
+        "startChar": 32,
+        "endLine": 765,
+        "endChar": 35
+      },
+      "revId": "4e7a3f4fd85b451b59c34bffa04950ac1be5ba5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
