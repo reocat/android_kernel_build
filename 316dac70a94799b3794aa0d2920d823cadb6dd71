@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04879852_c8fff41e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T15:30:38Z",
+      "side": 1,
+      "message": "I think my confusion about the naming comes from this reading:\n\n\nkernel_components \u003d kernel + modules    (ok)\ncomponents \u003d modules\nkernel_component \u003d kernel\n\nand the last two are confusingly named.\n\nHow about referring to the kernel as vmlinux and to the modules only as modules?",
+      "range": {
+        "startLine": 686,
+        "startChar": 4,
+        "endLine": 686,
+        "endChar": 28
+      },
+      "revId": "316dac70a94799b3794aa0d2920d823cadb6dd71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e84aec4c_69bd36ad",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T15:30:38Z",
+      "side": 1,
+      "message": "would be less confusing to read\n\n[vmlinux] + modules",
+      "revId": "316dac70a94799b3794aa0d2920d823cadb6dd71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
