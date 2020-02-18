@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "01000a52_da696084",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-18T22:33:57Z",
+      "side": 1,
+      "message": "Thanks for the pointer. Didn\u0027t know about list.index(key), the non-hint matching path is the unlikely one. Doesn\u0027t seem worth replacing with list.index(key) surrounded by exception catching code.\n\nI didn\u0027t measure it, but the hints seem to be stable across many Linux versions (4.9 forwards at least).  The arguments in the cc_line are around 80, the number of object files is large, so it seems worth doing.",
+      "parentUuid": "e10adf75_750a0081",
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78fd7ffc_e0ce78f9",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "acce0979_8db74352",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-18T22:33:57Z",
+      "side": 1,
+      "message": "The purpose of searching for these is to eventually remove them from the cc_list to reuse the remainder of the cc_list for different invocations of the compiler.  If there were multiple incorrect specifications in the cc_list the script is not going to work correctly (unless it removes all their occurrences).\n\nIf there were really redundant flag specifications (for the -Wp,MD,.foo.d.d or the -o foo.o or multiple .c files) in the cc_list it would be best to abort the script instead of trying to handle malformed compiler invocations.\n\nI will leave a TODO about this in the code for future improvement.  It would mean that the hints would have to be removed too.",
+      "parentUuid": "78fd7ffc_e0ce78f9",
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ca7f579_c9c6e5b9",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 2
@@ -50,6 +86,24 @@
       "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f64da0ef_f64ba031",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-18T22:33:57Z",
+      "side": 1,
+      "message": "Yes, I considered passing the predicate as an argument to these 3 functions but did not think it was worthwhile.",
+      "parentUuid": "7ca7f579_c9c6e5b9",
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -90,6 +144,24 @@
       "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71381202_f616d034",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-18T22:33:57Z",
+      "side": 1,
+      "message": "The comment 3 lines above:\n    # Reverse order makes indexes stable\nis about that.\n\nBy sorting the indexes in descending index order, and then removing the list elements in that order, the indexes of the list elements with lower index numbers remain unchanged and thus stable for their subsequent iterative removal.",
+      "parentUuid": "1650c501_1acfae32",
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
