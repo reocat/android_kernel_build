@@ -94,6 +94,30 @@
       "revId": "2d5fd3cab9b9762d1ac2033094b6b670d7ca4ed8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d7787da_3a608865",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T15:06:48Z",
+      "side": 1,
+      "message": "I agree to make this change on top of the stack. Please merge this one after this has been proposed as new change.\n\nI consider NameTuple part of the common (native?) language usage. Another alternative that also works nicely in python2 is the (external!) library attr, where a lot of the syntax and inspiration seems to come from. Whether this particular code will produce a significant performance overhead needs to be measured and can be rightfully replaced if that is the case. In any other case I would give readability, testability and (API) usability the prio.\n\nCareful with the declaration location, members declared at class level are class members and shared across instances. https://docs.python.org/3.7/tutorial/classes.html#class-and-instance-variables",
+      "parentUuid": "b2da181e_0628dbca",
+      "range": {
+        "startLine": 193,
+        "startChar": 8,
+        "endLine": 193,
+        "endChar": 25
+      },
+      "revId": "2d5fd3cab9b9762d1ac2033094b6b670d7ca4ed8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
