@@ -136,7 +136,9 @@ def create_whitelist(whitelist, undefined_symbols, exported):
       wl.write("\n")
     else:
       # ensure the whitelist contains at least one symbol to not be ignored
-      wl.write("  dummy_symbol\n")
+      # (module_layout is a special case in the linux kernel as it is always
+      # exported, even with CONFIG_TRIM_UNUSED_KSYMS=y)
+      wl.write("  module_layout\n")
 
     for module, symbols in undefined_symbols.items():
 
