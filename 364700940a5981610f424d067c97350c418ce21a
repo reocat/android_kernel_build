@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c3ec5f48_e1ea671d",
+        "filename": "build.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T14:43:28Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 106,
+        "startChar": 60,
+        "endLine": 106,
+        "endChar": 61
+      },
+      "revId": "364700940a5981610f424d067c97350c418ce21a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a502b5af_181c790b",
+        "filename": "build.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T14:43:28Z",
+      "side": 1,
+      "message": "this is now an opt-in, I would rather make it an opt-out. KMI_WHITELIST defined means somebody cares about their ABI, so let\u0027s ensure consistency then by setting this if KMI_WHITELIST is defined. What do you think? (You might want to run some cuttlefish tests though :-) )",
+      "revId": "364700940a5981610f424d067c97350c418ce21a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44d8462f_bebeb53c",
+        "filename": "build.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-02-18T14:43:28Z",
+      "side": 1,
+      "message": "I believe, I also had to set UNUSED_SYMBOLS\u003dn, was this just a wrong observation in my workspace?",
+      "range": {
+        "startLine": 315,
+        "startChar": 54,
+        "endLine": 315,
+        "endChar": 71
+      },
+      "revId": "364700940a5981610f424d067c97350c418ce21a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
