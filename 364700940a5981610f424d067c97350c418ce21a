@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7ec9c7c0_def19b7e",
+        "filename": "build.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-02-18T14:51:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3ec5f48_e1ea671d",
+      "range": {
+        "startLine": 106,
+        "startChar": 60,
+        "endLine": 106,
+        "endChar": 61
+      },
+      "revId": "364700940a5981610f424d067c97350c418ce21a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a502b5af_181c790b",
         "filename": "build.sh",
         "patchSetId": 7
@@ -39,6 +63,24 @@
       "revId": "364700940a5981610f424d067c97350c418ce21a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8fb528a_2930741a",
+        "filename": "build.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-02-18T14:51:11Z",
+      "side": 1,
+      "message": "Right, that works for me.",
+      "parentUuid": "a502b5af_181c790b",
+      "revId": "364700940a5981610f424d067c97350c418ce21a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -62,6 +104,30 @@
       "revId": "364700940a5981610f424d067c97350c418ce21a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3753ef79_36d61062",
+        "filename": "build.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-02-18T14:51:11Z",
+      "side": 1,
+      "message": "TRIM_UNUSED_KSYMS depends on !UNUSED_SYMBOLS, so yes, I probably should explicitly disable UNUSED_SYMBOLS too. And even more given that it is default y on x86.",
+      "parentUuid": "44d8462f_bebeb53c",
+      "range": {
+        "startLine": 315,
+        "startChar": 54,
+        "endLine": 315,
+        "endChar": 71
+      },
+      "revId": "364700940a5981610f424d067c97350c418ce21a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
