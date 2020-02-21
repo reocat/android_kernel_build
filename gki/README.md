@@ -134,3 +134,42 @@ instrument_module_init
     USAGE: instrument_module_init [dir|file]
 
 Add debug instrumentation to module_init and probe functions.
+
+split_patches
+-------------
+    USAGE: split_patches [-a name]... [-b name]... \
+                         [-k kernelgitdir]... [-s sha]... \
+                         [-r oldname newname]... [-x name] \
+                         [< patchfile]
+
+Outputs are in _kernelgitdir_/split.patch, existing files are overwritten
+
+Helpful when taking cherry picks to determine which portions contribute
+to ABI (upstream) and which ones do not (device only).  Not the be all
+and end all but should help managing the focus on what goes into the
+kernel.org or android-common kernel, and which should stay where they
+belong in the driver or device specific code in the kernel.
+
+Take the list of shas and split them up based on which kernel their
+contribution should be made to.  The list of kernels should start
+with the lowest branch, which would be the most likely to contain
+the change, to the highest, being the most upstream tree that needs
+to be inspected.  The split will check the upstream first for the
+overlapping content, down to the lowest.
+
+-a \<name> ensure that this file gets added even if not present
+
+-b \<bug> add a bug number to the new commit footer.
+
+-k \<kernelgitdir> Directory where the kernel is found.
+There must be more than two directories specified for this patch to
+be of any use, even if the intent is that the commits come from one tree,
+and are cherry-picked to another.
+
+-r \<onename newname> rename files specified in the patch before they are
+evaluated.  This helps when a file needlesly overlaps upstream content.
+
+-s \<sha> change sha to evaluate. If non specified, then the
+git am format-patch -n -k content supplied to stdin.
+
+-x \<name> exclude the named files from the patches
