@@ -51,8 +51,7 @@ import re
 import subprocess
 import shlex
 import sys
-from typing import List, Optional, Tuple
-from typing import Set  # pytype needs this, pylint: disable=unused-import
+from typing import List, Optional, Set, Tuple
 
 INDENT = 4  # number of spaces to indent for each depth level
 COMPILER = "clang"  # TODO(pantin): should be determined at run-time
@@ -569,7 +568,7 @@ def get_cc_list(obj: str, src: str, cc_line: str) -> List[str]:
     return cc_list
 
 
-class Target:  # pylint: disable=too-few-public-methods
+class Target:
     """Target of build and the information used to build it."""
     def __init__(self, obj: str, src: str, cc_line: str,
                  deps: List[str]) -> None:
@@ -697,7 +696,7 @@ def dump_enums(dump_file: str, vars_o: str, kmi_dump: str) -> None:
                         "original OSError: " + str(os_error.args))
 
 
-class KernelComponentBase:  # pylint: disable=too-few-public-methods
+class KernelComponentBase:
     """Base class for KernelComponentCreationError and KernelComponent.
 
     There is not much purpose for this class other than to satisfy the strong
@@ -723,7 +722,7 @@ class KernelComponentBase:  # pylint: disable=too-few-public-methods
         return False
 
 
-class KernelComponentCreationError(KernelComponentBase):  # pylint: disable=too-few-public-methods
+class KernelComponentCreationError(KernelComponentBase):
     """A KernelComponent creation error.
 
     When a KernelComponent creation fails, or the creation of its subordinate
