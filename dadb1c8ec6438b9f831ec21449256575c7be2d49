@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "108cb58a_bc9ec57d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-21T18:55:42Z",
+      "side": 1,
+      "message": "I decided to de-optimize this after all and follow your suggestion below so that malformed argument lists can be detected (which makes the hints no longer usable to detect incorrect redundant option use, e.g. multiple -o foo.o options).",
+      "parentUuid": "01000a52_da696084",
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78fd7ffc_e0ce78f9",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 2
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "The purpose of searching for these is to eventually remove them from the cc_list to reuse the remainder of the cc_list for different invocations of the compiler.  If there were multiple incorrect specifications in the cc_list the script is not going to work correctly (unless it removes all their occurrences).\n\nIf there were really redundant flag specifications (for the -Wp,MD,.foo.d.d or the -o foo.o or multiple .c files) in the cc_list it would be best to abort the script instead of trying to handle malformed compiler invocations.\n\nI will leave a TODO about this in the code for future improvement.  It would mean that the hints would have to be removed too.",
       "parentUuid": "78fd7ffc_e0ce78f9",
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23198ec6_4bdd3352",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-21T18:55:42Z",
+      "side": 1,
+      "message": "I have changed my mind and changed the code to address redundant options (read comment above).",
+      "parentUuid": "acce0979_8db74352",
       "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
@@ -107,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "e7a73388_7e12b12d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-21T18:55:42Z",
+      "side": 1,
+      "message": "I have changed my mind and changed the code to address redundant options (read comment above) which causes these 3 functions to be removed in the next patch set.",
+      "parentUuid": "f64da0ef_f64ba031",
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87d1add4_633a0c33",
         "filename": "abi/kmi_defines.py",
         "patchSetId": 2
@@ -127,6 +181,30 @@
       "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30963a5d_b075d6c4",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-21T18:55:42Z",
+      "side": 1,
+      "message": "It is definitely not worth having this code handle redundant -o options or repeated .c files because this code is meant to be creating a single compilation target, (for example it would not know what to do about a cc line that is compiling multiple C files), it is good enough just to detect those cases and raise an exception.\n\nTo be able to detect malformed command lines and raise an exception I changed the code to iterate in a single loop (as you suggested), removed the hint premature optimization, but left the list entry removal as it was.\n\nI don\u0027t think that needs to be optimized or done differently, the suggestion to later remove the arguments by assigning None to them is a good idiom.  But in this case there was enough state required after the loop that rewriting this code further does not seem like it would make it significantly better (just different).\n\nThank you!",
+      "parentUuid": "87d1add4_633a0c33",
+      "range": {
+        "startLine": 511,
+        "startChar": 0,
+        "endLine": 515,
+        "endChar": 70
+      },
+      "revId": "dadb1c8ec6438b9f831ec21449256575c7be2d49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
