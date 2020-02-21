@@ -134,3 +134,84 @@ instrument_module_init
     USAGE: instrument_module_init [dir|file]
 
 Add debug instrumentation to module_init and probe functions.
+
+gki-cherry-pick
+---------------
+    USAGE: gki-cherry-pick [-h|--help] \
+               [[[-b|--bug] _bug_]|_bug_]... \
+               [[[-k|--kernel] _gitdir_[:_branch_]]|_gitdir_[:_branch_]]... \
+               [[-a|--add] _filename_]...
+               [[-r|--rename] _oldfilename_ _newfilename_]... \
+               [[-x|--exclude] _filename_]... \
+               [[[[-s|--sha] _sha_]|_sha_]... \
+                 [[-q|--skip-squash] [_sha_|all]]... | \
+                \< _patchfile_] \
+               [[-c|--cherry-picked] _sha_]...
+
+Outputs are in kernel _gitdir_/_branch_split.patch, existing files are
+overwritten.  File then can be fed to 'git am --3way --keep --interactive'
+(or 'git am -3 -k -i split.patch' for short) while in the specified
+kernel directory tree.  It is recommended to review the split.patch file
+to adjust fragments accordingly before pushing, since the filtration is
+coarse based on --add, and tree content so that core system or arch code
+is adjusted, but driver code not present is not in partial cherry pick
+adjustments.  Since GKI on the core system side is about ABI, code
+fragments should be evaluated as to whether they are necessary, since
+they form a functional and hidden ABI behavior in the alteration of paths
+taken.
+
+Helpful when taking cherry picks to determine which portions contribute
+to ABI (upstream) and which ones do not (device only).  Not the be all
+and end all but should help managing the focus on what goes into the
+kernel.org or android-common kernel, and which should stay where they
+belong in the driver or device specific code in the kernel.
+
+Take the list of shas and split them up based on which kernel their
+contribution should be made to.  The list of kernels should start
+with the lowest branch, which would be the most likely to contain
+the change, to the highest, being the most upstream tree that needs
+to be inspected.  The split will check the upstream first for the
+overlapping content, down to the lowest.  The patches may also be
+split up into partials that overlap the available files in the tree.
+
+-h|--help
+    This help.
+
+-a|--add _name_
+    Ensure that this file gets added even if not present.
+
+-b|--bug _bug_
+    Add a bug number to the new commit footer.
+
+-k|--kernel _gitdir_[:_branch_]
+    Directory and optional branch where the kernel is found.  There must be
+    more than two directories specified for this patch to be of any use, even
+    if the intent is that the commits come from one tree, and are auto merged
+    (or cherry-pick) to another.
+
+-r|--rename _oldfilename_ _newfilename_
+    Rename files specified in the patch before they are evaluated.  This helps
+    when a file needlesly overlaps upstream content and should really be
+    standalone.
+
+-x|--exclude _filename_
+    Exclude the named files from the patches, if not specified or with the key
+    "arch" then will exclude some common non-Android cpu architectures.
+
+-s|--sha _sha_
+    The sha commit to evaluate, 6-40 characters each. If non specified, then a
+    'git format-patch --keep-subject' single patch content is expected
+    supplied to stdin.  For stdin, the tool just looks after formatting
+    and filtering the commit.
+
+-c|--cherry-picked _sha_
+    A root squashed cherry pick commit sha to reference in the commit
+    messages only, typically added when a squashed commit is expanded to a
+    series of original commits.  Only adds lines to the commit message,
+    however it will investigate if it can find the full sha in the supplied
+    _gitdir_s if supplied sha is shortened.
+
+-q|--skip-squash _sha_
+    Skip checking for a possible squash for this sha in the collected
+    information.  "all" or "\*" turns off squash detection for all.
+    Will save some time if there is no desire or intent to unsquash the sha.
