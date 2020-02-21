@@ -128,6 +128,30 @@
       "revId": "4e7a3f4fd85b451b59c34bffa04950ac1be5ba5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f016536d_2f8fa74e",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1428004
+      },
+      "writtenOn": "2020-02-21T19:00:23Z",
+      "side": 1,
+      "message": "I have incorporated this, thank you!\n\nIt sure is confusing: os.pathsep vs os.path.sep (they are not the same)\nI left a comment about that, I hope that is ok with you.\n\nIt might be obvious to some, but a causal reader that only knows about os.path.sep might think that os.pathsep is \"/\" (instead of \":\").",
+      "parentUuid": "3b755d2c_459bbb92",
+      "range": {
+        "startLine": 765,
+        "startChar": 32,
+        "endLine": 765,
+        "endChar": 35
+      },
+      "revId": "4e7a3f4fd85b451b59c34bffa04950ac1be5ba5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
