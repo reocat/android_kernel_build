@@ -51,7 +51,7 @@ import re
 import subprocess
 import shlex
 import sys
-from typing import List, Optional, Set, Tuple
+from typing import List, Optional, NamedTuple, Set
 
 INDENT = 4  # number of spaces to indent for each depth level
 COMPILER = "clang"  # TODO(pantin): should be determined at run-time
@@ -191,8 +191,14 @@ def makefile_depends_get_dependencies(depends: str) -> List[str]:
     return re.split(r"[:\s\\]+", re.sub(r"[\s\\]*\Z", "", depends))[1:]
 
 
-def makefile_assignment_split(assignment: str) -> Tuple[str, str]:
-    """Split left:=right into a tuple with the left and right parts.
+class MakefileAssignment(NamedTuple):
+    """Hold the result of splitting a makefile assignment into its parts."""
+    variable: str
+    value: str
+
+
+def makefile_assignment_split(assignment: str) -> MakefileAssignment:
+    """Split left:=right into a MakefileAssignment.
 
     Spaces around the := are also removed.
     """
@@ -201,17 +207,24 @@ def makefile_assignment_split(assignment: str) -> Tuple[str, str]:
         raise StopError(
             "expected: 'left<optional_spaces>:=<optional_spaces>right' in: " +
             assignment)
-    return result[0], result[1]  # left, right
+    return MakefileAssignment(variable=result[0], value=result[1])
 
 
-def get_src_ccline_deps(obj: str) -> Optional[Tuple[str, str, List[str]]]:
-    """Get the C source file, its cc_line, and non C source dependencies.
+class BuildInfo(NamedTuple):
+    """The C source file, its cc_line, and non C source dependencies."""
+    source: str
+    cc_line: str
+    dependencies: List[str]
+
+
+def get_object_build_info(obj: str) -> Optional[BuildInfo]:
+    """Get the BuildInfo for obj.
 
     If the tool used to produce the object is not the compiler, or if the
     source file is not a C source file None is returned.
 
-    Otherwise it returns a triplet with the C source file name, its cc_line,
-    the remaining dependencies.
+    Otherwise it returns a BuildInfo with the C source file name, its cc_line,
+    and the remaining dependencies.
     """
     o_cmd = os.path.join(os.path.dirname(obj),
                          "." + os.path.basename(obj) + ".cmd")
@@ -234,7 +247,7 @@ def get_src_ccline_deps(obj: str) -> Optional[Tuple[str, str, List[str]]]:
 
     if cc_line is None:
         raise StopError("missing cmd_* variable in: " + o_cmd)
-    _, cc_line = makefile_assignment_split(cc_line)
+    cc_line = makefile_assignment_split(cc_line).value
     if cc_line.split(maxsplit=1)[0] != COMPILER:
         #   The object file was made by strip, symbol renames, etc.
         #   i.e. it was not the result of running the compiler, thus
@@ -243,17 +256,17 @@ def get_src_ccline_deps(obj: str) -> Optional[Tuple[str, str, List[str]]]:
 
     if source is None:
         raise StopError("missing source_* variable in: " + o_cmd)
-    _, source = makefile_assignment_split(source)
+    source = makefile_assignment_split(source).value
     source = source.strip()
     if not source.endswith(".c"):
         return None
 
     if deps is None:
         raise StopError("missing deps_* variable in: " + o_cmd)
-    _, deps = makefile_assignment_split(deps)
-    dependendencies = [HIDDEN_DEP] + deps.split()
+    deps = makefile_assignment_split(deps).value
+    dependencies = [HIDDEN_DEP] + deps.split()
 
-    return source, cc_line, dependendencies
+    return BuildInfo(source=source, cc_line=cc_line, dependencies=dependencies)
 
 
 def lines_to_list(lines: str) -> List[str]:
@@ -323,7 +336,7 @@ class KernelModule:
         #   split (because it did not contain a ":=" then the input string
         #   is returned, by the re.sub() below, as the only element of the list.
 
-        left, _ = makefile_assignment_split(self._cmd_text)
+        left = makefile_assignment_split(self._cmd_text).variable
         self._rel_file = re.sub(r"^cmd_", "", left)
         if self._rel_file == left:
             raise StopError("expected: 'cmd_' at start of content of: " +
@@ -405,7 +418,7 @@ class KernelModule:
 
         #   Multiple .o files in the module
 
-        _, ldline = makefile_assignment_split(olines[0])
+        ldline = makefile_assignment_split(olines[0]).value
         return [
             os.path.realpath(os.path.join(build_dir, obj))
             for obj in shell_line_to_o_files_list(ldline)
@@ -765,14 +778,14 @@ class KernelComponent(KernelComponentBase):
         self._targets = []
         for obj in self._files_o:
             file_must_exist(obj)
-            result = get_src_ccline_deps(obj)
-            if result is None:
+            build_info = get_object_build_info(obj)
+            if build_info is None:
                 continue
-            src, cc_line, dependendencies = result
+            src = build_info.source
 
             file_must_exist(src)
             depends = []
-            for dep in dependendencies:
+            for dep in build_info.dependencies:
                 if not os.path.isabs(dep):
                     dep = os.path.join(self._build_dir, dep)
                 dep = os.path.realpath(dep)
@@ -782,7 +795,7 @@ class KernelComponent(KernelComponentBase):
             if not os.path.isabs(src):
                 src = os.path.join(self._build_dir, src)
             src = os.path.realpath(src)
-            self._targets.append(Target(obj, src, cc_line, depends))
+            self._targets.append(Target(obj, src, build_info.cc_line, depends))
 
         for dep in [dep for dep in list(deps_set) if not dep.endswith(".h")]:
             deps_set.remove(dep)
@@ -870,34 +883,46 @@ def work_on_all_components(options) -> List[KernelComponentBase]:
     return [kernel_component] + components
 
 
+class TargetError(NamedTuple):
+    """Error result of working on a target."""
+    object: str
+    error: str
+
+
 def work_on_target(target: Target, kmi_dump: str,
-                   abi_headers: Set[str]) -> Optional[Tuple[str, str]]:
+                   abi_headers: Set[str]) -> Optional[TargetError]:
     """Generate defines for target."""
     try:
         target.generate_defines(kmi_dump, abi_headers)
         return None
     except StopError as stop_error:
-        return target.get_obj(), " ".join([*stop_error.args])
+        return TargetError(object=target.get_obj(),
+                           error=" ".join([*stop_error.args]))
 
 
 def work_on_targets(targets: List[Target], kmi_dump: str,
-                    abi_headers: Set[str]) -> Optional[Tuple[str, str]]:
+                    abi_headers: Set[str]) -> List[Optional[TargetError]]:
     """Generate, sequentially, defines for targets."""
     return [
         work_on_target(target, kmi_dump, abi_headers) for target in targets
     ]
 
 
-def work_on_triplet(triplet: Tuple[List[Target], str, Set[str]]
-                    ) -> List[Optional[Tuple[str, str]]]:
-    """Generate defines for each target in: targets, kmi_dump, abi_headers."""
-    targets, kmi_dump, abi_headers = triplet
-    return work_on_targets(targets, kmi_dump, abi_headers)
+class WorkChunk(NamedTuple):
+    """A chunk of targets to work on with kmi_dump and abi_headers."""
+    targets: List[Target]
+    kmi_dump: str
+    abi_headers: Set[str]
+
+
+def work_on_chunk(chunk: WorkChunk) -> List[Optional[TargetError]]:
+    """Generate defines for each target in chunk."""
+    return work_on_targets(chunk.targets, chunk.kmi_dump, chunk.abi_headers)
 
 
 def work_on_all_targets(options, components: List[KernelComponentBase],
-                        kmi_dump: str, abi_headers: Set[str]
-                        ) -> List[Optional[Tuple[str, str]]]:
+                        kmi_dump: str,
+                        abi_headers: Set[str]) -> List[Optional[TargetError]]:
     """Generate, possibly in parallel, defines for targets in components."""
     targets = []
     for component in components:
@@ -908,17 +933,21 @@ def work_on_all_targets(options, components: List[KernelComponentBase],
     #   To avoid using global variables (which actually do not work when
     #   using multiprocessing with the fork server) the kmi_dump and
     #   abi_headers are passed as values.  To avoid passing them as values
-    #   for each target, the targets are chunked into triplets which contain
+    #   for each target, the targets are chunked into chunks which contain
     #   a list of up to chunk_size targets, and the values of kmi_dump and
     #   abi_headers.  Thus the cost of passing them repeatedly is amortized.
     #   The actual chunking is done prior to pool.map(), thus its chunk_size
     #   argument is 1.
 
     chunk_size = 128
-    triplets = [(targets[ix:ix + chunk_size], kmi_dump, abi_headers)
-                for ix in range(0, len(targets), chunk_size)]
+    chunks = [
+        WorkChunk(targets=targets[ix:ix + chunk_size],
+                  kmi_dump=kmi_dump,
+                  abi_headers=abi_headers)
+        for ix in range(0, len(targets), chunk_size)
+    ]
     with multiprocessing.Pool(os.cpu_count()) as pool:
-        result_lists = pool.map(work_on_triplet, triplets, 1)
+        result_lists = pool.map(work_on_chunk, chunks, 1)
     results = []
     for result_list in result_lists:
         results += result_list
@@ -984,8 +1013,7 @@ def work_on_whole_build(options, kmi_dump: str) -> int:
     logging.info("work on all targets: finished")
     for result in results:
         if result:
-            filename, error = result
-            logging.error(filename + ": " + error)
+            logging.error(result.object + ": " + result.error)
             exit_status = 1
     return exit_status
 
