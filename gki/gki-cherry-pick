@@ -1,0 +1,1715 @@
+#! /bin/sh
+# SPDX-License-Identifier: Apache-2.0
+#
+# (c) 2020, Google
+LANG=C
+progname="${0##*/}"
+
+GIT=${GIT:-git}
+
+# A _real_ embedded tab character
+TAB="`echo | tr '\n' '\t'`"
+SPACE="[ ${TAB}]"
+SPACES="${SPACE}\{1,\}"
+# A _real_ embedded escape character
+ESCAPE="`echo | tr '\n' '\033'`"
+# A _real_ embedded carriage return character
+CR="`echo | tr '\n' '\r'`"
+# Colours
+GREEN="${ESCAPE}[38;5;40m"
+RED="${ESCAPE}[38;5;196m"
+ORANGE="${ESCAPE}[38;5;255:165:0m"
+BLUE="${ESCAPE}[35m"
+NORMAL="${ESCAPE}[0m"
+
+USAGE="${RED}USAGE${NORMAL}: ${progname} [-h|--help] \\
+           [[[-b|--bug] <bug>]|<bug>]... \\
+           [[[-k|--kernel] <gitdir>[:<branch>]]|<gitdir>[:<branch>]]... \\
+           [[-a|--add] <filename>]... \\
+           [[-r|--rename] <oldfilename> <newfilename>]... \\
+           [--include-all|[[-x|--exclude] <filename>]...] \\
+           [[[[-s|--sha] <sha>]|<sha>]... \\
+             [[-q|--skip-squash] [<sha>|all]]... | \\
+            < <patchfile>] \\
+           [[-c|--cherry-picked] <sha>]... \\
+           [--upstream]
+
+Outputs are in kernel <gitdir>/<branch>split.patch, existing files are
+overwritten.  File then can be fed to '${GIT} am --3way --keep'
+(or '${GIT} am -3 -k split.patch' for short) while in the specified kernel
+directory tree.  It is recommended to review the split.patch file to adjust
+fragments accordingly before pushing, since the filtration is coarse based on
+--add, and tree content so that core system or arch code is adjusted, but
+driver code not present is not in partial cherry pick adjustments.  Since GKI
+on the core system side is about ABI, code fragments should be evaluated as to
+whether they are necessary, since they form a functional and hidden ABI
+behavior in the alteration of paths taken.
+
+Helpful when taking cherry picks to determine which portions contribute to ABI
+(upstream) and which ones do not (device only).  Not the be all and end all but
+should help managing the focus on what goes into the kernel.org or
+android-common kernel, and which should stay where they belong in the driver
+or device specific code in the kernel.
+
+Take the list of shas and split them up based on which kernel their
+contribution should be made to.  The patches may also be split up into partials
+that overlap the available files in the tree.  Beware of the partials, refer to
+their host commit to be sure it is what you want.  The tool makes sure they are
+applied in the same order as the host tree they came from to mimimize conflict
+resolution issues.
+
+Another useful side effect of this tool is the identification of the candidate
+commits that constitude squashes (multiple commits merged into one) or blobs
+(copies of selected files).  It may be recommended to edit the split.path file
+to stop at the first one that needs unquashing, and then redoe the analysis at
+that point to develop a new split.patch with the itemized unsquashed series.
+
+-h|--help
+    This help.
+-b|--bug <bug>
+    Add a bug number to the new commit footer.
+-k|--kernel <gitdir>[:<branch>]
+    Directory and optional branch where the kernel is found.  There must be
+    more than two directories specified for this patch to be of any use, even
+    if the intent is that the commits come from one tree, and are auto merged
+    (or cherry-pick) to another.
+-r|--rename <oldfilename> <newfilename>
+    Rename files specified in the patch before they are evaluated.  This helps
+    when a file needlesly overlaps upstream content and should really be
+    standalone.  Also required because unlike the real ${GIT} -x cherry-pick, this
+    tool is incapable of determining how a file got renamed over time, and
+    could very well drop adjustments.  Dropping the adjustments turns into a
+    partial cherry pick with a clear list of what was, and what was not
+    adjusted.
+-a|--add <name>
+    Ensure that this file gets added even if not present in the recipient
+    tree.
+-x|--exclude <filename>
+    Exclude the named files from the patches, if not specified or with the key
+    \"arch\" then will exclude some common non-Android cpu architectures.
+--include-all
+    Do not exclude any named files. Exclusive of --exclude above.
+-s|--sha <sha>
+    The sha commit to evaluate, 6-40 characters each. If non specified, then a
+    '${GIT} format-patch --keep-subject' single patch content is expected
+    supplied to stdin.  For stdin, the tool just looks after formatting
+    and filtering the commit.
+-c|--cherry-picked <sha>
+    A root squashed cherry pick commit sha to reference in the commit
+    messages only, typically added when a squashed commit is expanded to a
+    series of original commits.  Only adds lines to the commit message,
+    however it will investigate if it can find the full sha in the supplied
+    <gitdir>s if supplied sha is shortened.
+-q|--skip-squash <sha>
+    Skip checking for a possible squash for this sha in the collected
+    information.  \"all\" or \"\*\" turns off squash detection for all.
+    Will save some time if there is no desire or intent to unsquash the sha.
+--upstream
+    Use 'UPSTREAM:' instead of 'ANDROID: GKI:' for subject prefix."
+
+# Some useful functions
+
+[ "USAGE: string_to_regex [string | < stdin]
+
+Convert a string to a direct match regex (or blob)" ]
+string_to_regex() {
+  string_to_regex_script='s/[].*+?&[]/[&]/g
+                          s/\\/\\\\/g'
+  if [ -z "${*}" ]; then
+    sed "${string_to_regex_script}"
+  else
+    echo "${@}" |
+      sed "${string_to_regex_script}"
+  fi
+}
+
+[ "USAGE: unique
+
+Filter to drop any duplicate entries, preserve order" ]
+unique() {
+  list=
+  while read line; do
+    if [ -z "${list}" ]; then
+      list="${line}"
+      echo "${line}"
+    elif ! echo "${list}" |
+             grep "^`string_to_regex \"${line}\"`" >/dev/null; then
+      list="${list}
+${line}"
+      echo "${line}"
+    fi
+  done
+  list=
+}
+
+[ "USAGE: space_to_newline_unique
+
+Filter to convert spaces to newline, then remove duplicate entries" ]
+space_to_newline_unique() {
+  tr " ${TAB}" '\n\n' |
+    unique |
+    grep --invert-match "^${SPACE}*\$"
+}
+
+[ "USAGE: newline_to_space_unique
+
+Filter to remove duplicate, then convert newline to space" ]
+newline_to_space_unique() {
+  unique |
+    tr '\n' ' ' |
+    sed "s/${SPACES}/ /g
+         s/ \$//"
+  echo
+}
+
+kernels=
+shas=
+skip_squash=
+# if false, must be two or more, otherwise single squash references are allowed
+all_squashes=false
+bugs=
+cherry_picked=
+renames=
+subject_prefix="ANDROID: GKI:"
+# Boilerplate processors we do not care to support in Android / GKI
+arch_excludes="arch/alpha/* arch/arc/* arch/c6x/* arch/csky/* arch/cris/*
+               arch/h8300/* arch/hexagon/* arch/ia64/* arch/m68k/*
+               arch/microblaze/* arch/mips/* arch/nds32/* arch/nios2/*
+               arch/openrisc/* arch/parisc/* arch/powerpc/* arch/riscv/*
+               arch/s390/* arch/sh/* arch/sparc/* arch/unicore32/*
+               arch/xtensa/*"
+arch_excludes="`echo \"${arch_excludes}\" |
+                  newline_to_space_unique`"
+excludes="${arch_excludes}"
+include_all=false
+added=
+debug=false
+verbose=false
+# Hardening below is undocumented, and may be changed/removed freely.  e.g. if
+# one of the undocumented uppercase flags needs to be reused elsewhere, do it.
+while [ ${#} -gt 0 ]; do
+  case ${1} in
+    -A=* | -a=* | --add=*) # -A is only for hardening against humans
+      a=${1#-a=}
+      a=${a#-A=}
+      a=${a#--add=}
+      [ -z "${added}" ] || added="${added} "
+      added="${added}${a}"
+      ;;
+    -A | -a | --add) # -A is only for hardening against humans
+      shift
+      [ -z "${added}" ] || added="${added} "
+      added="${added}${1}"
+      ;;
+    -B=* | -b=* | --bug=*) # -B is only for hardening against humans
+      b=${1#-b=}
+      b=${b#-B=}
+      b=${b#--bug=}
+      [ -z "${bugs}" ] || bugs="${bugs} "
+      bugs="${bugs}${b}"
+      ;;
+    -B | -b | --bug) # -B is only for hardening against humans
+      shift
+      [ -z "${bugs}" ] || bugs="${bugs} "
+      bugs="${bugs}${1}"
+      ;;
+    # Hardening, if we have only digits
+    [0-9] | [0-9][0-9] | [0-9][0-9][0-9] | [0-9][0-9][0-9][0-9] | \
+    [0-9][0-9][0-9][0-9][0-9] | [0-9][0-9][0-9][0-9][0-9][0-9] | \
+    [0-9][0-9][0-9][0-9][0-9][0-9][0-9] | \
+    [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9] | \
+    [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9] | \
+    [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]) # Context hardening
+      [ -z "${bugs}" ] || bugs="${bugs} "
+      bugs="${bugs}${1}"
+      ;;
+    -C=* | -c=* | --cherry-picked=* ) # -C is only for hardening against humans
+      c=${1#-c=}
+      c=${c#-C=}
+      c=${c#--cherry-picked=}
+      [ -z "${cherry_picked}" ] || cherry_picked="${cherry_picked} "
+      cherry_picked="${cherry_picked}${c}"
+      ;;
+    -C | -c | --cherry-picked) # -C is only for hardening against humans
+      shift
+      [ -z "${cherry_picked}" ] || cherry_picked="${cherry_picked} "
+      cherry_picked="${cherry_picked}${1}"
+      ;;
+    -D | -d | --debug) # -D is only for hardening against human
+      debug=true
+      ;;
+    -V | -v | --verbose) # -V is only for hardening against human
+      debug=true
+      verbose=true
+      ;;
+    -H | -h | -\? | --help) # -H is only for hardening against humans
+      echo "${USAGE}" >&2
+      exit
+      ;;
+    --include-all)
+      include_all=true
+      ;;
+    -K=* | -k=* | --kernel=* | --git=*) # -K is only for hardening against humans
+      k=${1#-k=}
+      k=${k#--kernel=}
+      k=${k#--git=}
+      k=${k#-K=}
+      [ -z "${kernels}" ] || kernels="${kernels} "
+      kernels="${kernels}${k}"
+      ;;
+    -K | -k | --kernel | --git) # -K is only for hardening against humans
+      shift
+      [ -z "${kernels}" ] || kernels="${kernels} "
+      kernels="${kernels}${1}"
+      ;;
+    -Q=* | -q=* | --skip-squash=* ) # -Q is only for hardening against humans
+      q=${1#-q=}
+      q=${q#-Q=}
+      q=${q#--skip-squash=}
+      [ -z "${skip_squash}" ] || skip_squash="${skip_squash} "
+      skip_squash="${skip_squash}${q}"
+      ;;
+    -Q | -q | --skip-squash) # -Q is only for hardening against humans
+      shift
+      [ -z "${skip_squash}" ] || skip_squash="${skip_squash} "
+      skip_squash="${skip_squash}${1}"
+      ;;
+    -R=*[,:]* | -r=*[,:]* | --rename=*[,:]*) # -R is only for hardening
+      l=${1#-r=}
+      l=${l#-R=}
+      l=${l#--rename=}
+      r=${l##*[,:]}
+      if [ X"${r}" = X"-" -o X"${r}" = X"MISSING" ]; then
+        echo "${RED}[    ERROR ]${NORMAL} Invalid rhs for rename: ${1}" >&2
+        echo >&2
+        echo "${USAGE}" >&2
+        exit 1
+      fi
+      l=${l%[,:]${r}}
+      [ -z "${renames}" ] || renames="${renames} "
+      renames="${renames}${l}:${r}"
+      ;;
+    -R | -r | --rename) # -R is only for hardening against humans
+      shift
+      r=${1##*[,:]}
+      if [ X"${1}" != X"${r}" ]; then
+        l=${1%[,:]${r}}
+      else
+        shift
+        l=${r}
+        r=${1}
+      fi
+      if [ X"${r}" = X"-" -o X"${r}" = X"MISSING" ]; then
+        echo "${RED}[    ERROR ]${NORMAL} Invalid rhs for rename: ${l}:${r}" >&2
+        echo >&2
+        echo "${USAGE}" >&2
+        exit 1
+      fi
+      [ -z "${renames}" ] || renames="${renames} "
+      renames="${renames}${l}:${r}"
+      ;;
+    -S=* | -s=* | --sha=*) # -S is only for hardening against humans
+      s=${1#-s=}
+      s=${s#-S=}
+      s=${s#--sha=}
+      if [ "${s}" != "${s#\#}" ]; then
+        break
+      fi
+      [ -z "${shas}" ] || shas="${shas} "
+      shas="${shas}${s}"
+      ;;
+    -S | -s | --sha) # -S is only for hardening against humans
+      shift
+      if [ "${1}" != "${1#\#}" ]; then
+        break
+      fi
+      [ -z "${shas}" ] || shas="${shas} "
+      shas="${shas}${1}"
+      ;;
+    -U | -u | --upstream) # -U and -u is undocumented and thus not reserved
+      subject_prefix="UPSTREAM:"
+      include_all=true
+      ;;
+    -X=* | -x=* | --exclude=*) # -X is only for hardening against humans
+      x=${1#-x=}
+      x=${x#-x=}
+      x=${x#--exclude=}
+      [ "${excludes}" != "${arch_excludes}" ] || excludes=
+      [ -z "${excludes}" ] || excludes="${excludes} "
+      excludes="${excludes}${x}"
+      ;;
+    -X | -x | --excludes) # -X is only for hardening against humans
+      shift
+      [ "${excludes}" != "${arch_excludes}" ] || excludes=
+      [ -z "${excludes}" ] || excludes="${excludes} "
+      excludes="${excludes}${1}"
+      ;;
+    \#*)
+      ;;
+    # Context hardening for shas is hard, ignore the next 34 lines!!!
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F] |\
+    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])
+      [ -z "${shas}" ] || shas="${shas} "
+      shas="${shas}${1}"
+      ;;
+    *)
+      if [ -d "${1%:*}/.git" ]; then # hardening against humans forgetting flags
+        [ -z "${kernels}" ] || kernels="${kernels} "
+        kernels="${kernels}${1}"
+      else
+        echo "${RED}[    ERROR ]${NORMAL} Unexpected Argument(s): ${*}" >&2
+        echo >&2
+        echo "${USAGE}" >&2
+        exit 1
+      fi
+      ;;
+  esac
+  shift
+done
+
+if ${include_all} && [ -n "${excludes}" ]; then
+  echo "${RED}[    ERROR ]${NORMAL} Do not mix --include-all with --excludes: ${excludes}" >&2
+  echo >&2
+  echo "${USAGE}" >&2
+  exit 1
+fi
+
+added="`echo ${added} |
+          space_to_newline_unique |
+          sed 's@^[.]/@@'`"
+
+renames="`echo ${renames} |
+            space_to_newline_unique
+          echo \"${excludes}\" |
+            space_to_newline_unique |
+            sed \"s@^arch\\\$@${arch_excludes}@\" |
+            space_to_newline_unique |
+            sed 's/.$/&:-/'`"
+
+shas="`echo ${shas} |
+         space_to_newline_unique |
+         sed --expression \"s/${SPACE}*\#.*//\" \
+             --expression \"/^${SPACE}*\$/d\"`"
+nshas=`echo ${shas} |
+         wc --words`
+
+if [ 1 = ${nshas} ]; then
+  echo "${ORANGE}[  WARNING ]${NORMAL} KISS: only one sha specified, maybe you really want '${GIT} cherry-pick -x'?" >&2
+fi
+
+if [ "all" = "${skip_squash}" -o "*" = "${skip_squash}" ]; then
+  skip_squash="^[0-9a-fA-F]*\(${SPACE}\|\$\)"
+elif [ -n "${skip_squash}" ]; then
+  skip_squash="`echo ${skip_squash} |
+                  space_to_newline_unique |
+                  sed \"s/.*/^&[0-9a-fA-F]*\(${SPACE}\|\$\)/\"`"
+else
+  skip_squash=nothing
+fi
+
+cherry_picked="`echo ${cherry_picked} |
+                  space_to_newline_unique`"
+cherry_picked_to_oneline="`echo \"${cherry_picked}\" |
+                             sed \"s@.*@s/^&[0-9a-fA-F]*${SPACES}//p@\"`"
+
+if ${debug}; then
+  n=`echo ${added} | wc --words`
+  echo "${BLUE}[     INFO ]${NORMAL} added[${n}]={"${added}"}" >&2
+  n=`echo ${bugs} | wc --words`
+  echo "${BLUE}[     INFO ]${NORMAL} bugs[${n}]={${bugs}}" >&2
+  n=`echo ${kernels} | wc --words`
+  echo "${BLUE}[     INFO ]${NORMAL} kernels[${n}]={${kernels}}" >&2
+  echo "${BLUE}[     INFO ]${NORMAL} shas[${nshas}]={"${shas}"}" >&2
+  n=`echo ${renames} | wc --words`
+  echo "${BLUE}[     INFO ]${NORMAL} renames[${n}]={"${renames}"}" >&2
+fi
+
+if [ `echo ${kernels} | wc --words` -lt 2 ]; then
+  echo "${RED}[    ERROR ]${NORMAL} Too few kernels, must be 2 or more: ${kernels}" >&2
+  echo >&2
+  echo "${USAGE}" >&2
+  exit 1
+fi
+
+short_sha_match="[0-9a-fA-F]\{6,16\}"
+
+short_shas="`echo \"${shas}\" | grep \"^${short_sha_match}\$\"`"
+dup_shas=
+if [ -n "${short_shas}" ]; then
+  short_shas_regex="`echo \"${short_shas}\" | sed 's/.*/^&[0-9a-fA-F]/'`"
+  dup_shas="`echo \"${shas}\" | grep \"${short_shas_regex}\"`"
+  if [ -n "${dup_shas}" ]; then
+    dup_shas="`echo \"${dup_shas}\" |
+                 sed \"s/^\(${short_sha_match}\).*/\1.../\"`"
+    echo "${ORANGE}[  WARNING ]${NORMAL} duplicate shas" ${dup_shas} >&2
+  fi
+fi
+
+[ "USAGE: patch_destination <directory> <branch> > stdout
+
+Convert a branch name to a suitable <directory>/<prefix>split.patch" ]
+patch_destination() {
+  echo ${2} |
+    tr '/\n' '--' |
+    sed "s/^-\$//
+         s@.*@${1%/}/&split.patch@"
+}
+
+[ "USAGE: print_short_path <directory> >stdout
+
+Print the shortname for the specified path, human readable.
+
+\${HOME}    - home directory" ]
+print_short_path() {
+  destination="${1%/}"
+  destination="${destination#`pwd`/}"
+  if [ "${destination}" != "${destination#${HOME%/}/}" ]; then
+    destination='~/'${destination#${HOME%/}/}
+  fi
+  echo ${destination}
+}
+
+AUTHOR_NAME="`${GIT} config user.name 2>/dev/null`"
+AUTHOR_EMAIL="`${GIT} config user.email 2>/dev/null`"
+for k in ${kernels}; do
+  d=${k%:*}
+  if [ -z "${AUTHOR_NAME}" ]; then
+    AUTHOR_NAME="`cd ${d} && ${GIT} config user.name 2>/dev/null`"
+    AUTHOR_EMAIL="`cd ${d} && ${GIT} config user.email 2>/dev/null`"
+  fi
+  if [ ! -d ${d} ]; then
+    echo "${RED}[    ERROR ]${NORMAL} Kernel directory ${d} does not exist!" >&2
+    exit 1
+  fi
+  if [ ! -d ${d}/.git ]; then
+    echo "${RED}[    ERROR ]${NORMAL} Kernel directory ${d} is not a git repostory!" >&2
+    exit 1
+  fi
+  b=${k#${d}}
+  b=${b#:}
+  if [ -n "${b}" ] &&
+      ! (
+          cd ${d} &&
+            ${GIT} branch -a |
+              grep "^[ *] \(remotes/\|\)${b}\$" >/dev/null
+        ); then
+    echo "${RED}[    ERROR ]${NORMAL} Kernel directory ${d} branch ${b} does not exist!" >&2
+    exit 1
+  fi
+  destination="`patch_destination ${d} ${b}`"
+  if [ -s "${destination}" ]; then
+    echo "${ORANGE}[  WARNING ]${NORMAL} `print_short_path ${destination}` will be overwritten or deleted" >&2
+  fi
+done
+
+RENAME_SED_SCRIPT=
+for r in ${renames}; do
+  oldname="${r%:*}"
+  newname="${r#${oldname}:}"
+  if [ -z "${oldname}" -o -z "${newname}" ]; then
+    echo "${RED}[    ERROR ]${NORMAL} rename format \"${oldname}\":\"${newname}\"!" >&2
+    exit 1
+  fi
+  if [ "${oldname}" != "${oldname%@*}" ]; then
+    echo "${RED}[    ERROR ]${NORMAL} rename format \"${oldname}\" contains @!" >&2
+    exit 1
+  fi
+  if [ X"${newname}" != X"${newname%@*}" ]; then
+    echo "${RED}[    ERROR ]${NORMAL} rename format \"${newname}\" contains @!" >&2
+    exit 1
+  fi
+  oldname="`string_to_regex \"${oldname}\"`"
+  if [ X"${newname}" = X"-" ]; then
+    newname="MISSING"
+    # allow simple trailing globing for excludes
+    if [ "${oldname}" != "${oldname%[[][*][]]}" ]; then
+      oldname="${oldname%[[][*][]]}.*"
+    fi
+  fi
+  [ -z "${RENAME_SED_SCRIPT}" ] || RENAME_SED_SCRIPT="${RENAME_SED_SCRIPT}
+"
+  RENAME_SED_SCRIPT="${RENAME_SED_SCRIPT}s@^${oldname}\$@${newname}@
+    s@^\(---${SPACES}a/\|[+][+][+]${SPACES}b/\|diff${SPACE}.*${SPACES}b/\|diff${SPACE}.*${SPACE}\)${oldname}\$@\1${newname}@
+    s@^\(diff.*${SPACE}a/\)${oldname}${SPACES}@\1${newname} @"
+done
+
+#
+# oneline format:
+#   originalsha actualfullsha title
+# shas format
+#   originalsha
+#   originalsha actualfullsha
+# titles format
+#   originalsha title
+#
+sha_match="[0-9a-fA-F]\{6,40\}"
+
+[ "USAGE: twin_shas < longshas
+
+input can be one of:
+sha sha
+sha longsha
+longsha
+
+output will always be:
+sha longsha
+
+\${shas}   - newline separated list of commits to sort" ]
+twin_shas() {
+  sed --expression "`echo \"${shas}\" |
+                       sed --quiet \
+                           --expression \"s@^\(${sha_match}\)${SPACES}\([0-9a-fA-F]\{32,\}\)\\\$@s/^\2\$/\1 \2/@p\" \
+                           --expression \"s@^\([0-9a-fA-F]\{6,32\}\)${SPACES}\1\\\$@s/^\1\\\\\\([0-9a-fA-F]\\\\\\{8,\\\\\\}\\\\\\)\$/\1 \1\\\\\\1/@p\"`" \
+      --expression 's/^\([0-9a-fA-F]\{16,16\}\)\([0-9a-fA-F]\{20,\}\)$/\1 \1\2/'
+}
+
+[ "USAGE: sort_shas
+
+\${shas}    - newline separated list of commits to sort
+\${index}   - index where sorted shas and oneline output is located
+\${kernels} - list of kernels to pick up shas from (or none if empty)
+\${TMP}     - temporary directory
+\${GIT}     - git tool path
+\${RED}     - colour red
+\${NORMAL}  - and back again" ]
+sort_shas() {
+  if [ -z "${shas}" ]; then
+    return
+  fi
+  ret=0
+  shas="`echo \"${shas}\" |
+           unique`"
+  nshas=`echo "${shas}" |
+           wc --lines` &&
+  if [ ${nshas} -gt 0 ]; then
+    second_shas="`echo \"${shas}\" |
+                    sed \"s/^[0-9a-fA-F]*${SPACES}//\"`"
+    my_shas="`echo ${shas} |
+                space_to_newline_unique |
+                sed 's/^/^/'`"
+    (
+      ${GIT} rev-list --topo-order --reverse --missing=allow-any ${second_shas} --
+      if [ -n "${kernels}" ]; then
+        cat ${TMP}[0-9]/shas ${TMP}[0-9][0-9]/shas 2>/dev/null
+      fi
+    ) |
+      grep "${my_shas}" |
+      unique |
+      grep "${my_shas}" --max-count=${nshas} |
+      twin_shas |
+      tee ${TMP}${index}/shas |
+      while read sha fullsha; do
+        if [ -z ${fullsha} ]; then
+          fullsha=${sha}
+        fi
+        ${GIT} log --pretty=full --pretty=oneline --max-count=1 ${fullsha} |
+          sed "s/^/${sha} /"
+      done >${TMP}${index}/oneline ||
+        ret=${?}
+    actual_nshas=`wc --lines < ${TMP}${index}/shas`
+    [ -s ${TMP}${index}/shas ] || rm ${TMP}${index}/shas
+    [ -s ${TMP}${index}/oneline ] || rm ${TMP}${index}/oneline
+    if [ "${actual_nshas}" != ${nshas} ]; then
+      echo "${RED}[    ERROR ]${NORMAL} Not all shas expected (${actual_nshas} != ${nshas}) were found in `pwd`" >&2
+      if [ ${actual_nshas} -lt ${nshas} ]; then
+        # list the whole set of expected shas
+        missing="`echo ${shas} |
+                    space_to_newline_unique`"
+        # Truncated shas that we found
+        known="`echo \"${missing}\" |
+                  sed 's/.*/s\/^&[0-9a-fA-F]*$\/&\//'`"
+        # rule based on full and truncated shas
+        known="`(
+                  space_to_newline_unique <${TMP}${index}/shas
+                  space_to_newline_unique <${TMP}${index}/shas |
+                    sed \"${known}\"
+                ) |
+                  unique |
+                  sed 's/.*/^&$/'`"
+        # now subtract all knowns from set of expected
+        missing="`echo \"${missing}\" |
+                    grep --invert-match \"${known}\"
+                    sed \"s/^\(${short_sha_match}\).*/\1.../'`"
+        if [ -n "${missing}" ]; then
+          echo "${RED}[    ERROR ]${NORMAL}     missing? `echo \"${missing}\" |
+                   sed '2,$s/^/                          /'`" >&2
+        fi
+        if [ -n "${dup_shas}" ]; then
+          echo "${RED}[    ERROR ]${NORMAL}  duplicates? `echo \"${dup_shas}\" |
+                   sed '2,$s/^/                          /'`" >&2
+        fi
+      fi
+      ret=1
+    fi
+  fi ||
+    ret=${?}
+  return ${ret}
+}
+
+[ "USAGE: restore_branch [branch]
+
+If branch is not as expected, restore it
+
+\${d}     - directory
+\${index} - kernel index
+\${GIT}   - git tool
+\${TMP}   - temporary directory" ]
+restore_branch() {
+  (
+    if [ -n "${1}" ]; then
+      b="${1}"
+    else
+      b="`sed --quiet \
+              \"s/^[*]${SPACES}\((HEAD detached at \|\)\([^)]*\)\()\|\)/\2/p\" \
+              ${TMP}${index}/branches`"
+    fi
+    if cd ${d}; then
+      ${GIT} branch -a |
+        if ! grep "^[*] \((HEAD detached at \|\)\(remotes/\|\)${b}\()\|\)\$" >/dev/null; then
+          OUTPUT="`${GIT} checkout ${b} 2>&1 && echo OK`"
+          if [ "${OUTPUT}" = "${OUTPUT%OK}" ]; then
+            if [ -z "${OUTPUT}" ]; then
+              echo "${GIT} checkout ${b} failed without a report?"
+            else
+              echo "${OUTPUT}"
+            fi >&2
+            exit -1
+          fi
+        fi
+    else
+      exit -1
+    fi
+  )
+}
+
+[ "USAGE: collect_files [branch]
+
+\${added} - list of added files
+\${d}     - directory
+\${index} - kernel index
+\${TMP}   - temporary directory" ]
+collect_files() {
+  (
+    echo "${added}"
+    if cd ${d}; then
+      restore_branch ${1} ||
+        exit
+      find . -print -type f |
+        sed 's@^[.]/@@'
+    fi
+  ) |
+    sort --unique >${TMP}${index}/files
+}
+
+[ "USAGE: collect_shas [branch]
+
+\${added} - list of added files
+\${d}     - directory
+\${index} - kernel index
+\${TMP}   - temporary directory" ]
+collect_shas() {
+  if [ -n "${1}" ]; then
+    # make sure collect files has started (and thus performed the git checkout)
+    timeout=120
+    while [ ! -s ${TMP}${index}/files -a ${timeout} -gt 0 ]; do
+      sleep 1
+      timeout=`expr ${timeout} - 1`
+    done
+    if [ ${timeout} -le 0 ]; then
+      echo "${ORANGE}[  WARNING ]${NORMAL} timeout waiting for ${TMP}${index}/files" >&2
+    fi
+  fi
+  (
+    if cd ${d}; then
+      restore_branch ${1} ||
+        exit
+      (
+        kernels=
+        shas="`echo \"${shas}\" |
+               while read sha fullsha ; do
+                 if [ -z ${fullsha} ]; then
+                   fullsha=${sha}
+                 fi
+                 if ${GIT} merge-base --is-ancestor ${fullsha} HEAD 2>/dev/null; then
+                   echo ${sha} ${fullsha}
+                 else
+                   echo ${sha} ${fullsha} >&9
+                 fi
+               done`" &&
+        sort_shas
+      ) 9>&1 |
+        while read sha fullsha; do
+          if [ -z ${fullsha} ]; then
+            fullsha=${sha}
+          fi
+          oneline="`${GIT} log --pretty=full --pretty=oneline --max-count=1 ${fullsha} 2>/dev/null`"
+          if [ -n "${oneline}" ]; then
+            echo "${sha} ${oneline}" >>${TMP}${index}/oneline.extra
+            echo "${sha} ${oneline%%${SPACE}*}" >>${TMP}${index}/shas.extra
+          fi
+        done
+      if [ -n "${cherry_picked}" ]; then
+        for sha in ${cherry_picked}; do
+          oneline=
+          for f in ${TMP}[0-9]/oneline* ${TMP}[0-9][0-9]/oneline* \
+                   ${TMP}[0-9]/shas* ${TMP}[0-9][0-9]/shas*; do
+            if [ ! -s ${f} ]; then
+              continue
+            fi
+            oneline="`sed --quiet \"${cherry_picked_to_oneline}\" ${f}`"
+            if [ -n "${oneline}" ]; then
+              break
+            fi
+          done
+          if [ -z "${oneline}" ]; then # last resort
+            oneline="`${GIT} log --pretty=full --pretty=oneline --max-count=1 ${sha} 2>/dev/null`"
+          fi
+          if [ -n "${oneline}" ]; then
+            if [ "${oneline}" != "${oneline%${SPACE}*}" ]; then # race condition
+              echo "${sha} ${oneline}" >>${TMP}${index}/oneline.extra
+            fi
+            echo "${sha} ${oneline%%${SPACE}*}" >>${TMP}${index}/shas.extra
+          fi
+        done
+      fi
+    fi
+  )
+}
+
+TMP=`mktemp -d`/
+echo "${ORANGE}[     INFO ]${NORMAL} Pass 1 ... Acquire tree information" >&2
+index=0
+for k in ${kernels}; do
+  d=${k%:*}
+  mkdir -p ${TMP}${index}
+  D="`realpath -m ${d} | tee ${TMP}${index}/directory`"
+  (
+    cd ${d} &&
+      ${GIT} branch -a >${TMP}${index}/branches
+  )
+  b=${k#${d}}
+  b=${b#:}
+  if [ -n "${b}" ]; then
+    echo "${b}" >${TMP}${index}/branch
+  fi
+  echo "${index}:${D}:${b}" >>${TMP}directories
+  index=`expr ${index} + 1`
+done
+
+echo "${ORANGE}[     INFO ]${NORMAL} Pass 2 ... Acquire tree information (checkedout)" >&2
+index=0
+for k in ${kernels}; do
+  d=${k%:*}
+  b=${k#${d}}
+  b=${b#:}
+  if [ -z "${b}" ] ||
+    grep "^[*] \((HEAD detached at \|\)\(remotes/\|\)${b}\()\|\)\$" \
+         ${TMP}${index}/branches >/dev/null; then
+    collect_files&
+    if [ ${nshas} -gt 0 ]; then
+      collect_shas&
+    fi
+  else
+    D="`cat ${TMP}${index}/directory`"
+    if ! grep --invert-match "^${index}:${D}:${b}\$" ${TMP}directories |
+           grep "^[0-9]*:${D}:" >/dev/null; then
+      collect_files ${b}&
+      if [ ${nshas} -gt 0 ]; then
+        collect_shas ${b}&
+      fi
+    fi
+  fi
+  index=`expr ${index} + 1`
+done
+wait
+
+echo "${ORANGE}[     INFO ]${NORMAL} Pass 3 ... Acquire tree information (branches)" >&2
+index=0
+first=true
+for k in ${kernels}; do
+  if [ -s ${TMP}${index}/files ]; then
+    index=`expr ${index} + 1`
+    continue
+  fi
+  if ${first}; then
+    first=false
+    echo "${ORANGE}[  WARNING ]${NORMAL} checking out branch, let script run to completion" >&2
+    echo "${ORANGE}[  WARNING ]${NORMAL}              to ensure restored to original state" >&2
+  fi
+  d=${k%:*}
+  b=${k#${d}}
+  b=${b#:}
+  collect_files ${b}&
+  collect_shas ${b}&
+  wait
+  index=`expr ${index} + 1`
+done
+
+# Delineate old and new content
+cutline="--------"
+# Skip any Android prefixes like ANDROID:, GKI: etc
+subject_from_oneline_match="^\([0-9a-fA-F]*\)${SPACES}[0-9a-fA-F]*${SPACES}\([A-Z]*:${SPACE}*\)*\(.*\)"
+# Truncate comment line removing and (comments)
+strip_trailing_extras="s/${SPACES}am:${SPACES}${sha_match}\$//
+                       s/${SPACES}([^)]*)\$//"
+
+echo "${ORANGE}[     INFO ]${NORMAL} Pass 4 ... Acquire alternate sha information by title matching" >&2
+i=0
+while [ ${i} -lt ${index} ]; do
+  [ ! -s ${TMP}${i}/oneline ] ||
+    sed --quiet \
+        --expression "${strip_trailing_extras}" \
+        --expression "s/${subject_from_oneline_match}/\1 \3/p" \
+        ${TMP}${i}/oneline
+  i=`expr ${i} + 1`
+done |
+  sort --unique >${TMP}titles
+
+index1=0
+while read sha1 title1; do
+  index2=0
+  while read sha2 title2; do
+    if [ ${index1} -ge ${index2} ]; then
+      index2=`expr ${index2} + 1`
+      continue
+    fi
+    if [ "${title1}" = "${title2}" ]; then
+      echo "${ORANGE}[  WARNING ]${NORMAL} ${sha1} and ${sha2} title the same (\"${title1}\")" >&2
+    fi
+    index2=`expr ${index2} + 1`
+  done <${TMP}titles
+  index1=`expr ${index1} + 1`
+done <${TMP}titles
+
+for f in ${TMP}[0-9]/oneline* ${TMP}[0-9][0-9]/oneline*; do
+  if [ -s ${f} ]; then
+    cat ${TMP}[0-9]/oneline* ${TMP}[0-9][0-9]/oneline* 2>/dev/null |
+      unique >>${TMP}oneline
+  fi
+  break
+done
+
+[ "USAGE: collect_shas_by_name [branch]
+
+\${k}     - kernel
+\${d}     - directory
+\${index} - kernel index
+\${GIT}   - git tool
+\${TMP}   - temporary directory" ]
+collect_shas_by_name() {
+  (
+    first=true &&
+    cd ${d} &&
+    if [ -s ${TMP}${index}/oneline ]; then
+      TITLES="`sed --quiet \
+                   --expression \"${strip_trailing_extras}\" \
+                   --expression \"s/${subject_from_oneline_match}/^\1 \3\$/p\" \
+                   ${TMP}${index}/oneline |
+                 string_to_regex`"
+      grep --invert-match "${TITLES}" ${TMP}titles
+    else
+      cat ${TMP}titles
+    fi |
+      while read sha title; do
+        if ${first}; then
+          first=false
+          restore_branch ${1} ||
+            exit
+        fi
+        ${GIT} log --pretty=full --pretty=oneline --grep="${title}" |
+          grep --invert-match --max-count=1 "Merge remote-tracking branch\|Merge ".*"\$\| am: ${sha_match}\$" |
+          sed "s/^/${sha} /"
+      done |
+      while read sha fullsha title; do
+        if ${first}; then
+          first=false
+          if ${debug}; then
+            echo ${cutline} ${index} >>${TMP}oneline
+            echo ${cutline} ${index} >>${TMP}${index}/oneline
+          fi
+          echo ${cutline} ${index} >>${TMP}${index}/shas
+        fi
+        echo "${sha} ${fullsha} ${title}" >>${TMP}oneline
+        echo "${sha} ${fullsha} ${title}" >>${TMP}${index}/oneline
+        echo "${sha} ${fullsha}" >>${TMP}${index}/shas
+      done
+    [ -s ${TMP}${index}/shas -o ! -e ${TMP}${index}/shas ] || rm ${TMP}${index}/shas
+    [ -s ${TMP}${index}/oneline -o ! -e ${TMP}${index}/oneline ] || rm ${TMP}${index}/oneline
+    # re-sort them?
+    if [ -s ${TMP}${index}/shas ] &&
+         grep "^${cutline}\( [0-9]*\)*\$" ${TMP}${index}/shas >/dev/null; then
+      shas="`grep --invert-match \"^${cutline}\( [0-9]*\)*\$\" ${TMP}${index}/shas`" &&
+        sort_shas
+    fi
+  )
+}
+
+index=0
+for k in ${kernels}; do
+  if [ -s ${TMP}${index}/shas ] &&
+     [ `wc --lines <${TMP}${index}/shas` = ${nshas} ]; then
+    touch ${TMP}${index}/by_name
+    # Nothing to see here
+    index=`expr ${index} + 1`
+    continue
+  fi
+  d=${k%:*}
+  b=${k#${d}}
+  b=${b#:}
+  if [ -z "${b}" ] ||
+      (
+        cd ${d} &&
+          ${GIT} branch -a
+      ) |
+        grep "^[*] \((HEAD detached at \|\)\(remotes/\|\)${b}\()\|\)\$" \
+              >/dev/null; then
+    collect_shas_by_name&
+    touch ${TMP}${index}/by_name
+  else
+    D="`cat ${TMP}${index}/directory`"
+    if ! grep --invert-match "^${index}:${D}:${b}\$" ${TMP}directories |
+           grep "^[0-9]*:${D}:" >/dev/null; then
+      collect_shas_by_name ${b}&
+      touch ${TMP}${index}/by_name
+    fi
+  fi
+  index=`expr ${index} + 1`
+done
+wait
+
+index=0
+for k in ${kernels}; do
+  if [ -e ${TMP}${index}/by_name ]; then
+    rm ${TMP}${index}/by_name
+    index=`expr ${index} + 1`
+    continue
+  fi
+  d=${k%:*}
+  b=${k#${d}}
+  b=${b#:}
+  collect_shas_by_name ${b}
+  index=`expr ${index} + 1`
+done
+# Pour through the commits and split them up
+
+[ "USAGE: patch_files <patch >file-list
+
+Find file references in a patch" ]
+patch_files() {
+  sed --quiet 's@^--- a/@@p
+               s@^[+][+][+] b/@@p' |
+    uniq
+}
+
+BUG_INDEX=0001
+if [ -z "${AUTHOR_EMAIL}" ]; then
+  AUTHOR_EMAIL="`${USER}@google.com`"
+fi
+
+[ "USAGE: save_patch < patchcontent > touchedfilelist
+
+Take an incoming patch from stdin, adjust content and save it in ${TMP},
+and output the list of source files affected by the patch.
+
+\${sha}          - commit sha reference source
+\${fullsha}      - commit full sha source
+\${bugs}         - list of reference bugs to add
+\${AUTHOR_NAME}  - full name of author
+\${AUTHOR_EMAIL} - email of author
+\${BUG_INDEX}    - sequential bug index
+\${TMP}          - temporary directory" ]
+save_patch() {
+  sha_source="${sha}"
+  if [ X"${sha}" = X"-" ]; then
+    sha_source=stdin
+  fi
+  fullsha_source=${fullsha}
+  if [ -z "${fullsha_source}" ]; then
+    fullsha_source=stdin
+  fi
+  BUGLIST=
+  TMPFILE=${TMP}${BUG_INDEX}-${sha_source}-original.patch
+  sed "s/^Subject:${SPACES}[[]PATCH\(${SPACES}v[0-9]*\)\{,1\}\(${SPACES}[0-9]\{1,\}\/[0-9]\{1,\}\)\{,1\}[]]${SPACES}/Subject: /" >${TMPFILE}
+  if [ -z "${sha_source}" -o "stdin" = "${sha_source}" ]; then
+    if [ -z "${fullsha_source}" -o "stdin" = "${fullsha_source}" ]; then
+      s="`sed --quiet \
+              \"s/^From${SPACES}\(${sha_match}\)\$/\1/p\" ${TMPFILE}`"
+      if [ -n "${s}" ]; then
+        fullsha_source="${s}"
+      fi
+    fi
+    sha_source="`printf \"%.16s\" \"${fullsha_source}\"`"
+  fi
+  list=" "
+  for s in ${cherry_picked} ${fullsha_source} ${sha_source}; do
+    if [ "stdin" = "${s}" ]; then
+      continue
+    fi
+    # find the fullsha for each entry
+    oneline=`echo ${s} |
+               grep '^[0-9a-fA-F]\{40,\}'`
+    for f in ${TMP}[0-9]/oneline* ${TMP}[0-9][0-9]/oneline* \
+             ${TMP}[0-9]/shas* ${TMP}[0-9][0-9]/shas*; do
+      if [ -n "${oneline}" ]; then
+        break
+      fi
+      if [ ! -s ${f} ]; then
+        continue
+      fi
+      oneline="`sed --quiet \"${cherry_picked_to_oneline}\" ${f}`"
+    done
+    f=${oneline%%${SPACE}*}
+    [ -n "${f}" ] || f=${s}
+    if [ "${list}" != "${list#* ${f} }" ]; then
+      continue
+    fi
+    list="${list}${f} "
+    if grep "^(.*from commit ${f}" ${TMPFILE} >/dev/null; then
+      continue
+    fi
+    if [ -n "${BUGLIST}" ]; then
+      BUGLIST="${BUGLIST}\\
+"
+    fi
+    BUGLIST="${BUGLIST}(cherry picked from commit ${f})"
+  done
+  if [ -n "${BUGLIST}" ] || [ -n "${bugs}" ] ||
+     ! grep "^Signed-off-by: ${AUTHOR_NAME} <${AUTHOR_EMAIL}>\$" ${TMPFILE} >/dev/null; then
+    if [ -n "${BUGLIST}" ]; then
+      BUGLIST="${BUGLIST}\\
+"
+    fi
+    BUGLIST="${BUGLIST}Signed-off-by: ${AUTHOR_NAME} <${AUTHOR_EMAIL}>"
+  fi
+  for b in ${bugs}; do
+    if ! grep --ignore-case "^Bug: ${b}\$" ${TMPFILE} >/dev/null; then
+      if [ -n "${BUGLIST}" ]; then
+        BUGLIST="${BUGLIST}\\
+"
+      fi
+      BUGLIST="${BUGLIST}Bug: ${b}"
+    fi
+  done
+  SCRIPT=
+  if [ -n "${BUGLIST}" ]; then
+    BUGLINE=$(grep --line-number '^diff ' ${TMPFILE} |
+                sed --quiet 's/^\([0-9][0-9]*\):.*/\1/p' |
+                head -1)
+    if [ -n "${BUGLINE}" ]; then
+      BUGLINE=$((BUGLINE - 1))
+      SCRIPT="${BUGLINE}i ${BUGLIST}"
+    fi
+  fi
+  prefixes="${SPACES}\(ANDROID\|UPSTREAM\|BACKPORT\|FROMLIST\):${SPACE}"
+  if ! grep "^Subject: ${prefixes}" ${TMPFILE} >/dev/null; then
+    [ -z "${SCRIPT}" ] || SCRIPT="${SCRIPT}
+  "
+    if [ "${subject_prefix}" != "${subject_prefix#ANDROID:}" ]; then
+      SCRIPT="${SCRIPT}s/^Subject:${SPACES}\([^A ${TAB}]\)/Subject: ANDROID: \1/
+        s/^Subject:${SPACES}\(A[^N]\)/Subject: ANDROID: \1/
+        s/^Subject:${SPACES}\(AN[^D]\)/Subject: ANDROID: \1/
+        s/^Subject:${SPACES}\(AND[^R]\)/Subject: ANDROID: \1/
+        s/^Subject:${SPACES}\(ANDR[^O]\)/Subject: ANDROID: \1/
+        s/^Subject:${SPACES}\(ANDRO[^I]\)/Subject: ANDROID: \1/
+        s/^Subject:${SPACES}\(ANDROI[^D]\)/Subject: ANDROID: \1/
+        s/^Subject:${SPACES}ANDROID${SPACE}/Subject: ANDROID: /
+        s/^Subject:${SPACES}ANDROID\([^:]\)/Subject: ANDROID: \1/
+        s/^Subject:${SPACE}\{2,\}ANDROID:/Subject: ANDROID:/"
+    elif [ "${subject_prefix}" != "${subject_prefix#UPSTREAM:}" ]; then
+      SCRIPT="${SCRIPT}s/^Subject:${SPACES}\([^U ${TAB}]\)/Subject: UPSTREAM: \1/
+        s/^Subject:${SPACES}\(U[^P]\)/Subject: UPSTREAM: \1/
+        s/^Subject:${SPACES}\(UP[^S]\)/Subject: UPSTREAM: \1/
+        s/^Subject:${SPACES}\(UPS[^T]\)/Subject: UPSTREAM: \1/
+        s/^Subject:${SPACES}\(UPST[^R]\)/Subject: UPSTREAM: \1/
+        s/^Subject:${SPACES}\(UPSTR[^E]\)/Subject: UPSTREAM: \1/
+        s/^Subject:${SPACES}\(UPSTRE[^A]\)/Subject: UPSTREAM: \1/
+        s/^Subject:${SPACES}UPSTREAM${SPACE}/Subject: UPSTREAM: /
+        s/^Subject:${SPACES}UPSTREAM\([^:]\)/Subject: UPSTREAM: \1/
+        s/^Subject:${SPACE}\{2,\}UPSTREAM:/Subject: UPSTREAM:/"
+    fi
+  fi
+  if [ "${subject_prefix}" != "${subject_prefix%GKI:}" ] &&
+     ! grep "^Subject:.*${SPACE}GKI:${SPACE}" ${TMPFILE} >/dev/null; then
+    [ -z "${SCRIPT}" ] || SCRIPT="${SCRIPT}
+"
+SCRIPT="${SCRIPT}s/^Subject:${prefixes}\([^G ${TAB}]\)/Subject: \1: GKI: \2/
+      s/^Subject:${prefixes}\(G[^K]\)/Subject: \1: GKI: \2/
+      s/^Subject:${prefixes}\(GK[^I]\)/Subject: \1: GKI: \2/
+      s/^Subject:${prefixes}GKI${SPACE}/Subject: \1: GKI: /
+      s/^Subject:${prefixes}GKI\([^:]\)/Subject: \1: GKI: \2/"
+  fi
+  [ -z "${SCRIPT}" ] || SCRIPT="${SCRIPT}
+"
+  SCRIPT="${SCRIPT}/^Subject:/ {
+      N
+      s/^\(Subject:.*\)\n /\1 /
+    }"
+
+  if [ -n "${RENAME_SED_SCRIPT}" ]; then
+    SCRIPT="${SCRIPT}
+            ${RENAME_SED_SCRIPT}"
+  fi
+  sed "${SCRIPT}" ${TMPFILE} |
+    tee ${TMP}${BUG_INDEX}-${sha_source}.patch |
+    patch_files |
+    newline_to_space_unique |
+    sed "s/^/${sha} ${fullsha_source} /"
+  SUBJECT="`sed --quiet \
+                \"s/^Subject:${SPACES}\(\(ANDROID\|UPSTREAM\|BACKPORT\|FROMLIST\|GKI\):${SPACES}\)*//p\" \
+                ${TMPFILE}`"
+  if [ "${SUBJECT}" != "${SUBJECT#*Revert \"}" ]; then
+    echo "${RED}[  WARNING ]${NORMAL} Is a revert! commit ${fullsha_source} (\"${SUBJECT}\")" >&2
+  fi
+  if [ "${SUBJECT}" != "${SUBJECT#*[Dd][Ee][Bb][Uu][Gg]\"}" ]; then
+    echo "${RED}[  WARNING ]${NORMAL} Mentions debugging! commit ${fullsha_source} (\"${SUBJECT}\")" >&2
+  fi
+  if [ "${SUBJECT}" != "${SUBJECT#*Merge remote-tracking branch \`}" ]; then
+    echo "${RED}[  WARNING ]${NORMAL} is a remote tracking Merge, scrambles adjustments! commit ${fullsha_source} (\"${SUBJECT}\")" >&2
+  fi
+  if [ X"${sha}" != X"-" ] &&
+       (
+         [ -z "${skip_squash}" ] ||
+           ! echo "${sha}" |
+               grep "${skip_squash}" >/dev/null
+       ) ; then
+    # Blame rules to remove lines that are too easy to be introduced elsewhere
+    BLACKLIST="${SPACES}return${SPACES}
+${SPACES}\(return\|break\|continue\);\$
+SPDX-License-Identifier
+Copyright
+${SPACE}\(int\|long\|[*]/\|#else\|#endif\|do {\|else\|} else {\|}\)\$
+^}\$
+^${SPACES}/[*]${SPACE}*\$
+:\$
+MODULE_LICENSE
+^.\{0,8\}\$"
+    count=0
+    files="`patch_files <${TMPFILE}`"
+    total="`echo ${files} |
+              wc -w`"
+    if [ ${total} -gt 100 ]; then
+      echo "${ORANGE}[  WARNING ]${NORMAL} too many (${total}) files in commit ${fullsha_source} (\"${SUBJECT}\")" >&2
+    fi
+    if [ -n "${RENAME_SED_SCRIPT}" -a \
+         "${RENAME_SED_SCRIPT}" != "${RENAME_SED_SCRIPT#*MISSING}" ]; then
+      echo "${files}" |
+      sed "`echo \"${RENAME_SED_SCRIPT}\" | grep MISSING`" |
+      grep -v MISSING
+    else
+      echo "${files}"
+    fi |
+      while read f; do
+        if [ ${total} -gt 100 ]; then
+          count=`expr ${count} + 1`
+        fi
+        if [ -z "${f}" ]; then
+          continue
+        fi
+        if ! ${include_all} && [ ! -s ${f} ]; then
+          continue
+        fi
+        if [ ${total} -gt 100 ]; then
+          printf "%3u%% %5u/%u %-60s${CR}" \
+                 `expr \( 100 \* ${count} + \( ${total} / 2 \) \) / ${total}` \
+                 ${count} ${total} ${f} >&2
+        fi
+        # Report unique lines associated with change to prevent false reports
+        regex=${TMP}${BUG_INDEX}-${sha}.blame.grep
+        # ToDo: Shortcoming, does not capture the lines removed, difficult to
+        # investigate on the receiving end since we would need a ${GIT} log -S
+        # followed by a ${GIT} show to confirm removal.  For another day
+        # because we get some level of noise trying to find the added lines
+        # that should be mitigated first.
+        ${GIT} blame -s -l ${sha} -- ${f} 2>/dev/null |
+          grep --invert-match "${BLACKLIST}" |
+          sed --quiet \
+              "s@^${sha}[0-9a-fA-F]*${SPACES}\(\(${f}\|[^ ]*\)${SPACES}\)*[0-9][0-9]*)${SPACE}@@p" |
+          sort --unique |
+          string_to_regex |
+          sed 's/.*/^&$/' >${regex}
+        if [ ! -s "${regex}" ]; then
+          rm --force ${regex}
+          continue
+        fi
+        # Shortcoming, results for current file contents, not at revision
+        # ${sha} and the other tree will have a different representation that
+        # we may gain from a more inclusive detail in the blame regex file.
+        # This filter is to remove matches that will trigger multiple times
+        # in an effort to reduce noise.
+        grep --file ${regex} ${f} |
+          sort |
+          uniq --count |
+          sed --quiet "s/^${SPACE}*1${SPACE}//p" |
+          string_to_regex |
+          sed "s@.*@${f}:[0-9]) &\$@"
+        rm ${regex}
+      done >${TMP}${BUG_INDEX}-${sha}.blame
+      [ -s ${TMP}${BUG_INDEX}-${sha}.blame ] ||
+        rm ${TMP}${BUG_INDEX}-${sha}.blame
+  fi
+}
+
+SERIES_PREFIX="[0-9][0-9][0-9][0-9]-"
+
+[ "USAGE: split_up_patch file... > adjustedcontent
+
+Take an incoming patch from stdin, adjust content and copy it out
+to stdout, slicing off the fragments that are not part of the file
+list.
+
+NB: We do not currently support patches that introduce new files
+
+\${fullsha}      - commit full sha source
+\${index}        - kernel index
+\${sha}          - commit sha reference source
+\${AUTHOR_NAME}  - full name of author
+\${AUTHOR_EMAIL} - email of author
+\${TMP}          - temporary directory" ]
+split_up_patch() {
+  TMPFILE="${TMP}${index}/${sha}.sed"
+  echo ": loop1" >${TMPFILE}
+  adjusted="`echo ${*} |
+             space_to_newline_unique`"
+  regex_adjusted="`string_to_regex \"${adjusted}\"`"
+  echo "${regex_adjusted}" |
+    sed 's@/@\\/@g
+         s/.*/\/^diff .*a\\\/& b\\\/& *$\/ b ok/' \
+        >>${TMPFILE}
+  echo "/^diff${SPACES}.*a\// {
+         : loop2
+         N
+         s/.*\n//
+         /^\$/ b loop1
+         /^diff${SPACES}.*a\// b loop1
+         b loop2
+       }
+       : ok" \
+       >>${TMPFILE}
+  match_adjusted="`echo \"${regex_adjusted}\" |
+                     sed 's/.*/^&$/'`"
+  adjusted="`echo \"${adjusted}\" |
+               sed '1s/^/\\\\5adjusted: /
+                    2,$s/^/\\\\5          /
+                    s@/@\\\\/@g' |
+               tr -d '\n'
+             cat ${TMP}${SERIES_PREFIX}${sha}-original.patch |
+             patch_files |
+               grep --invert-match \"${match_adjusted}\" |
+               sed '1s/^/\\\\5 skipped: /
+                    2,$s/^/\\\\5          /
+                    s@/@\\\\/@g' |
+               tr -d '\n'`"
+  echo "/^Subject:${SPACE}/ {
+         N
+         s/^Subject:${SPACES}\(\(ANDROID\|UPSTREAM\|BACKPORT\|FROMLIST\|GKI\):${SPACES}\)*\([a-zA-Z][-_a-zA-Z\/0-9]*:${SPACES}\|[[][a-zA-Z][-_a-zA-Z\/0-9]*[]]${SPACES}\)\{0,\}\([^\n]*\)\(\n\)\([^\n]*\)\$/Subject: ${subject_prefix} \3Implement <edit> was \4\5\5Partial cherry picked from commit ${fullsha}\5(\"\3\4\")${adjusted}\5\5Original commit message: <edit>\5\6/
+       }" \
+       >>${TMPFILE}
+  if [ "${subject_prefix}" != "${subject_prefix#UPSTREAM:}" ]; then
+    echo "s/^Subject:${SPACES}UPSTREAM:${SPACES}/Subject: BACKPORT: /" \
+      >>${TMPFILE}
+  fi
+  echo "s/^From: .*/From: ${AUTHOR_NAME} <${AUTHOR_EMAIL}>/
+       /^Change-Id:${SPACES}I/ {
+         s/[Ff]\$/0/
+         t skip
+         s/[Ee]\$/f/
+         t skip
+         s/[Dd]\$/e/
+         t skip
+         s/[Cc]\$/d/
+         t skip
+         s/[Bb]\$/c/
+         t skip
+         s/[Aa]\$/b/
+         t skip
+         s/9\$/a/
+         t skip
+         s/8\$/9/
+         t skip
+         s/7\$/8/
+         t skip
+         s/6\$/7/
+         t skip
+         s/5\$/6/
+         t skip
+         s/4\$/5/
+         t skip
+         s/3\$/4/
+         t skip
+         s/2\$/3/
+         t skip
+         s/1\$/2/
+         t skip
+         s/0\$/1/
+         t skip
+         d
+         : skip
+       }" >> ${TMPFILE}
+  sed --file ${TMPFILE} ${TMP}${SERIES_PREFIX}${sha}.patch ||
+    ! ${debug} ||
+    ! echo "errant sed script:" 2>&1 ||
+    cat ${TMPFILE} >&2
+  rm ${TMPFILE}
+}
+
+[ "USAGE: print_index value >stdout
+
+Convert a number to a patch index" ]
+print_index() {
+  printf "%04u" `echo ${1} | sed 's/^0*//'`
+}
+
+[ "USAGE: print_branch <index> >stdout
+
+Print the directory and branch associated with supplied index
+
+\${TMP}     - temporary directory" ]
+print_branch() {
+  destination="`cat ${TMP}${1}/directory`"
+  destination="`print_short_path ${destination}`"
+  branch=
+  if [ -s ${TMP}${1}/branch ]; then
+    branch=':'"`cat ${TMP}${1}/branch`"
+  fi
+  echo ${destination}${branch}
+}
+
+if [ ${nshas} -le 0 ]; then
+  echo "${ORANGE}[     INFO ]${NORMAL} Pass 5 ... Reading incoming patch" >&2
+  sha=-
+  fullsha=
+  save_patch
+else
+  echo "${ORANGE}[     INFO ]${NORMAL} Pass 5 ... Reading incoming shas" >&2
+  echo "${shas}" |
+    while read sha; do
+      index=0
+      for k in ${kernels}; do
+        fullsha=
+        if [ -s ${TMP}${index}/shas ]; then
+          fullsha=`cat ${TMP}${index}/shas 2>/dev/null |
+                     sed --quiet "s/^${sha}${SPACES}\([0-9a-fA-F]*\)\$/\1/p" |
+                     unique`
+        fi
+        if [ -z "${fullsha}" ]; then
+          if [ -s ${TMP}${index}/shas.extra ]; then
+            fullsha=`cat ${TMP}${index}/shas.extra 2>/dev/null |
+                       sed --quiet "s/^${sha}${SPACES}\([0-9a-fA-F]*\)\$/\1/p" |
+                       unique`
+          fi
+        fi
+        if [ -n "${fullsha}" ]; then
+          (
+            d=${k%:*} &&
+            cd ${d} ||
+              exit
+            b=${k#${d}} &&
+            b=${b#:} &&
+            restore_branch ${b} ||
+              exit
+            ${GIT} show --pretty=email ${fullsha} |
+              save_patch ||
+              exit
+          ) &&
+            break
+        fi
+        index=`expr ${index} + 1`
+      done
+      BUG_INDEX=`expr ${BUG_INDEX} + 1`
+      BUG_INDEX=`print_index ${BUG_INDEX}`
+    done
+fi |
+  while read sha fullsha files; do
+    regex="`echo ${files} |
+              space_to_newline_unique |
+              string_to_regex |
+              sed 's/.*/^&$/'`"
+    nfiles=`echo ${files} | wc --words`
+    index=0
+    for k in ${kernels}; do
+      if [ -s ${TMP}${index}/shas ] &&
+           grep "^${sha}" ${TMP}${index}/shas >/dev/null; then
+        index=`expr ${index} + 1`
+        continue
+      fi
+      matches="`grep \"${regex}\" ${TMP}${index}/files`"
+      if [ -z "${matches}" ]; then
+        index=`expr ${index} + 1`
+        continue
+      fi
+      line="`index=0
+             for k in ${kernels}; do
+               if [ -s ${TMP}${index}/shas ] &&
+                    grep --line-number --max-count=1 \"^${sha}\" \
+                         ${TMP}${index}/shas; then
+                 break
+               fi
+               index=\`expr ${index} + 1\`
+             done |
+               sed --quiet 's/^\([0-9]*\):.*/\1/p'`"
+      if [ -z "${line}" ]; then
+        line=`cd ${TMP} &&
+                ls -1 ${SERIES_PREFIX}${sha}.patch |
+                head -1`
+        line=${line%-${sha}.patch}
+      fi
+      line=`print_index ${line}`
+      if ${debug}; then
+        echo "${ORANGE}[     INFO ]${NORMAL} ${index}/${line}-${sha}" \
+             `print_branch ${index}` \
+             `echo "${files}" | grep --invert-match MISSING` >&2
+      fi
+      rm --force ${TMP}${index}/${line}-${sha}.patch
+      nmatches=`echo ${matches} | wc --words`
+      if [ ${nmatches} -ge ${nfiles} ]; then
+        ln --symbolic ${TMP}${SERIES_PREFIX}${sha}.patch ${TMP}${index}/${line}-${sha}.patch
+      else
+        split_up_patch ${matches} >${TMP}${index}/${line}-${sha}.patch
+      fi
+      index=`expr ${index} + 1`
+    done
+  done
+
+echo "${ORANGE}[     INFO ]${NORMAL} Pass 6 ... Looking for squashes" >&2
+echo "${ORANGE}[     INFO ]${NORMAL}   report DIRECTORY:BRANCH:SHA:<newline>SHAS(files)..." >&2
+# What do about 0000000000000000000000000000000000000000 (Not Committed Yet ?
+index=0
+for k in ${kernels}; do
+  d=${k%:*} &&
+  b=${k#${d}} &&
+  b=${b#:} &&
+  first=true
+  for f in ${TMP}${index}/${SERIES_PREFIX}[0-9a-fA-F]*.patch; do
+    if [ ! -s ${f} ]; then
+      continue
+    fi
+    sha=${f#${TMP}${index}/${SERIES_PREFIX}}
+    if [ "${sha}" = "${f}" ]; then
+      continue
+    fi
+    sha=${sha%.patch}
+    if [ "${sha}" != "${sha#[[]}" ]; then
+      continue
+    fi
+    blame_file=`ls -1 ${TMP}${SERIES_PREFIX}${sha}.blame 2>/dev/null |
+                  grep --invert-match '[[]0-9[]]'`
+    if [ -n "${blame_file}" ]; then
+      if ${first}; then
+        first=false &&
+        (
+          cd ${d} ||
+            exit
+          restore_branch ${b} ||
+            exit
+        ) ||
+          continue
+      fi
+      (
+        IFS=':'
+        regex=${f%.patch}.grep
+        last=
+        (
+          cat ${blame_file}
+          echo DONE
+        ) |
+          while read file script; do
+            if [ "${file}" != "${last}" ]; then
+              if [ -s "${regex}" -a -n "${last}" ]; then
+                (
+                  cd ${d} &&
+                    [ -s ${last} ] &&
+                    ${GIT} blame -s -l -- ${last}
+                ) |
+                  grep --file ${regex} |
+                  sed "s@^\(${sha_match}\)${SPACE}.*@\1 (${last})@"
+              fi
+              > ${regex}
+              last=${file}
+            fi
+            if [ "${file}" = "DONE" -o -z "${file}" ]; then
+              continue
+            fi
+            if [ -z "${script}" ]; then
+              continue
+            fi
+            echo "${script}" >>${regex}
+          done |
+          grep --invert-match "${skip_squash}" |
+          sort --unique |
+          sed ": loop1
+               /^${sha_match} / {
+                 : loop2
+                 N
+                 s/^\(${sha_match}\) (\(.*\))\n\1 (\(.*\))\$/\1 (\2, \3)/
+                 t loop2
+                 h
+                 s/^\(.*\)\n.*/\1/p
+                 g
+                 s/^.*\n\(.*\)/\1/
+                 b loop1
+               }" |
+          if ${all_squashes}; then
+            first=true
+            while read squash; do
+              if ${first}; then
+                first=false
+                echo ${d}:${b}:${sha}:
+              fi
+              echo "${TAB}${squash}"
+            done
+          else
+            sed --quiet \
+                "/^${sha_match}\(${SPACE}\|\$\)/ {
+                   N
+                   s@^\(${sha_match} (.*)\)\(\n\)\(${sha_match} (.*)\)\$@${d}:${b}:${sha}:\2${TAB}\1\2${TAB}\3@p
+                   t loop
+                   s@^\(${sha_match}\)\(\n\)\(${sha_match}\)\$@${d}:${b}:${sha}:\2${TAB}\1\2${TAB}\3@p
+                   : loop
+                   s/.*//
+                   N
+                   s/\n\(${sha_match} (.*)\)\$/${TAB}\1/p
+                   t loop
+                   s/\n\(${sha_match}\)\$/${TAB}\1/p
+                   b loop
+                 }"
+          fi >&2
+        rm --force ${regex}
+      )
+    fi
+  done
+  index=`expr ${index} + 1`
+done
+
+if ${debug}; then
+  echo "${BLUE}[     INFO ]${NORMAL} All collected data:" >&2
+  ls -l --recursive ${TMP} |
+    sed "s@`string_to_regex ${TMP}`@.../@g" >&2
+  n=0
+  if [ -s "${TMP}titles" ]; then
+    n=`wc --lines <${TMP}titles`
+  fi
+  echo "${BLUE}[     INFO ]${NORMAL} All (${n}) titles:" >&2
+  if [ -s "${TMP}titles" ]; then
+    cat ${TMP}titles >&2
+  fi
+  n=0
+  if [ -s "${TMP}oneline" ]; then
+    n=`wc --lines <${TMP}oneline`
+  fi
+  echo "${BLUE}[     INFO ]${NORMAL} All (${n}) onelines:" >&2
+  if [ -s "${TMP}oneline" ]; then
+    cat ${TMP}oneline >&2
+  fi
+  if ${verbose}; then
+    for f in ${TMP}${SERIES_PREFIX}[0-9a-fA-F]*.blame; do
+      if [ -s ${f} ]; then
+        echo "${BLUE}[     INFO ]${NORMAL} blame ${f} rules:" >&2
+        cat ${f} >&2
+      fi
+    done
+  fi
+  i=0
+  while [ ${i} -lt ${index} ]; do
+    if [ -s ${TMP}${i}/shas ]; then
+      n=`wc --lines <${TMP}${i}/shas`
+      echo "${BLUE}[     INFO ]${NORMAL} `print_branch ${i}` (${n}) shas:" >&2
+      cat ${TMP}${i}/shas >&2
+    fi
+    if [ -s ${TMP}${i}/shas.extra ]; then
+      n=`wc --lines <${TMP}${i}/shas.extra`
+      echo "${BLUE}[     INFO ]${NORMAL} `print_branch ${i}` (${n}) branch shas:" >&2
+      cat ${TMP}${i}/shas.extra >&2
+    fi
+    if [ -s ${TMP}${i}/oneline ]; then
+      n=`wc --lines <${TMP}${i}/oneline` 2>/dev/null
+      echo "${BLUE}[     INFO ]${NORMAL} `print_branch ${i}` (${n}) onelines:" >&2
+      cat ${TMP}${i}/oneline >&2
+    fi
+    if [ -s ${TMP}${i}/oneline.extra ]; then
+      n=`wc --lines <${TMP}${i}/oneline.extra` 2>/dev/null
+      echo "${BLUE}[     INFO ]${NORMAL} `print_branch ${i}` (${n}) branch onelines:" >&2
+      cat ${TMP}${i}/oneline.extra >&2
+    fi
+    i=`expr ${i} + 1`
+  done
+fi
+
+echo "${ORANGE}[     INFO ]${NORMAL} Pass 7 ... Generate '${GIT} am -3 -k' compatible patch files" >&2
+index=0
+for k in ${kernels}; do
+  d=${k%:*}
+  b=${k#${d}}
+  b=${b#:}
+  for f in ${TMP}${index}/${SERIES_PREFIX}[0-9a-fA-F]*.patch; do
+    prefix="`echo ${b} |
+               tr '/\n' '--'`"
+    if [ X"${prefix}" = X"-" ]; then
+      prefix=
+    fi
+    destination="`patch_destination \`cat ${TMP}${index}/directory\` ${b}`"
+    rm --force ${destination}
+    short_destination="`print_short_path ${destination}`"
+    if [ -s ${f} ]; then
+      cat ${TMP}${index}/${SERIES_PREFIX}[0-9a-fA-F]*.patch >${destination}
+      echo "${ORANGE}[     INFO ]${NORMAL} Generated ${short_destination} from:" >&2
+      ls -1 ${TMP}${index}/${SERIES_PREFIX}[0-9a-fA-F]*.patch |
+        sed --quiet "s@${TMP}${index}/${SERIES_PREFIX}\(${sha_match}\).patch\$@${ORANGE}[     INFO ]${NORMAL}     \1@p" >&2
+      if ${debug}; then
+        echo ${destination}
+      fi
+    else
+      echo "${ORANGE}[     INFO ]${NORMAL} No patches for ${short_destination%/*}:${b}" >&2
+    fi
+    break
+  done
+  index=`expr ${index} + 1`
+done |
+  xargs --no-run-if-empty ls -l >&2
+
+echo "${ORANGE}[     INFO ]${NORMAL} Pass 8 ... restore branches" >&2
+for k in ${kernels}; do
+  d=${k%:*}
+  b=${k#${d}}
+  b=${b#:}
+  if [ -n "${b}" ]; then
+    restore_branch
+  fi
+  index=`expr ${index} + 1`
+done
+
+rm --recursive --force ${TMP}
+
+echo "${GREEN}[        OK ]${NORMAL} Done" >&2
