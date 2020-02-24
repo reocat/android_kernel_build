@@ -51,7 +51,7 @@ import re
 import subprocess
 import shlex
 import sys
-from typing import List, Optional, NamedTuple, Set
+from typing import List, Optional, NamedTuple, Set, TextIO, Tuple
 
 INDENT = 4  # number of spaces to indent for each depth level
 COMPILER = "clang"  # TODO(pantin): should be determined at run-time
@@ -174,6 +174,15 @@ def file_must_exist(file: str) -> None:
         raise StopError("file does not exist: " + file)
     if not os.path.isfile(file):
         raise StopError("file is not a regular file: " + file)
+
+
+def remove_files(files: List[str]) -> None:
+    """Remove files and ignore errors."""
+    for file in files:
+        try:
+            os.remove(file)
+        except OSError:
+            pass
 
 
 def makefile_depends_get_dependencies(depends: str) -> List[str]:
@@ -1062,6 +1071,186 @@ def update_kmi_dump() -> Optional[str]:
     return kmi_dump
 
 
+def print_enum(out: TextIO, name: str, value: str) -> None:
+    """Print data as enum declarations into the out file."""
+
+    #   Beware of value having additional ":" characters, for example:
+    #       15:0x5b,0x44,0x65,0x70,...,0x20,0x00:"[Deprecated]: "
+    #   Without maxsplit=2, those extra ":" characters would cause fields[2]
+    #   (i.e. cstr) not to have all of the data in the third field.
+
+    fields = value.split(":", maxsplit=2)
+    size, data, cstr = int(fields[0]), fields[1], fields[2]
+
+    if len(cstr) > 4:  # either: ':\n', ':""\n', or ':"something"\n'
+        print(f"// {cstr}", end="", file=out)
+
+    print(f"enum __kmi_s_{name} {{__kmi_size_{name} = {size}}};", file=out)
+    if size in {0, 1, 2, 4, 8}:
+        if size == 0:
+            data = 0
+        print(f"enum __kmi_d_{name} {{__kmi_data_{name} = {data}}};\n",
+              file=out)
+        return
+
+    vals = data.split(",")
+
+    for num, val in enumerate(vals):
+        print(f"enum __kmi_d{num}_{name} {{__kmi_data{num}_{name} = {val}}};",
+              file=out)
+
+    print(f"union __kmi_w_{name} {{", file=out)
+    print("\tint __kmi_dummy;", file=out)
+    for num, val in enumerate(vals):
+        print(f"\tenum __kmi_d{num}_{name} __kmi_ud{num}_{name};", file=out)
+    print("};\n", file=out)
+
+
+def print_union(out: TextIO, name: str, value: str, group: str,
+                unions: List[str]) -> str:
+    """Print data as union declarations into the out file.
+
+    Unions with too many fields might cause trouble with the compiler
+    for long term stability of the generated declarations it is best to
+    split the union declarations into a series of union declarations
+    with a final union of those unions.
+
+    The initial group is None, thereafter, the value of group is the
+    value returned by this function which can insert new union group
+    declarations when required.
+
+    The unions list contains all the group unions declared by repeated
+    invocations of this function.
+    """
+
+    fields = value.split(":")
+    size = int(fields[0])
+
+    new_group = name[0:4]
+    if group != new_group:
+        if group is not None:
+            print("};\n", file=out)
+        group = new_group
+        unions.append(group)
+        print(f"union __kmi_u_{group} {{", file=out)
+        print("\tint __kmi_dummy;", file=out)
+
+    print(f"\tenum __kmi_s_{name} __kmi_sz_{name};", file=out)
+    if size in {0, 1, 2, 4, 8}:
+        print(f"\tenum __kmi_d_{name} __kmi_ef_{name};", file=out)
+    else:
+        print(f"\tunion __kmi_w_{name} __kmi_uf_{name};", file=out)
+
+    return group
+
+
+def print_union_finish(out: TextIO, unions: List[str]) -> None:
+    """Close the last union and declare the union of all the unions."""
+    print("};\n", file=out)
+    print(f"union __kmi_union {{", file=out)
+    print("\tint __kmi_dummy;", file=out)
+    for union in unions:
+        print(f"\tunion __kmi_u_{union} __kmi_uu_{union};", file=out)
+    print("};\n", file=out)
+
+
+def get_defines() -> List[Tuple[str, Set[str]]]:
+    """Generate and return the list of defines.
+
+    A large number of .kmi.dump files with very large amounts of redundant
+    data need to be sorted and uniquified.  The data is so large that reducing
+    the redundancy first and then sorting is much faster (reducing the data
+    through a hash, i.e. a set(), has order N cost, even if it has a high
+    constant cost).
+    """
+    logging.info("build set started")
+    defines_set = set()
+    for file in pathlib.Path().rglob("*.kmi.dump"):
+        with open(file) as dumpfile:
+            defines_set |= set(dumpfile)
+    logging.info("build set finished")
+
+    #   Multiple defines with different values might exist, a dictionary
+    #   with the define name as its key is used, the value is a set of
+    #   all of its unique values.
+
+    logging.info("build dict started")
+    defines_dict = dict()
+    for line in defines_set:
+        name, value = line.split(":", maxsplit=1)
+        define_values = defines_dict.get(name, set())
+        define_values.add(value)
+        defines_dict[name] = define_values
+    logging.info("build dict finished")
+
+    #   The list() constructor below returns a list of nameless tuples,
+    #   using that list to then create another list of a NamedTuple derived
+    #   object is wasteful (the only benefit would be to make the type of
+    #   this function nicer).
+
+    logging.info("build and sort list started")
+    defines = list(defines_dict.items())
+    defines.sort()
+    logging.info("build and sort list finished")
+
+    return defines
+
+
+def write_kmi_files(uniq_file: TextIO, dups_file: TextIO,
+                    dupcounts_file: TextIO, enums_file: TextIO,
+                    union_file: TextIO) -> None:
+    """Write the kmi.* files."""
+    group = None
+    unions = []
+    for name, values_set in get_defines():
+        values = list(values_set)
+        count = len(values)
+        if count == 1:
+            value = values[0]
+            print(name, value, sep=":", end="", file=uniq_file)
+            print_enum(enums_file, name, value)
+            group = print_union(union_file, name, value, group, unions)
+        else:
+            print(name, count, sep=":", file=dupcounts_file)
+            values.sort()
+            for value in values:
+                print(name, value, sep=":", end="", file=dups_file)
+    print_union_finish(union_file, unions)
+
+
+def generate_kmi_files() -> int:
+    """Generate: kmi.uniq, kmi.dups, kmi.dupcounts, kmi_enums.h, kmi_union.h"""
+    try:
+        with open("kmi.uniq.tmp", "w+") as uniq_file, \
+             open("kmi.dups.tmp", "w+") as dups_file, \
+             open("kmi.dupcounts.tmp", "w+") as dupcounts_file, \
+             open("kmi_enums.h.tmp", "w+") as enums_file, \
+             open("kmi_union.h.tmp", "w+") as union_file:
+            write_kmi_files(uniq_file, dups_file, dupcounts_file, enums_file,
+                            union_file)
+        os.rename("kmi.uniq.tmp", "kmi.uniq")
+        os.rename("kmi.dups.tmp", "kmi.dups")
+        os.rename("kmi.dupcounts.tmp", "kmi.dupcounts")
+        os.rename("kmi_enums.h.tmp", "kmi_enums.h")
+        os.rename("kmi_union.h.tmp", "kmi_union.h")
+    except OSError:
+        logging.error("creation of kmi.* files failed")
+        remove_files([
+            "kmi.uniq",
+            "kmi.uniq.tmp",
+            "kmi.dups",
+            "kmi.dups.tmp",
+            "kmi_enums.h",
+            "kmi_enums.h.tmp",
+            "kmi_union.h"
+            "kmi_union.h.tmp",
+            "kmi.dupcounts",
+            "kmi.dupcounts.tmp",
+        ])
+        return 1
+    return 0
+
+
 def init_multiprocessing_work(main_pid: int) -> bool:
     """Dummy to get fork server started early."""
     return main_pid != os.getpid()
@@ -1126,11 +1315,15 @@ def main() -> int:
                        "--component",
                        type=existing_file,
                        help="show information for a component")
+    group.add_argument("-g",
+                       "--generate-only",
+                       action="store_true",
+                       help="only generate kmi.h and kmi.c files")
     options = parser.parse_args()
 
     logging_kwargs = {
         'format':
-        "%(asctime)-15s: " + os.path.basename(sys.argv[0]) + ": %(message)s: "
+        "%(asctime)-15s: " + os.path.basename(sys.argv[0]) + ": %(message)s"
     }
     if options.info:
         logging_kwargs["level"] = logging.INFO
@@ -1140,22 +1333,27 @@ def main() -> int:
         logging.error("multiprocessing initialization failed")
         return 1
 
-    if not options.component:
+    if options.component:
+        comp = kernel_component_factory(options.component)
+        error = comp.get_error()
+        if error:
+            logging.error(error)
+            return 1
+        if options.dump:
+            dump([comp])
+        return 0
+
+    if not options.generate_only:
         if not valid_compiler():
             return 1
         kmi_dump = update_kmi_dump()
         if kmi_dump is None:
             return 1
-        return work_on_whole_build(options, kmi_dump)
+        status = work_on_whole_build(options, kmi_dump)
+        if status:
+            return status
 
-    comp = kernel_component_factory(options.component)
-    error = comp.get_error()
-    if error:
-        logging.error(error)
-        return 1
-    if options.dump:
-        dump([comp])
-    return 0
+    return generate_kmi_files()
 
 
 if __name__ == "__main__":
