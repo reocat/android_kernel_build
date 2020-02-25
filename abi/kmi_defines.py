@@ -998,6 +998,7 @@ def work_on_whole_build(options, kmi_dump: str) -> int:
     logging.info("work on all components: started")
     components = work_on_all_components(options)
     logging.info("work on all components: finished")
+
     failed = False
     logging.info("header counts: started")
     header_count = collections.defaultdict(int)
@@ -1007,8 +1008,9 @@ def work_on_whole_build(options, kmi_dump: str) -> int:
             logging.error(error)
             failed = True
             continue
-        for header in comp.get_deps_set():
-            header_count[header] += 1
+        if not options.use_includes:
+            for header in comp.get_deps_set():
+                header_count[header] += 1
     logging.info("header counts: finished")
 
     if options.dump:
@@ -1019,11 +1021,15 @@ def work_on_whole_build(options, kmi_dump: str) -> int:
     logging.info("abi header set: started")
     abi_headers = {
         header
+        for header in lines_to_list(readfile("kmi.headers"))
+    } if options.use_includes else {
+        header
         for header, count in header_count.items()
         if count >= 2 and header not in exclude
     }
     logging.info("abi header set: finished")
-    if options.includes:
+
+    if options.save_includes:
         abi_headers_list = list(abi_headers)
         abi_headers_list.sort()
         writefile("kmi.headers", abi_headers_list)
@@ -1323,9 +1329,13 @@ def main() -> int:
                         help="enable INFO log level")
     group = parser.add_mutually_exclusive_group()
     group.add_argument("-i",
-                       "--includes",
+                       "--save-includes",
                        action="store_true",
-                       help="save headers in kmi.headers")
+                       help="save headers to: kmi.headers")
+    group.add_argument("-u",
+                       "--use-includes",
+                       action="store_true",
+                       help="use headers in: kmi.headers")
     group.add_argument("-c",
                        "--component",
                        type=existing_file,
@@ -1333,7 +1343,7 @@ def main() -> int:
     group.add_argument("-g",
                        "--generate-only",
                        action="store_true",
-                       help="only generate kmi.h and kmi.c files")
+                       help="only generate kmi.* and kmi*.[hc] files")
     options = parser.parse_args()
 
     logging_kwargs = {
