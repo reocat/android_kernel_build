@@ -533,6 +533,7 @@ def get_cc_list(obj: str, src: str, cc_line: str) -> List[str]:
     source_ix = -1
     object_ix = -1
 
+    indexes_to_prune = []
     for index, arg in enumerate(cc_list):
         if arg.startswith("-Wp,-MD,"):
             if wpmd_flag_ix >= 0:
@@ -550,8 +551,13 @@ def get_cc_list(obj: str, src: str, cc_line: str) -> List[str]:
             if source_ix >= 0:
                 raise StopError(f"multiple .c files for {obj}")
             source_ix = index
+        elif arg.startswith("-flto"):
+            if arg in {"-flto", "-flto=full", "-flto=thin"}:
+                indexes_to_prune.append(index)
+        elif arg == "-fsplit-lto-unit":
+            indexes_to_prune.append(index)
 
-    indexes_to_prune = [wpmd_flag_ix, c_flag_ix, o_flag_ix, source_ix]
+    indexes_to_prune += [wpmd_flag_ix, c_flag_ix, o_flag_ix, source_ix]
 
     if wpmd_flag_ix < 0 or c_flag_ix < 0 or o_flag_ix < 0 or source_ix < 0:
         raise StopError("missing arguments for: " + obj + " cc_line: " +
@@ -576,8 +582,18 @@ def get_cc_list(obj: str, src: str, cc_line: str) -> List[str]:
         #   cheaper to normalize only when needed.
 
         if not file.endswith(file_in_cc_list):
-            file_normalized = os.path.normpath(file_in_cc_list)
-            if not file.endswith(file_normalized):
+            normalized = os.path.normpath(file_in_cc_list)
+            if not file.endswith(normalized):
+                base = os.path.basename(normalized)
+
+                #   Linux 4.19 sometimes has .tmp_ in the basename of
+                #   file_in_cc_list, for example:
+                #       arch/arm64/crypto/.tmp_aes-ce-glue.o
+
+                if base[0:5] == ".tmp_":  # verify file without ".tmp_"
+                    fixed = os.path.join(os.path.dirname(normalized), base[5:])
+                    if file.endswith(fixed):
+                        return
                 raise StopError(f"unexpected {kind} argument for: "
                                 f"{target_file} value was: "
                                 f"{file_in_cc_list}")
