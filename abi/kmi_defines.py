@@ -576,34 +576,36 @@ def get_cc_list(obj: str, src: str, cc_line: str) -> List[str]:
         object_ix = o_flag_ix
         cc_list[object_ix] = cc_list[object_ix][2:]
 
-    def verify_file(file: str, file_in_cc_list: str, kind: str,
-                    target_file: str) -> None:
-        #   Ensure file is file_in_cc_list, very few files need normalizing,
-        #   cheaper to normalize only when needed.
-
-        if not file.endswith(file_in_cc_list):
-            normalized = os.path.normpath(file_in_cc_list)
-            if not file.endswith(normalized):
-                base = os.path.basename(normalized)
-
-                #   Linux 4.19 sometimes has .tmp_ in the basename of
-                #   file_in_cc_list, for example:
-                #       arch/arm64/crypto/.tmp_aes-ce-glue.o
-
-                if base[0:5] == ".tmp_":  # verify file without ".tmp_"
-                    fixed = os.path.join(os.path.dirname(normalized), base[5:])
-                    if file.endswith(fixed):
-                        return
-                raise StopError(f"unexpected {kind} argument for: "
-                                f"{target_file} value was: "
-                                f"{file_in_cc_list}")
-
     verify_file(obj, cc_list[object_ix], "object", obj)
     verify_file(src, cc_list[source_ix], "source", obj)
     indexes_to_prune.sort(reverse=True)  # Reverse order makes indexes stable
     for index in indexes_to_prune:
         del cc_list[index]
     return cc_list
+
+
+def verify_file(file: str, file_in_cc_list: str, kind: str,
+                target_file: str) -> None:
+    """Ensure file is file_in_cc_list.
+
+    Very few files need normalizing, cheaper to normalize only when needed."""
+
+    if not file.endswith(file_in_cc_list):
+        normalized = os.path.normpath(file_in_cc_list)
+        if not file.endswith(normalized):
+            base = os.path.basename(normalized)
+
+            #   Linux 4.19 sometimes has .tmp_ in the basename of
+            #   file_in_cc_list, for example:
+            #       arch/arm64/crypto/.tmp_aes-ce-glue.o
+
+            if base[0:5] == ".tmp_":  # verify file without ".tmp_"
+                fixed = os.path.join(os.path.dirname(normalized), base[5:])
+                if file.endswith(fixed):
+                    return
+            raise StopError(f"unexpected {kind} argument for: "
+                            f"{target_file} value was: "
+                            f"{file_in_cc_list}")
 
 
 class Target:
