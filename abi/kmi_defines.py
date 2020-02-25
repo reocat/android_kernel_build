@@ -1023,13 +1023,10 @@ def work_on_whole_build(options, kmi_dump: str) -> int:
         if count >= 2 and header not in exclude
     }
     logging.info("abi header set: finished")
-    if options.dump and options.includes:
-        print()
     if options.includes:
         abi_headers_list = list(abi_headers)
         abi_headers_list.sort()
-        for header in abi_headers_list:
-            print(header)
+        writefile("kmi.headers", abi_headers_list)
 
     if options.components_only:
         return 0
@@ -1328,7 +1325,7 @@ def main() -> int:
     group.add_argument("-i",
                        "--includes",
                        action="store_true",
-                       help="show relevant include files")
+                       help="save headers in kmi.headers")
     group.add_argument("-c",
                        "--component",
                        type=existing_file,
