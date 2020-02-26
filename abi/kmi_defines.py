@@ -147,24 +147,40 @@ def dump(this) -> None:
     dump_this(this, "", 0)
 
 
-def readfile(name: str) -> str:
+def read_whole_file(name: str) -> str:
     """Open a file and return its contents in a string as its value."""
+    with open(name) as file:
+        return file.read()
+
+
+def write_whole_file(name: str, lines: List[str]) -> None:
+    """Create a file and write a list of strings, one on each line, into it."""
+    with open(name, "w+") as file:
+        if lines:
+            file.write("\n".join(lines) + "\n")
+
+
+def read_file(name: str) -> str:
+    """Open a file and return its contents in a string as its value.
+
+    Catch OSError exceptions and transform them into StopError exceptions.
+    """
     try:
-        with open(name) as file:
-            return file.read()
+        return read_whole_file(name)
     except OSError as os_error:
-        raise StopError("readfile() failed for: " + name + "\n"
+        raise StopError("read_file() failed for: " + name + "\n"
                         "original OSError: " + str(os_error.args))
 
 
-def writefile(name: str, lines: List[str]) -> None:
-    """Create a file and write a list of strings, one on each line, into it."""
+def write_file(name: str, lines: List[str]) -> None:
+    """Create a file and write a list of strings, one on each line, into it.
+
+    Catch OSError exceptions and transform them into StopError exceptions.
+    """
     try:
-        with open(name, "w+") as file:
-            if lines:
-                file.write("\n".join(lines) + "\n")
+        write_whole_file(name, lines)
     except OSError as os_error:
-        raise StopError("writefile() failed for: " + name + "\n"
+        raise StopError("write_file() failed for: " + name + "\n"
                         "original OSError: " + str(os_error.args))
 
 
@@ -241,7 +257,7 @@ def get_object_build_info(obj: str) -> Optional[BuildInfo]:
     o_cmd = os.path.join(os.path.dirname(obj),
                          "." + os.path.basename(obj) + ".cmd")
 
-    contents = readfile(o_cmd)
+    contents = read_file(o_cmd)
     contents = re.sub(r"\$\(wildcard[^)]*\)", " ", contents)
     contents = re.sub(r"[ \t]*\\\n[ \t]*", " ", contents)
     lines = lines_to_list(contents)
@@ -333,7 +349,7 @@ class KernelModule:
         self._directory = os.path.dirname(self._file)  # /abs/dirs
         self._cmd_file = os.path.join(self._directory,
                                       "." + self._base + ".cmd")
-        self._cmd_text = readfile(self._cmd_file)
+        self._cmd_text = read_file(self._cmd_file)
 
         #   Some builds append a '; true' to the .modname.ko.cmd, remove it
 
@@ -391,9 +407,9 @@ class KernelModule:
         Note that this, like pretty much all the code, can raise an exception,
         by construction, if an exception is raised while an object is being
         constructed, or after it is constructed, the object will not be used
-        thereafter (at least not any object explicitly created by this
-        program).  Many other places, for example the ones that call readfile()
-        can raise exceptions, the code is located where it belongs.
+        thereafter (at least not any object explicitly created by this program)
+        Many other places, for example the ones that call read_file() can raise
+        exceptions, the code is located where it belongs.
 
         In this specific case, the computation of index, and the derived
         invariant that it be >= 0, is predicated by the condition checked
@@ -422,7 +438,7 @@ class KernelModule:
         kofile_name, _ = os.path.splitext(self._base)
         ocmd_file = os.path.join(build_dir, self._rel_dir,
                                  "." + kofile_name + ".o.cmd")
-        ocmd_content = readfile(ocmd_file)
+        ocmd_content = read_file(ocmd_file)
 
         olines = lines_to_list(ocmd_content)
         if len(olines) > 1:  # module made from a single .o file
@@ -447,9 +463,9 @@ class Kernel:
         objs = os.path.join(self._build_dir, "vmlinux.objs")
         file_must_exist(libs)
         file_must_exist(objs)
-        contents = readfile(libs)
+        contents = read_file(libs)
         archives_and_objects = contents.split()
-        contents = readfile(objs)
+        contents = read_file(objs)
         archives_and_objects += contents.split()
         self._archives_and_objects = [(os.path.join(self._build_dir, file)
                                        if not os.path.isabs(file) else file)
@@ -641,7 +657,7 @@ class Target:
                                abi_headers: Set[str]) -> None:
         """Generate the incs and vars C files, and compile the vars file."""
         cc_run = self._cc_list.copy()
-        writefile(
+        write_file(
             incs_c,
             [f'#include "{dep}"' for dep in self._deps if dep in abi_headers])
         completion = run(cc_run + ["-E", "-dM", "-c", incs_c])
@@ -696,7 +712,7 @@ def create_and_compile(vars_c: str, source_lines: List[str],
     attempts = 0
     while attempts < 100:
         attempts += 1
-        writefile(vars_c, source_lines)
+        write_file(vars_c, source_lines)
         completion = run(cc_run, raise_on_failure=False)
         if completion.returncode == 0:
             break
@@ -1024,7 +1040,7 @@ def work_on_whole_build(options, kmi_dump: str) -> int:
     logging.info("abi header set: started")
     abi_headers = {
         header
-        for header in lines_to_list(readfile("kmi.headers"))
+        for header in lines_to_list(read_whole_file("kmi.headers"))
     } if options.use_includes else {
         header
         for header, count in header_count.items()
@@ -1035,7 +1051,7 @@ def work_on_whole_build(options, kmi_dump: str) -> int:
     if options.save_includes:
         abi_headers_list = list(abi_headers)
         abi_headers_list.sort()
-        writefile("kmi.headers", abi_headers_list)
+        write_whole_file("kmi.headers", abi_headers_list)
 
     if options.components_only:
         return 0
