@@ -176,13 +176,16 @@ def file_must_exist(file: str) -> None:
         raise StopError("file is not a regular file: " + file)
 
 
+def remove_file(file: str) -> None:
+    """Remove file if it exists."""
+    if os.path.isfile(file):
+        os.remove(file)
+
+
 def remove_files(files: List[str]) -> None:
-    """Remove files and ignore errors."""
+    """Remove files if they exist."""
     for file in files:
-        try:
-            os.remove(file)
-        except OSError:
-            pass
+        remove_file(file)
 
 
 def makefile_depends_get_dependencies(depends: str) -> List[str]:
@@ -1259,20 +1262,43 @@ def generate_kmi_files() -> int:
         os.rename("kmi_union.h.tmp", "kmi_union.h")
     except OSError:
         logging.error("creation of kmi.* files failed")
-        remove_files([
-            "kmi.uniq",
-            "kmi.uniq.tmp",
-            "kmi.dups",
-            "kmi.dups.tmp",
-            "kmi_enums.h",
-            "kmi_enums.h.tmp",
-            "kmi_union.h"
-            "kmi_union.h.tmp",
-            "kmi.dupcounts",
-            "kmi.dupcounts.tmp",
-        ])
+        remove_kmi_files()
         return 1
     return 0
+
+
+def remove_kmi_files() -> None:
+    """Remove the top level output files."""
+    remove_files([
+        "kmi.uniq",
+        "kmi.uniq.tmp",
+        "kmi.dups",
+        "kmi.dups.tmp",
+        "kmi.dupcounts",
+        "kmi.dupcounts.tmp",
+        "kmi_enums.h",
+        "kmi_enums.h.tmp",
+        "kmi_union.h"
+        "kmi_union.h.tmp",
+    ])
+
+
+def optionally_remove_kmi_files(options) -> None:
+    """Remove the top level output files and the per target files.
+
+    The per target files can be requested to be kept.
+    The kmi.headers file is only removed if it will be re-created."""
+
+    remove_kmi_files()
+    if options.save_includes:
+        remove_file("kmi.headers")
+    if not options.keep_target_files:
+        for file in pathlib.Path().rglob("*.kmi.dump"):
+            os.remove(file)
+        for file in pathlib.Path().rglob("*.kmi.incs.c"):
+            os.remove(file)
+        for file in pathlib.Path().rglob("*.kmi.vars.[co]"):
+            os.remove(file)
 
 
 def init_multiprocessing_work(main_pid: int) -> bool:
@@ -1310,6 +1336,10 @@ def main() -> int:
                         "--components-only",
                         action="store_true",
                         help="work on components and stop")
+    parser.add_argument("-k",
+                        "--keep-target-files",
+                        action="store_true",
+                        help="keep per target intermediate files: *.kmi.*")
     parser.add_argument("-s",
                         "--sequential",
                         action="store_true",
@@ -1377,6 +1407,7 @@ def main() -> int:
         kmi_dump = update_kmi_dump()
         if kmi_dump is None:
             return 1
+        optionally_remove_kmi_files(options)
         status = work_on_whole_build(options, kmi_dump)
         if status:
             return status
