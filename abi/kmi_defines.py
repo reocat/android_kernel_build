@@ -55,6 +55,11 @@ from typing import List, Optional, NamedTuple, Set, TextIO
 
 INDENT = 4  # number of spaces to indent for each depth level
 COMPILER = "clang"  # TODO(pantin): should be determined at run-time
+KMI_C = [
+    '#include "kmi_enums.h"',
+    '#include "kmi_union.h"',
+    'int __kmi_defs(union __kmi_union *p) { return p->__kmi_dummy; }',
+]
 
 #   Dependency that is hidden by the transformation of the .o.d file into
 #   the .o.cmd file as part of the Linux build environment.  This header is
@@ -1067,12 +1072,12 @@ def work_on_whole_build(options, kmi_dump: str) -> int:
     return exit_status
 
 
-def valid_compiler() -> bool:
+def get_compiler() -> Optional[str]:
     """Determine if the compiler is in the prebuilts binaries."""
     path = os.getenv("PATH")
     if path is None:
         logging.error("PATH is not set")
-        return False
+        return None
     compiler = None
     for directory in path.split(os.pathsep):  # i.e. ":" not os.path.sep
         compiler_in_directory = os.path.join(directory, COMPILER)
@@ -1081,16 +1086,16 @@ def valid_compiler() -> bool:
             break
     else:
         logging.error("could not find compiler in PATH")
-        return False
+        return None
     prebuilts = os.path.realpath(
         os.path.join(os.getcwd(), "source/../prebuilts-master"))
     if compiler is None:
         logging.error("cold not find compiler")
-        return False
+        return None
     if not compiler.startswith(prebuilts):
         logging.error("compiler: " + compiler + " not inside: " + prebuilts)
-        return False
-    return True
+        return None
+    return compiler
 
 
 def update_kmi_dump() -> Optional[str]:
@@ -1261,8 +1266,8 @@ def write_kmi_files(uniq_file: TextIO, dups_file: TextIO,
     print_union_finish(union_file, unions)
 
 
-def generate_kmi_files() -> int:
-    """Generate: kmi.uniq, kmi.dups, kmi.dupcounts, kmi_enums.h, kmi_union.h"""
+def generate_kmi_files(compiler: str) -> int:
+    """Generate top level kmi output files."""
     try:
         with open("kmi.uniq.tmp", "w+") as uniq_file, \
              open("kmi.dups.tmp", "w+") as dups_file, \
@@ -1276,9 +1281,14 @@ def generate_kmi_files() -> int:
         os.rename("kmi.dupcounts.tmp", "kmi.dupcounts")
         os.rename("kmi_enums.h.tmp", "kmi_enums.h")
         os.rename("kmi_union.h.tmp", "kmi_union.h")
+        write_whole_file("kmi.c", KMI_C)
     except OSError:
         logging.error("creation of kmi.* files failed")
         remove_kmi_files()
+        return 1
+    completion = subprocess.run([compiler, "-g", "-c", "kmi.c"])
+    if completion.returncode != 0:
+        logging.error("compilation of kmi.c failed")
         return 1
     return 0
 
@@ -1296,16 +1306,17 @@ def remove_kmi_files() -> None:
         "kmi_enums.h.tmp",
         "kmi_union.h"
         "kmi_union.h.tmp",
+        "kmi.c",
+        "kmi.o",
     ])
 
 
-def optionally_remove_kmi_files(options) -> None:
-    """Remove the top level output files and the per target files.
+def remove_other_kmi_files(options) -> None:
+    """Optionally remove target files and kmi.headers.
 
     The per target files can be requested to be kept.
-    The kmi.headers file is only removed if it will be re-created."""
+    The kmi.headers file is only removed if it will be saved."""
 
-    remove_kmi_files()
     if options.save_includes:
         remove_file("kmi.headers")
     if not options.keep_target_files:
@@ -1417,18 +1428,21 @@ def main() -> int:
             dump([comp])
         return 0
 
+    compiler = get_compiler()
+    if compiler is None:
+        return 1
+
+    remove_kmi_files()
     if not options.generate_only:
-        if not valid_compiler():
-            return 1
         kmi_dump = update_kmi_dump()
         if kmi_dump is None:
             return 1
-        optionally_remove_kmi_files(options)
+        remove_other_kmi_files(options)
         status = work_on_whole_build(options, kmi_dump)
         if status:
             return status
 
-    return generate_kmi_files()
+    return generate_kmi_files(compiler)
 
 
 if __name__ == "__main__":
