@@ -51,7 +51,7 @@ import re
 import subprocess
 import shlex
 import sys
-from typing import List, Optional, NamedTuple, Set, TextIO, Tuple
+from typing import List, Optional, NamedTuple, Set, TextIO
 
 INDENT = 4  # number of spaces to indent for each depth level
 COMPILER = "clang"  # TODO(pantin): should be determined at run-time
@@ -1175,7 +1175,13 @@ def print_union_finish(out: TextIO, unions: List[str]) -> None:
     print("};\n", file=out)
 
 
-def get_defines() -> List[Tuple[str, Set[str]]]:
+class Define(NamedTuple):
+    """A #define with its name and its list of values, usually just one."""
+    name: str
+    values: List[str]
+
+
+def get_defines() -> List[Define]:
     """Generate and return the list of defines.
 
     A large number of .kmi.dump files with very large amounts of redundant
@@ -1204,13 +1210,11 @@ def get_defines() -> List[Tuple[str, Set[str]]]:
         defines_dict[name] = define_values
     logging.info("build dict finished")
 
-    #   The list() constructor below returns a list of nameless tuples,
-    #   using that list to then create another list of a NamedTuple derived
-    #   object is wasteful (the only benefit would be to make the type of
-    #   this function nicer).
-
     logging.info("build and sort list started")
-    defines = list(defines_dict.items())
+    defines = [
+        Define(name=name, values=list(values))
+        for name, values in defines_dict.items()
+    ]
     defines.sort()
     logging.info("build and sort list finished")
 
@@ -1223,19 +1227,18 @@ def write_kmi_files(uniq_file: TextIO, dups_file: TextIO,
     """Write the kmi.* files."""
     group = None
     unions = []
-    for name, values_set in get_defines():
-        values = list(values_set)
-        count = len(values)
+    for define in get_defines():
+        count = len(define.values)
         if count == 1:
-            value = values[0]
-            print(name, value, sep=":", end="", file=uniq_file)
-            print_enum(enums_file, name, value)
-            group = print_union(union_file, name, value, group, unions)
+            value = define.values[0]
+            print(define.name, value, sep=":", end="", file=uniq_file)
+            print_enum(enums_file, define.name, value)
+            group = print_union(union_file, define.name, value, group, unions)
         else:
-            print(name, count, sep=":", file=dupcounts_file)
-            values.sort()
-            for value in values:
-                print(name, value, sep=":", end="", file=dups_file)
+            print(define.name, count, sep=":", file=dupcounts_file)
+            define.values.sort()
+            for value in define.values:
+                print(define.name, value, sep=":", end="", file=dups_file)
     print_union_finish(union_file, unions)
 
 
