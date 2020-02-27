@@ -1350,6 +1350,38 @@ def init_multiprocessing(options) -> bool:
     return result[0]
 
 
+def init(options) -> int:
+    """Initialize program."""
+    logging_kwargs = {
+        'format':
+        "%(asctime)-15s: " + os.path.basename(sys.argv[0]) + ": %(message)s"
+    }
+    if options.info:
+        logging_kwargs["level"] = logging.INFO
+    logging.basicConfig(**logging_kwargs)
+
+    if not os.path.islink("source"):
+        logging.error("not in build dir, could not find symbolic link: source")
+        return 1
+
+    if not os.path.isfile("vmlinux.o"):
+        logging.error("not in build dir, could not find: vmlinux.o")
+        return 1
+
+    if not os.path.isfile("vmlinux.libs"):
+        logging.error("missing vmlinux.libs file")
+        return 1
+
+    if not os.path.isfile("vmlinux.objs"):
+        logging.error("missing vmlinux.objs file")
+        return 1
+
+    if not init_multiprocessing(options):
+        logging.error("multiprocessing initialization failed")
+        return 1
+    return 0
+
+
 def main() -> int:
     """Extract #define compile time constants from a Linux build."""
     def existing_file(file):
@@ -1406,17 +1438,9 @@ def main() -> int:
                        help="only generate kmi.* and kmi*.[hc] files")
     options = parser.parse_args()
 
-    logging_kwargs = {
-        'format':
-        "%(asctime)-15s: " + os.path.basename(sys.argv[0]) + ": %(message)s"
-    }
-    if options.info:
-        logging_kwargs["level"] = logging.INFO
-    logging.basicConfig(**logging_kwargs)
-
-    if not init_multiprocessing(options):
-        logging.error("multiprocessing initialization failed")
-        return 1
+    status = init(options)
+    if status:
+        return status
 
     if options.component:
         comp = kernel_component_factory(options.component)
