@@ -1005,6 +1005,41 @@ def work_on_all_targets(options, components: List[KernelComponentBase],
     return results
 
 
+def get_abi_headers(options, components: List,
+                    exclude: Set[str]) -> List[KernelComponentBase]:
+    """Get the ABI headers."""
+
+    if options.use_includes:
+        return {
+            header
+            for header in lines_to_list(read_whole_file("kmi.headers"))
+            if header not in exclude
+        }
+
+    if options.cross_module_abis:
+        header_count = collections.defaultdict(int)
+        for comp in components:
+            for header in comp.get_deps_set():
+                header_count[header] += 1
+        return {
+            header
+            for header, count in header_count.items()
+            if count >= 2 and header not in exclude
+        }
+
+    modules_set = set()
+    for comp in components:
+        if comp.is_kernel():
+            kernel_component = comp
+        else:
+            modules_set |= comp.get_deps_set()
+    return {
+        header
+        for header in kernel_component.get_deps_set() & modules_set
+        if header not in exclude
+    }
+
+
 def work_on_whole_build(options, kmi_dump: str) -> int:
     """Work on the whole build to extract the #define constants."""
     if not os.path.isfile("vmlinux.o"):
@@ -1024,35 +1059,19 @@ def work_on_whole_build(options, kmi_dump: str) -> int:
     logging.info("work on all components: finished")
 
     failed = False
-    logging.info("header counts: started")
-    header_count = collections.defaultdict(int)
     for comp in components:
         error = comp.get_error()
         if error:
             logging.error(error)
             failed = True
             continue
-        if not options.use_includes:
-            for header in comp.get_deps_set():
-                header_count[header] += 1
-    logging.info("header counts: finished")
 
     if options.dump:
         dump(components)
     if failed:
         return 1
 
-    logging.info("abi header set: started")
-    abi_headers = {
-        header
-        for header in lines_to_list(read_whole_file("kmi.headers"))
-    } if options.use_includes else {
-        header
-        for header, count in header_count.items()
-        if count >= 2 and header not in exclude
-    }
-    logging.info("abi header set: finished")
-
+    abi_headers = get_abi_headers(options, components, exclude)
     if options.save_includes:
         abi_headers_list = list(abi_headers)
         abi_headers_list.sort()
@@ -1391,6 +1410,10 @@ def main() -> int:
         return file
 
     parser = argparse.ArgumentParser()
+    parser.add_argument("-m",
+                        "--cross-module-abis",
+                        action="store_true",
+                        help="headers used by 2+ modules and not the kernel")
     parser.add_argument("-o",
                         "--components-only",
                         action="store_true",
