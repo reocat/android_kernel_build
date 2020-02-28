@@ -651,12 +651,13 @@ class Target:
     def generate_defines(self, kmi_dump: str, abi_headers: Set[str]) -> None:
         """Generate the defines for target."""
         object_without_dot_o = self._obj[0:-2]
-        vars_o = object_without_dot_o + ".kmi.vars.o"
-        if not os.path.isfile(vars_o):
+        dump_output = object_without_dot_o + ".kmi.dump"
+        if not os.path.isfile(dump_output):
+            vars_o = object_without_dot_o + ".kmi.vars.o"
             self.generate_incs_and_vars(object_without_dot_o + ".kmi.incs.c",
                                         object_without_dot_o + ".kmi.vars.c",
                                         vars_o, abi_headers)
-        dump_enums(object_without_dot_o + ".kmi.dump", vars_o, kmi_dump)
+            dump_enums(dump_output, vars_o, kmi_dump)
 
     def generate_incs_and_vars(self, incs_c: str, vars_c: str, vars_o: str,
                                abi_headers: Set[str]) -> None:
@@ -976,8 +977,16 @@ def work_on_all_targets(options, components: List[KernelComponentBase],
                         abi_headers: Set[str]) -> List[Optional[TargetError]]:
     """Generate, possibly in parallel, defines for targets in components."""
     targets = []
-    for component in components:
-        targets += component.get_targets()
+
+    if options.check_module_defines or options.cross_module_abis:
+        for component in components:
+            targets += component.get_targets()
+    else:
+        for component in components:
+            if component.is_kernel():
+                targets = component.get_targets()
+                break
+
     if options.sequential or options.targets_sequential:
         return work_on_targets(targets, kmi_dump, abi_headers)
 
@@ -1072,6 +1081,18 @@ def work_on_whole_build(options, kmi_dump: str) -> int:
         return 1
 
     abi_headers = get_abi_headers(options, components, exclude)
+    if not abi_headers:
+        if options.use_includes:
+            logging.error("header list is empty: kmi.headers")
+            return 1
+        logging.error("could not determine abi_headers")
+        if len(components) == 1:
+            logging.error("there were no .ko files to determine abi_headers")
+            logging.error("use -u to provide them in: kmi.headers")
+            return 1
+        logging.error("even though there are .ko files")
+        return 1
+
     if options.save_includes:
         abi_headers_list = list(abi_headers)
         abi_headers_list.sort()
@@ -1323,7 +1344,7 @@ def remove_kmi_files() -> None:
         "kmi.dupcounts.tmp",
         "kmi_enums.h",
         "kmi_enums.h.tmp",
-        "kmi_union.h"
+        "kmi_union.h",
         "kmi_union.h.tmp",
         "kmi.c",
         "kmi.o",
@@ -1395,6 +1416,10 @@ def init(options) -> int:
         logging.error("missing vmlinux.objs file")
         return 1
 
+    if options.use_includes and not os.path.isfile("kmi.headers"):
+        logging.error("the -u option requires this file to exist: kmi.headers")
+        return 1
+
     if not init_multiprocessing(options):
         logging.error("multiprocessing initialization failed")
         return 1
@@ -1410,10 +1435,17 @@ def main() -> int:
         return file
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-m",
+
+    mgroup = parser.add_mutually_exclusive_group()
+    mgroup.add_argument("-m",
                         "--cross-module-abis",
                         action="store_true",
                         help="headers used by 2+ modules and not the kernel")
+    mgroup.add_argument("-M",
+                        "--check-module-defines",
+                        action="store_true",
+                        help="check module defines for divergence")
+
     parser.add_argument("-o",
                         "--components-only",
                         action="store_true",
@@ -1442,6 +1474,7 @@ def main() -> int:
                         "--info",
                         action="store_true",
                         help="enable INFO log level")
+
     group = parser.add_mutually_exclusive_group()
     group.add_argument("-i",
                        "--save-includes",
@@ -1459,11 +1492,21 @@ def main() -> int:
                        "--generate-only",
                        action="store_true",
                        help="only generate kmi.* and kmi*.[hc] files")
+    group.add_argument("-r",
+                       "--remove-all-kmi-files",
+                       action="store_true",
+                       help="remove files produced by prior runs and exit")
+
     options = parser.parse_args()
 
     status = init(options)
     if status:
         return status
+
+    if options.remove_all_kmi_files:
+        remove_kmi_files()
+        remove_other_kmi_files(options)
+        return 0
 
     if options.component:
         comp = kernel_component_factory(options.component)
