@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d919a4b8_87631e38",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 5
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-04T21:59:26Z",
+      "side": 1,
+      "message": "we need module_layout unconditionally, even if there are symbols in the section. dummy_symbol will only be added if there is no other symbol in the whitelist.\n\nI will pick up this change as I anyway need to add default symbols for b/147380000",
+      "revId": "b44ce3eb105b2ab7a80cf8fea779112e0b31a5d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
