@@ -141,6 +141,11 @@
 #     the contents of this variable, lines should be of the form: options
 #     <modulename> <param1>=<val> <param2>=<val> ...
 #
+#   TRIM_NONLISTED_KMI
+#     if defined, enable the CONFIG_UNUSED_KSYMS_WHITELIST kernel config option
+#     to un-export from the build any un-used and non-whitelisted (as per
+#     KMI_WHITELIST) symbol.
+#
 # Note: For historic reasons, internally, OUT_DIR will be copied into
 # COMMON_OUT_DIR, and OUT_DIR will be then set to
 # ${COMMON_OUT_DIR}/${KERNEL_DIR}. This has been done to accommodate existing
@@ -234,7 +239,8 @@ fi
 # updated.
 CC_LD_ARG="${TOOL_ARGS[@]}"
 
-mkdir -p ${OUT_DIR}
+mkdir -p ${OUT_DIR} ${DIST_DIR}
+
 echo "========================================================"
 echo " Setting up for build"
 if [ -z "${SKIP_MRPROPER}" ] ; then
@@ -272,6 +278,49 @@ if [ -n "${TAGS_CONFIG}" ]; then
   (cd ${KERNEL_DIR} && SRCARCH=${ARCH} ./scripts/tags.sh ${TAGS_CONFIG})
   set +x
   exit 0
+fi
+
+# Copy the abi_${arch}.xml file from the sources into the dist dir
+if [ -n "${ABI_DEFINITION}" ]; then
+  echo "========================================================"
+  echo " Copying abi definition to ${DIST_DIR}/abi.xml"
+  pushd $ROOT_DIR/$KERNEL_DIR
+    cp "${ABI_DEFINITION}" ${DIST_DIR}/abi.xml
+  popd
+fi
+
+# Copy the abi whitelist file from the sources into the dist dir
+if [ -n "${KMI_WHITELIST}" ]; then
+  echo "========================================================"
+  echo " Generating abi whitelist definition to ${DIST_DIR}/abi_whitelist"
+  pushd $ROOT_DIR/$KERNEL_DIR
+    cp "${KMI_WHITELIST}" ${DIST_DIR}/abi_whitelist
+
+    # If there are additional whitelists specified, append them
+    if [ -n "${ADDITIONAL_KMI_WHITELISTS}" ]; then
+      for whitelist in ${ADDITIONAL_KMI_WHITELISTS}; do
+          echo >> ${DIST_DIR}/abi_whitelist
+          cat "${whitelist}" >> ${DIST_DIR}/abi_whitelist
+      done
+    fi
+
+    if [ -n "${TRIM_NONLISTED_KMI}" ]; then
+        # Create the raw whitelist
+        cat ${DIST_DIR}/abi_whitelist | \
+                ${ROOT_DIR}/build/abi/flatten_whitelist > \
+                ${OUT_DIR}/abi_whitelist.raw
+
+        # Update the kernel configuration
+        ./scripts/config --file ${OUT_DIR}/.config \
+                -d UNUSED_SYMBOLS -e TRIM_UNUSED_KSYMS \
+                --set-str UNUSED_KSYMS_WHITELIST ${OUT_DIR}/abi_whitelist.raw
+        (cd ${OUT_DIR} && \
+                make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS} olddefconfig)
+    fi
+  popd # $ROOT_DIR/$KERNEL_DIR
+elif [ -n "${TRIM_NONLISTED_KMI}" ]; then
+  echo "ERROR: TRIM_NONLISTED_KMI requires a KMI_WHITELIST" >&2
+  exit 1
 fi
 
 echo "========================================================"
@@ -354,7 +403,6 @@ for ODM_DIR in ${ODM_DIRS}; do
   fi
 done
 
-mkdir -p ${DIST_DIR}
 echo "========================================================"
 echo " Copying files"
 for FILE in $(cd ${OUT_DIR} && ls -1 ${FILES}); do
@@ -477,33 +525,6 @@ if [ -z "${SKIP_CP_KERNEL_HDR}" ] ; then
               --transform "s,^,kernel-headers/,"               \
               --null -T -
   popd
-fi
-
-# Copy the abi_${arch}.xml file from the sources into the dist dir
-if [ -n "${ABI_DEFINITION}" ]; then
-  echo "========================================================"
-  echo " Copying abi definition to ${DIST_DIR}/abi.xml"
-  pushd $ROOT_DIR/$KERNEL_DIR
-    cp "${ABI_DEFINITION}" ${DIST_DIR}/abi.xml
-  popd
-fi
-
-# Copy the abi whitelist file from the sources into the dist dir
-if [ -n "${KMI_WHITELIST}" ]; then
-  echo "========================================================"
-  echo " Copying abi whitelist definition to ${DIST_DIR}/abi_whitelist"
-  pushd $ROOT_DIR/$KERNEL_DIR
-    cp "${KMI_WHITELIST}" ${DIST_DIR}/abi_whitelist
-
-    # If there are additional whitelists specified, append them
-    if [ -n "${ADDITIONAL_KMI_WHITELISTS}" ]; then
-      for whitelist in ${ADDITIONAL_KMI_WHITELISTS}; do
-          echo >> ${DIST_DIR}/abi_whitelist
-          cat "${whitelist}" >> ${DIST_DIR}/abi_whitelist
-      done
-    fi
-
-  popd # $ROOT_DIR/$KERNEL_DIR
 fi
 
 echo "========================================================"
