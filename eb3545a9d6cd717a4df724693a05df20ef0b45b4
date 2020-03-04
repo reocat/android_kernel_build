@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2300ff46_7cc19512",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-03-04T22:49:24Z",
+      "side": 1,
+      "message": "to -\u003e for",
+      "range": {
+        "startLine": 7,
+        "startChar": 24,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "eb3545a9d6cd717a4df724693a05df20ef0b45b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "710d1dc3_f4c41c7f",
+        "filename": "abi/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-03-04T22:49:24Z",
+      "side": 1,
+      "message": "sp: regularly",
+      "range": {
+        "startLine": 289,
+        "startChar": 66,
+        "endLine": 289,
+        "endChar": 76
+      },
+      "revId": "eb3545a9d6cd717a4df724693a05df20ef0b45b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ba405de_3c623e0d",
+        "filename": "abi/gki_check",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-03-04T22:49:24Z",
+      "side": 1,
+      "message": "nit: \n\ntool to monitor the ABI",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 54,
+        "endChar": 47
+      },
+      "revId": "eb3545a9d6cd717a4df724693a05df20ef0b45b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
