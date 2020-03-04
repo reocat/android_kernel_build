@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed3dbd18_925a6823",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-04T23:38:58Z",
+      "side": 1,
+      "message": "try: \n  path \u003d os.environ.get(\"PATH\")\nexcept KeyError:\n  logging.error(\"PATH is not set\")\n  return False",
+      "revId": "5859093db2b858f185a838c91c3cf75352a16965",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f73b102_d45c1e07",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-04T23:38:58Z",
+      "side": 1,
+      "message": "you might want to resolve symbolic links and check whether that file that you found is a file and is executable.",
+      "range": {
+        "startLine": 743,
+        "startChar": 11,
+        "endLine": 743,
+        "endChar": 48
+      },
+      "revId": "5859093db2b858f185a838c91c3cf75352a16965",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b73168a_eaf0da39",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-04T23:38:58Z",
+      "side": 1,
+      "message": "this is very specific and deserves _at least_ a comment and a dedicated constant",
+      "range": {
+        "startLine": 750,
+        "startChar": 35,
+        "endLine": 750,
+        "endChar": 61
+      },
+      "revId": "5859093db2b858f185a838c91c3cf75352a16965",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
