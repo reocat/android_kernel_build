@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "913db1b5_ff15e3c0",
+        "filename": "abi/README-kmi_defines.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-05T16:40:43Z",
+      "side": 1,
+      "message": "what if any of those properties change over time?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 42
+      },
+      "revId": "aa26f29999a37c2d377efa4d484a5c9359083f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "946a1ad6_a1428c22",
+        "filename": "abi/README-kmi_defines.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-05T16:40:43Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 24,
+        "startChar": 48,
+        "endLine": 24,
+        "endChar": 53
+      },
+      "revId": "aa26f29999a37c2d377efa4d484a5c9359083f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e386fa27_77b6c039",
+        "filename": "abi/README-kmi_defines.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-05T16:40:43Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 54,
+        "startChar": 51,
+        "endLine": 54,
+        "endChar": 61
+      },
+      "revId": "aa26f29999a37c2d377efa4d484a5c9359083f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9002d9eb_fd2388d7",
+        "filename": "abi/README-kmi_defines.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-05T16:40:43Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 73,
+        "startChar": 51,
+        "endLine": 73,
+        "endChar": 61
+      },
+      "revId": "aa26f29999a37c2d377efa4d484a5c9359083f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f3f8d6a_cd582153",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-05T16:40:43Z",
+      "side": 1,
+      "message": "well, ... :-)",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "aa26f29999a37c2d377efa4d484a5c9359083f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c7c9a6b_9dbdfc26",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-05T16:40:43Z",
+      "side": 1,
+      "message": "EXCLUDED_HEADERS",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 7
+      },
+      "revId": "aa26f29999a37c2d377efa4d484a5c9359083f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7885e44a_314ddbfa",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 742,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-05T16:40:43Z",
+      "side": 1,
+      "message": "excluded_headers",
+      "range": {
+        "startLine": 742,
+        "startChar": 4,
+        "endLine": 742,
+        "endChar": 11
+      },
+      "revId": "aa26f29999a37c2d377efa4d484a5c9359083f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f188a505_7a7f430f",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-05T16:40:43Z",
+      "side": 1,
+      "message": "for header in sorted(abi_headers):",
+      "range": {
+        "startLine": 781,
+        "startChar": 8,
+        "endLine": 783,
+        "endChar": 38
+      },
+      "revId": "aa26f29999a37c2d377efa4d484a5c9359083f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
