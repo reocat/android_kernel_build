@@ -90,6 +90,7 @@ skip_arch_files() {
 echo "Reading symbols" >&2
 MODULES="`
   sed -n \
+      -e 's/^[_a-zA-Z][_a-zA-Z0-9]\{6,\}$/\1/p' \
       -e 's/^ERROR: "\([^"]*\)" [[]\(.*[.]ko\)[]] undefined!$/\1 \2/p' \
       -e 's/^[^:]*:[0-9]*: undefined reference to \`\([^'\'']*\)'\''$/\1/p' \
       ${INPUT} |
