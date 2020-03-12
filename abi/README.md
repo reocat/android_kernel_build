@@ -284,6 +284,23 @@ takes a path to a KMI whitelist file:
   $ dump_abi --linux-tree path/to/out --out-file /path/to/abi.xml --kmi-whitelist /path/to/whitelist
 ```
 
+### Comparing Kernel Binaries against the GKI reference KMI
+
+While working on the GKI Kernel compliance, it might be useful to regularly
+compare a local Kernel build to a reference GKI KMI representation without
+having to use `build_abi.sh`. The tool `gki_check` is a lightweight tool to
+do exactly that. Given a local Linux Kernel build tree, a sample invocation to
+compare the local binaries' representation to e.g. the 5.4 representation:
+
+```
+  $ build/abi/gki_check --linux-tree path/to/out/ --kernel-version 5.4
+```
+
+`gki_check` uses parameter names consistent with `dump_abi` and `diff_abi`.
+Hence, `--kmi-whitelist path/to/kmi_whitelist` can be used to limit that
+comparison to whitelisted symbols by passing a KMI whitelist.
+
+
 Dealing with ABI breakages
 --------------------------
 
@@ -373,7 +390,8 @@ use `diff_abi` to compare it to the expected ABI for that particular source tree
 
 Caveats and known issues
 ------------------------
-- Version 1.7 of libabigail, that contains all currently required patches to
-  properly work on clang-built aarch64 Android kernels, has not been released
-  yet. Using a recent master is a sufficient workaround for that. The
-  `bootstrap` script refers to a sufficient commit from upstream.
+
+Version 1.8 of libabigail contains most, but not all currently required patches
+to properly work on clang-built aarch64 Android kernels. Using a recent mm-next
+is a sufficient workaround for that. The `bootstrap` script refers to a
+sufficient commit from upstream.
