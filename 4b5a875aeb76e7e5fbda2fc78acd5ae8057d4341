@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53f39e95_6455e657",
+        "filename": "gki/add_EXPORT_SYMBOL_GPL",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-03-13T17:31:26Z",
+      "side": 1,
+      "message": "Also discovered that by adding this and you build the abi, this picks up the whitelest as a symbol because the abi tooling.",
+      "range": {
+        "startLine": 97,
+        "startChar": 6,
+        "endLine": 97,
+        "endChar": 49
+      },
+      "revId": "4b5a875aeb76e7e5fbda2fc78acd5ae8057d4341",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
