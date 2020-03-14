@@ -1,0 +1,611 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79f21338_e1ae6960",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "Please add to the commit message what this 500+ lines tool actually does.",
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa617e0e_72fe63c8",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "the tool is broken if this happens, we rather fatally raise",
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48c0b59c_e7c76afd",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "I am not a big fan of \u0027run\u0027, as I have to look its behaviour up in the code rather than subprocess.* which I know how to interface with or the python docs tell me.",
+      "range": {
+        "startLine": 825,
+        "startChar": 21,
+        "endLine": 825,
+        "endChar": 24
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b1d563c_36dd1463",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "same here, None does not give the caller enough context to diagnose the issue",
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5cc9eec_344b5e63",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "as above, all the user sees of this is rc\u003d1. Consider emitting an error message to allow the user to rectify the issue.",
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88246c0f_8832be08",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "I will review this code after the commit message has been updated to describe the change.",
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6750eeb_3e24200c",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "This file misses a license header",
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cac94140_752fed8b",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "alphabetical sort",
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e3c0393_31a2f083",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "what about x86? Can we make this work with those as well? (We likely want to test with Cuttlefish kernels).",
+      "range": {
+        "startLine": 14,
+        "startChar": 50,
+        "endLine": 14,
+        "endChar": 76
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "274207ea_5638dbae",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "This can be dropped. It adds little value to the code.",
+      "range": {
+        "startLine": 18,
+        "startChar": 31,
+        "endLine": 20,
+        "endChar": 76
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7892f610_b08aacda",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "make those typed constants.",
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45dd83d2_04ba7115",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "This feels like it should be done by a library like elfutils. Validating ELF headers seems not to be the core functionality of the kmi_defines tooling and we should therefore delegate those things.\n\nAlso, I am not sure we need to validate this at all. Since we are the ones producing the input file that needs to be processed. We are not taking something random. Hence have much better control.\n\nAs a side note: not even tools like nm and readelf fully check the validity of ELF files, simply crashing upon garbage ... I think we should not add this complexity here.",
+      "range": {
+        "startLine": 118,
+        "startChar": 5,
+        "endLine": 118,
+        "endChar": 20
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59408bd1_84195ded",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "nit",
+      "range": {
+        "startLine": 131,
+        "startChar": 45,
+        "endLine": 131,
+        "endChar": 46
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e9cfad1_eec17c89",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "what about x86",
+      "range": {
+        "startLine": 133,
+        "startChar": 26,
+        "endLine": 133,
+        "endChar": 36
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "888bec32_a38c8d1c",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 179,
+        "startChar": 5,
+        "endLine": 179,
+        "endChar": 21
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d60ea7a_217c7217",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 207,
+        "startChar": 5,
+        "endLine": 207,
+        "endChar": 20
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb93f5f3_f7704546",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "e.g. would you ever expect this case to happen for the analysis we are doing?",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 21
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82bcaf49_f289196f",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "unused parameter",
+      "range": {
+        "startLine": 232,
+        "startChar": 47,
+        "endLine": 232,
+        "endChar": 53
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5a3d27d_5db24b63",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 232,
+        "startChar": 5,
+        "endLine": 232,
+        "endChar": 20
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63d8b629_4e4ad14f",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "relocation resolution could be done with the help of a library like elfutils",
+      "range": {
+        "startLine": 272,
+        "startChar": 8,
+        "endLine": 272,
+        "endChar": 21
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebbdfb5c_a5a19663",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "I get the feeling that this is something a (tested) library can do for us (ctype.h?).",
+      "range": {
+        "startLine": 348,
+        "startChar": 0,
+        "endLine": 378,
+        "endChar": 51
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a15abfab_cc3f01d8",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "unused parameter",
+      "range": {
+        "startLine": 437,
+        "startChar": 37,
+        "endLine": 437,
+        "endChar": 44
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83015a3a_4a1f01e9",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "this needs proper explanation",
+      "range": {
+        "startLine": 453,
+        "startChar": 2,
+        "endLine": 456,
+        "endChar": 0
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9aff3c3d_3685a171",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "that is a very busy main function that contains too much detailed logic. please extract the analysis functionality in separate functions.",
+      "range": {
+        "startLine": 466,
+        "startChar": 4,
+        "endLine": 466,
+        "endChar": 8
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72e4c2e9_214f08d7",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "use a more descriptive name than map",
+      "range": {
+        "startLine": 485,
+        "startChar": 7,
+        "endLine": 485,
+        "endChar": 10
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fe56690_14feae34",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "this is not a check to be done in main (if we need to do that check at all)",
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7cba573_81271cbc",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "kmi_idx",
+      "range": {
+        "startLine": 509,
+        "startChar": 7,
+        "endLine": 509,
+        "endChar": 12
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d9cf1ab_4429b260",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "no need to validate sections that we do not care about.",
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a51ac799_2a5cf5e6",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-14T22:50:19Z",
+      "side": 1,
+      "message": "this is linker dependent and could easily be .rela_KMI_DEFINE when linking with lld.\n\nHence do the rela section lookup via index (header-\u003esh_info \u003d\u003d section_index of KMI_DEFINE)",
+      "range": {
+        "startLine": 519,
+        "startChar": 47,
+        "endLine": 519,
+        "endChar": 62
+      },
+      "revId": "b9f7b0f3574f2af156d11c47b6afcf38ff18ab42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
