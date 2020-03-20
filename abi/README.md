@@ -177,7 +177,61 @@ Changes to other ELF symbols would not be considered any longer unless they are
 indirectly affecting symbols that are whitelisted. A whitelist file can be
 specified -- similar to the abi baseline file via `ABI_DEFINITION=` -- in the
 corresponding `build.config` configuration file with `KMI_WHITELIST=` as a file
-relative to the kernel source directory (`$KERNEL_DIR`).
+relative to the kernel source directory (`$KERNEL_DIR`). In order to allow a
+certain level of organization, additional whitelist files can be specified by
+using `ADDITIONAL_KMI_WHITELISTS=` in the `build.config`. Similarly, it refers
+to whitelists in the `$KERNEL_DIR` and multiple files need to be separated by
+whitespaces.
+
+In order to **create an initial whitelist or to update an existing one**, the
+script `extract_symbols` is provided. When run pointing at a `DIST_DIR` of an
+Android Kernel build, it will extract the symbols that are exported from
+vmlinux _and_ are required by any module in the tree.
+
+Consider `vmlinux` exporting the following symbols (usually done via the
+EXPORT_SYMBOL* macros):
+
+```
+  func1
+  func2
+  func3
+```
+
+Also, consider there are two modules `modA.ko` and `modB.ko` which require the
+following symbols (i.e. `undefined` entries in the symbol table):
+
+```
+  modA.ko:    func1 func2
+  modB.ko:    func2`
+```
+
+From an ABI stability point of view we need to keep `func1` and `func2` stable
+as these are used by an external module. On the contrary, while `func3` is
+exported it is not actively used (i.e. required) by any module. The whitelist
+would therefore contain `func1` and `func2` only.
+
+`extract_symbols` offers a flag to update an existing or create a new whitelist
+based on the above analysis: `--whitelist <path/to/abi_whitelist>`.
+
+In order to update an existing whitelist based on a built Kernel tree, run
+`extract_symbols` as follows. The example uses the *common-android-mainline*
+branch of the Android Common Kernels following the official [build
+documentation](https://source.android.com/setup/build/building-kernels) and
+updates the whitelist for the GKI aarch64 Kernel.
+
+```
+  (build the kernel)
+  $ BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh
+
+  (update/create the whitelist)
+  $ build/abi/extract_symbols out/android-mainline/dist --whitelist common/abi_gki_aarch64_whitelist
+```
+
+**NOTE**: Be aware that `extract_symbols` recursively discovers Kernel modules
+by extension (*.ko) and considers all found ones. Orphan Kernel modules from
+prior runs might lead to incorrect results. Hence, make sure the directory you
+pass on to `extract_symbols` contains only the vmlinux and the modules you want
+it to consider.
 
 
 Working with the lower level ABI tooling
@@ -229,6 +283,23 @@ takes a path to a KMI whitelist file:
 ```
   $ dump_abi --linux-tree path/to/out --out-file /path/to/abi.xml --kmi-whitelist /path/to/whitelist
 ```
+
+### Comparing Kernel Binaries against the GKI reference KMI
+
+While working on the GKI Kernel compliance, it might be useful to regularly
+compare a local Kernel build to a reference GKI KMI representation without
+having to use `build_abi.sh`. The tool `gki_check` is a lightweight tool to
+do exactly that. Given a local Linux Kernel build tree, a sample invocation to
+compare the local binaries' representation to e.g. the 5.4 representation:
+
+```
+  $ build/abi/gki_check --linux-tree path/to/out/ --kernel-version 5.4
+```
+
+`gki_check` uses parameter names consistent with `dump_abi` and `diff_abi`.
+Hence, `--kmi-whitelist path/to/kmi_whitelist` can be used to limit that
+comparison to whitelisted symbols by passing a KMI whitelist.
+
 
 Dealing with ABI breakages
 --------------------------
@@ -319,7 +390,8 @@ use `diff_abi` to compare it to the expected ABI for that particular source tree
 
 Caveats and known issues
 ------------------------
-- Version 1.7 of libabigail, that contains all currently required patches to
-  properly work on clang-built aarch64 Android kernels, has not been released
-  yet. Using a recent master is a sufficient workaround for that. The
-  `bootstrap` script refers to a sufficient commit from upstream.
+
+Version 1.8 of libabigail contains most, but not all currently required patches
+to properly work on clang-built aarch64 Android kernels. Using a recent mm-next
+is a sufficient workaround for that. The `bootstrap` script refers to a
+sufficient commit from upstream.
