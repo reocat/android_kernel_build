@@ -84,7 +84,19 @@ set -- "${ARGS[@]}"
 set -e
 set -a
 
+# if we are using the default OUT_DIR, add a suffix so we are free to wipe it
+# before building to ensure a clean build/analysis. That is the default case.
+if [[ -z "$OUT_DIR" ]]; then
+    export OUT_DIR_SUFFIX="_abi"
+    wipe_out_dir=1
+fi
+
 source "${ROOT_DIR}/build/_setup_env.sh"
+
+# Now actually do the wipe out as above.
+if [[ $wipe_out_dir -eq 1 ]]; then
+    rm -rf "${COMMON_OUT_DIR}"
+fi
 
 # inject CONFIG_DEBUG_INFO=y
 export POST_DEFCONFIG_CMDS="${POST_DEFCONFIG_CMDS} : && update_config_for_abi_dump"
@@ -116,6 +128,16 @@ if ! ( version_greater_than "$(abidiff --version | awk '{print $2}')"  \
     exit 1
 fi
 
+# For now we require a specific versions of libabigail identified by a commit
+# hash. That is a bit inconvenient, but we do not have another reliable
+# identifier at this time.
+required_abigail_version="1.8.0-$(cat ${ROOT_DIR}/build/abi/bootstrap| grep 'ABIGAIL_VERSION=' | cut -d= -f2)"
+if [[ ! $(abidiff --version) =~ $required_abigail_version ]]; then
+    echo "ERROR: required libabigail version is $required_abigail_version"
+    echo "Have you run build/abi/bootstrap and followed the instructions?"
+    exit 1
+fi
+
 # delegate the actual build to build.sh.
 # suppress possible values of ABI_DEFINITION when invoking build.sh to avoid
 # the generated abi.xml to be copied to <DIST_DIR>/abi.out.
@@ -124,7 +146,16 @@ ABI_DEFINITION= ${ROOT_DIR}/build/build.sh $*
 # define a common KMI whitelist flag for the abi tools
 KMI_WHITELIST_FLAG=
 if [ -n "$KMI_WHITELIST" ]; then
-    KMI_WHITELIST_FLAG="--kmi-whitelist $KERNEL_DIR/$KMI_WHITELIST"
+
+    if [ $UPDATE -eq 1 ]; then
+        echo "========================================================"
+        echo " Updating the ABI whitelist"
+        ${ROOT_DIR}/build/abi/extract_symbols       \
+            --whitelist $KERNEL_DIR/$KMI_WHITELIST  \
+            ${DIST_DIR}
+    fi
+
+    KMI_WHITELIST_FLAG="--kmi-whitelist ${DIST_DIR}/abi_whitelist"
 fi
 
 echo "========================================================"
@@ -167,7 +198,7 @@ if [ -n "$ABI_DEFINITION" ]; then
         ${ROOT_DIR}/build/abi/diff_abi --baseline $KERNEL_DIR/$ABI_DEFINITION \
                                        --new      ${DIST_DIR}/${abi_out_file} \
                                        --report   ${abi_report}               \
-                                       --short-report ${abi_report}.short
+                                       --short-report ${abi_report}.short     \
                                        $KMI_WHITELIST_FLAG
         rc=$?
         set -e
