@@ -16,6 +16,24 @@
       "revId": "b89200eb1323d75599ac59c4b0f8dcf6056c3228",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "023d5b75_82f71444",
+        "filename": "hermetic/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-25T21:21:38Z",
+      "side": 1,
+      "message": "/sbin/depmod is part of kmod and used to generate modules.dep and map files. Not sure whether we can replace this easily.",
+      "parentUuid": "f58f97ec_14d6fe79",
+      "revId": "b89200eb1323d75599ac59c4b0f8dcf6056c3228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
