@@ -34,6 +34,24 @@
       "revId": "b89200eb1323d75599ac59c4b0f8dcf6056c3228",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65d22462_d8fa035e",
+        "filename": "hermetic/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2020-03-26T16:24:17Z",
+      "side": 1,
+      "message": "file a bug (ideally with a tar of the inputs and the specific command line you need to work)? looking at the man page it seems like it\u0027s fundamentally fairly simple? seems like it\u0027s basically just taking the modinfo depends lines and merging+sorting them?",
+      "parentUuid": "023d5b75_82f71444",
+      "revId": "b89200eb1323d75599ac59c4b0f8dcf6056c3228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
