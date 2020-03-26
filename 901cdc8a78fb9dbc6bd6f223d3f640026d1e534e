@@ -16,6 +16,24 @@
       "revId": "901cdc8a78fb9dbc6bd6f223d3f640026d1e534e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44e4a5be_a57c596c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-03-26T21:35:35Z",
+      "side": 1,
+      "message": "I rephrased the original bug but also broke this one out to another bug describing the optimization.",
+      "parentUuid": "9ad4db01_88ac8f23",
+      "revId": "901cdc8a78fb9dbc6bd6f223d3f640026d1e534e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
