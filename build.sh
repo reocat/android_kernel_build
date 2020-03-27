@@ -128,6 +128,7 @@
 #       device-specific components of ramdisk like the fstab file and the
 #       device-specific rc files.>
 #     - KERNEL_BINARY=<name of kernel binary, eg. Image.lz4, Image.gz etc>
+#     - GKI_KERNEL_BINARY=<full path to GKI kernel image, eg. Image.lz4>
 #     - BOOT_IMAGE_HEADER_VERSION=<version of the boot image header>
 #       (defaults to 3)
 #     - KERNEL_CMDLINE=<string of kernel parameters for boot>
@@ -140,6 +141,7 @@
 #     - PAGE_SIZE=<flash page size>
 #     If the BOOT_IMAGE_HEADER_VERSION is 3, a vendor_boot image will be built unless
 #     SKIP_VENDOR_BOOT is defined.
+#     - MODULES_LIST=<file to list of modules> list of modules to use for modules.load
 #
 #   BUILD_INITRAMFS
 #     if defined, build a ramdisk containing all .ko files and resulting depmod artifacts
@@ -188,6 +190,56 @@ function rel_path() {
 		path=${path}../
 	done
 	echo ${path}${to#$stem}
+}
+
+function run_depmod() {
+(
+	local ramdisk_dir=$1
+
+	set +x
+	set +e # disable exiting of error so we can add extra comments
+	cd ${ramdisk_dir}
+	local DEPMOD_OUTPUT=$(depmod -e -F ${DIST_DIR}/System.map -b . 0.0 2>&1)
+	if [[ "$?" -ne 0 ]]; then
+		echo "$DEPMOD_OUTPUT"
+		exit 1;
+	fi
+	echo "$DEPMOD_OUTPUT"
+	if [[ -n $(echo $DEPMOD_OUTPUT | grep "needs unknown symbol") ]]; then
+		echo "ERROR: out-of-tree kernel module(s) need unknown symbol(s)"
+		exit 1
+	fi
+	set -e
+	set -x
+)
+}
+
+function create_reduced_modules_order() {
+	local ramdisk_working_dir="$(mktemp -d /tmp/ramdisk.XXXXXX)"
+	mkdir -p ${ramdisk_working_dir}/lib/modules/0.0/
+
+	(
+		cd ${MODULES_STAGING_DIR}/lib/modules/*/
+		cat ${MODULES_LIST} | xargs -n1 find . -name | xargs -n1 -I {} dirname {} | xargs -n1 -I {} \
+			mkdir -p ${ramdisk_working_dir}/lib/modules/0.0/{}
+		cat ${MODULES_LIST} | xargs -n1 find . -name | xargs -n1 -I {} \
+			cp {} ${ramdisk_working_dir}/lib/modules/0.0/{}
+
+		# Iterate through full list of modules.order and create module.order from
+		# MODULES_LIST in order to retain the same order as the full modules.order
+		$(sed -e 's/.*\/\([^\/]\+\.ko\)/\1/' \
+			${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order | xargs -n1 -I {} \
+			grep "\<{}\>" ${MODULES_LIST} >> \
+			${ramdisk_working_dir}/lib/modules/0.0/modules.order)
+	)
+
+	cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.builtin ${ramdisk_working_dir}/lib/modules/0.0/modules.builtin
+	$(run_depmod ${ramdisk_working_dir})
+	cp ${ramdisk_working_dir}/lib/modules/0.0/modules.* \
+		${INITRAMFS_STAGING_DIR}/lib/modules/0.0/.
+
+	# Clean up
+	rm -rf ${ramdisk_working_dir}
 }
 
 export ROOT_DIR=$(readlink -f $(dirname $0)/..)
@@ -476,24 +528,13 @@ if [ -n "${MODULES}" ]; then
     fi
 
     # Re-run depmod to detect any dependencies between in-kernel and external
-    # modules. Then, create modules.load based on all the modules compiled.
-    (
-      set +x
-      set +e # disable exiting of error so we can add extra comments
-      cd ${INITRAMFS_STAGING_DIR}
-      DEPMOD_OUTPUT=$(depmod -e -F ${DIST_DIR}/System.map -b . 0.0 2>&1)
-      if [[ "$?" -ne 0 ]]; then
-        echo "$DEPMOD_OUTPUT"
-        exit 1;
-      fi
-      echo "$DEPMOD_OUTPUT"
-      if [[ -n $(echo $DEPMOD_OUTPUT | grep "needs unknown symbol") ]]; then
-        echo "ERROR: out-of-tree kernel module(s) need unknown symbol(s)"
-        exit 1
-      fi
-      set -e
-      set -x
-    )
+    # modules. Then, create modules.order based on all the modules compiled.
+    if [[ -n "${MODULES_LIST}" && -f "${MODULES_LIST}" ]]; then
+      $(create_reduced_modules_order)
+    else
+      $(run_depmod ${INITRAMFS_STAGING_DIR})
+    fi
+
     cp ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.load
     cp ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order ${DIST_DIR}/modules.load
     echo "${MODULES_OPTIONS}" > ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.options
@@ -558,6 +599,7 @@ echo " Files copied to ${DIST_DIR}"
 
 if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 	MKBOOTIMG_ARGS=()
+	MKBOOTIMG_VARGS=()
 	if [ -n  "${BASE_ADDRESS}" ]; then
 		MKBOOTIMG_ARGS+=("--base" "${BASE_ADDRESS}")
 	fi
@@ -628,10 +670,10 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 		fi
 
 		if [ -z "${SKIP_VENDOR_BOOT}" ]; then
-			MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img" \
+			MKBOOTIMG_VARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img" \
 				"--vendor_ramdisk" "${DIST_DIR}/ramdisk.gz")
 			if [ -n "${KERNEL_VENDOR_CMDLINE}" ]; then
-				MKBOOTIMG_ARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
+				MKBOOTIMG_VARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
 			fi
 		fi
 	else
@@ -641,8 +683,16 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 	set -x
 	python "$MKBOOTIMG_PATH" --kernel "${DIST_DIR}/${KERNEL_BINARY}" \
 		--header_version "${BOOT_IMAGE_HEADER_VERSION}" \
-		"${MKBOOTIMG_ARGS[@]}" -o "${DIST_DIR}/boot.img"
+		"${MKBOOTIMG_ARGS[@]}" "${MKBOOTIMG_VARGS[@]}" -o "${DIST_DIR}/boot.img"
 	set +x
+
+	if [[ -f ${GKI_KERNEL_BINARY} ]]; then
+		set -x
+		python "$MKBOOTIMG_PATH" --kernel "${GKI_KERNEL_BINARY}" \
+			--header_version "${BOOT_IMAGE_HEADER_VERSION}" \
+			"${MKBOOTIMG_ARGS[@]}" -o "${DIST_DIR}/boot-gki.img"
+		set +x
+	fi
 
 	echo "boot image created at ${DIST_DIR}/boot.img"
 fi
