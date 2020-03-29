@@ -227,7 +227,7 @@ if [ -n "${CC}" ]; then
 fi
 
 if [ -n "${LD}" ]; then
-  TOOL_ARGS+=("LD=${LD}")
+  TOOL_ARGS+=("LD=${LD}" "HOSTLD=${LD}")
 fi
 
 if [ -n "${NM}" ]; then

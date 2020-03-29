@@ -7,7 +7,8 @@ RUN apt-get -y update                            \
 # To be removed
     # see  b/152339525
     cpio                                         \
-    gcc                                          \
+    libc6-dev                                    \
+    libgcc-8-dev                                 \
     # for /sbin/depmod
     kmod                                         \
     libssl-dev                                   \
@@ -18,8 +19,6 @@ RUN apt-get -y update                            \
 # Whitelist some host binaries for now
 RUN mkdir -p /l/bin
 RUN ln -s $(which cpio) /l/bin/      # b/152339525
-RUN ln -s $(which gcc) /l/bin/
-RUN ln -s $(which ld) /l/bin/
 RUN ln -s $(which perl) /l/bin/
 RUN ln -s $(which rsync) /l/bin/
 RUN ln -s $(which sh) /l/bin/
