@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9425481f_4bf5b8ee",
+        "filename": "build-tools/path/linux-x86/ld",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-30T12:03:19Z",
+      "side": 1,
+      "message": "Nick, the HOSTLD\u003d seems to not work properly in the tree. E.g. scripts/basic/Makefile still builds with the HOSTCC, but links with just \u0027ld\u0027. That ld then comes from the host rather than from the prebuilts.\n\nThis here works around this by assuming LLD is good enough for all linker needs. But maybe there is a proper way of doing this? Maybe we can teach upstream to properly build all hostprogs with HOSTCC and HOSTLD?",
+      "revId": "4e182bdea6a563ba02c8fd790a0cffa792236854",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce026c93_a84537f7",
+        "filename": "hermetic/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-03-30T12:03:19Z",
+      "side": 1,
+      "message": "enh@: this host dependency is needed for libgcc.so and friends for host tools. Is this dependency resolved in the platform with the libc stub?",
+      "revId": "4e182bdea6a563ba02c8fd790a0cffa792236854",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
