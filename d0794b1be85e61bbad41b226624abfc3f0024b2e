@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0640a6a9_aad839f4",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-03-31T16:28:00Z",
+      "side": 1,
+      "message": "Can you change this to\n\nelif [ -z \"${SKIP_VENDOR_BOOT}\" ]; then",
+      "range": {
+        "startLine": 599,
+        "startChar": 1,
+        "endLine": 600,
+        "endChar": 39
+      },
+      "revId": "d0794b1be85e61bbad41b226624abfc3f0024b2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55fcde66_f3ba4ba8",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-03-31T16:28:00Z",
+      "side": 1,
+      "message": "You can remove this line. It\u0027s already zero\u0027d out on line 620.",
+      "range": {
+        "startLine": 633,
+        "startChar": 2,
+        "endLine": 633,
+        "endChar": 19
+      },
+      "revId": "d0794b1be85e61bbad41b226624abfc3f0024b2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
