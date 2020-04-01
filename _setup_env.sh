@@ -24,6 +24,17 @@
 export ROOT_DIR=$(readlink -f $PWD)
 
 export BUILD_CONFIG=${BUILD_CONFIG:-build.config}
+
+# Helper function to let build.config files add command to PRE_DEFCONFIG_CMDS, EXTRA_CMDS, etc.
+# Usage: add_cmd PRE_DEFCONFIG_CMDS 'the_cmd'
+function add_cmd() {
+  if [ ! -z "${!1}" ]; then
+    eval "$1=\"\$2 && ${!1}\""
+  else
+    eval "$1=\"\$2\""
+  fi
+}
+
 set -a
 . ${ROOT_DIR}/${BUILD_CONFIG}
 set +a
