@@ -314,6 +314,24 @@
     },
     {
       "key": {
+        "uuid": "a0c939b4_311d39b0",
+        "filename": "gki/uapi-verify.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-01T07:54:55Z",
+      "side": 1,
+      "message": "I meant creating a static library out of _all_ compiled headers.",
+      "parentUuid": "ffbbc7d0_e231cbaa",
+      "revId": "37d105258d78b01c7d9b05cbbacbec5531234dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0fe7e9ab_36ed128e",
         "filename": "gki/uapi-verify.sh",
         "patchSetId": 2
