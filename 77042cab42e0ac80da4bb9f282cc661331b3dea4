@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20c8791d_b727ce99",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-02T20:27:11Z",
+      "side": 1,
+      "message": "you can omit this check and always do\n\n  eval \"$1\u003d\\\"\\$2 : \u0026\u0026 ${!1}\\\"\"",
+      "revId": "77042cab42e0ac80da4bb9f282cc661331b3dea4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
