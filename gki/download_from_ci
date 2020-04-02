@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+
+import functools
+import json
+import multiprocessing
+import os
+import sys
+import urllib.request
+
+def download(url_base, filename):
+  if not os.path.exists(filename):
+    print("Downloading %s" % filename)
+    try:
+        urllib.request.urlretrieve(os.path.join(url_base, filename), filename)
+    except urllib.error.HTTPError as e:
+        print("Could not download %s: %s" % (filename, e ))
+
+
+def main():
+  if len(sys.argv) != 2:
+    print(
+        "usage: %s https://ci.android.com/builds/submitted/6148204/kernel_db845c/latest"
+        % sys.argv[0])
+    return 1
+
+  url_base = sys.argv[1] + "/raw"
+
+  # Download BUILD_INFO
+  url = os.path.join(url_base, "BUILD_INFO")
+  response = urllib.request.urlopen(url)
+  data = response.read().decode("utf-8")
+  files = json.loads(data)["target"]["dir_list"]
+
+  for f in files:
+    dirname = os.path.dirname(f)
+    if dirname and not os.path.isdir(dirname):
+      os.makedirs(dirname)
+
+  pool = multiprocessing.Pool(10)
+  func = functools.partial(download, url_base)
+
+  pool.map(func, files)
+
+if __name__ == "__main__":
+  sys.exit(main())
