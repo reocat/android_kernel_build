@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "62cf63a6_9a7ec771",
+        "filename": "gki/uapi-verify.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1670145
+      },
+      "writtenOn": "2020-04-02T03:03:53Z",
+      "side": 1,
+      "message": "I thought we don\u0027t add license per our guidelines. I need to check and update, but since this is just to get the idea going we can continue like this for now.",
+      "parentUuid": "c789b80d_f1234183",
+      "revId": "37d105258d78b01c7d9b05cbbacbec5531234dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf49ea3c_329bc82c",
         "filename": "gki/uapi-verify.sh",
         "patchSetId": 2
