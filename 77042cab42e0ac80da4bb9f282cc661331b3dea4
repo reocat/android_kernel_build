@@ -39,6 +39,24 @@
       "revId": "77042cab42e0ac80da4bb9f282cc661331b3dea4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34ea2f37_76af6cf7",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1670458
+      },
+      "writtenOn": "2020-04-04T01:30:52Z",
+      "side": 1,
+      "message": "What does the colon (:) do here?\n\nAlso, We can use this add_cmd as a generic function, for the 1st argument empty cases.\nIf first argument is uninitialized\nwe get $1 \u003d $2 \u0026\u0026     , which is undesired.\n\nLet me know if I miss something here.",
+      "parentUuid": "20c8791d_b727ce99",
+      "revId": "77042cab42e0ac80da4bb9f282cc661331b3dea4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
