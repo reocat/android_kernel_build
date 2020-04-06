@@ -81,6 +81,24 @@
       "revId": "77042cab42e0ac80da4bb9f282cc661331b3dea4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c927fe0c_0a8215f7",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-06T11:02:23Z",
+      "side": 1,
+      "message": "We should implement this as in build_abi.sh:101 where we add a command to POST_DEFCONFIG_CMDS, regardless of whether POST_DEFCONFIG_CMDS was defined already.\n\nThe colon is just a placeholder. And the command needs to expand (in your example) to:\n\n  eval \"POST_DEFCONFIG_CMDS\u003d\"${POST_DEFCONFIG_CMDS} : \u0026\u0026 ${new_command}\"",
+      "parentUuid": "34ea2f37_76af6cf7",
+      "revId": "77042cab42e0ac80da4bb9f282cc661331b3dea4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
