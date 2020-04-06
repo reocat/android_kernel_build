@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "27b6d876_f7d5d38c",
+        "filename": "gki/uapi-verify.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-06T14:21:51Z",
+      "side": 1,
+      "message": "Not sure, which guidelines you are following for this. The kernel/build project is public on AOSP and all files need a license. The default license for this project is Apache2.",
+      "parentUuid": "62cf63a6_9a7ec771",
+      "revId": "37d105258d78b01c7d9b05cbbacbec5531234dcd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bf49ea3c_329bc82c",
         "filename": "gki/uapi-verify.sh",
         "patchSetId": 2
