@@ -34,6 +34,24 @@
       "revId": "69fa50f49fd2849c0feb7f47e9fba8c5727dc5f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a9fc19f_f162adac",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-04-07T18:48:55Z",
+      "side": 1,
+      "message": "I agree we should move this to the top. It should be fine for lines 491-494 to run if BOOT_IMAGE_HEADER_VERSION isn\u0027t set. \n\nCan you do this:\n\nBOOT_IMAGE_HEADER_VERSION\u003d${BOOT_IMAGE_HEADER_VERSION:-3}",
+      "parentUuid": "0f0c732b_6081ed1b",
+      "revId": "69fa50f49fd2849c0feb7f47e9fba8c5727dc5f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
