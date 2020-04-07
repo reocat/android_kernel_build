@@ -16,6 +16,24 @@
       "revId": "69fa50f49fd2849c0feb7f47e9fba8c5727dc5f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f0c732b_6081ed1b",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-07T06:12:54Z",
+      "side": 1,
+      "message": "I considered that, but that would change the semantics. Currently, the if body on lines 491-494 does not run in the absence of BOOT_IMAGE_HEADER_VERSION.\nIf we move this up, then it will run even in the absence of BOOT_IMAGE_HEADER_VERSION.\n\nLet me know. I\u0027m fine either way. In fact, I am in favor of moving it up, because then we have a consistent default value for this environment variable. Currently, the script does not behave consistent if BOOT_IMAGE_HEADER_VERSION is not defined.",
+      "parentUuid": "51b584d8_c4f4ff49",
+      "revId": "69fa50f49fd2849c0feb7f47e9fba8c5727dc5f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
