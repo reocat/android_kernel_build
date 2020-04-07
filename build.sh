@@ -487,7 +487,7 @@ if [ -n "${MODULES}" ]; then
     mv ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/* ${INITRAMFS_STAGING_DIR}/lib/modules/.
     rmdir ${INITRAMFS_STAGING_DIR}/lib/modules/0.0
 
-    if [ "${BOOT_IMAGE_HEADER_VERSION}" -eq "3" ]; then
+    if [ "0${BOOT_IMAGE_HEADER_VERSION}" -eq "3" ]; then
       mkdir -p ${INITRAMFS_STAGING_DIR}/first_stage_ramdisk
       if [ -f "${VENDOR_FSTAB}" ]; then
         cp ${VENDOR_FSTAB} ${INITRAMFS_STAGING_DIR}/first_stage_ramdisk/.
