@@ -187,6 +187,14 @@ function rel_path() {
 	echo ${path}${to#$stem}
 }
 
+# Test if file $1 starts with the GZIP magic 1f 8b
+function is_gzip() {
+	local MAGIC=$(od -N 2 "$1" -A none -t x2)
+	# Remove leading white space from $MAGIC
+	MAGIC=$(echo ${MAGIC})
+	test "${MAGIC# }" = "8b1f"
+}
+
 export ROOT_DIR=$(readlink -f $(dirname $0)/..)
 
 # For module file Signing with the kernel (if needed)
@@ -543,7 +551,9 @@ fi
 echo "========================================================"
 echo " Files copied to ${DIST_DIR}"
 
-if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
+if [ -n "${BUILD_BOOT_IMG}" ] ; then
+	echo "========================================================"
+	echo " Building boot.img"
 	if [ -z "${BOOT_IMAGE_HEADER_VERSION}" ]; then
 		BOOT_IMAGE_HEADER_VERSION="3"
 	fi
@@ -572,35 +582,27 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 		MKBOOTIMG_DTB="--dtb ${DIST_DIR}/dtb.img"
 	fi
 
-	set -x
-	MKBOOTIMG_RAMDISKS=()
-	for ramdisk in ${VENDOR_RAMDISK_BINARY} \
-		       "${MODULES_STAGING_DIR}/initramfs.cpio"; do
-		if [ -f "${DIST_DIR}/${ramdisk}" ]; then
-			MKBOOTIMG_RAMDISKS+=("${DIST_DIR}/${ramdisk}")
+	rm -f ${DIST_DIR}/ramdisk.gz
+	if [ -n "${VENDOR_RAMDISK_BINARY}" ]; then
+		if is_gzip "${VENDOR_RAMDISK_BINARY}"; then
+			echo "  Adding vendor ramdisk ${VENDOR_RAMDISK_BINARY} which is already in GZIP format"
+			cat "${VENDOR_RAMDISK_BINARY}" >> ${DIST_DIR}/ramdisk.gz
+
 		else
-			if [ -f "${ramdisk}" ]; then
-				MKBOOTIMG_RAMDISKS+=("${ramdisk}")
-			fi
+			echo "  Gzipping and adding vendor ramdisk ${VENDOR_RAMDISK_BINARY}"
+			gzip -c "${VENDOR_RAMDISK_BINARY}" >> ${DIST_DIR}/ramdisk.gz
 		fi
-	done
-	set +e # disable exiting of error so gzip -t can be handled properly
-	for ((i=0; i<"${#MKBOOTIMG_RAMDISKS[@]}"; i++)); do
-		TEST_GZIP=$(gzip -t "${MKBOOTIMG_RAMDISKS[$i]}" 2>&1 > /dev/null)
-		if [ "$?" -eq 0 ]; then
-			CPIO_NAME=$(echo "${MKBOOTIMG_RAMDISKS[$i]}" | sed -e 's/\(.\+\)\.[a-z]\+$/\1.cpio/')
-			gzip -cd "${MKBOOTIMG_RAMDISKS[$i]}" > ${CPIO_NAME}
-			MKBOOTIMG_RAMDISKS[$i]=${CPIO_NAME}
-		fi
-	done
-	set -e # re-enable exiting on errors
-	if [ "${#MKBOOTIMG_RAMDISKS[@]}" -gt 0 ]; then
-		cat ${MKBOOTIMG_RAMDISKS[*]} | gzip - > ${DIST_DIR}/ramdisk.gz
-	elif [ -z "${SKIP_VENDOR_BOOT}" ]; then
-		echo "No ramdisk found. Please provide a GKI and/or a vendor ramdisk."
+	else
+		echo "  No vendor ramdisk has been provided"
+	fi
+	if [ -n "${BUILD_INITRAMFS}" ]; then
+		echo "  Adding initramfs containing all .ko files and resulting depmod artifacts"
+		cat "${DIST_DIR}/initramfs.img" >> ${DIST_DIR}/ramdisk.gz
+	fi
+	if [ ! -f ${DIST_DIR}/ramdisk.gz ] && [ "${BOOT_IMAGE_HEADER_VERSION}" -ne "3" -o -z "${SKIP_VENDOR_BOOT}" ]; then
+		echo "No ramdisk found. Please provide a vendor ramdisk or set BUILD_INITRAMFS"
 		exit 1
 	fi
-	set -x
 
 	if [ -z "${MKBOOTIMG_PATH}" ]; then
 		MKBOOTIMG_PATH="tools/mkbootimg/mkbootimg.py"
@@ -643,8 +645,7 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 		-o ${DIST_DIR}/boot.img ${VENDOR_BOOT_ARGS}"
 	)
 
-	set +x
-	echo "boot image created at ${DIST_DIR}/boot.img"
+	echo " Boot image created at ${DIST_DIR}/boot.img"
 fi
 
 
