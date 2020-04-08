@@ -135,6 +135,24 @@
       "revId": "77042cab42e0ac80da4bb9f282cc661331b3dea4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "072d21b7_8a476278",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-08T21:18:32Z",
+      "side": 1,
+      "message": "You are right, that is a case where this would fail. I guess, we need to keep the logic then. Sorry for the noise. Still we need to make sure the commands get appended. And that makes me think, maybe a better name for this is append_cmd ?",
+      "parentUuid": "91971a1f_cc83af75",
+      "revId": "77042cab42e0ac80da4bb9f282cc661331b3dea4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
