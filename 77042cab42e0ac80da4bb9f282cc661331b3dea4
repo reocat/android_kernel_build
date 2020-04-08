@@ -117,6 +117,24 @@
       "revId": "77042cab42e0ac80da4bb9f282cc661331b3dea4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91971a1f_cc83af75",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2020-04-08T20:46:38Z",
+      "side": 1,
+      "message": "Should be to match your more recent comment:\n  eval \"$1\u003d\\\"${!1} : \u0026\u0026 \\$2\\\"\"\n\nAlso, should we keep with the if/else logic here? If we want to add a cmd which parses the arguments to a _CMDS variable, then the colon may also be added to the argument list which could cause issues depending on the command:\n\n1) PRE_DEFCONFIG_CMDS is \"\"\n2) add_cmd PRE_DEFCONFIG_CMDS \"echo hello\"\n3) PRE_DEFCONFIG_CMDS is \": \u0026\u0026 echo hello\"\n4) add_cmd PRE_DEFCONFIG_CMDS \"true\"\n5) PRE_DEFCONFIG_CMDS is \": \u0026\u0026 echo hello : \u0026\u0026 true\"\n\nIf we eval ${PRE_DEFCONFIG_CMDS} now, you\u0027d see \"hello :\" printed instead of just \"hello\" as expected.",
+      "parentUuid": "b654c0a4_7caee967",
+      "revId": "77042cab42e0ac80da4bb9f282cc661331b3dea4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
