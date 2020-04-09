@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25292306_71652195",
+        "filename": "build.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-09T22:41:12Z",
+      "side": 1,
+      "message": "If the user specifies a file but the file can\u0027t be found, I would prefer the script to fail with an error rather than taking a different code path.",
+      "range": {
+        "startLine": 529,
+        "startChar": 33,
+        "endLine": 529,
+        "endChar": 54
+      },
+      "revId": "f187038cc653b1f6d40f9323f23b607172d2633d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a439962f_1a097684",
+        "filename": "build.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-09T22:41:12Z",
+      "side": 1,
+      "message": "What is the reason for using Command Substitution here?\n\nIsn\u0027t just\n\nrun_depmod ${INITRAMFS_STAGING_DIR}\n\nnot good enough?",
+      "range": {
+        "startLine": 532,
+        "startChar": 6,
+        "endLine": 532,
+        "endChar": 8
+      },
+      "revId": "f187038cc653b1f6d40f9323f23b607172d2633d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57c1d38d_7142a5e5",
+        "filename": "build.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-09T22:41:12Z",
+      "side": 1,
+      "message": "I\u0027d prefer \"-n\". If the user specifies a file, but it can\u0027t be found, I would prefer to see an error message rather than the script silently skipping over it.",
+      "range": {
+        "startLine": 686,
+        "startChar": 6,
+        "endLine": 686,
+        "endChar": 9
+      },
+      "revId": "f187038cc653b1f6d40f9323f23b607172d2633d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
