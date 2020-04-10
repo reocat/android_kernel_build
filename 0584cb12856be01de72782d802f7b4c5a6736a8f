@@ -2,6 +2,132 @@
   "comments": [
     {
       "key": {
+        "uuid": "57502969_1b89fc4d",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-10T00:27:47Z",
+      "side": 1,
+      "message": "One thing to point out here is that the indentation in this script is not consistent. It uses a mix of tabs (8 character) and 2 spaces.\nThe 2 spaces appear to be more common, though.",
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ef1f29a_2a207648",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-10T00:27:47Z",
+      "side": 1,
+      "message": "Another way to do this is to take advantage of grep\u0027s exit status:\n\n\nif (echo \"$DEPMOD_OUTPUT\" | grep -q \"needs unknown symbol\"); then\n\nor\n\nif { echo \"$DEPMOD_OUTPUT\" | grep -q \"needs unknown symbol\"; }; then",
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3794bd17_26882b6f",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-10T00:27:47Z",
+      "side": 1,
+      "message": "Isn\u0027t this similar to what the command basename is doing? If so, I recommend using basename.",
+      "range": {
+        "startLine": 230,
+        "startChar": 4,
+        "endLine": 230,
+        "endChar": 38
+      },
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a89c305_194d525f",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-10T00:27:47Z",
+      "side": 1,
+      "message": "I think that Command Substitution $(....) is not needed here.",
+      "range": {
+        "startLine": 230,
+        "startChar": 2,
+        "endLine": 230,
+        "endChar": 4
+      },
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f578cba8_8978fa6e",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-10T00:27:47Z",
+      "side": 1,
+      "message": "Did you mean to anchor at the beginning and end of a word (\\\u003c and \\\u003e) or the beginning and end of a line i.e. ^{}$",
+      "range": {
+        "startLine": 232,
+        "startChar": 8,
+        "endLine": 232,
+        "endChar": 16
+      },
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6bc8895_cf9207af",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-10T00:27:47Z",
+      "side": 1,
+      "message": "I think that Command Substitution $(....) is not needed here.",
+      "range": {
+        "startLine": 237,
+        "startChar": 1,
+        "endLine": 237,
+        "endChar": 3
+      },
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3c6d70cd_9bd35693",
         "filename": "build.sh",
         "patchSetId": 11
