@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "278e6ad6_048f844f",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-04-10T00:32:42Z",
+      "side": 1,
+      "message": "yeah I try to follow the pattern from the code around it.",
+      "parentUuid": "57502969_1b89fc4d",
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ef1f29a_2a207648",
         "filename": "build.sh",
         "patchSetId": 11
@@ -30,6 +48,24 @@
       "writtenOn": "2020-04-10T00:27:47Z",
       "side": 1,
       "message": "Another way to do this is to take advantage of grep\u0027s exit status:\n\n\nif (echo \"$DEPMOD_OUTPUT\" | grep -q \"needs unknown symbol\"); then\n\nor\n\nif { echo \"$DEPMOD_OUTPUT\" | grep -q \"needs unknown symbol\"; }; then",
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eee757ae_9af18ce4",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-04-10T00:32:42Z",
+      "side": 1,
+      "message": "ah okay. I can update this",
+      "parentUuid": "8ef1f29a_2a207648",
       "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
@@ -82,6 +118,54 @@
     },
     {
       "key": {
+        "uuid": "5fcc6740_50d7f682",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-04-10T00:32:42Z",
+      "side": 1,
+      "message": "let me try that",
+      "parentUuid": "3794bd17_26882b6f",
+      "range": {
+        "startLine": 230,
+        "startChar": 4,
+        "endLine": 230,
+        "endChar": 38
+      },
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92fc19e5_b7bbd870",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-04-10T00:32:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a89c305_194d525f",
+      "range": {
+        "startLine": 230,
+        "startChar": 2,
+        "endLine": 230,
+        "endChar": 4
+      },
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f578cba8_8978fa6e",
         "filename": "build.sh",
         "patchSetId": 11
@@ -102,6 +186,30 @@
       "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a415171f_4a4f1d24",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-04-10T00:32:42Z",
+      "side": 1,
+      "message": "no, just the word",
+      "parentUuid": "f578cba8_8978fa6e",
+      "range": {
+        "startLine": 232,
+        "startChar": 8,
+        "endLine": 232,
+        "endChar": 16
+      },
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "9bd51f8b_51c8cc48",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-04-10T00:32:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6bc8895_cf9207af",
+      "range": {
+        "startLine": 237,
+        "startChar": 1,
+        "endLine": 237,
+        "endChar": 3
+      },
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c6d70cd_9bd35693",
         "filename": "build.sh",
         "patchSetId": 11
@@ -148,6 +280,30 @@
       "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2762820_3e6e0e5d",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-04-10T00:32:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c6d70cd_9bd35693",
+      "range": {
+        "startLine": 532,
+        "startChar": 0,
+        "endLine": 534,
+        "endChar": 0
+      },
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
