@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1945287d_99f68192",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T01:50:13Z",
+      "side": 1,
+      "message": "I almost missed this open parenthesis. Consider indenting this like on line 229.",
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b47acde_537d8421",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T01:50:13Z",
+      "side": 1,
+      "message": "This actually appears to be not working. depmod just failed for me with\n\ndepmod: FATAL: could not load /home/danielmentz/a/k/ack/out/android-5.4/dist/System.map: No such file or directory\n\nand the script just continued. This is presumably because you\u0027re looking at the exit status of the command \"local\" not depmod.",
+      "range": {
+        "startLine": 203,
+        "startChar": 1,
+        "endLine": 203,
+        "endChar": 26
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "534dc624_c32e58e0",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T01:50:13Z",
+      "side": 1,
+      "message": "Try this\n\nlocal DEPMOD_OUTPUT\nif ! DEPMOD_OUTPUT\u003d$(depmod -e -F ${DIST_DIR}/System.map -b . 0.0 2\u003e\u00261); then\n\nthen you don\u0027t need \"set +e # disable exiting of error so we can add extra comments\" on line 200 and \"set -e\" on line 212.",
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "045fe6f8_4a51a4b7",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T01:50:13Z",
+      "side": 1,
+      "message": "Please only use one open bracket to be consistent with the 5 existing occurrences in this script:\n\n[ -f",
+      "range": {
+        "startLine": 219,
+        "startChar": 4,
+        "endLine": 219,
+        "endChar": 6
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48df7f90_95e9f891",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T01:50:13Z",
+      "side": 1,
+      "message": "Same as line 219",
+      "range": {
+        "startLine": 221,
+        "startChar": 6,
+        "endLine": 221,
+        "endChar": 8
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ce60686_d730e51e",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T01:50:13Z",
+      "side": 1,
+      "message": "Please use $(...) syntax instead of backticks.",
+      "range": {
+        "startLine": 239,
+        "startChar": 14,
+        "endLine": 239,
+        "endChar": 15
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6ad5439_85574450",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T01:50:13Z",
+      "side": 1,
+      "message": "Please only use one opening bracket.",
+      "range": {
+        "startLine": 541,
+        "startChar": 7,
+        "endLine": 541,
+        "endChar": 9
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52f824eb_1f4e1147",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T01:50:13Z",
+      "side": 1,
+      "message": "Please only use one opening bracket.",
+      "range": {
+        "startLine": 696,
+        "startChar": 4,
+        "endLine": 696,
+        "endChar": 6
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}

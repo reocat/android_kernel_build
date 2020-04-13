@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "60fe74ea_594c9420",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T01:50:13Z",
+      "side": 1,
+      "message": "The majority of the source code lines use two space characters for indentation. From how I understand the history of this file, it started out with two spaces, and I am afraid that it was actually me who mistakenly introduced the tab indentation when I added the function rel_path().\n\nI would suggest converging back to two space character indentation. We don\u0027t need to change the existing code, but the addition of new code is an opportunity to move back to two space characters. Also, when code is moved around like function run_depmod, we might move back to two space characters.",
+      "parentUuid": "278e6ad6_048f844f",
+      "revId": "0584cb12856be01de72782d802f7b4c5a6736a8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8ef1f29a_2a207648",
         "filename": "build.sh",
         "patchSetId": 11
