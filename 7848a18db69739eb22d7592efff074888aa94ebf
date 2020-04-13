@@ -128,6 +128,29 @@
     },
     {
       "key": {
+        "uuid": "ec9dc6ea_e33f4f43",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T01:55:03Z",
+      "side": 1,
+      "message": "This prints\n\nxargs: Unknown option \u0027I\u0027 (see \"xargs --help\")\n\non my setup. The toybox version of xargs appears to not support the -I command line switch.",
+      "range": {
+        "startLine": 240,
+        "startChar": 13,
+        "endLine": 240,
+        "endChar": 15
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6ad5439_85574450",
         "filename": "build.sh",
         "patchSetId": 13
