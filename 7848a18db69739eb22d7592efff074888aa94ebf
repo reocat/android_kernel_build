@@ -82,6 +82,30 @@
     },
     {
       "key": {
+        "uuid": "64600971_2fb514b2",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T07:50:54Z",
+      "side": 1,
+      "message": "On second thought, the Google style guide requires [[. So never mind.",
+      "parentUuid": "045fe6f8_4a51a4b7",
+      "range": {
+        "startLine": 219,
+        "startChar": 4,
+        "endLine": 219,
+        "endChar": 6
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "48df7f90_95e9f891",
         "filename": "build.sh",
         "patchSetId": 13
@@ -98,6 +122,127 @@
         "startChar": 6,
         "endLine": 221,
         "endChar": 8
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d2a947d_2cbbd9e6",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T07:50:54Z",
+      "side": 1,
+      "message": "elif [[ \"${MODULES_LIST}\" !\u003d /* ]]; then\n  echo \"MODULES_LIST must be an absolute path or relative to ${ROOT_DIR}: ${MODULES_LIST}\"\n  exit 1\nelif [[ ! -f \"${MODULES_LIST}\" ]]; then\n  echo \"Failed to find MODULES_LIST: ${MODULES_LIST}\"\n  exit 1\nfi",
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c63d409a_0c7b98b2",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T07:50:54Z",
+      "side": 1,
+      "message": "On second thought, the Google style guide requires [[. So never mind.",
+      "parentUuid": "48df7f90_95e9f891",
+      "range": {
+        "startLine": 221,
+        "startChar": 6,
+        "endLine": 221,
+        "endChar": 8
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a3c14c1_9185f106",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T07:50:54Z",
+      "side": 1,
+      "message": "Use\n\nmktemp -d --tmpdir ramdisk.XXXXXX\n\nThis allows users to specify an alternative temporary directory by setting $TMPDIR",
+      "range": {
+        "startLine": 226,
+        "startChar": 30,
+        "endLine": 226,
+        "endChar": 59
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4703ecfe_c1a8d934",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T07:50:54Z",
+      "side": 1,
+      "message": "If we start creating temporary directories and files, we might need some infrastructure to clean up these temporary files even if we exit on an error. In a different script, we have done this by adding the following to the beginning of the script. The command named trap installs a trap handler that runs even if the script exits due to some command failing while \"set -e\" is set.\n\nreadonly TEMP_DIR\u003d\"$(mktemp -d --tmpdir \"$(basename $0)\"_XXXXXXXX)\"\ncleanup_and_exit () {\n    readonly result\u003d\"$?\"\n    rm -rf \"$TEMP_DIR\"\n    exit \"$result\"\n}\n\ntrap cleanup_and_exit EXIT",
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "729a761b_2a8b3851",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T07:50:54Z",
+      "side": 1,
+      "message": "Consider this alternative approach:\n\nset +x  \ncd ${MODULES_STAGING_DIR}/lib/modules/*/\nrm -f ${ramdisk_working_dir}/lib/modules/0.0/modules.order\nwhile read ko; do\n        # Ignore comment lines starting with # sign\n        [[ \"${ko}\" \u003d \\#* ]] \u0026\u0026 continue\n        if grep -q $(basename ${ko}) ${MODULES_LIST}; then\n                mkdir -p ${ramdisk_working_dir}/lib/modules/0.0/$(dirname ${ko})\n                cp -p ${ko} ${ramdisk_working_dir}/lib/modules/0.0/${ko}\n                echo ${ko} \u003e\u003e ${ramdisk_working_dir}/lib/modules/0.0/modules.order\n        fi      \ndone \u003c ${MODULES_STAGING_DIR}/lib/modules/*/modules.order",
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2b69799_0d369871",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T07:50:54Z",
+      "side": 1,
+      "message": "modules.order",
+      "range": {
+        "startLine": 236,
+        "startChar": 58,
+        "endLine": 236,
+        "endChar": 70
       },
       "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
@@ -151,6 +296,46 @@
     },
     {
       "key": {
+        "uuid": "8379c241_5c33a090",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T07:50:54Z",
+      "side": 1,
+      "message": "I just tried this out, but I am not sure if it\u0027s working as intended. My ack/out/android-5.4/staging/lib/modules/5.4.31-00074-g2c39868dab43/modules.order includes subdirectories like so\n\nkernel/fs/sdcardfs/sdcardfs.ko\nkernel/drivers/usb/host/ehci-pci.ko\n\nHowever, my /tmp/ramdisk.pAjueK/lib/modules/0.0/modules.order looks pretty flat with no subdirectories:\n\nsdcardfs.ko\nehci-pci.ko\n\nIs this intended?",
+      "range": {
+        "startLine": 241,
+        "startChar": 3,
+        "endLine": 241,
+        "endChar": 55
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7008f5c0_ad1dddc1",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T07:50:54Z",
+      "side": 1,
+      "message": "If I get the dependencies wrong and fail to include a module in MODULES_LIST that is required by a different module in MODULES_LIST, then run_depmod prints the following error message:\n\"ERROR: out-of-tree kernel module(s) need unknown symbol(s)\"\n\nThis message might be misleading since there might not be any out-of-tree kernel module involved. It\u0027s just that I missed to include a required module in MODULES_LIST",
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f6ad5439_85574450",
         "filename": "build.sh",
         "patchSetId": 13
@@ -174,6 +359,30 @@
     },
     {
       "key": {
+        "uuid": "bb555e07_197a6591",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T07:50:54Z",
+      "side": 1,
+      "message": "On second thought, the Google style guide requires [[. So never mind.",
+      "parentUuid": "f6ad5439_85574450",
+      "range": {
+        "startLine": 541,
+        "startChar": 7,
+        "endLine": 541,
+        "endChar": 9
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52f824eb_1f4e1147",
         "filename": "build.sh",
         "patchSetId": 13
@@ -194,6 +403,30 @@
       "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ce6c27b_58cac5c4",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-13T07:50:54Z",
+      "side": 1,
+      "message": "On second thought, the Google style guide requires [[. So never mind.",
+      "parentUuid": "52f824eb_1f4e1147",
+      "range": {
+        "startLine": 696,
+        "startChar": 4,
+        "endLine": 696,
+        "endChar": 6
+      },
+      "revId": "7848a18db69739eb22d7592efff074888aa94ebf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
