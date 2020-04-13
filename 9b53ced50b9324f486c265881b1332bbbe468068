@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "c2ca56b2_0b225f9c",
+        "filename": "gki/add_EXPORT_SYMBOL_GPL",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-04-13T19:34:15Z",
+      "side": 1,
+      "message": "This mandates that the script has to be compatible with original Bourne shell and should not use any Bourne Again SHell (bash) isms.\n\n(untested, all testing has been done with bash on MAC and Linux)",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "9b53ced50b9324f486c265881b1332bbbe468068",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "952aa104_b8ac9ad8",
         "filename": "gki/add_EXPORT_SYMBOL_GPL",
         "patchSetId": 1
@@ -13,6 +36,30 @@
       "writtenOn": "2020-04-13T19:27:52Z",
       "side": 1,
       "message": "nit: use $(..) instead of backticks. Since you already use backticks above I guess just leave.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 26
+      },
+      "revId": "9b53ced50b9324f486c265881b1332bbbe468068",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d29cf740_69415219",
+        "filename": "gki/add_EXPORT_SYMBOL_GPL",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-04-13T19:34:15Z",
+      "side": 1,
+      "message": "I used back-ticks throughout my public scripts because it is most portable to all shells.",
+      "parentUuid": "952aa104_b8ac9ad8",
       "range": {
         "startLine": 72,
         "startChar": 0,
