@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35483f41_5d7c8a2b",
+        "filename": "_setup_env.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1670458
+      },
+      "writtenOn": "2020-04-14T01:43:23Z",
+      "side": 1,
+      "message": "Can\u0027t we keep it simple just like patch set #1?",
+      "revId": "a7176b9580a917a6a58df7f31c6890279e864dca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a476fbb9_ec24a57d",
+        "filename": "build_abi.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1670458
+      },
+      "writtenOn": "2020-04-14T01:43:23Z",
+      "side": 1,
+      "message": "export is not needed?",
+      "revId": "a7176b9580a917a6a58df7f31c6890279e864dca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
