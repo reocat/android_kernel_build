@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a65e2b2_858a9e0c",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-17T21:15:04Z",
+      "side": 1,
+      "message": "it skips far more than the build. For me this suggests rather to only skip the build and still do the packaging.\n\nI would expect SKIP_BUILDING to skip until line ~418.\n\nHow about:\nDifferent name? More precise documentation? Another SKIP flag that skips the copying/packaging/dist part?",
+      "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db33e0c4_f58a95fb",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-17T21:15:04Z",
+      "side": 1,
+      "message": "you maybe want to assert that OUT_DIR and DIST_DIR exist from an earlier build to avoid weird errors if you accidentally run this against a clean tree.",
+      "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
