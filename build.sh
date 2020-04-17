@@ -74,6 +74,10 @@
 #   SKIP_MRPROPER
 #     if defined, skip `make mrproper`
 #
+#   SKIP_BUILDING
+#     if defined, skip building the kernel. This is helpful for re-packaging
+#     the boot.img, vendor_boot.img and initramfs.img
+#
 #   SKIP_DEFCONFIG
 #     if defined, skip `make defconfig`
 #
@@ -261,6 +265,59 @@ function create_reduced_modules_order() {
 	rm -rf ${ramdisk_working_dir}
 }
 
+function create_initramfs() {
+	echo "========================================================"
+	echo " Creating initramfs"
+	set -x
+	rm -rf ${INITRAMFS_STAGING_DIR}
+	# Depmod requires a version number; use 0.0 instead of determining the
+	# actual kernel version since it is not necessary and will be removed for
+	# the final initramfs image.
+	mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/kernel/
+	cp -r ${MODULES_STAGING_DIR}/lib/modules/*/kernel/* ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/kernel/
+	cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order
+	cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.builtin ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.builtin
+
+	if [ -n "${EXT_MODULES}" ]; then
+		mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/extra/
+		cp -r ${MODULES_STAGING_DIR}/lib/modules/*/extra/* ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/extra/
+		(cd ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/ && \
+				find extra -type f -name "*.ko" | sort >> modules.order)
+	fi
+
+	if [ -n "${DO_NOT_STRIP_MODULES}" ]; then
+		# strip debug symbols off initramfs modules
+		find ${INITRAMFS_STAGING_DIR} -type f -name "*.ko" \
+			-exec ${OBJCOPY:${CROSS_COMPILE}strip} --strip-debug {} \;
+	fi
+
+	# Re-run depmod to detect any dependencies between in-kernel and external
+	# modules. Then, create modules.order based on all the modules compiled.
+	if [[ -n "${MODULES_LIST}" ]]; then
+		create_reduced_modules_order
+	else
+		run_depmod ${INITRAMFS_STAGING_DIR}
+	fi
+
+	cp ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.load
+	cp ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order ${DIST_DIR}/modules.load
+	echo "${MODULES_OPTIONS}" > ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.options
+	mv ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/* ${INITRAMFS_STAGING_DIR}/lib/modules/.
+	rmdir ${INITRAMFS_STAGING_DIR}/lib/modules/0.0
+
+	if [ "${BOOT_IMAGE_HEADER_VERSION}" -eq "3" ]; then
+		mkdir -p ${INITRAMFS_STAGING_DIR}/first_stage_ramdisk
+		if [ -f "${VENDOR_FSTAB}" ]; then
+			cp ${VENDOR_FSTAB} ${INITRAMFS_STAGING_DIR}/first_stage_ramdisk/.
+		fi
+	fi
+
+	(cd ${INITRAMFS_STAGING_DIR} && find . | cpio -H newc -o > ${MODULES_STAGING_DIR}/initramfs.cpio)
+	gzip -fc ${MODULES_STAGING_DIR}/initramfs.cpio > ${MODULES_STAGING_DIR}/initramfs.cpio.gz
+	mv ${MODULES_STAGING_DIR}/initramfs.cpio.gz ${DIST_DIR}/initramfs.img
+	set +x
+}
+
 export ROOT_DIR=$(readlink -f $(dirname $0)/..)
 
 # For module file Signing with the kernel (if needed)
@@ -320,6 +377,7 @@ fi
 # updated.
 CC_LD_ARG="${TOOL_ARGS[@]}"
 
+if [[ -z ${SKIP_BUILDING} ]]; then
 mkdir -p ${OUT_DIR} ${DIST_DIR}
 
 echo "========================================================"
@@ -510,6 +568,8 @@ if [ -n "${DIST_CMDS}" ]; then
   set +x
 fi
 
+fi # -z SKIP_BUILDING
+
 MODULES=$(find ${MODULES_STAGING_DIR} -type f -name "*.ko")
 if [ -n "${MODULES}" ]; then
   if [ -n "${IN_KERNEL_MODULES}" -o -n "${EXT_MODULES}" ]; then
@@ -520,58 +580,9 @@ if [ -n "${MODULES}" ]; then
       cp -p ${FILE} ${DIST_DIR}
     done
   fi
-  if [ -n "${BUILD_INITRAMFS}" ]; then
-    echo "========================================================"
-    echo " Creating initramfs"
-    set -x
-    rm -rf ${INITRAMFS_STAGING_DIR}
-    # Depmod requires a version number; use 0.0 instead of determining the
-    # actual kernel version since it is not necessary and will be removed for
-    # the final initramfs image.
-    mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/kernel/
-    cp -r ${MODULES_STAGING_DIR}/lib/modules/*/kernel/* ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/kernel/
-    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order
-    cp ${MODULES_STAGING_DIR}/lib/modules/*/modules.builtin ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.builtin
-
-    if [ -n "${EXT_MODULES}" ]; then
-      mkdir -p ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/extra/
-      cp -r ${MODULES_STAGING_DIR}/lib/modules/*/extra/* ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/extra/
-      (cd ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/ && \
-          find extra -type f -name "*.ko" | sort >> modules.order)
-    fi
-
-    if [ -n "${DO_NOT_STRIP_MODULES}" ]; then
-      # strip debug symbols off initramfs modules
-      find ${INITRAMFS_STAGING_DIR} -type f -name "*.ko" \
-        -exec ${OBJCOPY:${CROSS_COMPILE}strip} --strip-debug {} \;
-    fi
-
-    # Re-run depmod to detect any dependencies between in-kernel and external
-    # modules. Then, create modules.order based on all the modules compiled.
-    if [[ -n "${MODULES_LIST}" ]]; then
-      create_reduced_modules_order
-    else
-      run_depmod ${INITRAMFS_STAGING_DIR}
-    fi
-
-    cp ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.load
-    cp ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order ${DIST_DIR}/modules.load
-    echo "${MODULES_OPTIONS}" > ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.options
-    mv ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/* ${INITRAMFS_STAGING_DIR}/lib/modules/.
-    rmdir ${INITRAMFS_STAGING_DIR}/lib/modules/0.0
-
-    if [ "${BOOT_IMAGE_HEADER_VERSION}" -eq "3" ]; then
-      mkdir -p ${INITRAMFS_STAGING_DIR}/first_stage_ramdisk
-      if [ -f "${VENDOR_FSTAB}" ]; then
-        cp ${VENDOR_FSTAB} ${INITRAMFS_STAGING_DIR}/first_stage_ramdisk/.
-      fi
-    fi
-
-    (cd ${INITRAMFS_STAGING_DIR} && find . | cpio -H newc -o > ${MODULES_STAGING_DIR}/initramfs.cpio)
-    gzip -fc ${MODULES_STAGING_DIR}/initramfs.cpio > ${MODULES_STAGING_DIR}/initramfs.cpio.gz
-    mv ${MODULES_STAGING_DIR}/initramfs.cpio.gz ${DIST_DIR}/initramfs.img
-    set +x
-  fi
+	if [ -n "${BUILD_INITRAMFS}" ]; then
+		create_initramfs
+	fi
 fi
 
 if [ -n "${UNSTRIPPED_MODULES}" ]; then
