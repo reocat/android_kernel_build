@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5784b568_d68e1103",
+        "filename": "build.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-20T07:02:54Z",
+      "side": 1,
+      "message": "This uses 4 space characters for indentation which does not align with either the 2 space characters or the tab characters.",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 4
+      },
+      "revId": "694a1b5041ae66630b66f80f5393443a5dc1eafb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ecbafe9_fc55c758",
+        "filename": "build.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-20T07:02:54Z",
+      "side": 1,
+      "message": "Google style guide appears to require quotes here:\n\nDEPMOD_OUTPUT\u003d\"$(depmod ....)\"",
+      "range": {
+        "startLine": 211,
+        "startChar": 24,
+        "endLine": 211,
+        "endChar": 76
+      },
+      "revId": "694a1b5041ae66630b66f80f5393443a5dc1eafb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
