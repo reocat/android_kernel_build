@@ -481,7 +481,7 @@ if [ -n "${MODULES}" ]; then
       set +x
       set +e # disable exiting of error so we can add extra comments
       cd ${INITRAMFS_STAGING_DIR}
-      DEPMOD_OUTPUT=$(depmod -e -F ${DIST_DIR}/System.map -b . 0.0 2>&1)
+      DEPMOD_OUTPUT=$(PATH=/sbin:/usr/sbin:$PATH depmod -e -F ${DIST_DIR}/System.map -b . 0.0 2>&1)
       if [[ "$?" -ne 0 ]]; then
         echo "$DEPMOD_OUTPUT"
         exit 1;
