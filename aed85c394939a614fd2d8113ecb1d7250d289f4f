@@ -33,6 +33,64 @@
       "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "25030465_66a4ba44",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-20T22:05:46Z",
+      "side": 1,
+      "message": "I tend to agree. The error message I am getting is\n\n\"find: \u0027/home/username/a/k/ack/out/android-5.4/staging\u0027: No such file or directory\"\n\nIf I manually create this directory, then the next error message I get is:\n\n\" Installing UAPI kernel headers:\nmake: *** /home/username/a/k/ack/out/android-5.4/common: No such file or directory.  Stop.\"",
+      "parentUuid": "db33e0c4_f58a95fb",
+      "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e091193b_78a590d2",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-20T22:05:46Z",
+      "side": 1,
+      "message": "Use quotes around ${SKIP_BUILDING} to align with rest of the script and Google style guide.",
+      "range": {
+        "startLine": 327,
+        "startChar": 9,
+        "endLine": 327,
+        "endChar": 25
+      },
+      "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e6250ae_f327b5b3",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-20T22:05:46Z",
+      "side": 1,
+      "message": "I noticed that you did not indent the if body by two space characters. Is this to avoid churn?",
+      "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
