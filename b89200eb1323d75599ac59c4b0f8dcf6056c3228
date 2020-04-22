@@ -52,6 +52,24 @@
       "revId": "b89200eb1323d75599ac59c4b0f8dcf6056c3228",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da0f74ec_cd1c6c3f",
+        "filename": "hermetic/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-22T07:43:01Z",
+      "side": 1,
+      "message": "there are more usecases (by now) that use depmod\n\nmaybe we can make it available as a prebuilt from https://android.googlesource.com/platform/external/kmod/?\n\nThere is also b/130657633 in the same area, hence not opening a new bug for this then.",
+      "parentUuid": "65d22462_d8fa035e",
+      "revId": "b89200eb1323d75599ac59c4b0f8dcf6056c3228",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
