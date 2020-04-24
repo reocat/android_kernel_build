@@ -22,6 +22,29 @@
       "revId": "8d30e204ef4a0c0817d1fb0115d4d37834d3fe5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14d35d05_0050a267",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-24T15:29:11Z",
+      "side": 1,
+      "message": "This needs to be DIST_DIR",
+      "range": {
+        "startLine": 364,
+        "startChar": 38,
+        "endLine": 364,
+        "endChar": 45
+      },
+      "revId": "8d30e204ef4a0c0817d1fb0115d4d37834d3fe5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
