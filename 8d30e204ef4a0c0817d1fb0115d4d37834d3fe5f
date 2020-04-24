@@ -93,6 +93,30 @@
       "revId": "8d30e204ef4a0c0817d1fb0115d4d37834d3fe5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d29b1df5_9e5acbb6",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-24T17:29:51Z",
+      "side": 1,
+      "message": "the problem with OUT_DIR is that it can contain all sorts of leftover modules (such as from a former build of another config or another architecture). For build_abi.sh we drop out_abi/ completely to avoid this. I am not sure whether DIST_DIR is cleaned before populating it. but it should.\nAt least we should not search for *.ko in OUT_DIR.",
+      "parentUuid": "639457da_0e77f51a",
+      "range": {
+        "startLine": 364,
+        "startChar": 38,
+        "endLine": 364,
+        "endChar": 45
+      },
+      "revId": "8d30e204ef4a0c0817d1fb0115d4d37834d3fe5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
