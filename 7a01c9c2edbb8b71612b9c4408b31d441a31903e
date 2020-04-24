@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ece8c32e_c4a05fde",
+        "filename": "abi/compare_wl",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-24T15:32:46Z",
+      "side": 1,
+      "message": "compare_to_wl ? otherwise it sounds like comparing 2 whitelists",
+      "range": {
+        "startLine": 19,
+        "startChar": 14,
+        "endLine": 19,
+        "endChar": 24
+      },
+      "revId": "7a01c9c2edbb8b71612b9c4408b31d441a31903e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
