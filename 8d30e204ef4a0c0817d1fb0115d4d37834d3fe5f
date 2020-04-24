@@ -45,6 +45,30 @@
       "revId": "8d30e204ef4a0c0817d1fb0115d4d37834d3fe5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "639457da_0e77f51a",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-04-24T15:35:28Z",
+      "side": 1,
+      "message": "Well, I chose OUT_DIR on purpose -- vmlinux is not guaranteed to be present in DIST_DIR (it isn\u0027t when using build.config.db845c for instance). And by doing that in OUT_DIR, I can \u0027fail\u0027 before doing the module copy to DIST_DIR as well.",
+      "parentUuid": "14d35d05_0050a267",
+      "range": {
+        "startLine": 364,
+        "startChar": 38,
+        "endLine": 364,
+        "endChar": 45
+      },
+      "revId": "8d30e204ef4a0c0817d1fb0115d4d37834d3fe5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
