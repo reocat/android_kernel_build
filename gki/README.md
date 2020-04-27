@@ -134,3 +134,22 @@ instrument_module_init
     USAGE: instrument_module_init [dir|file]
 
 Add debug instrumentation to module_init and probe functions.
+
+unpack_ksyms
+---------------
+    USAGE: unpack_ksyms [help|-h|--help]
+           unpack_ksyms [--no-clang-format] [--symtypes] [--no-clang-format] \
+                        [filename|< filename]
+           unpack_ksyms [--no-clang-format] diff \
+                        <symbol> <kernel_out_dir> <kernel_out_dir>
+
+Canonicalize various forms of genksym data into an easier to grok content.
+
+If filename is of form \*.symtypes, then will expand that format, otherwise the
+genksym dump format (willmcvicker@google.com).  If no filename supplied, will
+assume genksym dump format.
+
+For the diff command, the assumption is both kernels are built with
+exported KBUILD_SYMTYPES=1, so the tool will search both supplied kernel
+output directories for the symbol's associated .symtypes files and unpack
+them, then compare them.
