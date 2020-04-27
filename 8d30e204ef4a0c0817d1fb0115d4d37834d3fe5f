@@ -141,6 +141,30 @@
       "revId": "8d30e204ef4a0c0817d1fb0115d4d37834d3fe5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d74413b3_292cfa40",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-04-27T08:18:09Z",
+      "side": 1,
+      "message": "Yes, DIST_DIR can have the same issue as of today. Though it would be reasonable to drop DIST_DIR actually without losing the incremental build in OUT_DIR. And your patch would still work then. Long story short: we should probably drop DIST_DIR anyway before the dist step.",
+      "parentUuid": "c4b09ee3_b2dd0a29",
+      "range": {
+        "startLine": 364,
+        "startChar": 38,
+        "endLine": 364,
+        "endChar": 45
+      },
+      "revId": "8d30e204ef4a0c0817d1fb0115d4d37834d3fe5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
