@@ -1,0 +1,72 @@
+#! /bin/sh
+
+#
+# Three sed threads
+#   1) find ksyms, strip out unfortunate build status, add newlines
+#   2) Add indent
+#   3) Squash single-entry { } into one line (pretty)
+#
+sed --silent \
+    '/^Export [_a-zA-Z][_a-zA-Z0-9]* == / {
+       : loop
+       N
+       /\n>$/ b skip
+       b loop
+       : skip
+       s@  *\(AR\|CC\|AS\|VERIFY\) \([[]M[]]\)\{0,1\} *[a-zA-Z][-._/a-zA-Z0-9]* *\n@ @g
+       : newline
+       s/\(\n\)\(.*\)\( [{;,]\) /\1\2\3\1/
+       t newline
+       p
+     }' |
+  sed --silent \
+      '/^ *}/ {
+         x
+         s/ $//
+         x
+       }
+       {
+         x
+         G
+         s/\n//
+         p
+         s/^\( *\)[^ ].*/\1/
+         x
+       }
+       /[^ ] *}/ {
+         x
+         s/ $//
+         x
+       }
+       /{$/ {
+         x
+         s/$/ /
+         x
+       }' |
+  sed '/{$/ {
+         : loop
+         N
+         /{$/ {
+           h
+           s/\n.*//
+           p
+           g
+           s/.*\n//
+           b loop
+         }
+         s/{\n *\(UNKNOWN\) }/{ \1 }/
+         t exit
+         / [;,]$/ {
+           N
+           /{$/ {
+             h
+             s/\n[^\n]*$//
+             p
+             g
+             s/.*\n//
+             b loop
+           }
+           s/{\n *\(.* [;,]\)\n *}/{ \1 }/
+         }
+       }
+       : exit'
