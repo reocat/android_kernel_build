@@ -231,3 +231,10 @@ that point to develop a new split.patch with the itemized unsquashed series.
 
 --upstream *
     Use 'UPSTREAM:' instead of 'ANDROID: GKI:' for subject prefix.
+
+unpack_ksyms
+---------------
+    USAGE: unpack_ksyms < buildlog > unpacked_ksyms_file
+
+This script is helpful on canonicalizing the ksyms strings into an easier
+to compare piece of data.
