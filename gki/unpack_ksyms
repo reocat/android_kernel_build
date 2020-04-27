@@ -1,0 +1,496 @@
+#! /bin/sh
+# SPDX-License-Identifier: Apache-2.0
+#
+# (c) 2020, Google
+LANG=C
+progname="${0##*/}"
+
+# A _real_ embedded escape character
+ESCAPE="`echo | tr '\n' '\033'`"
+# Colours
+RED="${ESCAPE}[38;5;196m"
+BLUE="${ESCAPE}[35m"
+NORMAL="${ESCAPE}[0m"
+
+USAGE="${RED}USAGE${NORMAL}: ${progname} [help|-h|--help]
+       ${progname} [--no-clang-format] [--symtypes] [--no-clang-format] \\
+                    [filename|< filename]
+       ${progname} [--no-clang-format] diff \\
+                    <symbol> <kernel_out_dir> <kernel_out_dir>
+
+Canonicalize various forms of genksym data into an easier to grok content.
+
+If filename is of form *.symtypes, then will expand that format, otherwise the
+genksym dump format (willmcvicker@google.com).  If no filename supplied, will
+assume genksym dump format.
+
+For the diff command, the assumption is both kernels are built with
+exported KBUILD_SYMTYPES=1, so the tool will search both supplied kernel
+output directories for the symbol's associated .symtypes files and unpack
+them, then compare them."
+
+[ "USAGE: print_short_path <directory> >stdout
+
+Print the shortname for the specified path, human readable.
+
+\${HOME}    - home directory" ]
+print_short_path() {
+  destination="`realpath --canonicalize-missing ${1%/}`"
+  destination="${destination#`pwd`/}"
+  if [ "${destination}" != "${destination#${HOME%/}/}" ]; then
+    destination='~/'${destination#${HOME%/}/}
+  fi
+  echo ${destination}
+}
+
+[ "USAGE: find_symtype symbol kernel_out_dir
+
+Find the symbol in kernel_out_dir" ]
+find_symtype() {
+  if [ ! -d "${2}" ]; then
+    echo "${RED}[    ERROR ]${NORMAL} diff: `print_short_path ${2}` does not exist" >&2
+    exit 1
+  fi
+
+  # Hidden option, not as much use as we would like it to be
+  if [ "all" = "${1}" ]; then
+    find ${2} -name '*.symtypes'
+    return
+  fi
+  FILE="`find ${2} -name '*.symtypes' |
+           xargs grep --files-with-matches \" ${1} \((\|[[]\|\$\)\"`"
+
+  if [ -z "${FILE}" ]; then
+    echo "${RED}[    ERROR ]${NORMAL} diff: symbol ${1} not found in `print_short_path ${2}`" >&2
+    exit 1
+  fi
+
+#  if [ `echo "${FILE}" | wc -l` -ne 1 ]; then
+#    echo "${RED}[    ERROR ]${NORMAL} diff: too many symbols ${1} found in `print_short_path ${2}`" >&2
+#    for f in ${FILE}; do
+#      echo "                   `print_short_path ${f}`"
+#    done >&2
+#    exit 1
+#  fi
+  echo ${FILE}
+}
+
+debug=false
+format="`which clang-format`"
+if [ -n "${format}" ]; then
+  format=clang_format
+else
+  format=sed_format
+fi
+
+[ "USAGE: symdiff symbol kernel1_out_dir kernel2_out_dir
+
+Compare the specified symbol using symtypes" ]
+symdiff() {
+  if [ -z "${1}" ]; then
+    echo "${RED}[    ERROR ]${NORMAL} diff: Missing symbol name" >&2
+    echo >&2
+    echo "${USAGE}" >&2
+    exit 1
+  fi
+  if [ -z "${2}" ]; then
+    echo "${RED}[    ERROR ]${NORMAL} diff: Missing left kernel out dir" >&2
+    echo >&2
+    echo "${USAGE}" >&2
+    exit 1
+  fi
+  if [ -z "${3}" ]; then
+    echo "${RED}[    ERROR ]${NORMAL} diff: Missing right kernel out dir" >&2
+    echo >&2
+    echo "${USAGE}" >&2
+    exit 1
+  fi
+
+  FILE1="`find_symtype ${1} ${2}`"
+  if [ -z "${FILE1}" ]; then
+    exit 1
+  fi
+
+  args=
+  if [ "sed_format" = "${format}" ]; then
+    args=--no-clang-format
+  fi
+  if ${debug}; then
+    args="${args} --debug"
+  fi
+
+  # More than one file, let us work through them in a bulk manner
+  if [ "`echo \"${FILE1}\" | wc -l`" -gt 1 ]; then
+    TMP=`mktemp -d`/
+    cleanup="rm -rf ${TMP}"
+    trap "${cleanup} ; exit 1" 1 2 3 15
+    for f in ${FILE1}; do
+      FILE1=${f}
+      FILE=${FILE1#${2%/}/}
+      # Only allowed quick pick, rename of symtypes file not allowed
+      FILE2=${3%/}/${FILE}
+      if [ ! -s "${FILE2}" ]; then
+        echo "${RED}[    ERROR ]${NORMAL} diff: missing: ${FILE}" >&2
+        continue
+      fi
+      if cmp --quiet ${FILE1} ${FILE2}; then
+        continue
+      fi
+      LEFT=${TMP%/}/${FILE%.symtypes}.left
+      mkdir --parents ${LEFT%/*}
+      ${0} ${args} ${FILE1} >${LEFT}
+      RIGHT=${LEFT%.left}.right
+      ${0} ${args} ${FILE2} >${RIGHT}
+      diff --unified=2 ${LEFT} ${RIGHT} |
+        grep '.' ||
+          echo "${BLUE}[     INFO ]${NORMAL} diff: No differences between `print_short_name ${FILE1}` and `print_short_name ${FILE2}`!" >&2
+      rm ${LEFT} ${RIGHT}
+    done
+    rm -rf ${TMP}
+    return
+  fi
+
+  FILE=${FILE1#${2%/}/}
+  # Quick pick, should be in same place on companion kernel
+  FILE2=${3%/}/${FILE}
+  if [ ! -s "${FILE2}" ]; then
+    # Quick pick failed, search for it
+    FILE2="`find_symtype ${1} ${3}`"
+    if [ -z "${FILE2}" ]; then
+      exit 1
+    fi
+  fi
+
+  TMP=`mktemp -d`/
+  cleanup="rm -rf ${TMP}"
+  trap "${cleanup} ; exit 1" 1 2 3 15
+  FILE=${FILE1#${2%/}/}
+  LEFT=${TMP%/}/${FILE%.symtypes}.left
+  mkdir --parents ${LEFT%/*}
+  ${0} ${args} ${FILE1} >${LEFT}
+  FILE=${FILE2#${3%/}/}
+  RIGHT=${TMP%/}/${FILE%.symtypes}.right
+  mkdir --parents ${RIGHT%/*}
+  ${0} ${args} ${FILE2} >${RIGHT}
+  diff --unified=4 ${LEFT} ${RIGHT} |
+    grep '.' ||
+      echo "${BLUE}[     INFO ]${NORMAL} diff: No differences between `print_short_name ${FILE1}` and `print_short_name ${FILE2}`!" >&2
+  rm -rf ${TMP}
+}
+
+filename=-
+symtypes=false
+
+while [ ${#} -gt 0 ]; do
+  case ${1} in
+    --no-clang-format)
+      format=sed_format
+      ;;
+    -D | -d | -V | -v | --verbose | --debug)
+      debug=true
+      ;;
+    diff | --diff)
+      shift
+      symdiff ${*}
+      exit
+      ;;
+    format | --format)
+      # just skip format b/c default
+      ;;
+    help | -H | -h | -\? | --help) # -H is only for hardening against humans
+      echo "${USAGE}" >&2
+      exit
+      ;;
+    --symtypes)
+      symtypes=true
+      ;;
+    *)
+      if [ X"${1}" != X"-" -a ! -s "${1}" ]; then
+        echo "${RED}[    ERROR ]${NORMAL} Failed to open ${1}" >&2
+        echo >&2
+        echo "${USAGE}" >&2
+        exit 1
+      fi
+      if [ X"${1}" != X"-" -a X"${filename}" != X"-" ]; then
+        echo "${RED}[    ERROR ]${NORMAL} Multiple files specified ${filename} ${1}" >&2
+        echo >&2
+        echo "${USAGE}" >&2
+        exit 1
+      fi
+      filename=${1}
+      if [ X"${filename}" != X"${filename%.symtypes}" ]; then
+        symtypes=true
+      fi
+      ;;
+  esac
+  shift
+done
+
+TMP=
+filter=filter_ksyms
+cleanup=
+if ${symtypes}; then
+  filter=filter_symtypes
+  TMP=`mktemp -d`/
+  cleanup="rm -rf ${TMP}"
+  trap "${cleanup} ; exit 1" 1 2 3 15
+fi
+
+[ "filter_symtypes < stdin > stdout
+
+replace all tags into function output which will restore to the crc'd string" ]
+filter_symtypes() {
+  is_tag='[estuE]#'
+  # Split tag definitions from final
+  (
+    set +x
+    (
+      tee /dev/stderr |
+        grep "^${is_tag}" |
+        (
+          tee /dev/stderr |
+          grep "^${is_tag}.*${is_tag}" >${TMP}complex-tags
+        ) 2>&1 |
+        grep --invert-match "^${is_tag}.*${is_tag}" >${TMP}simple-tags
+    ) 2>&1 |
+    grep --invert-match "^${is_tag}" >${TMP}${filename##*/}
+  )
+  while true; do
+    grep -v '{' ${TMP}simple-tags |
+      sed --silent \
+          's@^\('"${is_tag}"'[^ ]*\) \(.*[^ ]\) *$@s\@\\([ (]\\)\1\\([ ,)]\\)\@\\1\2\\2\@g@p' \
+          >${TMP}simple.sed
+    sed --in-place=.old --file ${TMP}simple.sed ${TMP}complex-tags
+    while ! cmp --silent ${TMP}complex-tags ${TMP}complex-tags.old; do
+      sed --in-place=.old --file ${TMP}simple.sed ${TMP}complex-tags
+    done
+    rm ${TMP}complex-tags.old
+    # No longer complex?
+    sed 's/ .*//' ${TMP}complex-tags |
+      (
+        changed=false
+        while read tag; do
+          if grep "^${tag} .*${is_tag}" ${TMP}complex-tags >/dev/null; then
+            continue
+          fi
+          changed=true
+          grep "^${tag} " ${TMP}complex-tags >>${TMP}simple-tags
+          sed --in-place "/^${tag} /d" ${TMP}complex-tags
+        done
+        if ${changed}; then
+          echo CHANGED
+        fi
+      ) |
+      if grep CHANGED >/dev/null; then
+        continue
+      fi
+    break
+  done
+  sed --in-place=.old --file ${TMP}simple.sed ${TMP}${filename##*/}
+  while ! cmp --silent ${TMP}${filename##*/} ${TMP}${filename##*/}.old; do
+    sed --in-place=.old --file ${TMP}simple.sed ${TMP}${filename##*/}
+  done
+  rm ${TMP}${filename##*/}.old
+  # Remove circular dependencies (complex tag references its own complex tag)
+  # Does not resolve second order or higher circular dependencies
+  sed 's/ .*//' ${TMP}complex-tags |
+    while read tag; do
+      sed --in-place \
+          "/^${tag} .*[( ]${tag}[ ,)]/ {
+             : loop
+             s/^\(${tag} \)\([^{]*\)\( {.*[( ]\)${tag}\([ ,]\)/\1\2\3\2\4/
+             t loop
+           }" ${TMP}complex-tags
+      # No longer complex? (handles this, and the simple.sed fixups)
+      if grep "^${tag} .*${is_tag}" ${TMP}complex-tags >/dev/null; then
+        continue
+      fi
+      grep "^${tag} " ${TMP}complex-tags >>${TMP}simple-tags
+      sed -i "/^${tag} /d" ${TMP}complex-tags
+    done
+  # Move complex tags to simple tags if they are not referenced in complex
+  sed 's/ .*//' ${TMP}complex-tags |
+    while read tag; do
+      if cat ${TMP}complex-tags ${TMP}simple-tags |
+         grep "[( ]${tag}[ ,)]" >/dev/null; then
+        continue
+      fi
+      grep "^${tag} " ${TMP}complex-tags >>${TMP}simple-tags
+      sed -i "/^${tag} /d" ${TMP}complex-tags
+    done
+  # Produce a sed script to convert first tags to their values.
+  cat ${TMP}simple-tags ${TMP}complex-tags |
+    sed --silent \
+        's@^\('"${is_tag}"'[^ ]*\) \(.*[^ ]\) *$@s\@\\([ (]\\)\1\\([ ,)]\\)\@\\1\2\\2\@@p' \
+        2>${TMP}err >${TMP}first.sed
+  # Produce a sed script to convert remaining tags to their values, after
+  # replacing the first reference to the tag with its value in all content
+  cat ${TMP}simple-tags ${TMP}complex-tags |
+    sed --null-data --file ${TMP}first.sed 2>>${TMP}err |
+    tr '\0' '\n' |
+    sed --silent \
+        --expression 's/ $//' \
+        --expression 's/ {/{/' \
+        --expression 's@^\('"${is_tag}"'[^ ]*\) \([^{]*\).*@s\@\\([ (]\\)\1\\([ ,;)]\\)\@\\1\2\\2\@g@p' > ${TMP}remaining.sed
+    if ${debug}; then
+      cat ${TMP}err
+      echo --- simple.sed ---
+      cat ${TMP}simple.sed
+      echo --- first.sed ---
+      cat ${TMP}first.sed
+      echo --- remaining.sed ---
+      cat ${TMP}remaining.sed
+    fi >&2
+    rm ${TMP}err
+
+  (
+    # First adjustment occurs in Signature, then Tags if not.
+    echo '// Signature'
+    cat ${TMP}${filename##*/}
+    echo '// Simple Tags'
+    cat ${TMP}simple-tags
+    echo '// Complex Tags'
+    cat ${TMP}complex-tags
+  ) |
+    sed --null-data --file ${TMP}first.sed |
+    # Move Tags to top over Signature
+    sed --null-data --quiet \
+        ' {
+           h
+           s@// Signature.*\(// Simple Tags\)@\1@p
+           g
+           s@// Simple Tags.*@@p
+         }' |
+    tr '\0' '\n' |
+    sed 's/ $/;/' |
+    sed --file ${TMP}remaining.sed |
+    sed --file ${TMP}remaining.sed |
+    sed --file ${TMP}remaining.sed |
+    sed --file ${TMP}remaining.sed |
+    sed --file ${TMP}remaining.sed
+}
+
+[ "filter_ksyms < stdin > stdout
+
+find ksyms, strip out unfortunate build status mixed in content" ]
+filter_ksyms() {
+  sed --silent \
+      '/^Export [_a-zA-Z][_a-zA-Z0-9]* == / {
+         s@^@// @
+         : loop
+         N
+         /\n>$/ b skip
+         b loop
+         : skip
+         s@  *\(DTC\|AR\|CC\|AS\|VERIFY\) \([[]M[]]\)\{0,1\} *[a-zA-Z][-._/a-zA-Z0-9]* *\n@ @g
+         s/Warning (reg_format):[^\n]*\n//g
+         s/Warning (avoid_default_addr_size):[^\n]*\n//g
+         s@[+][+][+] module_layout@// &@g
+         p
+       }'
+}
+
+[ "restore_symtypes < stdin > stdout
+
+clang-format damages <letter>#<name>, restore the tag so it is clear" ]
+restore_symtypes() {
+  if ${symtypes}; then
+    sed 's/\([estuE]\) #/\1#/g' |
+      sed '/^} [estuE]#/ {
+             N
+             : loop
+             s/} \([estuE]#\)\(.*\)\(\n\)/}\3\1\2\3/
+             t loop
+           }' |
+      sed '/^} [estuE]#/ {
+             N
+             : loop
+             s/} \([estuE]#\)\(.*\)\(\n\)/}\3\1\2\3/
+             t loop
+           }'
+  else
+    sed 's@// @@g'
+  fi
+}
+
+
+[ "sed_format < stdin > stdout
+
+Three sed threads
+  1) Add newlines
+  2) Add indent
+  3) Squash single-entry { } into one line (pretty)
+
+This does roughly the same thing +/- as clang format, except single character
+indent.  Acts as a backup should the developer not have that clang tools handy
+on their host system." ]
+sed_format() {
+  indent=" "
+  sed 's/\( [{;,]\) /\1|/g' |
+  tr '|' '\n' |
+  sed --silent \
+      "/^ *}/ {
+         x
+         s/${indent}\$//
+         x
+       }
+       {
+         x
+         G
+         s/\n//
+         p
+         s/^\( *\)[^ ].*/\1/
+         x
+       }
+       /[^ ] *}/ {
+         x
+         s/${indent}\$//
+         x
+       }
+       /{\$/ {
+         x
+         s/\$/${indent}/
+         x
+       }" |
+  sed '/{$/ {
+         : loop
+         N
+         /{$/ {
+           h
+           s/\n.*//
+           p
+           g
+           s/.*\n//
+           b loop
+         }
+         s/{\n *\(UNKNOWN\) }/{ \1 }/
+         t exit
+         / [;,]$/ {
+           N
+           /{$/ {
+             h
+             s/\n[^\n]*$//
+             p
+             g
+             s/.*\n//
+             b loop
+           }
+           s/{\n *\(.* [;,]\)\n *}/{ \1 }/
+         }
+       }
+       : exit'
+}
+
+[ "clang_format < stdin > stdout
+
+add newlines, add 2 character indent" ]
+clang_format() {
+  clang-format --style=LLVM --assume-filename=${filename%.symtypes}.c
+}
+
+cat ${filename} |
+  ${filter} |
+  ${format} |
+  restore_symtypes
+
+${cleanup}
