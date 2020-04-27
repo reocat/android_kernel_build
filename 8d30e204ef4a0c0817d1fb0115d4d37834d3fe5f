@@ -117,6 +117,30 @@
       "revId": "8d30e204ef4a0c0817d1fb0115d4d37834d3fe5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4b09ee3_b2dd0a29",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-04-27T08:11:45Z",
+      "side": 1,
+      "message": "Right, that\u0027s a good point, though I think DIST_DIR can have the same issue. The best solution might be to get the list of modules from modules.order, or even to get the full list of symbols from Module.symvers directly. I\u0027ll have another look 😊\nThanks for the review!",
+      "parentUuid": "d29b1df5_9e5acbb6",
+      "range": {
+        "startLine": 364,
+        "startChar": 38,
+        "endLine": 364,
+        "endChar": 45
+      },
+      "revId": "8d30e204ef4a0c0817d1fb0115d4d37834d3fe5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
