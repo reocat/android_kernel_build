@@ -22,10 +22,10 @@ log = logging.getLogger(__name__)
 
 class AbiTool(object):
     """ Base class for different kinds of abi analysis tools"""
-    def dump_kernel_abi(self, linux_tree, dump_path, whitelist):
+    def dump_kernel_abi(self, linux_tree, dump_path):
         raise NotImplementedError()
 
-    def diff_abi(self, old_dump, new_dump, diff_report, whitelist):
+    def diff_abi(self, old_dump, new_dump, diff_report):
         raise NotImplementedError()
 
     def name(self):
@@ -33,23 +33,15 @@ class AbiTool(object):
 
 class Libabigail(AbiTool):
     """" Concrete AbiTool implementation for libabigail """
-    def dump_kernel_abi(self, linux_tree, dump_path, whitelist):
+    def dump_kernel_abi(self, linux_tree, dump_path):
         dump_abi_cmd = ['abidw',
-                        # omit various sources of indeterministic abidw output
-                        '--no-corpus-path',
-                        '--no-comp-dir-path',
-                        # the path containing vmlinux and *.ko
                         '--linux-tree',
                         linux_tree,
                         '--out-file',
                         dump_path]
-
-        if whitelist is not None:
-            dump_abi_cmd.extend(['--kmi-whitelist', whitelist])
-
         subprocess.check_call(dump_abi_cmd)
 
-    def diff_abi(self, old_dump, new_dump, diff_report, whitelist):
+    def diff_abi(self, old_dump, new_dump, diff_report):
         log.info('libabigail diffing: {} and {} at {}'.format(old_dump,
                                                                 new_dump,
                                                                 diff_report))
@@ -59,9 +51,6 @@ class Libabigail(AbiTool):
                         '--dump-diff-tree',
                         old_dump,
                         new_dump]
-
-        if whitelist is not None:
-            diff_abi_cmd.extend(['--kmi-whitelist', whitelist])
 
         with open(diff_report, 'w') as out:
             try:
