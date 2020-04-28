@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e145f864_736f4107",
+        "filename": "abi/compare_to_wl",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1577720
+      },
+      "writtenOn": "2020-04-28T08:34:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b217f5be_b4b1b982",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 8
+      },
+      "revId": "09fbfd50435742501d5f8395937aaeff88e490b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0c672c3e_d897e71a",
         "filename": "abi/compare_to_wl",
         "patchSetId": 4
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "As per the above, that was to deal with GKI modules. I am happy to simplify the patch for now and to restrict the ABI check to vmlinux only if that can help. We\u0027ll introduce support for GKI modules later, when/if they are actually used.\n\nWould that work for you?",
       "parentUuid": "0c672c3e_d897e71a",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "09fbfd50435742501d5f8395937aaeff88e490b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e02baac_45fea1ae",
+        "filename": "abi/compare_to_wl",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1577720
+      },
+      "writtenOn": "2020-04-28T08:34:25Z",
+      "side": 1,
+      "message": "Thanks, that\u0027ll be great to begin with! I can try that at my end and provide you a feedback.",
+      "parentUuid": "44e2e965_7ee85235",
       "range": {
         "startLine": 25,
         "startChar": 0,
