@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b19736fa_e92b2e23",
+        "filename": "abi/compare_to_wl",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1577720
+      },
+      "writtenOn": "2020-04-28T08:06:34Z",
+      "side": 1,
+      "message": "If I understand correctly, Modules.symvers would list all the exported symbols, even the ones that are exported by vendor modules. Now these symbols could only be consumed by other vendor modules, which we don\u0027t whitelist. Is that expected?\n\nIf yes, should these should not be considered errors?",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 8
+      },
+      "revId": "09fbfd50435742501d5f8395937aaeff88e490b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c672c3e_d897e71a",
+        "filename": "abi/compare_to_wl",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1577720
+      },
+      "writtenOn": "2020-04-28T08:06:34Z",
+      "side": 1,
+      "message": "Why not just compare the exports from vmlinux with whitelist?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "09fbfd50435742501d5f8395937aaeff88e490b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62d45c70_d822fc54",
+        "filename": "abi/compare_to_wl",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1577720
+      },
+      "writtenOn": "2020-04-28T08:06:34Z",
+      "side": 1,
+      "message": "Should this be a unified diff (diff -u) as you are grepping looking for +/-?",
+      "revId": "09fbfd50435742501d5f8395937aaeff88e490b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
