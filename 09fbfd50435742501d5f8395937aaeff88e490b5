@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b217f5be_b4b1b982",
+        "filename": "abi/compare_to_wl",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-04-28T08:27:30Z",
+      "side": 1,
+      "message": "\u003e If I understand correctly, Modules.symvers would list all the exported symbols, even the ones that are exported by vendor modules.\n\nCorrect.\n\n\u003e Now these symbols could only be consumed by other vendor modules, which we don\u0027t whitelist. Is that expected?\n\nThe reason for including the modules here was to prepare the ground for the introduction of GKI modules (though they\u0027re not actually needed just yet). Once we introduce them, we\u0027ll need to keep symbols exported by the GKI modules stable as well, and they\u0027ll become part of the ABI. So this patch was effectively assuming that modules built in ACK are GKI modules.\n\nBut I understand how this can be a problem for vendors who want to use this script downstream though. I think the solution here will be for us to maintain an explicit list of GKI modules somewhere, to be able to differentiate them from vendor modules.",
+      "parentUuid": "b19736fa_e92b2e23",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 8
+      },
+      "revId": "09fbfd50435742501d5f8395937aaeff88e490b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0c672c3e_d897e71a",
         "filename": "abi/compare_to_wl",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "44e2e965_7ee85235",
+        "filename": "abi/compare_to_wl",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-04-28T08:27:30Z",
+      "side": 1,
+      "message": "As per the above, that was to deal with GKI modules. I am happy to simplify the patch for now and to restrict the ABI check to vmlinux only if that can help. We\u0027ll introduce support for GKI modules later, when/if they are actually used.\n\nWould that work for you?",
+      "parentUuid": "0c672c3e_d897e71a",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "09fbfd50435742501d5f8395937aaeff88e490b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "62d45c70_d822fc54",
         "filename": "abi/compare_to_wl",
         "patchSetId": 4
@@ -59,6 +107,24 @@
       "writtenOn": "2020-04-28T08:06:34Z",
       "side": 1,
       "message": "Should this be a unified diff (diff -u) as you are grepping looking for +/-?",
+      "revId": "09fbfd50435742501d5f8395937aaeff88e490b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f91b63ae_26346407",
+        "filename": "abi/compare_to_wl",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-04-28T08:27:30Z",
+      "side": 1,
+      "message": "That is the default with the \u0027diff\u0027 binary we have in the prebuilts, but that\u0027s a bit fragile, so, yes, this wants a \u0027-u\u0027 for portability. I\u0027ll fix that.",
+      "parentUuid": "62d45c70_d822fc54",
       "revId": "09fbfd50435742501d5f8395937aaeff88e490b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
