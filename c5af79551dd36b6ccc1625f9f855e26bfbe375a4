@@ -1,0 +1,48 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000002710925",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1270506?revision\u003d17",
+      "fixSuggestions": [
+        {
+          "fixId": "d053a007_5644010e",
+          "description": "Change to \"build.sh\"",
+          "replacements": [
+            {
+              "path": "build.sh",
+              "range": {
+                "startLine": 246,
+                "startChar": 52,
+                "endLine": 246,
+                "endChar": 60
+              },
+              "replacement": "auxiliary"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "dcba1736_da0b23ba",
+        "filename": "build.sh",
+        "patchSetId": 17
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1550585
+      },
+      "writtenOn": "2020-04-28T19:13:33Z",
+      "side": 1,
+      "message": "Common typo found: \"auxilary\" -- should it be \"auxiliary\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line.",
+      "range": {
+        "startLine": 246,
+        "startChar": 52,
+        "endLine": 246,
+        "endChar": 60
+      },
+      "revId": "c5af79551dd36b6ccc1625f9f855e26bfbe375a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
