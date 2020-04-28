@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a8ada93_d4ac0e2e",
+        "filename": "build.sh",
+        "patchSetId": 17
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-28T19:56:46Z",
+      "side": 1,
+      "message": "Name of a file",
+      "range": {
+        "startLine": 144,
+        "startChar": 27,
+        "endLine": 144,
+        "endChar": 43
+      },
+      "revId": "c5af79551dd36b6ccc1625f9f855e26bfbe375a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f83ad03_a670fe9d",
+        "filename": "build.sh",
+        "patchSetId": 17
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-28T19:56:46Z",
+      "side": 1,
+      "message": "Please use tabs not space characters.",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 8
+      },
+      "revId": "c5af79551dd36b6ccc1625f9f855e26bfbe375a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "666f95e7_417fb97e",
+        "filename": "build.sh",
+        "patchSetId": 17
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-28T19:56:46Z",
+      "side": 1,
+      "message": "Why not \"rm -rf ${aux_dir}\" first and then mkdir? That\u0027d get rid off any hidden .dotfiles.",
+      "revId": "c5af79551dd36b6ccc1625f9f855e26bfbe375a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c30b5bf_b6ce740c",
+        "filename": "build.sh",
+        "patchSetId": 17
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-28T19:56:46Z",
+      "side": 1,
+      "message": "\"cannot be found\"",
+      "range": {
+        "startLine": 254,
+        "startChar": 40,
+        "endLine": 254,
+        "endChar": 52
+      },
+      "revId": "c5af79551dd36b6ccc1625f9f855e26bfbe375a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5634093_1029ef35",
+        "filename": "build.sh",
+        "patchSetId": 17
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-04-28T19:56:46Z",
+      "side": 1,
+      "message": "join with next line. No line continuation required.",
+      "range": {
+        "startLine": 263,
+        "startChar": 32,
+        "endLine": 263,
+        "endChar": 33
+      },
+      "revId": "c5af79551dd36b6ccc1625f9f855e26bfbe375a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
