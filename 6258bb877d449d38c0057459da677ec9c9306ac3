@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d63275f_124bdb51",
+        "filename": "gki/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-04-29T22:24:51Z",
+      "side": 1,
+      "message": "Do not need continuation (this is what the help does to limit line size to 80), because in md file, we have more than enough width to work with.",
+      "range": {
+        "startLine": 238,
+        "startChar": 77,
+        "endLine": 238,
+        "endChar": 78
+      },
+      "revId": "6258bb877d449d38c0057459da677ec9c9306ac3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c91ae8d0_ad7d0352",
+        "filename": "gki/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-04-29T22:24:51Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 240,
+        "startChar": 49,
+        "endLine": 240,
+        "endChar": 50
+      },
+      "revId": "6258bb877d449d38c0057459da677ec9c9306ac3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d51984df_206436c3",
+        "filename": "gki/unpack_ksyms",
+        "patchSetId": 7
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-04-29T22:24:51Z",
+      "side": 1,
+      "message": "This is an attempt to move as much of the expansions as possible into the Signature section which I felt more comfortable with. This is closer to the format the willmcvicker@\u0027s dump would be, but not far enough to _really_ get back to that dump format. A lot of complication to get there. Could simplify immensely by just letting the \u0027\u003ctype\u003e#\u003ctag\u003e \u003cvalue\u003e\u0027 happen more naturally over the symtypes file.\n\nMore to happen here, I want this to be easier to maintain.",
+      "range": {
+        "startLine": 204,
+        "startChar": 2,
+        "endLine": 329,
+        "endChar": 34
+      },
+      "revId": "6258bb877d449d38c0057459da677ec9c9306ac3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
