@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ab68d65c_488fb8ba",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-05-01T15:38:22Z",
+      "side": 1,
+      "message": "Different name? I end up always calling such actions in my scripts to skip building (or a command argument --no-build), and progressing to post-build actions. Have struggled with this. So I can not suggest another name except the clearer SKIP_BUILDING_KERNEL for clarity.\n\nMy WAG: SKIP_MRPROPER + SKIP_DEFCONFIG saves a lot too in time to build, from ~20m to ~4m, SKIP_BUILDING saves ~4m. SKIP_BUILDING should state something like this indicating it is a deeper variant of the other two.",
+      "parentUuid": "2a65e2b2_858a9e0c",
+      "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "db33e0c4_f58a95fb",
         "filename": "build.sh",
         "patchSetId": 2
@@ -77,6 +95,71 @@
     },
     {
       "key": {
+        "uuid": "57b02cf7_feb2962a",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-05-01T15:38:22Z",
+      "side": 1,
+      "message": "Another style comment. Use single \u0027[\u0027 please.",
+      "range": {
+        "startLine": 327,
+        "startChar": 3,
+        "endLine": 327,
+        "endChar": 5
+      },
+      "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "194d765a_bdb27f66",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-05-01T15:38:22Z",
+      "side": 1,
+      "message": "I would opt for SKIP_BUILDING instead be ignored if OUT_DIR / DIST_DIR do not exist. In part because this is an automation script dealing with a hermetic build situation where reporting errors and stopping is more trouble. State that in the comments for the flag.\n\n(outside scope of this change, SKIP_DEFCONFIG should be ignored if .config file missing)",
+      "parentUuid": "25030465_66a4ba44",
+      "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "de56dfb2_83858a77",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-05-01T15:38:22Z",
+      "side": 1,
+      "message": "Not just style guide, it was a recommendation in the \u002770s because of parse syntax for the -n / -z flags. Original v6 bourne shell actually barfed on excess or missing or weird arguments resulting from not quoting (eg: thing [ -z haha -not ] and [ -z ]). v7 UNIX(tm) added flexibility to handle not quoting w/o errors and it might have been the worst decision ever. Just do it, keeps things very clear...",
+      "parentUuid": "e091193b_78a590d2",
+      "range": {
+        "startLine": 327,
+        "startChar": 9,
+        "endLine": 327,
+        "endChar": 25
+      },
+      "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6e6250ae_f327b5b3",
         "filename": "build.sh",
         "patchSetId": 2
@@ -88,6 +171,24 @@
       "writtenOn": "2020-04-20T22:05:46Z",
       "side": 1,
       "message": "I noticed that you did not indent the if body by two space characters. Is this to avoid churn?",
+      "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8135f4f7_5037e737",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-05-01T15:38:22Z",
+      "side": 1,
+      "message": "(I agree, let the churn happen, then you are responsible for _all_ the lines you touch ;-) )\n\nWhen large fragments (this is ~200 lines) are if;then:fi\u0027d, it makes maintenance difficult. Turn the large fragment into a function (or a set of logical functions).\n\nI understand that might feel out of scope, but it is you that is introducing the indent.",
+      "parentUuid": "6e6250ae_f327b5b3",
       "revId": "aed85c394939a614fd2d8113ecb1d7250d289f4f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
