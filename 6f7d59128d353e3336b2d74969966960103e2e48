@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b01a15f9_6309db47",
+        "filename": "build.sh",
+        "patchSetId": 18
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2020-05-01T16:34:34Z",
+      "side": 1,
+      "message": "If the modules list is empty or otherwise no modules match any in the list, we would expect that no modules would be mentioned in modules.order. However, since no modules.order exists, depmod would generate a modules.order with all modules! Can we touch the file after removing the file so that modules.order would be empty in case no modules should be according to MODULES_LIST?\n\n  touch ${ramdisk_working_dir}/lib/modules/0.0/modules.order",
+      "revId": "6f7d59128d353e3336b2d74969966960103e2e48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
