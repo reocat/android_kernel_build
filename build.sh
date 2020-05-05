@@ -313,6 +313,10 @@ if [ -n "${ABI_DEFINITION}" ]; then
   echo "KMI_MONITORED=1" >> ${DIST_DIR}/abi.prop
 fi
 
+if [ -n "${KMI_ENFORCED}" ]; then
+  echo "KMI_ENFORCED=1" >> ${DIST_DIR}/abi.prop
+fi
+
 # Copy the abi whitelist file from the sources into the dist dir
 if [ -n "${KMI_WHITELIST}" ]; then
   echo "========================================================"
