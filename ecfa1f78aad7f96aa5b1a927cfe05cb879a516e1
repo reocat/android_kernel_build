@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "deea3fc4_64a3878d",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-05T14:56:45Z",
+      "side": 1,
+      "message": "If ABI_DEFINITION isn\u0027t set, do you still want to write this? Is it useful at that point? If not, then can you move it under the above if [ -n \"${ABI_DEFINITION}\" ] ...",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 2
+      },
+      "revId": "ecfa1f78aad7f96aa5b1a927cfe05cb879a516e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
