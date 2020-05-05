@@ -298,6 +298,9 @@ if [ -n "${TAGS_CONFIG}" ]; then
   exit 0
 fi
 
+# Truncate the abi.prop file
+: > ${DIST_DIR}/abi.prop
+
 # Copy the abi_${arch}.xml file from the sources into the dist dir
 if [ -n "${ABI_DEFINITION}" ]; then
   echo "========================================================"
@@ -305,6 +308,9 @@ if [ -n "${ABI_DEFINITION}" ]; then
   pushd $ROOT_DIR/$KERNEL_DIR
     cp "${ABI_DEFINITION}" ${DIST_DIR}/abi.xml
   popd
+
+  echo "KMI_DEFINITION=abi.xml" >> ${DIST_DIR}/abi.prop
+  echo "KMI_MONITORED=1" >> ${DIST_DIR}/abi.prop
 fi
 
 # Copy the abi whitelist file from the sources into the dist dir
@@ -321,6 +327,8 @@ if [ -n "${KMI_WHITELIST}" ]; then
           cat "${whitelist}" >> ${DIST_DIR}/abi_whitelist
       done
     fi
+
+    echo "KMI_WHITELIST=abi_whitelist" >> ${DIST_DIR}/abi.prop
 
     if [ -n "${TRIM_NONLISTED_KMI}" ]; then
         # Create the raw whitelist
@@ -346,6 +354,8 @@ elif [ -n "${KMI_WHITELIST_STRICT_MODE}" ]; then
   echo "ERROR: KMI_WHITELIST_STRICT_MODE requires a KMI_WHITELIST" >&2
   exit 1
 fi
+
+exit 1
 
 echo "========================================================"
 echo " Building kernel"
