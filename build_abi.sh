@@ -146,17 +146,30 @@ ABI_DEFINITION= ${ROOT_DIR}/build/build.sh $*
 
 # define a common KMI whitelist flag for the abi tools
 KMI_WHITELIST_FLAG=
+whitelist_got_update=0
 if [ -n "$KMI_WHITELIST" ]; then
 
     if [ $UPDATE -eq 1 ]; then
         echo "========================================================"
         echo " Updating the ABI whitelist"
+        wl_sha1_before=$(sha1sum $KERNEL_DIR/$KMI_WHITELIST 2>&1)
         ${ROOT_DIR}/build/abi/extract_symbols       \
             --whitelist $KERNEL_DIR/$KMI_WHITELIST  \
             ${DIST_DIR}
+        wl_sha1_after=$(sha1sum $KERNEL_DIR/$KMI_WHITELIST 2>&1)
+
+        if [ "$wl_sha1_before" != "$wl_sha1_after" ]; then
+            whitelist_got_update=1
+        fi
     fi
 
     KMI_WHITELIST_FLAG="--kmi-whitelist ${DIST_DIR}/abi_whitelist"
+fi
+
+if [ $whitelist_got_update -eq 1 ]; then
+  echo "========================================================"
+  echo " Whitelist got updated, rerunning the build"
+  SKIP_MRPROPER=1 ABI_DEFINITION= ${ROOT_DIR}/build/build.sh $*
 fi
 
 echo "========================================================"
