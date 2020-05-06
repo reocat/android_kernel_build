@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd8a796f_bf81ab33",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-05-06T15:37:56Z",
+      "side": 1,
+      "message": "On a fresh build with no out directory, the --update abi build is broken.",
+      "range": {
+        "startLine": 332,
+        "startChar": 26,
+        "endLine": 332,
+        "endChar": 35
+      },
+      "revId": "d96f85df16ec7b407623f7fad8cd911bfa9e2fcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
