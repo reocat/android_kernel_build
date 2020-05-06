@@ -146,17 +146,36 @@ ABI_DEFINITION= ${ROOT_DIR}/build/build.sh $*
 
 # define a common KMI whitelist flag for the abi tools
 KMI_WHITELIST_FLAG=
+
+# We want to track whether the main whitelist (i.e. KMI_WHITELIST) actually got
+# updated. If so we need to rerun the kernel build.
+whitelist_got_update=0
 if [ -n "$KMI_WHITELIST" ]; then
 
     if [ $UPDATE -eq 1 ]; then
         echo "========================================================"
         echo " Updating the ABI whitelist"
+        wl_sha1_before=$(sha1sum $KERNEL_DIR/$KMI_WHITELIST 2>&1)
         ${ROOT_DIR}/build/abi/extract_symbols       \
             --whitelist $KERNEL_DIR/$KMI_WHITELIST  \
             ${DIST_DIR}
+        wl_sha1_after=$(sha1sum $KERNEL_DIR/$KMI_WHITELIST 2>&1)
+
+        if [ "$wl_sha1_before" != "$wl_sha1_after" ]; then
+            whitelist_got_update=1
+        fi
     fi
 
     KMI_WHITELIST_FLAG="--kmi-whitelist ${DIST_DIR}/abi_whitelist"
+fi
+
+# Rerun the kernel build as the main whitelist changed. That influences the
+# combined whitelist as well as the list of exported symbols in the kernel
+# binary. Possibly more.
+if [ $whitelist_got_update -eq 1 ]; then
+  echo "========================================================"
+  echo " Whitelist got updated, rerunning the build"
+  SKIP_MRPROPER=1 ABI_DEFINITION= ${ROOT_DIR}/build/build.sh $*
 fi
 
 echo "========================================================"
