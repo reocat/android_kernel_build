@@ -68,7 +68,7 @@ NORMAL="${ESCAPE}[0m"
 
 Returns: true if device is in fastboot mode" ]
 inFastboot() {
-  fastboot devices |
+  fastboot devices 2>/dev/null |
     if [ -n "${ANDROID_SERIAL}" ]; then
       grep "^${ANDROID_SERIAL}[${SPACE}${TAB}]" > /dev/null
     else
@@ -510,7 +510,11 @@ perform_diff() {
   fi
   if [ -s "${output}.dmesg" -a -s "${input}.dmesg" ]; then
     TMP=`mktemp -d`
-    mknod ${TMP}/input p
+    if which mkfifo >/dev/null 2>/dev/null; then
+      mkfifo ${TMP}/input
+    else
+      mknod ${TMP}/input p
+    fi
     sed -n 's@^.*init: Loaded kernel module /lib/modules/@@p' ${input}.dmesg > ${TMP}/input &
     sed -n 's@^.*init: Loaded kernel module /lib/modules/@@p' ${output}.dmesg |
       diff -U1 ${TMP}/input - |
@@ -582,14 +586,16 @@ if [ -z "${filter}" ]; then
       COUNT=`adb devices </dev/null |
                grep -v -e 'List of devices attached' -e '^$' |
                wc -l`
-      echo "${RED}[    ERROR ]${NORMAL} ${COUNT} devices attached" >&2
-      exit 1
+      if [ ${COUNT} != 1 ]; then
+        echo "${RED}[    ERROR ]${NORMAL} ${COUNT} devices attached" >&2
+        exit 1
+      fi
     fi
   fi
   counter=0
   while ${display}; do
     if inFastboot; then
-      fastboot reboot
+      fastboot reboot 2>/dev/null
     elif inAdb; then
       if [ "1" = "`get_property sys.boot_completed`" ]; then
         break
@@ -607,78 +613,82 @@ if [ -n "${filter}" ]; then
   cat ${filter}
 else
   adb_su find /dev /sys </dev/null 2>/dev/null |
-  if [ -n "${output}" -a X"${output}" != X"-" ]; then
-    # Generate ${output}.probed:
-    #
-    # Report all the instantiated devices and which driver is responsible.
-    # If drivers do not have any instantiated devices, report them at end.
-    # Drivers are of a form driver:<subsystem>:<name>, if <subsystem> is
-    # empty, it is short hand for platform.
-    #
-    DRIVERS=
-    FOUND=
-    (
-      tee /proc/self/fd/99 |
-        sed -n \
-            -e 's@/sys/devices/platform/.*/driver$@&@p' \
-            -e 's@/sys/bus/\([^/]*\)/drivers/\([^/]*\)$@driver:\1:\2@p' |
-        sort -u
-        echo DONE
-    ) |
-      while read driver; do
-        [ -n "${driver}" ] || continue
-        case ${driver} in
-          DONE)
-            [ -n "${DRIVERS}" ] || break
-            if [ -z "${FOUND}" ]; then
-              echo "${DRIVERS}"
-            else
-              echo "${DRIVERS}" |
-                grep -ve "${FOUND}\)\$" ||
-                true
-            fi |
-              sed 's/driver:platform:/driver::/'
-            break
-            ;;
-          driver:*)
-            [ -z "${DRIVERS}" ] || DRIVERS="${DRIVERS}
-"
-            DRIVERS="${DRIVERS}${driver}"
-            ;;
-          *)
-            INSTANCE="${driver#/sys/devices/platform/}"
-            INSTANCE="${INSTANCE%/driver}"
-            DRIVER="`adb_su ls -l ${driver} </dev/null 2>/dev/null |
-                     sed -n 's@.* -> .*/bus/\([^/]*\)/drivers/\(.*\)@driver:\1:\2@p'`"
-            if [ -z "${DRIVER}" ]; then
-              echo "${INSTANCE}"
-            else
+  (
+    # We are using /dev/stderr to split the streams, can not use -x here
+    set +x
+    if [ -n "${output}" -a X"${output}" != X"-" ]; then
+      # Generate ${output}.probed:
+      #
+      # Report all the instantiated devices and which driver is responsible.
+      # If drivers do not have any instantiated devices, report them at end.
+      # Drivers are of a form driver:<subsystem>:<name>, if <subsystem> is
+      # empty, it is short hand for platform.
+      #
+      DRIVERS=
+      FOUND=
+      (
+        tee /dev/stderr |
+          sed -n \
+              -e 's@/sys/devices/platform/.*/driver$@&@p' \
+              -e 's@/sys/bus/\([^/]*\)/drivers/\([^/]*\)$@driver:\1:\2@p' |
+          sort -u
+          echo DONE
+      ) |
+        while read driver; do
+          [ -n "${driver}" ] || continue
+          case ${driver} in
+            DONE)
+              [ -n "${DRIVERS}" ] || break
               if [ -z "${FOUND}" ]; then
-                FOUND="^\(${DRIVER}"
+                echo "${DRIVERS}"
               else
-                FOUND="${FOUND}\|${DRIVER}"
+                echo "${DRIVERS}" |
+                  grep -ve "${FOUND}\)\$" ||
+                  true
+              fi |
+                sed 's/driver:platform:/driver::/'
+              break
+              ;;
+            driver:*)
+              [ -z "${DRIVERS}" ] || DRIVERS="${DRIVERS}
+"
+              DRIVERS="${DRIVERS}${driver}"
+              ;;
+            *)
+              INSTANCE="${driver#/sys/devices/platform/}"
+              INSTANCE="${INSTANCE%/driver}"
+              DRIVER="`adb_su ls -l ${driver} </dev/null 2>/dev/null |
+                       sed -n 's@.* -> .*/bus/\([^/]*\)/drivers/\(.*\)@driver:\1:\2@p'`"
+              if [ -z "${DRIVER}" ]; then
+                echo "${INSTANCE}"
+              else
+                if [ -z "${FOUND}" ]; then
+                  FOUND="^\(${DRIVER}"
+                else
+                  FOUND="${FOUND}\|${DRIVER}"
+                fi
+                DRIVER="${DRIVER#driver:}"
+                echo "${INSTANCE} -> driver:${DRIVER#platform}"
               fi
-              DRIVER="${DRIVER#driver:}"
-              echo "${INSTANCE} -> driver:${DRIVER#platform}"
-            fi
-            ;;
-        esac
-      done >"${output}.probed"
-    [ -s "${output}.probed" ] || rm -f "${output}.probed"
-    # Generate ${output}.dmesg
-    adb_su dmesg </dev/null 2>/dev/null >"${output}.dmesg"
-    [ -s "${output}.dmesg" ] || rm -f "${output}.dmesg"
-    # Generate ${output}.config if kernel provides it.
-    adb_su cat /proc/config.gz </dev/null 2>/dev/null |
-      gunzip >"${output}.config"
-    [ -s "${output}.config" ] || rm -f "${output}.config"
-    # Generate ${output}.getprop
-    adb $QD shell su root getprop </dev/null 2>/dev/null |
-      sort -u >"${output}.getprop"
-    [ -s "${output}.getprop" ] || rm -f "${output}.getprop"
-  else
-    cat - >&99
-  fi 99>&1
+              ;;
+          esac
+        done >"${output}.probed"
+      [ -s "${output}.probed" ] || rm -f "${output}.probed"
+      # Generate ${output}.dmesg
+      adb_su dmesg </dev/null 2>/dev/null >"${output}.dmesg"
+      [ -s "${output}.dmesg" ] || rm -f "${output}.dmesg"
+      # Generate ${output}.config if kernel provides it.
+      adb_su cat /proc/config.gz </dev/null 2>/dev/null |
+        gunzip >"${output}.config"
+      [ -s "${output}.config" ] || rm -f "${output}.config"
+      # Generate ${output}.getprop
+      adb $QD shell su root getprop </dev/null 2>/dev/null |
+        sort -u >"${output}.getprop"
+      [ -s "${output}.getprop" ] || rm -f "${output}.getprop"
+    else
+      cat - >&2
+    fi
+  ) 2>&1
 fi |
   grep -v '^\(/dev/ashmem\|/dev/block/mapper/by-uuid/\|/dev/fscklogs/log\)' |
   grep -v '^\(/dev/socket/location/\(socket_hal\|cld80211\)\|/sys/class/hwmon/\)' |
@@ -696,7 +706,7 @@ fi |
   grep -v '^/sys/devices/platform/soc/[0-9a-f]*.qcom,icnss/\(net\|firmware\|ieee80211\)' |
   grep -v '^/sys/devices/platform/soc/[0-9a-f]*.*@[0-9][0-9]*-cam_\(vana\|vdig\|vio\|clk\)$' |
   grep -v '^/sys/kernel/wlan/' |
-  grep -v '^/sys/kernel/slab/\(f2fs_fsync_inode_entry\|zs\|:[0-9a-f]\{,7\}\)' |
+  grep -v '^/sys/kernel/slab/\(f2fs_fsync_inode_entry\|zs\|:[0-9a-f]\{0,7\}\)' |
   grep -v '^/sys/devices/system/cpu/cpufreq/policy[0-9]*/schedutil' |
   grep -v '/__trace_printk_fmt$' |
   sed "s@\(/regulator[.]\)[0-9][0-9]*\$@\1${NUM}@
@@ -736,14 +746,18 @@ fi |
     [ -s "${output}" ] || rm -f "${output}"
   else
     TMP=`mktemp -d`
-    if [ X"${output}" = X"-" ]; then
-      echo "------------------------> cut dump < ------------------------"
-      sort -u |
-      tee /proc/self/fd/99 |
-        sed -n 's@/sys/devices/platform/\(.*\)/driver$@\1@p' >${TMP}/probed
-    else
-      sort -u >&99
-    fi 99>&1
+    (
+      # We are using /dev/stderr to split the streams, can not use -x here
+      set +x
+      if [ X"${output}" = X"-" ]; then
+        echo "------------------------> cut dump < ------------------------"
+        sort -u |
+        tee /dev/stderr |
+          sed -n 's@/sys/devices/platform/\(.*\)/driver$@\1@p' >${TMP}/probed
+      else
+        sort -u >&2
+      fi
+    ) 2>&1
     if [ -s "${TMP}/probed" ]; then
       echo "-----------------------> cut probed <------------------------"
       cat ${TMP}/probed
