@@ -329,47 +329,45 @@ if [ -n "${ABI_DEFINITION}" ]; then
   echo " Copying abi definition to ${ABI_XML}"
   pushd $ROOT_DIR/$KERNEL_DIR
     cp "${ABI_DEFINITION}" ${ABI_XML}
-  popd
-fi
 
-# Copy the abi whitelist file from the sources into the dist dir
-if [ -n "${KMI_WHITELIST}" ]; then
-  echo "========================================================"
-  echo " Generating abi whitelist definition to ${ABI_WL}"
-  pushd $ROOT_DIR/$KERNEL_DIR
-    cp "${KMI_WHITELIST}" ${ABI_WL}
+    # Copy the abi whitelist file from the sources into the dist dir
+    if [ -n "${KMI_WHITELIST}" ]; then
+      echo "========================================================"
+      echo " Generating abi whitelist definition to ${ABI_WL}"
+      cp "${KMI_WHITELIST}" ${ABI_WL}
 
-    # If there are additional whitelists specified, append them
-    if [ -n "${ADDITIONAL_KMI_WHITELISTS}" ]; then
-      for whitelist in ${ADDITIONAL_KMI_WHITELISTS}; do
+      # If there are additional whitelists specified, append them
+      if [ -n "${ADDITIONAL_KMI_WHITELISTS}" ]; then
+        for whitelist in ${ADDITIONAL_KMI_WHITELISTS}; do
           echo >> ${ABI_WL}
           cat "${whitelist}" >> ${ABI_WL}
-      done
-    fi
+        done
+      fi
 
-    if [ -n "${TRIM_NONLISTED_KMI}" ]; then
-        # Create the raw whitelist
-        cat ${ABI_WL} | \
-                ${ROOT_DIR}/build/abi/flatten_whitelist > \
-                ${OUT_DIR}/abi_whitelist.raw
+      if [ -n "${TRIM_NONLISTED_KMI}" ]; then
+       # Create the raw whitelist
+       cat ${ABI_WL} | \
+               ${ROOT_DIR}/build/abi/flatten_whitelist > \
+               ${OUT_DIR}/abi_whitelist.raw
 
-        # Update the kernel configuration
-        ./scripts/config --file ${OUT_DIR}/.config \
-                -d UNUSED_SYMBOLS -e TRIM_UNUSED_KSYMS \
-                --set-str UNUSED_KSYMS_WHITELIST ${OUT_DIR}/abi_whitelist.raw
-        (cd ${OUT_DIR} && \
-                make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS} olddefconfig)
+       # Update the kernel configuration
+       ./scripts/config --file ${OUT_DIR}/.config \
+               -d UNUSED_SYMBOLS -e TRIM_UNUSED_KSYMS \
+               --set-str UNUSED_KSYMS_WHITELIST ${OUT_DIR}/abi_whitelist.raw
+       (cd ${OUT_DIR} && \
+               make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS} olddefconfig)
+      elif [ -n "${KMI_WHITELIST_STRICT_MODE}" ]; then
+        echo "ERROR: KMI_WHITELIST_STRICT_MODE requires TRIM_NONLISTED_KMI=1" >&2
+        exit 1
+      fi
+    elif [ -n "${TRIM_NONLISTED_KMI}" ]; then
+      echo "ERROR: TRIM_NONLISTED_KMI requires a KMI_WHITELIST" >&2
+      exit 1
     elif [ -n "${KMI_WHITELIST_STRICT_MODE}" ]; then
-      echo "ERROR: KMI_WHITELIST_STRICT_MODE requires TRIM_NONLISTED_KMI=1" >&2
+      echo "ERROR: KMI_WHITELIST_STRICT_MODE requires a KMI_WHITELIST" >&2
       exit 1
     fi
   popd # $ROOT_DIR/$KERNEL_DIR
-elif [ -n "${TRIM_NONLISTED_KMI}" ]; then
-  echo "ERROR: TRIM_NONLISTED_KMI requires a KMI_WHITELIST" >&2
-  exit 1
-elif [ -n "${KMI_WHITELIST_STRICT_MODE}" ]; then
-  echo "ERROR: KMI_WHITELIST_STRICT_MODE requires a KMI_WHITELIST" >&2
-  exit 1
 fi
 
 echo "========================================================"
