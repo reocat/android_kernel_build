@@ -22,6 +22,30 @@
       "revId": "49b8d03165bb18528779d724bcc6d197cc847366",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8dfa2b4_6c986a93",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2020-05-06T22:33:36Z",
+      "side": 1,
+      "message": "ABI_DEFINITION\u003d is meant to be empty?",
+      "parentUuid": "a8903cf2_280833c7",
+      "range": {
+        "startLine": 178,
+        "startChar": 2,
+        "endLine": 178,
+        "endChar": 63
+      },
+      "revId": "49b8d03165bb18528779d724bcc6d197cc847366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
