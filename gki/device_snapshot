@@ -418,6 +418,28 @@ if [ -n "${USB_SERIAL}" ]; then
   USB_ADDRESS=usb${USB_ADDRESS##*/}
 fi
 
+[ "USAGE: input= BLUE= output= NORMAL= boottime < ${output}
+
+Reports the recorded boot time" ]
+boottime() {
+  sed -n 's/[[]ro[.]boottime[.]\([^]]*\)[]]: [[]\([0-9]*\)[]]$/\2 \1/p' |
+    sort -un |
+    (
+      # We are using /dev/stderr to split the streams, can not use -x here
+      set +x
+      (
+        # last one
+        tee /dev/stderr |
+        tail -1 >&3
+      ) 2>&1 |
+      grep ' \(bootanim\|adbd\)$'
+    ) 3>&1 |
+    while read monotonic action; do
+      printf "boottime %18s %2u.%09us\n" ${action} $((${monotonic} / 1000000000)) $((${monotonic} % 1000000000))
+    done |
+    sed "s/.*/${BLUE}[     INFO ]${NORMAL} &/" >&2
+}
+
 [ "USAGE: input= BLUE= output= NORMAL= perform_diff < ${output}
 
 Reports the differences between stdin and \${input}" ]
@@ -529,6 +551,9 @@ perform_diff() {
     diff -U1 "${input}.config" "${output}.config" |
       grep '[-+ ]' ||
       echo "${BLUE}[     INFO ]${NORMAL} no differences in config" >&2
+  fi
+  if [ -s "${output}.getprop" ]; then
+    boottime < "${output}.getprop"
   fi
   if [ -s "${output}.getprop" -a -s "${input}.getprop" ]; then
     TMP=`mktemp -d`
@@ -739,9 +764,13 @@ fi |
   if [ -n "${output}" -a X"${output}" != X"-" ]; then
     sort -u |
       if [ -n "${input}" ]; then
-        tee "${output}" | perform_diff
+        tee "${output}" |
+        perform_diff
       else
         cat - >"${output}"
+        if [ -s "${output}.getprop" ]; then
+          boottime < "${output}.getprop"
+        fi
       fi
     [ -s "${output}" ] || rm -f "${output}"
   else
