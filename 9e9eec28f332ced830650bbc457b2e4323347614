@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc85e819_f6673b26",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-05-06T23:23:05Z",
+      "side": 1,
+      "message": "prefix with abi/bootstrap:",
+      "revId": "9e9eec28f332ced830650bbc457b2e4323347614",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb3a15e9_0ac5d4de",
+        "filename": "abi/bootstrap",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-05-06T23:23:05Z",
+      "side": 1,
+      "message": "need the parenthesis?",
+      "range": {
+        "startLine": 123,
+        "startChar": 12,
+        "endLine": 123,
+        "endChar": 14
+      },
+      "revId": "9e9eec28f332ced830650bbc457b2e4323347614",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
