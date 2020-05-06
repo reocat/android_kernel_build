@@ -46,6 +46,30 @@
       "revId": "49b8d03165bb18528779d724bcc6d197cc847366",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd7057dd_32513005",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-05-06T23:02:52Z",
+      "side": 1,
+      "message": "yes, as in line 145\n\nnot sure how much we gain with a function call. will consider though.",
+      "parentUuid": "a8dfa2b4_6c986a93",
+      "range": {
+        "startLine": 178,
+        "startChar": 2,
+        "endLine": 178,
+        "endChar": 63
+      },
+      "revId": "49b8d03165bb18528779d724bcc6d197cc847366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
