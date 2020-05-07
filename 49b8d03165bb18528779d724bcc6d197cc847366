@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "2c97068d_599b4ab4",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-05-07T07:35:40Z",
+      "side": 1,
+      "message": "\"$@\"",
+      "range": {
+        "startLine": 145,
+        "startChar": 43,
+        "endLine": 145,
+        "endChar": 45
+      },
+      "revId": "49b8d03165bb18528779d724bcc6d197cc847366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8903cf2_280833c7",
         "filename": "build_abi.sh",
         "patchSetId": 2
@@ -88,6 +111,29 @@
       "range": {
         "startLine": 178,
         "startChar": 2,
+        "endLine": 178,
+        "endChar": 63
+      },
+      "revId": "49b8d03165bb18528779d724bcc6d197cc847366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8d96092_33d2119d",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-05-07T07:35:40Z",
+      "side": 1,
+      "message": "\"$@\"",
+      "range": {
+        "startLine": 178,
+        "startChar": 61,
         "endLine": 178,
         "endChar": 63
       },
