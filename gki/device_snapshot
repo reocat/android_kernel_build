@@ -44,7 +44,30 @@ NB: for default standard output, the probed list will be post-filter so
     some details may be altered to make it easier to discover differences.
     So if bus enumerations change, some of the enumerators will be replaced
     with an '${NUM}' so that they continue to match when moved.  For a
-    specified output, the <output>.probed file will retain the details."
+    specified output, the <output>.probed file will retain the details.
+
+In your local build/flash/boot script for tight development cycles and to
+automatically record and report differences between boots, add:
+
+    SEQ=\`for i in out/\${DEFAULT_BUILD}.snapshot.[0-9]*; do
+           [ \"\${i}\" != \"\${i%[*]}\" ] ||
+           echo \${i#out/\${DEFAULT_BUILD}.snapshot.}
+         done |
+         sed 's/^0*//' |
+         tr -d .[:alpha:] |
+         sort -nu |
+         tail -1\` &&
+    NEWSEQ=\$((\${SEQ:-0}+1)) &&
+    NEWSEQ=\`printf \"%03u\" \${NEWSEQ}\`
+    if [ -z \"\${SEQ}\" ]; then
+      build/gki/device_snapshot \\
+        -o out/\${DEFAULT_BUILD}.snapshot.\${NEWSEQ}
+    else
+      SEQ=\`printf \"%03u\" \${SEQ}\`
+      build/gki/device_snapshot \\
+        -o out/\${DEFAULT_BUILD}.snapshot.\${NEWSEQ} \\
+        -d out/\${DEFAULT_BUILD}.snapshot.\${SEQ}
+    fi"
 
 EMPTY=""
 SPACE=" "
@@ -699,9 +722,11 @@ else
           esac
         done >"${output}.probed"
       [ -s "${output}.probed" ] || rm -f "${output}.probed"
-      # Generate ${output}.dmesg
+      # Generate ${output}.dmesg / kernel
       adb_su dmesg </dev/null 2>/dev/null >"${output}.dmesg"
       [ -s "${output}.dmesg" ] || rm -f "${output}.dmesg"
+      adb_su logcat -b kernel -v monotonic -d </dev/null 2>/dev/null >"${output}.kernel"
+      [ -s "${output}.kernel" ] || rm -f "${output}.kernel"
       # Generate ${output}.config if kernel provides it.
       adb_su cat /proc/config.gz </dev/null 2>/dev/null |
         gunzip >"${output}.config"
