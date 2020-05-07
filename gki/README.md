@@ -107,24 +107,25 @@ output from a device.  No dmesg will be collected.
 are available, otherwise will default to one available or ANDROID_SERIAL
 environment variable.
 
-In your local build/flash/boot script for tight development cycles, add
+In your local build/flash/boot script for tight development cycles and to
+automatically record and report differences between boots, add:
 
     SEQ=`for i in out/${DEFAULT_BUILD}.snapshot.[0-9]*; do
+           [ "${i}" != "${i%[*]}" ] ||
            echo ${i#out/${DEFAULT_BUILD}.snapshot.}
          done |
          sed 's/^0*//' |
-         grep -v 0-9 |
          tr -d .[:alpha:] |
          sort -nu |
          tail -1` &&
     NEWSEQ=$((${SEQ:-0}+1)) &&
     NEWSEQ=`printf "%03u" ${NEWSEQ}`
     if [ -z "${SEQ}" ]; then
-      private/msm-google/scripts/gki/device_snapshot \
+      build/gki/device_snapshot \
         -o out/${DEFAULT_BUILD}.snapshot.${NEWSEQ}
     else
       SEQ=`printf "%03u" ${SEQ}`
-      private/msm-google/scripts/gki/device_snapshot \
+      build/gki/device_snapshot \
         -o out/${DEFAULT_BUILD}.snapshot.${NEWSEQ} \
         -d out/${DEFAULT_BUILD}.snapshot.${SEQ}
     fi
