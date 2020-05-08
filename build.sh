@@ -636,8 +636,8 @@ if [ -n "${MODULES}" ]; then
     fi
 
     (cd ${INITRAMFS_STAGING_DIR} && find . | cpio -H newc -o > ${MODULES_STAGING_DIR}/initramfs.cpio)
-    gzip -fc ${MODULES_STAGING_DIR}/initramfs.cpio > ${MODULES_STAGING_DIR}/initramfs.cpio.gz
-    mv ${MODULES_STAGING_DIR}/initramfs.cpio.gz ${DIST_DIR}/initramfs.img
+    lz4 -fcl ${MODULES_STAGING_DIR}/initramfs.cpio > ${MODULES_STAGING_DIR}/initramfs.cpio.lz4
+    mv ${MODULES_STAGING_DIR}/initramfs.cpio.lz4 ${DIST_DIR}/initramfs.img
     set +x
   fi
 fi
@@ -722,14 +722,14 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 	done
 	for ((i=0; i<"${#MKBOOTIMG_RAMDISKS[@]}"; i++)); do
 		CPIO_NAME="$(mktemp -t build.sh.ramdisk.XXXXXXXX)"
-		if gzip -cd "${MKBOOTIMG_RAMDISKS[$i]}" 2>/dev/null > ${CPIO_NAME}; then
+		if lz4 -cdl "${MKBOOTIMG_RAMDISKS[$i]}" 2>/dev/null > ${CPIO_NAME}; then
 			MKBOOTIMG_RAMDISKS[$i]=${CPIO_NAME}
 		else
 			rm -f ${CPIO_NAME}
 		fi
 	done
 	if [ "${#MKBOOTIMG_RAMDISKS[@]}" -gt 0 ]; then
-		cat ${MKBOOTIMG_RAMDISKS[*]} | gzip - > ${DIST_DIR}/ramdisk.gz
+		cat ${MKBOOTIMG_RAMDISKS[*]} | lz4 -l - > ${DIST_DIR}/ramdisk.lz4
 	elif [ -z "${SKIP_VENDOR_BOOT}" ]; then
 		echo "No ramdisk found. Please provide a GKI and/or a vendor ramdisk."
 		exit 1
@@ -756,13 +756,13 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 
 		if [ -z "${SKIP_VENDOR_BOOT}" ]; then
 			MKBOOTIMG_VARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img" \
-				"--vendor_ramdisk" "${DIST_DIR}/ramdisk.gz")
+				"--vendor_ramdisk" "${DIST_DIR}/ramdisk.lz4")
 			if [ -n "${KERNEL_VENDOR_CMDLINE}" ]; then
 				MKBOOTIMG_VARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
 			fi
 		fi
 	else
-		MKBOOTIMG_ARGS+=("--ramdisk" "${DIST_DIR}/ramdisk.gz")
+		MKBOOTIMG_ARGS+=("--ramdisk" "${DIST_DIR}/ramdisk.lz4")
 	fi
 
 	set -x
