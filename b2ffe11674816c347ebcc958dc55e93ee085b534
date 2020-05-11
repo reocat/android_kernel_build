@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cfdbe634_f582ce85",
+        "filename": "build_abi.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-11T17:08:39Z",
+      "side": 1,
+      "message": "This is going to have different behavior than what you originally intended. You need to update the call to this function to pass in $@.\n\nFor example, call calls to this function should look like:\n\nbuild_kernel \"$@\"",
+      "range": {
+        "startLine": 146,
+        "startChar": 46,
+        "endLine": 146,
+        "endChar": 48
+      },
+      "revId": "b2ffe11674816c347ebcc958dc55e93ee085b534",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a379e10_55f118f8",
+        "filename": "build_abi.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-11T17:08:39Z",
+      "side": 1,
+      "message": "Needs to be:\n\nbuild_kernel \"$@\"",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 12
+      },
+      "revId": "b2ffe11674816c347ebcc958dc55e93ee085b534",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ed88ecf_a019f706",
+        "filename": "build_abi.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-11T17:08:39Z",
+      "side": 1,
+      "message": "Needs to be:\n\nbuild_kernel \"$@\"",
+      "range": {
+        "startLine": 182,
+        "startChar": 18,
+        "endLine": 182,
+        "endChar": 30
+      },
+      "revId": "b2ffe11674816c347ebcc958dc55e93ee085b534",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
