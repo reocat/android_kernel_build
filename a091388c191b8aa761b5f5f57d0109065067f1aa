@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "61d4df0a_2f7e51b3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "Yeah let me split that part of the change out",
+      "parentUuid": "db3fa446_63399282",
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "98d994c9_1ba082b6",
         "filename": "build.sh",
         "patchSetId": 23
@@ -39,6 +57,30 @@
       "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9939a65f_430bedfb",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "Thanks for checking. I verified that works and updated in the latest PS.",
+      "parentUuid": "98d994c9_1ba082b6",
+      "range": {
+        "startLine": 215,
+        "startChar": 5,
+        "endLine": 215,
+        "endChar": 8
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "ee57e2f7_d45c07c4",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5424f998_0bb3f1dc",
+      "range": {
+        "startLine": 217,
+        "startChar": 9,
+        "endLine": 217,
+        "endChar": 10
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b80fa195_2910f97e",
         "filename": "build.sh",
         "patchSetId": 23
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "d7269e36_e7f04bcb",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b80fa195_2910f97e",
+      "range": {
+        "startLine": 220,
+        "startChar": 12,
+        "endLine": 220,
+        "endChar": 26
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "526ce238_dd923eed",
         "filename": "build.sh",
         "patchSetId": 23
@@ -102,6 +192,24 @@
       "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1821bd7_d70d616b",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "526ce238_dd923eed",
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "a750373b_15edc467",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bd8c629e_b117f3ef",
+      "range": {
+        "startLine": 228,
+        "startChar": 20,
+        "endLine": 228,
+        "endChar": 21
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f21f09c_30c5bae4",
         "filename": "build.sh",
         "patchSetId": 23
@@ -148,6 +280,30 @@
       "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8da297e2_600bc69a",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8f21f09c_30c5bae4",
+      "range": {
+        "startLine": 230,
+        "startChar": 128,
+        "endLine": 230,
+        "endChar": 129
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -174,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "974e3a05_bf109d08",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "37107d40_04757d53",
+      "range": {
+        "startLine": 232,
+        "startChar": 25,
+        "endLine": 232,
+        "endChar": 29
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb226cbc_56e5ca56",
         "filename": "build.sh",
         "patchSetId": 23
@@ -194,6 +374,30 @@
       "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cdb8943_9f515c44",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "Right, but that\u0027s a staging dir for the final ramdisk. This is an intermediate staging dir. I could rename to something like partial_ramdisk_staging",
+      "parentUuid": "eb226cbc_56e5ca56",
+      "range": {
+        "startLine": 235,
+        "startChar": 24,
+        "endLine": 235,
+        "endChar": 39
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -220,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "45be705c_6fffe547",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "No reason. I\u0027ll remove the asterick",
+      "parentUuid": "e42cf3a5_5ad8489e",
+      "range": {
+        "startLine": 238,
+        "startChar": 23,
+        "endLine": 238,
+        "endChar": 24
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "302bdb54_2bbf411e",
         "filename": "build.sh",
         "patchSetId": 23
@@ -234,6 +462,24 @@
       "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e09385d_2c8b34ed",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "ah thanks!",
+      "parentUuid": "302bdb54_2bbf411e",
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -260,6 +506,30 @@
     },
     {
       "key": {
+        "uuid": "d087a137_b5ab60b4",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a4134a1e_1431231c",
+      "range": {
+        "startLine": 266,
+        "startChar": 9,
+        "endLine": 266,
+        "endChar": 19
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1d9fb83_adffb54f",
         "filename": "build.sh",
         "patchSetId": 23
@@ -283,6 +553,30 @@
     },
     {
       "key": {
+        "uuid": "d2690692_526d0cfb",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a1d9fb83_adffb54f",
+      "range": {
+        "startLine": 270,
+        "startChar": 2,
+        "endLine": 270,
+        "endChar": 5
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "877d75ba_6228a57a",
         "filename": "build.sh",
         "patchSetId": 23
@@ -294,6 +588,30 @@
       "writtenOn": "2020-05-20T06:51:00Z",
       "side": 1,
       "message": "Wouldn\u0027t just ${ko} instead of extra/$(basename ${ko}) work as well?",
+      "range": {
+        "startLine": 273,
+        "startChar": 10,
+        "endLine": 273,
+        "endChar": 33
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79663c09_0871a78c",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T18:13:18Z",
+      "side": 1,
+      "message": "This is just in case there are subdirectories within extra for some reason. If there were, then I\u0027d have to add mkdir -p extra/$(dirname ${ko})",
+      "parentUuid": "877d75ba_6228a57a",
       "range": {
         "startLine": 273,
         "startChar": 10,
