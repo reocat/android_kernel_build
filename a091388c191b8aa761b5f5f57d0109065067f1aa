@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "db3fa446_63399282",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-05-20T14:12:33Z",
+      "side": 1,
+      "message": "This subject line is a bit misleading for me since we\u0027re not actually compiling a GKI kernel AIUI, we\u0027re just building a GKI boot image using a prebuilt GKI kernel binary. Can this be rephrased?\n\nIt seems like this is really two distinct changes - one to add a flag to create a boot image using a prebuilt GKI kernel binary (and ramdisk), and another to provide an option to limit the module load list in vendor boot.",
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98d994c9_1ba082b6",
         "filename": "build.sh",
         "patchSetId": 23
