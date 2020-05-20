@@ -16,6 +16,24 @@
       "revId": "4645af1acec31bc727c0b317cccd24da18bb191b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db3a644f_ad579021",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T23:46:54Z",
+      "side": 1,
+      "message": "Yeah, I can check add a check for that. GKI is only supported with header version 3. So technically that config won\u0027t be used but good to have the extra check nonetheless.",
+      "parentUuid": "484348a6_4a0cdca1",
+      "revId": "4645af1acec31bc727c0b317cccd24da18bb191b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }

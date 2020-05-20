@@ -34,6 +34,24 @@
       "revId": "0bd9bc8ab7ed588b0d968bd410eabe77c112e36d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c2fd2ce_316acfe5",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-05-20T23:46:54Z",
+      "side": 0,
+      "message": "ah, yes that\u0027s a good point! I guess this really shouldn\u0027t be called GKI_RAMDISK_PREBUILT_BINARY but rather BOOT_RAMDISK_PREBUILT_BINARY. I was trying to avoid the case of adding a GKI ramdisk to the partner boot.img.",
+      "parentUuid": "b6c75c3b_8aaca6f4",
+      "revId": "0bd9bc8ab7ed588b0d968bd410eabe77c112e36d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
