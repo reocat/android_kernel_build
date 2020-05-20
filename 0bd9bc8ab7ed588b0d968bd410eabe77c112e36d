@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "6f1aedb6_aa24e82b",
+        "filename": "build.sh",
+        "patchSetId": 24
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-05-20T22:13:03Z",
+      "side": 1,
+      "message": "I\u0027d add here that if MODULES_LIST is not defined, modules.load will include all the modules",
+      "revId": "0bd9bc8ab7ed588b0d968bd410eabe77c112e36d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ddec0b11_a4253dbb",
         "filename": "build.sh",
         "patchSetId": 24
