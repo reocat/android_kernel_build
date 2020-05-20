@@ -1,0 +1,291 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98d994c9_1ba082b6",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "In my experiments, this did not work. It neither catches the output in DEPMOD_OUTPUT nor does it ever run the if body. I believe that this should be\n\n\t\tif ! DEPMOD_OUTPUT\u003d\"$(depmod -e -F ${DIST_DIR}/System.map -b . 0.0 2\u003e\u00261)\"; then",
+      "range": {
+        "startLine": 215,
+        "startChar": 5,
+        "endLine": 215,
+        "endChar": 8
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5424f998_0bb3f1dc",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "No semicolon required.",
+      "range": {
+        "startLine": 217,
+        "startChar": 9,
+        "endLine": 217,
+        "endChar": 10
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b80fa195_2910f97e",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "\"quote variables\"",
+      "range": {
+        "startLine": 220,
+        "startChar": 12,
+        "endLine": 220,
+        "endChar": 26
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "526ce238_dd923eed",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "Add \u003e\u00262 at the end to send message to stderr. Compare, for example, with line 447.",
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd8c629e_b117f3ef",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "Remove space character.",
+      "range": {
+        "startLine": 228,
+        "startChar": 20,
+        "endLine": 228,
+        "endChar": 21
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f21f09c_30c5bae4",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "Use \"\u003e\" instead of \")\"",
+      "range": {
+        "startLine": 230,
+        "startChar": 128,
+        "endLine": 230,
+        "endChar": 129
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37107d40_04757d53",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "Curly braces are not necessary here. Plain $1 is used on lines 187 and 210 and also aligns with Google style guide.",
+      "range": {
+        "startLine": 232,
+        "startChar": 25,
+        "endLine": 232,
+        "endChar": 29
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb226cbc_56e5ca56",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "We already have a staging/initramfs_staging directory. This adds a (temporary) staging/ramdisk_staging which could be confusing but ok.",
+      "range": {
+        "startLine": 235,
+        "startChar": 24,
+        "endLine": 235,
+        "endChar": 39
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e42cf3a5_5ad8489e",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "Why not just\n\n\trm -rf ${staging_dir}/\n\nWithout the asterisk? Same as on line 285.",
+      "range": {
+        "startLine": 238,
+        "startChar": 23,
+        "endLine": 238,
+        "endChar": 24
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "302bdb54_2bbf411e",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "After the rm -rf on line 238, this should never exist anyways.",
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4134a1e_1431231c",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "Due to \"cd ${src_dir}\", we\u0027re already in ${src_dir}, so this prefix might not be necessary, but either way is fine.",
+      "range": {
+        "startLine": 266,
+        "startChar": 9,
+        "endLine": 266,
+        "endChar": 19
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1d9fb83_adffb54f",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "If you put this prefix in front of \"for\", you\u0027d get rid of that error message from the find command if the directory extra/ does not exist.\n\n[ -d ${src_dir}/extra/. ] \u0026\u0026 \n\nOtherwise, it prints:\nfind: \u0027staging/lib/modules/*/extra/.\u0027: No such file or directory",
+      "range": {
+        "startLine": 270,
+        "startChar": 2,
+        "endLine": 270,
+        "endChar": 5
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "877d75ba_6228a57a",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T06:51:00Z",
+      "side": 1,
+      "message": "Wouldn\u0027t just ${ko} instead of extra/$(basename ${ko}) work as well?",
+      "range": {
+        "startLine": 273,
+        "startChar": 10,
+        "endLine": 273,
+        "endChar": 33
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
