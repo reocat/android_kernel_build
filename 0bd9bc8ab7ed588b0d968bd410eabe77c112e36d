@@ -16,6 +16,24 @@
       "revId": "0bd9bc8ab7ed588b0d968bd410eabe77c112e36d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6c75c3b_8aaca6f4",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-05-20T21:32:29Z",
+      "side": 0,
+      "message": "I think these lines should stay, otherwise the generated boot.img will never have any ramdisk",
+      "parentUuid": "02e9269c_09caf3b6",
+      "revId": "0bd9bc8ab7ed588b0d968bd410eabe77c112e36d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
