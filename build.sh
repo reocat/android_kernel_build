@@ -127,6 +127,7 @@
 #     various components needed to build a boot.img also need to be defined.
 #     - MKBOOTIMG_PATH=<path to the mkbootimg.py script which builds boot.img>
 #       (defaults to tools/mkbootimg/mkbootimg.py)
+#     - GKI_KERNEL_BINARY=<full path to GKI kernel image, eg. Image.lz4>
 #     - GKI_RAMDISK_PREBUILT_BINARY=<Name of the GKI ramdisk prebuilt which includes
 #       the generic ramdisk components like init and the non-device-specific rc files>
 #     - VENDOR_RAMDISK_BINARY=<Name of the vendor ramdisk binary which includes the
@@ -699,6 +700,7 @@ echo " Files copied to ${DIST_DIR}"
 
 if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 	MKBOOTIMG_ARGS=()
+	MKBOOTIMG_VARGS=()
 	if [ -n  "${BASE_ADDRESS}" ]; then
 		MKBOOTIMG_ARGS+=("--base" "${BASE_ADDRESS}")
 	fi
@@ -717,30 +719,30 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 		fi
 	else
 		cat $DTB_FILE_LIST > ${DIST_DIR}/dtb.img
-		MKBOOTIMG_ARGS+=("--dtb" "${DIST_DIR}/dtb.img")
+		MKBOOTIMG_VARGS+=("--dtb" "${DIST_DIR}/dtb.img")
 	fi
 
-	MKBOOTIMG_RAMDISKS=()
+	MKBOOTIMG_VENDOR_RAMDISKS=()
 	for ramdisk in ${VENDOR_RAMDISK_BINARY} \
 		       "${MODULES_STAGING_DIR}/initramfs.cpio"; do
 		if [ -f "${DIST_DIR}/${ramdisk}" ]; then
-			MKBOOTIMG_RAMDISKS+=("${DIST_DIR}/${ramdisk}")
+			MKBOOTIMG_VENDOR_RAMDISKS+=("${DIST_DIR}/${ramdisk}")
 		else
 			if [ -f "${ramdisk}" ]; then
-				MKBOOTIMG_RAMDISKS+=("${ramdisk}")
+				MKBOOTIMG_VENDOR_RAMDISKS+=("${ramdisk}")
 			fi
 		fi
 	done
-	for ((i=0; i<"${#MKBOOTIMG_RAMDISKS[@]}"; i++)); do
+	for ((i=0; i<"${#MKBOOTIMG_VENDOR_RAMDISKS[@]}"; i++)); do
 		CPIO_NAME="$(mktemp -t build.sh.ramdisk.XXXXXXXX)"
-		if ${RAMDISK_DECOMPRESS} "${MKBOOTIMG_RAMDISKS[$i]}" 2>/dev/null > ${CPIO_NAME}; then
-			MKBOOTIMG_RAMDISKS[$i]=${CPIO_NAME}
+		if ${RAMDISK_DECOMPRESS} "${MKBOOTIMG_VENDOR_RAMDISKS[$i]}" 2>/dev/null > ${CPIO_NAME}; then
+			MKBOOTIMG_VENDOR_RAMDISKS[$i]=${CPIO_NAME}
 		else
 			rm -f ${CPIO_NAME}
 		fi
 	done
-	if [ "${#MKBOOTIMG_RAMDISKS[@]}" -gt 0 ]; then
-		cat ${MKBOOTIMG_RAMDISKS[*]} | ${RAMDISK_COMPRESS} - > ${DIST_DIR}/ramdisk.${RAMDISK_EXT}
+	if [ "${#MKBOOTIMG_VENDOR_RAMDISKS[@]}" -gt 0 ]; then
+		cat ${MKBOOTIMG_VENDOR_RAMDISKS[*]} | ${RAMDISK_COMPRESS} - > ${DIST_DIR}/ramdisk.${RAMDISK_EXT}
 	elif [ -z "${SKIP_VENDOR_BOOT}" ]; then
 		echo "No ramdisk found. Please provide a GKI and/or a vendor ramdisk."
 		exit 1
@@ -765,10 +767,10 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 		fi
 
 		if [ -z "${SKIP_VENDOR_BOOT}" ]; then
-			MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img" \
+			MKBOOTIMG_VARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img" \
 				"--vendor_ramdisk" "${DIST_DIR}/ramdisk.${RAMDISK_EXT}")
 			if [ -n "${KERNEL_VENDOR_CMDLINE}" ]; then
-				MKBOOTIMG_ARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
+				MKBOOTIMG_VARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
 			fi
 		fi
 	else
@@ -777,13 +779,21 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 
 	python "$MKBOOTIMG_PATH" --kernel "${DIST_DIR}/${KERNEL_BINARY}" \
 		--header_version "${BOOT_IMAGE_HEADER_VERSION}" \
-		"${MKBOOTIMG_ARGS[@]}" -o "${DIST_DIR}/boot.img"
+		"${MKBOOTIMG_ARGS[@]}" "${MKBOOTIMG_VARGS[@]}" -o "${DIST_DIR}/boot.img"
+
+	if [ -n "${GKI_KERNEL_BINARY}" ]; then
+		python "$MKBOOTIMG_PATH" --kernel "${GKI_KERNEL_BINARY}" \
+			--header_version "${BOOT_IMAGE_HEADER_VERSION}" \
+			"${MKBOOTIMG_ARGS[@]}" -o "${DIST_DIR}/boot-gki.img"
+	fi
 
 	[ -f "${DIST_DIR}/boot.img" ] && echo "boot image created at ${DIST_DIR}/boot.img"
 	[ -z "${SKIP_VENDOR_BOOT}" ] \
 	  && [ "${BOOT_IMAGE_HEADER_VERSION}" -eq "3" ] \
 		&& [ -f "${DIST_DIR}/vendor_boot.img" ] \
 		&& echo "vendor boot image created at ${DIST_DIR}/vendor_boot.img"
+	[ -n "${GKI_KERNEL_BINARY}" ] && [ -f "${DIST_DIR}/boot-gki.img" ] \
+		&& echo "GKI boot image created at ${DIST_DIR}/boot-gki.img"
 fi
 
 
