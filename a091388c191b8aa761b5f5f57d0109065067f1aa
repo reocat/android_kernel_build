@@ -621,6 +621,30 @@
       "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "84f8e79b_b10fde46",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T21:43:59Z",
+      "side": 1,
+      "message": "This makes sense for the destination side of the cp command. On the \"src\" side, I think we do need just ${ko}. I just tried it by creating extra/mydir/mymodule.ko and I get\n\ncp: bad \u0027extra/mymodule.ko\u0027: No such file or directory",
+      "parentUuid": "79663c09_0871a78c",
+      "range": {
+        "startLine": 273,
+        "startChar": 10,
+        "endLine": 273,
+        "endChar": 33
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
