@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "484348a6_4a0cdca1",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-05-20T22:21:13Z",
+      "side": 1,
+      "message": "If BOOT_IMAGE_HEADER_VERSION is different from 3, I am wondering if you might end up with two \"--ramdisk\" command line arguments. See line 755.",
+      "revId": "4645af1acec31bc727c0b317cccd24da18bb191b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
