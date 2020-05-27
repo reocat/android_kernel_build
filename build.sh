@@ -407,14 +407,13 @@ fi
 rm -rf ${MODULES_STAGING_DIR}
 mkdir -p ${MODULES_STAGING_DIR}
 
-if [ -z "${DO_NOT_STRIP_MODULES}" ]; then
+if [[ -z "${DO_NOT_STRIP_MODULES}" ]] || [[ "${DO_NOT_STRIP_MODULES}" -eq "0" ]]; then
     MODULE_STRIP_FLAG="INSTALL_MOD_STRIP=1"
 fi
 
 if [ -n "${BUILD_INITRAMFS}" -o  -n "${IN_KERNEL_MODULES}" ]; then
   echo "========================================================"
   echo " Installing kernel modules into staging directory"
-
   (cd ${OUT_DIR} &&                                                           \
    make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MODULE_STRIP_FLAG}                   \
         INSTALL_MOD_PATH=${MODULES_STAGING_DIR} ${MAKE_ARGS} modules_install)
@@ -525,7 +524,7 @@ if [ -n "${MODULES}" ]; then
           find extra -type f -name "*.ko" | sort >> modules.order)
     fi
 
-    if [ -n "${DO_NOT_STRIP_MODULES}" ]; then
+    if [ "${DO_NOT_STRIP_MODULES}" -ne "0" ]; then
       # strip debug symbols off initramfs modules
       find ${INITRAMFS_STAGING_DIR} -type f -name "*.ko" \
         -exec ${OBJCOPY:${CROSS_COMPILE}strip} --strip-debug {} \;
