@@ -645,6 +645,30 @@
       "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89a184c5_5f0b5b56",
+        "filename": "build.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-06-03T19:38:47Z",
+      "side": 1,
+      "message": "ah yes, that makes sense. Thanks for testing!",
+      "parentUuid": "84f8e79b_b10fde46",
+      "range": {
+        "startLine": 273,
+        "startChar": 10,
+        "endLine": 273,
+        "endChar": 33
+      },
+      "revId": "a091388c191b8aa761b5f5f57d0109065067f1aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }

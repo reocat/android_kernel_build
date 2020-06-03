@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e640f213_a2104a55",
+        "filename": "build.sh",
+        "patchSetId": 24
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-06-03T19:38:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f1aedb6_aa24e82b",
+      "revId": "0bd9bc8ab7ed588b0d968bd410eabe77c112e36d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ddec0b11_a4253dbb",
         "filename": "build.sh",
         "patchSetId": 24
@@ -39,6 +57,30 @@
       "revId": "0bd9bc8ab7ed588b0d968bd410eabe77c112e36d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efd0bfee_c927e478",
+        "filename": "build.sh",
+        "patchSetId": 24
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-06-03T19:38:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddec0b11_a4253dbb",
+      "range": {
+        "startLine": 215,
+        "startChar": 9,
+        "endLine": 215,
+        "endChar": 10
+      },
+      "revId": "0bd9bc8ab7ed588b0d968bd410eabe77c112e36d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
