@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e0694fe_48bee6c2",
+        "filename": "build.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-06-04T23:25:41Z",
+      "side": 1,
+      "message": "We really need to get this file settled on either tabs or spaces for indentation... It looks to me like the file currently has more lines with spaces, also the Google style guide for shell calls for spaces. Can you change the new lines to use spaces?",
+      "revId": "1072f4de0fc40c86d4ab98e70794c84a02046307",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
