@@ -16,6 +16,24 @@
       "revId": "1072f4de0fc40c86d4ab98e70794c84a02046307",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1955865d_b186cffa",
+        "filename": "build.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-06-09T18:25:26Z",
+      "side": 1,
+      "message": "This is for a conversation between Google internal style guide and upstream kernel style guide. I\u0027ll figure this out internally. For now, let\u0027s merge this change due to the urgency from QC.",
+      "parentUuid": "8e0694fe_48bee6c2",
+      "revId": "1072f4de0fc40c86d4ab98e70794c84a02046307",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
