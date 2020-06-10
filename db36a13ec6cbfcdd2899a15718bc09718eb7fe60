@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bbdb0ebf_f2285b82",
+        "filename": "build.sh",
+        "patchSetId": 27
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-06-10T15:08:04Z",
+      "side": 1,
+      "message": "This looks like it is expected to evaluate to a single directory path, but ends in a wildcard. Why is that?",
+      "range": {
+        "startLine": 235,
+        "startChar": 30,
+        "endLine": 235,
+        "endChar": 31
+      },
+      "revId": "db36a13ec6cbfcdd2899a15718bc09718eb7fe60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
