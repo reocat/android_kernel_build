@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2cb23459_b09b9b71",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-06-10T11:27:41Z",
+      "side": 1,
+      "message": "-eq is an integer comparison. But the way it is written we are comparing strings.\n\nI feel like we should just check whether it has been set to \u003d1 or not.",
+      "range": {
+        "startLine": 410,
+        "startChar": 70,
+        "endLine": 410,
+        "endChar": 73
+      },
+      "revId": "f346220126dbbf628e3fd73c8f3d2c46a470c138",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb8088f7_2704217c",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-06-10T11:27:41Z",
+      "side": 1,
+      "message": "see above",
+      "revId": "f346220126dbbf628e3fd73c8f3d2c46a470c138",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
