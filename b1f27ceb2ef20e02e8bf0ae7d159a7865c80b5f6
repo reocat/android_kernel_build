@@ -22,6 +22,30 @@
       "revId": "b1f27ceb2ef20e02e8bf0ae7d159a7865c80b5f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d09a2a8_e76c7491",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2020-06-10T20:13:12Z",
+      "side": 1,
+      "message": "We should.",
+      "parentUuid": "a0321373_70848af2",
+      "range": {
+        "startLine": 727,
+        "startChar": 40,
+        "endLine": 727,
+        "endChar": 46
+      },
+      "revId": "b1f27ceb2ef20e02e8bf0ae7d159a7865c80b5f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
