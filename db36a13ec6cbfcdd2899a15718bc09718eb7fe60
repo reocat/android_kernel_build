@@ -22,6 +22,30 @@
       "revId": "db36a13ec6cbfcdd2899a15718bc09718eb7fe60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "925417c1_48d99492",
+        "filename": "build.sh",
+        "patchSetId": 27
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-06-10T16:58:34Z",
+      "side": 1,
+      "message": "That\u0027s because the staging directory creates a directory name based on the kernel version + git sha. So adding a \"*\" allows me to include that directory without knowing the name. For example, for android-5.4 it could be \"staging/lib/modules/5.4.41-gd82402a2608f\".",
+      "parentUuid": "bbdb0ebf_f2285b82",
+      "range": {
+        "startLine": 235,
+        "startChar": 30,
+        "endLine": 235,
+        "endChar": 31
+      },
+      "revId": "db36a13ec6cbfcdd2899a15718bc09718eb7fe60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
