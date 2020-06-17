@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2bdb89d6_759972c8",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-06-17T06:35:36Z",
+      "side": 1,
+      "message": "This is a bug probably caused by rebasing this change around a bunch. It should be MKBOOTIMG_RAMDISKS.",
+      "range": {
+        "startLine": 731,
+        "startChar": 8,
+        "endLine": 731,
+        "endChar": 33
+      },
+      "revId": "f293e0a7c6d8a3651df260709c25932a2ad81c28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
