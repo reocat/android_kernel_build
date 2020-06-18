@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d87fde7_b09931a3",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-06-18T00:26:54Z",
+      "side": 1,
+      "message": "--favor-decSpeed makes the version of lz4 that I am using print \"Incorrect parameters\" and fail.\n\nThe version I am using is\n\"*** LZ4 command line interface 64-bits v1.7.5, by Yann Collet ***\"",
+      "range": {
+        "startLine": 357,
+        "startChar": 34,
+        "endLine": 357,
+        "endChar": 50
+      },
+      "revId": "8fc830dc4c6d6de2483491b61b8f6f41403c2cb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
