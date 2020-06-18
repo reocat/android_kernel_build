@@ -46,6 +46,30 @@
       "revId": "8fc830dc4c6d6de2483491b61b8f6f41403c2cb9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70232b96_abb33ef6",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-06-18T00:33:45Z",
+      "side": 1,
+      "message": "This is a kernel manifest specific issue - the top level manifest includes a version of lz4 that supports this option.",
+      "parentUuid": "0d87fde7_b09931a3",
+      "range": {
+        "startLine": 357,
+        "startChar": 34,
+        "endLine": 357,
+        "endChar": 50
+      },
+      "revId": "8fc830dc4c6d6de2483491b61b8f6f41403c2cb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
