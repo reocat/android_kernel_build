@@ -22,6 +22,30 @@
       "revId": "8fc830dc4c6d6de2483491b61b8f6f41403c2cb9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f511581_4fd61e53",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-06-18T00:30:43Z",
+      "side": 1,
+      "message": "Daniel, Can you use, the kernel-build-tools version?\n\nhttps://android.googlesource.com/kernel/prebuilts/build-tools/",
+      "parentUuid": "0d87fde7_b09931a3",
+      "range": {
+        "startLine": 357,
+        "startChar": 34,
+        "endLine": 357,
+        "endChar": 50
+      },
+      "revId": "8fc830dc4c6d6de2483491b61b8f6f41403c2cb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
