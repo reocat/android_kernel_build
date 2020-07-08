@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e751ee0_e71df95e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2020-07-08T21:21:03Z",
+      "side": 1,
+      "message": "Do we ",
+      "revId": "3e27f19e141b39a7fef469d166331466fca3824f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "852c1bc7_ea0129bb",
+        "filename": "static_analysis/checkpatch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2020-07-08T21:21:03Z",
+      "side": 1,
+      "message": "Do we need to keep the original option for a while in case any scripts rely on it?",
+      "revId": "3e27f19e141b39a7fef469d166331466fca3824f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
