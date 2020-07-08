@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9bdf53b3_1c55e931",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-08T19:45:56Z",
+      "side": 1,
+      "message": "needs an update",
+      "revId": "09c4a4014e435b4e181f10237c77871615768602",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bd732e6_087e3fe4",
+        "filename": "abi/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-08T19:45:56Z",
+      "side": 1,
+      "message": "part of the KMI",
+      "range": {
+        "startLine": 177,
+        "startChar": 38,
+        "endLine": 177,
+        "endChar": 45
+      },
+      "revId": "09c4a4014e435b4e181f10237c77871615768602",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0805745_848d362c",
+        "filename": "abi/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-08T19:45:56Z",
+      "side": 1,
+      "message": "common/android/abi_gki_aarch64",
+      "range": {
+        "startLine": 227,
+        "startChar": 68,
+        "endLine": 227,
+        "endChar": 90
+      },
+      "revId": "09c4a4014e435b4e181f10237c77871615768602",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
