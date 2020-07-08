@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70fe119e_48080faf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2020-07-08T22:34:11Z",
+      "side": 1,
+      "message": "One comment, otherwise, looks close enough.",
+      "revId": "1ef070656593ef1b728961b273efe7f52d13d82f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f4a13d4_dccbd7e9",
+        "filename": "abi/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2020-07-08T22:34:11Z",
+      "side": 1,
+      "message": "This isn\u0027t getting rendered like you\u0027d want it to. Might need a blank line above it?",
+      "range": {
+        "startLine": 539,
+        "startChar": 4,
+        "endLine": 539,
+        "endChar": 8
+      },
+      "revId": "1ef070656593ef1b728961b273efe7f52d13d82f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
