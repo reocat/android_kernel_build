@@ -1,0 +1,848 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c48e382_e39e8da4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "LGTM, just some minor things I would like to see addressed. Thanks for working on this!",
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e7ea716_639a776e",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "KMI compliance or KMI stability",
+      "range": {
+        "startLine": 411,
+        "startChar": 61,
+        "endLine": 411,
+        "endChar": 64
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d98f13b_4a5722b1",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "measure",
+      "range": {
+        "startLine": 411,
+        "startChar": 40,
+        "endLine": 411,
+        "endChar": 49
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "219ff577_3ba6c021",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "typical failure occurring at module load time",
+      "range": {
+        "startLine": 413,
+        "startChar": 50,
+        "endLine": 413,
+        "endChar": 69
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79f668d5_fbd5fb17",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "actually, the expected KMI of a module is not matching the vmlinux KMI.",
+      "range": {
+        "startLine": 413,
+        "startChar": 4,
+        "endLine": 413,
+        "endChar": 13
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb925f61_4288f33a",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "symbol `module_layout()`",
+      "range": {
+        "startLine": 414,
+        "startChar": 23,
+        "endLine": 414,
+        "endChar": 47
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da8488ef_97f09cba",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 417,
+        "startChar": 64,
+        "endLine": 417,
+        "endChar": 66
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edf1e2b1_53a782af",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "that is",
+      "range": {
+        "startLine": 429,
+        "startChar": 67,
+        "endLine": 429,
+        "endChar": 73
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41c289fe_5fa8f9de",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "worked on",
+      "range": {
+        "startLine": 433,
+        "startChar": 44,
+        "endLine": 433,
+        "endChar": 49
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f6f453d_2c05891c",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "As an example for (1),",
+      "range": {
+        "startLine": 436,
+        "startChar": 0,
+        "endLine": 436,
+        "endChar": 26
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a35d387b_69edc3e6",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "refer to a commit hash. otherwise this will be pointing to a wrong line number in no time.",
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aba1878b_44b9e418",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "same",
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca96088f_2c861d25",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "That is problematic for several reasons",
+      "range": {
+        "startLine": 445,
+        "startChar": 73,
+        "endLine": 446,
+        "endChar": 29
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38254629_a868ebf2",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "captured by only inspecting the binary representation as of now.",
+      "range": {
+        "startLine": 454,
+        "startChar": 13,
+        "endLine": 454,
+        "endChar": 56
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95d3e60d_bb51344e",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "this has been released",
+      "range": {
+        "startLine": 460,
+        "startChar": 0,
+        "endLine": 462,
+        "endChar": 32
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78e2a737_8b42ddca",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "and the symbol namespace",
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8eaf6ef2_3d050655",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "combine the last two lines",
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fe66a09_d447ee04",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "backticks",
+      "range": {
+        "startLine": 524,
+        "startChar": 7,
+        "endLine": 524,
+        "endChar": 19
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "927a2f4f_071770dc",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "A missing",
+      "range": {
+        "startLine": 531,
+        "startChar": 7,
+        "endLine": 531,
+        "endChar": 9
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1c9350e_755a58ba",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "indicates",
+      "range": {
+        "startLine": 531,
+        "startChar": 46,
+        "endLine": 531,
+        "endChar": 51
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bad6ab90_c8b5837e",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "drop",
+      "range": {
+        "startLine": 544,
+        "startChar": 39,
+        "endLine": 544,
+        "endChar": 45
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3c12367_bf603ebd",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "That will cause CRC mismatches",
+      "range": {
+        "startLine": 556,
+        "startChar": 0,
+        "endLine": 556,
+        "endChar": 19
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ff8825f_e993bd75",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "it will",
+      "range": {
+        "startLine": 557,
+        "startChar": 73,
+        "endLine": 557,
+        "endChar": 78
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d22f7d6_1ad5e2fa",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "To identify the `#include` that causes the difference,",
+      "range": {
+        "startLine": 581,
+        "startChar": 0,
+        "endLine": 581,
+        "endChar": 20
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98dc7fc2_89e0915f",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "Open",
+      "range": {
+        "startLine": 583,
+        "startChar": 3,
+        "endLine": 583,
+        "endChar": 8
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec7eae15_8baa54e4",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "really anywhere? maybe suggest the top or bottom for consistent results",
+      "range": {
+        "startLine": 586,
+        "startChar": 26,
+        "endLine": 586,
+        "endChar": 34
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae82ee94_2a28fa5e",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "You will",
+      "range": {
+        "startLine": 601,
+        "startChar": 28,
+        "endLine": 601,
+        "endChar": 34
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ac10fe7_dca6e287",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "you have",
+      "range": {
+        "startLine": 615,
+        "startChar": 8,
+        "endLine": 615,
+        "endChar": 14
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "770192c2_ad142d2e",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "That will",
+      "range": {
+        "startLine": 642,
+        "startChar": 0,
+        "endLine": 642,
+        "endChar": 7
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ae33f8f_556eaa3d",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "it will",
+      "range": {
+        "startLine": 645,
+        "startChar": 46,
+        "endLine": 645,
+        "endChar": 51
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b460823c_8be1fe98",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "To identify the changed type,",
+      "range": {
+        "startLine": 661,
+        "startChar": 0,
+        "endLine": 661,
+        "endChar": 20
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1226ec2_600a6671",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "usually .h files",
+      "range": {
+        "startLine": 663,
+        "startChar": 57,
+        "endLine": 663,
+        "endChar": 61
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24c4df8e_3aa7c205",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "it is",
+      "range": {
+        "startLine": 664,
+        "startChar": 6,
+        "endLine": 664,
+        "endChar": 10
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5269b45_29bb6045",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "that is not really b)",
+      "range": {
+        "startLine": 672,
+        "startChar": 3,
+        "endLine": 672,
+        "endChar": 7
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60fe7c99_5e70df59",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "You will",
+      "range": {
+        "startLine": 674,
+        "startChar": 8,
+        "endLine": 674,
+        "endChar": 13
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbb89658_cbcc732d",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "the one you are looking for.",
+      "range": {
+        "startLine": 674,
+        "startChar": 69,
+        "endLine": 675,
+        "endChar": 11
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd80beb3_7cb6d7dc",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "until",
+      "range": {
+        "startLine": 675,
+        "startChar": 44,
+        "endLine": 675,
+        "endChar": 48
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3979b487_d821f255",
+        "filename": "abi/README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-09T12:15:56Z",
+      "side": 1,
+      "message": "you have",
+      "range": {
+        "startLine": 677,
+        "startChar": 8,
+        "endLine": 677,
+        "endChar": 14
+      },
+      "revId": "387526b5e6c887429eeccf9eab3ab47dfc935c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
