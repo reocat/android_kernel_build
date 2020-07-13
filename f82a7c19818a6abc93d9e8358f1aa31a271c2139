@@ -34,6 +34,24 @@
       "revId": "f82a7c19818a6abc93d9e8358f1aa31a271c2139",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8b73352_265c6881",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-07-13T18:20:01Z",
+      "side": 0,
+      "message": "See follow up patch I6c26069d3297da38f9f8f26c8b5f0b24b9ec2b31. I can also fold that one into this change if you prefer.",
+      "parentUuid": "08c18b18_16b7a493",
+      "revId": "f82a7c19818a6abc93d9e8358f1aa31a271c2139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
