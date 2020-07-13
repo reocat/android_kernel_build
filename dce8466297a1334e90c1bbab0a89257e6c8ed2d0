@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "b1884bc1_2b9bd753",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-13T19:40:16Z",
+      "side": 1,
+      "message": "While I like the approach of the patch, I wonder whether checking the built modules against a given list is necessary a GKI only feature. It could be also useful downstream in vendor builds to ensure no new modules are sneaking in (even unintentionally by an upstream merge). So, I would rather think of this feature as \"check the built modules against a given list of allowed modules\". This allow-list, we coincidentally can take to enable more features in extract_symbols etc.\n\nSo, I think this can be a bit more generic. Maybe instead of IS_GKI_BUILD, define STRICT_MODULE_LIST\u003dpath/to/some/allowlist\n\nAlso, do not assume, vendor builds are not including the gki build.config :-) TIL!",
+      "revId": "dce8466297a1334e90c1bbab0a89257e6c8ed2d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4849de12_93af5ede",
         "filename": "build.sh",
         "patchSetId": 1
