@@ -102,6 +102,12 @@ def extract_exported_symbols(binary):
 
   return symbol_sort(symbols)
 
+def extract_exported_in_kernel(vmlinux, gki_modules):
+  """Extract the ksymtab exported symbols from vmlinux and GKI modules"""
+  symbols = extract_exported_symbols(vmlinux)
+  for module in gki_modules:
+    symbols.extend(extract_exported_symbols(module))
+  return symbols
 
 def extract_exported_in_modules(modules):
   """Extract the ksymtab exported symbols for a list of kernel modules."""
@@ -216,6 +222,11 @@ def main():
       help="Only process modules matching the filter. Can be passed multiple times."
   )
 
+  parser.add_argument(
+      "--gki-modules",
+      default=None,
+      help="List of GKI modules.")
+
   args = parser.parse_args()
 
   if not os.path.isdir(args.directory):
@@ -239,6 +250,15 @@ def main():
             [re.search(f, os.path.basename(mod)) for f in args.module_filters])
     ]
 
+  # Separate vendor and GKI modules in two lists
+  gki_modules = []
+  if args.gki_modules:
+    with open(args.gki_modules, 'r') as f:
+      gki_modules = f.read().splitlines()
+    gki_modules = [ mod for mod in modules if os.path.basename(mod) in gki_modules ]
+    modules = [ mod for mod in modules if mod not in gki_modules ]
+
+
   if vmlinux is None or not os.path.isfile(vmlinux):
     print("Could not find a suitable vmlinux file.")
     return 1
@@ -247,7 +267,7 @@ def main():
   undefined_symbols = extract_undefined_symbols(modules)
 
   # Get the actually defined and exported symbols
-  exported_in_vmlinux = extract_exported_symbols(vmlinux)
+  exported_in_vmlinux = extract_exported_in_kernel(vmlinux, gki_modules)
   exported_in_modules = extract_exported_in_modules(modules)
 
   # Build the list of all exported symbols (vmlinux + modules)
