@@ -162,8 +162,15 @@ if [ -n "$KMI_WHITELIST" ]; then
         echo "========================================================"
         echo " Updating the ABI whitelist"
         WL_SHA1_BEFORE=$(sha1sum $KERNEL_DIR/$KMI_WHITELIST 2>&1)
+
+        # Exclude GKI modules from non-GKI builds
+        GKI_MODULES_LIST="${DIST_DIR}/gki_modules.list"
+        if [[ -f "${GKI_MODULES_LIST}" ]] && [[ -z "${IS_GKI_BUILD}" ]]; then
+            MOD_EXCLUDE_FLAG="--excluded-modules ${GKI_MODULES_LIST}"
+        fi
         ${ROOT_DIR}/build/abi/extract_symbols       \
             --whitelist $KERNEL_DIR/$KMI_WHITELIST  \
+            ${MOD_EXCLUDE_FLAG}                     \
             ${DIST_DIR}
         WL_SHA1_AFTER=$(sha1sum $KERNEL_DIR/$KMI_WHITELIST 2>&1)
 
