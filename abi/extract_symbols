@@ -216,6 +216,11 @@ def main():
       help="Only process modules matching the filter. Can be passed multiple times."
   )
 
+  parser.add_argument(
+      "--excluded-modules",
+      default=None,
+      help="List of modules to exclude.")
+
   args = parser.parse_args()
 
   if not os.path.isdir(args.directory):
@@ -237,6 +242,13 @@ def main():
     modules = [
         mod for mod in modules if any(
             [re.search(f, os.path.basename(mod)) for f in args.module_filters])
+    ]
+
+  if args.excluded_modules:
+    with open(args.excluded_modules, 'r') as f:
+      modules_to_exclude = f.read().splitlines()
+    modules = [
+        mod for mod in modules if os.path.basename(mod) not in modules_to_exclude
     ]
 
   if vmlinux is None or not os.path.isfile(vmlinux):
