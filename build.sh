@@ -728,6 +728,7 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 
 	MKBOOTIMG_RAMDISKS=()
 
+	CPIO_NAME=""
 	if [ -n "${VENDOR_RAMDISK_BINARY}" ]; then
 		if ! [ -f "${VENDOR_RAMDISK_BINARY}" ]; then
 			echo "Unable to locate vendor ramdisk ${VENDOR_RAMDISK_BINARY}."
@@ -757,6 +758,7 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 
 	if [ "${#MKBOOTIMG_RAMDISKS[@]}" -gt 0 ]; then
 		cat ${MKBOOTIMG_RAMDISKS[*]} | ${RAMDISK_COMPRESS} - > ${DIST_DIR}/ramdisk.${RAMDISK_EXT}
+		[ -n "${CPIO_NAME}" ] && rm -f "${CPIO_NAME}"
 	elif [ -z "${SKIP_VENDOR_BOOT}" ]; then
 		echo "No ramdisk found. Please provide a GKI and/or a vendor ramdisk."
 		exit 1
