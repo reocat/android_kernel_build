@@ -157,6 +157,10 @@
 #     the contents of this variable, lines should be of the form: options
 #     <modulename> <param1>=<val> <param2>=<val> ...
 #
+#   MODULES_ORDER
+#     optional file containing the list of modules that are expected to be built
+#     for the current configuration, in the modules.order format.
+#
 #   LZ4_RAMDISK
 #     if defined, any ramdisks generated will be lz4 compressed instead of
 #     gzip compressed.
@@ -494,6 +498,17 @@ if [ -n "${POST_KERNEL_BUILD_CMDS}" ]; then
   set -x
   eval ${POST_KERNEL_BUILD_CMDS}
   set +x
+fi
+
+if [ -n "${MODULES_ORDER}" ]; then
+  echo "========================================================"
+  echo " Checking the list of modules:"
+  if ! diff -u "${KERNEL_DIR}/${MODULES_ORDER}" "${OUT_DIR}/modules.order"; then
+    echo "ERROR: modules list out of date" >&2
+    echo "Update it with:" >&2
+    echo "cp ${OUT_DIR}/modules.order ${KERNEL_DIR}/${MODULES_ORDER}" >&2
+    exit 1
+  fi
 fi
 
 if [ -n "${KMI_WHITELIST_STRICT_MODE}" ]; then
