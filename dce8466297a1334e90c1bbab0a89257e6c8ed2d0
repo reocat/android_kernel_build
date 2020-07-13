@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4849de12_93af5ede",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-07-13T18:03:43Z",
+      "side": 1,
+      "message": "Can\u0027t we do\n\nif ! diff -u \"${GKI_MODULES_ORDER}\" \"${OUT_DIR}/modules.order\"; then\n\nand avoid the set +e/set -e pair?",
+      "revId": "dce8466297a1334e90c1bbab0a89257e6c8ed2d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d95f0602_a5f614e9",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-07-13T18:03:43Z",
+      "side": 1,
+      "message": "On line 500, you use double [[ ]]. Consider using either [ or [[ for consistency.",
+      "range": {
+        "startLine": 505,
+        "startChar": 5,
+        "endLine": 505,
+        "endChar": 6
+      },
+      "revId": "dce8466297a1334e90c1bbab0a89257e6c8ed2d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19610a9f_afef4f41",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-07-13T18:03:43Z",
+      "side": 1,
+      "message": "On line 500, you use double [[ ]]. Consider using either [ or [[ for consistency.",
+      "range": {
+        "startLine": 717,
+        "startChar": 3,
+        "endLine": 717,
+        "endChar": 4
+      },
+      "revId": "dce8466297a1334e90c1bbab0a89257e6c8ed2d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3785677_34948e71",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-07-13T18:03:43Z",
+      "side": 1,
+      "message": "This looks like a neat trick, but I find it a bit unusual. How about this alternative approach:\n\nwhile read p; do echo $(basename \"${p}\") ; done \u003c \"${GKI_MODULES_ORDER}\" \u003e \"${DIST_DIR}/gki_modules.list\"",
+      "revId": "dce8466297a1334e90c1bbab0a89257e6c8ed2d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
