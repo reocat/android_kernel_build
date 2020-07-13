@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08c18b18_16b7a493",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-07-13T18:17:54Z",
+      "side": 0,
+      "message": "Should we just add \u0027rm -f \"${CPIO_NAME}\"\u0027 here?",
+      "revId": "f82a7c19818a6abc93d9e8358f1aa31a271c2139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
