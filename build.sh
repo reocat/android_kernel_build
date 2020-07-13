@@ -496,6 +496,18 @@ if [ -n "${POST_KERNEL_BUILD_CMDS}" ]; then
   set +x
 fi
 
+GKI_MODULES_ORDER="${KERNEL_DIR}/android/gki_${ARCH}_modules.order"
+if [ -n "${IS_GKI_BUILD}" -a -s "${OUT_DIR}/modules.order" ]; then
+  echo "========================================================"
+  echo " Checking the list of GKI modules:"
+  if ! diff -u "${GKI_MODULES_ORDER}" "${OUT_DIR}/modules.order"; then
+    echo "ERROR: GKI modules list out of date" >&2
+    echo "Update it with:" >&2
+    echo "cp ${OUT_DIR}/modules.order ${GKI_MODULES_ORDER}" >&2
+    exit 1
+  fi
+fi
+
 if [ -n "${KMI_WHITELIST_STRICT_MODE}" ]; then
   echo "========================================================"
   echo " Comparing the KMI and the whitelists:"
@@ -696,6 +708,13 @@ if [ -z "${SKIP_CP_KERNEL_HDR}" ] ; then
               --transform "s,^,kernel-headers/,"               \
               --null -T -
   popd
+fi
+
+# Always create the list of GKI modules, to ease the use of extract_symbols
+if [ -f "${GKI_MODULES_ORDER}" ]; then
+  while read p; do
+    echo $(basename "${p}")
+  done < "${GKI_MODULES_ORDER}" > "${DIST_DIR}/gki_modules.list"
 fi
 
 echo "========================================================"
