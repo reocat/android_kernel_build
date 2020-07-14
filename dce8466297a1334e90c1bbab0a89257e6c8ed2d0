@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "b49b675a_45e60566",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-07-14T09:33:48Z",
+      "side": 1,
+      "message": "I understand the idea but I\u0027m really not sure how to make it work. Can you have a look at my reply on aosp/1361664 ? Maybe that\u0027ll be easier to take it from there.",
+      "parentUuid": "c5c9c2dd_33cc87fe",
+      "revId": "dce8466297a1334e90c1bbab0a89257e6c8ed2d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4849de12_93af5ede",
         "filename": "build.sh",
         "patchSetId": 1
