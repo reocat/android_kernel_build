@@ -16,6 +16,24 @@
       "revId": "eb8e5343d4aacb27a3481af2841cda9179df1dad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d7da2f82_cb646790",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-07-14T15:24:39Z",
+      "side": 1,
+      "message": "No ABI diffs, rather. The XML changes I think will be blank line removal. Going to check more carefully.",
+      "parentUuid": "07928497_f8f0c182",
+      "revId": "eb8e5343d4aacb27a3481af2841cda9179df1dad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
