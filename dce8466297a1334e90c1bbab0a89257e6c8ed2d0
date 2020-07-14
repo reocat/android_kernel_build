@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "c5c9c2dd_33cc87fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-14T09:28:50Z",
+      "side": 1,
+      "message": "I understand what you intend with this patch. Still I think you could achieve the same with a more generic patch. And that generic feature is useful in general.\n\nThe feature is \"only allow the modules of this list\". Your GKI side product is to use it to enforce the GKI module list to be up to date.\n\nThink of a vendor that wants to control which modules go into the product (maybe for space reasons or compliance). They would defined such a module list file in their tree (maybe as a concatenation with the GKI one). Now, either their local patches or an upstream (GKI) merge could cause a new module to be added that is \u0027unknown\u0027. Breaking the build in this case is the desired effect to ensure this list is up to date. And therefore I think this is a feature on its own.",
+      "parentUuid": "5e6f8225_a424dc86",
+      "revId": "dce8466297a1334e90c1bbab0a89257e6c8ed2d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4849de12_93af5ede",
         "filename": "build.sh",
         "patchSetId": 1
