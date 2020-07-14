@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5e6f8225_a424dc86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-07-14T08:27:40Z",
+      "side": 1,
+      "message": "\u003e While I like the approach of the patch, I wonder whether checking the built modules against a given list is necessary a GKI only feature. It could be also useful downstream in vendor builds to ensure no new modules are sneaking in (even unintentionally by an upstream merge). So, I would rather think of this feature as \"check the built modules against a given list of allowed modules\". This allow-list, we coincidentally can take to enable more features in extract_symbols etc.\n\u003e \n\u003e So, I think this can be a bit more generic. Maybe instead of IS_GKI_BUILD, define STRICT_MODULE_LIST\u003dpath/to/some/allowlist\n\nOh, I now realize I kinda failed to explained what this patch really is for. I don\u0027t actually want to only allow a list of module, I just want to make sure the list of GKI modules in the tree is always up-to-date, so it;s ready to use for vendors when they need it. The fact that we fail the build if an inconsistency is detected during a \u0027GKI build\u0027 is a necessary evil to ensure the above is always true, but I\u0027d rather avoid it altogether if I could.\n\nThe GKI module list is in the kernel tree only so that during a vendor build, it gets copied over to dist, and is used to exclude modules in extract_symbol. So I don\u0027t know if there is room for a vendor list of modules here.\n\nOr did you have something specific in mind?\n\n\u003e Also, do not assume, vendor builds are not including the gki build.config :-) TIL!\n\nRight, but if they do, their build will break the second this patch is merged and will remain like that until they reset IS_GKI_BUILD in their config 😊",
+      "parentUuid": "b1884bc1_2b9bd753",
+      "revId": "dce8466297a1334e90c1bbab0a89257e6c8ed2d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4849de12_93af5ede",
         "filename": "build.sh",
         "patchSetId": 1
