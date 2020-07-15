@@ -34,6 +34,24 @@
       "revId": "eb8e5343d4aacb27a3481af2841cda9179df1dad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c4e97b2_4eaf1374",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-07-15T09:28:18Z",
+      "side": 1,
+      "message": "There\u0027s the usual declarations moving between translation units. These happen even with the previous version of libabigail. Oh well.",
+      "parentUuid": "d7da2f82_cb646790",
+      "revId": "eb8e5343d4aacb27a3481af2841cda9179df1dad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
