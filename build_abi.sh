@@ -46,11 +46,13 @@ function show_help {
     echo "  -u | --update         Update ABI representation and main whitelist in the source directory"
     echo "  -n | --nodiff         Do not generate an ABI report with diff_abi"
     echo "  -r | --print-report   Print ABI short report in case of any differences"
+    echo "  -f | --full-report    Create a detailled ABI report"
 }
 
 UPDATE=0
 DIFF=1
 PRINT_REPORT=0
+FULL_REPORT=0
 
 ARGS=()
 for i in "$@"
@@ -66,6 +68,10 @@ case $i in
     ;;
     -r|--print-report)
     PRINT_REPORT=1
+    shift # past argument=value
+    ;;
+    -f|--full-report)
+    FULL_REPORT=1
     shift # past argument=value
     ;;
     -h|--help)
@@ -222,11 +228,18 @@ if [ -n "$ABI_DEFINITION" ]; then
         echo "========================================================"
         echo " Comparing ABI against expected definition ($ABI_DEFINITION)"
         abi_report=${DIST_DIR}/abi.report
+
+        FULL_REPORT_FLAG=
+        if [ $FULL_REPORT -eq 1 ]; then
+            FULL_REPORT_FLAG="--full-report"
+        fi
+
         set +e
         ${ROOT_DIR}/build/abi/diff_abi --baseline $KERNEL_DIR/$ABI_DEFINITION \
                                        --new      ${DIST_DIR}/${abi_out_file} \
                                        --report   ${abi_report}               \
                                        --short-report ${abi_report}.short     \
+                                       $FULL_REPORT_FLAG                      \
                                        $KMI_WHITELIST_FLAG
         rc=$?
         set -e
