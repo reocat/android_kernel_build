@@ -161,6 +161,12 @@
 #     optional file containing the list of modules that are expected to be built
 #     for the current configuration, in the modules.order format.
 #
+#   GKI_MODULES_ORDER
+#     optional file containing the list of GKI modules. This should be set in
+#     downstream build to ensure the ABI tooling correctly differentiates vendor/OEM
+#     modules and GKI modules. This should not be set in the upstream GKI
+#     build.config.
+#
 #   LZ4_RAMDISK
 #     if defined, any ramdisks generated will be lz4 compressed instead of
 #     gzip compressed.
@@ -711,6 +717,12 @@ if [ -z "${SKIP_CP_KERNEL_HDR}" ] ; then
               --transform "s,^,kernel-headers/,"               \
               --null -T -
   popd
+fi
+
+if [ -n "${GKI_MODULES_ORDER}" ]; then
+  while read p; do
+    echo $(basename "${p}")
+  done < "${KERNEL_DIR}/${GKI_MODULES_ORDER}" > "${DIST_DIR}/gki_modules.list"
 fi
 
 echo "========================================================"
