@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67cdc731_17c1f207",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-07-20T05:54:19Z",
+      "side": 1,
+      "message": "Thanks Will for reviewing this.\n\nI just tested these three patches with vendor ramdisks in CPIO, GZIP and LZ4 format and with no vendor ramdisk at all. The script still produces the same output (except for timestamps in the CPIO archives)",
+      "revId": "8208378171b1430ef6ce2c0ea9f9f0abea0eb80a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
