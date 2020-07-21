@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dbe7a2ff_a77b1d85",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-21T09:13:57Z",
+      "side": 1,
+      "message": "this method does not need to know that it is dealing with gki modules, just modules and module would do for this method.\n\nAnd I would change the function name to reflect that you are extracting the symbols from vmlinux and a set of modules.",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 30
+      },
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8aa97d2_93cf7e07",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-21T09:13:57Z",
+      "side": 1,
+      "message": "add more help text to explain what the implication of this option is.",
+      "range": {
+        "startLine": 228,
+        "startChar": 32,
+        "endLine": 228,
+        "endChar": 33
+      },
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39d9c05a_4cbaa118",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-21T09:13:57Z",
+      "side": 1,
+      "message": "Partition",
+      "range": {
+        "startLine": 253,
+        "startChar": 4,
+        "endLine": 253,
+        "endChar": 12
+      },
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cae469e_2b969694",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-21T09:13:57Z",
+      "side": 1,
+      "message": "you set the default to None, hence also do the comparison consistently:\n\n  if args.gki_modules is not None:",
+      "range": {
+        "startLine": 255,
+        "startChar": 10,
+        "endLine": 255,
+        "endChar": 21
+      },
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4a20d25_d6a4da0a",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-21T09:13:57Z",
+      "side": 1,
+      "message": "omit the default value",
+      "range": {
+        "startLine": 256,
+        "startChar": 32,
+        "endLine": 256,
+        "endChar": 35
+      },
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac9f87b9_cc322548",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-21T09:13:57Z",
+      "side": 1,
+      "message": "I had thoughts of making this partition more explicit with sets and intersections, but then I thought it is probably overkill.",
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f3b2eebd_6f970ac2",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-21T09:13:57Z",
+      "side": 1,
+      "message": "exported_in_vmlinux is now misleading and needs to be renamed.\n\nThe concept of having vmlinux+modules as the exporting surface and other modules as the ones needing it needs to be in the naming.",
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
