@@ -16,6 +16,23 @@
       "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf53a325_7b82e0af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2020-07-22T00:53:04Z",
+      "side": 1,
+      "message": "This looks like it grabs the kernel and the .ko files. Is it going to grab the corresponding boot.img variants too?",
+      "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
