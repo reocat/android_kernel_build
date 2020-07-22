@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "61f867a9_eeaff82f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-07-22T21:12:22Z",
+      "side": 1,
+      "message": "Boot images will be generated as part of the aosp_arm64 platform build after these kernel prebuilts are merged into kernel/prebuilts/*, so they are not included here. If we want something for the boot images other than their availability on ci.android.com that will need to be done elsewhere I think.",
+      "parentUuid": "cf53a325_7b82e0af",
+      "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b54add7d_909a35d6",
         "filename": "gki/download_from_ci",
         "patchSetId": 4
@@ -47,6 +65,30 @@
       "writtenOn": "2020-07-22T17:10:39Z",
       "side": 1,
       "message": "Can we be a little bit more permissive on this? Could we allow the `kernel_debug_aarch64` target too? That would enable us to publish a non-trimmed boot.img very easily. Thoughts?",
+      "range": {
+        "startLine": 107,
+        "startChar": 5,
+        "endLine": 107,
+        "endChar": 42
+      },
+      "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad006ea6_4b386bac",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-07-22T21:12:22Z",
+      "side": 1,
+      "message": "Yep will add this.",
+      "parentUuid": "b54add7d_909a35d6",
       "range": {
         "startLine": 107,
         "startChar": 5,
@@ -82,6 +124,30 @@
     },
     {
       "key": {
+        "uuid": "e8a91877_235834ea",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-07-22T21:12:22Z",
+      "side": 1,
+      "message": "Sure will do.",
+      "parentUuid": "32e41d37_220997f0",
+      "range": {
+        "startLine": 109,
+        "startChar": 36,
+        "endLine": 109,
+        "endChar": 44
+      },
+      "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d7aad08e_49f13b72",
         "filename": "gki/download_from_ci",
         "patchSetId": 4
@@ -93,6 +159,30 @@
       "writtenOn": "2020-07-22T01:05:48Z",
       "side": 1,
       "message": "This should be \"lz4 -l -12 --favor-decSpeed\" to match the GKI build system.",
+      "range": {
+        "startLine": 111,
+        "startChar": 30,
+        "endLine": 111,
+        "endChar": 33
+      },
+      "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e4619ef_4534aac1",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-07-22T21:12:22Z",
+      "side": 1,
+      "message": "Will fix.",
+      "parentUuid": "d7aad08e_49f13b72",
       "range": {
         "startLine": 111,
         "startChar": 30,
