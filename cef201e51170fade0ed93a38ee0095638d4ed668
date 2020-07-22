@@ -22,6 +22,30 @@
       "revId": "cef201e51170fade0ed93a38ee0095638d4ed668",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc151c45_6232dcd8",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-07-22T00:00:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67b1b9af_8c4506f5",
+      "range": {
+        "startLine": 126,
+        "startChar": 13,
+        "endLine": 126,
+        "endChar": 25
+      },
+      "revId": "cef201e51170fade0ed93a38ee0095638d4ed668",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
