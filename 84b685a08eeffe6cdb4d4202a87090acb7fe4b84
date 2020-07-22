@@ -33,6 +33,52 @@
       "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "32e41d37_220997f0",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-07-22T01:05:48Z",
+      "side": 1,
+      "message": "Could you download the Image and manually gzip it? I know it\u0027s going through more hoops, but I feel like we may want to deprecate the gz artifact in the longer run, so using it as a basis for the others may not make sense.",
+      "range": {
+        "startLine": 109,
+        "startChar": 36,
+        "endLine": 109,
+        "endChar": 44
+      },
+      "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7aad08e_49f13b72",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-07-22T01:05:48Z",
+      "side": 1,
+      "message": "This should be \"lz4 -l -12 --favor-decSpeed\" to match the GKI build system.",
+      "range": {
+        "startLine": 111,
+        "startChar": 30,
+        "endLine": 111,
+        "endChar": 33
+      },
+      "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
