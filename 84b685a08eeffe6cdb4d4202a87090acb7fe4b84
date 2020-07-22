@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "312e97da_09b8a9d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-07-22T00:02:28Z",
+      "side": 1,
+      "message": "Re: refactoring main and sending the kernel download to the pool, I\u0027d prefer to defer those to a subsequent patch if possible, as I need to get to other tasks. The kernel image download is only ~13M, the whole thing completes very quickly, so I don\u0027t think it\u0027s critical.",
+      "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
