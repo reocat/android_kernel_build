@@ -36,6 +36,29 @@
     },
     {
       "key": {
+        "uuid": "b54add7d_909a35d6",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-07-22T17:10:39Z",
+      "side": 1,
+      "message": "Can we be a little bit more permissive on this? Could we allow the `kernel_debug_aarch64` target too? That would enable us to publish a non-trimmed boot.img very easily. Thoughts?",
+      "range": {
+        "startLine": 107,
+        "startChar": 5,
+        "endLine": 107,
+        "endChar": 42
+      },
+      "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "32e41d37_220997f0",
         "filename": "gki/download_from_ci",
         "patchSetId": 4
