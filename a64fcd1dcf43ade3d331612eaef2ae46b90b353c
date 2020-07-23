@@ -66,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "6857aae5_42db0930",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-07-23T20:57:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "865f12f9_c4bc09a7",
+      "revId": "a64fcd1dcf43ade3d331612eaef2ae46b90b353c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59412979_77457499",
         "filename": "gki/download_from_ci",
         "patchSetId": 1
@@ -215,6 +233,30 @@
       "revId": "a64fcd1dcf43ade3d331612eaef2ae46b90b353c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a979cdd5_eb24a6b4",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-07-23T20:57:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d996266e_5a301830",
+      "range": {
+        "startLine": 116,
+        "startChar": 2,
+        "endLine": 116,
+        "endChar": 14
+      },
+      "revId": "a64fcd1dcf43ade3d331612eaef2ae46b90b353c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
