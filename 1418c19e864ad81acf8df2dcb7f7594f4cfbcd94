@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "2d1ccfe4_7765d84d",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-07-24T10:03:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d8aa97d2_93cf7e07",
+      "range": {
+        "startLine": 228,
+        "startChar": 32,
+        "endLine": 228,
+        "endChar": 33
+      },
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39d9c05a_4cbaa118",
         "filename": "abi/extract_symbols",
         "patchSetId": 3
@@ -68,6 +92,30 @@
       "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7efb9f6_c7f2dd4f",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-07-24T10:03:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "39d9c05a_4cbaa118",
+      "range": {
+        "startLine": 253,
+        "startChar": 4,
+        "endLine": 253,
+        "endChar": 12
+      },
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "30de29cc_252d44a4",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-07-24T10:03:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4cae469e_2b969694",
+      "range": {
+        "startLine": 255,
+        "startChar": 10,
+        "endLine": 255,
+        "endChar": 21
+      },
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4a20d25_d6a4da0a",
         "filename": "abi/extract_symbols",
         "patchSetId": 3
@@ -114,6 +186,30 @@
       "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8c81e242_ab64823c",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-07-24T10:03:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c4a20d25_d6a4da0a",
+      "range": {
+        "startLine": 256,
+        "startChar": 32,
+        "endLine": 256,
+        "endChar": 35
+      },
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -148,6 +244,24 @@
       "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe445cfe_8fd573a0",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-07-24T10:03:43Z",
+      "side": 1,
+      "message": "Right, I kind of struggled with the naming here. The best I could come up with was \u0027generic_exports\u0027 to cover vmlinux + gki_modules, and \u0027local_exports\u0027 for all other things exported by modules in the _local_ build. The other option I considered was \u0027vendor_exports\u0027, but during a vanilla GKI build the GKI modules will be in there, so I figured \u0027local\u0027 would be a better fit. I\u0027ll push an update shortly",
+      "parentUuid": "f3b2eebd_6f970ac2",
+      "revId": "1418c19e864ad81acf8df2dcb7f7594f4cfbcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
