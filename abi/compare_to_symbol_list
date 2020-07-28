@@ -44,6 +44,8 @@ delta=$(diff -u $ksymtab $symbollist | grep -v ' ')
 rm $ksymtab $symbollist
 if [ -n "$delta" ]; then
 	echo "ERROR: Differences between ksymtab and symbol list detected!" >&2
+	echo "ERROR: Refer to go/gki-symbol-list-update for steps to fix this" >&2
+	echo "ERROR:    or to build/abi/README.md#6_working-with-symbol-lists." >&2
 	echo "Symbols missing from ksymtab:" >&2
 	echo "$delta" | sed -n -e 's/^+/ - /p' >&2
 	echo "Symbols missing from symbol list:" >&2
