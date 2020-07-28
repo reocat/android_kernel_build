@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d7955f0_01d7f995",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-07-28T17:48:16Z",
+      "side": 1,
+      "message": "Consider indenting this one because it is part of an if body.",
+      "revId": "b68fb3f09e9571917e052383155308254e7fce03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e679f3d3_6b9d24ed",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-07-28T17:48:16Z",
+      "side": 1,
+      "message": "This is indented with 4 space characters. Shouldn\u0027t it be just 2?",
+      "revId": "b68fb3f09e9571917e052383155308254e7fce03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ef3f5d7_0b351e9a",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-07-28T17:48:16Z",
+      "side": 1,
+      "message": "Use only 2 space characters here.",
+      "revId": "b68fb3f09e9571917e052383155308254e7fce03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f68b3551_20fa669a",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-07-28T17:48:16Z",
+      "side": 1,
+      "message": "Use only 2 spaces.",
+      "range": {
+        "startLine": 514,
+        "startChar": 0,
+        "endLine": 514,
+        "endChar": 4
+      },
+      "revId": "b68fb3f09e9571917e052383155308254e7fce03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
