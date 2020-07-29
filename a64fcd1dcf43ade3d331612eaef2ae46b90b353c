@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "6749d94d_a581f162",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-07-29T23:13:11Z",
+      "side": 1,
+      "message": "will modify in a subsequent patch if this is still a concern",
+      "parentUuid": "3a5f5481_675c445a",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 29
+      },
+      "revId": "a64fcd1dcf43ade3d331612eaef2ae46b90b353c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "780bf26a_cfc9f40a",
         "filename": "gki/download_from_ci",
         "patchSetId": 1
@@ -210,6 +234,30 @@
       "revId": "a64fcd1dcf43ade3d331612eaef2ae46b90b353c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e55d1c4d_ab16b59b",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-07-29T23:13:11Z",
+      "side": 1,
+      "message": "will modify in a subsequent patch if this is still a concern",
+      "parentUuid": "3210a120_131b8274",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 13
+      },
+      "revId": "a64fcd1dcf43ade3d331612eaef2ae46b90b353c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
