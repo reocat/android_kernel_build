@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "7ce9546d_7bdc2a36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-07-29T23:17:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd23bfac_ac69357f",
+      "revId": "84b685a08eeffe6cdb4d4202a87090acb7fe4b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b54add7d_909a35d6",
         "filename": "gki/download_from_ci",
         "patchSetId": 4
