@@ -22,6 +22,30 @@
       "revId": "d96f85df16ec7b407623f7fad8cd911bfa9e2fcb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78f0eec2_211d3822",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-30T15:56:22Z",
+      "side": 1,
+      "message": "Fixed with aosp/1304014",
+      "parentUuid": "dd8a796f_bf81ab33",
+      "range": {
+        "startLine": 332,
+        "startChar": 26,
+        "endLine": 332,
+        "endChar": 35
+      },
+      "revId": "d96f85df16ec7b407623f7fad8cd911bfa9e2fcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
