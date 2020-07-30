@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "98ddaa59_05d9babf",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-30T15:52:10Z",
+      "side": 1,
+      "message": "use context managers for files:\n\n with open() as prebuilt_info:\n   prebuilt_info.write(...)\n\notherwise you will forget closing the file. Which you did. qed :-)",
+      "revId": "68d1c6a90a15b65199355f69743926e47821c875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70b90e0a_20052866",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-30T15:52:10Z",
+      "side": 1,
+      "message": "since this is json, you might do\n\n import json\n json.dump({\"kernel-build-id\": args.build_id}, \n           prebuilt_info, indent\u003d4)",
+      "revId": "68d1c6a90a15b65199355f69743926e47821c875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
