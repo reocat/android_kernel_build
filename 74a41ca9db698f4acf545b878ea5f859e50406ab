@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d62e1b1_bcd8b70b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-31T16:04:53Z",
+      "side": 1,
+      "message": "Note, having libabigail prebuilt via bootstrap is only one way of consuming it. Some folks decide to distribute prebuilt versions of libabigail through their host system (still using the correct version). This change would enforce a locally built version and therefore we can\u0027t do that.",
+      "revId": "74a41ca9db698f4acf545b878ea5f859e50406ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
