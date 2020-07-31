@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc7758f7_ad4ce79b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-31T16:09:57Z",
+      "side": 1,
+      "message": "While I appreciate the change in general, we have to make sure that our build scripts do not require access to non-local resources. In this case we would reach out to sourceware.org. For some environments that is not available during build_abi.sh time. In such cases, folks would decide to distribute prebuilt binaries in a different way through their infrastructure.\n\nI would be ok with an approach where we wrap build_abi.sh (yes, another wrapper :-)) to ensure libabigail\u0027s proper existence; building it from sources if absent.",
+      "revId": "77bb803b8eaf07b248a039df8bd0837c0d435974",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
