@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3311dea7_03baab26",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-07-31T14:51:55Z",
+      "side": 1,
+      "message": "sorry, I missed that last time:\n\n with open(os.path.join(output_dir,\"prebuilt-info.txt\"), \"w\") as prebuilt_info:",
+      "range": {
+        "startLine": 112,
+        "startChar": 12,
+        "endLine": 112,
+        "endChar": 45
+      },
+      "revId": "24ace9cbb28dcf2738d4cd399ec00ba424e93c10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
