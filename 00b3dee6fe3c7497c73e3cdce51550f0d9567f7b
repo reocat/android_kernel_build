@@ -22,6 +22,30 @@
       "revId": "00b3dee6fe3c7497c73e3cdce51550f0d9567f7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbaa6664_121bff0b",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-08-04T20:14:18Z",
+      "side": 1,
+      "message": "The kernel has its own copy of DTC that it compiles. We need to override and use the AOSP DTC that comes through kernel\u0027s prebuilt build tools.",
+      "parentUuid": "665768a9_6c336b80",
+      "range": {
+        "startLine": 354,
+        "startChar": 0,
+        "endLine": 354,
+        "endChar": 27
+      },
+      "revId": "00b3dee6fe3c7497c73e3cdce51550f0d9567f7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
