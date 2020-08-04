@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "665768a9_6c336b80",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-04T19:42:54Z",
+      "side": 1,
+      "message": "note, DEPMOD is here as the default refers to DEPMOD\u003d/sbin/depmod and needs to be overridden.\nDoes the same hold true for DTC? What is the default for DTC if not specified?",
+      "range": {
+        "startLine": 354,
+        "startChar": 0,
+        "endLine": 354,
+        "endChar": 27
+      },
+      "revId": "00b3dee6fe3c7497c73e3cdce51550f0d9567f7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
