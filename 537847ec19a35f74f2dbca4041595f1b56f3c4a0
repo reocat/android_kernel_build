@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "225c3306_a191f782",
+        "filename": "abi/compare_to_symbol_list",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-08-06T22:59:39Z",
+      "side": 1,
+      "message": "For the time being there is no alternative, but when there is I will update this to point to the appropriate documentation.",
+      "parentUuid": "2872f89a_3935f967",
+      "revId": "537847ec19a35f74f2dbca4041595f1b56f3c4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "58f11523_3006b906",
         "filename": "abi/compare_to_symbol_list",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2020-07-30T15:38:26Z",
       "side": 1,
       "message": "make this a complete URL?",
+      "range": {
+        "startLine": 48,
+        "startChar": 23,
+        "endLine": 48,
+        "endChar": 70
+      },
+      "revId": "537847ec19a35f74f2dbca4041595f1b56f3c4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7e50411_d359d22e",
+        "filename": "abi/compare_to_symbol_list",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-08-06T22:59:39Z",
+      "side": 1,
+      "message": "Sure I can add that. We hesitant to since not all terminals handle urls.",
+      "parentUuid": "58f11523_3006b906",
       "range": {
         "startLine": 48,
         "startChar": 23,
