@@ -46,6 +46,30 @@
       "revId": "00b3dee6fe3c7497c73e3cdce51550f0d9567f7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a044f470_67e0627c",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-06T06:11:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbaa6664_121bff0b",
+      "range": {
+        "startLine": 354,
+        "startChar": 0,
+        "endLine": 354,
+        "endChar": 27
+      },
+      "revId": "00b3dee6fe3c7497c73e3cdce51550f0d9567f7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
