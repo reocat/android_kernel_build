@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "13bf2534_85444e65",
+        "filename": "abi/compare_to_symbol_list",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-07T07:06:14Z",
+      "side": 1,
+      "message": "please await aosp/1392978 to land and refer to the updated instructions.",
+      "parentUuid": "225c3306_a191f782",
+      "revId": "537847ec19a35f74f2dbca4041595f1b56f3c4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "58f11523_3006b906",
         "filename": "abi/compare_to_symbol_list",
         "patchSetId": 1
