@@ -20,6 +20,7 @@ import functools
 import json
 import multiprocessing
 import os
+import glob
 import re
 import subprocess
 import sys
@@ -51,13 +52,19 @@ def parse_args():
       help="the build id to download the build for, e.g. 6148204")
   parser.add_argument(
       "build_target",
+      nargs="?",
       type=str,
       help='the build target to download, e.g. "kernel_aarch64"')
   parser.add_argument(
       "-u",
       action="store_true",
       default=False,
-      help="update kernel prebuilts in Android platform (set $ANDROID_BUILD_TOP)")
+      help="update GKI kernel prebuilts in Android platform (set $ANDROID_BUILD_TOP)")
+  parser.add_argument(
+      "-c",
+      action="store_true",
+      default=False,
+      help="update cuttlefish kernel/kernel module prebuilts (set $ANDROID_BUILD_TOP)")
   parser.add_argument(
       "-b",
       type=int,
@@ -66,15 +73,23 @@ def parse_args():
 
   args = parser.parse_args()
 
-  if args.u:
+  if not args.c and not args.build_target:
+    raise Exception("A build target must be specified")
+  if args.c and args.u:
+    raise Exception("GKI prebuilts and cuttlefish prebuilts must be updated separately")
+
+  if args.c or args.u:
     if not os.environ["ANDROID_BUILD_TOP"]:
       raise Exception("$ANDROID_BUILD_TOP must be set to update kernel prebuilts")
     if not args.b:
       raise Exception("A bug number must be provided when updating kernel prebuilts")
-    build_is_arm64 = args.build_target in ["kernel_aarch64", "kernel_debug_aarch64"]
-    build_is_x86_64 = args.build_target in ["kernel_x86_64", "kernel_debug_x86_64"]
-    if not build_is_arm64 and not build_is_x86_64:
-      raise Exception("Unsupported build target for kernel update")
+    if args.u:
+      if not args.build_target:
+        raise Exception("A build target must be provided when updating kernel prebuilts")
+      build_is_arm64 = args.build_target in ["kernel_aarch64", "kernel_debug_aarch64"]
+      build_is_x86_64 = args.build_target in ["kernel_x86_64", "kernel_debug_x86_64"]
+      if not build_is_arm64 and not build_is_x86_64:
+        raise Exception("Unsupported build target for kernel update")
 
   return args
 
@@ -86,7 +101,7 @@ def list_artifacts(url_base):
   return json.loads(data)["target"]["dir_list"]
 
 # Download multiple files in url_base using a multiprocessing pool.
-def download_files(url_base, files, pool):
+def download_files(url_base, files):
   for f in files:
     dirname = os.path.dirname(f)
     if dirname and not os.path.isdir(dirname):
@@ -95,9 +110,18 @@ def download_files(url_base, files, pool):
   func = functools.partial(download, url_base, "")
   pool.map(func, files)
 
-# Given a build's BUILD_INFO in json format, return the
-# kernel version as a string.
-def get_kernel_version(data):
+# Return the path of the kernel source directory in the same repo as this
+# script.
+def get_kernel_dir():
+  # download_from_ci lives in <ack manifest root>/build/gki
+  path = os.path.abspath(__file__)
+  path = os.path.dirname(os.path.dirname(os.path.dirname(path)))
+  path += "/common"
+  return path
+
+# Given a build's BUILD_INFO in json format, return the kernel version as a
+# string.
+def get_build_kernel_version(data):
   branch = json.loads(data)["branch"]
   if branch == "aosp_kernel-common-android-mainline":
     return "mainline"
@@ -108,13 +132,53 @@ def get_kernel_version(data):
       raise Exception("Could not determine kernel version in branch " + branch)
     return result.group(1)
 
+# Return a string containing the git log between two commits.
+def get_git_log(old_sha, new_sha):
+  gitlog = "git log -100 --oneline --no-decorate {}..{}:\n".format(old_sha,new_sha)
+  gitlog += subprocess.check_output(["git", "log", "-100", "--oneline", "--no-decorate",
+                                     "{}..{}".format(old_sha,new_sha)], text=True,
+                                    cwd=get_kernel_dir()) + "\n"
+  return gitlog
+
+def commit_prebuilts(output_dir, gitlog):
+  commit_message = ("Update kernel to builds {}\n"
+                    "\n"
+                    "{}"
+                    "\n"
+                    "Test: treehugger\n"
+                    "Bug: {}\n").format(args.build_id, gitlog, args.b)
+  subprocess.check_output(["git", "add", "."], cwd=output_dir)
+  subprocess.check_call(["git", "commit", "-a", "-m", commit_message], cwd=output_dir)
+
+# Returns a tuple of strings of the x.y.z (LTS) version and the SHA.
+def get_binary_kernel_version(path):
+  rawdata = subprocess.check_output(["grep", "-a", "Linux version ", path])
+  pattern = b"Linux version (?P<release>(?P<version>[0-9]+[.][0-9]+[.][0-9]+)-\w+(-\d+)?-\d+-g(?P<sha>\w+)-ab\d+) \(.*@.*\) \((?P<compiler>.*)\) .*\n"
+  result = re.search(pattern, rawdata)
+  if not result:
+    raise Exception("Could not determine version in kernel binary " + path)
+  return (result.group("version").decode('ascii'), result.group("sha").decode('ascii'))
+
 def write_prebuilt_info(output_dir):
   with open(os.path.join(output_dir, "prebuilt-info.txt"), "w") as prebuilt_info:
     json.dump({"kernel-build-id": args.build_id}, prebuilt_info, indent=4)
     prebuilt_info.write("\n")
 
-def update_prebuilts(data, files, url_base, pool):
-  version = get_kernel_version(data)
+def repackage_kernels(kernel_is_arm64, output_dir, version, suffix = ""):
+  if kernel_is_arm64:
+    subprocess.check_output(["mv", output_dir + "/Image",
+                                   output_dir + "/kernel-" + version + suffix])
+    os.system("gzip -c " + output_dir + "/kernel-" + version + suffix + " > " +
+              output_dir + "/kernel-" + version + "-gz" + suffix)
+    subprocess.check_output(["lz4", "-f", "-l", "-12", "--favor-decSpeed",
+                            output_dir + "/kernel-" + version + suffix,
+                            output_dir + "/kernel-" + version + "-lz4" + suffix])
+  else:
+    subprocess.check_output(["mv", output_dir + "/bzImage",
+                                   output_dir + "/kernel" + suffix])
+
+def update_prebuilts(data, files, url_base):
+  version = get_build_kernel_version(data)
   print("Kernel version in build is " + version)
   output_dir = os.environ["ANDROID_BUILD_TOP"] + "/kernel/prebuilts/" + version
 
@@ -126,35 +190,116 @@ def update_prebuilts(data, files, url_base, pool):
     update_files = ["bzImage"]
   print("Output dir is " + output_dir)
 
+  if build_is_arm64:
+    (old_version, old_sha) = get_binary_kernel_version(output_dir + "/kernel-" + version)
+
+  files_to_remove = glob.glob(output_dir + "/*")
+  for f in files_to_remove:
+    os.remove(f)
+
   update_files += [x for x in files if re.search(".+\.ko$", x)] + ["System.map"]
   func = functools.partial(download, url_base, output_dir)
   pool.map(func, update_files)
 
-  if build_is_arm64:
-    subprocess.check_output(["mv", output_dir + "/Image",
-                                   output_dir + "/kernel-" + version])
-    os.system("gzip -c " + output_dir + "/kernel-" + version + " > " +
-              output_dir + "/kernel-" + version + "-gz")
-    subprocess.check_output(["lz4", "-f", "-l", "-12", "--favor-decSpeed",
-                             output_dir + "/kernel-" + version,
-                             output_dir + "/kernel-" + version + "-lz4"])
-  else:
-    subprocess.check_output(["mv", output_dir + "/bzImage",
-                                   output_dir + "/kernel-" + version])
-
+  repackage_kernels(build_is_arm64, output_dir, version)
   write_prebuilt_info(output_dir)
 
-  commit_message = ("Update kernel to builds {}\n"
-                    "\n"
-                    "Test: treehugger\n"
-                    "Bug: {}\n").format(args.build_id, args.b)
+
+  if build_is_arm64:
+    (new_version, new_sha) = get_binary_kernel_version(output_dir + "/kernel-" + version)
+    gitlog = get_git_log(old_sha, new_sha)
+  else:
+    gitlog = ""
+
+  commit_prebuilts(output_dir, gitlog)
+
+def download_cuttlefish_kernel(target, output_dir):
+  # download untrimmed GKI kernel
+  if target == "arm64":
+    url_base = BASE_URL.format(build_id=args.build_id, target="kernel_debug_aarch64")
+    kernel = "Image"
+  elif target == "x86_64":
+    url_base = BASE_URL.format(build_id=args.build_id, target="kernel_debug_x86_64")
+    kernel = "bzImage"
+
+  url = os.path.join(url_base, "BUILD_INFO")
+  response = urllib.request.urlopen(url)
+  data = response.read().decode("utf-8")
+  version = get_build_kernel_version(data)
+  print("Kernel version in build is " + version)
+
+  output_dir += "/{}-{}".format(version, target)
+  if target == "arm64":
+    (old_version, old_sha) = get_binary_kernel_version(output_dir + "/kernel-" + version)
+  else:
+    # no uncompressed x86_64 image, just use arm64 version for now since they
+    # are updated together
+    (old_version, old_sha) = (None, None)
+  subprocess.check_output(["rm", "-r", "-f", output_dir])
+  subprocess.check_output(["mkdir", output_dir])
+
+  update_files = [kernel, "System.map"]
+  func = functools.partial(download, url_base, output_dir)
+  pool.map(func, update_files)
+
+  subprocess.check_output(["mv", output_dir + "/System.map",
+                           output_dir + "/System.map-allsyms"])
+  repackage_kernels(target == "arm64", output_dir, version, "-allsyms")
+
+
+  # download trimmed GKI kernel
+  if target == "arm64":
+    url_base = BASE_URL.format(build_id=args.build_id, target="kernel_aarch64")
+  elif target == "x86_64":
+    url_base = BASE_URL.format(build_id=args.build_id, target="kernel_x86_64")
+
+  func = functools.partial(download, url_base, output_dir)
+  pool.map(func, update_files)
+
+  if target == "arm64":
+    subprocess.check_output(["cp", output_dir + "/Image",
+                                   output_dir + "/kernel"])
+  repackage_kernels(target == "arm64", output_dir, version)
+
+  # download CF kernel modules
+  if target == "arm64":
+    url_base = BASE_URL.format(build_id=args.build_id, target="kernel_cf_aarch64")
+  elif target == "x86_64":
+    url_base = BASE_URL.format(build_id=args.build_id, target="kernel_cf_x86_64")
+
+  files = list_artifacts(url_base)
+  update_files = [x for x in files if re.search(".+\.ko$", x)]
+  func = functools.partial(download, url_base, output_dir)
+  pool.map(func, update_files)
+
   subprocess.check_output(["git", "add", "."], cwd=output_dir)
-  subprocess.check_call(["git", "commit", "-a", "-m", commit_message], cwd=output_dir)
+
+  if target == "arm64":
+    (new_version, new_sha) = get_binary_kernel_version(output_dir + "/kernel-" + version)
+  else:
+    (new_version, new_sha) = (None, None)
+
+  return (old_sha, new_version, new_sha)
+
+def update_cuttlefish():
+  output_dir = os.environ["ANDROID_BUILD_TOP"] + "/device/google/cuttlefish_kernel"
+
+  (old_sha, new_version, new_sha) = download_cuttlefish_kernel("arm64", output_dir)
+  download_cuttlefish_kernel("x86_64", output_dir)
+
+  gitlog = get_git_log(old_sha, new_sha)
+  commit_prebuilts(output_dir, gitlog)
 
 def main():
+  global pool
+
   parse_args()
 
   pool = multiprocessing.Pool(10)
+
+  if args.c:
+    update_cuttlefish()
+    return
 
   url_base = BASE_URL.format(build_id=args.build_id, target=args.build_target)
 
@@ -164,9 +309,9 @@ def main():
   files = json.loads(data)["target"]["dir_list"]
 
   if args.u:
-    update_prebuilts(data, files, url_base, pool)
+    update_prebuilts(data, files, url_base)
   else:
-    download_files(url_base, files, pool)
+    download_files(url_base, files)
 
 if __name__ == "__main__":
   sys.exit(main())
