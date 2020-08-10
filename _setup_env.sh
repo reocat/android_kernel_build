@@ -39,6 +39,15 @@ set -a
 . ${ROOT_DIR}/${BUILD_CONFIG}
 set +a
 
+BUILD_CONFIG_PATH=$(realpath ${ROOT_DIR}/${BUILD_CONFIG})
+BUILD_CONFIG_DIR=$(dirname ${BUILD_CONFIG_PATH})
+BUILD_CONFIG_DIR=${BUILD_CONFIG_DIR##${ROOT_DIR}/}
+# use the directory of the build config file as KERNEL_DIR
+# if the KERNEL_DIR is not specified in the build configs(and the configs sourced)
+if [ -z "${KERNEL_DIR}" ]; then
+    KERNEL_DIR="${BUILD_CONFIG_DIR}"
+fi
+
 export COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out${OUT_DIR_SUFFIX}/${BRANCH}})
 export OUT_DIR=$(readlink -m ${COMMON_OUT_DIR}/${KERNEL_DIR})
 export DIST_DIR=$(readlink -m ${DIST_DIR:-${COMMON_OUT_DIR}/dist})
