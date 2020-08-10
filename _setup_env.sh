@@ -35,6 +35,23 @@ function append_cmd() {
   fi
 }
 
+# for case that KERNEL_DIR is not specified in environment
+if [ -z "${KERNEL_DIR}" ]; then
+    if ! grep -q '^KERNEL_DIR=' ${ROOT_DIR}/${BUILD_CONFIG}; then
+        # for case that KERNEL_DIR is not specified in the BUILD_CONFIG file
+        # use the directory of the build config file as KERNEL_DIR
+        BUILD_CONFIG_PATH=$(realpath ${ROOT_DIR}/${BUILD_CONFIG})
+        BUILD_CONFIG_DIR=$(dirname ${BUILD_CONFIG_PATH})
+        BUILD_CONFIG_DIR=${BUILD_CONFIG_DIR##${ROOT_DIR}/}
+        if [ -z "${KERNEL_DIR}" ]; then
+            KERNEL_DIR="${BUILD_CONFIG_DIR}"
+        fi
+        echo "= set default KERNEL_DIR: ${KERNEL_DIR}"
+    fi
+else
+    echo "= user environment KERNEL_DIR: ${KERNEL_DIR}"
+fi
+
 set -a
 . ${ROOT_DIR}/${BUILD_CONFIG}
 set +a
