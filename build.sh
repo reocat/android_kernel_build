@@ -128,6 +128,7 @@
 #     various components needed to build a boot.img also need to be defined.
 #     - MKBOOTIMG_PATH=<path to the mkbootimg.py script which builds boot.img>
 #       (defaults to tools/mkbootimg/mkbootimg.py)
+#     - GKI_KERNEL_BINARY=<full path to GKI kernel image, eg. Image.lz4>
 #     - GKI_RAMDISK_PREBUILT_BINARY=<Name of the GKI ramdisk prebuilt which includes
 #       the generic ramdisk components like init and the non-device-specific rc files>
 #     - VENDOR_RAMDISK_BINARY=<Name of the vendor ramdisk binary which includes the
@@ -741,6 +742,7 @@ echo " Files copied to ${DIST_DIR}"
 
 if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
   MKBOOTIMG_ARGS=()
+  MKBOOTIMG_VARGS=()
   if [ -n  "${BASE_ADDRESS}" ]; then
     MKBOOTIMG_ARGS+=("--base" "${BASE_ADDRESS}")
   fi
@@ -759,7 +761,7 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
     fi
   else
     cat $DTB_FILE_LIST > ${DIST_DIR}/dtb.img
-    MKBOOTIMG_ARGS+=("--dtb" "${DIST_DIR}/dtb.img")
+    MKBOOTIMG_VARGS+=("--dtb" "${DIST_DIR}/dtb.img")
   fi
 
   MKBOOTIMG_RAMDISKS=()
@@ -818,10 +820,10 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
     fi
 
     if [ -z "${SKIP_VENDOR_BOOT}" ]; then
-      MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img" \
+      MKBOOTIMG_VARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img" \
         "--vendor_ramdisk" "${DIST_DIR}/ramdisk.${RAMDISK_EXT}")
       if [ -n "${KERNEL_VENDOR_CMDLINE}" ]; then
-        MKBOOTIMG_ARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
+        MKBOOTIMG_VARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
       fi
     fi
   else
@@ -830,13 +832,21 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 
   python "$MKBOOTIMG_PATH" --kernel "${DIST_DIR}/${KERNEL_BINARY}" \
     --header_version "${BOOT_IMAGE_HEADER_VERSION}" \
-    "${MKBOOTIMG_ARGS[@]}" -o "${DIST_DIR}/boot.img"
+    "${MKBOOTIMG_ARGS[@]}" "${MKBOOTIMG_VARGS[@]}" -o "${DIST_DIR}/boot.img"
+
+  if [ -n "${GKI_KERNEL_BINARY}" ]; then
+    python "$MKBOOTIMG_PATH" --kernel "${GKI_KERNEL_BINARY}" \
+      --header_version "${BOOT_IMAGE_HEADER_VERSION}" \
+      "${MKBOOTIMG_ARGS[@]}" -o "${DIST_DIR}/boot-gki.img"
+  fi
 
   [ -f "${DIST_DIR}/boot.img" ] && echo "boot image created at ${DIST_DIR}/boot.img"
   [ -z "${SKIP_VENDOR_BOOT}" ] \
     && [ "${BOOT_IMAGE_HEADER_VERSION}" -eq "3" ] \
     && [ -f "${DIST_DIR}/vendor_boot.img" ] \
     && echo "vendor boot image created at ${DIST_DIR}/vendor_boot.img"
+  [ -n "${GKI_KERNEL_BINARY}" ] && [ -f "${DIST_DIR}/boot-gki.img" ] \
+    && echo "GKI boot image created at ${DIST_DIR}/boot-gki.img"
 fi
 
 
