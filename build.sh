@@ -80,6 +80,10 @@
 #   SKIP_MRPROPER
 #     if defined, skip `make mrproper`
 #
+#   SKIP_BUILDING
+#     if defined, skip building the kernel. This is helpful for re-packaging
+#     the boot.img, vendor_boot.img and initramfs.img
+#
 #   SKIP_DEFCONFIG
 #     if defined, skip `make defconfig`
 #
@@ -389,6 +393,7 @@ else
   RAMDISK_EXT="lz4"
 fi
 
+if [[ -z ${SKIP_BUILDING} ]]; then
 mkdir -p ${OUT_DIR} ${DIST_DIR}
 
 echo "========================================================"
@@ -632,6 +637,8 @@ if [ -n "${DIST_CMDS}" ]; then
   eval ${DIST_CMDS}
   set +x
 fi
+
+fi # -z SKIP_BUILDING
 
 MODULES=$(find ${MODULES_STAGING_DIR} -type f -name "*.ko")
 if [ -n "${MODULES}" ]; then
