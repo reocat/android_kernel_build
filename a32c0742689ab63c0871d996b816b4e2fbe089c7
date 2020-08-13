@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9726b47d_dc81b444",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-08-13T21:44:00Z",
+      "side": 1,
+      "message": "I\u0027d use -ge here as future boot image header versions will likely have the same structure",
+      "range": {
+        "startLine": 750,
+        "startChar": 74,
+        "endLine": 750,
+        "endChar": 76
+      },
+      "revId": "a32c0742689ab63c0871d996b816b4e2fbe089c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
