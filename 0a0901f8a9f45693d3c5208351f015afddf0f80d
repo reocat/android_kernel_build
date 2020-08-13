@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3bdf4493_3917261d",
+        "filename": "build.config.net_test",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-08-13T21:02:38Z",
+      "side": 1,
+      "message": "Not sure we can build `ARCH\u003dum`?  Will be interested to see build results.",
+      "revId": "0a0901f8a9f45693d3c5208351f015afddf0f80d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8ce12f1_2b4286ba",
+        "filename": "build.config.net_test",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-08-13T21:02:38Z",
+      "side": 1,
+      "message": "this lint can be fixed by modifying the default.xml; the term prebuilts-master is an arbitrary path name the repo is checked out as.  Not necessary to fix to submit this.",
+      "revId": "0a0901f8a9f45693d3c5208351f015afddf0f80d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
