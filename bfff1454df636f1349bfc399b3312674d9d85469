@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "bd4de265_6bc64e76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-08-13T14:19:13Z",
+      "side": 1,
+      "message": "Apart from Matthias\u0027s nits, looks ok to me. We just got device/google/cuttlefish_prebuilts approved. Hopefully you will be deprecating this separate copy of the kernel soon and we can move to updating only the modules to device/google/cuttlefish_prebuilts.",
+      "revId": "bfff1454df636f1349bfc399b3312674d9d85469",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e40399e3_8538936c",
         "filename": "gki/download_from_ci",
         "patchSetId": 1
