@@ -16,6 +16,23 @@
       "revId": "0a3156bbd39dd6e60eb508028f8b7bbfa028db72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e642ca27_d2e9ef5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-08-14T18:44:00Z",
+      "side": 1,
+      "message": "This should be enough to allow specifying CC\u003dgcc when running for android-3.18 kernel_test: https://android-review.googlesource.com/c/kernel/build/+/1400848",
+      "revId": "0a3156bbd39dd6e60eb508028f8b7bbfa028db72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
