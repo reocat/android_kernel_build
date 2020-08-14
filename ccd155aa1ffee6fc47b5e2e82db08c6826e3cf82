@@ -70,6 +70,30 @@
       "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6773082_09334ad1",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-08-14T22:47:33Z",
+      "side": 1,
+      "message": "Probably could revist https://lkml.org/lkml/2019/2/11/1947 then; it was sent upstream and pulled into kernel-msm-pixel-4.14 branch (26bbb793c7eb43f25e37bafd3ae9455d2728dac6) but never landed in upstream; instead we ripped out cc-ldoption.\n\nActually, with a move to LLVM\u003d1, we could add `-fuse-ld\u003dld.lld` to the HOSTCFLAGS.\n\n(I consider this a build hermiticity issue; relying on the compilers implicit default value for `-fuse-ld\u003d` vs being explicit.)",
+      "parentUuid": "8a356fab_1b18375e",
+      "range": {
+        "startLine": 359,
+        "startChar": 4,
+        "endLine": 359,
+        "endChar": 52
+      },
+      "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
