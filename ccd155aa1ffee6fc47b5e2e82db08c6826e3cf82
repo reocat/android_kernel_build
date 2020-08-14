@@ -22,6 +22,30 @@
       "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "502743ad_309f791a",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-08-14T19:07:14Z",
+      "side": 1,
+      "message": "`-fuse-ld\u003dld.lld` is a compiler flag, not a linker flag, since the compiler is the \"driver\". Try HOSTCFLAGS?",
+      "parentUuid": "88e4dfba_44dfb331",
+      "range": {
+        "startLine": 359,
+        "startChar": 4,
+        "endLine": 359,
+        "endChar": 52
+      },
+      "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
