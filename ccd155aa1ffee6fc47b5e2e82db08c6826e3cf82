@@ -46,6 +46,30 @@
       "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a356fab_1b18375e",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-14T19:12:06Z",
+      "side": 1,
+      "message": "I was not that clear: \nThis version of the code works (it also works with HOSTCFLAGS, actually). Still, I believe setting just HOSTLD\u003dld.lld should be enough to make it just work. But it is not as \u0027ld\u0027 still gets used when HOST*FLAGS is _not_ set.\n\nSo, I think the upstream patch would need to propagate HOSTLD\u003dld.lld down to the HOSTCFLAGS or HOSTLDFLAGS.",
+      "parentUuid": "502743ad_309f791a",
+      "range": {
+        "startLine": 359,
+        "startChar": 4,
+        "endLine": 359,
+        "endChar": 52
+      },
+      "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
