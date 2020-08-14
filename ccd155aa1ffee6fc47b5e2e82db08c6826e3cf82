@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88e4dfba_44dfb331",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-14T09:23:13Z",
+      "side": 1,
+      "message": "Nick:\n\nThis flag is not properly propagated in the kernel build when using HOSTLD\u003dld.lld.\nLikely we can fix this upstream.",
+      "range": {
+        "startLine": 359,
+        "startChar": 4,
+        "endLine": 359,
+        "endChar": 52
+      },
+      "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
