@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9209655e_7bcd73c5",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-17T16:51:10Z",
+      "side": 1,
+      "message": "nit: docstring\n\n(some more occasions further down)",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 9
+      },
+      "revId": "f0c48aaeb1950dedaf93a9e9942dde133183a753",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2ab38aa_df53fbaa",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-17T16:51:10Z",
+      "side": 1,
+      "message": "maybe define along with the other constants",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 27
+      },
+      "revId": "f0c48aaeb1950dedaf93a9e9942dde133183a753",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f4d88fe_325b79dc",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-17T16:51:10Z",
+      "side": 1,
+      "message": "note, if you are using os.system to make the pipe operator \" \u003e \" work, you might want to use subprocess\u0027s shell\u003dTrue\n\nhttps://docs.python.org/2.7/library/subprocess.html#replacing-os-system",
+      "range": {
+        "startLine": 171,
+        "startChar": 4,
+        "endLine": 174,
+        "endChar": 77
+      },
+      "revId": "f0c48aaeb1950dedaf93a9e9942dde133183a753",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
