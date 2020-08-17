@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aac57377_3cc948ad",
+        "filename": "_setup_env.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-17T18:57:27Z",
+      "side": 1,
+      "message": "I feel the test is quite weak as it does not properly work if the build_config sources another file that defines the KERNEL_DIR.\n\nBut I wonder whether we need this check at all. If we were to defined KERNEL_DIR here the build_config could still overwrite it as usual, but would get a sensible default if not.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 65
+      },
+      "revId": "c2a7c6db18b4267d3ad48b18f5a2c6d50bd251d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c108193_3bcf1423",
+        "filename": "_setup_env.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-17T18:57:27Z",
+      "side": 1,
+      "message": "all_caps looks a bit global. I would rather use some name that suggests a local temporary variable.",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "c2a7c6db18b4267d3ad48b18f5a2c6d50bd251d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a71f66af_911f79e2",
+        "filename": "_setup_env.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-17T18:57:27Z",
+      "side": 1,
+      "message": "this check looks redundant",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 39
+      },
+      "revId": "c2a7c6db18b4267d3ad48b18f5a2c6d50bd251d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
