@@ -33,6 +33,47 @@
       "revId": "e33d6141981f707f3a1782fdb4838c58ebdcb918",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa6e1843_90a3c6cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-18T15:25:00Z",
+      "side": 1,
+      "message": "Thanks for working on this!\nThe broken build is the goldfish-modules build. I assume it needs the same adjustments as the cuttlefish-modules build.\nhttps://android.googlesource.com/kernel/goldfish-modules/+/refs/heads/android12-5.4\n\nNote, all branches of cuttlefish-/goldfish-modules likely need the same change.",
+      "parentUuid": "e40e0bcb_cf9fc214",
+      "revId": "e33d6141981f707f3a1782fdb4838c58ebdcb918",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1bd91b7_e01372db",
+        "filename": "_setup_env.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-18T15:25:00Z",
+      "side": 1,
+      "message": "that export needs to happen after the definition, i.e. after the block.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 17
+      },
+      "revId": "e33d6141981f707f3a1782fdb4838c58ebdcb918",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
