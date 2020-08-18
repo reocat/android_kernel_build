@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "bb015ba1_bf04cad8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2020-08-18T15:42:30Z",
+      "side": 1,
+      "message": "OK, let me submit another change for the goldfish-modules",
+      "parentUuid": "aa6e1843_90a3c6cf",
+      "revId": "e33d6141981f707f3a1782fdb4838c58ebdcb918",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d1bd91b7_e01372db",
         "filename": "_setup_env.sh",
         "patchSetId": 8
@@ -65,6 +83,30 @@
       "writtenOn": "2020-08-18T15:25:00Z",
       "side": 1,
       "message": "that export needs to happen after the definition, i.e. after the block.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 17
+      },
+      "revId": "e33d6141981f707f3a1782fdb4838c58ebdcb918",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed687e70_72d11b2d",
+        "filename": "_setup_env.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2020-08-18T15:42:30Z",
+      "side": 1,
+      "message": "hmm, could you please explain the reason for me?\n\nI tried a simple script like the following which works.\n$ bash -x /tmp/test.sh \n+ export KERNEL_DIR\n+ echo\n\n+ source /tmp/kernel.sh\n++ KERNEL_DIR\u003daaaaaaaa\n+ echo aaaaaaaa\naaaaaaaa\n$",
+      "parentUuid": "d1bd91b7_e01372db",
       "range": {
         "startLine": 38,
         "startChar": 0,
