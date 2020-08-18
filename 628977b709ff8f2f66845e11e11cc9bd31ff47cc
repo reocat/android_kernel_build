@@ -16,6 +16,29 @@
       "revId": "628977b709ff8f2f66845e11e11cc9bd31ff47cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22451bd1_c0fbb7bb",
+        "filename": "_setup_env.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-18T07:40:01Z",
+      "side": 1,
+      "message": "I think we should export KERNEL_DIR in this case (consistently with other definitions here).\n\nWhat do you think?",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 36
+      },
+      "revId": "628977b709ff8f2f66845e11e11cc9bd31ff47cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
