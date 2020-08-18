@@ -260,6 +260,34 @@ ln -sf ${abi_out_file} ${DIST_DIR}/abi.xml
 echo "========================================================"
 echo " ABI dump has been created at ${DIST_DIR}/${abi_out_file}"
 
+# Create a ABI dump for the UAPI header files
+if [ -z "${SKIP_CP_KERNEL_HEADER_DIR}" ]; then
+	echo "========================================================"
+	echo " Creating UAPI headers ABI dump"
+
+	HEADERS_DIR="$(readlink -m ${COMMON_OUT_DIR}/kernel_uapi_headers)"
+	uapi_out_file=uapi-headers-abi-${id}.xml
+	${ROOT_DIR}/build/abi/dump_uapi_header_abi.sh \
+		${HEADERS_DIR}/usr/include/ ${DIST_DIR}/${uapi_out_file}
+
+	if [ $? == 0 ]; then
+		# Append debug information to uapi headers file
+		echo "
+<!--
+     libabigail: $(abidw --version)
+     built with: $CC: $($CC --version | head -n1)
+-->" >> ${DIST_DIR}/${uapi_out_file}
+
+		ln -sf ${uapi_out_file} ${DIST_DIR}/uapi-headers-abi.xml
+
+		echo "========================================================"
+		echo " UAPI header dump has been created at ${DIST_DIR}/${uapi_out_file}"
+	else
+		echo "========================================================"
+		echo "Unable to generate the UAPI header ABI dump"
+	fi
+fi
+
 rc=0
 if [ -n "$ABI_DEFINITION" ]; then
     if [ $DIFF -eq 1 ]; then
