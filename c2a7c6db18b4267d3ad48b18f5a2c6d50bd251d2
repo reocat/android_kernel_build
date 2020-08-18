@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ce22d9ef_87b3131c",
+        "filename": "_setup_env.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2020-08-18T06:25:08Z",
+      "side": 1,
+      "message": "thanks for pointing this out, I didn\u0027t think of that the value could be overwritten.\nremoved the check here.",
+      "parentUuid": "aac57377_3cc948ad",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 65
+      },
+      "revId": "c2a7c6db18b4267d3ad48b18f5a2c6d50bd251d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9c108193_3bcf1423",
         "filename": "_setup_env.sh",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b8e16251_98a0c878",
+        "filename": "_setup_env.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2020-08-18T06:25:08Z",
+      "side": 1,
+      "message": "changed to use lowercase now.",
+      "parentUuid": "9c108193_3bcf1423",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "c2a7c6db18b4267d3ad48b18f5a2c6d50bd251d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a71f66af_911f79e2",
         "filename": "_setup_env.sh",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2020-08-17T18:57:27Z",
       "side": 1,
       "message": "this check looks redundant",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 39
+      },
+      "revId": "c2a7c6db18b4267d3ad48b18f5a2c6d50bd251d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62722a3c_734b585e",
+        "filename": "_setup_env.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2020-08-18T06:25:08Z",
+      "side": 1,
+      "message": "thanks for pointing it out, removed the check here.",
+      "parentUuid": "a71f66af_911f79e2",
       "range": {
         "startLine": 46,
         "startChar": 8,
