@@ -16,6 +16,23 @@
       "revId": "e33d6141981f707f3a1782fdb4838c58ebdcb918",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e40e0bcb_cf9fc214",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2020-08-18T14:50:37Z",
+      "side": 1,
+      "message": "Hi, Matthias\n\nI updated for exporting KERNEL_DIR, please help to check if there is any other issues.\nAlso there are 2 failures reported by Treehugger Robot, could you share me the details?\n\nThanks,\nYongqin Liu ",
+      "revId": "e33d6141981f707f3a1782fdb4838c58ebdcb918",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
