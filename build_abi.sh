@@ -60,10 +60,6 @@ UPDATE_SYMBOL_LIST=0
 DIFF=1
 PRINT_REPORT=0
 
-if [[ -z "${KMI_SYMBOL_LIST_MODULE_GROUP}" ]]; then
-  KMI_SYMBOL_LIST_MODULE_GROUPING=1
-fi
-
 ARGS=()
 for i in "$@"
 do
@@ -109,6 +105,10 @@ if [[ -z "$OUT_DIR" ]]; then
 fi
 
 source "${ROOT_DIR}/build/_setup_env.sh"
+
+if [[ -z "${KMI_SYMBOL_LIST_MODULE_GROUP}" ]]; then
+    KMI_SYMBOL_LIST_MODULE_GROUPING=1
+fi
 
 # Now actually do the wipe out as above.
 if [[ $wipe_out_dir -eq 1 ]]; then
