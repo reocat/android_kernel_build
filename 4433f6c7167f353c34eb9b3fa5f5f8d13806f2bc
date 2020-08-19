@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "0118728e_deac9cb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1668622
+      },
+      "writtenOn": "2020-08-19T17:22:47Z",
+      "side": 1,
+      "message": "Its my plan to Python-ify this but I wanted to get the shell script up quickly so we can work out the details and then I\u0027ll move it over.",
+      "revId": "4433f6c7167f353c34eb9b3fa5f5f8d13806f2bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b161292a_2abb3db5",
         "filename": "abi/dump_uapi_header_abi.sh",
         "patchSetId": 4
