@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5a62cf9a_7da0f2e3",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-08-19T20:21:19Z",
+      "side": 1,
+      "message": "This looks like a bug from the original patch. I believe it should be KMI_SYMBOL_LIST_MODULE_GROUPING.",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 40
+      },
+      "revId": "a02e1bad5a2ba745ad76fcdee11a3b668a8586cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "18202022_7dbc3d4f",
         "filename": "build_abi.sh",
         "patchSetId": 1
@@ -31,6 +54,24 @@
       "side": 1,
       "message": "Sure, I\u0027ll move it down here.\n\nAnd for the extra block, I must admit that I\u0027m not completely sure. I can\u0027t find the doc for $KMI_SYMBOL_LIST_MODULE_GROUP, so I\u0027m not sure when it is set. Or is this just a typo and all we want is to default KMI_SYMBOL_LIST_MODULE_GROUPING to 1?",
       "parentUuid": "18202022_7dbc3d4f",
+      "revId": "a02e1bad5a2ba745ad76fcdee11a3b668a8586cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85a5dddc_b9c9f246",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-08-19T20:21:19Z",
+      "side": 1,
+      "message": "All we want to do is default KMI_SYMBOL_LIST_MODULE_GROUPING to 1 when it\u0027s not set. The original patch (aside from the spelling error) is also fine since the build config can override the default value. I even considered not having this check at all and just doing this on line 192\n\nif [ \"${KMI_SYMBOL_LIST_MODULE_GROUPING:-1}\" -eq \"0\" ]; then \n...\n\nThe position in this file shouldn\u0027t matter as long as we just check if the value is set before setting it. That way if it\u0027s set on the command line, then we won\u0027t override and if it\u0027s set in the build.config, then that will override the default if we set the default early.",
+      "parentUuid": "c25fb441_26a49973",
       "revId": "a02e1bad5a2ba745ad76fcdee11a3b668a8586cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
