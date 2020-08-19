@@ -16,6 +16,24 @@
       "revId": "a02e1bad5a2ba745ad76fcdee11a3b668a8586cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c25fb441_26a49973",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-08-19T12:56:32Z",
+      "side": 1,
+      "message": "Sure, I\u0027ll move it down here.\n\nAnd for the extra block, I must admit that I\u0027m not completely sure. I can\u0027t find the doc for $KMI_SYMBOL_LIST_MODULE_GROUP, so I\u0027m not sure when it is set. Or is this just a typo and all we want is to default KMI_SYMBOL_LIST_MODULE_GROUPING to 1?",
+      "parentUuid": "18202022_7dbc3d4f",
+      "revId": "a02e1bad5a2ba745ad76fcdee11a3b668a8586cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
