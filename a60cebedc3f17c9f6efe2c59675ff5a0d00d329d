@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f92a1645_9ec50c32",
+        "filename": "abi/dump_uapi_header_abi.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1668622
+      },
+      "writtenOn": "2020-08-19T17:11:42Z",
+      "side": 1,
+      "message": "The android clang prints an warning here but doesn\u0027t fail. Do I need -Werror or something similar?",
+      "revId": "a60cebedc3f17c9f6efe2c59675ff5a0d00d329d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a944194a_12deef4f",
+        "filename": "abi/dump_uapi_header_abi.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1668622
+      },
+      "writtenOn": "2020-08-19T17:11:42Z",
+      "side": 1,
+      "message": "Oops, I fixed the comment but I forgot about the variable name.  My ugly",
+      "revId": "a60cebedc3f17c9f6efe2c59675ff5a0d00d329d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
