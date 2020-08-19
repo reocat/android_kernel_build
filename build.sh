@@ -395,7 +395,7 @@ echo "========================================================"
 echo " Setting up for build"
 if [ -z "${SKIP_MRPROPER}" ] ; then
   set -x
-  (cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} ${MAKE_ARGS} mrproper)
+  (cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} mrproper)
   set +x
 fi
 
@@ -409,7 +409,7 @@ fi
 
 if [ -z "${SKIP_DEFCONFIG}" ] ; then
   set -x
-  (cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} ${MAKE_ARGS} ${DEFCONFIG})
+  (cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} ${DEFCONFIG})
   set +x
 
   if [ -n "${POST_DEFCONFIG_CMDS}" ]; then
