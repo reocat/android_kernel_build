@@ -116,6 +116,30 @@
       "revId": "e33d6141981f707f3a1782fdb4838c58ebdcb918",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3560482f_bfec5dec",
+        "filename": "_setup_env.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-19T07:38:41Z",
+      "side": 1,
+      "message": "TIL that export is not exporting a var\u003dvalue pair but marking a name for export. Hence the later assignment is legal, but I never came across that. Fair enough. I think the code is fine then. Thanks for the lesson :-)",
+      "parentUuid": "ed687e70_72d11b2d",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 17
+      },
+      "revId": "e33d6141981f707f3a1782fdb4838c58ebdcb918",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
