@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18202022_7dbc3d4f",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-19T11:05:23Z",
+      "side": 1,
+      "message": "maybe move it closer to here?\n\nDo you need this extra block actually? Could you evaluate that directly in :192 only?",
+      "revId": "a02e1bad5a2ba745ad76fcdee11a3b668a8586cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
