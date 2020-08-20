@@ -118,6 +118,47 @@
       "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ed212bb_0562e01e",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-08-20T22:27:06Z",
+      "side": 1,
+      "message": "https://lore.kernel.org/lkml/20200820220955.3325555-1-ndesaulniers@google.com/T/#u",
+      "parentUuid": "e399b5a1_e6aea6f8",
+      "range": {
+        "startLine": 359,
+        "startChar": 4,
+        "endLine": 359,
+        "endChar": 52
+      },
+      "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02c0a92a_bf0bf068",
+        "filename": "hermetic/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-08-20T22:27:06Z",
+      "side": 1,
+      "message": "it looks like passing clang `--rtlib\u003dcompiler-rt` might help, according to srhines@.  I suspect this issue to be specific to AOSP clang. Will test now.",
+      "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
