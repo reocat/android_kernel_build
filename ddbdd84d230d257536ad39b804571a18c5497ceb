@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "86adbf11_66394a4d",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-20T16:19:02Z",
+      "side": 1,
+      "message": "this is actually implied in \"store_true\" (But I know you are just following style around this.)",
+      "range": {
+        "startLine": 197,
+        "startChar": 6,
+        "endLine": 197,
+        "endChar": 20
+      },
+      "revId": "ddbdd84d230d257536ad39b804571a18c5497ceb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2eeccdf9_6bf9605f",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-20T16:19:02Z",
+      "side": 1,
+      "message": "relative to the KERNEL_DIR I assume",
+      "range": {
+        "startLine": 47,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "ddbdd84d230d257536ad39b804571a18c5497ceb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7142aaef_5b3adeeb",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-20T16:19:02Z",
+      "side": 1,
+      "message": "document the default",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 26
+      },
+      "revId": "ddbdd84d230d257536ad39b804571a18c5497ceb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
