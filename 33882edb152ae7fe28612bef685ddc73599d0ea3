@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e8f43c0_6c97a43a",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-20T21:48:06Z",
+      "side": 1,
+      "message": "note, this is not yet supported within LLVM\u003d1 and will add a dependency to host `ld`",
+      "range": {
+        "startLine": 364,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 52
+      },
+      "revId": "33882edb152ae7fe28612bef685ddc73599d0ea3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
