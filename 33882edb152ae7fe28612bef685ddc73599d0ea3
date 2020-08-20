@@ -22,6 +22,30 @@
       "revId": "33882edb152ae7fe28612bef685ddc73599d0ea3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c39fa033_e0079022",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-08-20T22:17:49Z",
+      "side": 1,
+      "message": "https://lore.kernel.org/lkml/20200820220955.3325555-1-ndesaulniers@google.com/T/#u",
+      "parentUuid": "2e8f43c0_6c97a43a",
+      "range": {
+        "startLine": 364,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 52
+      },
+      "revId": "33882edb152ae7fe28612bef685ddc73599d0ea3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
