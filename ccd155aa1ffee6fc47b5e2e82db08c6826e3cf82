@@ -94,6 +94,30 @@
       "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e399b5a1_e6aea6f8",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-20T18:50:32Z",
+      "side": 1,
+      "message": "I will do the upstreaming at a later point. This patch as of here solves this category of issue for a range of kernels. not only android-mainline ... So, I think we should take this now.",
+      "parentUuid": "a6773082_09334ad1",
+      "range": {
+        "startLine": 359,
+        "startChar": 4,
+        "endLine": 359,
+        "endChar": 52
+      },
+      "revId": "ccd155aa1ffee6fc47b5e2e82db08c6826e3cf82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
