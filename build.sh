@@ -342,6 +342,10 @@ export CLANG_TRIPLE CROSS_COMPILE CROSS_COMPILE_COMPAT CROSS_COMPILE_ARM32 ARCH 
 
 TOOL_ARGS=()
 
+if [[ -n "${LLVM}" ]]; then
+  TOOL_ARGS+=("LLVM=1")
+else
+
 if [ -n "${HOSTCC}" ]; then
   TOOL_ARGS+=("HOSTCC=${HOSTCC}")
 fi
@@ -368,6 +372,7 @@ fi
 if [ -n "${OBJCOPY}" ]; then
   TOOL_ARGS+=("OBJCOPY=${OBJCOPY}")
 fi
+fi # if LLVM=1
 
 if [ -n "${DEPMOD}" ]; then
   TOOL_ARGS+=("DEPMOD=${DEPMOD}")
