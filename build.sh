@@ -342,31 +342,35 @@ export CLANG_TRIPLE CROSS_COMPILE CROSS_COMPILE_COMPAT CROSS_COMPILE_ARM32 ARCH 
 
 TOOL_ARGS=()
 
-if [ -n "${HOSTCC}" ]; then
-  TOOL_ARGS+=("HOSTCC=${HOSTCC}")
-fi
-
-if [ -n "${CC}" ]; then
-  TOOL_ARGS+=("CC=${CC}")
-  if [ -z "${HOSTCC}" ]; then
-    TOOL_ARGS+=("HOSTCC=${CC}")
+if [[ -n "${LLVM}" ]]; then
+  TOOL_ARGS+=("LLVM=1")
+else
+  if [ -n "${HOSTCC}" ]; then
+    TOOL_ARGS+=("HOSTCC=${HOSTCC}")
   fi
-fi
 
-if [ -n "${LD}" ]; then
-  TOOL_ARGS+=("LD=${LD}" "HOSTLD=${LD}")
-  custom_ld=${LD##*.}
-  if [ -n "${custom_ld}" ]; then
-    TOOL_ARGS+=("HOSTLDFLAGS=-fuse-ld=${custom_ld}")
+  if [ -n "${CC}" ]; then
+    TOOL_ARGS+=("CC=${CC}")
+    if [ -z "${HOSTCC}" ]; then
+      TOOL_ARGS+=("HOSTCC=${CC}")
+    fi
   fi
-fi
 
-if [ -n "${NM}" ]; then
-  TOOL_ARGS+=("NM=${NM}")
-fi
+  if [ -n "${LD}" ]; then
+    TOOL_ARGS+=("LD=${LD}" "HOSTLD=${LD}")
+    custom_ld=${LD##*.}
+    if [ -n "${custom_ld}" ]; then
+      TOOL_ARGS+=("HOSTLDFLAGS=-fuse-ld=${custom_ld}")
+    fi
+  fi
 
-if [ -n "${OBJCOPY}" ]; then
-  TOOL_ARGS+=("OBJCOPY=${OBJCOPY}")
+  if [ -n "${NM}" ]; then
+    TOOL_ARGS+=("NM=${NM}")
+  fi
+
+  if [ -n "${OBJCOPY}" ]; then
+    TOOL_ARGS+=("OBJCOPY=${OBJCOPY}")
+  fi
 fi
 
 if [ -n "${DEPMOD}" ]; then
