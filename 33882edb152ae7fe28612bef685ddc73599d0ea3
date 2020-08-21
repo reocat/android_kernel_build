@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "eb9b26ae_07c1cf50",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-21T06:50:13Z",
+      "side": 1,
+      "message": "I think I would like some indentation here. Otherwise it is not immediately obvious that this is either LLVM or all the other tools.",
+      "revId": "33882edb152ae7fe28612bef685ddc73599d0ea3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2e8f43c0_6c97a43a",
         "filename": "build.sh",
         "patchSetId": 1
