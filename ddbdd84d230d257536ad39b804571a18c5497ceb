@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "f4d31b8c_8be80361",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-21T06:53:53Z",
+      "side": 1,
+      "message": "all-gki-binaries ?",
+      "parentUuid": "d2bd73e0_4acfbba9",
+      "range": {
+        "startLine": 295,
+        "startChar": 11,
+        "endLine": 295,
+        "endChar": 22
+      },
+      "revId": "ddbdd84d230d257536ad39b804571a18c5497ceb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2eeccdf9_6bf9605f",
         "filename": "build_abi.sh",
         "patchSetId": 1
