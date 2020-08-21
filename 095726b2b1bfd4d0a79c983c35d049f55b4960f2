@@ -16,6 +16,24 @@
       "revId": "095726b2b1bfd4d0a79c983c35d049f55b4960f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ddc9b29_a305d832",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-08-21T06:37:52Z",
+      "side": 1,
+      "message": "Short Anglo-Saxon as opposed long Latin? :-)\n\nHow about this for the option:\n\n--full-gki-abi\n\nand this for the dict key:\n\nfull-gki-abi (so \"# as required by full-gki-abi\")\n\nand this for the build variable\n\nFULL_GKI_ABI\n\n\n?",
+      "parentUuid": "3da0d130_a0e91abc",
+      "revId": "095726b2b1bfd4d0a79c983c35d049f55b4960f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }

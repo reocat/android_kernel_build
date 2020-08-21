@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "d2bd73e0_4acfbba9",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-08-21T06:37:52Z",
+      "side": 1,
+      "message": "The only confusing thing about \"all\" is that we are not grabbing all things, only GKI things. The vendor bits are being excluded.\n\nI will get rid of the space.",
+      "parentUuid": "44dcbdee_b5d2232b",
+      "range": {
+        "startLine": 295,
+        "startChar": 11,
+        "endLine": 295,
+        "endChar": 22
+      },
+      "revId": "ddbdd84d230d257536ad39b804571a18c5497ceb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2eeccdf9_6bf9605f",
         "filename": "build_abi.sh",
         "patchSetId": 1
