@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3010261_5317c821",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-24T22:05:30Z",
+      "side": 1,
+      "message": "one suggestion, but looks good as is.",
+      "revId": "18f70dbd0070cc2b25d6bb92da56ad99c1a4981b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c17fd07_3c6cd5c4",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-24T22:05:30Z",
+      "side": 1,
+      "message": "dest_filename is only ever used for calculating dest_dir/dest_filename. you might as well set it here to the absolute destination file name and reuse that.",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 28
+      },
+      "revId": "18f70dbd0070cc2b25d6bb92da56ad99c1a4981b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
