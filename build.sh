@@ -170,6 +170,16 @@
 #     ensure the ABI tooling correctly differentiates vendor/OEM modules and GKI
 #     modules. This should not be set in the upstream GKI build.config.
 #
+#   VENDOR_DLKM_MODULES_LIST
+#     location of an optional file containing the list of kernel modules which
+#     shall be copied into a vendor_dlkm partition image.
+#
+#   VENDOR_DLKM_PROPS
+#     location of a text file containing the properties to be used for creation
+#     of a vendor_dlkm image (filesystem, partition size, etc). If this is not
+#     set (and VENDOR_DLKM_MODULES_LIST is), a default set of properties will be
+#     used which assumes an ext4 filesystem and a dynamic partition.
+#
 #   LZ4_RAMDISK
 #     if defined, any ramdisks generated will be lz4 compressed instead of
 #     gzip compressed.
@@ -223,13 +233,15 @@ function rel_path() {
   echo ${path}${to#$stem}
 }
 
+# $1 directory of kernel modules ($1/lib/modules/x.y)
+# $2 flags to pass to depmod
 function run_depmod() {
   (
     local ramdisk_dir=$1
     local DEPMOD_OUTPUT
 
     cd ${ramdisk_dir}
-    if ! DEPMOD_OUTPUT="$(depmod -e -F ${DIST_DIR}/System.map -b . 0.0 2>&1)"; then
+    if ! DEPMOD_OUTPUT="$(depmod $2 -F ${DIST_DIR}/System.map -b . 0.0 2>&1)"; then
       echo "$DEPMOD_OUTPUT" >&2
       exit 1
     fi
@@ -296,8 +308,96 @@ function create_reduced_modules_order() {
   )
 
   cp ${src_dir}/modules.builtin* ${modules_staging_dir}/.
-  run_depmod ${staging_dir}
+  run_depmod ${staging_dir} "-e"
   cp ${modules_staging_dir}/modules.* ${dest_dir}/.
+
+  # Clean up
+  rm -rf ${staging_dir}
+}
+
+# $1 VENDOR_DLKM_MODULES_LIST
+# $2 MODULES_STAGING_DIR
+# $3 VENDOR_DLKM_STAGING_DIR
+function build_vendor_dlkm() {
+  echo "========================================================"
+  echo " Creating vendor_dlkm image"
+  local vendor_dlkm_modules_list_file=$1
+  local src_dir=$2/lib/modules/*
+
+  local vendor_dlkm_staging=$3
+  local vendor_dlkm_staging_modules=$3/lib/modules
+
+  local depmod_staging=$2/intermediate_vendor_dlkm_staging
+  local depmod_staging_modules=${depmod_staging}/lib/modules/0.0
+
+  rm -rf ${depmod_staging}
+  mkdir -p ${depmod_staging_modules}
+
+  # ensure vendor_dlkm modules list file is accessible
+  if [[ -f "${ROOT_DIR}/${vendor_dlkm_modules_list_file}" ]]; then
+    vendor_dlkm_modules_list_file="${ROOT_DIR}/${vendor_dlkm_modules_list_file}"
+  elif [[ "${vendor_dlkm_modules_list_file}" != /* ]]; then
+    echo "VENDOR_DLKM_MODULES_LIST must be an absolute path or relative to ${ROOT_DIR}: ${vendor_dlkm_modules_list_file}"
+    exit 1
+  elif [[ ! -f "${vendor_dlkm_modules_list_file}" ]]; then
+    echo "Failed to find VENDOR_DLKM_MODULES_LIST: ${vendor_dlkm_modules_list_file}"
+    exit 1
+  fi
+
+  (
+    cd ${src_dir}
+    touch ${depmod_staging_modules}/modules.order
+
+    # pick chosen vendor_dlkm modules into depmod staging area, vendor_dlkm staging area
+    while read ko; do
+      # Ignore comment lines starting with # sign
+        [[ "${ko}" = \#* ]] && continue
+        if grep -q $(basename ${ko}) ${vendor_dlkm_modules_list_file}; then
+          mkdir -p ${depmod_staging_modules}/$(dirname ${ko})
+          cp -p ${ko} ${depmod_staging_modules}/${ko}
+          mkdir -p ${vendor_dlkm_staging_modules}/$(dirname ${ko})
+	  cp -p ${ko} ${vendor_dlkm_staging_modules}/${ko}
+          echo ${ko} >> ${depmod_staging_modules}/modules.order
+        fi
+    done < modules.order
+
+    # External modules
+    if [ -d "./extra" ]; then
+      for ko in $(find extra/. -name "*.ko"); do
+        if grep -q $(basename ${ko}) ${vendor_dlkm_modules_list_file}; then
+          mkdir -p ${depmod_staging_modules}/extra
+          cp -p ${ko} ${depmod_staging_modules}/extra/$(basename ${ko})
+          echo "extra/$(basename ${ko})" >> ${depmod_staging_modules}/modules.order
+        fi
+      done
+    fi
+  )
+
+  cp ${src_dir}/modules.builtin* ${depmod_staging_modules}/.
+  run_depmod ${depmod_staging}
+  cp ${depmod_staging_modules}/modules.* ${vendor_dlkm_staging_modules}/.
+
+  if [ -z "${VENDOR_DLKM_PROPS}" ]; then
+    vendor_dlkm_props_file="$(mktemp)"
+    vendor_dlkm_props="vendor_dlkm_fs_type=ext4\n"
+    vendor_dlkm_props+="use_dynamic_partition_size=true\n"
+    vendor_dlkm_props+="ext_mkuserimg=mkuserimg_mke2fs\n"
+    vendor_dlkm_props+="ext4_share_dup_blocks=true\n"
+    echo -e "${vendor_dlkm_props}" >> ${vendor_dlkm_props_file}
+  else
+    vendor_dlkm_props_file="${VENDOR_DLKM_PROPS}"
+    if [[ -f "${ROOT_DIR}/${vendor_dlkm_props_file}" ]]; then
+      vendor_dlkm_props_file="${ROOT_DIR}/${vendor_dlkm_props_file}"
+    elif [[ "${vendor_dlkm_props_file}" != /* ]]; then
+      echo "VENDOR_DLKM_PROPS must be an absolute path or relative to ${ROOT_DIR}: ${vendor_dlkm_props_file}"
+      exit 1
+    elif [[ ! -f "${vendor_dlkm_props_file}" ]]; then
+      echo "Failed to find VENDOR_DLKM_PROPS: ${vendor_dlkm_props_file}"
+      exit 1
+    fi
+  fi
+
+  build_image ${vendor_dlkm_staging} ${vendor_dlkm_props_file} ${DIST_DIR}/vendor_dlkm.img /dev/null
 
   # Clean up
   rm -rf ${staging_dir}
@@ -324,6 +424,7 @@ export MODULES_PRIVATE_DIR=$(readlink -m ${COMMON_OUT_DIR}/private)
 export UNSTRIPPED_DIR=${DIST_DIR}/unstripped
 export KERNEL_UAPI_HEADERS_DIR=$(readlink -m ${COMMON_OUT_DIR}/kernel_uapi_headers)
 export INITRAMFS_STAGING_DIR=${MODULES_STAGING_DIR}/initramfs_staging
+export VENDOR_DLKM_STAGING_DIR=${MODULES_STAGING_DIR}/vendor_dlkm_staging
 
 BOOT_IMAGE_HEADER_VERSION=${BOOT_IMAGE_HEADER_VERSION:-3}
 
@@ -678,7 +779,7 @@ if [ -n "${MODULES}" ]; then
       create_reduced_modules_order ${MODULES_LIST} ${MODULES_STAGING_DIR} \
         ${INITRAMFS_STAGING_DIR}
     else
-      run_depmod ${INITRAMFS_STAGING_DIR}
+      run_depmod ${INITRAMFS_STAGING_DIR} "-e"
     fi
 
     cp ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.order ${INITRAMFS_STAGING_DIR}/lib/modules/0.0/modules.load
@@ -698,6 +799,10 @@ if [ -n "${MODULES}" ]; then
     ${RAMDISK_COMPRESS} ${MODULES_STAGING_DIR}/initramfs.cpio > ${MODULES_STAGING_DIR}/initramfs.cpio.${RAMDISK_EXT}
     mv ${MODULES_STAGING_DIR}/initramfs.cpio.${RAMDISK_EXT} ${DIST_DIR}/initramfs.img
   fi
+fi
+
+if [ -n "${VENDOR_DLKM_MODULES_LIST}" ]; then
+  build_vendor_dlkm ${VENDOR_DLKM_MODULES_LIST} ${MODULES_STAGING_DIR} ${VENDOR_DLKM_STAGING_DIR}
 fi
 
 if [ -n "${UNSTRIPPED_MODULES}" ]; then
