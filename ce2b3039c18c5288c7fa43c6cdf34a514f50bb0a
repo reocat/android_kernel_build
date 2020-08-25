@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fca078ff_74c32427",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-25T18:55:25Z",
+      "side": 1,
+      "message": "go/no-imperative",
+      "range": {
+        "startLine": 127,
+        "startChar": 5,
+        "endLine": 127,
+        "endChar": 9
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88871a49_4c3fe315",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-25T18:55:25Z",
+      "side": 1,
+      "message": "that is the default and can be omitted",
+      "range": {
+        "startLine": 129,
+        "startChar": 23,
+        "endLine": 129,
+        "endChar": 26
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6c45a6e_34541c5a",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-25T18:55:25Z",
+      "side": 1,
+      "message": "how about:\n\n with open(whitelist) as wl:\n   for line in [l.strip() for l in wl]:\n     if not line or line.startswith((\"#\", \"[abi_whitelist]\")):\n       continue\n     symbols.append(line)",
+      "range": {
+        "startLine": 129,
+        "startChar": 2,
+        "endLine": 135,
+        "endChar": 16
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c1e8428_f16ac7d8",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-25T18:55:25Z",
+      "side": 1,
+      "message": "read_whitelist could return a set",
+      "range": {
+        "startLine": 147,
+        "startChar": 21,
+        "endLine": 147,
+        "endChar": 42
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "845aaab3_749b9e04",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-25T18:55:25Z",
+      "side": 1,
+      "message": "that is implied",
+      "range": {
+        "startLine": 234,
+        "startChar": 6,
+        "endLine": 234,
+        "endChar": 20
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
