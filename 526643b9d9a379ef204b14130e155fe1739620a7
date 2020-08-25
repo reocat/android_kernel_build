@@ -16,6 +16,24 @@
       "revId": "526643b9d9a379ef204b14130e155fe1739620a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09dac355_5cde6df4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-08-25T23:31:23Z",
+      "side": 1,
+      "message": "Missing dependency for build_image (I see you added it in the Android.bp)",
+      "parentUuid": "2f11eb5f_af5fa633",
+      "revId": "526643b9d9a379ef204b14130e155fe1739620a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
