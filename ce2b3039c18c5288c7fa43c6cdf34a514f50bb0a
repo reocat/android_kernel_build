@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "1f6c2f51_2a748d5a",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-08-26T12:40:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88871a49_4c3fe315",
+      "range": {
+        "startLine": 129,
+        "startChar": 23,
+        "endLine": 129,
+        "endChar": 26
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6c45a6e_34541c5a",
         "filename": "abi/extract_symbols",
         "patchSetId": 4
@@ -68,6 +92,30 @@
       "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b749f73_c662191d",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-08-26T12:40:16Z",
+      "side": 1,
+      "message": "Done, though I\u0027ll keep the full comparison on for the last one.",
+      "parentUuid": "c6c45a6e_34541c5a",
+      "range": {
+        "startLine": 129,
+        "startChar": 2,
+        "endLine": 135,
+        "endChar": 16
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "aeda0af5_ab46e104",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-08-26T12:40:16Z",
+      "side": 1,
+      "message": "I considered that. I prefer it to return the sequence. If I were crazy, I\u0027d work out how to make it a generator.\n\nI\u0027ve made the code that uses it a bit nicer.",
+      "parentUuid": "2c1e8428_f16ac7d8",
+      "range": {
+        "startLine": 147,
+        "startChar": 21,
+        "endLine": 147,
+        "endChar": 42
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "845aaab3_749b9e04",
         "filename": "abi/extract_symbols",
         "patchSetId": 4
@@ -114,6 +186,30 @@
       "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebae2191_74f1c07d",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-08-26T12:40:16Z",
+      "side": 1,
+      "message": "default\u003dNone is the default\n\nI prefer the explicit False.",
+      "parentUuid": "845aaab3_749b9e04",
+      "range": {
+        "startLine": 234,
+        "startChar": 6,
+        "endLine": 234,
+        "endChar": 20
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
