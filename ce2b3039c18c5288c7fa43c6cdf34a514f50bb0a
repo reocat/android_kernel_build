@@ -210,6 +210,30 @@
       "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "56a30895_eb349b68",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-26T13:24:03Z",
+      "side": 1,
+      "message": "https://docs.python.org/3.8/library/argparse.html#action\n\n\u0027store_true\u0027 and \u0027store_false\u0027 - These are special cases of \u0027store_const\u0027 using for storing the values True and False respectively. In addition, they create default values of False and True respectively.",
+      "parentUuid": "ebae2191_74f1c07d",
+      "range": {
+        "startLine": 234,
+        "startChar": 6,
+        "endLine": 234,
+        "endChar": 20
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
