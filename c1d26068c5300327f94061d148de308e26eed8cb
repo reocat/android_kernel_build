@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0120c7c3_56606d9f",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-26T09:01:06Z",
+      "side": 1,
+      "message": "If you like it pythonic :-)\n\n  dest_filename \u003d os.path.join(dest_dir, dest_filename or filename)",
+      "range": {
+        "startLine": 45,
+        "startChar": 41,
+        "endLine": 45,
+        "endChar": 85
+      },
+      "revId": "c1d26068c5300327f94061d148de308e26eed8cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
