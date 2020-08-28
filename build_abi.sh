@@ -178,15 +178,18 @@ if [[ ! $(abidiff --version) =~ $required_abigail_version ]]; then
     exit 1
 fi
 
+if [ $UPDATE_SYMBOL_LIST -eq 1 ]; then
+  # Disable the KMI trimming, as the symbol list may be out of date.
+  unset TRIM_NONLISTED_KMI
+  unset KMI_SYMBOL_LIST_STRICT_MODE
+fi
+
 function build_kernel() {
   # Delegate the actual build to build.sh.
   # Suppress possible values of ABI_DEFINITION when invoking build.sh to avoid
   # the generated abi.xml to be copied to <DIST_DIR>/abi.out.
-  # Similarly, disable the KMI trimming, as the symbol list may be out of date.
   # Turn on symtypes generation to assist in the diagnosis of CRC differences.
   ABI_DEFINITION= \
-    TRIM_NONLISTED_KMI= \
-    KMI_SYMBOL_LIST_STRICT_MODE= \
     KBUILD_SYMTYPES=1 \
     ${ROOT_DIR}/build/build.sh "$@"
 }
