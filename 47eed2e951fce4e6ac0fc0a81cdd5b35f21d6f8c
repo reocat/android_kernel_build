@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8191030e_c2390ffc",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-28T09:03:15Z",
+      "side": 1,
+      "message": "how do we avoid packaging leftover modules from a previous build? is there a modules.order for external modules as well?",
+      "range": {
+        "startLine": 366,
+        "startChar": 6,
+        "endLine": 366,
+        "endChar": 44
+      },
+      "revId": "47eed2e951fce4e6ac0fc0a81cdd5b35f21d6f8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf270928_f3acc14f",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-28T09:03:15Z",
+      "side": 1,
+      "message": "why don\u0027t you write it to the file already here? you are not using vendor_dlkm_props further down",
+      "range": {
+        "startLine": 382,
+        "startChar": 4,
+        "endLine": 382,
+        "endChar": 50
+      },
+      "revId": "47eed2e951fce4e6ac0fc0a81cdd5b35f21d6f8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "556a9e3c_42965427",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-08-28T09:03:15Z",
+      "side": 1,
+      "message": "where is this defined?",
+      "range": {
+        "startLine": 403,
+        "startChar": 11,
+        "endLine": 403,
+        "endChar": 22
+      },
+      "revId": "47eed2e951fce4e6ac0fc0a81cdd5b35f21d6f8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
