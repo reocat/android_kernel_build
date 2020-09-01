@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d71604b6_6a6a2d3b",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-09-01T07:18:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fca078ff_74c32427",
+      "range": {
+        "startLine": 127,
+        "startChar": 5,
+        "endLine": 127,
+        "endChar": 9
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88871a49_4c3fe315",
         "filename": "abi/extract_symbols",
         "patchSetId": 4
@@ -225,6 +249,30 @@
       "side": 1,
       "message": "https://docs.python.org/3.8/library/argparse.html#action\n\n\u0027store_true\u0027 and \u0027store_false\u0027 - These are special cases of \u0027store_const\u0027 using for storing the values True and False respectively. In addition, they create default values of False and True respectively.",
       "parentUuid": "ebae2191_74f1c07d",
+      "range": {
+        "startLine": 234,
+        "startChar": 6,
+        "endLine": 234,
+        "endChar": 20
+      },
+      "revId": "ce2b3039c18c5288c7fa43c6cdf34a514f50bb0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b900e348_19848d57",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-09-01T07:18:54Z",
+      "side": 1,
+      "message": "Cheers. I didn\u0027t spot that in the documentation. I\u0027ll create another change.",
+      "parentUuid": "56a30895_eb349b68",
       "range": {
         "startLine": 234,
         "startChar": 6,
