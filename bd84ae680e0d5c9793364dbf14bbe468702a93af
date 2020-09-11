@@ -22,6 +22,30 @@
       "revId": "bd84ae680e0d5c9793364dbf14bbe468702a93af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c070856c_ee58471e",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-09-11T17:09:21Z",
+      "side": 0,
+      "message": "On the current tip of android-mainline branches, generating the kernel-headers tar took 1-5 seconds.",
+      "parentUuid": "c5ecf72c_3d5f4e21",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 740,
+        "endChar": 2
+      },
+      "revId": "bd84ae680e0d5c9793364dbf14bbe468702a93af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
