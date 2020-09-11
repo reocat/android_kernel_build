@@ -26,6 +26,33 @@
       "revId": "52321f0436fba2c184b9faed26ef0f64113a01e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000004893775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1424759?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "95b2bb1a_5fcfbd59",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-09-11T14:35:06Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027deny list\u0027 or \u0027allow list\u0027; see https://developers.google.com/style/word-list#blacklist for more details.",
+      "range": {
+        "startLine": 14,
+        "startChar": 9,
+        "endLine": 14,
+        "endChar": 18
+      },
+      "revId": "52321f0436fba2c184b9faed26ef0f64113a01e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
