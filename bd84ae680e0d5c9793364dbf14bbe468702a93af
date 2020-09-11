@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5ecf72c_3d5f4e21",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-09-11T16:42:45Z",
+      "side": 0,
+      "message": "minor nit: Creating the tarball takes time (pse measure), and is generally trouble free. For (manual) builds getting build errors at priority is preferred. If the tarball creation takes more than 30 seconds, then I would prefer we leave these operations here and just move the make headers_install above.\n\nI expect them to be a mere few seconds though, so the only ask here is to measure the impact.\n\nIf it is decided that these tar operations be deferred here, obligatory comment, do make sure the echo \"\u003d\u003d\u003d...\u003d\u003d\u003d\" break also remains here to break up the now split log section(s).",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 740,
+        "endChar": 2
+      },
+      "revId": "bd84ae680e0d5c9793364dbf14bbe468702a93af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}

@@ -34,6 +34,46 @@
       "revId": "3638822f371f607ef3697fbd606f8714b2c9cd08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4dedad4_8e7c3393",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-09-11T16:42:45Z",
+      "side": 1,
+      "message": "Some Questions",
+      "revId": "3638822f371f607ef3697fbd606f8714b2c9cd08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "237eee1d_cd11fc24",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-09-11T16:42:45Z",
+      "side": 1,
+      "message": "Do we want to enforce make headers_install when DIST_CMDS is defined? The bug calls for the expectations that the headers are present when running the DIST_CMDS.\n\nIf this is OK for your workflow and expectations, then I expect something like the following in the Running extra dist command(s) section:\n\n  # if DIST_CMDS requires UAPI headers, make sure it errors out!\n  if [ -n \"${SKIP_CP_KERNEL_HDR}\" -a ! -d \"${KERNEL_UAPI_HEADERS_DIR}/usr\" ]; then\n    echo \"WARN: ${DIST_CMDS} running without UAPI headers\"\n  fi\n\nso that all can manage this expectation.",
+      "range": {
+        "startLine": 632,
+        "startChar": 0,
+        "endLine": 638,
+        "endChar": 25
+      },
+      "revId": "3638822f371f607ef3697fbd606f8714b2c9cd08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
