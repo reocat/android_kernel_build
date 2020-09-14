@@ -54,7 +54,7 @@ class Libabigail(AbiTool):
                         dump_path]
 
         if symbol_list is not None:
-            dump_abi_cmd.extend(['--kmi-whitelist', symbol_list])
+            dump_abi_cmd.extend(['-w', symbol_list])
 
         subprocess.check_call(dump_abi_cmd)
 
@@ -71,7 +71,7 @@ class Libabigail(AbiTool):
                         new_dump]
 
         if symbol_list is not None:
-            diff_abi_cmd.extend(['--kmi-whitelist', symbol_list])
+            diff_abi_cmd.extend(['-w', symbol_list])
 
         abi_changed = False
 
