@@ -1,0 +1,58 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000004940858",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1424807?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "29e7517f_a2cbb308",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-09-15T11:11:31Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027deny list\u0027 or \u0027allow list\u0027; see https://developers.google.com/style/word-list#blacklist for more details.",
+      "range": {
+        "startLine": 7,
+        "startChar": 33,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "ed319c758f3bf1d30583879045d20f18a5ee42cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000004940858",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1424807?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3a129ca8_98490023",
+        "filename": "abi/flatten_symbol_list",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-09-15T11:11:31Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027deny list\u0027 or \u0027allow list\u0027; see https://developers.google.com/style/word-list#blacklist for more details.",
+      "range": {
+        "startLine": 32,
+        "startChar": 61,
+        "endLine": 32,
+        "endChar": 70
+      },
+      "revId": "ed319c758f3bf1d30583879045d20f18a5ee42cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
