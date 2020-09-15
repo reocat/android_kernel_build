@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d8ac1b8_b7724fd2",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-09-15T07:36:38Z",
+      "side": 1,
+      "message": "I\u0027m not a great fan of using short option names in long-lived scripts.\n\nDo the upstream libabigail maintainers have a stance on adding --kmi-symbols or --kmi-symbol-list and an alias for --kmi-whitelist?",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 52
+      },
+      "revId": "56ae48e88fe44505b04f6a92b3ea5f03849f3078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
