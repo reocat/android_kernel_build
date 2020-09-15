@@ -22,6 +22,30 @@
       "revId": "56ae48e88fe44505b04f6a92b3ea5f03849f3078",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09bbe61a_d97c6c01",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-15T11:14:36Z",
+      "side": 1,
+      "message": "We do not have consensus yet upstream. I will drop that hunk from the change for now.",
+      "parentUuid": "7d8ac1b8_b7724fd2",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 52
+      },
+      "revId": "56ae48e88fe44505b04f6a92b3ea5f03849f3078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
