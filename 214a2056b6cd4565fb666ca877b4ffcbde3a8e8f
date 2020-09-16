@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f8fe316_ba0823e9",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-09-16T14:46:36Z",
+      "side": 1,
+      "message": "This gets set even with just \u0027--update\u0027 if KMI_SYMBOL_LIST is set, so I think we\u0027re not covering all cases here.\n\nPerhaps move the TRIM_NONLISTED_KMI\u003d\"\" bits out of the build_kernel function, and use them near the call sites?\n\nThat is, do \u0027TRIM_NONLISTED_KMI\u003d KMI_SYMBOL_LIST_STRICT_MODE\u003d build_kernel \"$@\"\u0027 when building for a symbol list update, and just \u0027build_kernel \"$@\"\u0027 for the ABI dump. Would that work? I think a side effect is that the second build (with trimming) will have to be done unconditionally, and the first will depend on UPDATE_SYMBOL_LIST.",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 38
+      },
+      "revId": "214a2056b6cd4565fb666ca877b4ffcbde3a8e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
