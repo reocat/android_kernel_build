@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "a0be15e6_3b5a4ec2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-09-16T17:45:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d4ba6cc_2bdbbe16",
+      "revId": "3638822f371f607ef3697fbd606f8714b2c9cd08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "237eee1d_cd11fc24",
         "filename": "build.sh",
         "patchSetId": 1
