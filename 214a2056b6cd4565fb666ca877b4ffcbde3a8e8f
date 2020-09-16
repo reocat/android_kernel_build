@@ -22,6 +22,30 @@
       "revId": "214a2056b6cd4565fb666ca877b4ffcbde3a8e8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a620ee07_ac796d8c",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-09-16T19:25:22Z",
+      "side": 1,
+      "message": "That is a good point. I\u0027ve respun the patch to match with your suggestions. The unconditional build is now on the other side of the symbol list update logic.",
+      "parentUuid": "9f8fe316_ba0823e9",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 38
+      },
+      "revId": "214a2056b6cd4565fb666ca877b4ffcbde3a8e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
