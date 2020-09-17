@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "cfdb00e9_cf5bc880",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-09-17T14:05:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ffc7f80_7a0f76ac",
+      "range": {
+        "startLine": 248,
+        "startChar": 12,
+        "endLine": 248,
+        "endChar": 27
+      },
+      "revId": "1dc98eda3f536814322fb6cc68e0cbe2a650ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f6e055a6_1cb83960",
         "filename": "build_abi.sh",
         "patchSetId": 2
@@ -86,6 +110,30 @@
       "revId": "1dc98eda3f536814322fb6cc68e0cbe2a650ecf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed2f278d_ddbd9d67",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-09-17T14:05:31Z",
+      "side": 1,
+      "message": "Nevermind on the point about invoking from outer shell.",
+      "parentUuid": "421e4dd1_ee07a0aa",
+      "range": {
+        "startLine": 258,
+        "startChar": 4,
+        "endLine": 258,
+        "endChar": 21
+      },
+      "revId": "1dc98eda3f536814322fb6cc68e0cbe2a650ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
