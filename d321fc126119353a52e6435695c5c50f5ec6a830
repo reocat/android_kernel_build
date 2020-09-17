@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3a31b1d_b82a4c48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-17T14:18:29Z",
+      "side": 1,
+      "message": "I will have a more detailed look later, but this change seems to do more than one thing. It might be worth splitting apart the simplification from the new feature. Also, the newly introduced flag is not mentioned anywhere in the commit message.",
+      "revId": "d321fc126119353a52e6435695c5c50f5ec6a830",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
