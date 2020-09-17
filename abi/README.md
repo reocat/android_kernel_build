@@ -164,7 +164,7 @@ with the following content would limit ABI analysis to the ELF symbols with the
 names `symbol1` and `symbol2`:
 
 ```
-  [abi_symbol_list]
+  [abi_whitelist]
     symbol1
     symbol2
 ```
