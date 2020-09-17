@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6649475e_26aa69fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-09-17T12:44:11Z",
+      "side": 1,
+      "message": "Looking pretty good overall! One last nit and this is good to go.",
+      "revId": "1dc98eda3f536814322fb6cc68e0cbe2a650ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ffc7f80_7a0f76ac",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-09-17T12:44:11Z",
+      "side": 1,
+      "message": "I\u0027m not sure that\u0027ll be visible from build.sh down the line -- see below.",
+      "range": {
+        "startLine": 248,
+        "startChar": 12,
+        "endLine": 248,
+        "endChar": 27
+      },
+      "revId": "1dc98eda3f536814322fb6cc68e0cbe2a650ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6e055a6_1cb83960",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-09-17T12:44:11Z",
+      "side": 1,
+      "message": "I think this might need to be something along the lines of\n\n  SKIP_MRPROPER\u003d\"${SKIP_MRPROPER}\" build_kernel \"$@\"\n\nto ensure the assignment above is visible in build.sh. Perhaps change the name of the \u0027local\u0027 SKIP_MRPROPER to make it clear this is a script-local variable?",
+      "range": {
+        "startLine": 258,
+        "startChar": 4,
+        "endLine": 258,
+        "endChar": 21
+      },
+      "revId": "1dc98eda3f536814322fb6cc68e0cbe2a650ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
