@@ -62,6 +62,30 @@
       "revId": "1dc98eda3f536814322fb6cc68e0cbe2a650ecf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "421e4dd1_ee07a0aa",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2020-09-17T13:59:14Z",
+      "side": 1,
+      "message": "What are your thoughts on doing\n\n  export SKIP_MRPROPER\u003d1\n\nabove, instead of doing the local variable? Incremental abi builds are usually possible if specified from outer invoking shell (e.g. SKIP_MRPROPER\u003d1 ./build/build_abi.sh)",
+      "parentUuid": "f6e055a6_1cb83960",
+      "range": {
+        "startLine": 258,
+        "startChar": 4,
+        "endLine": 258,
+        "endChar": 21
+      },
+      "revId": "1dc98eda3f536814322fb6cc68e0cbe2a650ecf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
