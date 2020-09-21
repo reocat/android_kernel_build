@@ -16,6 +16,138 @@
       "revId": "52b77eb624a27f4ce7e48f16227fb9ac42b4ebe2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bc32e81_bf3d7180",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-21T21:26:52Z",
+      "side": 1,
+      "message": "Thanks for working on that! That is long outstanding.",
+      "revId": "52b77eb624a27f4ce7e48f16227fb9ac42b4ebe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0bc90386_d88a5c3d",
+        "filename": "gki/defconfig_update.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-21T21:26:52Z",
+      "side": 1,
+      "message": "would consistently use aarch64 or at least allow aarch64 and arm64 to be used synonymous",
+      "range": {
+        "startLine": 25,
+        "startChar": 25,
+        "endLine": 25,
+        "endChar": 30
+      },
+      "revId": "52b77eb624a27f4ce7e48f16227fb9ac42b4ebe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18c19570_41635838",
+        "filename": "gki/defconfig_update.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-21T21:26:52Z",
+      "side": 1,
+      "message": "I am not sure, but don\u0027t you need to export the BUILD_CONFIG for the subshells?",
+      "range": {
+        "startLine": 34,
+        "startChar": 1,
+        "endLine": 34,
+        "endChar": 13
+      },
+      "revId": "52b77eb624a27f4ce7e48f16227fb9ac42b4ebe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82fe6424_4304ec7a",
+        "filename": "gki/defconfig_update.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-21T21:26:52Z",
+      "side": 1,
+      "message": "how about switching to ${ROOT_DIR) (in a subshell) to avoid the repetition of ${ROOT_DIR}",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 19
+      },
+      "revId": "52b77eb624a27f4ce7e48f16227fb9ac42b4ebe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76c4b24b_e1c404ac",
+        "filename": "gki/defconfig_update.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-21T21:26:52Z",
+      "side": 1,
+      "message": "this is a lot of repetition taken from build.sh. Also, build.sh just learned about LLVM\u003d1, which is relevant to the config as well. Can\u0027t we make this a \u0027mode\u0027 in build.sh to avoid the double maintenance of those make args?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 74
+      },
+      "revId": "52b77eb624a27f4ce7e48f16227fb9ac42b4ebe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8ddf1fa_b866c686",
+        "filename": "gki/defconfig_update.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-21T21:26:52Z",
+      "side": 1,
+      "message": "even if we decide to keep this in this script, those common MAKE args should be defined exactly once.",
+      "range": {
+        "startLine": 45,
+        "startChar": 29,
+        "endLine": 45,
+        "endChar": 60
+      },
+      "revId": "52b77eb624a27f4ce7e48f16227fb9ac42b4ebe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
