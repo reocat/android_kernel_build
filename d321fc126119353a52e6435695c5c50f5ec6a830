@@ -16,6 +16,24 @@
       "revId": "d321fc126119353a52e6435695c5c50f5ec6a830",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "faf4ac0a_fb88edd9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-09-22T16:11:46Z",
+      "side": 1,
+      "message": "\u003e I will have a more detailed look later, but this change seems to do more than one thing. It might be worth splitting apart the simplification from the new feature. Also, the newly introduced flag is not mentioned anywhere in the commit message.\n\nI have split the module trimming part into a different commit.",
+      "parentUuid": "e3a31b1d_b82a4c48",
+      "revId": "d321fc126119353a52e6435695c5c50f5ec6a830",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
