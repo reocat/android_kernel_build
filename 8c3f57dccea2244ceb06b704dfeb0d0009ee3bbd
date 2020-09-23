@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea5c190b_6da76e7c",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-09-23T22:59:08Z",
+      "side": 1,
+      "message": "-f is traditionally for force\n\nI don\u0027t have a strong opinion here, but perhaps -a for \"all\"?",
+      "range": {
+        "startLine": 74,
+        "startChar": 12,
+        "endLine": 74,
+        "endChar": 14
+      },
+      "revId": "8c3f57dccea2244ceb06b704dfeb0d0009ee3bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d37f3a2f_a3f82ead",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-09-23T22:59:08Z",
+      "side": 1,
+      "message": "detailed",
+      "range": {
+        "startLine": 74,
+        "startChar": 50,
+        "endLine": 74,
+        "endChar": 59
+      },
+      "revId": "8c3f57dccea2244ceb06b704dfeb0d0009ee3bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
