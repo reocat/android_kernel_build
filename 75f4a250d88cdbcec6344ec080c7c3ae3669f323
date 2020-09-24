@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "b7a3916f_e53fe57f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-24T14:01:29Z",
+      "side": 1,
+      "message": "build_abi.sh is not part of what is tested here.",
+      "revId": "75f4a250d88cdbcec6344ec080c7c3ae3669f323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "701c8ee8_ea32c0d2",
         "filename": "build_abi.sh",
         "patchSetId": 1
