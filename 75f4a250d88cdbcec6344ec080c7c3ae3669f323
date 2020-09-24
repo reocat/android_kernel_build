@@ -46,6 +46,30 @@
       "revId": "75f4a250d88cdbcec6344ec080c7c3ae3669f323",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d383961_8ba1ffaa",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-24T14:00:42Z",
+      "side": 1,
+      "message": "I agree, though I am not happy with the complexity/readability-issues that we accumulated here.",
+      "parentUuid": "ef15ee59_16eab34e",
+      "range": {
+        "startLine": 247,
+        "startChar": 12,
+        "endLine": 248,
+        "endChar": 27
+      },
+      "revId": "75f4a250d88cdbcec6344ec080c7c3ae3669f323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
