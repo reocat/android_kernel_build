@@ -22,6 +22,30 @@
       "revId": "75f4a250d88cdbcec6344ec080c7c3ae3669f323",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef15ee59_16eab34e",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2020-09-24T13:20:55Z",
+      "side": 1,
+      "message": "This is printed only if TRIM_NONLISTED_KMI is set, in which case we will hit the condition below and do the rebuild.\n\nBut if TRIM_NONLISTED_KMI is _not_ set in the build.config, there is no reason to re-build the kernel, the first build above was enough. In this case this is not printed, and the condition below skips over the rebuild.\n\nI had to sit down 5 mins to make sure this works, but I think it does. Do you see a case where that breaks?",
+      "parentUuid": "701c8ee8_ea32c0d2",
+      "range": {
+        "startLine": 247,
+        "startChar": 12,
+        "endLine": 248,
+        "endChar": 27
+      },
+      "revId": "75f4a250d88cdbcec6344ec080c7c3ae3669f323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
