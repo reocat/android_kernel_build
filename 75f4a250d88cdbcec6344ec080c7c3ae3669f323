@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "701c8ee8_ea32c0d2",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-24T13:11:17Z",
+      "side": 1,
+      "message": "not a problem of _this_ patch: the comment and the echo talk about rerunning the kernel build, but that is not happening here. and further down it is also not done if we were here (UPDATE_SYMBOL_LIST\u003d\u003d1) ... I seem to miss where it actually happens.",
+      "range": {
+        "startLine": 247,
+        "startChar": 12,
+        "endLine": 248,
+        "endChar": 27
+      },
+      "revId": "75f4a250d88cdbcec6344ec080c7c3ae3669f323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
