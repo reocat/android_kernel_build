@@ -215,42 +215,52 @@ def update_prebuilts(data, files, url_base):
 def download_cuttlefish_kernel(target, output_dir):
   """Download a GKI kernel (both trimmed and untrimmed) and kernel modules for cuttlefish."""
 
-  # download untrimmed GKI kernel
   if target == "arm64":
-    url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_debug_aarch64")
     kernel = "Image"
+  elif target == "i686":
+    kernel = "bzImage"
   elif target == "x86_64":
-    url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_debug_x86_64")
     kernel = "bzImage"
 
-  url = os.path.join(url_base, "BUILD_INFO")
-  response = urllib.request.urlopen(url)
-  data = response.read().decode("utf-8")
-  version = get_build_kernel_version(data)
-  print("Kernel version in build is " + version)
-
-  output_dir += "/{}-{}".format(version, target)
-  if target == "arm64":
-    (old_version, old_sha) = get_binary_kernel_version(os.path.join(output_dir,
-                                                                    "kernel-" + version))
-  else:
-    # no uncompressed x86_64 image, just use arm64 version for now since they
-    # are updated together
-    (old_version, old_sha) = (None, None)
-  shutil.rmtree(output_dir)
-  os.mkdir(output_dir)
-
   update_files = [kernel, "System.map"]
-  func = functools.partial(download, url_base, output_dir)
-  _pool.map(func, update_files)
 
-  os.rename(os.path.join(output_dir, "System.map"),
-            os.path.join(output_dir, "System.map-allsyms"))
-  repackage_kernels(target == "arm64", output_dir, version, "-allsyms")
+  # skip untrimmed for i686 kernels; only used for boot testing
+  if target != "i686":
+    # download untrimmed GKI kernel
+    if target == "arm64":
+      url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_debug_aarch64")
+    elif target == "x86_64":
+      url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_debug_x86_64")
+
+    url = os.path.join(url_base, "BUILD_INFO")
+    response = urllib.request.urlopen(url)
+    data = response.read().decode("utf-8")
+    version = get_build_kernel_version(data)
+    print("Kernel version in build is " + version)
+
+    output_dir += "/{}-{}".format(version, target)
+    if target == "arm64":
+      (old_version, old_sha) = get_binary_kernel_version(os.path.join(output_dir,
+                                                                      "kernel-" + version))
+    else:
+      # no uncompressed x86_64 image, just use arm64 version for now since they
+      # are updated together
+      (old_version, old_sha) = (None, None)
+    shutil.rmtree(output_dir)
+    os.mkdir(output_dir)
+
+    func = functools.partial(download, url_base, output_dir)
+    _pool.map(func, update_files)
+
+    os.rename(os.path.join(output_dir, "System.map"),
+              os.path.join(output_dir, "System.map-allsyms"))
+    repackage_kernels(target == "arm64", output_dir, version, "-allsyms")
 
   # download trimmed GKI kernel
   if target == "arm64":
     url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_aarch64")
+  if target == "i686":
+    url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_cf_i686")
   elif target == "x86_64":
     url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_x86_64")
 
@@ -262,6 +272,8 @@ def download_cuttlefish_kernel(target, output_dir):
   # download CF kernel modules
   if target == "arm64":
     url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_cf_aarch64")
+  if target == "i686":
+    url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_cf_i686")
   elif target == "x86_64":
     url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_cf_x86_64")
 
@@ -281,10 +293,19 @@ def download_cuttlefish_kernel(target, output_dir):
   return (old_sha, new_version, new_sha)
 
 def update_cuttlefish():
+  # Deprecated prebuilts location
   output_dir = os.environ["ANDROID_BUILD_TOP"] + "/device/google/cuttlefish_kernel"
 
   (old_sha, new_version, new_sha) = download_cuttlefish_kernel("arm64", output_dir)
   download_cuttlefish_kernel("x86_64", output_dir)
+
+  gitlog = get_git_log(old_sha, new_sha)
+  commit_prebuilts(output_dir, gitlog)
+
+  # New prebuilts location
+  output_dir = os.environ["ANDROID_BUILD_TOP"] + "/device/google/cuttlefish_prebuilts/kernel"
+
+  (old_sha, new_version, new_sha) = download_cuttlefish_kernel("i686", output_dir)
 
   gitlog = get_git_log(old_sha, new_sha)
   commit_prebuilts(output_dir, gitlog)
