@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67aadfc0_f9ac340d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-25T09:46:51Z",
+      "side": 1,
+      "message": "while I agree with the functionality of this patch, I would like you to rework it a bit in terms of readability. just reading the documentation \"if SKIP_... is unset ...\": This double negation can be avoided.\n\nHow about you call this TRIM_UNUSED_MODULES and set the default to \u003d0. Then make it explicit to be set with TRIM_UNUSED_MODULES\u003d1 (checking exactly for -eq 1). I believe this makes the code easier to reason about.",
+      "revId": "1db32d0817c825698776f809b55e28e1badface6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a01551e_1a4e9be1",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-25T09:46:51Z",
+      "side": 1,
+      "message": "we tend to use (unprocessed) environment variables directly. I am not sure about the benefit making this a function variable.",
+      "range": {
+        "startLine": 288,
+        "startChar": 13,
+        "endLine": 288,
+        "endChar": 30
+      },
+      "revId": "1db32d0817c825698776f809b55e28e1badface6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0e00547_b032717e",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-25T09:46:51Z",
+      "side": 1,
+      "message": "maybe add an echo that we are trimming modules now?",
+      "revId": "1db32d0817c825698776f809b55e28e1badface6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7b6c590_b373d76d",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-25T09:46:51Z",
+      "side": 1,
+      "message": "do we need this verbose output?",
+      "range": {
+        "startLine": 292,
+        "startChar": 75,
+        "endLine": 292,
+        "endChar": 77
+      },
+      "revId": "1db32d0817c825698776f809b55e28e1badface6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "652ab81a_d2dc75cc",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-25T09:46:51Z",
+      "side": 1,
+      "message": "why this limit?",
+      "range": {
+        "startLine": 292,
+        "startChar": 78,
+        "endLine": 292,
+        "endChar": 82
+      },
+      "revId": "1db32d0817c825698776f809b55e28e1badface6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
