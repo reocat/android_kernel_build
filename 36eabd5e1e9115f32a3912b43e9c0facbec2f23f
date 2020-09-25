@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "343ef014_c40ba806",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-09-25T18:25:41Z",
+      "side": 1,
+      "message": "Alternatively to patch 2 and 3, we could just hardcode the use of llvm-strip here.  The only risk is old builds might have a problem with old llvm-strip.  For example, these 2 issues that aren\u0027t all that old: https://github.com/ClangBuiltLinux/linux/issues?q\u003dis%3Aissue+label%3A%22%5BTOOL%5D+llvm-strip%22+is%3Aclosed+.",
+      "revId": "36eabd5e1e9115f32a3912b43e9c0facbec2f23f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    }
+  ]
+}
