@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2bbaec8_051ec97e",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-09-25T18:04:03Z",
+      "side": 1,
+      "message": "While objcopy and strip are mostly the same tool; how come we don\u0027t fall back to `${CROSS_COMPILE}objcopy` instead?  It would at least be more symmetric to attempt to use `${OBJCOPY}` then fall back to `${CROSS_COMPILE}objcopy` than to fall back to `${CROSS_COMPILE}strip`.  Maybe I\u0027m just splitting hairs here, but was there a technical reason why we fall back to strip and not objcopy?",
+      "revId": "ff876cf7f320ec9519b7f913ff3d3f3e5adb3824",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
