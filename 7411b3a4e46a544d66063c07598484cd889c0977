@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "f3ef9975_0e26ff91",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-09-25T17:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e47c5646_0be6fc04",
+      "range": {
+        "startLine": 156,
+        "startChar": 68,
+        "endLine": 157,
+        "endChar": 25
+      },
+      "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81d8a33c_7d881b1f",
         "filename": "build.sh",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2020-09-25T09:56:54Z",
       "side": 1,
       "message": "this is an environment variable that is passed through unmodified. I do not see the point making this a variable.",
+      "range": {
+        "startLine": 267,
+        "startChar": 8,
+        "endLine": 267,
+        "endChar": 30
+      },
+      "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e11af0e_07cfd322",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-09-25T17:06:34Z",
+      "side": 1,
+      "message": "I wanted to be able to specify a different blocklist between vendor ramdisk and vendor_dlkm.\n\nMy thinking is that vendor_dlkm would call something like:\n  create_modules_staging \"${VENDOR_DLKM_MODULES_LIST}\" ${MODULES_STAGING_DIR} ${VENDOR_DLKM_STAGING_DIR} \"${VENDOR_DLKM_BLOCKLIST}\"",
+      "parentUuid": "81d8a33c_7d881b1f",
       "range": {
         "startLine": 267,
         "startChar": 8,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "ee2456ae_d5a1d0f1",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-09-25T17:06:34Z",
+      "side": 1,
+      "message": "I was following previous modules.order logic here. Should both be updated?\n\nhttps://android.googlesource.com/kernel/build/+/refs/heads/master/build.sh#260\n\nCouldn\u0027t db845c have a different blocklist than cuttlefish? They would be having different sets of vendor modules.",
+      "parentUuid": "1a2725dc_f706aaac",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 6
+      },
+      "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b55c933_b93b34f1",
         "filename": "build.sh",
         "patchSetId": 2
@@ -114,6 +186,30 @@
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a26d7b4_f4bd8b3f",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-09-25T17:06:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b55c933_b93b34f1",
+      "range": {
+        "startLine": 335,
+        "startChar": 8,
+        "endLine": 335,
+        "endChar": 14
+      },
+      "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
