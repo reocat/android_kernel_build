@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "22f4f345_f8da0c8c",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-09-28T16:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a30bb4d7_8515fd21",
+      "range": {
+        "startLine": 220,
+        "startChar": 2,
+        "endLine": 223,
+        "endChar": 22
+      },
+      "revId": "5956693e2e72adf256a66d4f1485fae42cd34252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "77453b9e_c2323c6a",
         "filename": "gki/download_from_ci",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "5956693e2e72adf256a66d4f1485fae42cd34252",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e1ae416_bda2d5d7",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-09-28T16:37:05Z",
+      "side": 1,
+      "message": "I don\u0027t think there\u0027s any point in putting \"kernel\" in the dictionary because it\u0027s only used in the \"update_files\" assignment in your snippet (one time). So, I left this part alone. Using the dictionary to build the formatter for BASE_URL worked well, though.",
+      "parentUuid": "77453b9e_c2323c6a",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 233,
+        "endChar": 79
+      },
+      "revId": "5956693e2e72adf256a66d4f1485fae42cd34252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "7abfd1dd_dc9934e8",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-09-28T16:37:05Z",
+      "side": 1,
+      "message": "I think this new version is better, but I wonder if I could collapse ab_arch further. I tried putting it in the dictionary too, but I guess format() is working on BASE_URL so it won\u0027t collapse {string} in the dictionary values at the same time, even if **args is passed.",
+      "parentUuid": "90a7a924_5349c6e2",
+      "range": {
+        "startLine": 258,
+        "startChar": 1,
+        "endLine": 263,
+        "endChar": 87
+      },
+      "revId": "5956693e2e72adf256a66d4f1485fae42cd34252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95010a47_22e7285c",
         "filename": "gki/download_from_ci",
         "patchSetId": 4
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "9f4b40dc_8296e5f0",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-09-28T16:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95010a47_22e7285c",
+      "range": {
+        "startLine": 277,
+        "startChar": 2,
+        "endLine": 283,
+        "endChar": 82
+      },
+      "revId": "5956693e2e72adf256a66d4f1485fae42cd34252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce4f4e60_5e996a0d",
         "filename": "gki/download_from_ci",
         "patchSetId": 4
@@ -114,6 +210,30 @@
       "revId": "5956693e2e72adf256a66d4f1485fae42cd34252",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fd1083c_c5ca13e2",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-09-28T16:37:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce4f4e60_5e996a0d",
+      "range": {
+        "startLine": 311,
+        "startChar": 15,
+        "endLine": 311,
+        "endChar": 93
+      },
+      "revId": "5956693e2e72adf256a66d4f1485fae42cd34252",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": false
     }
   ]
 }
