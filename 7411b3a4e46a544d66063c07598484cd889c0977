@@ -210,6 +210,30 @@
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e498f5b_4018bad5",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-09-28T12:00:05Z",
+      "side": 1,
+      "message": "not done. It should read \n\n# TODO: the modules blocklist ...",
+      "parentUuid": "3a26d7b4_f4bd8b3f",
+      "range": {
+        "startLine": 335,
+        "startChar": 8,
+        "endLine": 335,
+        "endChar": 14
+      },
+      "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
     }
   ]
 }
