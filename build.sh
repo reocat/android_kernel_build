@@ -668,16 +668,15 @@ fi
 if [ -z "${SKIP_CP_KERNEL_HDR}" ] ; then
   echo "========================================================"
   KERNEL_HEADERS_TAR=${DIST_DIR}/kernel-headers.tar.gz
+  mkdir -p ${COMMON_OUT_DIR}/kernel-headers
   echo " Copying kernel headers to ${KERNEL_HEADERS_TAR}"
   pushd $ROOT_DIR/$KERNEL_DIR
-    find arch include $OUT_DIR -name *.h -print0               \
-            | tar -czf $KERNEL_HEADERS_TAR                     \
-              --absolute-names                                 \
-              --dereference                                    \
-              --transform "s,.*$OUT_DIR,,"                     \
-              --transform "s,^,kernel-headers/,"               \
-              --null -T -
+    find arch include -name *.h -exec cp -L --parents {} ${COMMON_OUT_DIR}/kernel-headers \;
   popd
+  pushd $OUT_DIR
+    find . -name *.h -exec cp -L --parents {} ${COMMON_OUT_DIR}/kernel-headers \;
+  popd
+  tar -czf ${KERNEL_HEADERS_TAR} --directory ${COMMON_OUT_DIR} kernel-headers
 fi
 
 if [ -n "${DIST_CMDS}" ]; then
