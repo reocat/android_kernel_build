@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cecaa79_15aaa409",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2020-10-02T23:00:33Z",
+      "side": 1,
+      "message": "This change broke build/abi/bootstrap for me:\n\n   configure: error: dependencies not found, use --disable-libdebuginfod to disable or --enable-libdebuginfod\u003ddummy to build a (bootstrap) dummy library.\n\nReverting this change fixes the problem.\n\nAny ideas?",
+      "revId": "d68a8336a396a98820de2b3432ce5206fe70c854",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
+      "unresolved": true
+    }
+  ]
+}
