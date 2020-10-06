@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e55b7ad3_89d21ddb",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-10-06T22:16:35Z",
+      "side": 1,
+      "message": "please move down after POST_DEFCONFIG ...",
+      "revId": "a307e128e42cd4204b3d88d02c40ab4a2d378ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e8c6bcbd_eb4be474",
         "filename": "build.sh",
         "patchSetId": 1
@@ -19,6 +36,29 @@
         "startChar": 0,
         "endLine": 539,
         "endChar": 4
+      },
+      "revId": "a307e128e42cd4204b3d88d02c40ab4a2d378ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c546b2d6_533b8a9c",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-10-06T22:16:35Z",
+      "side": 1,
+      "message": "we should not run these as well I suppose",
+      "range": {
+        "startLine": 546,
+        "startChar": 0,
+        "endLine": 552,
+        "endChar": 2
       },
       "revId": "a307e128e42cd4204b3d88d02c40ab4a2d378ca8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
