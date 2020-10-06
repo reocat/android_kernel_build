@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3dfdf41f_f81d4af9",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-10-06T22:27:00Z",
+      "side": 1,
+      "message": "Add \"else\" clause. Run \"make modules_prepare\" in else clause.",
+      "range": {
+        "startLine": 544,
+        "startChar": 0,
+        "endLine": 544,
+        "endChar": 2
+      },
+      "revId": "a307e128e42cd4204b3d88d02c40ab4a2d378ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c546b2d6_533b8a9c",
         "filename": "build.sh",
         "patchSetId": 1
@@ -58,6 +81,52 @@
         "startLine": 546,
         "startChar": 0,
         "endLine": 552,
+        "endChar": 2
+      },
+      "revId": "a307e128e42cd4204b3d88d02c40ab4a2d378ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f8b8a04_7784984d",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-10-06T22:27:00Z",
+      "side": 1,
+      "message": "Skip if SKIP_KERNEL_BUILD is set",
+      "range": {
+        "startLine": 565,
+        "startChar": 0,
+        "endLine": 572,
+        "endChar": 2
+      },
+      "revId": "a307e128e42cd4204b3d88d02c40ab4a2d378ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d0f18d9_4499d612",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-10-06T22:27:00Z",
+      "side": 1,
+      "message": "Skip if SKIP_KERNEL_BUILD is set",
+      "range": {
+        "startLine": 581,
+        "startChar": 0,
+        "endLine": 588,
         "endChar": 2
       },
       "revId": "a307e128e42cd4204b3d88d02c40ab4a2d378ca8",
