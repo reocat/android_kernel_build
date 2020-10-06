@@ -89,6 +89,9 @@
 #   POST_DEFCONFIG_CMDS
 #     Command evaluated after `make defconfig` and before `make`.
 #
+#   SKIP_KERNEL_BUILD
+#     if defined, skip `make`
+#
 #   POST_KERNEL_BUILD_CMDS
 #     Command evaluated after `make`.
 #
@@ -532,12 +535,13 @@ elif [ -n "${KMI_SYMBOL_LIST_STRICT_MODE}" ]; then
   exit 1
 fi
 
-echo "========================================================"
-echo " Building kernel"
-
-set -x
-(cd ${OUT_DIR} && make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS} ${MAKE_GOALS})
-set +x
+if [ -z "${SKIP_KERNEL_BUILD}" ]; then
+  echo "========================================================"
+  echo " Building kernel"
+  set -x
+  (cd ${OUT_DIR} && make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS} ${MAKE_GOALS})
+  set +x
+fi
 
 if [ -n "${POST_KERNEL_BUILD_CMDS}" ]; then
   echo "========================================================"
