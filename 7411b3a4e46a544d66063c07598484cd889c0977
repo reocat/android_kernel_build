@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "eb55363b_2f414e00",
         "filename": "build.sh",
@@ -20,10 +21,10 @@
         "endChar": 25
       },
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "e47c5646_0be6fc04",
         "filename": "build.sh",
@@ -43,10 +44,10 @@
         "endChar": 25
       },
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "f3ef9975_0e26ff91",
         "filename": "build.sh",
@@ -67,10 +68,10 @@
         "endChar": 25
       },
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "81d8a33c_7d881b1f",
         "filename": "build.sh",
@@ -90,10 +91,10 @@
         "endChar": 30
       },
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "8e11af0e_07cfd322",
         "filename": "build.sh",
@@ -114,10 +115,10 @@
         "endChar": 30
       },
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "1a2725dc_f706aaac",
         "filename": "build.sh",
@@ -137,10 +138,10 @@
         "endChar": 6
       },
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "ee2456ae_d5a1d0f1",
         "filename": "build.sh",
@@ -161,10 +162,10 @@
         "endChar": 6
       },
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "0b55c933_b93b34f1",
         "filename": "build.sh",
@@ -184,10 +185,10 @@
         "endChar": 14
       },
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
       "key": {
         "uuid": "3a26d7b4_f4bd8b3f",
         "filename": "build.sh",
@@ -208,10 +209,10 @@
         "endChar": 14
       },
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": false
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "0e498f5b_4018bad5",
         "filename": "build.sh",
@@ -232,8 +233,31 @@
         "endChar": 14
       },
       "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47afeb40_9a857c1d",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-10-07T02:17:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e498f5b_4018bad5",
+      "range": {
+        "startLine": 335,
+        "startChar": 8,
+        "endLine": 335,
+        "endChar": 14
+      },
+      "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
