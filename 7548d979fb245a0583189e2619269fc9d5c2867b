@@ -16,6 +16,40 @@
       "message": "Now the collection script works on Mac to catch system device differences as new drivers are introduced or ported.",
       "revId": "7548d979fb245a0583189e2619269fc9d5c2867b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9654339_b61f1c29",
+        "filename": "gki/device_snapshot",
+        "patchSetId": 2
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2020-10-09T17:21:40Z",
+      "side": 1,
+      "message": "Is it safe to assume that adb worked if there is 1 device when !inAdb? If so, should we set inAdb so we get the correct behavior below (eg, line 599)?",
+      "revId": "7548d979fb245a0583189e2619269fc9d5c2867b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "979d8501_14818e20",
+        "filename": "gki/device_snapshot",
+        "patchSetId": 2
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2020-10-09T17:21:40Z",
+      "side": 1,
+      "message": "why is this needed?",
+      "revId": "7548d979fb245a0583189e2619269fc9d5c2867b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
