@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ddf6aa3_7802cdbd",
+        "filename": "gki/device_snapshot",
+        "patchSetId": 2
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-10-09T18:55:16Z",
+      "side": 1,
+      "message": "One does not need to specify ANDROID_SERIAL (or -s flag) when there is one device. When I run the script pre-COVID I typically have to specify a -s flag.\n\nMy scripts always assume there is more than one device connected to adb and -s \u003cserialno\u003e needs to be supplied. It was not until post-COVID that I found myself with only _one_ device. However, as a result, I found a race where the device shows up after not being there above and decided to add this minor Hail Mary fix. If there is one device here, we are safe to continue in that very rare condition.\n\nOf course, it can also fall through if I have two devices, and -s is specified, the one I specified that is currently dysfunctional, and one that happens to be there too.\n\nI flipped a coin and decided since I never have 2 devices (either 1, or 5+) and I had troubles with 1, which is more common in the hands of other users of this script, that it was better to let that slip through.\n\nPutting this in the commit message hurt me, so I decided to sneak this through silently.\n\nsadly someone noticed.",
+      "parentUuid": "f9654339_b61f1c29",
+      "revId": "7548d979fb245a0583189e2619269fc9d5c2867b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "979d8501_14818e20",
@@ -48,6 +66,24 @@
       "writtenOn": "2020-10-09T17:21:40Z",
       "side": 1,
       "message": "why is this needed?",
+      "revId": "7548d979fb245a0583189e2619269fc9d5c2867b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ea49608_09767eb6",
+        "filename": "gki/device_snapshot",
+        "patchSetId": 2
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1032276
+      },
+      "writtenOn": "2020-10-09T18:55:16Z",
+      "side": 1,
+      "message": "To start retrieving content from \u002799\u0027 so that the pipe writes in tee to 99 above do not block. It is all about parallel pipework.\n\nBefore we had a file descriptor \u0027around\u0027 this block that redirected fd99 to stdout below. In this case the ( ... ) stdout is handled buy this background cat.",
+      "parentUuid": "979d8501_14818e20",
       "revId": "7548d979fb245a0583189e2619269fc9d5c2867b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
