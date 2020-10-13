@@ -199,6 +199,8 @@
 
 set -e
 
+echo ENV 1
+env
 # rel_path <to> <from>
 # Generate relative directory path to reach directory <to> from <from>
 function rel_path() {
@@ -317,6 +319,9 @@ CC_ARG="${CC}"
 
 source "${ROOT_DIR}/build/_setup_env.sh"
 
+echo ENV 2
+env
+
 export MAKE_ARGS=$*
 export MAKEFLAGS="-j$(nproc) ${MAKEFLAGS}"
 export MODULES_STAGING_DIR=$(readlink -m ${COMMON_OUT_DIR}/staging)
@@ -416,6 +421,9 @@ fi
 
 mkdir -p ${OUT_DIR} ${DIST_DIR}
 
+echo ENV 3
+env
+
 echo "========================================================"
 echo " Setting up for build"
 if [ -z "${SKIP_MRPROPER}" ] ; then
@@ -454,6 +462,10 @@ if [ -n "${TAGS_CONFIG}" ]; then
   set +x
   exit 0
 fi
+
+echo ENV 4
+env
+exit 5
 
 # Truncate abi.prop file
 ABI_PROP=${DIST_DIR}/abi.prop
