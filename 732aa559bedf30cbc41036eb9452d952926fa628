@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41bc6260_507bc5a8",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-14T00:50:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9b83cc3_3e726301",
+      "range": {
+        "startLine": 88,
+        "startChar": 70,
+        "endLine": 88,
+        "endChar": 76
+      },
+      "revId": "732aa559bedf30cbc41036eb9452d952926fa628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9aeae94_681baec0",
@@ -54,6 +78,30 @@
       "writtenOn": "2020-10-09T09:48:25Z",
       "side": 1,
       "message": "list_artifacts(...) ?",
+      "range": {
+        "startLine": 176,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 48
+      },
+      "revId": "732aa559bedf30cbc41036eb9452d952926fa628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceef2c3f_d411d883",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-14T00:50:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9aeae94_681baec0",
       "range": {
         "startLine": 176,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "846966a0_119c03d0",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-14T00:50:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "221393ef_7a45287e",
+      "range": {
+        "startLine": 220,
+        "startChar": 2,
+        "endLine": 223,
+        "endChar": 23
+      },
+      "revId": "732aa559bedf30cbc41036eb9452d952926fa628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a77a163_07afe3f0",
@@ -110,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ad3f907_5f6cfda8",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-14T00:50:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a77a163_07afe3f0",
+      "range": {
+        "startLine": 224,
+        "startChar": 2,
+        "endLine": 224,
+        "endChar": 25
+      },
+      "revId": "732aa559bedf30cbc41036eb9452d952926fa628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d80b785d_6a340216",
@@ -123,6 +219,30 @@
       "writtenOn": "2020-10-09T09:48:25Z",
       "side": 1,
       "message": "(x for x in files ...)\n\nmakes this a generator and speeds up the processing as the download in the pool already starts while we still iterate the list.",
+      "range": {
+        "startLine": 241,
+        "startChar": 19,
+        "endLine": 241,
+        "endChar": 64
+      },
+      "revId": "732aa559bedf30cbc41036eb9452d952926fa628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abe12ad6_fb8ba6be",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-14T00:50:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d80b785d_6a340216",
       "range": {
         "startLine": 241,
         "startChar": 19,
@@ -179,6 +299,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c0efa32_4bad06e7",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-14T00:50:44Z",
+      "side": 1,
+      "message": "Actually I think we can just get rid of this - we expect these directories to exist so if they are not present it should throw an error as the git project is probably not correct.",
+      "parentUuid": "b1d6af2a_b4f8609b",
+      "range": {
+        "startLine": 313,
+        "startChar": 45,
+        "endLine": 313,
+        "endChar": 63
+      },
+      "revId": "732aa559bedf30cbc41036eb9452d952926fa628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d83bc969_84a4501f",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-14T00:50:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48bfd92e_567d3cf9",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 114
+      },
+      "revId": "732aa559bedf30cbc41036eb9452d952926fa628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf693026_58b47fb2",
@@ -192,6 +360,30 @@
       "writtenOn": "2020-10-09T09:48:25Z",
       "side": 1,
       "message": "I think the \"download_kernel{_modules}\" functions should take care of the directory creation.\nThat way you can remove a lot of the os.mkdir() calls and rather do it when actually required.",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 315,
+        "endChar": 25
+      },
+      "revId": "732aa559bedf30cbc41036eb9452d952926fa628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31328e6a_3a2b53f6",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-14T00:50:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf693026_58b47fb2",
       "range": {
         "startLine": 314,
         "startChar": 0,
