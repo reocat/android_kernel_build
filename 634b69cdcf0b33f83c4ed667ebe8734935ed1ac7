@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90e67697_dafe7619",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-16T00:53:27Z",
+      "side": 1,
+      "message": "no fourth arg passed below/documented above",
+      "range": {
+        "startLine": 254,
+        "startChar": 26,
+        "endLine": 254,
+        "endChar": 28
+      },
+      "revId": "634b69cdcf0b33f83c4ed667ebe8734935ed1ac7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e89f32a_1d3595af",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-16T00:53:27Z",
+      "side": 1,
+      "message": "recommend inverting this test and returning if modules_list_file is empty",
+      "revId": "634b69cdcf0b33f83c4ed667ebe8734935ed1ac7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cbf0c12_a6ffe09e",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-16T00:53:27Z",
+      "side": 1,
+      "message": "I\u0027d preface this with a message \"Reduced modules.order: \" or some such",
+      "revId": "634b69cdcf0b33f83c4ed667ebe8734935ed1ac7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
