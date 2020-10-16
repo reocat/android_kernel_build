@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87ad8809_0d2ebd94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-10-16T20:04:06Z",
+      "side": 1,
+      "message": "Doing my work for me, Peter? (Step 7 of https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+/master/BINUTILS_KERNEL_DEPRECATION.md).",
+      "revId": "374d11512ff0b3b5fdc73bffb06d9a0d662d8941",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7da67ed_cac5374e",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-10-16T20:04:06Z",
+      "side": 1,
+      "message": "This should set AS\u003dclang (just to be safe, in case other scripts in build/ try to use $(AS), as is done above with LLVM\u003d1).",
+      "revId": "374d11512ff0b3b5fdc73bffb06d9a0d662d8941",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
