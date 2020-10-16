@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78b63cc1_ba91f168",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-10-16T22:05:52Z",
+      "side": 1,
+      "message": "On second pass, I realized the following:\n\nWhen modules staging creation is one function, it is better if it the logic is if (reduced_modules) { ... }. So, I had done it early here to simplify the later commit:\n  build: Consolidate modules staging creation into one function\n\nWould you prefer invert the test here and restore it later in commit \"Consolidate modules staging creation into one function\"?",
+      "parentUuid": "1550ac4f_e346c2d7",
+      "revId": "634b69cdcf0b33f83c4ed667ebe8734935ed1ac7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2cbf0c12_a6ffe09e",
         "filename": "build.sh",
         "patchSetId": 4
