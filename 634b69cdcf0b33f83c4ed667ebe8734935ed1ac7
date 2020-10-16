@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36c3525c_a0cf4c7a",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-16T00:54:57Z",
+      "side": 1,
+      "message": "looks like this can just be removed (removed in next patch)",
+      "parentUuid": "90e67697_dafe7619",
+      "range": {
+        "startLine": 254,
+        "startChar": 26,
+        "endLine": 254,
+        "endChar": 28
+      },
+      "revId": "634b69cdcf0b33f83c4ed667ebe8734935ed1ac7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e89f32a_1d3595af",
         "filename": "build.sh",
         "patchSetId": 4
