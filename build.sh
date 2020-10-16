@@ -390,6 +390,10 @@ else
   fi
 fi
 
+if [ -n "${LLVM_IAS}" ]; then
+  TOOL_ARGS+=("LLVM_IAS=${LLVM_IAS}")
+fi
+
 if [ -n "${DEPMOD}" ]; then
   TOOL_ARGS+=("DEPMOD=${DEPMOD}")
 fi
