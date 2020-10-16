@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dde64b9_de2f35b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1067098
+      },
+      "writtenOn": "2020-10-16T21:24:44Z",
+      "side": 1,
+      "message": "I wanted to see if I could get rid of my instructions [1] to upgrade binutils to build the kernel with MTE. Unfortunately we aren\u0027t quite there yet because the most recent AOSP LLVM release doesn\u0027t properly support enabling arch extensions (such as MTE) via .arch. It looks like LLVM trunk has this fixed so I should finally be able to get rid of those instructions soon.\n\nBut since I needed to write the CL for this anyway I figured I might as well send it to you since I imagine you\u0027ll need it at some point.\n\n[1] https://cs.android.com/android/platform/superproject/+/master:device/generic/goldfish/fvpbase/README.md;l\u003d113",
+      "parentUuid": "87ad8809_0d2ebd94",
+      "revId": "374d11512ff0b3b5fdc73bffb06d9a0d662d8941",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7da67ed_cac5374e",
@@ -31,6 +49,24 @@
       "writtenOn": "2020-10-16T20:04:06Z",
       "side": 1,
       "message": "This should set AS\u003dclang (just to be safe, in case other scripts in build/ try to use $(AS), as is done above with LLVM\u003d1).",
+      "revId": "374d11512ff0b3b5fdc73bffb06d9a0d662d8941",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7396332_3f7aaf52",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1067098
+      },
+      "writtenOn": "2020-10-16T21:24:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7da67ed_cac5374e",
       "revId": "374d11512ff0b3b5fdc73bffb06d9a0d662d8941",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
