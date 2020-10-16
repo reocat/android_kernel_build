@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "508b08c8_482bb690",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-10-16T15:34:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "36c3525c_a0cf4c7a",
+      "range": {
+        "startLine": 254,
+        "startChar": 26,
+        "endLine": 254,
+        "endChar": 28
+      },
+      "revId": "634b69cdcf0b33f83c4ed667ebe8734935ed1ac7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e89f32a_1d3595af",
@@ -65,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1550ac4f_e346c2d7",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-10-16T15:34:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2e89f32a_1d3595af",
+      "revId": "634b69cdcf0b33f83c4ed667ebe8734935ed1ac7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cbf0c12_a6ffe09e",
@@ -78,6 +120,24 @@
       "writtenOn": "2020-10-16T00:53:27Z",
       "side": 1,
       "message": "I\u0027d preface this with a message \"Reduced modules.order: \" or some such",
+      "revId": "634b69cdcf0b33f83c4ed667ebe8734935ed1ac7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d4dc364_1e7a0e80",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-10-16T15:34:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2cbf0c12_a6ffe09e",
       "revId": "634b69cdcf0b33f83c4ed667ebe8734935ed1ac7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
