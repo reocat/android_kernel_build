@@ -68,7 +68,7 @@ NORMAL="${ESCAPE}[0m"
 
 Returns: true if device is in fastboot mode" ]
 inFastboot() {
-  fastboot devices |
+  fastboot devices 2>/dev/null |
     if [ -n "${ANDROID_SERIAL}" ]; then
       grep "^${ANDROID_SERIAL}[${SPACE}${TAB}]" > /dev/null
     else
@@ -595,7 +595,7 @@ if [ -z "${filter}" ]; then
   counter=0
   while ${display}; do
     if inFastboot; then
-      fastboot reboot
+      fastboot reboot 2>/dev/null
     elif inAdb; then
       if [ "1" = "`get_property sys.boot_completed`" ]; then
         break
