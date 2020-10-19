@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "2b8c40bd_cc1a5aa6",
         "filename": "build.sh",
@@ -20,8 +21,31 @@
         "endChar": 1
       },
       "revId": "0863b8f845844eb51f405dc40a2cb20ae8985f47",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46e88983_d9070d68",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-19T20:22:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b8c40bd_cc1a5aa6",
+      "range": {
+        "startLine": 153,
+        "startChar": 8,
+        "endLine": 156,
+        "endChar": 1
+      },
+      "revId": "0863b8f845844eb51f405dc40a2cb20ae8985f47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
