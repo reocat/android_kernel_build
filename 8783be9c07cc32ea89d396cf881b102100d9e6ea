@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a720776_2e164827",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1072623
+      },
+      "writtenOn": "2020-10-19T23:57:09Z",
+      "side": 1,
+      "message": "Just FYI, that new date format will break the kernel version regex in Settings at:\n  https://android.googlesource.com/platform/frameworks/base/+/master/packages/SettingsLib/src/com/android/settingslib/DeviceInfoUtils.java#81\n\nThat regex should probably be updated to be more flexible on the date format.\n\nSee b/171088405 for a device that was affected. ",
+      "revId": "8783be9c07cc32ea89d396cf881b102100d9e6ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
