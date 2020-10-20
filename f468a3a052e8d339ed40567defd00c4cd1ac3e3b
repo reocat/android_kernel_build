@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b13d666_a2a7f9a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-10-20T17:06:23Z",
+      "side": 1,
+      "message": "It\u0027s hard for me to review this without extensive shell knowledge. Looks like a bunch of gibberish 😊",
+      "revId": "f468a3a052e8d339ed40567defd00c4cd1ac3e3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17633902_e9f1618e",
+        "filename": "gki/README.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-10-20T17:06:23Z",
+      "side": 1,
+      "message": "Not sure what this means. Is this the format that hack I did with genksyms to dump the crc string? I believe there is some flag you can pass to genksyms to dump the CRC strings. I\u0027d prefer we just stick to using the KBUILD_SYMTYPES\u003d1 dump though.",
+      "range": {
+        "startLine": 148,
+        "startChar": 66,
+        "endLine": 149,
+        "endChar": 46
+      },
+      "revId": "f468a3a052e8d339ed40567defd00c4cd1ac3e3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2ba88cb_d7e872aa",
+        "filename": "gki/unpack_ksyms",
+        "patchSetId": 13
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-10-20T17:06:23Z",
+      "side": 1,
+      "message": "Dead code? Should we keep this for some reason?",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 0
+      },
+      "revId": "f468a3a052e8d339ed40567defd00c4cd1ac3e3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
