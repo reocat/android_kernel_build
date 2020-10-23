@@ -139,6 +139,9 @@ fi
 
 source "${ROOT_DIR}/build/_setup_env.sh"
 
+# If for some reason UNSTRIPPED_DIR changes, please update build.sh as well
+export UNSTRIPPED_DIR=${DIST_DIR}/unstripped
+
 if [ -z "${KMI_SYMBOL_LIST}" ]; then
     if [ $UPDATE_SYMBOL_LIST -eq 1 ]; then
         echo "ERROR: --update-symbol-list requires a KMI_SYMBOL_LIST" >&2
@@ -267,12 +270,25 @@ fi
 echo "========================================================"
 echo " Creating ABI dump"
 
+ABI_LINUX_TREE=${DIST_DIR}
+ABI_VMLINUX_PATH=
+DELETE_UNSTRIPPED_MODULES=
+if [ -z "${DO_NOT_STRIP_MODULES}" ] && [ $(echo "${UNSTRIPPED_MODULES}" | tr -d '\n') = "*.ko" ]; then
+  if [ -n "${COMPRESS_UNSTRIPPED_MODULES}" ] && [ ! -f "${UNSTRIPPED_DIR}" ]; then
+    tar -xzf ${DIST_DIR}/unstripped_modules.tar.gz -C $(dirname ${UNSTRIPPED_DIR})
+    DELETE_UNSTRIPPED_MODULES=1
+  fi
+  ABI_LINUX_TREE=${UNSTRIPPED_DIR}
+  ABI_VMLINUX_PATH="--vmlinux ${DIST_DIR}/vmlinux"
+fi
+
 # create abi dump
 COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
 id=${ABI_OUT_TAG:-$(git -C $KERNEL_DIR describe --dirty --always)}
 abi_out_file=abi-${id}.xml
 ${ROOT_DIR}/build/abi/dump_abi                \
-    --linux-tree ${DIST_DIR}                  \
+    --linux-tree ${ABI_LINUX_TREE}            \
+    ${ABI_VMLINUX_PATH}                       \
     --out-file ${DIST_DIR}/${abi_out_file}    \
     $KMI_SYMBOL_LIST_FLAG
 
@@ -340,6 +356,8 @@ if [ -n "$ABI_DEFINITION" ]; then
         cp -v ${DIST_DIR}/${abi_out_file} $KERNEL_DIR/$ABI_DEFINITION
     fi
 fi
+
+[ -n "${DELETE_UNSTRIPPED_MODULES}" ] && rm -rf ${UNSTRIPPED_DIR}
 
 exit $rc
 
