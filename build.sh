@@ -45,6 +45,9 @@
 #     Space separated list of modules to be copied to <DIST_DIR>/unstripped
 #     for debugging purposes.
 #
+#   COMPRESS_UNSTRIPPED_MODULES
+#     If set, then compress the unstripped modules into a tarball.
+#
 #   CC
 #     Override compiler to be used. (e.g. CC=clang) Specifying CC=gcc
 #     effectively unsets CC to fall back to the default gcc detected by kbuild
@@ -310,6 +313,7 @@ export MAKE_ARGS=$*
 export MAKEFLAGS="-j$(nproc) ${MAKEFLAGS}"
 export MODULES_STAGING_DIR=$(readlink -m ${COMMON_OUT_DIR}/staging)
 export MODULES_PRIVATE_DIR=$(readlink -m ${COMMON_OUT_DIR}/private)
+# If for some reason UNSTRIPPED_DIR changes, please update build_abi.sh as well
 export UNSTRIPPED_DIR=${DIST_DIR}/unstripped
 export KERNEL_UAPI_HEADERS_DIR=$(readlink -m ${COMMON_OUT_DIR}/kernel_uapi_headers)
 export INITRAMFS_STAGING_DIR=${MODULES_STAGING_DIR}/initramfs_staging
@@ -756,6 +760,10 @@ if [ -n "${UNSTRIPPED_MODULES}" ]; then
   for MODULE in ${UNSTRIPPED_MODULES}; do
     find ${MODULES_PRIVATE_DIR} -name ${MODULE} -exec cp {} ${UNSTRIPPED_DIR} \;
   done
+  if [ -n "${COMPRESS_UNSTRIPPED_MODULES}" ]; then
+    tar -czf ${DIR_DIR}/unstripped_modules.tar.gz -C $(dirname ${UNSTRIPPED_DIR}) $(basename ${UNSTRIPPED_DIR})
+    rm -rf ${UNSTRIPPED_DIR}
+  fi
 fi
 
 [ -n "${GKI_MODULES_LIST}" ] && cp ${KERNEL_DIR}/${GKI_MODULES_LIST} ${DIST_DIR}/
