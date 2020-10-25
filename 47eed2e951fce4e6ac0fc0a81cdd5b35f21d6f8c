@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "8191030e_c2390ffc",
         "filename": "build.sh",
@@ -20,10 +21,34 @@
         "endChar": 44
       },
       "revId": "47eed2e951fce4e6ac0fc0a81cdd5b35f21d6f8c",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd7d7ea8_0cc21a19",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-25T01:15:45Z",
+      "side": 1,
+      "message": "This particular code is going away, but the common code that will be used in the next version has the same issue. Would like to address that separately.",
+      "parentUuid": "8191030e_c2390ffc",
+      "range": {
+        "startLine": 366,
+        "startChar": 6,
+        "endLine": 366,
+        "endChar": 44
+      },
+      "revId": "47eed2e951fce4e6ac0fc0a81cdd5b35f21d6f8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "bf270928_f3acc14f",
         "filename": "build.sh",
@@ -43,10 +68,34 @@
         "endChar": 50
       },
       "revId": "47eed2e951fce4e6ac0fc0a81cdd5b35f21d6f8c",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48419e76_c2a8703d",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-25T01:15:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf270928_f3acc14f",
+      "range": {
+        "startLine": 382,
+        "startChar": 4,
+        "endLine": 382,
+        "endChar": 50
+      },
+      "revId": "47eed2e951fce4e6ac0fc0a81cdd5b35f21d6f8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
       "key": {
         "uuid": "556a9e3c_42965427",
         "filename": "build.sh",
@@ -66,8 +115,31 @@
         "endChar": 22
       },
       "revId": "47eed2e951fce4e6ac0fc0a81cdd5b35f21d6f8c",
-      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889",
-      "unresolved": true
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b94f5d2d_71825cb9",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-25T01:15:45Z",
+      "side": 1,
+      "message": "removed in next version",
+      "parentUuid": "556a9e3c_42965427",
+      "range": {
+        "startLine": 403,
+        "startChar": 11,
+        "endLine": 403,
+        "endChar": 22
+      },
+      "revId": "47eed2e951fce4e6ac0fc0a81cdd5b35f21d6f8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
