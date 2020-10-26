@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0be4d10_eac9cd34",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-26T23:26:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4010b668_3b1a6e3d",
+      "range": {
+        "startLine": 383,
+        "startChar": 0,
+        "endLine": 384,
+        "endChar": 65
+      },
+      "revId": "5099e00e555b123205a203ef766f51daca32928f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67a03336_f6cc073e",
@@ -49,6 +73,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0a5a6898_fc59f934",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-26T23:26:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67a03336_f6cc073e",
+      "range": {
+        "startLine": 387,
+        "startChar": 4,
+        "endLine": 387,
+        "endChar": 26
+      },
+      "revId": "5099e00e555b123205a203ef766f51daca32928f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "144a3ee2_91f2359e",
         "filename": "build.sh",
         "patchSetId": 3
@@ -60,6 +108,24 @@
       "writtenOn": "2020-10-26T21:57:48Z",
       "side": 1,
       "message": "In some other places, we use the prefix \"ERROR: \" and then \u003e\u00262 to send the message to stderr.\nNot sure if we agreed on one or the other.",
+      "revId": "5099e00e555b123205a203ef766f51daca32928f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff0148ae_a215ac2e",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-26T23:26:22Z",
+      "side": 1,
+      "message": "I\u0027ll leave this as-is for now as it\u0027s the convention followed in the function above. Going through and unifying the style for this is another cleanup that\u0027ll need to be done.",
+      "parentUuid": "144a3ee2_91f2359e",
       "revId": "5099e00e555b123205a203ef766f51daca32928f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
