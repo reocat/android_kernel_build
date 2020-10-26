@@ -183,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "609fa8ad_ed0165d3",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-10-26T17:44:16Z",
+      "side": 1,
+      "message": "I am ok to leave it as is. I will look into that at a later time. I brought it up because we already use the proper data structures for parallelization.",
+      "parentUuid": "02f33b34_c294b163",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 435,
+        "endChar": 50
+      },
+      "revId": "c4c2a2efd89de18f79415559a0d6fd15956cec05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c0c5400_b1384245",
