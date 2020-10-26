@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49b6e2e1_3999b26f",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-10-26T16:58:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9de103cd_df6e22c3",
+      "range": {
+        "startLine": 393,
+        "startChar": 2,
+        "endLine": 396,
+        "endChar": 40
+      },
+      "revId": "c4c2a2efd89de18f79415559a0d6fd15956cec05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b20df2b4_0ca121bc",
@@ -89,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b15e5ca5_d6386cb6",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-10-26T16:58:00Z",
+      "side": 1,
+      "message": "I tried, but I get this mysterious error:\n\nTraceback (most recent call last):\n  File \"/home/adelva/android/u-boot/build/gki/download_from_ci\", line 482, in \u003cmodule\u003e\n    sys.exit(main())\n  File \"/home/adelva/android/u-boot/build/gki/download_from_ci\", line 469, in main\n    update_u_boot()\n  File \"/home/adelva/android/u-boot/build/gki/download_from_ci\", line 456, in update_u_boot\n    update_u_boot_mainline(output_dir)\n  File \"/home/adelva/android/u-boot/build/gki/download_from_ci\", line 435, in update_u_boot_mainline\n    concurrent.futures.wait(futures, timeout\u003dNone, return_when\u003dALL_COMPLETED)\n  File \"/usr/lib/python3.8/concurrent/futures/_base.py\", line 288, in wait\n    with _AcquireFutures(fs):\n  File \"/usr/lib/python3.8/concurrent/futures/_base.py\", line 150, in __enter__\n    future._condition.acquire()\nAttributeError: \u0027list\u0027 object has no attribute \u0027_condition\u0027\n\nI couldn\u0027t figure it out. Maybe we are mixing multiprocessing pools and concurrent executor pools? Anyway, I think this can be addressed in a follow-up, as my change is not introducing a new problem; the other kernel update target has the same issue.",
+      "parentUuid": "b06ff76e_ad53b628",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 435,
+        "endChar": 50
+      },
+      "revId": "c4c2a2efd89de18f79415559a0d6fd15956cec05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c0c5400_b1384245",
         "filename": "gki/download_from_ci",
         "patchSetId": 1
@@ -100,6 +148,30 @@
       "writtenOn": "2020-10-26T10:02:45Z",
       "side": 1,
       "message": "emit a warning otherwise?",
+      "range": {
+        "startLine": 451,
+        "startChar": 2,
+        "endLine": 451,
+        "endChar": 38
+      },
+      "revId": "c4c2a2efd89de18f79415559a0d6fd15956cec05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "556ac065_6bbdffb1",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-10-26T16:58:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c0c5400_b1384245",
       "range": {
         "startLine": 451,
         "startChar": 2,
