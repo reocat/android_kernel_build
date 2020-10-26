@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c03ef30_e3413be5",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-26T19:53:41Z",
+      "side": 1,
+      "message": "comment below, this LGTM",
+      "parentUuid": "eb55363b_2f414e00",
+      "range": {
+        "startLine": 156,
+        "startChar": 8,
+        "endLine": 156,
+        "endChar": 25
+      },
+      "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e47c5646_0be6fc04",
@@ -118,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b290762_b1d01709",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-26T19:53:41Z",
+      "side": 1,
+      "message": "LGTM, this is used in my vendor_dlkm patch.",
+      "parentUuid": "8e11af0e_07cfd322",
+      "range": {
+        "startLine": 267,
+        "startChar": 8,
+        "endLine": 267,
+        "endChar": 30
+      },
+      "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a2725dc_f706aaac",
@@ -155,6 +203,30 @@
       "side": 1,
       "message": "I was following previous modules.order logic here. Should both be updated?\n\nhttps://android.googlesource.com/kernel/build/+/refs/heads/master/build.sh#260\n\nCouldn\u0027t db845c have a different blocklist than cuttlefish? They would be having different sets of vendor modules.",
       "parentUuid": "1a2725dc_f706aaac",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 327,
+        "endChar": 6
+      },
+      "revId": "7411b3a4e46a544d66063c07598484cd889c0977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4357a085_2edd6b5a",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-10-26T19:53:41Z",
+      "side": 1,
+      "message": "I believe this is correct as-is. The modules.blocklist may exist outside the kernel directory, cuttlefish for example now has many of its files in common-modules/virtual-devices.",
+      "parentUuid": "ee2456ae_d5a1d0f1",
       "range": {
         "startLine": 317,
         "startChar": 0,
