@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fa0f1e7_77641843",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-10-26T09:33:28Z",
+      "side": 1,
+      "message": "those should document that they are relative to the ROOT_DIR(?) or absolute",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 68
+      },
+      "revId": "ca4aa23fab3fcf782ae36dc217c649556ca54814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37906ac1_1505c625",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-10-26T09:33:28Z",
+      "side": 1,
+      "message": "why this change?",
+      "range": {
+        "startLine": 271,
+        "startChar": 5,
+        "endLine": 271,
+        "endChar": 22
+      },
+      "revId": "ca4aa23fab3fcf782ae36dc217c649556ca54814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3fb8d4c_7c70a249",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-10-26T09:33:28Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 400,
+        "startChar": 2,
+        "endLine": 400,
+        "endChar": 12
+      },
+      "revId": "ca4aa23fab3fcf782ae36dc217c649556ca54814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b755cc8b_902eaed3",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-10-26T09:33:28Z",
+      "side": 1,
+      "message": "These \"computed constants\" that are exported here are really weird. Most of them get exported despite never been used outside this script.\nSome of them are only used in a function scope (like the last one here).",
+      "range": {
+        "startLine": 419,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 73
+      },
+      "revId": "ca4aa23fab3fcf782ae36dc217c649556ca54814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
