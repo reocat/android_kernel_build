@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45bdf0fa_d5c1c147",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-10-26T09:46:02Z",
+      "side": 1,
+      "message": "that should be a constant in _setup_build_env.sh. That way it can be reused in build_abi.sh and in build.sh.\n\nSame holds true for UNSTRIPPED_DIR",
+      "range": {
+        "startLine": 481,
+        "startChar": 25,
+        "endLine": 481,
+        "endChar": 49
+      },
+      "revId": "0d9511d85e549ff38f6f12988beb916c711bee4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
