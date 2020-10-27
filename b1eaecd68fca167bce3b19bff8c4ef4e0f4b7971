@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c408432_6f4b8d79",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-10-27T10:00:33Z",
+      "side": 1,
+      "message": "nit: using \"fetch_initramfs\u003dTrue\" here makes this line immediately obvious",
+      "range": {
+        "startLine": 342,
+        "startChar": 61,
+        "endLine": 342,
+        "endChar": 65
+      },
+      "revId": "b1eaecd68fca167bce3b19bff8c4ef4e0f4b7971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
