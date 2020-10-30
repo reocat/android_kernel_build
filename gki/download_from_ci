@@ -157,12 +157,18 @@ def commit_prebuilts(output_dir, gitlog, name="kernel"):
 def get_binary_kernel_version(path):
   """Returns a tuple of strings of the x.y.z (LTS) version and the SHA."""
   rawdata = subprocess.check_output(["grep", "-a", "Linux version ", path])
-  pattern = b"Linux version (?P<release>(?P<version>[0-9]+[.][0-9]+[.][0-9]+)(-rc\d+)?(-\w+(-\d+)?)?-\d+-g(?P<sha>\w+)-ab\d+) \(.*@.*\) \((?P<compiler>.*)\) .*\n"
+  pattern = b"Linux version (?P<release>(?P<version>[0-9]+[.][0-9]+[.][0-9]+)(-rc\d+)?(-\w+(-\d+)?)?-\d+-g(?P<sha>\w+)(-ab\d+)?) \(.*@.*\) \((?P<compiler>.*)\) .*\n"
   result = re.search(pattern, rawdata)
   if not result:
     raise Exception("Could not determine version in kernel binary " + path)
   return (result.group("version").decode('ascii'),
           result.group("sha").decode('ascii'))
+
+def get_binary_kernel_version_gz(path):
+  with tempfile.TemporaryDirectory() as tmp:
+    new_path = os.path.join(tmp, "kernel")
+    subprocess.check_call(["gunzip -c " + path + " > " + new_path], shell=True)
+    return get_binary_kernel_version(new_path)
 
 def get_binary_u_boot_version(path):
   """Returns a tuple of strings of the YYYY.MM(-rcXX) version and the SHA."""
@@ -278,8 +284,8 @@ def update_android_4_1x(output_dir, version):
   x86_64_dirname = "%s-x86_64" % version
   x86_64_dir = os.path.join(output_dir, x86_64_dirname)
 
-  arm64_kernel = os.path.join(arm64_dir, "kernel-%s" % version)
-  (old_version, old_sha) = get_binary_kernel_version(arm64_kernel)
+  arm64_kernel = os.path.join(arm64_dir, "kernel")
+  (old_version, old_sha) = get_binary_kernel_version_gz(arm64_kernel)
 
   subprocess.check_call(["git", "rm", "-rf", arm64_dirname, x86_64_dirname],
                         cwd=output_dir)
@@ -287,6 +293,7 @@ def update_android_4_1x(output_dir, version):
   download_kernel("kernel_aarch64", version, arm64_dir)
   download_kernel("kernel_x86_64", version, x86_64_dir)
 
+  arm64_kernel = os.path.join(arm64_dir, "kernel-%s" % version)
   (new_version, new_sha) = get_binary_kernel_version(arm64_kernel)
 
   gitlog = get_git_log(old_sha, new_sha)
