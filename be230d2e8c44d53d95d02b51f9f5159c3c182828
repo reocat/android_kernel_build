@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abe9b464_fd49ecb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-10-30T19:16:39Z",
+      "side": 1,
+      "message": "We should absolutely do this. It will be a yak shave to work out all of the details, but this is a worthwhile goal to work towards.\n\nIt looks like `mrproper` is invoking GCC? This is likely a hermiticity issue upstream. Or maybe only for 5.4 so there\u0027s a missing backport.\n\nI haven\u0027t read through all of the failures yet, but there\u0027s lot of silent failures from Kbuild.  When the savedefconfig doesn\u0027t match, it\u0027s pretty much always because something failed during Kbuild silently (you have to add explicit print statements to Makefiles and the macros they invoke to debug, it\u0027s a PITA but I don\u0027t know of a better way).",
+      "revId": "be230d2e8c44d53d95d02b51f9f5159c3c182828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a110c136_81248b62",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2020-10-30T19:16:39Z",
+      "side": 1,
+      "message": "that\u0027s an interesting list; isn\u0027t rsync for fetching over the network?\n\nIt looks like the net_tests rely on readlink and mkdir.\n\nIt looks like whatever build kernel/kheaders_data.tar.xz expects sh to call bash at least on 5.4: https://android-build.googleplex.com/builds/pending/P17555500/kernel_db845c/latest/view/logs/build_error.log.",
+      "revId": "be230d2e8c44d53d95d02b51f9f5159c3c182828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
