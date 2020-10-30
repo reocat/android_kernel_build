@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67be890e_7d3a05f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-10-30T22:01:07Z",
+      "side": 1,
+      "message": "The failures come mostly because I was adding a stupid bug seconds before submitting. This topic should currently only affect android-mainline. Let\u0027s see how this turns out now with PS2.",
+      "parentUuid": "abe9b464_fd49ecb9",
+      "revId": "be230d2e8c44d53d95d02b51f9f5159c3c182828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a110c136_81248b62",
@@ -31,6 +49,24 @@
       "writtenOn": "2020-10-30T19:16:39Z",
       "side": 1,
       "message": "that\u0027s an interesting list; isn\u0027t rsync for fetching over the network?\n\nIt looks like the net_tests rely on readlink and mkdir.\n\nIt looks like whatever build kernel/kheaders_data.tar.xz expects sh to call bash at least on 5.4: https://android-build.googleplex.com/builds/pending/P17555500/kernel_db845c/latest/view/logs/build_error.log.",
+      "revId": "be230d2e8c44d53d95d02b51f9f5159c3c182828",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a8abe98_1999460a",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-10-30T22:01:07Z",
+      "side": 1,
+      "message": "Let\u0027s do that one by one. android-mainline first and then we go and port things back.\n\nthe list of tools here is the same as the leftovers in the hermetic docker file:\nhttps://android.googlesource.com/kernel/build/+/refs/heads/master/hermetic/Dockerfile#16",
+      "parentUuid": "a110c136_81248b62",
       "revId": "be230d2e8c44d53d95d02b51f9f5159c3c182828",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
