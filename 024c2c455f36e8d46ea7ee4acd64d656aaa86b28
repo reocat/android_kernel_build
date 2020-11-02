@@ -16,6 +16,24 @@
       "message": "Looks OK to me... but is HERMETIC_TOOLCHAIN an existing thing?",
       "revId": "024c2c455f36e8d46ea7ee4acd64d656aaa86b28",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34279f9e_7e301a14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-11-02T09:29:11Z",
+      "side": 1,
+      "message": "TH failure says \"git: command not found\".",
+      "parentUuid": "09168c0d_c6c46637",
+      "revId": "024c2c455f36e8d46ea7ee4acd64d656aaa86b28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
