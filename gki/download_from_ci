@@ -129,6 +129,8 @@ def get_build_kernel_version(data):
   branch = json.loads(data)["branch"]
   if branch == "aosp_kernel-common-android-mainline":
     return "mainline"
+  elif branch == "aosp_kernel-common-android-4.19-stable":
+    return "4.19"
   else:
     pattern = "android\d\d-(\d+.\d+)$"
     result = re.search(pattern, branch)
@@ -185,7 +187,7 @@ def repackage_kernels(build_is_arm64, output_dir, version, suffix = ""):
   if build_is_arm64:
     os.rename(os.path.join(output_dir, "Image"), uncompressed_kernel)
     # older platform versions did not need compressed kernels
-    if not version in ["4.14", "4.19"]:
+    if not version in ["4.14"]:
       subprocess.check_call(["gzip -c " + uncompressed_kernel + " > " +
                              os.path.join(output_dir, "kernel-" +
                                           version + "-gz" + suffix)],
@@ -332,11 +334,12 @@ def update_android11_5_4(output_dir):
   commit_prebuilts(output_dir, gitlog)
 
 def update_androidx(output_dir, version):
+  old_sha = None
+
   arm64_dir = os.path.join(output_dir, "kernel", "prebuilts", version, "arm64")
-  x86_64_dir = os.path.join(output_dir, "kernel", "prebuilts", version,
-                            "x86_64")
   arm64_kernel = os.path.join(arm64_dir, "kernel-" + version)
-  (old_version, old_sha) = get_binary_kernel_version(arm64_kernel)
+  if os.path.isfile(arm64_kernel):
+      (old_version, old_sha) = get_binary_kernel_version(arm64_kernel)
 
   # arm64 GKI kernels and kernel modules
   subprocess.check_call(["git", "rm", "-rf", "*"], cwd=arm64_dir)
@@ -346,43 +349,50 @@ def update_androidx(output_dir, version):
   get_or_update_abi_definition("kernel_aarch64", arm64_dir)
   write_prebuilt_info(arm64_dir)
   (new_version, new_sha) = get_binary_kernel_version(arm64_kernel)
-  gitlog = get_git_log(old_sha, new_sha)
+  if old_sha is not None:
+      gitlog = get_git_log(old_sha, new_sha)
+  else:
+      gitlog = "Initial prebuilts at commit {}\n".format(new_sha)
   commit_prebuilts(arm64_dir, gitlog)
 
   # x86_64 GKI kernels and kernel modules
-  subprocess.check_call(["git", "rm", "-rf", "*"], cwd=x86_64_dir)
-  download_kernel("kernel_debug_x86_64", version, x86_64_dir)
-  download_kernel("kernel_x86_64", version, x86_64_dir)
-  download_kernel_modules("kernel_x86_64", x86_64_dir)
-  get_or_update_abi_definition("kernel_x86_64", x86_64_dir)
-  write_prebuilt_info(x86_64_dir)
-  commit_prebuilts(x86_64_dir, gitlog)
+  x86_64_dir = os.path.join(output_dir, "kernel", "prebuilts", version,
+                            "x86_64")
+  if os.path.isdir(x86_64_dir):
+    subprocess.check_call(["git", "rm", "-rf", "*"], cwd=x86_64_dir)
+    download_kernel("kernel_debug_x86_64", version, x86_64_dir)
+    download_kernel("kernel_x86_64", version, x86_64_dir)
+    download_kernel_modules("kernel_x86_64", x86_64_dir)
+    get_or_update_abi_definition("kernel_x86_64", x86_64_dir)
+    write_prebuilt_info(x86_64_dir)
+    commit_prebuilts(x86_64_dir, gitlog)
 
   # arm64, x86_64 CF kernel modules
   cf_dir = os.path.join(output_dir, "device", "google", "cuttlefish_prebuilts",
                         "kernel")
-  arm64_cf_dirname = version + "-arm64"
-  arm64_cf_dir = os.path.join(cf_dir, arm64_cf_dirname)
-  x86_64_cf_dirname = version + "-x86_64"
-  x86_64_cf_dir = os.path.join(cf_dir, x86_64_cf_dirname)
+  if os.path.isdir(cf_dir):
+    arm64_cf_dirname = version + "-arm64"
+    arm64_cf_dir = os.path.join(cf_dir, arm64_cf_dirname)
+    x86_64_cf_dirname = version + "-x86_64"
+    x86_64_cf_dir = os.path.join(cf_dir, x86_64_cf_dirname)
 
-  subprocess.check_call(["git", "rm", "-rf", arm64_cf_dirname,
-                         x86_64_cf_dirname], cwd=cf_dir)
+    subprocess.check_call(["git", "rm", "-rf", arm64_cf_dirname,
+                           x86_64_cf_dirname], cwd=cf_dir)
 
-  download_kernel_modules("kernel_cf_aarch64", arm64_cf_dir, fetch_initramfs=True)
-  download_kernel_modules("kernel_cf_x86_64", x86_64_cf_dir, fetch_initramfs=True)
+    download_kernel_modules("kernel_cf_aarch64", arm64_cf_dir, fetch_initramfs=True)
+    download_kernel_modules("kernel_cf_x86_64", x86_64_cf_dir, fetch_initramfs=True)
 
-  # i686 CF kernel and kernel modules
-  i686_cf_dirname = version + "-i686"
-  i686_cf_dir = os.path.join(cf_dir, i686_cf_dirname)
+    # i686 CF kernel and kernel modules
+    i686_cf_dirname = version + "-i686"
+    i686_cf_dir = os.path.join(cf_dir, i686_cf_dirname)
 
-  subprocess.check_call(["git", "rm", "-rf", i686_cf_dirname], cwd=cf_dir)
-  os.mkdir(i686_cf_dir)
+    subprocess.check_call(["git", "rm", "-rf", i686_cf_dirname], cwd=cf_dir)
+    os.mkdir(i686_cf_dir)
 
-  download_kernel("kernel_cf_i686", version, i686_cf_dir)
-  download_kernel_modules("kernel_cf_i686", i686_cf_dir)
+    download_kernel("kernel_cf_i686", version, i686_cf_dir)
+    download_kernel_modules("kernel_cf_i686", i686_cf_dir)
 
-  commit_prebuilts(cf_dir, gitlog)
+    commit_prebuilts(cf_dir, gitlog)
 
 def update_android_mainline(output_dir):
   arm64_dir = os.path.join(output_dir, "kernel", "prebuilts", "mainline",
