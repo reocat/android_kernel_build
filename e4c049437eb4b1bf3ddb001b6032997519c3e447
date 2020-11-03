@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "469ff21c_37f565cb",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-11-03T02:45:27Z",
+      "side": 1,
+      "message": "This should probably be renamed somehow to indicate that it is not used for 4.19 R updates, maybe update_android_4_1x_pq",
+      "revId": "e4c049437eb4b1bf3ddb001b6032997519c3e447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "967e7792_09d925d4",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-11-03T02:45:27Z",
+      "side": 1,
+      "message": "Can you create a separate function for update_android_4_19_r that is called by update_gki()? I\u0027d like to try to keep each branch update function as simple as possible, even if it means some amount of duplication.",
+      "revId": "e4c049437eb4b1bf3ddb001b6032997519c3e447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
