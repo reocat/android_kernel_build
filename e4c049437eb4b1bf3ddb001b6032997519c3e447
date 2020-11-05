@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8fed22e_2ad68188",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-11-05T15:51:32Z",
+      "side": 1,
+      "message": "android(\\d\\d)?-(?\u003cversion\u003e\\d+\\.\\d+|\\w+)(-stable)?$\n\n... and the group \u0027version\u0027 has the value",
+      "range": {
+        "startLine": 130,
+        "startChar": 2,
+        "endLine": 136,
+        "endChar": 39
+      },
+      "revId": "e4c049437eb4b1bf3ddb001b6032997519c3e447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "469ff21c_37f565cb",
         "filename": "gki/download_from_ci",
         "patchSetId": 1
