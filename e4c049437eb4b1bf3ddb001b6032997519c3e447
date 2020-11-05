@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81b8b67b_f8d3133f",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-11-05T18:10:25Z",
+      "side": 1,
+      "message": "yeah I didn\u0027t do that because that doesn\u0027t tie 4.19-stable together. I guess it\u0027s technically fine since the version number is the same regardless of a branch with `-stable` or not.",
+      "parentUuid": "d8fed22e_2ad68188",
+      "range": {
+        "startLine": 130,
+        "startChar": 2,
+        "endLine": 136,
+        "endChar": 39
+      },
+      "revId": "e4c049437eb4b1bf3ddb001b6032997519c3e447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "469ff21c_37f565cb",
@@ -54,6 +78,24 @@
       "writtenOn": "2020-11-03T02:45:27Z",
       "side": 1,
       "message": "Can you create a separate function for update_android_4_19_r that is called by update_gki()? I\u0027d like to try to keep each branch update function as simple as possible, even if it means some amount of duplication.",
+      "revId": "e4c049437eb4b1bf3ddb001b6032997519c3e447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e5d8a71_6aa4e0c3",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-11-05T18:10:25Z",
+      "side": 1,
+      "message": "Sure, was just trying to avoid duplicate code.",
+      "parentUuid": "967e7792_09d925d4",
       "revId": "e4c049437eb4b1bf3ddb001b6032997519c3e447",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
