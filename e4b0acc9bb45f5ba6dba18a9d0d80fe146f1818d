@@ -22,6 +22,30 @@
       },
       "revId": "e4b0acc9bb45f5ba6dba18a9d0d80fe146f1818d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "301732ae_a49cdadd",
+        "filename": "build_abi.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-11-06T12:34:03Z",
+      "side": 1,
+      "message": "There is already code above to ensure that it is set to 0 if unset.",
+      "parentUuid": "9de283e0_6e799f92",
+      "range": {
+        "startLine": 257,
+        "startChar": 66,
+        "endLine": 257,
+        "endChar": 87
+      },
+      "revId": "e4b0acc9bb45f5ba6dba18a9d0d80fe146f1818d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
