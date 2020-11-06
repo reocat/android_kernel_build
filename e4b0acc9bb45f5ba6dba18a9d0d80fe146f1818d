@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3879b66_2b572afc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2020-11-06T14:55:16Z",
+      "side": 1,
+      "message": "Presubmit failure has nothing to do with ABI monitoring. Just one device with perhaps a kernel crash.",
+      "revId": "e4b0acc9bb45f5ba6dba18a9d0d80fe146f1818d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9de283e0_6e799f92",
