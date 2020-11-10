@@ -102,6 +102,9 @@
 #   SKIP_MRPROPER
 #     if defined, skip `make mrproper`
 #
+#   SKIP_RM_DIST_DIR
+#     if defined, skip cleaning dist dir
+#
 #   SKIP_DEFCONFIG
 #     if defined, skip `make defconfig`
 #
@@ -549,6 +552,10 @@ else
   RAMDISK_COMPRESS="lz4 -c -l -12 --favor-decSpeed"
   RAMDISK_DECOMPRESS="${DECOMPRESS_LZ4}"
   RAMDISK_EXT="lz4"
+fi
+
+if [ -z "${SKIP_RM_DIST_DIR}" -a -n "${DIST_DIR}" ] ; then
+  rm -rf ${DIST_DIR}/*
 fi
 
 mkdir -p ${OUT_DIR} ${DIST_DIR}
