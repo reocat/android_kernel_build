@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d64abb6c_7148b46d",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-11-11T12:46:37Z",
+      "side": 1,
+      "message": "I would probably prefer to delete the contents of that directory rather than the directory itself. Otherwise current working directories might be invalidated unnecessarily.",
+      "revId": "54ed4b15f2795503e7cbd81d320c1623474173c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
