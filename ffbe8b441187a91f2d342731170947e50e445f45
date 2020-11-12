@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ba8b640_cf32b86a",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-11-12T06:38:48Z",
+      "side": 1,
+      "message": "I am unsure if this will work as intended.\nLet\u0027s assume used_blocklist_modules\u003d\"module1.ko module2.ko\". Wouldn\u0027t this mean that grep will ignore stdin and treat module1.ko and module2.ko as inputs and search these (binary) files for patterns listed in modules.order?\nSomebody on our team tried to use MODULES_BLOCKLIST, and it did not work for them.",
+      "range": {
+        "startLine": 341,
+        "startChar": 64,
+        "endLine": 341,
+        "endChar": 87
+      },
+      "revId": "ffbe8b441187a91f2d342731170947e50e445f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
