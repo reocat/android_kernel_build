@@ -16,6 +16,24 @@
       "message": "This will change the behavior to start storing the compressed arm64 kernels for P/Q. To keep the same behavior I think a flag will need to be passed from the update functions through download_kernel()",
       "revId": "fafae087dacb82a382b5d15810b95225cf573c00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8829cb89_78ca74d6",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-11-17T23:20:40Z",
+      "side": 0,
+      "message": "True, but this was just an optimization I put in to waste less space, it\u0027s not super critical if we land kernels we never use on these old branches. So, up to you guys if you want to really fix this.",
+      "parentUuid": "00bad24c_80c69aa5",
+      "revId": "fafae087dacb82a382b5d15810b95225cf573c00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
