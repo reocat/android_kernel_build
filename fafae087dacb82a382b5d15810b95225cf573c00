@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00bad24c_80c69aa5",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1131915
+      },
+      "writtenOn": "2020-11-17T23:08:07Z",
+      "side": 0,
+      "message": "This will change the behavior to start storing the compressed arm64 kernels for P/Q. To keep the same behavior I think a flag will need to be passed from the update functions through download_kernel()",
+      "revId": "fafae087dacb82a382b5d15810b95225cf573c00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
