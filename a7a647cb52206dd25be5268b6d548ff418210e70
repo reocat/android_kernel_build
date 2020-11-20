@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a689bbf5_90ccaa2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-11-20T10:05:52Z",
+      "side": 1,
+      "message": "rather do not disable it via the environment on the command line. Better create a separate (derived) build.config and put just that flag in.",
+      "revId": "a7a647cb52206dd25be5268b6d548ff418210e70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bda52ce4_76a77397",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
