@@ -16,6 +16,92 @@
       "message": "Please review this patch.",
       "revId": "a7a647cb52206dd25be5268b6d548ff418210e70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9dff830_e569a8c2",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-11-20T10:04:06Z",
+      "side": 1,
+      "message": "Please name and describe it a bit more accurate. Effectively it disables LTO _and_ CFI. I think the parameter name and the description should reflect that. I know CFI depends on LTO, but this side effect is not immediately apparent for everyone seeing just \"DISABLE_LTO_CONFIGS\".",
+      "range": {
+        "startLine": 112,
+        "startChar": 4,
+        "endLine": 112,
+        "endChar": 23
+      },
+      "revId": "a7a647cb52206dd25be5268b6d548ff418210e70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1240a47c_2a8741d6",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-11-20T10:04:06Z",
+      "side": 1,
+      "message": "Disabling",
+      "range": {
+        "startLine": 578,
+        "startChar": 9,
+        "endLine": 578,
+        "endChar": 16
+      },
+      "revId": "a7a647cb52206dd25be5268b6d548ff418210e70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76dafafb_5bfc7ccf",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-11-20T10:04:06Z",
+      "side": 1,
+      "message": "probably mention the documentation: https://source.android.com/setup/build/building-kernels#customize-config",
+      "revId": "a7a647cb52206dd25be5268b6d548ff418210e70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7786be57_fb60050b",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-11-20T10:04:06Z",
+      "side": 1,
+      "message": "you should switch to ${OUT_DIR}, actually",
+      "range": {
+        "startLine": 587,
+        "startChar": 8,
+        "endLine": 587,
+        "endChar": 18
+      },
+      "revId": "a7a647cb52206dd25be5268b6d548ff418210e70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
