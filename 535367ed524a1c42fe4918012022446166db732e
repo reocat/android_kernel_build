@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0202352_60e92379",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2020-11-24T21:15:24Z",
+      "side": 1,
+      "message": "SGTM, something like SKIP_RM_DIST_DIR so we can set it like SKIP_MRPROPER ?",
+      "revId": "535367ed524a1c42fe4918012022446166db732e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3debfb93_0ca3b7f1",
