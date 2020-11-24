@@ -33,6 +33,24 @@
       "message": "Will: is this an issue for the mixed_build?",
       "revId": "535367ed524a1c42fe4918012022446166db732e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17af2801_1970ddea",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-11-24T21:08:41Z",
+      "side": 1,
+      "message": "Yes, it is since we run build.sh twice for the same DIST_DIR. Maybe add a flag that we can use for mixed builds to not clear the DIST_DIR?",
+      "parentUuid": "3debfb93_0ca3b7f1",
+      "revId": "535367ed524a1c42fe4918012022446166db732e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
