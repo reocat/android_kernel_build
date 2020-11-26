@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6a18a24_4c9ec9a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-11-26T15:04:22Z",
+      "side": 1,
+      "message": "Please also mention the option to set this in a derived build.config file.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 23
+      },
+      "revId": "4c3da8fe7503f12a9703a0c5b16670ba2efe94e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8db5ce3b_241c4159",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-11-26T15:04:22Z",
+      "side": 1,
+      "message": "Some minor comments. Looks otherwise fine to me! Thanks!",
+      "revId": "4c3da8fe7503f12a9703a0c5b16670ba2efe94e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ade406a2_2973dfd5",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-11-26T15:04:22Z",
+      "side": 1,
+      "message": "sorry, we use spaces in this project (i.e. no tabs)",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 586,
+        "endChar": 15
+      },
+      "revId": "4c3da8fe7503f12a9703a0c5b16670ba2efe94e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
