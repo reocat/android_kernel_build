@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "76fb5a07_d1237905",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1738285
+      },
+      "writtenOn": "2020-11-26T12:56:41Z",
+      "side": 1,
+      "message": "Right. I saw similar things from build.config.gki_kasan.\nHowever, to apply this to build.config, we need to touch source codes and it makes source tree dirty. As I mentioned in the commit message, this option is useful while development. We don\u0027t need to touch build.config.A, build.config.B and so on.",
+      "parentUuid": "a689bbf5_90ccaa2c",
+      "revId": "a7a647cb52206dd25be5268b6d548ff418210e70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bda52ce4_76a77397",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -77,6 +95,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b83944bf_5af0afbc",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1738285
+      },
+      "writtenOn": "2020-11-26T12:56:41Z",
+      "side": 1,
+      "message": "Thanks for your review 😊. Yep. I just referred the name from https://source.android.com/setup/build/building-kernels#customize-config.\nI\u0027ll change it to DISABLE_LTO_CFI_CONFIGS.",
+      "parentUuid": "d9dff830_e569a8c2",
+      "range": {
+        "startLine": 112,
+        "startChar": 4,
+        "endLine": 112,
+        "endChar": 23
+      },
+      "revId": "a7a647cb52206dd25be5268b6d548ff418210e70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1240a47c_2a8741d6",
         "filename": "build.sh",
         "patchSetId": 1
@@ -88,6 +130,30 @@
       "writtenOn": "2020-11-20T10:04:06Z",
       "side": 1,
       "message": "Disabling",
+      "range": {
+        "startLine": 578,
+        "startChar": 9,
+        "endLine": 578,
+        "endChar": 16
+      },
+      "revId": "a7a647cb52206dd25be5268b6d548ff418210e70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d795c455_563c4ea6",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1738285
+      },
+      "writtenOn": "2020-11-26T12:56:41Z",
+      "side": 1,
+      "message": "I\u0027ll change it.",
+      "parentUuid": "1240a47c_2a8741d6",
       "range": {
         "startLine": 578,
         "startChar": 9,
@@ -128,6 +194,30 @@
       "writtenOn": "2020-11-20T10:04:06Z",
       "side": 1,
       "message": "you should switch to ${OUT_DIR}, actually",
+      "range": {
+        "startLine": 587,
+        "startChar": 8,
+        "endLine": 587,
+        "endChar": 18
+      },
+      "revId": "a7a647cb52206dd25be5268b6d548ff418210e70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d1b8db2_59c3dc9b",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1738285
+      },
+      "writtenOn": "2020-11-26T12:56:41Z",
+      "side": 1,
+      "message": "Okay. I\u0027ll change it.",
+      "parentUuid": "7786be57_fb60050b",
       "range": {
         "startLine": 587,
         "startChar": 8,
