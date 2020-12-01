@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aded905_e538a4d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-12-01T10:12:06Z",
+      "side": 1,
+      "message": "One more comment, looks otherwise fine to me. (Blocking submit for now as I find that comment important.)",
+      "revId": "7744cbacf9b9f6ff30af65ab82e20dded9ce7321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f24f2a6c_a1ef5236",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-12-01T10:12:06Z",
+      "side": 1,
+      "message": "sorry to be picky. but given that this command will have a disastrous outcome if DIST_DIR is unset, can we please make it a condition that DIST_DIR is at least set to something. The person accidentally dropping it (typo or whatever reason) would thank us :-)",
+      "range": {
+        "startLine": 536,
+        "startChar": 2,
+        "endLine": 536,
+        "endChar": 22
+      },
+      "revId": "7744cbacf9b9f6ff30af65ab82e20dded9ce7321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
