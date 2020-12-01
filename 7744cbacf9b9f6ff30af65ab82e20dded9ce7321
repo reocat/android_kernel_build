@@ -63,6 +63,30 @@
       },
       "revId": "7744cbacf9b9f6ff30af65ab82e20dded9ce7321",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26343e2d_0252317e",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-12-01T18:10:50Z",
+      "side": 1,
+      "message": "yes, it should be set, my intention is to avoid bad things with a fairly cheap check.",
+      "parentUuid": "b9f5de0d_3493b3ff",
+      "range": {
+        "startLine": 536,
+        "startChar": 2,
+        "endLine": 536,
+        "endChar": 22
+      },
+      "revId": "7744cbacf9b9f6ff30af65ab82e20dded9ce7321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
