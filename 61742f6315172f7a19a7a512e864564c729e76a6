@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdc2a5dc_6691f66c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-12-02T10:41:33Z",
+      "side": 1,
+      "message": "ld should not come from the system anymore. It is provided through the LLVM toolchain via ld.lld.\n\nHow is this a build break for you?",
+      "revId": "61742f6315172f7a19a7a512e864564c729e76a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
