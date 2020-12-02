@@ -51,6 +51,24 @@
       "parentUuid": "eb801a8e_4ffe9369",
       "revId": "61742f6315172f7a19a7a512e864564c729e76a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ede4ffc5_0018db8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-12-02T10:49:16Z",
+      "side": 1,
+      "message": "The hermetic toolchain is not yet supported on 4.19. More LLVM related backporting needs to be done. So far, it can be used on android-mainline. And it should mostly work on the android12-5.4 and android11-5.4 branches.\n\nPlease wait a bit.",
+      "parentUuid": "19ff3313_1d4c760d",
+      "revId": "61742f6315172f7a19a7a512e864564c729e76a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
