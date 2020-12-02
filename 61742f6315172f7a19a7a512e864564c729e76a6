@@ -33,6 +33,24 @@
       "message": "I got the error message like below \n\nclang-11: error: unable to execute command: Executable \"ld\" doesn\u0027t exist!\nclang-11: error: linker command failed with exit code 1 (use -v to see invocation)\n",
       "revId": "61742f6315172f7a19a7a512e864564c729e76a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19ff3313_1d4c760d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135739
+      },
+      "writtenOn": "2020-12-02T10:46:21Z",
+      "side": 1,
+      "message": "make[2]: *** [scripts/Makefile.host:90: scripts/basic/fixdep] Error 1\nmake[1]: *** [/mnt/ssd2/gki/common/Makefile:485: scripts_basic] Error 2\nmake[1]: Leaving directory \u0027/mnt/ssd2/gki/out/android-4.19-stable/common\u0027",
+      "parentUuid": "eb801a8e_4ffe9369",
+      "revId": "61742f6315172f7a19a7a512e864564c729e76a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
