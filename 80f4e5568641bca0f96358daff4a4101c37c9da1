@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aecd6646_ecb71f3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-12-02T09:36:19Z",
+      "side": 1,
+      "message": "We need to hold this back. This consistently breaks downstream workflows of two-step builds, e.g.\n\n1) build/build.sh  for vmlinux\n2) build/build.sh  for modules\n\nLet me properly establish this as a pattern, then we can add the dist dir removal.",
+      "revId": "80f4e5568641bca0f96358daff4a4101c37c9da1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
