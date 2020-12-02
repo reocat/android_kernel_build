@@ -94,6 +94,7 @@ if [ -n "${HERMETIC_TOOLCHAIN}" ]; then
   mkdir -p ${HOST_TOOLS}
   for tool in \
       git \
+      ld \
       perl \
       rsync \
       sh \
