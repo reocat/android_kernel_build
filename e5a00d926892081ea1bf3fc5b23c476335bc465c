@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "396ea29d_ef47097c",
+        "filename": "build_mixed.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2020-12-07T19:38:36Z",
+      "side": 1,
+      "message": "Can we add in an error check to report an error is anyone sets BUILD_CONFIG?",
+      "range": {
+        "startLine": 4,
+        "startChar": 7,
+        "endLine": 4,
+        "endChar": 18
+      },
+      "revId": "e5a00d926892081ea1bf3fc5b23c476335bc465c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
