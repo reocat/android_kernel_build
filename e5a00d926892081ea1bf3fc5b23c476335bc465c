@@ -22,6 +22,30 @@
       },
       "revId": "e5a00d926892081ea1bf3fc5b23c476335bc465c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76fa3002_d625473a",
+        "filename": "build_mixed.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-12-07T20:01:25Z",
+      "side": 1,
+      "message": "why would that be an error? the implementation only defines the GKI config fixed. any other configuration can be passed as usual.",
+      "parentUuid": "396ea29d_ef47097c",
+      "range": {
+        "startLine": 4,
+        "startChar": 7,
+        "endLine": 4,
+        "endChar": 18
+      },
+      "revId": "e5a00d926892081ea1bf3fc5b23c476335bc465c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
