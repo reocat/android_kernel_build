@@ -18,9 +18,11 @@
 #   build/build.sh <make options>*
 # or:
 #   OUT_DIR=<out dir> DIST_DIR=<dist dir> build/build.sh <make options>*
+#   BUILD_CONFIG=<path to the build.config> <make options>*
 #
 # Example:
 #   OUT_DIR=output DIST_DIR=dist build/build.sh -j24 V=1
+#   BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh -j24 V=1
 #
 #
 # The following environment variables are considered during execution:
