@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb7efe11_38a09e3a",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-12-07T09:57:10Z",
+      "side": 1,
+      "message": "That is actually not accurate. As per \n\nhttps://android.googlesource.com/kernel/build/+/refs/heads/master/_setup_env.sh#26\n\nBUILD_CONFIG defaults to \"build.config\", which is often the case for device specific kernels (as opposed to the common kernels which have multiple flavours that no default is picked).\n\nSo, I agree with _adding_ a new use case here, but the simplest and correct way for some builds is still\n  build/build.sh \u003cmake options\u003e",
+      "revId": "ccda63819d116848ed0d29ba2da73a0db112beaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebb21877_f676cf49",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-12-07T09:57:10Z",
+      "side": 1,
+      "message": "the default is \"build.config\", which makes this a optional parameter.",
+      "revId": "ccda63819d116848ed0d29ba2da73a0db112beaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
