@@ -15,9 +15,10 @@
 # limitations under the License.
 
 # Usage:
-#   build/build.sh <make options>*
+#   BUILD_CONFIG=<path to the build.config> build/build.sh <make options>*
 # or:
-#   OUT_DIR=<out dir> DIST_DIR=<dist dir> build/build.sh <make options>*
+#   BUILD_CONFIG=<path to the build.config> OUT_DIR=<out dir> \
+#      DIST_DIR=<dist dir> build/build.sh <make options>*
 #
 # Example:
 #   OUT_DIR=output DIST_DIR=dist build/build.sh -j24 V=1
