@@ -46,6 +46,30 @@
       },
       "revId": "e5a00d926892081ea1bf3fc5b23c476335bc465c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1c17b39_7891d4a0",
+        "filename": "build_mixed.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2020-12-07T21:34:08Z",
+      "side": 1,
+      "message": "Hmm... I suppose. But what if someone uses this to pick a BUILD_CONFIG that isn\u0027t ABI compatible with the GKI kernel?\n\nIf we want to leave that for a later implementation, that\u0027s fine.",
+      "parentUuid": "76fa3002_d625473a",
+      "range": {
+        "startLine": 4,
+        "startChar": 7,
+        "endLine": 4,
+        "endChar": 18
+      },
+      "revId": "e5a00d926892081ea1bf3fc5b23c476335bc465c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
