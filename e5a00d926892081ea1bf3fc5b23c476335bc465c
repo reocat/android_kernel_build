@@ -70,6 +70,30 @@
       },
       "revId": "e5a00d926892081ea1bf3fc5b23c476335bc465c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f695d738_d83f1c0d",
+        "filename": "build_mixed.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2020-12-08T10:58:57Z",
+      "side": 1,
+      "message": "That can indeed happen. But I do not think this is the place to stop users from doing that. The local file build.config can be anything (including a symbolic link to an unsuitable build.config elsewhere). I think this rather falls in the category of user error we can\u0027t really avoid unless we find a notion of declaring ABI compatibility via build.config.",
+      "parentUuid": "b1c17b39_7891d4a0",
+      "range": {
+        "startLine": 4,
+        "startChar": 7,
+        "endLine": 4,
+        "endChar": 18
+      },
+      "revId": "e5a00d926892081ea1bf3fc5b23c476335bc465c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
