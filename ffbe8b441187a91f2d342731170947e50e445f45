@@ -22,6 +22,30 @@
       },
       "revId": "ffbe8b441187a91f2d342731170947e50e445f45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99bf245d_a07969c1",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2020-12-12T00:36:58Z",
+      "side": 1,
+      "message": "Hi Dan, I created b/175415912 and uploaded aosp/1526990",
+      "parentUuid": "3ba8b640_cf32b86a",
+      "range": {
+        "startLine": 341,
+        "startChar": 64,
+        "endLine": 341,
+        "endChar": 87
+      },
+      "revId": "ffbe8b441187a91f2d342731170947e50e445f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
