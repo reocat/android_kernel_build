@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be4a6ce5_3648b4cc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-12-15T00:31:49Z",
+      "side": 1,
+      "message": "Should we add a check for this before compiling to ensure this is setup correctly?\n\nIf we don\u0027t do that, then we should write up a brief paragraph on what needs to be done on the vendor side to support this.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 68
+      },
+      "revId": "e5a00d926892081ea1bf3fc5b23c476335bc465c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "675748f4_2599bc05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-12-15T00:31:49Z",
+      "side": 1,
+      "message": "LGTM. The only thing I would like is some ",
+      "revId": "e5a00d926892081ea1bf3fc5b23c476335bc465c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "396ea29d_ef47097c",
         "filename": "build_mixed.sh",
         "patchSetId": 1
