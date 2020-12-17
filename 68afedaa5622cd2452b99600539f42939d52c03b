@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87c66813_fdcf41dc",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-12-17T00:57:21Z",
+      "side": 1,
+      "message": "This hides any potential error message that we actually might need to surface to the user. Can you use bash\u0027s compgen to determine if any file matches that glob pattern and only run the cp command then?",
+      "range": {
+        "startLine": 316,
+        "startChar": 50,
+        "endLine": 316,
+        "endChar": 61
+      },
+      "revId": "68afedaa5622cd2452b99600539f42939d52c03b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
