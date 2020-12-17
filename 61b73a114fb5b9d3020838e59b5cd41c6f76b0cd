@@ -117,6 +117,30 @@
       },
       "revId": "61b73a114fb5b9d3020838e59b5cd41c6f76b0cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f14dcdb9_5dc871e8",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-12-17T18:23:14Z",
+      "side": 1,
+      "message": "This could actually work and retain the directory structure:\n\nfind ${src_dir}/kernel/ -maxdepth 0 -mindepth 1 -exec cp -r {} ${dest_dir}/kernel/ \\;",
+      "parentUuid": "af1369f0_ad38f9bc",
+      "range": {
+        "startLine": 316,
+        "startChar": 2,
+        "endLine": 318,
+        "endChar": 4
+      },
+      "revId": "61b73a114fb5b9d3020838e59b5cd41c6f76b0cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
