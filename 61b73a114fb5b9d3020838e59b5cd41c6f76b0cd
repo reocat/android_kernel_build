@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be9df88a_56cfeac3",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-12-17T01:53:53Z",
+      "side": 1,
+      "message": "I would have expected a \"-n\" operator here, but it appears to be still working fine like this.",
+      "range": {
+        "startLine": 316,
+        "startChar": 6,
+        "endLine": 316,
+        "endChar": 7
+      },
+      "revId": "61b73a114fb5b9d3020838e59b5cd41c6f76b0cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
