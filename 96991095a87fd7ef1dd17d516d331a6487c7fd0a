@@ -16,6 +16,24 @@
       "message": "The command\n\nfind /etc -maxdepth 0 -mindepth 1\n\ndoesn\u0027t return anything on my workstation.\n\nI am wondering if max and min need to be swapped here.",
       "revId": "96991095a87fd7ef1dd17d516d331a6487c7fd0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53d67c0a_9e41d3de",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-12-17T21:38:19Z",
+      "side": 1,
+      "message": "ah thanks for catching that! It\u0027s suppose to be -maxdepth 1 -mindepth 1. I tested with that but I guess when I finalized the patch I wrote it wrong. Looks like presubmit caught it too.",
+      "parentUuid": "9bd6198f_5e922f64",
+      "revId": "96991095a87fd7ef1dd17d516d331a6487c7fd0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
