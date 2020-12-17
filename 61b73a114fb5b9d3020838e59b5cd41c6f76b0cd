@@ -45,6 +45,30 @@
       },
       "revId": "61b73a114fb5b9d3020838e59b5cd41c6f76b0cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ddaf651_9adfc6d0",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2020-12-17T17:54:02Z",
+      "side": 1,
+      "message": "My concern is that the benign error message\n\ncp: cannot stat \u0027kernel/*\u0027: No such file or directory\n\nmight still concern the user.\n\nThe proposed find command looks good, but I guess that it is semantically slightly different in that it does not preserve the directory hierarchy under ${src_dir}/kernel/. (I\u0027m not sure if we expect any sub directories under kernel/).",
+      "parentUuid": "37ba5278_9f666576",
+      "range": {
+        "startLine": 316,
+        "startChar": 2,
+        "endLine": 318,
+        "endChar": 4
+      },
+      "revId": "61b73a114fb5b9d3020838e59b5cd41c6f76b0cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
