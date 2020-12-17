@@ -69,6 +69,30 @@
       },
       "revId": "61b73a114fb5b9d3020838e59b5cd41c6f76b0cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09dce51a_eaf23684",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2020-12-17T17:57:24Z",
+      "side": 1,
+      "message": "My first patchset suppressed the error, but Daniel suggested that we may want to know about errors. One scenario I can think of is if we are doing an actual copy and run out of space. That would be useful to know although that would manifest quickly elsewhere as well.\n\nThe find actual is a nice solution since that works with and without files in the folder. I\u0027ll give that whirl. thanks!",
+      "parentUuid": "37ba5278_9f666576",
+      "range": {
+        "startLine": 316,
+        "startChar": 2,
+        "endLine": 318,
+        "endChar": 4
+      },
+      "revId": "61b73a114fb5b9d3020838e59b5cd41c6f76b0cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
