@@ -151,3 +151,5 @@ function check_defconfig() {
     fi
     return ${RES}
 }
+source ${ROOT_DIR}/build/_ack_build.sh
+ack_setup_toolchain ${LLVM}
