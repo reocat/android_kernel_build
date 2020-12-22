@@ -96,3 +96,14 @@ function ack_setup_toolchain() {
   echo "TOOL_ARGS=${TOOL_ARGS[@]}"
 }
 export -f ack_setup_toolchain
+
+# $@ TOOL_ARGS
+#
+function ack_mrproper() {
+    echo "========================================================"
+    echo " Cleaning up for build"
+    set -x
+    (cd ${KERNEL_DIR} && make "$@" O=${OUT_DIR} ${MAKE_ARGS} mrproper)
+    set +x
+}
+export -f ack_mrproper

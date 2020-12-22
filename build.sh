@@ -492,9 +492,7 @@ mkdir -p ${OUT_DIR} ${DIST_DIR}
 echo "========================================================"
 echo " Setting up for build"
 if [ -z "${SKIP_MRPROPER}" ] ; then
-  set -x
-  (cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} ${MAKE_ARGS} mrproper)
-  set +x
+  ack_mrproper ${TOOL_ARGS[@]}
 fi
 
 if [ -n "${PRE_DEFCONFIG_CMDS}" ]; then
