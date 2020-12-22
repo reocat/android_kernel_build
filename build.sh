@@ -495,26 +495,8 @@ if [ -z "${SKIP_MRPROPER}" ] ; then
   ack_mrproper ${TOOL_ARGS[@]}
 fi
 
-if [ -n "${PRE_DEFCONFIG_CMDS}" ]; then
-  echo "========================================================"
-  echo " Running pre-defconfig command(s):"
-  set -x
-  eval ${PRE_DEFCONFIG_CMDS}
-  set +x
-fi
-
 if [ -z "${SKIP_DEFCONFIG}" ] ; then
-  set -x
-  (cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} ${MAKE_ARGS} ${DEFCONFIG})
-  set +x
-
-  if [ -n "${POST_DEFCONFIG_CMDS}" ]; then
-    echo "========================================================"
-    echo " Running pre-make command(s):"
-    set -x
-    eval ${POST_DEFCONFIG_CMDS}
-    set +x
-  fi
+  ack_config ${DEFCONFIG}
 fi
 
 if [ -n "${DISABLE_LTO_CFI_CONFIGS}" ]; then

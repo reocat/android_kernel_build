@@ -107,3 +107,32 @@ function ack_mrproper() {
     set +x
 }
 export -f ack_mrproper
+
+# $1 defconfig
+# PRE_DEFCONFIG_CMDS: commands to execute before defconfig
+# POST_DEFCONFIG_CMDS:commands to execute after defconfig
+#
+function ack_config() {
+  local defconfig=$1
+
+  if [ -n "${PRE_DEFCONFIG_CMDS}" ]; then
+    echo "========================================================"
+    echo " Running pre-defconfig command(s):"
+    set -x
+    eval ${PRE_DEFCONFIG_CMDS}
+    set +x
+  fi
+
+  set -x
+  (cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} ${MAKE_ARGS} ${defconfig})
+  set +x
+
+  if [ -n "${POST_DEFCONFIG_CMDS}" ]; then
+    echo "========================================================"
+    echo " Running pre-make command(s):"
+    set -x
+    eval ${POST_DEFCONFIG_CMDS}
+    set +x
+  fi
+}
+export -f ack_config
