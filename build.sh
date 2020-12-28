@@ -560,6 +560,14 @@ if [ -n "${ABI_DEFINITION}" ]; then
   popd
 fi
 
+# Check the prerequisite of TRIM_NONLISTED_KMI
+if [ -n "${TRIM_NONLISTED_KMI}" ]; then
+  if ! [ -n "${KMI_SYMBOL_LIST}" ]; then
+    echo "ERROR: TRIM_NONLISTED_KMI requires a KMI_SYMBOL_LIST" >&2
+    return 1
+  fi
+fi
+
 # Copy the abi symbol list file from the sources into the dist dir
 if [ -n "${KMI_SYMBOL_LIST}" ]; then
   echo "========================================================"
@@ -574,37 +582,21 @@ if [ -n "${KMI_SYMBOL_LIST}" ]; then
         cat "${symbol_list}" >> ${ABI_SL}
     done
   fi
-
   if [ -n "${TRIM_NONLISTED_KMI}" ]; then
-      # Create the raw symbol list 
-      cat ${ABI_SL} | \
-              ${ROOT_DIR}/build/abi/flatten_symbol_list > \
-              ${OUT_DIR}/abi_symbollist.raw
+    ack_config_trim_kmi ${ABI_SL}
+  fi
+fi
 
-      # Update the kernel configuration
-      ./scripts/config --file ${OUT_DIR}/.config \
-              -d UNUSED_SYMBOLS -e TRIM_UNUSED_KSYMS \
-              --set-str UNUSED_KSYMS_WHITELIST ${OUT_DIR}/abi_symbollist.raw
-      (cd ${OUT_DIR} && \
-              make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS} olddefconfig)
-      # Make sure the config is applied
-      grep CONFIG_UNUSED_KSYMS_WHITELIST ${OUT_DIR}/.config > /dev/null || {
-        echo "ERROR: Failed to apply TRIM_NONLISTED_KMI kernel configuration" >&2
-        echo "Does your kernel support CONFIG_UNUSED_KSYMS_WHITELIST?" >&2
-        exit 1
-      }
-
-    elif [ -n "${KMI_SYMBOL_LIST_STRICT_MODE}" ]; then
+# Check the prerequisite of KMI_SYMBOL_LIST_STRICT_MODE
+if [ -n "${KMI_SYMBOL_LIST_STRICT_MODE}" ]; then
+  if ! [ -n "${KMI_SYMBOL_LIST}" ]; then
+      echo "ERROR: KMI_SYMBOL_LIST_STRICT_MODE requires a KMI_SYMBOL_LIST" >&2
+      exit 1
+  fi
+  if ! [ -n "${TRIM_NONLISTED_KMI}" ]; then
       echo "ERROR: KMI_SYMBOL_LIST_STRICT_MODE requires TRIM_NONLISTED_KMI=1" >&2
     exit 1
   fi
-  popd # $ROOT_DIR/$KERNEL_DIR
-elif [ -n "${TRIM_NONLISTED_KMI}" ]; then
-  echo "ERROR: TRIM_NONLISTED_KMI requires a KMI_SYMBOL_LIST" >&2
-  exit 1
-elif [ -n "${KMI_SYMBOL_LIST_STRICT_MODE}" ]; then
-  echo "ERROR: KMI_SYMBOL_LIST_STRICT_MODE requires a KMI_SYMBOL_LIST" >&2
-  exit 1
 fi
 
 echo "========================================================"

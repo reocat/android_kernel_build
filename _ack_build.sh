@@ -136,3 +136,32 @@ function ack_config() {
   fi
 }
 export -f ack_config
+
+# $1 abi_symbol_list a file that contains list of KMI symbols
+#
+function ack_config_trim_kmi() {
+  local abi_symbol_list=$1
+  echo "========================================================"
+  echo " Strip symbols not listed in ${abi_symbol_list}"
+
+  pushd $ROOT_DIR/$KERNEL_DIR
+  # Create the raw symbol list
+  cat ${abi_symbol_list} | \
+          ${ROOT_DIR}/build/abi/flatten_symbol_list > \
+          ${OUT_DIR}/abi_symbollist.raw
+
+  # Update the kernel configuration
+  ./scripts/config --file ${OUT_DIR}/.config \
+          -d UNUSED_SYMBOLS -e TRIM_UNUSED_KSYMS \
+          --set-str UNUSED_KSYMS_WHITELIST ${OUT_DIR}/abi_symbollist.raw
+  (cd ${OUT_DIR} && \
+          make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS} olddefconfig)
+  # Make sure the config is applied
+  grep CONFIG_UNUSED_KSYMS_WHITELIST ${OUT_DIR}/.config > /dev/null || {
+    echo "ERROR: Failed to apply TRIM_NONLISTED_KMI kernel configuration" >&2
+    echo "Does your kernel support CONFIG_UNUSED_KSYMS_WHITELIST?" >&2
+    return 1
+  }
+  popd # $ROOT_DIR/$KERNEL_DIR
+}
+export -f ack_config_trim_kmi
