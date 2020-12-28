@@ -165,3 +165,13 @@ function ack_config_trim_kmi() {
   popd # $ROOT_DIR/$KERNEL_DIR
 }
 export -f ack_config_trim_kmi
+
+function ack_build_kernel() {
+  echo "========================================================"
+  echo " Building kernel"
+
+  set -x
+  (cd ${OUT_DIR} && make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS} ${MAKE_GOALS})
+  set +x
+}
+export -f ack_build_kernel
