@@ -229,37 +229,9 @@ if [ -z "${DO_NOT_STRIP_MODULES}" ] && [ $(echo "${UNSTRIPPED_MODULES}" | tr -d 
 fi
 
 # create abi dump
-COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
 id=${ABI_OUT_TAG:-$(git -C $KERNEL_DIR describe --dirty --always)}
 abi_out_file=abi-${id}.xml
-${ROOT_DIR}/build/abi/dump_abi                \
-    --linux-tree ${ABI_LINUX_TREE}            \
-    ${ABI_VMLINUX_PATH}                       \
-    --out-file ${DIST_DIR}/${abi_out_file}    \
-    $KMI_SYMBOL_LIST_FLAG
-
-# sanitize the abi.xml by removing any occurences of the kernel path
-effective_kernel_dir=$(readlink -f ${ROOT_DIR}/${KERNEL_DIR})
-sed -i "s#${effective_kernel_dir}/##g" ${DIST_DIR}/${abi_out_file}
-sed -i "s#${ROOT_DIR}/${KERNEL_DIR}/##g" ${DIST_DIR}/${abi_out_file}
-# now also do that with any left over paths sneaking in
-# (e.g. from the prebuilts)
-sed -i "s#${ROOT_DIR}/##g" ${DIST_DIR}/${abi_out_file}
-
-# Append debug information to abi file
-if [ -n "${LLVM}" ]; then
-  CC=clang
-fi
-echo "
-<!--
-     libabigail: $(abidw --version)
-     built with: $CC: $($CC --version | head -n1)
--->" >> ${DIST_DIR}/${abi_out_file}
-
-ln -sf ${abi_out_file} ${DIST_DIR}/abi.xml
-
-echo "========================================================"
-echo " ABI dump has been created at ${DIST_DIR}/${abi_out_file}"
+ack_abi_dump ${BRANCH} ${abi_out_file} "${ABI_LINUX_TREE}" "${ABI_VMLINUX_PATH}" "${KMI_SYMBOL_LIST}"
 
 rc=0
 if [ -n "$ABI_DEFINITION" ]; then

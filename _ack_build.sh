@@ -342,3 +342,54 @@ function ack_abi_symbol_extract() {
       ${DIST_DIR}
 }
 export -f ack_abi_symbol_extract
+
+# Dump ABI
+# $1 prefix for the out directory
+# $2 output file
+# $3 linux tree
+# $4 linux image
+# $5 file that contains the symbol list
+#
+function ack_abi_dump() {
+  local prefix=$1
+  local abi_out_file=$2
+  local abi_linux_tree=$3
+  local abi_vmlinux_path=$4
+  local kmi_symbol_list=$5
+  # create abi dump
+  COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${prefix}})
+  if [ -n "${kmi_symbol_list}" ]; then
+    local KMI_SYMBOL_LIST_FLAG="--kmi-symbol-list ${DIST_DIR}/abi_symbollist"
+  fi
+  cmd="${ROOT_DIR}/build/abi/dump_abi            \
+      --linux-tree ${abi_linux_tree}            \
+      ${abi_vmlinux_path}                       \
+      --out-file ${DIST_DIR}/${abi_out_file}    \
+      $KMI_SYMBOL_LIST_FLAG"
+  echo $cmd
+  eval $cmd || return 1
+  # sanitize the abi.xml by removing any occurences of the kernel path
+  effective_kernel_dir=$(readlink -f ${ROOT_DIR}/${KERNEL_DIR})
+  sed -i "s#${effective_kernel_dir}/##g" ${DIST_DIR}/${abi_out_file}
+  sed -i "s#${ROOT_DIR}/${KERNEL_DIR}/##g" ${DIST_DIR}/${abi_out_file}
+  # now also do that with any left over paths sneaking in
+  # (e.g. from the prebuilts)
+  sed -i "s#${ROOT_DIR}/##g" ${DIST_DIR}/${abi_out_file}
+
+  # Append debug information to abi file
+  if [ -n "${LLVM}" ]; then
+    CC=clang
+  fi
+  echo "
+  <!--
+       libabigail: $(abidw --version)
+       built with: $CC: $($CC --version | head -n1)
+  -->" >> ${DIST_DIR}/${abi_out_file}
+
+  ln -sf ${abi_out_file} ${DIST_DIR}/abi.xml
+
+  echo "========================================================"
+  echo " ABI dump has been created at ${DIST_DIR}/${abi_out_file}"
+
+}
+export -f ack_abi_dump
