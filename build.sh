@@ -639,39 +639,11 @@ if [ -z "${DO_NOT_STRIP_MODULES}" ]; then
 fi
 
 if [ -n "${BUILD_INITRAMFS}" -o  -n "${IN_KERNEL_MODULES}" ]; then
-  echo "========================================================"
-  echo " Installing kernel modules into staging directory"
-
-  (cd ${OUT_DIR} &&                                                           \
-   make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MODULE_STRIP_FLAG}                   \
-        INSTALL_MOD_PATH=${MODULES_STAGING_DIR} ${MAKE_ARGS} modules_install)
+  ack_mod_install ${MODULES_STAGING_DIR} ${MODULE_STRIP_FLAG}
 fi
 
 if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -n "${EXT_MODULES}" ]]; then
-  echo "========================================================"
-  echo " Building external modules and installing them into staging directory"
-
-  for EXT_MOD in ${EXT_MODULES}; do
-    # The path that we pass in via the variable M needs to be a relative path
-    # relative to the kernel source directory. The source files will then be
-    # looked for in ${KERNEL_DIR}/${EXT_MOD_REL} and the object files (i.e. .o
-    # and .ko) files will be stored in ${OUT_DIR}/${EXT_MOD_REL}. If we
-    # instead set M to an absolute path, then object (i.e. .o and .ko) files
-    # are stored in the module source directory which is not what we want.
-    EXT_MOD_REL=$(rel_path ${ROOT_DIR}/${EXT_MOD} ${KERNEL_DIR})
-    # The output directory must exist before we invoke make. Otherwise, the
-    # build system behaves horribly wrong.
-    mkdir -p ${OUT_DIR}/${EXT_MOD_REL}
-    set -x
-    make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
-                       O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS}
-    make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
-                       O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MODULE_STRIP_FLAG}    \
-                       INSTALL_MOD_PATH=${MODULES_STAGING_DIR}                \
-                       ${MAKE_ARGS} modules_install
-    set +x
-  done
-
+  ack_mod_install_ext ${MODULES_STAGING_DIR} ${MODULE_STRIP_FLAG} ${EXT_MODULES}
 fi
 
 if [ -n "${EXTRA_CMDS}" ]; then
@@ -769,16 +741,12 @@ if [ -n "${DIST_CMDS}" ]; then
   set +x
 fi
 
+if [ -n "${IN_KERNEL_MODULES}" -o -n "${EXT_MODULES}" ]; then
+  ack_mod_dist ${DIST_DIR} ${MODULES_STAGING_DIR}
+fi
+
 MODULES=$(find ${MODULES_STAGING_DIR} -type f -name "*.ko")
 if [ -n "${MODULES}" ]; then
-  if [ -n "${IN_KERNEL_MODULES}" -o -n "${EXT_MODULES}" ]; then
-    echo "========================================================"
-    echo " Copying modules files"
-    for FILE in ${MODULES}; do
-      echo "  ${FILE#${MODULES_STAGING_DIR}/}"
-      cp -p ${FILE} ${DIST_DIR}
-    done
-  fi
   if [ -n "${BUILD_INITRAMFS}" ]; then
     echo "========================================================"
     echo " Creating initramfs"

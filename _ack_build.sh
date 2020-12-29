@@ -175,3 +175,71 @@ function ack_build_kernel() {
   set +x
 }
 export -f ack_build_kernel
+
+# Install in-kernel kernel modules
+# $1 module install path
+# $2 strip flag
+#
+function ack_mod_install() {
+  local install_mod_path=$1
+  local strip_flag=$2
+  echo "========================================================"
+  echo " Installing kernel modules into staging directory"
+
+  (cd ${OUT_DIR} &&  \
+   make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${strip_flag} \
+        INSTALL_MOD_PATH=${install_mod_path} ${MAKE_ARGS} modules_install)
+}
+export -f ack_mod_install
+
+# Install external kernel modules
+# $1 module install path
+# $2 strip flag
+# ... list of directories of the external kernel modules
+#
+function ack_mod_install_ext() {
+  local install_mod_path=$1
+  local strip_flag=$2
+  shift
+  shift
+  local ext_modules=$@
+  echo "========================================================"
+  echo " Building external modules and installing them into staging directory"
+  for ext_mod in ${ext_modules}; do
+    # The path that we pass in via the variable M needs to be a relative path
+    # relative to the kernel source directory. The source files will then be
+    # looked for in ${KERNEL_DIR}/${ext_mod_rel} and the object files (i.e. .o
+    # and .ko) files will be stored in ${OUT_DIR}/${ext_mod_rel}. If we
+    # instead set M to an absolute path, then object (i.e. .o and .ko) files
+    # are stored in the module source directory which is not what we want.
+    local ext_mod_rel=$(rel_path ${ROOT_DIR}/${ext_mod} ${KERNEL_DIR})
+    # The output directory must exist before we invoke make. Otherwise, the
+    # build system behaves horribly wrong.
+    mkdir -p ${OUT_DIR}/${ext_mod_rel}
+    set -x
+    make -C ${ext_mod} M=${ext_mod_rel} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
+                       O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS}
+    make -C ${ext_mod} M=${ext_mod_rel} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
+                       O=${OUT_DIR} "${TOOL_ARGS[@]}" ${strip_flag}           \
+                       INSTALL_MOD_PATH=${install_mod_path}                   \
+                       ${MAKE_ARGS} modules_install
+    set +x
+  done
+}
+export -f ack_mod_install_ext
+
+# $1 destination directory
+# $2 modules staging directory
+#
+function ack_mod_dist() {
+  local dist_dir=$1
+  local modules_dir=$2
+  modules=$(find ${modules_dir} -type f -name "*.ko")
+  echo "========================================================"
+  echo " Copying modules files"
+  for file in ${modules}; do
+    echo "  ${file#${modules_dir}/}"
+    cp -p ${file} ${dist_dir}
+  done
+}
+export -f ack_mod_dist
