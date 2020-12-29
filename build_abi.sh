@@ -185,36 +185,12 @@ KMI_SYMBOL_LIST_FLAG=
 if [ -n "$KMI_SYMBOL_LIST" ]; then
 
     if [ $UPDATE_SYMBOL_LIST -eq 1 ]; then
-        # Disable KMI trimming as the symbol list may be out of date.
-        TRIM_NONLISTED_KMI= KMI_SYMBOL_LIST_STRICT_MODE= build_kernel "$@"
-
-        echo "========================================================"
-        echo " Updating the ABI symbol list"
-
-        # Exclude GKI modules from non-GKI builds
-        if [ -n "${GKI_MODULES_LIST}" ]; then
-            GKI_MOD_FLAG="--gki-modules ${DIST_DIR}/$(basename ${GKI_MODULES_LIST})"
-        fi
-        if [ "$KMI_SYMBOL_LIST_ADD_ONLY" -eq 1 ]; then
-            ADD_ONLY_FLAG="--additions-only"
-        fi
-        # Specify a full GKI ABI if requested
-        if [ "$FULL_GKI_ABI" -eq 1 ]; then
-            FULL_ABI_FLAG="--full-gki-abi"
-        fi
-
-        if [ "${KMI_SYMBOL_LIST_MODULE_GROUPING}" -eq "0" ]; then
-          SKIP_MODULE_GROUPING="--skip-module-grouping"
-        fi
-
-        ${ROOT_DIR}/build/abi/extract_symbols          \
-            --symbol-list $KERNEL_DIR/$KMI_SYMBOL_LIST \
-            ${SKIP_MODULE_GROUPING}                    \
-            ${ADD_ONLY_FLAG}                           \
-            ${GKI_MOD_FLAG}                            \
-            ${FULL_ABI_FLAG}                           \
-            ${DIST_DIR}
-
+        ack_abi_symbol_extract \
+            $KERNEL_DIR/$KMI_SYMBOL_LIST \
+            ${KMI_SYMBOL_LIST_ADD_ONLY} \
+            ${FULL_GKI_ABI} \
+            ${KMI_SYMBOL_LIST_MODULE_GROUPING} \
+            ${GKI_MODULES_LIST}
         # In case of a simple --update-symbol-list call we can bail out early
         [ $UPDATE -eq 0 ] && exit 0
 

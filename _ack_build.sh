@@ -276,3 +276,69 @@ function ack_abi_toolcheck() {
   fi
 }
 export -f ack_abi_toolcheck
+
+# $1 symbol_list
+#      the symbol list to create
+#
+# $2 kmi_symbol_list_add_only
+#      Set 1 if any symbols in the symbol list that would have been removed are
+#      preserved (at the end of the file). This property is intended to prevent
+#      unintentional shrinkage of a stable ABI.
+#
+# $3 full_gki_abi
+#      Set 1 then when updating the symbol list, use all defined symbols from
+#      vmlinux and GKI modules, instead of the undefined symbols from vendor
+#      modules. This property is disabled by default.
+#
+# $4 kmi_symbol_list_module_grouping
+#      Set 1 then the symbol list will group symbols based on the kernel
+#      modules that reference the symbol. Otherwise the symbol list will simply
+#      be a sorted list of symbols used by all the kernel modules.
+#
+# $5 gsi_modules_list_file
+#      A file that contains list of GSI modules
+#
+function ack_abi_symbol_extract() {
+  local symbol_list=$1
+  local kmi_symbol_list_add_only=$2
+  local full_gki_abi=$3
+  local kmi_symbol_list_module_grouping=$4
+  local gsi_modules_list_file=$5
+
+  # Delegate the actual build to build.sh.
+  # Suppress possible values of ABI_DEFINITION when invoking build.sh to avoid
+  # the generated abi.xml to be copied to <DIST_DIR>/abi.out.
+  # Turn on symtypes generation to assist in the diagnosis of CRC differences.
+  # Disable KMI trimming as the symbol list may be out of date.
+  OUT_DIR_SUFFIX="_abi" \
+  TRIM_NONLISTED_KMI= \
+  KMI_SYMBOL_LIST_STRICT_MODE= \
+  ABI_DEFINITION= \
+  KBUILD_SYMTYPES=1 \
+    ${ROOT_DIR}/build/build.sh ${MAKE_ARGS}
+  echo "========================================================"
+  echo " Updating the ABI symbol list to $symbol_list "
+  # Exclude GKI modules from non-GKI builds
+  if [ -n "${gsi_modules_list_file}" ]; then
+    local gki_mod_flag="--gki-modules ${DIST_DIR}/$(basename ${gsi_modules_list_file})"
+  fi
+  if [ "$kmi_symbol_list_add_only" -eq 1 ]; then
+    local add_only_flag="--additions-only"
+  fi
+  # Specify a full GKI ABI if requested
+  if [ "$full_gki_abi" -eq 1 ]; then
+    local full_abi_flag="--full-gki-abi"
+  fi
+
+  if [ "${kmi_symbol_list_module_grouping}" -eq "0" ]; then
+    local skip_module_grouping="--skip-module-grouping"
+  fi
+  ${ROOT_DIR}/build/abi/extract_symbols          \
+      --symbol-list $symbol_list                 \
+      ${skip_module_grouping}                    \
+      ${add_only_flag}                           \
+      ${gki_mod_flag}                            \
+      ${full_abi_flag}                           \
+      ${DIST_DIR}
+}
+export -f ack_abi_symbol_extract
