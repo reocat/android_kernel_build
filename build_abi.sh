@@ -236,37 +236,7 @@ ack_abi_dump ${BRANCH} ${abi_out_file} "${ABI_LINUX_TREE}" "${ABI_VMLINUX_PATH}"
 rc=0
 if [ -n "$ABI_DEFINITION" ]; then
     if [ $DIFF -eq 1 ]; then
-        echo "========================================================"
-        echo " Comparing ABI against expected definition ($ABI_DEFINITION)"
-        abi_report=${DIST_DIR}/abi.report
-
-        FULL_REPORT_FLAG=
-        if [ $FULL_REPORT -eq 1 ]; then
-            FULL_REPORT_FLAG="--full-report"
-        fi
-
-        set +e
-        ${ROOT_DIR}/build/abi/diff_abi --baseline $KERNEL_DIR/$ABI_DEFINITION \
-                                       --new      ${DIST_DIR}/${abi_out_file} \
-                                       --report   ${abi_report}               \
-                                       --short-report ${abi_report}.short     \
-                                       $FULL_REPORT_FLAG                      \
-                                       $KMI_SYMBOL_LIST_FLAG
-        rc=$?
-        set -e
-        echo "========================================================"
-        echo " A brief ABI report has been created at ${abi_report}.short"
-        echo
-        echo " The detailed report is available in the same directory."
-
-        if [ $rc -ne 0 ]; then
-            echo " ABI DIFFERENCES HAVE BEEN DETECTED! (RC=$rc)"
-        fi
-
-        if [ $PRINT_REPORT -eq 1 ] && [ $rc -ne 0 ] ; then
-            echo "========================================================"
-            cat ${abi_report}.short
-        fi
+        ack_abi_cmp ${ABI_DEFINITION} ${abi_out_file} ${KMI_SYMBOL_LIST_FLAG}
     fi
     if [ $UPDATE -eq 1 ] ; then
         echo "========================================================"

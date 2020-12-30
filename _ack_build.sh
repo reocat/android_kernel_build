@@ -393,3 +393,47 @@ function ack_abi_dump() {
 
 }
 export -f ack_abi_dump
+
+# Compare ABI
+# $1 abi_definition
+# $2 abi output file to compare
+# ... additional flags to pass to the diff_abi tool
+function ack_abi_cmp() {
+  local abi_definition=$1
+  local abi_out_file=$2
+  shift
+  shift
+  local additional_flags=$@
+  echo "========================================================"
+  echo " Comparing ABI against expected definition ($abi_definition)"
+  local abi_report=${DIST_DIR}/abi.report
+
+  local full_report_flag=
+  if [ $FULL_REPORT -eq 1 ]; then
+      full_report_flag="--full-report"
+  fi
+
+  set +e
+  ${ROOT_DIR}/build/abi/diff_abi --baseline ${KERNEL_DIR}/${abi_definition} \
+                                 --new      ${DIST_DIR}/${abi_out_file} \
+                                 --report   ${abi_report}               \
+                                 --short-report ${abi_report}.short     \
+                                 $full_report_flag                      \
+                                 $additional_flags
+  rc=$?
+  set -e
+  echo "========================================================"
+  echo " A brief ABI report has been created at ${abi_report}.short"
+  echo
+  echo " The detailed report is available in the same directory."
+
+  if [ $rc -ne 0 ]; then
+      echo " ABI DIFFERENCES HAVE BEEN DETECTED! (RC=$rc)"
+  fi
+
+  if [ $PRINT_REPORT -eq 1 ] && [ $rc -ne 0 ] ; then
+      echo "========================================================"
+      cat ${abi_report}.short
+  fi
+}
+export -f ack_abi_cmp
