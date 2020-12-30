@@ -1,0 +1,47 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000006993256",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1535252?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "64309468_cecee398",
+          "description": "Change to \"_ack_build.sh\"",
+          "replacements": [
+            {
+              "path": "_ack_build.sh",
+              "range": {
+                "startLine": 371,
+                "startChar": 41,
+                "endLine": 371,
+                "endChar": 51
+              },
+              "replacement": "occurrences"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "29da7f47_2297ee2c",
+        "filename": "_ack_build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2020-12-30T04:17:59Z",
+      "side": 1,
+      "message": "Common typo found: \"occurences\" -- should it be \"occurrences\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 371,
+        "startChar": 41,
+        "endLine": 371,
+        "endChar": 51
+      },
+      "revId": "37211119c85bf89905e3f0723a883378919cc921",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
