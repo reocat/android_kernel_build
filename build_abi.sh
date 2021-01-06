@@ -280,6 +280,13 @@ if [ -z "${DO_NOT_STRIP_MODULES}" ] && [ $(echo "${UNSTRIPPED_MODULES}" | tr -d 
   ABI_VMLINUX_PATH="--vmlinux ${DIST_DIR}/vmlinux"
 fi
 
+# On untrimmed vmlinux, corresponding abi dump should contain all symbols
+if [ -n "${TRIM_NONLISTED_KMI}" ]; then
+	KMI_DUMP_SYMBOL_LIST_FLAG="${KMI_SYMBOL_LIST_FLAG}"
+else
+	KMI_DUMP_SYMBOL_LIST_FLAG=
+fi
+
 # create abi dump
 COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
 id=${ABI_OUT_TAG:-$(git -C $KERNEL_DIR describe --dirty --always)}
@@ -288,7 +295,7 @@ ${ROOT_DIR}/build/abi/dump_abi                \
     --linux-tree ${ABI_LINUX_TREE}            \
     ${ABI_VMLINUX_PATH}                       \
     --out-file ${DIST_DIR}/${abi_out_file}    \
-    $KMI_SYMBOL_LIST_FLAG
+    $KMI_DUMP_SYMBOL_LIST_FLAG
 
 # sanitize the abi.xml by removing any occurences of the kernel path
 effective_kernel_dir=$(readlink -f ${ROOT_DIR}/${KERNEL_DIR})
