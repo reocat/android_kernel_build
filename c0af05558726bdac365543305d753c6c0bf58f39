@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f99de2aa_d29e0b63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-06T14:13:48Z",
+      "side": 1,
+      "message": "That looks really promising! Thank you for working on it.\n\nI have only ran it through my head and not tried locally yet. So, only some comments spotted from reading the code for now.\n\nPlease also refer to \n  Bug: 169398826",
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2e70abd_ff15dcff",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-06T14:13:48Z",
+      "side": 1,
+      "message": "the naming is confusing:\n\n  build/menuconfig.sh config \n\ndoes _not_ spawn a menuconfig\n\nHow about\n\n  build/config.sh menuconfig|config|nconfig|...    (mandatory command or default to menuconfig)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 73
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c163b42f_7791b586",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-06T14:13:48Z",
+      "side": 1,
+      "message": "nit: typo",
+      "range": {
+        "startLine": 13,
+        "startChar": 23,
+        "endLine": 13,
+        "endChar": 32
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31a59d05_acab6b39",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-06T14:13:48Z",
+      "side": 1,
+      "message": "why is this needed? if this is just for convenience, allow it to be passed in from outside. It should not be set here as a default unless required.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 15
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b54b8acc_5fc71cd9",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-06T14:13:48Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 41,
+        "startChar": 27,
+        "endLine": 41,
+        "endChar": 44
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0e71354_a959d716",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-06T14:13:48Z",
+      "side": 1,
+      "message": "removing of the temp directories could be set up with a trap?",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 43
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ad5d33b_139b6542",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-06T14:13:48Z",
+      "side": 1,
+      "message": "define them above with the other \"constants\" ?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 39
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7718c665_e6001d7e",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-06T14:13:48Z",
+      "side": 1,
+      "message": "Does it make sense to sort the FRAGMENT_CONFIG afterwards to receive deterministic output?",
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba998335_c5a5d543",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-06T14:13:48Z",
+      "side": 1,
+      "message": "probably you should exit 0 ?",
+      "range": {
+        "startLine": 96,
+        "startChar": 42,
+        "endLine": 96,
+        "endChar": 44
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
