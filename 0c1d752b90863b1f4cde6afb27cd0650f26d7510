@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "623ea11a_98190a4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-01-11T22:48:33Z",
+      "side": 1,
+      "message": "Beyond addressing Matthias\u0027s comments, I experimented with new method of updating FRAGMENT_CONFIG by using diffconfig and merge_config.sh instead of many grep\u0027s and awks. It seems to work better at handling updates of a CONFIG_ in the fragment (e.g. changing CONFIG_DRM_MSM_DSI_20NM_PHY n -\u003e m).",
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

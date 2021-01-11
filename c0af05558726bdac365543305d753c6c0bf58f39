@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7b97412_736b529f",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-01-11T22:48:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2e70abd_ff15dcff",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 73
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c163b42f_7791b586",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-01-06T14:13:48Z",
       "side": 1,
       "message": "nit: typo",
+      "range": {
+        "startLine": 13,
+        "startChar": 23,
+        "endLine": 13,
+        "endChar": 32
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6a3bc5c_ee3ee3cc",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-01-11T22:48:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c163b42f_7791b586",
       "range": {
         "startLine": 13,
         "startChar": 23,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "754b69e2_38639fd2",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-01-11T22:48:33Z",
+      "side": 1,
+      "message": "Makes sense. Will remove for consistency.",
+      "parentUuid": "31a59d05_acab6b39",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 15
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b54b8acc_5fc71cd9",
@@ -100,6 +172,30 @@
       "writtenOn": "2021-01-06T14:13:48Z",
       "side": 1,
       "message": "?",
+      "range": {
+        "startLine": 41,
+        "startChar": 27,
+        "endLine": 41,
+        "endChar": 44
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7b0d96c_68ff50a7",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-01-11T22:48:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b54b8acc_5fc71cd9",
       "range": {
         "startLine": 41,
         "startChar": 27,
@@ -133,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec61ad89_b05674d5",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-01-11T22:48:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0e71354_a959d716",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 43
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ad5d33b_139b6542",
@@ -146,6 +266,30 @@
       "writtenOn": "2021-01-06T14:13:48Z",
       "side": 1,
       "message": "define them above with the other \"constants\" ?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 39
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e6b271a_a0281964",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-01-11T22:48:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ad5d33b_139b6542",
       "range": {
         "startLine": 59,
         "startChar": 0,
@@ -173,6 +317,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0148c0c_1784f8f4",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-01-11T22:48:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7718c665_e6001d7e",
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba998335_c5a5d543",
@@ -186,6 +348,30 @@
       "writtenOn": "2021-01-06T14:13:48Z",
       "side": 1,
       "message": "probably you should exit 0 ?",
+      "range": {
+        "startLine": 96,
+        "startChar": 42,
+        "endLine": 96,
+        "endChar": 44
+      },
+      "revId": "c0af05558726bdac365543305d753c6c0bf58f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "263dcd3a_3f8c6781",
+        "filename": "menuconfig.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-01-11T22:48:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba998335_c5a5d543",
       "range": {
         "startLine": 96,
         "startChar": 42,
