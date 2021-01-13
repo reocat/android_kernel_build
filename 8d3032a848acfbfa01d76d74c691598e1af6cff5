@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5596c245_38585de8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-13T23:27:33Z",
+      "side": 1,
+      "message": "I understand the idea behind those changes, yet I am a bit concerned that this is the right approach.\n\nEffectively the refactored functions serve the purpose to stand alone for other tools to use them in a different context. Yet all of them rely heavily on the context where the function is called.\nThe preconditions (e.g. proper definition of referenced variables) is not properly checked. I wonder how much of a benefit this gives to third-party scripts that make use of them as they have to set the context anyway ...\n\nI think if we refactor the functionality to stand alone, we need to properly define interfaces and contracts.\n",
+      "revId": "8d3032a848acfbfa01d76d74c691598e1af6cff5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
