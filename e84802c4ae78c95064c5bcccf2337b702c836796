@@ -16,6 +16,24 @@
       "message": "This seems like a nice idea, but perhaps we need some validation checks around the merge_config. It\u0027s a bit too easy to turn something off in menuconfig or change it from y to m or vice versa which could obviously be a no-go for GKI.\n\n(Our goal had been to patch away \u0027default y\u0027 upstream so fragments would never disable things already present in gki_defconfig (in this case implicitly), but admittedly there is still some work to do there.)",
       "revId": "e84802c4ae78c95064c5bcccf2337b702c836796",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53513c5e_be4a3f39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T17:34:03Z",
+      "side": 1,
+      "message": "I have a few different checks implemented in our downstream tree to check for most common issues. I can start submitting them to ACK tree for db845c, if you\u0027d like.",
+      "parentUuid": "89b865f2_924fa2bd",
+      "revId": "e84802c4ae78c95064c5bcccf2337b702c836796",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

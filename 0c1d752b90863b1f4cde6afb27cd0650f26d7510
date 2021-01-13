@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d051872e_8cf6c5dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T17:34:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0cf1350_024c087d",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0bbbfa6_04c57f73",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-01-13T12:20:43Z",
       "side": 1,
       "message": "menuconfig is probably the more popular choice",
+      "range": {
+        "startLine": 26,
+        "startChar": 20,
+        "endLine": 26,
+        "endChar": 27
+      },
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a48022b_1847efab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T17:34:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0bbbfa6_04c57f73",
       "range": {
         "startLine": 26,
         "startChar": 20,
