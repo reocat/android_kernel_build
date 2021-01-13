@@ -104,6 +104,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "765aac21_472ca07a",
+        "filename": "config.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T16:25:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6c99f63_5c901fce",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 1
+      },
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23b05ce1_e7238cc9",
@@ -117,6 +141,30 @@
       "writtenOn": "2021-01-13T12:20:43Z",
       "side": 1,
       "message": "Runs a configuration editor",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 9,
+        "endChar": 20
+      },
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ef2cfc1_aec7df32",
+        "filename": "config.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T16:25:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23b05ce1_e7238cc9",
       "range": {
         "startLine": 9,
         "startChar": 7,
@@ -150,6 +198,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b32fff6f_610743b5",
+        "filename": "config.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T16:25:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35b45849_ccde353e",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 12,
+        "endChar": 19
+      },
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00d56bba_43ff9442",
@@ -163,6 +235,30 @@
       "writtenOn": "2021-01-13T12:20:43Z",
       "side": 1,
       "message": "If set, the FRAGMENT_CONFIG file ...",
+      "range": {
+        "startLine": 15,
+        "startChar": 14,
+        "endLine": 15,
+        "endChar": 18
+      },
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1afc15ab_c96ef0e9",
+        "filename": "config.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T16:25:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00d56bba_43ff9442",
       "range": {
         "startLine": 15,
         "startChar": 14,
@@ -198,6 +294,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "581e43f3_e430a9b8",
+        "filename": "config.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T16:25:50Z",
+      "side": 1,
+      "message": "Kbuild needs the ncurses library, how do I add to solve this error?\n\n```\n/usr/include/ncursesw/ncurses.h:60:10: fatal error: \u0027ncursesw/ncurses_dll.h\u0027 file not found\n#include \u003cncursesw/ncurses_dll.h\u003e\n         ^~~~~~~~~~~~~~~~~~~~~~~~\n```\n\nAlso, I\u0027m not sure what tools are required for the other config editors (e.g. xconfig)",
+      "parentUuid": "f9bff3d6_7259e0c0",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 20
+      },
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "58643a6a_6534cd35",
         "filename": "config.sh",
         "patchSetId": 2
@@ -209,6 +329,24 @@
       "writtenOn": "2021-01-13T12:20:43Z",
       "side": 1,
       "message": "can you add a mini example to document the intention of this sort?",
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78bd8ca0_f61363b0",
+        "filename": "config.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T16:25:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58643a6a_6534cd35",
       "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -226,6 +364,30 @@
       "writtenOn": "2021-01-13T12:20:43Z",
       "side": 1,
       "message": "isn\u0027t that what `set -a` above does?\n\nhttps://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 21
+      },
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d74cd5a_47fce7a0",
+        "filename": "config.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T16:25:50Z",
+      "side": 1,
+      "message": "Done. _setup_env.sh resets the -a option, so just need to do it again.",
+      "parentUuid": "26089550_b58fd63d",
       "range": {
         "startLine": 40,
         "startChar": 0,
@@ -259,6 +421,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a5d7e0a_58d209b5",
+        "filename": "config.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T16:25:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ba3e748_7f282ea0",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 20
+      },
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9dcbd7d7_05411d46",
@@ -272,6 +458,30 @@
       "writtenOn": "2021-01-13T12:20:43Z",
       "side": 1,
       "message": "what is the point in throwing those in at the end?",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 6
+      },
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6922ea1_35db1244",
+        "filename": "config.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-01-13T16:25:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9dcbd7d7_05411d46",
       "range": {
         "startLine": 92,
         "startChar": 0,
