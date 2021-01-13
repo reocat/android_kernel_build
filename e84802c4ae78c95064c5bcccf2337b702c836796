@@ -34,6 +34,29 @@
       "parentUuid": "89b865f2_924fa2bd",
       "revId": "e84802c4ae78c95064c5bcccf2337b702c836796",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d666ae72_4d56e69c",
+        "filename": "config.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-13T21:38:46Z",
+      "side": 1,
+      "message": "/usr/bin/env bash",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "e84802c4ae78c95064c5bcccf2337b702c836796",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

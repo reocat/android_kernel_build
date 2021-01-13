@@ -366,6 +366,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f77f5a11_64f05b56",
+        "filename": "config.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-13T21:38:46Z",
+      "side": 1,
+      "message": "ok, then stick to the original for the moment (and maybe attach a #TODO). This script is not producing something that requires strict reproducibility (like the GKI kernel). I did not expect a compile time dependency.",
+      "parentUuid": "581e43f3_e430a9b8",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 20
+      },
+      "revId": "0c1d752b90863b1f4cde6afb27cd0650f26d7510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "58643a6a_6534cd35",
         "filename": "config.sh",
         "patchSetId": 2
