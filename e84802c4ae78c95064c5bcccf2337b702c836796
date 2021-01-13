@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89b865f2_924fa2bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-01-13T17:08:33Z",
+      "side": 1,
+      "message": "This seems like a nice idea, but perhaps we need some validation checks around the merge_config. It\u0027s a bit too easy to turn something off in menuconfig or change it from y to m or vice versa which could obviously be a no-go for GKI.\n\n(Our goal had been to patch away \u0027default y\u0027 upstream so fragments would never disable things already present in gki_defconfig (in this case implicitly), but admittedly there is still some work to do there.)",
+      "revId": "e84802c4ae78c95064c5bcccf2337b702c836796",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
