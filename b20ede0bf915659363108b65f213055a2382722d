@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8265292e_9981211d",
+        "filename": "abi/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-01-14T10:47:42Z",
+      "side": 1,
+      "message": "Perhaps add a comment that directories blah (some glob matching abigail-inst or similar) can be removed?\n\nAnd ELFUTILS_SRC\u003d\"${BASE_DIR}/elfutils-src\" LIBABIGAIL_SRC\u003d\"${BASE_DIR}/abigail-src\" as well?",
+      "range": {
+        "startLine": 71,
+        "startChar": 18,
+        "endLine": 71,
+        "endChar": 22
+      },
+      "revId": "b20ede0bf915659363108b65f213055a2382722d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04b4bec9_dfe19811",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-01-14T10:47:42Z",
+      "side": 1,
+      "message": "This comment is now a bit stale.",
+      "range": {
+        "startLine": 177,
+        "startChar": 8,
+        "endLine": 178,
+        "endChar": 26
+      },
+      "revId": "b20ede0bf915659363108b65f213055a2382722d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
