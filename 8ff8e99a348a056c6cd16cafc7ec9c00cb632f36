@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77f0ab58_7a683dd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-01-19T12:08:30Z",
+      "side": 1,
+      "message": "I\u0027d prefer not exposing libabigail exit code ($rc) to the caller.\n\n# not actually correct code\nif [ $enforced -a $rc ]; then exit 1; fi\nexit 0\n",
+      "revId": "8ff8e99a348a056c6cd16cafc7ec9c00cb632f36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
