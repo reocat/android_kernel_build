@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16e1d3d3_7264f2a8",
+        "filename": "abi/abitool.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-20T12:01:44Z",
+      "side": 1,
+      "message": "would be nice to have a docstring here that also gives an example for the transformation",
+      "revId": "ed73de6d6e9a6ae1d4e7073161ea2466d6f2287b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fcceeed_4e6e6d71",
+        "filename": "abi/abitool.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-20T12:01:44Z",
+      "side": 1,
+      "message": "pending.clear()",
+      "range": {
+        "startLine": 101,
+        "startChar": 8,
+        "endLine": 101,
+        "endChar": 22
+      },
+      "revId": "ed73de6d6e9a6ae1d4e7073161ea2466d6f2287b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93a444fa_57c55101",
+        "filename": "abi/abitool.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-20T12:01:44Z",
+      "side": 1,
+      "message": "isn\u0027t that equivalent to \"not lines[index+2]\" ? What am I missing?",
+      "range": {
+        "startLine": 110,
+        "startChar": 48,
+        "endLine": 110,
+        "endChar": 81
+      },
+      "revId": "ed73de6d6e9a6ae1d4e7073161ea2466d6f2287b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
