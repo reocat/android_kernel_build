@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e3b16fa_7ecb7571",
+        "filename": "abi/abitool.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-01-20T14:03:27Z",
+      "side": 1,
+      "message": "But I did the same thing in the offset collapsing.\n\nAnd .clear is apparently Python 3.3+.\nSource: https://stackoverflow.com/questions/850795/different-ways-of-clearing-lists. I like the comment \"\"There should be one-- and preferably only one --obvious way to do it.\" Python is shining here :)\"\n\nPerhaps .clear was added as an optimisation? Maybe.\n\nMore digging... Appears to have been done for uniformity and for newbies. https://bugs.python.org/issue10516\n\nDone.",
+      "parentUuid": "5fcceeed_4e6e6d71",
+      "range": {
+        "startLine": 101,
+        "startChar": 8,
+        "endLine": 101,
+        "endChar": 22
+      },
+      "revId": "ed73de6d6e9a6ae1d4e7073161ea2466d6f2287b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93a444fa_57c55101",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-01-20T12:01:44Z",
       "side": 1,
       "message": "isn\u0027t that equivalent to \"not lines[index+2]\" ? What am I missing?",
+      "range": {
+        "startLine": 110,
+        "startChar": 48,
+        "endLine": 110,
+        "endChar": 81
+      },
+      "revId": "ed73de6d6e9a6ae1d4e7073161ea2466d6f2287b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dd260f3_177c8508",
+        "filename": "abi/abitool.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-01-20T14:03:27Z",
+      "side": 1,
+      "message": "The newline.",
+      "parentUuid": "93a444fa_57c55101",
       "range": {
         "startLine": 110,
         "startChar": 48,
