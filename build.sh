@@ -434,6 +434,8 @@ function build_vendor_dlkm() {
     "${DIST_DIR}/vendor_dlkm.img" /dev/null
 }
 
+D=$0
+export KERNEL_BUILD=${D%/*}
 export ROOT_DIR=$(readlink -f $(dirname $0)/..)
 
 # For module file Signing with the kernel (if needed)
@@ -446,7 +448,7 @@ SIGN_ALGO=sha512
 # BUILD_CONFIG.
 CC_ARG="${CC}"
 
-source "${ROOT_DIR}/build/_setup_env.sh"
+source "${KERNEL_BUILD}/_setup_env.sh"
 
 export MAKE_ARGS=$*
 export MAKEFLAGS="-j$(nproc) ${MAKEFLAGS}"
