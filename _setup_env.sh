@@ -35,6 +35,13 @@ function append_cmd() {
   fi
 }
 
+# For backward compatibility
+if ! [ -d kernel-build ]; then
+    ln -s build kernel-build
+fi
+if ! [ -d prebuilts ]; then
+    ln -s prebuilts-master prebuilts
+fi
 export KERNEL_DIR
 # for case that KERNEL_DIR is not specified in environment
 if [ -z "${KERNEL_DIR}" ]; then

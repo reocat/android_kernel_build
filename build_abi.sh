@@ -62,6 +62,7 @@
 #     symbols from vmlinux and GKI modules, instead of the undefined symbols
 #     from vendor modules. This property is disabled by default.
 
+export KERNEL_BUILD=${0%/*}
 export ROOT_DIR=$(readlink -f $(dirname $0)/..)
 
 function show_help {
@@ -139,7 +140,7 @@ fi
 
 # TODO (b/175681515)
 export HERMETIC_TOOLCHAIN=0
-source "${ROOT_DIR}/build/_setup_env.sh"
+source "${KERNEL_BUILD}/_setup_env.sh"
 
 if [ -z "${KMI_SYMBOL_LIST}" ]; then
     if [ $UPDATE_SYMBOL_LIST -eq 1 ]; then
@@ -173,7 +174,7 @@ function build_kernel() {
   # Turn on symtypes generation to assist in the diagnosis of CRC differences.
   ABI_DEFINITION= \
     KBUILD_SYMTYPES=1 \
-    ${ROOT_DIR}/build/build.sh "$@"
+    ${KERNEL_BUILD}/build.sh "$@"
 }
 
 # define a common KMI symbol list flag for the abi tools
@@ -255,7 +256,7 @@ fi
 COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
 id=${ABI_OUT_TAG:-$(git -C $KERNEL_DIR describe --dirty --always)}
 abi_out_file=abi-${id}.xml
-${ROOT_DIR}/build/abi/dump_abi                \
+${KERNEL_BUILD}/abi/dump_abi                \
     --linux-tree ${ABI_LINUX_TREE}            \
     ${ABI_VMLINUX_PATH}                       \
     --out-file ${DIST_DIR}/${abi_out_file}    \
