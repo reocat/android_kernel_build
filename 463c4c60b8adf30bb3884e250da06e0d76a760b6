@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47fec61d_97c6364a",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-25T11:51:05Z",
+      "side": 1,
+      "message": "why not use $0 directly?",
+      "range": {
+        "startLine": 438,
+        "startChar": 22,
+        "endLine": 438,
+        "endChar": 23
+      },
+      "revId": "463c4c60b8adf30bb3884e250da06e0d76a760b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
