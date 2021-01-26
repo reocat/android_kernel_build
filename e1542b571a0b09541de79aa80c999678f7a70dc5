@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b371099c_e86625ee",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-26T18:19:33Z",
+      "side": 1,
+      "message": "The options are a bit hidden, so I thought a top level entry makes them more visible. But I am not insisting.",
+      "parentUuid": "a9948b4c_51cb9401",
+      "range": {
+        "startLine": 188,
+        "startChar": 48,
+        "endLine": 188,
+        "endChar": 60
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a7ac3080_6c31bc53",
         "filename": "build.sh",
         "patchSetId": 3
