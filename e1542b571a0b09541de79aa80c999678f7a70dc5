@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53399042_c33c6299",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-01-26T18:21:26Z",
+      "side": 1,
+      "message": "k, I\u0027m going to leave it like this so that it\u0027s clear AVB_SIGN_BOOT_IMG is the top-level flag that enables the signging. These flags can easily be searched if someone misses them.",
+      "parentUuid": "b371099c_e86625ee",
+      "range": {
+        "startLine": 188,
+        "startChar": 48,
+        "endLine": 188,
+        "endChar": 60
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7ac3080_6c31bc53",
