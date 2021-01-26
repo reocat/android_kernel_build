@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a9948b4c_51cb9401",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-01-26T18:03:45Z",
+      "side": 1,
+      "message": "I followed what we did for BUILD_BOOT_IMG above. Are you asking to change the below flag definitions to top-level entries instead?",
+      "parentUuid": "0ce229cc_8c2f504c",
+      "range": {
+        "startLine": 188,
+        "startChar": 48,
+        "endLine": 188,
+        "endChar": 60
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a7ac3080_6c31bc53",
         "filename": "build.sh",
         "patchSetId": 3
