@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ce229cc_8c2f504c",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-26T11:20:43Z",
+      "side": 1,
+      "message": "please add top level entries for AVB_BOOT_KEY, AVB_BOOT_PARTITION_SIZE and AVB_BOOT_ALGORITHM, even if you just refer to this section for details.",
+      "range": {
+        "startLine": 188,
+        "startChar": 48,
+        "endLine": 188,
+        "endChar": 60
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7ac3080_6c31bc53",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-26T11:20:43Z",
+      "side": 1,
+      "message": "size in ?",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 60
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f674a2fa_0b648321",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-26T11:20:43Z",
+      "side": 1,
+      "message": "absolute / relative to ?",
+      "range": {
+        "startLine": 196,
+        "startChar": 21,
+        "endLine": 196,
+        "endChar": 75
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b8b5b26_bb3772c5",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-26T11:20:43Z",
+      "side": 1,
+      "message": "listing the (supported) options?",
+      "range": {
+        "startLine": 199,
+        "startChar": 26,
+        "endLine": 199,
+        "endChar": 56
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a59eb89_2a2ac645",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-26T11:20:43Z",
+      "side": 1,
+      "message": "missing flags is also getting reported if ${AVB_BOOT_KEY} does not refer to a file\n\nMaybe check them one by one?",
+      "range": {
+        "startLine": 1045,
+        "startChar": 0,
+        "endLine": 1045,
+        "endChar": 74
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
