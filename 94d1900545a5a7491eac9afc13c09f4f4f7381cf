@@ -1,0 +1,47 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000007588042",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1558915?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "1f79cc7d_4188113b",
+          "description": "Change to \"build.sh\"",
+          "replacements": [
+            {
+              "path": "build.sh",
+              "range": {
+                "startLine": 470,
+                "startChar": 33,
+                "endLine": 470,
+                "endChar": 42
+              },
+              "replacement": "overridden"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "dce4220e_5e59ccee",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-01-26T00:46:37Z",
+      "side": 1,
+      "message": "Common typo found: \"overriden\" -- should it be \"overridden\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 470,
+        "startChar": 33,
+        "endLine": 470,
+        "endChar": 42
+      },
+      "revId": "94d1900545a5a7491eac9afc13c09f4f4f7381cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
