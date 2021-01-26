@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dce7100f_b7da3a08",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-01-26T18:18:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7ac3080_6c31bc53",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 60
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f674a2fa_0b648321",
@@ -84,6 +108,30 @@
       "writtenOn": "2021-01-26T11:20:43Z",
       "side": 1,
       "message": "absolute / relative to ?",
+      "range": {
+        "startLine": 196,
+        "startChar": 21,
+        "endLine": 196,
+        "endChar": 75
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8472359_b1aa705c",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-01-26T18:18:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f674a2fa_0b648321",
       "range": {
         "startLine": 196,
         "startChar": 21,
@@ -117,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aacad0e_85891748",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-01-26T18:18:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b8b5b26_bb3772c5",
+      "range": {
+        "startLine": 199,
+        "startChar": 26,
+        "endLine": 199,
+        "endChar": 56
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a59eb89_2a2ac645",
@@ -130,6 +202,30 @@
       "writtenOn": "2021-01-26T11:20:43Z",
       "side": 1,
       "message": "missing flags is also getting reported if ${AVB_BOOT_KEY} does not refer to a file\n\nMaybe check them one by one?",
+      "range": {
+        "startLine": 1045,
+        "startChar": 0,
+        "endLine": 1045,
+        "endChar": 74
+      },
+      "revId": "e1542b571a0b09541de79aa80c999678f7a70dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f98ef064_c64e72c6",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-01-26T18:18:26Z",
+      "side": 1,
+      "message": "I verified that avbtool fails if it can\u0027t find the key. So I\u0027m just going to leave it up to avbtool to catch that. I\u0027ll change -f to -n.",
+      "parentUuid": "2a59eb89_2a2ac645",
       "range": {
         "startLine": 1045,
         "startChar": 0,
