@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5082c639_ce4b754f",
+        "filename": "_setup_env.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-27T11:38:33Z",
+      "side": 1,
+      "message": "don\u0027t create symbolic links in the sources.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "6f1312018a79db2742a882e9f465b8c96e789239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b10ff9ea_f76f65a9",
+        "filename": "_setup_env.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-01-27T11:38:33Z",
+      "side": 1,
+      "message": "as above. but the proper solution here is to adjust the kernel/manifest accordingly.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 36
+      },
+      "revId": "6f1312018a79db2742a882e9f465b8c96e789239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
