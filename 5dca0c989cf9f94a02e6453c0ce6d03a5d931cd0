@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "284f3d31_998eceaf",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-01-28T21:57:09Z",
+      "side": 1,
+      "message": "Verified that moving GKI_DIST_DIR copying up here allows kernel/build to catch case where vendor module uses symbol not exported by GKI kernel. It can\u0027t catch CRC errors because depmod doesn\u0027t compare them.",
+      "revId": "5dca0c989cf9f94a02e6453c0ce6d03a5d931cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
