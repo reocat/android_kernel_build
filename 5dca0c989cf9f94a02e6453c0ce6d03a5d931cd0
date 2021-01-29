@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f56e0a4_4cecb3a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-01-29T17:48:50Z",
+      "side": 1,
+      "message": "Hello Elliot,\n\nI tried this patch with setting GKI_BUILD_CONFIG, but I wound up with this odd infinite looping behavior during build.config loading - I\u0027ll look into that more on my end later today.",
+      "revId": "5dca0c989cf9f94a02e6453c0ce6d03a5d931cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "284f3d31_998eceaf",
