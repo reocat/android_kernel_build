@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ffb162c8_1a5553c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-01-29T21:46:06Z",
+      "side": 1,
+      "message": "Ah, so I have added GKI_BUILD_CONFIG in a build.config file. I see now that it would fail if it is passed as an environment variable.\n\n  GKI_BUILD_CONFIG\u003dcommon/build.config.gki.aarch64 BUILD_CONFIG\u003ddevice_kernel/build.config.db845c ./build/build.sh\n\nwouldn\u0027t work, but if you add the GKI_BUILD_CONFIG\u003d into build.config.db845c it would work.\n\nI\u0027ll update gerrit to ensure GKI_BUILD_CONFIG\u003d doesn\u0027t get nested in the \"pass by environment\" use case.",
+      "parentUuid": "1c9c9ba1_add76c4a",
+      "revId": "5dca0c989cf9f94a02e6453c0ce6d03a5d931cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "284f3d31_998eceaf",
         "filename": "build.sh",
         "patchSetId": 2
