@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c9c9ba1_add76c4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-01-29T21:41:37Z",
+      "side": 1,
+      "message": "Hello,\n\nRight, so what I\u0027m observing is that, when I pass in GKI_BUILD_CONFIG, the build script seems to constantly nest additional gki_kernel/ dirs on the PATH, e.g.\n\n/path/to/my/build/out/branch/gki_kernel/gki_kernel/gki_kernel/gki_kernel/gki_kernel/gki_kernel/common/host_tools\n\nI presume this is happening in the ( env -i bash -c \"source ${OLD_ENVIRONMENT}; rm -f ${OLD_ENVIRONMENT}; export ${GKI_ENVIRON}; ./build/build.sh\" ) line. Could you give a sample invocation for what you\u0027ve been testing with?",
+      "parentUuid": "8f56e0a4_4cecb3a9",
+      "revId": "5dca0c989cf9f94a02e6453c0ce6d03a5d931cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "284f3d31_998eceaf",
