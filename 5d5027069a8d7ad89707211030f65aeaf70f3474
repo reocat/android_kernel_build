@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0001211d_fbbff717",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1409599
+      },
+      "writtenOn": "2021-02-01T12:55:57Z",
+      "side": 1,
+      "message": "Multiple git branches, all with the same name.\nNot sure if in the repo jargon that is can be considered singular or plural.\n\nThis is a recent example where I used this new feature:\n\nhttps://android-review.googlesource.com/q/topic:%22kernel-update-b178577290-7115418%22+(status:open%20OR%20status:merged)",
+      "parentUuid": "683945ff_fc68087e",
+      "range": {
+        "startLine": 93,
+        "startChar": 19,
+        "endLine": 93,
+        "endChar": 27
+      },
+      "revId": "5d5027069a8d7ad89707211030f65aeaf70f3474",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26ec2df6_d9a5c80f",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b70fb04_9f84e5bc",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1409599
+      },
+      "writtenOn": "2021-02-01T12:55:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26ec2df6_d9a5c80f",
+      "range": {
+        "startLine": 169,
+        "startChar": 44,
+        "endLine": 169,
+        "endChar": 52
+      },
+      "revId": "5d5027069a8d7ad89707211030f65aeaf70f3474",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f09944a2_72a205af",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-02-01T12:39:53Z",
       "side": 1,
       "message": "change",
+      "range": {
+        "startLine": 171,
+        "startChar": 81,
+        "endLine": 171,
+        "endChar": 88
+      },
+      "revId": "5d5027069a8d7ad89707211030f65aeaf70f3474",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a8e8ebd_3b47f823",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1409599
+      },
+      "writtenOn": "2021-02-01T12:55:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f09944a2_72a205af",
       "range": {
         "startLine": 171,
         "startChar": 81,
