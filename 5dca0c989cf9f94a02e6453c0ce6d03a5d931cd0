@@ -90,6 +90,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3fb111a_af393cd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-02-01T21:57:47Z",
+      "side": 1,
+      "message": "Ah! printenv isn\u0027t available on hermetic toolchain. I\u0027ve been testing on our tree and copying the changes over. I\u0027ve replaced it with export -p since that is available.\n\nI just verified the approaches you did should be working on the android12-5.10 repo.",
+      "parentUuid": "4162a9d5_aa3c8dab",
+      "revId": "5dca0c989cf9f94a02e6453c0ce6d03a5d931cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "284f3d31_998eceaf",
