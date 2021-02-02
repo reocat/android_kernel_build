@@ -16,6 +16,24 @@
       "message": "I would also add a comment here and to the other block, just to ensure it is understood that this is done for the mixed build. I will send it for presubmit now.",
       "revId": "9a6f9d38317945a8990bf86d4db51dedae7c2445",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70818db9_5b0204f6",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-02-02T21:42:13Z",
+      "side": 1,
+      "message": "The parent change is still an incompatible change and breaks backwards compatibility and likely we can\u0027t accept it as is. Can you decouple this change from the other?",
+      "parentUuid": "67ab4af7_d3533d5d",
+      "revId": "9a6f9d38317945a8990bf86d4db51dedae7c2445",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
