@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f86209d_32385372",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-02-02T10:41:55Z",
+      "side": 1,
+      "message": "While the feature looks good generally, it needs more documentation as this \"mixed\" build is somewhat explicit only. Can you please ensure, a reader of this code would consider this \"special handling for mixed builds\" to connect the dots? Documentation would do.",
+      "revId": "69442f7daed4a0ef7689a41c106f176c61ec4d6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
