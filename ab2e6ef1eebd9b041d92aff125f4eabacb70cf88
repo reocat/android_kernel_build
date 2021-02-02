@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e5914b2_b582b40e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-02-02T23:55:56Z",
+      "side": 1,
+      "message": "As we discussed offline, once we land the first set of prebuilts the transition problem goes away, so we don\u0027t need to download the modules again to the cf directory. Let\u0027s remove the arm64/x86_64 downloads for cf and rely on your new path.",
+      "revId": "ab2e6ef1eebd9b041d92aff125f4eabacb70cf88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
