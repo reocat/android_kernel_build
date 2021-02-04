@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f471a4c1_4189755e",
+        "filename": "build_abi.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-02-04T14:17:59Z",
+      "side": 1,
+      "message": "Pretty sure you need \u0027(\u0027 ... -o ... \u0027)\u0027. But then the man page has a complicated sentence mentioning prune, so maybe not. Please put the brackets in, even if they are not needed.\n\nDidn\u0027t know about -delete. I\u0027d have done -exec rm -- \u0027{}\u0027 \u0027+\u0027.\n\nIt might be very slightly neater as -delete -print. So it only prints out each filename once, either it successfully deleted and print the name or it will emit an error message.",
+      "range": {
+        "startLine": 153,
+        "startChar": 9,
+        "endLine": 153,
+        "endChar": 60
+      },
+      "revId": "9754cf5c2014f3b2dd9e1ba5efb6bd4ea7a81d26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
