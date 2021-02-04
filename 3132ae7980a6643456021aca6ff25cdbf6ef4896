@@ -22,6 +22,30 @@
       },
       "revId": "3132ae7980a6643456021aca6ff25cdbf6ef4896",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "598cad36_302340d1",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-02-04T20:35:59Z",
+      "side": 1,
+      "message": "For consistency with the rest of the script, i.e. the GKI kernel targets. Unless we plan to turn down aarch64, it shouldn\u0027t make a difference in practice.",
+      "parentUuid": "7de0e34a_1b73f072",
+      "range": {
+        "startLine": 517,
+        "startChar": 2,
+        "endLine": 517,
+        "endChar": 75
+      },
+      "revId": "3132ae7980a6643456021aca6ff25cdbf6ef4896",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
