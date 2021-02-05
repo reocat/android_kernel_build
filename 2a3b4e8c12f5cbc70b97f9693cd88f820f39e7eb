@@ -16,6 +16,24 @@
       "message": "nit: this file is removed in every branch of the if statement, you might as well do it unconditionally in line 504.",
       "revId": "2a3b4e8c12f5cbc70b97f9693cd88f820f39e7eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72947eda_96e1f51f",
+        "filename": "build.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-02-05T04:58:37Z",
+      "side": 1,
+      "message": "One of the requirements from Trilok was for GKI and Device kernel builds to run in parallel. I have started work on it and having it this way prevents device kernel/build from deleting the environment before GKI build starts.",
+      "parentUuid": "7b6037b6_6a589ae1",
+      "revId": "2a3b4e8c12f5cbc70b97f9693cd88f820f39e7eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
