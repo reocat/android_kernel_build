@@ -387,7 +387,9 @@ def update_androidx_virtual_device_modules(gitlog, output_dir, version):
   except subprocess.CalledProcessError:
     pass
 
+  subprocess.check_call(["git", "checkout", "HEAD", "Android.bp"], cwd=arm64_mods_dir)
   download_kernel_modules("kernel_virt_aarch64", arm64_mods_dir, fetch_initramfs=True)
+  subprocess.check_call(["git", "checkout", "HEAD", "Android.bp"], cwd=x86_64_mods_dir)
   download_kernel_modules("kernel_virt_x86_64", x86_64_mods_dir, fetch_initramfs=True)
 
   commit_prebuilts(arm64_mods_dir, gitlog)
