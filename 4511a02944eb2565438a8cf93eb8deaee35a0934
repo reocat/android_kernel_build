@@ -16,6 +16,24 @@
       "message": "since abidw is referred to from this very repository, rather use it directly and omit the check.",
       "revId": "4511a02944eb2565438a8cf93eb8deaee35a0934",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e953dee_e323e0c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-02-11T21:11:47Z",
+      "side": 1,
+      "message": "https://android.googlesource.com/kernel/build/+/refs/heads/master/build-tools/path/linux-x86",
+      "parentUuid": "b80be6d5_0f2d33d2",
+      "revId": "4511a02944eb2565438a8cf93eb8deaee35a0934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
