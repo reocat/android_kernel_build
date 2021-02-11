@@ -454,6 +454,12 @@ def update_android_mainline(output_dir):
   commit_prebuilts(arm64_dir, gitlog)
 
 def update_gki():
+  _, result = subprocess.getstatusoutput("abidw")
+  if "command not found" in result:
+    print("abidw is not in your path. "
+          "Please add build/build-tools/path/linux-x86 to your PATH to fix this issue.")
+    return
+
   url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_aarch64")
   url = os.path.join(url_base, "BUILD_INFO")
   response = urllib.request.urlopen(url)
