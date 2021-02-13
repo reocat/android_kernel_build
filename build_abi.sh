@@ -127,6 +127,11 @@ done
 
 set -- "${ARGS[@]}"
 
+# Save environment for mixed build support.
+OLD_ENVIRONMENT=$(mktemp)
+export -p > ${OLD_ENVIRONMENT}
+trap "rm -f ${OLD_ENVIRONMENT}" EXIT
+
 set -e
 set -a
 
@@ -165,13 +170,15 @@ function update_config_for_abi_dump() {
 export -f update_config_for_abi_dump
 
 function build_kernel() {
+  local build_environ="${BUILD_ENVIRON}"
   # Delegate the actual build to build.sh.
   # Suppress possible values of ABI_DEFINITION when invoking build.sh to avoid
   # the generated abi.xml to be copied to <DIST_DIR>/abi.out.
   # Turn on symtypes generation to assist in the diagnosis of CRC differences.
-  ABI_DEFINITION= \
-    KBUILD_SYMTYPES=1 \
-    ${ROOT_DIR}/build/build.sh "$@"
+  build_environ+=" OUT_DIR=${COMMON_OUT_DIR}"
+  build_environ+=" ABI_DEFINITION= GKI_ABI_DEFINITION="
+  build_environ+=" KBUILD_SYMTYPES=1 GKI_KBUILD_SYMTYPES=1"
+  env -i bash -c "source ${OLD_ENVIRONMENT}; export ${build_environ}; ${ROOT_DIR}/build/build.sh $@"
 }
 
 # define a common KMI symbol list flag for the abi tools
@@ -183,7 +190,7 @@ if [ -n "$KMI_SYMBOL_LIST" ]; then
 
     if [ $UPDATE_SYMBOL_LIST -eq 1 ]; then
         # Disable KMI trimming as the symbol list may be out of date.
-        TRIM_NONLISTED_KMI= KMI_SYMBOL_LIST_STRICT_MODE= build_kernel "$@"
+        BUILD_ENVIRON="TRIM_NONLISTED_KMI= KMI_SYMBOL_LIST_STRICT_MODE=" build_kernel "$@"
 
         echo "========================================================"
         echo " Updating the ABI symbol list"
@@ -231,7 +238,7 @@ fi
 
 # Already built the final kernel if updating symbol list and trimming symbol list is disabled
 if ! [ $UPDATE_SYMBOL_LIST -eq 1 -a -z "${TRIM_NONLISTED_KMI}" -a "$FULL_GKI_ABI" -eq 0 ]; then
-    SKIP_MRPROPER="${SKIP_MRPROPER}" build_kernel "$@"
+    BUILD_ENVIRON="SKIP_MRPROPER=${SKIP_MRPROPER}" build_kernel "$@"
 fi
 
 echo "========================================================"
