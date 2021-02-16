@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b646fc4e_1d8f9adc",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-02-16T17:42:52Z",
+      "side": 1,
+      "message": "If vmlinux.symvers and modules.buildin.modinfo are copied to DIST_DIR, KBUILD_MIXED_TREE can point to GKI_DIST_DIR. For now, doing this because it simplifies gerrit dependencies.",
+      "revId": "079d1c6723f6359b6f871ed2eae118530df837f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
