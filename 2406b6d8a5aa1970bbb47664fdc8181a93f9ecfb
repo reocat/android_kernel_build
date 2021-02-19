@@ -16,6 +16,24 @@
       "message": "s/additionally strip/additionally stripping/ in commit message\n\nAlso, does this means we can get rid of the sed in build_abi.sh?",
       "revId": "2406b6d8a5aa1970bbb47664fdc8181a93f9ecfb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b206646_92e78921",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-02-19T22:25:47Z",
+      "side": 1,
+      "message": "Done. \n\nUnfortunately we can not drop the sed yet as this only changed for hermetic kernel builds (currently android12-5.10+). Other builds have the full path.",
+      "parentUuid": "961a83d6_12d63882",
+      "revId": "2406b6d8a5aa1970bbb47664fdc8181a93f9ecfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
