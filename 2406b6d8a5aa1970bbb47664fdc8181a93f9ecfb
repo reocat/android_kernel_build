@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "961a83d6_12d63882",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-02-19T19:02:08Z",
+      "side": 1,
+      "message": "s/additionally strip/additionally stripping/ in commit message\n\nAlso, does this means we can get rid of the sed in build_abi.sh?",
+      "revId": "2406b6d8a5aa1970bbb47664fdc8181a93f9ecfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
