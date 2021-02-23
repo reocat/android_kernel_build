@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6252727e_c404766f",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-02-23T10:21:00Z",
+      "side": 1,
+      "message": "Hmm, I somehow don\u0027t like how this replaces the -rcX and how it gets inserted into the middle of the version string.\n\nConsider the version string as of today:\n\n  5.11.0-rc7-mainline-03778-gb03736322ddf-ab7141724\n\nThis patch makes it\n\n  5.11.0-debug_api-mainline-03778-gb03736322ddf-ab7141724\n\n\nThe build target is now inserted in the middle of the parts that are supposed to describe the version. If it needs to be in the version string at all (does it really?), it should be appended after the BUILD_NUMBER as it describes a target within e.g. ab/7141724. For consistency, I would even say, include the full BUILD_TARGET name, so that it reads\n\n  5.11.0-rc7-mainline-03778-gb03736322ddf-ab7141724-kernel_kasan_aarch64\n\nThat gets (internally) resolvable to http://ab/7141724/kernel_kasan_aarch64",
+      "revId": "2d618a9ff6e4a4a0c1dd52de471c33079120ebe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
