@@ -511,7 +511,14 @@ else
   rm -f ${OLD_ENVIRONMENT}
 fi
 
-export MAKE_ARGS=$*
+BUILD_TARGET_PREFIX=$(grep -o '.\(debug_api\|debug_locking\|debug_memory\|kasan\)$' \
+    <<<"$BUILD_TARGET" || true)
+
+if [ -n "${BUILD_TARGET_PREFIX}" ]; then
+  EXTRAVERSION_ARGS=EXTRAVERSION=$BUILD_TARGET_PREFIX
+fi
+
+export MAKE_ARGS="$* $EXTRAVERSION_ARGS"
 export MAKEFLAGS="-j$(nproc) ${MAKEFLAGS}"
 export MODULES_STAGING_DIR=$(readlink -m ${COMMON_OUT_DIR}/staging)
 export MODULES_PRIVATE_DIR=$(readlink -m ${COMMON_OUT_DIR}/private)
