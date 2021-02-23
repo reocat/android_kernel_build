@@ -16,6 +16,24 @@
       "message": "Hmm, I somehow don\u0027t like how this replaces the -rcX and how it gets inserted into the middle of the version string.\n\nConsider the version string as of today:\n\n  5.11.0-rc7-mainline-03778-gb03736322ddf-ab7141724\n\nThis patch makes it\n\n  5.11.0-debug_api-mainline-03778-gb03736322ddf-ab7141724\n\n\nThe build target is now inserted in the middle of the parts that are supposed to describe the version. If it needs to be in the version string at all (does it really?), it should be appended after the BUILD_NUMBER as it describes a target within e.g. ab/7141724. For consistency, I would even say, include the full BUILD_TARGET name, so that it reads\n\n  5.11.0-rc7-mainline-03778-gb03736322ddf-ab7141724-kernel_kasan_aarch64\n\nThat gets (internally) resolvable to http://ab/7141724/kernel_kasan_aarch64",
       "revId": "2d618a9ff6e4a4a0c1dd52de471c33079120ebe8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "810f2446_2f475bcd",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1345812
+      },
+      "writtenOn": "2021-02-23T10:38:26Z",
+      "side": 1,
+      "message": "Background of this CL:\n\nAppending after the BUILD_NUMBER is what I originally want to do. However ran into some issues when doing that (b/171025979#comment5)\n\n1. Available space is not enough to append build target to version string.\n2. Avoid modifying the public API.\n\nSo previously the solution is pa/1830655. But got -1 because it modifies kernel core. Had a discussion with GKI team (b/171025979#comment12) and we try to use EXTRAVERSION as this CL does. If the problem is replacing of the -rcX, will \n\n 5.11.0-rc7-debug_api-mainline-...\n\nworks for you?",
+      "parentUuid": "6252727e_c404766f",
+      "revId": "2d618a9ff6e4a4a0c1dd52de471c33079120ebe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
