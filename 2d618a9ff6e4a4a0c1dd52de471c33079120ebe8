@@ -34,6 +34,24 @@
       "parentUuid": "6252727e_c404766f",
       "revId": "2d618a9ff6e4a4a0c1dd52de471c33079120ebe8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e164c2f6_5df3fab0",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-02-23T11:13:49Z",
+      "side": 1,
+      "message": "I think it does not belong at this position. \n\n  5.11.0-rc7-mainline-03778-gb03736322ddf\n\ndescribes the sources and should be the same for all the builds derived from the same sources. \n\n  5.11.0-rc7-mainline-03778-gb03736322ddf-ab7141724\n\ndescribes the build based on the sources and should be the same for all builds in the same build number. And that leaves the target for the end. Space can not be an argument for the position.\n\n(Since UTS_RELEASE is limited to 64 chars, this is a risky business anyway as branch names easily can expand beyond that ...)",
+      "parentUuid": "810f2446_2f475bcd",
+      "revId": "2d618a9ff6e4a4a0c1dd52de471c33079120ebe8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
