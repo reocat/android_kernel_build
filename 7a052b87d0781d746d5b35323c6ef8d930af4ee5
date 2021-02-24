@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ec5bd4f_3a4bb52b",
+        "filename": "build_abi.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-02-24T11:44:18Z",
+      "side": 1,
+      "message": "I think I would like to keep the prefix abi, such that abi*xml still works.\n\nabi-full.xml ?",
+      "range": {
+        "startLine": 256,
+        "startChar": 19,
+        "endLine": 256,
+        "endChar": 36
+      },
+      "revId": "7a052b87d0781d746d5b35323c6ef8d930af4ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
