@@ -1,0 +1,47 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000008419086",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1603478?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "584c4ecf_cacb3781",
+          "description": "Change to \"build_abi.sh\"",
+          "replacements": [
+            {
+              "path": "build_abi.sh",
+              "range": {
+                "startLine": 280,
+                "startChar": 41,
+                "endLine": 280,
+                "endChar": 51
+              },
+              "replacement": "occurrences"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "f0541690_3094305b",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-02-24T11:21:03Z",
+      "side": 1,
+      "message": "Common typo found: \"occurences\" -- should it be \"occurrences\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 280,
+        "startChar": 41,
+        "endLine": 280,
+        "endChar": 51
+      },
+      "revId": "b1c1da3dcb49e31b87b379eff17b1cedd06eff46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
