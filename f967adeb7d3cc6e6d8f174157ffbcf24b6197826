@@ -16,6 +16,23 @@
       "message": "I\u0027ve been using this Gerrit now that ABI symbol list was enabled on android12-5.10 in order to get an ABI snapshot covering all symbols.",
       "revId": "f967adeb7d3cc6e6d8f174157ffbcf24b6197826",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db9c50e5_8a86d384",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-02-24T11:42:17Z",
+      "side": 1,
+      "message": "Eliot. Please take a look at aosp/1603478 as an alternative.\n\nLet us know if it addresses your needs.",
+      "revId": "f967adeb7d3cc6e6d8f174157ffbcf24b6197826",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
