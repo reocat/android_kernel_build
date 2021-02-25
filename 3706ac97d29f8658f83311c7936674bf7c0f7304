@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "791eabeb_c2edb57d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-02-25T08:58:03Z",
+      "side": 1,
+      "message": "The test breakage (boot tests) has nothing to do with this build script change which simply creates an extra build artefact.\n\nThe KernelABI breakage for 12-5.4 refers to committed XML, not this extra build artefact.",
+      "revId": "3706ac97d29f8658f83311c7936674bf7c0f7304",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
