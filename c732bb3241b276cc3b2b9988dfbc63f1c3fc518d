@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cddef5a_6da41fab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1644679
+      },
+      "writtenOn": "2021-03-02T21:10:11Z",
+      "side": 1,
+      "message": "Looks like presubmit failures are coming from a reverted revert of keymaster changes.\nI reopened the bug: https://b.corp.google.com/issues/181134070",
+      "revId": "c732bb3241b276cc3b2b9988dfbc63f1c3fc518d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
