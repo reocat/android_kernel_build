@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c98b89ae_fc234ec4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-05T21:13:14Z",
+      "side": 1,
+      "message": "Alternative option could be: find . -mindepth 1 -printf \u0027%P\\n\u0027",
+      "revId": "b1ef23f1528b1122028c7ee86ab6439b05a9701a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
