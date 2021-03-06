@@ -33,6 +33,24 @@
       "message": "let\u0027s map DISABLE_LTO_CFI_CONFIGS to LTO\u003dnone for a while for compatibility and announce it in the newsletters?",
       "revId": "f4a63f8b81fe5e5da1029041d41136c53cb89c5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c53f25b0_51b8b2d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-03-06T00:58:34Z",
+      "side": 1,
+      "message": "I don\u0027t think we should do that since DISABLE_LTO_CFI_CONFIGS was basically incorrect; it would disable CFI as well as LTO, but that wasn\u0027t needed on newer kernels and can result in development being done with CFI disabled, which won\u0027t show the bugs CFI can catch. I think the documentation on the website is outdated, from before ThinLTO existed. The motive for this option was surely to make the build+test cycle shorter, it wasn\u0027t about CFI.\n\nWe could map to LTO\u003dthin reasonably, but this can\u0027t be detected easily in older kernels, where it would need to fall back to none.\n\nI think it\u0027s better to be explicit and remove this option completely. It hasn\u0027t existed for long.",
+      "parentUuid": "54e7943b_53fa8df2",
+      "revId": "f4a63f8b81fe5e5da1029041d41136c53cb89c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
