@@ -16,6 +16,24 @@
       "message": "what if it is unset? do we assume \u0027none\u0027?\n\nIsn\u0027t that hitting the issue with `LTO\u003d build/build.sh` or if it is simply not set?\nIn particular, if we require any definition, we are not backwards compatible.",
       "revId": "7844b99a21144a124dcf6d561be8a1a912215053",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2719dd14_90c5d52c",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-03-06T00:48:20Z",
+      "side": 1,
+      "message": "You are right. This was me not testing my change before uploading it. It is definitely not intended to require LTO; indeed, not setting it should allow whatever is configured underneath to \"pass through\".",
+      "parentUuid": "b2fe00b0_b42f27ae",
+      "revId": "7844b99a21144a124dcf6d561be8a1a912215053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
