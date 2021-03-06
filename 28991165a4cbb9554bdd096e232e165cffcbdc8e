@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78dcbf2d_431aae3b",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-03-06T00:02:48Z",
+      "side": 1,
+      "message": "This is totally unexpected. SKIP_MRPROPER is also used programmatically. It is a build optimization and should never change the build result itself. E.g. build_abi.sh makes use of not cleaning in between builds by setting SKIP_MRPROPER.",
+      "revId": "28991165a4cbb9554bdd096e232e165cffcbdc8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4ab0b1f_da615f89",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-03-06T00:02:48Z",
+      "side": 1,
+      "message": "I am surprised you do not also need to disable CFI as it depends on LTO. But since you wrote it in your commit message, I assume you tested it.",
+      "revId": "28991165a4cbb9554bdd096e232e165cffcbdc8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1565f93_5f8b5f27",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-03-06T00:02:48Z",
+      "side": 1,
+      "message": "else fail if set to any other unknown value, like \u003d0 or \u003d1 or \u003d\"None\"",
+      "range": {
+        "startLine": 705,
+        "startChar": 0,
+        "endLine": 705,
+        "endChar": 2
+      },
+      "revId": "28991165a4cbb9554bdd096e232e165cffcbdc8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
