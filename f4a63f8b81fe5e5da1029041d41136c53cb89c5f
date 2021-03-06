@@ -16,6 +16,23 @@
       "message": "Because we shouldn\u0027t have two ways to achieve the same thing.",
       "revId": "f4a63f8b81fe5e5da1029041d41136c53cb89c5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54e7943b_53fa8df2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-03-06T00:48:20Z",
+      "side": 1,
+      "message": "let\u0027s map DISABLE_LTO_CFI_CONFIGS to LTO\u003dnone for a while for compatibility and announce it in the newsletters?",
+      "revId": "f4a63f8b81fe5e5da1029041d41136c53cb89c5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
