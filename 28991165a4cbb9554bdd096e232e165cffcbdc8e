@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df8c1862_ce39692e",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-03-06T00:35:54Z",
+      "side": 1,
+      "message": "I think those cases could be changed to SKIP_MRPROPER\u003d1 LTO\u003dfull, but I don\u0027t really care. I\u0027ll remove this feature. Watch out for the pitchforks, though! :)",
+      "parentUuid": "78dcbf2d_431aae3b",
+      "revId": "28991165a4cbb9554bdd096e232e165cffcbdc8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4ab0b1f_da615f89",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78a2b6a4_419be70d",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-03-06T00:35:54Z",
+      "side": 1,
+      "message": "That\u0027s right. CFI_CLANG depends on LTO_CLANG on all branches, so it will be disabled implicitly. There is no need to disable it explicitly.",
+      "parentUuid": "c4ab0b1f_da615f89",
+      "revId": "28991165a4cbb9554bdd096e232e165cffcbdc8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1565f93_5f8b5f27",
@@ -48,6 +84,30 @@
       "writtenOn": "2021-03-06T00:02:48Z",
       "side": 1,
       "message": "else fail if set to any other unknown value, like \u003d0 or \u003d1 or \u003d\"None\"",
+      "range": {
+        "startLine": 705,
+        "startChar": 0,
+        "endLine": 705,
+        "endChar": 2
+      },
+      "revId": "28991165a4cbb9554bdd096e232e165cffcbdc8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ded1b650_419a727f",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-03-06T00:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1565f93_5f8b5f27",
       "range": {
         "startLine": 705,
         "startChar": 0,
