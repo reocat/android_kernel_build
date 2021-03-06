@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2fe00b0_b42f27ae",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-03-06T00:45:08Z",
+      "side": 1,
+      "message": "what if it is unset? do we assume \u0027none\u0027?\n\nIsn\u0027t that hitting the issue with `LTO\u003d build/build.sh` or if it is simply not set?\nIn particular, if we require any definition, we are not backwards compatible.",
+      "revId": "7844b99a21144a124dcf6d561be8a1a912215053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
