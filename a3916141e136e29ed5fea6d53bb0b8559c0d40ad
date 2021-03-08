@@ -22,6 +22,30 @@
       },
       "revId": "a3916141e136e29ed5fea6d53bb0b8559c0d40ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05c0db1c_500873b7",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-08T23:35:40Z",
+      "side": 1,
+      "message": "+1. I tested --no-preserve-owner. All files in initramfs.cpio become root:root.",
+      "parentUuid": "430e58fb_4c68e213",
+      "range": {
+        "startLine": 977,
+        "startChar": 61,
+        "endLine": 977,
+        "endChar": 69
+      },
+      "revId": "a3916141e136e29ed5fea6d53bb0b8559c0d40ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
