@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "430e58fb_4c68e213",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-03-08T23:29:26Z",
+      "side": 1,
+      "message": "With toybox\u0027 cpio, you can achieve the same thing with the command line argument --no-preserve-owner\nThe caveat is, though, that --no-preserve-owner means different things when used with toybox\u0027 cpio vs GNU cpio. In toybox cpio, it applies to the create i.e. copy-out mode, whereas in GNU cpio, it applies to the extract i.e. copy-in mode.\nSince we\u0027re using toybox cpio, I recommend adding --no-preserve-owner here",
+      "range": {
+        "startLine": 977,
+        "startChar": 61,
+        "endLine": 977,
+        "endChar": 69
+      },
+      "revId": "a3916141e136e29ed5fea6d53bb0b8559c0d40ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
