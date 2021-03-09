@@ -46,6 +46,30 @@
       },
       "revId": "a3916141e136e29ed5fea6d53bb0b8559c0d40ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3091a767_d9314cbe",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-03-09T00:46:18Z",
+      "side": 1,
+      "message": "I did see --no-preserve-owner in the usage message, but didn\u0027t think it was the same thing.",
+      "parentUuid": "05c0db1c_500873b7",
+      "range": {
+        "startLine": 977,
+        "startChar": 61,
+        "endLine": 977,
+        "endChar": 69
+      },
+      "revId": "a3916141e136e29ed5fea6d53bb0b8559c0d40ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
