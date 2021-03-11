@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd582c18_9fd7dd6d",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-03-11T12:06:03Z",
+      "side": 1,
+      "message": "If you have cmp in the path you can use cmp -s without redirection.",
+      "range": {
+        "startLine": 815,
+        "startChar": 2,
+        "endLine": 815,
+        "endChar": 70
+      },
+      "revId": "e31595e53631393cd744dcf7694aae23bc164e36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
