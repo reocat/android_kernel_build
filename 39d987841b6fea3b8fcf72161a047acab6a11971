@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "509f657c_fc8c81e3",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1111,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-03-12T19:18:13Z",
+      "side": 1,
+      "message": "Since this line is now shared by all three cases on line 1104, 1107 and 1111, you might as well factor it out and move it to line 1117.",
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d835d06_56ad0800",
         "filename": "build.sh",
         "patchSetId": 1
@@ -36,6 +53,29 @@
         "startChar": 4,
         "endLine": 1120,
         "endChar": 14
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d93c4de_0c4d5f3c",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-03-12T19:18:13Z",
+      "side": 1,
+      "message": "Do we need \u0026\u0026 here? I believe it inherits \"set -e\" from the parent shell and stops if any of the commands fail.",
+      "range": {
+        "startLine": 1121,
+        "startChar": 24,
+        "endLine": 1121,
+        "endChar": 26
       },
       "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -100,6 +140,30 @@
       "writtenOn": "2021-03-12T18:16:18Z",
       "side": 1,
       "message": "Need to do error handling here. If this fails, then it won\u0027t recreate the vendor ramdisk cpio which is a problem.\n\nI would at least like to print out an error message and then exit the script.",
+      "range": {
+        "startLine": 1124,
+        "startChar": 5,
+        "endLine": 1124,
+        "endChar": 37
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5433ff83_24d01e64",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-03-12T19:18:13Z",
+      "side": 1,
+      "message": "Doesn\u0027t it inherit the \"set -e\" from the parent shell? If so, it\u0027ll stop the entire build.sh script.",
+      "parentUuid": "c29fd97f_86269618",
       "range": {
         "startLine": 1124,
         "startChar": 5,
