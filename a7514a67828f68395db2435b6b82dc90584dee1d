@@ -16,6 +16,23 @@
       "message": "Anything else needed? +2?",
       "revId": "a7514a67828f68395db2435b6b82dc90584dee1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce7cc3c8_c55ca75b",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-03-12T22:32:28Z",
+      "side": 1,
+      "message": "Under what circumstances do you expect cpio to fail and why does it make sense then to continue? It\u0027s still in ${MKBOOTIMG_RAMDISKS[*]} and we\u0027d want to report an error if it\u0027s corrupted.",
+      "revId": "a7514a67828f68395db2435b6b82dc90584dee1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
