@@ -172,6 +172,29 @@
       },
       "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df6375a9_d87b6887",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-03-12T19:25:07Z",
+      "side": 1,
+      "message": "All the existing usages of \"eval\" in this script don\u0027t use quotes around the parameter.",
+      "range": {
+        "startLine": 1124,
+        "startChar": 10,
+        "endLine": 1124,
+        "endChar": 11
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
