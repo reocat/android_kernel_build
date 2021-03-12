@@ -33,6 +33,24 @@
       "message": "Under what circumstances do you expect cpio to fail and why does it make sense then to continue? It\u0027s still in ${MKBOOTIMG_RAMDISKS[*]} and we\u0027d want to report an error if it\u0027s corrupted.",
       "revId": "a7514a67828f68395db2435b6b82dc90584dee1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df92de75_5d7e65ec",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-12T22:52:39Z",
+      "side": 1,
+      "message": "I was thinking about the case where we have a perfectly valid cpio archive, but for some reason, hermetic cpio is not able to extract it.\n\nBut fine, we can bail out in that case. Essentially, this will give us a sanity-check on the provided VENDOR_RAMDISK_BINARY.",
+      "parentUuid": "ce7cc3c8_c55ca75b",
+      "revId": "a7514a67828f68395db2435b6b82dc90584dee1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
