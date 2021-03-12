@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9bdc9dd_258ff188",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-12T20:48:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f074923_0245d48d",
+      "range": {
+        "startLine": 1119,
+        "startChar": 29,
+        "endLine": 1119,
+        "endChar": 31
+      },
+      "revId": "cd6512e72619fd12fbf1f1f146fbc00b68fa8299",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c744339_33b4ccd2",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-03-12T20:35:03Z",
       "side": 1,
       "message": "Can you explain why you added || true?\n\nIf it\u0027s to hide an error that happens with the VENDOR_RAMDISK_CMDS, then I\u0027d recommend not doing that since it could leave the ramdisk in a bad state which would likely lead to hard-to-debug bugs.",
+      "range": {
+        "startLine": 1122,
+        "startChar": 35,
+        "endLine": 1122,
+        "endChar": 42
+      },
+      "revId": "cd6512e72619fd12fbf1f1f146fbc00b68fa8299",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd959986_dcdeb540",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-12T20:48:19Z",
+      "side": 1,
+      "message": "I was just thinking to ignore the error. Not all functions defined in config files will be perfect, e.g. forget to use -f flag for rm or cp operations.\n\nBut OK, I\u0027ll remove \"|| true\", so that it will fail here on those cases.",
+      "parentUuid": "3c744339_33b4ccd2",
       "range": {
         "startLine": 1122,
         "startChar": 35,
