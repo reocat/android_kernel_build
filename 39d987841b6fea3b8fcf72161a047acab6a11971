@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6209eec_311eb8da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-12T17:06:05Z",
+      "side": 1,
+      "message": "Verified to work with:\n1) VENDOR_RAMDISK_CMDS undefined in config file\n2) VENDOR_RAMDISK_CMDS\u003d\"\u003cfunction name\u003e\" in config file",
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
