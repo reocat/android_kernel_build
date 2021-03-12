@@ -16,6 +16,98 @@
       "message": "Verified to work with:\n1) VENDOR_RAMDISK_CMDS undefined in config file\n2) VENDOR_RAMDISK_CMDS\u003d\"\u003cfunction name\u003e\" in config file",
       "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d835d06_56ad0800",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-03-12T18:16:18Z",
+      "side": 1,
+      "message": "Can you make this a little more clear? Maybe RAMDISK_TMP_DIR",
+      "range": {
+        "startLine": 1120,
+        "startChar": 4,
+        "endLine": 1120,
+        "endChar": 14
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2319060_0db7b4e7",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-03-12T18:16:18Z",
+      "side": 1,
+      "message": "Any reason to use cat instead of -F ${CPIO_NAME}?",
+      "range": {
+        "startLine": 1122,
+        "startChar": 5,
+        "endLine": 1122,
+        "endChar": 43
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81a89bcd_8cbb206b",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-03-12T18:16:18Z",
+      "side": 1,
+      "message": "should this be:\n\nrm -rf lib",
+      "range": {
+        "startLine": 1123,
+        "startChar": 5,
+        "endLine": 1123,
+        "endChar": 23
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29fd97f_86269618",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-03-12T18:16:18Z",
+      "side": 1,
+      "message": "Need to do error handling here. If this fails, then it won\u0027t recreate the vendor ramdisk cpio which is a problem.\n\nI would at least like to print out an error message and then exit the script.",
+      "range": {
+        "startLine": 1124,
+        "startChar": 5,
+        "endLine": 1124,
+        "endChar": 37
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
