@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "693767c0_62660bcb",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1111,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-12T20:26:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "509f657c_fc8c81e3",
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d835d06_56ad0800",
@@ -48,6 +66,30 @@
       "writtenOn": "2021-03-12T18:16:18Z",
       "side": 1,
       "message": "Can you make this a little more clear? Maybe RAMDISK_TMP_DIR",
+      "range": {
+        "startLine": 1120,
+        "startChar": 4,
+        "endLine": 1120,
+        "endChar": 14
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c6f2c68_ebf2f229",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1120,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-12T20:26:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d835d06_56ad0800",
       "range": {
         "startLine": 1120,
         "startChar": 4,
@@ -81,6 +123,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43872d1a_017f94f0",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-12T20:26:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d93c4de_0c4d5f3c",
+      "range": {
+        "startLine": 1121,
+        "startChar": 24,
+        "endLine": 1121,
+        "endChar": 26
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2319060_0db7b4e7",
@@ -104,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecf43e92_bee92db2",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-12T20:26:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2319060_0db7b4e7",
+      "range": {
+        "startLine": 1122,
+        "startChar": 5,
+        "endLine": 1122,
+        "endChar": 43
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81a89bcd_8cbb206b",
@@ -117,6 +207,30 @@
       "writtenOn": "2021-03-12T18:16:18Z",
       "side": 1,
       "message": "should this be:\n\nrm -rf lib",
+      "range": {
+        "startLine": 1123,
+        "startChar": 5,
+        "endLine": 1123,
+        "endChar": 23
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dce0807_2feaafac",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-12T20:26:18Z",
+      "side": 1,
+      "message": "No, we don\u0027t want to remove lib/firmware.",
+      "parentUuid": "81a89bcd_8cbb206b",
       "range": {
         "startLine": 1123,
         "startChar": 5,
@@ -187,6 +301,54 @@
       "writtenOn": "2021-03-12T19:25:07Z",
       "side": 1,
       "message": "All the existing usages of \"eval\" in this script don\u0027t use quotes around the parameter.",
+      "range": {
+        "startLine": 1124,
+        "startChar": 10,
+        "endLine": 1124,
+        "endChar": 11
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09241965_564770b7",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-12T20:26:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5433ff83_24d01e64",
+      "range": {
+        "startLine": 1124,
+        "startChar": 5,
+        "endLine": 1124,
+        "endChar": 37
+      },
+      "revId": "39d987841b6fea3b8fcf72161a047acab6a11971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2a641d2_89df76ee",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-12T20:26:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df6375a9_d87b6887",
       "range": {
         "startLine": 1124,
         "startChar": 10,
