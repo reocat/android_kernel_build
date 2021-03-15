@@ -33,6 +33,29 @@
       "message": "Thanks for picking this from my list! :-)",
       "revId": "96c8ff6ace1eff268c8d9996e8a8676b64d757c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "554fa4d8_0e741ad8",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-03-15T22:40:47Z",
+      "side": 1,
+      "message": "It would be cleaner at this point to move the second if/then/fi inside the first and remove the redundant conditional. But this is a nit.",
+      "range": {
+        "startLine": 326,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 10
+      },
+      "revId": "96c8ff6ace1eff268c8d9996e8a8676b64d757c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
