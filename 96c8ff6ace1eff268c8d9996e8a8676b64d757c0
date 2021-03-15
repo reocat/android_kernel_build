@@ -56,6 +56,30 @@
       },
       "revId": "96c8ff6ace1eff268c8d9996e8a8676b64d757c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "425dd938_2769fe46",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1247518
+      },
+      "writtenOn": "2021-03-15T22:43:08Z",
+      "side": 1,
+      "message": "yup agreed.  I can do that right away in a second CL, seems like a different change.",
+      "parentUuid": "554fa4d8_0e741ad8",
+      "range": {
+        "startLine": 326,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 10
+      },
+      "revId": "96c8ff6ace1eff268c8d9996e8a8676b64d757c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
