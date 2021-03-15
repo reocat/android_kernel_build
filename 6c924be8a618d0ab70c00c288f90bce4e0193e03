@@ -34,6 +34,29 @@
       "parentUuid": "ebf9959a_2689209a",
       "revId": "6c924be8a618d0ab70c00c288f90bce4e0193e03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f677e4ff_639045cd",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-03-15T19:12:18Z",
+      "side": 1,
+      "message": "Let\u0027s try to avoid adding this by updating the prebuilt ramdisks with what\u0027s needed. Worse case, move this to a separate patch.",
+      "range": {
+        "startLine": 1122,
+        "startChar": 5,
+        "endLine": 1122,
+        "endChar": 32
+      },
+      "revId": "6c924be8a618d0ab70c00c288f90bce4e0193e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
