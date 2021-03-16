@@ -73,6 +73,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38e7d651_49e71fc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1021676
+      },
+      "writtenOn": "2021-03-16T22:35:55Z",
+      "side": 1,
+      "message": "you could achieve the same effect by adding commands to ${DIST_CMDS}, it would just not be as convenient since you\u0027d have break the cpio open again.",
+      "parentUuid": "3a66cf53_cc792a10",
+      "revId": "6c924be8a618d0ab70c00c288f90bce4e0193e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f14e0f3_f2afbd31",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1021676
+      },
+      "writtenOn": "2021-03-16T22:35:55Z",
+      "side": 1,
+      "message": "please add VENDOR_RAMDISK_CMDS explanation somewhere around here or above.",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 55
+      },
+      "revId": "6c924be8a618d0ab70c00c288f90bce4e0193e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f677e4ff_639045cd",
         "filename": "build.sh",
         "patchSetId": 4
