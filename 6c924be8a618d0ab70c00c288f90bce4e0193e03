@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a66cf53_cc792a10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-16T22:01:21Z",
+      "side": 1,
+      "message": "build.sh is filled with abuse vectors:\n\neval ${PRE_DEFCONFIG_CMDS}\neval ${POST_DEFCONFIG_CMDS}\neval ${POST_KERNEL_BUILD_CMDS}\neval ${EXTRA_CMDS}\neval ${DIST_CMDS}\n\nSo how is this any different:\neval ${VENDOR_RAMDISK_CMDS}\n\nWhen developers use this script, they want to inject their own .kos into prebuilt vendor ramdisk.\n\nBut what if you also need to inject firmware files or any other config file changes for your testing? \n\neval ${VENDOR_RAMDISK_CMDS} provides that hook. It will let the build config file modify the ramdisk as needed for testing.",
+      "parentUuid": "99cb2af8_4f6a7d4e",
+      "revId": "6c924be8a618d0ab70c00c288f90bce4e0193e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f677e4ff_639045cd",
         "filename": "build.sh",
         "patchSetId": 4
