@@ -36,6 +36,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99cb2af8_4f6a7d4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-03-16T20:43:22Z",
+      "side": 1,
+      "message": "I am ok with the ko filtering of initramfs.cpio, but VENDOR_RAMDISK_CMDS is too hacky/flexible and will be abused, so I\u0027m not supportive of it.",
+      "revId": "6c924be8a618d0ab70c00c288f90bce4e0193e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f677e4ff_639045cd",
