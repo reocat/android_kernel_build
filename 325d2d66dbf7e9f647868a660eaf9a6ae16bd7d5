@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a01b21d8_53c3db09",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-03-17T10:47:47Z",
+      "side": 1,
+      "message": "[x for x in files if x.endswith((\".dtb\", \".ko\"))]",
+      "range": {
+        "startLine": 278,
+        "startChar": 19,
+        "endLine": 278,
+        "endChar": 70
+      },
+      "revId": "325d2d66dbf7e9f647868a660eaf9a6ae16bd7d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
