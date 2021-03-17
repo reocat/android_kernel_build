@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76eb33e1_af1cc3ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-03-17T12:18:03Z",
+      "side": 1,
+      "message": "Sorry for the very late initial review. ",
+      "revId": "ee9730b2774ee4f0422d37d4d579add0ffa3f1ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d5a0efc_9e9a713b",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-03-17T12:18:03Z",
+      "side": 1,
+      "message": "The purpose of this appears to be capture the state of the environment and to allow it to be restored within build_kernel.\n\nIt would be useful to document exactly which bits are being protected against.\n\nIt may, for example, be possible to postpone adding to the environment and only doing so carefully in subshells, but I\u0027m not familiar enough with the build scripts to know if that\u0027s possible.\n\nBUILD_ENVIRON is going to go wrong if anything therein would need quotes.",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 25
+      },
+      "revId": "ee9730b2774ee4f0422d37d4d579add0ffa3f1ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57b6724e_3f0350d8",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-03-17T12:18:03Z",
+      "side": 1,
+      "message": "I think this would be better and more safely (with proper quoting and error handling) done in a subshell.",
+      "range": {
+        "startLine": 181,
+        "startChar": 2,
+        "endLine": 181,
+        "endChar": 99
+      },
+      "revId": "ee9730b2774ee4f0422d37d4d579add0ffa3f1ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
