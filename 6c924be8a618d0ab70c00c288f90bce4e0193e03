@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb721660_323de14a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-03-17T00:07:19Z",
+      "side": 1,
+      "message": "Right, I have provided an example on how to do this with EXTRA_CMDS here pa/1884395. I believe device specific things like fiddling with the ramdisk should be left out of build.sh.",
+      "parentUuid": "38e7d651_49e71fc6",
+      "revId": "6c924be8a618d0ab70c00c288f90bce4e0193e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f14e0f3_f2afbd31",
         "filename": "build.sh",
         "patchSetId": 4
