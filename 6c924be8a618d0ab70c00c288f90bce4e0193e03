@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3209318_de1669b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-18T07:13:02Z",
+      "side": 1,
+      "message": "Why is it OK to do the vendor ramdisk modifications from inconvenient\n\"eval ${EXTRA_CMDS}\" or \"eval ${DIST_CMDS}\", but not from the newly added \"eval ${VENDOR_RAMDISK_CMDS}\"? What is so much better about those existing evals?\n\nI have added the new eval to exactly where it is needed, when the prebuilt vendor ramdisk has been already extracted for removal of lib/modules. So might as well do all desired modifications at the same time, whatever the developer\u0027s build.config file specifies, before re-packaging it back to cpio.\n\nThe purpose of build.sh is to help developers build kernels and related boot images. I don\u0027t understand the resistance on this. I\u0027m trying to make build.sh more flexible and useful. So that build.config can specify vendor ramdisk modification operations, if it so chooses.\n\nI have a specific use case for this in pa/1881988. If there is anything unclear about it, why it is needed, please contact me.",
+      "parentUuid": "bb721660_323de14a",
+      "revId": "6c924be8a618d0ab70c00c288f90bce4e0193e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f14e0f3_f2afbd31",
         "filename": "build.sh",
         "patchSetId": 4
