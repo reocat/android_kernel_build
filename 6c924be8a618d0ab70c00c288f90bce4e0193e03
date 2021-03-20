@@ -148,6 +148,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24e4a128_9547364c",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-20T03:53:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f14e0f3_f2afbd31",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 55
+      },
+      "revId": "6c924be8a618d0ab70c00c288f90bce4e0193e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f677e4ff_639045cd",
@@ -161,6 +185,30 @@
       "writtenOn": "2021-03-15T19:12:18Z",
       "side": 1,
       "message": "Let\u0027s try to avoid adding this by updating the prebuilt ramdisks with what\u0027s needed. Worse case, move this to a separate patch.",
+      "range": {
+        "startLine": 1122,
+        "startChar": 5,
+        "endLine": 1122,
+        "endChar": 32
+      },
+      "revId": "6c924be8a618d0ab70c00c288f90bce4e0193e03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1da3a22d_c0b77fba",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-20T03:53:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f677e4ff_639045cd",
       "range": {
         "startLine": 1122,
         "startChar": 5,
