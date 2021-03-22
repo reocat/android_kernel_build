@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87a7d614_7955761d",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1032,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-03-22T18:31:48Z",
+      "side": 1,
+      "message": "Can we cheat and sneak the missing word \"to\" in here?",
+      "range": {
+        "startLine": 1032,
+        "startChar": 45,
+        "endLine": 1032,
+        "endChar": 46
+      },
+      "revId": "315e73005ace32baa89dbdd618de3a4edcdb353a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5491a1a8_906aedab",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1035,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-03-22T18:31:48Z",
+      "side": 1,
+      "message": "Is there a way to determine the type of cpio implementation in the search PATH? This worked for me:\n\ncpio --version | grep -q toybox\n\nThat would allow the hermetic toolchain to switch implementations. It would also allow toybox cpio in the non-HERMETIC_TOOLCHAIN case.",
+      "range": {
+        "startLine": 1035,
+        "startChar": 9,
+        "endLine": 1035,
+        "endChar": 44
+      },
+      "revId": "315e73005ace32baa89dbdd618de3a4edcdb353a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
