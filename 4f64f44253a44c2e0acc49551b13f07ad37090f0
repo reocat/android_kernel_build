@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c352a7d1_49092080",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-03-22T21:23:29Z",
+      "side": 1,
+      "message": "hmm, isn\u0027t it easier the tools are properly configured?\n\nAll you need is to set\n\n   BUILDTOOLS_PREBUILT_BIN\u003dbuild/build-tools/path/linux-x86\n\nThat will put it into PATH, no need for the hermetic toolchain. Is this such an ancient branch you need this for? We support this since 4.14 ...\n\nhttps://android.googlesource.com/kernel/common/+/refs/heads/android12-5.10/build.config.common#8\n",
+      "revId": "4f64f44253a44c2e0acc49551b13f07ad37090f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
