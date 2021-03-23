@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7634fbde_a5fb91e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1224979
+      },
+      "writtenOn": "2021-03-23T20:57:19Z",
+      "side": 1,
+      "message": "5cb148e Filter out lib/modules from ${VENDOR_RAMDISK_BINARY}\n\nhas been merged, introducing cpio -i \u0026 cpio -o operations on ${CPIO_NAME}.\n\nCan you please repo sync to ToT and include the above two new instances into this CL as well?\n\nPerhaps just use a conditional to construct:\nCPIO_OFLAGS\u003d ...\nCPIO_IFLAGS\u003d ... (if needed)\n\nand use those when invoking cpio -o and cpio -i.",
+      "revId": "a1e2265d71945de2c6a60e079d705580f38985e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
