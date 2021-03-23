@@ -52,6 +52,24 @@
       "parentUuid": "a24f703e_f6c5180b",
       "revId": "4f64f44253a44c2e0acc49551b13f07ad37090f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5020e8_759c0a94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-03-23T10:50:37Z",
+      "side": 1,
+      "message": "fair enough. Should we emit a WARNING at least? Since this basically reveals a configuration issue.",
+      "parentUuid": "4fb24b5d_d74cff3a",
+      "revId": "4f64f44253a44c2e0acc49551b13f07ad37090f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
