@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9ecfccf_d1c66c40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-03-23T23:03:36Z",
+      "side": 1,
+      "message": "No problem :) You gave us some more time to think about this patch. We\u0027re now thinking it\u0027s better to disable mixed build for build_abi.sh. The \"GKI tree\" would be KMI compliant because it is the standard KMI itself. It\u0027s simpler to disable mixed build and might let us catch an interesting error down the road.\n\nI\u0027ll re-upload a patch that looks like aosp/1590371, but for build_abi.sh",
+      "parentUuid": "76eb33e1_af1cc3ef",
+      "revId": "ee9730b2774ee4f0422d37d4d579add0ffa3f1ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d5a0efc_9e9a713b",
