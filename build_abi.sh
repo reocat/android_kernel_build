@@ -164,6 +164,10 @@ function update_config_for_abi_dump() {
 }
 export -f update_config_for_abi_dump
 
+# Disable mixed build when comparing ABI snapshots. Device kernel ABI should compared, even in a
+# mixed build environment.
+GKI_BUILD_CONFIG=
+
 function build_kernel() {
   # Delegate the actual build to build.sh.
   # Suppress possible values of ABI_DEFINITION when invoking build.sh to avoid
