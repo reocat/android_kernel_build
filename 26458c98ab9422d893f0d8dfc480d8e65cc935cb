@@ -1,0 +1,47 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000009474123",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1658449?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "92db6bce_be7a96a3",
+          "description": "Change to \"build.sh\"",
+          "replacements": [
+            {
+              "path": "build.sh",
+              "range": {
+                "startLine": 831,
+                "startChar": 9,
+                "endLine": 831,
+                "endChar": 19
+              },
+              "replacement": "synchronize"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "84b1578c_d6fa21c1",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 831,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-03-31T00:34:29Z",
+      "side": 1,
+      "message": "Common typo found: \"syncronize\" -- should it be \"synchronize\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 831,
+        "startChar": 9,
+        "endLine": 831,
+        "endChar": 19
+      },
+      "revId": "26458c98ab9422d893f0d8dfc480d8e65cc935cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
