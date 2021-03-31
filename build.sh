@@ -828,8 +828,11 @@ fi
 echo "========================================================"
 echo " Building kernel"
 
+# Always synchronize include/config/auto.conf. If config.before was restored,
+# then Kbuild would have auto.conf based on the original defconfig and only knows
+# to update auto.conf based on the timestamp of .config (which is old)
 set -x
-(cd ${OUT_DIR} && make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS} ${MAKE_GOALS})
+(cd ${OUT_DIR} && make O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MAKE_ARGS} syncconfig ${MAKE_GOALS})
 set +x
 
 if [ -n "${POST_KERNEL_BUILD_CMDS}" ]; then
