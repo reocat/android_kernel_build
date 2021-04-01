@@ -1039,10 +1039,10 @@ if [ -n "${MODULES}" ]; then
       # in GNU cpio. Keep in mind that, in GNU cpio, --no-preserve-owner means
       # something else and is only valid in copy-in and copy-pass modes.
       if cpio --version | grep -q "toybox"; then
-        find * | cpio -H newc -o --no-preserve-owner --quiet > ${MODULES_STAGING_DIR}/initramfs.cpio
+        find lib/modules/* | cpio -H newc -o --no-preserve-owner --quiet > ${MODULES_STAGING_DIR}/initramfs.cpio
       else
         echo "WARN: Configuration error: using host cpio!"
-        find * | cpio -H newc -o -R root:root --quiet > ${MODULES_STAGING_DIR}/initramfs.cpio
+        find lib/modules/* | cpio -H newc -o -R root:root --quiet > ${MODULES_STAGING_DIR}/initramfs.cpio
       fi
     )
     ${RAMDISK_COMPRESS} ${MODULES_STAGING_DIR}/initramfs.cpio > ${MODULES_STAGING_DIR}/initramfs.cpio.${RAMDISK_EXT}
