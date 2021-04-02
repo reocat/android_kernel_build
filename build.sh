@@ -35,6 +35,10 @@
 #     is to be defined relative to the repo root directory.
 #     Defaults to 'build.config'.
 #
+#   BUILD_CONFIG_FRAGMENT
+#     An additional build config fragment to be sourced after the main build
+#     config file. Typically used for sanitizers or other special builds.
+#
 #   OUT_DIR
 #     Base output directory for the kernel build.
 #     Defaults to <REPO_ROOT>/out/<BRANCH>.

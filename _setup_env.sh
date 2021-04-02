@@ -54,6 +54,9 @@ fi
 
 set -a
 . ${ROOT_DIR}/${BUILD_CONFIG}
+if [ -n "${BUILD_CONFIG_FRAGMENT}" ]; then
+  . ${ROOT_DIR}/${BUILD_CONFIG_FRAGMENT}
+fi
 set +a
 
 echo "= The final value for KERNEL_DIR: ${KERNEL_DIR}"
