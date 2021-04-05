@@ -16,6 +16,52 @@
       "message": "Verified with AOSP master and Debian userspace using Cuttlefish.",
       "revId": "a5bcd147b0ba79c42294908773c3423a3a2441a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70138f3d_2d513aa0",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-04-05T18:49:40Z",
+      "side": 1,
+      "message": "Do you need the $(echo ...)?",
+      "range": {
+        "startLine": 366,
+        "startChar": 16,
+        "endLine": 366,
+        "endChar": 40
+      },
+      "revId": "a5bcd147b0ba79c42294908773c3423a3a2441a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35da9db3_17cc978c",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1020,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-04-05T18:49:40Z",
+      "side": 1,
+      "message": "Do you need the $(echo ..)?",
+      "range": {
+        "startLine": 1020,
+        "startChar": 21,
+        "endLine": 1020,
+        "endChar": 67
+      },
+      "revId": "a5bcd147b0ba79c42294908773c3423a3a2441a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
