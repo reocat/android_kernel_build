@@ -16,6 +16,47 @@
       "message": "If vmlinux.symvers and modules.buildin.modinfo are copied to DIST_DIR, KBUILD_MIXED_TREE can point to GKI_DIST_DIR. For now, doing this because it simplifies gerrit dependencies.",
       "revId": "079d1c6723f6359b6f871ed2eae118530df837f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4960a433_8862a671",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-04-06T16:31:19Z",
+      "side": 1,
+      "message": "Would be nice to see MAKE_ARGS get the TOOL_ARGS array treatment (in a separate commit) first.",
+      "range": {
+        "startLine": 523,
+        "startChar": 2,
+        "endLine": 523,
+        "endChar": 11
+      },
+      "revId": "079d1c6723f6359b6f871ed2eae118530df837f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71383027_8321421a",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-04-06T16:31:19Z",
+      "side": 1,
+      "message": "Are you implying there\u0027s a better way to do this but it would need another tool? Please say more.",
+      "parentUuid": "b646fc4e_1d8f9adc",
+      "revId": "079d1c6723f6359b6f871ed2eae118530df837f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
