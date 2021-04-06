@@ -208,6 +208,9 @@
 #       blocked from being loaded. This file is copied directly to staging directory,
 #       and should be in the format:
 #       blocklist module_name
+#     If the BOOT_IMAGE_HEADER_VERSION is 4, AVB_BOOT_KEY and
+#     AVB_BOOT_ALGORITHM must be defined. See below for the argument
+#     definitions.
 #
 #   VENDOR_RAMDISK_CMDS
 #     When building vendor boot image, VENDOR_RAMDISK_CMDS enables the build
@@ -1029,7 +1032,7 @@ if [ -n "${MODULES}" ]; then
     cp ${INITRAMFS_STAGING_DIR}/lib/modules/modules.load ${DIST_DIR}/modules.load
     echo "${MODULES_OPTIONS}" > ${INITRAMFS_STAGING_DIR}/lib/modules/modules.options
 
-    if [ "${BOOT_IMAGE_HEADER_VERSION}" -eq "3" ]; then
+    if [ "${BOOT_IMAGE_HEADER_VERSION}" -ge "3" ]; then
       if [ -f "${VENDOR_FSTAB}" ]; then
         mkdir -p ${INITRAMFS_STAGING_DIR}/first_stage_ramdisk
         cp ${VENDOR_FSTAB} ${INITRAMFS_STAGING_DIR}/first_stage_ramdisk/.
@@ -1169,7 +1172,7 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
     exit 1
   fi
 
-  if [ "${BOOT_IMAGE_HEADER_VERSION}" -eq "3" ]; then
+  if [ "${BOOT_IMAGE_HEADER_VERSION}" -ge "3" ]; then
     if [ -f "${GKI_RAMDISK_PREBUILT_BINARY}" ]; then
       MKBOOTIMG_ARGS+=("--ramdisk" "${GKI_RAMDISK_PREBUILT_BINARY}")
     fi
@@ -1183,6 +1186,15 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
     fi
   else
     MKBOOTIMG_ARGS+=("--ramdisk" "${DIST_DIR}/ramdisk.${RAMDISK_EXT}")
+  fi
+
+  if [ "${BOOT_IMAGE_HEADER_VERSION}" -ge "4" ]; then
+    if [ -z "${AVB_BOOT_KEY}" ] || [ -z "${AVB_BOOT_ALGORITHM}" ]; then
+      echo "Boot header v4 requires AVB_BOOT_KEY and AVB_BOOT_ALGORITHM" 1>&2
+      exit 1
+    fi
+    MKBOOTIMG_ARGS+=("--gki_signing_algorithm" "${AVB_BOOT_ALGORITHM}")
+    MKBOOTIMG_ARGS+=("--gki_signing_key" "${AVB_BOOT_KEY}")
   fi
 
   "$MKBOOTIMG_PATH" --kernel "${DIST_DIR}/${KERNEL_BINARY}" \
