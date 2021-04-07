@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab1d5178_d88ade5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-04-07T17:10:14Z",
+      "side": 1,
+      "message": "Shouldn\u0027t all the ${MAKE_ARGS[@]:+\"${MAKE_ARGS[@]}\"} (and ${@:+\"$@\"}) just be\n\"${MAKE_ARGS[@]}\" (and \"$@\")?\n\nAlso, array variables are not exported to the Unix environment, so it\u0027s misleading to leave the export there. In fact, MAKE_ARGS are passed to command lines - the variable should not have been exported.\n\nWill initialising MAKE_ARGS\u003d(\"$@\") suffice? Or have I missed something?\n",
+      "revId": "95d060420ea3135e5ca97052a8ac99f0a64f81da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d6831381_c8deff61",
         "filename": "build.sh",
         "patchSetId": 1
