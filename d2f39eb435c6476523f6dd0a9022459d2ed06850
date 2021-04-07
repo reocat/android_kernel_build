@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774b03ff_65e8373c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-04-07T17:13:49Z",
+      "side": 1,
+      "message": "In commit message:\n\ns/inheritted/inherited/\ns/gki/GKI/\n",
+      "revId": "d2f39eb435c6476523f6dd0a9022459d2ed06850",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e86f145a_0aad15a0",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-04-07T17:13:49Z",
+      "side": 1,
+      "message": "@ is nicer than * (but should be equivalent for arrays) and shouldn\u0027t this be quoted?",
+      "range": {
+        "startLine": 531,
+        "startChar": 73,
+        "endLine": 531,
+        "endChar": 97
+      },
+      "revId": "d2f39eb435c6476523f6dd0a9022459d2ed06850",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
