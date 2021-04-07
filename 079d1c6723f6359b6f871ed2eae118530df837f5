@@ -57,6 +57,48 @@
       "parentUuid": "b646fc4e_1d8f9adc",
       "revId": "079d1c6723f6359b6f871ed2eae118530df837f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d282851_bcfe5bd5",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-04-07T15:08:39Z",
+      "side": 1,
+      "message": "Done -- aosp/1667069",
+      "parentUuid": "4960a433_8862a671",
+      "range": {
+        "startLine": 523,
+        "startChar": 2,
+        "endLine": 523,
+        "endChar": 11
+      },
+      "revId": "079d1c6723f6359b6f871ed2eae118530df837f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af8da89b_78065ef1",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-04-07T15:08:39Z",
+      "side": 1,
+      "message": "I\u0027ve done what I was thinking. If I copy some extra files to DIST_DIR, then I can use DIST_DIR instead of trying to guess the location of the compiled kernel tree. aosp/1666171 adds those files.",
+      "parentUuid": "71383027_8321421a",
+      "revId": "079d1c6723f6359b6f871ed2eae118530df837f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
