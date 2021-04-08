@@ -51,6 +51,24 @@
       "message": "Will fix this in future patchset.",
       "revId": "95d060420ea3135e5ca97052a8ac99f0a64f81da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45ebb499_5b18c54e",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-04-08T08:50:31Z",
+      "side": 1,
+      "message": "Please add a # TODO to document the case which currently requires word-splitting of a make argument (or quote the array expansion). Thanks. Perhaps:\n\n# TODO: quote once KBUILD_PARAMETER\u003d\"multiple words\" resolved elsewhere",
+      "parentUuid": "d6831381_c8deff61",
+      "revId": "95d060420ea3135e5ca97052a8ac99f0a64f81da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
