@@ -39,6 +39,30 @@
       },
       "revId": "d2f39eb435c6476523f6dd0a9022459d2ed06850",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ea36d5a_2476fa72",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1579699
+      },
+      "writtenOn": "2021-04-08T05:47:17Z",
+      "side": 1,
+      "message": "When @ is used, I saw that the beginning and end of the string were also being quoted.\n\n```\n+ env -i bash -c \u0027source /tmp/tmp.RzCl5fmmsy; rm -f /tmp/tmp.RzCl5fmmsy; export SKIP_MRPROPER\u003d1\u0027 LTO\u003d SKIP_DEFCONFIG\u003d SKIP_IF_VERSION_MATCHES\u003d GKI_BUILD_CONFIG\u003d \u0027BUILD_CONFIG\u003d\"common/build.config.gki.aarch64\"\u0027 \u0027SKIP_IF_VERSION_MATCHES\u003d\"1\"\u0027 OUT_DIR\u003d/local/mnt/workspace/mixed/out/android12-5.10/gki_kernel \u0027DIST_DIR\u003d/local/mnt/workspace/mixed/out/android12-5.10/gki_kernel/dist ; ./build/build.sh\u0027\n\nAdded newlines for reading:\nenv -i bash -c\n   \u0027source /tmp/tmp.RzCl5fmmsy; rm -f /tmp/tmp.RzCl5fmmsy; export SKIP_MRPROPER\u003d1\u0027\n   \u0027BUILD_CONFIG\u003d\"common/build.config.gki.aarch64\"\u0027\n   \u0027SKIP_IF_VERSION_MATCHES\u003d\"1\"\u0027\n   OUT_DIR\u003d/local/mnt/workspace/mixed/out/android12-5.10/gki_kernel\n   \u0027DIST_DIR\u003d/local/mnt/workspace/mixed/out/android12-5.10/gki_kernel/dist ; ./build/build.sh\u0027\n```",
+      "parentUuid": "e86f145a_0aad15a0",
+      "range": {
+        "startLine": 531,
+        "startChar": 73,
+        "endLine": 531,
+        "endChar": 97
+      },
+      "revId": "d2f39eb435c6476523f6dd0a9022459d2ed06850",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
