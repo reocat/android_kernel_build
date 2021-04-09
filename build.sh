@@ -859,7 +859,7 @@ if [ -n "${KMI_SYMBOL_LIST_STRICT_MODE}" ]; then
   echo " Comparing the KMI and the symbol lists:"
   set -x
   ${ROOT_DIR}/build/abi/compare_to_symbol_list "${OUT_DIR}/Module.symvers" \
-                                               "${OUT_DIR}/abi_symbollist.raw"
+                                               "${OUT_DIR}/abi_symbollist.raw" || exit 1
   set +x
 fi
 
