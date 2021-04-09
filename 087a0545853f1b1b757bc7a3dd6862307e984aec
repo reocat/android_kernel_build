@@ -39,6 +39,30 @@
       },
       "revId": "087a0545853f1b1b757bc7a3dd6862307e984aec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ff4a6c0_07f0e7a6",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-04-09T15:34:10Z",
+      "side": 1,
+      "message": "There are usually other make goals in the list like `modules` or some dtb(s), so the comparison shouldn\u0027t try match the whole string.\n\n\u003e Also, are there other targets that should be caught here?\n\nI wanted to call out explicit compilation of the core kernel image from within the device kernel since that can\u0027t be done when KBUILD_MIXED_TREE is set.\n\n`Image*|vmlinux` calls out the targets I know about for arm64. I looked at x86 makefile, and I\u0027ll expand this to: `*Image*|*image*|vmlinux`",
+      "parentUuid": "c6e7811e_9a1ea793",
+      "range": {
+        "startLine": 528,
+        "startChar": 24,
+        "endLine": 528,
+        "endChar": 41
+      },
+      "revId": "087a0545853f1b1b757bc7a3dd6862307e984aec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
