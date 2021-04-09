@@ -16,6 +16,24 @@
       "message": "Hmm, this script runs with -e set. What am I missing?",
       "revId": "6a008a975d5e7c39554bb3582f796820db2d2cd6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0385e168_1223bbe7",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1135739
+      },
+      "writtenOn": "2021-04-09T11:00:42Z",
+      "side": 1,
+      "message": "You are right. Sorry for the false alarm.",
+      "parentUuid": "14b50b41_907aaa7c",
+      "revId": "6a008a975d5e7c39554bb3582f796820db2d2cd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
