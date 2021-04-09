@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a29ee438_4cd13b87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-04-09T14:41:00Z",
+      "side": 1,
+      "message": "Sorry, forgot to press send yesterday.",
+      "revId": "087a0545853f1b1b757bc7a3dd6862307e984aec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6e7811e_9a1ea793",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-04-09T14:41:00Z",
+      "side": 1,
+      "message": "From bash(1):\n\nAnchor the pattern using the ^ and $ regular expression operators to force it to match the entire string.\n\nPlease add some anchors. Would this be \"(^|/)(Image*|vmlinux)$\", for example? Also, are there other targets that should be caught here?",
+      "range": {
+        "startLine": 528,
+        "startChar": 24,
+        "endLine": 528,
+        "endChar": 41
+      },
+      "revId": "087a0545853f1b1b757bc7a3dd6862307e984aec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
