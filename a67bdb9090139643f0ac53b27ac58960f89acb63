@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff0be6e8_06ed0eef",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-04-12T14:20:07Z",
+      "side": 1,
+      "message": "I do wonder if we should just completely separate stdout and stderr.\n\nAny random warnings may confuse the post-processing, for example.\n\nErrors could go to abi.errors (never written or removed if empty, depending if use PIPE or not).\n\nAlternatively, warning messages could be appended to the report (if exit status were OK) or subsume the report (as in this branch).",
+      "range": {
+        "startLine": 206,
+        "startChar": 8,
+        "endLine": 217,
+        "endChar": 55
+      },
+      "revId": "a67bdb9090139643f0ac53b27ac58960f89acb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
