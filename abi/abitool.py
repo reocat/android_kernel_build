@@ -15,9 +15,10 @@
 # limitations under the License.
 #
 
+import logging
 import re
 import subprocess
-import logging
+import sys
 
 log = logging.getLogger(__name__)
 
@@ -207,7 +208,12 @@ class Libabigail(AbiTool):
                 subprocess.check_call(diff_abi_cmd, stdout=out, stderr=out)
             except subprocess.CalledProcessError as e:
                 if e.returncode & (ABIDIFF_ERROR | ABIDIFF_USAGE_ERROR):
-                    raise
+                    # in such case the error is captured in our report file,
+                    # hence print it
+                    out.flush()
+                    with open(diff_report) as err:
+                      raise RuntimeError("ABIDIFF failed:\n" +
+                                         err.read()) from e
                 abi_changed = True  # actual abi change
 
         if short_report is not None:
