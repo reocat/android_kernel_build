@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e155681b_989015bb",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-04-12T19:10:10Z",
+      "side": 1,
+      "message": "The local doesn\u0027t seem to be expanded:\n\nTEST1 /home/adelva/android/kernel/out/android-mainline/staging/lib/modules/*\ndepmod: ERROR: Bad version passed lib\n\nUsing the echo subshell forces the expansion to a real path which allows the version to be extracted.\n\nI believe it happens because the shell won\u0027t expand globs if it did a variable substitution ($2 in this case).",
+      "parentUuid": "70138f3d_2d513aa0",
+      "range": {
+        "startLine": 366,
+        "startChar": 16,
+        "endLine": 366,
+        "endChar": 40
+      },
+      "revId": "a5bcd147b0ba79c42294908773c3423a3a2441a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35da9db3_17cc978c",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-04-05T18:49:40Z",
       "side": 1,
       "message": "Do you need the $(echo ..)?",
+      "range": {
+        "startLine": 1020,
+        "startChar": 21,
+        "endLine": 1020,
+        "endChar": 67
+      },
+      "revId": "a5bcd147b0ba79c42294908773c3423a3a2441a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52215e7d_fb866791",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1020,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-04-12T19:10:10Z",
+      "side": 1,
+      "message": "The variable doesn\u0027t seem to be expanded:\n\nTEST1 /home/adelva/android/kernel/out/android-mainline/staging/lib/modules/*\ndepmod: ERROR: Bad version passed lib\n\nUsing the echo subshell forces the expansion to a real path which allows the module install path to be determined.\n\nI believe it happens because the shell won\u0027t expand globs if it did a variable substitution ($INITRAMFS_STAGING_DIR in this case).",
+      "parentUuid": "35da9db3_17cc978c",
       "range": {
         "startLine": 1020,
         "startChar": 21,
