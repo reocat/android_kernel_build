@@ -22,6 +22,29 @@
       },
       "revId": "89dacb444786d52d94c38821feebe85ca540cb21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74538cde_6c8f4c9f",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1197,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-04-13T09:09:45Z",
+      "side": 1,
+      "message": "QQ: Why isn\u0027t this optional? AFAIK this is used by release-key signed builds, and is read by VTS testcase during runtime. For testkey signed builds, this can be empty (unsigned/zero-pad) or testkey (signed/but would still fail the testcase).",
+      "range": {
+        "startLine": 1196,
+        "startChar": 0,
+        "endLine": 1197,
+        "endChar": 59
+      },
+      "revId": "89dacb444786d52d94c38821feebe85ca540cb21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
