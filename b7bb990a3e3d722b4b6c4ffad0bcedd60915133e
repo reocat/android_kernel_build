@@ -46,6 +46,30 @@
       },
       "revId": "b7bb990a3e3d722b4b6c4ffad0bcedd60915133e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b50f9c57_b69c31b1",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-04-16T15:17:32Z",
+      "side": 1,
+      "message": "aosp/1677197",
+      "parentUuid": "1cb2de39_5c0cf025",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 10
+      },
+      "revId": "b7bb990a3e3d722b4b6c4ffad0bcedd60915133e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
