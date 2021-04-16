@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56d4052b_cd192ee9",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-04-16T08:49:32Z",
+      "side": 1,
+      "message": "MAKE_GOALS (now) appears exactly once in this script. It\u0027s possibly it\u0027s being exported by something else or it could have been obsoleted by other changes. Please document / adjust as applicable. Thanks.",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 10
+      },
+      "revId": "b7bb990a3e3d722b4b6c4ffad0bcedd60915133e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
