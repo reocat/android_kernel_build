@@ -22,6 +22,30 @@
       },
       "revId": "b7bb990a3e3d722b4b6c4ffad0bcedd60915133e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cb2de39_5c0cf025",
+        "filename": "build_abi.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-04-16T09:38:29Z",
+      "side": 1,
+      "message": "MAKE_GOALS is used by build.config files to specify the make targets (goals). It has been apparently undocumented since its inception. So, while documenting it is good, we don\u0027t need to do it as part of this patch.",
+      "parentUuid": "56d4052b_cd192ee9",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 10
+      },
+      "revId": "b7bb990a3e3d722b4b6c4ffad0bcedd60915133e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
