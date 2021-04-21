@@ -791,7 +791,7 @@ if [ -n "${KMI_SYMBOL_LIST}" ]; then
     done
   fi
   if [ "${TRIM_NONLISTED_KMI}" = "1" ]; then
-      # Create the raw symbol list 
+      # Create the raw symbol list
       cat ${ABI_SL} | \
               ${ROOT_DIR}/build/abi/flatten_symbol_list > \
               ${OUT_DIR}/abi_symbollist.raw
@@ -904,7 +904,7 @@ if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -n "${EXT_MODULES}" ]]; then
     mkdir -p ${OUT_DIR}/${EXT_MOD_REL}
     set -x
     make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
-                       O=${OUT_DIR} "${TOOL_ARGS[@]}" "${MAKE_ARGS[@]}"
+                       O=${OUT_DIR} "${TOOL_ARGS[@]}" "${MAKE_ARGS[@]}" V=1
     make -C ${EXT_MOD} M=${EXT_MOD_REL} KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR}  \
                        O=${OUT_DIR} "${TOOL_ARGS[@]}" ${MODULE_STRIP_FLAG}    \
                        INSTALL_MOD_PATH=${MODULES_STAGING_DIR}                \
