@@ -112,8 +112,10 @@ def extract_generic_exports(vmlinux, modules):
 
 def extract_exported_in_modules(modules):
   """Extracts the ksymtab exported symbols for a list of kernel modules."""
-  return {module: extract_exported_symbols(module) for module in modules}
-
+  result = []
+  for module in modules:
+    result.extend(extract_exported_symbols(module))
+  return set(result)
 
 def report_missing(module_symbols, exported):
   """Reports missing symbols that are undefined, but not known in any binary."""
@@ -275,6 +277,11 @@ def main():
       "--gki-modules",
       help="List of GKI modules which must be provided when the search directory contains both vendor and GKI modules")
 
+  parser.add_argument(
+      "--ignore-vmlinux",
+      action="store_true",
+      help="Ignore vmlinux and assume all undefined symbols to be exported by it.")
+
   args = parser.parse_args()
 
   if not os.path.isdir(args.directory):
@@ -306,21 +313,32 @@ def main():
     gki_modules = [ mod for mod in modules if os.path.basename(mod) in gki_modules ]
     modules = [ mod for mod in modules if mod not in gki_modules ]
 
-
-  if vmlinux is None or not os.path.isfile(vmlinux):
-    print("Could not find a suitable vmlinux file.")
-    return 1
+  if args.ignore_vmlinux:
+    if args.full_gki_abi:
+      print("--ignore-vmlinux can't be used together with --full-gki-abi")
+    vmlinux = None
+  else:
+    if vmlinux is None or not os.path.isfile(vmlinux):
+      print("Could not find a suitable vmlinux file.")
+      return 1
 
   # Get required symbols of all modules
   undefined_symbols = extract_undefined_symbols(modules)
 
   # Get the actually defined and exported symbols
-  generic_exports = extract_generic_exports(vmlinux, gki_modules)
-  local_exports = extract_exported_in_modules(modules)
+  module_exports = extract_exported_in_modules(modules)
 
-  # Build the list of all exported symbols (generic and local)
-  all_exported = list(
-      itertools.chain.from_iterable(local_exports.values()))
+  if vmlinux is None:
+    # if there is no vmlinux or it is set to be ignored, assume vmlinux is
+    # exporting whatever symbol is undefined and not defined in any module
+    generic_exports = set(
+        itertools.chain.from_iterable(
+            undefined_symbols.values())) - module_exports
+  else:
+    generic_exports = extract_generic_exports(vmlinux, gki_modules)
+
+  # Build the list of all exported symbols (generic and module)
+  all_exported = list(module_exports)
   all_exported.extend(generic_exports)
   all_exported = set(all_exported)
 
