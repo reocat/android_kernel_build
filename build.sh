@@ -210,6 +210,11 @@
 #       blocklist module_name
 #     If BOOT_IMAGE_HEADER_VERSION >= 4, the following variable can be defined:
 #     - VENDOR_BOOTCONFIG=<string of bootconfig parameters>
+#     - INITRAMFS_VENDOR_RAMDISK_FRAGMENT_NAME=<name of the ramdisk fragment>
+#       If BUILD_INITRAMFS is specified, then build the .ko and depmod files as
+#       a standalone vendor ramdisk fragment named as the given string.
+#     - INITRAMFS_VENDOR_RAMDISK_FRAGMENT_MKBOOTIMG_ARGS=<mkbootimg arguments>
+#       Refer to: https://source.android.com/devices/bootloader/partitions/vendor-boot-partitions#mkbootimg-arguments
 #
 #   VENDOR_RAMDISK_CMDS
 #     When building vendor boot image, VENDOR_RAMDISK_CMDS enables the build
@@ -1138,7 +1143,9 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
 
   if [ "${BUILD_INITRAMFS}" = "1" ]; then
     HAS_RAMDISK="1"
-    MKBOOTIMG_RAMDISK_DIRS+=("${INITRAMFS_STAGING_DIR}")
+    if [ -z "${INITRAMFS_VENDOR_RAMDISK_FRAGMENT_NAME}" ]; then
+      MKBOOTIMG_RAMDISK_DIRS+=("${INITRAMFS_STAGING_DIR}")
+    fi
   fi
 
   if [ -z "${HAS_RAMDISK}" ] && [ -z "${SKIP_VENDOR_BOOT}" ]; then
@@ -1178,10 +1185,23 @@ if [ ! -z "${BUILD_BOOT_IMG}" ] ; then
     fi
 
     if [ -z "${SKIP_VENDOR_BOOT}" ]; then
-      MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img" \
-        "--vendor_ramdisk" "${DIST_DIR}/ramdisk.${RAMDISK_EXT}")
+      MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img")
+
       if [ -n "${KERNEL_VENDOR_CMDLINE}" ]; then
         MKBOOTIMG_ARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
+      fi
+
+      if [ -f "${DIST_DIR}/ramdisk.${RAMDISK_EXT}" ]; then
+        MKBOOTIMG_ARGS+=("--vendor_ramdisk" "${DIST_DIR}/ramdisk.${RAMDISK_EXT}")
+      fi
+      if [ "${BUILD_INITRAMFS}" = "1" ] \
+          && [ -n "${INITRAMFS_VENDOR_RAMDISK_FRAGMENT_NAME}" ]; then
+        MKBOOTIMG_ARGS+=("--ramdisk_type" "DLKM")
+        for MKBOOTIMG_ARG in ${INITRAMFS_VENDOR_RAMDISK_FRAGMENT_MKBOOTIMG_ARGS}; do
+          MKBOOTIMG_ARGS+=("${MKBOOTIMG_ARG}")
+        done
+        MKBOOTIMG_ARGS+=("--ramdisk_name" "${INITRAMFS_VENDOR_RAMDISK_FRAGMENT_NAME}")
+        MKBOOTIMG_ARGS+=("--vendor_ramdisk_fragment" "${DIST_DIR}/initramfs.img")
       fi
     fi
   else
