@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6befa7b_d7951559",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-04-29T15:59:35Z",
+      "side": 1,
+      "message": "Looking ahead, shouldn\u0027t this be more like --ignore-gki-entities or --vendor-modules-only?",
+      "revId": "c422eee40309cd479450370585fb9d1a756eea89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ab3d7c3a_c5fc0049",
         "filename": "abi/extract_symbols",
         "patchSetId": 1
