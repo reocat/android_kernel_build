@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "197d1303_8d843bdc",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-05-07T22:17:28Z",
+      "side": 1,
+      "message": "Sorry for all the back and forth.\n\nI don\u0027t think you need HAS_RAMDISK anymore since you are checking the size of MKBOOTIMG_RAMDISK_DIRS below. You could just add the below on line 1140.\n\nelse [ -z SKIP_VENDOR_BOOT ]; then\n    echo \"No ramdisk found. Please provide a GKI and/or a vendor ramdisk.\"\n    exit 1\nfi",
+      "range": {
+        "startLine": 1132,
+        "startChar": 2,
+        "endLine": 1135,
+        "endChar": 4
+      },
+      "revId": "bcbad01b4de9962b1e467faf79e72565df728af9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
