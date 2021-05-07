@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0fc8d55_d63ac1cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-05-07T17:42:58Z",
+      "side": 1,
+      "message": "Thanks for doing this! Just a small nit.",
+      "revId": "5039fe35621539de74ed09cf2218cfc2fb37b7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d2ab796_e347f7f5",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-05-07T17:42:58Z",
+      "side": 1,
+      "message": "Since you\u0027re refactoring all of this, can you rename this to VENDOR_RAMDISK_CPIO?",
+      "range": {
+        "startLine": 1093,
+        "startChar": 4,
+        "endLine": 1093,
+        "endChar": 13
+      },
+      "revId": "5039fe35621539de74ed09cf2218cfc2fb37b7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
