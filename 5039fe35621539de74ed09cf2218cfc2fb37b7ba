@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d7282b2_89a50057",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1093,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-05-07T19:30:59Z",
+      "side": 1,
+      "message": "SG, Done",
+      "parentUuid": "9d2ab796_e347f7f5",
+      "range": {
+        "startLine": 1093,
+        "startChar": 4,
+        "endLine": 1093,
+        "endChar": 13
+      },
+      "revId": "5039fe35621539de74ed09cf2218cfc2fb37b7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e903b69e_31318823",
@@ -112,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e799b47_ecdfa8c9",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-05-07T19:30:59Z",
+      "side": 1,
+      "message": "Done, only append directory to list if it is non-empty.",
+      "parentUuid": "af6eb296_81c36c9a",
+      "range": {
+        "startLine": 1122,
+        "startChar": 0,
+        "endLine": 1122,
+        "endChar": 61
+      },
+      "revId": "5039fe35621539de74ed09cf2218cfc2fb37b7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "835af678_3d834be8",
@@ -125,6 +173,30 @@
       "writtenOn": "2021-05-07T18:02:39Z",
       "side": 1,
       "message": "You need to check if we have anything in MKBOOTIMG_RAMDISK_DIRS. It\u0027s possible there is nothing to do here. For example, when we want to just build the GKI boot.img we can set SKIP_VENDOR_BOOT\u003d1 and BUILD_INITRAMFS\u003d0. For that case, MKBOOTIMG_RAMDISK_DIRS will be empty and we don\u0027t want to run mkbootfs.",
+      "range": {
+        "startLine": 1134,
+        "startChar": 0,
+        "endLine": 1134,
+        "endChar": 70
+      },
+      "revId": "5039fe35621539de74ed09cf2218cfc2fb37b7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82c0c16e_900f9245",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-05-07T19:30:59Z",
+      "side": 1,
+      "message": "In my previous PS, the list MKBOOTIMG_RAMDISK_DIRS would at least have \"$MKBOOTIMG_RAMDISK_STAGING_DIR\", so it won\u0027t be an issue. However now MKBOOTIMG_RAMDISK_DIRS could be empty, thus I added this and other file existence checks.",
+      "parentUuid": "835af678_3d834be8",
       "range": {
         "startLine": 1134,
         "startChar": 0,
