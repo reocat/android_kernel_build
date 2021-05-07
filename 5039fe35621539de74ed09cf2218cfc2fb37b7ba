@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af6eb296_81c36c9a",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-05-07T18:59:33Z",
+      "side": 1,
+      "message": "That\u0027s true. I guess one could try to build a boot.img with BOOT_HEADER_VERSION\u003d[0-2] that includes a vendor fstab",
+      "parentUuid": "a95d3ac5_6c8183ea",
+      "range": {
+        "startLine": 1122,
+        "startChar": 0,
+        "endLine": 1122,
+        "endChar": 61
+      },
+      "revId": "5039fe35621539de74ed09cf2218cfc2fb37b7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "835af678_3d834be8",
         "filename": "build.sh",
         "patchSetId": 4
