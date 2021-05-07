@@ -39,6 +39,52 @@
       },
       "revId": "5039fe35621539de74ed09cf2218cfc2fb37b7ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e903b69e_31318823",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-05-07T18:02:39Z",
+      "side": 1,
+      "message": "Does this need to be moved under if [ -n \"${VENDOR_RAMDISK_BINARY}\" ] above? It\u0027s now possible that MKBOOTIMG_RAMDISK_DIRS is empty if no VENDOR_RAMDISK_BINARY is provided and BUILD_INITRAMFS\u003d0",
+      "range": {
+        "startLine": 1122,
+        "startChar": 0,
+        "endLine": 1122,
+        "endChar": 61
+      },
+      "revId": "5039fe35621539de74ed09cf2218cfc2fb37b7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "835af678_3d834be8",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-05-07T18:02:39Z",
+      "side": 1,
+      "message": "You need to check if we have anything in MKBOOTIMG_RAMDISK_DIRS. It\u0027s possible there is nothing to do here. For example, when we want to just build the GKI boot.img we can set SKIP_VENDOR_BOOT\u003d1 and BUILD_INITRAMFS\u003d0. For that case, MKBOOTIMG_RAMDISK_DIRS will be empty and we don\u0027t want to run mkbootfs.",
+      "range": {
+        "startLine": 1134,
+        "startChar": 0,
+        "endLine": 1134,
+        "endChar": 70
+      },
+      "revId": "5039fe35621539de74ed09cf2218cfc2fb37b7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
