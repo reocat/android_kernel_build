@@ -22,6 +22,30 @@
       },
       "revId": "bcbad01b4de9962b1e467faf79e72565df728af9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd5b31bc_a3eda695",
+        "filename": "build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-05-08T10:54:37Z",
+      "side": 1,
+      "message": "That\u0027s my mistake, HAS_RAMDISK is used by the next change. I\u0027ll just remove HAS_RAMDISK here and introduce it in the next change where it makes sense.",
+      "parentUuid": "197d1303_8d843bdc",
+      "range": {
+        "startLine": 1132,
+        "startChar": 2,
+        "endLine": 1135,
+        "endChar": 4
+      },
+      "revId": "bcbad01b4de9962b1e467faf79e72565df728af9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
