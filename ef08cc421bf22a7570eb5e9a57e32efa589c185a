@@ -22,6 +22,30 @@
       },
       "revId": "ef08cc421bf22a7570eb5e9a57e32efa589c185a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79d307d9_a8d7a753",
+        "filename": "synchronize_owners",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1409599
+      },
+      "writtenOn": "2021-05-14T15:00:13Z",
+      "side": 1,
+      "message": "Python readability: -2 :P",
+      "parentUuid": "5f3a480d_35c6859a",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 78
+      },
+      "revId": "ef08cc421bf22a7570eb5e9a57e32efa589c185a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
