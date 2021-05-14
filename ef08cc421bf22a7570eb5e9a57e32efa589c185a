@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f3a480d_35c6859a",
+        "filename": "synchronize_owners",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-05-14T14:02:10Z",
+      "side": 1,
+      "message": "this might now deserve to be a standalone function to avoid that deep nesting.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 78
+      },
+      "revId": "ef08cc421bf22a7570eb5e9a57e32efa589c185a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
