@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fc91c58_70e3a6b2",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-05-18T22:28:35Z",
+      "side": 1,
+      "message": "I checked this command and it does extract all the cpios (only when using the toybox cpio), but the N+1.cpio will overwrite any file that exists in N.cpio. So that means common files like plat_file_contexts, vendor_property_contexts, or default.prop are going to be overridden and only common files in the last vendor ramdisk that\u0027s listed in VENDOR_RAMDISK_BINARY is going to be used.\n\nIs that fine with you? If so, I would at least like this documented so that it\u0027s clear to the user that if multiple vendor ramdisks are used that the last one will take precedence.",
+      "range": {
+        "startLine": 1126,
+        "startChar": 6,
+        "endLine": 1126,
+        "endChar": 49
+      },
+      "revId": "b894dd8490e7106bdcd9b17e455c0686f638897d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
