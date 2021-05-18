@@ -20,4 +20,5 @@ cd /b/
 #export SKIP_MRPROPER=1
 
 export PATH=/l/bin:/b/build/build-tools/path/linux-x86
+export HOSTLDFLAGS=-fuse-ld=lld --rtlib=compiler-rt
 BUILD_CONFIG=common/build.config.gki.aarch64 build/build.sh
