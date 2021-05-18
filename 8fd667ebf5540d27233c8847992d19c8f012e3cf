@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e10cbe89_01cb7fb9",
+        "filename": "hermetic/build",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-05-18T21:47:06Z",
+      "side": 1,
+      "message": "This is just the experimental hermetic docker build and not the real thing. Rather put it somewhere here: https://android.googlesource.com/kernel/build/+/refs/heads/master/_setup_env.sh#126\n\nand better retire https://android.googlesource.com/kernel/build/+/refs/heads/master/build.sh#613 along with it ... :-/",
+      "revId": "8fd667ebf5540d27233c8847992d19c8f012e3cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
