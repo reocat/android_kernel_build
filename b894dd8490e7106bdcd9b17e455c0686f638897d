@@ -22,6 +22,30 @@
       },
       "revId": "b894dd8490e7106bdcd9b17e455c0686f638897d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6f3e0da_3c007ff4",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2021-05-18T23:53:15Z",
+      "side": 1,
+      "message": "I\u0027ll make a note of it. BTW, this is the same behavior that kernel itself takes if you were to directly use concatenated CPIOs for your ramdisk.",
+      "parentUuid": "9fc91c58_70e3a6b2",
+      "range": {
+        "startLine": 1126,
+        "startChar": 6,
+        "endLine": 1126,
+        "endChar": 49
+      },
+      "revId": "b894dd8490e7106bdcd9b17e455c0686f638897d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
