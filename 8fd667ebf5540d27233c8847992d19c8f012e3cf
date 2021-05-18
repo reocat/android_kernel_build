@@ -16,6 +16,23 @@
       "message": "This is just the experimental hermetic docker build and not the real thing. Rather put it somewhere here: https://android.googlesource.com/kernel/build/+/refs/heads/master/_setup_env.sh#126\n\nand better retire https://android.googlesource.com/kernel/build/+/refs/heads/master/build.sh#613 along with it ... :-/",
       "revId": "8fd667ebf5540d27233c8847992d19c8f012e3cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c89fa936_11b493ec",
+        "filename": "hermetic/build",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1118753
+      },
+      "writtenOn": "2021-05-18T21:47:13Z",
+      "side": 1,
+      "message": "I think this needs to be quoted?\n\n```\nsh-5.1$ export HOSTLDFLAGS\u003d-fuse-ld\u003dlld --rtlib\u003dcompiler-rt\nsh: export: `--rtlib\u003dcompiler-rt\u0027: not a valid identifier\n```",
+      "revId": "8fd667ebf5540d27233c8847992d19c8f012e3cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
