@@ -33,6 +33,42 @@
       "message": "I think this needs to be quoted?\n\n```\nsh-5.1$ export HOSTLDFLAGS\u003d-fuse-ld\u003dlld --rtlib\u003dcompiler-rt\nsh: export: `--rtlib\u003dcompiler-rt\u0027: not a valid identifier\n```",
       "revId": "8fd667ebf5540d27233c8847992d19c8f012e3cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b5965bc_7b47f870",
+        "filename": "hermetic/build",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2021-05-18T21:52:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c89fa936_11b493ec",
+      "revId": "8fd667ebf5540d27233c8847992d19c8f012e3cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50af43d6_8c4576b2",
+        "filename": "hermetic/build",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2021-05-18T21:52:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e10cbe89_01cb7fb9",
+      "revId": "8fd667ebf5540d27233c8847992d19c8f012e3cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
