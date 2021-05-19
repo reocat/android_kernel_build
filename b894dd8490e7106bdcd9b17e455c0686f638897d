@@ -190,6 +190,30 @@
       },
       "revId": "b894dd8490e7106bdcd9b17e455c0686f638897d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9aeeeb5_27f6a1fc",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-05-19T17:01:24Z",
+      "side": 1,
+      "message": "\u003e all future kernel builds should be using the hermetic toolchain\n\nGood to know this",
+      "parentUuid": "036a764c_0009d9e2",
+      "range": {
+        "startLine": 1126,
+        "startChar": 6,
+        "endLine": 1126,
+        "endChar": 49
+      },
+      "revId": "b894dd8490e7106bdcd9b17e455c0686f638897d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
