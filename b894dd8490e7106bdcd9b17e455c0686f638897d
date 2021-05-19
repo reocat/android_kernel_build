@@ -70,6 +70,30 @@
       },
       "revId": "b894dd8490e7106bdcd9b17e455c0686f638897d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecbf9336_c8a739da",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-05-19T10:16:50Z",
+      "side": 1,
+      "message": "If you\u0027re worried that de-archiving concatenated cpio might fail (for example when not building with the hermetic build tools, thus not using toybox cpio) then you can move this sub shell into the for loop...\n\n\nfor vendor_ramdisk_binary in ${VENDOR_RAMDISK_BINARY}; do\n  \u003cdecompress ${vendor_ramdisk_binary}\u003e\n\n  ( cd \"${MKBOOTIMG_RAMDISK_STAGING_DIR}\"\n    cpio -idu \u003c\"${uncompressed vendor_ramdisk_binary}\"\n  )\ndone\n\n( cd \"${MKBOOTIMG_RAMDISK_STAGING_DIR}\"\n  rm -rf lib/modules\n  eval ${VENDOR_RAMDISK_CMDS}\n)\n\n\nThis should work regardless of toybox or GNU cpio.",
+      "parentUuid": "587b8080_9549962f",
+      "range": {
+        "startLine": 1126,
+        "startChar": 6,
+        "endLine": 1126,
+        "endChar": 49
+      },
+      "revId": "b894dd8490e7106bdcd9b17e455c0686f638897d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
