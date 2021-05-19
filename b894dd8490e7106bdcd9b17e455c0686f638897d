@@ -166,6 +166,30 @@
       },
       "revId": "b894dd8490e7106bdcd9b17e455c0686f638897d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "036a764c_0009d9e2",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-05-19T17:00:34Z",
+      "side": 1,
+      "message": "No, it\u0027s fine right now, no need to update.\n\nI think we (Google) always use hermetic build whenever possible. If this use case ever arise (support non-hermetic build) then we can just update the build rules then.",
+      "parentUuid": "8d332cc8_246fca88",
+      "range": {
+        "startLine": 1126,
+        "startChar": 6,
+        "endLine": 1126,
+        "endChar": 49
+      },
+      "revId": "b894dd8490e7106bdcd9b17e455c0686f638897d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
