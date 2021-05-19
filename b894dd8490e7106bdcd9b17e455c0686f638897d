@@ -118,6 +118,30 @@
       },
       "revId": "b894dd8490e7106bdcd9b17e455c0686f638897d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d332cc8_246fca88",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1126,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-05-19T16:14:12Z",
+      "side": 1,
+      "message": "I can update if you need to support building without the hermetic tools -- let me know if so.",
+      "parentUuid": "e4bc7b4b_8d33584c",
+      "range": {
+        "startLine": 1126,
+        "startChar": 6,
+        "endLine": 1126,
+        "endChar": 49
+      },
+      "revId": "b894dd8490e7106bdcd9b17e455c0686f638897d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
