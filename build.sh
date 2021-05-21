@@ -742,6 +742,10 @@ if [ -n "${TAGS_CONFIG}" ]; then
   exit 0
 fi
 
+touch $VMLINUX
+exit 0
+
+
 # Truncate abi.prop file
 ABI_PROP=${DIST_DIR}/abi.prop
 : > ${ABI_PROP}
