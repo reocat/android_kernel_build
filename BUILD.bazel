@@ -1,0 +1,43 @@
+load("@setup_env//:env.bzl", "BUILD_CONFIG")
+
+package(default_visibility = ["//visibility:public"])
+
+genrule(
+    name = "host-tools",
+    outs = [
+        "bash",
+        "git",
+        "perl",
+        "rsync",
+        "sh",
+        "tar",
+    ],
+    cmd = "for i in $(OUTS); do ln -s $$(which $$(basename $$i)) $$i; done",
+)
+
+genrule(
+    name = "env",
+    srcs = [
+        "_setup_env.sh",
+        "//build/kleaf:preserve_env.sh",
+        "//common:build_configs",
+    ],
+    outs = ["env.sh"],
+    cmd =
+        "   set +u " +
+        #"\n export KERNEL_DIR=common" +
+        "\n export BUILD_CONFIG=" + BUILD_CONFIG +
+        "\n source $(location _setup_env.sh)" +
+        "\n $(location //build/kleaf:preserve_env.sh) > $@",
+)
+
+filegroup(
+    name = "kernel-build-scripts",
+    srcs = [
+        "_setup_env.sh",
+        "build.sh",
+    ] + glob(
+        ["build-tools/**"],
+        allow_empty = False,
+    ),
+)
