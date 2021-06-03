@@ -484,6 +484,18 @@ function build_vendor_dlkm() {
   create_modules_staging "${VENDOR_DLKM_MODULES_LIST}" "${MODULES_STAGING_DIR}" \
     "${VENDOR_DLKM_STAGING_DIR}" "${VENDOR_DLKM_MODULES_BLOCKLIST}"
 
+  local vendor_dlkm_modules_root_dir=$(echo ${VENDOR_DLKM_STAGING_DIR}/lib/modules/*)
+  local vendor_dlkm_modules_load=${vendor_dlkm_modules_root_dir}/modules.load
+
+  # Modules loaded in vendor_boot should not be loaded in vendor_dlkm.
+  if [ -f ${DIST_DIR}/vendor_boot.modules.load ]; then
+    local stripped_modules_load="$(mktemp)"
+    ! grep -x -v -F -f ${DIST_DIR}/vendor_boot.modules.load \
+      ${vendor_dlkm_modules_load} > ${stripped_modules_load}
+    mv -f ${stripped_modules_load} ${vendor_dlkm_modules_load}
+  fi
+
+  cp ${vendor_dlkm_modules_load} ${DIST_DIR}/vendor_dlkm.modules.load
   local vendor_dlkm_props_file
 
   if [ -z "${VENDOR_DLKM_PROPS}" ]; then
@@ -793,7 +805,7 @@ if [ -n "${KMI_SYMBOL_LIST}" ]; then
     done
   fi
   if [ "${TRIM_NONLISTED_KMI}" = "1" ]; then
-      # Create the raw symbol list 
+      # Create the raw symbol list
       cat ${ABI_SL} | \
               ${ROOT_DIR}/build/abi/flatten_symbol_list > \
               ${OUT_DIR}/abi_symbollist.raw
@@ -1022,6 +1034,7 @@ if [ -n "${MODULES}" ]; then
 
     MODULES_ROOT_DIR=$(echo ${INITRAMFS_STAGING_DIR}/lib/modules/*)
     cp ${MODULES_ROOT_DIR}/modules.load ${DIST_DIR}/modules.load
+    cp ${MODULES_ROOT_DIR}/modules.load ${DIST_DIR}/vendor_boot.modules.load
     echo "${MODULES_OPTIONS}" > ${MODULES_ROOT_DIR}/modules.options
 
     mkbootfs "${INITRAMFS_STAGING_DIR}" >"${MODULES_STAGING_DIR}/initramfs.cpio"
