@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf0a8f1f_921dd546",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-06-04T07:09:17Z",
+      "side": 1,
+      "message": "These appear to be local variables. I am wondering if we should use lowercase names and define them as local.",
+      "range": {
+        "startLine": 487,
+        "startChar": 0,
+        "endLine": 488,
+        "endChar": 71
+      },
+      "revId": "1b2b93ccad3d23e7c8d9e2645bb91bc905c02017",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9ce2938b_27df5d2e",
         "filename": "build.sh",
         "patchSetId": 1
