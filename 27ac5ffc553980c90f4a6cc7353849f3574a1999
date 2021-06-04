@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e16608a5_74444c67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2021-06-04T23:01:14Z",
+      "side": 1,
+      "message": "LGTM. I\u0027m not sure the context for this in upstream kernel/build though since you need to have explicit list of modules for vendor_dlkm to be compiled.",
+      "revId": "27ac5ffc553980c90f4a6cc7353849f3574a1999",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
