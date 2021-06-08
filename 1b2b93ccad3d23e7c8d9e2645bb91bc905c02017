@@ -135,6 +135,24 @@
       "parentUuid": "976d0220_fab60912",
       "revId": "1b2b93ccad3d23e7c8d9e2645bb91bc905c02017",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e234956_316b4516",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-08T21:51:45Z",
+      "side": 1,
+      "message": "Good catch - verified it worked on my end, too. Thanks!",
+      "parentUuid": "98e3baf8_9b1e73d9",
+      "revId": "1b2b93ccad3d23e7c8d9e2645bb91bc905c02017",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
