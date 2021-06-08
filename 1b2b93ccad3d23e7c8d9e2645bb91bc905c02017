@@ -117,6 +117,24 @@
       "parentUuid": "f52adca6_3e24d83d",
       "revId": "1b2b93ccad3d23e7c8d9e2645bb91bc905c02017",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98e3baf8_9b1e73d9",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-06-08T21:45:51Z",
+      "side": 1,
+      "message": "Thanks Elliot! I verified adding -F worked.",
+      "parentUuid": "976d0220_fab60912",
+      "revId": "1b2b93ccad3d23e7c8d9e2645bb91bc905c02017",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
