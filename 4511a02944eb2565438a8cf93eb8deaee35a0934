@@ -34,6 +34,24 @@
       "parentUuid": "b80be6d5_0f2d33d2",
       "revId": "4511a02944eb2565438a8cf93eb8deaee35a0934",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e97e592b_b2db26e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1466604
+      },
+      "writtenOn": "2021-06-08T22:45:55Z",
+      "side": 1,
+      "message": "The issue with that is this script calls into a function in build/abi/abitool.py which then uses abidw. That function\u0027s prereq per the ABI\u0027s readme is for the use to add kernel-build-tools to the PATH. Based on that line (https://android.googlesource.com/kernel/build/+/refs/heads/master/abi/README.md), I\u0027m adding this check to the script.",
+      "parentUuid": "0e953dee_e323e0c8",
+      "revId": "4511a02944eb2565438a8cf93eb8deaee35a0934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
