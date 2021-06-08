@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eec3346f_4232e145",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-06-08T22:47:58Z",
+      "side": 1,
+      "message": "Oh I forgot to comment that you can replace the cp and rm with mv -f:\n\nmv -f ${stripped_modules_load} ${vendor_dlkm_modules_load}",
+      "range": {
+        "startLine": 495,
+        "startChar": 0,
+        "endLine": 497,
+        "endChar": 0
+      },
+      "revId": "2b211a37295e5afdeeec0adc34c54e1980fa4529",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
