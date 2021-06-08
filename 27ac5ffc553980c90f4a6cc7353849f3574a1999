@@ -16,6 +16,29 @@
       "message": "LGTM. I\u0027m not sure the context for this in upstream kernel/build though since you need to have explicit list of modules for vendor_dlkm to be compiled.",
       "revId": "27ac5ffc553980c90f4a6cc7353849f3574a1999",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf8d3486_73f2b67c",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1037,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-06-08T19:52:40Z",
+      "side": 1,
+      "message": "We can\u0027t just rename this file since partners could be relying on the file modules.load being there. For example, I know Pixel 5 uses the file ${DIST_DIR}/modules.load. So my suggestion is to just keep both files. We could also ask in the GKI newsletter if anyone is using modules.load. If Pixel 5 is the only one, then we can migrate it internally and drop modules.load altogether once a notification has been sent on the newsletter without any partners objecting to it.",
+      "range": {
+        "startLine": 1037,
+        "startChar": 0,
+        "endLine": 1037,
+        "endChar": 76
+      },
+      "revId": "27ac5ffc553980c90f4a6cc7353849f3574a1999",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

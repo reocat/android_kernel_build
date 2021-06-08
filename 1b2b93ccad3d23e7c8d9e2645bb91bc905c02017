@@ -81,6 +81,24 @@
       "parentUuid": "9ce2938b_27df5d2e",
       "revId": "1b2b93ccad3d23e7c8d9e2645bb91bc905c02017",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f52adca6_3e24d83d",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-06-08T19:52:40Z",
+      "side": 1,
+      "message": "This LGTM. Just to point it out, the \".\" in \".ko\" will be interpreted as \"any character\", but that should be fine as long as kernel modules always end in \".ko\". I don\u0027t think there are any other special characters allowed to be used in a filename. The only other catch would be if a kernel module\u0027s name used multiple dots like \"mod.a.ko\" since that could match something like \"mod1a.ko\". It would probably be rare that someone would hit that though.",
+      "parentUuid": "23e0732e_4aad86e2",
+      "revId": "1b2b93ccad3d23e7c8d9e2645bb91bc905c02017",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
