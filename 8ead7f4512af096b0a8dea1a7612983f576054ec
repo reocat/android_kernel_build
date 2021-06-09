@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd6b1de1_b7950934",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-09T08:42:47Z",
+      "side": 1,
+      "message": "I think we should rather patch abitool.get_abi_tool() to do that work. That way also the command line `dump_abi` suddenly works correctly.\n\nThe problem with this approach is that a host installation of abidw will satisfy this check.",
+      "revId": "8ead7f4512af096b0a8dea1a7612983f576054ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
