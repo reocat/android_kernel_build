@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c5105f0_15cf1bf4",
+        "filename": "build_mixed.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-09T18:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec5072f3_265b995e",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 13,
+        "endChar": 19
+      },
+      "revId": "244ffcbc7ed4bcc73540437587e515d62d0c5c83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e976751_d0b2ca54",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "476d084c_4f3589c2",
+        "filename": "build_mixed.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-09T18:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e976751_d0b2ca54",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 19
+      },
+      "revId": "244ffcbc7ed4bcc73540437587e515d62d0c5c83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d1e3136_f90b6c06",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-06-09T17:20:12Z",
       "side": 1,
       "message": "Can you just move this down to line 127?",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 0
+      },
+      "revId": "244ffcbc7ed4bcc73540437587e515d62d0c5c83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86aafae1_dd5c0e4f",
+        "filename": "build_mixed.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-09T18:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d1e3136_f90b6c06",
       "range": {
         "startLine": 113,
         "startChar": 0,
