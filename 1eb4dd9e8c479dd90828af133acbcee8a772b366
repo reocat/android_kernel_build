@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43d5a717_2c681db2",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-10T16:37:48Z",
+      "side": 1,
+      "message": "make this a new line to catch attention. same above.",
+      "range": {
+        "startLine": 320,
+        "startChar": 54,
+        "endLine": 320,
+        "endChar": 58
+      },
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a363604_9f53a707",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-10T16:37:48Z",
+      "side": 1,
+      "message": "doing this unconditionally seems unnecessary. `cmp` them and copy if necessary?",
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
