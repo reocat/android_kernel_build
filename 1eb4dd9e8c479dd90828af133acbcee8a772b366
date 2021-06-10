@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c955519b_6d32e66c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-10T17:51:13Z",
+      "side": 1,
+      "message": "I could go either way, but I think that keeping it all in one place makes it a bit more readable, and the code duplication isn\u0027t that significant. What do you think, Matthias?",
+      "parentUuid": "c43aa82b_af3b5cf5",
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43d5a717_2c681db2",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a3275e5_88ccc1a8",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-10T17:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43d5a717_2c681db2",
+      "range": {
+        "startLine": 320,
+        "startChar": 54,
+        "endLine": 320,
+        "endChar": 58
+      },
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a26a13e_07dccdc0",
@@ -54,6 +96,30 @@
       "writtenOn": "2021-06-10T16:46:56Z",
       "side": 1,
       "message": "Please redirect to \u003e\u00262",
+      "range": {
+        "startLine": 550,
+        "startChar": 0,
+        "endLine": 550,
+        "endChar": 69
+      },
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72537061_27546b54",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-10T17:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a26a13e_07dccdc0",
       "range": {
         "startLine": 550,
         "startChar": 0,
@@ -104,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "420927e3_5623bc68",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-10T17:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8327f13c_81dddeef",
+      "range": {
+        "startLine": 695,
+        "startChar": 0,
+        "endLine": 695,
+        "endChar": 46
+      },
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a363604_9f53a707",
@@ -134,6 +224,24 @@
       "writtenOn": "2021-06-10T17:01:51Z",
       "side": 1,
       "message": "Can remove this line if we use below",
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "544e1181_cb18b045",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-10T17:51:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a363604_9f53a707",
       "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
