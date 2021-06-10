@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c43aa82b_af3b5cf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2021-06-10T17:01:51Z",
+      "side": 1,
+      "message": "I had an idea for de-duping some of the code paths here to get as much common code as possible. If you/Matthias think it complicates things too much, happy to keep as-is.",
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43d5a717_2c681db2",
@@ -49,6 +66,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a97ef31_025d1606",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2021-06-10T17:01:51Z",
+      "side": 1,
+      "message": "Remove this line, replace with GKI_PREBUILTS_DIR\u003d\"${GKI_DIST_DIR}\"",
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8327f13c_81dddeef",
         "filename": "build.sh",
         "patchSetId": 2
@@ -83,6 +117,40 @@
       "writtenOn": "2021-06-10T16:37:48Z",
       "side": 1,
       "message": "doing this unconditionally seems unnecessary. `cmp` them and copy if necessary?",
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea791999_59be9a4a",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2021-06-10T17:01:51Z",
+      "side": 1,
+      "message": "Can remove this line if we use below",
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17870002_770e1557",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2021-06-10T17:01:51Z",
+      "side": 1,
+      "message": "Can switch to GKI_PREBUILTS_DIR",
       "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
