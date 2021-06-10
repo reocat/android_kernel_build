@@ -33,6 +33,24 @@
       "message": "Looks good to me although I\u0027m wondering if we need to update any of the documentation at the beginning of this file.",
       "revId": "ef077e477b3b3b14267c8bac12108a71788edcb1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36daed0b_cc48a27c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-10T21:31:50Z",
+      "side": 1,
+      "message": "If I were to add any, I would do this change:\n\n```\n #     If BOOT_IMAGE_HEADER_VERSION \u003e\u003d 3, a vendor_boot image will be built\n #     unless SKIP_VENDOR_BOOT is defined.\n #     - MODULES_LIST\u003d\u003cfile to list of modules\u003e list of modules to use for\n-#       modules.load. If this property is not set, then the default modules.load\n-#       is used.\n+#       vendor_boot.modules.load. If this property is not set, then the default\n+#       modules.load is used.\n```\n\nI could go either way on adding this; MODULES_LIST is already part of the VENDOR_BOOT section, so it\u0027s clear imo that the modules.load being referred to here would be the vendor_boot partition\u0027s. Do you think there\u0027s something left unclear? Totally happy to update the docs if so.",
+      "parentUuid": "0e62320a_e928dc07",
+      "revId": "ef077e477b3b3b14267c8bac12108a71788edcb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
