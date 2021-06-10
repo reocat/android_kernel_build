@@ -51,6 +51,41 @@
       "parentUuid": "0e62320a_e928dc07",
       "revId": "ef077e477b3b3b14267c8bac12108a71788edcb1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39badff1_321e5dce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-06-10T22:31:15Z",
+      "side": 1,
+      "message": "I think it\u0027s worth adding that the VENDOR_DLKM_MODULES_LIST is trimmed based on the MODULES_LIST ensuring that no modules listed in MODULES_LIST appear in the vendor_dlkm.modules.load. This indicates that the MODULES_LIST takes precedence over the VENDOR_DLKM_MODULES_LIST.",
+      "parentUuid": "36daed0b_cc48a27c",
+      "revId": "ef077e477b3b3b14267c8bac12108a71788edcb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeb67c36_9fad8565",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-06-10T22:31:15Z",
+      "side": 1,
+      "message": "We also need ",
+      "revId": "ef077e477b3b3b14267c8bac12108a71788edcb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
