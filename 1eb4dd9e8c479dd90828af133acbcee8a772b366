@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea874507_1e7ed0af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-11T15:55:01Z",
+      "side": 1,
+      "message": "We have a plan to rework build.sh over the upcoming year to gain back some control as it got too many features on a small space with very little tests. Having said that, I think I would not invest too much into cleaning it up and tidying it up at this time.",
+      "parentUuid": "c955519b_6d32e66c",
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43d5a717_2c681db2",
