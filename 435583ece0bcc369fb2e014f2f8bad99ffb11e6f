@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21031aa5_95f51fe7",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-14T08:14:12Z",
+      "side": 1,
+      "message": "https://docs.python.org/2.7/library/stdtypes.html#file.writelines",
+      "revId": "435583ece0bcc369fb2e014f2f8bad99ffb11e6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b0203b8_164d1681",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-14T08:14:12Z",
+      "side": 1,
+      "message": "ValueError",
+      "range": {
+        "startLine": 578,
+        "startChar": 18,
+        "endLine": 578,
+        "endChar": 27
+      },
+      "revId": "435583ece0bcc369fb2e014f2f8bad99ffb11e6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12cf92d2_354cb36d",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-14T08:14:12Z",
+      "side": 1,
+      "message": "rather than counting attempts, check for the files to converge and still change",
+      "range": {
+        "startLine": 655,
+        "startChar": 0,
+        "endLine": 655,
+        "endChar": 25
+      },
+      "revId": "435583ece0bcc369fb2e014f2f8bad99ffb11e6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66d4f6b6_a11b876b",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-14T08:14:12Z",
+      "side": 1,
+      "message": "It is not intuitive that None represents the good case.",
+      "range": {
+        "startLine": 874,
+        "startChar": 4,
+        "endLine": 874,
+        "endChar": 17
+      },
+      "revId": "435583ece0bcc369fb2e014f2f8bad99ffb11e6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5608f8b_ffbf4e90",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-14T08:14:12Z",
+      "side": 1,
+      "message": "triplet needs to be a proper type. Otherwise this interface is not obvious.",
+      "range": {
+        "startLine": 892,
+        "startChar": 20,
+        "endLine": 892,
+        "endChar": 27
+      },
+      "revId": "435583ece0bcc369fb2e014f2f8bad99ffb11e6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1e52d2e_97948d40",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 918,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-14T08:14:12Z",
+      "side": 1,
+      "message": "magic constant",
+      "range": {
+        "startLine": 918,
+        "startChar": 0,
+        "endLine": 918,
+        "endChar": 20
+      },
+      "revId": "435583ece0bcc369fb2e014f2f8bad99ffb11e6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77cf5cad_bf64cea9",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 926,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-14T08:14:12Z",
+      "side": 1,
+      "message": "return [result for result_list in result_lists for result in result_list]",
+      "range": {
+        "startLine": 923,
+        "startChar": 4,
+        "endLine": 926,
+        "endChar": 18
+      },
+      "revId": "435583ece0bcc369fb2e014f2f8bad99ffb11e6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f6a8bc7_b91added",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 987,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-14T08:14:12Z",
+      "side": 1,
+      "message": "that is odd. result evaluates to boolean True, but this is an error",
+      "range": {
+        "startLine": 987,
+        "startChar": 11,
+        "endLine": 987,
+        "endChar": 17
+      },
+      "revId": "435583ece0bcc369fb2e014f2f8bad99ffb11e6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
