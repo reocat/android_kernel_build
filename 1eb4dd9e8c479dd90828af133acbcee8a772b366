@@ -165,6 +165,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4551f0b9_c84f4d43",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-14T17:15:19Z",
+      "side": 1,
+      "message": "Opting to go with implementing it separately.",
+      "parentUuid": "3a97ef31_025d1606",
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8327f13c_81dddeef",
@@ -264,6 +282,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a11aae8_3b9c0f79",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 698,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-14T17:15:19Z",
+      "side": 1,
+      "message": "Opting to go with implementing it separately.",
+      "parentUuid": "ea791999_59be9a4a",
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17870002_770e1557",
@@ -277,6 +313,24 @@
       "writtenOn": "2021-06-10T17:01:51Z",
       "side": 1,
       "message": "Can switch to GKI_PREBUILTS_DIR",
+      "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7851c6d_719c436c",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-14T17:15:19Z",
+      "side": 1,
+      "message": "Opting to go with implementing it separately.",
+      "parentUuid": "17870002_770e1557",
       "revId": "1eb4dd9e8c479dd90828af133acbcee8a772b366",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
