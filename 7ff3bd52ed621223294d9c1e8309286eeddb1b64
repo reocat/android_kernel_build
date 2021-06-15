@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10390f2e_1b760326",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-15T09:49:37Z",
+      "side": 1,
+      "message": "Consider NamedTemporaryFile\n\nhttps://docs.python.org/3.9/library/tempfile.html#tempfile.NamedTemporaryFile",
+      "revId": "7ff3bd52ed621223294d9c1e8309286eeddb1b64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
