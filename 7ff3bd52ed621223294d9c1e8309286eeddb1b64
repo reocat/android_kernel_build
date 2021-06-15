@@ -16,6 +16,24 @@
       "message": "Consider NamedTemporaryFile\n\nhttps://docs.python.org/3.9/library/tempfile.html#tempfile.NamedTemporaryFile",
       "revId": "7ff3bd52ed621223294d9c1e8309286eeddb1b64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9d7d09e_26728f45",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-15T11:58:45Z",
+      "side": 1,
+      "message": "That appears to be a wrapper around tempfile.mkstemp. So long as we don\u0027t build on Windows where the file will not be reopenable, this should be fine. I\u0027m guessing we\u0027re OK.",
+      "parentUuid": "10390f2e_1b760326",
+      "revId": "7ff3bd52ed621223294d9c1e8309286eeddb1b64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
