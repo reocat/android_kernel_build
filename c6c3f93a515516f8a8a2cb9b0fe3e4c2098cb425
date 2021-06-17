@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c987e6d9_edbfe484",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-06-17T17:33:48Z",
+      "side": 1,
+      "message": "Can you use -n?",
+      "range": {
+        "startLine": 569,
+        "startChar": 5,
+        "endLine": 569,
+        "endChar": 9
+      },
+      "revId": "c6c3f93a515516f8a8a2cb9b0fe3e4c2098cb425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "679b106f_9e573770",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-06-17T17:33:48Z",
+      "side": 1,
+      "message": "Can you switch these to -n as well? Seems weird to have ! -z",
+      "range": {
+        "startLine": 1119,
+        "startChar": 0,
+        "endLine": 1119,
+        "endChar": 73
+      },
+      "revId": "c6c3f93a515516f8a8a2cb9b0fe3e4c2098cb425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2430cef_e212ef56",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-06-17T17:33:48Z",
+      "side": 1,
+      "message": "I think you need to keep this for-loop unconditionally. It\u0027s possible that some of these could be used for the vendor_boot image.",
+      "range": {
+        "startLine": 1271,
+        "startChar": 0,
+        "endLine": 1274,
+        "endChar": 0
+      },
+      "revId": "c6c3f93a515516f8a8a2cb9b0fe3e4c2098cb425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4361114c_c393af63",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1277,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-06-17T17:33:48Z",
+      "side": 1,
+      "message": "Do we still want to sign the ${DIST_DIR}/boot.img (from prebuilts) if BUILD_BOOT_IMG is not set?",
+      "range": {
+        "startLine": 1277,
+        "startChar": 0,
+        "endLine": 1277,
+        "endChar": 40
+      },
+      "revId": "c6c3f93a515516f8a8a2cb9b0fe3e4c2098cb425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
