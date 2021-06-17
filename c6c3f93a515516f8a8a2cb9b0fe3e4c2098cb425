@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40089ec9_491023f8",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-17T17:48:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c987e6d9_edbfe484",
+      "range": {
+        "startLine": 569,
+        "startChar": 5,
+        "endLine": 569,
+        "endChar": 9
+      },
+      "revId": "c6c3f93a515516f8a8a2cb9b0fe3e4c2098cb425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "679b106f_9e573770",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-06-17T17:33:48Z",
       "side": 1,
       "message": "Can you switch these to -n as well? Seems weird to have ! -z",
+      "range": {
+        "startLine": 1119,
+        "startChar": 0,
+        "endLine": 1119,
+        "endChar": 73
+      },
+      "revId": "c6c3f93a515516f8a8a2cb9b0fe3e4c2098cb425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4b630bf_4e5a54f1",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-17T17:48:24Z",
+      "side": 1,
+      "message": "Done. It was a pattern used in the original conditional, so I kept it around in the first patch set. Wonder why it was done this way?",
+      "parentUuid": "679b106f_9e573770",
       "range": {
         "startLine": 1119,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87a0160a_0995b571",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-17T17:48:24Z",
+      "side": 1,
+      "message": "Ah, good catch - done.",
+      "parentUuid": "f2430cef_e212ef56",
+      "range": {
+        "startLine": 1271,
+        "startChar": 0,
+        "endLine": 1274,
+        "endChar": 0
+      },
+      "revId": "c6c3f93a515516f8a8a2cb9b0fe3e4c2098cb425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4361114c_c393af63",
@@ -83,6 +155,30 @@
       "writtenOn": "2021-06-17T17:33:48Z",
       "side": 1,
       "message": "Do we still want to sign the ${DIST_DIR}/boot.img (from prebuilts) if BUILD_BOOT_IMG is not set?",
+      "range": {
+        "startLine": 1277,
+        "startChar": 0,
+        "endLine": 1277,
+        "endChar": 40
+      },
+      "revId": "c6c3f93a515516f8a8a2cb9b0fe3e4c2098cb425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65e4f4fe_a86bc903",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1277,
+      "author": {
+        "id": 1688863
+      },
+      "writtenOn": "2021-06-17T17:48:24Z",
+      "side": 1,
+      "message": "Probably not, no - if you\u0027re in this block without BUILD_BOOT_IMG, then you\u0027re only building a vendor_boot and presumably already have an appropriately signed boot.img. Done.",
+      "parentUuid": "4361114c_c393af63",
       "range": {
         "startLine": 1277,
         "startChar": 0,
