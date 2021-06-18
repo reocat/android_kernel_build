@@ -22,6 +22,30 @@
       },
       "revId": "89de82b169a0ccd8f8fbc747e7fa040f04c74155",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d6770b5_09c3482d",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-18T15:17:52Z",
+      "side": 1,
+      "message": "We need both. For the situation this patch addresses ROOT_DIR !\u003d real_root_dir and that is what leads to a bug.\n\nIn particular this happens if build.config itself is a symbolic link to somewhere else.",
+      "parentUuid": "7464d5bb_fe0c9e8f",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 57
+      },
+      "revId": "89de82b169a0ccd8f8fbc747e7fa040f04c74155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
