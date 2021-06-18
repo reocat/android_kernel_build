@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e29a03a_ad54b611",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-18T16:40:22Z",
+      "side": 1,
+      "message": "I go back to the prior hackish version. Any suggestion on how to make this nicer?",
+      "parentUuid": "11be91ed_e02f55c8",
+      "revId": "1a0e9e4034393b93c8aea5da7a21dddbe592172f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a924d841_b0745812",
         "filename": "kleaf/bazel.sh",
         "patchSetId": 5
@@ -49,6 +67,30 @@
       "writtenOn": "2021-06-18T15:46:37Z",
       "side": 1,
       "message": "This output will be the first thing every user will see.\n\nIs it needed? Should it go to stdout or stderr?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 30
+      },
+      "revId": "1a0e9e4034393b93c8aea5da7a21dddbe592172f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f03d1eb9_6b0a9c25",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-18T16:40:22Z",
+      "side": 1,
+      "message": "Let\u0027s drop that output. We anyway want to minimize that.",
+      "parentUuid": "a924d841_b0745812",
       "range": {
         "startLine": 32,
         "startChar": 0,
