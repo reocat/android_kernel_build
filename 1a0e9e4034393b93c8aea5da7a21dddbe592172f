@@ -16,6 +16,70 @@
       "message": "gettop is a copy from the Android platform. It is safe to skip this during review.",
       "revId": "1a0e9e4034393b93c8aea5da7a21dddbe592172f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11be91ed_e02f55c8",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-18T15:46:37Z",
+      "side": 1,
+      "message": "That may be the case, but what are the backslashes doing? And have you lost some backticks or $()?",
+      "parentUuid": "d7c8adee_a98a07b6",
+      "revId": "1a0e9e4034393b93c8aea5da7a21dddbe592172f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a924d841_b0745812",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-18T15:46:37Z",
+      "side": 1,
+      "message": "This output will be the first thing every user will see.\n\nIs it needed? Should it go to stdout or stderr?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 30
+      },
+      "revId": "1a0e9e4034393b93c8aea5da7a21dddbe592172f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d4bf93_0bb23106",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-18T15:46:37Z",
+      "side": 1,
+      "message": "exec would eliminate a shell process",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 17
+      },
+      "revId": "1a0e9e4034393b93c8aea5da7a21dddbe592172f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
