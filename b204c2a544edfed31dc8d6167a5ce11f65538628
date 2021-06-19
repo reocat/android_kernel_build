@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4c66600_797acc82",
+        "filename": "_setup_env.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-19T02:29:08Z",
+      "side": 1,
+      "message": "If the top level\n```\nbuild.config -\u003e common/build.config.foo\n```\n\nthen build_config_path becomes the same as build_config_path.\n\nMaybe this should be \n\n```\n$(dirname build_config_path)\n```\n\n?",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 55
+      },
+      "revId": "b204c2a544edfed31dc8d6167a5ce11f65538628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
