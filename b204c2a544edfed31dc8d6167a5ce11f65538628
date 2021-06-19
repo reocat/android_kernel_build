@@ -22,6 +22,30 @@
       },
       "revId": "b204c2a544edfed31dc8d6167a5ce11f65538628",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75693c50_82be122b",
+        "filename": "_setup_env.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-19T02:31:51Z",
+      "side": 1,
+      "message": "Scratch my bad suggestion. But still, real_root_dir may not eliminate ${BUILD_CONFIG} here properly, if ${ROOT_DIR}/${BUILD_CONFIG} itself is a symlink to a file that doesn\u0027t end with ${BUILD_CONFIG}",
+      "parentUuid": "d4c66600_797acc82",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 55
+      },
+      "revId": "b204c2a544edfed31dc8d6167a5ce11f65538628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
