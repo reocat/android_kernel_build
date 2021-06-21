@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e58d807f_7bc89ac3",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T22:48:20Z",
+      "side": 1,
+      "message": "qq: Why is toolchain_version an argument here? Do some kernel_build() rules use different toolchain than the others?",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 38
+      },
+      "revId": "5cd8c5f93f55cad98358a999e861009659a457b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
