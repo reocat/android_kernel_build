@@ -94,6 +94,30 @@
       },
       "revId": "8ee8a1b8b323f646c87b610b83e198d77241594d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09950e4d_7b252419",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-21T21:45:45Z",
+      "side": 1,
+      "message": "Yes, this is a very precise equivalent. We do this for a while for the hermetic kernel builds, and this patch makes it work through bazel without having to touch build.sh.",
+      "parentUuid": "b8cbbb5d_a9f4eaea",
+      "range": {
+        "startLine": 14,
+        "startChar": 3,
+        "endLine": 14,
+        "endChar": 76
+      },
+      "revId": "8ee8a1b8b323f646c87b610b83e198d77241594d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
