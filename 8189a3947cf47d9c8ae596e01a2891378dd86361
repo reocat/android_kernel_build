@@ -22,6 +22,30 @@
       },
       "revId": "8189a3947cf47d9c8ae596e01a2891378dd86361",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58f9cd50_28525272",
+        "filename": "kleaf/environment.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-21T16:39:25Z",
+      "side": 1,
+      "message": "This is for compatibility with the current scripts to make the transition easier.\nCurrently, the invocation is\n\n  BUILD_CONFIG\u003dcommon/build.config.gki.aarch64 build/build.sh\n  \nand the transition I have in mind is to allow\n\n  BUILD_CONFIG\u003dcommon/build.config.gki.aarch64 bazel build //common:kernel\n  \nAnd that is supposed to pick up the correct configuration from the environment. There is more, like LTO\u003d(full|thin|off) that we need to support until we transitioned completely. These things are deep in developer\u0027s local scripts and I do not want to start with immediately breaking them.",
+      "parentUuid": "c62311cd_fb8448a3",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 62
+      },
+      "revId": "8189a3947cf47d9c8ae596e01a2891378dd86361",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
