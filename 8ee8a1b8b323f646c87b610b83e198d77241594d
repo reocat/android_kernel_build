@@ -46,6 +46,30 @@
       },
       "revId": "8ee8a1b8b323f646c87b610b83e198d77241594d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "900524d9_c5ed09f4",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T20:29:39Z",
+      "side": 1,
+      "message": "Can this list be interpreted as an allowlist of tools that can be referred from the environment? And other tools outside of this list must be self-contained under the kernel tree, either as a prebuilt or are built from source? So in a way, this is similar to [1] in Android build, right?\n\nCan this list be expanded in the future? Or, are items this list going to be cleaned up?\n\nhttps://cs.android.com/android/platform/superproject/+/master:build/soong/ui/build/path.go",
+      "parentUuid": "9a479845_f9eb6d33",
+      "range": {
+        "startLine": 14,
+        "startChar": 3,
+        "endLine": 14,
+        "endChar": 76
+      },
+      "revId": "8ee8a1b8b323f646c87b610b83e198d77241594d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
