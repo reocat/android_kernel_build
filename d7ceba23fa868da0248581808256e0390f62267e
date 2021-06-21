@@ -22,6 +22,30 @@
       },
       "revId": "d7ceba23fa868da0248581808256e0390f62267e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "319ce909_c8ef1d1c",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-21T16:41:01Z",
+      "side": 1,
+      "message": "that is somewhat leftover from debugging, but I want to eventually clean out build-tools. At that time this might become obsolete and will fail. (Consider it an enforced \"TODO: remove once all build-tools are gone\").",
+      "parentUuid": "c54c4d00_a1553470",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 28
+      },
+      "revId": "d7ceba23fa868da0248581808256e0390f62267e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
