@@ -52,6 +52,24 @@
       "parentUuid": "2d9c40d4_6df95ca7",
       "revId": "3e96c1b9013ad451f10d4de75ec817155c083300",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "021bc35b_73ef2387",
+        "filename": "static_analysis/checkpatch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T22:56:41Z",
+      "side": 1,
+      "message": "Unresolving for better visibility, but there\u0027s no action items for now.",
+      "parentUuid": "6b6d0fe5_a8b459ab",
+      "revId": "3e96c1b9013ad451f10d4de75ec817155c083300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
