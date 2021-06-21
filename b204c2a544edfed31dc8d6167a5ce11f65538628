@@ -46,6 +46,30 @@
       },
       "revId": "b204c2a544edfed31dc8d6167a5ce11f65538628",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a9e4e95_5af90b88",
+        "filename": "_setup_env.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-21T21:36:54Z",
+      "side": 1,
+      "message": "I am pretty convinced that there are more cases how this could go wrong. This patch just adds another cases to be handled. I _think_ we need to go about this iterative and fix it whenever it breaks.",
+      "parentUuid": "75693c50_82be122b",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 55
+      },
+      "revId": "b204c2a544edfed31dc8d6167a5ce11f65538628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
