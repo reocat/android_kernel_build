@@ -46,6 +46,30 @@
       },
       "revId": "8189a3947cf47d9c8ae596e01a2891378dd86361",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d1fe600_942a5f2e",
+        "filename": "kleaf/environment.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T23:04:47Z",
+      "side": 1,
+      "message": "\u003e I do not want to start with immediately breaking them.\n\nWe aren\u0027t breaking the first invocation that uses build/build.sh directly, right? \n\nTo use Bazel, they\u0027ll have to change their scripts anyways. So, why not take one step further and ask them to change their scripts to use `--action_env`?",
+      "parentUuid": "58f9cd50_28525272",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 62
+      },
+      "revId": "8189a3947cf47d9c8ae596e01a2891378dd86361",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
