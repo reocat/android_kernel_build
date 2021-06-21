@@ -22,6 +22,30 @@
       },
       "revId": "8ee8a1b8b323f646c87b610b83e198d77241594d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a479845_f9eb6d33",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-21T16:28:10Z",
+      "side": 1,
+      "message": "In the kernel build we disallow any PATH other than the predefined ones (even /usr/bin and /bin are not ok). The host tools bypass this by adding symbolic links and adding the directory they are contained in to PATH. In order to keep them in PATH, we need to create and contain those symbolic links. And this is what this rule does.\n\nThis somewhat also works around how host-tools are currently implemented in the underlying build scripts (they are copied to the out_dir, which obviously is cleaned for every rule in bazel and that mechanism therefore does not work).",
+      "parentUuid": "fe20c126_18a8171e",
+      "range": {
+        "startLine": 14,
+        "startChar": 3,
+        "endLine": 14,
+        "endChar": 76
+      },
+      "revId": "8ee8a1b8b323f646c87b610b83e198d77241594d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
