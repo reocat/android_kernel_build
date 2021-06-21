@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4daf0fa8_9c918e31",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T22:57:03Z",
+      "side": 1,
+      "message": "Unresolving",
+      "parentUuid": "e58d807f_7bc89ac3",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 38
+      },
+      "revId": "5cd8c5f93f55cad98358a999e861009659a457b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5d82ac15_d0eb52c1",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-06-21T22:49:46Z",
       "side": 1,
       "message": "These can be multi-line \"\"\" strings, right? So you don\u0027t have to specify \\n directly",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 13
+      },
+      "revId": "5cd8c5f93f55cad98358a999e861009659a457b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5153c414_fd4bfa72",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T22:57:03Z",
+      "side": 1,
+      "message": "Unresolving, this is a nit",
+      "parentUuid": "5d82ac15_d0eb52c1",
       "range": {
         "startLine": 58,
         "startChar": 12,
