@@ -16,6 +16,24 @@
       "message": "nit: also `BUILD`? According to the Bazel website, both `BUILD` and `BUILD.bazel` are recognized.\n\nOr are we going to use `BUILD.bazel` consistently, and not use `BUILD`?",
       "revId": "3e96c1b9013ad451f10d4de75ec817155c083300",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d9c40d4_6df95ca7",
+        "filename": "static_analysis/checkpatch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-21T22:08:34Z",
+      "side": 1,
+      "message": "I _think_ we will use BUILD.bazel all the time. Nevertheless, I generalized the pattern.",
+      "parentUuid": "d4970fb4_4e856453",
+      "revId": "3e96c1b9013ad451f10d4de75ec817155c083300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
