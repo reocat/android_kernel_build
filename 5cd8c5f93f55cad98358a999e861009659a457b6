@@ -22,6 +22,29 @@
       },
       "revId": "5cd8c5f93f55cad98358a999e861009659a457b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d82ac15_d0eb52c1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T22:49:46Z",
+      "side": 1,
+      "message": "These can be multi-line \"\"\" strings, right? So you don\u0027t have to specify \\n directly",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 13
+      },
+      "revId": "5cd8c5f93f55cad98358a999e861009659a457b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
