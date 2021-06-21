@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "94e631f0_8b133b0c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-21T23:19:29Z",
+      "side": 1,
+      "message": "I did not want to hardcode this argument in the implementation (~line 75) and I also did not make it a constant. This way we can change the default while the rule definition can temporarily use another version, and we fully support that.\n\nUsually, ACK will stick to the default defined here.",
+      "parentUuid": "4daf0fa8_9c918e31",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 38
+      },
+      "revId": "5cd8c5f93f55cad98358a999e861009659a457b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5d82ac15_d0eb52c1",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 3
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Unresolving, this is a nit",
       "parentUuid": "5d82ac15_d0eb52c1",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 13
+      },
+      "revId": "5cd8c5f93f55cad98358a999e861009659a457b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2d54e8c_506dc05a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-21T23:19:29Z",
+      "side": 1,
+      "message": "Yes, you are right! Done.",
+      "parentUuid": "5153c414_fd4bfa72",
       "range": {
         "startLine": 58,
         "startChar": 12,
