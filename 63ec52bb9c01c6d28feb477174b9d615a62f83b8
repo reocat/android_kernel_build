@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0742ce91_9435840a",
+        "filename": "static_analysis/checkpatch.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T22:21:40Z",
+      "side": 1,
+      "message": "specify `BUILD` and `BUILD.bazel` explicitly? e.g. there might be a file called BUILD_MY_THING.cpp",
+      "range": {
+        "startLine": 98,
+        "startChar": 32,
+        "endLine": 98,
+        "endChar": 45
+      },
+      "revId": "63ec52bb9c01c6d28feb477174b9d615a62f83b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
