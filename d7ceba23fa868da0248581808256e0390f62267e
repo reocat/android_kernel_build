@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c54c4d00_a1553470",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2021-06-21T16:01:42Z",
+      "side": 1,
+      "message": "nit: why is this necessary? It\u0027s a bit more correct this way, true, but people don\u0027t usually specify this.",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 28
+      },
+      "revId": "d7ceba23fa868da0248581808256e0390f62267e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
