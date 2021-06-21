@@ -34,6 +34,24 @@
       "parentUuid": "d4970fb4_4e856453",
       "revId": "3e96c1b9013ad451f10d4de75ec817155c083300",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b6d0fe5_a8b459ab",
+        "filename": "static_analysis/checkpatch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T22:20:37Z",
+      "side": 1,
+      "message": "If so, we should probably have a separate check to prevent people from adding any file named `BUILD`.",
+      "parentUuid": "2d9c40d4_6df95ca7",
+      "revId": "3e96c1b9013ad451f10d4de75ec817155c083300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
