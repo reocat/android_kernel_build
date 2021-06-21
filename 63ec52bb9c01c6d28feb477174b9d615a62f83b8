@@ -22,6 +22,30 @@
       },
       "revId": "63ec52bb9c01c6d28feb477174b9d615a62f83b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87d2b002_e8b6782f",
+        "filename": "static_analysis/checkpatch.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-21T23:19:29Z",
+      "side": 1,
+      "message": "I went back to the original BUILD.bazel to not aggressively match too much.\nThis is just an exclusion for checkpatch (a kernel owned linter developed upstream). If we see regular issues in more files we can revisit this.",
+      "parentUuid": "0742ce91_9435840a",
+      "range": {
+        "startLine": 98,
+        "startChar": 32,
+        "endLine": 98,
+        "endChar": 45
+      },
+      "revId": "63ec52bb9c01c6d28feb477174b9d615a62f83b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

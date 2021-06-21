@@ -70,6 +70,24 @@
       "parentUuid": "6b6d0fe5_a8b459ab",
       "revId": "3e96c1b9013ad451f10d4de75ec817155c083300",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c15bd43e_4c0c11c9",
+        "filename": "static_analysis/checkpatch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-21T23:19:29Z",
+      "side": 1,
+      "message": "It is very unlikely that there are many more BUILD files here. I would even expect that this stays the only one (besides maybe some generated ones).",
+      "parentUuid": "021bc35b_73ef2387",
+      "revId": "3e96c1b9013ad451f10d4de75ec817155c083300",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
