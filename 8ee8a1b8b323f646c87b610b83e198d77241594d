@@ -70,6 +70,30 @@
       },
       "revId": "8ee8a1b8b323f646c87b610b83e198d77241594d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8cbbb5d_a9f4eaea",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T20:32:47Z",
+      "side": 1,
+      "message": "And the list in Android I am referring to:\n\nhttps://cs.android.com/android/platform/superproject/+/master:build/soong/ui/build/paths/config.go",
+      "parentUuid": "900524d9_c5ed09f4",
+      "range": {
+        "startLine": 14,
+        "startChar": 3,
+        "endLine": 14,
+        "endChar": 76
+      },
+      "revId": "8ee8a1b8b323f646c87b610b83e198d77241594d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
