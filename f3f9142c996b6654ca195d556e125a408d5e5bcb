@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a87562_8a27c286",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T23:21:34Z",
+      "side": 1,
+      "message": "What does this do?",
+      "range": {
+        "startLine": 78,
+        "startChar": 27,
+        "endLine": 78,
+        "endChar": 29
+      },
+      "revId": "f3f9142c996b6654ca195d556e125a408d5e5bcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd96b89f_7b7e3b87",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T23:21:34Z",
+      "side": 1,
+      "message": "I know we only support common/ for now, but do we plan to support other KERNEL_DIR values in the future? If so, how would KERNEL_DIR be inferred?",
+      "range": {
+        "startLine": 19,
+        "startChar": 50,
+        "endLine": 19,
+        "endChar": 56
+      },
+      "revId": "f3f9142c996b6654ca195d556e125a408d5e5bcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
