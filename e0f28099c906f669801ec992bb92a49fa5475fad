@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3e2f52d_83bc5a13",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2021-06-21T13:15:11Z",
+      "side": 1,
+      "message": "Looks reasonable! Adding Jin for a second pair of eyes.\n\nDo I understand correctly that the kernel build is done with a different manifest.xml and that all the goodies under build/bazel are not needed for a kernel build?",
+      "revId": "e0f28099c906f669801ec992bb92a49fa5475fad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
