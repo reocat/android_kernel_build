@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe20c126_18a8171e",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2021-06-21T15:58:03Z",
+      "side": 1,
+      "message": "Why is this necessary, as opposed to calling these tools using their basenames and keeping them in $PATH? Is this in preparation for remoting the actions that use them?",
+      "range": {
+        "startLine": 14,
+        "startChar": 3,
+        "endLine": 14,
+        "endChar": 76
+      },
+      "revId": "8ee8a1b8b323f646c87b610b83e198d77241594d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
