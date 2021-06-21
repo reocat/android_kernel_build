@@ -16,6 +16,24 @@
       "message": "Doesn\u0027t seem to be used since day 1:\n\naosp/892917\n\n... unless someone does `source build.sh`?!\n",
       "revId": "3cfc29313412e64c0a5eec6d44f77bdff4843dec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99330295_3466c3e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-21T23:27:40Z",
+      "side": 1,
+      "message": "Unresolving for better visibility, but there are no action items here.",
+      "parentUuid": "8cf69957_a5764216",
+      "revId": "3cfc29313412e64c0a5eec6d44f77bdff4843dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
