@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c62311cd_fb8448a3",
+        "filename": "kleaf/environment.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2021-06-21T16:00:23Z",
+      "side": 1,
+      "message": "This is very inventive 😊\n\nBazel does have a facility for passing in shell environment variables to actions, it\u0027s called --action_env:\n\nhttps://docs.bazel.build/versions/main/command-line-reference.html#flag--action_env\n\nCould you maybe use that so that you need to submit less code?",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 62
+      },
+      "revId": "8189a3947cf47d9c8ae596e01a2891378dd86361",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
