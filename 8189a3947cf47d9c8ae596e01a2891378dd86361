@@ -94,6 +94,30 @@
       },
       "revId": "8189a3947cf47d9c8ae596e01a2891378dd86361",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26a9f2cc_b1e42296",
+        "filename": "kleaf/environment.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-22T13:24:59Z",
+      "side": 1,
+      "message": "There are several things here to clarify:\n\n --action_env\u003dVAR does take VAR from the invocation environment and makes the value available to the action. This is useful for actual pass through. E.g. for SOURCE_DATE_EPOCH where a change actually invalidates the actions.\n\n The implementation here does only capture the environment variable to make them available to BUILD files. It is not supposed to be passed through to the action\u0027s environment. This case is to have a default target, e.g. \u0027kernel\u0027 that has a different implementation based on the definition of the environment variable at invocation time. E.g. compare\n  $ BUILD_CONFIG\u003dcommon/build.config.gki.aarch64  bazel build //common:kernel\n  $ BUILD_CONFIG\u003dcommon/build.config.gki.x86_64  bazel build //common:kernel\n  \nThe BUILD_CONFIG influences the build environment (a direct input into //common:kernel). By changing this variable the rule generation of that particular env rule changes. I.e. it should not affect any other action execution.\n\nBUILD_CONFIG is not the best example, and we might not even use this feature for it. But there is more: Developers regularly set LTO\u003dthin or LTO\u003dnone on their local machines to cut down local build times. I would like to support this use case at least for some time. Captured env variables can partially(!) influence rule generation in this case. action_env would affect all rules and would invalidate too much. My ideal version for LTO would be `bazel build --lto\u003dthin ...` in the end though.\n\nI would say, let\u0027s leave it for now. The actual transition plan is not yet decided anyway.",
+      "parentUuid": "9bfd633d_863ecd82",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 15,
+        "endChar": 62
+      },
+      "revId": "8189a3947cf47d9c8ae596e01a2891378dd86361",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
