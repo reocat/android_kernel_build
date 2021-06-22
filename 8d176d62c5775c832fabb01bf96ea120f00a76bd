@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "312f07e3_3d684181",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2021-06-22T06:08:27Z",
+      "side": 1,
+      "message": "I assume this doesn\u0027t change every second, only on every checkout and the like? (changing --action_env invalidates every action, so if it\u0027s just the current Unix time, you won\u0027t get any cached actions)\n",
+      "revId": "8d176d62c5775c832fabb01bf96ea120f00a76bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
