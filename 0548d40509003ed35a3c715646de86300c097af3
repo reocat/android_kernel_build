@@ -16,6 +16,24 @@
       "message": "General comment: instead of cutting these info messages, can we save these verbose logs to some file just like Soong does?\n\n(Soong saves verbose logs to out/verbose.log.gz)",
       "revId": "0548d40509003ed35a3c715646de86300c097af3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9fa0575_fe447708",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-22T13:24:59Z",
+      "side": 1,
+      "message": "I generally agree with you. Having a verbose log could be useful. Though a silent build that just prints if something is wrong is also a very good property.\n\nYet, the information printed here is either already in the configuration files (KERNEL_DIR, build.config) or can be easily debugged. So, there is no real need here. For the bazel build, the information here is even persisted in the *env.sh intermediate file. Much better than debugging, actually. :-)",
+      "parentUuid": "a7524add_426bd7c9",
+      "revId": "0548d40509003ed35a3c715646de86300c097af3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
