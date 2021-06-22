@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38cf1737_2e203437",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-22T17:20:51Z",
+      "side": 1,
+      "message": "The +x is to work around spaces in the variable, is that right? So this is basically \n\n```\n[ -z \"${SOURCE_DATE_EPOCH}\" ]\n```\n?",
+      "parentUuid": "5a245130_a84145c1",
+      "range": {
+        "startLine": 78,
+        "startChar": 27,
+        "endLine": 78,
+        "endChar": 29
+      },
+      "revId": "f3f9142c996b6654ca195d556e125a408d5e5bcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd96b89f_7b7e3b87",
         "filename": "kleaf/bazel.sh",
         "patchSetId": 2
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I dropped this altogether. It would invalidate a whole build when it changes. Though I let the pass through for when e.g. Treehugger sets it. I leave this a bit open now. Properly TBD later.",
       "parentUuid": "bd96b89f_7b7e3b87",
+      "range": {
+        "startLine": 19,
+        "startChar": 50,
+        "endLine": 19,
+        "endChar": 56
+      },
+      "revId": "f3f9142c996b6654ca195d556e125a408d5e5bcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5183d6f9_8e885984",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-06-22T17:20:51Z",
+      "side": 1,
+      "message": "Ack \n\nIndeed. Maybe we should do a similar thing as how Android treats build dates.",
+      "parentUuid": "f598a72f_f7165e3c",
       "range": {
         "startLine": 19,
         "startChar": 50,
