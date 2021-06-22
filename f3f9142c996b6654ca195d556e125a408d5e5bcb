@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a245130_a84145c1",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-22T13:24:59Z",
+      "side": 1,
+      "message": "${var+x} is a parameter expansion which evaluates to nothing if var is unset, and substitutes the string x otherwise.",
+      "parentUuid": "27a87562_8a27c286",
+      "range": {
+        "startLine": 78,
+        "startChar": 27,
+        "endLine": 78,
+        "endChar": 29
+      },
+      "revId": "f3f9142c996b6654ca195d556e125a408d5e5bcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd96b89f_7b7e3b87",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-06-21T23:21:34Z",
       "side": 1,
       "message": "I know we only support common/ for now, but do we plan to support other KERNEL_DIR values in the future? If so, how would KERNEL_DIR be inferred?",
+      "range": {
+        "startLine": 19,
+        "startChar": 50,
+        "endLine": 19,
+        "endChar": 56
+      },
+      "revId": "f3f9142c996b6654ca195d556e125a408d5e5bcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f598a72f_f7165e3c",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-22T13:24:59Z",
+      "side": 1,
+      "message": "I dropped this altogether. It would invalidate a whole build when it changes. Though I let the pass through for when e.g. Treehugger sets it. I leave this a bit open now. Properly TBD later.",
+      "parentUuid": "bd96b89f_7b7e3b87",
       "range": {
         "startLine": 19,
         "startChar": 50,
