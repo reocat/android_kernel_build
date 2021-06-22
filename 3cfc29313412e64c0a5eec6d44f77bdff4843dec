@@ -34,6 +34,24 @@
       "parentUuid": "8cf69957_a5764216",
       "revId": "3cfc29313412e64c0a5eec6d44f77bdff4843dec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5db564b9_e0ea8a16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-22T13:24:59Z",
+      "side": 1,
+      "message": "The scripts have been used internally before. So, while there might not be any user in aosp, there surely have been users before.",
+      "parentUuid": "99330295_3466c3e1",
+      "revId": "3cfc29313412e64c0a5eec6d44f77bdff4843dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
