@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac9207a9_833849bf",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-22T13:24:59Z",
+      "side": 1,
+      "message": "This is actually correctly indented (at least consistent). Since the multiline string prevents from any syntax highlighting of the comments, I indented the code and left the comments at \"column 0\". For readability.",
+      "parentUuid": "b63eb236_8673808b",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 14
+      },
+      "revId": "7982e23c61b2af3d126c6dffdb0160d2db7f666a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5b77cc8_1a471e0a",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7200b43_4565d6f2",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-22T13:24:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5b77cc8_1a471e0a",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 16
+      },
+      "revId": "7982e23c61b2af3d126c6dffdb0160d2db7f666a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b592f3b_be93389a",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-06-22T00:21:48Z",
       "side": 1,
       "message": "These shouldn\u0027t be srcs, but tools.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 55
+      },
+      "revId": "7982e23c61b2af3d126c6dffdb0160d2db7f666a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dfda268_e1caa75d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-22T13:24:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b592f3b_be93389a",
       "range": {
         "startLine": 74,
         "startChar": 0,
