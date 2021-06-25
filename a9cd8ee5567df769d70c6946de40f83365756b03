@@ -22,6 +22,30 @@
       },
       "revId": "a9cd8ee5567df769d70c6946de40f83365756b03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0db33fc_57bce161",
+        "filename": "kleaf/environment.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-25T15:11:27Z",
+      "side": 1,
+      "message": "For now I will say that we do not support this yet. It will cause a syntax issue once you want to use something with quotes. I don\u0027t want to over-engineer this at this point. I hope you are ok with that.",
+      "parentUuid": "9eb36123_f4835485",
+      "range": {
+        "startLine": 17,
+        "startChar": 32,
+        "endLine": 17,
+        "endChar": 39
+      },
+      "revId": "a9cd8ee5567df769d70c6946de40f83365756b03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
