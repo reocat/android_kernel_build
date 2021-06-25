@@ -46,6 +46,30 @@
       },
       "revId": "83d9bbe34f22a852232f5ecbeca2559ac8b0b82b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67b6e078_5f57e051",
+        "filename": "kleaf/preserve_env.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-25T15:41:13Z",
+      "side": 1,
+      "message": "I don\u0027t intend to dismiss your comments. Yet, the genrule environment that we are facing is very limited (docs.bazel.build/versions/main/be/general.html#genrule-environment). As of now, this leaves us with PWD, TMPDIR, SHLVL, PATH (limited to /usr/bin) and _\u003d/usr/bin/env. \n\nWe extend this environment with BUILD_CONFIG, but we control everything of it. We also clear out the PATH entirely and only leave the entries that we intend to see there. All PATHs left there are therefore prefixed with /full/path/to/workspace/specific/hash/ and that is very unlikely to be duplicated.\n\nSo, I changed the expression to match \"declare -x PWD\u003d\" since the line I want to remove is exactly that.",
+      "parentUuid": "80386d62_3a055849",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 17
+      },
+      "revId": "83d9bbe34f22a852232f5ecbeca2559ac8b0b82b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
