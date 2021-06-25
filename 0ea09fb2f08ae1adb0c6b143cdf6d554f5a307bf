@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "405c6288_02697e59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-25T15:07:34Z",
+      "side": 1,
+      "message": "This will make it harder to check for \"odd\" compiler behaviours.\n\nIs the advice to just tweak `BUILD_CONFIG`? If so, why not do the same for `LD` as well?",
+      "revId": "0ea09fb2f08ae1adb0c6b143cdf6d554f5a307bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
