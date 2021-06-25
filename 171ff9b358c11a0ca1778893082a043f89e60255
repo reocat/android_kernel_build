@@ -94,6 +94,30 @@
       },
       "revId": "171ff9b358c11a0ca1778893082a043f89e60255",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff5180da_e30a1c43",
+        "filename": "_setup_env.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-25T15:36:12Z",
+      "side": 1,
+      "message": "I could also just go back to \n\n  if [ -z \"${SOURCE_DATE_EPOCH}\" ]; then\n    export SOURCE_DATE_EPOCH\u003d$(git -C ${ROOT_DIR}/${KERNEL_DIR} log -1 --pretty\u003d%ct)\n  fi\n  \nThat might trigger less questions as it is fairly obvious. WDYT?",
+      "parentUuid": "15a51de1_fbab5087",
+      "range": {
+        "startLine": 78,
+        "startChar": 26,
+        "endLine": 78,
+        "endChar": 30
+      },
+      "revId": "171ff9b358c11a0ca1778893082a043f89e60255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
