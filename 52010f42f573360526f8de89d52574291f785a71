@@ -22,6 +22,30 @@
       },
       "revId": "52010f42f573360526f8de89d52574291f785a71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95e8b20c_bc72ed95",
+        "filename": "BUILD.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-25T15:09:07Z",
+      "side": 1,
+      "message": "this is a rule run against an empty directory every time. no previous value exists. It would be an error if there is something to overwrite.",
+      "parentUuid": "86f54203_18b18baa",
+      "range": {
+        "startLine": 14,
+        "startChar": 32,
+        "endLine": 14,
+        "endChar": 37
+      },
+      "revId": "52010f42f573360526f8de89d52574291f785a71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
