@@ -70,6 +70,30 @@
       },
       "revId": "171ff9b358c11a0ca1778893082a043f89e60255",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15a51de1_fbab5087",
+        "filename": "_setup_env.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-25T15:21:27Z",
+      "side": 1,
+      "message": "If parameter is unset, nothing is substituted, otherwise the expansion of x is substituted.\n\nSOURCE_DATE_EPOCH unset -\u003e \"\" -\u003e true condition -\u003e export ... $(git ...)\nSOURCE_DATE_EPOCH set -\u003e \"x\" -\u003e nothing happens.\n\nSo perhaps more naturally written as:\n\n${SOURCE_DATE_EPOCH\u003d$(git -C ${ROOT_DIR}/${KERNEL_DIR} log -1 --pretty\u003d%ct)}\nexport SOURCE_DATE_EPOCH\n\nor you could use the \"-\" form and re-assign, if you think that\u0027s clearer.",
+      "parentUuid": "4daa073c_947860f0",
+      "range": {
+        "startLine": 78,
+        "startChar": 26,
+        "endLine": 78,
+        "endChar": 30
+      },
+      "revId": "171ff9b358c11a0ca1778893082a043f89e60255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
