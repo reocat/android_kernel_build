@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eb36123_f4835485",
+        "filename": "kleaf/environment.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-25T14:53:56Z",
+      "side": 1,
+      "message": "You should probably escape-protect this (from whatever interprets the string).",
+      "range": {
+        "startLine": 17,
+        "startChar": 32,
+        "endLine": 17,
+        "endChar": 39
+      },
+      "revId": "a9cd8ee5567df769d70c6946de40f83365756b03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
