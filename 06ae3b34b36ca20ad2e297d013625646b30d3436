@@ -16,6 +16,24 @@
       "message": "Why are we not excluding *.bzl now? Those are Python right?",
       "revId": "06ae3b34b36ca20ad2e297d013625646b30d3436",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e9fd4c2_ac0e9c11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-25T12:59:29Z",
+      "side": 1,
+      "message": ".bzl files are meant for macro definitions and will likely not be done within the kernel tree, but rather in the kernel/build repository. I came to the conclusion that (at least for the moment) the kernel repositories that are looked at with checkpatch will not contain more than a top level BUILD.bazel file. Hence we can reduce this to only ignore the BUILD.bazel file at the top level for now.",
+      "parentUuid": "f96bef18_b978405e",
+      "revId": "06ae3b34b36ca20ad2e297d013625646b30d3436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
