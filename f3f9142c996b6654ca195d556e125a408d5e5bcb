@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd6a9261_26e64bc8",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-25T15:03:20Z",
+      "side": 1,
+      "message": "\u003e        ${parameter:+word}\n\u003e               Use Alternate Value.  If parameter is null or unset, nothing is substituted, otherwise the expansion of word is substituted.\n\n\nYou are missing a colon.",
+      "parentUuid": "38cf1737_2e203437",
+      "range": {
+        "startLine": 78,
+        "startChar": 27,
+        "endLine": 78,
+        "endChar": 29
+      },
+      "revId": "f3f9142c996b6654ca195d556e125a408d5e5bcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd96b89f_7b7e3b87",
         "filename": "kleaf/bazel.sh",
         "patchSetId": 2
