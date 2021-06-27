@@ -118,6 +118,30 @@
       },
       "revId": "171ff9b358c11a0ca1778893082a043f89e60255",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8e8c08d_e017307c",
+        "filename": "_setup_env.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-27T07:10:47Z",
+      "side": 1,
+      "message": "Yes, it\u0027s more obvious. As you noted, it will now conflate FOO\u003d\"\" and export -n FOO or unset FOO.\n\nBash provides exactly what you want with in at least two ways\n\nexport SOURCE_DATE_EPOCH\u003d${SOURCE_DATE_EPOCH-$(git -C ${ROOT_DIR}/${KERNEL_DIR} log -1 --pretty\u003d%ct)}  # untested\n\nexport ${SOURCE_DATE_EPOCH\u003d$(git -C ${ROOT_DIR}/${KERNEL_DIR} log -1 --pretty\u003d%ct)}  # untested\n\nSource:\n\nhttps://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06_02\n\nVia:\n\nhttps://stackoverflow.com/questions/3601515/how-to-check-if-a-variable-is-set-in-bash",
+      "parentUuid": "ff5180da_e30a1c43",
+      "range": {
+        "startLine": 78,
+        "startChar": 26,
+        "endLine": 78,
+        "endChar": 30
+      },
+      "revId": "171ff9b358c11a0ca1778893082a043f89e60255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
