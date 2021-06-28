@@ -220,6 +220,20 @@ if [ -n "$KMI_SYMBOL_LIST" ]; then
             ${FULL_ABI_FLAG}                           \
             ${DIST_DIR}
 
+        # Redo what build.sh has done, with possibly fresher symbol lists.
+        echo "========================================================"
+        ABI_SL="${DIST_DIR}/abi_symbollist"
+        echo " Refreshing abi symbol list definition in ${ABI_SL}"
+        cp "${ROOT_DIR}/${KERNEL_DIR}/${KMI_SYMBOL_LIST}" "${ABI_SL}"
+
+        # If there are additional symbol lists specified, append them
+        if [ -n "${ADDITIONAL_KMI_SYMBOL_LISTS}" ]; then
+          for symbol_list in ${ADDITIONAL_KMI_SYMBOL_LISTS}; do
+            echo >> "${ABI_SL}"
+            cat "${ROOT_DIR}/${KERNEL_DIR}/${symbol_list}" >> "${ABI_SL}"
+          done
+        fi
+
         # In case of a simple --update-symbol-list call we can bail out early
         [ $UPDATE -eq 0 ] && exit 0
 
