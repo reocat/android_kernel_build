@@ -22,6 +22,30 @@
       },
       "revId": "70c7f2e693f1cb4a2ec37d8c5d8b90af8aaa3c35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a7f2bd9_8963656d",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-28T12:16:05Z",
+      "side": 1,
+      "message": "That is actually correct. \n\n  Variables can be either specified by name, in which case the value will be taken from the invocation environment, or by ...\n  https://docs.bazel.build/versions/main/command-line-reference.html",
+      "parentUuid": "6f4100c9_6264e32d",
+      "range": {
+        "startLine": 28,
+        "startChar": 18,
+        "endLine": 28,
+        "endChar": 36
+      },
+      "revId": "70c7f2e693f1cb4a2ec37d8c5d8b90af8aaa3c35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
