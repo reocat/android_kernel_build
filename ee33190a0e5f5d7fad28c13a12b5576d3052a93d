@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec25fe81_19400e10",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-29T10:46:54Z",
+      "side": 1,
+      "message": "deduct/deduce",
+      "range": {
+        "startLine": 10,
+        "startChar": 42,
+        "endLine": 10,
+        "endChar": 49
+      },
+      "revId": "ee33190a0e5f5d7fad28c13a12b5576d3052a93d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d12486c7_8f4baeee",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-29T10:46:54Z",
+      "side": 1,
+      "message": "No regex allowed here? s \u003d~ m;(^|/)build\\.config[^/]*$; would be the Perl.\n\nWhat about basename? Still will not exclude build.confguration/bar.",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 63
+      },
+      "revId": "ee33190a0e5f5d7fad28c13a12b5576d3052a93d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
