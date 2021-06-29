@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43ca14c4_0d62adf1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-29T11:33:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec25fe81_19400e10",
+      "range": {
+        "startLine": 10,
+        "startChar": 42,
+        "endLine": 10,
+        "endChar": 49
+      },
+      "revId": "ee33190a0e5f5d7fad28c13a12b5576d3052a93d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d12486c7_8f4baeee",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-06-29T10:46:54Z",
       "side": 1,
       "message": "No regex allowed here? s \u003d~ m;(^|/)build\\.config[^/]*$; would be the Perl.\n\nWhat about basename? Still will not exclude build.confguration/bar.",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 63
+      },
+      "revId": "ee33190a0e5f5d7fad28c13a12b5576d3052a93d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81e62a6e_994dfbbe",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-29T11:33:04Z",
+      "side": 1,
+      "message": "This is not exactly python and I am not aware of any regex facilities. lberki@ might have a suggestion to make this better.\n\nIn any case, the files listed in build_configs are the ones visible during setup_env. A slight overestimation is not that problematic. Even the full set of sources would be fine, it would just trigger more rebuilds than necessary in case any matched sources change.\n\nMatching build.confguration/bar would be fine.",
+      "parentUuid": "d12486c7_8f4baeee",
       "range": {
         "startLine": 44,
         "startChar": 8,
