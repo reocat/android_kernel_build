@@ -33,6 +33,24 @@
       "message": "I think the ADDITIONAL_KMI_SYMBOL_LISTS already append to \"${DIST_DIR}/abi_symbollist\" in https://android-review.googlesource.com/c/kernel/build/+/1749725/1/build_abi.sh#194\nWe don\u0027t need to append here right?",
       "revId": "a6aa34815a65f615d6333f55a2368809b7ece35a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ce4aac2_7fa2a69d",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-29T08:45:05Z",
+      "side": 1,
+      "message": "With the above cp, the symbol list in DIST_DIR is reset and this patch is consistently redoing the complete work.",
+      "parentUuid": "8a32ea1b_d597475b",
+      "revId": "a6aa34815a65f615d6333f55a2368809b7ece35a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
