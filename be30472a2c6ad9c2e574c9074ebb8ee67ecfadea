@@ -16,6 +16,23 @@
       "message": "This is a rework as requested by maennich. Please test.\n\nOnce it\u0027s into build\u0027s master branch, we\u0027ll also need to get it into the build branches where it\u0027s needed. What are your priorities?",
       "revId": "be30472a2c6ad9c2e574c9074ebb8ee67ecfadea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "553cafc4_d6057711",
+        "filename": "copy_symbols.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-30T16:51:24Z",
+      "side": 1,
+      "message": "technically the first one is just one of many, no need for special treatment? just let it be the first list in the loop?",
+      "revId": "be30472a2c6ad9c2e574c9074ebb8ee67ecfadea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
