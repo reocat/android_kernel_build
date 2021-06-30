@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a68f4ab9_b99b7bb8",
+        "filename": "copy_symbols.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-06-30T12:41:23Z",
+      "side": 1,
+      "message": "I guess you want to iterate over the remaining arguments. Is this implicit?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 19
+      },
+      "revId": "58a03ab6fe6643f3515fdb9d3544ca6701cfb5ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
