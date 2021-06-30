@@ -33,6 +33,24 @@
       "message": "technically the first one is just one of many, no need for special treatment? just let it be the first list in the loop?",
       "revId": "be30472a2c6ad9c2e574c9074ebb8ee67ecfadea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c1a746f_915c6c5b",
+        "filename": "copy_symbols.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-30T16:59:42Z",
+      "side": 1,
+      "message": "Well, I\u0027d need to truncate the output file instead of putting a blank line in, for the first time round the loop. I\u0027m happy if it\u0027s correct as-is.\n\nPerhaps the original author was concerned people might create files with no trailing newline. Otherwise they could have just used cat.",
+      "parentUuid": "553cafc4_d6057711",
+      "revId": "be30472a2c6ad9c2e574c9074ebb8ee67ecfadea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
