@@ -22,6 +22,30 @@
       },
       "revId": "58a03ab6fe6643f3515fdb9d3544ca6701cfb5ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "837de3a1_d09544c9",
+        "filename": "copy_symbols.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-06-30T14:43:01Z",
+      "side": 1,
+      "message": "This bit is fine, it\u0027s implicitly over the positional parameters.\n\nThe shifting was completely broken.",
+      "parentUuid": "a68f4ab9_b99b7bb8",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 19
+      },
+      "revId": "58a03ab6fe6643f3515fdb9d3544ca6701cfb5ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
