@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00df38da_0ce545cb",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-01T13:34:44Z",
+      "side": 1,
+      "message": "Would it be safer to move these into the \"then\" below (lines 150 onwards) or are they also needed in the \"else\"?",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 71
+      },
+      "revId": "0e2847e7d2127c5b759f68d3a53bd6154afd1b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86a03633_3da0eb38",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-01T13:34:44Z",
+      "side": 1,
+      "message": "export export",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 13
+      },
+      "revId": "0e2847e7d2127c5b759f68d3a53bd6154afd1b55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
