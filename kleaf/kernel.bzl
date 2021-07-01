@@ -78,6 +78,7 @@ def _kernel_build(name, env, sources, outs, toolchain_version, **kwargs):
     """Generates a kernel build rule."""
     kwargs["tools"] = kwargs.get("tools", []) + [
         env,
+        "//build:kernel-abi-scripts",
         "//build:kernel-build-scripts",
         "//build:host-tools",
         "//prebuilts/clang/host/linux-x86/clang-%s:binaries" % toolchain_version,
