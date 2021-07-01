@@ -16,6 +16,23 @@
       "message": "Also test with ABTD\nhttps://android-build.googleplex.com/builds/abtd/run/L09200000938202178",
       "revId": "6298a015e88eb75847b59d999e64361100285f73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c088e8e_d8df4e0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-01T17:17:57Z",
+      "side": 1,
+      "message": "see aosp/1753284 instead ",
+      "revId": "6298a015e88eb75847b59d999e64361100285f73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
