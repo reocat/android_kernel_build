@@ -33,6 +33,9 @@ filegroup(
     srcs = [
         "_setup_env.sh",
         "build.sh",
+        "copy_symbols.sh",
+        "abi/compare_to_symbol_list",
+        "abi/flatten_symbol_list",
     ] + glob(
         ["build-tools/**"],
         allow_empty = False,
