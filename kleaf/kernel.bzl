@@ -17,6 +17,7 @@ def kernel_build(
         build_config,
         sources,
         outs,
+        tools,
         toolchain_version = "r416183b",
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -46,7 +47,7 @@ def kernel_build(
     kernel_sources = [s for s in sources if s not in build_configs]
 
     _env(env_target, build_config, build_configs, **kwargs)
-    _kernel_build(name, env_target, kernel_sources, outs, toolchain_version, **kwargs)
+    _kernel_build(name, env_target, kernel_sources, outs, tools, toolchain_version, **kwargs)
 
 def _env(name, build_config, build_configs, **kwargs):
     """Generates a rule that generates a source-able build environment."""
@@ -72,12 +73,12 @@ def _env(name, build_config, build_configs, **kwargs):
         **kwargs
     )
 
-def _kernel_build(name, env, sources, outs, toolchain_version, **kwargs):
+def _kernel_build(name, env, sources, outs, tools, toolchain_version, **kwargs):
     """Generates a kernel build rule."""
     native.genrule(
         name = name,
         srcs = sources,
-        tools = [
+        tools = tools + [
             env,
             "//build:kernel-build-scripts",
             "//build:host-tools",
