@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d032242_0d0f63ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-02T10:20:42Z",
+      "side": 1,
+      "message": "We might want to add --no-report-untyped to the command line.\n\nFor mainline, this is the extra stderr:\n\nno declaration found for ELF symbol __arch_clear_user\nno declaration found for ELF symbol __arch_copy_from_user\nno declaration found for ELF symbol __arch_copy_in_user\nno declaration found for ELF symbol __arch_copy_to_user\nno declaration found for ELF symbol __arm_smccc_hvc\nno declaration found for ELF symbol __arm_smccc_smc\nno declaration found for ELF symbol __ashlti3\nno declaration found for ELF symbol __ashrti3\nno declaration found for ELF symbol __flush_icache_range\nno declaration found for ELF symbol __lshrti3\nno declaration found for ELF symbol __memcpy\nno declaration found for ELF symbol __memmove\nno declaration found for ELF symbol __memset\nno declaration found for ELF symbol clear_page\nno declaration found for ELF symbol copy_page\nno declaration found for ELF symbol jiffies\nno declaration found for ELF symbol kimage_vaddr\nno declaration found for ELF symbol memchr\nno declaration found for ELF symbol memcmp\nno declaration found for ELF symbol memcpy\nno declaration found for ELF symbol memmove\nno declaration found for ELF symbol memset\nno declaration found for ELF symbol sha256_block_data_order\nno declaration found for ELF symbol strchr\nno declaration found for ELF symbol strcmp\nno declaration found for ELF symbol strlen\nno declaration found for ELF symbol strncmp\nno declaration found for ELF symbol strnlen\nno declaration found for ELF symbol strrchr\n",
+      "revId": "d2eaa478c2bb56b9a0d2b56dc2e9046de6bf5a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
