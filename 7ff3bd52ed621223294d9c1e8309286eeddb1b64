@@ -34,6 +34,24 @@
       "parentUuid": "10390f2e_1b760326",
       "revId": "7ff3bd52ed621223294d9c1e8309286eeddb1b64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f5467ba_04b926c7",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-02T10:03:51Z",
+      "side": 1,
+      "message": "Actually, it\u0027s cleaner as you suggested. PS2 has the change.",
+      "parentUuid": "c9d7d09e_26728f45",
+      "revId": "7ff3bd52ed621223294d9c1e8309286eeddb1b64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
