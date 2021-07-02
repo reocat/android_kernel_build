@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70d5d9d1_663cfaf7",
+        "filename": "BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-02T08:18:51Z",
+      "side": 1,
+      "message": "possibly we have to make this a separate filegroup later once we separate the abi targets.",
+      "revId": "a0e98f3c1181ab2e9a7618e380339bb955affafb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
