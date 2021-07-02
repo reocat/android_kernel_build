@@ -16,6 +16,24 @@
       "message": "possibly we have to make this a separate filegroup later once we separate the abi targets.",
       "revId": "a0e98f3c1181ab2e9a7618e380339bb955affafb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d8ea556_0fbbc380",
+        "filename": "BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-02T20:16:18Z",
+      "side": 1,
+      "message": "I see, I can do it now",
+      "parentUuid": "70d5d9d1_663cfaf7",
+      "revId": "a0e98f3c1181ab2e9a7618e380339bb955affafb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
