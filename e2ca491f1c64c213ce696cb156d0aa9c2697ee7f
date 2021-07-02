@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db5ed97d_24b3a7d1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-02T08:17:03Z",
+      "side": 1,
+      "message": "tools could be passed through kwargs and applied to all genrules then. The should work as of now.",
+      "revId": "e2ca491f1c64c213ce696cb156d0aa9c2697ee7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
