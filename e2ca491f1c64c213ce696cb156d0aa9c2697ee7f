@@ -34,6 +34,24 @@
       "parentUuid": "db5ed97d_24b3a7d1",
       "revId": "e2ca491f1c64c213ce696cb156d0aa9c2697ee7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e7de1eb_cb702bcf",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-02T20:20:45Z",
+      "side": 1,
+      "message": "Oh, you are right. \n\nBut yes, I would prefer this way. When rebasing onto my recent changes, we need to pass it to _all_ genrules for consistency. Would that be fine?",
+      "parentUuid": "e606aa5b_0abdcd6e",
+      "revId": "e2ca491f1c64c213ce696cb156d0aa9c2697ee7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
