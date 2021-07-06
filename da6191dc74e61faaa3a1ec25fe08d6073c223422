@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f7a61c3_e038dd2b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-06T10:52:14Z",
+      "side": 1,
+      "message": "I\u0027m struggling to see which bits of build.sh are being ported here.\n\nExcept for PRE/POST DEFCONFIG bits, but lots of things like LTO are missing.",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "da6191dc74e61faaa3a1ec25fe08d6073c223422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "834c713b_efbad1bf",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-06T10:52:14Z",
+      "side": 1,
+      "message": "This is naming something, but it\u0027s not used. Is there some documentation I can go and read?",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 15
+      },
+      "revId": "da6191dc74e61faaa3a1ec25fe08d6073c223422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "343376b5_9fbe2d99",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-06T10:52:14Z",
+      "side": 1,
+      "message": "mv...? I see this sequence is manipulating a file in a \"known\" location (hopefully created completely afresh in this build world), but it would be cleaner if each operation were touching a temporary file that gets mv\u0027d to the right place.\n\nWhat happens if one of the earlier steps fails?",
+      "range": {
+        "startLine": 113,
+        "startChar": 14,
+        "endLine": 113,
+        "endChar": 16
+      },
+      "revId": "da6191dc74e61faaa3a1ec25fe08d6073c223422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d15419c9_2f0c1b13",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-06T10:52:14Z",
+      "side": 1,
+      "message": "Is this mv not going to break idempotency (if that\u0027s even a requirement)?",
+      "range": {
+        "startLine": 131,
+        "startChar": 14,
+        "endLine": 131,
+        "endChar": 17
+      },
+      "revId": "da6191dc74e61faaa3a1ec25fe08d6073c223422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
