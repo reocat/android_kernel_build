@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b79eba88_24c09e6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-07T09:20:02Z",
+      "side": 1,
+      "message": "We are not yet on par with build.sh. But at this point we can stop using it as we got all prerequisites to build at least the kernel without build.sh.\n\nI added a note to the commit message.",
+      "parentUuid": "3f7a61c3_e038dd2b",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "da6191dc74e61faaa3a1ec25fe08d6073c223422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "834c713b_efbad1bf",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-07-06T10:52:14Z",
       "side": 1,
       "message": "This is naming something, but it\u0027s not used. Is there some documentation I can go and read?",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 15
+      },
+      "revId": "da6191dc74e61faaa3a1ec25fe08d6073c223422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f6311d5_720689e6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-07T09:20:02Z",
+      "side": 1,
+      "message": "That was a leftover. removed.",
+      "parentUuid": "834c713b_efbad1bf",
       "range": {
         "startLine": 97,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d33cfa5_03c80f31",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-07T09:20:02Z",
+      "side": 1,
+      "message": "This file is freshly created in this build step. So, this move is ok.",
+      "parentUuid": "343376b5_9fbe2d99",
+      "range": {
+        "startLine": 113,
+        "startChar": 14,
+        "endLine": 113,
+        "endChar": 16
+      },
+      "revId": "da6191dc74e61faaa3a1ec25fe08d6073c223422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d15419c9_2f0c1b13",
@@ -83,6 +155,30 @@
       "writtenOn": "2021-07-06T10:52:14Z",
       "side": 1,
       "message": "Is this mv not going to break idempotency (if that\u0027s even a requirement)?",
+      "range": {
+        "startLine": 131,
+        "startChar": 14,
+        "endLine": 131,
+        "endChar": 17
+      },
+      "revId": "da6191dc74e61faaa3a1ec25fe08d6073c223422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4154e70_7e30bc5a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-07T09:20:02Z",
+      "side": 1,
+      "message": "I am not entirely sure what bazel will do here in order to preserve the previous rule\u0027s output. In any case, I made this a cp now.",
+      "parentUuid": "d15419c9_2f0c1b13",
       "range": {
         "startLine": 131,
         "startChar": 14,
