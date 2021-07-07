@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbe1ee10_5717481f",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-07T14:46:09Z",
+      "side": 1,
+      "message": "this flag enables the behavior that you are trying to fix.\n\n  --include-module-exports \"Include inter-module symbols\"\n\nWhat am I missing?",
+      "range": {
+        "startLine": 216,
+        "startChar": 12,
+        "endLine": 216,
+        "endChar": 36
+      },
+      "revId": "93bed2b2181daef7a4059c6dad6055329cefc092",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
