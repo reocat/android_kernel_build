@@ -1,0 +1,619 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "813db6d2_2a49ff0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "Lots of language nits (sorry).",
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccb7d5b3_51229c5e",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "Suggest: the canonical way to build Android kernels is with build.sh",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 14
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97ee33b3_d76e25c5",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "Suggest: While proven and robust, build.sh exposes users etc. to issues that are hard etc.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 15
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c892fd3b_f3ec0a61",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "aims to",
+      "range": {
+        "startLine": 14,
+        "startChar": 24,
+        "endLine": 14,
+        "endChar": 40
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "094d0111_99fd2531",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "Suggest: Hence, alternative approaches are being researched.",
+      "range": {
+        "startLine": 13,
+        "startChar": 16,
+        "endLine": 14,
+        "endChar": 11
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27cdb2f9_2d2a5648",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "still providing (or perhaps preserving?)",
+      "range": {
+        "startLine": 15,
+        "startChar": 35,
+        "endLine": 15,
+        "endChar": 45
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab5bc4c8_f63ff999",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "has been",
+      "range": {
+        "startLine": 16,
+        "startChar": 71,
+        "endLine": 16,
+        "endChar": 73
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f03eab9_6c38a705",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "Did the features result in build.sh\u0027s acceptance or did build.sh result in the features\u0027 acceptance?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 41
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e319c72_d9d2850a",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "does not support",
+      "range": {
+        "startLine": 22,
+        "startChar": 21,
+        "endLine": 22,
+        "endChar": 42
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c346833_f74579b0",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "work and can be exercised?",
+      "range": {
+        "startLine": 23,
+        "startChar": 45,
+        "endLine": 23,
+        "endChar": 70
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fcf5430_7c20ac76",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "as per the kernel manifest definition (or just manifest?)",
+      "range": {
+        "startLine": 30,
+        "startChar": 40,
+        "endLine": 30,
+        "endChar": 74
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86388cd5_c9c7b1ae",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "the use of",
+      "range": {
+        "startLine": 31,
+        "startChar": 54,
+        "endLine": 31,
+        "endChar": 59
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc63af6e_73fb2bfd",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "There is nothing *too* special about this. Appending tools to PATH would have same effect.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 20
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4a55ebb_fe31f7e1",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "refers by convention\nor\nby convention refers",
+      "range": {
+        "startLine": 54,
+        "startChar": 18,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9c7dfda_61525ac8",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "the case",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 4
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86c89e3c_7e42a6f8",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "mechanism or just command or subcommand.",
+      "range": {
+        "startLine": 58,
+        "startChar": 29,
+        "endLine": 58,
+        "endChar": 39
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "981a8b4d_66a1330d",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "It\u0027s more natural to say \"your own build\". However, I feel some adjective is missing to distinguish this \"build\" from what you\u0027ve been talking about in the sections above.",
+      "range": {
+        "startLine": 66,
+        "startChar": 19,
+        "endLine": 66,
+        "endChar": 25
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "631f110e_45490166",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "to running (comparing two actions)\nor drop the first Running.",
+      "range": {
+        "startLine": 81,
+        "startChar": 48,
+        "endLine": 81,
+        "endChar": 52
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceefabcb_bfa8e3e1",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "though limited",
+      "range": {
+        "startLine": 82,
+        "startChar": 28,
+        "endLine": 82,
+        "endChar": 29
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dbb740b_2bfe66e0",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "Current plans are to make Kleaf available...",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 44
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07dda277_f5869d59",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "As of now (yyyy-mm-dd), these are",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 22
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b99fd770_aeeb54bb",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "it out",
+      "range": {
+        "startLine": 98,
+        "startChar": 29,
+        "endLine": 98,
+        "endChar": 31
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f1dc210_671bc4ec",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "bazel-based (`bazel`-based? (Bazel-based??))",
+      "range": {
+        "startLine": 108,
+        "startChar": 31,
+        "endLine": 108,
+        "endChar": 41
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9405c518_1663031b",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "Bazel-based",
+      "range": {
+        "startLine": 112,
+        "startChar": 21,
+        "endLine": 112,
+        "endChar": 32
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e06d46c7_f8a31943",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "the name",
+      "range": {
+        "startLine": 115,
+        "startChar": 17,
+        "endLine": 115,
+        "endChar": 18
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d766c94_5ca3fd17",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "The ... is sometimes referred ...",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 17
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda5887d_fd26056d",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-07T16:17:40Z",
+      "side": 1,
+      "message": "last bit surely not necessary",
+      "range": {
+        "startLine": 118,
+        "startChar": 75,
+        "endLine": 119,
+        "endChar": 24
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
