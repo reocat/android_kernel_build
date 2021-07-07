@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1455ec97_43aaa648",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1128729
+      },
+      "writtenOn": "2021-07-07T09:33:41Z",
+      "side": 1,
+      "message": "No problem.  Will move to \u0027master\u0027.\n\n(This is my first patch on kernel projects.)",
+      "parentUuid": "097f205f_e718188a",
+      "revId": "2df5d7820d8ce236a14c2ac357996cb91085c671",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2216f22f_52bd6a18",
         "filename": "build.sh",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2021-07-07T09:26:31Z",
       "side": 1,
       "message": "Archiving",
+      "range": {
+        "startLine": 1076,
+        "startChar": 11,
+        "endLine": 1076,
+        "endChar": 26
+      },
+      "revId": "2df5d7820d8ce236a14c2ac357996cb91085c671",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ac6d021_1e208962",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1076,
+      "author": {
+        "id": 1128729
+      },
+      "writtenOn": "2021-07-07T09:33:41Z",
+      "side": 1,
+      "message": "I feel \"Archiving\" is better, too. Will fix when moving to \u0027master\u0027.\n\nbtw, here I use \"Copying\" is because an original code is using \"Copying\":\n\nhttps://android.googlesource.com/kernel/build/+/85f81fad17f61c9730f2754d465944de63d0b393/build.sh#908",
+      "parentUuid": "2216f22f_52bd6a18",
       "range": {
         "startLine": 1076,
         "startChar": 11,
