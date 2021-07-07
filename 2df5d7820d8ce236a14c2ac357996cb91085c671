@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "097f205f_e718188a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-07T09:26:31Z",
+      "side": 1,
+      "message": "This needs to go to \u0027master\u0027 first to not cause regressions. Technically, this is a feature and not a fix, so actually should not go on master-kernel-build-2021 at all ...",
+      "revId": "2df5d7820d8ce236a14c2ac357996cb91085c671",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2216f22f_52bd6a18",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 1076,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-07T09:26:31Z",
+      "side": 1,
+      "message": "Archiving",
+      "range": {
+        "startLine": 1076,
+        "startChar": 11,
+        "endLine": 1076,
+        "endChar": 26
+      },
+      "revId": "2df5d7820d8ce236a14c2ac357996cb91085c671",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
