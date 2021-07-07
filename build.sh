@@ -62,6 +62,9 @@
 #   COMPRESS_UNSTRIPPED_MODULES
 #     If set to "1", then compress the unstripped modules into a tarball.
 #
+#   COMPRESS_MODULES
+#     If set to "1", then compress all modules into a tarball.
+#
 #   CC
 #     Override compiler to be used. (e.g. CC=clang) Specifying CC=gcc
 #     effectively unsets CC to fall back to the default gcc detected by kbuild
@@ -830,7 +833,10 @@ fi
 # define the kernel binary and modules archive in the $ABI_PROP
 echo "KERNEL_BINARY=vmlinux" >> ${ABI_PROP}
 if [ "${COMPRESS_UNSTRIPPED_MODULES}" = "1" ]; then
-  echo "MODULES_ARCHIVE=${UNSTRIPPED_MODULES_ARCHIVE}" >> ${ABI_PROP}
+  echo "UNSTRIPPED_MODULES_ARCHIVE=${UNSTRIPPED_MODULES_ARCHIVE}" >> ${ABI_PROP}
+fi
+if [ "${COMPRESS_MODULES}" = "1" ]; then
+  echo "MODULES_ARCHIVE=${MODULES_ARCHIVE}" >> ${ABI_PROP}
 fi
 
 # Copy the abi_${arch}.xml file from the sources into the dist dir
@@ -1067,6 +1073,10 @@ if [ -n "${MODULES}" ]; then
       echo "  ${FILE#${MODULES_STAGING_DIR}/}"
       cp -p ${FILE} ${DIST_DIR}
     done
+    echo " Copying modules files to ${MODULES_ARCHIVE}"
+    if [ "${COMPRESS_MODULES}" = "1" ]; then
+      tar --transform="s,.*/,," -czf ${DIST_DIR}/${MODULES_ARCHIVE} ${MODULES[@]}
+    fi
   fi
   if [ "${BUILD_INITRAMFS}" = "1" ]; then
     echo "========================================================"
