@@ -213,6 +213,7 @@ if [ -n "$KMI_SYMBOL_LIST" ]; then
         fi
 
         ${ROOT_DIR}/build/abi/extract_symbols          \
+            --include-module-exports                   \
             --symbol-list $KERNEL_DIR/$KMI_SYMBOL_LIST \
             ${SKIP_MODULE_GROUPING}                    \
             ${ADD_ONLY_FLAG}                           \

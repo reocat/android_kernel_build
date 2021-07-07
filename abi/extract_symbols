@@ -157,7 +157,7 @@ def read_symbol_list(symbol_list):
 
 def create_symbol_list(symbol_list, undefined_symbols, exported,
                        emit_module_symbol_lists, module_grouping,
-                       additions_only):
+                       additions_only, generic_exports, local_exports):
   """Creates a symbol symbol list for libabigail."""
   precious_symbols = set()
   if additions_only:
@@ -170,7 +170,7 @@ def create_symbol_list(symbol_list, undefined_symbols, exported,
 
     common_wl_section = symbol_sort([
         symbol for symbol, count in symbol_counter.items()
-        if (count > 1 or not module_grouping) and symbol in exported
+        if (count > 1 or not module_grouping) and symbol in generic_exports
     ] + _ALWAYS_INCLUDED)
 
     # write the header
@@ -196,7 +196,7 @@ def create_symbol_list(symbol_list, undefined_symbols, exported,
 
       new_wl_section = symbol_sort([
           symbol for symbol in symbols
-          if symbol in exported and symbol not in common_wl_section
+          if symbol in exported and symbol not in common_wl_section and symbol not in local_exports
       ])
 
       if not new_wl_section:
@@ -340,7 +340,10 @@ def main():
         all_exported if args.include_module_exports else generic_exports,
         args.emit_module_symbol_lists,
         args.module_grouping,
-        args.additions_only)
+        args.additions_only,
+        generic_exports,
+        list(itertools.chain.from_iterable(local_exports.values()))
+)
 
   if args.print_modules:
     print("These modules have been considered when creating the symbol list:")
