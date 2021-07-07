@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a9bee147_7ceed64a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1128729
+      },
+      "writtenOn": "2021-07-07T09:38:47Z",
+      "side": 1,
+      "message": "\u003e this is a feature and not a fix, so actually should not go on master-kernel-build-2021 at all ...\n\nThe aosp_kernel-common-android12-5.10 on AndroidCI is using the project `kernel/build` on master-kernel-build-2021:\n\nhttps://ci.android.com/builds/branches/aosp_kernel-common-android12-5.10/grid?\n\nWe need this feature on master-kernel-build-2021, or it won\u0027t be able to apply to AndroidCI. Thus, we need to merge the patch into master-kernel-build-2021 eventually.",
+      "parentUuid": "1455ec97_43aaa648",
+      "revId": "2df5d7820d8ce236a14c2ac357996cb91085c671",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2216f22f_52bd6a18",
         "filename": "build.sh",
         "patchSetId": 1
