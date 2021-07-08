@@ -626,6 +626,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d37202a3_2f597a49",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-08T12:00:25Z",
+      "side": 1,
+      "message": "\u003e I believe adding tools/ to PATH is not working as of now.\n\nThat _is_ actually working. Just tested it. So, I reworded that section a bit.",
+      "parentUuid": "7a632e33_b4ad059c",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 20
+      },
+      "revId": "c19fdfd92476dc1d72b5314928caff91edd063e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4a55ebb_fe31f7e1",
         "filename": "kleaf/README.md",
         "patchSetId": 3
