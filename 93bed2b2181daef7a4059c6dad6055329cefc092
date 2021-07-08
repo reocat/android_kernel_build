@@ -22,6 +22,30 @@
       },
       "revId": "93bed2b2181daef7a4059c6dad6055329cefc092",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cead96c6_24a5da79",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2021-07-08T10:51:55Z",
+      "side": 1,
+      "message": "And as mentioned in the bug, I don\u0027t think inter-module ABI should be exposed in the symbol list. Symbols exported by modules are not trimmed or monitored, so they shouldn\u0027t need to be added to the symbol list.",
+      "parentUuid": "dbe1ee10_5717481f",
+      "range": {
+        "startLine": 216,
+        "startChar": 12,
+        "endLine": 216,
+        "endChar": 36
+      },
+      "revId": "93bed2b2181daef7a4059c6dad6055329cefc092",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
