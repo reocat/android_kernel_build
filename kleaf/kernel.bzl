@@ -188,3 +188,64 @@ def _kernel_build(name, env, config, srcs, outs, toolchain_version, **kwargs):
         message = "Building kernel",
         **kwargs
     )
+
+def kernel_module(
+        name,
+        env,
+        config,
+        srcs,
+        outs,
+        ext_mod,
+        toolchain_version = "r416183b",
+        **kwargs):
+    """Defines a kernel module target.
+
+    Args:
+        name: the kernel module name
+        env: A label that names the environment target of a kernel_build module,
+          e.g. "kernel_aarch64_env"
+        config: A label that names the kernel config target of a kernel_build
+          module, e.g. "kernel_aarch64_config",
+        srcs: the sources for building the kernel module
+        outs: the expected output files. For each output file specified here, a
+          label "{name}/{output_file}" is created to refer to the output file.
+          For example, if
+            name = "kernel_aarch64",
+            outs = ["foo/bar"],
+          then label "kernel_aarch64/foo/bar" is created to refer to the output
+          file.
+        ext_mod: directory that contains the Makefile. This is where "make" is
+          executed on ("make -C ${ext_mod}")
+        toolchain_version: the toolchain version to depend on
+    """
+
+    kwargs["tools"] = kwargs.get("tools", []) + _kernel_build_tools(env, toolchain_version)
+
+    common_setup = _kernel_build_common_setup(env)
+
+    native.genrule(
+        name = name,
+        srcs = srcs + [
+            config,
+        ],
+        outs = [name + "/" + file for file in outs],
+        # FIXME infer ext_mod automatically
+        cmd = common_setup + """
+            # Set MODULE_STRIP_FLAG
+              if [ "$${{DO_NOT_STRIP_MODULES}}" != "1" ]; then
+                MODULE_STRIP_FLAG="INSTALL_MOD_STRIP=1"
+              fi
+            # Set MODULES_STAGING_DIR
+              MODULES_STAGING_DIR=$$(readlink -m $${{COMMON_OUT_DIR}}/staging)
+            # Restore inputs
+              mkdir -p $${{OUT_DIR}}/include/
+              tar xf $(location {config}) -C $${{OUT_DIR}}
+            # Actual kernel module build
+              make -C {ext_mod} $${{TOOL_ARGS}} O=$${{OUT_DIR}} KERNEL_SRC=$${{ROOT_DIR}}/$${{KERNEL_DIR}}
+              make -C {ext_mod} $${{TOOL_ARGS}} O=$${{OUT_DIR}} KERNEL_SRC=$${{ROOT_DIR}}/$${{KERNEL_DIR}} INSTALL_MOD_PATH=$${{MODULES_STAGING_DIR}} $${{MODULE_STRIP_FLAG}} modules_install
+            # Move outputs into place
+              for i in $${{FILES}}; do mv $${{OUT_DIR}}/$$i $(RULEDIR); done
+            """.format(name = name, config = config, ext_mod = ext_mod),
+        message = "Building ext kernel module {name}".format(name = name),
+        **kwargs
+    )
