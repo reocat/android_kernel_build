@@ -22,6 +22,30 @@
       },
       "revId": "bd00e29ac8982580b88660d378d808a924de0862",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bab3834_89749f6e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-08T00:31:27Z",
+      "side": 1,
+      "message": "It is intentional because neither of \"_setup_env.sh\" nor \"preserve_env.sh\", specified in cmd, requires any additional tools. If they do, then it should be specified in this list, not in the rule itself.\n\nOn the other hand, at L77, the command actually requires these additional tools when build.sh builds the kernel.\n\nLet me know if you disagree. I don\u0027t have objections to add tools instead of overwriting them.",
+      "parentUuid": "659cb013_fa80060f",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "bd00e29ac8982580b88660d378d808a924de0862",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
