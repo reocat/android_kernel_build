@@ -188,3 +188,75 @@ def _kernel_build(name, env, config, srcs, outs, toolchain_version, **kwargs):
         message = "Building kernel",
         **kwargs
     )
+
+def kernel_module(
+        name,
+        kernel_build,
+        srcs,
+        outs,
+        makefile = "Makefile",
+        toolchain_version = "r416183b",
+        **kwargs):
+    """Defines a kernel module target.
+
+    Args:
+        name: the kernel module name
+        kernel_build: a label referring to a kernel_build target
+        srcs: the sources for building the kernel module
+        outs: the expected output files. For each output file specified here, a
+          label "{name}/{output_file}" is created to refer to the output file.
+          For example, if
+            name = "kernel_aarch64",
+            outs = ["foo/bar"],
+          then label "kernel_aarch64/foo/bar" is created to refer to the output
+          file.
+        makefile: location of the Makefile. This is where "make" is
+          executed on ("make -C $(dirname ${makefile})").
+        toolchain_version: the toolchain version to depend on
+    """
+    env = kernel_build + "_env"
+    config = kernel_build + "_config"
+    kernel_sources = kernel_build + "_sources"
+
+    kwargs["tools"] = kwargs.get("tools", []) + _kernel_build_tools(env, toolchain_version)
+    common_setup = _kernel_build_common_setup(env)
+
+    additional_srcs = [
+        kernel_build,
+        kernel_build + "/vmlinux",
+        kernel_sources,
+        config + "/.config",
+        config + "/include.tar.gz",
+    ]
+    if makefile not in srcs:
+        additional_srcs.append(makefile)
+
+    native.genrule(
+        name = name,
+        srcs = srcs + additional_srcs,
+        outs = [name + "/" + file for file in outs],
+        cmd = common_setup + """
+            # Set MODULE_STRIP_FLAG
+              if [ "$${{DO_NOT_STRIP_MODULES}}" != "1" ]; then
+                MODULE_STRIP_FLAG="INSTALL_MOD_STRIP=1"
+              fi
+            # Set MODULES_STAGING_DIR
+              MODULES_STAGING_DIR=$$(readlink -m $${{COMMON_OUT_DIR}}/staging)
+            # Restore inputs from _config
+              mkdir -p $${{OUT_DIR}}/include/
+              cp $(location {config}/.config) $${{OUT_DIR}}/.config
+              tar xf $(location {config}/include.tar.gz) -C $${{OUT_DIR}}
+            # Restore inputs from kernel_build.
+            # Use vmlinux as an anchor to find the directory, then copy all
+            # contents of the directory to OUT_DIR
+              cp -R $$(dirname $(location {kernel_build}/vmlinux))* $${{OUT_DIR}}
+            # Actual kernel module build
+              make -C $$(dirname $(location {makefile})) $${{TOOL_ARGS}} O=$${{OUT_DIR}} KERNEL_SRC=$${{ROOT_DIR}}/$${{KERNEL_DIR}}
+            # Install into staging directory
+              make -C $$(dirname $(location {makefile})) $${{TOOL_ARGS}} O=$${{OUT_DIR}} KERNEL_SRC=$${{ROOT_DIR}}/$${{KERNEL_DIR}} INSTALL_MOD_PATH=$${{MODULES_STAGING_DIR}} $${{MODULE_STRIP_FLAG}} modules_install
+            # Move outputs into place
+              for i in {outs}; do mv $${{MODULES_STAGING_DIR}}/lib/modules/*/extra/$$i $(@D)/{name}/$$i; done
+            """.format(name = name, config = config, makefile = makefile, kernel_build = kernel_build, outs = " ".join(outs)),
+        message = "Building external module",
+        **kwargs
+    )
