@@ -201,16 +201,16 @@ export TOOL_ARGS="${tool_args[@]}"
 
 export DECOMPRESS_GZIP DECOMPRESS_LZ4 RAMDISK_COMPRESS RAMDISK_DECOMPRESS RAMDISK_EXT
 
-DECOMPRESS_GZIP="gzip -c -d"
-DECOMPRESS_LZ4="lz4 -c -d -l"
+export DECOMPRESS_GZIP="gzip -c -d"
+export DECOMPRESS_LZ4="lz4 -c -d -l"
 if [ -z "${LZ4_RAMDISK}" ] ; then
-  RAMDISK_COMPRESS="gzip -c -f"
-  RAMDISK_DECOMPRESS="${DECOMPRESS_GZIP}"
-  RAMDISK_EXT="gz"
+  export RAMDISK_COMPRESS="gzip -c -f"
+  export RAMDISK_DECOMPRESS="${DECOMPRESS_GZIP}"
+  export RAMDISK_EXT="gz"
 else
-  RAMDISK_COMPRESS="lz4 -c -l -12 --favor-decSpeed"
-  RAMDISK_DECOMPRESS="${DECOMPRESS_LZ4}"
-  RAMDISK_EXT="lz4"
+  export RAMDISK_COMPRESS="lz4 -c -l -12 --favor-decSpeed"
+  export RAMDISK_DECOMPRESS="${DECOMPRESS_LZ4}"
+  export RAMDISK_EXT="lz4"
 fi
 
 # verifies that defconfig matches the DEFCONFIG
