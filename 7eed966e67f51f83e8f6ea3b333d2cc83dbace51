@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "743a59c6_f209f23b",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1128729
+      },
+      "writtenOn": "2021-07-08T02:54:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d378f08a_d5f74f73",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 62
+      },
+      "revId": "7eed966e67f51f83e8f6ea3b333d2cc83dbace51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17e02042_6e484f9c",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-07-07T14:51:05Z",
       "side": 1,
       "message": "stripped modules are unlikely to be useful for ABI analysis. Hence you don\u0027t need to add this information to the abi.prop.",
+      "range": {
+        "startLine": 735,
+        "startChar": 0,
+        "endLine": 738,
+        "endChar": 0
+      },
+      "revId": "7eed966e67f51f83e8f6ea3b333d2cc83dbace51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ba41375_f9472547",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1128729
+      },
+      "writtenOn": "2021-07-08T02:54:01Z",
+      "side": 1,
+      "message": "Understand. Removed.",
+      "parentUuid": "17e02042_6e484f9c",
       "range": {
         "startLine": 735,
         "startChar": 0,
