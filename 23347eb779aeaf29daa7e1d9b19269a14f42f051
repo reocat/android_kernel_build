@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d9bd8cc_0873b54a",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-07-08T16:47:43Z",
+      "side": 1,
+      "message": "Did you want these modules to include the debug symbols because that\u0027s what they\u0027ll have when DO_NOT_STRIP_MODULES\u003d1. If not, then you should fetch them from the INITRAMFS_STAGING_DIR since those will be stripped after calling create_modules_staging below.",
+      "range": {
+        "startLine": 973,
+        "startChar": 0,
+        "endLine": 973,
+        "endChar": 81
+      },
+      "revId": "23347eb779aeaf29daa7e1d9b19269a14f42f051",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
