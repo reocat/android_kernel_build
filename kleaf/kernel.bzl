@@ -12,6 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+def _kernel_build_tools(env, toolchain_version):
+    return [
+        env,
+        "//build:kernel-abi-scripts",
+        "//build:kernel-build-scripts",
+        "//build:host-tools",
+        "//prebuilts/clang/host/linux-x86/clang-%s:binaries" % toolchain_version,
+        "//prebuilts/build-tools:linux-x86",
+        "//prebuilts/kernel-build-tools:linux-x86",
+    ]
+
+def _kernel_build_common_setup(env):
+    return """
+            # do not fail upon unset variables being read
+              set +u
+            # source the build environment
+              source $(location {env})
+            # setup the PATH to also include the host tools
+              export PATH=$$PATH:$$PWD/$$(dirname $$( echo $(locations //build:host-tools) | tr ' ' '\n' | head -n 1 ) )
+            """.format(env = env)
+
 def kernel_build(
         name,
         build_config,
@@ -29,34 +50,70 @@ def kernel_build(
         accessible after the rule has run. The default toolchain_version is
         defined with a sensible default, but can be overriden.
 
+        Two additional labels, "{name}_env" and "{name}_config", are generated.
+        For example, if name is "kernel_aarch64":
+        - kernel_aarch64_env provides a source-able build environment defined
+          by the build config.
+        - kernel_aarch64_config provides the kernel config.
+
     Args:
-        name: the final kernel target name
-        build_config: the main build_config file
+        name: the final kernel target name, e.g. "kernel_aarch64"
+        build_config: the path to the build config from the top of the kernel
+          tree, e.g. "common/build.config.gki.aarch64"
         srcs: the kernel sources (a glob())
-        outs: the expected output files
+        outs: the expected output files. For each output file specified here, a
+          label "{name}/{output_file}" is created to refer to the output file.
+          For example, if
+            name = "kernel_aarch64",
+            outs = ["foo/bar"],
+          then label "kernel_aarch64/foo/bar" is created to refer to the
+          output file.
         toolchain_version: the toolchain version to depend on
     """
     env_target = name + "_env"
-
-    build_configs = [
+    config_target = name + "_config"
+    build_config_srcs = [
         s
         for s in srcs
         if "/build.config" in s or s.startswith("build.config")
     ]
-    kernel_srcs = [s for s in srcs if s not in build_configs]
+    kernel_srcs = [s for s in srcs if s not in build_config_srcs]
 
-    _env(env_target, build_config, build_configs, **kwargs)
-    _kernel_build(name, env_target, kernel_srcs, outs, toolchain_version, **kwargs)
+    _env(env_target, build_config, build_config_srcs, **kwargs)
+    _config(config_target, env_target, kernel_srcs, toolchain_version, **kwargs)
+    _kernel_build(
+        name,
+        env_target,
+        config_target,
+        kernel_srcs,
+        outs,
+        toolchain_version,
+        **kwargs
+    )
 
-def _env(name, build_config, build_configs, **kwargs):
-    """Generates a rule that generates a source-able build environment."""
+def _env(
+        name,
+        build_config,
+        srcs,
+        **kwargs):
+    """Generates a rule that generates a source-able build environment. A build
+    environment is defined by a single build config file.
+
+    Args:
+        name: the name of the build config
+        build_config: the path to the build config from the top of the kernel
+          tree, e.g. "common/build.config.gki.aarch64"
+        srcs: A list of labels. The source files that this build config may
+          refer to, including itself.
+          E.g. ["build.config.gki.aarch64", "build.config.gki"]
+    """
     kwargs["tools"] = [
         "//build:_setup_env.sh",
         "//build/kleaf:preserve_env.sh",
     ]
     native.genrule(
         name = name,
-        srcs = build_configs,
+        srcs = srcs,
         outs = [name + ".sh"],
         cmd = """
             # do not fail upon unset variables being read
@@ -74,28 +131,26 @@ def _env(name, build_config, build_configs, **kwargs):
         **kwargs
     )
 
-def _kernel_build(name, env, srcs, outs, toolchain_version, **kwargs):
-    """Generates a kernel build rule."""
-    kwargs["tools"] = kwargs.get("tools", []) + [
+def _config(
+        name,
         env,
-        "//build:kernel-build-scripts",
-        "//build:host-tools",
-        "//prebuilts/clang/host/linux-x86/clang-%s:binaries" % toolchain_version,
-        "//prebuilts/build-tools:linux-x86",
-        "//prebuilts/kernel-build-tools:linux-x86",
-    ]
+        srcs,
+        toolchain_version,
+        **kwargs):
+    """Defines a kernel config target.
 
-    common_setup = """
-            # do not fail upon unset variables being read
-              set +u
-            # source the build environment
-              source $(location {env})
-            # setup the PATH to also include the host tools
-              export PATH=$$PATH:$$PWD/$$(dirname $$( echo $(locations //build:host-tools) | tr ' ' '\n' | head -n 1 ) )
-            """.format(env = env)
+    Args:
+        name: the name of the kernel config
+        env: A label that names the environment target of a kernel_build module,
+          e.g. "kernel_aarch64_env"
+        srcs: the kernel sources
+        toolchain_version: the toolchain version to depend on
+    """
+    kwargs["tools"] = kwargs.get("tools", []) + _kernel_build_tools(env, toolchain_version)
+    common_setup = _kernel_build_common_setup(env)
 
     native.genrule(
-        name = name + "_config",
+        name = name,
         srcs = [s for s in srcs if s.startswith("scripts") or not s.endswith((".c", ".h"))],
         outs = [
             name + "/.config",
@@ -116,32 +171,28 @@ def _kernel_build(name, env, srcs, outs, toolchain_version, **kwargs):
         **kwargs
     )
 
+def _kernel_build(name, env, config, srcs, outs, toolchain_version, **kwargs):
+    """Generates a kernel build rule."""
+    kwargs["tools"] = kwargs.get("tools", []) + _kernel_build_tools(env, toolchain_version)
+    common_setup = _kernel_build_common_setup(env)
+
     native.genrule(
-        name = name + "_bin",
+        name = name,
         srcs = srcs + [
-            name + "/.config",
-            name + "/include.tar.gz",
+            config + "/.config",
+            config + "/include.tar.gz",
         ],
         outs = [name + "/" + file for file in outs],  # e.g. kernel_aarch64/vmlinux
         cmd = common_setup + """
             # Restore inputs
               mkdir -p $${{OUT_DIR}}/include/
-              cp $(location {name}/.config) $${{OUT_DIR}}/.config
-              tar xf $(location {name}/include.tar.gz) -C $${{OUT_DIR}}
+              cp $(location {config}/.config) $${{OUT_DIR}}/.config
+              tar xf $(location {config}/include.tar.gz) -C $${{OUT_DIR}}
             # Actual kernel build
               make -C $${{KERNEL_DIR}} $${{TOOL_ARGS}} O=$${{OUT_DIR}} $${{MAKE_GOALS}}
             # Move outputs into place
               for i in $${{FILES}}; do mv $${{OUT_DIR}}/$$i $$(dirname $(location {name}/vmlinux)); done
-            """.format(name = name),
+            """.format(name = name, config = config),
         message = "Building kernel",
         **kwargs
-    )
-
-    native.filegroup(
-        name = name,
-        srcs = [
-            name + "_env",
-            name + "/.config",
-            name + "_bin",
-        ],
     )
