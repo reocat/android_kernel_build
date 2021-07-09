@@ -68,7 +68,42 @@ def kernel_build(
         build_config: the path to the build config from the directory containing
            the WORKSPACE file, e.g. "common/build.config.gki.aarch64"
         srcs: the kernel sources (a glob())
-        outs: the expected output files
+        outs: the expected output files. For each item {out}:
+
+          - If {out} does not contain a slash, the build rule
+            automatically finds a file with name {out} in the legacy kernel
+            build output directory ${OUT_DIR}.
+              find ${OUT_DIR} -name {out}
+            There must be exactly one match.
+            The file is copied to the following in the output directory
+              {name}/{out}
+
+            Example:
+              kernel_build(name = "kernel_aarch64", outs = ["vmlinux"])
+            The bulid system copies
+              ${OUT_DIR}/[<optional subdirectory>/]vmlinux
+            to
+              kernel_aarch64/vmlinux.
+            `kernel_aarch64/vmlinux` is the label to the file.
+
+          - If {out} contains a slash, the build rule locates the file in the
+            legacy kernel build output directory ${OUT_DIR} with path {out}
+            The file is copied to the following in the output directory
+              1. {name}/{out}
+              2. {name}/$(basename {out})
+
+            Example:
+              kernel_build(
+                name = "kernel_aarch64",
+                outs = ["arch/arm64/boot/vmlinux"])
+            The bulid system copies
+              ${OUT_DIR}/arch/arm64/boot/vmlinux
+            to:
+              1. kernel_aarch64/arch/arm64/boot/vmlinux
+              2. kernel_aarch64/vmlinux
+            They are also the labels to the output files, respectively.
+
+            See search_and_copy_output.sh for details.
         toolchain_version: the toolchain version to depend on
     """
     sources_target_name = name + "_sources"
@@ -196,6 +231,26 @@ def _kernel_build(
 
     kwargs["tools"] = kwargs.get("tools", [])
     kwargs["tools"] += _kernel_build_tools(env_target_name, toolchain_version)
+    kwargs["tools"] += [
+        "//build/kleaf:search_and_copy_output.sh",
+    ]
+
+    genrule_outs = []
+    out_cmd = []
+    for out in outs:
+        genrule_outs.append("{name}/{out}".format(name = name, out = out))
+        if "/" in out:
+            base = out[out.rfind("/") + 1:]
+            genrule_outs.append("{name}/{base}".format(name = name, base = base))
+            cmd = """
+                  cp $${{OUT_DIR}}/{out} $(@D)/{name}/$$(basename {out})
+                  mv $${{OUT_DIR}}/{out} $(@D)/{name}/{out}
+                  """.format(name = name, out = out)
+        else:
+            cmd = """
+                  $(execpath //build/kleaf:search_and_copy_output.sh) "{name}" "{out}" "$${{OUT_DIR}}" "$(@D)/{name}"
+                  """.format(name = name, out = out)
+        out_cmd.append(cmd)
 
     native.genrule(
         name = name,
@@ -204,15 +259,15 @@ def _kernel_build(
             config_target_name + "/include.tar.gz",
         ],
         # e.g. kernel_aarch64/vmlinux
-        outs = [name + "/" + file for file in outs],
+        outs = genrule_outs,
         cmd = _kernel_build_common_setup(env_target_name) +
               _kernel_setup_config(config_target_name) +
               """
             # Actual kernel build
               make -C $${{KERNEL_DIR}} $${{TOOL_ARGS}} O=$${{OUT_DIR}} $${{MAKE_GOALS}}
-            # Move outputs into place
-              for i in $${{FILES}}; do mv $${{OUT_DIR}}/$$i $$(dirname $(location {name}/vmlinux)); done
-            """.format(name = name),
+            # Grab outputs
+              {out_cmd}
+              """.format(name = name, out_cmd = "".join(out_cmd)),
         message = "Building kernel",
         **kwargs
     )
