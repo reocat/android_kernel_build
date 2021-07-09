@@ -46,6 +46,30 @@
       },
       "revId": "23347eb779aeaf29daa7e1d9b19269a14f42f051",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3f46318_ecdb5fa7",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-07-09T16:44:43Z",
+      "side": 1,
+      "message": "That depends on the build.config. If you set DO_NOT_STRIP_MODULES\u003d1, then the modules under $DIST_DIR will be unstripped. `build.config.common` does set DO_NOT_STRIP_MODULES\u003d1 so that we can use ABI monitoring. For kernel_virt_aarch64, the modules in DIST_DIR will be unstripped.\n\nIf you intention is to just compress the artifacts as they are, then this is fine.",
+      "parentUuid": "b114f673_8ab54152",
+      "range": {
+        "startLine": 973,
+        "startChar": 0,
+        "endLine": 973,
+        "endChar": 81
+      },
+      "revId": "23347eb779aeaf29daa7e1d9b19269a14f42f051",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
