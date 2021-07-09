@@ -250,6 +250,8 @@ def kernel_module(
             # Use vmlinux as an anchor to find the directory, then copy all
             # contents of the directory to OUT_DIR
               cp -R $$(dirname $(location {kernel_build}/vmlinux))* $${{OUT_DIR}}
+            # Prepare for kernel module build
+              make -C $${{KERNEL_DIR}} $${{TOOL_ARGS}} O=$${{OUT_DIR}} KERNEL_SRC=$${{ROOT_DIR}}/$${{KERNEL_DIR}} modules_prepare
             # Actual kernel module build
               make -C $$(dirname $(location {makefile})) $${{TOOL_ARGS}} O=$${{OUT_DIR}} KERNEL_SRC=$${{ROOT_DIR}}/$${{KERNEL_DIR}}
             # Install into staging directory
