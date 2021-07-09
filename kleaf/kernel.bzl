@@ -241,6 +241,7 @@ def kernel_module(
               mkdir -p $${{OUT_DIR}}/include/
               tar xf $(location {config}) -C $${{OUT_DIR}}
             # Actual kernel module build
+              make -C $${{KERNEL_DIR}} $${{TOOL_ARGS}} O=$${{OUT_DIR}} KERNEL_SRC=$${{ROOT_DIR}}/$${{KERNEL_DIR}} modules_prepare
               make -C {ext_mod} $${{TOOL_ARGS}} O=$${{OUT_DIR}} KERNEL_SRC=$${{ROOT_DIR}}/$${{KERNEL_DIR}}
               make -C {ext_mod} $${{TOOL_ARGS}} O=$${{OUT_DIR}} KERNEL_SRC=$${{ROOT_DIR}}/$${{KERNEL_DIR}} INSTALL_MOD_PATH=$${{MODULES_STAGING_DIR}} $${{MODULE_STRIP_FLAG}} modules_install
             # Move outputs into place
