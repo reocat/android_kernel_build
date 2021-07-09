@@ -60,7 +60,12 @@ def kernel_build(
         build_config: the path to the build config from the top of the kernel
           tree, e.g. "common/build.config.gki.aarch64"
         srcs: the kernel sources (a glob())
-        outs: the expected output files
+        outs: the expected output files. For each output file specified here, a
+          label "{name}/{output_file}" is created to refer to the output file.
+          For example, if
+            name = "kernel_aarch64",
+            outs = ["foo/bar"],
+          then label "kernel_aarch64/foo/bar" is created to refer to the
         toolchain_version: the toolchain version to depend on
     """
     env_target = name + "_env"
@@ -184,7 +189,7 @@ def _kernel_build(name, env, config, srcs, outs, toolchain_version, **kwargs):
             # Actual kernel build
               make -C $${{KERNEL_DIR}} $${{TOOL_ARGS}} O=$${{OUT_DIR}} $${{MAKE_GOALS}}
             # Move outputs into place
-              for i in $${{FILES}}; do mv $${{OUT_DIR}}/$$i $$(dirname $(location {name}/vmlinux)); done
+              for i in $${{FILES}}; do mv $${{OUT_DIR}}/$$i $$(dirname $(location {name}/vmlinux))/$$i; done
             """.format(name = name, config = config),
         message = "Building kernel",
         **kwargs
