@@ -22,6 +22,30 @@
       },
       "revId": "23347eb779aeaf29daa7e1d9b19269a14f42f051",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b114f673_8ab54152",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1128729
+      },
+      "writtenOn": "2021-07-09T08:17:23Z",
+      "side": 1,
+      "message": "Hi Will,\n\nUse an Artifacts as example:\n\nhttps://android-build.googleplex.com/builds/submitted/7534410/kernel_virt_aarch64/latest\n\nAre the .ko files under the root of Artifacts stripped? On the other side, what\u0027s the .ko files packed in the `initramfs.img`? Basically, my original idea is packing the one under the root of Artifacts.",
+      "parentUuid": "4d9bd8cc_0873b54a",
+      "range": {
+        "startLine": 973,
+        "startChar": 0,
+        "endLine": 973,
+        "endChar": 81
+      },
+      "revId": "23347eb779aeaf29daa7e1d9b19269a14f42f051",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
