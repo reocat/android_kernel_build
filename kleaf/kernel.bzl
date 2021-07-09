@@ -68,7 +68,38 @@ def kernel_build(
         build_config: the path to the build config from the directory containing
            the WORKSPACE file, e.g. "common/build.config.gki.aarch64"
         srcs: the kernel sources (a glob())
-        outs: the expected output files
+        outs: the expected output files. Two formats are supported:
+
+          - If the list contains a single token {out}, the build rule
+            automatically finds a file named {out} in the legacy kernel build
+            output directory ${OUT_DIR}. Subdirectories are searched.
+            (Implementation details: only files in ${FILES} are considered.)
+            The file is copied to the output directory of {name},
+            with the label {name}/{out}.
+
+            {out} must not contain a slash.
+
+            For example:
+              kernel_build(name = "kernel_aarch64", outs = ["vmlinux"])
+            The bulid system copies `${OUT_DIR}/<some subdirectory>/vmlinux`
+            to `kernel_aarch64/vmlinux`.
+            `kernel_aarch64/vmlinux` is the label to the file.
+
+          - If the list contains two tokens separated by a colon "{path}:{out}",
+            the build rule locates {path} under the legacy kernel
+            build output directory ${OUT_DIR}. The file is copied to the
+            output directory of {name} under {out}, with the label
+            {name}/{out}.
+
+            {out} may contain a slash.
+
+            For example:
+              kernel_build(
+                name = "kernel_aarch64",
+                outs = ["arch/arm64/boot/vmlinux:mydir/vmlinux"])
+            The bulid system copies `${OUT_DIR}/arch/arm64/boot/vmlinux`
+            to `kernel_aarch64/mydir/vmlinux`.
+            `kernel_aarch64/mydir/vmlinux` is the label to the file.
         toolchain_version: the toolchain version to depend on
     """
     env_target_name = name + "_env"
@@ -212,6 +243,56 @@ def _kernel_build(
     # Make sure building "kernel_aarch64" also builds "kernel_aarch64/.config"
     kwargs["tools"].append(name + "/.config")
 
+    genrule_outs = []
+    out_cmd = []
+    for out in outs:
+        if ":" in out:
+            pair = out.split(":")
+            if len(pair) != 2:
+                fail('{name}: "{out}" is not a valid value of outs because it contains {length} colon-separated tokens, expected 2.'.format(name = name, out = out, length = len(pair)))
+            src, dst = pair
+            genrule_outs.append("{name}/{dst}".format(name = name, dst = dst))
+            out_cmd.append("mv $${{OUT_DIR}}/{src} $(@D)/{name}/{dst}".format(name = name, src = src, dst = dst))
+        else:
+            if "/" in out:
+                # This could be supported. However, to avoid confusion,
+                # developers are required to use the full syntax to specify the
+                # intent.
+                fail('{name}: "{out}" is not a valid value of `outs` because it contains a slash. Perhaps you mean "{out}:{out}"?'.format(name = name, out = out))
+
+            # Use indices to work around `Error: type 'string' is not iterable`
+            # This is the sanitized version of {out} to be used as shell variables.
+            sanitized = "".join([out[i] if out[i].isalnum() else "_" for i in range(len(out))])
+
+            cmd = """
+                  found_{sanitized}=
+                  for file in $${{FILES}}; do
+                    if [ "$$(basename $${{file}})" = "{out}" ]; then
+                      if [ "$${{found_{sanitized}}}" != "" ]; then
+                        echo "{name}: More than one file in FILES has the name {out}:"
+                        echo "  $${{found_{sanitized}}}"
+                        echo "  $${{file}}"
+                        echo "In `outs` of \\"{name}\\", specify in the path:out syntax, e.g.:"
+                        echo "  outs = ["
+                        echo "    \\"$${{found_{sanitized}}}:$${{found_{sanitized}}}\\","
+                        echo "    \\"$${{file}}:$${{file}}\\","
+                        echo "  ],"
+                        exit 1
+                      fi
+                      found_{sanitized}=$${{file}}
+                      mv $${{OUT_DIR}}/$${{file}} $(@D)/{name}/{out}
+                    fi
+                  done
+                  if [ "$${{found_{sanitized}}}" = "" ]; then
+                    echo "{name}: \\"{out}\\" in `outs` does not match anything in FILES:"
+                    echo "$${{FILES}}"
+                    exit 1
+                  fi
+                  found_{sanitized}=
+                  """.format(name = name, out = out, sanitized = sanitized)
+            genrule_outs.append("{name}/{out}".format(name = name, out = out))
+            out_cmd.append(cmd)
+
     native.genrule(
         name = name,
         srcs = srcs + [
@@ -219,15 +300,14 @@ def _kernel_build(
             config_target_name + "/include.tar.gz",
         ],
         # e.g. kernel_aarch64/vmlinux
-        outs = [name + "/" + file for file in outs],
+        outs = genrule_outs,
         cmd = _kernel_build_common_setup(env_target_name) +
               _kernel_setup_config(config_target_name) +
               """
             # Actual kernel build
               make -C $${{KERNEL_DIR}} $${{TOOL_ARGS}} O=$${{OUT_DIR}} $${{MAKE_GOALS}}
-            # Move outputs into place
-              for i in $${{FILES}}; do mv $${{OUT_DIR}}/$$i $$(dirname $(location {name}/vmlinux)); done
-            """.format(name = name, config_target_name = config_target_name),
+              """.format(name = name, config_target_name = config_target_name) +
+              "\n".join(out_cmd),
         message = "Building kernel",
         **kwargs
     )
