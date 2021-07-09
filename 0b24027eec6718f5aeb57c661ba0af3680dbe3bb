@@ -16,6 +16,70 @@
       "message": "This is needed for CL:1760381 to refer to the _env and _config genrules. This will require a change to kernel/common. But first I want to get your opinions; WDYT about this?",
       "revId": "0b24027eec6718f5aeb57c661ba0af3680dbe3bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbf6c194_62f5d676",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-09T13:29:22Z",
+      "side": 1,
+      "message": "I think I like the idea of splitting things up and allowing to manually invoke the kernel_env and kernel_config targets. I would still think that kernel_build() creates the env and the config target and by contract we can rely on that. Thus, a subsequent kernel_module(...) could rely on name+\"_env\" and name+\"_config\" to exist. I would not want to create unnecessary boilerplate in the BUILD.bazel files.",
+      "parentUuid": "28d2507d_67d48f65",
+      "revId": "0b24027eec6718f5aeb57c661ba0af3680dbe3bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b874d8f6_35628a3c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-09T13:29:22Z",
+      "side": 1,
+      "message": "I wonder whether this should be a convention: name + \"_env\"",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 38,
+        "endChar": 11
+      },
+      "revId": "0b24027eec6718f5aeb57c661ba0af3680dbe3bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d977dd9e_e95cee8e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-09T13:29:22Z",
+      "side": 1,
+      "message": "do we need to cut out the kernel_config as well? \n\nI wonder whether we can make assumptions about the generated targets. We know that kernel_build(name\u003dname) will always generate also the targets name+\"_env\" and name+\"_config\". Maybe we are able to rely on that contract to use those labels later instead of having to explicitly instantiate them in BUILD.bazel? It might get very noisy in BUILD.bazel otherwise.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 17
+      },
+      "revId": "0b24027eec6718f5aeb57c661ba0af3680dbe3bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
