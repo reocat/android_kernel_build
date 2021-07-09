@@ -16,6 +16,24 @@
       "message": "the rest of the change is correct, but this line is likely outdated now as we are not using build.sh anymore. The kernel-abi-scripts need to rather go into a \"ABI\" rule.",
       "revId": "bbdab02161a74ca0793fd8ca342e6a867b792a3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "194a836a_61d03d61",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-09T22:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd261847_763f9442",
+      "revId": "bbdab02161a74ca0793fd8ca342e6a867b792a3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
