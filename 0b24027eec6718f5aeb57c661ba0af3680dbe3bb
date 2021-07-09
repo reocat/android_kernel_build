@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28d2507d_67d48f65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-09T00:28:20Z",
+      "side": 1,
+      "message": "This is needed for CL:1760381 to refer to the _env and _config genrules. This will require a change to kernel/common. But first I want to get your opinions; WDYT about this?",
+      "revId": "0b24027eec6718f5aeb57c661ba0af3680dbe3bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
