@@ -69,6 +69,7 @@ def kernel_build(
           file.
         toolchain_version: the toolchain version to depend on
     """
+    sources_target = name + "_sources"
     env_target = name + "_env"
     config_target = name + "_config"
     build_config_srcs = [
@@ -79,12 +80,13 @@ def kernel_build(
     kernel_srcs = [s for s in srcs if s not in build_config_srcs]
 
     _env(env_target, build_config, build_config_srcs, **kwargs)
-    _config(config_target, env_target, kernel_srcs, toolchain_version, **kwargs)
+    native.filegroup(name = sources_target, srcs = kernel_srcs)
+    _config(config_target, env_target, [sources_target], toolchain_version, **kwargs)
     _kernel_build(
         name,
         env_target,
         config_target,
-        kernel_srcs,
+        [sources_target],
         outs,
         toolchain_version,
         **kwargs
