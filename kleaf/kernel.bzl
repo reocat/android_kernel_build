@@ -102,6 +102,7 @@ def kernel_build(
             `kernel_aarch64/mydir/vmlinux` is the label to the file.
         toolchain_version: the toolchain version to depend on
     """
+    sources_target_name = name + "_sources"
     env_target_name = name + "_env"
     config_target_name = name + "_config"
     build_config_srcs = [
@@ -112,10 +113,11 @@ def kernel_build(
     kernel_srcs = [s for s in srcs if s not in build_config_srcs]
 
     _env(env_target_name, build_config, build_config_srcs, **kwargs)
+    native.filegroup(name = sources_target_name, srcs = kernel_srcs)
     _config(
         config_target_name,
         env_target_name,
-        kernel_srcs,
+        [sources_target_name],
         toolchain_version,
         **kwargs
     )
@@ -123,7 +125,7 @@ def kernel_build(
         name,
         env_target_name,
         config_target_name,
-        kernel_srcs,
+        [sources_target_name],
         outs,
         toolchain_version,
         **kwargs
