@@ -77,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "856c8e36_538a17ce",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-09T22:50:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b874d8f6_35628a3c",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 38,
+        "endChar": 11
+      },
+      "revId": "0b24027eec6718f5aeb57c661ba0af3680dbe3bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d977dd9e_e95cee8e",
@@ -90,6 +114,30 @@
       "writtenOn": "2021-07-09T13:29:22Z",
       "side": 1,
       "message": "do we need to cut out the kernel_config as well? \n\nI wonder whether we can make assumptions about the generated targets. We know that kernel_build(name\u003dname) will always generate also the targets name+\"_env\" and name+\"_config\". Maybe we are able to rely on that contract to use those labels later instead of having to explicitly instantiate them in BUILD.bazel? It might get very noisy in BUILD.bazel otherwise.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 17
+      },
+      "revId": "0b24027eec6718f5aeb57c661ba0af3680dbe3bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee085c0b_94899b8e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-09T22:50:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d977dd9e_e95cee8e",
       "range": {
         "startLine": 64,
         "startChar": 4,

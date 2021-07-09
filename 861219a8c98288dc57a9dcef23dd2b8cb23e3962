@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9a57078_fd3d42f0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-09T22:50:38Z",
+      "side": 1,
+      "message": "Note: I also dropped the \"_bin\" target, and just make the regular {name} to be the one that builds the kernel. srcs \u0026 tools should specify the dependency properly, so I don\u0027t think the filegroup in L139~147 in the original file is necessary.",
+      "revId": "861219a8c98288dc57a9dcef23dd2b8cb23e3962",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
