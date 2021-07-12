@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "514bbc57_74998035",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-12T19:46:24Z",
+      "side": 1,
+      "message": "I\u0027ll do the others in the next patchset.",
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "282ab844_a1debfdd",
@@ -41,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd047bf0_cb925c58",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-12T19:46:24Z",
+      "side": 1,
+      "message": "I see that sometimes it can be like this:\n\n  foo/\n    include/\n    srcs/\n      Makefile\n\nIn this case, either one of the following is needed:\n\n  foo/\n    include/\n      BUILD.bazel\n        export include files as filegroup\n    srcs/\n      Makefile\n      BUILD.bazel\n        infer makefile: \"Makefile\"\n        also use files in include\n\nOR\n\n  foo/\n    BUILD.bazel\n      srcs: glob([\"include/**\", \"srcs/**\"])\n      makefile: \"srcs/Makefile\"\n    include/\n    srcs/\n      Makefile\n\nSo the most accurate description is that this is the location of the makefile.",
+      "parentUuid": "56e7f85c_b085bdec",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 57
+      },
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60fac2fe_bf812d36",
@@ -60,6 +101,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "603c91d8_b6402142",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-12T19:46:24Z",
+      "side": 1,
+      "message": "I could always generate a file that contains the value of that variable. WDYT?",
+      "parentUuid": "60fac2fe_bf812d36",
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c0d6893_303decc9",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 7
@@ -71,6 +130,30 @@
       "writtenOn": "2021-07-12T12:26:14Z",
       "side": 1,
       "message": "why can\u0027t we say users should not put it into the srcs and be done with it? Or say users should put it in. The current implementation creates divergence.",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 40
+      },
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "481c83e0_e34c5efd",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-12T19:46:24Z",
+      "side": 1,
+      "message": "Then the user can\u0027t do `glob([\"**\"])` but actually need to filter it out explicitly.\n\nI found that\u0027s kinda clumsy.",
+      "parentUuid": "1c0d6893_303decc9",
       "range": {
         "startLine": 231,
         "startChar": 0,
@@ -106,6 +189,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d1fcb4c1_97a49d53",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-12T19:46:24Z",
+      "side": 1,
+      "message": "Okay.\n\nThough, this is the logic in build.sh. With build.sh, even if _setup_env.sh defines MODULE_STRIP_FLAG, I don\u0027t think it would be depended on.\n\nI agree that lower-casing it would make this clearer. I\u0027ll do it in the next patchset.",
+      "parentUuid": "5e19c20d_2c1f6a10",
+      "range": {
+        "startLine": 241,
+        "startChar": 16,
+        "endLine": 241,
+        "endChar": 33
+      },
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3179f38c_87db10bc",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 7
@@ -117,6 +224,30 @@
       "writtenOn": "2021-07-12T12:26:14Z",
       "side": 1,
       "message": "can we try not to depend on these definitions? staging/ could be anywhere, right? The less we depend on definitions of _setup_env.sh, the easier it is to remove those.\n\nAlso, consider calling it \"modules_staging_dir\" (it could even be a bazel variable, actually)",
+      "range": {
+        "startLine": 244,
+        "startChar": 53,
+        "endLine": 244,
+        "endChar": 67
+      },
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be9dc5d5_4730b6e1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-12T19:46:24Z",
+      "side": 1,
+      "message": "Oh! You are right! I\u0027ll move `MODULES_STAGING_DIR` somewhere else",
+      "parentUuid": "3179f38c_87db10bc",
       "range": {
         "startLine": 244,
         "startChar": 53,
