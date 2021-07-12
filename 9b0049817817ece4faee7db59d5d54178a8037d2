@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48055b6c_5802d1ee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-12T12:39:39Z",
+      "side": 1,
+      "message": "this is an output of the kernel build. Maybe it is not restored to the correct location?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 58
+      },
+      "revId": "9b0049817817ece4faee7db59d5d54178a8037d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39e9ceeb_bc6dc9fa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-12T12:39:39Z",
+      "side": 1,
+      "message": "probably a follow-up of the above.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 102
+      },
+      "revId": "9b0049817817ece4faee7db59d5d54178a8037d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "befacd43_f9334d70",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-12T12:39:39Z",
+      "side": 1,
+      "message": "System.map is also an output of the kernel_build. They all need to be restored to the right location in OUT_DIR.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 69
+      },
+      "revId": "9b0049817817ece4faee7db59d5d54178a8037d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d30eb20_a99eda57",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 5
