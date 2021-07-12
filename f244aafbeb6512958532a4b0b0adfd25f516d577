@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14b17f8d_a63a11fe",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-12T12:28:44Z",
+      "side": 1,
+      "message": "these are common make args, we can possibly deduplicate them.",
+      "range": {
+        "startLine": 254,
+        "startChar": 39,
+        "endLine": 254,
+        "endChar": 113
+      },
+      "revId": "f244aafbeb6512958532a4b0b0adfd25f516d577",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
