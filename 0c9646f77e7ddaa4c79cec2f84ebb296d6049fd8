@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45a6332c_207c69eb",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T04:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b149cc88_a7359394",
+      "range": {
+        "startLine": 60,
+        "startChar": 71,
+        "endLine": 61,
+        "endChar": 14
+      },
+      "revId": "0c9646f77e7ddaa4c79cec2f84ebb296d6049fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2c02e73_96f53ee9",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-07-12T12:10:36Z",
       "side": 1,
       "message": "let\u0027s call this \"env_target_name\" to make this more readable. env_target would rather be the full label.",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 14
+      },
+      "revId": "0c9646f77e7ddaa4c79cec2f84ebb296d6049fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc484009_accb39ac",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T04:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2c02e73_96f53ee9",
       "range": {
         "startLine": 66,
         "startChar": 4,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e70c288d_ca2e4537",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T04:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31f8f453_ccfdb5c9",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 17
+      },
+      "revId": "0c9646f77e7ddaa4c79cec2f84ebb296d6049fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8f8e3d0_88b0d625",
@@ -100,6 +172,30 @@
       "writtenOn": "2021-07-12T12:10:36Z",
       "side": 1,
       "message": "\"build_config_srcs\" for consistency?",
+      "range": {
+        "startLine": 87,
+        "startChar": 29,
+        "endLine": 87,
+        "endChar": 33
+      },
+      "revId": "0c9646f77e7ddaa4c79cec2f84ebb296d6049fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85eec452_06d26057",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T04:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8f8e3d0_88b0d625",
       "range": {
         "startLine": 87,
         "startChar": 29,
@@ -133,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a4016a3_3c59e9bf",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T04:50:07Z",
+      "side": 1,
+      "message": "It\u0027s actually name of the module, but main build config is fine",
+      "parentUuid": "d171bd24_066fdef1",
+      "range": {
+        "startLine": 92,
+        "startChar": 30,
+        "endLine": 92,
+        "endChar": 42
+      },
+      "revId": "0c9646f77e7ddaa4c79cec2f84ebb296d6049fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "521e95c1_8d53acc8",
@@ -146,6 +266,24 @@
       "writtenOn": "2021-07-12T12:10:36Z",
       "side": 1,
       "message": "the fact that we are throwing away all other \u0027tools\u0027 deserves a comment",
+      "revId": "0c9646f77e7ddaa4c79cec2f84ebb296d6049fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "539bf482_e613eca6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T04:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "521e95c1_8d53acc8",
       "revId": "0c9646f77e7ddaa4c79cec2f84ebb296d6049fd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -167,6 +305,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c7d545f_bad5d803",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T04:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b204ef34_7d3a8891",
+      "revId": "0c9646f77e7ddaa4c79cec2f84ebb296d6049fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a266acd9_3c11aa5a",
@@ -180,6 +336,30 @@
       "writtenOn": "2021-07-12T12:10:36Z",
       "side": 1,
       "message": "I think it would be nicer if this would refer to kernel_aarch64/.config instead of kernel_aarch64_config/.config. The kernel base name should be the directory name. Bazel would tell us about collisions if we were to accidentally overload this. Possibly, make the kernel_build copy the file and create an additional output file? In any case I would like to be able to refer to {kernel_name}/.config",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 140,
+        "endChar": 16
+      },
+      "revId": "0c9646f77e7ddaa4c79cec2f84ebb296d6049fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98a05f31_5725b115",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T04:50:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a266acd9_3c11aa5a",
       "range": {
         "startLine": 140,
         "startChar": 12,
