@@ -41,6 +41,70 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce7524c4_782eeb10",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-13T14:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44a9ee89_c7204983",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 5
+      },
+      "revId": "038fc0634f73bb1ddba1609b78f52e6cc3274759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d87a95b9_b480e0fa",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-13T14:43:17Z",
+      "side": 1,
+      "message": "the first argument is called \u0027name\u0027 by convention",
+      "range": {
+        "startLine": 148,
+        "startChar": 8,
+        "endLine": 148,
+        "endChar": 26
+      },
+      "revId": "038fc0634f73bb1ddba1609b78f52e6cc3274759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eff475b_19a4190e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-13T14:43:17Z",
+      "side": 1,
+      "message": "I know I asked for it, but let\u0027s drop this for the moment. It creates too much noise right now.",
+      "revId": "038fc0634f73bb1ddba1609b78f52e6cc3274759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04ac1b44_ab18765c",
@@ -54,6 +118,30 @@
       "writtenOn": "2021-07-13T10:35:14Z",
       "side": 1,
       "message": "this is no longer needed",
+      "range": {
+        "startLine": 230,
+        "startChar": 34,
+        "endLine": 230,
+        "endChar": 75
+      },
+      "revId": "038fc0634f73bb1ddba1609b78f52e6cc3274759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f981847c_d9b7e334",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-13T14:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04ac1b44_ab18765c",
       "range": {
         "startLine": 230,
         "startChar": 34,
