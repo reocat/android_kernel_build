@@ -24,13 +24,21 @@ def _kernel_build_tools(env, toolchain_version):
 
 def _kernel_build_common_setup(env):
     return """
-            # do not fail upon unset variables being read
-              set +u
-            # source the build environment
-              source $(location {env})
-            # setup the PATH to also include the host tools
-              export PATH=$$PATH:$$PWD/$$(dirname $$( echo $(locations //build:host-tools) | tr ' ' '\n' | head -n 1 ) )
-            """.format(env = env)
+         # do not fail upon unset variables being read
+           set +u
+         # source the build environment
+           source $(location {env})
+         # setup the PATH to also include the host tools
+           export PATH=$$PATH:$$PWD/$$(dirname $$( echo $(locations //build:host-tools) | tr ' ' '\n' | head -n 1 ) )
+           """.format(env = env)
+
+def _kernel_setup_config(config_target_name):
+    return """
+         # Restore inputs
+           mkdir -p $${{OUT_DIR}}/include/
+           cp $(location {config_target_name}/.config) $${{OUT_DIR}}/.config
+           tar xf $(location {config_target_name}/include.tar.gz) -C $${{OUT_DIR}}
+           """.format(config_target_name = config_target_name)
 
 def kernel_build(
         name,
@@ -213,11 +221,8 @@ def _kernel_build(
         # e.g. kernel_aarch64/vmlinux
         outs = [name + "/" + file for file in outs],
         cmd = _kernel_build_common_setup(env_target_name) +
+              _kernel_setup_config(config_target_name) +
               """
-            # Restore inputs
-              mkdir -p $${{OUT_DIR}}/include/
-              cp $(location {config_target_name}/.config) $${{OUT_DIR}}/.config
-              tar xf $(location {config_target_name}/include.tar.gz) -C $${{OUT_DIR}}
             # Actual kernel build
               make -C $${{KERNEL_DIR}} $${{TOOL_ARGS}} O=$${{OUT_DIR}} $${{MAKE_GOALS}}
             # Move outputs into place
