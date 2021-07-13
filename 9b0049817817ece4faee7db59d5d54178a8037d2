@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2768d2e7_bf1fa51b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-13T15:40:06Z",
+      "side": 1,
+      "message": "FILES defines what ends up in $DIST_DIR. In a normal build/build.sh build, Module.symvers ends up in the $OUT_DIR, specifically: out/android-mainline/common/Module.symvers . A subsequent module build done in the same out dir can make use of it.\n\nSo, for kleaf we have to retain this and restore it for the module build.",
+      "parentUuid": "fc2229b2_06434de8",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 58
+      },
+      "revId": "9b0049817817ece4faee7db59d5d54178a8037d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39e9ceeb_bc6dc9fa",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "6eacc207_c585ece5",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 69
+      },
+      "revId": "9b0049817817ece4faee7db59d5d54178a8037d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b36571a2_c8b9d90b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-13T15:40:06Z",
+      "side": 1,
+      "message": "possibly once you fixed Module.symvers, things might change then.",
+      "parentUuid": "16dec0d5_1953d9ef",
       "range": {
         "startLine": 17,
         "startChar": 0,
