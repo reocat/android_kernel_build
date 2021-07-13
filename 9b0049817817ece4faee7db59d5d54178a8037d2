@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc2229b2_06434de8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T05:21:02Z",
+      "side": 1,
+      "message": "It is not specified in FILES, and I can\u0027t find it in the output directory either. Is it built by make on the kernel directory?",
+      "parentUuid": "48055b6c_5802d1ee",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 58
+      },
+      "revId": "9b0049817817ece4faee7db59d5d54178a8037d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39e9ceeb_bc6dc9fa",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
