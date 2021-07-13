@@ -16,6 +16,24 @@
       "message": "See my comments on the bug. We might need to support both a full path as well as an abbreviated path. If somebody wants to make this target build a top level directory with outputs, we can support referring to outputs by just basename.\n\nE.g. outs \u003d [\u0027vmlinux\u0027] could move up `arch/arm64/boot/vmlinux` to the top level if \u0027vmlinux\u0027 uniquely describes an output file in the out tree.",
       "revId": "58d7d3e3ca3a4ea938933b27941e3adcac30d284",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ada0901f_b7bc7b1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T04:50:43Z",
+      "side": 1,
+      "message": "See new PS. Though, I still think this is kinda clumsy. I\u0027ll respond in the bug.",
+      "parentUuid": "ece29d67_8fcb83dd",
+      "revId": "58d7d3e3ca3a4ea938933b27941e3adcac30d284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
