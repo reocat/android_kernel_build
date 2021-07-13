@@ -155,6 +155,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "baa845a1_2569661c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-13T15:32:07Z",
+      "side": 1,
+      "message": "I think we can do this with proper rules (rather then macros) and providers. Let me have a look at that.",
+      "parentUuid": "a5810184_0757489f",
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c0d6893_303decc9",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 7
