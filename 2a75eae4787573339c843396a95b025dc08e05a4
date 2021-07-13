@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea9f03e1_08673495",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T06:12:09Z",
+      "side": 1,
+      "message": "Note to self: All these (except L283) can be moved before the real kernel build. Consider checking to fail early.",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 36
+      },
+      "revId": "2a75eae4787573339c843396a95b025dc08e05a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
