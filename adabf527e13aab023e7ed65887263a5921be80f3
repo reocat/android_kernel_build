@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "006bee44_2ca5d4b2",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-13T15:08:51Z",
+      "side": 1,
+      "message": "do we need to restrict ourselves to $FILES ? I would probably issue a `find` command for files that are specified as basename only.",
+      "revId": "adabf527e13aab023e7ed65887263a5921be80f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85ddea32_52dae7e7",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-13T15:08:51Z",
+      "side": 1,
+      "message": "I think we should support that case. As mentioned elsewhere, we should treat this as if both the qualified version and the basename version are specified. E.g.\n\nIn terms of what we support here so far, I would like \n\n  outs \u003d [\n    \"foo/bar\"\n  ]\n  \n  \nto expand into\n\n\n\n  outs \u003d [\n    \"bar\",\n    \"foo/bar:foo/bar\",\n  ]",
+      "range": {
+        "startLine": 244,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 162
+      },
+      "revId": "adabf527e13aab023e7ed65887263a5921be80f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bc10d03_7a1e10d1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-13T15:08:51Z",
+      "side": 1,
+      "message": "this clearly exceeds the amount of code we should have in a build file. this needs to go into a separate (python) script",
+      "revId": "adabf527e13aab023e7ed65887263a5921be80f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02482782_26310547",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-13T15:08:51Z",
+      "side": 1,
+      "message": "consider\n\n          # Grab outputs\n            {out_cmd}\n            \"\"\".format(name \u003d name, out_cmd \u003d out_cmd),",
+      "revId": "adabf527e13aab023e7ed65887263a5921be80f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
