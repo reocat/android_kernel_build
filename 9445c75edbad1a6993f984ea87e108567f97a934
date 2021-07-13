@@ -119,6 +119,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3697d365_687d90e1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-13T05:26:44Z",
+      "side": 1,
+      "message": "Note, I can only *check* that the kernel_build and the kernel_module are built with the same toolchain_version. \n\nI can\u0027t infer the toolchain_version from the kernel_build rule because the file is only built at build time.",
+      "parentUuid": "603c91d8_b6402142",
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c0d6893_303decc9",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 7
