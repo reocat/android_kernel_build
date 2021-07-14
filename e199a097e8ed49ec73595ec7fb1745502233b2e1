@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e903021_6c1d35de",
+        "filename": "kleaf/search_and_copy_output.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-14T01:11:26Z",
+      "side": 1,
+      "message": "Ah, I am indeed hitting this problem now.\n\nI need to grab \"modules.order\" from the main kernel build (under $OUT_DIR), but there are many of them in the subdirectories.\n\nMaybe if there is multiple matches, prioritize the top-level one, and error if there\u0027s no top-level file?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 87
+      },
+      "revId": "e199a097e8ed49ec73595ec7fb1745502233b2e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
