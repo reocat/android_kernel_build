@@ -3,6 +3,132 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9364d1ef_a89caf23",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-14T14:22:56Z",
+      "side": 1,
+      "message": "not really legacy in this context. how about \"in the kernel build directory\"",
+      "range": {
+        "startLine": 74,
+        "startChar": 62,
+        "endLine": 74,
+        "endChar": 68
+      },
+      "revId": "e199a097e8ed49ec73595ec7fb1745502233b2e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3d315f2_33f7c5e3",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-14T14:22:56Z",
+      "side": 1,
+      "message": "let\u0027s call this external script only once with all outputs listed. We might be benefitting from running through OUT_DIR only once.",
+      "range": {
+        "startLine": 251,
+        "startChar": 18,
+        "endLine": 251,
+        "endChar": 117
+      },
+      "revId": "e199a097e8ed49ec73595ec7fb1745502233b2e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6253aec7_717a1a04",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-14T14:22:56Z",
+      "side": 1,
+      "message": "\\n ... otherwise you create assumptions about the strings (which could be simple \"strings like that\")",
+      "range": {
+        "startLine": 270,
+        "startChar": 48,
+        "endLine": 270,
+        "endChar": 50
+      },
+      "revId": "e199a097e8ed49ec73595ec7fb1745502233b2e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6e049cd_c5e69e41",
+        "filename": "kleaf/search_and_copy_output.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-14T14:22:56Z",
+      "side": 1,
+      "message": "why might benefit from python here (directory walking etc.)",
+      "revId": "e199a097e8ed49ec73595ec7fb1745502233b2e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2da3e17b_a744f52f",
+        "filename": "kleaf/search_and_copy_output.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-14T14:22:56Z",
+      "side": 1,
+      "message": "module might be an accurate term for the use case you have, but it is rather the target name?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 11
+      },
+      "revId": "e199a097e8ed49ec73595ec7fb1745502233b2e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12cbe027_70ac58d6",
+        "filename": "kleaf/search_and_copy_output.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-14T14:22:56Z",
+      "side": 1,
+      "message": "here we would benefit from calling this script exactly once with all files as arguments. This find can be expensive.",
+      "revId": "e199a097e8ed49ec73595ec7fb1745502233b2e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e903021_6c1d35de",
         "filename": "kleaf/search_and_copy_output.sh",
         "patchSetId": 20
@@ -43,6 +169,29 @@
         "startChar": 0,
         "endLine": 25,
         "endChar": 87
+      },
+      "revId": "e199a097e8ed49ec73595ec7fb1745502233b2e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44839fcb_3334278f",
+        "filename": "kleaf/search_and_copy_output.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-14T14:22:56Z",
+      "side": 1,
+      "message": "the name says \"copy\", the source says \"mv\". hardlink?",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 3
       },
       "revId": "e199a097e8ed49ec73595ec7fb1745502233b2e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
