@@ -16,6 +16,23 @@
       "message": "Though, I think it will conflict with your upcoming change to real rules. I should probably wait.",
       "revId": "19c047b0e1bff0988fc284bf4175e2c49c965814",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d92caad_62fd97da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-14T22:34:46Z",
+      "side": 1,
+      "message": "given https://docs.bazel.build/versions/main/skylark/language.html#mutability, do you need this change still? What have you observed?",
+      "revId": "19c047b0e1bff0988fc284bf4175e2c49c965814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
