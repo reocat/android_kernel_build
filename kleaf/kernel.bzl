@@ -194,7 +194,8 @@ def _config(
         srcs: the kernel sources
         toolchain_version: the toolchain version to depend on
     """
-    kwargs["tools"] = kwargs.get("tools", []) + _kernel_build_tools(
+    kwargs["tools"] = list(kwargs.get("tools", []))
+    kwargs["tools"] += _kernel_build_tools(
         env_target_name,
         toolchain_version,
     )
@@ -233,7 +234,7 @@ def _kernel_build(
         **kwargs):
     """Generates a kernel build rule."""
 
-    kwargs["tools"] = kwargs.get("tools", [])
+    kwargs["tools"] = list(kwargs.get("tools", []))
     kwargs["tools"] += _kernel_build_tools(env_target_name, toolchain_version)
 
     native.genrule(
