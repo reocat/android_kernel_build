@@ -16,6 +16,23 @@
       "message": "not tested by TH",
       "revId": "39aa4ffd2092aca778d1a975761119efe41a69e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e32cbf44_90106b68",
+        "filename": "kleaf/README.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-07-15T15:59:32Z",
+      "side": 1,
+      "message": "We currently have about ~300 vendor KOs -- anything we can do to optimize/avoid explicitly listing each KO would be really ideal. In our previous downstream solution, we would set the target to be a single archive of all the KOs.",
+      "revId": "39aa4ffd2092aca778d1a975761119efe41a69e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
