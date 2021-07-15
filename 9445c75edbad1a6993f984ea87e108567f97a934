@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd602788_eeddc5a8",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T06:04:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "282ab844_a1debfdd",
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56e7f85c_b085bdec",
@@ -171,6 +189,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fddca360_fc7f260c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T06:04:08Z",
+      "side": 1,
+      "message": "For now, I\u0027ll just create a separate variable: CL:1767685",
+      "parentUuid": "baa845a1_2569661c",
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c0d6893_303decc9",
@@ -208,6 +244,30 @@
       "side": 1,
       "message": "Then the user can\u0027t do `glob([\"**\"])` but actually need to filter it out explicitly.\n\nI found that\u0027s kinda clumsy.",
       "parentUuid": "1c0d6893_303decc9",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 40
+      },
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35df3b24_871b886b",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T06:04:08Z",
+      "side": 1,
+      "message": "Resolving",
+      "parentUuid": "481c83e0_e34c5efd",
       "range": {
         "startLine": 231,
         "startChar": 0,
@@ -265,6 +325,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4897486_046d4752",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T06:04:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1fcb4c1_97a49d53",
+      "range": {
+        "startLine": 241,
+        "startChar": 16,
+        "endLine": 241,
+        "endChar": 33
+      },
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3179f38c_87db10bc",
@@ -312,6 +396,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1cfd227_6a74b2fb",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T06:04:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be9dc5d5_4730b6e1",
+      "range": {
+        "startLine": 244,
+        "startChar": 53,
+        "endLine": 244,
+        "endChar": 67
+      },
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ad252a3_0650978e",
@@ -335,6 +443,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15f01cd4_f298770b",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T06:04:08Z",
+      "side": 1,
+      "message": "Done, it is now _kernel_setup_config",
+      "parentUuid": "6ad252a3_0650978e",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 73
+      },
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc82d99b_c43c7267",
@@ -348,6 +480,30 @@
       "writtenOn": "2021-07-12T12:26:14Z",
       "side": 1,
       "message": "kernel module (if it once is embedded in a larger Android plaform build ...)",
+      "range": {
+        "startLine": 260,
+        "startChar": 37,
+        "endLine": 260,
+        "endChar": 43
+      },
+      "revId": "9445c75edbad1a6993f984ea87e108567f97a934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f4998d8_7b3eaa6d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T06:04:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc82d99b_c43c7267",
       "range": {
         "startLine": 260,
         "startChar": 37,

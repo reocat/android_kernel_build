@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce2d1e9e_59110b7b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T06:04:08Z",
+      "side": 1,
+      "message": "Done. It is resolved by declaring the proper outputs in kernel_build\u0027s outs attribute.\n\nMaybe these should be added to outs automatically?",
+      "parentUuid": "2768d2e7_bf1fa51b",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 58
+      },
+      "revId": "9b0049817817ece4faee7db59d5d54178a8037d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39e9ceeb_bc6dc9fa",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
@@ -85,6 +109,30 @@
       "writtenOn": "2021-07-12T12:39:39Z",
       "side": 1,
       "message": "probably a follow-up of the above.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 102
+      },
+      "revId": "9b0049817817ece4faee7db59d5d54178a8037d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fa5ac11_ecbb6d2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T06:04:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39e9ceeb_bc6dc9fa",
       "range": {
         "startLine": 16,
         "startChar": 0,
@@ -180,6 +228,30 @@
       "side": 1,
       "message": "possibly once you fixed Module.symvers, things might change then.",
       "parentUuid": "16dec0d5_1953d9ef",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 69
+      },
+      "revId": "9b0049817817ece4faee7db59d5d54178a8037d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f66c14c9_8b18eea9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T06:04:08Z",
+      "side": 1,
+      "message": "Done, but see the other comment",
+      "parentUuid": "b36571a2_c8b9d90b",
       "range": {
         "startLine": 17,
         "startChar": 0,
