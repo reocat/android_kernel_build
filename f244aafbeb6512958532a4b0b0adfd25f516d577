@@ -22,6 +22,30 @@
       },
       "revId": "f244aafbeb6512958532a4b0b0adfd25f516d577",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4773d61d_387cfdf7",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T05:58:53Z",
+      "side": 1,
+      "message": "Maybe do it as a follow-up change? There\u0027re actually not a lot of arguments to deduplicate.",
+      "parentUuid": "14b17f8d_a63a11fe",
+      "range": {
+        "startLine": 254,
+        "startChar": 39,
+        "endLine": 254,
+        "endChar": 113
+      },
+      "revId": "f244aafbeb6512958532a4b0b0adfd25f516d577",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
