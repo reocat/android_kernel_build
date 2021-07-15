@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "401272a5_7f2a4a81",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T21:42:13Z",
+      "side": 1,
+      "message": "Note: \n\nhttps://docs.bazel.build/versions/main/skylark/lib/globals.html#rule\n\noutputs is deprecated.",
+      "range": {
+        "startLine": 227,
+        "startChar": 4,
+        "endLine": 227,
+        "endChar": 11
+      },
+      "revId": "9a1b9d6ce45ca35f2b5f3a37c92ff604ebb9e1c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
