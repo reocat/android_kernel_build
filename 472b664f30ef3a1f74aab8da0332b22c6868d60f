@@ -69,6 +69,30 @@
       },
       "revId": "472b664f30ef3a1f74aab8da0332b22c6868d60f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe01a746_dfcc213c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-15T21:44:48Z",
+      "side": 1,
+      "message": "Actually that should not be the case.\n\n Changes to mutable data-structures, such as appending a value to a list or deleting an entry in a dictionary are valid only for objects created in the current context. After a context finishes, its values become immutable.\n\nhttps://docs.bazel.build/versions/main/skylark/language.html#mutability\n\nWhat am I missing?",
+      "parentUuid": "74faef17_8225dc3f",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 16
+      },
+      "revId": "472b664f30ef3a1f74aab8da0332b22c6868d60f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
