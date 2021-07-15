@@ -16,6 +16,24 @@
       "message": "Alternatively, I can make kernel_build to export its $OUT_DIR/include/ directory (I think)",
       "revId": "234d87caf8172904cb003bb45ce018725ad25504",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8aa074e_70787285",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-15T11:39:48Z",
+      "side": 1,
+      "message": "that is maybe closer to the \"ddk\" approach later. Let\u0027s keep it as is now and revisit.",
+      "parentUuid": "719f60db_9842a68a",
+      "revId": "234d87caf8172904cb003bb45ce018725ad25504",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
