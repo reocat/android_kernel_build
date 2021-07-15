@@ -46,6 +46,30 @@
       },
       "revId": "bcb75456dbe6ec9484b0a930a502fc93fd18d020",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eee164b_4091eed4",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-15T17:25:42Z",
+      "side": 1,
+      "message": "I do this because \n\nhttps://docs.bazel.build/versions/main/be/make-variables.html#predefined_genrule_variables\n\n\u003e If the genrule needs to generate temporary intermediate files (perhaps as a result of using some other tool like a compiler), it should attempt to write them to @D (although /tmp will also be writable) and remove them before finishing.",
+      "parentUuid": "1898d0ee_9b6b562f",
+      "range": {
+        "startLine": 415,
+        "startChar": 0,
+        "endLine": 416,
+        "endChar": 45
+      },
+      "revId": "bcb75456dbe6ec9484b0a930a502fc93fd18d020",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
