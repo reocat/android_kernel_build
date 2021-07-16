@@ -93,6 +93,30 @@
       },
       "revId": "472b664f30ef3a1f74aab8da0332b22c6868d60f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0229270_891f3add",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-16T05:28:50Z",
+      "side": 1,
+      "message": "\u003e During a build, each .bzl file and each BUILD file get their own execution context. Each rule is also analyzed in its own context.\n\nI don\u0027t think these two are different rules; they are just two different macros. So the two kwargs refers to the same dictionary in the  same context.",
+      "parentUuid": "fe01a746_dfcc213c",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 16
+      },
+      "revId": "472b664f30ef3a1f74aab8da0332b22c6868d60f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
