@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6406ef90_24eb3939",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-16T10:42:30Z",
+      "side": 1,
+      "message": "That change is a bit hard to review. Cutting it into pieces would probably have made it easier (for me), but is also quite some work at this stage. I will upload a patch set with minor modifications and submit it as I do like the improvements done.",
+      "revId": "cfd48253eb7da5cc4eddffd7eb4dc85bfb104323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8904a55_432f6b63",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-16T10:42:30Z",
+      "side": 1,
+      "message": "I would prefer to follow PEP 257 for the docstrings (I have not seen whether starlark has a different opinion though).\n\nhttps://www.python.org/dev/peps/pep-0257/",
+      "revId": "cfd48253eb7da5cc4eddffd7eb4dc85bfb104323",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
