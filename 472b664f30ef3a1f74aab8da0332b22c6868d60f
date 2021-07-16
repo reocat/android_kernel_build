@@ -141,6 +141,30 @@
       },
       "revId": "472b664f30ef3a1f74aab8da0332b22c6868d60f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d8b53bc_5ebbf229",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-16T10:56:01Z",
+      "side": 1,
+      "message": "Let\u0027s do the change then.",
+      "parentUuid": "ed9c3956_3ac37215",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 16
+      },
+      "revId": "472b664f30ef3a1f74aab8da0332b22c6868d60f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
