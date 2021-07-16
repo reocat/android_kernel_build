@@ -430,8 +430,17 @@ def _kernel_module_impl(ctx):
                ext_mod=$(dirname {makefile})
                ext_mod_rel=$(python3 -c "import os.path; print(os.path.relpath('${{ROOT_DIR}}/${{ext_mod}}', '${{KERNEL_DIR}}'))")
 
+             # FIXME remove
+               echo ext_mod=${{ext_mod}}
+               echo ext_mod_rel=${{ext_mod_rel}}
+             # set -x
+
              # Prepare for kernel module build
                make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules_prepare
+
+             # FIXME remove
+             # MAKEFLAGS=${{MAKEFLAGS//-s/}}
+
              # Actual kernel module build
                make -C ${{ext_mod}} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}}
              # Install into staging directory
