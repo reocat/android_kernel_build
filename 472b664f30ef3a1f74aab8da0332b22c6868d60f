@@ -117,6 +117,30 @@
       },
       "revId": "472b664f30ef3a1f74aab8da0332b22c6868d60f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed9c3956_3ac37215",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-16T05:29:31Z",
+      "side": 1,
+      "message": "Though, it accidentally doesn\u0027t break anything yet",
+      "parentUuid": "e0229270_891f3add",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 16
+      },
+      "revId": "472b664f30ef3a1f74aab8da0332b22c6868d60f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
