@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28b3aafd_9a07f8b0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-19T17:02:01Z",
+      "side": 1,
+      "message": "kernel_config should also return a setup script so that it can be used in kernel_build (and kernel_module).",
+      "range": {
+        "startLine": 345,
+        "startChar": 65,
+        "endLine": 345,
+        "endChar": 66
+      },
+      "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10ff9341_b0c82a1c",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 1
