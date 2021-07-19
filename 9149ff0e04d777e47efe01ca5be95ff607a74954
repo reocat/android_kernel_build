@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75414654_40b7b619",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-19T16:56:13Z",
+      "side": 1,
+      "message": "nit: sources should be filtered at analysis stage to avoid too many dependencies.\n\nI know, the problem exists before this CL... and I don\u0027t know a way to fix it for now.",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 5
+      },
+      "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ff9341_b0c82a1c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-19T16:56:13Z",
+      "side": 1,
+      "message": "I thought this is deprecated?",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 6
+      },
+      "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
