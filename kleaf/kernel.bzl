@@ -396,16 +396,17 @@ def _kernel_module_impl(ctx):
         ctx.file.makefile,
     ]
 
-    outputs = []
+    # Helper file to determine the output directory
+    timestamp = ctx.actions.declare_file(ctx.label.name)
 
-    # outdir is not added to outputs because we don't need to return it.
-    outdir = ctx.actions.declare_directory(ctx.label.name)
-
-    for out in ctx.attr.outs:
-        outputs.append(ctx.actions.declare_file("{name}/{out}".format(name = ctx.label.name, out = out)))
-        if "/" in out:
-            base = out[out.rfind("/") + 1:]
-            outputs.append(ctx.actions.declare_file("{name}/{base}".format(name = name, base = base)))
+    # additional_outputs: [timestamp] + [basename(out) for out in outs]
+    additional_outputs = [
+        timestamp,
+    ]
+    for out in ctx.outputs.outs:
+        if "/" in out.path:
+            base = out.path[out.path.rfind("/") + 1:]
+            additional_outputs.append(ctx.actions.declare_file(base))
 
     command = _kernel_build_common_setup_starlark(
         env = kernel_build_deps["_env"].to_list()[0].path,
@@ -415,7 +416,7 @@ def _kernel_module_impl(ctx):
         config = kernel_build_deps["_config/.config"].to_list()[0].path,
         include_tar_gz = kernel_build_deps["_config/include.tar.gz"].to_list()[0].path,
     )
-    command += _kernel_modules_common_setup_starlark(outdir = outdir.path)
+    command += _kernel_modules_common_setup_starlark(outdir = "$(dirname {timestamp})".format(timestamp = timestamp.path))
     command += """
              # Restore inputs from kernel_build.
              # Use vmlinux as an anchor to find the directory, then copy all
@@ -437,27 +438,30 @@ def _kernel_module_impl(ctx):
              # Install into staging directory
                make -C ${{ext_mod}} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} INSTALL_MOD_PATH=${{module_staging_dir}} ${{module_strip_flag}} modules_install
              # Move files into place
-               {search_and_mv_output} --srcdir ${{module_staging_dir}}/lib/modules/*/extra --dstdir {outdir} {outs}
+               {search_and_mv_output} --srcdir ${{module_staging_dir}}/lib/modules/*/extra --dstdir $(dirname {timestamp}) {outs}
              # Delete intermediates to avoid confusion
                rm -rf ${{module_staging_dir}}
+             # Create timestamp file to align with declared outputs
+               touch {timestamp}
                """.format(
         vmlinux = kernel_build_deps["/vmlinux"].to_list()[0].path,
         module_staging_dir = kernel_build_deps["/module_staging_dir.tar.gz"].to_list()[0].path,
         makefile = ctx.file.makefile.path,
         search_and_mv_output = tools["//build/kleaf:search_and_mv_output.py"].to_list()[0].path,
-        outdir = outdir.path,
-        outs = " ".join(ctx.attr.outs),
+        timestamp = timestamp.path,
+        outs = " ".join([out.name for out in ctx.attr.outs]),
     )
 
     ctx.actions.run_shell(
         inputs = inputs,
-        # Declare that this command also creates outdir.
-        outputs = [outdir] + outputs,
+        outputs = ctx.outputs.outs + additional_outputs,
         command = command,
         progress_message = "Building external kernel module {}".format(ctx.label),
     )
 
-    return [DefaultInfo(files = depset(outputs))]
+    # Only declare outputs in the "outs" list. For additional outputs that this rule created,
+    # the label is available, but this rule doesn't explicitly return it in the info.
+    return [DefaultInfo(files = depset(ctx.outputs.outs))]
 
 kernel_module = rule(
     implementation = _kernel_module_impl,
@@ -501,12 +505,12 @@ Example:
         ),
         # Not output_list because it is not a list of labels. The list of
         # output labels are inferred from name and outs.
-        "outs": attr.string_list(
+        "outs": attr.output_list(
             doc = """the expected output files. For each token {out}, the build rule
 automatically finds a file named {out} in the legacy kernel modules
 staging directory.
-The file is copied to the output directory of {name},
-with the label {name}/{out}.
+The file is copied to the output directory of this package,
+with the label {out}.
 
 - If {out} doesn't contain a slash, subdirectories are searched.
 
@@ -514,10 +518,10 @@ Example:
 kernel_module(name = "nfc", outs = ["nfc.ko"])
 
 The build system copies
-  <legacy modules staging dir>/lib/modules/*/extra/<some subdir>/nfc/nfc.ko
+  <legacy modules staging dir>/lib/modules/*/extra/<some subdir>/nfc.ko
 to
-  <package output dir>/nfc/nfc.ko
-`nfc/nfc.ko` is the label to the file.
+  <package output dir>/nfc.ko
+`nfc.ko` is the label to the file.
 
 - If {out} contains slashes, its value is used. The file is also copied
   to the top of package output directory.
@@ -526,13 +530,13 @@ For example:
 kernel_module(name = "nfc", outs = ["foo/nfc.ko"])
 
 The build system copies
-  <legacy modules staging dir>/lib/modules/*/extra/nfc/foo/nfc.ko
+  <legacy modules staging dir>/lib/modules/*/extra/foo/nfc.ko
 to
-  nfc/foo/nfc.ko
-`nfc/foo/nfc.ko` is the label to the file.
+  foo/nfc.ko
+`foo/nfc.ko` is the label to the file.
 The file is also copied to
-  <package output dir>/nfc/nfc.ko
-`nfc/nfc.ko` is the label to the file.
+  <package output dir>/nfc.ko
+`nfc.ko` is the label to the file.
 See search_and_mv_output.py for details.
             """,
         ),
