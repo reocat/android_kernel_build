@@ -200,6 +200,11 @@ def kernel_build(
         **kwargs
     )
 
+KernelEnvInfo = provider(fields = {
+    "dependencies": "dependencies that need to provided to use this environment setup",
+    "setup": "the setup script to initialize the environment",
+})
+
 def _kernel_env_impl(ctx):
     build_config = ctx.file.build_config
     setup_env = ctx.file.setup_env
@@ -232,7 +237,36 @@ def _kernel_env_impl(ctx):
             out = out_file.path,
         ),
     )
-    return [DefaultInfo(files = depset([out_file]))]
+    first_host_tool = ctx.attr._tools[0].files.to_list()[0].path
+
+    setup = """
+         # do not fail upon unset variables being read
+           set +u
+         # source the build environment
+           source {env}
+         # setup the PATH to also include the host tools
+           export PATH=$PATH:$PWD/$(dirname {one_host_tool})
+           """.format(env = out_file.path, one_host_tool = first_host_tool)
+
+    return [
+        KernelEnvInfo(
+            dependencies = ctx.files._tools + [out_file],
+            setup = setup,
+        ),
+        DefaultInfo(files = depset([out_file])),
+    ]
+
+def _get_tools(toolchain_version):
+    return [
+        Label(e)
+        for e in (
+            "//build:host-tools",
+            "//build:kernel-build-scripts",
+            "//prebuilts/build-tools:linux-x86",
+            "//prebuilts/kernel-build-tools:linux-x86",
+            "//prebuilts/clang/host/linux-x86/clang-%s:binaries" % toolchain_version,
+        )
+    ]
 
 kernel_env = rule(
     implementation = _kernel_env_impl,
@@ -271,6 +305,11 @@ Example:
             default = Label("//build/kleaf:preserve_env.sh"),
             doc = "label referring to the script capturing the environment",
         ),
+        "toolchain_version": attr.string(
+            default = _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION,
+            doc = "the toolchain to use for this environment",
+        ),
+        "_tools": attr.label_list(default = _get_tools),
     },
 )
 
