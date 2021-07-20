@@ -188,6 +188,30 @@
       },
       "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3f17594_c3df5f38",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-20T16:55:02Z",
+      "side": 1,
+      "message": "You could use \"_implicit_outs\" \u003d attr.output_list(...).\n\nThough, let\u0027s do this in the next CL and merge this to avoid further conflicts.",
+      "parentUuid": "4e33eb46_2d86501b",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 6
+      },
+      "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
