@@ -22,6 +22,30 @@
       },
       "revId": "aa2af1e9f38e515144180fa49d609a23c8fe481d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9de805c9_eeff97e1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1888620
+      },
+      "writtenOn": "2021-07-20T10:13:57Z",
+      "side": 1,
+      "message": "I don\u0027t think label_keyed_string_dict helps here, because it\u0027s Map from Label to String (although you have a fixed label for /build:host-tools). But what would you put in as values? It just complicates the solution.\n\nYou should also get the same value using `ctx.files._tools[0]`.",
+      "parentUuid": "4a4d4ff9_d8d042d7",
+      "range": {
+        "startLine": 240,
+        "startChar": 37,
+        "endLine": 240,
+        "endChar": 40
+      },
+      "revId": "aa2af1e9f38e515144180fa49d609a23c8fe481d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
