@@ -368,6 +368,10 @@ def _kernel_build(
         **kwargs
     )
 
+KernelModuleInfo = provider(fields = {
+    "setup": "the setup script to restore outputs of this kernel module to the output directory",
+})
+
 # TODO: instead of relying on names, kernel_build module should export labels of these modules in the provider it returns
 def _kernel_module_kernel_build_deps(kernel_build):
     return {
@@ -389,6 +393,7 @@ def _kernel_module_impl(ctx):
 
     inputs = []
     inputs += ctx.files.srcs
+    inputs += ctx.files.kernel_module_deps
     inputs += _sum([e.to_list() for e in kernel_build_deps.values()], [])
     inputs += _sum([e.to_list() for e in tools.values()], [])
     inputs += ctx.files.kernel_build
@@ -408,6 +413,11 @@ def _kernel_module_impl(ctx):
             base = out.path[out.path.rfind("/") + 1:]
             additional_outputs.append(ctx.actions.declare_file(base))
 
+    module_symvers = ctx.actions.declare_file("Module.symvers")
+    additional_exported_outputs = [
+        module_symvers,
+    ]
+
     command = _kernel_build_common_setup_starlark(
         env = kernel_build_deps["_env"].to_list()[0].path,
         build_host_tools = " ".join([x.path for x in tools["//build:host-tools"].to_list()]),
@@ -416,6 +426,8 @@ def _kernel_module_impl(ctx):
         config = kernel_build_deps["_config/.config"].to_list()[0].path,
         include_tar_gz = kernel_build_deps["_config/include.tar.gz"].to_list()[0].path,
     )
+    for kernel_module_dep in ctx.attr.kernel_module_deps:
+        command += kernel_module_dep[KernelModuleInfo].setup
     command += _kernel_modules_common_setup_starlark(outdir = "$(dirname {timestamp})".format(timestamp = timestamp.path))
     command += """
              # Restore inputs from kernel_build.
@@ -441,6 +453,8 @@ def _kernel_module_impl(ctx):
                {search_and_mv_output} --srcdir ${{module_staging_dir}}/lib/modules/*/extra --dstdir $(dirname {timestamp}) {outs}
              # Delete intermediates to avoid confusion
                rm -rf ${{module_staging_dir}}
+             # Copy Module.symvers
+               mv ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers {module_symvers}
              # Create timestamp file to align with declared outputs
                touch {timestamp}
                """.format(
@@ -448,20 +462,40 @@ def _kernel_module_impl(ctx):
         module_staging_dir = kernel_build_deps["/module_staging_dir.tar.gz"].to_list()[0].path,
         makefile = ctx.file.makefile.path,
         search_and_mv_output = tools["//build/kleaf:search_and_mv_output.py"].to_list()[0].path,
+        module_symvers = module_symvers.path,
         timestamp = timestamp.path,
         outs = " ".join([out.name for out in ctx.attr.outs]),
     )
 
     ctx.actions.run_shell(
         inputs = inputs,
-        outputs = ctx.outputs.outs + additional_outputs,
+        outputs = ctx.outputs.outs + additional_outputs + additional_exported_outputs,
         command = command,
         progress_message = "Building external kernel module {}".format(ctx.label),
     )
 
+    restore_output = """
+             # Use a new shell to avoid polluting variables
+               (
+             # Set variables
+               ext_mod=$(dirname {makefile})
+               ext_mod_rel=$(python3 -c "import os.path; print(os.path.relpath('${{ROOT_DIR}}/${{ext_mod}}', '${{KERNEL_DIR}}'))")
+             # Restore Modules.symvers
+               mkdir -p ${{OUT_DIR}}/${{ext_mod_rel}}
+               cp {module_symvers} ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers
+             # New shell ends
+               )
+    """.format(
+        makefile = ctx.file.makefile.path,
+        module_symvers = module_symvers.path,
+    )
+
     # Only declare outputs in the "outs" list. For additional outputs that this rule created,
     # the label is available, but this rule doesn't explicitly return it in the info.
-    return [DefaultInfo(files = depset(ctx.outputs.outs))]
+    return [
+        DefaultInfo(files = depset(ctx.outputs.outs + additional_exported_outputs)),
+        KernelModuleInfo(setup = restore_output),
+    ]
 
 kernel_module = rule(
     implementation = _kernel_module_impl,
@@ -498,6 +532,9 @@ Example:
         "kernel_build": attr.label(
             mandatory = True,
             doc = "Label referring to the kernel_build module",
+        ),
+        "kernel_module_deps": attr.label_list(
+            doc = "A list of other kernel_module dependencies",
         ),
         "_kernel_module_kernel_build_deps": attr.label_keyed_string_dict(
             default = _kernel_module_kernel_build_deps,
