@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7fcb9eb3_90733071",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-20T10:24:44Z",
+      "side": 1,
+      "message": "The way it is implemented right now, source file changes do not invalidate the kernel_config target. And that is all we want at this stage. Did you have an additional concern?",
+      "parentUuid": "75414654_40b7b619",
+      "range": {
+        "startLine": 316,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 5
+      },
+      "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28b3aafd_9a07f8b0",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2021-07-19T17:02:01Z",
       "side": 1,
       "message": "kernel_config should also return a setup script so that it can be used in kernel_build (and kernel_module).",
+      "range": {
+        "startLine": 345,
+        "startChar": 65,
+        "endLine": 345,
+        "endChar": 66
+      },
+      "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9957885c_b274fb12",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-20T10:24:44Z",
+      "side": 1,
+      "message": "see next change",
+      "parentUuid": "28b3aafd_9a07f8b0",
       "range": {
         "startLine": 345,
         "startChar": 65,
@@ -83,6 +131,30 @@
       "writtenOn": "2021-07-20T10:08:54Z",
       "side": 1,
       "message": "Implicit outputs are in the process of deprecation (but not much is actively happening here, except advising people not to introduce new ones).\n\nIn your case it seems you don\u0027t need them at all. Just use ctx.declare_file (above where you call ctx.outputs).",
+      "parentUuid": "10ff9341_b0c82a1c",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 6
+      },
+      "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb9490d7_d7c7c43c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-20T10:24:44Z",
+      "side": 1,
+      "message": "I know. Yet I haven\u0027t figured out a way to express predeclared outputs without putting that burden on the call site as attr.outputs seems to not support default values.",
       "parentUuid": "10ff9341_b0c82a1c",
       "range": {
         "startLine": 359,
