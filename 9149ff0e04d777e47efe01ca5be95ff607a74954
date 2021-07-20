@@ -164,6 +164,30 @@
       },
       "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e33eb46_2d86501b",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-20T10:27:00Z",
+      "side": 1,
+      "message": "When declaring them as you suggest, how can I depend on them explicitly from another rule?",
+      "parentUuid": "bb9490d7_d7c7c43c",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 6
+      },
+      "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
