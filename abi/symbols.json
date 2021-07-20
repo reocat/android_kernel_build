@@ -1,0 +1,20 @@
+{
+  "FORBIDDEN" : {
+    "file operation": [
+      "filp_open"
+    ],
+    "security hole": [
+      "kernel_read",
+      "kernel_write"
+    ],
+    "just testing": [
+      "msleep"
+    ]
+  },
+  "ALLOWED": {
+    "ok" : [
+      "module_layout",
+      "__put_task_struct"
+    ]
+  }
+}
