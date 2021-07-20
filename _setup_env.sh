@@ -140,9 +140,93 @@ for PREBUILT_BIN in "${PREBUILTS_PATHS[@]}"; do
 done
 export PATH
 
+<<<<<<< HEAD   (4346db ABI: pass --no-report-untyped to abitidy)
 echo
 echo "PATH=${PATH}"
 echo
+=======
+unset PYTHONPATH
+unset PYTHONHOME
+unset PYTHONSTARTUP
+
+export HOSTCC HOSTCXX CC LD AR NM OBJCOPY OBJDUMP OBJSIZE READELF STRIP AS
+
+tool_args=()
+
+# LLVM=1 implies what is otherwise set below; it is a more concise way of
+# specifying CC=clang LD=ld.lld NM=llvm-nm OBJCOPY=llvm-objcopy <etc>, for
+# newer kernel versions.
+if [[ -n "${LLVM}" ]]; then
+  tool_args+=("LLVM=1")
+  # Reset a bunch of variables that the kernel's top level Makefile does, just
+  # in case someone tries to use these binaries in this script such as in
+  # initramfs generation below.
+  HOSTCC=clang
+  HOSTCXX=clang++
+  CC=clang
+  LD=ld.lld
+  AR=llvm-ar
+  NM=llvm-nm
+  OBJCOPY=llvm-objcopy
+  OBJDUMP=llvm-objdump
+  OBJSIZE=llvm-size
+  READELF=llvm-readelf
+  STRIP=llvm-strip
+else
+  if [ -n "${HOSTCC}" ]; then
+    tool_args+=("HOSTCC=${HOSTCC}")
+  fi
+
+  if [ -n "${CC}" ]; then
+    tool_args+=("CC=${CC}")
+    if [ -z "${HOSTCC}" ]; then
+      tool_args+=("HOSTCC=${CC}")
+    fi
+  fi
+
+  if [ -n "${LD}" ]; then
+    tool_args+=("LD=${LD}" "HOSTLD=${LD}")
+  fi
+
+  if [ -n "${NM}" ]; then
+    tool_args+=("NM=${NM}")
+  fi
+
+  if [ -n "${OBJCOPY}" ]; then
+    tool_args+=("OBJCOPY=${OBJCOPY}")
+  fi
+fi
+
+if [ -n "${LLVM_IAS}" ]; then
+  tool_args+=("LLVM_IAS=${LLVM_IAS}")
+  # Reset $AS for the same reason that we reset $CC etc above.
+  AS=clang
+fi
+
+if [ -n "${DEPMOD}" ]; then
+  tool_args+=("DEPMOD=${DEPMOD}")
+fi
+
+if [ -n "${DTC}" ]; then
+  tool_args+=("DTC=${DTC}")
+fi
+
+export TOOL_ARGS="${tool_args[@]}"
+
+export DECOMPRESS_GZIP DECOMPRESS_LZ4 RAMDISK_COMPRESS RAMDISK_DECOMPRESS RAMDISK_EXT
+
+DECOMPRESS_GZIP="gzip -c -d"
+DECOMPRESS_LZ4="lz4 -c -d -l"
+if [ -z "${LZ4_RAMDISK}" ] ; then
+  RAMDISK_COMPRESS="gzip -c -f"
+  RAMDISK_DECOMPRESS="${DECOMPRESS_GZIP}"
+  RAMDISK_EXT="gz"
+else
+  RAMDISK_COMPRESS="lz4 -c -l -12 --favor-decSpeed"
+  RAMDISK_DECOMPRESS="${DECOMPRESS_LZ4}"
+  RAMDISK_EXT="lz4"
+fi
+>>>>>>> CHANGE (446536 _setup_env.sh: Unset PYTHONPATH, PYTHONHOME and PYTHONSTARTU)
 
 # verifies that defconfig matches the DEFCONFIG
 function check_defconfig() {
