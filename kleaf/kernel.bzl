@@ -375,6 +375,13 @@ kernel_config = rule(
     },
 )
 
+KernelBuildInfo = provider(fields = {
+    "module_staging_archive": "Archive containing directory for staging kernel modules. Does not contain the lib/modules/* suffix.",
+    "dependencies": "dependencies that need to provided to use this environment setup",
+    "setup": "the setup script to initialize the environment",
+    "srcs": "sources for this kernel_build",
+})
+
 def _kernel_build_impl(ctx):
     outdir = ctx.actions.declare_directory(ctx.label.name)
 
@@ -423,6 +430,20 @@ def _kernel_build_impl(ctx):
         progress_message = "Building kernel %s" % ctx.attr.name,
         command = command,
     )
+
+    setup = ctx.attr.config[KernelEnvInfo].setup + """
+         # Restore kernel build outputs
+           cp -R {outdir}/* ${{OUT_DIR}}
+           """.format(outdir = outdir.path)
+
+    return [
+        KernelBuildInfo(
+            module_staging_archive = module_staging_archive,
+            dependencies = ctx.attr.config[KernelEnvInfo].dependencies,
+            setup = setup,
+            srcs = ctx.files.srcs,
+        ),
+    ]
 
 _kernel_build = rule(
     implementation = _kernel_build_impl,
