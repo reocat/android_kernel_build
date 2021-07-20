@@ -1,0 +1,29 @@
+[
+  {
+    "status": "FORBIDDEN",
+    "reason": "file operation",
+    "symbols": ["filp_open"]
+  },
+  {
+    "status": "ALLOWED",
+    "symbols": [
+      "module_layout",
+      "__put_task_struct"
+    ]
+  },
+  {
+    "status": "FORBIDDEN",
+    "reason": "security hole",
+    "symbols": [
+      "kernel_read",
+      "kernel_write"
+    ]
+  },
+  {
+    "status": "FORBIDDEN",
+    "reason": "just testing",
+    "symbols": [
+      "msleep"
+    ]
+  }
+]

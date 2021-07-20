@@ -1,0 +1,6 @@
+__put_task_struct	ALLOWED
+filp_open	FORBIDDEN	file operation
+kernel_read	FORBIDDEN	security hole
+kernel_write	FORBIDDEN	security hole
+module_layout	ALLOWED
+msleep	FORBIDDEN	just testing
