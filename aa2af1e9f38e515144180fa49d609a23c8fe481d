@@ -46,6 +46,30 @@
       },
       "revId": "aa2af1e9f38e515144180fa49d609a23c8fe481d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "931a6000_339db458",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-20T10:24:44Z",
+      "side": 1,
+      "message": "I made the host-tools a separately collected parameter/label. that makes it more readable.",
+      "parentUuid": "4a4d4ff9_d8d042d7",
+      "range": {
+        "startLine": 240,
+        "startChar": 37,
+        "endLine": 240,
+        "endChar": 40
+      },
+      "revId": "aa2af1e9f38e515144180fa49d609a23c8fe481d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
