@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c23f658d_7e5a58f9",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-20T16:42:13Z",
+      "side": 1,
+      "message": "Yeah I\u0027ve been researching but I can\u0027t find anything that helps me determine this.\n\nI can rename it to something else. In fact, with the next change for Module.symvers, I can use that instead, and delete this timestamp file; but the trick is still the same.\n\nIt can also be inferred from:\n\n```\nctx.bin_dir + \u0027/\u0027 + dirname(ctx.build_file_path)\n``` \n\nThough, I find this equally bad as the method I am using in the CL.",
+      "parentUuid": "f0946c1d_a04ce678",
+      "revId": "fceded8e389de892b76c0fd58b6e0f57344955d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c5617bc8_d60a8793",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 3
