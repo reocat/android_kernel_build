@@ -68,6 +68,30 @@
       },
       "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ed614be_325b56bc",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1888620
+      },
+      "writtenOn": "2021-07-20T10:08:54Z",
+      "side": 1,
+      "message": "Implicit outputs are in the process of deprecation (but not much is actively happening here, except advising people not to introduce new ones).\n\nIn your case it seems you don\u0027t need them at all. Just use ctx.declare_file (above where you call ctx.outputs).",
+      "parentUuid": "10ff9341_b0c82a1c",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 362,
+        "endChar": 6
+      },
+      "revId": "9149ff0e04d777e47efe01ca5be95ff607a74954",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
