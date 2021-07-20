@@ -70,6 +70,30 @@
       },
       "revId": "aa2af1e9f38e515144180fa49d609a23c8fe481d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c44acc34_8b8ecb98",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-20T16:52:39Z",
+      "side": 1,
+      "message": "Ivo, see L565 and L428. I inverted the key and value so that I can find Labels by value.\n\nMatthias\u0027 current solution is fine regardless, though.",
+      "parentUuid": "931a6000_339db458",
+      "range": {
+        "startLine": 240,
+        "startChar": 37,
+        "endLine": 240,
+        "endChar": 40
+      },
+      "revId": "aa2af1e9f38e515144180fa49d609a23c8fe481d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
