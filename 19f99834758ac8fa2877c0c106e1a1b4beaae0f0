@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8c98968_64af2e5f",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-20T10:53:34Z",
+      "side": 1,
+      "message": "I _think_ this can be done unconditionally and not just within the HERMETIC_TOOLCHAIN setting.",
+      "revId": "19f99834758ac8fa2877c0c106e1a1b4beaae0f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
