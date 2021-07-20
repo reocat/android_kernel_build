@@ -127,6 +127,8 @@ if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
 
   export HOSTCFLAGS="$sysroot_flags $cflags"
   export HOSTLDFLAGS="$sysroot_flags $ldflags"
+
+  unset PYTHONPATH
 fi
 
 for PREBUILT_BIN in "${PREBUILTS_PATHS[@]}"; do
