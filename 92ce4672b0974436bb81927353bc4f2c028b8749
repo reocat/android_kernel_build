@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f529be4_a90573fd",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-20T08:56:53Z",
+      "side": 1,
+      "message": "if you do not require the Provider in the attrs, you can\u0027t depend on its existence.\n\nEither require that KernelModuleInfo is passed as a provider or check for its existence before making use of it.",
+      "range": {
+        "startLine": 430,
+        "startChar": 0,
+        "endLine": 430,
+        "endChar": 60
+      },
+      "revId": "92ce4672b0974436bb81927353bc4f2c028b8749",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "738c19c1_3ac181ec",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-20T08:56:53Z",
+      "side": 1,
+      "message": "I would prefer not to create a python dependency here.\n\n  realpath --relative-to\u003d... ?",
+      "revId": "92ce4672b0974436bb81927353bc4f2c028b8749",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
