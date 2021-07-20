@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0946c1d_a04ce678",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-20T08:50:35Z",
+      "side": 1,
+      "message": "It appears you are only using this to get hold of the output directory. There must be something in the ctx to determine this (ctx.bin_dir?) or get it from the first output?\n\nThe timestamp file will be misleading when we start caching results remotely. (And I am not even speaking of timezones).",
+      "revId": "fceded8e389de892b76c0fd58b6e0f57344955d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5617bc8_d60a8793",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-20T08:50:35Z",
+      "side": 1,
+      "message": "File objects have all the necessary methods, like `basename`\n\nhttps://docs.bazel.build/versions/main/skylark/lib/File.html",
+      "range": {
+        "startLine": 408,
+        "startChar": 19,
+        "endLine": 408,
+        "endChar": 53
+      },
+      "revId": "fceded8e389de892b76c0fd58b6e0f57344955d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ffbf3cc_9a3fc4b9",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-20T08:50:35Z",
+      "side": 1,
+      "message": "instead of \n\n  \"$(dirname {file})\".format(file\u003dfile.path)\n\nyou can use \n\n  \"{dir}\".format(dir\u003dfile.dirname)",
+      "range": {
+        "startLine": 419,
+        "startChar": 63,
+        "endLine": 419,
+        "endChar": 121
+      },
+      "revId": "fceded8e389de892b76c0fd58b6e0f57344955d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
