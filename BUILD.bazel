@@ -44,6 +44,6 @@ filegroup(
     srcs = [
         "abi/compare_to_symbol_list",
         "abi/flatten_symbol_list",
-        "copy_symbols.sh",
+        "process_symbols",
     ],
 )
