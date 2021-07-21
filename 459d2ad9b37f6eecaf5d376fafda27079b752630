@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d316789b_bd937bc0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T09:27:40Z",
+      "side": 1,
+      "message": "probably we should make this a dependency of kernel_env",
+      "range": {
+        "startLine": 603,
+        "startChar": 0,
+        "endLine": 607,
+        "endChar": 10
+      },
+      "revId": "459d2ad9b37f6eecaf5d376fafda27079b752630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
