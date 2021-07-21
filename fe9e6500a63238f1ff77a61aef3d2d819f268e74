@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43fd4031_d5583e36",
+        "filename": "abi/process_symbols",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T13:10:47Z",
+      "side": 1,
+      "message": "consider using an object data structure with a json decoder then\n\nhttps://docs.python.org/3.9/library/json.html",
+      "revId": "fe9e6500a63238f1ff77a61aef3d2d819f268e74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aed2bac_00bc59cf",
+        "filename": "abi/symbols.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T13:10:47Z",
+      "side": 1,
+      "message": "I would probably group and key by status. Something like\n\n {\n   \"FORBIDDEN\": [\n      {\"reason\": \"file operation\", \"symbols\": [\"filp_open\"]},\n      {\"reason\": \"security hole\", \"symbols\": [\"kernel_read\", \"kernel_write\"]},\n      {\"reason\": \"just testing\", \"symbols\": [\"msleep\"]},\n   ],\n   \"ALLOWED\": [\n      \"module_layout\",\n      \"__put_task_struct\" \n   ],\n }\n\nMakes additions less verbose and the file easier to read.",
+      "revId": "fe9e6500a63238f1ff77a61aef3d2d819f268e74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
