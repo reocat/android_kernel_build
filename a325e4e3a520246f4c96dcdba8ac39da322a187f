@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a54441f_970c38d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T12:49:18Z",
+      "side": 1,
+      "message": "I carefully tried to preserve 4 characters from somewhere else. I shall now undo this.",
+      "parentUuid": "6dab333c_281df626",
+      "revId": "a325e4e3a520246f4c96dcdba8ac39da322a187f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64452c24_407b5790",
         "filename": "abi/process_symbols",
         "patchSetId": 4
@@ -43,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e1528271_8e226bcc",
+        "filename": "abi/process_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T12:49:18Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "64452c24_407b5790",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 11
+      },
+      "revId": "a325e4e3a520246f4c96dcdba8ac39da322a187f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3defbb25_8d58f4d4",
         "filename": "abi/process_symbols",
         "patchSetId": 4
@@ -54,6 +96,30 @@
       "writtenOn": "2021-07-21T11:35:50Z",
       "side": 1,
       "message": "that is implicit",
+      "range": {
+        "startLine": 50,
+        "startChar": 30,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "a325e4e3a520246f4c96dcdba8ac39da322a187f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10295845_a858d6ca",
+        "filename": "abi/process_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T12:49:18Z",
+      "side": 1,
+      "message": "I know. Which is better for readability? I\u0027ll undo it again.",
+      "parentUuid": "3defbb25_8d58f4d4",
       "range": {
         "startLine": 50,
         "startChar": 30,

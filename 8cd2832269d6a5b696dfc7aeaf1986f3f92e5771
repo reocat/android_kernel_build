@@ -404,6 +404,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18b6d79b_2631faf8",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T12:49:18Z",
+      "side": 1,
+      "message": "The current upload is now using JSON as suggested. To be honest, it make not be the best choice (JSON is fussy about commas, for example).",
+      "parentUuid": "096db77f_4463bdb5",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 55
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8588040e_06f9a026",
         "filename": "abi/process_symbols",
         "patchSetId": 3
