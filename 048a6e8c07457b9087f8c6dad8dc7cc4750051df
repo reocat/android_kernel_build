@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7704279_1de8db4e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T11:23:52Z",
+      "side": 1,
+      "message": "actually, lets reuse KernelEnvInfo as this provides setup already",
+      "range": {
+        "startLine": 385,
+        "startChar": 0,
+        "endLine": 385,
+        "endChar": 38
+      },
+      "revId": "048a6e8c07457b9087f8c6dad8dc7cc4750051df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
