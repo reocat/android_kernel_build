@@ -462,11 +462,16 @@ _kernel_build = rule(
     },
 )
 
+KernelModuleInfo = provider(fields = {
+    "setup": "the setup script to restore outputs of this kernel module to the output directory",
+})
+
 def _kernel_module_impl(ctx):
     name = ctx.label.name
 
     inputs = []
     inputs += ctx.files.srcs
+    inputs += ctx.files.kernel_module_deps
     inputs += ctx.files.kernel_build
     inputs += ctx.attr.kernel_build[KernelBuildInfo].dependencies
     inputs += ctx.attr.kernel_build[KernelBuildInfo].srcs
@@ -488,7 +493,14 @@ def _kernel_module_impl(ctx):
             base = out.path[out.path.rfind("/") + 1:]
             additional_outputs.append(ctx.actions.declare_file(base))
 
+    module_symvers = ctx.actions.declare_file("Module.symvers")
+    additional_exported_outputs = [
+        module_symvers,
+    ]
+
     command = ctx.attr.kernel_build[KernelBuildInfo].setup
+    for kernel_module_dep in ctx.attr.kernel_module_deps:
+        command += kernel_module_dep[KernelModuleInfo].setup
     command += """
              # Set variables
                if [ "${{DO_NOT_STRIP_MODULES}}" != "1" ]; then
@@ -508,10 +520,13 @@ def _kernel_module_impl(ctx):
                make -C ${{ext_mod}} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} INSTALL_MOD_PATH=$(realpath {module_staging_dir}) ${{module_strip_flag}} modules_install
              # Move files into place
                {search_and_mv_output} --srcdir {module_staging_dir}/lib/modules/*/extra --dstdir {outdir} {outs}
+             # Copy Module.symvers
+               mv ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers {module_symvers}
                """.format(
         makefile = ctx.file.makefile.path,
         search_and_mv_output = ctx.file._search_and_mv_output.path,
         kernel_build_module_staging_archive = ctx.attr.kernel_build[KernelBuildInfo].module_staging_archive.path,
+        module_symvers = module_symvers.path,
         module_staging_dir = module_staging_dir.path,
         outdir = outdir,
         outs = " ".join([out.name for out in ctx.attr.outs]),
@@ -519,14 +534,33 @@ def _kernel_module_impl(ctx):
 
     ctx.actions.run_shell(
         inputs = inputs,
-        outputs = ctx.outputs.outs + additional_outputs,
+        outputs = ctx.outputs.outs + additional_outputs + additional_exported_outputs,
         command = command,
         progress_message = "Building external kernel module {}".format(ctx.label),
     )
 
+    restore_output = """
+             # Use a new shell to avoid polluting variables
+               (
+             # Set variables
+               ext_mod=$(dirname {makefile})
+               ext_mod_rel=$(python3 -c "import os.path; print(os.path.relpath('${{ROOT_DIR}}/${{ext_mod}}', '${{KERNEL_DIR}}'))")
+             # Restore Modules.symvers
+               mkdir -p ${{OUT_DIR}}/${{ext_mod_rel}}
+               cp {module_symvers} ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers
+             # New shell ends
+               )
+    """.format(
+        makefile = ctx.file.makefile.path,
+        module_symvers = module_symvers.path,
+    )
+
     # Only declare outputs in the "outs" list. For additional outputs that this rule created,
     # the label is available, but this rule doesn't explicitly return it in the info.
-    return [DefaultInfo(files = depset(ctx.outputs.outs))]
+    return [
+        DefaultInfo(files = depset(ctx.outputs.outs + additional_exported_outputs)),
+        KernelModuleInfo(setup = restore_output),
+    ]
 
 kernel_module = rule(
     implementation = _kernel_module_impl,
@@ -564,6 +598,9 @@ Example:
             mandatory = True,
             providers = [KernelBuildInfo],
             doc = "Label referring to the kernel_build module",
+        ),
+        "kernel_module_deps": attr.label_list(
+            doc = "A list of other kernel_module dependencies",
         ),
         # Not output_list because it is not a list of labels. The list of
         # output labels are inferred from name and outs.
