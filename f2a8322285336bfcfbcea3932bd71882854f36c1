@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00484954_11a63603",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T09:21:33Z",
+      "side": 1,
+      "message": "at a later stage we want to probably strip those down to the ones needed to build kernel modules ... an actual driver development kit.",
+      "revId": "f2a8322285336bfcfbcea3932bd71882854f36c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b74533e8_6b7dc061",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T09:21:33Z",
+      "side": 1,
+      "message": "in the combined script, this easier gets identified if we call it\n\n\"Restore kernel build outputs\"",
+      "revId": "f2a8322285336bfcfbcea3932bd71882854f36c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
