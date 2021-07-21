@@ -39,6 +39,24 @@
       "message": "I would prefer not to create a python dependency here.\n\n  realpath --relative-to\u003d... ?",
       "revId": "92ce4672b0974436bb81927353bc4f2c028b8749",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b513482_f7b5411d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-21T00:33:42Z",
+      "side": 1,
+      "message": "--relative-to is an GNU extension. I thought realpath is from toybox?",
+      "parentUuid": "738c19c1_3ac181ec",
+      "revId": "92ce4672b0974436bb81927353bc4f2c028b8749",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
