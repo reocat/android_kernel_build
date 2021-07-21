@@ -14,7 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BASE=$(readlink -f $(dirname $0)/..)
+declare -a LEGACY_BRANCHES=("4.14-stable" "4.19-stable" "4.4" "4.9" "11-5.4" "12-5.10" "12-5.4")
+
+BASE=$(dirname $(dirname $(readlink -f $0)))
 
 BRANCH=$1
 
@@ -46,6 +48,20 @@ pushd $BASE > /dev/null
           )
       fi
     done
+  done
+
+  # now switch the build tools between trunk and legacy version
+  if [[ " ${LEGACY_BRANCHES[@]} " =~ " ${BRANCH} " ]]; then
+    suffix="legacy"
+  else
+    suffix="trunk"
+  fi
+
+  for dir in "build" "kernel" "prebuilts" "tools"; do
+    if [ -L ${dir} ]; then
+      rm ${dir}
+    fi
+    ln -vs "${dir}-${suffix}" "${dir}"
   done
 
 popd > /dev/null
