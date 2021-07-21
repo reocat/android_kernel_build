@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe4ef292_a0868f70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T09:17:26Z",
+      "side": 1,
+      "message": "hmm, in isolation this change fails to build the GKI kernel:\n\n ERROR: .../common/BUILD.bazel:32:14: Error while validating output TreeArtifact File:[[\u003cexecution_root\u003e]bazel-out/k8-fastbuild/bin]common/kernel_aarch64 : Failed to resolve relative path staging/lib/modules/5.14.0-rc1-mainline/source inside TreeArtifact .../bazel-out/k8-fastbuild/bin/common/kernel_aarch64. The associated file is either missing or is an invalid symlink.\n\n ERROR: .../common/BUILD.bazel:32:14: Error while validating output TreeArtifact File:[[\u003cexecution_root\u003e]bazel-out/k8-fastbuild/bin]common/kernel_aarch64/staging : Failed to resolve relative path lib/modules/5.14.0-rc1-mainline/source inside TreeArtifact .../bazel-out/k8-fastbuild/bin/common/kernel_aarch64/staging. The associated file is either missing or is an invalid symlink.\n\n ERROR: .../common/BUILD.bazel:32:14: Building kernel kernel_aarch64 failed: not all outputs were created or valid\n\n(output stripped off local dirs)\n",
+      "revId": "44d200de4cff9e20288abb9b8b66ba0038f36026",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b0bef3d_c6d2a7f7",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T09:17:26Z",
+      "side": 1,
+      "message": "let\u0027s stick to 80 columns",
+      "revId": "44d200de4cff9e20288abb9b8b66ba0038f36026",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dec79c5_d5edb892",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T09:17:26Z",
+      "side": 1,
+      "message": "Archive",
+      "range": {
+        "startLine": 401,
+        "startChar": 11,
+        "endLine": 401,
+        "endChar": 14
+      },
+      "revId": "44d200de4cff9e20288abb9b8b66ba0038f36026",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
