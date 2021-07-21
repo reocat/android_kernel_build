@@ -16,6 +16,29 @@
       "message": "Why do we need an \"ALLOWED\" list?  That will just grow over time, and should match up with our \"default list of symbols\", no need to list it here as well, right?",
       "revId": "8d72c3b99c22b54281993e99ee62bf25dfe55e94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3aa4149_3fb932b8",
+        "filename": "abi/symbols.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2021-07-21T15:04:41Z",
+      "side": 1,
+      "message": "shouldn\u0027t this file be dropped for now and just use the simple \u0027tab\u0027 file?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "8d72c3b99c22b54281993e99ee62bf25dfe55e94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
