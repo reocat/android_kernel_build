@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4f70132_ae475a00",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "import Enum and use it as enum.Enum\n\nhttps://google.github.io/styleguide/pyguide.html#22-imports",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 21
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e1c38d_176e7bb4",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "very likely they get very long and need to live somewhere else (some json?)",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 1
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2f8d0ab_7f72dd88",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "sl seems more appropriate. or use symbol_list_file",
+      "range": {
+        "startLine": 47,
+        "startChar": 30,
+        "endLine": 47,
+        "endChar": 32
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25ff03b6_c02b5aa3",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "for line in wl:",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 13
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37b613fa_a6e981bd",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "stripped.startswith((\u0027#\u0027, \u0027[\u0027))",
+      "range": {
+        "startLine": 51,
+        "startChar": 31,
+        "endLine": 51,
+        "endChar": 83
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "544073db_9c9b7c88",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "consider returning a list of data structures",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 28
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2750ecd_771a9c9e",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "else:\n  status \u003d Status.ALLOWED if symbol in _ALLOWED_SYMBOLS else Status.UNKNOWN\n  report.append([symbol, status , \u0027\u0027])",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 55
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8588040e_06f9a026",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "plural",
+      "range": {
+        "startLine": 73,
+        "startChar": 30,
+        "endLine": 73,
+        "endChar": 48
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d268f9c_6fa12d81",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "no need for a default value if it is required",
+      "range": {
+        "startLine": 74,
+        "startChar": 36,
+        "endLine": 74,
+        "endChar": 48
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9399f528_6747466b",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "I would prefer return values over mutable arguments. It makes the code easier to reason about.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 50
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "726b9574_f4524924",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "f\u0027Generating ABI symbol list definition in {out_file}\u0027",
+      "range": {
+        "startLine": 97,
+        "startChar": 13,
+        "endLine": 97,
+        "endChar": 75
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1483711_58d1618a",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "f\u0027Generating ABI symbol report {report_file}\u0027",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 67
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b094a88c_fe9b52b7",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "for symbol, status, reason in report:",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 26
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d9196a5_e528b54b",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "use f strings",
+      "range": {
+        "startLine": 107,
+        "startChar": 21,
+        "endLine": 107,
+        "endChar": 71
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e1affd5_559b510b",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T08:57:51Z",
+      "side": 1,
+      "message": "log.error()",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 31
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
