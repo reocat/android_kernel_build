@@ -22,6 +22,30 @@
       },
       "revId": "2e7cbb82467160116bde8edeeee8611a27a8f559",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37ef4612_16f94971",
+        "filename": "abi/process_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T08:21:40Z",
+      "side": 1,
+      "message": "Plan is to have this as just part of the script itself. I don\u0027t think we need to overthink things just yet. I\u0027ll push another version with a few symbols in it.",
+      "parentUuid": "f9f662a6_b6d48a8d",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 42
+      },
+      "revId": "2e7cbb82467160116bde8edeeee8611a27a8f559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
