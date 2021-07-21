@@ -24,6 +24,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "789e3ed6_54f3c4cb",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4f70132_ae475a00",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 21
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7dc062c_3634454d",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4f70132_ae475a00",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 21
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10e1c38d_176e7bb4",
@@ -37,6 +85,30 @@
       "writtenOn": "2021-07-21T08:57:51Z",
       "side": 1,
       "message": "very likely they get very long and need to live somewhere else (some json?)",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 1
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "155efbd5_3de19455",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "We can do that once we see what the initial input data set looks like.",
+      "parentUuid": "10e1c38d_176e7bb4",
       "range": {
         "startLine": 35,
         "startChar": 0,
@@ -70,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9279aa99_9644c076",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Was copy/paste from elsewhere.",
+      "parentUuid": "f2f8d0ab_7f72dd88",
+      "range": {
+        "startLine": 47,
+        "startChar": 30,
+        "endLine": 47,
+        "endChar": 32
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25ff03b6_c02b5aa3",
@@ -83,6 +179,30 @@
       "writtenOn": "2021-07-21T08:57:51Z",
       "side": 1,
       "message": "for line in wl:",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 13
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1d75a9d_1cf1ec34",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25ff03b6_c02b5aa3",
       "range": {
         "startLine": 48,
         "startChar": 12,
@@ -116,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed996700_7464ba25",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "37b613fa_a6e981bd",
+      "range": {
+        "startLine": 51,
+        "startChar": 31,
+        "endLine": 51,
+        "endChar": 83
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "544073db_9c9b7c88",
@@ -129,6 +273,30 @@
       "writtenOn": "2021-07-21T08:57:51Z",
       "side": 1,
       "message": "consider returning a list of data structures",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 28
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0ffa00d_59360d96",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Refactored to make this possible.",
+      "parentUuid": "544073db_9c9b7c88",
       "range": {
         "startLine": 58,
         "startChar": 0,
@@ -164,6 +332,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "692c896f_1a2e3fca",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "I was wondering if it would be also useful to attach reasons to allowed symbols as well.\n\n\"driver API\"\n\"copied from 11-5.4\"\n\"temporary exception, see b/12345\"\n\"allowed for Android 13, but not in later versions\"\n\nIf we do this, then we can also have a uniform structure for looking up symbols (a map from from symbol to status and reason).\n\nHowever, this is all very malleable, we should see what input structure allows the intent to be expressed most succinctly and that will only happen once we have some initial configuration data from Greg KH etc.",
+      "parentUuid": "c2750ecd_771a9c9e",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 55
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8588040e_06f9a026",
         "filename": "abi/process_symbols",
         "patchSetId": 3
@@ -175,6 +367,30 @@
       "writtenOn": "2021-07-21T08:57:51Z",
       "side": 1,
       "message": "plural",
+      "range": {
+        "startLine": 73,
+        "startChar": 30,
+        "endLine": 73,
+        "endChar": 48
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c07d9c4_963ea326",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Singular looks good to me (and I\u0027m following the documentation).\n\nusage: process_symbols [-h] --in-dir IN_DIR --out-dir OUT_DIR --out-file OUT_FILE --report-file REPORT_FILE FILE [FILE ...]\n\npositional arguments:\n  FILE                  a symbol list file\n\noptional arguments:\n  -h, --help            show this help message and exit\n  --in-dir IN_DIR       where to find the symbol list files\n  --out-dir OUT_DIR     where to put the combined symbol list and report\n  --out-file OUT_FILE   combined symbol list file name\n  --report-file REPORT_FILE\n                        symbol list report file name",
+      "parentUuid": "8588040e_06f9a026",
       "range": {
         "startLine": 73,
         "startChar": 30,
@@ -208,6 +424,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a3d1e49_fdb82db4",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d268f9c_6fa12d81",
+      "range": {
+        "startLine": 74,
+        "startChar": 36,
+        "endLine": 74,
+        "endChar": 48
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9399f528_6747466b",
@@ -221,6 +461,30 @@
       "writtenOn": "2021-07-21T08:57:51Z",
       "side": 1,
       "message": "I would prefer return values over mutable arguments. It makes the code easier to reason about.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 50
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6471312e_a4247a16",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Refactored.",
+      "parentUuid": "9399f528_6747466b",
       "range": {
         "startLine": 91,
         "startChar": 0,
@@ -254,6 +518,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "392d3d69_bd8f7ef4",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "726b9574_f4524924",
+      "range": {
+        "startLine": 97,
+        "startChar": 13,
+        "endLine": 97,
+        "endChar": 75
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1483711_58d1618a",
@@ -267,6 +555,30 @@
       "writtenOn": "2021-07-21T08:57:51Z",
       "side": 1,
       "message": "f\u0027Generating ABI symbol report {report_file}\u0027",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 67
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67927a28_81d41c66",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1483711_58d1618a",
       "range": {
         "startLine": 102,
         "startChar": 0,
@@ -300,6 +612,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51b5d0c4_52fa3958",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b094a88c_fe9b52b7",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 26
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d9196a5_e528b54b",
@@ -323,6 +659,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "920a6fbc_45f98a57",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d9196a5_e528b54b",
+      "range": {
+        "startLine": 107,
+        "startChar": 21,
+        "endLine": 107,
+        "endChar": 71
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e1affd5_559b510b",
@@ -336,6 +696,30 @@
       "writtenOn": "2021-07-21T08:57:51Z",
       "side": 1,
       "message": "log.error()",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 31
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe6bd7cb_9cf85370",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T11:06:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e1affd5_559b510b",
       "range": {
         "startLine": 109,
         "startChar": 0,
