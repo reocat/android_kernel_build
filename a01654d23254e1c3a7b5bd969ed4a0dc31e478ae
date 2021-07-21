@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fef06fc0_ad8a5ccc",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T09:02:45Z",
+      "side": 1,
+      "message": "while using the kernel_env requires those dependencies, creating the env itself should not depend on the tools (they are also not set up properly). Hence we can drop that.",
+      "range": {
+        "startLine": 212,
+        "startChar": 34,
+        "endLine": 212,
+        "endChar": 46
+      },
+      "revId": "a01654d23254e1c3a7b5bd969ed4a0dc31e478ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
