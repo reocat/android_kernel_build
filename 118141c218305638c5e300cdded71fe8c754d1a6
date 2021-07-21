@@ -16,6 +16,24 @@
       "message": "s/legacy/legacy-2021/g?\n",
       "revId": "118141c218305638c5e300cdded71fe8c754d1a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb8dda1_676b067f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T14:07:29Z",
+      "side": 1,
+      "message": "I thought about that. Yet, if we were to introduce another version, then this multi-thing becomes really useless. So, let\u0027s hope we can avoid that. That is why I went with -legacy only.",
+      "parentUuid": "ae48d41d_161e7aeb",
+      "revId": "118141c218305638c5e300cdded71fe8c754d1a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
