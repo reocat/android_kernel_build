@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2db11013_c296b221",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2021-07-21T15:03:35Z",
+      "side": 1,
+      "message": "Why do we need an \"ALLOWED\" list?  That will just grow over time, and should match up with our \"default list of symbols\", no need to list it here as well, right?",
+      "revId": "8d72c3b99c22b54281993e99ee62bf25dfe55e94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
