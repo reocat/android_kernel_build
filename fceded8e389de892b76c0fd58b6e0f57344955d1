@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c1fa99b_e67ddad0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-21T21:21:42Z",
+      "side": 1,
+      "message": "I can either do:\n\n```\n    for out in ctx.outputs.outs:\n        short_name \u003d out.path[len(outdir) + 1:]\n        if \"/\" in short_name:\n            additional_outputs.append(ctx.actions.declare_file(out.basename))\n```\n\n... where calculating short_name is a bit hacky (though we are already doing it in L303), or\n\n```\n    for out in ctx.attr.outs:\n        outputs.append(ctx.actions.declare_file(\"{out}\".format(out \u003d out)))\n        if \"/\" in out:\n            base \u003d out[out.rfind(\"/\") + 1:]\n            outputs.append(ctx.actions.declare_file(\"{base}\".format(base \u003d base)))\n```\n\n... where calculating base is a bit hacky.",
+      "parentUuid": "c5617bc8_d60a8793",
+      "range": {
+        "startLine": 408,
+        "startChar": 19,
+        "endLine": 408,
+        "endChar": 53
+      },
+      "revId": "fceded8e389de892b76c0fd58b6e0f57344955d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ffbf3cc_9a3fc4b9",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 3
