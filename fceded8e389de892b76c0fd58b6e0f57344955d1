@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab55e07f_8348b3cf",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-21T21:46:29Z",
+      "side": 1,
+      "message": "I used the first, PTAL",
+      "parentUuid": "2c1fa99b_e67ddad0",
+      "range": {
+        "startLine": 408,
+        "startChar": 19,
+        "endLine": 408,
+        "endChar": 53
+      },
+      "revId": "fceded8e389de892b76c0fd58b6e0f57344955d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8ffbf3cc_9a3fc4b9",
