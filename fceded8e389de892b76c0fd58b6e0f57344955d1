@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57e3b0cf_7959b773",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-21T20:49:12Z",
+      "side": 1,
+      "message": "This no longer applies",
+      "parentUuid": "6e872327_e61e4692",
+      "revId": "fceded8e389de892b76c0fd58b6e0f57344955d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5617bc8_d60a8793",
@@ -90,6 +108,30 @@
       "writtenOn": "2021-07-20T08:50:35Z",
       "side": 1,
       "message": "instead of \n\n  \"$(dirname {file})\".format(file\u003dfile.path)\n\nyou can use \n\n  \"{dir}\".format(dir\u003dfile.dirname)",
+      "range": {
+        "startLine": 419,
+        "startChar": 63,
+        "endLine": 419,
+        "endChar": 121
+      },
+      "revId": "fceded8e389de892b76c0fd58b6e0f57344955d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46416bcd_58af049e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-21T20:49:12Z",
+      "side": 1,
+      "message": "This no longer applies",
+      "parentUuid": "8ffbf3cc_9a3fc4b9",
       "range": {
         "startLine": 419,
         "startChar": 63,
