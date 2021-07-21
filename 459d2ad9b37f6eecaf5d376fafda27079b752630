@@ -22,6 +22,30 @@
       },
       "revId": "459d2ad9b37f6eecaf5d376fafda27079b752630",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f9dcd93_cd7e9418",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-21T21:47:56Z",
+      "side": 1,
+      "message": "I don\u0027t think so. Though that\u0027s less duplication, kernel_env technically doesn\u0027t need this script. Only kernel_build and kernel_module needs this script. kernel_config wouldn\u0027t need this script, for example.",
+      "parentUuid": "d316789b_bd937bc0",
+      "range": {
+        "startLine": 603,
+        "startChar": 0,
+        "endLine": 607,
+        "endChar": 10
+      },
+      "revId": "459d2ad9b37f6eecaf5d376fafda27079b752630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
