@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dab333c_281df626",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T11:35:50Z",
+      "side": 1,
+      "message": "nit: We seem to use 2 character indents in the other python files in the abi directory. I know it is not consistent with the public style guide ...",
+      "revId": "a325e4e3a520246f4c96dcdba8ac39da322a187f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64452c24_407b5790",
+        "filename": "abi/process_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T11:35:50Z",
+      "side": 1,
+      "message": "nit: prefer descriptive style\n\nhttps://google.github.io/styleguide/pyguide.html#383-functions-and-methods",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 11
+      },
+      "revId": "a325e4e3a520246f4c96dcdba8ac39da322a187f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3defbb25_8d58f4d4",
+        "filename": "abi/process_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T11:35:50Z",
+      "side": 1,
+      "message": "that is implicit",
+      "range": {
+        "startLine": 50,
+        "startChar": 30,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "a325e4e3a520246f4c96dcdba8ac39da322a187f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

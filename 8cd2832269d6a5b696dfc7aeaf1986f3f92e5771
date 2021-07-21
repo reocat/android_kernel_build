@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9745f639_01d712dc",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T11:35:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "155efbd5_3de19455",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 1
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2f8d0ab_7f72dd88",
@@ -344,6 +368,30 @@
       "side": 1,
       "message": "I was wondering if it would be also useful to attach reasons to allowed symbols as well.\n\n\"driver API\"\n\"copied from 11-5.4\"\n\"temporary exception, see b/12345\"\n\"allowed for Android 13, but not in later versions\"\n\nIf we do this, then we can also have a uniform structure for looking up symbols (a map from from symbol to status and reason).\n\nHowever, this is all very malleable, we should see what input structure allows the intent to be expressed most succinctly and that will only happen once we have some initial configuration data from Greg KH etc.",
       "parentUuid": "c2750ecd_771a9c9e",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 55
+      },
+      "revId": "8cd2832269d6a5b696dfc7aeaf1986f3f92e5771",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "096db77f_4463bdb5",
+        "filename": "abi/process_symbols",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T11:35:50Z",
+      "side": 1,
+      "message": "I am not sure we will actually maintain this list. I let Greg chime in here, but I have doubts. In particular, how do we handle the semantics of \"temporary\" and \"13, but not in later versions\" ?",
+      "parentUuid": "692c896f_1a2e3fca",
       "range": {
         "startLine": 63,
         "startChar": 0,
