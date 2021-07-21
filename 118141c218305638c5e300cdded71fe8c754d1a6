@@ -51,6 +51,52 @@
       "message": "not tested by TH",
       "revId": "118141c218305638c5e300cdded71fe8c754d1a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6148d366_a25b7cb4",
+        "filename": "multi-switcher.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T16:05:22Z",
+      "side": 1,
+      "message": "This is a bit yuk (yes I found the SO page). Why not just use a case statement?\n\nI\u0027ve not been able to get the array to expand with IFS\u003d\u0027|\u0027 and work as the case pattern though.",
+      "range": {
+        "startLine": 54,
+        "startChar": 34,
+        "endLine": 54,
+        "endChar": 36
+      },
+      "revId": "118141c218305638c5e300cdded71fe8c754d1a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f00c9d_0a25f44c",
+        "filename": "multi-switcher.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T16:05:22Z",
+      "side": 1,
+      "message": "ln -vsnf and you can get rid of the rm above.",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 10
+      },
+      "revId": "118141c218305638c5e300cdded71fe8c754d1a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
