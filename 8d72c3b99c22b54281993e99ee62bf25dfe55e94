@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5369d227_d569b485",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T16:35:46Z",
+      "side": 1,
+      "message": "We don\u0027t have to populate it, but down the line we can consider having an AyeAye plugin reporting findings based on symbols.report. Then it makes more sense. If it never happens, we\u0027ll just drop it.",
+      "parentUuid": "2db11013_c296b221",
+      "revId": "8d72c3b99c22b54281993e99ee62bf25dfe55e94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3aa4149_3fb932b8",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-07-21T15:04:41Z",
       "side": 1,
       "message": "shouldn\u0027t this file be dropped for now and just use the simple \u0027tab\u0027 file?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "8d72c3b99c22b54281993e99ee62bf25dfe55e94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0a2507b_b0c43ee5",
+        "filename": "abi/symbols.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T16:35:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3aa4149_3fb932b8",
       "range": {
         "startLine": 2,
         "startChar": 0,
