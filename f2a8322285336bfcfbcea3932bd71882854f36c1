@@ -33,6 +33,41 @@
       "message": "in the combined script, this easier gets identified if we call it\n\n\"Restore kernel build outputs\"",
       "revId": "f2a8322285336bfcfbcea3932bd71882854f36c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f61d2821_faf8b494",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T09:31:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b74533e8_6b7dc061",
+      "revId": "f2a8322285336bfcfbcea3932bd71882854f36c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69884290_5cca5664",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-21T09:31:04Z",
+      "side": 1,
+      "message": "should we not be able to directly use {out_dir}",
+      "revId": "f2a8322285336bfcfbcea3932bd71882854f36c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
