@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea413e45_42c191d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T13:11:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a54441f_970c38d9",
+      "revId": "a325e4e3a520246f4c96dcdba8ac39da322a187f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64452c24_407b5790",
@@ -83,6 +101,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "993c3271_99e7794a",
+        "filename": "abi/process_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T13:11:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1528271_8e226bcc",
+      "range": {
+        "startLine": 47,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 11
+      },
+      "revId": "a325e4e3a520246f4c96dcdba8ac39da322a187f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3defbb25_8d58f4d4",
@@ -120,6 +162,30 @@
       "side": 1,
       "message": "I know. Which is better for readability? I\u0027ll undo it again.",
       "parentUuid": "3defbb25_8d58f4d4",
+      "range": {
+        "startLine": 50,
+        "startChar": 30,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "a325e4e3a520246f4c96dcdba8ac39da322a187f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66e802f7_b89ec410",
+        "filename": "abi/process_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-21T13:11:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10295845_a858d6ca",
       "range": {
         "startLine": 50,
         "startChar": 30,
