@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fab7c8bf_c05acefa",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-21T20:47:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "00484954_11a63603",
+      "revId": "f2a8322285336bfcfbcea3932bd71882854f36c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b74533e8_6b7dc061",
@@ -66,6 +84,24 @@
       "writtenOn": "2021-07-21T09:31:04Z",
       "side": 1,
       "message": "should we not be able to directly use {out_dir}",
+      "revId": "f2a8322285336bfcfbcea3932bd71882854f36c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17660678_bfba6384",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-21T20:47:27Z",
+      "side": 1,
+      "message": "You are right, dependencies should to be modified to use them.",
+      "parentUuid": "69884290_5cca5664",
       "revId": "f2a8322285336bfcfbcea3932bd71882854f36c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
