@@ -22,6 +22,30 @@
       },
       "revId": "f0dc5d9886877ba7ef85131e164aae036ee1e59b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b20c1e62_be869ef7",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-22T02:18:33Z",
+      "side": 1,
+      "message": "This CL fixes the issue described in the commit message. I have filed b/194347374 to track the bug that changes in these files aren\u0027t captured. It should be fixed in a different CL.",
+      "parentUuid": "69fd9c60_8671cabd",
+      "range": {
+        "startLine": 455,
+        "startChar": 76,
+        "endLine": 455,
+        "endChar": 122
+      },
+      "revId": "f0dc5d9886877ba7ef85131e164aae036ee1e59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
