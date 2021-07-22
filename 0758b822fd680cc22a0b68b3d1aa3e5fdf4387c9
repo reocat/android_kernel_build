@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d4e7c9b_5487fc88",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-22T21:44:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75199f24_20773ab8",
+      "range": {
+        "startLine": 400,
+        "startChar": 0,
+        "endLine": 400,
+        "endChar": 63
+      },
+      "revId": "0758b822fd680cc22a0b68b3d1aa3e5fdf4387c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5dd39e6_ccc2ecc5",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "I can definitely rename it.\n\nThough, I don\u0027t think they are pre-declared because it isn\u0027t \"declared\" in L510.",
       "parentUuid": "f5dd39e6_ccc2ecc5",
+      "range": {
+        "startLine": 415,
+        "startChar": 4,
+        "endLine": 415,
+        "endChar": 31
+      },
+      "revId": "0758b822fd680cc22a0b68b3d1aa3e5fdf4387c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6931af0_02420406",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-22T21:44:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9b38555_c78f2d9d",
       "range": {
         "startLine": 415,
         "startChar": 4,
@@ -119,6 +167,30 @@
       "writtenOn": "2021-07-22T16:40:20Z",
       "side": 1,
       "message": "use .dirname here and avoid the $(dirname . ) in the script",
+      "range": {
+        "startLine": 475,
+        "startChar": 37,
+        "endLine": 475,
+        "endChar": 41
+      },
+      "revId": "0758b822fd680cc22a0b68b3d1aa3e5fdf4387c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2b07450_db71c2c6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-22T21:44:13Z",
+      "side": 1,
+      "message": "Done, also CL:1775448",
+      "parentUuid": "cf7033b0_399fc4cd",
       "range": {
         "startLine": 475,
         "startChar": 37,
