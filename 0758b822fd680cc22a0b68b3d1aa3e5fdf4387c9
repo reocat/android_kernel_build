@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9b38555_c78f2d9d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-22T21:19:43Z",
+      "side": 1,
+      "message": "I can definitely rename it.\n\nThough, I don\u0027t think they are pre-declared because it isn\u0027t \"declared\" in L510.",
+      "parentUuid": "f5dd39e6_ccc2ecc5",
+      "range": {
+        "startLine": 415,
+        "startChar": 4,
+        "endLine": 415,
+        "endChar": 31
+      },
+      "revId": "0758b822fd680cc22a0b68b3d1aa3e5fdf4387c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad01f083_c43da39c",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 10
@@ -60,6 +84,24 @@
       "writtenOn": "2021-07-22T16:40:20Z",
       "side": 1,
       "message": "I would prefer not to introduce the python dependency",
+      "revId": "0758b822fd680cc22a0b68b3d1aa3e5fdf4387c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e8336ed_f580d032",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-22T21:19:43Z",
+      "side": 1,
+      "message": "Did you see https://android-review.googlesource.com/c/kernel/build/+/1771799/2..10/kleaf/kernel.bzl#482 ?\n\nIt is already at L444. Plus, `realpath --relative-to` is a GNU extension, and the realpath prebuilt we have seems to be from toybox.",
+      "parentUuid": "ad01f083_c43da39c",
       "revId": "0758b822fd680cc22a0b68b3d1aa3e5fdf4387c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
