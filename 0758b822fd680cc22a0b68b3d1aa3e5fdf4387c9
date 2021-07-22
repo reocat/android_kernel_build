@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75199f24_20773ab8",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-22T16:40:20Z",
+      "side": 1,
+      "message": "I would expect that we have either this here or the one above. (L391)\nMaybe .dependencies is not fully specified?",
+      "range": {
+        "startLine": 400,
+        "startChar": 0,
+        "endLine": 400,
+        "endChar": 63
+      },
+      "revId": "0758b822fd680cc22a0b68b3d1aa3e5fdf4387c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5dd39e6_ccc2ecc5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-22T16:40:20Z",
+      "side": 1,
+      "message": "not exactly exported, rather \"declared\". I would rather think of them as \"pre-declared\" if you call them exported, but they are not.",
+      "range": {
+        "startLine": 415,
+        "startChar": 4,
+        "endLine": 415,
+        "endChar": 31
+      },
+      "revId": "0758b822fd680cc22a0b68b3d1aa3e5fdf4387c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad01f083_c43da39c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-22T16:40:20Z",
+      "side": 1,
+      "message": "I would prefer not to introduce the python dependency",
+      "revId": "0758b822fd680cc22a0b68b3d1aa3e5fdf4387c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf7033b0_399fc4cd",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-22T16:40:20Z",
+      "side": 1,
+      "message": "use .dirname here and avoid the $(dirname . ) in the script",
+      "range": {
+        "startLine": 475,
+        "startChar": 37,
+        "endLine": 475,
+        "endChar": 41
+      },
+      "revId": "0758b822fd680cc22a0b68b3d1aa3e5fdf4387c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
