@@ -156,6 +156,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "893e9705_d77d980c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-22T21:47:39Z",
+      "side": 1,
+      "message": "I can confirm that prebuilts/build-tools/path/linux-x86/realpath doesn\u0027t accept the `--relative-to` option.\n\nI could copy the bash version of it like in build/build.sh, but I think this is much simpler.",
+      "parentUuid": "9e8336ed_f580d032",
+      "revId": "0758b822fd680cc22a0b68b3d1aa3e5fdf4387c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf7033b0_399fc4cd",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 10
