@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69fd9c60_8671cabd",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-22T02:00:31Z",
+      "side": 1,
+      "message": "Not sure if these are the only things that are changed in module_staging_dir; in particular, I need to check if {module_staging_dir}/lib/modules/*/modules.* files. With build/build.sh, it appears that these files changed after extra/ changes:\n\n```\nmodules.devname\nmodules.builtin.alias.bin\nmodules.builtin.bin\nmodules.symbols.bin\nmodules.alias\nmodules.alias.bin\nmodules.dep\nmodules.dep.bin\nmodules.softdep\nmodules.symbols\n```\n\nand these didn\u0027t change:\n\n```\nmodules.builtin.modinfo\nmodules.builtin\nmodules.order\n```\n\nIf so, I\u0027ll need to pack the files in the first list as well, and also figure out a way to merge these files for different modules.",
+      "range": {
+        "startLine": 455,
+        "startChar": 76,
+        "endLine": 455,
+        "endChar": 122
+      },
+      "revId": "f0dc5d9886877ba7ef85131e164aae036ee1e59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
