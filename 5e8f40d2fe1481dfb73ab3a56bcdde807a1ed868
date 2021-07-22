@@ -22,6 +22,30 @@
       },
       "revId": "5e8f40d2fe1481dfb73ab3a56bcdde807a1ed868",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c718964_5467d874",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-22T21:50:55Z",
+      "side": 1,
+      "message": "Right now, we can\u0027t. build/build.sh doesn\u0027t ensure it either.\n\nAlso note b/194347374 and https://android-review.googlesource.com/c/kernel/build/+/1774374/4#message-98b3d68e79a270896d02ce8b086fe087fff3c070 .",
+      "parentUuid": "f9a9b721_a761c1b2",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 433,
+        "endChar": 67
+      },
+      "revId": "5e8f40d2fe1481dfb73ab3a56bcdde807a1ed868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
