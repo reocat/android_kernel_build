@@ -46,6 +46,30 @@
       },
       "revId": "2376ea0280af3b1fefec89012cbbbbe4e65c420e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83e3aba1_881847a2",
+        "filename": "abi/symbols.deny",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-07-22T13:34:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cbc37cde_c701094b",
+      "range": {
+        "startLine": 1,
+        "startChar": 10,
+        "endLine": 1,
+        "endChar": 24
+      },
+      "revId": "2376ea0280af3b1fefec89012cbbbbe4e65c420e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
