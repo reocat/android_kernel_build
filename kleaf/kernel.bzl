@@ -29,19 +29,19 @@ def kernel_build(
         toolchain_version = _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION):
     """Defines a kernel build target with all dependent targets.
 
-        It uses a build_config to construct a deterministic build environment
-        (e.g. 'common/build.config.gki.aarch64'). The kernel sources need to be
-        declared via srcs (using a glob). outs declares the output files
-        that are surviving the build. The effective output file names will be
-        $(name)/$(output_file). Any other artifact is not guaranteed to be
-        accessible after the rule has run. The default toolchain_version is
-        defined with a sensible default, but can be overriden.
+       It uses a build_config to construct a deterministic build environment
+       (e.g. 'common/build.config.gki.aarch64'). The kernel sources need to be
+       declared via srcs (using a glob). outs declares the output files
+       that are surviving the build. The effective output file names will be
+       $(name)/$(output_file). Any other artifact is not guaranteed to be
+       accessible after the rule has run. The default toolchain_version is
+       defined with a sensible default, but can be overriden.
 
-        Two additional labels, "{name}_env" and "{name}_config", are generated.
-        For example, if name is "kernel_aarch64":
-        - kernel_aarch64_env provides a source-able build environment defined
-          by the build config.
-        - kernel_aarch64_config provides the kernel config.
+       Two additional labels, "{name}_env" and "{name}_config", are generated.
+       For example, if name is "kernel_aarch64":
+       - kernel_aarch64_env provides a source-able build environment defined
+         by the build config.
+       - kernel_aarch64_config provides the kernel config.
 
     Args:
         name: the final kernel target name, e.g. "kernel_aarch64"
@@ -630,6 +630,8 @@ kernel_module = rule(
     doc = """Generates a rule that builds an external kernel module.
 
 Example:
+
+```
     kernel_module(
         name = "nfc",
         srcs = glob([
@@ -645,6 +647,7 @@ Example:
         kernel_build = "//common:kernel_aarch64",
         makefile = ":Makefile",
     )
+```
 """,
     attrs = {
         "srcs": attr.label_list(
