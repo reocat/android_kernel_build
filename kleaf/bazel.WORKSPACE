@@ -15,5 +15,11 @@
 toplevel_output_directories(paths = ["out"])
 
 load("//build/kleaf:environment.bzl", "capture_env")
-
 capture_env()
+
+local_repository(
+    name = "io_bazel_stardoc",
+    path = "external/stardoc",
+)
+load("@io_bazel_stardoc//:setup.bzl", "stardoc_repositories")
+stardoc_repositories()
