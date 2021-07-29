@@ -22,6 +22,30 @@
       },
       "revId": "83d21d62ab7490c624ef9f1606367ded596179b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bc63225_de81a092",
+        "filename": "kleaf/bazel.WORKSPACE",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-29T23:47:48Z",
+      "side": 1,
+      "message": "After I resolve the other two dependencies, there should be no cost. But right now, this does require downloading things.\n\nWhat do you suggest?",
+      "parentUuid": "b604e105_d165eaa6",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "83d21d62ab7490c624ef9f1606367ded596179b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
