@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b604e105_d165eaa6",
+        "filename": "kleaf/bazel.WORKSPACE",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-29T23:44:32Z",
+      "side": 1,
+      "message": "what cost does this create? is it suitable to be always loaded in this workspace?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "83d21d62ab7490c624ef9f1606367ded596179b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
