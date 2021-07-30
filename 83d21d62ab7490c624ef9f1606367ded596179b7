@@ -46,6 +46,30 @@
       },
       "revId": "83d21d62ab7490c624ef9f1606367ded596179b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36ae1183_68635f07",
+        "filename": "kleaf/bazel.WORKSPACE",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-07-30T10:24:21Z",
+      "side": 1,
+      "message": "Let\u0027s wait until we can use this without having to download from external sources.\n\nMy question was rather around how expensive `stardoc_repositories()` is, but since this is now replaced entirely by declaring local repositories, my concern is addressed.",
+      "parentUuid": "9bc63225_de81a092",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "83d21d62ab7490c624ef9f1606367ded596179b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
