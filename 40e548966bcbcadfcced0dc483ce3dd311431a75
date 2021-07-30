@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99d806d0_380a5f86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-07-30T00:43:42Z",
+      "side": 1,
+      "message": "I want to disable fetching external repositories, but this seems to disable fetching `bazel_tools` as well.",
+      "revId": "40e548966bcbcadfcced0dc483ce3dd311431a75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
