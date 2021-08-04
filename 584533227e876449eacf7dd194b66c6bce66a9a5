@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24976305_a41f8472",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-04T02:01:59Z",
+      "side": 1,
+      "message": "I\u0027ll put up a new CL to fix these.",
+      "revId": "584533227e876449eacf7dd194b66c6bce66a9a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0093fdae_0aa9aad5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-04T02:01:59Z",
+      "side": 1,
+      "message": "This doesn\u0027t generate very good output, because the indentation before \"Example\" is considered part of the code.",
+      "range": {
+        "startLine": 690,
+        "startChar": 0,
+        "endLine": 690,
+        "endChar": 10
+      },
+      "revId": "584533227e876449eacf7dd194b66c6bce66a9a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51565a66_e25980b2",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-04T02:01:59Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 734,
+        "startChar": 0,
+        "endLine": 734,
+        "endChar": 18
+      },
+      "revId": "584533227e876449eacf7dd194b66c6bce66a9a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
