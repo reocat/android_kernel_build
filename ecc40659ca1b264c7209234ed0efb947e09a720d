@@ -16,6 +16,24 @@
       "message": "should we merge this already? any chance this target can render html, then we could refer to continuous builds for the output as well?",
       "revId": "ecc40659ca1b264c7209234ed0efb947e09a720d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "936a60a7_20589616",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-09T20:19:16Z",
+      "side": 1,
+      "message": "Yes. I can modify the templates to render HTML. Maybe in the next CL I\u0027ll refine the templates?",
+      "parentUuid": "96b2fcb6_708ab20e",
+      "revId": "ecc40659ca1b264c7209234ed0efb947e09a720d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
