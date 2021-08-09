@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c5270d9_ea19d137",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-09T20:36:24Z",
+      "side": 1,
+      "message": "Yes. The gitiles one doesn\u0027t have the \u003cpre\u003e tag for each rule; cs.android.com should render it better.\n\nFor the anchors, I use both github style {:#} and markdown style \u003ca name\u003d\"\"\u003e anchors, but both gitiles and cs.android.com don\u0027t support github style. Perhaps I should delete the github style anchors.",
+      "parentUuid": "3844fd2f_a91e82ad",
+      "revId": "2a6485b50e29232caadf316fd7305a79546e552c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a956f406_0f2e4678",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a23acce_7e9bacc2",
+        "filename": "kleaf/docs/kernel.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-09T20:36:24Z",
+      "side": 1,
+      "message": "I haven\u0027t find a way (without javascript) to do this",
+      "parentUuid": "a956f406_0f2e4678",
+      "revId": "2a6485b50e29232caadf316fd7305a79546e552c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc5c1537_cdf5b03d",
@@ -48,6 +84,24 @@
       "writtenOn": "2021-08-09T12:21:27Z",
       "side": 1,
       "message": "why is kernel_module before kernel_build? should this not be sorted? Can we influence the order?",
+      "revId": "2a6485b50e29232caadf316fd7305a79546e552c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fb6dda5_03f85198",
+        "filename": "kleaf/docs/kernel.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-09T20:36:24Z",
+      "side": 1,
+      "message": "I don\u0027t think so, no.\n\n(Except, of course, with javascript)",
+      "parentUuid": "dc5c1537_cdf5b03d",
       "revId": "2a6485b50e29232caadf316fd7305a79546e552c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
