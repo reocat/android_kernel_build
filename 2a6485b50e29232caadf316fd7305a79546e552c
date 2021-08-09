@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3844fd2f_a91e82ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-09T12:21:27Z",
+      "side": 1,
+      "message": "The output in gitiles [1] looks still a bit messy. Are the cs.android.com interpretations of the markdown better?\n\n[1] https://android.googlesource.com/kernel/build/+/2a6485b50e29232caadf316fd7305a79546e552c/kleaf/docs/kernel.md",
+      "revId": "2a6485b50e29232caadf316fd7305a79546e552c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a956f406_0f2e4678",
+        "filename": "kleaf/docs/kernel.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-09T12:21:27Z",
+      "side": 1,
+      "message": "TOC possible?",
+      "revId": "2a6485b50e29232caadf316fd7305a79546e552c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc5c1537_cdf5b03d",
+        "filename": "kleaf/docs/kernel.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-09T12:21:27Z",
+      "side": 1,
+      "message": "why is kernel_module before kernel_build? should this not be sorted? Can we influence the order?",
+      "revId": "2a6485b50e29232caadf316fd7305a79546e552c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
