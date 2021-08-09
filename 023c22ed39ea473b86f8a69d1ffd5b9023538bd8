@@ -34,6 +34,24 @@
       "parentUuid": "1d651cbe_895b09bb",
       "revId": "023c22ed39ea473b86f8a69d1ffd5b9023538bd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28dedaec_e32f2fc3",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-09T20:31:53Z",
+      "side": 1,
+      "message": "It\u0027s actually hard to move it to a subdirectory because the \"source files\" (*.bzl) are in this directory. And I can\u0027t just use a filegroup because I need to declare a stardoc() rule for each file.",
+      "parentUuid": "86840966_bd5b5bce",
+      "revId": "023c22ed39ea473b86f8a69d1ffd5b9023538bd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
