@@ -54,6 +54,11 @@
 #
 #   EXT_MODULES
 #     Space separated list of external kernel modules to be build.
+#     Alternatively, a makefile named
+#     <REPO_ROOT>/KERNEL_DIR/Makefile.ext_modules can be provided. It will get
+#     called with all the necessary parameters to build and install external
+#     modules.  This allows for building external modules in parallel using
+#     makefile parallelization.
 #
 #   UNSTRIPPED_MODULES
 #     Space separated list of modules to be copied to <DIST_DIR>/unstripped
@@ -423,7 +428,7 @@ function create_modules_staging() {
   cp ${src_dir}/modules.order ${dest_dir}/modules.order
   cp ${src_dir}/modules.builtin ${dest_dir}/modules.builtin
 
-  if [ -n "${EXT_MODULES}" ]; then
+  if [[ -n "${EXT_MODULES}" ]] || [[ -f ${KERNEL_DIR}/Makefile.ext_modules ]]; then
     mkdir -p ${dest_dir}/extra/
     cp -r ${src_dir}/extra/* ${dest_dir}/extra/
     (cd ${dest_dir}/ && \
@@ -836,6 +841,17 @@ if [ "${BUILD_INITRAMFS}" = "1" -o  -n "${IN_KERNEL_MODULES}" ]; then
         INSTALL_MOD_PATH=${MODULES_STAGING_DIR} "${MAKE_ARGS[@]}" modules_install)
 fi
 
+if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -f ${KERNEL_DIR}/Makefile.ext_modules ]]; then
+  echo "========================================================"
+  echo " Building and installing external modules using ${KERNEL_DIR}/Makefile.ext_modules"
+
+  make -C ${KERNEL_DIR} -f Makefile.ext_modules             \
+          KERNEL_SRC=${ROOT_DIR}/${KERNEL_DIR} O=${OUT_DIR} \
+          ${TOOL_ARGS} ${MODULE_STRIP_FLAG}                 \
+          INSTALL_MOD_PATH=${MODULES_STAGING_DIR}           \
+          "${MAKE_ARGS[@]}"
+fi
+
 if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -n "${EXT_MODULES}" ]]; then
   echo "========================================================"
   echo " Building external modules and installing them into staging directory"
@@ -966,7 +982,7 @@ fi
 
 MODULES=$(find ${MODULES_STAGING_DIR} -type f -name "*.ko")
 if [ -n "${MODULES}" ]; then
-  if [ -n "${IN_KERNEL_MODULES}" -o -n "${EXT_MODULES}" ]; then
+  if [ -n "${IN_KERNEL_MODULES}" -o -n "${EXT_MODULES}" -o -f ${KERNEL_DIR}/Makefile.ext_modules ]; then
     echo "========================================================"
     echo " Copying modules files"
     for FILE in ${MODULES}; do
