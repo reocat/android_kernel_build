@@ -15,6 +15,7 @@
 load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
+load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -77,4 +78,44 @@ bzl_library(
 filegroup(
     name = "docs",
     srcs = [name + "-docs" for name in kernel_rule_files],
+)
+
+docs_server_files = [
+    "index.html",
+    "render.js",
+    "styles.css",
+]
+
+[copy_file(
+    name = "docs_server_files_" + file,
+    src = "docs/" + file,
+    out = "docs_server_files/" + file,
+) for file in docs_server_files]
+
+genrule(
+    name = "docs_server_files_directory.html.frag",
+    srcs = [
+    ],
+    outs = [
+        "docs_server_files/directory.html.frag",
+    ],
+    cmd = "".join([
+        """echo '<div><a href="?file={name}.md">{name}.md</a></div>' >> $@ && """.format(name = name)
+        for name in kernel_rule_files
+    ]) + ":",
+)
+
+[copy_file(
+    name = "docs_server_files_" + name + ".md",
+    src = name + ".md",
+    out = "docs_server_files/" + name + ".md",
+) for name in kernel_rule_files]
+
+sh_binary(
+    name = "docs_server",
+    srcs = [
+        "docs/run_server.sh",
+    ],
+    data = ["docs_server_files_" + name + ".md" for name in kernel_rule_files] +
+           ["docs_server_files_" + name for name in docs_server_files],
 )
