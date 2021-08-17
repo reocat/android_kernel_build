@@ -34,6 +34,24 @@
       "parentUuid": "5d50c390_115e612b",
       "revId": "9d7f110653ab0df3877d7310fedf7188d167ed18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c54e365_b7c4ff0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1514900
+      },
+      "writtenOn": "2021-08-17T10:39:12Z",
+      "side": 1,
+      "message": "bzl_library doesn\u0027t provide implicit dependencies on skylib, it just groups bzl files together, so this is WAI.",
+      "parentUuid": "e5e326f3_58e9bac3",
+      "revId": "9d7f110653ab0df3877d7310fedf7188d167ed18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
