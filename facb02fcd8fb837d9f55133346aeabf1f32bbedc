@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13b1c3bf_b7c1f186",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 13
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-18T15:20:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0777e7b_d764e0f2",
+      "range": {
+        "startLine": 92,
+        "startChar": 11,
+        "endLine": 92,
+        "endChar": 29
+      },
+      "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa1d4821_909197e5",
@@ -37,6 +61,24 @@
       "writtenOn": "2021-08-18T15:19:23Z",
       "side": 1,
       "message": "data dependency to docs_server_files/directory.html.frag is missing",
+      "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a4cae40_a8bfbdd1",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 13
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-18T15:20:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa1d4821_909197e5",
       "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e26c802e_82b8f7d7",
+        "filename": "kleaf/docs/render.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-18T15:20:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fff10ccc_96453b56",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 24
+      },
+      "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a27c7e3a_2bcc18e3",
@@ -81,6 +147,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a810b094_9410547a",
+        "filename": "kleaf/docs/run_server.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-18T15:20:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a27c7e3a_2bcc18e3",
+      "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c580baf_7fe64792",
@@ -94,6 +178,24 @@
       "writtenOn": "2021-08-18T15:19:23Z",
       "side": 1,
       "message": "python3 -m http.server 8080",
+      "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f3f1f9c_617c5a4f",
+        "filename": "kleaf/docs/run_server.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-18T15:20:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c580baf_7fe64792",
       "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
