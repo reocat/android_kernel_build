@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b427aae_87bf57ff",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2021-08-18T09:10:47Z",
+      "side": 1,
+      "message": "nit: maybe set \"die on unless variables\" explicitly by calling \"set -eu\"?",
+      "range": {
+        "startLine": 155,
+        "startChar": 14,
+        "endLine": 155,
+        "endChar": 16
+      },
+      "revId": "08e78e83284af8636078362c5af170859387d2ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
