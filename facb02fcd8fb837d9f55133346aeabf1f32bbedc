@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0777e7b_d764e0f2",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 13
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-18T15:19:23Z",
+      "side": 1,
+      "message": "this asks for a constant",
+      "range": {
+        "startLine": 92,
+        "startChar": 11,
+        "endLine": 92,
+        "endChar": 29
+      },
+      "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa1d4821_909197e5",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 13
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-18T15:19:23Z",
+      "side": 1,
+      "message": "data dependency to docs_server_files/directory.html.frag is missing",
+      "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fff10ccc_96453b56",
+        "filename": "kleaf/docs/render.js",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-18T15:19:23Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 24
+      },
+      "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a27c7e3a_2bcc18e3",
+        "filename": "kleaf/docs/run_server.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-18T15:19:23Z",
+      "side": 1,
+      "message": "this will announce the port twice as the http.server does it already",
+      "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c580baf_7fe64792",
+        "filename": "kleaf/docs/run_server.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-18T15:19:23Z",
+      "side": 1,
+      "message": "python3 -m http.server 8080",
+      "revId": "facb02fcd8fb837d9f55133346aeabf1f32bbedc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
