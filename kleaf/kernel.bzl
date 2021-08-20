@@ -393,6 +393,7 @@ _KernelBuildInfo = provider(fields = {
     "module_staging_archive": "Archive containing staging kernel modules. " +
                               "Does not contain the lib/modules/* suffix.",
     "srcs": "sources for this kernel_build",
+    "config": "the attribute to the kernel_config rule",
 })
 
 def _kernel_build_impl(ctx):
@@ -460,6 +461,7 @@ def _kernel_build_impl(ctx):
         _KernelBuildInfo(
             module_staging_archive = module_staging_archive,
             srcs = ctx.files.srcs,
+            config = ctx.attr.config,
         ),
     ]
 
@@ -561,9 +563,11 @@ def _kernel_module_impl(ctx):
                 dep_kernel_build = kernel_module_dep[_KernelModuleInfo].kernel_build.label,
             ))
 
+    kernel_config = ctx.attr.kernel_build[_KernelBuildInfo].config
+
     inputs = []
     inputs += ctx.files.srcs
-    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
+    inputs += kernel_config[_KernelEnvInfo].dependencies
     inputs += ctx.attr._modules_prepare[_KernelEnvInfo].dependencies
     inputs += ctx.attr.kernel_build[_KernelBuildInfo].srcs
     inputs += [
@@ -591,7 +595,7 @@ def _kernel_module_impl(ctx):
         module_symvers,
     ]
 
-    command = ctx.attr.kernel_build[_KernelEnvInfo].setup
+    command = kernel_config[_KernelEnvInfo].setup
     command += ctx.attr._modules_prepare[_KernelEnvInfo].setup
     command += """
              # create dirs for modules
