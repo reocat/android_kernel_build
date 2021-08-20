@@ -140,6 +140,30 @@
       },
       "revId": "fa045cddc91bf3fce53e739d26283c1118e8efeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64067fbf_d90c4e8d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-20T23:13:54Z",
+      "side": 1,
+      "message": "Also, I think it is nice to explicitly specify this dependency because it wants kernel modules from both the kernel_build() and the extra kernel_module()s.",
+      "parentUuid": "0308e584_b9a2c0dc",
+      "range": {
+        "startLine": 880,
+        "startChar": 8,
+        "endLine": 884,
+        "endChar": 10
+      },
+      "revId": "fa045cddc91bf3fce53e739d26283c1118e8efeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
