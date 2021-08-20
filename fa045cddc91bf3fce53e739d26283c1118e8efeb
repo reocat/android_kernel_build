@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "474b0f9a_0b43679c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-20T17:11:40Z",
+      "side": 1,
+      "message": "name typo",
+      "range": {
+        "startLine": 785,
+        "startChar": 4,
+        "endLine": 785,
+        "endChar": 31
+      },
+      "revId": "fa045cddc91bf3fce53e739d26283c1118e8efeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a114b255_e0fffdb5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-20T17:11:40Z",
+      "side": 1,
+      "message": "I would write this in label syntax, e.g. //path/to/modules:nfc or :nfc",
+      "range": {
+        "startLine": 874,
+        "startChar": 9,
+        "endLine": 874,
+        "endChar": 12
+      },
+      "revId": "fa045cddc91bf3fce53e739d26283c1118e8efeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72e527ef_508ed81d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-20T17:11:40Z",
+      "side": 1,
+      "message": "is this not already exposed from the modules? with the check that you have above, we can omit this and just use the build of any module?",
+      "range": {
+        "startLine": 880,
+        "startChar": 8,
+        "endLine": 884,
+        "endChar": 10
+      },
+      "revId": "fa045cddc91bf3fce53e739d26283c1118e8efeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
