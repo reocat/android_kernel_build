@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b065a08_c62c8397",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-23T13:45:39Z",
+      "side": 1,
+      "message": "needs license header",
+      "revId": "d86b1e19479795e78341fd754804f10a1b5a1e19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8467d060_97f0f67d",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-23T13:45:39Z",
+      "side": 1,
+      "message": "def _sanitize(line: str) -\u003e str:",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 12
+      },
+      "revId": "d86b1e19479795e78341fd754804f10a1b5a1e19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61b56705_b983c975",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-23T13:45:39Z",
+      "side": 1,
+      "message": "def _list_files(archive: List[?]) -\u003e List[str]:",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 30
+      },
+      "revId": "d86b1e19479795e78341fd754804f10a1b5a1e19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d6e2668_e1990d66",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-23T13:45:39Z",
+      "side": 1,
+      "message": "rather use tarfile \n\nhttps://docs.python.org/3.9/library/tarfile.html#module-tarfile",
+      "revId": "d86b1e19479795e78341fd754804f10a1b5a1e19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b2bc0c6_3587abdc",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-23T13:45:39Z",
+      "side": 1,
+      "message": "splitlines()",
+      "range": {
+        "startLine": 19,
+        "startChar": 52,
+        "endLine": 19,
+        "endChar": 63
+      },
+      "revId": "d86b1e19479795e78341fd754804f10a1b5a1e19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eb4a857_04c612aa",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-23T13:45:39Z",
+      "side": 1,
+      "message": "List[str] or List[pathlib.Path] ?",
+      "range": {
+        "startLine": 22,
+        "startChar": 19,
+        "endLine": 22,
+        "endChar": 23
+      },
+      "revId": "d86b1e19479795e78341fd754804f10a1b5a1e19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de4b4e2_b209dfa1",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-23T13:45:39Z",
+      "side": 1,
+      "message": "-\u003e None:",
+      "range": {
+        "startLine": 22,
+        "startChar": 24,
+        "endLine": 22,
+        "endChar": 25
+      },
+      "revId": "d86b1e19479795e78341fd754804f10a1b5a1e19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cba662c_a3f0a143",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-23T13:45:39Z",
+      "side": 1,
+      "message": "\"\"\"Descriptive subject line with period.\n\nFurther text.\n\"\"\"\n\nhttps://www.python.org/dev/peps/pep-0257/#multi-line-docstrings\ngo/no-imperative",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 5
+      },
+      "revId": "d86b1e19479795e78341fd754804f10a1b5a1e19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
