@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d111f31_3193fb5c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-23T13:47:35Z",
+      "side": 1,
+      "message": "this might overestimate a bit. But I know the issue as .startswith(\"scripts/\") is not working in this case.",
+      "revId": "2fe11a5c7b69616bab3005dfbdf23dc62d2ca564",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
