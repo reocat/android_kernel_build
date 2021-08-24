@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c10c1cd9_c4e5eb72",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-24T19:00:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2282d4d_89536a8a",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 20
+      },
+      "revId": "32d10ffe592c78e7ecdfc52b2b19fc2d1e5dde86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66b2a3f3_0240b7b1",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4c04e81_486847bf",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-24T19:00:00Z",
+      "side": 1,
+      "message": "Yes. Even with tarfile, the entry still contains the preceding ./ .\n\nThis is due to the command that creates the tar file. If the command were\n\n```\n(cd directory \u0026\u0026 tar cvf foo.tar.gz *)\n```\n\nthen they won\u0027t have the preceding ./",
+      "parentUuid": "66b2a3f3_0240b7b1",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 39
+      },
+      "revId": "32d10ffe592c78e7ecdfc52b2b19fc2d1e5dde86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef4dc1cb_d293ac23",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-08-24T09:01:12Z",
       "side": 1,
       "message": "getnames()\n\nhttps://docs.python.org/3.9/library/tarfile.html#tarfile.TarFile.getnames",
+      "range": {
+        "startLine": 35,
+        "startChar": 49,
+        "endLine": 35,
+        "endChar": 59
+      },
+      "revId": "32d10ffe592c78e7ecdfc52b2b19fc2d1e5dde86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02dcfe71_71b0bd61",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-24T19:00:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef4dc1cb_d293ac23",
       "range": {
         "startLine": 35,
         "startChar": 49,
