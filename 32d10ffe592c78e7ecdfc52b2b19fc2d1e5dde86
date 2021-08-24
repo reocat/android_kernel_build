@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2282d4d_89536a8a",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-24T09:01:12Z",
+      "side": 1,
+      "message": "typing\n\nhttps://docs.python.org/3.9/library/typing.html#typing.Collection",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 20
+      },
+      "revId": "32d10ffe592c78e7ecdfc52b2b19fc2d1e5dde86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b2a3f3_0240b7b1",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-24T09:01:12Z",
+      "side": 1,
+      "message": "do we still need this function after switching to tarfile?",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 39
+      },
+      "revId": "32d10ffe592c78e7ecdfc52b2b19fc2d1e5dde86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef4dc1cb_d293ac23",
+        "filename": "kleaf/check_duplicated_files_in_archives.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-24T09:01:12Z",
+      "side": 1,
+      "message": "getnames()\n\nhttps://docs.python.org/3.9/library/tarfile.html#tarfile.TarFile.getnames",
+      "range": {
+        "startLine": 35,
+        "startChar": 49,
+        "endLine": 35,
+        "endChar": 59
+      },
+      "revId": "32d10ffe592c78e7ecdfc52b2b19fc2d1e5dde86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
