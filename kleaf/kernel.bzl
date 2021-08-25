@@ -13,6 +13,7 @@
 # limitations under the License.
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("//build/kleaf:reproducible_builds.bzl", "SourceDateEpochInfo", "source_date_epoch")
 
 _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION = "r428724"
 
@@ -90,6 +91,7 @@ def kernel_build(
             See `search_and_mv_output.py` for details.
         toolchain_version: The toolchain version to depend on.
     """
+    source_date_epoch_name = name + "_source_date_epoch"
     sources_target_name = name + "_sources"
     env_target_name = name + "_env"
     config_target_name = name + "_config"
@@ -103,9 +105,12 @@ def kernel_build(
 
     native.filegroup(name = sources_target_name, srcs = kernel_srcs)
 
+    source_date_epoch(name = source_date_epoch_name)
+
     _kernel_env(
         name = env_target_name,
         build_config = build_config,
+        source_date_epoch = source_date_epoch_name,
         srcs = build_config_srcs,
         toolchain_version = toolchain_version,
     )
@@ -145,12 +150,20 @@ def _kernel_env_impl(ctx):
     out_file = ctx.actions.declare_file("%s.sh" % ctx.attr.name)
     dependencies = ctx.files._tools + ctx.files._host_tools
 
+    inputs = []
+    inputs += ctx.files.srcs
+    inputs += ctx.attr.source_date_epoch[SourceDateEpochInfo].dependencies.to_list()
+    inputs += [
+        setup_env,
+        preserve_env,
+    ]
+
     command = ""
     if ctx.attr._debug_annotate_scripts[BuildSettingInfo].value:
         command += _debug_trap()
 
+    command += ctx.attr.source_date_epoch[SourceDateEpochInfo].setup
     command += """
-        export SOURCE_DATE_EPOCH=0  # TODO(b/194772369)
         # error on failures
           set -e
           set -o pipefail
@@ -175,10 +188,7 @@ def _kernel_env_impl(ctx):
         # Script that runs %s:%s""" % (ctx.label, command))
 
     ctx.actions.run_shell(
-        inputs = ctx.files.srcs + [
-            setup_env,
-            preserve_env,
-        ],
+        inputs = inputs,
         outputs = [out_file],
         progress_message = "Creating build environment for %s" % ctx.attr.name,
         command = command,
@@ -259,6 +269,10 @@ _kernel_env = rule(
         ),
         "toolchain_version": attr.string(
             doc = "the toolchain to use for this environment",
+        ),
+        "source_date_epoch": attr.label(
+            doc = "Label to the source_date_epoch rule",
+            providers = [SourceDateEpochInfo],
         ),
         "_tools": attr.label_list(default = _get_tools),
         "_host_tools": attr.label(default = "//build:host-tools"),
