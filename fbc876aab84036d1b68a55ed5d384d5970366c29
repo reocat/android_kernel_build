@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a71277e8_b8e61251",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-25T12:14:07Z",
+      "side": 1,
+      "message": "the location is a bit arbitrary and considering that in future there might not be a writable KERNEL_DIR with GKI, can we make this an indicative configuration option?\n  \n  EXT_MODULES_MAKEFILE\u003dsome/where/Makefile.ext_modules",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "fbc876aab84036d1b68a55ed5d384d5970366c29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
