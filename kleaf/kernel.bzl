@@ -150,7 +150,9 @@ def _kernel_env_impl(ctx):
         command += _debug_trap()
 
     command += """
-        export SOURCE_DATE_EPOCH=0  # TODO(b/194772369)
+          if [ -z "${{SOURCE_DATE_EPOCH}}" ]; then
+            export SOURCE_DATE_EPOCH=0  # TODO(b/194772369)
+          fi
         # error on failures
           set -e
           set -o pipefail
@@ -182,6 +184,7 @@ def _kernel_env_impl(ctx):
         outputs = [out_file],
         progress_message = "Creating build environment for %s" % ctx.attr.name,
         command = command,
+        use_default_shell_env = True,
     )
 
     host_tool_path = ctx.files._host_tools[0].dirname
