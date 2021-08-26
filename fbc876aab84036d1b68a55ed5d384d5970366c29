@@ -46,6 +46,30 @@
       },
       "revId": "fbc876aab84036d1b68a55ed5d384d5970366c29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71e8554b_ec781cb2",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-26T08:54:55Z",
+      "side": 1,
+      "message": "Oh sorry, my comment was misleading. In future, the KERNEL_DIR might be vanilla ACK/GKI and modifications (such as adding a Makefile) might be inconvenient. A configurable location of this Makefile should make this more flexible.",
+      "parentUuid": "7dc360a5_9ec99cc2",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "fbc876aab84036d1b68a55ed5d384d5970366c29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
