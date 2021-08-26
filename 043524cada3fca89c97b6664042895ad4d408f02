@@ -52,6 +52,24 @@
       "parentUuid": "e264bdec_38a72d78",
       "revId": "043524cada3fca89c97b6664042895ad4d408f02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ff70c79_ac6c662b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-26T21:51:44Z",
+      "side": 1,
+      "message": "PS5 gives the following result:\n\n```\nreal\t0m0.223s\nuser\t0m0.249s\nsys\t0m0.141s\n# For building out_dir_kernel_headers_tar\n\nreal\t0m1.786s\nuser\t0m1.920s\nsys\t0m0.764s\n# for building the whole kernel_aarch64_headers archive\n```",
+      "parentUuid": "8664745d_e9b290fe",
+      "revId": "043524cada3fca89c97b6664042895ad4d408f02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
