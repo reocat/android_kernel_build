@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3e046f4_ceee484d",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-26T19:56:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08c8ae62_ce8f5ab6",
+      "revId": "fb81eefbd7a71e3d9bc6dba74f1995e08593bb91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9642d64_1144bbbe",
@@ -66,6 +84,30 @@
       "writtenOn": "2021-08-26T14:59:42Z",
       "side": 1,
       "message": "can you confirm this is the case even for this isolated execution here?",
+      "range": {
+        "startLine": 943,
+        "startChar": 1,
+        "endLine": 944,
+        "endChar": 74
+      },
+      "revId": "fb81eefbd7a71e3d9bc6dba74f1995e08593bb91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff1db081_9ea931d7",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-26T19:56:01Z",
+      "side": 1,
+      "message": "Dropped",
+      "parentUuid": "320f2ed6_cc862a0b",
       "range": {
         "startLine": 943,
         "startChar": 1,
