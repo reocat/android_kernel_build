@@ -22,6 +22,30 @@
       },
       "revId": "fbc876aab84036d1b68a55ed5d384d5970366c29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dc360a5_9ec99cc2",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-08-26T06:58:35Z",
+      "side": 1,
+      "message": "I tried to implement your EXT_MODULES_MAKEFILE suggestion. I\u0027m not writing to KERNEL_DIR, though.",
+      "parentUuid": "a71277e8_b8e61251",
+      "range": {
+        "startLine": 58,
+        "startChar": 6,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "fbc876aab84036d1b68a55ed5d384d5970366c29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
