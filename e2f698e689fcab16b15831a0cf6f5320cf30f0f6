@@ -46,6 +46,30 @@
       },
       "revId": "e2f698e689fcab16b15831a0cf6f5320cf30f0f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02c2b135_e1666d5a",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-26T14:46:01Z",
+      "side": 1,
+      "message": "I thought about the error message as well. I agree with your judgement to let Make fail loud if this is broken.",
+      "parentUuid": "0e71d016_7c9e4cc5",
+      "range": {
+        "startLine": 845,
+        "startChar": 41,
+        "endLine": 845,
+        "endChar": 42
+      },
+      "revId": "e2f698e689fcab16b15831a0cf6f5320cf30f0f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
