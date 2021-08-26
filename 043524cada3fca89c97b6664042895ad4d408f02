@@ -16,6 +16,24 @@
       "message": "I wonder whether we can move this out of the kernel_build to a) make it optional and b) run it concurrently to other things depending on a kernel build.",
       "revId": "043524cada3fca89c97b6664042895ad4d408f02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e264bdec_38a72d78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-26T17:00:51Z",
+      "side": 1,
+      "message": "It needs to depend on headers in ${OUT_DIR}, so I\u0027ll need to run \"find\" anyways. Let me check how fast it is.",
+      "parentUuid": "8bd11933_1e8eeca8",
+      "revId": "043524cada3fca89c97b6664042895ad4d408f02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
