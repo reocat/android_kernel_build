@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d9fe1cd_a7dc1a09",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 937,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-26T16:52:55Z",
+      "side": 1,
+      "message": "Right. Also, there\u0027s only one file generated, and it is in the returned DefaultInfo.",
+      "parentUuid": "b9642d64_1144bbbe",
+      "revId": "fb81eefbd7a71e3d9bc6dba74f1995e08593bb91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "320f2ed6_cc862a0b",
@@ -71,6 +89,30 @@
       "writtenOn": "2021-08-26T14:59:42Z",
       "side": 1,
       "message": "I think we can rely on bazel to clean up (lazily?) after us.",
+      "range": {
+        "startLine": 948,
+        "startChar": 0,
+        "endLine": 948,
+        "endChar": 43
+      },
+      "revId": "fb81eefbd7a71e3d9bc6dba74f1995e08593bb91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86fb0cbc_83227870",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-26T16:52:55Z",
+      "side": 1,
+      "message": "No we can\u0027t. This is similar to modules_staging_dir above.",
+      "parentUuid": "57d3d663_289ce095",
       "range": {
         "startLine": 948,
         "startChar": 0,
