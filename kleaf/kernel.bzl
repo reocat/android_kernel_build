@@ -413,6 +413,9 @@ def _kernel_build_impl(ctx):
     module_staging_archive = ctx.actions.declare_file(
         "{name}/module_staging_dir.tar.gz".format(name = ctx.label.name),
     )
+    kernel_headers_tar = ctx.actions.declare_file(
+        "{name}/kernel-headers.tar.gz".format(name = ctx.label.name),
+    )
 
     command = ctx.attr.config[_KernelEnvInfo].setup + """
          # Actual kernel build
@@ -424,6 +427,18 @@ def _kernel_build_impl(ctx):
            mkdir -p {module_staging_dir}
          # Install modules
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} ${{module_strip_flag}} INSTALL_MOD_PATH=$(realpath {module_staging_dir}) modules_install
+         # Copy headers
+           (
+               real_kernel_headers_tar=$(realpath {kernel_headers_tar})
+               cd ${{ROOT_DIR}}/${{KERNEL_DIR}}
+               find arch include ${{OUT_DIR}} -name *.h -print0         \
+                   | tar czf ${{real_kernel_headers_tar}}               \
+                       --absolute-names                                 \
+                       --dereference                                    \
+                       --transform "s,.*$OUT_DIR,,"                     \
+                       --transform "s,^,kernel-headers/,"               \
+                       --null -T -
+           )
          # Grab outputs
            {search_and_mv_output} --srcdir ${{OUT_DIR}} --dstdir {outdir} {outs}
          # Archive module_staging_dir
@@ -435,6 +450,7 @@ def _kernel_build_impl(ctx):
         outs = " ".join(outs),
         module_staging_dir = module_staging_archive.dirname + "/staging",
         module_staging_archive = module_staging_archive.path,
+        kernel_headers_tar = kernel_headers_tar.path,
     )
 
     if ctx.attr._debug_print_scripts[BuildSettingInfo].value:
@@ -447,6 +463,7 @@ def _kernel_build_impl(ctx):
         outputs = ctx.outputs.outs + [
             outdir,
             module_staging_archive,
+            kernel_headers_tar,
         ],
         tools = ctx.attr.config[_KernelEnvInfo].dependencies,
         progress_message = "Building kernel %s" % ctx.attr.name,
