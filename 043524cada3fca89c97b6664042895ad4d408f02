@@ -70,6 +70,24 @@
       "parentUuid": "8664745d_e9b290fe",
       "revId": "043524cada3fca89c97b6664042895ad4d408f02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef85c388_ab2ebd61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-26T21:53:37Z",
+      "side": 1,
+      "message": "That is, I keep the part that archives headers in ${OUT_DIR} in kernel_build, but move the part that archives headers in arch/ and include/ into its own rule. That should save us more than 1 second.",
+      "parentUuid": "5ff70c79_ac6c662b",
+      "revId": "043524cada3fca89c97b6664042895ad4d408f02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
