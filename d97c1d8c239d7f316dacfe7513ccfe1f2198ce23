@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b87e114f_f60496a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-26T16:50:45Z",
+      "side": 1,
+      "message": "as discussed, let\u0027s avoid the repo dependency and try to mark the kernel dir to directly invoke git on it. One way is to add this symlink to the manifest:\n\n source_date_epoch_dir/ -\u003e common/\n \nand in bazel.sh we do (upon its existence)\n git -c source_date_epoch_dir log -1 --pretty\u003d%ct",
+      "revId": "d97c1d8c239d7f316dacfe7513ccfe1f2198ce23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
