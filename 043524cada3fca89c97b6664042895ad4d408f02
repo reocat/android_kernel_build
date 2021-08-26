@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bd11933_1e8eeca8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-26T16:48:09Z",
+      "side": 1,
+      "message": "I wonder whether we can move this out of the kernel_build to a) make it optional and b) run it concurrently to other things depending on a kernel build.",
+      "revId": "043524cada3fca89c97b6664042895ad4d408f02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
