@@ -22,6 +22,30 @@
       },
       "revId": "e2f698e689fcab16b15831a0cf6f5320cf30f0f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e71d016_7c9e4cc5",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-08-26T14:32:14Z",
+      "side": 1,
+      "message": "I\u0027m thinking that if EXT_MODULES_MAKEFILE is set to a non-existent file, I\u0027d rather have this script fail with an error message like\n\nmake: Makefile.ext_modules: No such file or directory\n\ninstead of it silently skipping building external modules. I can change it to \"-f\", though, if that\u0027s your preference. Just let me know. I\u0027d assume you want me to change it on lines 432 and 984 as well, then, right?",
+      "parentUuid": "a45431f4_d18a29ab",
+      "range": {
+        "startLine": 845,
+        "startChar": 41,
+        "endLine": 845,
+        "endChar": 42
+      },
+      "revId": "e2f698e689fcab16b15831a0cf6f5320cf30f0f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
