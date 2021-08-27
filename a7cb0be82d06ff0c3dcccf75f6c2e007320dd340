@@ -22,6 +22,30 @@
       },
       "revId": "a7cb0be82d06ff0c3dcccf75f6c2e007320dd340",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20f71f85_9c766cbc",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-27T17:49:58Z",
+      "side": 1,
+      "message": "Yes. It means we need to do something like `[s for s in srcs if \"arch\" in s or \"include\" in s]`, but that doesn\u0027t filter out `foo/include`, for example.\n\nI can\u0027t find a good way to do this yet.",
+      "parentUuid": "3812f1f7_a130271a",
+      "range": {
+        "startLine": 147,
+        "startChar": 8,
+        "endLine": 147,
+        "endChar": 48
+      },
+      "revId": "a7cb0be82d06ff0c3dcccf75f6c2e007320dd340",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
