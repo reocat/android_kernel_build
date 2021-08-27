@@ -26,6 +26,7 @@ def kernel_build(
         build_config,
         srcs,
         outs,
+        generate_vmlinux_btf = False,
         deps = (),
         toolchain_version = _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION):
     """Defines a kernel build target with all dependent targets.
@@ -50,6 +51,7 @@ def kernel_build(
         name: The final kernel target name, e.g. `"kernel_aarch64"`.
         build_config: Label of the build.config file, e.g. `"build.config.gki.aarch64"`.
         srcs: The kernel sources (a `glob()`).
+        generate_vmlinux_btf: If true, generates `vmlinux.btf`.
         deps: Additional dependencies to build this kernel.
         outs: The expected output files. For each item `out`:
 
@@ -149,6 +151,13 @@ def kernel_build(
         # TODO: We need arch/ and include/ only.
         srcs = [sources_target_name],
     )
+
+    if generate_vmlinux_btf:
+        _vmlinux_btf(
+            name = name + "_vmlinux_btf",
+            vmlinux = name + "/vmlinux",
+            env = env_target_name,
+        )
 
     copy_to_dist_dir(
         name = name + "_dist",
@@ -1076,6 +1085,52 @@ _kernel_headers = rule(
         "kernel_build": attr.label(
             mandatory = True,
             providers = [_KernelBuildInfo],  # for out_dir_kernel_headers_tar only
+        ),
+        "env": attr.label(
+            mandatory = True,
+            providers = [_KernelEnvInfo],
+        ),
+        "_debug_print_scripts": attr.label(
+            default = "//build/kleaf:debug_print_scripts",
+        ),
+    },
+)
+
+def _vmlinux_btf_impl(ctx):
+    inputs = [
+        ctx.file.vmlinux,
+    ]
+    inputs += ctx.attr.env[_KernelEnvInfo].dependencies
+    out_file = ctx.actions.declare_file("{}/vmlinux.btf".format(ctx.label.name))
+    out_dir = out_file.dirname
+    command = ctx.attr.env[_KernelEnvInfo].setup + _debug_trap() + """
+              mkdir -p {out_dir}
+              cp -Lp {vmlinux} {vmlinux_btf}
+              pahole -J {vmlinux_btf}
+              llvm-strip --strip-debug {vmlinux_btf}
+    """.format(
+        vmlinux = ctx.file.vmlinux.path,
+        vmlinux_btf = out_file.path,
+        out_dir = out_dir,
+    )
+    if ctx.attr._debug_print_scripts[BuildSettingInfo].value:
+        print("""
+        # Script that runs %s:%s""" % (ctx.label, command))
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [out_file],
+        progress_message = "Building vmlinux.btf {}".format(ctx.label),
+        command = command,
+    )
+    return DefaultInfo(files = depset([out_file]))
+
+_vmlinux_btf = rule(
+    implementation = _vmlinux_btf_impl,
+    doc = "Build vmlinux.btf",
+    attrs = {
+        "vmlinux": attr.label(
+            mandatory = True,
+            allow_single_file = True,
         ),
         "env": attr.label(
             mandatory = True,
