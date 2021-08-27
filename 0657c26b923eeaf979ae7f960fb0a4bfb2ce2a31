@@ -22,6 +22,30 @@
       },
       "revId": "0657c26b923eeaf979ae7f960fb0a4bfb2ce2a31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38b5b0e8_2a045c1b",
+        "filename": ".gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-27T18:00:29Z",
+      "side": 1,
+      "message": "Ah I see, it is for\n\nhttps://android-review.googlesource.com/c/kernel/manifest/+/1810669/1/default.xml\n\nIt should probably be in another CL, but I am fine with it as is.",
+      "parentUuid": "48ab488f_4b8b5de4",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 18
+      },
+      "revId": "0657c26b923eeaf979ae7f960fb0a4bfb2ce2a31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
