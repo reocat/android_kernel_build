@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10e266eb_9c7b4a42",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-28T06:52:58Z",
+      "side": 1,
+      "message": "that makes vmlinux a mandatory output for kernel_build. another option could be to depend on kernel_build and pass the vmlinux file via provider. wdyt?  I am also ok with this approach as it simple and elegant and works probably in all cases.",
+      "range": {
+        "startLine": 158,
+        "startChar": 31,
+        "endLine": 158,
+        "endChar": 38
+      },
+      "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e25620f_16e0000e",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 1
