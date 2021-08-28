@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e25620f_16e0000e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-28T06:50:25Z",
+      "side": 1,
+      "message": "this needs to conditionally go into dist as well",
+      "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ea40403_da35bd1c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-28T06:50:25Z",
+      "side": 1,
+      "message": "should that not only be set in the KernelEnv setup? maybe a debug leftover?",
+      "range": {
+        "startLine": 1106,
+        "startChar": 51,
+        "endLine": 1106,
+        "endChar": 62
+      },
+      "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
