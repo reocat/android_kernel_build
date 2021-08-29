@@ -62,6 +62,29 @@
       },
       "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5c75b37_3f0a28df",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-08-29T18:30:08Z",
+      "side": 1,
+      "message": "I think this recipe differs greatly from what is actually done by the kernel linker script (which is pahole -J on a temporary copy, extract .BTF section, re-link kernel from scratch including the new section).\n\nNow, for the purposes of ABI extraction, pahole -J is fine. However, the resulting kernel may not be well-formed (or why would the linker script do such elaborate things?).",
+      "range": {
+        "startLine": 1107,
+        "startChar": 0,
+        "endLine": 1110,
+        "endChar": 52
+      },
+      "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
