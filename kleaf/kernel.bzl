@@ -27,6 +27,7 @@ def kernel_build(
         srcs,
         outs,
         deps = (),
+        dist_deps = [],
         toolchain_version = _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION):
     """Defines a kernel build target with all dependent targets.
 
@@ -44,13 +45,27 @@ def kernel_build(
       the build config.
     - `kernel_aarch64_config` provides the kernel config.
     - `kernel_aarch64_uapi_headers` provides the UAPI kernel headers.
-    - `kernel_aarch64_dist` to create a DIST_DIR distribution
+    - `kernel_aarch64_dist` to create a `DIST_DIR` distribution
 
     Args:
         name: The final kernel target name, e.g. `"kernel_aarch64"`.
         build_config: Label of the build.config file, e.g. `"build.config.gki.aarch64"`.
         srcs: The kernel sources (a `glob()`).
         deps: Additional dependencies to build this kernel.
+        dist_deps: Additional labels added to `DIST_DIR`.
+
+          Unlike `deps`, `dist_deps` may include a list of labels that depend on
+          this `kernel_build` rule. For example, `dist_deps` may contain a list
+          of `kernel_module`s. The following example is valid:
+          ```
+          kernel_build(name = "kernel", dist_deps = ["module"])
+          kernel_module(name = "module", kernel_build = "kernel")
+          ```
+
+          There is no circular dependency, because the dependency tree is
+          ```
+          kernel_dist -> module -> kernel
+          ```
         outs: The expected output files. For each item `out`:
 
           - If `out` does not contain a slash, the build rule
@@ -150,13 +165,16 @@ def kernel_build(
         srcs = [sources_target_name],
     )
 
+    additional_dist_deps = []
+    additional_dist_deps += dist_deps
+
     copy_to_dist_dir(
         name = name + "_dist",
         data = [
             name,
             name + "_uapi_headers",
             name + "_headers",
-        ],
+        ] + additional_dist_deps,
     )
 
 _KernelEnvInfo = provider(fields = {
