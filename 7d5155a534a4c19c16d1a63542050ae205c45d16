@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fbea282_08f98f26",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-31T18:39:03Z",
+      "side": 1,
+      "message": "THIS",
+      "range": {
+        "startLine": 958,
+        "startChar": 4,
+        "endLine": 958,
+        "endChar": 25
+      },
+      "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10e266eb_9c7b4a42",
@@ -14,6 +37,30 @@
       "writtenOn": "2021-08-28T06:52:58Z",
       "side": 1,
       "message": "that makes vmlinux a mandatory output for kernel_build. another option could be to depend on kernel_build and pass the vmlinux file via provider. wdyt?  I am also ok with this approach as it simple and elegant and works probably in all cases.",
+      "range": {
+        "startLine": 158,
+        "startChar": 31,
+        "endLine": 158,
+        "endChar": 38
+      },
+      "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1da4246_9acbcc9d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-31T18:39:03Z",
+      "side": 1,
+      "message": "\u003e that makes vmlinux a mandatory output for kernel_build\n\nNope, generate_vmlinux_btf is false by default. It corresponds to the GENERATE_VMLINUX_BTF option on build.sh.\n\nFor example, for //common:kernel, generate_vmlinux_btf is not set.",
+      "parentUuid": "10e266eb_9c7b4a42",
       "range": {
         "startLine": 158,
         "startChar": 31,
@@ -77,6 +124,30 @@
       "writtenOn": "2021-08-29T18:30:08Z",
       "side": 1,
       "message": "I think this recipe differs greatly from what is actually done by the kernel linker script (which is pahole -J on a temporary copy, extract .BTF section, re-link kernel from scratch including the new section).\n\nNow, for the purposes of ABI extraction, pahole -J is fine. However, the resulting kernel may not be well-formed (or why would the linker script do such elaborate things?).",
+      "range": {
+        "startLine": 1107,
+        "startChar": 0,
+        "endLine": 1110,
+        "endChar": 52
+      },
+      "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df6ac5dc_22a519f2",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-31T18:39:03Z",
+      "side": 1,
+      "message": "I copied this from build.sh.\n\nWhat do you suggest, Giuliano?",
+      "parentUuid": "e5c75b37_3f0a28df",
       "range": {
         "startLine": 1107,
         "startChar": 0,
