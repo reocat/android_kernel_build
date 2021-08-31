@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b016c8cc_3c923485",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-08-31T18:55:55Z",
+      "side": 1,
+      "message": "Because it is a flag to build.sh, maybe it should be a flag to the `bazel build` command like what we did for LTO?\n\nIf so, then I get what you mean. The solution is to make the dependency optional by using select():\n\nhttps://docs.bazel.build/versions/main/be/functions.html#select",
+      "parentUuid": "c1da4246_9acbcc9d",
+      "range": {
+        "startLine": 158,
+        "startChar": 31,
+        "endLine": 158,
+        "endChar": 38
+      },
+      "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e25620f_16e0000e",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 1
