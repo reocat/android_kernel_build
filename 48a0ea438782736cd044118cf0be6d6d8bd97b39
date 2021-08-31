@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f581a1f5_a1c64047",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-08-31T19:43:19Z",
+      "side": 1,
+      "message": "this is a bit a slippery slope. I know why you need this,but with this we are creating a primary target. Should we not actually create separate dist targets if we plan to distribute multiple things? we need to find a way to combine the dist targets to not have to invoke them separately, though.",
+      "revId": "48a0ea438782736cd044118cf0be6d6d8bd97b39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
