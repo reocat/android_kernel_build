@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("//build/kleaf:kernel.bzl", "kernel_build")
+load("//build/kleaf:kernel.bzl", "kernel_build", "kernel_dist")
 
 def define_common_kernels():
     """Defines common build targets for Android Common Kernels.
@@ -49,20 +49,26 @@ def define_common_kernels():
 
     x86_64_outs = common_outs + ["bzImage"]
 
-    [kernel_build(
-        name = name,
-        srcs = native.glob(
-            ["**"],
-            exclude = [
-                "android/*",
-                "BUILD.bazel",
-                "**/*.bzl",
-                ".git/**",
-            ],
+    [[
+        kernel_build(
+            name = name,
+            srcs = native.glob(
+                ["**"],
+                exclude = [
+                    "android/*",
+                    "BUILD.bazel",
+                    "**/*.bzl",
+                    ".git/**",
+                ],
+            ),
+            outs = outs,
+            build_config = config,
         ),
-        outs = outs,
-        build_config = config,
-    ) for name, config, outs in [
+        kernel_dist(
+            name = name + "_dist",
+            kernel_build = name,
+        ),
+    ] for name, config, outs in [
         (
             "kernel_aarch64",
             "build.config.gki.aarch64",
