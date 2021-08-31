@@ -44,7 +44,7 @@ def kernel_build(
       the build config.
     - `kernel_aarch64_config` provides the kernel config.
     - `kernel_aarch64_uapi_headers` provides the UAPI kernel headers.
-    - `kernel_aarch64_dist` to create a DIST_DIR distribution
+    - `kernel_aarch64_headers` provides the kernel headers.
 
     Args:
         name: The final kernel target name, e.g. `"kernel_aarch64"`.
@@ -97,6 +97,8 @@ def kernel_build(
     env_target_name = name + "_env"
     config_target_name = name + "_config"
     modules_prepare_target_name = name + "_modules_prepare"
+    uapi_headers_target_name = name + "_uapi_headers"
+    headers_target_name = name + "_headers"
     build_config_srcs = [
         s
         for s in srcs
@@ -137,26 +139,28 @@ def kernel_build(
     )
 
     _kernel_uapi_headers(
-        name = name + "_uapi_headers",
+        name = uapi_headers_target_name,
         config = config_target_name,
         srcs = [sources_target_name],
     )
 
     _kernel_headers(
-        name = name + "_headers",
+        name = headers_target_name,
         kernel_build = name,
         env = env_target_name,
         # TODO: We need arch/ and include/ only.
         srcs = [sources_target_name],
     )
 
-    copy_to_dist_dir(
-        name = name + "_dist",
-        data = [
-            name,
-            name + "_uapi_headers",
-            name + "_headers",
-        ],
+    labels_for_dist = [
+        name,
+        uapi_headers_target_name,
+        headers_target_name,
+    ]
+
+    native.filegroup(
+        name = name + "_for_dist",
+        srcs = labels_for_dist,
     )
 
 _KernelEnvInfo = provider(fields = {
@@ -1086,3 +1090,26 @@ _kernel_headers = rule(
         ),
     },
 )
+
+def kernel_dist(
+        name,
+        kernel_build,
+        data = []):
+    """A macro that creates a `DIST_DIR` distribution.
+
+    Create the distribution with:
+    ```
+    bazel run <label> -- --dist_dir=$DIST_DIR --flat
+    ```
+
+    Args:
+        name: Name of this distribution. Usually, it should be `{kernel_build}_dist`.
+        kernel_build: Label of a `kernel_build` to get dist files from
+        data: additional data to be distributed
+    """
+    copy_to_dist_dir(
+        name = name,
+        data = data + [
+            kernel_build + "_for_dist",
+        ],
+    )
