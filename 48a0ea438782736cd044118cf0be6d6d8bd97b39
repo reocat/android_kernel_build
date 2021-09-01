@@ -70,6 +70,24 @@
       "parentUuid": "6b77fb55_76297aa8",
       "revId": "48a0ea438782736cd044118cf0be6d6d8bd97b39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59c13038_b2e17cf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-01T11:07:10Z",
+      "side": 1,
+      "message": "I think this is the way to go to make it a bit more clear. Otherwise we are introducing some implicit functionality that is hard to refactor or to get rid off.",
+      "parentUuid": "a3ffdba6_ae651de6",
+      "revId": "48a0ea438782736cd044118cf0be6d6d8bd97b39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
