@@ -878,6 +878,18 @@ if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -n "${EXT_MODULES}" ]]; then
 
 fi
 
+echo "========================================================"
+echo " Generating test_mappings.zip"
+TEST_MAPPING_FILES=${OUT_DIR}/test_mapping_files.txt
+rm -f ${TEST_MAPPING_FILES}
+find ${ROOT_DIR} -name TEST_MAPPING \
+  -not -path "${ROOT_DIR}/out/*" \
+  -not -path "${ROOT_DIR}/out_abi*" \
+  -not -path "${ROOT_DIR}/\.repo*" \
+  >> ${TEST_MAPPING_FILES}
+soong_zip -o ${OUT_DIR}/test_mappings.zip -C ${ROOT_DIR} -l ${TEST_MAPPING_FILES}
+FILES="${FILES} test_mappings.zip"
+
 if [ -n "${EXTRA_CMDS}" ]; then
   echo "========================================================"
   echo " Running extra build command(s):"
