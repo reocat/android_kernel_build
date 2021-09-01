@@ -294,6 +294,30 @@
       },
       "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8abe788_21c541ff",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-01T02:23:20Z",
+      "side": 1,
+      "message": "Ack, I\u0027ll keep it as is.",
+      "parentUuid": "1936c470_c30768df",
+      "range": {
+        "startLine": 1107,
+        "startChar": 0,
+        "endLine": 1110,
+        "endChar": 52
+      },
+      "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
