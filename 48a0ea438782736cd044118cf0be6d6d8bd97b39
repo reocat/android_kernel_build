@@ -34,6 +34,24 @@
       "parentUuid": "f581a1f5_a1c64047",
       "revId": "48a0ea438782736cd044118cf0be6d6d8bd97b39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b77fb55_76297aa8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-01T02:17:59Z",
+      "side": 1,
+      "message": "e.g. we can even define a `kernel_build_dist` macro / rule that automatically includes kernel_build and the headers.",
+      "parentUuid": "60808f2f_4d22f4d7",
+      "revId": "48a0ea438782736cd044118cf0be6d6d8bd97b39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
