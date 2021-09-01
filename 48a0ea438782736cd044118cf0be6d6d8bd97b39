@@ -16,6 +16,24 @@
       "message": "this is a bit a slippery slope. I know why you need this,but with this we are creating a primary target. Should we not actually create separate dist targets if we plan to distribute multiple things? we need to find a way to combine the dist targets to not have to invoke them separately, though.",
       "revId": "48a0ea438782736cd044118cf0be6d6d8bd97b39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60808f2f_4d22f4d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-01T02:16:49Z",
+      "side": 1,
+      "message": "How about dropping the copy_to_dist_dir from the kernel_build() macro? I think that\u0027s clearer.",
+      "parentUuid": "f581a1f5_a1c64047",
+      "revId": "48a0ea438782736cd044118cf0be6d6d8bd97b39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
