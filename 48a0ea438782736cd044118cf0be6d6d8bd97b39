@@ -52,6 +52,24 @@
       "parentUuid": "60808f2f_4d22f4d7",
       "revId": "48a0ea438782736cd044118cf0be6d6d8bd97b39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3ffdba6_ae651de6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-01T02:25:12Z",
+      "side": 1,
+      "message": "If you want, I can also modify define_common_kernels() macro as well to ensure the common kernel isn\u0027t broken by dropping the copy_to_dist_dir macro",
+      "parentUuid": "6b77fb55_76297aa8",
+      "revId": "48a0ea438782736cd044118cf0be6d6d8bd97b39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
