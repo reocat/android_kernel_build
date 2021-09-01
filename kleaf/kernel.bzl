@@ -27,6 +27,7 @@ def kernel_build(
         srcs,
         outs,
         deps = (),
+        visibility = None,
         toolchain_version = _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION):
     """Defines a kernel build target with all dependent targets.
 
@@ -50,6 +51,8 @@ def kernel_build(
         name: The final kernel target name, e.g. `"kernel_aarch64"`.
         build_config: Label of the build.config file, e.g. `"build.config.gki.aarch64"`.
         srcs: The kernel sources (a `glob()`).
+        visibility: visibility of `{name}`. It does not apply to the additional
+          labels like `{name}_env`, `{name}_config`, `{name}_dist`, etc.
         deps: Additional dependencies to build this kernel.
         outs: The expected output files. For each item `out`:
 
@@ -128,12 +131,16 @@ def kernel_build(
         outdir_tar_gz = modules_prepare_target_name + "/outdir.tar.gz",
     )
 
+    kernel_build_kwargs = {}
+    if visibility != None:
+        kernel_build_kwargs["visibility"] = visibility
     _kernel_build(
         name = name,
         config = config_target_name,
         srcs = [sources_target_name],
         outs = [name + "/" + out for out in outs],
         deps = deps,
+        **kernel_build_kwargs
     )
 
     _kernel_uapi_headers(
