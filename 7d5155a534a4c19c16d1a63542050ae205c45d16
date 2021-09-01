@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "966f14cc_e53b1f62",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-01T02:23:06Z",
+      "side": 1,
+      "message": "If you don\u0027t mean to make this a command-line flag, then I think what I have right now works better.\n\nIf a `kernel_build` doesn\u0027t have `vmlinux` in `outs`, then it shouldn\u0027t define `generate_vmlinux_btf`, otherwise Bazel will complain as expected.\n\nThis is actually cleaner than the provider. With the provider approach, I\u0027ll need (pseudocode):\n\n```\ndef _kernel_build_impl(ctx):\n  ...\n  return KernelBuildInfo(..., vmlinux \u003d name + \"/vmlinux\" if \"vmlinux\" in ctx.attr.outs else None)\n\ndef _vmlinux_btf_impl(ctx):\n  ...\n  vmlinux \u003d ctx.attr.kernel_build[KernelBuildInfo].vmlinux\n  if vmlinux \u003d\u003d None:\n    fail()\n```\n\nFor example, which is pretty dirty IMO.",
+      "parentUuid": "1f05a5b8_f92f5cf4",
+      "range": {
+        "startLine": 158,
+        "startChar": 31,
+        "endLine": 158,
+        "endChar": 38
+      },
+      "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e25620f_16e0000e",
@@ -167,6 +191,30 @@
       "writtenOn": "2021-08-28T06:50:25Z",
       "side": 1,
       "message": "should that not only be set in the KernelEnv setup? maybe a debug leftover?",
+      "range": {
+        "startLine": 1106,
+        "startChar": 51,
+        "endLine": 1106,
+        "endChar": 62
+      },
+      "revId": "7d5155a534a4c19c16d1a63542050ae205c45d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a33ce6c2_0883bab8",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-01T02:23:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ea40403_da35bd1c",
       "range": {
         "startLine": 1106,
         "startChar": 51,
