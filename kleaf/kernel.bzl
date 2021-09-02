@@ -872,6 +872,10 @@ this package, with the label `out`.
     },
 )
 
+_KernelModulesInstallInfo = provider(fields = {
+    "module_staging_archive": "Archive containing staging kernel modules.",
+})
+
 def _kernel_modules_install_impl(ctx):
     _check_kernel_build(ctx.attr.kernel_modules, ctx.attr.kernel_build, ctx.label)
 
@@ -957,7 +961,8 @@ def _kernel_modules_install_impl(ctx):
         progress_message = "Running depmod {}".format(ctx.label),
     )
     return [
-        DefaultInfo(files = depset([module_staging_archive])),
+        _KernelModulesInstallInfo(module_staging_archive = module_staging_archive),
+        ctx.attr.kernel_build[_KernelEnvInfo],
     ]
 
 kernel_modules_install = rule(
@@ -995,6 +1000,30 @@ kernel_modules_install(
             allow_single_file = True,
             default = Label("//build/kleaf:check_duplicated_files_in_archives.py"),
             doc = "Label referring to the script to process outputs",
+        ),
+    },
+)
+
+def _kernel_modules_install_for_dist_impl(ctx):
+    module_staging_archive = ctx.attr.kernel_modules_install[_KernelModulesInstallInfo].module_staging_archive
+
+    inputs = []
+    inputs += ctx.attr.kernel_modules_install[_KernelEnvInfo].dependencies
+
+    module_staging_archive = ctx.actions.declare_file("{}.tar.gz".format(ctx.label.name))
+    module_staging_dir = module_staging_archive.dirname + "/staging"
+
+    command = ""
+    command += ctx.attr.kernel_modules_install[_KernelEnvInfo].setup
+    command += """
+    """
+
+_kernel_modules_install_for_dist = rule(
+    implementation = _kernel_modules_install_for_dist_impl,
+    doc = """Extract `kernel_modules_install` for dist""",
+    attrs = {
+        "kernel_modules_install": attr.label(
+            providers = [_KernelModulesInstallInfo, _KernelEnvInfo],
         ),
     },
 )
@@ -1109,7 +1138,8 @@ _kernel_headers = rule(
 
 def kernel_dist(
         name,
-        kernel_build):
+        kernel_build,
+        kernel_modules_install = None):
     """A macro that creates a `DIST_DIR` distribution.
 
     Create the distribution with:
@@ -1121,11 +1151,19 @@ def kernel_dist(
         name: Name of this distribution. Usually, it should be `{kernel_build}_dist`.
         kernel_build: Label of a `kernel_build` to get dist files from
     """
+    data = [
+        kernel_build + "_for_dist",
+    ]
+    if kernel_modules_install != None:
+        mod_inst_for_dist_target = kernel_modules_install + "_for_dist"
+        _kernel_modules_install_for_dist(
+            name = mod_inst_for_dist_target,
+            kernel_modules_install = kernel_modules_install,
+        )
+        data.append(mod_inst_for_dist_target)
     copy_to_dist_dir(
         name = name,
-        data = [
-            kernel_build + "_for_dist",
-        ],
+        data = data,
     )
 
 def _vmlinux_btf_impl(ctx):
