@@ -935,6 +935,10 @@ def _kernel_modules_install_impl(ctx):
     module_staging_archive = ctx.actions.declare_file("{}.tar.gz".format(ctx.label.name))
     module_staging_dir = module_staging_archive.dirname + "/staging"
 
+    # File name is the same as MODULES_ARCHIVE
+    modules_archive = ctx.actions.declare_file("{}/modules.tar.gz".format(ctx.label.name))
+    modules_archive_dir = modules_archive.dirname + "/modules"
+
     command = ""
     command += ctx.attr.kernel_build[_KernelEnvInfo].setup
     command += ctx.attr._modules_prepare[_KernelEnvInfo].setup
@@ -982,11 +986,25 @@ def _kernel_modules_install_impl(ctx):
                )
              # Archive module_staging_dir
                tar czf {module_staging_archive} -C {module_staging_dir} .
+             # Create modules_archive for dist
+               mkdir -p {modules_archive_dir}
+               modules=$(find {module_staging_dir} -type f -name '*.ko')
+               for file in ${{modules}}; do
+                 mv ${{file}} {modules_archive_dir}
+               done
+               if [ -n "${{modules}}" ]; then
+                 tar --transform="s,.*/,," -czf {modules_archive} ${{modules[@]}}
+               else
+                 touch {modules_archive}
+               fi
+             # Clean up module_staging_dir
                rm -rf {module_staging_dir}
     """.format(
         module_staging_dir = module_staging_dir,
         module_staging_archive = module_staging_archive.path,
         check_duplicated_files_in_archives = ctx.file._check_duplicated_files_in_archives.path,
+        modules_archive_dir = modules_archive_dir,
+        modules_archive = modules_archive.path,
     )
 
     if ctx.attr._debug_print_scripts[BuildSettingInfo].value:
@@ -995,12 +1013,12 @@ def _kernel_modules_install_impl(ctx):
 
     ctx.actions.run_shell(
         inputs = inputs,
-        outputs = [module_staging_archive],
+        outputs = [module_staging_archive, modules_archive],
         command = command,
         progress_message = "Running depmod {}".format(ctx.label),
     )
     return [
-        DefaultInfo(files = depset([module_staging_archive])),
+        DefaultInfo(files = depset([modules_archive])),
     ]
 
 kernel_modules_install = rule(
