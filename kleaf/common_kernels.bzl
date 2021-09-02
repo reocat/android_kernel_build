@@ -20,6 +20,10 @@ _common_outs = [
     "modules.builtin.modinfo",
     "vmlinux",
     "vmlinux.symvers",
+
+    # Needed to build kernel modules.
+    "Module.symvers",
+    "include/config/kernel.release",
 ]
 
 aarch64_outs = _common_outs + [
