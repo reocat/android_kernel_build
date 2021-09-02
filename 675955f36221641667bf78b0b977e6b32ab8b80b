@@ -98,6 +98,24 @@
       "parentUuid": "3ffa5678_b0725dd3",
       "revId": "675955f36221641667bf78b0b977e6b32ab8b80b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6315a378_2cf8b28f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-02T22:00:07Z",
+      "side": 1,
+      "message": "could a copy_to_dist_dir() caller not also depend on \"kernel_for_dist\" (the filegroup)\n\n(or in the absence of the macro kernel_dist(), the filegroup could be named name +\"_dist\") \n\nI seem to miss something.",
+      "parentUuid": "d227d5fe_f8101fd8",
+      "revId": "675955f36221641667bf78b0b977e6b32ab8b80b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
