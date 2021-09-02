@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b6d6692_594ab95d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-02T20:27:38Z",
+      "side": 1,
+      "message": "I make a separate list for CL:1812241",
+      "parentUuid": "2f2ac6af_37886639",
+      "range": {
+        "startLine": 163,
+        "startChar": 15,
+        "endLine": 163,
+        "endChar": 30
+      },
+      "revId": "675955f36221641667bf78b0b977e6b32ab8b80b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3ffa5678_b0725dd3",
@@ -54,6 +78,24 @@
       "writtenOn": "2021-09-02T12:23:41Z",
       "side": 1,
       "message": "I am not sure this simple wrapper adds so much value. I like the implicit filegroup kernel_for_dist to define what should get distributed, but I think kernel_dist creates an unnecessary interface where we could use copy_to_dist_dir() directly.\n\nSo, I would say we use copy_to_dist_dir() directly and don\u0027t introduce this abstraction at this point.",
+      "revId": "675955f36221641667bf78b0b977e6b32ab8b80b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d227d5fe_f8101fd8",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1094,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-02T20:27:38Z",
+      "side": 1,
+      "message": "Note L1113: I am depending on `kernel_for_dist`, which includes `kernel`, `kernel_headers`, and `kernel_uapi_headers`. This means the caller doesn\u0027t need to specify the two headers targets explicitly. If they do, and we add more things to dist later, we\u0027ll need to update every copy_to_dist_dir() in every repo.",
+      "parentUuid": "3ffa5678_b0725dd3",
       "revId": "675955f36221641667bf78b0b977e6b32ab8b80b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
