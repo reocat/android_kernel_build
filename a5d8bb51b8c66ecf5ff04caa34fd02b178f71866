@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39996c72_a84669e3",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-03T20:06:27Z",
+      "side": 1,
+      "message": "Maybe that can be done automatically when we have the kati work done?",
+      "parentUuid": "e168de19_b3a8774d",
+      "revId": "a5d8bb51b8c66ecf5ff04caa34fd02b178f71866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a325560_ea3d104f",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 2
@@ -31,6 +49,30 @@
       "writtenOn": "2021-09-03T08:51:52Z",
       "side": 1,
       "message": "mv them over? I don\u0027t think we need the originals anymore at this point.",
+      "range": {
+        "startLine": 950,
+        "startChar": 17,
+        "endLine": 950,
+        "endChar": 54
+      },
+      "revId": "a5d8bb51b8c66ecf5ff04caa34fd02b178f71866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f30661b_925bb09c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-03T20:06:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a325560_ea3d104f",
       "range": {
         "startLine": 950,
         "startChar": 17,
@@ -54,6 +96,30 @@
       "writtenOn": "2021-09-03T08:51:52Z",
       "side": 1,
       "message": "consider compressing with --fast or not compressing at all. We do not need to space optimize this as we are anyway extracting it later.",
+      "range": {
+        "startLine": 953,
+        "startChar": 44,
+        "endLine": 953,
+        "endChar": 47
+      },
+      "revId": "a5d8bb51b8c66ecf5ff04caa34fd02b178f71866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "790da86a_c88a16a1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-03T20:06:27Z",
+      "side": 1,
+      "message": "This is actually not just for dist, but also for building MODULES_ARCHIVE like in build.sh.\n\nIn build.sh, MODULES_ARCHIVE is defined to be `modules.tar.gz`, so if I want to mimic what it does, I should compress it too.",
+      "parentUuid": "7523c36e_f3792792",
       "range": {
         "startLine": 953,
         "startChar": 44,
