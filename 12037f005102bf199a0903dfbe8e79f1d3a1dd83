@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fda40be7_2cb08f76",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 886,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-03T14:17:04Z",
+      "side": 1,
+      "message": "you can assume /out*/, I suppose",
+      "range": {
+        "startLine": 886,
+        "startChar": 26,
+        "endLine": 886,
+        "endChar": 29
+      },
+      "revId": "12037f005102bf199a0903dfbe8e79f1d3a1dd83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f818bb2_5ed8cce0",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-03T14:17:04Z",
+      "side": 1,
+      "message": ".git as well\n\nmaybe there is an easy way to ignore what .gitignore ignores.",
+      "range": {
+        "startLine": 888,
+        "startChar": 0,
+        "endLine": 888,
+        "endChar": 36
+      },
+      "revId": "12037f005102bf199a0903dfbe8e79f1d3a1dd83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9129251b_3d611205",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-03T14:17:04Z",
+      "side": 1,
+      "message": "no need to delete the file if you redirect with \u003e instead",
+      "revId": "12037f005102bf199a0903dfbe8e79f1d3a1dd83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28c975b4_24c8bbef",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-03T14:17:04Z",
+      "side": 1,
+      "message": "DIST_DIR ? Then you do not need to depend on \"FILES\" which is rather meant for artifacts of the actual kernel build.",
+      "range": {
+        "startLine": 890,
+        "startChar": 15,
+        "endLine": 890,
+        "endChar": 22
+      },
+      "revId": "12037f005102bf199a0903dfbe8e79f1d3a1dd83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
