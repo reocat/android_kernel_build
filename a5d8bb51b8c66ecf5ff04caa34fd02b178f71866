@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e168de19_b3a8774d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-03T08:51:52Z",
+      "side": 1,
+      "message": "do be honest, I think I would prefer if the kernel_modules_install invocation could tell which modules to gather. That would make things a bit more explicit and easier ...\n\nthe problem with this approach is that it is quite cumbersome to get to the .ko files for a developer that just wants to patch and load their module.",
+      "revId": "a5d8bb51b8c66ecf5ff04caa34fd02b178f71866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a325560_ea3d104f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-03T08:51:52Z",
+      "side": 1,
+      "message": "mv them over? I don\u0027t think we need the originals anymore at this point.",
+      "range": {
+        "startLine": 950,
+        "startChar": 17,
+        "endLine": 950,
+        "endChar": 54
+      },
+      "revId": "a5d8bb51b8c66ecf5ff04caa34fd02b178f71866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7523c36e_f3792792",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-03T08:51:52Z",
+      "side": 1,
+      "message": "consider compressing with --fast or not compressing at all. We do not need to space optimize this as we are anyway extracting it later.",
+      "range": {
+        "startLine": 953,
+        "startChar": 44,
+        "endLine": 953,
+        "endChar": 47
+      },
+      "revId": "a5d8bb51b8c66ecf5ff04caa34fd02b178f71866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
