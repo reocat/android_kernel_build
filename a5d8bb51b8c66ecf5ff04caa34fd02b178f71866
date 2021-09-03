@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4373cd37_63d4a64f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-03T23:07:57Z",
+      "side": 1,
+      "message": "I actually don\u0027t need to move or copy at all because L953 flattens the directory structure using the --transform. I deleted it.",
+      "parentUuid": "8f30661b_925bb09c",
+      "range": {
+        "startLine": 950,
+        "startChar": 17,
+        "endLine": 950,
+        "endChar": 54
+      },
+      "revId": "a5d8bb51b8c66ecf5ff04caa34fd02b178f71866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7523c36e_f3792792",
