@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "82973ff8_cfe812c7",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-06T10:30:46Z",
+      "side": 1,
+      "message": "let\u0027s not depend on the details of the kati work for now. I would explicitly list the modules as outs. This also has another effect. Some of the modules that are implicitly built you might not actually want to pack up. E.g. if we introduce GKI modules and a device build (cuttlefish, e.g.) uses a derived fragment config, then those modules would be built as well and packaged again (which would be wrong, actually).\n\nSo, I _think_ we should make this explicit, even if it initially becomes a pain to specify them. OTOH, once define I don\u0027t expect so many changes to the list, except if modules move in/out of this tree.",
+      "parentUuid": "39996c72_a84669e3",
+      "revId": "a5d8bb51b8c66ecf5ff04caa34fd02b178f71866",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a325560_ea3d104f",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 2
