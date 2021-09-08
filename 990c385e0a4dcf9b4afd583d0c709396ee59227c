@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc0f4cf1_230e502c",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-08T10:39:14Z",
+      "side": 1,
+      "message": "consider rm\u0027ing ${depmod_stderr} triggered by an exit TRAP to avoid the duplication.",
+      "revId": "990c385e0a4dcf9b4afd583d0c709396ee59227c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
