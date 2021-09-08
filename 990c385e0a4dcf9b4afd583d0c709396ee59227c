@@ -16,6 +16,24 @@
       "message": "consider rm\u0027ing ${depmod_stderr} triggered by an exit TRAP to avoid the duplication.",
       "revId": "990c385e0a4dcf9b4afd583d0c709396ee59227c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a6ef3f2_3446ace9",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-09-08T16:42:27Z",
+      "side": 1,
+      "message": "The problem with traps is that they are not local to the functions. So if run_depmod calls a function that defines a trap, then it would overwrite the trap defined in run_depmod. The same goes for traps that have been set before calling run_depmod.\n\nFor example, the below script returns:\nEntering bar\nEntering foo\nExitting foo\nExitting foo\n\n\u003d\u003d\u003d\u003d\u003d\nfunction foo() {\n  trap \"echo Exitting foo\" RETURN\n  echo \"Entering foo\"\n}\nfunction bar() {\n  trap \"echo Exitting bar\" RETURN\n  echo \"Entering bar\"\n  foo\n}\nbar\n\u003d\u003d\u003d\u003d\u003d\n\nI think the best solution would be to create a global script trap that cleans up everything on exit, but I don\u0027t really want to add that with this change.",
+      "parentUuid": "cc0f4cf1_230e502c",
+      "revId": "990c385e0a4dcf9b4afd583d0c709396ee59227c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
