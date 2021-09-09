@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bdf0c78_012e8318",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-09T07:49:15Z",
+      "side": 1,
+      "message": "\":kernel\" to make it more obvious that this is the label and not a file.",
+      "range": {
+        "startLine": 69,
+        "startChar": 58,
+        "endLine": 69,
+        "endChar": 64
+      },
+      "revId": "2cca5446c2416325c2f125e3b41ab9cffd46f574",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bef65a91_cd2360f5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-09T07:49:15Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 118,
+        "startChar": 58,
+        "endLine": 118,
+        "endChar": 64
+      },
+      "revId": "2cca5446c2416325c2f125e3b41ab9cffd46f574",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
