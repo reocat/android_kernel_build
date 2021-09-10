@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc3c1581_3ed17e88",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-10T11:20:56Z",
+      "side": 1,
+      "message": "in theory we could stick to \u0027outs\u0027 alone here and partition the set in _kernel_build_impl (e.g. based on the file extension .ko)",
+      "revId": "54da9b068ca805b7f325147f035b632e4d8682c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
