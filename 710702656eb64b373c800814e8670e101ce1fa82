@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec9281bd_14a5bafa",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-10T14:56:14Z",
+      "side": 1,
+      "message": "this is a bit a magic constant, declare it somewhere to reuse with a little comment?",
+      "range": {
+        "startLine": 972,
+        "startChar": 57,
+        "endLine": 972,
+        "endChar": 62
+      },
+      "revId": "710702656eb64b373c800814e8670e101ce1fa82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca91b509_20c6a090",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1031,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-10T14:56:14Z",
+      "side": 1,
+      "message": "if external_modules:",
+      "range": {
+        "startLine": 1031,
+        "startChar": 4,
+        "endLine": 1031,
+        "endChar": 33
+      },
+      "revId": "710702656eb64b373c800814e8670e101ce1fa82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
