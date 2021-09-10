@@ -16,6 +16,24 @@
       "message": "in theory we could stick to \u0027outs\u0027 alone here and partition the set in _kernel_build_impl (e.g. based on the file extension .ko)",
       "revId": "54da9b068ca805b7f325147f035b632e4d8682c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e6d695c_21951532",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-10T19:36:17Z",
+      "side": 1,
+      "message": "Indeed, though I think this is clearer.\n\nAlso, they have different semantic meanings. outs is from ${OUT_DIR} while module_outs is from ${MODULE_STAGING_DIR}",
+      "parentUuid": "fc3c1581_3ed17e88",
+      "revId": "54da9b068ca805b7f325147f035b632e4d8682c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
