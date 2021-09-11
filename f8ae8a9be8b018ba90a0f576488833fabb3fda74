@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f26df316_b8006be4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-11T10:55:40Z",
+      "side": 1,
+      "message": "Strictly speaking we are not allowing new features on this branch. Since this is useful for many, it is implemented in a backwards-compatible way and it is opt-in, I will approve it.",
+      "revId": "f8ae8a9be8b018ba90a0f576488833fabb3fda74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
