@@ -79,7 +79,7 @@ bzl_library(
 ) for name in kernel_rule_files]
 
 filegroup(
-    name = "docs",
+    name = "docs_markdown_files",
     srcs = [name + "-docs" for name in kernel_rule_files],
 )
 
@@ -107,8 +107,6 @@ platform(
 # Documentation
 #
 
-doc_root = "docs_server_files/"
-
 genrule(
     name = "docs_resources_directory.html.frag",
     srcs = [
@@ -127,6 +125,7 @@ genrule(
     srcs = [
         "docs/index.html",
         ":docs_resources_directory.html.frag",
+        ":docs_markdown_files",
     ],
     tools = [
         "docs/insert_resource.py",
@@ -138,21 +137,14 @@ genrule(
         $(location docs/insert_resource.py) \
           --infile $(location docs/index.html) \
           --outfile $(location docs_server_files/index.html) \
-          --resources $(location :docs_resources_directory.html.frag)
+          --resources $(location :docs_resources_directory.html.frag) \
+                      $(locations :docs_markdown_files)
     """,
 )
 
-[copy_file(
-    name = "docs_server_files_" + name + ".md",
-    src = name + ".md",
-    out = doc_root + name + ".md",
-) for name in kernel_rule_files]
-
 filegroup(
     name = "docs_files",
-    srcs =
-        [":docs_server_files_" + name + ".md" for name in kernel_rule_files] +
-        ["docs_server_files/index.html"],
+    srcs = ["docs_server_files/index.html"],
 )
 
 sh_binary(
