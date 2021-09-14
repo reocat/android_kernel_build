@@ -16,6 +16,24 @@
       "message": "we should reconsider adding a \"FAST_MAKE\" or something option to set several of those dev time flags to suitable values for development (e.g. LTO\u003dthin being another one). Though some people like to stay in control of the details, others might appreciate getting benefits by just setting FAST_MAKE\u003d1 ...",
       "revId": "bb7921dc48e9b7a2cd51a457dcc47ee358b3ae7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc617fba_228d852a",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-09-14T19:09:32Z",
+      "side": 1,
+      "message": "I tend to agree. Another one would be unsetting UNSTRIPPED_MODULES and COMPRESS_UNSTRIPPED_MODULES for development. Since those are typically set in a build.config file, I am thinking that we could drive this from build.config files. What do you think?\n\nFor the variable name, I also propose FAST_BUILD or LOCAL_DEVELOPMENT.",
+      "parentUuid": "52905d34_8143417e",
+      "revId": "bb7921dc48e9b7a2cd51a457dcc47ee358b3ae7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
