@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52905d34_8143417e",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-14T11:09:57Z",
+      "side": 1,
+      "message": "we should reconsider adding a \"FAST_MAKE\" or something option to set several of those dev time flags to suitable values for development (e.g. LTO\u003dthin being another one). Though some people like to stay in control of the details, others might appreciate getting benefits by just setting FAST_MAKE\u003d1 ...",
+      "revId": "bb7921dc48e9b7a2cd51a457dcc47ee358b3ae7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
