@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df19d011_4c9dfc67",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 9
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-15T04:29:16Z",
+      "side": 1,
+      "message": "Note: This doesn\u0027t work on go/ab yet, because it removes the parameters.\n\nI\u0027ll have a follow-up CL to fix this",
+      "range": {
+        "startLine": 120,
+        "startChar": 31,
+        "endLine": 120,
+        "endChar": 46
+      },
+      "revId": "63c9f25fad17b38a8734d01e2ffc42e9926679b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
