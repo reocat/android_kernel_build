@@ -22,6 +22,30 @@
       },
       "revId": "8b8885324fbd872981f1328f186ee20b03ddb126",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55ad839e_d2ce6581",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-09-15T19:23:07Z",
+      "side": 1,
+      "message": "Not necessary. This is there because kernel.bzl depends on dist via load.\n\nIf we were to create docs for a bzl file that does not depend on dist, then we can omit this line.",
+      "parentUuid": "aa927b60_7733e5aa",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 42
+      },
+      "revId": "8b8885324fbd872981f1328f186ee20b03ddb126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
