@@ -52,6 +52,24 @@
       "parentUuid": "cc617fba_228d852a",
       "revId": "bb7921dc48e9b7a2cd51a457dcc47ee358b3ae7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47cb9525_3c609346",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-09-15T20:48:23Z",
+      "side": 1,
+      "message": "I drafted Iddd112eb8d3a57a74dd1be4393f9578ac3fcce02 to introduce the variable FAST_BUILD. Do you want FAST_BUILD to be interpreted here at this location, or is the approach in Iddd112eb8d3a57a74dd1be4393f9578ac3fcce02 ok?",
+      "parentUuid": "33c7d8d1_b17fca8d",
+      "revId": "bb7921dc48e9b7a2cd51a457dcc47ee358b3ae7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
