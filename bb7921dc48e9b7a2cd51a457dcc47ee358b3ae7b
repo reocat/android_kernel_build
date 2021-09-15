@@ -34,6 +34,24 @@
       "parentUuid": "52905d34_8143417e",
       "revId": "bb7921dc48e9b7a2cd51a457dcc47ee358b3ae7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33c7d8d1_b17fca8d",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-15T11:28:56Z",
+      "side": 1,
+      "message": "for the variable name I would prefer something that is easy to translate to a command line option later on. With bazel based builds, we can introduce --fast-build (with appropriate yet different meaning for kernel projects).",
+      "parentUuid": "cc617fba_228d852a",
+      "revId": "bb7921dc48e9b7a2cd51a457dcc47ee358b3ae7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
