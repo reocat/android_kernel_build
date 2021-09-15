@@ -22,6 +22,98 @@
       },
       "revId": "63c9f25fad17b38a8734d01e2ffc42e9926679b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dbf2dba_83d0c977",
+        "filename": "kleaf/docs/insert_resource.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-15T11:16:58Z",
+      "side": 1,
+      "message": "[:magic]\n\notherwise you will also keep the HINT in place\n\nBut maybe this was your intention for possibly chained insertions? In that case I would rather keep the hint _after_ the insertions to add further resources afterwards.",
+      "range": {
+        "startLine": 16,
+        "startChar": 23,
+        "endLine": 16,
+        "endChar": 33
+      },
+      "revId": "63c9f25fad17b38a8734d01e2ffc42e9926679b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09534526_d75741ff",
+        "filename": "kleaf/docs/insert_resource.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-15T11:16:58Z",
+      "side": 1,
+      "message": "need",
+      "range": {
+        "startLine": 20,
+        "startChar": 24,
+        "endLine": 20,
+        "endChar": 29
+      },
+      "revId": "63c9f25fad17b38a8734d01e2ffc42e9926679b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a584b6cf_11a67abf",
+        "filename": "kleaf/docs/insert_resource.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-15T11:16:58Z",
+      "side": 1,
+      "message": "+",
+      "range": {
+        "startLine": 38,
+        "startChar": 46,
+        "endLine": 38,
+        "endChar": 47
+      },
+      "revId": "63c9f25fad17b38a8734d01e2ffc42e9926679b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67a48e68_d0c8cf07",
+        "filename": "kleaf/docs/insert_resource.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-15T11:16:58Z",
+      "side": 1,
+      "message": "resource (singular)",
+      "range": {
+        "startLine": 38,
+        "startChar": 27,
+        "endLine": 38,
+        "endChar": 36
+      },
+      "revId": "63c9f25fad17b38a8734d01e2ffc42e9926679b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
