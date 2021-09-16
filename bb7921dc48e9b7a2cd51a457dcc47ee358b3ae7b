@@ -70,6 +70,24 @@
       "parentUuid": "33c7d8d1_b17fca8d",
       "revId": "bb7921dc48e9b7a2cd51a457dcc47ee358b3ae7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdeb1783_5d9afcf7",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-16T12:14:47Z",
+      "side": 1,
+      "message": "I think FAST_BUILD should cause some sensible settings in setup_env/build.sh (as a block as you did). It can _also_ trigger different behavior in derived kernel configs (then reacting to FAST_BUILD being set) if the particular development optimization is not applicable for general use. Though, let\u0027s discuss on the other change?",
+      "parentUuid": "47cb9525_3c609346",
+      "revId": "bb7921dc48e9b7a2cd51a457dcc47ee358b3ae7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
