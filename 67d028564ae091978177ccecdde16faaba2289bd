@@ -22,6 +22,30 @@
       },
       "revId": "67d028564ae091978177ccecdde16faaba2289bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab779f71_0f2058b6",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-09-16T12:12:01Z",
+      "side": 1,
+      "message": "I wonder whether build.sh is maybe a better place (or move it up in here a bit). In any case we need documentation for this in build.sh.",
+      "parentUuid": "97121bac_a9757d56",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 2
+      },
+      "revId": "67d028564ae091978177ccecdde16faaba2289bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
