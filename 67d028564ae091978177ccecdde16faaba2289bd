@@ -46,6 +46,30 @@
       },
       "revId": "67d028564ae091978177ccecdde16faaba2289bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c910671_a3cc944a",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-09-16T16:17:54Z",
+      "side": 1,
+      "message": "I chose this location because its (a) after the point where it sources all build config files (lines 55-58) and (b) before it uses any of the variables potentially defined in a build.config file.\n\nThis would allow for FAST_BUILD to be set in a build.config file (I\u0027m not sure, though, if that is a use case we care about).\n\nPlease let me know the exact location where this code block fits best, and I\u0027ll move it there.\n\nAlternatively, I can also break it up into\n\nif [[ -n \"${FAST_BUILD}\" ]]; then\n  : ${LZ4_RAMDISK_COMPRESS_ARGS:\u003d\"--fast\"}\nfi\n\nand\n\nif [[ -n \"${FAST_BUILD}\" ]]; then\n  : ${LTO:\u003d\"thin\"}\nfi\n\nand then place those blocks right where the corresponding variables are used.\n\nSorry, I forgot about the documentation part. I\u0027ll add it.",
+      "parentUuid": "ab779f71_0f2058b6",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 2
+      },
+      "revId": "67d028564ae091978177ccecdde16faaba2289bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
