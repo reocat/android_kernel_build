@@ -461,15 +461,22 @@ _KernelBuildInfo = provider(fields = {
                               "Does not contain the lib/modules/* suffix.",
     "module_srcs": "sources for this kernel_build for building external modules",
     "out_dir_kernel_headers_tar": "Archive containing headers in `OUT_DIR`",
+    "system_map": "`System.map` file if it is in `outs`, otherwise None",
 })
 
 def _kernel_build_impl(ctx):
     outdir = ctx.actions.declare_directory(ctx.label.name)
+    system_map = None
 
     outs = []
     for out in ctx.outputs.outs:
         short_name = out.short_path[len(outdir.short_path) + 1:]
         outs.append(short_name)
+
+        if out.basename == "System.map":
+            if system_map != None:
+                fail("{}: Multiple System.map found in `outs`".format(ctx.label))
+            system_map = out
     module_outs = []
     for module_out in ctx.outputs.module_outs:
         short_name = module_out.short_path[len(outdir.short_path) + 1:]
@@ -570,6 +577,7 @@ def _kernel_build_impl(ctx):
             module_staging_archive = module_staging_archive,
             module_srcs = module_srcs,
             out_dir_kernel_headers_tar = out_dir_kernel_headers_tar,
+            system_map = system_map,
         ),
         DefaultInfo(files = depset(ctx.outputs.outs + ctx.outputs.module_outs)),
     ]
@@ -1067,6 +1075,10 @@ def _kernel_modules_install_impl(ctx):
 
     return [
         DefaultInfo(files = depset(external_modules)),
+        _KernelModuleInfo(
+            kernel_build = ctx.attr.kernel_build,
+            module_staging_archive = module_staging_archive,
+        ),
     ]
 
 kernel_modules_install = rule(
@@ -1283,4 +1295,136 @@ _vmlinux_btf = rule(
             default = "//build/kleaf:debug_print_scripts",
         ),
     },
+)
+
+def _initramfs_impl(ctx):
+    kernel_build = ctx.attr.kernel_modules_install[_KernelModuleInfo].kernel_build
+    system_map = kernel_build[_KernelBuildInfo].system_map
+    if system_map == None:
+        fail("{}: dependent kernel_build {} does not have System.map in outs".format(ctx.label, kernel_build))
+    module_staging_archive = ctx.attr.kernel_modules_install[_KernelModuleInfo].module_staging_archive
+    modules_list = ctx.file.modules_list.path
+    modules_blocklist = ""
+    if ctx.file.modules_blocklist:
+        modules_blocklist = ctx.file.modules_blocklist.path
+
+    inputs = [
+        ctx.file._build_utils_sh,
+        system_map,
+        module_staging_archive,
+        ctx.file.modules_list,
+        kernel_build[_KernelBuildInfo].system_map,
+    ]
+    inputs += kernel_build[_KernelEnvInfo].dependencies
+    if ctx.file.modules_blocklist:
+        inputs.append(ctx.file.modules_blocklist)
+
+    initramfs_img = ctx.actions.declare_file("{}/initramfs.img".format(ctx.label.name))
+    modules_load = ctx.actions.declare_file("{}/modules.load".format(ctx.label.name))
+    vendor_boot_modules_load = ctx.actions.declare_file("{}/vendor_boot.modules.load".format(ctx.label.name))
+
+    outputs = [
+        initramfs_img,
+        modules_load,
+        vendor_boot_modules_load,
+    ]
+
+    module_staging_dir = initramfs_img.dirname + "/staging"
+    initramfs_staging_dir = module_staging_dir + "/initramfs_staging"
+
+    command = ""
+    command += kernel_build[_KernelEnvInfo].setup
+    command += """
+             # create staging dirs
+               mkdir -p {module_staging_dir}
+               mkdir -p {initramfs_staging_dir}
+             # Restore module_staging_dir from kernel_modules_install
+               tar xf {module_staging_archive} -C {module_staging_dir}
+
+             # source build_utils.sh for create_modules_staging
+               source {build_utils_sh}
+             # Restore System.map to DIST_DIR for run_depmod in create_modules_staging
+               mkdir -p ${{DIST_DIR}}
+               cp {system_map} ${{DIST_DIR}}/System.map
+             # Build initramfs
+               create_modules_staging "{modules_list}" {module_staging_dir} \
+                 {initramfs_staging_dir} "{modules_blocklist}" "-e"
+               modules_root_dir=$(echo {initramfs_staging_dir}/lib/modules/*)
+               cp ${{modules_root_dir}}/modules.load {modules_load}
+               cp ${{modules_root_dir}}/modules.load {vendor_boot_modules_load}
+               echo "${{MODULES_OPTIONS}}" > ${{modules_root_dir}}/modules.options
+               mkbootfs "{initramfs_staging_dir}" >"{module_staging_dir}/initramfs.cpio"
+               ${{RAMDISK_COMPRESS}} "{module_staging_dir}/initramfs.cpio" >"{initramfs_img}"
+
+             # remove staging dirs
+               rm -rf {module_staging_dir}
+               rm -rf {initramfs_staging_dir}
+    """.format(
+        module_staging_dir = module_staging_dir,
+        initramfs_staging_dir = initramfs_staging_dir,
+        module_staging_archive = module_staging_archive.path,
+        system_map = system_map.path,
+        modules_list = modules_list,
+        modules_blocklist = modules_blocklist,
+        build_utils_sh = ctx.file._build_utils_sh.path,
+        modules_load = modules_load.path,
+        vendor_boot_modules_load = vendor_boot_modules_load.path,
+        initramfs_img = initramfs_img.path,
+    )
+
+    if ctx.attr._debug_print_scripts[BuildSettingInfo].value:
+        print("""
+        # Script that runs %s:%s""" % (ctx.label, command))
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = outputs,
+        progress_message = "Building initramfs {}".format(ctx.label),
+        command = command,
+    )
+    return DefaultInfo(files = depset(outputs))
+
+def _common_img_attrs(modules_list_var, modules_blocklist_var):
+    return {
+        "kernel_modules_install": attr.label(
+            mandatory = True,
+            doc = """A `kernel_modules_install` rule.
+
+The main kernel build is inferred from the `kernel_build` attribute of the
+specified `kernel_modules_install` rule. The main kernel build must contain
+`System.map` in `outs` (which is included if you use `aarch64_outs` or
+`x86_64_outs` from `common_kernels.bzl`).""",
+            providers = [_KernelModuleInfo],
+        ),
+        "modules_list": attr.label(
+            mandatory = True,
+            allow_single_file = True,
+            doc = "File to list of modules. Keep in sync with {} variable in build.config.".format(modules_list_var),
+        ),
+        "modules_blocklist": attr.label(
+            allow_single_file = True,
+            doc = """modules.blocklist file. Keep in sync with {} variable in build.config.
+
+A list of modules which are blocked from being loaded.
+This file is copied directly to staging directory, and should be in the format:
+```
+blocklist module_name
+```
+""".format(modules_blocklist_var),
+        ),
+        "_debug_print_scripts": attr.label(
+            default = "//build/kleaf:debug_print_scripts",
+        ),
+        "_build_utils_sh": attr.label(
+            allow_single_file = True,
+            default = Label("//build:build_utils.sh"),
+        ),
+    }
+
+initramfs = rule(
+    implementation = _initramfs_impl,
+    doc = "Build initramfs",
+    attrs = _common_img_attrs(
+        modules_list_var = "MODULES_LIST",
+        modules_blocklist_var = "MODULES_BLOCKLIST",
+    ),
 )
