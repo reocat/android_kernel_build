@@ -1297,7 +1297,14 @@ _vmlinux_btf = rule(
     },
 )
 
-def _build_image_impl_common(ctx, what, outputs, build_command, module_staging_dir, image_staging_dir):
+def _build_image_impl_common(
+        ctx,
+        what,
+        outputs,
+        build_command,
+        module_staging_dir,
+        image_staging_dir,
+        additional_inputs = []):
     """Command implementation for building images.
 
     Args:
@@ -1318,7 +1325,7 @@ def _build_image_impl_common(ctx, what, outputs, build_command, module_staging_d
     if ctx.file.modules_blocklist:
         modules_blocklist = ctx.file.modules_blocklist.path
 
-    inputs = [
+    inputs = additional_inputs + [
         ctx.file._build_utils_sh,
         system_map,
         module_staging_archive,
@@ -1461,5 +1468,78 @@ initramfs = rule(
     attrs = _build_img_attrs_common(
         modules_list_var = "MODULES_LIST",
         modules_blocklist_var = "MODULES_BLOCKLIST",
+    ),
+)
+
+def _vendor_dlkm_img_impl(ctx):
+    inputs = []
+    inputs += ctx.files.deps
+    if ctx.file.props:
+        inputs.append(ctx.file.props)
+
+    vendor_dlkm_img = ctx.actions.declare_file("{}/vendor_dlkm.img".format(ctx.label.name))
+    modules_blocklist = _path_or_empty(ctx.file.modules_blocklist)
+    props = _path_or_empty(ctx.file.props)
+    module_staging_dir = vendor_dlkm_img.dirname + "/staging"
+    vendor_dlkm_staging_dir = module_staging_dir + "/vendor_dlkm_staging"
+    command = """
+            # Build vendor_dlkm
+              (
+                VENDOR_DLKM_MODULES_LIST={modules_list}
+                VENDOR_DLKM_MODULES_BLOCKLIST={modules_blocklist}
+                MODULES_STAGING_DIR={module_staging_dir}
+                VENDOR_DLKM_STAGING_DIR={vendor_dlkm_staging_dir}
+                VENDOR_DLKM_PROPS={vendor_dlkm_props}
+                build_vendor_dlkm
+                mv "${{DIST_DIR}}/vendor_dlkm.img" {vendor_dlkm_img}
+              )
+    """.format(
+        modules_list = ctx.file.modules_list.path,
+        module_staging_dir = module_staging_dir,
+        vendor_dlkm_staging_dir = vendor_dlkm_staging_dir,
+        modules_blocklist = modules_blocklist,
+        vendor_dlkm_props = props,
+        vendor_dlkm_img = vendor_dlkm_img.path,
+    )
+
+    return _build_image_impl_common(
+        ctx = ctx,
+        what = "vendor_dlkm",
+        outputs = [vendor_dlkm_img],
+        build_command = command,
+        module_staging_dir = module_staging_dir,
+        image_staging_dir = vendor_dlkm_staging_dir,
+        additional_inputs = inputs,
+    )
+
+vendor_dlkm_img = rule(
+    implementation = _vendor_dlkm_img_impl,
+    doc = """Build vendor_dlkm image.
+
+Execute `build_vendor_dlkm` in `build_utils.sh`.
+""",
+    attrs = _build_img_attrs_common(
+        modules_list_var = "VENDOR_DLKM_MODULES_LIST",
+        modules_blocklist_var = "VENDOR_DLKM_MODULES_BLOCKLIST",
+        additional = {
+            "props": attr.label(
+                allow_single_file = True,
+                doc = """Keep in sync with `VENDOR_DLKM_PROPS`.
+
+Location (relative to the repo root directory) of a text
+file containing the properties to be used for creation of a `vendor_dlkm` image
+(filesystem, partition size, etc). If this is not set, a default set of
+properties will be used which assumes an ext4 filesystem and a dynamic
+partition.
+""",
+            ),
+            "deps": attr.label_list(
+                allow_files = True,
+                doc = """Additional dependencies to build `vendor_dlkm` image.
+
+For example, this may include `selinux_fc` specified in the file pointed by
+`props`.""",
+            ),
+        },
     ),
 )
