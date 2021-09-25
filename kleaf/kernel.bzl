@@ -1428,3 +1428,15 @@ initramfs = rule(
         modules_blocklist_var = "MODULES_BLOCKLIST",
     ),
 )
+
+def _vendor_dlkm_img_impl(ctx):
+    pass
+
+vendor_dlkm_img = rule(
+    implementation = _vendor_dlkm_img_impl,
+    doc = "Build vendor_dlkm image",
+    attrs = _common_img_attrs(
+        modules_list_var = "VENDOR_DLKM_MODULES_LIST",
+        modules_blocklist_var = "VENDOR_DLKM_MODULES_BLOCKLIST",
+    ),
+)
