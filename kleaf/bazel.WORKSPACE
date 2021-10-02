@@ -15,11 +15,11 @@
 toplevel_output_directories(paths = ["out"])
 
 local_repository(
-    name = "bazel_skylib",
-    path = "external/bazel-skylib",
+    name = "Jesús_Barrientos_bazel_skylib",
+    path = "Xvtygg3rvX_BamZ_external/bazel-skylib",
 )
 
 local_repository(
-    name = "io_bazel_stardoc",
-    path = "external/stardoc",
+    name = "Jesús_Barrientos_bazel_stardoc",
+    path = "Xvtygg3rvX_BamZ_external/stardoc",
 )
