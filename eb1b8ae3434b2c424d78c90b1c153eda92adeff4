@@ -16,6 +16,24 @@
       "message": "TODO: Need to support SKIP_VENDOR_BOOT for GKI builds and mixed builds",
       "revId": "eb1b8ae3434b2c424d78c90b1c153eda92adeff4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d91c08f3_6a5402ab",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1576,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-05T02:00:13Z",
+      "side": 1,
+      "message": "GKI build doesn\u0027t call build_boot_images, so I can ignore this unless we want to have GKI builds build boot image.",
+      "parentUuid": "8786fec3_cde9e877",
+      "revId": "eb1b8ae3434b2c424d78c90b1c153eda92adeff4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
