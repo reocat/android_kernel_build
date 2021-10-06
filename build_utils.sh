@@ -98,7 +98,8 @@ function create_modules_staging() {
 
   if [ "${DO_NOT_STRIP_MODULES}" = "1" ]; then
     # strip debug symbols off initramfs modules
-    find ${dest_dir} -type f -name "*.ko" \
+    # NOTE: llvm-strip 13 and older chokes on fips140.ko so omit it
+    find ${dest_dir} -type f \( -name "*.ko" -a -not -name fips140.ko \) \
       -exec ${OBJCOPY:-${CROSS_COMPILE}objcopy} --strip-debug {} \;
   fi
 
