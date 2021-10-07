@@ -68,6 +68,30 @@
       },
       "revId": "c7c7117c5f0ab6885938f820e9971cb5ce0af85e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38efc3f7_e2a6c525",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-07T19:46:16Z",
+      "side": 1,
+      "message": "This needs to be an explicit dependency because the rule executes them. In the rule we\u0027ll need to do\n\n```\nctx.file._build_utils_sh\n```\n\nto find it.",
+      "parentUuid": "2b810184_e608a523",
+      "range": {
+        "startLine": 1627,
+        "startChar": 0,
+        "endLine": 1634,
+        "endChar": 10
+      },
+      "revId": "c7c7117c5f0ab6885938f820e9971cb5ce0af85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
