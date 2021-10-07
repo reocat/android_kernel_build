@@ -177,6 +177,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2229cb6c_ed1a3f35",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1433,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-07T22:30:03Z",
+      "side": 1,
+      "message": "Resolving, let me know if you want to move to /tmp. I can do it in a follow up CL.",
+      "parentUuid": "7a5bc7b1_0124bbd8",
+      "range": {
+        "startLine": 1432,
+        "startChar": 0,
+        "endLine": 1433,
+        "endChar": 45
+      },
+      "revId": "9db1b3583e589798573f87ea88367eb231f04155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "387d0673_f4496db9",
