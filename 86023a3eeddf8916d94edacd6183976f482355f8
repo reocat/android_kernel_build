@@ -22,6 +22,30 @@
       },
       "revId": "86023a3eeddf8916d94edacd6183976f482355f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02005a37_911c99a8",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-07T19:44:51Z",
+      "side": 1,
+      "message": "The build tools \"checks\" that there are no undeclared outputs and errors out, instead of cleaning up for us.",
+      "parentUuid": "3fe6dba0_f8efe538",
+      "range": {
+        "startLine": 1496,
+        "startChar": 0,
+        "endLine": 1497,
+        "endChar": 46
+      },
+      "revId": "86023a3eeddf8916d94edacd6183976f482355f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
