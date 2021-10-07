@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a5bc7b1_0124bbd8",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1433,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-07T19:42:58Z",
+      "side": 1,
+      "message": "This is needed because our staging dir is next to a declared file. Any non-declared files in that directory will be considered an error.\n\nThe alternative is to place staging dirs in /tmp. I think Bazel mounts /tmp to some tmpfs, and tears it down after the rule is done. Do you think we should do that?",
+      "parentUuid": "e3b84531_2203d710",
+      "range": {
+        "startLine": 1432,
+        "startChar": 0,
+        "endLine": 1433,
+        "endChar": 45
+      },
+      "revId": "9db1b3583e589798573f87ea88367eb231f04155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "387d0673_f4496db9",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 6
