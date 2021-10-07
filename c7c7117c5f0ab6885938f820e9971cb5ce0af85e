@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ade7833d_eba8efb2",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1543,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-07T10:26:16Z",
+      "side": 1,
+      "message": "one-liner",
+      "range": {
+        "startLine": 1542,
+        "startChar": 0,
+        "endLine": 1543,
+        "endChar": 31
+      },
+      "revId": "c7c7117c5f0ab6885938f820e9971cb5ce0af85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08778ea4_fefa60c2",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1596,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-07T10:26:16Z",
+      "side": 1,
+      "message": "I wonder whether we can make this a common macro somehow ... something like\n\ndebug_print(command) or debug_print(ctx, command)",
+      "range": {
+        "startLine": 1594,
+        "startChar": 0,
+        "endLine": 1596,
+        "endChar": 59
+      },
+      "revId": "c7c7117c5f0ab6885938f820e9971cb5ce0af85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b810184_e608a523",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-07T10:26:16Z",
+      "side": 1,
+      "message": "maybe we make those generally available through the earliest KernelEnvInfo.",
+      "range": {
+        "startLine": 1627,
+        "startChar": 0,
+        "endLine": 1634,
+        "endChar": 10
+      },
+      "revId": "c7c7117c5f0ab6885938f820e9971cb5ce0af85e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
