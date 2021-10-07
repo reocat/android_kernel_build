@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fe6dba0_f8efe538",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-07T10:22:31Z",
+      "side": 1,
+      "message": "I seem to have forgotten what we agreed on with cleaning up after ourselves. I would still think this is a job the build tools has to do, considering we specify inputs and outputs.",
+      "range": {
+        "startLine": 1496,
+        "startChar": 0,
+        "endLine": 1497,
+        "endChar": 46
+      },
+      "revId": "86023a3eeddf8916d94edacd6183976f482355f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
