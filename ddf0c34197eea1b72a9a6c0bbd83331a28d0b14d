@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a83253dd_45b519e3",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-07T10:37:07Z",
+      "side": 1,
+      "message": "kernel modules",
+      "range": {
+        "startLine": 19,
+        "startChar": 49,
+        "endLine": 20,
+        "endChar": 31
+      },
+      "revId": "ddf0c34197eea1b72a9a6c0bbd83331a28d0b14d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bde7bf52_d1035101",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-07T10:37:07Z",
+      "side": 1,
+      "message": "that should probably be a set to deduplicate",
+      "range": {
+        "startLine": 485,
+        "startChar": 0,
+        "endLine": 485,
+        "endChar": 25
+      },
+      "revId": "ddf0c34197eea1b72a9a6c0bbd83331a28d0b14d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
