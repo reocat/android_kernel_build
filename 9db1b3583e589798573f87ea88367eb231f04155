@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a0c7e3a_13fcd693",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-07T10:20:44Z",
+      "side": 1,
+      "message": "system_map \u003d None\nfor ...\n   if ...\n      if system_map is not None:\n         fail()\n      system_map \u003d \n      break",
+      "range": {
+        "startLine": 1317,
+        "startChar": 0,
+        "endLine": 1319,
+        "endChar": 48
+      },
+      "revId": "9db1b3583e589798573f87ea88367eb231f04155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fea6318_e719592c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1360,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-07T10:20:44Z",
+      "side": 1,
+      "message": "I _think_ we can make this available from the KernelEnvInfo setup as more builds will use the build_utils.sh",
+      "range": {
+        "startLine": 1360,
+        "startChar": 0,
+        "endLine": 1360,
+        "endChar": 55
+      },
+      "revId": "9db1b3583e589798573f87ea88367eb231f04155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4a60b27_b34ad422",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1396,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-07T10:20:44Z",
+      "side": 1,
+      "message": "unused",
+      "revId": "9db1b3583e589798573f87ea88367eb231f04155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3b84531_2203d710",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1433,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-07T10:20:44Z",
+      "side": 1,
+      "message": "again, let the cleanup to the bazel side of things?",
+      "range": {
+        "startLine": 1432,
+        "startChar": 0,
+        "endLine": 1433,
+        "endChar": 45
+      },
+      "revId": "9db1b3583e589798573f87ea88367eb231f04155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "387d0673_f4496db9",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1471,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-07T10:20:44Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 1471,
+        "startChar": 0,
+        "endLine": 1471,
+        "endChar": 13
+      },
+      "revId": "9db1b3583e589798573f87ea88367eb231f04155",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
