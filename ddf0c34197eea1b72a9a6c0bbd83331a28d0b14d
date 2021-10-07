@@ -24,6 +24,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e56dc327_a20ea654",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-07T19:38:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a83253dd_45b519e3",
+      "range": {
+        "startLine": 19,
+        "startChar": 49,
+        "endLine": 20,
+        "endChar": 31
+      },
+      "revId": "ddf0c34197eea1b72a9a6c0bbd83331a28d0b14d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f34dd29c_ea0c9929",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-07T19:38:36Z",
+      "side": 1,
+      "message": "Ack, I was meant to say `kernel_module`s",
+      "parentUuid": "a83253dd_45b519e3",
+      "range": {
+        "startLine": 19,
+        "startChar": 49,
+        "endLine": 20,
+        "endChar": 31
+      },
+      "revId": "ddf0c34197eea1b72a9a6c0bbd83331a28d0b14d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bde7bf52_d1035101",
@@ -37,6 +85,30 @@
       "writtenOn": "2021-10-07T10:37:07Z",
       "side": 1,
       "message": "that should probably be a set to deduplicate",
+      "range": {
+        "startLine": 485,
+        "startChar": 0,
+        "endLine": 485,
+        "endChar": 25
+      },
+      "revId": "ddf0c34197eea1b72a9a6c0bbd83331a28d0b14d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de11677f_a75792d6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-07T19:38:36Z",
+      "side": 1,
+      "message": "Ack. I wouldn\u0027t expect that there are duplicates, but there should probably be a harder error",
+      "parentUuid": "bde7bf52_d1035101",
       "range": {
         "startLine": 485,
         "startChar": 0,
