@@ -249,39 +249,43 @@ function build_boot_images() {
     MKBOOTIMG_ARGS+=("--dtb" "${DIST_DIR}/dtb.img")
   fi
 
-  rm -rf "${MKBOOTIMG_STAGING_DIR}"
-  MKBOOTIMG_RAMDISK_STAGING_DIR="${MKBOOTIMG_STAGING_DIR}/ramdisk_root"
-  mkdir -p "${MKBOOTIMG_RAMDISK_STAGING_DIR}"
+  if [ -z "${SKIP_UNPACKING_RAMDISK}" ]; then
+    rm -rf "${MKBOOTIMG_STAGING_DIR}"
+    MKBOOTIMG_RAMDISK_STAGING_DIR="${MKBOOTIMG_STAGING_DIR}/ramdisk_root"
+    mkdir -p "${MKBOOTIMG_RAMDISK_STAGING_DIR}"
 
-  if [ -n "${VENDOR_RAMDISK_BINARY}" ]; then
-    VENDOR_RAMDISK_CPIO="${MKBOOTIMG_STAGING_DIR}/vendor_ramdisk_binary.cpio"
-    rm -f "${VENDOR_RAMDISK_CPIO}"
-    for vendor_ramdisk_binary in ${VENDOR_RAMDISK_BINARY}; do
-      if ! [ -f "${vendor_ramdisk_binary}" ]; then
-        echo "Unable to locate vendor ramdisk ${vendor_ramdisk_binary}."
-        exit 1
-      fi
-      if ${DECOMPRESS_GZIP} "${vendor_ramdisk_binary}" 2>/dev/null >> "${VENDOR_RAMDISK_CPIO}"; then
-        echo "${vendor_ramdisk_binary} is GZIP compressed"
-      elif ${DECOMPRESS_LZ4} "${vendor_ramdisk_binary}" 2>/dev/null >> "${VENDOR_RAMDISK_CPIO}"; then
-        echo "${vendor_ramdisk_binary} is LZ4 compressed"
-      elif cpio -t < "${vendor_ramdisk_binary}" &>/dev/null; then
-        echo "${vendor_ramdisk_binary} is plain CPIO archive"
-        cat "${vendor_ramdisk_binary}" >> "${VENDOR_RAMDISK_CPIO}"
-      else
-        echo "Unable to identify type of vendor ramdisk ${vendor_ramdisk_binary}"
-        rm -f "${VENDOR_RAMDISK_CPIO}"
-        exit 1
-      fi
-    done
+    if [ -n "${VENDOR_RAMDISK_BINARY}" ]; then
+      VENDOR_RAMDISK_CPIO="${MKBOOTIMG_STAGING_DIR}/vendor_ramdisk_binary.cpio"
+      rm -f "${VENDOR_RAMDISK_CPIO}"
+      for vendor_ramdisk_binary in ${VENDOR_RAMDISK_BINARY}; do
+        if ! [ -f "${vendor_ramdisk_binary}" ]; then
+          echo "Unable to locate vendor ramdisk ${vendor_ramdisk_binary}."
+          exit 1
+        fi
+        if ${DECOMPRESS_GZIP} "${vendor_ramdisk_binary}" 2>/dev/null >> "${VENDOR_RAMDISK_CPIO}"; then
+          echo "${vendor_ramdisk_binary} is GZIP compressed"
+        elif ${DECOMPRESS_LZ4} "${vendor_ramdisk_binary}" 2>/dev/null >> "${VENDOR_RAMDISK_CPIO}"; then
+          echo "${vendor_ramdisk_binary} is LZ4 compressed"
+        elif cpio -t < "${vendor_ramdisk_binary}" &>/dev/null; then
+          echo "${vendor_ramdisk_binary} is plain CPIO archive"
+          cat "${vendor_ramdisk_binary}" >> "${VENDOR_RAMDISK_CPIO}"
+        else
+          echo "Unable to identify type of vendor ramdisk ${vendor_ramdisk_binary}"
+          rm -f "${VENDOR_RAMDISK_CPIO}"
+          exit 1
+        fi
+      done
+    fi
 
     # Remove lib/modules from the vendor ramdisk binary
     # Also execute ${VENDOR_RAMDISK_CMDS} for further modifications
-    ( cd "${MKBOOTIMG_RAMDISK_STAGING_DIR}"
-      cpio -idu --quiet <"${VENDOR_RAMDISK_CPIO}"
-      rm -rf lib/modules
-      eval ${VENDOR_RAMDISK_CMDS}
-    )
+    if [ -z "${SKIP_UNPACKING_RAMDISK}" ]; then
+      ( cd "${MKBOOTIMG_RAMDISK_STAGING_DIR}"
+        cpio -idu --quiet <"${VENDOR_RAMDISK_CPIO}"
+        rm -rf lib/modules
+        eval ${VENDOR_RAMDISK_CMDS}
+      )
+    fi
   fi
 
   if [ -f "${VENDOR_FSTAB}" ]; then
@@ -310,8 +314,12 @@ function build_boot_images() {
 
   if [ "${#MKBOOTIMG_RAMDISK_DIRS[@]}" -gt 0 ]; then
     MKBOOTIMG_RAMDISK_CPIO="${MKBOOTIMG_STAGING_DIR}/ramdisk.cpio"
-    mkbootfs "${MKBOOTIMG_RAMDISK_DIRS[@]}" >"${MKBOOTIMG_RAMDISK_CPIO}"
-    ${RAMDISK_COMPRESS} "${MKBOOTIMG_RAMDISK_CPIO}" >"${DIST_DIR}/ramdisk.${RAMDISK_EXT}"
+    if [ -n "${SKIP_UNPACKING_RAMDISK}" ] && [ -e "${VENDOR_RAMDISK_BINARY}" ]; then
+      cp "${VENDOR_RAMDISK_BINARY}" "${DIST_DIR}/ramdisk.${RAMDISK_EXT}"
+    else
+      mkbootfs "${MKBOOTIMG_RAMDISK_DIRS[@]}" >"${MKBOOTIMG_RAMDISK_CPIO}"
+      ${RAMDISK_COMPRESS} "${MKBOOTIMG_RAMDISK_CPIO}" >"${DIST_DIR}/ramdisk.${RAMDISK_EXT}"
+    fi
   fi
 
   if [ -n "${BUILD_BOOT_IMG}" ]; then
