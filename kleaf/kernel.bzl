@@ -82,6 +82,7 @@ def kernel_build(
         module_outs = [],
         generate_vmlinux_btf = False,
         deps = (),
+        archive_out_dir = False,
         toolchain_version = _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION):
     """Defines a kernel build target with all dependent targets.
 
@@ -111,6 +112,10 @@ def kernel_build(
           This is suitable for ABI analysis through BTF.
 
           Requires that `"vmlinux"` is in `outs`.
+        archive_out_dir: If `True`, archive `${OUT_DIR}` for other rules.
+
+          This is useful on the GKI build to support mixed build. Note that the archive
+          may take some time to be created, and the archive may be large.
         deps: Additional dependencies to build this kernel.
         module_outs: Similar to `outs`, but for `*.ko` files searched from
           module install directory.
@@ -219,6 +224,7 @@ def kernel_build(
         module_outs = [name + "/" + module_out for module_out in module_outs],
         implicit_outs = [name + "/" + out for out in _kernel_build_implicit_outs],
         deps = deps,
+        archive_out_dir = archive_out_dir,
     )
 
     _kernel_uapi_headers(
@@ -552,6 +558,21 @@ def _kernel_build_impl(ctx):
         out_dir_kernel_headers_tar,
     ]
 
+    # default outputs of this rule, aka output files that are emitted to DIST_DIR
+    default_outputs = ctx.outputs.outs + ctx.outputs.module_outs
+
+    out_dir_tar_command = ""
+    if ctx.attr.archive_out_dir:
+        out_dir_tar = ctx.actions.declare_file("{name}/out_dir.tar".format(name = ctx.label.name))
+        command_outputs.append(out_dir_tar)
+
+        # Add OUT_DIR archive to dist so it can be used in some mixed builds
+        default_outputs.append(out_dir_tar)
+        out_dir_tar_command = """
+            # Archive OUT_DIR. Do not compress because it takes too long.
+            tar cf {} -C ${{OUT_DIR}} .
+        """.format(out_dir_tar.path)
+
     command = ctx.attr.config[_KernelEnvInfo].setup + """
          # Actual kernel build
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
@@ -570,6 +591,7 @@ def _kernel_build_impl(ctx):
                        --transform "s,.*$OUT_DIR,,"                     \
                        --transform "s,^/,,"                             \
                        --null -T -
+           {out_dir_tar_command}
          # Grab outputs
            {search_and_mv_output} --srcdir ${{OUT_DIR}} --dstdir {ruledir} {all_output_names}
          # Archive modules_staging_dir
@@ -581,6 +603,7 @@ def _kernel_build_impl(ctx):
         modules_staging_dir = modules_staging_dir,
         modules_staging_archive = modules_staging_archive.path,
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
+        out_dir_tar_command = out_dir_tar_command,
     )
 
     command += """
@@ -627,7 +650,7 @@ def _kernel_build_impl(ctx):
             out_dir_kernel_headers_tar = out_dir_kernel_headers_tar,
             outs = ctx.outputs.outs,
         ),
-        DefaultInfo(files = depset(ctx.outputs.outs + ctx.outputs.module_outs)),
+        DefaultInfo(files = depset(default_outputs)),
     ]
 
 _kernel_build = rule(
@@ -651,6 +674,7 @@ _kernel_build = rule(
         "deps": attr.label_list(
             allow_files = True,
         ),
+        "archive_out_dir": attr.bool(),
         "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
     },
 )
