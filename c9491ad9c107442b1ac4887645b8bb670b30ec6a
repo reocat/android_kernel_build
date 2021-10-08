@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad84b414_df8469e9",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-08T16:36:28Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 241,
+        "startChar": 45,
+        "endLine": 241,
+        "endChar": 55
+      },
+      "revId": "c9491ad9c107442b1ac4887645b8bb670b30ec6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50127c51_d0a7e79c",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-08T16:36:28Z",
+      "side": 1,
+      "message": "raise?",
+      "range": {
+        "startLine": 244,
+        "startChar": 8,
+        "endLine": 244,
+        "endChar": 12
+      },
+      "revId": "c9491ad9c107442b1ac4887645b8bb670b30ec6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5191832_c98d2292",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-08T16:36:28Z",
+      "side": 1,
+      "message": "log.info(using {abi_tool} ...)\nreturn {\"libabigail\" : Libabigail, \"stg\" : Stg}.get(abi_tool, lambda: raise ... )()",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 20
+      },
+      "revId": "c9491ad9c107442b1ac4887645b8bb670b30ec6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60cfc224_5c3b9422",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-08T16:36:28Z",
+      "side": 1,
+      "message": "stg, Stg, STG, care to make this consistent somehow?",
+      "range": {
+        "startLine": 355,
+        "startChar": 15,
+        "endLine": 355,
+        "endChar": 18
+      },
+      "revId": "c9491ad9c107442b1ac4887645b8bb670b30ec6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
