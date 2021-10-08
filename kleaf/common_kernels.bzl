@@ -74,6 +74,7 @@ def define_common_kernels(toolchain_version = None):
             ),
             outs = outs,
             build_config = config,
+            archive_out_dir = True,
             **kernel_build_kwargs
         ),
         copy_to_dist_dir(
