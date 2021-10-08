@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a6335e4_c3ea3cbe",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-08T12:48:11Z",
+      "side": 1,
+      "message": "I think we should pass in a kernel_build() rule here to grab the required dependencies (via provider).",
+      "revId": "89d746ce5914561fe432fd13c27ce1448277f6eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
