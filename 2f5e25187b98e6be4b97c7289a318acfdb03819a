@@ -16,6 +16,24 @@
       "message": "the downside also extends to the command line. you are not able to build kernel/vmlinux as a target anymore. That is quite severe. I think we need to find another solution here.",
       "revId": "2f5e25187b98e6be4b97c7289a318acfdb03819a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66593aa9_964c9cb4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-08T22:54:21Z",
+      "side": 1,
+      "message": "https://github.com/bazelbuild/bazel/issues/281\n\nAnother (dirty) solution is to add an `outs_select` attribute, e.g.\n\n```\nkernel_build(\n  name \u003d \"foo\",\n  outs \u003d [\"foo.dtb\"],\n  outs_select \u003d {\n    \"mixed\": [],\n    \"regular\": [\"vmlinux\"],\n  }\n)\n```\n\n... which translates to:\n\n```\n_kernel_build(\n  name \u003d \"foo\",\n  outs \u003d [\"foo/foo.dtb\"] + select({\n    \"mixed\": [],\n    \"regular\": [\"foo/vmlinux\"],\n  }),\n)\n```",
+      "parentUuid": "30d55c44_87410b88",
+      "revId": "2f5e25187b98e6be4b97c7289a318acfdb03819a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
