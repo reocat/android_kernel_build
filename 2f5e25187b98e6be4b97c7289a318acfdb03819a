@@ -52,6 +52,24 @@
       "parentUuid": "66593aa9_964c9cb4",
       "revId": "2f5e25187b98e6be4b97c7289a318acfdb03819a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d601a8e_607be507",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-08T22:57:32Z",
+      "side": 1,
+      "message": "nevermind, I could use https://docs.bazel.build/versions/3.4.0/skylark/lib/globals.html#type\n\nSo maybe:\n\n```\nkernel_build(\n  name \u003d \"foo\",\n  outs \u003d {\n    \"mixed\": [\"foo.dtb\"],\n    \"regular\": [\"vmlinux\", \"foo.dtb\"],\n  }\n)\n```\nwhich becomes\n_kernel_build(\n  name \u003d \"foo\",\n  outs \u003d select({\n    \"mixed\": [\"foo/foo.dtb\"],\n    \"regular\": [\"foo/vmlinux\", \"foo/foo.dtb\"],\n  }),\n)\n```\n?",
+      "parentUuid": "320311fb_efd93860",
+      "revId": "2f5e25187b98e6be4b97c7289a318acfdb03819a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
