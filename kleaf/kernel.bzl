@@ -74,6 +74,20 @@ kernel_build_config(
     },
 )
 
+def _transform_kernel_build_outs(name, what, outs):
+    """Transform `*outs` attributes for `kernel_build`.
+
+    If `outs` is a list, prepend `{name}/` to each item.
+    If `outs` is a dict, treat each value as an iterable, and prepend `{name}/` to each item in
+      the iterable.
+    """
+    if type(outs) == type([]):
+        return outs
+    elif type(outs) == type({}):
+        return select(outs)
+    else:
+        fail("{}: Invalid type for {}: {}".format(name, what, type(outs)))
+
 def kernel_build(
         name,
         build_config,
@@ -115,15 +129,22 @@ def kernel_build(
         module_outs: Similar to `outs`, but for `*.ko` files searched from
           module install directory.
 
-          Like `outs`, `module_outs` are part
-          of the [`DefaultInfo`](https://docs.bazel.build/versions/main/skylark/lib/DefaultInfo.html)
+          Like `outs`, `module_outs` are part of the
+          [`DefaultInfo`](https://docs.bazel.build/versions/main/skylark/lib/DefaultInfo.html)
           that this `kernel_build` returns. For example:
           ```
           kernel_build(name = "kernel", module_outs = ["foo.ko"], ...)
           copy_to_dist_dir(name = "kernel_dist", data = [":kernel"])
           ```
           `foo.ko` will be included in the distribution.
-        outs: The expected output files. For each item `out`:
+
+          Like `outs`, this may be a `dict`. If so, it is wrapped in
+          [`select()`](https://docs.bazel.build/versions/main/configurable-attributes.html). See
+          documentation for `outs` for more details.
+        outs: The expected output files.
+
+          This attribute must be either a `dict` or a `list`. If it is a `list`, for each item
+          in `out`:
 
           - If `out` does not contain a slash, the build rule
             automatically finds a file with name `out` in the kernel
@@ -164,14 +185,45 @@ def kernel_build(
 
             See `search_and_mv_output.py` for details.
 
-          Files in `outs` are part
-          of the [`DefaultInfo`](https://docs.bazel.build/versions/main/skylark/lib/DefaultInfo.html)
+          Files in `outs` are part of the
+          [`DefaultInfo`](https://docs.bazel.build/versions/main/skylark/lib/DefaultInfo.html)
           that this `kernel_build` returns. For example:
           ```
           kernel_build(name = "kernel", outs = ["vmlinux"], ...)
           copy_to_dist_dir(name = "kernel_dist", data = [":kernel"])
           ```
           `vmlinux` will be included in the distribution.
+
+          If it is a `dict`, it is wrapped in
+          [`select()`](https://docs.bazel.build/versions/main/configurable-attributes.html).
+
+          Example:
+          ```
+          kernel_build(
+            name = "kernel_aarch64",
+            outs = {"config_foo": ["vmlinux"]})
+          ```
+          If conditions in `config_foo` is met, the rule is equivalent to
+          ```
+          kernel_build(
+            name = "kernel_aarch64",
+            outs = ["vmlinux"])
+          ```
+          As explained above, the bulid system copies `${OUT_DIR}/[<optional subdirectory>/]vmlinux`
+          to `kernel_aarch64/vmlinux`.
+          `kernel_aarch64/vmlinux` is the label to the file.
+
+          Note that a `select()` may not be passed into `kernel_build()` because
+          [`select()` cannot be evaluated in macros](https://docs.bazel.build/versions/main/configurable-attributes.html#why-doesnt-select-work-in-macros).
+          Hence:
+          - [combining `select()`s](https://docs.bazel.build/versions/main/configurable-attributes.html#combining-selects)
+            is not allowed. Instead, expand the cartesian product.
+          - To use
+            [`AND` chaining](https://docs.bazel.build/versions/main/configurable-attributes.html#or-chaining)
+            or
+            [`OR` chaining](https://docs.bazel.build/versions/main/configurable-attributes.html#selectsconfig_setting_group),
+            use `selects.config_setting_group()`.
+
         toolchain_version: The toolchain version to depend on.
     """
     sources_target_name = name + "_sources"
@@ -215,11 +267,33 @@ def kernel_build(
         name = name,
         config = config_target_name,
         srcs = [sources_target_name],
-        outs = [name + "/" + out for out in outs],
-        module_outs = [name + "/" + module_out for module_out in module_outs],
-        implicit_outs = [name + "/" + out for out in _kernel_build_implicit_outs],
+        outs = _transform_kernel_build_outs(name, "outs", outs),
+        module_outs = _transform_kernel_build_outs(name, "module_outs", module_outs),
+        implicit_outs = _transform_kernel_build_outs(name, "implicit_outs", _kernel_build_implicit_outs),
         deps = deps,
     )
+
+    for out_list_name, out_list in (
+        ("outs", outs),
+        ("module_outs", module_outs),
+    ):
+        if type(out_list) == type([]):
+            for out in out_list:
+                native.filegroup(name = name + "/" + out, srcs = [":" + name], output_group = out)
+        elif type(out_list) == type({}):
+            reverse_dict = {}
+            for config_setting, config_outs in out_list.items():
+                for config_out in config_outs:
+                    if config_out not in reverse_dict:
+                        reverse_dict[config_out] = []
+                    reverse_dict[config_out].append(config_setting)
+            for out, config_settings in reverse_dict.items():
+                native.filegroup(name = name + "/" + out, srcs = select({
+                    config_setting: [":" + name]
+                    for config_setting in config_settings
+                }), output_group = out)
+        else:
+            fail("Unexpected type {} for {}: {}".format(type(out_list), out_list_name, out_list))
 
     _kernel_uapi_headers(
         name = uapi_headers_target_name,
@@ -528,14 +602,13 @@ def _kernel_build_impl(ctx):
     # kernel_build(name="kenrel", outs=["out"])
     # => _kernel_build(name="kernel", outs=["kernel/out"], implicit_outs=["kernel/Module.symvers", ...])
     # => all_output_names = ["foo", "Module.symvers", ...]
-    #    all_output_files = [File(...), File(...), ...]
-    all_output_files = []
+    #    all_output_files = {"out": {"foo": File(...)}, "implicit_outs": {"Module.symvers": File(...)}, ...}
+    all_output_files = {}
     for attr in ("outs", "module_outs", "implicit_outs"):
-        all_output_files += getattr(ctx.outputs, attr)
+        all_output_files[attr] = {name: ctx.actions.declare_file("{}/{}".format(ctx.label.name, name)) for name in getattr(ctx.attr, attr)}
     all_output_names = []
-    for out in all_output_files:
-        short_name = out.short_path[len(ruledir.short_path) + 1:]
-        all_output_names.append(short_name)
+    for d in all_output_files.values():
+        all_output_names += d.keys()
 
     modules_staging_archive = ctx.actions.declare_file(
         "{name}/modules_staging_dir.tar.gz".format(name = ctx.label.name),
@@ -546,11 +619,13 @@ def _kernel_build_impl(ctx):
     modules_staging_dir = modules_staging_archive.dirname + "/staging"
 
     # all outputs that |command| generates
-    command_outputs = all_output_files + [
+    command_outputs = [
         ruledir,
         modules_staging_archive,
         out_dir_kernel_headers_tar,
     ]
+    for d in all_output_files.values():
+        command_outputs += d.values()
 
     command = ctx.attr.config[_KernelEnvInfo].setup + """
          # Actual kernel build
@@ -599,8 +674,10 @@ def _kernel_build_impl(ctx):
 
     # Only outs and implicit_outs are needed. But for simplicity, copy the full {ruledir}
     # which includes module_outs too.
-    env_info_dependencies = ctx.attr.config[_KernelEnvInfo].dependencies + \
-                            all_output_files
+    env_info_dependencies = []
+    env_info_dependencies += ctx.attr.config[_KernelEnvInfo].dependencies
+    for d in all_output_files.values():
+        env_info_dependencies += d.values()
     env_info_setup = ctx.attr.config[_KernelEnvInfo].setup + """
          # Restore kernel build outputs
            cp -R {ruledir}/* ${{OUT_DIR}}
@@ -618,16 +695,26 @@ def _kernel_build_impl(ctx):
             "scripts/",
         ]])
     ]
+    kernel_build_info = _KernelBuildInfo(
+        modules_staging_archive = modules_staging_archive,
+        module_srcs = module_srcs,
+        out_dir_kernel_headers_tar = out_dir_kernel_headers_tar,
+        outs = all_output_files["outs"].values(),
+    )
+
+    output_group_kwargs = {}
+    for d in all_output_files.values():
+        output_group_kwargs.update({name: depset([file]) for name, file in d.items()})
+    output_group_info = OutputGroupInfo(**output_group_kwargs)
+
+    default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
+    default_info = DefaultInfo(files = depset(default_info_files))
 
     return [
         env_info,
-        _KernelBuildInfo(
-            modules_staging_archive = modules_staging_archive,
-            module_srcs = module_srcs,
-            out_dir_kernel_headers_tar = out_dir_kernel_headers_tar,
-            outs = ctx.outputs.outs,
-        ),
-        DefaultInfo(files = depset(ctx.outputs.outs + ctx.outputs.module_outs)),
+        kernel_build_info,
+        output_group_info,
+        default_info,
     ]
 
 _kernel_build = rule(
@@ -640,9 +727,9 @@ _kernel_build = rule(
             doc = "the kernel_config target",
         ),
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources"),
-        "outs": attr.output_list(),
-        "module_outs": attr.output_list(doc = "output *.ko files"),
-        "implicit_outs": attr.output_list(doc = "Like `outs`, but not in dist"),
+        "outs": attr.string_list(),
+        "module_outs": attr.string_list(doc = "output *.ko files"),
+        "implicit_outs": attr.string_list(doc = "Like `outs`, but not in dist"),
         "_search_and_mv_output": attr.label(
             allow_single_file = True,
             default = Label("//build/kleaf:search_and_mv_output.py"),
