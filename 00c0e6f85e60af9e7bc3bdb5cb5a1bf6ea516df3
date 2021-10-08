@@ -33,6 +33,24 @@
       "message": "parallel compression (pigz, pixz) could be a solution here",
       "revId": "00c0e6f85e60af9e7bc3bdb5cb5a1bf6ea516df3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "469009e0_4ab98c8c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-08T21:35:19Z",
+      "side": 1,
+      "message": "I don\u0027t see pigz / pixz in our prebuilts",
+      "parentUuid": "c96cc961_30670beb",
+      "revId": "00c0e6f85e60af9e7bc3bdb5cb5a1bf6ea516df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
