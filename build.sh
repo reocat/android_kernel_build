@@ -239,6 +239,10 @@
 #     ramdisk binary. For example, the build config file could add firmware files
 #     on the vendor ramdisk (lib/firmware) for testing purposes.
 #
+#   SKIP_UNPACKING_RAMDISK
+#     If set, skip unpacking the vendor ramdisk and copy it as is, without
+#     modifications, into the boot image.
+#
 #   AVB_SIGN_BOOT_IMG
 #     if defined, sign the boot image using the AVB_BOOT_KEY. Refer to
 #     https://android.googlesource.com/platform/external/avb/+/master/README.md
@@ -920,11 +924,13 @@ if [ -n "${BUILD_BOOT_IMG}" -o -n "${BUILD_VENDOR_BOOT_IMG}" ] ; then
 
     # Remove lib/modules from the vendor ramdisk binary
     # Also execute ${VENDOR_RAMDISK_CMDS} for further modifications
-    ( cd "${MKBOOTIMG_RAMDISK_STAGING_DIR}"
-      cpio -idu --quiet <"${VENDOR_RAMDISK_CPIO}"
-      rm -rf lib/modules
-      eval ${VENDOR_RAMDISK_CMDS}
-    )
+    if [ -z ${SKIP_UNPACKING_RAMDISK} ]; then
+      ( cd "${MKBOOTIMG_RAMDISK_STAGING_DIR}"
+        cpio -idu --quiet <"${VENDOR_RAMDISK_CPIO}"
+        rm -rf lib/modules
+        eval ${VENDOR_RAMDISK_CMDS}
+      )
+    fi
   fi
 
   if [ -f "${VENDOR_FSTAB}" ]; then
@@ -954,6 +960,9 @@ if [ -n "${BUILD_BOOT_IMG}" -o -n "${BUILD_VENDOR_BOOT_IMG}" ] ; then
   if [ "${#MKBOOTIMG_RAMDISK_DIRS[@]}" -gt 0 ]; then
     MKBOOTIMG_RAMDISK_CPIO="${MKBOOTIMG_STAGING_DIR}/ramdisk.cpio"
     mkbootfs "${MKBOOTIMG_RAMDISK_DIRS[@]}" >"${MKBOOTIMG_RAMDISK_CPIO}"
+    if [ -n ${SKIP_UNPACKING_RAMDISK} ]; then
+      cat ${VENDOR_RAMDISK_BINARY} >>"${MKBOOTIMG_RAMDISK_CPIO}"
+    fi
     ${RAMDISK_COMPRESS} "${MKBOOTIMG_RAMDISK_CPIO}" >"${DIST_DIR}/ramdisk.${RAMDISK_EXT}"
   fi
 
