@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30d55c44_87410b88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-08T12:49:31Z",
+      "side": 1,
+      "message": "the downside also extends to the command line. you are not able to build kernel/vmlinux as a target anymore. That is quite severe. I think we need to find another solution here.",
+      "revId": "2f5e25187b98e6be4b97c7289a318acfdb03819a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
