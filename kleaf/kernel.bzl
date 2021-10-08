@@ -109,6 +109,7 @@ def kernel_build(
         module_outs = [],
         generate_vmlinux_btf = False,
         deps = (),
+        gki = None,
         toolchain_version = _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION):
     """Defines a kernel build target with all dependent targets.
 
@@ -133,6 +134,28 @@ def kernel_build(
         name: The final kernel target name, e.g. `"kernel_aarch64"`.
         build_config: Label of the build.config file, e.g. `"build.config.gki.aarch64"`.
         srcs: The kernel sources (a `glob()`).
+        gki: GKI build artifacts for mixed build.
+
+          If set, the list of files produced by the rule specified in `gki` is copied to a
+          directory, and `KBUILD_MIXED_TREE` is set to the directory. Setting
+          `KBUILD_MIXED_TREE` effectively enables mixed build.
+
+          To set additional flags for mixed build, change `build_config` to a `kernel_build_config`
+          rule, with a build config fragment that contains the additional flags.
+
+          Usually, this points to one of the following:
+          - `//common:kernel_{arch}`
+          - `//common:kernel_{arch}_for_dist`, if kernel headers are needed in
+            `KBUILD_MIXED_TREE`. This is uncommon.
+          - A `filegroup` of GKI prebuilts, e.g.
+            ```
+            load("//build/kleaf:common_kernels.bzl, "aarch64_outs")
+            filegroup(
+              name = "gki_prebuilts",
+              srcs = aarch64_outs,
+            )
+            ```
+
         generate_vmlinux_btf: If `True`, generates `vmlinux.btf` that is stripped off any debug
           symbols, but contains type and symbol information within a .BTF section.
           This is suitable for ABI analysis through BTF.
@@ -284,6 +307,7 @@ def kernel_build(
         module_outs = _transform_kernel_build_outs(name, "module_outs", module_outs),
         implicit_outs = _transform_kernel_build_outs(name, "implicit_outs", _kernel_build_implicit_outs),
         deps = deps,
+        gki = gki,
     )
 
     for out_name, out_attr_val in (
@@ -384,6 +408,7 @@ def _kernel_env_impl(ctx):
     _debug_print_scripts(ctx, command)
     ctx.actions.run_shell(
         inputs = ctx.files.srcs + [
+            build_config,
             setup_env,
             preserve_env,
         ],
@@ -610,10 +635,44 @@ _KernelBuildInfo = provider(fields = {
     "module_srcs": "sources for this kernel_build for building external modules",
     "out_dir_kernel_headers_tar": "Archive containing headers in `OUT_DIR`",
     "outs": "A list of File object corresponding to the `outs` attribute (excluding `module_outs` and `implicit_outs`)",
+    "gki_files": "[Default outputs](https://docs.bazel.build/versions/main/skylark/rules.html#default-outputs) of the rule specified by `gki`",
 })
 
 def _kernel_build_impl(ctx):
+    kbuild_mixed_tree = None
+    if ctx.attr.gki:
+        # Create a directory for KBUILD_MIXED_TREE. Flatten the directory structure of the files
+        # that ctx.attr.gki provides. declare_directory is sufficient because the directory should
+        # only change when the dependent ctx.attr.gki changes.
+        kbuild_mixed_tree = ctx.actions.declare_directory("{}_kbuild_mixed_tree".format(ctx.label.name))
+        kbuild_mixed_tree_command = """
+          # Restore GKI artifacts for mixed build
+            export KBUILD_MIXED_TREE=$(realpath {kbuild_mixed_tree})
+            rm -rf ${{KBUILD_MIXED_TREE}}
+            mkdir -p ${{KBUILD_MIXED_TREE}}
+            for gki_file in {gki_files}; do
+              ln -s $(readlink -m ${{gki_file}}) ${{KBUILD_MIXED_TREE}}
+            done
+        """.format(
+            gki_files = " ".join([file.path for file in ctx.files.gki]),
+            kbuild_mixed_tree = kbuild_mixed_tree.path,
+        )
+        ctx.actions.run_shell(
+            inputs = ctx.files.gki,
+            outputs = [kbuild_mixed_tree],
+            progress_message = "Creating KBUILD_MIXED_TREE",
+            command = kbuild_mixed_tree_command,
+        )
+
     ruledir = ctx.actions.declare_directory(ctx.label.name)
+
+    inputs = [
+        ctx.file._search_and_mv_output,
+    ]
+    inputs += ctx.files.srcs
+    inputs += ctx.files.deps
+    if kbuild_mixed_tree:
+        inputs.append(kbuild_mixed_tree)
 
     # kernel_build(name="kenrel", outs=["out"])
     # => _kernel_build(name="kernel", outs=["kernel/out"], implicit_outs=["kernel/Module.symvers", ...])
@@ -643,7 +702,17 @@ def _kernel_build_impl(ctx):
     for d in all_output_files.values():
         command_outputs += d.values()
 
-    command = ctx.attr.config[_KernelEnvInfo].setup + """
+    command = ""
+    command += ctx.attr.config[_KernelEnvInfo].setup
+
+    if kbuild_mixed_tree:
+        command += """
+                   export KBUILD_MIXED_TREE=$(realpath {kbuild_mixed_tree})
+        """.format(
+            kbuild_mixed_tree = kbuild_mixed_tree.path,
+        )
+
+    command += """
          # Actual kernel build
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
          # Set variables and create dirs for modules
@@ -665,6 +734,8 @@ def _kernel_build_impl(ctx):
            {search_and_mv_output} --srcdir ${{OUT_DIR}} --dstdir {ruledir} {all_output_names}
          # Archive modules_staging_dir
            tar czf {modules_staging_archive} -C {modules_staging_dir} .
+         # Clean up staging directories
+           rm -rf {modules_staging_dir}
          """.format(
         search_and_mv_output = ctx.file._search_and_mv_output.path,
         ruledir = ruledir.path,
@@ -674,14 +745,9 @@ def _kernel_build_impl(ctx):
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
     )
 
-    command += """
-               rm -rf {modules_staging_dir}
-    """.format(modules_staging_dir = modules_staging_dir)
-
     _debug_print_scripts(ctx, command)
     ctx.actions.run_shell(
-        inputs = ctx.files.srcs + ctx.files.deps +
-                 [ctx.file._search_and_mv_output],
+        inputs = inputs,
         outputs = command_outputs,
         tools = ctx.attr.config[_KernelEnvInfo].dependencies,
         progress_message = "Building kernel %s" % ctx.attr.name,
@@ -698,6 +764,11 @@ def _kernel_build_impl(ctx):
          # Restore kernel build outputs
            cp -R {ruledir}/* ${{OUT_DIR}}
            """.format(ruledir = ruledir.path)
+    if kbuild_mixed_tree:
+        env_info_dependencies.append(kbuild_mixed_tree)
+        env_info_setup += """
+            export KBUILD_MIXED_TREE=$(realpath {kbuild_mixed_tree})
+        """.format(kbuild_mixed_tree = kbuild_mixed_tree.path)
     env_info = _KernelEnvInfo(
         dependencies = env_info_dependencies,
         setup = env_info_setup,
@@ -716,6 +787,7 @@ def _kernel_build_impl(ctx):
         module_srcs = module_srcs,
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar,
         outs = all_output_files["outs"].values(),
+        gki_files = ctx.files.gki,
     )
 
     output_group_kwargs = {}
@@ -754,6 +826,7 @@ _kernel_build = rule(
         "deps": attr.label_list(
             allow_files = True,
         ),
+        "gki": attr.label(),
         "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
     },
 )
@@ -1162,7 +1235,6 @@ def _kernel_modules_install_impl(ctx):
         )
 
     # TODO(b/194347374): maybe run depmod.sh with CONFIG_SHELL?
-    # TODO: Support mixed builds by setting mixed_build_prefix from KBUILD_MIXED_TREE
     command += """
              # Check if there are duplicated files in modules_staging_archive of
              # depended kernel_build and kernel_module's
@@ -1174,6 +1246,9 @@ def _kernel_modules_install_impl(ctx):
                fi
                kernelrelease=$(cat ${{OUT_DIR}}/include/config/kernel.release 2> /dev/null)
                mixed_build_prefix=
+               if [[ ${{KBUILD_MIXED_TREE}} ]]; then
+                   mixed_build_prefix=${{KBUILD_MIXED_TREE}}/
+               fi
                real_modules_staging_dir=$(realpath {modules_staging_dir})
              # Run depmod
                (
@@ -1440,7 +1515,7 @@ def _build_modules_image_impl_common(
           `DefaultInfo`)
     """
     kernel_build = ctx.attr.kernel_modules_install[_KernelModuleInfo].kernel_build
-    kernel_build_outs = kernel_build[_KernelBuildInfo].outs
+    kernel_build_outs = kernel_build[_KernelBuildInfo].outs + kernel_build[_KernelBuildInfo].gki_files
     system_map = None
     for kernel_build_out in kernel_build_outs:
         if kernel_build_out.basename == "System.map":
@@ -1660,7 +1735,7 @@ def _boot_images_impl(ctx):
     for out in ctx.outputs.outs:
         outs.append(out.short_path[len(outdir.short_path) + 1:])
 
-    kernel_build_outs = ctx.attr.kernel_build[_KernelBuildInfo].outs
+    kernel_build_outs = ctx.attr.kernel_build[_KernelBuildInfo].outs + ctx.attr.kernel_build[_KernelBuildInfo].gki_files
 
     inputs = [
         ctx.attr.initramfs[_InitramfsInfo].initramfs_img,
