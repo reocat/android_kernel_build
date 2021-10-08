@@ -16,6 +16,24 @@
       "message": "I think we should pass in a kernel_build() rule here to grab the required dependencies (via provider).",
       "revId": "89d746ce5914561fe432fd13c27ce1448277f6eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e039e1e6_52408c25",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-08T21:31:39Z",
+      "side": 1,
+      "message": "This is intentional so that any rule works. The DefaultInfo provider of the rule is examined.\n\nThis allows prebuilts, e.g. pa/2064825",
+      "parentUuid": "2a6335e4_c3ea3cbe",
+      "revId": "89d746ce5914561fe432fd13c27ce1448277f6eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
