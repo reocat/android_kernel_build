@@ -67,6 +67,7 @@ def define_common_kernels():
             ),
             outs = outs,
             build_config = config,
+            archive_out_dir = True,
         ),
         copy_to_dist_dir(
             name = name + "_dist",
