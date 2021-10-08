@@ -34,6 +34,24 @@
       "parentUuid": "30d55c44_87410b88",
       "revId": "2f5e25187b98e6be4b97c7289a318acfdb03819a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "320311fb_efd93860",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-08T22:56:15Z",
+      "side": 1,
+      "message": "I was hoping to find some magic to detect the type of `outs`: if it is a list then pass it on. If it is a dict then wrap it into \"select\". But I can\u0027t find a way to check types of an object in Bazel.",
+      "parentUuid": "66593aa9_964c9cb4",
+      "revId": "2f5e25187b98e6be4b97c7289a318acfdb03819a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
