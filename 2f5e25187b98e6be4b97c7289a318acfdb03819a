@@ -70,6 +70,24 @@
       "parentUuid": "320311fb_efd93860",
       "revId": "2f5e25187b98e6be4b97c7289a318acfdb03819a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bb4f299_71147bc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-09T02:26:12Z",
+      "side": 1,
+      "message": "This doesn\u0027t work because:\n\n```\nattribute \"outs\" is not configurable\n```\n\nattr.output_list() is not configurable, meaning that select() statements cannot be passed to output_list()\u0027s. This is explained in https://github.com/bazelbuild/bazel/issues/281, and the suggestion is to use `declare_file` instead. But `kernel/vmlinux` wouldn\u0027t work in this case.\n\nI could still do:\n\n```\nkernel_build(\n  name \u003d \"foo\",\n  outs \u003d [\"foo.dtb\"],\n  outs_select \u003d {\n    \"mixed\": [],\n    \"regular\": [\"vmlinux\"],\n  }\n)\n```\n\n... but `foo/foo.dtb` would be a valid target, and `foo/vmlinux` is still not a valid target.",
+      "parentUuid": "8d601a8e_607be507",
+      "revId": "2f5e25187b98e6be4b97c7289a318acfdb03819a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
