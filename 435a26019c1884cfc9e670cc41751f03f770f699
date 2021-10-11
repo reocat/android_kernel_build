@@ -16,6 +16,24 @@
       "message": "This adds 2~3GiB of stuff to dist, so I want to avoid if possible. Let see if it is possible to convert cuttlefish to AOSP mixed build, then decide if we want to go this route.",
       "revId": "435a26019c1884cfc9e670cc41751f03f770f699",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9012cb11_5f56ba22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-11T14:53:00Z",
+      "side": 1,
+      "message": "I would very much prefer that cuttlefish uses the AOSP mixed build first.",
+      "parentUuid": "3a2f9a21_b97295e6",
+      "revId": "435a26019c1884cfc9e670cc41751f03f770f699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
