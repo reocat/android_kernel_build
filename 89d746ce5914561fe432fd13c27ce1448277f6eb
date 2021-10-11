@@ -34,6 +34,24 @@
       "parentUuid": "2a6335e4_c3ea3cbe",
       "revId": "89d746ce5914561fe432fd13c27ce1448277f6eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cd74e00_28d029f2",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-11T14:52:19Z",
+      "side": 1,
+      "message": "In that case the name \u0027gki\u0027 is a bit too specific.\n\nWhile I see the generic nature of this interface, I dislike that it is entirely undefined and there is no contract. That is why I thought providers could close the gap. For example if you require prebuilt binaries (and for the sake of this example, let\u0027s assume \u0027vmlinux\u0027 and some headers would be enough), we could pass this on via a provider. The provider can be satisfied however possible (download something prebuilt, build something in a million complicated steps), as long as the rule has a valid provider we are good to use it. \nAnother example: a full kernel build with a lot of modules could serve as an input and the modules need not be expanded if they are not part of this interface ... as of now we would put everything into place, regardless.\n\nCan we have that or is there a reason we need to be _that_ generic to just copy in whatever file there is.",
+      "parentUuid": "e039e1e6_52408c25",
+      "revId": "89d746ce5914561fe432fd13c27ce1448277f6eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
