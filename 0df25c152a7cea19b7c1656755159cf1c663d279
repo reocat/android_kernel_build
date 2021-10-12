@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca98a198_750657be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-12T08:20:25Z",
+      "side": 1,
+      "message": "This change also strips away the execution bit of build.sh, is it intended?",
+      "range": {
+        "startLine": 11,
+        "startChar": 13,
+        "endLine": 11,
+        "endChar": 27
+      },
+      "revId": "0df25c152a7cea19b7c1656755159cf1c663d279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
