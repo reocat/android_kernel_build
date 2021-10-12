@@ -52,6 +52,24 @@
       "parentUuid": "e039e1e6_52408c25",
       "revId": "89d746ce5914561fe432fd13c27ce1448277f6eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fa91355_658fd732",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-12T20:27:46Z",
+      "side": 1,
+      "message": "\u003e In that case the name \u0027gki\u0027 is a bit too specific.\n\nI am open to any name suggestions 😄 I don\u0027t like `gki` either.\n\nMaybe \"reference_kernel\"? \"reference_base\"? \"base\"? \"kbuild_mixed_tree\"?\n\n\u003e While I see the generic nature of this interface, I dislike that it is entirely undefined and there is no contract.\n\nThe \"contract\" here is that, the \"default output files\" (as defined by DefaultInfo, or https://docs.bazel.build/versions/main/skylark/rules.html#files ), are copied to a directory that is later assigned to `KBUILD_MIXED_TREE`. This is explained in the documentation below.\n\n\u003e The provider can be satisfied however possible (download something prebuilt, build something in a million complicated steps), as long as the rule has a valid provider we are good to use it. \n\nThat\u0027s exactly the reason why it is so generic that it uses DefaultInfo (which is returned by every Bazel rule, even when the rule does not explicitly returned it)\n\n\u003e Another example: a full kernel build with a lot of modules could serve as an input and the modules need not be expanded if they are not part of this interface ... as of now we would put everything into place, regardless.\n\nIndeed. But still, I think the problem is that a _kernel_build() rule puts module_outs in DefaultInfo (because copy_to_dist_dir uses DefaultInfo), and here we happen to use the same DefaultInfo.\n\n(Maybe copy_to_dist_dir should also look for some specific provider, then fall back to DefaultInfo? Like #2 below)\n\nTaking a step back, in your example, I think it is actually **correct** to restore the modules if we are following the behavior of AOSP-style mixed builds in build.sh (though of course, it is likely not necessary). In build.sh, all outputs of the GKI build in DIST_DIR are treated as part of KBUILD_MIXED_TREE.\n\nBut if you really want me to skip the modules in a _kernel_build, there are two ways:\n\n1. create a filegroup for the `outs` but not the `module_outs` of the GKI build, then the device kernel build depend on that filegroup instead. This method will work as is, and it does not need any change to .bzl as of now.\n2. In _kernel_build_impl, check if `gki` provides _KernelBuildInfo. If so, only depend on ctx.attr.gki[_KernelBuildInfo].outs. Otherwise depend on [DefaultInfo].\n3. Like #2 but add another provider. See \"custom providers\" below.\n\n----------\n\nCustom providers:\n\nIf you don\u0027t like relying on DefaultInfo, I am happy to define another custom provider that\u0027s similar to DefaultInfo, and provide a rule for prebuilts that return that provider. It is basically re-implementing DefaultInfo and filegroup. The advantage, as you said, is that it gets separated from the concept of \"default outputs\" of a rule.",
+      "parentUuid": "6cd74e00_28d029f2",
+      "revId": "89d746ce5914561fe432fd13c27ce1448277f6eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
