@@ -22,6 +22,75 @@
       },
       "revId": "0df25c152a7cea19b7c1656755159cf1c663d279",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f7542f7_9fc0e024",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-12T08:48:02Z",
+      "side": 1,
+      "message": "Would just ignoring this error work? see my other comment",
+      "range": {
+        "startLine": 9,
+        "startChar": 52,
+        "endLine": 11,
+        "endChar": 11
+      },
+      "revId": "0df25c152a7cea19b7c1656755159cf1c663d279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ee83f57_f0572829",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-12T08:48:02Z",
+      "side": 1,
+      "message": "quote this with \"\" so space-ish characters are not implicitly stripped by variable expansion",
+      "range": {
+        "startLine": 280,
+        "startChar": 12,
+        "endLine": 280,
+        "endChar": 37
+      },
+      "revId": "0df25c152a7cea19b7c1656755159cf1c663d279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66d7e441_9cd07258",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-12T08:48:02Z",
+      "side": 1,
+      "message": "```\nif ! cpio -idu --quiet \u003c\"${VENDOR_RAMDISK_CPIO}\" \u0026\u0026 [ -z \"${IGNORE_RAMDISK_UNPACK_ERRORS}\" ]; then\n  exit 1\nfi\n```",
+      "range": {
+        "startLine": 282,
+        "startChar": 8,
+        "endLine": 282,
+        "endChar": 51
+      },
+      "revId": "0df25c152a7cea19b7c1656755159cf1c663d279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
