@@ -265,7 +265,7 @@ def _kernel_env_impl(ctx):
     setup_env = ctx.file.setup_env
     preserve_env = ctx.file.preserve_env
     out_file = ctx.actions.declare_file("%s.sh" % ctx.attr.name)
-    dependencies = ctx.files._tools + ctx.files._host_tools
+    dependencies = ctx.files._tools + ctx.files._host_tools + ctx.files._scmversion
 
     command = ""
     if ctx.attr._debug_annotate_scripts[BuildSettingInfo].value:
@@ -324,6 +324,12 @@ def _kernel_env_impl(ctx):
         host_tool_path = host_tool_path,
         build_utils_sh = ctx.file._build_utils_sh.path,
     )
+
+    if ctx.files._scmversion:
+        setup += """
+               # Restore .scmversion
+                 cp {scmversion} ${{ROOT_DIR}}/${{KERNEL_DIR}}/.scmversion
+        """.format(scmversion = ctx.files._scmversion[0].path)
 
     return [
         _KernelEnvInfo(
@@ -393,6 +399,9 @@ _kernel_env = rule(
         "_build_utils_sh": attr.label(
             allow_single_file = True,
             default = Label("//build:build_utils.sh"),
+        ),
+        "_scmversion": attr.label(
+            default = Label("//.generated/bazel:scmversion_filegroup"),
         ),
         "_debug_annotate_scripts": attr.label(
             default = "//build/kleaf:debug_annotate_scripts",
