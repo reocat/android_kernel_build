@@ -30,6 +30,9 @@ try-import %workspace%/user.bazelrc
 # Pass through any SOURCE_DATE_EPOCH set from outside
 build --action_env=SOURCE_DATE_EPOCH
 
+# Pass through any KLEAF_SCMVERSION set from outside
+build --action_env=KLEAF_SCMVERSION
+
 # flag aliases for build settings
 build --flag_alias=lto=//build/kleaf:lto
 

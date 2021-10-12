@@ -28,6 +28,8 @@ if [ -z "${SOURCE_DATE_EPOCH}" ]; then
   export SOURCE_DATE_EPOCH=0
 fi
 
+export KLEAF_SCMVERSION=$(${ROOT_DIR}/build/kleaf/scmversion.sh)
+
 exec "${BAZEL_PATH}" \
   --server_javabase="${BAZEL_JDK_PATH}" \
   --output_user_root="${ABSOLUTE_OUT_DIR}/bazel/output_user_root" \
