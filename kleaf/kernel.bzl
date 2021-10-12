@@ -478,6 +478,11 @@ def _kernel_env_impl(ctx):
            export PATH=$PATH:$PWD/{host_tool_path}
          # setup LD_LIBRARY_PATH for prebuilts
            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/{linux_x86_libs_path}
+         # Save KLEAF_SCMVERSION to .scmversion if .scmversion does not already exist
+         # If it does exist, then it is part of "srcs", so respect its value
+           if [[ ! -f ${{ROOT_DIR}}/${{KERNEL_DIR}}/.scmversion ]] && [[ ${{KLEAF_SCMVERSION}} ]]; then
+             echo ${{KLEAF_SCMVERSION}} > ${{ROOT_DIR}}/${{KERNEL_DIR}}/.scmversion
+           fi
            """.format(
         env = out_file.path,
         host_tool_path = host_tool_path,
