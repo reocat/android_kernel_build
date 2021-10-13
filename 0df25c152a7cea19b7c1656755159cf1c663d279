@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98bc065e_4d4eaf2f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1899690
+      },
+      "writtenOn": "2021-10-13T15:42:24Z",
+      "side": 1,
+      "message": "Yes. I\u0027ve clarified in my latest patch set.",
+      "parentUuid": "ca98a198_750657be",
+      "range": {
+        "startLine": 11,
+        "startChar": 13,
+        "endLine": 11,
+        "endChar": 27
+      },
+      "revId": "0df25c152a7cea19b7c1656755159cf1c663d279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8218fa15_4dfcc1b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1899690
+      },
+      "writtenOn": "2021-10-13T15:42:24Z",
+      "side": 1,
+      "message": "Tried it and it failed; see below comment",
+      "parentUuid": "6f7542f7_9fc0e024",
+      "range": {
+        "startLine": 9,
+        "startChar": 52,
+        "endLine": 11,
+        "endChar": 11
+      },
+      "revId": "0df25c152a7cea19b7c1656755159cf1c663d279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ee83f57_f0572829",
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69f76457_679fcf04",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1899690
+      },
+      "writtenOn": "2021-10-13T15:42:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ee83f57_f0572829",
+      "range": {
+        "startLine": 280,
+        "startChar": 12,
+        "endLine": 280,
+        "endChar": 37
+      },
+      "revId": "0df25c152a7cea19b7c1656755159cf1c663d279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66d7e441_9cd07258",
@@ -83,6 +155,30 @@
       "writtenOn": "2021-10-12T08:48:02Z",
       "side": 1,
       "message": "```\nif ! cpio -idu --quiet \u003c\"${VENDOR_RAMDISK_CPIO}\" \u0026\u0026 [ -z \"${IGNORE_RAMDISK_UNPACK_ERRORS}\" ]; then\n  exit 1\nfi\n```",
+      "range": {
+        "startLine": 282,
+        "startChar": 8,
+        "endLine": 282,
+        "endChar": 51
+      },
+      "revId": "0df25c152a7cea19b7c1656755159cf1c663d279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "287f983a_28b8f4d6",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1899690
+      },
+      "writtenOn": "2021-10-13T15:42:24Z",
+      "side": 1,
+      "message": "Tried this, but it seemed to strip the ramdisk of nodes it needed to boot.",
+      "parentUuid": "66d7e441_9cd07258",
       "range": {
         "startLine": 282,
         "startChar": 8,
