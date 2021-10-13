@@ -22,6 +22,30 @@
       },
       "revId": "7faf68791d30be0aef26e12f2f0fb738b1cc188a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c03e384a_92ea9430",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2021-10-13T16:39:51Z",
+      "side": 1,
+      "message": "You can also just use \"|| true\" which is common in shell for these boolean one liners. I think this probably long enough that we could just add the \"if; then; fi\" syntactic sugar though :)",
+      "parentUuid": "44dfdd4f_0a29cb0e",
+      "range": {
+        "startLine": 408,
+        "startChar": 2,
+        "endLine": 408,
+        "endChar": 6
+      },
+      "revId": "7faf68791d30be0aef26e12f2f0fb738b1cc188a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
