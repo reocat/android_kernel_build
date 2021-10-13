@@ -16,6 +16,24 @@
       "message": "We should be able to consider these readonly. Can we hardlink them into place instead?  cp -l",
       "revId": "3fcf189fc7e20dc69a376cb10e9933aa4ff06fe3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6526d01_9f713987",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-13T04:40:13Z",
+      "side": 1,
+      "message": "I can\u0027t hardlink:\n\n```\ncp: cannot create hard link \u0027/mnt/sdc/android/[redacted]/out/bazel/output_user_root/[redacted]/sandbox/linux-sandbox/63/execroot/__main__/bazel-out/k8-fastbuild/bin/[redacted]/[redacted]_kbuild_mixed_tree/System.map\u0027 to \u0027bazel-out/k8-fastbuild/bin/common/kernel_aarch64/System.map\u0027: Invalid cross-device link\n```\n\nI can\u0027t softlink on `gki_files` directly:\n\n```\nERROR: /mnt/sdc/android/[redacted]/BUILD.bazel:100:13: Error while validating output TreeArtifact File:[[\u003cexecution_root\u003e]bazel-out/k8-fastbuild/bin][redacted]/[redacted]_kbuild_mixed_tree : Failed to resolve relative path modules.builtin inside TreeArtifact /mnt/sdc/android/[redacted]/out/bazel/output_user_root/[redacted]/execroot/__main__/bazel-out/k8-fastbuild/bin/[redacted]/[redacted]_kbuild_mixed_tree. The associated file is either missing or is an invalid symlink\n```\n\nI can softlink on readlink on the gki_files, though.",
+      "parentUuid": "33f879ab_719a4c29",
+      "revId": "3fcf189fc7e20dc69a376cb10e9933aa4ff06fe3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
