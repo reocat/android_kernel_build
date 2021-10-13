@@ -693,8 +693,8 @@ def _kernel_build_impl(ctx):
                        --transform "s,.*$OUT_DIR,,"                     \
                        --transform "s,^/,,"                             \
                        --null -T -
-         # Grab outputs
-           {search_and_mv_output} --srcdir ${{OUT_DIR}} --dstdir {ruledir} {all_output_names}
+         # Grab outputs. If unable to find from OUT_DIR, look at KBUILD_MIXED_TREE as well.
+           {search_and_mv_output} --srcdir ${{OUT_DIR}} {kbuild_mixed_tree_arg} --dstdir {ruledir} {all_output_names}
          # Archive modules_staging_dir
            tar czf {modules_staging_archive} -C {modules_staging_dir} .
          # Clean up staging directories
@@ -702,6 +702,7 @@ def _kernel_build_impl(ctx):
            rm -rf {ruledir}/kbuild_mixed_tree
          """.format(
         search_and_mv_output = ctx.file._search_and_mv_output.path,
+        kbuild_mixed_tree_arg = "--srcdir ${KBUILD_MIXED_TREE}" if ctx.attr.gki else "",
         ruledir = ruledir.path,
         all_output_names = " ".join(all_output_names),
         modules_staging_dir = modules_staging_dir,
