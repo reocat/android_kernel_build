@@ -404,4 +404,6 @@ function build_boot_images() {
     && [ "${BOOT_IMAGE_HEADER_VERSION}" -ge "3" ] \
     && [ -f "${DIST_DIR}/vendor_boot.img" ] \
     && echo "vendor boot image created at ${DIST_DIR}/vendor_boot.img"
+
+  true
 }
