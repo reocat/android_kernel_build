@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44dfdd4f_0a29cb0e",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1882526
+      },
+      "writtenOn": "2021-10-13T07:57:11Z",
+      "side": 1,
+      "message": "A cleaner approach might be to use an `if` block at lines 403-406 (similarly to what seems to be done throughout the file) to \"contain\" the return code of `[` instead of masking it?",
+      "range": {
+        "startLine": 408,
+        "startChar": 2,
+        "endLine": 408,
+        "endChar": 6
+      },
+      "revId": "7faf68791d30be0aef26e12f2f0fb738b1cc188a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
