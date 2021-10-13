@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97bd820b_f12f9595",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-13T02:33:20Z",
+      "side": 1,
+      "message": "TODO: set KBUILD_MIXED_TREE for kernel_module and kernel_module_install as well, and restore System.map file properly, to resolve this warning:\n\nWarning: modules_install: missing \u0027System.map\u0027 file. Skipping depmod.",
+      "revId": "04d7a3c35a4bede9dabeff0d38b24771a11a8282",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
