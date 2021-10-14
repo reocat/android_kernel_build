@@ -22,6 +22,30 @@
       },
       "revId": "f4f013595baa8b9cbd34323712d2eda5ed37c5af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a115d64_4d5ccc5a",
+        "filename": "kleaf/scmversion.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-14T21:50:11Z",
+      "side": 1,
+      "message": "I need to delete it to prevent regular build.sh builds from reading this file directly (instead of reading from git)\n\n\u003e Store it somewhere else?\n\nSee https://b.corp.google.com/issues/202077908#comment3. I can store it in .generated/scmversion, if you want me to do that.",
+      "parentUuid": "8aadd569_5d84b58c",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 17
+      },
+      "revId": "f4f013595baa8b9cbd34323712d2eda5ed37c5af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
