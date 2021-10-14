@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c8499c_c4394708",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-14T06:23:09Z",
+      "side": 1,
+      "message": "I meant the mode of build.sh itself is changed from 0755 to 0644",
+      "parentUuid": "98bc065e_4d4eaf2f",
+      "range": {
+        "startLine": 11,
+        "startChar": 13,
+        "endLine": 11,
+        "endChar": 27
+      },
+      "revId": "0df25c152a7cea19b7c1656755159cf1c663d279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ee83f57_f0572829",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "Tried this, but it seemed to strip the ramdisk of nodes it needed to boot.",
       "parentUuid": "66d7e441_9cd07258",
+      "range": {
+        "startLine": 282,
+        "startChar": 8,
+        "endLine": 282,
+        "endChar": 51
+      },
+      "revId": "0df25c152a7cea19b7c1656755159cf1c663d279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79cdc24b_b75ec855",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-14T06:23:09Z",
+      "side": 1,
+      "message": "Ah right, that makes sense ):",
+      "parentUuid": "287f983a_28b8f4d6",
       "range": {
         "startLine": 282,
         "startChar": 8,

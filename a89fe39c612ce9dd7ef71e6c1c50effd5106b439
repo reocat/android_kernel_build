@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a296ef33_8c9ddd84",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-14T06:23:09Z",
+      "side": 1,
+      "message": "this is just `cp`, and we also need to check for existence of ${VENDOR_RAMDISK_BINARY} before copying",
+      "range": {
+        "startLine": 316,
+        "startChar": 6,
+        "endLine": 316,
+        "endChar": 36
+      },
+      "revId": "a89fe39c612ce9dd7ef71e6c1c50effd5106b439",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7ada159_1e57fe67",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-14T06:23:09Z",
+      "side": 1,
+      "message": "Just enclose this entire block with `[ -z \"${SKIP_UNPACKING_RAMDISK}\" ]`",
+      "range": {
+        "startLine": 252,
+        "startChar": 2,
+        "endLine": 322,
+        "endChar": 0
+      },
+      "revId": "a89fe39c612ce9dd7ef71e6c1c50effd5106b439",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
