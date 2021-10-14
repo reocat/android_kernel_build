@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aadd569_5d84b58c",
+        "filename": "kleaf/scmversion.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-14T14:47:59Z",
+      "side": 1,
+      "message": "we should not delete this. Running this command takes \u003e1s on cold cache, 650ms on warm cache and 3ms on rerun. Adding more than 500ms to every build unconditionally seems wasteful. Store it somewhere else?",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 17
+      },
+      "revId": "f4f013595baa8b9cbd34323712d2eda5ed37c5af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
