@@ -1,0 +1,137 @@
+#!/usr/bin/env python3
+
+# Python version issues? Try using build-tools/path/linux-x86/python3
+
+import argparse
+import pathlib
+import filecmp
+import textwrap
+import re
+import subprocess
+import os.path
+
+source_re = re.compile(r'.*:= (.*)\n?$')
+wildcard_re = re.compile(r'\$\(wildcard ([^\)]+)\)')
+
+def git(*args):
+  return subprocess.check_output(['git', *args]).decode('utf-8').strip()
+
+def test_git(*args):
+  return subprocess.run(['git', *args], stdout=subprocess.DEVNULL).returncode == 0
+
+def normalize_path(path, basepath):
+  return os.path.normpath(path).removeprefix(basepath)
+
+# .cmd file looks like
+# --------
+# cmd_init/main.o := clang <......>
+#
+# source_init/main.o := /local/mnt/workspace/ack/common/init/main.c
+#
+# deps_init/main.o := \
+#     $(wildcard include/config/INIT_ENV_ARG_LIMIT) \
+#     ...
+#     /local/mnt/workspace/ack/include/common/include/linux/compiler-version.h \
+#     arch/arm64/include/generated/uapi/asm/sockios.h \
+#     ...
+#     /local/mnt/workspace/ack/common/include/kunit/try-catch.h \
+#
+# init/main.o: $(deps_init/main.o)
+#
+# $(deps_init/main.o):
+#
+# --------
+# We're interested in parsing source_ line to get the source file
+# and all the items in deps_. For sake of not missing anything, we pull out all the paths
+# inside $(wildcard <path>) and non-absolute paths, which mostly appear to be generated in
+# the output folder. We'll check if they really exist later and remove them from our list if not.
+def parse_cmd_file(dotcmd, basepath='', parse_deps=True):
+  files = set()
+  with dotcmd.open() as f:
+    in_deps = False
+
+    for line in f.readlines():
+      if line.startswith('source_'):
+        m = source_re.fullmatch(line)
+        if m:
+          files.add(normalize_path(m.group(1), basepath))
+
+      if parse_deps:
+        if in_deps:
+          m = wildcard_re.search(line)
+          split = line.split()
+          if m:
+            files.add(normalize_path(m.group(1), basepath))
+          elif len(split) > 0:
+            files.add(normalize_path(split[0], basepath))
+
+          if len(split) == 0 or split[-1] != '\\':
+            in_deps = False
+        if line.startswith('deps_'):
+          in_deps = True
+  return files
+
+# We know init/main.c will be compiled. It's source path will be GKI_KERNEL_DIR/init/main.c
+def find_source_dir(dir):
+  main_cmd = dir.joinpath('init', '.main.o.cmd')
+  main_c = parse_cmd_file(main_cmd, parse_deps=False)
+  if len(main_c) != 1:
+    print('WARNING! Failed to extract GKI kernel directory from {}'.format(main_cmd))
+    return None
+
+  return main_c.pop().removesuffix('init/main.c')
+
+def extract_built_files(dir):
+  files = set()
+  source_dir = find_source_dir(dir)
+  for file in dir.glob('**/.*.cmd'):
+    files.update(parse_cmd_file(file, basepath=source_dir))
+  return set(filter(lambda f: os.path.exists(os.path.join(source_dir, f)), files)), source_dir
+
+if __name__ == '__main__':
+  parser = argparse.ArgumentParser(description='Compare the files used to compile a GKI kernel with those on a device kernel',
+    formatter_class=argparse.RawDescriptionHelpFormatter,
+    epilog=textwrap.dedent('''
+    Comparison of the trees is achieved by parsing the build output of the GKI kernel tree (GKI_KERNEL_OUT_DIR). The .cmd
+    files list the file dependencies and give a good idea of which files are used when compiling the GKI kernel.
+    
+    Limitations:
+      - Vendor kernel should have GKI kernel baseline merged into its tree for accurate diff reporting
+      - Does not compare files which *would* be compiled into a vmlinux in a vendor kernel build.
+        For instance, if vendor kernel has added obj-y += vendor_file.o, script would not detect such addition.
+        Similarly, implicit Kconfig "select FOO" from a vendor module is not detected. The assumption
+        is that such differences would be caught during other build steps or during test.
+      - All .cmd from GKI_KERNEL_OUT_DIR are scanned. If extra build steps are run (e.g. menuconfig) or build is
+        old, then extra files might be added to the list of GKI source files.
+    '''))
+  parser.add_argument('gki_out_dir', metavar='GKI_KERNEL_OUT_DIR', type=pathlib.Path,
+      help='Location of the GKI kernel output folder.')
+  parser.add_argument('vendor_tree', metavar='VENDOR_TREE', nargs='?', type=pathlib.Path,
+    help='Location of the vendor source tree. If not provided, then just the list of GKI kernel output files is generated.')
+
+  args = parser.parse_args()
+
+  print('========================================================')
+  print('Extracting built files')
+  built_files, source_dir = extract_built_files(args.gki_out_dir)
+  print(f'[core_files.txt] There are {len(built_files)} source files contributing to build in {args.gki_out_dir}.')
+  with open('core_files.txt', mode='w') as f:
+    f.writelines(f'{file}\n' for file in built_files)
+
+  if args.vendor_tree:
+    print('========================================================')
+    print('Sanity checking Git SHA on GKI kernel and vendor kernel')
+    gki_sha = git('-C', source_dir, 'rev-parse', 'HEAD')
+    if not test_git('-C', args.vendor_tree, 'rev-parse', '--quiet', '--verify', gki_sha):
+      print('ERROR: Don\'t know how to compare GKI tree to vendor tree!')
+      print(f'{source_dir} HEAD is at {gki_sha}')
+      print(f'That commit doesn\'t exist in {args.vendor_tree}')
+    elif not test_git('-C', args.vendor_tree, 'merge-base', '--is-ancestor', gki_sha, 'HEAD'):
+      print(f'WARNING: GKI tree\'s SHA: {gki_sha} is not a reachable ancestor on vendor tree (e.g. not merged into vendor tree). Results may not be correct.')
+
+    print('========================================================')
+    match, mismatch, errors = filecmp.cmpfiles(source_dir, args.vendor_tree, built_files)
+    diff_files = {*mismatch, *errors}
+    print(f'[changed_files.txt] There are {len(diff_files)} source files changed in vendor tree.')
+    with open('changed_files.txt', mode='w') as f:
+      f.writelines(f'{file}\n' for file in diff_files)
