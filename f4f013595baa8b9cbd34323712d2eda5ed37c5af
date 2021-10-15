@@ -46,6 +46,30 @@
       },
       "revId": "f4f013595baa8b9cbd34323712d2eda5ed37c5af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ce55585_6f99426f",
+        "filename": "kleaf/scmversion.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-15T16:58:04Z",
+      "side": 1,
+      "message": "I would store it in any case, possibly as you suggest in the .generated/ directory. Not storing it gives us a startup penalty of almost a second.",
+      "parentUuid": "7a115d64_4d5ccc5a",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 17
+      },
+      "revId": "f4f013595baa8b9cbd34323712d2eda5ed37c5af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
