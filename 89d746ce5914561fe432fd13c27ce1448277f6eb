@@ -106,6 +106,24 @@
       "parentUuid": "28c450e5_8be50c7a",
       "revId": "89d746ce5914561fe432fd13c27ce1448277f6eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57d96a43_4adf6706",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-15T16:19:34Z",
+      "side": 1,
+      "message": "I think I would make the provider explicit to ensure people that use that interface know what the contract is. DefaultInfo is convenient, but maybe with an explicit conversion to a new provider, existing rules can be easily adapted and the provider variant #3 is cheap.\n\nAlso, can we name this parameter base_kernel maybe?",
+      "parentUuid": "586f0d86_9a1e8683",
+      "revId": "89d746ce5914561fe432fd13c27ce1448277f6eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
