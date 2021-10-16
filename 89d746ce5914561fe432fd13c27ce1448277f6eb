@@ -124,6 +124,24 @@
       "parentUuid": "586f0d86_9a1e8683",
       "revId": "89d746ce5914561fe432fd13c27ce1448277f6eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16069cd8_32365314",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-16T01:50:33Z",
+      "side": 1,
+      "message": "Done\n\nWe\u0027ll need a new rule for prebuilts (because we can\u0027t use filegroup), but I\u0027ll do that for another CL.",
+      "parentUuid": "57d96a43_4adf6706",
+      "revId": "89d746ce5914561fe432fd13c27ce1448277f6eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
