@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8c7488d_e65827fb",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-10-18T13:49:28Z",
+      "side": 1,
+      "message": "I _think_ you should be able to make this a label list (default: []) and make the labels require the provider \nhttps://docs.bazel.build/versions/main/skylark/rules.html#dependency-attributes",
+      "revId": "d1e8c0becab845aa806459f83698a3ecc031cbf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
