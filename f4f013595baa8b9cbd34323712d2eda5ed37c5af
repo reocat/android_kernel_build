@@ -70,6 +70,30 @@
       },
       "revId": "f4f013595baa8b9cbd34323712d2eda5ed37c5af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "443dae35_b1d9a2a3",
+        "filename": "kleaf/scmversion.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-10-19T01:11:40Z",
+      "side": 1,
+      "message": "Actually, I think about it a bit more, and I think the 1 second is unavoidable with the current design. Even with Patchset 2:\n\nhttps://android-review.googlesource.com/c/kernel/build/+/1852747/2/kleaf/save_scmversion.sh\n\n... where I store it in the .generated directly, I still have to execute it on the git directory and ensure the file is up to date. Otherwise it is incorrect.\n\n---\n\nAn alternative way is to create a rule that executes setlocalversion unconditionally, and without sandbox. Then we can at least parallelize its execution with something else when possible.",
+      "parentUuid": "9ce55585_6f99426f",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 17
+      },
+      "revId": "f4f013595baa8b9cbd34323712d2eda5ed37c5af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
