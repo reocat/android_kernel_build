@@ -45,6 +45,29 @@
       },
       "revId": "dcc42ae6515d0501a7b905f9820c23f8b60a3931",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f1c9a3_40caff20",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-20T18:38:22Z",
+      "side": 1,
+      "message": "if [ -n \"${SKIP_UNPACKING_RAMDISK}\" ] \u0026\u0026 [ -e \"${VENDOR_RAMDISK_BINARY}\" ]; then\n    cp \"${VENDOR_RAMDISK_BINARY}\" \"${DIST_DIR}/ramdisk.${RAMDISK_EXT}\"\n  elif [ \"${#MKBOOTIMG_RAMDISK_DIRS[@]}\" -gt 0 ]; then\n    MKBOOTIMG_RAMDISK_CPIO\u003d\"${MKBOOTIMG_STAGING_DIR}/ramdisk.cpio\"\n    mkbootfs \"${MKBOOTIMG_RAMDISK_DIRS[@]}\" \u003e\"${MKBOOTIMG_RAMDISK_CPIO}\"\n    ${RAMDISK_COMPRESS} \"${MKBOOTIMG_RAMDISK_CPIO}\" \u003e\"${DIST_DIR}/ramdisk.${RAMDISK_EXT}\"\n  fi",
+      "range": {
+        "startLine": 313,
+        "startChar": 2,
+        "endLine": 321,
+        "endChar": 4
+      },
+      "revId": "dcc42ae6515d0501a7b905f9820c23f8b60a3931",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
