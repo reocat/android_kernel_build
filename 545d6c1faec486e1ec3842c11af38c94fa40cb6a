@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "170942c2_5249e0a2",
+        "filename": "build_utils.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1899690
+      },
+      "writtenOn": "2021-10-20T17:40:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d46dd45_81def6e8",
+      "range": {
+        "startLine": 282,
+        "startChar": 4,
+        "endLine": 282,
+        "endChar": 47
+      },
+      "revId": "545d6c1faec486e1ec3842c11af38c94fa40cb6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d61a408b_7a6f4434",
@@ -54,6 +78,30 @@
       "writtenOn": "2021-10-20T04:21:32Z",
       "side": 1,
       "message": "I\u0027m not 100% sure, but I think here needs to add \n\n`\u0026\u0026 [ -z \"${SKIP_UNPACKING_RAMDISK}\" ]`\n\nas well?",
+      "range": {
+        "startLine": 310,
+        "startChar": 59,
+        "endLine": 310,
+        "endChar": 60
+      },
+      "revId": "545d6c1faec486e1ec3842c11af38c94fa40cb6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59edb024_e0e68fec",
+        "filename": "build_utils.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1899690
+      },
+      "writtenOn": "2021-10-20T17:40:20Z",
+      "side": 1,
+      "message": "I don\u0027t think so... We still want it to exit if we don\u0027t have a ramdisk, even if we\u0027re not unpacking it.",
+      "parentUuid": "d61a408b_7a6f4434",
       "range": {
         "startLine": 310,
         "startChar": 59,
