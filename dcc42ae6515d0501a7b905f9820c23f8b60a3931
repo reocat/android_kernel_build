@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b499ee2b_669d87a6",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1899690
+      },
+      "writtenOn": "2021-10-20T19:02:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e708ec5_44b00497",
+      "range": {
+        "startLine": 280,
+        "startChar": 4,
+        "endLine": 286,
+        "endChar": 5
+      },
+      "revId": "dcc42ae6515d0501a7b905f9820c23f8b60a3931",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "309938ed_db713ee0",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccc6b89d_41498a83",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1899690
+      },
+      "writtenOn": "2021-10-20T19:02:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "309938ed_db713ee0",
+      "range": {
+        "startLine": 290,
+        "startChar": 16,
+        "endLine": 290,
+        "endChar": 45
+      },
+      "revId": "dcc42ae6515d0501a7b905f9820c23f8b60a3931",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23f1c9a3_40caff20",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-10-20T18:38:22Z",
       "side": 1,
       "message": "if [ -n \"${SKIP_UNPACKING_RAMDISK}\" ] \u0026\u0026 [ -e \"${VENDOR_RAMDISK_BINARY}\" ]; then\n    cp \"${VENDOR_RAMDISK_BINARY}\" \"${DIST_DIR}/ramdisk.${RAMDISK_EXT}\"\n  elif [ \"${#MKBOOTIMG_RAMDISK_DIRS[@]}\" -gt 0 ]; then\n    MKBOOTIMG_RAMDISK_CPIO\u003d\"${MKBOOTIMG_STAGING_DIR}/ramdisk.cpio\"\n    mkbootfs \"${MKBOOTIMG_RAMDISK_DIRS[@]}\" \u003e\"${MKBOOTIMG_RAMDISK_CPIO}\"\n    ${RAMDISK_COMPRESS} \"${MKBOOTIMG_RAMDISK_CPIO}\" \u003e\"${DIST_DIR}/ramdisk.${RAMDISK_EXT}\"\n  fi",
+      "range": {
+        "startLine": 313,
+        "startChar": 2,
+        "endLine": 321,
+        "endChar": 4
+      },
+      "revId": "dcc42ae6515d0501a7b905f9820c23f8b60a3931",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a96c1b9a_a7d17c15",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1899690
+      },
+      "writtenOn": "2021-10-20T19:02:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23f1c9a3_40caff20",
       "range": {
         "startLine": 313,
         "startChar": 2,
