@@ -16,6 +16,52 @@
       "message": "Hello Yi-Yo Chiang and Matthias, please review the latest patchset. Thank you. ",
       "revId": "545d6c1faec486e1ec3842c11af38c94fa40cb6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d46dd45_81def6e8",
+        "filename": "build_utils.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-20T04:21:32Z",
+      "side": 1,
+      "message": "This is not needed because outer if-block already tested this",
+      "range": {
+        "startLine": 282,
+        "startChar": 4,
+        "endLine": 282,
+        "endChar": 47
+      },
+      "revId": "545d6c1faec486e1ec3842c11af38c94fa40cb6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d61a408b_7a6f4434",
+        "filename": "build_utils.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-20T04:21:32Z",
+      "side": 1,
+      "message": "I\u0027m not 100% sure, but I think here needs to add \n\n`\u0026\u0026 [ -z \"${SKIP_UNPACKING_RAMDISK}\" ]`\n\nas well?",
+      "range": {
+        "startLine": 310,
+        "startChar": 59,
+        "endLine": 310,
+        "endChar": 60
+      },
+      "revId": "545d6c1faec486e1ec3842c11af38c94fa40cb6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
