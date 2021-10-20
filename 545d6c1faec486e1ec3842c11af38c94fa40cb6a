@@ -110,6 +110,30 @@
       },
       "revId": "545d6c1faec486e1ec3842c11af38c94fa40cb6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb4c89ff_ef228655",
+        "filename": "build_utils.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-20T18:35:18Z",
+      "side": 1,
+      "message": "sounds right, ack.",
+      "parentUuid": "59edb024_e0e68fec",
+      "range": {
+        "startLine": 310,
+        "startChar": 59,
+        "endLine": 310,
+        "endChar": 60
+      },
+      "revId": "545d6c1faec486e1ec3842c11af38c94fa40cb6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

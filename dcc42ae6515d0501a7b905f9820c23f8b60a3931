@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e708ec5_44b00497",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-20T18:35:18Z",
+      "side": 1,
+      "message": "hmm this still don\u0027t look right, the cpio command at L283 requires VENDOR_RAMDISK_CPIO to be defined, which means L258 must be executed, thus they should be in the same if-block; this block should be moved between L277-278",
+      "range": {
+        "startLine": 280,
+        "startChar": 4,
+        "endLine": 286,
+        "endChar": 5
+      },
+      "revId": "dcc42ae6515d0501a7b905f9820c23f8b60a3931",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "309938ed_db713ee0",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-20T18:35:18Z",
+      "side": 1,
+      "message": "this is also problematic, if SKIP_UNPACKING_RAMDISK is defined, then MKBOOTIMG_RAMDISK_STAGING_DIR would be undefined, and the behavior of L290 L291 L298 would be undefined. So I think L253-L255\n\nrm -rf \"${MKBOOTIMG_STAGING_DIR}\"\n    MKBOOTIMG_RAMDISK_STAGING_DIR\u003d\"${MKBOOTIMG_STAGING_DIR}/ramdisk_root\"\n    mkdir -p \"${MKBOOTIMG_RAMDISK_STAGING_DIR}\"\n    \n    should be moved out of the `if [ -z \"${SKIP_UNPACKING_RAMDISK}\" ];` block?",
+      "range": {
+        "startLine": 290,
+        "startChar": 16,
+        "endLine": 290,
+        "endChar": 45
+      },
+      "revId": "dcc42ae6515d0501a7b905f9820c23f8b60a3931",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
