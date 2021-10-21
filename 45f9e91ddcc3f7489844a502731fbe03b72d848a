@@ -16,6 +16,29 @@
       "message": "Clean! Nice!\n\nLGTM from my side, need Will\u0027s owner approval.\n\n---\n\nI think the \"right way\" to do this is probably to unpack the cpio archive into the format of `gen_init_cpio`, like\n\n  dir /dev 755 0 0\n  nod /dev/console 644 0 0 c 5 1\n  nod /dev/loop0 644 0 0 b 7 0\n  dir /bin 755 1000 1000\n  slink /bin/sh busybox 777 0 0\n  file /bin/busybox initramfs/busybox 755 0 0\n  dir /proc 755 0 0\n  dir /sys 755 0 0\n  dir /mnt 755 0 0\n  file /init initramfs/init.sh 755 0 0\n  \nand use `gen_init_cpio` to repack the initramfs here, but we don\u0027t have the inverse of `gen_init_cpio` right now... (or do we?) Someone probably need to implement an option for `cpio` to output the `gen_init_cpio` format. Thoughts?",
       "revId": "45f9e91ddcc3f7489844a502731fbe03b72d848a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89517cc8_d4455f5b",
+        "filename": "build_utils.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2021-10-21T14:04:03Z",
+      "side": 1,
+      "message": "Question, doing this also means the kernel modules built under `INITRAMFS_STAGING_DIR` would not be packed into the vendor_ramdisk, would this be a problem? Do we need to support the case where we don\u0027t want to unpack the prebuilt ramdisk, but still want the built KOs ?",
+      "range": {
+        "startLine": 315,
+        "startChar": 4,
+        "endLine": 315,
+        "endChar": 70
+      },
+      "revId": "45f9e91ddcc3f7489844a502731fbe03b72d848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
