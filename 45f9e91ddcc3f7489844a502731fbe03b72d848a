@@ -39,6 +39,30 @@
       },
       "revId": "45f9e91ddcc3f7489844a502731fbe03b72d848a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d41d2c32_58f45eda",
+        "filename": "build_utils.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1899690
+      },
+      "writtenOn": "2021-10-21T16:49:04Z",
+      "side": 1,
+      "message": "As of right now, I don\u0027t think so. We\u0027re more concerned with just being able to use a prebuilt ramdisk without including outside KOs.",
+      "parentUuid": "89517cc8_d4455f5b",
+      "range": {
+        "startLine": 315,
+        "startChar": 4,
+        "endLine": 315,
+        "endChar": 70
+      },
+      "revId": "45f9e91ddcc3f7489844a502731fbe03b72d848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
