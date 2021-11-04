@@ -16,6 +16,24 @@
       "message": "hmm, I believe this could actually collide with the feature of having a space separated list of vendor ramdisks. Let me look into how to solve this.",
       "revId": "4e5c0f427e7020ed5002f95c97d9eb5338d8a1fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0400c09e_61b29e57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-11-04T22:31:30Z",
+      "side": 1,
+      "message": "One solution is to use an array like this:\n\nVALS\u003d(\"file\\ 1.img\" \"file\\ 2.img\")\nfor ((i\u003d0; i \u003c ${#VALS[@]}; i++)); do\n  echo \"$i -\u003e ${VALS[$i]}\";\ndone",
+      "parentUuid": "8734417b_06b81dfa",
+      "revId": "4e5c0f427e7020ed5002f95c97d9eb5338d8a1fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
