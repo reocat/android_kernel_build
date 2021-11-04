@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8734417b_06b81dfa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-11-04T22:05:22Z",
+      "side": 1,
+      "message": "hmm, I believe this could actually collide with the feature of having a space separated list of vendor ramdisks. Let me look into how to solve this.",
+      "revId": "4e5c0f427e7020ed5002f95c97d9eb5338d8a1fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
