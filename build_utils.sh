@@ -256,7 +256,7 @@ function build_boot_images() {
   if [ -n "${VENDOR_RAMDISK_BINARY}" ]; then
     VENDOR_RAMDISK_CPIO="${MKBOOTIMG_STAGING_DIR}/vendor_ramdisk_binary.cpio"
     rm -f "${VENDOR_RAMDISK_CPIO}"
-    for vendor_ramdisk_binary in ${VENDOR_RAMDISK_BINARY}; do
+    for vendor_ramdisk_binary in "${VENDOR_RAMDISK_BINARY}"; do
       if ! [ -f "${vendor_ramdisk_binary}" ]; then
         echo "Unable to locate vendor ramdisk ${vendor_ramdisk_binary}."
         exit 1
