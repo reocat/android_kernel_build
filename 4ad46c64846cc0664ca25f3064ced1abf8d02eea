@@ -16,6 +16,24 @@
       "message": "this is a stable branch, we usually do not allow new features here ...",
       "revId": "4ad46c64846cc0664ca25f3064ced1abf8d02eea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09b986db_8649a248",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1279563
+      },
+      "writtenOn": "2021-11-04T03:27:35Z",
+      "side": 1,
+      "message": "Thanks for the reviews.\n\nThe intention is to reuse the code logic build_boot_images() in build/build_utils.sh to repack boot.img and vendor_boot.img without the dependency with prebuilt ramdisks in prebuilt/boot-artifacts/ramdisk/.\n\nRefer to b/203499549 for details.",
+      "parentUuid": "d9fa9cc2_60e7f375",
+      "revId": "4ad46c64846cc0664ca25f3064ced1abf8d02eea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
