@@ -51,6 +51,24 @@
       "message": "This prevent multiple ramdisk being specified and breaks some of our usecases.\n\nAn example use case is to support multiple out-of-tree driver projects.\nOne ramdisk could contain tests for out-of-tree driver A, another for\nout-of-tree driver B, and another containing a test runner.",
       "revId": "4e5c0f427e7020ed5002f95c97d9eb5338d8a1fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "189af074_6780739f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2021-11-05T15:28:30Z",
+      "side": 1,
+      "message": "Array based approach seems good to me in principle, but breaks backwards compatibility with older kernel/build on master-kernel-build-2021 branch.",
+      "parentUuid": "0400c09e_61b29e57",
+      "revId": "4e5c0f427e7020ed5002f95c97d9eb5338d8a1fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
