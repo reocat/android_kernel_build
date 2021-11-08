@@ -34,6 +34,24 @@
       "parentUuid": "d9fa9cc2_60e7f375",
       "revId": "4ad46c64846cc0664ca25f3064ced1abf8d02eea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ff03e95_4773f9a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-11-08T09:50:42Z",
+      "side": 1,
+      "message": "New features should only go on the master branch of this project. Branches wishing to use new features need to switch to the master branch instead. In aosp/ android13+ is using the kernel/build master branch.",
+      "parentUuid": "09b986db_8649a248",
+      "revId": "4ad46c64846cc0664ca25f3064ced1abf8d02eea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
