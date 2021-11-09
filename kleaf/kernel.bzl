@@ -276,12 +276,8 @@ def kernel_build(
     modules_prepare_target_name = name + "_modules_prepare"
     uapi_headers_target_name = name + "_uapi_headers"
     headers_target_name = name + "_headers"
-    build_config_srcs = [
-        s
-        for s in srcs
-        if "/build.config" in s or s.startswith("build.config")
-    ]
-    kernel_srcs = [s for s in srcs if s not in build_config_srcs]
+    build_config_srcs = srcs
+    kernel_srcs = srcs
 
     native.filegroup(name = sources_target_name, srcs = kernel_srcs)
 
