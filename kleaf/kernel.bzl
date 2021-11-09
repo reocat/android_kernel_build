@@ -113,6 +113,7 @@ def kernel_build(
         build_config,
         srcs,
         outs,
+        build_config_srcs = None,
         module_outs = [],
         generate_vmlinux_btf = False,
         deps = (),
@@ -149,10 +150,34 @@ def kernel_build(
                   ".*/**",
                   "BUILD.bazel",
                   "**/*.bzl",
+
+                  # Below is optional. Recommended if build_config_srcs is manually specified
+                  "**/build.config*",
               ],
           )
           ```
+        build_config_srcs: sources of build configs. If not specified, default
+          is a filtered list of `srcs`.
 
+          `kernel_build` tries to make an educated guess of the list of build
+          configs from `srcs`, without expanding it.
+
+          If `kernel_build` cannot infer the correct sources from `srcs`, e.g.
+          when `srcs` contains a `filegroup` that contains build configs,
+          you need to specify this manually.
+
+          Example:
+          ```
+          glob(
+              ["**/build.config*"],
+              exclude = [
+                  ".*",
+                  ".*/**",
+                  "BUILD.bazel",
+                  "**/*.bzl",
+              ],
+          )
+          ```
         base_kernel: A label referring the base kernel build.
 
           If set, the list of files specified in the `KernelFilesInfo` of the rule specified in
@@ -288,12 +313,21 @@ def kernel_build(
     modules_prepare_target_name = name + "_modules_prepare"
     uapi_headers_target_name = name + "_uapi_headers"
     headers_target_name = name + "_headers"
-    build_config_srcs = [
-        s
-        for s in srcs
-        if "/build.config" in s or s.startswith("build.config")
-    ]
-    kernel_srcs = [s for s in srcs if s not in build_config_srcs]
+
+    if build_config_srcs:
+        # If a module specifies build_config_srcs, it means that the developer
+        # thinks that the guessing below gives incorrect result. There's no
+        # need to filter build configs from kernel_srcs in this case, because
+        # if a build config has changed, _env and subsequently everything needs
+        # to be rebuilt.
+        kernel_srcs = srcs
+    else:
+        build_config_srcs = [
+            s
+            for s in srcs
+            if "/build.config" in s or s.startswith("build.config")
+        ]
+        kernel_srcs = [s for s in srcs if s not in build_config_srcs]
 
     native.filegroup(name = sources_target_name, srcs = kernel_srcs)
 
