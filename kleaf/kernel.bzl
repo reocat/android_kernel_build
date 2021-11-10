@@ -737,14 +737,14 @@ def _kernel_build_impl(ctx):
 
     command += """
          # Actual kernel build
-           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
+           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} KBUILD_MIXED_TREE=${{KBUILD_MIXED_TREE}} ${{MAKE_GOALS}}
          # Set variables and create dirs for modules
            if [ "${{DO_NOT_STRIP_MODULES}}" != "1" ]; then
              module_strip_flag="INSTALL_MOD_STRIP=1"
            fi
            mkdir -p {modules_staging_dir}
          # Install modules
-           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} ${{module_strip_flag}} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) modules_install
+           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} ${{module_strip_flag}} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) KBUILD_MIXED_TREE=${{KBUILD_MIXED_TREE}} modules_install
          # Archive headers in OUT_DIR
            find ${{OUT_DIR}} -name *.h -print0                          \
                | tar czf {out_dir_kernel_headers_tar}                   \
