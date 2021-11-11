@@ -946,6 +946,7 @@ def _kernel_module_impl(ctx):
     inputs += [
         ctx.file.makefile,
         ctx.file._search_and_mv_output,
+        ctx.file._fake_depmod,
     ]
     for kernel_module_dep in ctx.attr.kernel_module_deps:
         inputs += kernel_module_dep[_KernelEnvInfo].dependencies
@@ -988,7 +989,8 @@ def _kernel_module_impl(ctx):
              # Actual kernel module build
                make -C {ext_mod} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}}
              # Install into staging directory
-               make -C {ext_mod} ${{TOOL_ARGS}} DEPMOD=true M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) ${{module_strip_flag}} modules_install
+               export MAKEFLAGS="${{MAKEFLAGS/-s/}} V=1"
+               make -C {ext_mod} ${{TOOL_ARGS}} V=1 DEPMOD=$(realpath {fake_depmod}) M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) ${{module_strip_flag}} modules_install
              # Archive modules_staging_dir
                (
                  modules_staging_archive=$(realpath {modules_staging_archive})
@@ -1010,6 +1012,7 @@ def _kernel_module_impl(ctx):
         outdir = outdir,
         outs = " ".join([out.name for out in ctx.attr.outs]),
         modules_staging_outs = " ".join(modules_staging_outs),
+        fake_depmod = ctx.file._fake_depmod.path,
     )
 
     _debug_print_scripts(ctx, command)
@@ -1085,6 +1088,7 @@ _kernel_module = rule(
             providers = [_KernelEnvInfo],
         ),
         "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
+        "_fake_depmod": attr.label(allow_single_file = True, default = "//build/kleaf:fake_depmod.py"),
     },
 )
 
