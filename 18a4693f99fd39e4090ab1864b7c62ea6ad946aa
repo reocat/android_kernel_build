@@ -16,6 +16,75 @@
       "message": "This is WIP, but I want to get your opinions on this. The problem is that we run `DEPMOD\u003dtrue make modules_install` in Bazel, but that prints warning messages if cmd_depmod instead of quiet_cmd_depmod is used:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/Makefile;l\u003d1827?q\u003dquiet_cmd_depmod\u0026ss\u003dandroid%2Fkernel%2Fsuperproject\u0026ct\u003dos\u0026sq\u003dUSE_DEFAULT_STORED_QUERY\n\ndepmod.sh runs ${DEPMOD} to determine if a hack is needed, and running that on `true` will make depmod.sh think the hack is needed, creating weird symlinks.\n",
       "revId": "18a4693f99fd39e4090ab1864b7c62ea6ad946aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "545cf76f_57c6d5e2",
+        "filename": "kleaf/fake_depmod.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-11-11T04:42:57Z",
+      "side": 1,
+      "message": "for debugging",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 11
+      },
+      "revId": "18a4693f99fd39e4090ab1864b7c62ea6ad946aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1320324_8c0a3239",
+        "filename": "kleaf/fake_depmod.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-11-11T04:42:57Z",
+      "side": 1,
+      "message": "for debugging",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "18a4693f99fd39e4090ab1864b7c62ea6ad946aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46f4b0f3_c7b62710",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 992,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-11-11T04:42:57Z",
+      "side": 1,
+      "message": "These are for debugging, to be removed",
+      "range": {
+        "startLine": 992,
+        "startChar": 0,
+        "endLine": 992,
+        "endChar": 56
+      },
+      "revId": "18a4693f99fd39e4090ab1864b7c62ea6ad946aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
