@@ -32,7 +32,11 @@ aarch64_outs = _common_outs + [
 # Common output files for x86_64 kernel builds.
 x86_64_outs = _common_outs + ["bzImage"]
 
-def define_common_kernels(toolchain_version = None):
+def define_common_kernels(
+        toolchain_version = None,
+        visibility = [
+            "//visibility:public",
+        ]):
     """Defines common build targets for Android Common Kernels.
 
     This macro expands to the commonly defined common kernels (such as the GKI
@@ -74,6 +78,7 @@ def define_common_kernels(toolchain_version = None):
             ),
             outs = outs,
             build_config = config,
+            visibility = visibility,
             **kernel_build_kwargs
         ),
         copy_to_dist_dir(
