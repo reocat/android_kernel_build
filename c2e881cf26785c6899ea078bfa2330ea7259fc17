@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "531e6116_19914371",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-11-12T10:34:23Z",
+      "side": 1,
+      "message": "while this is a valid solution to the problem, the root cause is that objtool is built in a non-portable way. It refers to the library with an absolute runtime patch, while it should actually refer to it by $ORIGIN rpath. The fix is non-trivial, so I will +2 this, but we should open a bug and fix this properly (upstream).",
+      "revId": "c2e881cf26785c6899ea078bfa2330ea7259fc17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
