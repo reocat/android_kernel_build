@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47213402_ca3130f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-11-12T00:28:15Z",
+      "side": 1,
+      "message": "Since you are completely dropping all the kernel modules, why not just use SKIP_VENDOR_BOOT\u003d1? If you have a prebuilt vendor_ramdisk you probably already have a prebuilt vendor_boot.img since everything else inside the vendor_boot.img is basically just meta data.\n\nCan you explain why you would want to create a vendor_boot.img in this case?",
+      "parentUuid": "e8c3d201_c9ded803",
+      "revId": "45f9e91ddcc3f7489844a502731fbe03b72d848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89517cc8_d4455f5b",
         "filename": "build_utils.sh",
         "patchSetId": 8
