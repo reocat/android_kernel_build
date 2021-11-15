@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6f9e045_36547e0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1899690
+      },
+      "writtenOn": "2021-11-15T17:36:48Z",
+      "side": 1,
+      "message": "We\u0027re not trying to create a vendor boot image in this case; we\u0027re trying to package the prebuilt ramdisk with the boot image. For the record, we are setting SKIP_VENDOR_BOOT\u003d1 and still seeing errors.",
+      "parentUuid": "47213402_ca3130f0",
+      "revId": "45f9e91ddcc3f7489844a502731fbe03b72d848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89517cc8_d4455f5b",
