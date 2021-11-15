@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "732be9ea_58dc5aaf",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-11-15T21:08:34Z",
+      "side": 1,
+      "message": "Maybe these should be **/.* and **/.*/** too?",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 25
+      },
+      "revId": "568182460dd5c367d790cc88e8c4fadd5280d9ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
