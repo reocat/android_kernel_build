@@ -44,14 +44,55 @@ def _reverse_dict(d):
             ret[v].append(k)
     return ret
 
+def _combine_dict(*args):
+    ret = {}
+    for d in args:
+        ret.update(d)
+    return ret
+
+def _run_shell(ctx, command, arguments = [], **kwargs):
+    if ctx.attr._debug_annotate_scripts[BuildSettingInfo].value:
+        command = _debug_trap() + command
+    _debug_print_scripts(ctx, command)
+    if ctx.attr._debug_intercept[BuildSettingInfo].value:
+        arguments = ["-l", ctx.attr._debug_intercept[BuildSettingInfo].value, "--", command, ""] + arguments
+        if ctx.attr._debug_print_scripts[BuildSettingInfo].value:
+            print("Interceptor command: {} {}".format(ctx.file._debug_interceptor.path, " ".join(arguments)))
+        ctx.actions.run(
+            executable = ctx.file._debug_interceptor,
+            arguments = arguments,
+            **kwargs
+        )
+    else:
+        ctx.actions.run(
+            executable = ctx.files._sh,
+            arguments = ["-c", command, ""] + arguments,
+            **kwargs
+        )
+
+def _debug_common_attrs():
+    return {
+        "_debug_annotate_scripts": attr.label(
+            default = "//build/kleaf:debug_annotate_scripts",
+        ),
+        "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
+        "_debug_intercept": attr.label(default = "//build/kleaf:debug_intercept"),
+        "_sh": attr.label(
+            allow_single_file = True,
+            default = "//build:host-tools/sh",
+        ),
+        "_debug_interceptor": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86/bin/interceptor", allow_single_file = True),
+        "_debug_interceptor_deps": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
+    }
+
 def _kernel_build_config_impl(ctx):
     out_file = ctx.actions.declare_file(ctx.attr.name + ".generated")
     command = "cat {srcs} > {out_file}".format(
         srcs = " ".join([src.path for src in ctx.files.srcs]),
         out_file = out_file.path,
     )
-    _debug_print_scripts(ctx, command)
-    ctx.actions.run_shell(
+    _run_shell(
+        ctx = ctx,
         inputs = ctx.files.srcs,
         outputs = [out_file],
         command = command,
@@ -62,7 +103,7 @@ def _kernel_build_config_impl(ctx):
 kernel_build_config = rule(
     implementation = _kernel_build_config_impl,
     doc = "Create a build.config file by concatenating build config fragments.",
-    attrs = {
+    attrs = _combine_dict(_debug_common_attrs(), {
         "srcs": attr.label_list(
             allow_files = True,
             doc = """List of build config fragments.
@@ -83,8 +124,7 @@ kernel_build_config(
 
 """,
         ),
-        "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
-    },
+    }),
 )
 
 def _transform_kernel_build_outs(name, what, outs):
@@ -423,11 +463,7 @@ def _kernel_env_impl(ctx):
     out_file = ctx.actions.declare_file("%s.sh" % ctx.attr.name)
     dependencies = ctx.files._tools + ctx.files._host_tools
 
-    command = ""
-    if ctx.attr._debug_annotate_scripts[BuildSettingInfo].value:
-        command += _debug_trap()
-
-    command += """
+    command = """
         # error on failures
           set -e
           set -o pipefail
@@ -447,8 +483,8 @@ def _kernel_env_impl(ctx):
         out = out_file.path,
     )
 
-    _debug_print_scripts(ctx, command)
-    ctx.actions.run_shell(
+    _run_shell(
+        ctx = ctx,
         inputs = srcs + [
             build_config,
             setup_env,
@@ -523,7 +559,7 @@ _kernel_env = rule(
               )
           ```
           """,
-    attrs = {
+    attrs = _combine_dict(_debug_common_attrs(), {
         "build_config": attr.label(
             mandatory = True,
             allow_single_file = True,
@@ -554,12 +590,8 @@ _kernel_env = rule(
             allow_single_file = True,
             default = Label("//build:build_utils.sh"),
         ),
-        "_debug_annotate_scripts": attr.label(
-            default = "//build/kleaf:debug_annotate_scripts",
-        ),
-        "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
         "_linux_x86_libs": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
-    },
+    }),
 )
 
 def _kernel_config_impl(ctx):
