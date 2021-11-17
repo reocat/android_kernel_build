@@ -359,6 +359,14 @@
 #       modules.builtin.modinfo
 #       Image.lz4
 #
+#   VENDOR_EXTENDED_TREE
+#     This defines the path to a folder which contains additional drivers to be
+#     compiled with the kernel. To properly configure this, you need to include
+#     a Kconfig at the root path that sources ${KERNEL_DIR}/Kconfig.base as
+#     well as the additional driver Kconfigs within the VENDOR_EXTENDED_TREE to
+#     be included. Additionally, you can include a Makefile.include to further
+#     customize the build.
+#
 # Note: For historic reasons, internally, OUT_DIR will be copied into
 # COMMON_OUT_DIR, and OUT_DIR will be then set to
 # ${COMMON_OUT_DIR}/${KERNEL_DIR}. This has been done to accommodate existing
@@ -426,6 +434,11 @@ if [ -n "${GKI_BUILD_CONFIG}" ]; then
   MAKE_ARGS+=("KBUILD_MIXED_TREE=$(readlink -m ${GKI_DIST_DIR})")
 else
   rm -f ${OLD_ENVIRONMENT}
+fi
+
+if [ -n "${VENDOR_EXTENDED_TREE}" ]; then
+  MAKE_ARGS+=("KBUILD_EXT_TREE=$(readlink -m ${VENDOR_EXTENDED_TREE})")
+  MAKE_ARGS+=("KBUILD_KCONFIG=$(readlink -m ${VENDOR_EXTENDED_TREE}/Kconfig)")
 fi
 
 cd ${ROOT_DIR}
