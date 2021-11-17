@@ -22,6 +22,30 @@
       },
       "revId": "1baeced9f81a8a0d99727bcc3a1433d8370688ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "539ed567_d26b3daa",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-11-17T17:24:50Z",
+      "side": 1,
+      "message": "yeah I can do that. I didn\u0027t know if we should be reusing that variable, but I think it\u0027s fine",
+      "parentUuid": "f91c5719_fdf2c916",
+      "range": {
+        "startLine": 362,
+        "startChar": 4,
+        "endLine": 362,
+        "endChar": 24
+      },
+      "revId": "1baeced9f81a8a0d99727bcc3a1433d8370688ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
