@@ -429,6 +429,8 @@ if [ -n "${GKI_BUILD_CONFIG}" ]; then
   # e.g. GKI_BUILD_CONFIG=common/build.config.gki.x86 ./build/build.sh would cause
   # gki build recursively
   GKI_ENVIRON+=("GKI_BUILD_CONFIG=")
+  # Explicitly unset KBUILD_EXT_TREE in case it was set by the older environment.
+  GKI_ENVIRON+=("KBUILD_EXT_TREE=")
   # Any variables prefixed with GKI_ get set without that prefix in the GKI build environment
   # e.g. GKI_BUILD_CONFIG=common/build.config.gki.aarch64 -> BUILD_CONFIG=common/build.config.gki.aarch64
   GKI_ENVIRON+=($(export -p | sed -n -E -e 's/.* GKI_([^=]+=.*)$/\1/p' | tr '\n' ' '))
@@ -440,6 +442,21 @@ if [ -n "${GKI_BUILD_CONFIG}" ]; then
   MAKE_ARGS+=("KBUILD_MIXED_TREE=$(readlink -m ${GKI_DIST_DIR})")
 else
   rm -f ${OLD_ENVIRONMENT}
+fi
+
+if [ -n "${KBUILD_EXT_TREE}" ]; then
+  # KBUILD_EXT_TREE needs to be relative to KERNEL_DIR but we allow one to set
+  # it relative to ROOT_DIR for ease of use. So figure out what was used.
+  if [ -d "${ROOT_DIR}/${KBUILD_EXT_TREE}" ]; then
+    # KBUILD_EXT_TREE is currently relative to ROOT_DIR. So recalcuate it to be
+    # relative to KERNEL_DIR
+    KBUILD_EXT_TREE=$(rel_path ${ROOT_DIR}/${KBUILD_EXT_TREE} ${KERNEL_DIR})
+  elif [ ! -d "${KERNEL_DIR}/${KBUILD_EXT_TREE}" ]; then
+    echo "Couldn't find the extended kernel tree -- ${KBUILD_EXT_TREE}" >&2
+    exit 1
+  fi
+  MAKE_ARGS+=("KBUILD_EXT_TREE=${KBUILD_EXT_TREE}")
+  MAKE_ARGS+=("KBUILD_KCONFIG=${KBUILD_EXT_TREE}/Kconfig")
 fi
 
 cd ${ROOT_DIR}
