@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f91c5719_fdf2c916",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-11-17T04:52:48Z",
+      "side": 1,
+      "message": "Why not just use KBUILD_EXT_TREE directly?\n\ne.g. below you may add \n\n```\nMAKE_ARGS+\u003d(\"KBUILD_EXT_TREE\u003d$(readlink -m ${KBUILD_EXT_TREE})\")\n```",
+      "range": {
+        "startLine": 362,
+        "startChar": 4,
+        "endLine": 362,
+        "endChar": 24
+      },
+      "revId": "1baeced9f81a8a0d99727bcc3a1433d8370688ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
