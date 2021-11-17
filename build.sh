@@ -428,6 +428,15 @@ else
   rm -f ${OLD_ENVIRONMENT}
 fi
 
+if [ -n "${KBUILD_EXT_TREE}" ]; then
+  if [ ! -d "${KBUILD_EXT_TREE}" ]; then
+    echo "ERROR: ${KBUILD_EXT_TREE} does not exist." >&2
+    exit 1
+  fi
+  MAKE_ARGS+=("KBUILD_EXT_TREE=$(readlink -m ${KBUILD_EXT_TREE})")
+  MAKE_ARGS+=("KBUILD_KCONFIG=$(readlink -m ${KBUILD_EXT_TREE}/Kconfig)")
+fi
+
 cd ${ROOT_DIR}
 
 if [ -n "${SKIP_IF_VERSION_MATCHES}" ]; then
