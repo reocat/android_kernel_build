@@ -45,6 +45,13 @@ bool_flag(
     build_setting_default = False,
 )
 
+# If value is not empty, enable interceptor. Value is a path to a directory that
+# contains output files of interceptor invocations.
+string_flag(
+    name = "debug_intercept",
+    build_setting_default = "",
+)
+
 exports_files([
     "preserve_env.sh",
     "search_and_mv_output.py",
