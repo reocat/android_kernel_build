@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3ce86a5_e6c8e015",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-11-18T07:59:49Z",
+      "side": 1,
+      "message": "Do they have to be real paths? Is it because we `make -C` in different directories?",
+      "range": {
+        "startLine": 440,
+        "startChar": 33,
+        "endLine": 440,
+        "endChar": 41
+      },
+      "revId": "83d521054ad6e527d84ef06a6d5fb128cd6cc4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "734e78b1_21687af2",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-11-18T07:59:49Z",
+      "side": 1,
+      "message": "Not related to this CL, but I am wondering whether these only need to be set for `make` (L633) or do they need to be set for other things like building external modules (make -C ${EXT_MOD} below)?\n\nNeed to resolve https://android-review.googlesource.com/c/kernel/build/+/1896501/2#message-8368f740b923dfddf200abc873efdb2f71ab78a0",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 441,
+        "endChar": 78
+      },
+      "revId": "83d521054ad6e527d84ef06a6d5fb128cd6cc4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
