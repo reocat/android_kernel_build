@@ -44,6 +44,28 @@ def _reverse_dict(d):
             ret[v].append(k)
     return ret
 
+def _combine_dict(*args):
+    ret = {}
+    for d in args:
+        ret.update(d)
+    return ret
+
+def _debug_common_attrs():
+    return {
+        "_debug_intercept": attr.label(default = "//build/kleaf:debug_intercept"),
+        "_debug_interceptor": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86/bin/interceptor", allow_single_file = True),
+        "_debug_interceptor_deps": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
+        "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
+    }
+
+def _get_intercept_prefix(ctx):
+    if not ctx.attr._debug_intercept[BuildSettingInfo].value:
+        return ""
+    return "{interceptor} -v -l {log} -- ".format(
+        interceptor = ctx.file._debug_interceptor.path,
+        log = ctx.attr._debug_intercept[BuildSettingInfo].value,
+    )
+
 def _kernel_build_config_impl(ctx):
     out_file = ctx.actions.declare_file(ctx.attr.name + ".generated")
     command = "cat {srcs} > {out_file}".format(
@@ -763,14 +785,14 @@ def _kernel_build_impl(ctx):
 
     command += """
          # Actual kernel build
-           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
+           {intercept_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
          # Set variables and create dirs for modules
            if [ "${{DO_NOT_STRIP_MODULES}}" != "1" ]; then
              module_strip_flag="INSTALL_MOD_STRIP=1"
            fi
            mkdir -p {modules_staging_dir}
          # Install modules
-           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} ${{module_strip_flag}} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) modules_install
+           {intercept_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} ${{module_strip_flag}} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) modules_install
          # Archive headers in OUT_DIR
            find ${{OUT_DIR}} -name *.h -print0                          \
                | tar czf {out_dir_kernel_headers_tar}                   \
@@ -786,6 +808,7 @@ def _kernel_build_impl(ctx):
          # Clean up staging directories
            rm -rf {modules_staging_dir}
          """.format(
+        intercept_prefix = _get_intercept_prefix(ctx),
         search_and_mv_output = ctx.file._search_and_mv_output.path,
         kbuild_mixed_tree_arg = "--srcdir ${KBUILD_MIXED_TREE}" if kbuild_mixed_tree else "",
         ruledir = ruledir.path,
@@ -860,7 +883,7 @@ def _kernel_build_impl(ctx):
 _kernel_build = rule(
     implementation = _kernel_build_impl,
     doc = "Defines a kernel build target.",
-    attrs = {
+    attrs = _combine_dict(_debug_common_attrs(), {
         "config": attr.label(
             mandatory = True,
             providers = [_KernelEnvInfo],
@@ -881,8 +904,7 @@ _kernel_build = rule(
         "base_kernel": attr.label(
             providers = [KernelFilesInfo],
         ),
-        "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
-    },
+    }),
 )
 
 def _modules_prepare_impl(ctx):
