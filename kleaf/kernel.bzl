@@ -117,6 +117,7 @@ def kernel_build(
         generate_vmlinux_btf = False,
         deps = (),
         base_kernel = None,
+        kconfig = None,
         toolchain_version = _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -141,6 +142,7 @@ def kernel_build(
     Args:
         name: The final kernel target name, e.g. `"kernel_aarch64"`.
         build_config: Label of the build.config file, e.g. `"build.config.gki.aarch64"`.
+        kconfig: FIXME DOCS
         srcs: The kernel sources (a `glob()`). If unspecified or `None`, it is the following:
           ```
           glob(
@@ -313,6 +315,7 @@ def kernel_build(
     _kernel_env(
         name = env_target_name,
         build_config = build_config,
+        kconfig = kconfig,
         srcs = srcs,
         toolchain_version = toolchain_version,
     )
@@ -418,6 +421,8 @@ def _kernel_env_impl(ctx):
     ]
 
     build_config = ctx.file.build_config
+    kconfig = ctx.file.kconfig
+    kbuild_ext_tree = kconfig.dirname if kconfig else ""
     setup_env = ctx.file.setup_env
     preserve_env = ctx.file.preserve_env
     out_file = ctx.actions.declare_file("%s.sh" % ctx.attr.name)
@@ -474,23 +479,30 @@ def _kernel_env_impl(ctx):
            source {build_utils_sh}
          # source the build environment
            source {env}
+           export KBUILD_KCONFIG={kconfig}
+           export KBUILD_EXT_TREE={kbuild_ext_tree}
          # setup the PATH to also include the host tools
            export PATH=$PATH:$PWD/{host_tool_path}
          # setup LD_LIBRARY_PATH for prebuilts
            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/{linux_x86_libs_path}
            """.format(
         env = out_file.path,
+        kconfig = "$(realpath {})".format(kconfig.short_path) if kconfig else "",
+        kbuild_ext_tree = "$(realpath $(dirname {}))".format(kconfig.short_path) if kconfig else "",
         host_tool_path = host_tool_path,
         build_utils_sh = ctx.file._build_utils_sh.path,
         linux_x86_libs_path = ctx.files._linux_x86_libs[0].dirname,
     )
 
+    dependencies += [
+        out_file,
+        ctx.file._build_utils_sh,
+    ]
+    if kconfig:
+        dependencies.append(kconfig)
     return [
         _KernelEnvInfo(
-            dependencies = dependencies + [
-                out_file,
-                ctx.file._build_utils_sh,
-            ],
+            dependencies = dependencies,
             setup = setup,
         ),
         DefaultInfo(files = depset([out_file])),
@@ -547,6 +559,10 @@ _kernel_env = rule(
         ),
         "toolchain_version": attr.string(
             doc = "the toolchain to use for this environment",
+        ),
+        "kconfig": attr.label(
+            allow_single_file = True,
+            doc = "FIXME DOCS",
         ),
         "_tools": attr.label_list(default = _get_tools),
         "_host_tools": attr.label(default = "//build:host-tools"),
