@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7befc88b_6f8d2b32",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-11-18T18:43:24Z",
+      "side": 1,
+      "message": "The reason is because make is run under the `O\u003d` out directory. So we would have to use a path relative to that which is more complicated. So it\u0027s easier to get the absolute path here instead.",
+      "parentUuid": "f3ce86a5_e6c8e015",
+      "range": {
+        "startLine": 440,
+        "startChar": 33,
+        "endLine": 440,
+        "endChar": 41
+      },
+      "revId": "83d521054ad6e527d84ef06a6d5fb128cd6cc4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "734e78b1_21687af2",
         "filename": "build.sh",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2021-11-18T07:59:49Z",
       "side": 1,
       "message": "Not related to this CL, but I am wondering whether these only need to be set for `make` (L633) or do they need to be set for other things like building external modules (make -C ${EXT_MOD} below)?\n\nNeed to resolve https://android-review.googlesource.com/c/kernel/build/+/1896501/2#message-8368f740b923dfddf200abc873efdb2f71ab78a0",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 441,
+        "endChar": 78
+      },
+      "revId": "83d521054ad6e527d84ef06a6d5fb128cd6cc4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96b35af4_9876fa70",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-11-18T18:43:24Z",
+      "side": 1,
+      "message": "They need to be set for all instances of make that uses the Kconfig. That includes the following from what I\u0027ve tested but could be others:\n\nmake mrproper\nmake ${DEFCONFIG}\n${POST_DEFCONFIG_CMDS} since check_defconfig uses them\nmake\n\nCurrently, I don\u0027t think we need it for external modules, but we might in the future if we start supporting Kconfig for external modules. I don\u0027t think uapi headers uses kconfig either.",
+      "parentUuid": "734e78b1_21687af2",
       "range": {
         "startLine": 440,
         "startChar": 0,
