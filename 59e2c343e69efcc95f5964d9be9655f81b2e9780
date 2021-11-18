@@ -46,6 +46,30 @@
       },
       "revId": "59e2c343e69efcc95f5964d9be9655f81b2e9780",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eee18b51_50e1abab",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-11-18T18:47:15Z",
+      "side": 1,
+      "message": "let me clarify actually. External modules don\u0027t use Kconfig. In-tree modules do.",
+      "parentUuid": "2d4523f0_ee8c7faf",
+      "range": {
+        "startLine": 482,
+        "startChar": 0,
+        "endLine": 483,
+        "endChar": 51
+      },
+      "revId": "59e2c343e69efcc95f5964d9be9655f81b2e9780",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
