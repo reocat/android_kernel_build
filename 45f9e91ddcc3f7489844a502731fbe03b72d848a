@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7cf5bf19_22d3a37e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-11-23T23:11:51Z",
+      "side": 1,
+      "message": "Sorry for the delayed response. I\u0027ll try to keep a better eye on this patch.\n\nSo if you don\u0027t need the vendor_boot.img, then you should get the same result if you set the following:\n\nSKIP_VENDOR_BOOT\u003d1\nBUILD_INITRAMFS\u003d  (or you can just not set this)\nVENDOR_RAMDISK_BINARY\u003d (or you can just not set this)\n\nThat will skip all the ramdisk tweaking and skip making the vendor_boot.img which would leave you with just the boot.img (Image.lz4 + GKI_RAMDISK_PREBUILT_BINARY).\n\nI noticed that you are copying the VENDOR_RAMDISK_BINARY to $DIST_DIR/ramdisk.$RAMDISK_EXT. If you don\u0027t care about the vendor_boot.img, does that mean you are trying to package the VENDOR_RAMDISK_BINARY with the boot.img? That would only be possible if you have BOOT_IMAGE_HEADER_VERSION \u003c 3.",
+      "parentUuid": "a6f9e045_36547e0c",
+      "revId": "45f9e91ddcc3f7489844a502731fbe03b72d848a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89517cc8_d4455f5b",
         "filename": "build_utils.sh",
         "patchSetId": 8
