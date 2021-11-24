@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a67e9bca_c64b9f2b",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-11-24T19:34:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad84b414_df8469e9",
+      "range": {
+        "startLine": 241,
+        "startChar": 45,
+        "endLine": 241,
+        "endChar": 55
+      },
+      "revId": "c9491ad9c107442b1ac4887645b8bb670b30ec6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50127c51_d0a7e79c",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-10-08T16:36:28Z",
       "side": 1,
       "message": "raise?",
+      "range": {
+        "startLine": 244,
+        "startChar": 8,
+        "endLine": 244,
+        "endChar": 12
+      },
+      "revId": "c9491ad9c107442b1ac4887645b8bb670b30ec6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45624bd1_345025a3",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-11-24T19:34:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50127c51_d0a7e79c",
       "range": {
         "startLine": 244,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba2930a8_266fbe97",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-11-24T19:34:55Z",
+      "side": 1,
+      "message": "Half done. Not the second bit.",
+      "parentUuid": "b5191832_c98d2292",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 20
+      },
+      "revId": "c9491ad9c107442b1ac4887645b8bb670b30ec6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60cfc224_5c3b9422",
@@ -83,6 +155,30 @@
       "writtenOn": "2021-10-08T16:36:28Z",
       "side": 1,
       "message": "stg, Stg, STG, care to make this consistent somehow?",
+      "range": {
+        "startLine": 355,
+        "startChar": 15,
+        "endLine": 355,
+        "endChar": 18
+      },
+      "revId": "c9491ad9c107442b1ac4887645b8bb670b30ec6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b681ee82_0519b599",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-11-24T19:34:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60cfc224_5c3b9422",
       "range": {
         "startLine": 355,
         "startChar": 15,
