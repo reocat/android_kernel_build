@@ -399,6 +399,7 @@ export MODULES_STAGING_DIR=$(readlink -m ${COMMON_OUT_DIR}/staging)
 export MODULES_PRIVATE_DIR=$(readlink -m ${COMMON_OUT_DIR}/private)
 export KERNEL_UAPI_HEADERS_DIR=$(readlink -m ${COMMON_OUT_DIR}/kernel_uapi_headers)
 export INITRAMFS_STAGING_DIR=${MODULES_STAGING_DIR}/initramfs_staging
+export SYSTEM_DLKM_STAGING_DIR=${MODULES_STAGING_DIR}/system_dlkm_staging
 export VENDOR_DLKM_STAGING_DIR=${MODULES_STAGING_DIR}/vendor_dlkm_staging
 export MKBOOTIMG_STAGING_DIR="${MODULES_STAGING_DIR}/mkbootimg_staging"
 
@@ -852,6 +853,35 @@ if [ -n "${MODULES}" ]; then
 
     mkbootfs "${INITRAMFS_STAGING_DIR}" >"${MODULES_STAGING_DIR}/initramfs.cpio"
     ${RAMDISK_COMPRESS} "${MODULES_STAGING_DIR}/initramfs.cpio" >"${DIST_DIR}/initramfs.img"
+  fi
+fi
+
+if [ -n "${MODULES_ORDER}" ]; then
+  echo "========================================================"
+  echo " Creating system_dlkm image"
+
+  rm -rf ${SYSTEM_DLKM_STAGING_DIR}
+  create_modules_staging "${MODULES_LIST}" ${MODULES_STAGING_DIR} \
+      ${SYSTEM_DLKM_STAGING_DIR} "${MODULES_BLOCKLIST}" "-e"
+
+  SYSTEM_DLKM_ROOT_DIR=$(echo ${SYSTEM_DLKM_STAGING_DIR}/lib/modules/*)
+  cp ${SYSTEM_DLKM_ROOT_DIR}/modules.load ${DIST_DIR}/modules.load
+  echo "${MODULES_OPTIONS}" > ${SYSTEM_DLKM_ROOT_DIR}/modules.options
+
+  mkfs.erofs -zlz4hc "${DIST_DIR}/system_dlkm.img" "${SYSTEM_DLKM_ROOT_DIR}"
+  if [ $? -ne 0 ]; then
+    echo "ERROR: system_dlkm image creation failed" >&2
+    exit 1
+  fi
+
+  # Verify system_dlkm.img size is less than /system_dlkm partition size(32MB)
+  SYSTEM_DLKM_PARTITION_SIZE=33554432
+  SYSTEM_DLKM_IMAGE_SIZE=$(stat --format=%s "${DIST_DIR}/system_dlkm.img")
+  if [ "${SYSTEM_DLKM_IMAGE_SIZE}" -gt "${SYSTEM_DLKM_PARTITION_SIZE}" ]; then
+    echo "ERROR: system_dlkm image size exceed partition size" >&2
+    echo "  system_dlkm image size = ${SYSTEM_DLKM_IMAGE_SIZE}" >&2
+    echo "  system_dlkm partition size = ${SYSTEM_DLKM_PARTITION_SIZE}" >&2
+    exit 1
   fi
 fi
 
