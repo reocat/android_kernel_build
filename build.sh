@@ -629,6 +629,18 @@ elif [ "${KMI_SYMBOL_LIST_STRICT_MODE}" = "1" ]; then
 fi
 
 echo "========================================================"
+echo " Generating GKI Module Protection Headers:"
+
+# Generate headers for the GKI Module Protection
+set -x
+(cd ${KERNEL_DIR} && ./scripts/gen_gki_modules_headers.sh)
+set +x
+if [ $? -ne 0 ]; then
+  echo "ERROR: GKI Module Protection Header Generation Failed" >&2
+  exit 1
+fi
+
+echo "========================================================"
 echo " Building kernel"
 
 set -x
