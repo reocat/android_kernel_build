@@ -265,6 +265,10 @@
 #     - AVB_BOOT_PARTITION_NAME=<name of the boot partition>
 #       (defaults to BOOT_IMAGE_FILENAME without extension; by default, "boot")
 #
+#   BUILD_SYSTEM_DLKM_EROFS
+#     if set to "1", build an erofs image system_dlkm.img containing all .ko
+#     files and resulting depmod artifacts
+#
 #   BUILD_INITRAMFS
 #     if set to "1", build a ramdisk containing all .ko files and resulting
 #     depmod artifacts
@@ -836,9 +840,9 @@ if [ -n "${MODULES}" ]; then
       tar --transform="s,.*/,," -czf ${DIST_DIR}/${MODULES_ARCHIVE} ${MODULES[@]}
     fi
   fi
-  if [ "${BUILD_INITRAMFS}" = "1" ]; then
+  if [ "${BUILD_INITRAMFS}" = "1" -o "${BUILD_SYSTEM_DLKM_EROFS}" = "1" ]; then
     echo "========================================================"
-    echo " Creating initramfs"
+
     rm -rf ${INITRAMFS_STAGING_DIR}
     create_modules_staging "${MODULES_LIST}" ${MODULES_STAGING_DIR} \
       ${INITRAMFS_STAGING_DIR} "${MODULES_BLOCKLIST}" "-e"
@@ -848,8 +852,17 @@ if [ -n "${MODULES}" ]; then
     cp ${MODULES_ROOT_DIR}/modules.load ${DIST_DIR}/vendor_boot.modules.load
     echo "${MODULES_OPTIONS}" > ${MODULES_ROOT_DIR}/modules.options
 
-    mkbootfs "${INITRAMFS_STAGING_DIR}" >"${MODULES_STAGING_DIR}/initramfs.cpio"
-    ${RAMDISK_COMPRESS} "${MODULES_STAGING_DIR}/initramfs.cpio" >"${DIST_DIR}/initramfs.img"
+    if [ "${BUILD_INITRAMFS}" = "1" ]; then
+      echo " Creating initramfs"
+      mkbootfs "${INITRAMFS_STAGING_DIR}" >"${MODULES_STAGING_DIR}/initramfs.cpio"
+      ${RAMDISK_COMPRESS} "${MODULES_STAGING_DIR}/initramfs.cpio" >"${DIST_DIR}/initramfs.img"
+    fi
+
+    if [ "${BUILD_SYSTEM_DLKM_EROFS}" = "1" ]; then
+      echo " Creating system_dlkm.img erofs image"
+      mkfs.erofs -zlz4hc "${DIST_DIR}/system_dlkm.img" "${INITRAMFS_STAGING_DIR}"
+      # TODO: Check size doesn't exceed partition size (32M as of now)
+    fi
   fi
 fi
 
