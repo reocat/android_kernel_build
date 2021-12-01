@@ -411,3 +411,10 @@ function build_boot_images() {
       echo "vendor boot image created at ${DIST_DIR}/vendor_boot.img"
   fi
 }
+
+function make_dtbo() {
+  (
+    cd ${OUT_DIR}
+    mkdtimg create "${DIST_DIR}"/dtbo.img ${MKDTIMG_FLAGS} ${MKDTIMG_DTBOS[@]}
+  )
+}

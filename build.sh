@@ -871,6 +871,9 @@ if [ -n "${BUILD_BOOT_IMG}" -o -n "${BUILD_VENDOR_BOOT_IMG}" ] ; then
   build_boot_images
 fi
 
+if [ -n "${MKDTIMG_DTBOS}" ]; then
+  make_dtbo
+fi
 
 # No trace_printk use on build server build
 if readelf -a ${DIST_DIR}/vmlinux 2>&1 | grep -q trace_printk_fmt; then
