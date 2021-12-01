@@ -363,6 +363,14 @@
 #       modules.builtin.modinfo
 #       Image.lz4
 #
+#   MKDTIMG_DTBOS
+#     List of *.dtbo files to be used to package the dtbo.img. The *.dtbo files
+#     should be compiled by kbuild via the "make dtbs" command or by adding
+#     each *.dtbo to the MAKE_GOALS.
+#
+#   MKDTIMG_FLAGS
+#     List of flags to be passed to mkdtimg when packaging the dtbo.img.
+#
 # Note: For historic reasons, internally, OUT_DIR will be copied into
 # COMMON_OUT_DIR, and OUT_DIR will be then set to
 # ${COMMON_OUT_DIR}/${KERNEL_DIR}. This has been done to accommodate existing
@@ -871,6 +879,9 @@ if [ -n "${BUILD_BOOT_IMG}" -o -n "${BUILD_VENDOR_BOOT_IMG}" ] ; then
   build_boot_images
 fi
 
+if [ -n "${MKDTIMG_DTBOS}" ]; then
+  make_dtbo
+fi
 
 # No trace_printk use on build server build
 if readelf -a ${DIST_DIR}/vmlinux 2>&1 | grep -q trace_printk_fmt; then
