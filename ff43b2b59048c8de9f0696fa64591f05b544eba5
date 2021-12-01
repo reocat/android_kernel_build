@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1e2d5c6_4a6086a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2021-12-01T22:43:52Z",
+      "side": 1,
+      "message": "LGTM besides any nits -- we would switch our downstream build.config to use this.",
+      "revId": "ff43b2b59048c8de9f0696fa64591f05b544eba5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af3cea1_ac0b1357",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2021-12-01T22:43:52Z",
+      "side": 1,
+      "message": "Suggest to match the other images:\n  BUILD_DTBO_IMG",
+      "range": {
+        "startLine": 874,
+        "startChar": 11,
+        "endLine": 874,
+        "endChar": 24
+      },
+      "revId": "ff43b2b59048c8de9f0696fa64591f05b544eba5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
