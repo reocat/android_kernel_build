@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0851999e_eb076cf9",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-12-02T18:10:25Z",
+      "side": 1,
+      "message": "Nit: I find this a bit unusual. Under what circumstances do we get to this point and the predicate [ -f \"${DIST_DIR}/dtbo.img\" ] returns false? I would expect mkdtimg to throw an error and for the script to stop right there.\nI\u0027d recommend\n\necho \" Creating dtbo image at ${DIST_DIR}/dtbo.img\"\n\non line 417, remove lines 421-423 and then just depend on mkdtimg to print an error message and return a non-zero exit code.",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 423,
+        "endChar": 6
+      },
+      "revId": "e945dc9a70cafeb6bba007a3a961536da5298892",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
