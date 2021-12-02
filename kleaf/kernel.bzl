@@ -1872,6 +1872,48 @@ Execute `build_boot_images` in `build_utils.sh`.""",
     },
 )
 
+def _dtbo_impl(ctx):
+    output = ctx.actions.declare_file("{}/dtbo.img".format(ctx.label.name))
+    inputs = []
+    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
+    inputs += ctx.files.srcs
+    command = ""
+    command += ctx.attr.kernel_build[_KernelEnvInfo].setup
+
+    command += """
+             # make dtbo
+               mkdtimg create {output} ${{MKDTIMG_FLAGS}} {srcs}
+    """.format(
+        output = output.path,
+        srcs = " ".join([f.path for f in ctx.files.srcs])
+    )
+
+    _debug_print_scripts(ctx, command)
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [output],
+        progress_message = "Building dtbo {}".format(ctx.label),
+        command = command,
+    )
+
+
+_dtbo = rule(
+    implementation = _dtbo_impl,
+    doc = "Build dtbo.",
+    attrs = {
+        "kernel_build": attr.label(
+            mandatory = True,
+            providers = [_KernelEnvInfo, _KernelBuildInfo],
+        ),
+        "srcs": attr.label_list(
+            allow_files = True,
+        ),
+        "_debug_print_scripts": attr.label(
+            default = "//build/kleaf:debug_print_scripts",
+        ),
+    }
+)
+
 def kernel_images(
         name,
         kernel_modules_install,
@@ -1879,6 +1921,8 @@ def kernel_images(
         build_initramfs = None,
         build_vendor_dlkm = None,
         build_boot_images = None,
+        build_dtbo = None,
+        dtbo_srcs = [],
         mkbootimg = "//tools/mkbootimg:mkbootimg.py",
         deps = [],
         boot_image_outs = None):
@@ -1929,6 +1973,14 @@ def kernel_images(
 
           This depends on `initramfs` and `kernel_build`. Hence, if this is set to `True`,
           `build_initramfs` is implicitly true, and `kernel_build` must be set.
+        build_dtbo: Whether to build dtbo image. Keep this in sync with `BUILD_DTBO_IMG`.
+
+          If `dtbo_srcs` is non-empty, `build_dtbo` is `True` by default. Otherwise it is `False`
+          by default.
+        dtbo_srcs: list of `*.dtbo` files used to package the `dtbo.img`. Keep this in sync
+          with `MKDTIMG_DTBOS`.
+
+          If `dtbo_srcs` is non-empty, `build_dtbo` must not be explicitly set to `False`.
     """
     all_rules = []
 
@@ -1982,6 +2034,21 @@ def kernel_images(
             mkbootimg = mkbootimg,
         )
         all_rules.append(":{}_boot_images".format(name))
+
+    if build_dtbo == None:
+        build_dtbo = bool(dtbo_srcs)
+
+    if dtbo_srcs:
+        if not build_dtbo:
+            fail("{}: build_dtbo must be True if dtbo_srcs is non-empty.")
+
+    if build_dtbo:
+        _dtbo(
+            name = "{}_dtbo".format(name),
+            srcs = dtbo_srcs,
+            kernel_build = kernel_build,
+        )
+        all_rules.append(":{}_dtbo".format(name))
 
     native.filegroup(
         name = name,
