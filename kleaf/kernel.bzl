@@ -487,8 +487,8 @@ def _kernel_env_impl(ctx):
            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/{linux_x86_libs_path}
            """.format(
         env = out_file.path,
-        kconfig = "$(realpath {})".format(kconfig.short_path) if kconfig else "",
-        kbuild_ext_tree = "$(realpath $(dirname {}))".format(kconfig.short_path) if kconfig else "",
+        kconfig = "../../{}".format(kconfig.short_path) if kconfig else "",
+        kbuild_ext_tree = "../../$(dirname {})".format(kconfig.short_path) if kconfig else "",
         host_tool_path = host_tool_path,
         build_utils_sh = ctx.file._build_utils_sh.path,
         linux_x86_libs_path = ctx.files._linux_x86_libs[0].dirname,
@@ -796,7 +796,7 @@ def _kernel_build_impl(ctx):
                        --transform "s,^/,,"                             \
                        --null -T -
          # Grab outputs. If unable to find from OUT_DIR, look at KBUILD_MIXED_TREE as well.
-           {search_and_mv_output} --srcdir ${{OUT_DIR}} {kbuild_mixed_tree_arg} --dstdir {ruledir} {all_output_names}
+           {search_and_mv_output} --srcdir ${{OUT_DIR}} --srcdir ${{OUT_DIR}}/${{KBUILD_EXT_TREE}} {kbuild_mixed_tree_arg} --dstdir {ruledir} {all_output_names}
          # Archive modules_staging_dir
            tar czf {modules_staging_archive} -C {modules_staging_dir} .
          # Clean up staging directories
