@@ -22,6 +22,30 @@
       },
       "revId": "e945dc9a70cafeb6bba007a3a961536da5298892",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c3423f1_9c81798e",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-02T18:14:59Z",
+      "side": 1,
+      "message": "Let me verify that\u0027s what actually happens when an error occurs. I know this script messes with set -e in some spots.",
+      "parentUuid": "0851999e_eb076cf9",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 423,
+        "endChar": 6
+      },
+      "revId": "e945dc9a70cafeb6bba007a3a961536da5298892",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
