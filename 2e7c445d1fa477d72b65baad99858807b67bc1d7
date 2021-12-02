@@ -22,6 +22,30 @@
       },
       "revId": "2e7c445d1fa477d72b65baad99858807b67bc1d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "683ea89f_4f1bfc44",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-02T23:41:15Z",
+      "side": 1,
+      "message": "actually L490~491 should probably be just \n\n```\nkconfig \u003d kconfig.path if kconfig else \"\"\n```\n\nand this needs to handle the empty case",
+      "parentUuid": "e3885e0e_d0dbfd2b",
+      "range": {
+        "startLine": 482,
+        "startChar": 33,
+        "endLine": 482,
+        "endChar": 42
+      },
+      "revId": "2e7c445d1fa477d72b65baad99858807b67bc1d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
