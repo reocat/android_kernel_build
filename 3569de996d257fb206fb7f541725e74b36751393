@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4039f23_7fe5ff89",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2021-12-02T17:44:24Z",
+      "side": 1,
+      "message": "Doesn\u0027t this syntax assume that MKDTIMG_DTBOS is an array which I believe it is not? Compare with how EXT_MODULES or MAKE_GOALS are used.",
+      "range": {
+        "startLine": 420,
+        "startChar": 74,
+        "endLine": 420,
+        "endChar": 77
+      },
+      "revId": "3569de996d257fb206fb7f541725e74b36751393",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
