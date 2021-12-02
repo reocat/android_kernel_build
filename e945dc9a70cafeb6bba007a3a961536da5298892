@@ -46,6 +46,30 @@
       },
       "revId": "e945dc9a70cafeb6bba007a3a961536da5298892",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "274d7654_65ce0e71",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-02T19:13:07Z",
+      "side": 1,
+      "message": "Verified the script exits on failure.",
+      "parentUuid": "7c3423f1_9c81798e",
+      "range": {
+        "startLine": 421,
+        "startChar": 0,
+        "endLine": 423,
+        "endChar": 6
+      },
+      "revId": "e945dc9a70cafeb6bba007a3a961536da5298892",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
