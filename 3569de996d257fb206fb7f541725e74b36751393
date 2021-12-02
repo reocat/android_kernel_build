@@ -22,6 +22,30 @@
       },
       "revId": "3569de996d257fb206fb7f541725e74b36751393",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edd02abd_7f3ed6b5",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-02T17:56:56Z",
+      "side": 1,
+      "message": "Let me update that. It appears to work the same, but I think it\u0027s proper to handle like a list of items vs array.",
+      "parentUuid": "c4039f23_7fe5ff89",
+      "range": {
+        "startLine": 420,
+        "startChar": 74,
+        "endLine": 420,
+        "endChar": 77
+      },
+      "revId": "3569de996d257fb206fb7f541725e74b36751393",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
