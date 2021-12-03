@@ -16,6 +16,23 @@
       "message": "Requesting a review as WIP:\n\nThis is what I have been using for testing; but like to know your feedback whether this is the right place and way to generate the erofs image with GKI modules during the kernel build.\n\nIf it is, the further items to be worked on this are:\n\n1. Removal of the flag and image will always get built as long as common/android/gki_aarch64_modules is not empty i.e. there is at least a module to be bundled.\n2. Remove reuse of the BUILD_INITRAMFS infrastructure as it is now; factor out common code to collect modules in a directory, and call it as needed.\n3. Errors and fs image limit (\u003c32M partition size for system_dlkm) checks.\n\nI need this to be finalize sooner; so I can have prebuilts created and make available for AOSP build where I have AOSP \u0026 CF changes (https://android-review.googlesource.com/q/topic:system_dlkm) ready for presubmit but this prebuilt image a dependency.",
       "revId": "6298b41d1e04429165b0d2af2c22c1589d834a49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1105133_403a959d",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-03T15:45:39Z",
+      "side": 1,
+      "message": "# TODO (b/1233456) ....\n\nto track the bug - go/todont",
+      "revId": "6298b41d1e04429165b0d2af2c22c1589d834a49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
