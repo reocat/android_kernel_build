@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bce67e5a_6f5a73b6",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-03T17:57:16Z",
+      "side": 1,
+      "message": "Does it add value to include \"_EROFS\"? Are there other types of system_dlkm formats?",
+      "range": {
+        "startLine": 272,
+        "startChar": 21,
+        "endLine": 272,
+        "endChar": 27
+      },
+      "revId": "6298b41d1e04429165b0d2af2c22c1589d834a49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a1105133_403a959d",
         "filename": "build.sh",
         "patchSetId": 4
