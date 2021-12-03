@@ -46,6 +46,29 @@
       },
       "revId": "2e7c445d1fa477d72b65baad99858807b67bc1d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c40eb65b_e746a1d0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-03T00:57:39Z",
+      "side": 1,
+      "message": "We actually only need to make this one a relative path. KBUILD_KCONFIG is file to be a real path.",
+      "range": {
+        "startLine": 483,
+        "startChar": 0,
+        "endLine": 483,
+        "endChar": 51
+      },
+      "revId": "2e7c445d1fa477d72b65baad99858807b67bc1d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
