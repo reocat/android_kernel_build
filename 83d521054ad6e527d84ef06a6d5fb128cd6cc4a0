@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9a07e1b_a04a7e7d",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-03T19:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7befc88b_6f8d2b32",
+      "range": {
+        "startLine": 440,
+        "startChar": 33,
+        "endLine": 440,
+        "endChar": 41
+      },
+      "revId": "83d521054ad6e527d84ef06a6d5fb128cd6cc4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "734e78b1_21687af2",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "They need to be set for all instances of make that uses the Kconfig. That includes the following from what I\u0027ve tested but could be others:\n\nmake mrproper\nmake ${DEFCONFIG}\n${POST_DEFCONFIG_CMDS} since check_defconfig uses them\nmake\n\nCurrently, I don\u0027t think we need it for external modules, but we might in the future if we start supporting Kconfig for external modules. I don\u0027t think uapi headers uses kconfig either.",
       "parentUuid": "734e78b1_21687af2",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 441,
+        "endChar": 78
+      },
+      "revId": "83d521054ad6e527d84ef06a6d5fb128cd6cc4a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb1ab226_bf28c354",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 441,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-03T19:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96b35af4_9876fa70",
       "range": {
         "startLine": 440,
         "startChar": 0,
