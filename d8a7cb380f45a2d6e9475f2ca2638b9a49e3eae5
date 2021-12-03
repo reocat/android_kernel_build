@@ -22,6 +22,30 @@
       },
       "revId": "d8a7cb380f45a2d6e9475f2ca2638b9a49e3eae5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f12fb350_8b8abf76",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 2044,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-03T01:43:34Z",
+      "side": 1,
+      "message": "\u003e Does this mean build_dtbo is None and not False?\n\nIt means it must be True or left empty.\n\nNote L2040 above.\n\n\n\u003e We should allow build_dtbo\u003dFalse and dtbo_srcs!\u003dempty\n\nWhy? Is it useful to set MKDTIMG_DTBOS without BUILD_DTBO_IMG?\n\nEven if it is the case, I would suggest that we ask the user to leave dtbo_srcs empty.",
+      "parentUuid": "82cb11b5_13970abd",
+      "range": {
+        "startLine": 2044,
+        "startChar": 0,
+        "endLine": 2044,
+        "endChar": 74
+      },
+      "revId": "d8a7cb380f45a2d6e9475f2ca2638b9a49e3eae5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
