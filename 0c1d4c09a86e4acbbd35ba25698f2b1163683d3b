@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df71dc13_84b53b88",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-03T20:22:09Z",
+      "side": 1,
+      "message": "command \u003d ctx.attr.kernel_build[_KernelEnvInfo].setup",
+      "range": {
+        "startLine": 1880,
+        "startChar": 0,
+        "endLine": 1881,
+        "endChar": 58
+      },
+      "revId": "0c1d4c09a86e4acbbd35ba25698f2b1163683d3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
