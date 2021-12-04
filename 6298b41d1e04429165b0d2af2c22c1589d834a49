@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a306ba9_28ea0e4b",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-04T03:12:00Z",
+      "side": 1,
+      "message": "Ack. Will drop this as any given type we will only support one type of system_dlkm format. Initially, I wanted to be future proof.\n\nAt some point this may be dropped completely as we will always need to build the image once we have at least one GKI module.\n\nIdea of this review is to get a gauge of whether this is the right place and way to add support for building system_dlkm without having any aosp dependency; looks like it is.",
+      "parentUuid": "bce67e5a_6f5a73b6",
+      "range": {
+        "startLine": 272,
+        "startChar": 21,
+        "endLine": 272,
+        "endChar": 27
+      },
+      "revId": "6298b41d1e04429165b0d2af2c22c1589d834a49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1105133_403a959d",
@@ -54,6 +78,24 @@
       "writtenOn": "2021-12-03T15:45:39Z",
       "side": 1,
       "message": "# TODO (b/1233456) ....\n\nto track the bug - go/todont",
+      "revId": "6298b41d1e04429165b0d2af2c22c1589d834a49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d57cb648_1950c4c3",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-04T03:12:00Z",
+      "side": 1,
+      "message": "Thanks. Definitely good to know about this as I wasn\u0027t aware.\n\nFor comment, I\u0027ll add this code in the next patch-set; so TODO won\u0027t be required.",
+      "parentUuid": "a1105133_403a959d",
       "revId": "6298b41d1e04429165b0d2af2c22c1589d834a49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
