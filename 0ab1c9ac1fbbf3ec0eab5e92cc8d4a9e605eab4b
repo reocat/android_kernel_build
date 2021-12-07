@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018098566",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1235569?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8b5ac24c_b112c06a",
+        "filename": "abi/kmi_defines.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T02:03:20Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027complex\u0027, \u0027unexpected\u0027, or \u0027placeholder\u0027; see https://developers.google.com/style/inclusive-documentation#ableist-language for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 785,
+        "startChar": 7,
+        "endLine": 785,
+        "endChar": 12
+      },
+      "revId": "0ab1c9ac1fbbf3ec0eab5e92cc8d4a9e605eab4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
