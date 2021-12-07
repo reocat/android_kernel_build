@@ -1,0 +1,151 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018098442",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1235571?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "24ad13ea_89455b7d",
+          "description": "Change to \"abi/kmi_dump.c\"",
+          "replacements": [
+            {
+              "path": "abi/kmi_dump.c",
+              "range": {
+                "startLine": 17,
+                "startChar": 48,
+                "endLine": 17,
+                "endChar": 56
+              },
+              "replacement": "it\u0027s not "
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "4129297c_e9fa13dc",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T02:03:10Z",
+      "side": 1,
+      "message": "Common typo found: \"its not \" -- should it be \"it\u0027s not \"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 17,
+        "startChar": 48,
+        "endLine": 17,
+        "endChar": 56
+      },
+      "revId": "c04364f1d793bbbf628a14972c0af4b39de30caa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018098454",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1235571?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3d14927b_c771e689",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T02:03:10Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 131,
+        "startChar": 45,
+        "endLine": 131,
+        "endChar": 46
+      },
+      "revId": "c04364f1d793bbbf628a14972c0af4b39de30caa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018098454",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1235571?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b2243077_0be94530",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T02:03:10Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 332,
+        "startChar": 48,
+        "endLine": 332,
+        "endChar": 49
+      },
+      "revId": "c04364f1d793bbbf628a14972c0af4b39de30caa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018098454",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1235571?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "89769061_446eca80",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T02:03:10Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 340,
+        "startChar": 74,
+        "endLine": 340,
+        "endChar": 75
+      },
+      "revId": "c04364f1d793bbbf628a14972c0af4b39de30caa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018098454",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1235571?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e4230d36_cf7865d1",
+        "filename": "abi/kmi_dump.c",
+        "patchSetId": 5
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T02:03:10Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 373,
+        "startChar": 63,
+        "endLine": 373,
+        "endChar": 64
+      },
+      "revId": "c04364f1d793bbbf628a14972c0af4b39de30caa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
