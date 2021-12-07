@@ -22,6 +22,30 @@
       },
       "revId": "0c1d4c09a86e4acbbd35ba25698f2b1163683d3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfe5331c_d890492e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-07T06:25:52Z",
+      "side": 1,
+      "message": "Ack, I\u0027ll do it in clean up",
+      "parentUuid": "df71dc13_84b53b88",
+      "range": {
+        "startLine": 1880,
+        "startChar": 0,
+        "endLine": 1881,
+        "endChar": 58
+      },
+      "revId": "0c1d4c09a86e4acbbd35ba25698f2b1163683d3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
