@@ -16,6 +16,24 @@
       "message": "```\n[libprotobuf ERROR external/protobuf/src/google/protobuf/wire_format_lite.cc:584] String field \u0027interceptor.Command.current_directory\u0027 contains invalid UTF-8 data when parsing a protocol buffer. Use the \u0027bytes\u0027 type if you intend to send raw bytes.\n```\n\nThough, it can be built successfully.\n\nShould I file a bug for this?",
       "revId": "082a602f5e82b3617bb0bc453c793f9f15c3f0bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f2a3d3c_a98dc09c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-08T11:21:13Z",
+      "side": 1,
+      "message": "This is indicating a bug in the intermediate log writing. Concurrency could be one reason. Are you using an old version of the interceptor that does not include aosp/1905116?",
+      "parentUuid": "e2a1802c_7185947e",
+      "revId": "082a602f5e82b3617bb0bc453c793f9f15c3f0bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
