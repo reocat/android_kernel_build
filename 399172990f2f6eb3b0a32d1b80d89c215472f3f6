@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96727d80_fc2953fb",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:34:46Z",
+      "side": 1,
+      "message": "Please fix docs here",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 31
+      },
+      "revId": "399172990f2f6eb3b0a32d1b80d89c215472f3f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "863227a1_f79b467b",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:34:46Z",
+      "side": 1,
+      "message": "I think instead of adding to setup, we want to set in in env.sh so it is more visible. Maybe one of the following?\n\nA. (I prefer this but please double check the change to env.sh. Make sure that only KCONFIG_EXT_PREFIX is added after the change.)\n\nBreak up the string here and add (if kconfig_ext is set):\n```\nif kconfig_ext:\n    command +\u003d \"\"\"\n               source {build_utils_sh}\n               export KCONFIG_EXT_PREFIX\u003d$(rel_path $(realpath $(dirname {kconfig_ext})) ${{ROOT_DIR}}/${{KERNEL_DIR}}/)\n\"\"\".format(kconfig_ext \u003d kconfig_ext.short_path, build_utils_sh\u003d...)\n```\n\nB. Break up the string here and add (if kconfig_ext is set):\n```\nif kconfig_ext:\n    command +\u003d \"\"\"\n               export KCONFIG_EXT\u003d{kconfig_ext}\n\"\"\".format(kconfig_ext \u003d kconfig_ext.short_path)\n```\n\nThen at L484:\n```\n         if [[ ${{KCONFIG_EXT}} ]]; then\n             export KCONFIG_EXT_PREFIX\u003d$(rel_path $(realpath $(dirname ${{KCONFIG_EXT}}))  ${{ROOT_DIR}}/${{KERNEL_DIR}}/)\n         fi\n```",
+      "revId": "399172990f2f6eb3b0a32d1b80d89c215472f3f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e928f41_c07b9985",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:34:46Z",
+      "side": 1,
+      "message": "nit:\n\n```\n\"\"\"\nexport KCONFIG_EXT_PREFIX\u003d$(rel_path $(realpath $(dirname {kconfig_ext})) ${{ROOT_DIR}}/${{KERNEL_DIR}})/\n\"\"\".format(kconfig_ext \u003d kconfig_ext.short_path)\n```\n\nalso run buildifier\n\n--\n\nAlso, I looked at my previous patchset. I think we want to put this in env.sh instead. See the other comment.",
+      "range": {
+        "startLine": 494,
+        "startChar": 0,
+        "endLine": 496,
+        "endChar": 88
+      },
+      "revId": "399172990f2f6eb3b0a32d1b80d89c215472f3f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ed407c1_5639faeb",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:34:46Z",
+      "side": 1,
+      "message": "Fix docs here",
+      "range": {
+        "startLine": 567,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 31
+      },
+      "revId": "399172990f2f6eb3b0a32d1b80d89c215472f3f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

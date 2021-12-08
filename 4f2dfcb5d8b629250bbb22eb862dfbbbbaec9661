@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc724932_8fc65460",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:34:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "219b7038_91b4aa00",
+      "range": {
+        "startLine": 145,
+        "startChar": 1,
+        "endLine": 145,
+        "endChar": 27
+      },
+      "revId": "4f2dfcb5d8b629250bbb22eb862dfbbbbaec9661",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea33374a_24453ab4",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-11-18T07:45:56Z",
       "side": 1,
       "message": "FIXME",
+      "range": {
+        "startLine": 563,
+        "startChar": 0,
+        "endLine": 566,
+        "endChar": 10
+      },
+      "revId": "4f2dfcb5d8b629250bbb22eb862dfbbbbaec9661",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f51b43af_31d80303",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:34:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ea33374a_24453ab4",
       "range": {
         "startLine": 563,
         "startChar": 0,
