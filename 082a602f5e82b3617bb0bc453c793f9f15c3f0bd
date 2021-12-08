@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2a1802c_7185947e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T06:05:34Z",
+      "side": 1,
+      "message": "```\n[libprotobuf ERROR external/protobuf/src/google/protobuf/wire_format_lite.cc:584] String field \u0027interceptor.Command.current_directory\u0027 contains invalid UTF-8 data when parsing a protocol buffer. Use the \u0027bytes\u0027 type if you intend to send raw bytes.\n```\n\nThough, it can be built successfully.\n\nShould I file a bug for this?",
+      "revId": "082a602f5e82b3617bb0bc453c793f9f15c3f0bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
