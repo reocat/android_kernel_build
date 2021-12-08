@@ -1,6 +1,161 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "01433c31_4d85da73",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:41:05Z",
+      "side": 1,
+      "message": "docs please",
+      "range": {
+        "startLine": 147,
+        "startChar": 17,
+        "endLine": 147,
+        "endChar": 27
+      },
+      "revId": "ef1d4a330a1cee015b488757cbd6a8c1a8c729a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "173490d7_2937d344",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:41:05Z",
+      "side": 1,
+      "message": "Prefer a separate variable (e.g. dtstree_makefile)\n\n```\ndtstree_makefile \u003d None\ndtstree_srcs \u003d []\n\nif dtstree:\n  dtstree_makefile \u003d dtstree + \"/Makefile\"\n  dtstree_srcs \u003d glob([dtstree + \"/**\"], exclude\u003d...) # you might want to exclude hidden files, etc.? up to you\n\n_kernel_env(\n  ...\n  dtstree_makefile \u003d dtstree_makefile,\n  dtstree_srcs \u003d dtstree_srcs\n)\n```",
+      "range": {
+        "startLine": 318,
+        "startChar": 8,
+        "endLine": 318,
+        "endChar": 15
+      },
+      "revId": "ef1d4a330a1cee015b488757cbd6a8c1a8c729a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7951e189_e06bda1f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:41:05Z",
+      "side": 1,
+      "message": "... and name this `dtstree_makefile` as well",
+      "range": {
+        "startLine": 324,
+        "startChar": 8,
+        "endLine": 324,
+        "endChar": 15
+      },
+      "revId": "ef1d4a330a1cee015b488757cbd6a8c1a8c729a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15609b89_8406725d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:41:05Z",
+      "side": 1,
+      "message": "```\ndtstree_makefile \u003d ctx.file.dtstree_makefile\ndtstree_srcs \u003d ctx.files.dtstree_srcs\n```",
+      "range": {
+        "startLine": 431,
+        "startChar": 0,
+        "endLine": 431,
+        "endChar": 30
+      },
+      "revId": "ef1d4a330a1cee015b488757cbd6a8c1a8c729a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7697896_cd475bc5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:41:05Z",
+      "side": 1,
+      "message": "You need to add the dependencies to the _kernel_env rule. See dts_srcs above.\n\n```\ndependencies +\u003d dtstree_srcs\n```",
+      "range": {
+        "startLine": 519,
+        "startChar": 0,
+        "endLine": 521,
+        "endChar": 53
+      },
+      "revId": "ef1d4a330a1cee015b488757cbd6a8c1a8c729a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a1c5f4b_e4d88d11",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:41:05Z",
+      "side": 1,
+      "message": "dtstree_makefile",
+      "range": {
+        "startLine": 586,
+        "startChar": 9,
+        "endLine": 586,
+        "endChar": 16
+      },
+      "revId": "ef1d4a330a1cee015b488757cbd6a8c1a8c729a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b0e4e8f_2ab84aaa",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-08T21:41:05Z",
+      "side": 1,
+      "message": "```\ndtstree_srcs \u003d attr.label_list(allow_files \u003d True, doc \u003d \"...\")\n```",
+      "revId": "ef1d4a330a1cee015b488757cbd6a8c1a8c729a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5c88c129_130dcb1d",
