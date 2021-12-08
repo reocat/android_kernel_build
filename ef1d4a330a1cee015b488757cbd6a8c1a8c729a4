@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c88c129_130dcb1d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-08T21:18:54Z",
+      "side": 1,
+      "message": "Note, we don\u0027t need to check if dtstree is set or used here because if it\u0027s not set, then we get --srcdir ${OUT_DIR}/ which is fine.",
+      "range": {
+        "startLine": 830,
+        "startChar": 32,
+        "endLine": 830,
+        "endChar": 54
+      },
+      "revId": "ef1d4a330a1cee015b488757cbd6a8c1a8c729a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
