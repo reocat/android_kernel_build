@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("//build/kleaf:kernel.bzl", "kernel_build")
+load("//build/kleaf:kernel.bzl", "kernel_build", "kernel_kythe")
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 
 _common_outs = [
@@ -121,4 +121,14 @@ def define_common_kernels(
     native.alias(
         name = "kernel_dist",
         actual = ":kernel_aarch64_dist",
+    )
+
+    kernel_kythe(
+        name = "kernel_aarch64_kythe",
+        kernel_build = ":kernel_aarch64",
+    )
+
+    copy_to_dist_dir(
+        name = "kernel_aarch64_kythe_dist",
+        data = [":kernel_aarch64_kythe"],
     )
