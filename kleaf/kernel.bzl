@@ -118,6 +118,7 @@ def kernel_build(
         deps = (),
         base_kernel = None,
         kconfig_ext = None,
+        dtstree = None,
         toolchain_version = _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -143,6 +144,7 @@ def kernel_build(
         name: The final kernel target name, e.g. `"kernel_aarch64"`.
         build_config: Label of the build.config file, e.g. `"build.config.gki.aarch64"`.
         kconfig_ext: FIXME DOCS
+        dtstree: FIXME DOCS
         srcs: The kernel sources (a `glob()`). If unspecified or `None`, it is the following:
           ```
           glob(
@@ -312,10 +314,14 @@ def kernel_build(
 
     native.filegroup(name = sources_target_name, srcs = srcs)
 
+    if dtstree != None:
+        dtstree = dtstree + "/Makefile"
+
     _kernel_env(
         name = env_target_name,
         build_config = build_config,
         kconfig_ext = kconfig_ext,
+        dtstree = dtstree,
         srcs = srcs,
         toolchain_version = toolchain_version,
     )
@@ -422,6 +428,7 @@ def _kernel_env_impl(ctx):
 
     build_config = ctx.file.build_config
     kconfig_ext = ctx.file.kconfig_ext
+    dtstree = ctx.file.dtstree
     setup_env = ctx.file.setup_env
     preserve_env = ctx.file.preserve_env
     out_file = ctx.actions.declare_file("%s.sh" % ctx.attr.name)
@@ -496,12 +503,22 @@ def _kernel_env_impl(ctx):
             kconfig_ext_dir = "$(realpath $(dirname {}))".format(kconfig_ext.short_path)
         )
 
+    if dtstree:
+        setup += """
+                export dtstree=$(rel_path {dtstree} ${{ROOT_DIR}}/${{KERNEL_DIR}})
+                """.format(
+            dtstree = "$(realpath $(dirname {}))".format(dtstree.short_path)
+        )
+
     dependencies += [
         out_file,
         ctx.file._build_utils_sh,
     ]
     if kconfig_ext:
         dependencies.append(kconfig_ext)
+    # TODO: who do I get this working?
+    #if dtstree:
+    #    dependencies.append(dtstree.dirname + "/**")
     return [
         _KernelEnvInfo(
             dependencies = dependencies,
@@ -563,6 +580,10 @@ _kernel_env = rule(
             doc = "the toolchain to use for this environment",
         ),
         "kconfig_ext": attr.label(
+            allow_single_file = True,
+            doc = "FIXME DOCS",
+        ),
+        "dtstree": attr.label(
             allow_single_file = True,
             doc = "FIXME DOCS",
         ),
@@ -798,7 +819,7 @@ def _kernel_build_impl(ctx):
                        --transform "s,^/,,"                             \
                        --null -T -
          # Grab outputs. If unable to find from OUT_DIR, look at KBUILD_MIXED_TREE as well.
-           {search_and_mv_output} --srcdir ${{OUT_DIR}} {kbuild_mixed_tree_arg} --dstdir {ruledir} {all_output_names}
+           {search_and_mv_output} --srcdir ${{OUT_DIR}} {kbuild_mixed_tree_arg} {dtstree_arg} --dstdir {ruledir} {all_output_names}
          # Archive modules_staging_dir
            tar czf {modules_staging_archive} -C {modules_staging_dir} .
          # Clean up staging directories
@@ -806,6 +827,7 @@ def _kernel_build_impl(ctx):
          """.format(
         search_and_mv_output = ctx.file._search_and_mv_output.path,
         kbuild_mixed_tree_arg = "--srcdir ${KBUILD_MIXED_TREE}" if kbuild_mixed_tree else "",
+        dtstree_arg = "--srcdir ${OUT_DIR}/${dtstree}",
         ruledir = ruledir.path,
         all_output_names = " ".join(all_output_names),
         modules_staging_dir = modules_staging_dir,
