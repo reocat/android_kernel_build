@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97d2a409_90198440",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-09T00:49:35Z",
+      "side": 1,
+      "message": "I think about this again. I don\u0027t think it is conventional to put \"paths\" in arguments, but rather \"labels (to files)\".\n\nSo, maybe we should ask callers to specify dtstree_makefile directly?",
+      "range": {
+        "startLine": 147,
+        "startChar": 8,
+        "endLine": 147,
+        "endChar": 15
+      },
+      "revId": "dd6b2888c7e950778775a19c305f02224eca515f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72f62bd9_1c862683",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-09T00:49:35Z",
+      "side": 1,
+      "message": "nit: dtstree_makefile",
+      "range": {
+        "startLine": 461,
+        "startChar": 39,
+        "endLine": 461,
+        "endChar": 46
+      },
+      "revId": "dd6b2888c7e950778775a19c305f02224eca515f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
