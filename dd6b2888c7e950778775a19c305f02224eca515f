@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5acfabc_16eb96b6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-09T23:42:26Z",
+      "side": 1,
+      "message": "But this wouldn\u0027t work if `package/name/subpath` is a package.",
+      "parentUuid": "840a6bbd_d0767cc8",
+      "range": {
+        "startLine": 147,
+        "startChar": 8,
+        "endLine": 147,
+        "endChar": 15
+      },
+      "revId": "dd6b2888c7e950778775a19c305f02224eca515f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72f62bd9_1c862683",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 2
