@@ -41,6 +41,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1ffa03c_07bdd9e1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 2112,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-09T08:23:04Z",
+      "side": 1,
+      "message": "It is actually accessible by looking up the DefaultInfo of this rule, just like other rules.\n\nIn addition, if I have two rules, kernel_kythe would become a macro. Unless I also expose the two rule()\u0027s, it is not very different from what I have right now.",
+      "parentUuid": "fb9606ac_b1cd3e33",
+      "revId": "6602303f124c7dd5ec299c7643fc58cb4748f259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80600e95_b14a0f20",
