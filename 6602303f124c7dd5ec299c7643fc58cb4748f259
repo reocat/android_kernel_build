@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf2026c2_1b585b9d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 2114,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-09T08:12:22Z",
+      "side": 1,
+      "message": "I never understand this part. Should I use compdb or compdb_commands? With compdb I have a small kzip (\u003c 50MB), but with compdb_commands I get a large one (~197MB)",
+      "parentUuid": "80600e95_b14a0f20",
+      "range": {
+        "startLine": 2114,
+        "startChar": 85,
+        "endLine": 2114,
+        "endChar": 100
+      },
+      "revId": "6602303f124c7dd5ec299c7643fc58cb4748f259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c49f5c71_c6fa6b92",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 5
@@ -123,6 +147,30 @@
       "writtenOn": "2021-12-08T14:38:23Z",
       "side": 1,
       "message": "what happens if there was an error? isn\u0027t that bad?",
+      "range": {
+        "startLine": 2146,
+        "startChar": 96,
+        "endLine": 2146,
+        "endChar": 100
+      },
+      "revId": "6602303f124c7dd5ec299c7643fc58cb4748f259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "966a1e80_e1929870",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 2146,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-09T08:12:22Z",
+      "side": 1,
+      "message": "No. In fact, because this doesn\u0027t look at generated files, I see a bunch of errors. However, the remaining things can still generate good kzip results. So I\u0027d rather suppress the error, and put the error log as part of the output (copied to dist)",
+      "parentUuid": "14dfc47b_000ed551",
       "range": {
         "startLine": 2146,
         "startChar": 96,
