@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "348bd753_4c9b4ab8",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 2112,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-09T11:20:43Z",
+      "side": 1,
+      "message": "I think we can make the compile_command.json an artifact of the default kernel_build. Otherwise, developers need to build the entire kernel_kythe target to get to the compile_command.json?\n\nSo, I think we should expose this as an explicit rule/artifact of the kernel_build.",
+      "parentUuid": "d1ffa03c_07bdd9e1",
+      "revId": "6602303f124c7dd5ec299c7643fc58cb4748f259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80600e95_b14a0f20",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 5
@@ -172,6 +190,30 @@
         "startChar": 101,
         "endLine": 2114,
         "endChar": 103
+      },
+      "revId": "6602303f124c7dd5ec299c7643fc58cb4748f259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be19d59e_d9c56ef9",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 2114,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-09T11:20:43Z",
+      "side": 1,
+      "message": "compdb_commands produces a single \"commands\" string in the compile_commands.json, while compdb produces an array of arguments. Either way is valid. Kythe before v0.55 did not support \"arguments\", but should be ok now (since the mentioned change landed). The indexed output should not be significantly different. This difference smells like a bug. When in doubt ... more is better?",
+      "parentUuid": "cf2026c2_1b585b9d",
+      "range": {
+        "startLine": 2114,
+        "startChar": 85,
+        "endLine": 2114,
+        "endChar": 100
       },
       "revId": "6602303f124c7dd5ec299c7643fc58cb4748f259",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
