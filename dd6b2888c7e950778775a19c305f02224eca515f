@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "faa79eee_d6d5cef0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-09T00:51:08Z",
+      "side": 1,
+      "message": "e.g. you would expect people to specify\n\n```\n//package/name:subpath/Makefile\n```\n\nwhich can sometimes be\n```\n//package/name:Makefile\n```\n\nIn the latter case, if the caller specifies `//package/name`, then dtstree_makefile becomes `//package/name/Makefile`, which is wrong.",
+      "parentUuid": "97d2a409_90198440",
+      "range": {
+        "startLine": 147,
+        "startChar": 8,
+        "endLine": 147,
+        "endChar": 15
+      },
+      "revId": "dd6b2888c7e950778775a19c305f02224eca515f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72f62bd9_1c862683",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 2
