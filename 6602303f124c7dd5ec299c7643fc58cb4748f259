@@ -119,6 +119,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71320bc4_e5444d1a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 2112,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-10T01:34:37Z",
+      "side": 1,
+      "message": "Done.\n\nI don\u0027t like to put it in kernel_build because that\u0027s already overcrowded. It is also not necessary to be built in regular builds.",
+      "parentUuid": "ca419022_13614cee",
+      "revId": "6602303f124c7dd5ec299c7643fc58cb4748f259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80600e95_b14a0f20",
