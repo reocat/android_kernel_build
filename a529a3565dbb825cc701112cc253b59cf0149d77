@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe253c7a_2bc14aa9",
+        "filename": "kleaf/kconfig_gen.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-10T14:11:30Z",
+      "side": 1,
+      "message": "can we use ctx.actions.expand_template instead?\n\nhttps://docs.bazel.build/versions/main/skylark/lib/actions.html#expand_template",
+      "revId": "a529a3565dbb825cc701112cc253b59cf0149d77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08e89f23_66c3f57f",
+        "filename": "kleaf/kconfig_gen.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-10T14:11:30Z",
+      "side": 1,
+      "message": "\"\"\"Generates kconfig files.\"\"\"",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 3
+      },
+      "revId": "a529a3565dbb825cc701112cc253b59cf0149d77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d5101f6_dd782cc0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 2183,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-10T14:11:30Z",
+      "side": 1,
+      "message": "Does it make sense to record dependencies between known ddk_mod_configs ? Hence, should we have another deps_configs that takes a label_list for ddk_mod_configs?",
+      "range": {
+        "startLine": 2183,
+        "startChar": 0,
+        "endLine": 2183,
+        "endChar": 33
+      },
+      "revId": "a529a3565dbb825cc701112cc253b59cf0149d77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
