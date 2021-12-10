@@ -2210,3 +2210,49 @@ config FOO
         ),
     },
 )
+
+def _cat_impl(ctx):
+    output = ctx.actions.declare_file(ctx.attr.name)
+    ctx.actions.run_shell(
+        outputs = [output],
+        inputs = ctx.files.srcs,
+        progress_message = "Combining files {}".format(ctx.label),
+        # FIXME use cat from toybox
+        command = "cat {srcs} > {output}".format(
+            srcs = " ".join([src.path for src in ctx.files.srcs]),
+            output = output.path,
+        ),
+    )
+    return DefaultInfo(files = depset([output]))
+
+_cat = rule(
+    implementation = _cat_impl,
+    doc = "`cat` files together",
+    attrs = {
+        "srcs": attr.label_list(allow_files = True),
+    },
+)
+
+def ddk_module(
+        name,
+        configs = None,
+        **kwargs):
+    """
+    Define a DDK (Driver Development Kit) module.
+
+    Args:
+      name: Name of target.
+      configs: A list of `ddk_mod_config` that should be set for this module.
+      kwargs: See [`kernel_module`](#kernel_module) for other arguments.
+    """
+    _cat(
+        name = "{name}_kconfig".format(name = name),
+        srcs = configs,
+    )
+
+    kwargs.update(
+        name = name,
+        kconfig = ":{name}_kconfig".format(name = name),
+    )
+    kwargs = _kernel_module_set_defaults(kwargs)
+    _kernel_module(**kwargs)
