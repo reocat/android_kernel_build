@@ -967,6 +967,9 @@ def _check_kernel_build(kernel_modules, kernel_build, this_label):
 def _kernel_module_impl(ctx):
     _check_kernel_build(ctx.attr.kernel_module_deps, ctx.attr.kernel_build, ctx.label)
 
+    if len(ctx.files.makefile) > 1:
+        fail("_kernel_module must have 0 or 1 item in the makefile attribute")
+
     inputs = []
     inputs += ctx.files.srcs
     inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
@@ -1005,6 +1008,15 @@ def _kernel_module_impl(ctx):
     """.format(modules_staging_dir = modules_staging_dir)
     for kernel_module_dep in ctx.attr.kernel_module_deps:
         command += kernel_module_dep[_KernelEnvInfo].setup
+
+    if ctx.files.makefile:
+        command += """
+                 # Copy makefile
+                   cp {src} {ext_mod}/Makefile
+        """.format(
+            src = ctx.files.makefile[0].path,
+            ext_mod = ctx.attr.ext_mod,
+        )
 
     modules_staging_outs = ["lib/modules/*/extra/" + out.name for out in ctx.attr.outs]
     command += """
@@ -1226,12 +1238,12 @@ def kernel_module(
     kwargs = _kernel_module_set_defaults(kwargs)
     _kernel_module(**kwargs)
 
-def _kernel_module_set_defaults(kwargs):
+def _kernel_module_set_defaults(kwargs, exclude_makefiles = False):
     """
     Set default values for `_kernel_module` that can't be specified in
     `attr.*(default=...)` in rule().
     """
-    if kwargs.get("makefile") == None:
+    if kwargs.get("makefile") == None and not exclude_makefiles:
         kwargs["makefile"] = native.glob(["Makefile"])
 
     if kwargs.get("ext_mod") == None:
@@ -1245,8 +1257,9 @@ def _kernel_module_set_defaults(kwargs):
             "**/*.c",
             "**/*.h",
             "**/Kbuild",
-            "**/Makefile",
         ])
+        if not exclude_makefiles:
+            kwargs["srcs"] += native.glob(["**/Makefile"])
 
     return kwargs
 
@@ -2116,6 +2129,12 @@ in the `base_build` attribute of a [`kernel_build`](#kernel_build).
     },
 )
 
+_DdkModConfigInfo = provider(doc = "Information of a ddk_mod_config", fields = {
+    "name": "Name of config",
+    "type": "Type of config",
+    "deps": "Dependent configs",
+})
+
 def _ddk_mod_config_impl(ctx):
     kconfig = ctx.actions.declare_file("{}/Kconfig".format(ctx.attr.name))
     arguments = [
@@ -2140,7 +2159,14 @@ def _ddk_mod_config_impl(ctx):
         executable = ctx.file._kconfig_gen,
         arguments = arguments,
     )
-    return DefaultInfo(files = depset([kconfig]))
+    return [
+        _DdkModConfigInfo(
+            name = ctx.attr.name,
+            type = ctx.attr.type,
+            deps = ctx.attr.deps,
+        ),
+        DefaultInfo(files = depset([kconfig])),
+    ]
 
 ddk_mod_config = rule(
     implementation = _ddk_mod_config_impl,
@@ -2193,6 +2219,60 @@ config FOO
     },
 )
 
+def _ddk_mod_config_info_to_string(config):
+    info = config[_DdkModConfigInfo]
+    return "{name}:{type}".format(
+        name = info.name,
+        type = info.type,
+    )
+
+def _ddk_makefile_impl(ctx):
+    configs = ctx.attr.configs
+    output_makefile = ctx.actions.declare_file("{}/Makefile".format(ctx.attr.name))
+
+    inputs = [ctx.file._gen_ddk_makefile]
+    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
+
+    command = ctx.attr.kernel_build[_KernelEnvInfo].setup
+    command += """
+             # Generate Makefile for DDK module
+               {gen_ddk_makefile} --configs {configs} --kernel-module-outs {outs} --output-makefile {makefile}
+    """.format(
+        gen_ddk_makefile = ctx.file._gen_ddk_makefile.path,
+        configs = " ".join([_ddk_mod_config_info_to_string(config) for config in ctx.attr.configs]),
+        makefile = output_makefile.path,
+        outs = " ".join(ctx.attr.outs),
+    )
+    _debug_print_scripts(ctx, command)
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [output_makefile],
+        command = command,
+        progress_message = "Generating Makefile {}".format(ctx.label),
+    )
+    return DefaultInfo(files = depset([output_makefile]))
+
+_ddk_makefile = rule(
+    implementation = _ddk_makefile_impl,
+    doc = "Generate `Makefile` for ddk_module",
+    attrs = {
+        "configs": attr.label_list(
+            providers = [_DdkModConfigInfo],
+        ),
+        "outs": attr.string_list(),
+        "kernel_build": attr.label(
+            providers = [_KernelEnvInfo],
+        ),
+        "_gen_ddk_makefile": attr.label(
+            allow_single_file = True,
+            default = "//build/kleaf:gen_ddk_makefile.py",
+        ),
+        "_debug_print_scripts": attr.label(
+            default = "//build/kleaf:debug_print_scripts",
+        ),
+    },
+)
+
 def ddk_module(
         name,
         configs = None,
@@ -2206,8 +2286,20 @@ def ddk_module(
       kwargs: See [`kernel_module`](#kernel_module) for other arguments.
     """
 
+    if kwargs.get("makefile"):
+        fail("makefile is not a valid attribute of ddk_module")
+
     kwargs.update(
         name = name,
     )
-    kwargs = _kernel_module_set_defaults(kwargs)
+    kwargs = _kernel_module_set_defaults(kwargs, exclude_makefiles = True)
+
+    _ddk_makefile(
+        name = "{name}_makefile".format(name = name),
+        configs = configs,
+        outs = kwargs.get("outs"),
+        kernel_build = kwargs.get("kernel_build"),
+    )
+    kwargs["makefile"] = [":{name}_makefile".format(name = name)]
+
     _kernel_module(**kwargs)
