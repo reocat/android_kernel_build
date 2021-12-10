@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78e414b4_9e5e6b63",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-10T01:19:53Z",
+      "side": 1,
+      "message": "nit: labels\n\nAlso append  \"(a `glob()`)\" at the end like srcs below",
+      "range": {
+        "startLine": 149,
+        "startChar": 22,
+        "endLine": 149,
+        "endChar": 27
+      },
+      "revId": "de936b93b0d54c62712c1ddb7f345b6df6fd81d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
