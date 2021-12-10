@@ -973,7 +973,6 @@ def _kernel_module_impl(ctx):
     inputs += ctx.attr._modules_prepare[_KernelEnvInfo].dependencies
     inputs += ctx.attr.kernel_build[_KernelBuildInfo].module_srcs
     inputs += [
-        ctx.file.makefile,
         ctx.file._search_and_mv_output,
     ]
     for kernel_module_dep in ctx.attr.kernel_module_deps:
@@ -1031,7 +1030,7 @@ def _kernel_module_impl(ctx):
              # Move Module.symvers
                mv ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers {module_symvers}
                """.format(
-        ext_mod = ctx.file.makefile.dirname,
+        ext_mod = ctx.attr.ext_mod,
         search_and_mv_output = ctx.file._search_and_mv_output.path,
         module_symvers = module_symvers.path,
         modules_staging_dir = modules_staging_dir,
@@ -1061,7 +1060,7 @@ def _kernel_module_impl(ctx):
              # New shell ends
                )
     """.format(
-        ext_mod = ctx.file.makefile.dirname,
+        ext_mod = ctx.attr.ext_mod,
         module_symvers = module_symvers.path,
     )
 
@@ -1091,9 +1090,6 @@ _kernel_module = rule(
             mandatory = True,
             allow_files = True,
         ),
-        "makefile": attr.label(
-            allow_single_file = True,
-        ),
         "kernel_build": attr.label(
             mandatory = True,
             providers = [_KernelEnvInfo, _KernelBuildInfo],
@@ -1104,6 +1100,7 @@ _kernel_module = rule(
         # Not output_list because it is not a list of labels. The list of
         # output labels are inferred from name and outs.
         "outs": attr.output_list(),
+        "ext_mod": attr.string(mandatory = True),
         "_search_and_mv_output": attr.label(
             allow_single_file = True,
             default = Label("//build/kleaf:search_and_mv_output.py"),
@@ -1123,7 +1120,6 @@ def kernel_module(
         outs = None,
         srcs = None,
         kernel_module_deps = [],
-        makefile = ":Makefile",
         **kwargs):
     """Generates a rule that builds an external kernel module.
 
@@ -1159,8 +1155,6 @@ def kernel_module(
           ```
         kernel_build: Label referring to the kernel_build module.
         kernel_module_deps: A list of other kernel_module dependencies.
-        makefile: Label referring to the makefile. This is where `make` is
-          executed on (`make -C $(dirname ${makefile})`).
         outs: The expected output files. If unspecified or value is `None`, it
           is `["{name}.ko"]` by default.
 
@@ -1231,7 +1225,7 @@ def kernel_module(
         kernel_build = kernel_build,
         kernel_module_deps = kernel_module_deps,
         outs = outs,
-        makefile = makefile,
+        ext_mod = native.package_name(),
         **kwargs
     )
 
