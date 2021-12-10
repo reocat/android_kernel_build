@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a89ffddf_eba4fe7e",
+        "filename": "kleaf/gen_ddk_makefile.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-10T14:24:07Z",
+      "side": 1,
+      "message": "let\u0027s start with https://docs.bazel.build/versions/main/skylark/lib/actions.html#expand_template and switch to python if it gets too crazy?",
+      "revId": "83acac89e980a0771a428b0936e70a3527ab3685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ba62b21_cd0e12be",
+        "filename": "kleaf/gen_ddk_makefile.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-10T14:24:07Z",
+      "side": 1,
+      "message": "there is no 1:1 correlation between mod.ko and mod.c\n\nit is more like\n  mod.c  -\u003e mod.o \n  mod2.c -\u003e mod2.o\n  mod3.c -\u003e mod3.o\n  \n  mod.o mod2.o mod3.o -\u003e mod.ko\n  \n  \nHence, ddk_module (or ddk_makefile for that matter) needs to have a signature like\n\n ddk(\n   name ...\n   srcs \u003d [\u0027mod.c\u0027, \u0027mod2.c\u0027, \u0027mod.3\u0027],\n   outs \u003d [\u0027mod.ko\u0027],\n   ...\n )",
+      "revId": "83acac89e980a0771a428b0936e70a3527ab3685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
