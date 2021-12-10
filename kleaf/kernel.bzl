@@ -2192,3 +2192,22 @@ config FOO
         ),
     },
 )
+
+def ddk_module(
+        name,
+        configs = None,
+        **kwargs):
+    """
+    Define a DDK (Driver Development Kit) module.
+
+    Args:
+      name: Name of target.
+      configs: A list of `ddk_mod_config` that should be set for this module.
+      kwargs: See [`kernel_module`](#kernel_module) for other arguments.
+    """
+
+    kwargs.update(
+        name = name,
+    )
+    kwargs = _kernel_module_set_defaults(kwargs)
+    _kernel_module(**kwargs)
