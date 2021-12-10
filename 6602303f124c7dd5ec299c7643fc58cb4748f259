@@ -103,6 +103,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ca419022_13614cee",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 2112,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-10T00:47:27Z",
+      "side": 1,
+      "message": "You get a point there. I\u0027ll split it into two rules.",
+      "parentUuid": "348bd753_4c9b4ab8",
+      "revId": "6602303f124c7dd5ec299c7643fc58cb4748f259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80600e95_b14a0f20",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 5
@@ -209,6 +227,30 @@
       "side": 1,
       "message": "compdb_commands produces a single \"commands\" string in the compile_commands.json, while compdb produces an array of arguments. Either way is valid. Kythe before v0.55 did not support \"arguments\", but should be ok now (since the mentioned change landed). The indexed output should not be significantly different. This difference smells like a bug. When in doubt ... more is better?",
       "parentUuid": "cf2026c2_1b585b9d",
+      "range": {
+        "startLine": 2114,
+        "startChar": 85,
+        "endLine": 2114,
+        "endChar": 100
+      },
+      "revId": "6602303f124c7dd5ec299c7643fc58cb4748f259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36ad01b9_515064b9",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 2114,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-10T00:47:27Z",
+      "side": 1,
+      "message": "I have the same feeling, so I use compdb_commands here.",
+      "parentUuid": "be19d59e_d9c56ef9",
       "range": {
         "startLine": 2114,
         "startChar": 85,
