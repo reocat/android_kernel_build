@@ -978,6 +978,8 @@ def _kernel_module_impl(ctx):
     ]
     for kernel_module_dep in ctx.attr.kernel_module_deps:
         inputs += kernel_module_dep[_KernelEnvInfo].dependencies
+    if ctx.file.kconfig:
+        inputs.append(ctx.file.kconfig)
 
     modules_staging_archive = ctx.actions.declare_file("modules_staging_archive.tar.gz")
     modules_staging_dir = modules_staging_archive.dirname + "/staging"
@@ -1005,6 +1007,19 @@ def _kernel_module_impl(ctx):
     """.format(modules_staging_dir = modules_staging_dir)
     for kernel_module_dep in ctx.attr.kernel_module_deps:
         command += kernel_module_dep[_KernelEnvInfo].setup
+
+    if ctx.file.kconfig:
+        command += """
+                 # Override Kconfig
+                   if [[ -f {ext_mod}/Kconfig ]]; then
+                      echo "File {ext_mod}/Kconfig already exists. Exclude it from `srcs` of the `ddk_module`."
+                      exit 1
+                   fi
+                   cp {kconfig} {ext_mod}/Kconfig
+        """.format(
+            ext_mod = ctx.file.makefile.dirname,
+            kconfig = ctx.file.kconfig.path,
+        )
 
     modules_staging_outs = ["lib/modules/*/extra/" + out.name for out in ctx.attr.outs]
     command += """
@@ -1093,6 +1108,9 @@ _kernel_module = rule(
         ),
         "makefile": attr.label_list(
             allow_files = True,
+        ),
+        "kconfig": attr.label(
+            allow_single_file = True,
         ),
         "kernel_build": attr.label(
             mandatory = True,
