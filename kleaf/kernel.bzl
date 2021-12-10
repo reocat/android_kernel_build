@@ -2115,3 +2115,80 @@ in the `base_build` attribute of a [`kernel_build`](#kernel_build).
         ),
     },
 )
+
+def _ddk_mod_config_impl(ctx):
+    kconfig = ctx.actions.declare_file("{}/Kconfig".format(ctx.attr.name))
+    arguments = [
+        "--name",
+        ctx.attr.name,
+        "--type",
+        ctx.attr.type,
+        "--prompt",
+        ctx.attr.prompt,
+        "--helpstr",
+        ctx.attr.help,
+        "--out",
+        kconfig.path,
+    ]
+    if ctx.attr.deps:
+        arguments.append("--deps")
+        arguments += ctx.attr.deps
+    ctx.actions.run(
+        outputs = [kconfig],
+        progress_message = "Building Kconfig {}".format(ctx.label),
+        # FIXME not using hermetic python!
+        executable = ctx.file._kconfig_gen,
+        arguments = arguments,
+    )
+    return DefaultInfo(files = depset([kconfig]))
+
+ddk_mod_config = rule(
+    implementation = _ddk_mod_config_impl,
+    doc = """Define a DDK module config.
+
+Name of the module must be the name of the config, in upper case, without
+the `CONFIG_` prefix.
+
+The output of this rule is a file in [Kconfig language](https://www.kernel.org/doc/html/latest/kbuild/kconfig-language.html).
+
+For example:
+```
+ddk_mod_config(
+    name = "FOO",
+    prompt = "foo prompt string",
+    deps = ["BAR"],
+    help = "foo help string.",
+)
+```
+
+... generates the following `Kconfig` file:
+
+```
+config FOO
+	tristate "foo prompt string"
+	depends on BAR
+	help
+	 foo help string.
+```
+    """,
+    attrs = {
+        "type": attr.string(
+            doc = "Type of the config.",
+            default = "tristate",
+            values = ["bool", "tristate", "string", "hex", "int"],
+        ),
+        "prompt": attr.string(
+            doc = "Prompt string of the config.",
+        ),
+        "deps": attr.string_list(
+            doc = "Other configs that this config depends on.",
+        ),
+        "help": attr.string(
+            doc = "Help string of the config",
+        ),
+        "_kconfig_gen": attr.label(
+            allow_single_file = True,
+            default = "//build/kleaf:kconfig_gen.py",
+        ),
+    },
+)
