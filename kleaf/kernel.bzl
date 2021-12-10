@@ -2245,9 +2245,14 @@ def ddk_module(
       configs: A list of `ddk_mod_config` that should be set for this module.
       kwargs: See [`kernel_module`](#kernel_module) for other arguments.
     """
+    _cat(
+        name = "{name}_kconfig".format(name = name),
+        srcs = configs,
+    )
 
     kwargs.update(
         name = name,
+        kconfig = ":{name}_kconfig".format(name = name),
     )
     kwargs = _kernel_module_set_defaults(kwargs)
     _kernel_module(**kwargs)
