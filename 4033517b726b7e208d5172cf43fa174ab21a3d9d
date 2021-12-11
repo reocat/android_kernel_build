@@ -33,6 +33,23 @@
       "message": "there must be something in Bazel that makes this easier",
       "revId": "4033517b726b7e208d5172cf43fa174ab21a3d9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b22db99d_5758a315",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-11T00:37:57Z",
+      "side": 1,
+      "message": "there\u0027s no need to generate Kconfig files",
+      "revId": "4033517b726b7e208d5172cf43fa174ab21a3d9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
