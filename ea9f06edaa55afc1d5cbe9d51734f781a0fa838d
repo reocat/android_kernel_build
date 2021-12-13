@@ -22,6 +22,30 @@
       },
       "revId": "ea9f06edaa55afc1d5cbe9d51734f781a0fa838d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7567ff09_61527d7f",
+        "filename": "build.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-13T18:38:49Z",
+      "side": 1,
+      "message": "I think this is checking to see if the prebuilts have changed. It doesn\u0027t look like duplicate code to me. Maybe I\u0027m missing something you\u0027re seeing?",
+      "parentUuid": "4fb1c74b_bad4b007",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 473,
+        "endChar": 4
+      },
+      "revId": "ea9f06edaa55afc1d5cbe9d51734f781a0fa838d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
