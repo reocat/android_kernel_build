@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fb1c74b_bad4b007",
+        "filename": "build.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-13T10:06:56Z",
+      "side": 1,
+      "message": "this seems to be duplicate code? Do we need this to be done twice?",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 473,
+        "endChar": 4
+      },
+      "revId": "ea9f06edaa55afc1d5cbe9d51734f781a0fa838d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
