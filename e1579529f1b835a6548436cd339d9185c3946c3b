@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa5dfcdd_c71787d1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-13T10:12:35Z",
+      "side": 1,
+      "message": "let\u0027s do this calculation in starlark and not in the shell script snippet",
+      "revId": "e1579529f1b835a6548436cd339d9185c3946c3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
