@@ -16,6 +16,24 @@
       "message": "can we calculate this outside of the shell script? I would rather not make the shell script part hard to reason about.",
       "revId": "963d119e8a6aaa8c7c91e30978655208d4c75a3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62fa793a_e3d95518",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-13T18:11:24Z",
+      "side": 1,
+      "message": "There are a couple of dependencies that needed to be met that required me to put it here. \n\n(1) ROOT_DIR and KERNEL_DIR need to be defined.\n(2) realpath and dirname need to be visible.\n\nTo meet these, we needed this to be after sourcing BUILD_CONFIG and after updating PATH to include the host tools. If you can think of a better spot to do this, then please let me know.",
+      "parentUuid": "5b744eaa_18457b3a",
+      "revId": "963d119e8a6aaa8c7c91e30978655208d4c75a3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
