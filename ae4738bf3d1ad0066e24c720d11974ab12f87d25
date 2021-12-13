@@ -16,6 +16,24 @@
       "message": "this is creating a file names BUILD that\u0027s empty? Necessary?",
       "revId": "ae4738bf3d1ad0066e24c720d11974ab12f87d25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "830165ed_62baf789",
+        "filename": "kleaf/key_value_repo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-13T20:56:25Z",
+      "side": 1,
+      "message": "it is necessary to mark this as a package. think of repository rules as rules that create virtual filesystem layouts. the same bazel rules apply.",
+      "parentUuid": "de7bbb09_f3f46dfb",
+      "revId": "ae4738bf3d1ad0066e24c720d11974ab12f87d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
