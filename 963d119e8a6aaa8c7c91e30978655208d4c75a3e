@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b744eaa_18457b3a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-13T10:10:42Z",
+      "side": 1,
+      "message": "can we calculate this outside of the shell script? I would rather not make the shell script part hard to reason about.",
+      "revId": "963d119e8a6aaa8c7c91e30978655208d4c75a3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
