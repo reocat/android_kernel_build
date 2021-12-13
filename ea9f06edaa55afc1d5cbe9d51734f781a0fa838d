@@ -46,6 +46,30 @@
       },
       "revId": "ea9f06edaa55afc1d5cbe9d51734f781a0fa838d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cabe6c7f_16ac2f01",
+        "filename": "build.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-13T18:42:53Z",
+      "side": 1,
+      "message": "Oh wait this diff is not showing the line you\u0027re referring to.\n\nThe reason I check for the ending \"/\" is in case $(rel_path ...) doesn\u0027t include an ending \"/\". And I check for the \"/\" on line 455 because of the first if-statement. I could technically include the \"/\" in the if-check and then sometimes you might get two \"/\", but that should be fine.\n\nIf you prefer, I can drop the first if-check (line 455) and do this on line 461:\n\n    if [ -f \"${ROOT_DIR}/${KCONFIG_EXT_PREFIX}/Kconfig.ext\" ]; then",
+      "parentUuid": "7567ff09_61527d7f",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 473,
+        "endChar": 4
+      },
+      "revId": "ea9f06edaa55afc1d5cbe9d51734f781a0fa838d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
