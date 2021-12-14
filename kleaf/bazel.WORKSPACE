@@ -13,6 +13,7 @@
 # limitations under the License.
 
 load("//build/kleaf:key_value_repo.bzl", "key_value_repo")
+load("//build/kleaf:source_date_epoch_repo.bzl", "source_date_epoch_repo")
 
 toplevel_output_directories(paths = ["out"])
 
@@ -29,4 +30,8 @@ local_repository(
 key_value_repo(
     name = "kernel_toolchain_info",
     srcs = ["//common:build.config.constants"],
+)
+
+source_date_epoch_repo(
+    name = "source_date_epoch_info",
 )

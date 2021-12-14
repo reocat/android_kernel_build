@@ -18,11 +18,15 @@
 # - Otherwise, try to determine from the youngest committer time that can be found across the repos
 # - If that fails, fallback to 0
 #
-# https://github.com/bazelbuild/bazel/issues/7742: `git` cannot be executed in the sandbox. To
-# avoid dependency on `.git` directory, determine SOURCE_DATE_EPOCH before Bazel is started.
-#
 # For details about SOURCE_DATE_EPOCH, see
 # https://reproducible-builds.org/docs/source-date-epoch/
+
+# This script is located at ${ROOT_DIR}/build/{kernel/,}kleaf/source_date_epoch_all.sh.
+# TODO(b/204425264): remove hack once we cut over to build/kernel/ for branches
+ROOT_DIR=$(dirname $(dirname $(dirname $(readlink -f $0 ) ) ) )
+if [[ ! -f ${ROOT_DIR}/WORKSPACE ]]; then
+  ROOT_DIR=$(dirname ${ROOT_DIR})
+fi
 
 # Use pre-set values from the environement if it is already set.
 if [ ! -z "${SOURCE_DATE_EPOCH}" ]; then
@@ -30,15 +34,9 @@ if [ ! -z "${SOURCE_DATE_EPOCH}" ]; then
   exit 0
 fi
 
-# This script is located at ${ROOT_DIR}/build/{kernel/,}kleaf/source_date_epoch.sh.
-# TODO(b/204425264): remove hack once we cut over to build/kernel/
-ROOT_DIR=$(dirname $(dirname $(dirname $(readlink -f $0 ) ) ) )
-if [[ ! -f ${ROOT_DIR}/WORKSPACE ]]; then
-  ROOT_DIR=$(dirname ${ROOT_DIR})
-fi
+all_ts=()
+for d in $(find ${ROOT_DIR} -name ".git" -type d); do
+  all_ts+=($(git -C ${d} log -1 --pretty=%ct))
+done
 
-# Use "git" from the environment.
-if [ -d "${ROOT_DIR}/.source_date_epoch_dir" ]; then
-  git -C "${ROOT_DIR}/.source_date_epoch_dir" log -1 --pretty=%ct
-fi
-
+( for ts in "${all_ts[@]}"; do echo ${ts}; done ) | sort -n | tail -n 1
