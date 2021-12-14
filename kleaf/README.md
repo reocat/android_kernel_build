@@ -30,9 +30,13 @@
 
 [Kleaf Development](docs/kleaf_development.md)
 
+<<<<<<< PATCH SET (1e6c2c kleaf: Release docs for DDK.)
+[Driver Development Kit (DDK)](docs/ddk/main.md)
+=======
 [Kleaf Flags for debugging](docs/flags.md)
 
 [Building `compile_commands.json`](docs/compile_commands.md)
+>>>>>>> BASE      (51d168 kleaf: abi: Create STG file for each XML generated)
 
 ### Configurations
 
