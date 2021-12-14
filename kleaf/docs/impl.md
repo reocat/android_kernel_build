@@ -262,3 +262,5 @@ of `kernel_build` for details.
 [Kleaf](../README.md)
 
 [Resolving common errors](errors.md)
+
+[Driver Development Kit (DDK)](docs/ddk.md)
