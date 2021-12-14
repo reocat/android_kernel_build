@@ -30,6 +30,8 @@
 
 [Kleaf Development](docs/kleaf_development.md)
 
+[Driver Development Kit (DDK)](docs/ddk/main.md)
+
 ### Configurations
 
 `--config=fast`: [Make local builds faster](docs/fast.md)
