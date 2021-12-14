@@ -34,6 +34,24 @@
       "parentUuid": "aa5dfcdd_c71787d1",
       "revId": "e1579529f1b835a6548436cd339d9185c3946c3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b3a53be_b892d218",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-14T01:57:34Z",
+      "side": 1,
+      "message": "I don\u0027t think we can do that without some manual parsing. Note that DTSTREE_MAKEFILE is a short_path, so we can\u0027t just use dtstree_makefile.dirname.\n\nThis could technically be\n\n```\n\"\"\"\nexport dtstree\u003d$(rel_path $(realpath {dtstree} ${{ROOT_DIR}}/${{KERNEL_DIR}})\n\"\"\".format(\n  dtstree \u003d dtstree_makefile.dirname[len(dtstree_makefile.root):])\n```\n\n(and L449~454 would not be needed any more)\n\nBut I think that\u0027s rather hard to understand. WDYT?\n\nhttps://docs.bazel.build/versions/main/skylark/lib/File.html",
+      "parentUuid": "5ffe6554_03335841",
+      "revId": "e1579529f1b835a6548436cd339d9185c3946c3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
