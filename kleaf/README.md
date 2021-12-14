@@ -30,6 +30,8 @@
 
 [Kleaf Development](docs/kleaf_development.md)
 
+[Driver Development Kit (DDK)](docs/ddk/main.md)
+
 ### Configurations
 
 `--config=release`: [Release builds](docs/release.md)
