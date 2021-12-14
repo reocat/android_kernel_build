@@ -52,12 +52,13 @@ srcs = glob(["**/*.h"]),
 
 If the header file is in the directory of a different kernel module:
 
-*   Declare a `filegroup` for headers in the other directory, and add this
-    module to the `visibility` attribute
-*   Add the `filegroup` to `srcs` (as a label)
+* Declare a `filegroup` for headers in the other directory, and add this module
+  to the `visibility` attribute
+* Add the `filegroup` to `srcs` (as a label)
 
 Example:
-[Export headers from BMS](https://android.googlesource.com/kernel/google-modules/bms/+/refs/heads/android-gs-raviole-mainline/BUILD.bazel),
+[Export headers from BMS](https://android.googlesource.com/kernel/google-modules/bms/+/refs/heads/android-gs-raviole-mainline/BUILD.bazel)
+,
 [Use BMS headers for Power Reset module](https://android.googlesource.com/kernel/google-modules/power/reset/+/refs/heads/android-gs-raviole-mainline/BUILD.bazel)
 
 ## WARNING: Symbol version dump "[...]/foo/Module.symvers" is missing. {#module-symvers-missing}
@@ -68,15 +69,17 @@ Solution: Add the `kernel_module` in `foo` to `kernel_module_deps` of the build
 rule.
 
 Example:
-[Power Reset module depends on BMS](https://android.googlesource.com/kernel/google-modules/power/reset/+/refs/heads/android-gs-raviole-mainline/BUILD.bazel).
+[Power Reset module depends on BMS](https://android.googlesource.com/kernel/google-modules/power/reset/+/refs/heads/android-gs-raviole-mainline/BUILD.bazel)
+.
 
 ## ERROR: modpost: "foo" [.../mod_using_foo.ko] undefined! {#modpost-symbol-undefined}
 
 Solution:
 
-* First, ensure the `Module.symvers` file from the module defining `foo` is present.
-  See [this section](#module-symvers-missing).
-* For `kernel_module`s, set `KBUILD_EXTRA_SYMBOLS` accordingly in `Makefile`. Example:
+* First, ensure the `Module.symvers` file from the module defining `foo` is
+  present. See [this section](#module-symvers-missing).
+* For `kernel_module`s, set `KBUILD_EXTRA_SYMBOLS` accordingly in `Makefile`.
+  Example:
   [Makefile for Power Reset module](https://android.googlesource.com/kernel/google-modules/power/reset/+/refs/heads/android-gs-raviole-mainline/Makefile)
   . This is unnecessary for `ddk_module` because `Makefile` is generated.
 
@@ -181,6 +184,7 @@ The SCM version should be embedded properly on release builds, where
 `--config=release` must be specified.
 
 **Solutions**:
+
 - You may hide the dialog by cherry-picking
   [CL 1843574](https://android-review.googlesource.com/c/platform/system/libvintf/+/1843574/)
   if you are running Android 12 in userspace.
@@ -199,17 +203,17 @@ Check what the path of the file is. If it looks like this, continue reading:
 `<some_SOURCE_directory>` means that it **does NOT start with `out/`**. For
 example:
 
-*   `gs/`
-*   `common/`
-*   `private/`
-*   etc.
+* `gs/`
+* `common/`
+* `private/`
+* etc.
 
 `<some_output_file>` means that it is an output file, not a source file. For
 example:
 
-*   `*.ko`
-*   `*.o`
-*   etc.
+* `*.ko`
+* `*.o`
+* etc.
 
 This is likely because `make` has been invoked in `<some_SOURCE_directory>`
 without the proper `O=` argument, or Kbuild did not respect the `O=` argument
@@ -231,8 +235,8 @@ To restore your repository to the normal state in the short term, try one of the
 following under `<workspace_root>/<some_SOURCE_directory>`, or a parent
 directory:
 
-*   `make clean`
-*   `git clean -fdx` (Be careful! This deletes all git ignored files.)
+* `make clean`
+* `git clean -fdx` (Be careful! This deletes all git ignored files.)
 
 There should not be any output files in the source tree, other than in `out/`.
 
@@ -242,10 +246,11 @@ respected. Output files should be contained into the directory pointed at `O=`.
 ## WARNING: Unable to determine EXT_MODULES; scmversion for external modules may be incorrect. [...] <workspace_root>/build.config: No such file or directory
 
 If your device builds external modules, create the top-level `build.config`
-symlink to point to the `build.config` file so scmversions for external
-modules are inferred correctly.
+symlink to point to the `build.config` file so scmversions for external modules
+are inferred correctly.
 
 You may ignore this warning:
+
 - if your device does not build external modules;
 - if you are building GKI.
 
@@ -256,12 +261,11 @@ For details, see [scmversion.md](scmversion.md).
 If you try to `rm -rf out/` and get the above message, this is because Bazel
 removes the write permission on output binaries.
 
-Unlike with `build.sh`, it is no longer needed to clean the output
-directory for consistency of build results.
+Unlike with `build.sh`, it is no longer needed to clean the output directory for
+consistency of build results.
 
-However, if you need to clean the `out/` directory to
-save disk space, you may run `bazel clean`. See
-documentation for the `clean` command
+However, if you need to clean the `out/` directory to save disk space, you may
+run `bazel clean`. See documentation for the `clean` command
 [here](https://bazel.build/docs/user-manual#cleaning-build-outputs).
 
 ## cp: <workspace\_root>/out/bazel/output\_user\_root/[...]/execroot/\_\_main\_\_/[...]/[...]_defconfig: Read-only file system {#defconfig-readonly}
@@ -282,11 +286,11 @@ To restore the workspace to a build-able state, manually delete the generated
 `--experimental_strip_sandbox_path` to get a cleaner path of the file that needs
 to be deleted.
 
-To prevent `--config=local` builds from writing `$DEFCONFIG` into
-the source tree in the future, you may modify `PRE_DEFCONFIG_CMDS` to
-write to `\${OUT_DIR}` instead. Note that because `${OUT_DIR}` is not
-defined when `build.config` is loaded, the preceding `$` must be escaped
-so `$OUT_DIR` is evaluated properly when `$PRE_DEFCONFIG_CMDS` are executed.
+To prevent `--config=local` builds from writing `$DEFCONFIG` into the source
+tree in the future, you may modify `PRE_DEFCONFIG_CMDS` to write
+to `\${OUT_DIR}` instead. Note that because `${OUT_DIR}` is not defined
+when `build.config` is loaded, the preceding `$` must be escaped so `$OUT_DIR`
+is evaluated properly when `$PRE_DEFCONFIG_CMDS` are executed.
 
 You may also stick with sandboxed builds (i.e. not using `--config=local`)
 to prevent this in the future. See [sandbox.md](sandbox.md).
@@ -314,10 +318,10 @@ This is a harmless warning message.
 
 ## ERROR: Skipping '//common:kernel_aarch64_abi_update': no such target
 
-When updating ABI definition file for the first time or a branch has no
-existing symbol list file, this error will be generated when running the ABI
-symbol list update target. This happens because Bazel can not find a file to
-update. In that case the target is not generated.
+When updating ABI definition file for the first time or a branch has no existing
+symbol list file, this error will be generated when running the ABI symbol list
+update target. This happens because Bazel can not find a file to update. In that
+case the target is not generated.
 
 To work around this, first create an empty ABI definition file using:
 
@@ -325,13 +329,15 @@ To work around this, first create an empty ABI definition file using:
 touch common/android/abi_gki_aarch64.xml
 ```
 
-Second, run ABI definition update with no diff as reference file will be an empty file using:
+Second, run ABI definition update with no diff as reference file will be an
+empty file using:
 
 ```shell
 bazel run //common:kernel_aarch64_abi_nodiff_update
 ```
 
-This will geneate the base line ABI definition file and ABI definition update target
+This will geneate the base line ABI definition file and ABI definition update
+target
 `//common:kernel_aarch64_abi_update` will be available now onwards.
 
 For details, see [abi.md#update-abi](abi.md#update-abi)
