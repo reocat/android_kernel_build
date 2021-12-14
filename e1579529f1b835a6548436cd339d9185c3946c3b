@@ -52,6 +52,24 @@
       "parentUuid": "5ffe6554_03335841",
       "revId": "e1579529f1b835a6548436cd339d9185c3946c3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cf77970_5c7de386",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-14T17:14:09Z",
+      "side": 1,
+      "message": "Let\u0027s leave it as is right now. Possibly when we move away entirely from build.config files, we can revisit this.",
+      "parentUuid": "0b3a53be_b892d218",
+      "revId": "e1579529f1b835a6548436cd339d9185c3946c3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
