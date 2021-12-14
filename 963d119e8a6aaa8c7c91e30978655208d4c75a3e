@@ -52,6 +52,24 @@
       "parentUuid": "62fa793a_e3d95518",
       "revId": "963d119e8a6aaa8c7c91e30978655208d4c75a3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd811fcf_9a13de80",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-14T12:24:12Z",
+      "side": 1,
+      "message": "That\u0027s ok then. I just wanted to point this out in case we see a chance to move the logic out of the shell script.",
+      "parentUuid": "8c6d562f_76669ab3",
+      "revId": "963d119e8a6aaa8c7c91e30978655208d4c75a3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
