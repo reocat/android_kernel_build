@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58923ab5_31c77b40",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-15T17:56:12Z",
+      "side": 1,
+      "message": "I pushed this upstream:\n\nhttps://lore.kernel.org/all/20211215172349.388497-1-willmcvicker@google.com/\n\nI don\u0027t think we\u0027ll have issues with this. If we do, then I\u0027ll pull it into ACK via an \"ANDROID:\" change.",
+      "range": {
+        "startLine": 97,
+        "startChar": 36,
+        "endLine": 97,
+        "endChar": 64
+      },
+      "revId": "4daa462a176602129dda06574ce168f1ec68ff11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
