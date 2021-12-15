@@ -805,10 +805,14 @@ done
 
 echo "========================================================"
 echo " Copying files"
-for FILE in $(cd ${OUT_DIR} && ls -1 ${FILES}); do
+for FILE in ${FILES}; do
   if [ -f ${OUT_DIR}/${FILE} ]; then
     echo "  $FILE"
     cp -p ${OUT_DIR}/${FILE} ${DIST_DIR}/
+  elif [[ "${FILE}" =~ dtbs|\.dtb|\.dtbo ]]  && [ -n "${DTS_EXT_DIR}" ] && \
+      [ -f "${OUT_DIR}/${DTS_EXT_DIR}/${FILE}" ]  ; then
+      # DTS_EXT_DIR is recalcuated before to be relative to KERNEL_DIR
+      cp -p "${OUT_DIR}/${DTS_EXT_DIR}/${FILE}" "${DIST_DIR}/"
   else
     echo "  $FILE is not a file, skipping"
   fi
