@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018478728",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1859954?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0d641914_fec72ab7",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T04:26:57Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 4
+      },
+      "revId": "fdf7cfd15e1df272dec2ac3f6982c31a27d8b7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018478728",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1859954?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "889ecf82_d51476aa",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T04:26:57Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027valid\u0027, \u0027validity check\u0027 or \u0027initial check\u0027; see https://source.android.com/setup/contribute/respectful-code for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 123,
+        "startChar": 11,
+        "endLine": 123,
+        "endChar": 17
+      },
+      "revId": "fdf7cfd15e1df272dec2ac3f6982c31a27d8b7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
