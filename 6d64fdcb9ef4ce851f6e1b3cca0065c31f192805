@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27465435_8878bcff",
+        "filename": "kleaf/docs/ddk.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2021-12-16T00:01:22Z",
+      "side": 1,
+      "message": "hmm. this is a public doc referencing a partner doc that won\u0027t be visible to most readers. Maybe we need to move most of the GKI dev guide to SAC at this point.",
+      "revId": "6d64fdcb9ef4ce851f6e1b3cca0065c31f192805",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a69ddef_b265cd92",
+        "filename": "kleaf/docs/ddk.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2021-12-16T00:01:22Z",
+      "side": 1,
+      "message": "\"or equivalent\" ? (if \"therelike\" is a word, it isn\u0027t in common use)",
+      "range": {
+        "startLine": 52,
+        "startChar": 25,
+        "endLine": 52,
+        "endChar": 34
+      },
+      "revId": "6d64fdcb9ef4ce851f6e1b3cca0065c31f192805",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b02b6e4c_a2b3e58b",
+        "filename": "kleaf/docs/ddk.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2021-12-16T00:01:22Z",
+      "side": 1,
+      "message": "\"has come up\"? (the rest of this paragraph is present tense)",
+      "range": {
+        "startLine": 55,
+        "startChar": 27,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "6d64fdcb9ef4ce851f6e1b3cca0065c31f192805",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef687910_dbbf730f",
+        "filename": "kleaf/docs/ddk.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2021-12-16T00:01:22Z",
+      "side": 1,
+      "message": "Is AOSP the right place for \"Design Ideas\"? Maybe we should give PDF versions of this to the partners we want to reach. I don\u0027t think we want to invite everyone to chime in our design ideas. Should we wait until this is fully baked to publish here?",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 15
+      },
+      "revId": "6d64fdcb9ef4ce851f6e1b3cca0065c31f192805",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
