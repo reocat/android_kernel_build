@@ -16,6 +16,92 @@
       "message": "Hi, Matthias\n\nThanks for the suggestions!\nPlease help check it again.\n",
       "revId": "38d941a57fe34331cb4a6539b6afe94dc6b95f07",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc022a81_d9a1bc2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-16T20:31:47Z",
+      "side": 1,
+      "message": "Thanks for this change!",
+      "revId": "38d941a57fe34331cb4a6539b6afe94dc6b95f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6abfbb7b_a203d72c",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-16T20:31:47Z",
+      "side": 1,
+      "message": "Can you put the -n $DTS_EXT_DIR on the same line as the -f ...? I think that makes it more readable since we need 2 lines for the elif anyway.",
+      "range": {
+        "startLine": 822,
+        "startChar": 47,
+        "endLine": 822,
+        "endChar": 74
+      },
+      "revId": "38d941a57fe34331cb4a6539b6afe94dc6b95f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22a6ce05_3605fe3a",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-16T20:31:47Z",
+      "side": 1,
+      "message": "I don\u0027t think we need dtbs here. You should just be able to check for .dtb and .dtbo. I believe upstream has added support for .dtso as well, but we can add that in a follow up since the original patch doesn\u0027t have it either.",
+      "range": {
+        "startLine": 822,
+        "startChar": 23,
+        "endLine": 822,
+        "endChar": 28
+      },
+      "revId": "38d941a57fe34331cb4a6539b6afe94dc6b95f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6517bbd_7e210349",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-16T20:31:47Z",
+      "side": 1,
+      "message": "nit: recalculated",
+      "range": {
+        "startLine": 824,
+        "startChar": 23,
+        "endLine": 824,
+        "endChar": 34
+      },
+      "revId": "38d941a57fe34331cb4a6539b6afe94dc6b95f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
