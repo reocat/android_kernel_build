@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6d1951d_bd975d94",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-16T10:40:46Z",
+      "side": 1,
+      "message": "just that this variable will be used to lookup files in FILES as well.",
+      "parentUuid": "af351849_8d1572d6",
+      "revId": "a218b6e2818680a7cab801767516d6ad38947731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "389b55a2_cd8c06f0",
         "filename": "build.sh",
         "patchSetId": 3
@@ -49,6 +67,30 @@
       "writtenOn": "2021-12-16T01:18:01Z",
       "side": 1,
       "message": "Like add the following lines here:\n\nAnd please update the MAKE_GOALS variable and the FILES variable to specify the target dtb files with the path under ${DTS_EXT_DIR}, so that they could be compiled and copied to the dist directory. Like the following:\n    DTS_EXT_DIR\u003dcommon-modules/virtual-device\n    MAKE_GOALS\u003d\"${MAKE_GOALS} k3399-rock-pi-4b.dtb\"\n    FILES\u003d\"${FILES} rk3399-rock-pi-4b.dtb\"\nwhere the dts file path is common-modules/virtual-device/rk3399-rock-pi-4b.dts",
+      "range": {
+        "startLine": 388,
+        "startChar": 0,
+        "endLine": 388,
+        "endChar": 1
+      },
+      "revId": "a218b6e2818680a7cab801767516d6ad38947731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d93e4055_37765625",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2021-12-16T10:40:46Z",
+      "side": 1,
+      "message": "that sounds reasonable. skip \"And please\", just \"Update the MAKE_GOALS ...\"",
+      "parentUuid": "389b55a2_cd8c06f0",
       "range": {
         "startLine": 388,
         "startChar": 0,
