@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac67772d_afff8e86",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2021-12-16T12:40:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6d1951d_bd975d94",
+      "revId": "a218b6e2818680a7cab801767516d6ad38947731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "389b55a2_cd8c06f0",
@@ -91,6 +109,30 @@
       "side": 1,
       "message": "that sounds reasonable. skip \"And please\", just \"Update the MAKE_GOALS ...\"",
       "parentUuid": "389b55a2_cd8c06f0",
+      "range": {
+        "startLine": 388,
+        "startChar": 0,
+        "endLine": 388,
+        "endChar": 1
+      },
+      "revId": "a218b6e2818680a7cab801767516d6ad38947731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "796a3838_288ddf81",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2021-12-16T12:40:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d93e4055_37765625",
       "range": {
         "startLine": 388,
         "startChar": 0,
