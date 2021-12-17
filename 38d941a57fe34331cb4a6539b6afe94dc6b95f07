@@ -81,6 +81,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08b0fde9_ddff3d07",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2021-12-17T01:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6abfbb7b_a203d72c",
+      "range": {
+        "startLine": 822,
+        "startChar": 47,
+        "endLine": 822,
+        "endChar": 74
+      },
+      "revId": "38d941a57fe34331cb4a6539b6afe94dc6b95f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f5b9f9d_028af0e5",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2021-12-17T01:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22a6ce05_3605fe3a",
+      "range": {
+        "startLine": 822,
+        "startChar": 23,
+        "endLine": 822,
+        "endChar": 28
+      },
+      "revId": "38d941a57fe34331cb4a6539b6afe94dc6b95f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6517bbd_7e210349",
@@ -94,6 +142,30 @@
       "writtenOn": "2021-12-16T20:31:47Z",
       "side": 1,
       "message": "nit: recalculated",
+      "range": {
+        "startLine": 824,
+        "startChar": 23,
+        "endLine": 824,
+        "endChar": 34
+      },
+      "revId": "38d941a57fe34331cb4a6539b6afe94dc6b95f07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "873e7f8d_f9089167",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2021-12-17T01:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6517bbd_7e210349",
       "range": {
         "startLine": 824,
         "startChar": 23,
