@@ -737,6 +737,24 @@ _KernelBuildInfo = provider(fields = {
     "interceptor_output": "`interceptor` log. See [`interceptor`](https://android.googlesource.com/kernel/tools/interceptor/) project.",
 })
 
+_SrcsInfo = provider(fields = {
+    "srcs": "A depset, transitively containing a sequence of depsets, where each depset " +
+            "corresponds to the set of " +
+            "[File](https://docs.bazel.build/versions/main/skylark/lib/File.html)s " +
+            "of each item in the srcs attribute of a rule.",
+})
+
+def _srcs_aspect_impl(target, ctx):
+    if not hasattr(ctx.rule.attr, "srcs"):
+        return
+    return [_SrcsInfo(srcs = depset([], transitive = [src.files for src in ctx.rule.attr.srcs]))]
+
+_srcs_aspect = aspect(
+    implementation = _srcs_aspect_impl,
+    doc = "An aspect that retrieves srcs attribute from a rule.",
+    attr_aspects = ["srcs"],
+)
+
 def _kernel_build_impl(ctx):
     kbuild_mixed_tree = None
     base_kernel_files = []
@@ -2223,7 +2241,7 @@ def _kernel_kythe_impl(ctx):
     kzip_dir = all_kzip.dirname + "/intermediates"
     extracted_kzip_dir = all_kzip.dirname + "/extracted"
     inputs = [compile_commands]
-    inputs += ctx.files._srcs
+    inputs += ctx.attr.kernel_build[_SrcsInfo].srcs.to_list()
     inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
     command = ctx.attr.kernel_build[_KernelEnvInfo].setup
     command += """
@@ -2266,9 +2284,6 @@ def _kernel_kythe_impl(ctx):
         runextractor_error,
     ]))
 
-def _get_sources(kernel_build):
-    return Label(str(kernel_build) + "_sources")
-
 kernel_kythe = rule(
     implementation = _kernel_kythe_impl,
     doc = """
@@ -2279,6 +2294,7 @@ Extract Kythe source code index (kzip file) from a `kernel_build`.
             mandatory = True,
             doc = "The `kernel_build` target to extract from.",
             providers = [_KernelEnvInfo, _KernelBuildInfo],
+            aspects = [_srcs_aspect],
         ),
         "compile_commands": attr.label(
             mandatory = True,
@@ -2289,6 +2305,5 @@ Extract Kythe source code index (kzip file) from a `kernel_build`.
             default = "android.googlesource.com/kernel/superproject",
             doc = "The value of `KYTHE_CORPUS`. See [kythe.io/examples](https://kythe.io/examples).",
         ),
-        "_srcs": attr.label(default = _get_sources),
     },
 )
