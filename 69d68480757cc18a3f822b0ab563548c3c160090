@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4cc1826_b5e9b652",
+        "filename": "kleaf/rename_kzip.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-22T20:16:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc541b17_9a398377",
+      "revId": "69d68480757cc18a3f822b0ab563548c3c160090",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c338efc_8f1bdd2d",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-12-22T05:01:52Z",
       "side": 1,
       "message": "Suggest: exec mv",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 14
+      },
+      "revId": "69d68480757cc18a3f822b0ab563548c3c160090",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df444957_59919542",
+        "filename": "kleaf/rename_kzip.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-22T20:16:22Z",
+      "side": 1,
+      "message": "Done. Though, why should I do that?",
+      "parentUuid": "8c338efc_8f1bdd2d",
       "range": {
         "startLine": 28,
         "startChar": 0,
