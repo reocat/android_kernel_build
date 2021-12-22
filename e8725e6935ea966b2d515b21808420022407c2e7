@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9258fbc0_a9c326d0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1046,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-22T17:46:10Z",
+      "side": 1,
+      "message": "Do you need this? I don\u0027t think out.name changes, right?",
+      "range": {
+        "startLine": 1046,
+        "startChar": 0,
+        "endLine": 1046,
+        "endChar": 22
+      },
+      "revId": "e8725e6935ea966b2d515b21808420022407c2e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c422f8ce_7fe701c1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1080,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-22T17:46:10Z",
+      "side": 1,
+      "message": "Why do you have to change this? Wouldn\u0027t the original loop be the same thing since out.name is the same as short_name?",
+      "range": {
+        "startLine": 1078,
+        "startChar": 0,
+        "endLine": 1080,
+        "endChar": 0
+      },
+      "revId": "e8725e6935ea966b2d515b21808420022407c2e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c838ded9_899fb921",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-22T17:46:10Z",
+      "side": 1,
+      "message": "Same here. This should be the same.",
+      "range": {
+        "startLine": 1115,
+        "startChar": 15,
+        "endLine": 1115,
+        "endChar": 39
+      },
+      "revId": "e8725e6935ea966b2d515b21808420022407c2e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
