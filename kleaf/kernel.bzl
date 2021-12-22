@@ -115,14 +115,14 @@ def kernel_build(
         build_config,
         outs,
         srcs = None,
-        module_outs = [],
+        module_outs = None,
         implicit_outs = None,
         generate_vmlinux_btf = False,
-        deps = (),
+        deps = None,
         base_kernel = None,
         kconfig_ext = None,
         dtstree_makefile = None,
-        dtstree_srcs = [],
+        dtstree_srcs = None,
         toolchain_version = _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
