@@ -134,9 +134,6 @@ def kernel_build(
 
     A few additional labels are generated.
     For example, if name is `"kernel_aarch64"`:
-    - `kernel_aarch64_env` provides a source-able build environment defined by
-      the build config.
-    - `kernel_aarch64_config` provides the kernel config.
     - `kernel_aarch64_uapi_headers` provides the UAPI kernel headers.
     - `kernel_aarch64_headers` provides the kernel headers.
     - `kernel_for_dist` is a filegroup for all dist files
