@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e66aaa6_3925895f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1046,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-22T20:11:36Z",
+      "side": 1,
+      "message": "out.name is not what I need, because I prepended name before it.\n\nSee L1303.\n\nSo out.name would be \"foo/bar\" in the below example, but original_outs would contain \"bar\".",
+      "parentUuid": "9258fbc0_a9c326d0",
+      "range": {
+        "startLine": 1046,
+        "startChar": 0,
+        "endLine": 1046,
+        "endChar": 22
+      },
+      "revId": "e8725e6935ea966b2d515b21808420022407c2e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c422f8ce_7fe701c1",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed94d71f_7f16756f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1080,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-22T20:11:36Z",
+      "side": 1,
+      "message": "See comment above.",
+      "parentUuid": "c422f8ce_7fe701c1",
+      "range": {
+        "startLine": 1078,
+        "startChar": 0,
+        "endLine": 1080,
+        "endChar": 0
+      },
+      "revId": "e8725e6935ea966b2d515b21808420022407c2e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c838ded9_899fb921",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-12-22T17:46:10Z",
       "side": 1,
       "message": "Same here. This should be the same.",
+      "range": {
+        "startLine": 1115,
+        "startChar": 15,
+        "endLine": 1115,
+        "endChar": 39
+      },
+      "revId": "e8725e6935ea966b2d515b21808420022407c2e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4ad5498_29ba13fb",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1115,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-22T20:11:36Z",
+      "side": 1,
+      "message": "See comment above.",
+      "parentUuid": "c838ded9_899fb921",
       "range": {
         "startLine": 1115,
         "startChar": 15,
