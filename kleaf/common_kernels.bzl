@@ -14,6 +14,7 @@
 
 load(
     "//build/kleaf:kernel.bzl",
+    "download",
     "kernel_build",
     "kernel_compile_commands",
     "kernel_kythe",
@@ -155,4 +156,8 @@ def define_common_kernels(
             ":kernel_aarch64_compile_commands",
             ":kernel_aarch64_kythe",
         ],
+    )
+
+    download(
+        name = "foo",
     )
