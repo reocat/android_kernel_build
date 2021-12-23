@@ -22,6 +22,30 @@
       },
       "revId": "4daa462a176602129dda06574ce168f1ec68ff11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4459106a_0e3cd223",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-23T23:07:03Z",
+      "side": 1,
+      "message": "Pushing that change as FROMLIST for now to get P21 in postsubmit.",
+      "parentUuid": "58923ab5_31c77b40",
+      "range": {
+        "startLine": 97,
+        "startChar": 36,
+        "endLine": 97,
+        "endChar": 64
+      },
+      "revId": "4daa462a176602129dda06574ce168f1ec68ff11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
