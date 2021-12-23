@@ -49,6 +49,7 @@ exports_files([
     "preserve_env.sh",
     "search_and_mv_output.py",
     "check_duplicated_files_in_archives.py",
+    "download_artifact.py",
 ])
 
 # Docs. To view them:
@@ -58,6 +59,7 @@ docs(
     name = "docs",
     srcs = [
         "common_kernels.bzl",
+        "download.bzl",
         "kernel.bzl",
         "key_value_repo.bzl",
     ],
