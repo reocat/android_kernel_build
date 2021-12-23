@@ -2249,6 +2249,71 @@ in the `base_build` attribute of a [`kernel_build`](#kernel_build).
     },
 )
 
+def _kernel_download_filegroup_impl(ctx):
+    outdir = ctx.actions.declare_directory(ctx.attr.name)
+    outputs = [ctx.actions.declare_file("{}/{}".format(ctx.attr.name, file)) for file in ctx.attr.files]
+    ctx.actions.run(
+        # TODO(b/206079661): Make this hermetic by using python in prebuilts
+        executable = ctx.file._download_build,
+        arguments = [
+            "--build_number",
+            ctx.attr.build_number,
+            "--target",
+            ctx.attr.target,
+            "--out",
+            outdir.path,
+            "--files",
+        ] + ctx.attr.files,
+        outputs = [outdir] + outputs,
+    )
+    return [
+        DefaultInfo(files = depset(outputs)),
+        KernelFilesInfo(files = ctx.files.srcs),
+    ]
+
+kernel_download_filegroup = rule(
+    implementation = _kernel_download_filegroup_impl,
+    doc = """Specify a list of downloaded kernel prebuilts.
+
+The list of kernel prebuilts is downloaded from [ci.android.com](http://ci.android.com) at build
+time.
+
+This is similar to [`filegroup`](https://docs.bazel.build/versions/main/be/general.html#filegroup)
+that gives a convenient name to a collection of targets, which can be referenced from other rules.
+
+In addition, this rule is conformed with [`KernelFilesInfo`](#kernelfilesinfo), so it can be used
+in the `base_build` attribute of a [`kernel_build`](#kernel_build).
+""",
+    attrs = {
+        "files": attr.string_list(
+            doc = "A list of file names to be downloaded.",
+            # TODO(b/206079661): Use value from common_kernels.bzl
+            default = [
+                "boot.img",
+                "Image",
+                "Image.lz4",
+                "modules.builtin",
+                "modules.builtin.modinfo",
+                "System.map",
+                "vmlinux",
+                "vmlinux.symvers",
+            ],
+        ),
+        "build_number": attr.string(
+            mandatory = True,
+            doc = "A fixed build number to download prebuilts from.",
+        ),
+        "target": attr.string(
+            default = "kernel_kleaf",
+            doc = "Target name to download prebuilts from",
+        ),
+        "_download_build": attr.label(
+            allow_single_file = True,
+            default = "//build/kleaf:download_build.py",
+        ),
+    },
+)
+
 def _kernel_compile_commands_impl(ctx):
     interceptor_output = ctx.attr.kernel_build[_KernelBuildInfo].interceptor_output
     compile_commands = ctx.actions.declare_file(ctx.attr.name + "/compile_commands.json")
