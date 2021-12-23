@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dba8804_c49dbfc1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2021-12-23T09:27:50Z",
+      "side": 1,
+      "message": "It\u0027s nice to end a shell wrapper (here for mv) with exec. It can make for simpler error and signal handling, for example. It always avoids an extra fork / wait and the extra shell process.",
+      "tag": "mailMessageId\u003d\u003cCAGvU0HkxqeW83YQMq9e2K28_cVNs0a5c6ZUeBG-BT+0aBXvdmQ@mail.gmail.com\u003e",
+      "revId": "ca1f5cd0c991efd552118b60bd36d5b1788a8bfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
