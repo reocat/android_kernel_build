@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d4f4b48_bcb44261",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-23T23:37:51Z",
+      "side": 1,
+      "message": "nit: would this work?\n\n```\ntar czf ${{modules_staging_archive}} {modules_staging_outs} lib/modules/*/extra/{ext_mod}/modules.order.*\n```",
+      "range": {
+        "startLine": 1115,
+        "startChar": 0,
+        "endLine": 1119,
+        "endChar": 91
+      },
+      "revId": "d15644d3ef23ceb77f1a5699c7c80138823401e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
