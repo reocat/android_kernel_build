@@ -16,6 +16,7 @@ load(
     "//build/kleaf:kernel.bzl",
     "kernel_build",
     "kernel_compile_commands",
+    "kernel_download_filegroup",
     "kernel_kythe",
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
@@ -155,4 +156,9 @@ def define_common_kernels(
             ":kernel_aarch64_compile_commands",
             ":kernel_aarch64_kythe",
         ],
+    )
+
+    kernel_download_filegroup(
+        name = "kernel_aarch64_downloaded",
+        build_number = "8027204",
     )
