@@ -101,6 +101,7 @@ def define_common_kernels(
         ),
         copy_to_dist_dir(
             name = name + "_dist",
+            flat = True,
             data = [
                 name + "_for_dist",
             ],
@@ -151,6 +152,7 @@ def define_common_kernels(
 
     copy_to_dist_dir(
         name = "kernel_aarch64_kythe_dist",
+        flat = True,
         data = [
             ":kernel_aarch64_compile_commands",
             ":kernel_aarch64_kythe",
