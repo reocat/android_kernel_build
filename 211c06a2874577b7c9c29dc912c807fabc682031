@@ -16,6 +16,24 @@
       "message": "Does ${dest_dir}/modules.order need to be cleared?",
       "revId": "211c06a2874577b7c9c29dc912c807fabc682031",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "671fa377_bb9fac80",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2021-12-24T00:09:48Z",
+      "side": 1,
+      "message": "We run `rm -rf ${dest_dir}` on line 84. So any stale files would be cleaned up before we do this.",
+      "parentUuid": "68fb94ed_cecaf482",
+      "revId": "211c06a2874577b7c9c29dc912c807fabc682031",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
