@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56360591_ebea9f41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-28T23:20:15Z",
+      "side": 1,
+      "message": "Sample error:\n\n```\nERROR: The following kernel modules are built but not copied. Add these lines to the module_outs attribute of //gs/kernel/device-modules:slider:\n    \"xhci-exynos.ko\",\n    \"zsmalloc.ko\",\n```",
+      "revId": "bd38080358f7e54b8728e45a276e1de0fb63d823",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
