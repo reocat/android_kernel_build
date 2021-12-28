@@ -187,8 +187,10 @@ def kernel_build(
 
           Requires that `"vmlinux"` is in `outs`.
         deps: Additional dependencies to build this kernel.
-        module_outs: A list of in-tree drivers. Similar to `outs`, but for `*.ko` files searched
-          from module install directory.
+        module_outs: A list of in-tree drivers. Similar to `outs`, but for `*.ko` files.
+
+          This list must include **all** `*.ko` files in `${OUT_DIR}`. If not,
+          a build error is raised.
 
           Like `outs`, `module_outs` are part of the
           [`DefaultInfo`](https://docs.bazel.build/versions/main/skylark/lib/DefaultInfo.html)
@@ -936,6 +938,15 @@ def _kernel_build_impl(ctx):
                        --null -T -
          # Grab outputs. If unable to find from OUT_DIR, look at KBUILD_MIXED_TREE as well.
            {search_and_mv_output} --srcdir ${{OUT_DIR}} {kbuild_mixed_tree_arg} {dtstree_arg} --dstdir {ruledir} {all_output_names}
+         # Check if there are remaining *.ko files
+           remaining_ko_files=$(find ${{OUT_DIR}} -type f -name '*.ko')
+           if [[ ${{remaining_ko_files}} ]]; then
+             echo "ERROR: The following kernel modules are built but not copied. Add these lines to the module_outs attribute of {label}:"
+             for ko in ${{remaining_ko_files}}; do
+               echo '    "'"$(basename ${{ko}})"'",'
+             done
+             exit 1
+           fi
          # Archive modules_staging_dir
            tar czf {modules_staging_archive} -C {modules_staging_dir} .
          # Clean up staging directories
@@ -950,6 +961,7 @@ def _kernel_build_impl(ctx):
         modules_staging_archive = modules_staging_archive.path,
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
         interceptor_output = interceptor_output.path,
+        label = ctx.label,
     )
 
     _debug_print_scripts(ctx, command)
