@@ -333,6 +333,30 @@
       },
       "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72924fdd_0cae134c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1996,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:27:39Z",
+      "side": 1,
+      "message": "Ah nevermind, you are already including modules.load in outputs.\n\nThough, is it intentional? I thought $DIST_DIR/modules.load contains all modules (include those in vendor_dlkm) as well, no?",
+      "parentUuid": "abe71eca_3ba8b9c1",
+      "range": {
+        "startLine": 1996,
+        "startChar": 0,
+        "endLine": 1996,
+        "endChar": 16
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
