@@ -16,6 +16,8 @@ load(
     "//build/kleaf:kernel.bzl",
     "kernel_build",
     "kernel_compile_commands",
+    "kernel_images",
+    "kernel_modules_install",
     "kernel_kythe",
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
@@ -91,18 +93,43 @@ def define_common_kernels(
                 ],
             ),
         ),
+
         kernel_build(
             name = name,
             srcs = [name + "_sources"],
             outs = outs,
+            implicit_outs = [
+                # Kernel build time module signining utility and keys
+                # Only available if build_config has CONFIG_MODULE_SIG=y and
+                # CONFIG_MODULE_SIG_PROTECT=y
+                # android13-5.10+ and android-mainline
+                  "scripts/sign-file",
+                  "certs/signing_key.pem",
+                  "certs/signing_key.x509"
+            ],
             build_config = config,
             visibility = visibility,
             **kernel_build_kwargs
         ),
+
+        kernel_modules_install(
+            name = name + "_modules_install",
+            kernel_build = name,
+        ),
+
+        kernel_images(
+            name = name + "_system_dlkm",
+            kernel_build = name,
+            kernel_modules_install = name + "_modules_install",
+            build_system_dlkm = True,
+        ),
+
         copy_to_dist_dir(
             name = name + "_dist",
             data = [
                 name + "_for_dist",
+                name + "_modules_install",
+                name + "_system_dlkm",
             ],
             flat = True,
         ),

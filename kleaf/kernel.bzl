@@ -1930,6 +1930,75 @@ corresponding files.
     }),
 )
 
+_SystemDlkmInfo = provider(fields = {
+    "system_dlkm_img": "Output image",
+    "system_dlkm_staging_archive": "Archive of system_dlkm staging directory",
+})
+
+def _system_dlkm_image_impl(ctx):
+    system_dlkm_img = ctx.actions.declare_file("{}/system_dlkm.img".format(ctx.label.name))
+    system_dlkm_staging_archive = ctx.actions.declare_file("{}/system_dlkm_staging_archive.tar.gz".format(ctx.label.name))
+
+    modules_staging_dir = system_dlkm_img.dirname + "/staging"
+    system_dlkm_staging_dir = modules_staging_dir + "/system_dlkm_staging"
+
+    command = """
+               mkdir -p {system_dlkm_staging_dir}
+             # Build system_dlkm.img
+               create_modules_staging "${{MODULES_LIST}}" {modules_staging_dir} \
+                 {system_dlkm_staging_dir} "${{MODULES_BLOCKLIST}}" "-e"
+               modules_root_dir=$(ls {system_dlkm_staging_dir}/lib/modules/*)
+             # Re-sign the stripped modules using kernel build time key
+               for module in $(find {system_dlkm_staging_dir} -type f -name '*.ko'); do
+                   "${{OUT_DIR}}"/scripts/sign-file sha1 \
+                   "${{OUT_DIR}}"/certs/signing_key.pem \
+                   "${{OUT_DIR}}"/certs/signing_key.x509 "${{module}}"
+               done
+             # Build system_dlkm.img with signed GKI modules
+               mkfs.erofs -zlz4hc "{system_dlkm_img}" "{system_dlkm_staging_dir}"
+             # TODO(b/211800737) Comment#2 regarding size checking removal from here
+             # Verify the size of the generated image is no more than 64MB
+               [ $(stat --format=%s "{system_dlkm_img}") -gt 67108864 ] &&
+               echo "ERROR: system_dlkm.img size exceeds partition size" >&2
+             # Archive system_dlkm_staging_dir
+               tar czf {system_dlkm_staging_archive} -C {system_dlkm_staging_dir} .
+             # Remove staging directories
+               rm -rf {system_dlkm_staging_dir}
+    """.format(
+        modules_staging_dir = modules_staging_dir,
+        system_dlkm_staging_dir = system_dlkm_staging_dir,
+        system_dlkm_img = system_dlkm_img.path,
+        system_dlkm_staging_archive = system_dlkm_staging_archive.path,
+    )
+
+    default_info = _build_modules_image_impl_common(
+        ctx = ctx,
+        what = "system_dlkm",
+        outputs = [system_dlkm_img],
+        build_command = command,
+        modules_staging_dir = modules_staging_dir,
+        implicit_outputs = [
+            system_dlkm_staging_archive,
+        ],
+    )
+    return [
+        default_info,
+        _SystemDlkmInfo(
+            system_dlkm_img = system_dlkm_img,
+            system_dlkm_staging_archive = system_dlkm_staging_archive,
+        ),
+    ]
+
+_system_dlkm_image = rule(
+    implementation = _system_dlkm_image_impl,
+    doc = """Build system_dlkm.img an erofs image with GKI modules.
+
+When included in a `copy_to_dist_dir` rule, this rule copies the `system_dlkm.img` to `DIST_DIR`.
+
+""",
+    attrs = _build_modules_image_attrs_common(),
+)
+
 def _vendor_dlkm_image_impl(ctx):
     vendor_dlkm_img = ctx.actions.declare_file("{}/vendor_dlkm.img".format(ctx.label.name))
     vendor_dlkm_modules_load = ctx.actions.declare_file("{}/vendor_dlkm.modules.load".format(ctx.label.name))
@@ -2129,6 +2198,7 @@ def kernel_images(
         build_initramfs = None,
         build_vendor_dlkm = None,
         build_boot_images = None,
+        build_system_dlkm = None,
         build_dtbo = None,
         dtbo_srcs = None,
         mkbootimg = None,
@@ -2151,7 +2221,7 @@ def kernel_images(
         deps: Additional dependencies to build images.
 
           This must include the following:
-          - For `initramfs`:
+          - For `initramfs` or `system_dlkm`:
             - The file specified by `MODULES_LIST`
             - The file specified by `MODULES_BLOCKLIST`, if `MODULES_BLOCKLIST` is set
           - For `vendor_dlkm` image:
@@ -2173,8 +2243,9 @@ def kernel_images(
             `ramdisk.lz4` with `ramdisk.{RAMDISK_EXT}` accordingly.
           - `BOOT_IMAGE_HEADER_VERSION >= 4`, which creates `vendor-bootconfig.img` to contain
             `VENDOR_BOOTCONFIG`
-          - The list contains `dtb.img`
+          - The list contains `dtb.img` and `system_dlkm.img`
         build_initramfs: Whether to build initramfs. Keep in sync with `BUILD_INITRAMFS`.
+        build_system_dlkm: Whether to build system_dlkm.img an erofs image with GKI modules.
         build_vendor_dlkm: Whether to build `vendor_dlkm` image. It must be set if
           `VENDOR_DLKM_MODULES_LIST` is non-empty.
         build_boot_images: Whether to build boot images. It must be set if either `BUILD_BOOT_IMG`
@@ -2215,7 +2286,9 @@ def kernel_images(
     if build_boot_images:
         if build_initramfs == None:
             build_initramfs = True
-        if not build_initramfs:
+        if build_system_dlkm == None:
+            build_system_dlkm = True
+        if not build_initramfs or not build_system_dlkm:
             fail("{}: Must set build_initramfs to True if build_boot_images".format(name))
         if kernel_build == None:
             fail("{}: Must set kernel_build if build_boot_images".format(name))
@@ -2229,6 +2302,7 @@ def kernel_images(
                 "boot.img",
                 "dtb.img",
                 "ramdisk.lz4",
+                "system_dlkm.img",
                 "vendor_boot.img",
                 "vendor-bootconfig.img",
             ]
@@ -2241,6 +2315,14 @@ def kernel_images(
             vendor_boot_modules_load = "{}_initramfs/vendor_boot.modules.load".format(name),
         )
         all_rules.append(":{}_initramfs".format(name))
+
+    if build_system_dlkm:
+        _system_dlkm_image(
+            name = "{}_system_dlkm_image".format(name),
+            kernel_modules_install = kernel_modules_install,
+            deps = deps,
+        )
+        all_rules.append(":{}_system_dlkm_image".format(name))
 
     if build_vendor_dlkm:
         _vendor_dlkm_image(
