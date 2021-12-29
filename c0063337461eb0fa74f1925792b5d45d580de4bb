@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b302b886_70859910",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a541f1a_0f4f8760",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 6
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a783aea5_82a79112",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c25476c6_cf3545de",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a783aea5_82a79112",
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "385bb348_0470be28",
@@ -54,6 +96,30 @@
       "writtenOn": "2021-12-29T06:18:09Z",
       "side": 1,
       "message": "You don\u0027t have to use tuples here. Just infer name \u003d kernel_build + \"_modules_install\"",
+      "range": {
+        "startLine": 91,
+        "startChar": 10,
+        "endLine": 91,
+        "endChar": 28
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7730a79_fb0dd64a",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "This `name \u003d kernel_build + \"_modules_install\"` gives and error of function + string binary op not allowed. But I have got the general idea of how to combine things based on your suggestions, and done the changes accordingly.",
+      "parentUuid": "385bb348_0470be28",
       "range": {
         "startLine": 91,
         "startChar": 10,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f07c490_f303d7aa",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "993c2a7b_a4e546c9",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 25
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3422ad83_b5bb1c76",
@@ -104,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e17b29c_9517092e",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3422ad83_b5bb1c76",
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "172672d8_ceab1de7",
@@ -117,6 +225,30 @@
       "writtenOn": "2021-12-29T06:16:27Z",
       "side": 1,
       "message": "where is this defined? Is this a module?",
+      "range": {
+        "startLine": 170,
+        "startChar": 27,
+        "endLine": 170,
+        "endChar": 50
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85fbf061_d7c257c9",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "It is not define anywhere as of now; so removing it. I was experimenting with it locally to see if we want to have a defined list of modules; how this will work. This is something we may use in the future.",
+      "parentUuid": "172672d8_ceab1de7",
       "range": {
         "startLine": 170,
         "startChar": 27,
@@ -150,6 +282,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "722c112e_1e9e24c6",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ef62617_b24e646f",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 9
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "274fc09d_dbe8baf1",
@@ -163,6 +319,30 @@
       "writtenOn": "2021-12-29T06:16:27Z",
       "side": 1,
       "message": "Don\u0027t change these",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 40
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07c60b3d_c285dbc0",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "274fc09d_dbe8baf1",
       "range": {
         "startLine": 207,
         "startChar": 0,
@@ -220,6 +400,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9021833_13bad07d",
+        "filename": "kleaf/docs/impl.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "No fastboot doesn\u0027t support it yet, I have CL ready but not tested. (aosp/1911211)\n\nYes, system_dlkm is a static partition.\n\nI\u0027ll add those comments.",
+      "parentUuid": "43501f95_1276dbe7",
+      "range": {
+        "startLine": 202,
+        "startChar": 2,
+        "endLine": 202,
+        "endChar": 28
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81fb9022_a58add0f",
@@ -245,6 +449,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ba77ec0_a16bc03f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1935,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "system_dlkm_img: This will build the system_dlkm.img from kernel repo. The point of this whole CL. Though I do feel like based on your comment that this is for something else not to build the system_dlkm.img. Is it?\n\nsystem_dlkm_staging_archive: I am planning to use the archive of modules for building the image directly in the AOSP build for CF. So, somehow later I have to make sure it is available as prebuilt for CF in AOSP.",
+      "parentUuid": "81fb9022_a58add0f",
+      "range": {
+        "startLine": 1934,
+        "startChar": 0,
+        "endLine": 1935,
+        "endChar": 78
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c3cb8e9d_bfe1319b",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 1
@@ -256,6 +484,30 @@
       "writtenOn": "2021-12-29T06:16:27Z",
       "side": 1,
       "message": "Are you using these somewhere? If not, don\u0027t build them?",
+      "range": {
+        "startLine": 1940,
+        "startChar": 0,
+        "endLine": 1941,
+        "endChar": 122
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c140c9d_ef13df76",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1941,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "Same as #1935 for staging. module.load initially I thought we will need it but after reading these comments; I don\u0027t think we will need it. Removed it.",
+      "parentUuid": "c3cb8e9d_bfe1319b",
       "range": {
         "startLine": 1940,
         "startChar": 0,
@@ -291,6 +543,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bdfecf52_1ae7634d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1955,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "No, we don\u0027t need quotes here. Reason they are there is for sake of uniformity as  other rules has it like this in initramfs:\n\ncreate_modules_staging \"${{MODULES_LIST}}\" {modules_staging_dir} \\\n                 {initramfs_staging_dir} \"${{MODULES_BLOCKLIST}}\" \"-e\"\n\nLet me know, if you prefer to have it removed from both places keeping things uniform. Usually, I prefer to avoid unrelated changes; so this can be reverted easily in the future without affecting any other rule.",
+      "parentUuid": "e78b33e5_f083d238",
+      "range": {
+        "startLine": 1955,
+        "startChar": 68,
+        "endLine": 1955,
+        "endChar": 69
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4db5ee64_d6d2c29e",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 1
@@ -302,6 +578,30 @@
       "writtenOn": "2021-12-29T06:16:27Z",
       "side": 1,
       "message": "nit: ls?\n\nAlso maybe check that there\u0027s only one token in modules_root_dir?",
+      "range": {
+        "startLine": 1956,
+        "startChar": 34,
+        "endLine": 1956,
+        "endChar": 38
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8a3bc55_873c149a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4db5ee64_d6d2c29e",
       "range": {
         "startLine": 1956,
         "startChar": 34,
@@ -349,6 +649,30 @@
       "side": 1,
       "message": "Ah nevermind, you are already including modules.load in outputs.\n\nThough, is it intentional? I thought $DIST_DIR/modules.load contains all modules (include those in vendor_dlkm) as well, no?",
       "parentUuid": "abe71eca_3ba8b9c1",
+      "range": {
+        "startLine": 1996,
+        "startChar": 0,
+        "endLine": 1996,
+        "endChar": 16
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d24293d9_80b7a7ef",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1996,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-29T20:59:35Z",
+      "side": 1,
+      "message": "Initially thought it\u0027s needed; and now I know we don\u0027t. Removed.",
+      "parentUuid": "72924fdd_0cae134c",
       "range": {
         "startLine": 1996,
         "startChar": 0,
