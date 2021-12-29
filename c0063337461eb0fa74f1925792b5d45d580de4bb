@@ -1,0 +1,291 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a541f1a_0f4f8760",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "nit: You could add these to after L163\n\nThough, a proper for loop might be easier to read...",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 6
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a783aea5_82a79112",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "nit: delete",
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "993c2a7b_a4e546c9",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "This for-loop can also be merged to after L136, I assume?",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 25
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3422ad83_b5bb1c76",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "delete",
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "172672d8_ceab1de7",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "where is this defined? Is this a module?",
+      "range": {
+        "startLine": 170,
+        "startChar": 27,
+        "endLine": 170,
+        "endChar": 50
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ef62617_b24e646f",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "Don\u0027t define these\n\nInstead, add system_dlkm_aarch64 to kernel_aarch64_dist (L133)",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 9
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "274fc09d_dbe8baf1",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "Don\u0027t change these",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 40
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1a81e86_8be996e7",
+        "filename": "kleaf/docs/impl.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "I assume this is supported in userspace fastboot already, right?\n\nAlso, system_dlkm is a static partition, right?",
+      "range": {
+        "startLine": 202,
+        "startChar": 2,
+        "endLine": 202,
+        "endChar": 28
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81fb9022_a58add0f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1935,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "Are you using these somewhere? If not, don\u0027t build it?\n\n(Or are you planning to use it somewhere?)",
+      "range": {
+        "startLine": 1934,
+        "startChar": 0,
+        "endLine": 1935,
+        "endChar": 78
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3cb8e9d_bfe1319b",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1941,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "Are you using these somewhere? If not, don\u0027t build them?",
+      "range": {
+        "startLine": 1940,
+        "startChar": 0,
+        "endLine": 1941,
+        "endChar": 122
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e78b33e5_f083d238",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1955,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "nit: do you need quotes for -e?",
+      "range": {
+        "startLine": 1955,
+        "startChar": 68,
+        "endLine": 1955,
+        "endChar": 69
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4db5ee64_d6d2c29e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "nit: ls?\n\nAlso maybe check that there\u0027s only one token in modules_root_dir?",
+      "range": {
+        "startLine": 1956,
+        "startChar": 34,
+        "endLine": 1956,
+        "endChar": 38
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abe71eca_3ba8b9c1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1996,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:16:27Z",
+      "side": 1,
+      "message": "Is the intention to copy modules.load to DIST_DIR?\n\nIf so, you need to include it in the DefaultInfo you are returning on L1983.\n\nIf not, delete this comment.",
+      "range": {
+        "startLine": 1996,
+        "startChar": 0,
+        "endLine": 1996,
+        "endChar": 16
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
