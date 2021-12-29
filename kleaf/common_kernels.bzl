@@ -16,6 +16,8 @@ load(
     "//build/kleaf:kernel.bzl",
     "kernel_build",
     "kernel_compile_commands",
+    "kernel_images",
+    "kernel_modules_install",
     "kernel_kythe",
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
@@ -78,6 +80,32 @@ def define_common_kernels(
     kernel_build_kwargs = {}
     if toolchain_version:
         kernel_build_kwargs["toolchain_version"] = toolchain_version
+    [[
+        kernel_modules_install(
+            name = name,
+            kernel_build = kernel_build,
+            kernel_modules = [
+                # keep sorted
+            ],
+         ),
+    ] for name, kernel_build in [
+        (
+            "kernel_aarch64_modules_install",
+            "kernel_aarch64",
+        ),
+        (
+            "kernel_aarch64_debug_modules_install",
+            "kernel_aarch64_debug",
+        ),
+        (
+            "kernel_x86_64_modules_install",
+            "kernel_x86_64",
+        ),
+        (
+            "kernel_x86_64_debug_modules_install",
+            "kernel_x86_64_debug",
+        ),
+    ]]
 
     [[
         native.filegroup(
@@ -129,14 +157,59 @@ def define_common_kernels(
         ),
     ]]
 
+    [[
+        kernel_images(
+             name = name,
+             kernel_build = kernel_build,
+             kernel_modules_install = kernel_modules_install,
+             build_system_dlkm = True,
+             deps = [
+                  # Keep the following in sync with build.config.gki:
+                  # MODULES_LIST
+                  #"vendor_boot_modules.slider",
+                  "android/gki_system_dlkm_modules",
+                  # No MODULES_BLOCKLIST
+             ],
+        ),
+        copy_to_dist_dir(
+            name = name + "_dist",
+            data = [
+                name,
+                kernel_build,
+                kernel_modules_install,
+            ],
+        )
+    ] for name, kernel_build, kernel_modules_install in [
+        (
+            "system_dlkm_aarch64",
+            "kernel_aarch64",
+            "kernel_aarch64_modules_install",
+        ),
+        (
+            "system_dlkm_aarch64_debug",
+            "kernel_aarch64_debug",
+            "kernel_aarch64_debug_modules_install",
+        ),
+        (
+            "system_dlkm_x86_64",
+            "kernel_x86_64",
+            "kernel_x86_64_modules_install",
+        ),
+        (
+            "system_dlkm_x86_64_debug",
+            "kernel_x86_64_debug",
+            "kernel_x86_64_debug_modules_install",
+        ),
+    ]]
+
     native.alias(
         name = "kernel",
-        actual = ":kernel_aarch64",
+        actual = ":system_dlkm_aarch64",
     )
 
     native.alias(
         name = "kernel_dist",
-        actual = ":kernel_aarch64_dist",
+        actual = ":system_dlkm_aarch64_dist",
     )
 
     kernel_compile_commands(
