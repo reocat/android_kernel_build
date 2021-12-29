@@ -198,6 +198,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43501f95_1276dbe7",
+        "filename": "kleaf/docs/impl.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-29T06:19:41Z",
+      "side": 1,
+      "message": "Maybe add a comment before L201:\n\n# flash static partitions\n\nand add a comment after L205:\n\n# flash dynamic partitions",
+      "parentUuid": "a1a81e86_8be996e7",
+      "range": {
+        "startLine": 202,
+        "startChar": 2,
+        "endLine": 202,
+        "endChar": 28
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "81fb9022_a58add0f",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 1
