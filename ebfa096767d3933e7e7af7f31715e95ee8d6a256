@@ -22,6 +22,52 @@
       },
       "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd32cf48_a50b010a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-30T00:59:20Z",
+      "side": 1,
+      "message": "I don\u0027t think we should check this. The size of the static partition could be different on different devices.\n\nLet userspace build check this.\n\nIf you still think the kernel build should check this, maybe leave a TODO here and let Matthias chime in as well?",
+      "range": {
+        "startLine": 1956,
+        "startChar": 70,
+        "endLine": 1956,
+        "endChar": 74
+      },
+      "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3010f269_288dfae4",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1994,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-30T00:59:20Z",
+      "side": 1,
+      "message": "nit: you can simplify this text now\n\n```\ncopies `system_dlkm.img` to `$DIST_DIR`\n```",
+      "range": {
+        "startLine": 1993,
+        "startChar": 61,
+        "endLine": 1994,
+        "endChar": 19
+      },
+      "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
