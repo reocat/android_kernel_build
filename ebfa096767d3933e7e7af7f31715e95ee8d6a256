@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aac4349_5c0e3929",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-30T00:54:56Z",
+      "side": 1,
+      "message": "Since this is essentially empty, maybe file a bug on me to make this optional on kernel_modules_install?\n\nOr is it a placeholder for us to add modules to system_dlkm in the future?",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 63
+      },
+      "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -471,6 +471,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a43cae75_9e3c1331",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1935,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-30T00:54:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6ba77ec0_a16bc03f",
+      "range": {
+        "startLine": 1934,
+        "startChar": 0,
+        "endLine": 1935,
+        "endChar": 78
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3cb8e9d_bfe1319b",
@@ -555,6 +579,30 @@
       "side": 1,
       "message": "No, we don\u0027t need quotes here. Reason they are there is for sake of uniformity as  other rules has it like this in initramfs:\n\ncreate_modules_staging \"${{MODULES_LIST}}\" {modules_staging_dir} \\\n                 {initramfs_staging_dir} \"${{MODULES_BLOCKLIST}}\" \"-e\"\n\nLet me know, if you prefer to have it removed from both places keeping things uniform. Usually, I prefer to avoid unrelated changes; so this can be reverted easily in the future without affecting any other rule.",
       "parentUuid": "e78b33e5_f083d238",
+      "range": {
+        "startLine": 1955,
+        "startChar": 68,
+        "endLine": 1955,
+        "endChar": 69
+      },
+      "revId": "c0063337461eb0fa74f1925792b5d45d580de4bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a50b372_a6c1a84e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1955,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2021-12-30T00:54:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bdfecf52_1ae7634d",
       "range": {
         "startLine": 1955,
         "startChar": 68,
