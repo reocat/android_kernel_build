@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "389cb0cd_3c19a454",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-30T11:36:32Z",
+      "side": 1,
+      "message": "Thanks for the review. I have addressed all of them. Feel free to point out anything else you may find.",
+      "parentUuid": "7080bb58_0035c8f7",
+      "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1aac4349_5c0e3929",
@@ -65,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63b9854a_dc0105d7",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-30T11:36:32Z",
+      "side": 1,
+      "message": "All modules in system_dlkm are going to be in-tree modules (i.e. config set to \u003dm in gki_defconfig), so it should be optional in this case as per my understanding. It wasn\u0027t compiling without it; so I added an empty rule here.\n\nFiled Bug: b/212653676",
+      "parentUuid": "e452e614_071b4e24",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 63
+      },
+      "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd32cf48_a50b010a",
@@ -88,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e362d3ab_5898fbe6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-30T11:36:32Z",
+      "side": 1,
+      "message": "With GKI modules, kernel build outputs two things: Kernel Image and system_dlkm.img and they both should have no dependencies on the AOSP code. Since we are stating that partition should be at-least 64MB than we need to make sure we keep the modules image is also \u003c\u003d 64MB. I\u0027ll go with TODO here.",
+      "parentUuid": "cd32cf48_a50b010a",
+      "range": {
+        "startLine": 1956,
+        "startChar": 70,
+        "endLine": 1956,
+        "endChar": 74
+      },
+      "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3010f269_288dfae4",
@@ -101,6 +167,30 @@
       "writtenOn": "2021-12-30T00:59:20Z",
       "side": 1,
       "message": "nit: you can simplify this text now\n\n```\ncopies `system_dlkm.img` to `$DIST_DIR`\n```",
+      "range": {
+        "startLine": 1993,
+        "startChar": 61,
+        "endLine": 1994,
+        "endChar": 19
+      },
+      "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55f9145c_fe053787",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1994,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2021-12-30T11:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3010f269_288dfae4",
       "range": {
         "startLine": 1993,
         "startChar": 61,
