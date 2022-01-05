@@ -16,6 +16,23 @@
       "message": "Sample error:\n\n```\nERROR: The following kernel modules are built but not copied. Add these lines to the module_outs attribute of //gs/kernel/device-modules:slider:\n    \"xhci-exynos.ko\",\n    \"zsmalloc.ko\",\n```",
       "revId": "bd38080358f7e54b8728e45a276e1de0fb63d823",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45bb7b5b_b1824f27",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-05T16:12:29Z",
+      "side": 1,
+      "message": "I am not sure this is a good idea. What if the kconfig enables some implicit modules that are uninteresting for distribution. Similar, once we have GKI modules, downstream kernel builds are not interested in the GKI modules, but the additional ones. Make it only a suppressable warning?",
+      "revId": "bd38080358f7e54b8728e45a276e1de0fb63d823",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
