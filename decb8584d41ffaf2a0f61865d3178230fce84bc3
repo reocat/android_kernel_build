@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e542af11_c64db525",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-05T05:34:24Z",
+      "side": 1,
+      "message": "Did you check the build passes? TH gives these:\n\nException: Unable to find scripts/sign-file in any of the following directories:\n  /usr/local/google/buildbot/src/android/common-android-mainline/out/bazel/output_user_root/7d1982d70cb66b16dd985868a2370f3e/sandbox/linux-sandbox/5/execroot/__main__/out/android-mainline/common\n  /usr/local/google/buildbot/src/android/common-android-mainline/out/bazel/output_user_root/7d1982d70cb66b16dd985868a2370f3e/sandbox/linux-sandbox/5/execroot/__main__/out/android-mainline/common\nUnable to find certs/signing_key.pem in any of the following directories:\n  /usr/local/google/buildbot/src/android/common-android-mainline/out/bazel/output_user_root/7d1982d70cb66b16dd985868a2370f3e/sandbox/linux-sandbox/5/execroot/__main__/out/android-mainline/common\n  /usr/local/google/buildbot/src/android/common-android-mainline/out/bazel/output_user_root/7d1982d70cb66b16dd985868a2370f3e/sandbox/linux-sandbox/5/execroot/__main__/out/android-mainline/common\nUnable to find certs/signing_key.x509 in any of the following directories:\n  /usr/local/google/buildbot/src/android/common-android-mainline/out/bazel/output_user_root/7d1982d70cb66b16dd985868a2370f3e/sandbox/linux-sandbox/5/execroot/__main__/out/android-mainline/common\n  /usr/local/google/buildbot/src/android/common-android-mainline/out/bazel/output_user_root/7d1982d70cb66b16dd985868a2370f3e/sandbox/linux-sandbox/5/execroot/__main__/out/android-mainline/common\nTarget //common:kernel_aarch64_dist failed to build\n\nDo you need another change to ensure these 3 files are produced?",
+      "revId": "decb8584d41ffaf2a0f61865d3178230fce84bc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a53ac05d_b358c920",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-05T05:34:24Z",
+      "side": 1,
+      "message": "please run buildifier on this",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 14
+      },
+      "revId": "decb8584d41ffaf2a0f61865d3178230fce84bc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4f2a04d_d60170b7",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1963,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-05T05:34:24Z",
+      "side": 1,
+      "message": "nit: a bug number is fine, you can drop the LDAP because it can get reassigned in the future.",
+      "range": {
+        "startLine": 1963,
+        "startChar": 33,
+        "endLine": 1963,
+        "endChar": 41
+      },
+      "revId": "decb8584d41ffaf2a0f61865d3178230fce84bc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

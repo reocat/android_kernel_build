@@ -156,6 +156,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65f2a055_f2e0f72d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-05T05:34:24Z",
+      "side": 1,
+      "message": "I don\u0027t get this part:\n\n\u003e Since we are stating that partition should be at-least 64MB than we need to make sure we keep the modules image is also \u003c\u003d 64MB.\n\nThis means that the partition could be greater than 64 MB. That is, for some device, they could be building a larger system_dlkm partition, e.g. a 100MB one, and it is perfectly fine for their device.\n\nYour argument seems to be in favor of NOT checking partition sizes here.",
+      "parentUuid": "e362d3ab_5898fbe6",
+      "range": {
+        "startLine": 1956,
+        "startChar": 70,
+        "endLine": 1956,
+        "endChar": 74
+      },
+      "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3010f269_288dfae4",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 4
