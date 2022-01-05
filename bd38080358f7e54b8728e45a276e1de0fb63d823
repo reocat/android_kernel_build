@@ -116,6 +116,24 @@
       "parentUuid": "4f79c3ea_a3ce7cf4",
       "revId": "bd38080358f7e54b8728e45a276e1de0fb63d823",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60749709_2f291058",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-05T22:22:36Z",
+      "side": 1,
+      "message": "Also, this CL catches errors like https://android-review.googlesource.com/c/kernel/common-modules/virtual-device/+/1935184 . This ensures that the developer must update BUILD.bazel when the list of kernel modules changes, no matter if it should be copied to DIST_DIR or not.",
+      "parentUuid": "86645d97_700b52ca",
+      "revId": "bd38080358f7e54b8728e45a276e1de0fb63d823",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
