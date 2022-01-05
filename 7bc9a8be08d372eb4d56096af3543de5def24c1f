@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c33061c1_ab6e2d68",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-05T23:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8362d57_03c08906",
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78bf6903_3fcea85a",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-01-05T16:00:13Z",
       "side": 1,
       "message": "this is empty, do we need it? is this perhaps a preparation for a later change and just misses a TODO?",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 15
+      },
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "caead247_eab49959",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-05T23:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78bf6903_3fcea85a",
       "range": {
         "startLine": 121,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "875ffbe7_143bcc0f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1944,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-05T23:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32dfacc3_55e70440",
+      "range": {
+        "startLine": 1942,
+        "startChar": 0,
+        "endLine": 1944,
+        "endChar": 5
+      },
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f51a7883_e29df919",
@@ -83,6 +149,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9ad7ade_42b716ff",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-05T23:58:52Z",
+      "side": 1,
+      "message": "Not really anywhere. Actually, I did not even know what is provider when I did this :). Keeping it as of now until comments regarding building system_dlkm build with build boot image gets resolved as that may end up being the user.",
+      "parentUuid": "f51a7883_e29df919",
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2cb16914_97dc94cd",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 8
@@ -94,6 +178,24 @@
       "writtenOn": "2022-01-05T16:00:13Z",
       "side": 1,
       "message": "is this not failing if somebody does build_boot_images\u003dTrue, build_system_dlkm\u003dFalse ? i.e. if somebody only wants the initramfs?\n\nrather append to this list later (+15 lines) and also adjust the initramfs block accordingly?",
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e377d61_23c20b66",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 2310,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-05T23:58:52Z",
+      "side": 1,
+      "message": "I did not think about this enough in the past; but\n\nbuild_system_dlkm must only be set from the common kernel builds. If we set build_boot_images for common kernel build it should fail anyway because of dtb.img dependencies are missing.\n\nDo I need to remove building system_dlkm.img with build_boot_images \u003d True in this case?",
+      "parentUuid": "2cb16914_97dc94cd",
       "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

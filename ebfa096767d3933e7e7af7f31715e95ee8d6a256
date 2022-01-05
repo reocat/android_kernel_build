@@ -228,6 +228,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01a668ac_eadc7f97",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-05T23:58:52Z",
+      "side": 1,
+      "message": "There is no ABI stability between GKI and system_dlkm; so they both needs to be build together and we can\u0027t rely on the platform side for anything; so user can flash the images directly from the kernel build generated files.\n\nI removed the hard fail (exit 1); Removing hard fail will make it easy to miss the size error message; so checking doesn\u0027t make sense anymore. Do you know? I am not sure whether fastboot flashing will protect corrupting the device when flashing files larger than part size. If it is, then we can rely on it. Do you know top of your head?",
+      "parentUuid": "43fd5bcb_2556d4a1",
+      "range": {
+        "startLine": 1956,
+        "startChar": 70,
+        "endLine": 1956,
+        "endChar": 74
+      },
+      "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3010f269_288dfae4",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 4
