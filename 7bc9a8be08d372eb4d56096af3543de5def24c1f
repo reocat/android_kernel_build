@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8362d57_03c08906",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-05T16:00:13Z",
+      "side": 1,
+      "message": "the existence of those seems to depend on a configuration option. Is this option set on all android13+ branches and mainline? Otherwise we possibly need to parametrize the call to define_common_kernels() to reflect differences. I would prefer if we just have the same support on all branches though and do not need to parametrize it. Yet, a comment would be good to have here to explain where these files are coming from.",
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78bf6903_3fcea85a",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-05T16:00:13Z",
+      "side": 1,
+      "message": "this is empty, do we need it? is this perhaps a preparation for a later change and just misses a TODO?",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 15
+      },
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32dfacc3_55e70440",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1944,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-05T16:00:13Z",
+      "side": 1,
+      "message": "You can inline this later, no need for this local variable.",
+      "range": {
+        "startLine": 1942,
+        "startChar": 0,
+        "endLine": 1944,
+        "endChar": 5
+      },
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f51a7883_e29df919",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-05T16:00:13Z",
+      "side": 1,
+      "message": "where is this provider used?",
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cb16914_97dc94cd",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 2310,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-05T16:00:13Z",
+      "side": 1,
+      "message": "is this not failing if somebody does build_boot_images\u003dTrue, build_system_dlkm\u003dFalse ? i.e. if somebody only wants the initramfs?\n\nrather append to this list later (+15 lines) and also adjust the initramfs block accordingly?",
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

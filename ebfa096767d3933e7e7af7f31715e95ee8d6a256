@@ -204,6 +204,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "43fd5bcb_2556d4a1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-05T16:00:13Z",
+      "side": 1,
+      "message": "The check should not be part of the rule that produces it if the output is otherwise fine and the limitation is to be found somewhere else. Otherwise we would stop users of this rule using it even if their partition size is sufficient.\n\nWhat can be done is another \"check rule\" that the consuming build implements. I assume that is not yet Bazel then, but soong or Android.mk on the platform side.\n\nBut we should not hard fail here even though we would catch an issue early. But in this case we definitely catch it later if it is an issue. I.e. it is not a subtle issue.",
+      "parentUuid": "fde34ef3_81c4b5ab",
+      "range": {
+        "startLine": 1956,
+        "startChar": 70,
+        "endLine": 1956,
+        "endChar": 74
+      },
+      "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3010f269_288dfae4",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 4
