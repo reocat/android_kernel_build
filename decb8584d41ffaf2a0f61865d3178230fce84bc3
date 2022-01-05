@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c618ba2_cb137dd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-05T05:55:58Z",
+      "side": 1,
+      "message": "Production of these files depend on the following in the gki_defconfig:\n\n+CONFIG_MODULE_SIG\u003dy\n+CONFIG_MODULE_SIG_PROTECT\u003dy\n\nThese changes are coming from: https://android-review.googlesource.com/q/topic:system_dlkm_kernel\n\nI am not sure whether they are allowed to be cherry picked on top of common-android-mainline as these are Android specific patches. Do you know?\n\nI\u0027ll probably need to check for the existence of these files; if I can\u0027t apply ANDROID patches on that branch.",
+      "parentUuid": "e542af11_c64db525",
+      "revId": "decb8584d41ffaf2a0f61865d3178230fce84bc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a53ac05d_b358c920",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 7
@@ -65,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06c072af_525b7977",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-05T05:55:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "691c16d6_abcc5388",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 14
+      },
+      "revId": "decb8584d41ffaf2a0f61865d3178230fce84bc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4f2a04d_d60170b7",
@@ -78,6 +120,30 @@
       "writtenOn": "2022-01-05T05:34:24Z",
       "side": 1,
       "message": "nit: a bug number is fine, you can drop the LDAP because it can get reassigned in the future.",
+      "range": {
+        "startLine": 1963,
+        "startChar": 33,
+        "endLine": 1963,
+        "endChar": 41
+      },
+      "revId": "decb8584d41ffaf2a0f61865d3178230fce84bc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "554249ac_270eb691",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1963,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-05T05:55:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4f2a04d_d60170b7",
       "range": {
         "startLine": 1963,
         "startChar": 33,
