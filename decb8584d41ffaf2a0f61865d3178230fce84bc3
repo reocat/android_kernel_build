@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "691c16d6_abcc5388",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-05T05:36:23Z",
+      "side": 1,
+      "message": "Oh this is the bzl file, so buildifier might not work.\n\nAnyways, please use the following to be consistent with other code:\n\n```\n            implicit_outs \u003d [\n                \"scripts/sign-file\",\n                \"certs/signing_key.pem\",\n                \"certs/signing_key.x509\"\n            ],\n```",
+      "parentUuid": "a53ac05d_b358c920",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 14
+      },
+      "revId": "decb8584d41ffaf2a0f61865d3178230fce84bc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4f2a04d_d60170b7",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 7
