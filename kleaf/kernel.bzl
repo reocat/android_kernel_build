@@ -14,6 +14,11 @@
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 
+load(
+    "//build/kleaf:constants.bzl",
+    "sign_module_deps",
+)
+
 _KERNEL_BUILD_DEFAULT_TOOLCHAIN_VERSION = "r437112"
 
 # Outputs of a kernel_build rule needed to build kernel_module's
@@ -48,6 +53,16 @@ def _getoptattr(thing, attr, default_value = None):
     if hasattr(thing, attr):
         return getattr(thing, attr)
     return default_value
+
+def _has_any_suffix(s, suffixes):
+    """
+    Return the suffix if |s| ends with any suffix in |suffixes|. Return the
+    first match if multiple suffixes matches. Return None if no match.
+    """
+    for suffix in suffixes:
+        if s.endswith(suffix):
+            return suffix
+    return None
 
 def _kernel_build_config_impl(ctx):
     out_file = ctx.actions.declare_file(ctx.attr.name + ".generated")
@@ -841,6 +856,7 @@ _kernel_build_aspect = aspect(
 def _kernel_build_impl(ctx):
     kbuild_mixed_tree = None
     base_kernel_files = []
+    base_kernel_sign_module_deps = {}
     if ctx.attr.base_kernel:
         # Create a directory for KBUILD_MIXED_TREE. Flatten the directory structure of the files
         # that ctx.attr.base_kernel provides. declare_directory is sufficient because the directory should
@@ -865,6 +881,19 @@ def _kernel_build_impl(ctx):
             progress_message = "Creating KBUILD_MIXED_TREE",
             command = kbuild_mixed_tree_command,
         )
+
+        for base_kernel_file in base_kernel_files:
+            suffix = _has_any_suffix(base_kernel_file.path, sign_module_deps)
+            if suffix != None:
+                if suffix in base_kernel_sign_module_deps:
+                    fail("{}: dependent kernel_build {} has multiple {} in outs:\n  {}\n  {}".format(
+                        ctx.label,
+                        kernel_build,
+                        suffix,
+                        base_kernel_sign_module_deps[suffix].path,
+                        base_kernel_file.path,
+                    ))
+                base_kernel_sign_module_deps[suffix] = base_kernel_file
 
     ruledir = ctx.actions.declare_directory(ctx.label.name)
 
@@ -915,6 +944,14 @@ def _kernel_build_impl(ctx):
         """.format(
             kbuild_mixed_tree = kbuild_mixed_tree.path,
         )
+
+    inputs += base_kernel_sign_module_deps.values()
+    for suffix, f in base_kernel_sign_module_deps.items():
+        command += """
+                 # Restore {suffix} to ${{OUT_DIR}} for signing modules
+                   mkdir -p $(dirname ${{OUT_DIR}}/{suffix})
+                   cp {f} ${{OUT_DIR}}/{suffix}
+        """.format(f = f.path, suffix = suffix)
 
     command += """
          # Actual kernel build
