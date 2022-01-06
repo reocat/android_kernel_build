@@ -183,6 +183,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c234b37c_ae926262",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1991,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-06T23:18:59Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "aee0c618_aaa1fb84",
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cb16914_97dc94cd",
@@ -250,6 +268,24 @@
       "side": 1,
       "message": "My comment was rather that we need to support all combinations of booleans parameters or check and fail for the unsupported cases.",
       "parentUuid": "f34bffa1_059ef6d6",
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a76778ae_e552a308",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 2310,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-06T23:18:59Z",
+      "side": 1,
+      "message": "Removed linking of the build_system_dlkm from build_boot_image; and it will only build if explicitly set to True form kernel_images.\n\nFor the different combination test, is it safe to rely on the TH?",
+      "parentUuid": "ab22ebbd_6aa73651",
       "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

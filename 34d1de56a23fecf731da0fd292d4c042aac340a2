@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d08ff694_7d128c4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-06T23:18:59Z",
+      "side": 1,
+      "message": "Thanks for review.\n\nTook care of most of the comments; also added module archive to dist as for CF it is required to build the image from the platform build.\n\nContext: https://android-review.googlesource.com/c/device/google/cuttlefish/+/1899614/6/vsoc_x86_64/kernel.mk\n\n",
+      "revId": "34d1de56a23fecf731da0fd292d4c042aac340a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -22,6 +22,30 @@
       },
       "revId": "7bd853cc7b4ffd2e8d07f79509b42326e7126a71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7fd9de5_18a07498",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-06T23:18:59Z",
+      "side": 1,
+      "message": "This is getting removed. In kernel.bzl after \u0027#\u0027 comments there are 2 spaces on the next line; so tried to follow that; but since this is in common_kernel.bzl; I guess I don\u0027t have to worry about consistency in the future CL and will use 4 spaces.",
+      "parentUuid": "e2bf1d80_a2d38f75",
+      "range": {
+        "startLine": 108,
+        "startChar": 12,
+        "endLine": 108,
+        "endChar": 18
+      },
+      "revId": "7bd853cc7b4ffd2e8d07f79509b42326e7126a71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

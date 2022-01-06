@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56c457a5_6a23fe3a",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-06T23:18:59Z",
+      "side": 1,
+      "message": "CL:1906137 has the signing; but since it\u0027s breaking things; I\u0027ll remove this and signing.",
+      "parentUuid": "b82b2b3f_4106e2fb",
+      "revId": "6117248ca8a311d9f94b7ef4d9bb01835e47ebd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7dfd3cb5_c8f91d7b",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-01-06T18:13:06Z",
       "side": 1,
       "message": "Same for these; put it in a different CL please?",
+      "range": {
+        "startLine": 1951,
+        "startChar": 0,
+        "endLine": 1956,
+        "endChar": 19
+      },
+      "revId": "6117248ca8a311d9f94b7ef4d9bb01835e47ebd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f1aa0b3_01fd4c78",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-06T23:18:59Z",
+      "side": 1,
+      "message": "Same. Will remove it until proper solution has been identified and do a separate CL later.",
+      "parentUuid": "7dfd3cb5_c8f91d7b",
       "range": {
         "startLine": 1951,
         "startChar": 0,
