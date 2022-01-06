@@ -58,6 +58,7 @@ docs(
     name = "docs",
     srcs = [
         "common_kernels.bzl",
+        "constants.bzl",
         "kernel.bzl",
     ],
     default = "kernel.bzl",
