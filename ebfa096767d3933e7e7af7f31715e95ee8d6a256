@@ -276,6 +276,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "53b248b9_e9969e52",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-06T09:51:44Z",
+      "side": 1,
+      "message": "+1 for removing the warning as well. It is arbitrary to make assumptions about another system here. The warning might not even apply to the target device. Let\u0027s only emit warnings/errors if _this_ rule is not producing an expected and consistent result.",
+      "parentUuid": "bae3f9db_c9dfab14",
+      "range": {
+        "startLine": 1956,
+        "startChar": 70,
+        "endLine": 1956,
+        "endChar": 74
+      },
+      "revId": "ebfa096767d3933e7e7af7f31715e95ee8d6a256",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3010f269_288dfae4",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 4
