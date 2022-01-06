@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b82b2b3f_4106e2fb",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-06T18:13:06Z",
+      "side": 1,
+      "message": "Maybe put this in a different CL? This is related to CL:1937658 (ANDROID: GKI: Add module load time protected symbol lookup), which is not relanded yet -- and we don\u0027t have an agreement on that CL yet.\n\nThis CL should focus on supporting CL:1906137 (build: GKI: support to build an erofs image system_dlkm.img).",
+      "revId": "6117248ca8a311d9f94b7ef4d9bb01835e47ebd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dfd3cb5_c8f91d7b",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 1956,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-06T18:13:06Z",
+      "side": 1,
+      "message": "Same for these; put it in a different CL please?",
+      "range": {
+        "startLine": 1951,
+        "startChar": 0,
+        "endLine": 1956,
+        "endChar": 19
+      },
+      "revId": "6117248ca8a311d9f94b7ef4d9bb01835e47ebd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
