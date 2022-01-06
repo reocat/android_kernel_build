@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "39ee7cd9_a706314f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-06T07:21:54Z",
+      "side": 1,
+      "message": "note that the Fixes: tag in git usually has a different meaning and is supposed to refer to another commit. but I guess multiple conventions are in place.",
+      "parentUuid": "05f5ee8e_ed89a8ab",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 5
+      },
+      "revId": "bd38080358f7e54b8728e45a276e1de0fb63d823",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "56360591_ebea9f41",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
