@@ -198,6 +198,24 @@
       "parentUuid": "2cb16914_97dc94cd",
       "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f34bffa1_059ef6d6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 2310,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-06T04:14:55Z",
+      "side": 1,
+      "message": "If it should only be set for common kernel builds, it should be by default false, and explicitly set to true in common_kernels.bzl.",
+      "parentUuid": "9e377d61_23c20b66",
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
