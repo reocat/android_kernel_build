@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3ab28eb1_9f95b516",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-07T19:19:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cc9e9d0_d60213f5",
+      "revId": "336f1f22c6d96e1ddde3c6c8c0ff43e7f70b473b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "7820132a_2594bb7f",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 4
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "It would be more traditional and possibly safer to do something with an atomic mv or ln -f. However, this does mean your temporary file (with the correct permissions) has to be on the safe file system.\n\nScratch this, just use instead:\n\n cp -f -p -- {config} ${{OUT_DIR}}/.config",
       "parentUuid": "7820132a_2594bb7f",
+      "range": {
+        "startLine": 771,
+        "startChar": 0,
+        "endLine": 773,
+        "endChar": 13
+      },
+      "revId": "336f1f22c6d96e1ddde3c6c8c0ff43e7f70b473b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "782ec074_a8dbdced",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-07T19:19:54Z",
+      "side": 1,
+      "message": "I decided to use rsync that Matthias suggests. rsync can override the readonly file correctly as well.",
+      "parentUuid": "fb0d6bcd_658a2269",
       "range": {
         "startLine": 771,
         "startChar": 0,
