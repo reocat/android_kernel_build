@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cc9e9d0_d60213f5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T12:11:43Z",
+      "side": 1,
+      "message": "we should cp here to avoid needing to reinstate it in the spawn\u003dlocal case. later on a rsync would do.",
+      "revId": "336f1f22c6d96e1ddde3c6c8c0ff43e7f70b473b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "7820132a_2594bb7f",
