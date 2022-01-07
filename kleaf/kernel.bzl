@@ -768,7 +768,10 @@ def _kernel_config_impl(ctx):
     setup = ctx.attr.env[_KernelEnvInfo].setup + """
          # Restore kernel config inputs
            mkdir -p ${{OUT_DIR}}/include/
-           cp {config} ${{OUT_DIR}}/.config
+           if [[ -f ${{OUT_DIR}}/.config ]]; then
+               chmod +w ${{OUT_DIR}}/.config
+           fi
+           cp -p {config} ${{OUT_DIR}}/.config
            tar xf {include_tar_gz} -C ${{OUT_DIR}}
     """.format(config = config.path, include_tar_gz = include_tar_gz.path)
 
