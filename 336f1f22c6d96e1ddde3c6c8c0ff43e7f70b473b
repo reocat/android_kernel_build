@@ -22,6 +22,30 @@
       },
       "revId": "336f1f22c6d96e1ddde3c6c8c0ff43e7f70b473b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb0d6bcd_658a2269",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-07T09:33:11Z",
+      "side": 1,
+      "message": "It would be more traditional and possibly safer to do something with an atomic mv or ln -f. However, this does mean your temporary file (with the correct permissions) has to be on the safe file system.\n\nScratch this, just use instead:\n\n cp -f -p -- {config} ${{OUT_DIR}}/.config",
+      "parentUuid": "7820132a_2594bb7f",
+      "range": {
+        "startLine": 771,
+        "startChar": 0,
+        "endLine": 773,
+        "endChar": 13
+      },
+      "revId": "336f1f22c6d96e1ddde3c6c8c0ff43e7f70b473b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
