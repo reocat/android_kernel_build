@@ -36,3 +36,6 @@ build --flag_alias=lto=//build/kleaf:lto
 # add a flag alias to allow passing --debug_* flags
 build --flag_alias=debug_annotate_scripts=//build/kleaf:debug_annotate_scripts
 build --flag_alias=debug_print_scripts=//build/kleaf:debug_print_scripts
+
+# For local builds without sandboxing. Use with `--config=local`
+build:local --//build/kleaf:local --spawn_strategy=local

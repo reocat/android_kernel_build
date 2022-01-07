@@ -535,7 +535,7 @@ def _kernel_env_impl(ctx):
           set -e
           set -o pipefail
         # Run Make in silence mode to suppress most of the info output
-          export MAKEFLAGS="${{MAKEFLAGS}} -s"
+        # export MAKEFLAGS="${{MAKEFLAGS}} -s"
         # Increase parallelism # TODO(b/192655643): do not use -j anymore
           export MAKEFLAGS="${{MAKEFLAGS}} -j$(nproc)"
         # create a build environment
@@ -765,12 +765,28 @@ def _kernel_config_impl(ctx):
         command = command,
     )
 
-    setup = ctx.attr.env[_KernelEnvInfo].setup + """
+    setup = ctx.attr.env[_KernelEnvInfo].setup
+    setup += """
          # Restore kernel config inputs
-           mkdir -p ${{OUT_DIR}}/include/
-           cp {config} ${{OUT_DIR}}/.config
+           mkdir -p ${OUT_DIR}/include/
+    """
+    if ctx.attr._local[BuildSettingInfo].value:
+        setup += """
+                 if [[ -f ${{OUT_DIR}}/.config ]]; then
+                     chmod 0644 ${{OUT_DIR}}/.config
+                 fi
+                 if ! diff -q {config} ${{OUT_DIR}}/.config; then
+                     cp {config} ${{OUT_DIR}}/.config
+                 fi
+        """.format(config = config.path)
+    else:
+        setup += """
+                 cp {config} ${{OUT_DIR}}/.config
+        """.format(config = config.path)
+
+    setup += """
            tar xf {include_tar_gz} -C ${{OUT_DIR}}
-    """.format(config = config.path, include_tar_gz = include_tar_gz.path)
+    """.format(include_tar_gz = include_tar_gz.path)
 
     return [
         _KernelEnvInfo(
@@ -798,6 +814,7 @@ _kernel_config = rule(
         ),
         "lto": attr.label(default = "//build/kleaf:lto"),
         "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
+        "_local": attr.label(default = "//build/kleaf:local"),
     },
 )
 
