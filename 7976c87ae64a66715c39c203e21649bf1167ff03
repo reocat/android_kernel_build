@@ -16,6 +16,24 @@
       "message": "you could group them as @classmethod\u0027s of a named class making the call sites look like \n\nAbidiff.collapse_offset_changes() ",
       "revId": "7976c87ae64a66715c39c203e21649bf1167ff03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d38f4fee_b1e3acb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-07T09:20:32Z",
+      "side": 1,
+      "message": "True. But... I don\u0027t think it\u0027s worth it for the code maintenance cost/benefit.\n\nIn a distant, rosy future, we\u0027ll be back to one diff tool anyway.",
+      "parentUuid": "8064a3f8_1dd91442",
+      "revId": "7976c87ae64a66715c39c203e21649bf1167ff03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
