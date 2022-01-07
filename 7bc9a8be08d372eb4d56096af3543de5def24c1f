@@ -288,6 +288,24 @@
       "parentUuid": "ab22ebbd_6aa73651",
       "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "955e5995_280264a6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 2310,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T12:31:21Z",
+      "side": 1,
+      "message": "For anything that we know will not work we should put a check in place. Similar to how we do this in build.sh. The combinations that we care about in GKI and Pixel should be covered by the CI system. Yet there is a chance that downstream users (partners) use a combination that we do not actively test. Ideally this fails already here at rule instantiation.",
+      "parentUuid": "a76778ae_e552a308",
+      "revId": "7bc9a8be08d372eb4d56096af3543de5def24c1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
