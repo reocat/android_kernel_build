@@ -1,0 +1,508 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d5b3764_385b7d54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "any performance considerations for running parts in parallel or is it not worth the effort because the whole scripts runs decently fast?",
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "399ae6e0_9fa00d5a",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "`import os` is the common way of using os",
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "288a24a5_e449a0ae",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "local constants should be named _SOURCE_RE\n\nhttps://google.github.io/styleguide/pyguide.html#3164-guidelines-derived-from-guidos-recommendations",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 9
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b551519_2fdbed07",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "blank between the catch all and the significant match?\n\n  .* :\u003d",
+      "range": {
+        "startLine": 13,
+        "startChar": 25,
+        "endLine": 13,
+        "endChar": 29
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a5fbc30_5f7da6b9",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "_WILDCARD_RE",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 11
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fb398a5_8234fa4e",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "I am not sure this function is justified, it does not really make the code more readable at the call site and introduces an indirection behind an ambiguous name.",
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "603a67ad_6b3833ab",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "\u003croot_dir\u003e/common/",
+      "range": {
+        "startLine": 29,
+        "startChar": 24,
+        "endLine": 29,
+        "endChar": 55
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fa3479b_a239eea3",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "the sake",
+      "range": {
+        "startLine": 45,
+        "startChar": 34,
+        "endLine": 45,
+        "endChar": 38
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82c6d7d8_ee49bbc4",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "this is the return value. by convention your first entry in the set is the source file and any further entries are dependencies. I am not entirely sure that you can rely on the ordering of the set. in particular, if for some reason you would add the source file as a dependency, it might cancel the wrong one out. Prefer returning a data type that reflects the different types (source file, dependencies).",
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97aa725e_0716833c",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "better use a named group\n\nhttps://docs.python.org/3.10/library/re.html#:~:text\u003din%20a%20group.-,(%3FP%3Cname%3E...),-Similar%20to%20regular",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 57,
+        "endChar": 46
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83051314_31c237ac",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "I wonder whether the deps can be matched as multiline, something like\n\n deps_(.*) :\u003d (\\\\\\n\\t(?\u003cdep\u003e))*\n \n \n(untested sketch)",
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ae34d77_c648b469",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "if not split",
+      "range": {
+        "startLine": 68,
+        "startChar": 13,
+        "endLine": 68,
+        "endChar": 29
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adc18828_93b7a897",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "dir / \u0027init\u0027 / \u0027.main.o.cmd\u0027",
+      "range": {
+        "startLine": 76,
+        "startChar": 13,
+        "endLine": 76,
+        "endChar": 48
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efbde785_b78dfb55",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "I think this should raise, assert or sys.exit(1) as a fundamental precondition is not met",
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e80cd90_58a881eb",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "as above, rather work with a data type as return value to make this line a bit more obvious.",
+      "range": {
+        "startLine": 82,
+        "startChar": 16,
+        "endLine": 82,
+        "endChar": 21
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c4cb154_89c43a0c",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "consider returning pathlib.Path as a type",
+      "range": {
+        "startLine": 86,
+        "startChar": 15,
+        "endLine": 86,
+        "endChar": 30
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06374e36_1bf12ead",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "consider\n\n  source_dir \u003d pathlib.Path(source_dir)\n  return set(f for f in files if os.path.exists(source_dir / f)), source_dir",
+      "range": {
+        "startLine": 89,
+        "startChar": 9,
+        "endLine": 89,
+        "endChar": 82
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f77669ba_678d66c8",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "please stick to 80 characters max per line unless impossible\n\nhttps://google.github.io/styleguide/pyguide.html#32-line-length",
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "319030f2_20e97654",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "56*\u0027\u003d\u0027",
+      "range": {
+        "startLine": 116,
+        "startChar": 9,
+        "endLine": 116,
+        "endChar": 65
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93852aa5_0ffe82c5",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "the build",
+      "range": {
+        "startLine": 119,
+        "startChar": 68,
+        "endLine": 119,
+        "endChar": 73
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12cb8643_82180ef0",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "this is somewhat \u0027verbose\u0027 logging and I would put this behind a flag. Making the default silent unless in the error case is usually a good strategy.",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 46
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c79e21d3_e7c764fa",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "this seems like a functionality that does not really fit into this script. This is mostly about comparing the build tree after the fact. The source control checks should probably go into a separate tool.",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 158
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "510ef45a_915a1be7",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "mismatches should lead to non-zero return codes I suppose in order for automated tools / build tools to pick them up as failures.",
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6458d265_8d05fbf8",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T10:27:31Z",
+      "side": 1,
+      "message": "how about?\n\n  print(\u0027\\n  \u0027.join(diff_files)",
+      "range": {
+        "startLine": 140,
+        "startChar": 4,
+        "endLine": 140,
+        "endChar": 56
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
