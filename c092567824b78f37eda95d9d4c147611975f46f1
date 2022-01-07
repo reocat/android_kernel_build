@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1748a9a_62e964ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T12:40:52Z",
+      "side": 1,
+      "message": "please confirm that these cannot be provided through the android build tools (such as toybox)",
+      "revId": "c092567824b78f37eda95d9d4c147611975f46f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cce50f1_213fc2f3",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-07T12:40:52Z",
+      "side": 1,
+      "message": "keep sorted",
+      "revId": "c092567824b78f37eda95d9d4c147611975f46f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
