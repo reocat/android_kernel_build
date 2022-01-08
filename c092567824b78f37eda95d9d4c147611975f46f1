@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e0d0398_07a8cb0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1115183
+      },
+      "writtenOn": "2022-01-08T00:11:24Z",
+      "side": 1,
+      "message": "Thanks, uploaded a second CL to add a symlink to toybox for dd instead. install is not included in toybox, nor AFAICT available via any of the existing android build tools.",
+      "parentUuid": "cd909c23_6d74ee3a",
+      "revId": "c092567824b78f37eda95d9d4c147611975f46f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0cce50f1_213fc2f3",
@@ -49,6 +67,24 @@
       "writtenOn": "2022-01-07T12:40:52Z",
       "side": 1,
       "message": "keep sorted",
+      "revId": "c092567824b78f37eda95d9d4c147611975f46f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "944074f2_f0db8784",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1115183
+      },
+      "writtenOn": "2022-01-08T00:11:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cce50f1_213fc2f3",
       "revId": "c092567824b78f37eda95d9d4c147611975f46f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
