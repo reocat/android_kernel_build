@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62fde24c_fff47974",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 2190,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-08T02:34:50Z",
+      "side": 1,
+      "message": "This looks correct (to not generate system_dlkm by default). However, CL:1906137 seems to suggest that system_dlkm will also be generated for device kernel builds. Is that true? If not, how do device kernel builds suppress system_dlkm generation?",
+      "range": {
+        "startLine": 2190,
+        "startChar": 28,
+        "endLine": 2190,
+        "endChar": 32
+      },
+      "revId": "938dd7d2576f53fbc69e5e1f37ea3330de76b64d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
