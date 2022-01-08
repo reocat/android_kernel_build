@@ -103,6 +103,66 @@ def define_common_kernels(
             **kernel_build_kwargs
         ),
 
+        copy_to_dist_dir(
+            name = name + "_dist",
+            data = [
+                name + "_for_dist",
+            ],
+            flat = True,
+        ),
+    ] for name, config, outs in [
+        (
+            "kernel_aarch64",
+            "build.config.gki.aarch64",
+            aarch64_outs,
+        ),
+        (
+            "kernel_aarch64_debug",
+            "build.config.gki-debug.aarch64",
+            aarch64_outs,
+        ),
+        (
+            "kernel_x86_64",
+            "build.config.gki.x86_64",
+            x86_64_outs,
+        ),
+        (
+            "kernel_x86_64_debug",
+            "build.config.gki-debug.x86_64",
+            x86_64_outs,
+        ),
+    ]]
+
+    [[
+        native.filegroup(
+            name = name + "_sources",
+            srcs = native.glob(
+                ["**"],
+                exclude = [
+                    "BUILD.bazel",
+                    "**/*.bzl",
+                    ".git/**",
+                ],
+            ),
+        ),
+
+        kernel_build(
+            name = name,
+            srcs = [name + "_sources"],
+            outs = outs,
+            implicit_outs = [
+                # Kernel build time module signining utility and keys
+                # Only available if kernel defconfig has been merged
+                # with the system_dlkm.fragment for required configs
+                "scripts/sign-file",
+                "certs/signing_key.pem",
+                "certs/signing_key.x509"
+            ],
+            build_config = config,
+            visibility = visibility,
+            **kernel_build_kwargs
+        ),
+
         kernel_modules_install(
             name = name + "_modules_install",
             kernel_build = name,
@@ -126,23 +186,13 @@ def define_common_kernels(
         ),
     ] for name, config, outs in [
         (
-            "kernel_aarch64",
-            "build.config.gki.aarch64",
+            "kernel_aarch64_gki",
+            "build.config.gki.system_dlkm.aarch64",
             aarch64_outs,
         ),
         (
-            "kernel_aarch64_debug",
-            "build.config.gki-debug.aarch64",
-            aarch64_outs,
-        ),
-        (
-            "kernel_x86_64",
-            "build.config.gki.x86_64",
-            x86_64_outs,
-        ),
-        (
-            "kernel_x86_64_debug",
-            "build.config.gki-debug.x86_64",
+            "kernel_x86_64_gki",
+            "build.config.gki.system_dlkm.x86_64",
             x86_64_outs,
         ),
     ]]
