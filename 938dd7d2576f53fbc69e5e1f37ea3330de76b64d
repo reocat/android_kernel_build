@@ -22,6 +22,30 @@
       },
       "revId": "938dd7d2576f53fbc69e5e1f37ea3330de76b64d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edd62ed9_cace7df9",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 2190,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-08T03:45:50Z",
+      "side": 1,
+      "message": "Yes, you are right. Things don\u0027t make sense at this point as plans have changed.\n\nWhat I am going to do now is - in new configs being introduced with aosp/1941274 (will also be used by kleaf aosp/1938248 - but doesn\u0027t build yet with kleaf); I\u0027ll set the build flash BUILD_SYSTEM_DLKM and build.sh will only build it if it\u0027s set. That way kleaf will match the build.sh\n\nDoes it sound good?",
+      "parentUuid": "62fde24c_fff47974",
+      "range": {
+        "startLine": 2190,
+        "startChar": 28,
+        "endLine": 2190,
+        "endChar": 32
+      },
+      "revId": "938dd7d2576f53fbc69e5e1f37ea3330de76b64d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
