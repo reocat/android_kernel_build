@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4c651a7_dd8e2fc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-10T12:09:28Z",
+      "side": 1,
+      "message": "how about we consider WORKSPACE as a marker for the ROOT_DIR?",
+      "revId": "9d09d2e81926cee82e36a0e219c855bc204f9ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "156ec114_fa7e35b7",
+        "filename": "gettop.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-10T12:09:28Z",
+      "side": 1,
+      "message": "./gettop.sh",
+      "range": {
+        "startLine": 18,
+        "startChar": 22,
+        "endLine": 18,
+        "endChar": 28
+      },
+      "revId": "9d09d2e81926cee82e36a0e219c855bc204f9ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
