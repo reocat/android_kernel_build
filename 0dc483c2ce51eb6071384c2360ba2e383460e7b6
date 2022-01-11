@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "604e8487_75706aff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-11T09:16:37Z",
+      "side": 1,
+      "message": "FTR: this introduces a permanent dependency on common/build.config.constants and therefore expresses a dependency to have the common/ kernel tree as part of the checkout. This is probably ok, but might lead to issues in the future.",
+      "revId": "0dc483c2ce51eb6071384c2360ba2e383460e7b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
