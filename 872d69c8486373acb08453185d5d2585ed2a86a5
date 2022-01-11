@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d5a265_28f1583b",
+        "filename": "gettop.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-11T12:59:30Z",
+      "side": 1,
+      "message": "Please factor out $(dirname ${real_this}) and call it \"parent\" or \"script_location\" or something that is meaningful to you.\n\nIf you were very keen you could also name the next intermediate result and assert that its basename is \"build\" before finally returning its dirname.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 2
+      },
+      "revId": "872d69c8486373acb08453185d5d2585ed2a86a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
