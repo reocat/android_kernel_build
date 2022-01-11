@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c278cc03_8df3c46c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-11T21:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f296249e_53010fef",
+      "range": {
+        "startLine": 20,
+        "startChar": 10,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "7ea119f5a7f6e8a5796c627409ca05edd087df82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5b4cb3c_7de9e2e4",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-01-05T16:06:20Z",
       "side": 1,
       "message": "to use the module.",
+      "range": {
+        "startLine": 1097,
+        "startChar": 68,
+        "endLine": 1097,
+        "endChar": 77
+      },
+      "revId": "7ea119f5a7f6e8a5796c627409ca05edd087df82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf865f77_7393d348",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-11T21:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5b4cb3c_7de9e2e4",
       "range": {
         "startLine": 1097,
         "startChar": 68,
