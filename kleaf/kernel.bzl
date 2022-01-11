@@ -633,6 +633,26 @@ def _get_tools(toolchain_version):
         )
     ]
 
+_KernelToolchainInfo = provider(fields = {
+    "toolchain_version": "The toolchain version",
+})
+
+def _kernel_toolchain_aspect_impl(target, ctx):
+    if ctx.rule.kind == "_kernel_build":
+        return ctx.rule.attr.config[_KernelToolchainInfo]
+    if ctx.rule.kind == "_kernel_config":
+        return ctx.rule.attr.env[_KernelToolchainInfo]
+    if ctx.rule.kind == "_kernel_env":
+        return _KernelToolchainInfo(toolchain_version = ctx.rule.attr.toolchain_version)
+
+_kernel_toolchain_aspect = aspect(
+    implementation = _kernel_toolchain_aspect_impl,
+    doc = "An aspect describing the toolchain of a `_kernel_build`, `_kernel_config`, or `_kernel_env` rule.",
+    attr_aspects = [
+        "config",
+    ],
+)
+
 _kernel_env = rule(
     implementation = _kernel_env_impl,
     doc = """Generates a rule that generates a source-able build environment.
@@ -798,6 +818,7 @@ _kernel_config = rule(
         "env": attr.label(
             mandatory = True,
             providers = [_KernelEnvInfo],
+            aspects = [_kernel_toolchain_aspect],
             doc = "environment target that defines the kernel build environment",
         ),
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
@@ -855,6 +876,25 @@ def _kernel_build_impl(ctx):
     kbuild_mixed_tree = None
     base_kernel_files = []
     if ctx.attr.base_kernel:
+        # Check toolchain_version is the same as base_kernel.
+        if ctx.attr.config[_KernelToolchainInfo].toolchain_version != ctx.attr.base_kernel[_KernelToolchainInfo].toolchain_version:
+            fail("""{this_label}:
+
+ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
+       `toolchain_version` is "{base_toolchain}" for "{base_kernel}" (`base_kernel`).
+       They must use the same `toolchain_version`.
+
+       Fix by setting `toolchain_version` of "{this_label}"
+       to be the one used by "{base_kernel}".
+       If "{base_kernel}" does not set `toolchain_version` explicitly, do not set
+       `toolchain_version` for "{this_label}" either.
+""".format(
+                this_label = ctx.label,
+                this_toolchain = ctx.attr.config[_KernelToolchainInfo].toolchain_version,
+                base_kernel = ctx.attr.base_kernel.label,
+                base_toolchain = ctx.attr.base_kernel[_KernelToolchainInfo].toolchain_version,
+            ))
+
         # Create a directory for KBUILD_MIXED_TREE. Flatten the directory structure of the files
         # that ctx.attr.base_kernel provides. declare_directory is sufficient because the directory should
         # only change when the dependent ctx.attr.base_kernel changes.
@@ -1045,6 +1085,7 @@ _kernel_build = rule(
         "config": attr.label(
             mandatory = True,
             providers = [_KernelEnvInfo],
+            aspects = [_kernel_toolchain_aspect],
             doc = "the kernel_config target",
         ),
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
@@ -1062,6 +1103,7 @@ _kernel_build = rule(
         ),
         "base_kernel": attr.label(
             providers = [KernelFilesInfo],
+            aspects = [_kernel_toolchain_aspect],
         ),
         "modules_prepare": attr.label(),
         "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
@@ -2375,7 +2417,7 @@ This is similar to [`filegroup`](https://docs.bazel.build/versions/main/be/gener
 that gives a convenient name to a collection of targets, which can be referenced from other rules.
 
 In addition, this rule is conformed with [`KernelFilesInfo`](#kernelfilesinfo), so it can be used
-in the `base_build` attribute of a [`kernel_build`](#kernel_build).
+in the `base_kernel` attribute of a [`kernel_build`](#kernel_build).
 """,
     attrs = {
         "srcs": attr.label_list(
