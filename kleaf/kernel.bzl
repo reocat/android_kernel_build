@@ -126,6 +126,7 @@ def kernel_build(
         base_kernel = None,
         kconfig_ext = None,
         dtstree = None,
+        generate_headers = None,
         toolchain_version = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -141,7 +142,6 @@ def kernel_build(
     A few additional labels are generated.
     For example, if name is `"kernel_aarch64"`:
     - `kernel_aarch64_uapi_headers` provides the UAPI kernel headers.
-    - `kernel_aarch64_headers` provides the kernel headers.
 
     Args:
         name: The final kernel target name, e.g. `"kernel_aarch64"`.
@@ -185,6 +185,11 @@ def kernel_build(
           This is suitable for ABI analysis through BTF.
 
           Requires that `"vmlinux"` is in `outs`.
+
+        generate_headers: If `True`, generates target `{name}_headers` that builds
+          `kernel-headers.tar.gz`.
+
+          Note: This does not affect `kernel-uapi-headers.tar.gz`.
         deps: Additional dependencies to build this kernel.
         module_outs: A list of in-tree drivers. Similar to `outs`, but for `*.ko` files.
 
@@ -391,14 +396,15 @@ def kernel_build(
         **kwargs
     )
 
-    _kernel_headers(
-        name = headers_target_name,
-        kernel_build = name,
-        env = env_target_name,
-        # TODO: We need arch/ and include/ only.
-        srcs = srcs,
-        **kwargs
-    )
+    if generate_headers:
+        _kernel_headers(
+            name = headers_target_name,
+            kernel_build = name,
+            env = env_target_name,
+            # TODO: We need arch/ and include/ only.
+            srcs = srcs,
+            **kwargs
+        )
 
     if generate_vmlinux_btf:
         vmlinux_btf_name = name + "_vmlinux_btf"
