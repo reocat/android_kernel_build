@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import argparse
 import functools
 import os
 import subprocess
@@ -36,8 +37,9 @@ def check_output(*args, **kwargs):
 def check_call(*args, **kwargs):
     return exec_silent(functools.partial(subprocess.check_call, *args, **kwargs))
 
-
 def main(argv, env):
+    env = env.copy()
+
     root_dir = env["ROOT_DIR"]
 
     source_date_epoch = check_output(
@@ -53,7 +55,19 @@ def main(argv, env):
 
     absolute_out_dir = "{root_dir}/out".format(root_dir=root_dir)
 
-    args = [
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument("--use_prebuilt_gki")
+    known_args, remaining_args = parser.parse_known_args(argv[1:])
+    if known_args.use_prebuilt_gki:
+        # Insert before positional arguments
+        try:
+            idx = remaining_args.index("--")
+        except ValueError:
+            idx = len(remaining_args)
+        remaining_args.insert(idx, "--//common:use_prebuilt_gki")
+        env["KLEAF_DOWNLOAD_BUILD_NUMBER_MAP"] = "gki_prebuilts=" + known_args.use_prebuilt_gki
+
+    bazel_args = [
         bazel_path,
         "--server_javabase={}".format(bazel_jdk_path),
         "--output_user_root={}/bazel/output_user_root".format(absolute_out_dir),
@@ -63,12 +77,11 @@ def main(argv, env):
             root_dir=root_dir,
             bazelrc_name=bazelrc_name)
     ]
-    args += argv[1:]
+    bazel_args += remaining_args
 
-    env = env.copy()
     env["SOURCE_DATE_EPOCH"] = source_date_epoch
 
-    check_call(args, env=env)
+    check_call(bazel_args, env=env)
 
 
 if __name__ == "__main__":

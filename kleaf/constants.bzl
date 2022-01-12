@@ -31,9 +31,11 @@ x86_64_outs = _common_outs + ["bzImage"]
 # (target name suffix, list of artifacts)
 # See common_kernels.bzl.
 DOWNLOAD_TARGET_SUFFIX_TO_OUTPUTS = [
-    ("uapi_headers", ["kernel-uapi-headers.tar.gz"]),
-    ("headers", ["kernel-headers.tar.gz"]),
-    ("images", [
+    ("uapi_headers", [
+        "kernel-uapi-headers.tar.gz",
+    ]),
+    ("additional_artifacts", [
+        "kernel-headers.tar.gz",
         "system_dlkm.img",
     ]),
 ]
