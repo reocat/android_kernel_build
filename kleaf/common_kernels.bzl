@@ -12,15 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("//build/kleaf:download.bzl", "download_filegroup")
 load(
     "//build/kleaf:kernel.bzl",
     "kernel_build",
     "kernel_compile_commands",
+    "kernel_filegroup",
     "kernel_images",
     "kernel_kythe",
     "kernel_modules_install",
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
+load("@bazel_skylib//rules:common_settings.bzl", "string_flag")
 
 _common_outs = [
     "System.map",
@@ -135,6 +138,7 @@ def define_common_kernels(
             name = name + "_images",
             kernel_build = name,
             kernel_modules_install = name + "_modules_install",
+            # Sync with _DOWNLOAD_TARGET_SUFFIX_TO_OUTPUTS["images"] below.
             build_system_dlkm = True,
         )
 
@@ -177,3 +181,134 @@ def define_common_kernels(
         ],
         flat = True,
     )
+
+_DOWNLOAD_TARGET_SUFFIX_TO_OUTPUTS = [
+    ("uapi_headers", ["kernel-uapi-headers.tar.gz"]),
+    ("headers", ["kernel-headers.tar.gz"]),
+    ("images", [
+        "system_dlkm.img",
+    ]),
+]
+
+# (Bazel target name, Target name on ci.android.com)
+_CI_TARGET_MAPPING = [
+    # TODO(b/206079661): Allow downloaded prebuilts for x86_64 and debug targets.
+    ("kernel_aarch64", "kernel_kleaf"),
+]
+
+def define_download_prebuilts(build_source_package = None, **kwargs):
+    """
+    First, a
+    [`string_flag`](https://github.com/bazelbuild/bazel-skylib/blob/main/docs/common_settings_doc.md)
+    named `gki_prebuilt_num` is defined in the current package.
+
+    The flag may be set in the command line, e.g:
+    ```
+    bazel build --//<package>:gki_prebuilt_num=<build_number> <targets>
+    ```
+    [Flag aliases](https://docs.bazel.build/versions/main/command-line-reference.html#flag--flag_alias)
+    may also be set, likely in a `bazelrc` file.
+
+    Then, `<name>_download_or_build` targets builds `<name>` from source if the `gki_download_num`
+    is not set, and downloads artifacts of the given build number from
+    [ci.android.com](http://ci.android.com) if it is set.
+
+    - `kernel_aarch64_download_or_build`
+      - `kernel_aarch64_headers_download_or_build`
+      - `kernel_aarch64_uapi_headers_download_or_build`
+      - `kernel_aarch64_images_download_or_build`
+
+    `<name>_downloaded` targets downloads artifacts of the given build number from
+    [ci.android.com](http://ci.android.com). These targets are valid only if
+    the `gki_downloaded_num` flag is set.
+
+    - `kernel_aarch64_downloaded`
+      - `kernel_aarch64_headers_downloaded`
+      - `kernel_aarch64_uapi_headers_downloaded`
+      - `kernel_aarch64_images_downloaded`
+
+    Note: If a device should build against downloaded prebuilts unconditionally,
+    declare [`download_filegroup`](#download_filegroup) and
+    [`kernel_filegroup`](#kernel_filegroup) targets.
+
+    Args:
+        build_source_package: Package to the sources of the ACK. By default, this is `//common`.
+
+          Override this value if the repo manifest checks out ACK sources to a directory other
+          than `common/`.
+
+          It is expected that [`define_common_kernels()`](#define_common_kernels) is called
+          in the package specified in `build_source_package`.
+
+          Note: To use sources in the current package, use
+          [`"//" + package_name()`](https://docs.bazel.build/versions/main/skylark/lib/native.html#package_name).
+        kwargs: Additional attributes to the internal rules, e.g.
+          [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
+          See complete list
+          [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
+    """
+
+    if build_source_package == None:
+        build_source_package = "//common"
+
+    # Build number for GKI prebuilts
+    string_flag(
+        name = "gki_prebuilt_num",
+        build_setting_default = "",
+        **kwargs
+    )
+
+    # Matches when --gki_prebuilt_num is not set.
+    native.config_setting(
+        name = "gki_prebuilt_num_is_empty",
+        flag_values = {
+            ":gki_prebuilt_num": "",
+        },
+        **kwargs
+    )
+
+    for name, target in _CI_TARGET_MAPPING:
+        source_package_name = build_source_package + ":" + name
+
+        # Build artifacts of kernel_{arch}
+        download_filegroup(
+            name = name + "_downloaded",
+            target = target,
+            build_number_flag = ":gki_prebuilt_num",
+            files = aarch64_outs,
+            **kwargs
+        )
+
+        # A kernel_filegroup that:
+        # - If --gki_prebuilt_num is set, use downloaded prebuilt of kernel_aarch64
+        # - Otherwise build kernel_aarch64 from sources.
+        kernel_filegroup(
+            name = name + "_download_or_build",
+            srcs = select({
+                ":gki_prebuilt_num_is_empty": [source_package_name],
+                "//conditions:default": [":" + name + "_downloaded"],
+            }),
+            **kwargs
+        )
+
+        for suffix, files in _DOWNLOAD_TARGET_SUFFIX_TO_OUTPUTS:
+            # Build artifacts of kernel_{arch}_{suffix}
+            download_filegroup(
+                name = name + "_" + suffix + "_downloaded",
+                target = target,
+                build_number_flag = ":gki_prebuilt_num",
+                files = files,
+                **kwargs
+            )
+
+            # A filegroup that:
+            # - If --gki_prebuilt_num is set, use downloaded prebuilt of kernel_{arch}_{suffix}
+            # - Otherwise build kernel_{arch}_{suffix}
+            native.filegroup(
+                name = name + "_" + suffix + "_download_or_build",
+                srcs = select({
+                    ":gki_prebuilt_num_is_empty": [source_package_name + "_" + suffix],
+                    "//conditions:default": [":" + name + "_" + suffix + "_downloaded"],
+                }),
+                **kwargs
+            )
