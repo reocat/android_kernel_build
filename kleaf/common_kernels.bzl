@@ -122,6 +122,7 @@ def define_common_kernels(
             srcs = [name + "_sources"],
             outs = outs,
             build_config = config,
+            generate_headers = True,  # Generates {name}_headers
             visibility = visibility,
             **kernel_build_kwargs
         )
