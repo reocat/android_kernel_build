@@ -16,6 +16,24 @@
       "message": "Can you update kernel.bzl as well? Otherwise please file a go/kleaf-bug on me.\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kleaf/kernel.bzl;l\u003d2003;drc\u003d0dc483c2ce51eb6071384c2360ba2e383460e7b6",
       "revId": "f2f7752fb156085d4a52d79124165a8455e7ba4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55808a57_7a925691",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1279563
+      },
+      "writtenOn": "2022-01-12T02:36:10Z",
+      "side": 1,
+      "message": "Thanks Yifan! Not sure how to build with kernel.bzl, will create bug for this.",
+      "parentUuid": "f871b7d7_a6f5d66f",
+      "revId": "f2f7752fb156085d4a52d79124165a8455e7ba4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
