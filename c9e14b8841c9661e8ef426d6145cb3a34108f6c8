@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "752b9703_7dfa67cb",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-01-12T00:21:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f857eee4_f347b819",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 44
+      },
+      "revId": "c9e14b8841c9661e8ef426d6145cb3a34108f6c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e8229ae_c69fa6c2",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-01-10T11:49:58Z",
       "side": 1,
       "message": "nit: It is cleaner to actually return a data type that contains those. That also makes the call site more readable.",
+      "revId": "c9e14b8841c9661e8ef426d6145cb3a34108f6c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "214da854_34a8e70a",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 9
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-01-12T00:21:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e8229ae_c69fa6c2",
       "revId": "c9e14b8841c9661e8ef426d6145cb3a34108f6c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5be230b7_f5e18d4e",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-01-12T00:21:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "890d4cba_a17c688d",
+      "revId": "c9e14b8841c9661e8ef426d6145cb3a34108f6c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0da87e8e_b9c57653",
@@ -75,6 +135,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1ea803c_90dd3f5d",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-01-12T00:21:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0da87e8e_b9c57653",
+      "revId": "c9e14b8841c9661e8ef426d6145cb3a34108f6c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9cd1c193_0369b6dd",
@@ -88,6 +166,30 @@
       "writtenOn": "2022-01-10T11:49:58Z",
       "side": 1,
       "message": "that number is a bit arbitrary. make it a constant? at least add spaces around.\n\nhttps://google.github.io/styleguide/pyguide.html#36-whitespace\n\n(pyformat should do the trick)",
+      "range": {
+        "startLine": 143,
+        "startChar": 10,
+        "endLine": 143,
+        "endChar": 12
+      },
+      "revId": "c9e14b8841c9661e8ef426d6145cb3a34108f6c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2796a767_4ee911bd",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 9
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-01-12T00:21:34Z",
+      "side": 1,
+      "message": "Just removed this line since there\u0027s not much output for this script anymore and I don\u0027t think a big divider in the output is necessary. The length of the line was same as used throughout build.sh 😊\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/build.sh;l\u003d550",
+      "parentUuid": "9cd1c193_0369b6dd",
       "range": {
         "startLine": 143,
         "startChar": 10,

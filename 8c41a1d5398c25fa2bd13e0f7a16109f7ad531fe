@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44756e51_680c0acf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-01-12T00:21:34Z",
+      "side": 1,
+      "message": "Very initial shell script took a few minutes, initial Python re-write took ~15 seconds. Multiprocessing brings it down to the \u003c2 seconds.",
+      "parentUuid": "63401ea1_51dc26e5",
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "399ae6e0_9fa00d5a",
@@ -443,6 +461,24 @@
       "side": 1,
       "message": "Prefer returning a data type that reflects the different types (source file, dependencies).",
       "parentUuid": "02153fe5_604e0bd4",
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe821ff8_dda1ad24",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-01-12T00:21:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1565efc_fdb9816e",
       "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -841,6 +877,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7a0ef33_16419e61",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-01-12T00:21:34Z",
+      "side": 1,
+      "message": "Missed that, done.",
+      "parentUuid": "d493e3c1_74cda338",
+      "range": {
+        "startLine": 89,
+        "startChar": 9,
+        "endLine": 89,
+        "endChar": 82
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f77669ba_678d66c8",
@@ -1160,6 +1220,30 @@
       "side": 1,
       "message": "still applicable",
       "parentUuid": "c75586ef_fb0eb3ec",
+      "range": {
+        "startLine": 140,
+        "startChar": 4,
+        "endLine": 140,
+        "endChar": 56
+      },
+      "revId": "8c41a1d5398c25fa2bd13e0f7a16109f7ad531fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73ed43a9_26ed891d",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-01-12T00:21:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ff5c10f_38d3beae",
       "range": {
         "startLine": 140,
         "startChar": 4,
