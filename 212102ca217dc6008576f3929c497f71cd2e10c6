@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd41b39e_add4b8b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-12T13:19:48Z",
+      "side": 1,
+      "message": "just some nits. thanks for working on this!",
+      "revId": "212102ca217dc6008576f3929c497f71cd2e10c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "728dd700_8744faa8",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-12T13:19:48Z",
+      "side": 1,
+      "message": "sort",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 22
+      },
+      "revId": "212102ca217dc6008576f3929c497f71cd2e10c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7857d345_f65ab0e5",
+        "filename": "gki/compare_mixed_trees",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-12T13:19:48Z",
+      "side": 1,
+      "message": "\"\"\"Parses a .cmd file to collect the source files used to build.\n\nThe .cmd file is a .....\n\n\"\"\"\n\n\n\nhttps://google.github.io/styleguide/pyguide.html#383-functions-and-methods",
+      "revId": "212102ca217dc6008576f3929c497f71cd2e10c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
