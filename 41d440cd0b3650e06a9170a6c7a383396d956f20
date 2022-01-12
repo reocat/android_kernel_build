@@ -16,6 +16,24 @@
       "message": "So, in build.sh we are doing the partition size check and in bazel land we do not?",
       "revId": "41d440cd0b3650e06a9170a6c7a383396d956f20",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "968ea917_69d03253",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-12T17:28:41Z",
+      "side": 1,
+      "message": "It was there; it got reviewed out.\n\nhttps://android-review.googlesource.com/c/kernel/build/+/1934581/4..12/kleaf/kernel.bzl#b1956\n\nb/211800737 Comment#2",
+      "parentUuid": "d7a7b428_ab7b9511",
+      "revId": "41d440cd0b3650e06a9170a6c7a383396d956f20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
