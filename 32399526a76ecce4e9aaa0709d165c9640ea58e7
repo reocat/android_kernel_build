@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f42d296_47c7d8ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-12T13:38:00Z",
+      "side": 1,
+      "message": "this looks generally well done! yet I think here are two changes that we should also make two. One that introduces the basic functionality and one that hooks everything up.",
+      "revId": "32399526a76ecce4e9aaa0709d165c9640ea58e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa1c09e_825fc41e",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-12T13:38:00Z",
+      "side": 1,
+      "message": "sort",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 27
+      },
+      "revId": "32399526a76ecce4e9aaa0709d165c9640ea58e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
