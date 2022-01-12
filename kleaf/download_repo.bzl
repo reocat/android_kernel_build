@@ -81,6 +81,15 @@ def _download_artifact_repo_impl(repository_ctx):
 
     if not build_number:
         SAMPLE_BUILD_NUMBER = "8077484"
+        if repository_ctx.attr.prefix == "gki_prebuilts":
+            fail("""ERROR: {prefix}: No build_number specified. Fix by specifying `--use_prebuilt_gki=<build_number>"`, e.g.
+    bazel build --use_prebuilt_gki={build_number}" @{prefix}//{filename}
+""".format(
+                filename = repository_ctx.attr.filename,
+                prefix = repository_ctx.attr.prefix,
+                build_number = SAMPLE_BUILD_NUMBER,
+            ))
+
         fail("""ERROR: {prefix}: No build_number specified.
 
 Fix by one of the following:
