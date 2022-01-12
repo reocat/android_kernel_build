@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21f9bc52_5cc7f9d7",
+        "filename": "gettop.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-12T10:33:49Z",
+      "side": 1,
+      "message": "this could be even shorter, but I will not insist as this is temporary\n\n  result\u003d$(dirname ${parent_dir})\n    if [[ $(basename ${parent_dir}) \u003d\u003d \"kernel\" ]]; then\n    echo $(dirname ${parent_dir})\n  fi\n  echo $result",
+      "revId": "76d7b84e13c9c0abde597b21ba51090228ec9c73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
