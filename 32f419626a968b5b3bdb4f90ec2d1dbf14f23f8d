@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf655340_34eeeea9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-12T08:30:35Z",
+      "side": 1,
+      "message": "Verified it builds on on top of my pending changes (aosp/1946129\n) for following targets:\n//common:kernel_aarch64_dist (android13-5.15)\n//common:kernel_aarch64_dist (android13-5.10)\n//common-modules/virtual-device:virtual_device_x86_64_dist (android-mainline)\n",
+      "revId": "32f419626a968b5b3bdb4f90ec2d1dbf14f23f8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
