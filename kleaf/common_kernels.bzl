@@ -121,6 +121,9 @@ def define_common_kernels(
             name = name,
             srcs = [name + "_sources"],
             outs = outs,
+            module_outs = [
+                    "test_stackinit.ko",
+            ],
             build_config = config,
             visibility = visibility,
             **kernel_build_kwargs
