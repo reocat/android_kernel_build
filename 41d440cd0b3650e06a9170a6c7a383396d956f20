@@ -52,6 +52,24 @@
       "parentUuid": "968ea917_69d03253",
       "revId": "41d440cd0b3650e06a9170a6c7a383396d956f20",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b144d31a_7a5f9da6",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-13T00:18:07Z",
+      "side": 1,
+      "message": "I think we agreed on removing it from kleaf for good reason and the same reason applies here.",
+      "parentUuid": "a54c61a8_5d042ae6",
+      "revId": "41d440cd0b3650e06a9170a6c7a383396d956f20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
