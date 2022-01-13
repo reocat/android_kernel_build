@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6954a5ae_a6bfe362",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-13T16:24:43Z",
+      "side": 1,
+      "message": "That is a very nice implementation, though it took a bit to get my head around aspects. I would like to point out that the naming is slightly inconsistent: the aspect and the provider should either be bother kernel_toolchain or kernel_toolchain_info (independent of the camel/snake case)\n\n",
+      "revId": "f75dadc3ade27f3d33b553e29621477532b9ec42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
