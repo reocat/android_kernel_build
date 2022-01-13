@@ -104,6 +104,30 @@
       },
       "revId": "32399526a76ecce4e9aaa0709d165c9640ea58e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59ca0140_97a42d3f",
+        "filename": "kleaf/download.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-13T00:30:50Z",
+      "side": 1,
+      "message": "the prebuilt python interpreter is already exported, https://cs.android.com/android/kernel/superproject/+/common-android-mainline:prebuilts/build-tools/BUILD.bazel, is that sufficient?",
+      "parentUuid": "5e72854d_adfdae39",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 80
+      },
+      "revId": "32399526a76ecce4e9aaa0709d165c9640ea58e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
