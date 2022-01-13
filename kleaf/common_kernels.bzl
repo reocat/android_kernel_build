@@ -144,6 +144,10 @@ def define_common_kernels(
             kernel_build = name,
             kernel_modules_install = name + "_modules_install",
             build_system_dlkm = True,
+            deps = [
+                 # Keep the following in sync with build.config.gki* MODULES_LIST
+                 "android/gki_system_dlkm_modules",
+             ],
         )
 
         copy_to_dist_dir(
