@@ -21,23 +21,12 @@ load(
     "kernel_modules_install",
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
-
-_common_outs = [
-    "System.map",
-    "modules.builtin",
-    "modules.builtin.modinfo",
-    "vmlinux",
-    "vmlinux.symvers",
-]
-
-# Common output files for aarch64 kernel builds.
-aarch64_outs = _common_outs + [
-    "Image",
-    "Image.lz4",
-]
-
-# Common output files for x86_64 kernel builds.
-x86_64_outs = _common_outs + ["bzImage"]
+load(
+    "//build/kleaf:constants.bzl",
+    "DOWNLOAD_TARGET_SUFFIX_TO_OUTPUTS",
+    "aarch64_outs",
+    "x86_64_outs",
+)
 
 _ARCH_CONFIGS = [
     (
@@ -144,12 +133,12 @@ def define_common_kernels(
                 # Kernel build time module signining utility and keys
                 # Only available during GKI builds
                 # Device fragments need to add: '# CONFIG_MODULE_SIG_ALL is not set'
-                    "scripts/sign-file",
-                    "certs/signing_key.pem",
-                    "certs/signing_key.x509"
+                "scripts/sign-file",
+                "certs/signing_key.pem",
+                "certs/signing_key.x509",
             ],
             module_outs = [
-                    "test_stackinit.ko",
+                "test_stackinit.ko",
             ],
             build_config = config,
             visibility = visibility,
@@ -165,11 +154,12 @@ def define_common_kernels(
             name = name + "_images",
             kernel_build = name,
             kernel_modules_install = name + "_modules_install",
+            # Sync with DOWNLOAD_TARGET_SUFFIX_TO_OUTPUTS, "additional_artifacts".
             build_system_dlkm = True,
             deps = [
-                 # Keep the following in sync with build.config.gki* MODULES_LIST
-                 "android/gki_system_dlkm_modules",
-             ],
+                # Keep the following in sync with build.config.gki* MODULES_LIST
+                "android/gki_system_dlkm_modules",
+            ],
         )
 
         # Everything in name + "_dist", minus UAPI headers, because
