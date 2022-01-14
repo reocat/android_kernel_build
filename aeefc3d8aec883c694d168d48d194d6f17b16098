@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6c24d0e_db35a201",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-14T04:16:32Z",
+      "side": 1,
+      "message": "Note: We aren\u0027t using it anywhere, but I think it is nice to keep it around. It is not many lines of code (the docs would need to be moved to download_artifacts_repo if this were to be deleted)",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 13
+      },
+      "revId": "aeefc3d8aec883c694d168d48d194d6f17b16098",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b00ee64_77ca61cc",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-14T04:16:32Z",
+      "side": 1,
+      "message": "Note: I need to have this hack (one impl calling another) because I can\u0027t find a way to access environment variables in the download_artifacts_repo macro.",
+      "revId": "aeefc3d8aec883c694d168d48d194d6f17b16098",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
