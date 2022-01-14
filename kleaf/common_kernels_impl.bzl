@@ -13,7 +13,7 @@
 # limitations under the License.
 
 load(
-    ":kernel.bzl",
+    "//build/kernel/kleaf:kernel.bzl",
     "kernel_build",
     "kernel_compile_commands",
     "kernel_images",
@@ -22,32 +22,32 @@ load(
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load(
-    ":constants.bzl",
+    "//build/kernel/kleaf:constants.bzl",
     "aarch64_outs",
     "x86_64_outs",
 )
 
 _ARCH_CONFIGS = [
-    {
-        "name": "kernel_aarch64",
-        "build_config": "build.config.gki.aarch64",
-        "outs": aarch64_outs,
-    },
-    {
-        "name": "kernel_aarch64_debug",
-        "build_config": "build.config.gki-debug.aarch64",
-        "outs": aarch64_outs,
-    },
-    {
-        "name": "kernel_x86_64",
-        "build_config": "build.config.gki.x86_64",
-        "outs": x86_64_outs,
-    },
-    {
-        "name": "kernel_x86_64_debug",
-        "build_config": "build.config.gki-debug.x86_64",
-        "outs": x86_64_outs,
-    },
+    (
+        "kernel_aarch64",
+        "build.config.gki.aarch64",
+        aarch64_outs,
+    ),
+    (
+        "kernel_aarch64_debug",
+        "build.config.gki-debug.aarch64",
+        aarch64_outs,
+    ),
+    (
+        "kernel_x86_64",
+        "build.config.gki.x86_64",
+        x86_64_outs,
+    ),
+    (
+        "kernel_x86_64_debug",
+        "build.config.gki-debug.x86_64",
+        x86_64_outs,
+    ),
 ]
 
 def define_common_kernels(
@@ -111,9 +111,7 @@ def define_common_kernels(
     if toolchain_version:
         kernel_build_kwargs["toolchain_version"] = toolchain_version
 
-    for arch_config in _ARCH_CONFIGS:
-        name = arch_config["name"]
-
+    for name, config, outs in _ARCH_CONFIGS:
         native.filegroup(
             name = name + "_sources",
             srcs = native.glob(
@@ -129,7 +127,7 @@ def define_common_kernels(
         kernel_build(
             name = name,
             srcs = [name + "_sources"],
-            outs = arch_config["outs"],
+            outs = outs,
             implicit_outs = [
                 # Kernel build time module signining utility and keys
                 # Only available during GKI builds
@@ -138,7 +136,7 @@ def define_common_kernels(
                 "certs/signing_key.pem",
                 "certs/signing_key.x509",
             ],
-            build_config = arch_config["build_config"],
+            build_config = config,
             visibility = visibility,
             **kernel_build_kwargs
         )
@@ -152,6 +150,7 @@ def define_common_kernels(
             name = name + "_images",
             kernel_build = name,
             kernel_modules_install = name + "_modules_install",
+            # Sync with GKI_DOWNLOAD_CONFIGS, "additional_artifacts".
             build_system_dlkm = True,
             deps = [
                 # Keep the following in sync with build.config.gki* MODULES_LIST
@@ -164,6 +163,7 @@ def define_common_kernels(
         native.filegroup(
             name = name + "_additional_artifacts",
             srcs = [
+                # Sync with GKI_DOWNLOAD_CONFIGS, "additional_artifacts".
                 name + "_headers",
                 name + "_modules_install",
                 name + "_images",
