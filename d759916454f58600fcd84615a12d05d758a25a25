@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e8194ac_74283b97",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2022-01-14T12:01:37Z",
+      "side": 1,
+      "message": "I\u0027m a little confused at this. It looks like _kernel_toolchain_aspect propagates to all transitive dependencies reached through the \"config\" and \"env\" attributes (that\u0027s what attr_aspects\u003d does), but it neither propagates information upward in the dependency graph nor are the dependencies accessed in the implementation of the aspect, nor does the aspect do anything itself.\n\nBut then why propagate the aspect to the transitive dependencies?",
+      "range": {
+        "startLine": 629,
+        "startChar": 8,
+        "endLine": 629,
+        "endChar": 57
+      },
+      "revId": "d759916454f58600fcd84615a12d05d758a25a25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
