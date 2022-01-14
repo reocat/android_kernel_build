@@ -58,8 +58,10 @@ docs(
     name = "docs",
     srcs = [
         "common_kernels.bzl",
+        "download_repo.bzl",
         "kernel.bzl",
         "key_value_repo.bzl",
+        "utils.bzl",
     ],
     default = "kernel.bzl",
     deps = [
