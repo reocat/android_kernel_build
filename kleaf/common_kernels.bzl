@@ -150,6 +150,7 @@ def define_common_kernels(
             name = name + "_images",
             kernel_build = name,
             kernel_modules_install = name + "_modules_install",
+            # Sync with DOWNLOAD_TARGET_SUFFIX_TO_OUTPUTS, "additional_artifacts".
             build_system_dlkm = True,
             deps = [
                 # Keep the following in sync with build.config.gki* MODULES_LIST
