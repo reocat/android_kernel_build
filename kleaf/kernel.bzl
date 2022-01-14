@@ -2067,6 +2067,7 @@ When included in a `copy_to_dist_dir` rule, this rule copies the `system_dlkm.im
 def _vendor_dlkm_image_impl(ctx):
     vendor_dlkm_img = ctx.actions.declare_file("{}/vendor_dlkm.img".format(ctx.label.name))
     vendor_dlkm_modules_load = ctx.actions.declare_file("{}/vendor_dlkm.modules.load".format(ctx.label.name))
+    vendor_dlkm_modules_blocklist = ctx.actions.declare_file("{}/vendor_dlkm.modules.blocklist".format(ctx.label.name))
     modules_staging_dir = vendor_dlkm_img.dirname + "/staging"
     vendor_dlkm_staging_dir = modules_staging_dir + "/vendor_dlkm_staging"
     command = """
@@ -2082,6 +2083,7 @@ def _vendor_dlkm_image_impl(ctx):
             # Move output files into place
               mv "${{DIST_DIR}}/vendor_dlkm.img" {vendor_dlkm_img}
               mv "${{DIST_DIR}}/vendor_dlkm.modules.load" {vendor_dlkm_modules_load}
+              mv "${{DIST_DIR}}/vendor_dlkm_modules_blocklist" {vendor_dlkm_modules_blocklist}
             # Remove staging directories
               rm -rf {vendor_dlkm_staging_dir}
     """.format(
@@ -2090,12 +2092,13 @@ def _vendor_dlkm_image_impl(ctx):
         vendor_dlkm_staging_dir = vendor_dlkm_staging_dir,
         vendor_dlkm_img = vendor_dlkm_img.path,
         vendor_dlkm_modules_load = vendor_dlkm_modules_load.path,
+        vendor_dlkm_modules_blocklist = vendor_dlkm_modules_blocklist.path,
     )
 
     return _build_modules_image_impl_common(
         ctx = ctx,
         what = "vendor_dlkm",
-        outputs = [vendor_dlkm_img, vendor_dlkm_modules_load],
+        outputs = [vendor_dlkm_img, vendor_dlkm_modules_load, vendor_dlkm_modules_blocklist],
         build_command = command,
         modules_staging_dir = modules_staging_dir,
         additional_inputs = [ctx.file.vendor_boot_modules_load],
