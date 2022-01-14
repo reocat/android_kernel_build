@@ -16,6 +16,24 @@
       "message": "That is a very nice implementation, though it took a bit to get my head around aspects. I would like to point out that the naming is slightly inconsistent: the aspect and the provider should either be bother kernel_toolchain or kernel_toolchain_info (independent of the camel/snake case)\n\n",
       "revId": "f75dadc3ade27f3d33b553e29621477532b9ec42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79690c99_89978979",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-14T04:23:23Z",
+      "side": 1,
+      "message": "Ack. In my mind they are all `kernel_toolchain`; the `_info` suffix is only because it is a provider.\n\nSo they are kernel_toolchain_{aspect,info} IMO.",
+      "parentUuid": "6954a5ae_a6bfe362",
+      "revId": "f75dadc3ade27f3d33b553e29621477532b9ec42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
