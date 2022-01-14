@@ -12,6 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load(
+    "//build/kleaf:constants.bzl",
+    "DOWNLOAD_TARGET_SUFFIX_TO_OUTPUTS",
+    "aarch64_outs",
+)
+load("//build/kleaf:download_repo.bzl", "download_artifacts_repo")
 load("//build/kleaf:key_value_repo.bzl", "key_value_repo")
 
 toplevel_output_directories(paths = ["out"])
@@ -29,4 +35,10 @@ local_repository(
 key_value_repo(
     name = "kernel_toolchain_info",
     srcs = ["//common:build.config.constants"],
+)
+
+download_artifacts_repo(
+    name = "gki_prebuilts",
+    target = "kernel_kleaf",
+    files = aarch64_outs + [out for _, outs in DOWNLOAD_TARGET_SUFFIX_TO_OUTPUTS for out in outs],
 )
