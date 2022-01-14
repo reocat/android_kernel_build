@@ -46,6 +46,30 @@
       },
       "revId": "acb68b4d3d75442bb1ce1b514d3fe9994d702669",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21d4e9ff_690beca6",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-14T00:40:51Z",
+      "side": 1,
+      "message": "Removed unnecessary comments by consolidating (this was originally referenced from some existing code).\n\nFixed the indentation.",
+      "parentUuid": "5caaa96c_7b39f0f9",
+      "range": {
+        "startLine": 142,
+        "startChar": 20,
+        "endLine": 142,
+        "endChar": 54
+      },
+      "revId": "acb68b4d3d75442bb1ce1b514d3fe9994d702669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
