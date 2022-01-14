@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff824a27_f9ec3039",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-14T04:11:32Z",
+      "side": 1,
+      "message": "Do we ever want x86_64 prebuilts? AFAIK only virtual devices needs them, which always uses ToT kernel",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 81
+      },
+      "revId": "c9867a7fb6b16b64e7b6490c28d6c52d13a47378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
