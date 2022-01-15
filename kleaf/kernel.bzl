@@ -896,6 +896,15 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
             base_toolchain = base_toolchain,
         ))
 
+def _kernel_build_dump_toolchain_version(ctx):
+    this_toolchain = ctx.attr.config[_KernelToolchainInfo].toolchain_version
+    out = ctx.actions.declare_file("{}/toolchain_version", ctx.attr.name)
+    ctx.actions.write(
+        output = out,
+        content = this_toolchain,
+    )
+    return out
+
 def _kernel_build_impl(ctx):
     kbuild_mixed_tree = None
     base_kernel_files = []
@@ -1031,6 +1040,8 @@ def _kernel_build_impl(ctx):
         command = command,
     )
 
+    toolchain_version_out = _kernel_build_dump_toolchain_version(ctx)
+
     # Only outs and internal_outs are needed. But for simplicity, copy the full {ruledir}
     # which includes module_outs and implicit_outs too.
     env_info_dependencies = []
@@ -1074,6 +1085,7 @@ def _kernel_build_impl(ctx):
     output_group_info = OutputGroupInfo(**output_group_kwargs)
 
     default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
+    default_info_files.append(toolchain_version_out)
     default_info = DefaultInfo(files = depset(default_info_files))
     kernel_files_info = KernelFilesInfo(files = default_info_files)
 
