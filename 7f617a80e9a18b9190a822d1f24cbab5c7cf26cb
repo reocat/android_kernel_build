@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "100a8912_eec76400",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-01-19T18:57:42Z",
+      "side": 1,
+      "message": "Why not add this to download_kernel_modules similar to how fetch_initramfs is included?",
+      "range": {
+        "startLine": 425,
+        "startChar": 2,
+        "endLine": 425,
+        "endChar": 25
+      },
+      "revId": "7f617a80e9a18b9190a822d1f24cbab5c7cf26cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
