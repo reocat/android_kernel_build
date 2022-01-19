@@ -22,6 +22,30 @@
       },
       "revId": "1d59eae8e4e04e43afdd04623e459f87c002be44",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5854ce4_7418c5b0",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-19T22:32:38Z",
+      "side": 1,
+      "message": "Nice! spent sometime to learn what this check_call does and it\u0027s syntax still couldn\u0027t figure out this trick.",
+      "parentUuid": "11b3bdae_ff776024",
+      "range": {
+        "startLine": 283,
+        "startChar": 61,
+        "endLine": 283,
+        "endChar": 104
+      },
+      "revId": "1d59eae8e4e04e43afdd04623e459f87c002be44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
