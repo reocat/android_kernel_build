@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "539fa148_6592ae62",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 5
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-20T01:16:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d09f45d5_fdacc2f7",
+      "range": {
+        "startLine": 282,
+        "startChar": 4,
+        "endLine": 282,
+        "endChar": 63
+      },
+      "revId": "4127cceb433eaf6d7bcb200ab7e9b0f39b848599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45c7eff0_008bf267",
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b617bfe_f5d02ee1",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 5
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-20T01:16:36Z",
+      "side": 1,
+      "message": "https://docs.python.org/3/library/tarfile.html#:~:text\u003dclass%20tarfile.TarFile,See%20TarFile%20Objects.\n\nDid as per guideline at the link.",
+      "parentUuid": "45c7eff0_008bf267",
+      "revId": "4127cceb433eaf6d7bcb200ab7e9b0f39b848599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce30b95e_8986d83e",
         "filename": "gki/download_from_ci",
         "patchSetId": 5
@@ -54,6 +96,24 @@
       "writtenOn": "2022-01-20T00:34:15Z",
       "side": 1,
       "message": "os.remove()\n\nhttps://docs.python.org/3.10/library/os.html#os.remove",
+      "revId": "4127cceb433eaf6d7bcb200ab7e9b0f39b848599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7889af0_f31ad462",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 5
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-01-20T01:16:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce30b95e_8986d83e",
       "revId": "4127cceb433eaf6d7bcb200ab7e9b0f39b848599",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
