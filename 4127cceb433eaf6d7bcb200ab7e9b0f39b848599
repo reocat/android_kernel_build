@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d09f45d5_fdacc2f7",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 5
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-20T00:34:15Z",
+      "side": 1,
+      "message": "os.makedirs()\n\nhttps://docs.python.org/3.10/library/os.html#os.makedirs",
+      "range": {
+        "startLine": 282,
+        "startChar": 4,
+        "endLine": 282,
+        "endChar": 63
+      },
+      "revId": "4127cceb433eaf6d7bcb200ab7e9b0f39b848599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45c7eff0_008bf267",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 5
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-20T00:34:15Z",
+      "side": 1,
+      "message": "tarfile.Tarfile()\n\nhttps://docs.python.org/3.10/library/tarfile.html#tarfile.TarFile",
+      "revId": "4127cceb433eaf6d7bcb200ab7e9b0f39b848599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce30b95e_8986d83e",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 5
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-20T00:34:15Z",
+      "side": 1,
+      "message": "os.remove()\n\nhttps://docs.python.org/3.10/library/os.html#os.remove",
+      "revId": "4127cceb433eaf6d7bcb200ab7e9b0f39b848599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
