@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6f489ab_9c28407a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-01-25T09:30:39Z",
+      "side": 1,
+      "message": "Instead, consume\n\n- [Reland \"Migrate build/ to build/kernel\"](http://aosp/1940675)\n- [Drop build-tools/sysroot symlink.](http://aosp/1959372)",
+      "revId": "4c818c1d5f3109c0947b418b56f9cfa18c4b0ef9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
