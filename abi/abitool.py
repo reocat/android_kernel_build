@@ -275,6 +275,18 @@ class Stg(AbiTool):
                         raise
                     abi_changed = True
 
+            if abi_changed:
+              # override if there are only declaration <-> definition changes
+              acceptable = r"^(type '.*' changed|  (was fully defined, is now only declared|was only declared, is now fully defined)|)$"
+              ok = True
+              with open(f"{basename}.small", "r") as input:
+                for line in input:
+                  if not re.search(acceptable, line):
+                    ok = False
+                    break
+              if ok:
+                abi_changed = False
+
             return abi_changed
 
 def get_abi_tool(abi_tool = "libabigail"):
