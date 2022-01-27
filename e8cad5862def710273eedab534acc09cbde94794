@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff2af085_034123e4",
+        "filename": "abi/abitool.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-01-27T17:36:07Z",
+      "side": 1,
+      "message": "Please re-format this block to match the reset of the file, e.g. 4 spaces vs 2 spaces indent.",
+      "range": {
+        "startLine": 278,
+        "startChar": 0,
+        "endLine": 278,
+        "endChar": 27
+      },
+      "revId": "e8cad5862def710273eedab534acc09cbde94794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e907047a_ea549508",
+        "filename": "abi/abitool.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-01-27T17:36:07Z",
+      "side": 1,
+      "message": "So if you don\u0027t find a match, then you break from the for-loop early? I would think you should search the whole file based on the commit message.",
+      "range": {
+        "startLine": 286,
+        "startChar": 20,
+        "endLine": 286,
+        "endChar": 25
+      },
+      "revId": "e8cad5862def710273eedab534acc09cbde94794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
