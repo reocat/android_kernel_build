@@ -22,6 +22,30 @@
       },
       "revId": "c9867a7fb6b16b64e7b6490c28d6c52d13a47378",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "781834d7_c3cabdde",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:33:54Z",
+      "side": 1,
+      "message": "I think some vendor developers use debug prebuilts. But, I may be misremembering.",
+      "parentUuid": "ff824a27_f9ec3039",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 81
+      },
+      "revId": "c9867a7fb6b16b64e7b6490c28d6c52d13a47378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

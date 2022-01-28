@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f8c66a7_3db24090",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:33:54Z",
+      "side": 1,
+      "message": "Would it possible and better to have the build number determined here and passed in on the command line, instead of the environment?",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 95
+      },
+      "revId": "afeb9319611ca2f937f0adbda41797616060bbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
