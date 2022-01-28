@@ -22,6 +22,30 @@
       },
       "revId": "afeb9319611ca2f937f0adbda41797616060bbb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d76044c6_9181cd42",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:28:09Z",
+      "side": 1,
+      "message": "The build number is determined here already. What do you mean?\n\nIt can\u0027t be a configuration because the environment variable affects the behavior of the repository, where config settings like --//common:use_prebuilt_gki aren\u0027t parsed yet (so its value won\u0027t be known). This corresponds to:\n\nhttps://android-review.googlesource.com/c/kernel/build/+/1949679/8/kleaf/download_repo.bzl#141",
+      "parentUuid": "9f8c66a7_3db24090",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 95
+      },
+      "revId": "afeb9319611ca2f937f0adbda41797616060bbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
