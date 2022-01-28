@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2030c669_8c46d8ab",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:58:59Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "4fc613c9_408c4e1a",
+      "range": {
+        "startLine": 21,
+        "startChar": 18,
+        "endLine": 21,
+        "endChar": 19
+      },
+      "revId": "335cb7957764317102c110fc50f45a0f4cbb7e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1ff66e8_83f461a0",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-01-28T12:28:26Z",
       "side": 1,
       "message": "Just use os.execve.\n\nYou can drop one helper and, optionally, fold the other two together.",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 37
+      },
+      "revId": "335cb7957764317102c110fc50f45a0f4cbb7e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19e8c2c2_5d3cdd6c",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:58:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1ff66e8_83f461a0",
       "range": {
         "startLine": 69,
         "startChar": 4,
@@ -135,6 +183,54 @@
         "startChar": 0,
         "endLine": 18,
         "endChar": 11
+      },
+      "revId": "335cb7957764317102c110fc50f45a0f4cbb7e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f54aa9c_7573b7c5",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:58:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc1a34b0_fbd4928e",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 11
+      },
+      "revId": "335cb7957764317102c110fc50f45a0f4cbb7e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fae778de_333a1208",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:58:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc6b8864_d4825a95",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 107
       },
       "revId": "335cb7957764317102c110fc50f45a0f4cbb7e54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
