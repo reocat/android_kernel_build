@@ -70,6 +70,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff9cb8ec_71e70a50",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:42:22Z",
+      "side": 1,
+      "message": "I need to pass the value of ROOT_DIR to the Python script.\n\nAlso, the logic `ROOT_DIR\u003d$(path/to/gettop.sh)` is consistent with other scripts in build/",
+      "parentUuid": "1081b3b1_a180cb4a",
+      "range": {
+        "startLine": 16,
+        "startChar": 21,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "335cb7957764317102c110fc50f45a0f4cbb7e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc6b8864_d4825a95",
