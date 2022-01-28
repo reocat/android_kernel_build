@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aae2a26c_fddb2246",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:50:28Z",
+      "side": 1,
+      "message": "Added a link. Does that help?\n\nBecause it is a Bazel macro, I thought it is clear that this refers to a Bazel repository. Let me know if you think it is still unclear to readers.",
+      "parentUuid": "032a097c_ae6e59eb",
+      "revId": "e9e894954cd3cb7792b426768bc12e0d69a3dc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8ce54dc5_15674f42",
         "filename": "kleaf/download_repo.bzl",
         "patchSetId": 8
