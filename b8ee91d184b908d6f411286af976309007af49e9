@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f7d7343_67507b95",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:11:29Z",
+      "side": 1,
+      "message": "download (as an adjective)?",
+      "range": {
+        "startLine": 9,
+        "startChar": 25,
+        "endLine": 9,
+        "endChar": 34
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90591308_ce824e84",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:11:29Z",
+      "side": 1,
+      "message": "\"repositories\" here needs clarification",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4f86053_de694c05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:11:29Z",
+      "side": 1,
+      "message": "The change in the commit message is a fraction of the changes in the commit. Please document the remainder of the changes and split the commit if that makes sense to you.",
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "024aa401_ab01fd25",
+        "filename": "kleaf/bazel.WORKSPACE",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:11:29Z",
+      "side": 1,
+      "message": "Please don\u0027t abbreviate like this (list as lst).\n\nYou can do something like which makes it more explicit that you are discarding something, but see comment below.\n\n[f for _, files in xxx for f in files]\n\nor\n\n[o for _, outs in xxx for o in outs] # out is short for output, but it has been used pervasively already",
+      "range": {
+        "startLine": 43,
+        "startChar": 42,
+        "endLine": 43,
+        "endChar": 45
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "110b0be8_ae745b1a",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:11:29Z",
+      "side": 1,
+      "message": "This instructional comment seems out of place. Also, that value is not a dict and it doesn\u0027t mention \"images\". See also comments below.",
+      "range": {
+        "startLine": 157,
+        "startChar": 12,
+        "endLine": 157,
+        "endChar": 68
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c49f0ef_5974436e",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:11:29Z",
+      "side": 1,
+      "message": "The extra structure here is just being thrown away. Please justify it with a comment or replace it with code comments.\n\nIf you do want to keep the structure, it would seem more sensible to make this a dict, unless value order is also important or keys can be repeated.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 7
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
