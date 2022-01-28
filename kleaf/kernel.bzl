@@ -126,6 +126,7 @@ def kernel_build(
         base_kernel = None,
         kconfig_ext = None,
         dtstree = None,
+        kmi_symbol_lists = None,
         toolchain_version = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -292,6 +293,14 @@ def kernel_build(
         implicit_outs: Like `outs`, but not copied to the distribution directory.
 
           Labels are created for each item in `implicit_outs` as in `outs`.
+        kmi_symbol_lists: A list of labels referring to the KMI symbol list files.
+
+          If non-empty, `abi_symbollist` is created and added to the
+          [`DefaultInfo`](https://docs.bazel.build/versions/main/skylark/lib/DefaultInfo.html),
+          and copied to `DIST_DIR` during distribution.
+
+          This can be a
+          [`select()`](https://docs.bazel.build/versions/main/configurable-attributes.html).
         toolchain_version: The toolchain version to depend on.
         kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
@@ -324,6 +333,12 @@ def kernel_build(
         dtstree = dtstree,
         srcs = srcs,
         toolchain_version = toolchain_version,
+    )
+
+    _kernel_kmi_symbol_list(
+        name = name + "_kmi_symbol_list",
+        env = env_target_name,
+        srcs = kmi_symbol_lists,
     )
 
     _kernel_config(
