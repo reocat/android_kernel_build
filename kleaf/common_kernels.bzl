@@ -152,6 +152,7 @@ def define_common_kernels(
                 "test_stackinit.ko",
             ],
             build_config = config,
+            kmi_symbol_lists = native.glob(["android/abi_gki_aarch64"]),
             visibility = visibility,
             **kernel_build_kwargs
         )
@@ -180,6 +181,7 @@ def define_common_kernels(
                 name + "_headers",
                 name + "_modules_install",
                 name + "_images",
+                name + "_kmi_symbol_list",
             ],
         )
 
