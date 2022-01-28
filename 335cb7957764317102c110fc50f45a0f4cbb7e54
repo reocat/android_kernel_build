@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fc613c9_408c4e1a",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:28:26Z",
+      "side": 1,
+      "message": "fn/function - no need to abbreviate",
+      "range": {
+        "startLine": 21,
+        "startChar": 18,
+        "endLine": 21,
+        "endChar": 19
+      },
+      "revId": "335cb7957764317102c110fc50f45a0f4cbb7e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1ff66e8_83f461a0",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:28:26Z",
+      "side": 1,
+      "message": "Just use os.execve.\n\nYou can drop one helper and, optionally, fold the other two together.",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 37
+      },
+      "revId": "335cb7957764317102c110fc50f45a0f4cbb7e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1081b3b1_a180cb4a",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:28:26Z",
+      "side": 1,
+      "message": "PROGRAM_DIR\u003d$(dirname $(readlink -f \"$0\"))\n\nand refactor both lines.",
+      "range": {
+        "startLine": 16,
+        "startChar": 21,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "335cb7957764317102c110fc50f45a0f4cbb7e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc6b8864_d4825a95",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:28:26Z",
+      "side": 1,
+      "message": "Please: s/^/exec /",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 107
+      },
+      "revId": "335cb7957764317102c110fc50f45a0f4cbb7e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc1a34b0_fbd4928e",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T12:28:26Z",
+      "side": 1,
+      "message": "Change ${foo} to \"$foo\".",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 11
+      },
+      "revId": "335cb7957764317102c110fc50f45a0f4cbb7e54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
