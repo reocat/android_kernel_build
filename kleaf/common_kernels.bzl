@@ -149,6 +149,9 @@ def define_common_kernels(
                 "certs/signing_key.x509",
             ],
             build_config = config,
+            # Keep in sync with build configs.
+            # - android-mainline branch does not have KMI symbol lists
+            kmi_symbol_lists = native.glob(["android/abi_gki_aarch64"]),
             visibility = visibility,
             **kernel_build_kwargs
         )
@@ -177,6 +180,7 @@ def define_common_kernels(
                 name + "_headers",
                 name + "_modules_install",
                 name + "_images",
+                name + "_kmi_symbol_list",
             ],
         )
 
