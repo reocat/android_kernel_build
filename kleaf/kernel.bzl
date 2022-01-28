@@ -127,6 +127,7 @@ def kernel_build(
         kconfig_ext = None,
         dtstree = None,
         kmi_symbol_lists = None,
+        trim_nonlisted_kmi = None,
         toolchain_version = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -308,6 +309,15 @@ def kernel_build(
           ```
           kmi_symbol_lists = glob(["android/abi_gki_aarch64"]),
           ```
+        trim_nonlisted_kmi: If `True`, trim symbols not listed in
+          `kmi_symbol_lists`. This is the Bazel equivalent of
+          `TRIM_NONLISTED_KMI`.
+
+          Requires `kmi_symbol_lists` to be non-empty. If `kmi_symbol_lists`
+          is a `glob()`, this can be a value based on the `glob()`. For example:
+          ```
+          trim_nonlisted_kmi = not glob(["android/abi_gki_aarch64"]).empty()
+          ```
         toolchain_version: The toolchain version to depend on.
         kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
@@ -316,6 +326,9 @@ def kernel_build(
 
           These arguments applies on the target with `{name}`, `{name}_headers`, `{name}_uapi_headers`, and `{name}_vmlinux_btf`.
     """
+    if trim_nonlisted_kmi and not kmi_symbol_lists:
+        fail("{}: trim_nonlisted_kmi requires a non-empty kmi_symbol_lists.".format(name))
+
     env_target_name = name + "_env"
     config_target_name = name + "_config"
     modules_prepare_target_name = name + "_modules_prepare"
@@ -884,6 +897,24 @@ def _kmi_symbol_list_impl(ctx):
         progress_message = "Creating abi_symbollist and report {}".format(ctx.label),
         command = command,
     )
+
+    raw_symbollist = ctx.actions.declare_file("{}/abi_symbollist.raw".format(ctx.attr.name))
+    command = ctx.attr.env[_KernelEnvInfo].setup + """
+        mkdir -p {out_dir}
+        cat {src} | {flatten_symbol_list} > {raw_symbollist}
+    """.format(
+        process_symbols = process_symbols.path,
+        raw_symbollist = raw_symbollist.path,
+        src = out_file.path,
+    )
+    _debug_print_scripts(ctx, command)
+    ctx.actions.run_shell(
+        inputs = inputs + [out_file],
+        outputs = [raw_symbollist],
+        progress_message = "Creating abi_symbollist.raw {}".format(ctx.label),
+        command = command,
+    )
+
     return [
         DefaultInfo(files = depset(outputs)),
     ]
