@@ -39,26 +39,43 @@ aarch64_outs = _common_outs + [
 # Common output files for x86_64 kernel builds.
 x86_64_outs = _common_outs + ["bzImage"]
 
+_aarch64_kmi_symbol_lists = [
+    "android/abi_gki_aarch64",
+    "android/abi_gki_aarch64_core",
+    "android/abi_gki_aarch64_fips140",
+    "android/abi_gki_aarch64_generic",
+    "android/abi_gki_aarch64_virtual_device",
+    "android/abi_gki_aarch64_db845c",
+    "android/abi_gki_aarch64_hikey960",
+]
+
+# kmi_symbol_lists should be kept in sync with build configs.
+# - android-mainline branch does not have KMI symbol lists
+# - androidxx branches have KMI symbol lists, and specify them in build configs.
 _ARCH_CONFIGS = [
     {
         "name": "kernel_aarch64",
         "build_config": "build.config.gki.aarch64",
         "outs": aarch64_outs,
+        "kmi_symbol_lists": _aarch64_kmi_symbol_lists,
     },
     {
         "name": "kernel_aarch64_debug",
         "build_config": "build.config.gki-debug.aarch64",
         "outs": aarch64_outs,
+        "kmi_symbol_lists": _aarch64_kmi_symbol_lists,
     },
     {
         "name": "kernel_x86_64",
         "build_config": "build.config.gki.x86_64",
         "outs": x86_64_outs,
+        "kmi_symbol_lists": None,
     },
     {
         "name": "kernel_x86_64_debug",
         "build_config": "build.config.gki-debug.x86_64",
         "outs": x86_64_outs,
+        "kmi_symbol_lists": None,
     },
 ]
 
@@ -126,6 +143,10 @@ def define_common_kernels(
     for arch_config in _ARCH_CONFIGS:
         name = arch_config["name"]
 
+        kmi_symbol_lists = arch_config["kmi_symbol_lists"]
+        if kmi_symbol_lists:
+            kmi_symbol_lists = native.glob(kmi_symbol_lists)
+
         native.filegroup(
             name = name + "_sources",
             srcs = native.glob(
@@ -151,6 +172,7 @@ def define_common_kernels(
                 "certs/signing_key.x509",
             ],
             build_config = arch_config["build_config"],
+            kmi_symbol_lists = kmi_symbol_lists,
             visibility = visibility,
             **kernel_build_kwargs
         )
