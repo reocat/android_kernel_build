@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b58731c_a73037b0",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:19:33Z",
+      "side": 1,
+      "message": "Yeah I forgot to simplify this when dropping URL support. Will do.",
+      "parentUuid": "8ce54dc5_15674f42",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 55
+      },
+      "revId": "e9e894954cd3cb7792b426768bc12e0d69a3dc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0fd6f4ee_f35a3a68",
         "filename": "kleaf/download_repo.bzl",
         "patchSetId": 8
@@ -54,6 +78,30 @@
       "writtenOn": "2022-01-28T11:56:01Z",
       "side": 1,
       "message": "It\u0027s a tiny change to support trailing comments (substitute \u0027#.*$\u0027 with \u0027\u0027 before doing line.strip() instead of checking startswith afterwards). So, the only reason to not support them is to allow \u0027#\u0027 elsewhere in the syntax. Is that anticipated?\n\nI suppose this depends on where the data comes from. Do you have full control over this?",
+      "range": {
+        "startLine": 34,
+        "startChar": 27,
+        "endLine": 34,
+        "endChar": 58
+      },
+      "revId": "e9e894954cd3cb7792b426768bc12e0d69a3dc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd0134f7_d1cc8ae1",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:19:33Z",
+      "side": 1,
+      "message": "\u003e checking startswith afterwards\n\nIt would be confusing if the value is actually\n\n```\nkey\u003d\"foo # bar\"\n```\n\nfor example. This could mean `foo # bar`, `\"foo # bar\"`, `\"foo ` depending on how you\u0027re parsing it. For simplicity, I simply ignore these random weird cases and parse it as `\"foo # bar\"`\n\n\u003e Do you have full control over this?\n\nNo as of now. Partners actually can specify this in Bazel RC files, for example:\n\nhttps://android-review.googlesource.com/c/kernel/build/+/1947627/12/kleaf/common_kernels.bzl#138\n\n... to use a fixed build number for their device checkout.",
+      "parentUuid": "0fd6f4ee_f35a3a68",
       "range": {
         "startLine": 34,
         "startChar": 27,
@@ -77,6 +125,30 @@
       "writtenOn": "2022-01-28T11:56:01Z",
       "side": 1,
       "message": "Use meta syntax? If you are using concrete examples consistently, that\u0027s probably OK.\n\n$your_build_number_here ?\n$build_id ?\n$build_number ?",
+      "range": {
+        "startLine": 93,
+        "startChar": 31,
+        "endLine": 93,
+        "endChar": 38
+      },
+      "revId": "e9e894954cd3cb7792b426768bc12e0d69a3dc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfbb400e_d1bd3545",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:19:33Z",
+      "side": 1,
+      "message": "I already did that, see L98\n\nThis is just to give the user a concrete example.",
+      "parentUuid": "92a63f2a_150b9a7c",
       "range": {
         "startLine": 93,
         "startChar": 31,
