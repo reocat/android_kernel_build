@@ -21,23 +21,12 @@ load(
     "kernel_modules_install",
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
-
-_common_outs = [
-    "System.map",
-    "modules.builtin",
-    "modules.builtin.modinfo",
-    "vmlinux",
-    "vmlinux.symvers",
-]
-
-# Common output files for aarch64 kernel builds.
-aarch64_outs = _common_outs + [
-    "Image",
-    "Image.lz4",
-]
-
-# Common output files for x86_64 kernel builds.
-x86_64_outs = _common_outs + ["bzImage"]
+load(
+    "//build/kleaf:constants.bzl",
+    "DOWNLOAD_TARGET_SUFFIX_TO_OUTPUTS",
+    "aarch64_outs",
+    "x86_64_outs",
+)
 
 _ARCH_CONFIGS = [
     (
