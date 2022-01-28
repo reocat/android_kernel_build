@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd5d6bf6_c9a22ae1",
+        "filename": "build-tools/path/linux-x86/bison",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T09:21:03Z",
+      "side": 1,
+      "message": "Suggest -eu in the first line and exec and \"$@\" in the last line.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 67
+      },
+      "revId": "4d22ce8758b332909df4e802d293f1342342a138",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
