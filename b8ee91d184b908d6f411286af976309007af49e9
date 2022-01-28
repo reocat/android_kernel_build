@@ -112,6 +112,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ef9be851_2f7a2a51",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:24:27Z",
+      "side": 1,
+      "message": "Should\u0027ve been `additional_artifacts`. Will do",
+      "parentUuid": "110b0be8_ae745b1a",
+      "range": {
+        "startLine": 157,
+        "startChar": 12,
+        "endLine": 157,
+        "endChar": 68
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0c49f0ef_5974436e",
         "filename": "kleaf/constants.bzl",
         "patchSetId": 9
@@ -123,6 +147,30 @@
       "writtenOn": "2022-01-28T12:11:29Z",
       "side": 1,
       "message": "The extra structure here is just being thrown away. Please justify it with a comment or replace it with code comments.\n\nIf you do want to keep the structure, it would seem more sensible to make this a dict, unless value order is also important or keys can be repeated.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 7
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd972c7e_02f75b0f",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:24:27Z",
+      "side": 1,
+      "message": "\u003e The extra structure here is just being thrown away.\n\nWhat do you mean? It is used in two places.\n\nIt could be a dict, but I don\u0027t need uniqueness, so I just follow the pattern in _ARCH_CONFIGS in common_kernels.bzl",
+      "parentUuid": "0c49f0ef_5974436e",
       "range": {
         "startLine": 34,
         "startChar": 0,
