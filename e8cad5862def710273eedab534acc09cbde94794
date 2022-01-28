@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f59726f6_51c61ffb",
+        "filename": "abi/abitool.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T09:56:44Z",
+      "side": 1,
+      "message": "Alas, the file itself was inconsistent. My editor picked up 2 spaces from the first function definition. See new parent change.",
+      "parentUuid": "ff2af085_034123e4",
+      "range": {
+        "startLine": 278,
+        "startChar": 0,
+        "endLine": 278,
+        "endChar": 27
+      },
+      "revId": "e8cad5862def710273eedab534acc09cbde94794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e907047a_ea549508",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-01-27T17:36:07Z",
       "side": 1,
       "message": "So if you don\u0027t find a match, then you break from the for-loop early? I would think you should search the whole file based on the commit message.",
+      "range": {
+        "startLine": 286,
+        "startChar": 20,
+        "endLine": 286,
+        "endChar": 25
+      },
+      "revId": "e8cad5862def710273eedab534acc09cbde94794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64863336_22c33a77",
+        "filename": "abi/abitool.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T09:56:44Z",
+      "side": 1,
+      "message": "\u003e So if you don\u0027t find a match, then you break from the for-loop early?\n\nIf we don\u0027t find a match for an acceptable line, it means we\u0027ve found an unacceptable line so break early. Unacceptable here means \"cannot be ignore for this purpose\". I\u0027ve changed the variable name.\n\n\u003e I would think you should search the whole file based on the commit message.\n\nThe whole file will be examined before `abi_changed` gets flipped.",
+      "parentUuid": "e907047a_ea549508",
       "range": {
         "startLine": 286,
         "startChar": 20,
