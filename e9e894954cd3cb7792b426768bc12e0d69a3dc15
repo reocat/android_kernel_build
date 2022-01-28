@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "032a097c_ae6e59eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T11:56:01Z",
+      "side": 1,
+      "message": "Please explain what repo / repository actually mean in the code comments, particularly in reference to \"creating a repository\".\n\nThe terms have other general and specific meanings that make this confusing.\n\n(git repository, repo command, manifest-defined repo repository etc.)",
+      "revId": "e9e894954cd3cb7792b426768bc12e0d69a3dc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ce54dc5_15674f42",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T11:56:01Z",
+      "side": 1,
+      "message": "I\u0027m not sure why you would support keys within a environment variable in this way, but I\u0027m still reading through the code.\n\nIf you are only ever going to have one distinct key, it\u0027s superfluous, use a list. If you are ever going to have more than one distinct key then you should perhaps refactor this so you have functions\n\n1. env, env_name -\u003e list of pairs\n2. list of pairs, key -\u003e list of values\n\nThe second function is a short list comprehension may not need a separate existence.\n\n...\n\nOK, it\u0027s used in one place for a specific purpose. Please give it a more specific name reflecting its purpose.",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 55
+      },
+      "revId": "e9e894954cd3cb7792b426768bc12e0d69a3dc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd6f4ee_f35a3a68",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T11:56:01Z",
+      "side": 1,
+      "message": "It\u0027s a tiny change to support trailing comments (substitute \u0027#.*$\u0027 with \u0027\u0027 before doing line.strip() instead of checking startswith afterwards). So, the only reason to not support them is to allow \u0027#\u0027 elsewhere in the syntax. Is that anticipated?\n\nI suppose this depends on where the data comes from. Do you have full control over this?",
+      "range": {
+        "startLine": 34,
+        "startChar": 27,
+        "endLine": 34,
+        "endChar": 58
+      },
+      "revId": "e9e894954cd3cb7792b426768bc12e0d69a3dc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92a63f2a_150b9a7c",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-28T11:56:01Z",
+      "side": 1,
+      "message": "Use meta syntax? If you are using concrete examples consistently, that\u0027s probably OK.\n\n$your_build_number_here ?\n$build_id ?\n$build_number ?",
+      "range": {
+        "startLine": 93,
+        "startChar": 31,
+        "endLine": 93,
+        "endChar": 38
+      },
+      "revId": "e9e894954cd3cb7792b426768bc12e0d69a3dc15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
