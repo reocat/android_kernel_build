@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49eb7f3b_f95e52c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:51:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f7d7343_67507b95",
+      "range": {
+        "startLine": 9,
+        "startChar": 25,
+        "endLine": 9,
+        "endChar": 34
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4f86053_de694c05",
@@ -77,6 +101,30 @@
       "writtenOn": "2022-01-28T12:11:29Z",
       "side": 1,
       "message": "Please don\u0027t abbreviate like this (list as lst).\n\nYou can do something like which makes it more explicit that you are discarding something, but see comment below.\n\n[f for _, files in xxx for f in files]\n\nor\n\n[o for _, outs in xxx for o in outs] # out is short for output, but it has been used pervasively already",
+      "range": {
+        "startLine": 43,
+        "startChar": 42,
+        "endLine": 43,
+        "endChar": 45
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7d4865f_1f647bc3",
+        "filename": "kleaf/bazel.WORKSPACE",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:51:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "024aa401_ab01fd25",
       "range": {
         "startLine": 43,
         "startChar": 42,
@@ -124,6 +172,30 @@
       "side": 1,
       "message": "Should\u0027ve been `additional_artifacts`. Will do",
       "parentUuid": "110b0be8_ae745b1a",
+      "range": {
+        "startLine": 157,
+        "startChar": 12,
+        "endLine": 157,
+        "endChar": 68
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81686683_274898ca",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-01-28T20:51:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef9be851_2f7a2a51",
       "range": {
         "startLine": 157,
         "startChar": 12,
