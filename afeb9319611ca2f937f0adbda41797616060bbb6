@@ -46,6 +46,30 @@
       },
       "revId": "afeb9319611ca2f937f0adbda41797616060bbb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8274496_8e47e669",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-31T09:51:44Z",
+      "side": 1,
+      "message": "I think my main point is: Why have we built something where useful configuration can only live in the environment? Is this a fundamental Bazel limitation?\n\nUnix tradition is to support, later overriding earlier:\n\n* code defaults\n* configuration files\n* environment variables\n* command line arguments\n\nAnd I would most happily live without the environment option.\n\nSee also (in no particular order):\n\n* https://stackoverflow.com/questions/32272911/precedence-of-configuration-options-environment-registry-configuration-file-a\n* https://stackoverflow.com/questions/11077223/what-order-of-reading-configuration-values\n* http://www.catb.org/~esr/writings/taoup/html/ch10s06.html and http://www.catb.org/~esr/writings/taoup/html/configurationchapter.html more generally",
+      "parentUuid": "d76044c6_9181cd42",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 95
+      },
+      "revId": "afeb9319611ca2f937f0adbda41797616060bbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
