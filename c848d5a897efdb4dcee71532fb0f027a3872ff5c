@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5928458_636ad356",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-31T09:35:49Z",
+      "side": 1,
+      "message": "\"$0\"",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 61
+      },
+      "revId": "c848d5a897efdb4dcee71532fb0f027a3872ff5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd7b57de_c5bfed90",
+        "filename": "kleaf/bazel.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-31T09:35:49Z",
+      "side": 1,
+      "message": "This is still vulnerable to word splitting.\n\nexec \"$ROOT_DIR\"/build/build-tools/path/linux-x86/python3 $(dirname $(readlink -f \"$0\"))/bazel.py \"$ROOT_DIR\" \"$@\"",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 108
+      },
+      "revId": "c848d5a897efdb4dcee71532fb0f027a3872ff5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
