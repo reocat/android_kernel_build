@@ -293,6 +293,30 @@
       },
       "revId": "b8ee91d184b908d6f411286af976309007af49e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82091b38_d94acc26",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-01-31T09:31:54Z",
+      "side": 1,
+      "message": "\u003e \u003e The extra structure here is just being thrown away.\n\u003e \n\u003e What do you mean? It is used in two places.\n\u003e \n\nBy \"extra structure\", I meant the first item of each tuple.\n\nBy \"thrown away\", I meant things like `[ ... _, outs in ... ]`.\n\n\u003e It could be a dict, but I don\u0027t need uniqueness, so I just follow the pattern in _ARCH_CONFIGS in common_kernels.bzl\n\nAre the \"keys\" used for anything there? I should check.",
+      "parentUuid": "dd972c7e_02f75b0f",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 7
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
