@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020000930",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964421?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "063ef670_ab2a7011",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-01T23:43:08Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027deny list\u0027 or \u0027allow list\u0027; see https://developers.google.com/style/word-list#blacklist for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 821,
+        "startChar": 41,
+        "endLine": 821,
+        "endChar": 50
+      },
+      "revId": "6bdea8bf8807a750d3eacbf99147bddd15bb2408",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
