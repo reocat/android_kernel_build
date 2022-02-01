@@ -41,31 +41,36 @@ x86_64_outs = _common_outs + ["bzImage"]
 
 # kmi_symbol_lists should be kept in sync with build configs.
 # - android-mainline branch does not have KMI symbol lists
-# - androidxx branches have KMI symbol lists, and specify them in build configs.
+# - androidxx branches have KMI symbol lists, and specify them in build configs,
+#   and trim accordingly.
 _ARCH_CONFIGS = [
     {
         "name": "kernel_aarch64",
         "build_config": "build.config.gki.aarch64",
         "outs": aarch64_outs,
         "kmi_symbol_lists": ["android/abi_gki_aarch64*"],
+        "trim_if_kmi_symbol_lists_exist": True,
     },
     {
         "name": "kernel_aarch64_debug",
         "build_config": "build.config.gki-debug.aarch64",
         "outs": aarch64_outs,
         "kmi_symbol_lists": ["android/abi_gki_aarch64*"],
+        "trim_if_kmi_symbol_lists_exist": False,
     },
     {
         "name": "kernel_x86_64",
         "build_config": "build.config.gki.x86_64",
         "outs": x86_64_outs,
         "kmi_symbol_lists": None,
+        "trim_if_kmi_symbol_lists_exist": False,
     },
     {
         "name": "kernel_x86_64_debug",
         "build_config": "build.config.gki-debug.x86_64",
         "outs": x86_64_outs,
         "kmi_symbol_lists": None,
+        "trim_if_kmi_symbol_lists_exist": False,
     },
 ]
 
@@ -136,6 +141,9 @@ def define_common_kernels(
         kmi_symbol_lists = arch_config["kmi_symbol_lists"]
         if kmi_symbol_lists:
             kmi_symbol_lists = native.glob(kmi_symbol_lists)
+        trim_nonlisted_kmi = False
+        if arch_config["trim_if_kmi_symbol_lists_exist"]:
+            trim_nonlisted_kmi = len(kmi_symbol_lists) > 0
 
         native.filegroup(
             name = name + "_sources",
@@ -163,6 +171,7 @@ def define_common_kernels(
             ],
             build_config = arch_config["build_config"],
             kmi_symbol_lists = kmi_symbol_lists,
+            trim_nonlisted_kmi = trim_nonlisted_kmi,
             visibility = visibility,
             **kernel_build_kwargs
         )
