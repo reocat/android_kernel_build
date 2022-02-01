@@ -16,6 +16,23 @@
       "message": "We\u0027ll want the kernel patch, too, once a v3 is available.\n\nThen, once we have external/musl or bionic/, this value for this flag is likely to change again to support CC_CAN_LINK.",
       "revId": "4c5d32672f00609cd6bacb0a820b16e85087e586",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "859a9112_efab8702",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1430422
+      },
+      "writtenOn": "2022-02-01T21:58:22Z",
+      "side": 1,
+      "message": "(I am not familiar with Android or Gerrit, just saw this from an email notification. Thanks for tagging me, though.)\n\n/dev/null is a neat trick.. The compiler driver will append strings to /dev/null and find these paths non-existent.\n\nYou may consider whether to use --sysroot\u003d/dev/null for LDFLAGS as well.\n\n",
+      "revId": "4c5d32672f00609cd6bacb0a820b16e85087e586",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
