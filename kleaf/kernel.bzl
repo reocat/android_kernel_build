@@ -322,6 +322,7 @@ def kernel_build(
     uapi_headers_target_name = name + "_uapi_headers"
     headers_target_name = name + "_headers"
     kmi_symbol_list_target_name = name + "_kmi_symbol_list"
+    raw_kmi_symbol_list_target_name = name + "_raw_kmi_symbol_list"
 
     if srcs == None:
         srcs = native.glob(
@@ -347,6 +348,12 @@ def kernel_build(
         name = kmi_symbol_list_target_name,
         env = env_target_name,
         srcs = kmi_symbol_lists,
+    )
+
+    native.filegroup(
+        name = raw_kmi_symbol_list_target_name,
+        srcs = [kmi_symbol_list_target_name],
+        output_group = "raw_kmi_symbol_list",
     )
 
     _kernel_config(
@@ -884,8 +891,29 @@ def _kmi_symbol_list_impl(ctx):
         progress_message = "Creating abi_symbollist and report {}".format(ctx.label),
         command = command,
     )
+
+    flatten_symbol_list = [f for f in ctx.files._kernel_abi_scripts if f.basename == "flatten_symbol_list"][0]
+    raw_kmi_symbol_list = ctx.actions.declare_file("{}/abi_symbollist.raw".format(ctx.attr.name))
+    command = ctx.attr.env[_KernelEnvInfo].setup + """
+        mkdir -p {out_dir}
+        cat {src} | {flatten_symbol_list} > {raw_kmi_symbol_list}
+    """.format(
+        out_dir = raw_kmi_symbol_list.dirname,
+        flatten_symbol_list = flatten_symbol_list.path,
+        raw_kmi_symbol_list = raw_kmi_symbol_list.path,
+        src = out_file.path,
+    )
+    _debug_print_scripts(ctx, command)
+    ctx.actions.run_shell(
+        inputs = inputs + [out_file],
+        outputs = [raw_kmi_symbol_list],
+        progress_message = "Creating abi_symbollist.raw {}".format(ctx.label),
+        command = command,
+    )
+
     return [
         DefaultInfo(files = depset(outputs)),
+        OutputGroupInfo(raw_kmi_symbol_list = depset([raw_kmi_symbol_list])),
     ]
 
 _kmi_symbol_list = rule(
