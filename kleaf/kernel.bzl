@@ -127,6 +127,7 @@ def kernel_build(
         kconfig_ext = None,
         dtstree = None,
         kmi_symbol_lists = None,
+        trim_nonlisted_kmi = None,
         toolchain_version = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -308,6 +309,15 @@ def kernel_build(
           ```
           kmi_symbol_lists = glob(["android/abi_gki_aarch64"]),
           ```
+        trim_nonlisted_kmi: If `True`, trim symbols not listed in
+          `kmi_symbol_lists`. This is the Bazel equivalent of
+          `TRIM_NONLISTED_KMI`.
+
+          Requires `kmi_symbol_lists` to be non-empty. If `kmi_symbol_lists`
+          is a `glob()`, this can be a value based on the `glob()`. For example:
+          ```
+          trim_nonlisted_kmi = len(glob(["android/abi_gki_aarch64"])) > 0
+          ```
         toolchain_version: The toolchain version to depend on.
         kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
@@ -316,6 +326,9 @@ def kernel_build(
 
           These arguments applies on the target with `{name}`, `{name}_headers`, `{name}_uapi_headers`, and `{name}_vmlinux_btf`.
     """
+    if trim_nonlisted_kmi and not kmi_symbol_lists:
+        fail("{}: trim_nonlisted_kmi requires a non-empty kmi_symbol_lists.".format(name))
+
     env_target_name = name + "_env"
     config_target_name = name + "_config"
     modules_prepare_target_name = name + "_modules_prepare"
@@ -369,6 +382,7 @@ def kernel_build(
         srcs = srcs,
         config = config_target_name + "/.config",
         include_tar_gz = config_target_name + "/include.tar.gz",
+        raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if trim_nonlisted_kmi else None,
     )
 
     _modules_prepare(
@@ -800,6 +814,13 @@ def _kernel_config_impl(ctx):
             for key, value in lto_config.items()
         ]))
 
+    if ctx.file.raw_kmi_symbol_list:
+        trim_kmi_command = """
+            ${{KERNEL_DIR}}/scripts/config --file ${{OUT_DIR}}/.config \
+                  -d UNUSED_SYMBOLS -e TRIM_UNUSED_KSYMS \
+                  --set-str UNUSED_KSYMS_WHITELIST {raw_kmi_symbol_list}
+        """
+
     command = ctx.attr.env[_KernelEnvInfo].setup + """
         # Pre-defconfig commands
           eval ${{PRE_DEFCONFIG_CMDS}}
@@ -859,6 +880,7 @@ _kernel_config = rule(
             doc = "the packaged include/ files",
         ),
         "lto": attr.label(default = "//build/kleaf:lto"),
+        "raw_kmi_symbol_list": attr.label(doc = "Label to abi_symbollist.raw", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
     },
 )
