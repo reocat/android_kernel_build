@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e472025f_7d55f170",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-02-01T21:32:49Z",
+      "side": 1,
+      "message": "We\u0027ll want the kernel patch, too, once a v3 is available.\n\nThen, once we have external/musl or bionic/, this value for this flag is likely to change again to support CC_CAN_LINK.",
+      "revId": "4c5d32672f00609cd6bacb0a820b16e85087e586",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
