@@ -335,6 +335,7 @@ def kernel_build(
     uapi_headers_target_name = name + "_uapi_headers"
     headers_target_name = name + "_headers"
     kmi_symbol_list_target_name = name + "_kmi_symbol_list"
+    raw_kmi_symbol_list_target_name = name + "_raw_kmi_symbol_list"
 
     if srcs == None:
         srcs = native.glob(
@@ -362,12 +363,19 @@ def kernel_build(
         srcs = kmi_symbol_lists,
     )
 
+    native.filegroup(
+        name = raw_kmi_symbol_list_target_name,
+        srcs = [kmi_symbol_list_target_name],
+        output_group = "raw_kmi_symbol_list",
+    )
+
     _kernel_config(
         name = config_target_name,
         env = env_target_name,
         srcs = srcs,
         config = config_target_name + "/.config",
         include_tar_gz = config_target_name + "/include.tar.gz",
+        raw_kmi_symbol_list = raw_kmi_symbol_list_target_name,
     )
 
     _modules_prepare(
@@ -799,6 +807,13 @@ def _kernel_config_impl(ctx):
             for key, value in lto_config.items()
         ]))
 
+    if ctx.file.raw_kmi_symbol_list:
+        trim_kmi_command = """
+            ${{KERNEL_DIR}}/scripts/config --file ${{OUT_DIR}}/.config \
+                  -d UNUSED_SYMBOLS -e TRIM_UNUSED_KSYMS \
+                  --set-str UNUSED_KSYMS_WHITELIST {raw_kmi_symbol_list}
+        """
+
     command = ctx.attr.env[_KernelEnvInfo].setup + """
         # Pre-defconfig commands
           eval ${{PRE_DEFCONFIG_CMDS}}
@@ -858,6 +873,7 @@ _kernel_config = rule(
             doc = "the packaged include/ files",
         ),
         "lto": attr.label(default = "//build/kleaf:lto"),
+        "raw_kmi_symbol_list": attr.label(doc = "Label to abi_symbollist.raw"),
         "_debug_print_scripts": attr.label(default = "//build/kleaf:debug_print_scripts"),
     },
 )
@@ -898,25 +914,27 @@ def _kmi_symbol_list_impl(ctx):
         command = command,
     )
 
-    raw_symbollist = ctx.actions.declare_file("{}/abi_symbollist.raw".format(ctx.attr.name))
+    flatten_symbol_list = [f for f in ctx.files._kernel_abi_scripts if f.basename == "flatten_symbol_list"][0]
+    raw_kmi_symbol_list = ctx.actions.declare_file("{}/abi_symbollist.raw".format(ctx.attr.name))
     command = ctx.attr.env[_KernelEnvInfo].setup + """
         mkdir -p {out_dir}
-        cat {src} | {flatten_symbol_list} > {raw_symbollist}
+        cat {src} | {flatten_symbol_list} > {raw_kmi_symbol_list}
     """.format(
-        process_symbols = process_symbols.path,
-        raw_symbollist = raw_symbollist.path,
+        flatten_symbol_list = flatten_symbol_list.path,
+        raw_kmi_symbol_list = raw_kmi_symbol_list.path,
         src = out_file.path,
     )
     _debug_print_scripts(ctx, command)
     ctx.actions.run_shell(
         inputs = inputs + [out_file],
-        outputs = [raw_symbollist],
+        outputs = [raw_kmi_symbol_list],
         progress_message = "Creating abi_symbollist.raw {}".format(ctx.label),
         command = command,
     )
 
     return [
         DefaultInfo(files = depset(outputs)),
+        OutputGroupInfo(raw_kmi_symbol_list = depset([raw_kmi_symbol_list])),
     ]
 
 _kmi_symbol_list = rule(
