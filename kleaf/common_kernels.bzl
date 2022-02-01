@@ -151,7 +151,9 @@ def define_common_kernels(
             build_config = config,
             # Keep in sync with build configs.
             # - android-mainline branch does not have KMI symbol lists
+            # - androidxx branches have KMI symbol lists and trim accordingly.
             kmi_symbol_lists = native.glob(["android/abi_gki_aarch64"]),
+            trim_nonlisted_kmi = len(native.glob(["android/abi_gki_aarch64"])) > 0,
             visibility = visibility,
             **kernel_build_kwargs
         )
