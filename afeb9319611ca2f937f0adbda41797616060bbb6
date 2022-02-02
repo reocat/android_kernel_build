@@ -94,6 +94,30 @@
       },
       "revId": "afeb9319611ca2f937f0adbda41797616060bbb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3a347f9_13b95756",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-02T07:09:56Z",
+      "side": 1,
+      "message": "* configuration files: `user.bazelrc` and `device.bazelrc`, actually.\n\n`user.bazelrc` is expected to be modified by a particular developer however they want. `device.bazelrc` is expected to be checked into a device kernel source tree and symlinked to the top of repo. See CL:1949681.",
+      "parentUuid": "b8af30b6_dfb644ce",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 95
+      },
+      "revId": "afeb9319611ca2f937f0adbda41797616060bbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
