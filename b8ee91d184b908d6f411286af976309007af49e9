@@ -341,6 +341,30 @@
       },
       "revId": "b8ee91d184b908d6f411286af976309007af49e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48f9028e_b7900873",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-02T11:37:12Z",
+      "side": 1,
+      "message": "Thanks, I missed that.\n\nDo you also want to this a list of dicts as you\u0027ve done for _ARCH_CONFIGS in aosp/1965602?",
+      "parentUuid": "a640e6bd_e19ee6a8",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 7
+      },
+      "revId": "b8ee91d184b908d6f411286af976309007af49e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
