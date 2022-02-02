@@ -70,6 +70,30 @@
       },
       "revId": "afeb9319611ca2f937f0adbda41797616060bbb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8af30b6_dfb644ce",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-02T07:07:56Z",
+      "side": 1,
+      "message": "This is exactly what it is doing right now.\n\n- code defaults: bazel.WORKSPACE file.\n\nIn this particular case, there\u0027s no default. But if there were one, it would be specified in bazel.WORKSPACE file as `build_number\u003dxxx`.\n  \nhttps://android-review.googlesource.com/c/kernel/build/+/1949680/15/kleaf/bazel.WORKSPACE\n  \n- configuration files: `device.bazelrc`\n\nThis is a device-specific configuration, so we allow devices to override the value and refer to a specific build number.\n\nThis is CL:1949681.\n  \n- environment variables:\n\nTechnically this may be overridden if the user specifies `KLEAF_DOWNLOAD_BUILD_NUMBER_MAP`, but I consider it an implementation detail and intentionally hide it from the user docs:\n  \nhttps://android-review.googlesource.com/c/kernel/build/+/1947627/19/kleaf/download_repo.bzl#b175\n  \nIt is expected that users use command line arguments instead. This matches what you say:\n\n\u003e And I would most happily live without the environment option.\n  \n- command line arguments: --use_prebuilt_gki\u003dxxx\n\nThe purpose of this CL is to support this.\n  \nInternally, it is implemented by specifying KLEAF_DOWNLOAD_BUILD_NUMBER_MAP environment variable before executing `bazel`. This is a Bazel limitation. When  workspaces are loaded, the user-defined command line arguments (--//common:use_prebuilt_gki in this case) can\u0027t be referred to yet.",
+      "parentUuid": "e8274496_8e47e669",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 95
+      },
+      "revId": "afeb9319611ca2f937f0adbda41797616060bbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
