@@ -87,6 +87,30 @@
       },
       "revId": "08e07e0e46febe7c9191f1ce744f4ab980dd2273",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e772b93b_3123677f",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-02T08:22:01Z",
+      "side": 1,
+      "message": "Changed to `android/abi_gki_aarch64*`. This would work as long as the list of `android/abi_gki_aarch64*` is the same as `KMI_SYMBOL_LIST + ADDITIONAL_KMI_SYMBOL_LISTS`.\n\nI could make this more configurable by adding an argument to `define_common_kernels()` if you want.\n\nLoading from build configs requires some non-trivial amount of work similar to how we did for build.config.constants, except that this is a multi-line variable, but\n\n```\nx\u003d\"a\nb\nc\n\"\n```\n\n... isn\u0027t valid Starlark language, so we have to have some logic to parse it. If we want this in the future, I can follow up.",
+      "parentUuid": "77c14e16_132cb804",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 0
+      },
+      "revId": "08e07e0e46febe7c9191f1ce744f4ab980dd2273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
