@@ -39,6 +39,30 @@
       },
       "revId": "08e07e0e46febe7c9191f1ce744f4ab980dd2273",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "270a9e62_727e6a86",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-02T08:08:23Z",
+      "side": 1,
+      "message": "Interesting, I didn\u0027t know that!\n\nI\u0027ll modify the CL to ask the caller to define_common_kernels() to provide these configurations.",
+      "parentUuid": "2884f779_12ea54ff",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 0
+      },
+      "revId": "08e07e0e46febe7c9191f1ce744f4ab980dd2273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
