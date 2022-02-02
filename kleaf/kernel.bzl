@@ -173,7 +173,7 @@ def kernel_build(
           - `//common:kernel_{arch}`
           - A `kernel_filegroup` rule, e.g.
             ```
-            load("//build/kleaf:common_kernels.bzl, "aarch64_outs")
+            load("//build/kleaf:constants.bzl, "aarch64_outs")
             kernel_filegroup(
               name = "my_kernel_filegroup",
               srcs = aarch64_outs,
