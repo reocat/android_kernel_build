@@ -39,16 +39,6 @@ aarch64_outs = _common_outs + [
 # Common output files for x86_64 kernel builds.
 x86_64_outs = _common_outs + ["bzImage"]
 
-_aarch64_kmi_symbol_lists = [
-    "android/abi_gki_aarch64",
-    "android/abi_gki_aarch64_core",
-    "android/abi_gki_aarch64_fips140",
-    "android/abi_gki_aarch64_generic",
-    "android/abi_gki_aarch64_virtual_device",
-    "android/abi_gki_aarch64_db845c",
-    "android/abi_gki_aarch64_hikey960",
-]
-
 # kmi_symbol_lists should be kept in sync with build configs.
 # - android-mainline branch does not have KMI symbol lists
 # - androidxx branches have KMI symbol lists, and specify them in build configs,
@@ -58,14 +48,14 @@ _ARCH_CONFIGS = [
         "name": "kernel_aarch64",
         "build_config": "build.config.gki.aarch64",
         "outs": aarch64_outs,
-        "kmi_symbol_lists": _aarch64_kmi_symbol_lists,
+        "kmi_symbol_lists": ["android/abi_gki_aarch64*"],
         "trim_if_kmi_symbol_lists_exist": True,
     },
     {
         "name": "kernel_aarch64_debug",
         "build_config": "build.config.gki-debug.aarch64",
         "outs": aarch64_outs,
-        "kmi_symbol_lists": _aarch64_kmi_symbol_lists,
+        "kmi_symbol_lists": ["android/abi_gki_aarch64*"],
         "trim_if_kmi_symbol_lists_exist": False,
     },
     {
