@@ -26,6 +26,7 @@ load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load(
     "//build/kleaf:constants.bzl",
     "GKI_DOWNLOAD_CONFIGS",
+    "GKI_MODULES",
     "aarch64_outs",
     "x86_64_outs",
 )
@@ -183,6 +184,7 @@ def define_common_kernels(
 
         kernel_modules_install(
             name = name + "_modules_install",
+            kernel_modules = GKI_MODULES,
             kernel_build = name,
         )
 
