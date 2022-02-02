@@ -16,6 +16,24 @@
       "message": "This deserves to be simplified further. Because it is a BUILD_NUMBER_MAP, maybe this can be `foo\u003dxxx,bar\u003dyyy`",
       "revId": "6eb843def2937061894ca86487e68c678fd0b9c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9b6e1cd_1d5c80eb",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-02T06:53:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e3dc9be_3730b24b",
+      "revId": "6eb843def2937061894ca86487e68c678fd0b9c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
