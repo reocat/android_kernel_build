@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9082e9b6_9774989d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-03T22:21:15Z",
+      "side": 1,
+      "message": "This is just an example in the doc. How it is used is a separate discussion (CL:1969224). \n\nI can drop the example here if you want",
+      "parentUuid": "df71e9cc_ee45490f",
+      "range": {
+        "startLine": 309,
+        "startChar": 35,
+        "endLine": 309,
+        "endChar": 62
+      },
+      "revId": "9fdbb97f7a10cb4e3e278e982e3436c80d07cb99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0141b800_a2f48417",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 14
