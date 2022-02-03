@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a50c3189_098ac99c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-03T22:23:25Z",
+      "side": 1,
+      "message": "See comment(s) on earlier changes about the safety of globbing.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 40
+      },
+      "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e5bbfd1_41512fbf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-03T22:23:25Z",
+      "side": 1,
+      "message": "This is a regression from current supported flag combinations. However, to see if was ever needed, you will need to check the history of the GKI build configuration files for 11 and 12 kernels.\n\nWhatever you find deserves at least a comment. Also, if saravanak@ or willmcvicker@ say this use-case is needed, it would be better to support it now.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6559b46_5de59e41",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
