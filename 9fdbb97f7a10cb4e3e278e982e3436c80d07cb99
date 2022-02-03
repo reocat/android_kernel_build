@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99bd8d54_a8fa073e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-03T23:58:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58adf5cb_0daa3079",
+      "revId": "9fdbb97f7a10cb4e3e278e982e3436c80d07cb99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f61c7732_4371a056",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-02-03T22:02:39Z",
       "side": 1,
       "message": "Not totally clear what non-empty is referring to on first reading.\n\nPerhaps: If the list is not empty then ...",
+      "range": {
+        "startLine": 298,
+        "startChar": 13,
+        "endLine": 298,
+        "endChar": 22
+      },
+      "revId": "9fdbb97f7a10cb4e3e278e982e3436c80d07cb99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2da1c90d_dd89039d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-03T23:58:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f61c7732_4371a056",
       "range": {
         "startLine": 298,
         "startChar": 13,
@@ -88,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f59e6d5f_9b66ff9f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-03T23:58:11Z",
+      "side": 1,
+      "message": "(Resolving)",
+      "parentUuid": "9082e9b6_9774989d",
+      "range": {
+        "startLine": 309,
+        "startChar": 35,
+        "endLine": 309,
+        "endChar": 62
+      },
+      "revId": "9fdbb97f7a10cb4e3e278e982e3436c80d07cb99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0141b800_a2f48417",
@@ -101,6 +167,30 @@
       "writtenOn": "2022-02-03T22:02:39Z",
       "side": 1,
       "message": "If this is happening in more than one place, consider making it a helper function of 2 arguments.",
+      "range": {
+        "startLine": 859,
+        "startChar": 22,
+        "endLine": 859,
+        "endChar": 102
+      },
+      "revId": "9fdbb97f7a10cb4e3e278e982e3436c80d07cb99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b32a5380_5287b08d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 859,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-03T23:58:11Z",
+      "side": 1,
+      "message": "I use a different approach in the latest CL.",
+      "parentUuid": "0141b800_a2f48417",
       "range": {
         "startLine": 859,
         "startChar": 22,
