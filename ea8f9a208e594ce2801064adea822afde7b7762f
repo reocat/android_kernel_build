@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "016376a4_bde864ef",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 19
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-03T22:19:16Z",
+      "side": 1,
+      "message": "It would also be safe (i.e., consistent in some sense) to just ignore a request for trimming when no symbols are given as this can be consider to the same as supplying a list of all possible symbols. However, keeping up the mathematical consistency argument, strict symbol checking should then fail unconditionally (as no set of symbols from a kernel will ever be the list of all possible symbols).\n\nHowever, not everyone is a mathematician...\n\nPlease check the behaviour of `build.sh` and document any difference (or eliminate it). https://source.corp.google.com/android-common-kernel/build/kernel/build.sh;l\u003d662\n\nOn the mathematical side of things (if you are curious): aosp/1764505",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 74
+      },
+      "revId": "ea8f9a208e594ce2801064adea822afde7b7762f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
