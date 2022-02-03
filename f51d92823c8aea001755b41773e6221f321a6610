@@ -16,6 +16,24 @@
       "message": "I think the divergence in configuration is a bad idea, at least, without more analysis and discussion. I have followed up on the bug. Please reply there.\n\nLet me know if I\u0027m overthinking things or if you can see a better way forward. Thanks.",
       "revId": "f51d92823c8aea001755b41773e6221f321a6610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2f98e22_bb4c2d7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-03T18:02:29Z",
+      "side": 1,
+      "message": "Talked offline. I moved the real configuration (common_kernels.bzl) to another CL.",
+      "parentUuid": "213cf60e_1a61302d",
+      "revId": "f51d92823c8aea001755b41773e6221f321a6610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
