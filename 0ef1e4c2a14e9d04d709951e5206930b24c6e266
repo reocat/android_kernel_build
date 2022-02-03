@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6559b46_5de59e41",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-03T17:22:14Z",
+      "side": 1,
+      "message": "`build_abi.sh` relies on the ability to temporarily override trimming to build one kernel and also build another with trimming enabled. This concept would most naturally involve independent Bazel targets. How will that work this?\n\n`build_abi.sh`:\n\n```\n        # Disable KMI trimming as the symbol list may be out of date.\n        TRIM_NONLISTED_KMI\u003d KMI_SYMBOL_LIST_STRICT_MODE\u003d build_kernel \"$@\"\n```\n",
+      "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
