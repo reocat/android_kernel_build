@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4bd412c_21c8f4c5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-03T22:25:30Z",
+      "side": 1,
+      "message": "@gprocida see this",
+      "revId": "bcff1d10b38ca21e9d5c3fc67a9125221e75906c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7827f7a9_dd1115e6",
@@ -37,6 +54,30 @@
       "writtenOn": "2022-02-03T22:07:01Z",
       "side": 1,
       "message": "Out of interest, will this rule fail if you change cat to caaaaat, or just create an empty file?\n\nWe should really make flatten_symbol_list have proper form like:\n\nflatten -o output [inputs]\n\nSo we can do proper output close and error handling.",
+      "range": {
+        "startLine": 938,
+        "startChar": 19,
+        "endLine": 938,
+        "endChar": 41
+      },
+      "revId": "bcff1d10b38ca21e9d5c3fc67a9125221e75906c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abd5ea92_368d7135",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-03T22:25:30Z",
+      "side": 1,
+      "message": "It should fail because: `caaaaat` does not exist, so the full command `cat ... | flatten_symbol_list ... \u003e ...` will have a non-zero exit code\n\nSee other comment; we execute `set -e; see -o pipefail` before executing this",
+      "parentUuid": "823a05ee_73bafa84",
       "range": {
         "startLine": 938,
         "startChar": 19,
