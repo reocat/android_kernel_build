@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa5ce08e_b4127f82",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-03T23:58:49Z",
+      "side": 1,
+      "message": "I use a different approach in the latest patchset.",
+      "parentUuid": "7827f7a9_dd1115e6",
+      "range": {
+        "startLine": 933,
+        "startChar": 4,
+        "endLine": 933,
+        "endChar": 110
+      },
+      "revId": "bcff1d10b38ca21e9d5c3fc67a9125221e75906c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "823a05ee_73bafa84",
@@ -78,6 +102,30 @@
       "side": 1,
       "message": "It should fail because: `caaaaat` does not exist, so the full command `cat ... | flatten_symbol_list ... \u003e ...` will have a non-zero exit code\n\nSee other comment; we execute `set -e; see -o pipefail` before executing this",
       "parentUuid": "823a05ee_73bafa84",
+      "range": {
+        "startLine": 938,
+        "startChar": 19,
+        "endLine": 938,
+        "endChar": 41
+      },
+      "revId": "bcff1d10b38ca21e9d5c3fc67a9125221e75906c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b607121_71ee79ed",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-03T23:58:49Z",
+      "side": 1,
+      "message": "(Resolving)",
+      "parentUuid": "abd5ea92_368d7135",
       "range": {
         "startLine": 938,
         "startChar": 19,
