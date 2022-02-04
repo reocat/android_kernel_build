@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ceafaa6_7ae3f6e1",
+        "filename": "kleaf/kernel_impl.bzl",
+        "patchSetId": 24
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-04T09:14:28Z",
+      "side": 1,
+      "message": "I don\u0027t think a caller would want to have the glob in two different places.\n\nIn practice they would do either:\n\n```\nkmi_symbol_list \u003d # maybe a glob, maybe something else\ntrim_nonlisted_kmi \u003d False\n...(..., kmi_symbol_list, trim_nonlisted_kmi, ...)\n```\n\nor:\n\n```\nkmi_symbol_list \u003d # maybe a glob, maybe something else\ntrim_nonlisted_kmi \u003d bool(kmi_symbol_list)\n...(..., kmi_symbol_list, trim_nonlisted_kmi, ...)\n```\n\nActually, I think this is more likely:\n\n```\nkmi_symbol_list \u003d # maybe a glob, maybe something else\ntrim_nonlisted_kmi \u003d True\n...(..., kmi_symbol_list, trim_nonlisted_kmi, ...)\n```\n\nIt rather depends on where in the ABI monitoring/enforcement lifecycle we are.",
+      "range": {
+        "startLine": 323,
+        "startChar": 10,
+        "endLine": 323,
+        "endChar": 73
+      },
+      "revId": "4b71ddb43bc75c40c8890f0bf9fcdc9e1360e813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef4c7748_798ce50b",
+        "filename": "kleaf/kernel_impl.bzl",
+        "patchSetId": 24
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-04T09:14:28Z",
+      "side": 1,
+      "message": "s/KMI/symbols/",
+      "range": {
+        "startLine": 846,
+        "startChar": 25,
+        "endLine": 846,
+        "endChar": 28
+      },
+      "revId": "4b71ddb43bc75c40c8890f0bf9fcdc9e1360e813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a467f47b_51f7d919",
+        "filename": "kleaf/kernel_impl.bzl",
+        "patchSetId": 24
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-04T09:14:28Z",
+      "side": 1,
+      "message": "s/KMI/symbols/",
+      "range": {
+        "startLine": 910,
+        "startChar": 99,
+        "endLine": 910,
+        "endChar": 102
+      },
+      "revId": "4b71ddb43bc75c40c8890f0bf9fcdc9e1360e813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
