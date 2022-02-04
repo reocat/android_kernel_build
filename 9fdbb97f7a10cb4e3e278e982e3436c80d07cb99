@@ -204,6 +204,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9fe52bf_e0d54936",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-04T08:59:24Z",
+      "side": 1,
+      "message": "The problem is that it\u0027s a trap. Here\u0027s what might happen.\n\n1. We need to start tracking XML for branch X.\n2. Someone edits build configuration to add the XML file in the usual place.\n3a. If Kleaf is already being used for presubmit builds, the builds break and that person has to work out how to do the exclusion.\n3b. If Kleaf is not yet being used for presubmit builds, that person (optionally) writes TESTED\u003dbuild_abi.sh in the commit message and submits. Anyone on the build.sh / build_abi.sh train is happy, anyone using Kleaf gets broken builds.\n\nAll duplicated configuration is a trap, but this is duplication with different behaviour. The work need not all be done on the Kleaf side, but, at the very least, we need documentation on **both** sides.",
+      "parentUuid": "ce39ec2c_83a6ac74",
+      "range": {
+        "startLine": 309,
+        "startChar": 35,
+        "endLine": 309,
+        "endChar": 62
+      },
+      "revId": "9fdbb97f7a10cb4e3e278e982e3436c80d07cb99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0141b800_a2f48417",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 14
