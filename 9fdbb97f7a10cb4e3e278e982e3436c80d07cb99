@@ -228,6 +228,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "744d3e33_c57af49c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-04T21:53:38Z",
+      "side": 1,
+      "message": "But still, that\u0027s the job of aosp/1969224, not this CL. This CL only provides the mechanism to build the files, but it doesn\u0027t say how the source files are provided yet. \n\nThe doc just provides an example. This is not the real usage.",
+      "parentUuid": "b9fe52bf_e0d54936",
+      "range": {
+        "startLine": 309,
+        "startChar": 35,
+        "endLine": 309,
+        "endChar": 62
+      },
+      "revId": "9fdbb97f7a10cb4e3e278e982e3436c80d07cb99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0141b800_a2f48417",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 14
