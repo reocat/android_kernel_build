@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6cffcb0e_1f3223db",
+        "filename": "kleaf/kernel_impl.bzl",
+        "patchSetId": 24
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-04T21:55:15Z",
+      "side": 1,
+      "message": "That\u0027s totally fine. Again, this just provides an example of how this might work. How the user is actually going to use it (e.g. glob only once for less I/O\u0027s, or hardcoding trim_nonlisted_kmi) is up to the user.",
+      "parentUuid": "1ceafaa6_7ae3f6e1",
+      "range": {
+        "startLine": 323,
+        "startChar": 10,
+        "endLine": 323,
+        "endChar": 73
+      },
+      "revId": "4b71ddb43bc75c40c8890f0bf9fcdc9e1360e813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef4c7748_798ce50b",
         "filename": "kleaf/kernel_impl.bzl",
         "patchSetId": 24
