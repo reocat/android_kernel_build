@@ -22,6 +22,30 @@
       },
       "revId": "ea8f9a208e594ce2801064adea822afde7b7762f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aab7acde_3e4be8db",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 19
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-04T00:05:15Z",
+      "side": 1,
+      "message": "\u003e It would also be safe (i.e., consistent in some sense) to just ignore a request for trimming when no symbols are given as this can be consider to the same as supplying a list of all possible symbols. \n\nI personally agree to that and would love to do that.\n\nBut to avoid surprises, I am aligning with the behavior of build.sh here. If `kmi_symbol_lists` is empty but `trim_nonlisted_kmi` is True, then it is an error. \n\nhttp://cs/android-common-kernel/build/kernel/build.sh;l\u003d692;rcl\u003d5750913c9affa72f219b0291c3ce90ad049bbc4a\n\nSee https://android-review.googlesource.com/c/kernel/build/+/1964421/24/kleaf/kernel_impl.bzl#333\n\nWe can always change the behavior in the future by changing the failure case to a non-failure case. So, I am more conservative in diverging with the behavior in build.sh. (I know there are already some cases of the divergence, but let\u0027s keep the set of differences minimal 😊) \n\n---\n\n\u003e strict symbol checking should then fail unconditionally\n\nKMI_SYMBOL_LIST_STRICT_MODE (the symbol check) is not implemented yet. It\u0027ll be in follow-up CLs.",
+      "parentUuid": "016376a4_bde864ef",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 74
+      },
+      "revId": "ea8f9a208e594ce2801064adea822afde7b7762f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
