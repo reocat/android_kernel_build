@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02d7a60c_75f77f2d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-04T01:56:26Z",
+      "side": 1,
+      "message": "Done, I reworded to say that this is the default, but the behavior can be overridden.",
+      "parentUuid": "a50c3189_098ac99c",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 40
+      },
+      "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e5bbfd1_41512fbf",
@@ -73,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ceb5f0c2_2a4f1624",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-04T01:56:26Z",
+      "side": 1,
+      "message": "See the latest PS. I make this behavior to be able to be overridden by the caller. So now it is the caller (common-android*)\u0027s responsibility to keep BUILD.bazel and build.config.gki* in sync.\n\nWe can also follow-up to load build.config.gki* automatically and set these default values. But for now (mainline \u0026 android13), I think this works.",
+      "parentUuid": "4c83d543_90604420",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6559b46_5de59e41",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -102,6 +150,24 @@
       "side": 1,
       "message": "We\u0027ll need to define separate targets. As-per discussion today, I\u0027ll hold this CL until I find a way forward to support this case.",
       "parentUuid": "e6559b46_5de59e41",
+      "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea8e0343_98d0fb62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-04T01:56:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3b956e1_28f6e764",
       "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
