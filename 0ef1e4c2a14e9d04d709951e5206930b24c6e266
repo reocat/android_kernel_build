@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c83d543_90604420",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-04T00:06:56Z",
+      "side": 1,
+      "message": "Yeah let\u0027s hold this CL. I\u0027ve dropped it from the topic.",
+      "parentUuid": "2e5bbfd1_41512fbf",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6559b46_5de59e41",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -60,6 +84,24 @@
       "writtenOn": "2022-02-03T17:22:14Z",
       "side": 1,
       "message": "`build_abi.sh` relies on the ability to temporarily override trimming to build one kernel and also build another with trimming enabled. This concept would most naturally involve independent Bazel targets. How will that work this?\n\n`build_abi.sh`:\n\n```\n        # Disable KMI trimming as the symbol list may be out of date.\n        TRIM_NONLISTED_KMI\u003d KMI_SYMBOL_LIST_STRICT_MODE\u003d build_kernel \"$@\"\n```\n",
+      "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3b956e1_28f6e764",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-04T00:06:56Z",
+      "side": 1,
+      "message": "We\u0027ll need to define separate targets. As-per discussion today, I\u0027ll hold this CL until I find a way forward to support this case.",
+      "parentUuid": "e6559b46_5de59e41",
       "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
