@@ -46,6 +46,30 @@
       },
       "revId": "ea8f9a208e594ce2801064adea822afde7b7762f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99d87031_96f3ab23",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 19
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-04T09:03:46Z",
+      "side": 1,
+      "message": "Thanks, I missed the extra `elif` in `build.sh`.",
+      "parentUuid": "aab7acde_3e4be8db",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 74
+      },
+      "revId": "ea8f9a208e594ce2801064adea822afde7b7762f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
