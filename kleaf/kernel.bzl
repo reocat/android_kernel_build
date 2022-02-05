@@ -433,6 +433,7 @@ def kernel_build(
         modules_prepare = modules_prepare_target_name,
         kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if kmi_symbol_lists else None,
+        kernel_uapi_headers = uapi_headers_target_name,
         **kwargs
     )
 
@@ -1103,6 +1104,14 @@ _KernelBuildExtModuleInfo = provider(
     },
 )
 
+_KernelBuildUapiInfo = provider(
+    doc = "A provider that specifies the expecation of a `merged_uapi_headers` rule from its `kernel_build` attribute.",
+    fields = {
+        "base_kernel": "the `base_kernel` target, if exists",
+        "kernel_uapi_headers": "the `*_kernel_uapi_headers` target",
+    },
+)
+
 _SrcsInfo = provider(fields = {
     "srcs": "The srcs attribute of a rule.",
 })
@@ -1422,6 +1431,11 @@ def _kernel_build_impl(ctx):
         modules_prepare = ctx.attr.modules_prepare,
     )
 
+    kernel_build_uapi_info = _KernelBuildUapiInfo(
+        base_kernel = ctx.attr.base_kernel,
+        kernel_uapi_headers = ctx.attr.kernel_uapi_headers,
+    )
+
     output_group_kwargs = {}
     for d in all_output_files.values():
         output_group_kwargs.update({name: depset([file]) for name, file in d.items()})
@@ -1438,6 +1452,7 @@ def _kernel_build_impl(ctx):
         env_info,
         kernel_build_info,
         kernel_build_module_info,
+        kernel_build_uapi_info,
         output_group_info,
         default_info,
     ]
@@ -1468,7 +1483,6 @@ _kernel_build = rule(
         "base_kernel": attr.label(
             aspects = [_kernel_toolchain_aspect],
         ),
-        "modules_prepare": attr.label(),
         "kmi_symbol_list_strict_mode": attr.bool(),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
@@ -1477,6 +1491,12 @@ _kernel_build = rule(
         "_kernel_abi_scripts": attr.label(default = "//build/kernel:kernel-abi-scripts"),
         "_compare_to_symbol_list": attr.label(default = "//build/kernel:abi/compare_to_symbol_list", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        # Though these rules are unrelated to the `_kernel_build` rule, they are added as fake
+        # dependencies so _KernelBuildExtModuleInfo and _KernelBuildUapiInfo works.
+        # There are no real dependencies. Bazel does not build these targets before building the
+        # `_kernel_build` target.
+        "modules_prepare": attr.label(),
+        "kernel_uapi_headers": attr.label(),
     },
 )
 
@@ -2092,6 +2112,90 @@ _kernel_uapi_headers = rule(
             providers = [_KernelEnvInfo],
             doc = "the kernel_config target",
         ),
+        "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+    },
+)
+
+def _merged_kernel_uapi_headers_impl(ctx):
+    kernel_build = ctx.attr.kernel_build
+    base_kernel = kernel_build[_KernelBuildUapiInfo].base_kernel
+
+    # Early elements = higher priority
+    srcs = []
+    if base_kernel:
+        srcs += base_kernel[_KernelBuildUapiInfo].kernel_uapi_headers.files.to_list()
+    srcs += kernel_build[_KernelBuildUapiInfo].kernel_uapi_headers.files.to_list()
+    for kernel_module in ctx.attr.kernel_modules:
+        srcs.append(kernel_module[_KernelModuleInfo].kernel_uapi_headers_archive)
+
+    inputs = ctx.files._host_tools + ctx.files._build_tools + srcs
+
+    out_file = ctx.actions.declare_file("{}/kernel-uapi-headers.tar.gz".format(ctx.attr.name))
+    intermediates_dir = out_file.dirname + "/intermediates"
+
+    command = """
+      # This rule doesn't depend on a kernel_env target. Hence, we need to manually
+      # set PATH to ensure we don't use tools outside of the sandbox.
+        export PATH={host_tools_path}:{build_tools_path}
+        mkdir -p {intermediates_dir}
+    """.format(
+        host_tools_path = ctx.files._host_tools[0].dirname,
+        build_tools_path = ctx.files._build_tools[0].dirname,
+        intermediates_dir = intermediates_dir,
+    )
+
+    # Extract the source tarballs in low to high priority order.
+    for src in reversed(srcs):
+        command += """
+            tar xf {src} -C {intermediates_dir}
+        """.format(
+            src = src.path,
+            intermediates_dir = intermediates_dir,
+        )
+
+    command += """
+        tar czf {out_file} -C {intermediates_dir} usr/
+        rm -rf {intermediates_dir}
+    """.format(
+        out_file = out_file.path,
+        intermediates_dir = intermediates_dir,
+    )
+
+    _debug_print_scripts(ctx, command)
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [out_file],
+        progress_message = "Merging kernel-uapi-headers.tar.gz {}".format(ctx.label),
+        command = command,
+        mnemonic = "MergedKernelUapiHeaders",
+    )
+    return DefaultInfo(files = depset([out_file]))
+
+merged_kernel_uapi_headers = rule(
+    implementation = _merged_kernel_uapi_headers_impl,
+    doc = """Merge `kernel-uapi-headers.tar.gz`.
+
+On certain devices, kernel modules installs additional UAPI headers. Use this
+rule to add these module UAPI headers to the final `kernel-uapi-headers.tar.gz`.
+
+If there are conflict of file names in the source tarballs, files higher in
+the list have higher priority:
+1. UAPI headers from the `base_kernel` of the `kernel_build` (ususally the GKI build)
+2. UAPI headers from the `kernel_build` (usually the device build)
+3. UAPI headers from ``kernel_modules`. Order among the modules are undetermined.
+""",
+    attrs = {
+        "kernel_build": attr.label(
+            doc = "The `kernel_build`",
+            mandatory = True,
+            providers = [_KernelBuildUapiInfo],
+        ),
+        "kernel_modules": attr.label_list(
+            doc = """A list of external `kernel_module`s to merge `kernel-uapi-headers.tar.gz`""",
+            providers = [_KernelModuleInfo],
+        ),
+        "_host_tools": attr.label(default = "//build/kernel:host-tools"),
+        "_build_tools": attr.label(default = "//build/kernel:kernel-build-tools"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
 )
