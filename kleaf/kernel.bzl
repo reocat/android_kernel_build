@@ -24,6 +24,7 @@ load(
     kernel_kythe_impl = "kernel_kythe",
     kernel_module_impl = "kernel_module",
     kernel_modules_install_impl = "kernel_modules_install",
+    merged_kernel_uapi_headers_impl = "merged_kernel_uapi_headers",
 )
 
 kernel_build_config = kernel_build_config_impl
@@ -36,3 +37,4 @@ kernel_images = kernel_images_impl
 kernel_filegroup = kernel_filegroup_impl
 kernel_compile_commands = kernel_compile_commands_impl
 kernel_kythe = kernel_kythe_impl
+merged_kernel_uapi_headers = merged_kernel_uapi_headers_impl
