@@ -352,6 +352,7 @@ def kernel_build(
         deps = deps,
         base_kernel = base_kernel,
         modules_prepare = modules_prepare_target_name,
+        kernel_uapi_headers = uapi_headers_target_name,
         **kwargs
     )
 
@@ -851,18 +852,32 @@ _srcs_aspect = aspect(
 
 _KernelBuildAspectInfo = provider(fields = {
     "modules_prepare": "The *_modules_prepare target",
+    "base_kernel": "The `base_kernel` attribute",
+    "kernel_uapi_headers": "The `*_kernel_uapi_headers` target",
+    "env": "The `*_env` target",
 })
 
 def _kernel_build_aspect_impl(target, ctx):
-    return [_KernelBuildAspectInfo(
-        modules_prepare = _getoptattr(ctx.rule.attr, "modules_prepare"),
-    )]
+    if ctx.rule.kind == "_kernel_config":
+        return [_KernelBuildAspectInfo(env = ctx.rule.attr.env)]
+    if ctx.rule.kind == "_kernel_build":
+        return [_KernelBuildAspectInfo(
+            modules_prepare = ctx.rule.attr.modules_prepare,
+            base_kernel = ctx.rule.attr.base_kernel,
+            kernel_uapi_headers = ctx.rule.attr.kernel_uapi_headers,
+            env = ctx.rule.attr.config[_KernelBuildAspectInfo].env,
+        )]
+    return []
 
 _kernel_build_aspect = aspect(
     implementation = _kernel_build_aspect_impl,
     doc = "An aspect describing attributes of a _kernel_build rule.",
     attr_aspects = [
         "modules_prepare",
+        "base_kernel",
+        "kernel_uapi_headers",
+        "config",
+        "env",
     ],
 )
 
@@ -1112,8 +1127,12 @@ _kernel_build = rule(
             providers = [KernelFilesInfo],
             aspects = [_kernel_toolchain_aspect],
         ),
-        "modules_prepare": attr.label(),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        # Though these rules are unrelated to the `_kernel_build` rule, they are added as fake
+        # dependencies so _kernel_build_aspect works. There are no real dependencies. Bazel does
+        # not build these targets before building the `_kernel_build` target.
+        "modules_prepare": attr.label(),
+        "kernel_uapi_headers": attr.label(),
     },
 )
 
@@ -1730,6 +1749,84 @@ _kernel_uapi_headers = rule(
             mandatory = True,
             providers = [_KernelEnvInfo],
             doc = "the kernel_config target",
+        ),
+        "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+    },
+)
+
+def _merged_kernel_uapi_headers_impl(ctx):
+    kernel_build = ctx.attr.kernel_build
+    env = kernel_build[_KernelBuildAspectInfo].env
+    base_kernel = kernel_build[_KernelBuildAspectInfo].base_kernel
+
+    # Early elements = higher priority
+    srcs = []
+    if base_kernel:
+        srcs += base_kernel[_KernelBuildAspectInfo].kernel_uapi_headers.files.to_list()
+    srcs += kernel_build[_KernelBuildAspectInfo].kernel_uapi_headers.files.to_list()
+    for kernel_module in ctx.attr.kernel_modules:
+        srcs.append(kernel_module[_KernelModuleInfo].kernel_uapi_headers_archive)
+
+    inputs = [] + srcs
+    inputs += env[_KernelEnvInfo].dependencies
+
+    out_file = ctx.actions.declare_file("{}/kernel-uapi-headers.tar.gz".format(ctx.attr.name))
+    intermediates_dir = out_file.dirname + "/intermediates"
+
+    command = env[_KernelEnvInfo].setup + """
+        mkdir -p {intermediates_dir}
+    """.format(
+        intermediates_dir = intermediates_dir,
+    )
+
+    # Extract the source tarballs in low to high priority order.
+    for src in reversed(srcs):
+        command += """
+            tar xf {src} -C {intermediates_dir}
+        """.format(
+            src = src.path,
+            intermediates_dir = intermediates_dir,
+        )
+
+    command += """
+        tar czf {out_file} -C {intermediates_dir} usr/
+        rm -rf {intermediates_dir}
+    """.format(
+        out_file = out_file.path,
+        intermediates_dir = intermediates_dir,
+    )
+
+    _debug_print_scripts(ctx, command)
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [out_file],
+        progress_message = "Merging kernel-uapi-headers.tar.gz {}".format(ctx.label),
+        command = command,
+    )
+    return DefaultInfo(files = depset([out_file]))
+
+merged_kernel_uapi_headers = rule(
+    implementation = _merged_kernel_uapi_headers_impl,
+    doc = """Merge `kernel-uapi-headers.tar.gz`.
+
+On certain devices, kernel modules installs additional UAPI headers. Use this
+rule to add these module UAPI headers to the final `kernel-uapi-headers.tar.gz`.
+
+If there are conflict of file names in the source tarballs, files higher in
+the list have higher priority:
+1. UAPI headers from the `base_kernel` of the `kernel_build` (ususally the GKI build)
+2. UAPI headers from the `kernel_build` (usually the device build)
+3. UAPI headers from ``kernel_modules`. Order among the modules are undetermined.
+""",
+    attrs = {
+        "kernel_build": attr.label(
+            doc = "The `kernel_build`",
+            mandatory = True,
+            aspects = [_kernel_build_aspect],
+        ),
+        "kernel_modules": attr.label_list(
+            doc = """A list of `kernel_module`s to merge `kernel-uapi-headers.tar.gz`""",
+            providers = [_KernelModuleInfo],
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },

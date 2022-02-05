@@ -853,8 +853,13 @@ if [ -z "${SKIP_CP_KERNEL_HDR}" ]; then
   # are only side products. We don't want those. Let's delete them.
   find ${KERNEL_UAPI_HEADERS_DIR} \( -name ..install.cmd -o -name .install \) -exec rm '{}' +
   KERNEL_UAPI_HEADERS_TAR=${DIST_DIR}/kernel-uapi-headers.tar.gz
-  echo " Copying kernel UAPI headers to ${KERNEL_UAPI_HEADERS_TAR}"
+  echo " Copying kernel UAPI headers ${KERNEL_UAPI_HEADERS_DIR} to ${KERNEL_UAPI_HEADERS_TAR}"
+  echo "====Listing headers:"
+  ls ${KERNEL_UAPI_HEADERS_DIR}/usr/include/
+  echo "====List end."
   tar -czf ${KERNEL_UAPI_HEADERS_TAR} --directory=${KERNEL_UAPI_HEADERS_DIR} usr/
+  echo "====Contains?"
+  tar -tf ${KERNEL_UAPI_HEADERS_TAR} | grep "touch_offload.h" || true
 fi
 
 if [ -z "${SKIP_CP_KERNEL_HDR}" ] ; then
