@@ -610,7 +610,7 @@ if [ "${LTO}" = "none" -o "${LTO}" = "thin" -o "${LTO}" = "full" ]; then
   (cd ${OUT_DIR} && make ${TOOL_ARGS} O=${OUT_DIR} "${MAKE_ARGS[@]}" olddefconfig)
   set +x
 elif [ -n "${LTO}" ]; then
-  echo "LTO= must be one of 'none', 'thin' or 'full'."
+  echo "LTO= must be one of 'none', 'thin' or 'full'." >&2
   exit 1
 fi
 
@@ -684,9 +684,9 @@ if [ -n "${KMI_SYMBOL_LIST}" ]; then
         exit 1
       }
 
-    elif [ "${KMI_SYMBOL_LIST_STRICT_MODE}" = "1" ]; then
+  elif [ "${KMI_SYMBOL_LIST_STRICT_MODE}" = "1" ]; then
       echo "ERROR: KMI_SYMBOL_LIST_STRICT_MODE requires TRIM_NONLISTED_KMI=1" >&2
-    exit 1
+      exit 1
   fi
   popd # $ROOT_DIR/$KERNEL_DIR
 elif [ "${TRIM_NONLISTED_KMI}" = "1" ]; then
