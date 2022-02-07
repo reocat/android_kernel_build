@@ -137,10 +137,10 @@ function create_modules_staging() {
     if [[ -f "${ROOT_DIR}/${modules_list_file}" ]]; then
       modules_list_file="${ROOT_DIR}/${modules_list_file}"
     elif [[ "${modules_list_file}" != /* ]]; then
-      echo "modules list must be an absolute path or relative to ${ROOT_DIR}: ${modules_list_file}"
+      echo "modules list must be an absolute path or relative to ${ROOT_DIR}: ${modules_list_file}" >&2
       exit 1
     elif [[ ! -f "${modules_list_file}" ]]; then
-      echo "Failed to find modules list: ${modules_list_file}"
+      echo "Failed to find modules list: ${modules_list_file}" >&2
       exit 1
     fi
 
@@ -162,10 +162,10 @@ function create_modules_staging() {
     if [[ -f "${ROOT_DIR}/${modules_blocklist_file}" ]]; then
       modules_blocklist_file="${ROOT_DIR}/${modules_blocklist_file}"
     elif [[ "${modules_blocklist_file}" != /* ]]; then
-      echo "modules blocklist must be an absolute path or relative to ${ROOT_DIR}: ${modules_blocklist_file}"
+      echo "modules blocklist must be an absolute path or relative to ${ROOT_DIR}: ${modules_blocklist_file}" >&2
       exit 1
     elif [[ ! -f "${modules_blocklist_file}" ]]; then
-      echo "Failed to find modules blocklist: ${modules_blocklist_file}"
+      echo "Failed to find modules blocklist: ${modules_blocklist_file}" >&2
       exit 1
     fi
 
@@ -230,10 +230,10 @@ function build_vendor_dlkm() {
     if [[ -f "${ROOT_DIR}/${vendor_dlkm_props_file}" ]]; then
       vendor_dlkm_props_file="${ROOT_DIR}/${vendor_dlkm_props_file}"
     elif [[ "${vendor_dlkm_props_file}" != /* ]]; then
-      echo "VENDOR_DLKM_PROPS must be an absolute path or relative to ${ROOT_DIR}: ${vendor_dlkm_props_file}"
+      echo "VENDOR_DLKM_PROPS must be an absolute path or relative to ${ROOT_DIR}: ${vendor_dlkm_props_file}" >&2
       exit 1
     elif [[ ! -f "${vendor_dlkm_props_file}" ]]; then
-      echo "Failed to find VENDOR_DLKM_PROPS: ${vendor_dlkm_props_file}"
+      echo "Failed to find VENDOR_DLKM_PROPS: ${vendor_dlkm_props_file}" >&2
       exit 1
     fi
   fi
@@ -247,7 +247,7 @@ function build_boot_images() {
     MKBOOTIMG_PATH="tools/mkbootimg/mkbootimg.py"
   fi
   if [ ! -f "${MKBOOTIMG_PATH}" ]; then
-    echo "mkbootimg.py script not found. MKBOOTIMG_PATH = ${MKBOOTIMG_PATH}"
+    echo "mkbootimg.py script not found. MKBOOTIMG_PATH = ${MKBOOTIMG_PATH}" >&2
     exit 1
   fi
 
@@ -274,7 +274,7 @@ function build_boot_images() {
   DTB_FILE_LIST=$(find ${DIST_DIR} -name "*.dtb" | sort)
   if [ -z "${DTB_FILE_LIST}" ]; then
     if [ -z "${SKIP_VENDOR_BOOT}" ]; then
-      echo "No *.dtb files found in ${DIST_DIR}"
+      echo "No *.dtb files found in ${DIST_DIR}" >&2
       exit 1
     fi
   else
@@ -292,7 +292,7 @@ function build_boot_images() {
       rm -f "${VENDOR_RAMDISK_CPIO}"
       for vendor_ramdisk_binary in ${VENDOR_RAMDISK_BINARY}; do
         if ! [ -f "${vendor_ramdisk_binary}" ]; then
-          echo "Unable to locate vendor ramdisk ${vendor_ramdisk_binary}."
+          echo "Unable to locate vendor ramdisk ${vendor_ramdisk_binary}." >&2
           exit 1
         fi
         if ${DECOMPRESS_GZIP} "${vendor_ramdisk_binary}" 2>/dev/null >> "${VENDOR_RAMDISK_CPIO}"; then
@@ -303,7 +303,7 @@ function build_boot_images() {
           echo "${vendor_ramdisk_binary} is plain CPIO archive"
           cat "${vendor_ramdisk_binary}" >> "${VENDOR_RAMDISK_CPIO}"
         else
-          echo "Unable to identify type of vendor ramdisk ${vendor_ramdisk_binary}"
+          echo "Unable to identify type of vendor ramdisk ${vendor_ramdisk_binary}" >&2
           rm -f "${VENDOR_RAMDISK_CPIO}"
           exit 1
         fi
@@ -340,7 +340,7 @@ function build_boot_images() {
   fi
 
   if [ -z "${HAS_RAMDISK}" ] && [ -z "${SKIP_VENDOR_BOOT}" ]; then
-    echo "No ramdisk found. Please provide a GKI and/or a vendor ramdisk."
+    echo "No ramdisk found. Please provide a GKI and/or a vendor ramdisk." >&2
     exit 1
   fi
 
@@ -354,7 +354,7 @@ function build_boot_images() {
 
   if [ -n "${BUILD_BOOT_IMG}" ]; then
     if [ ! -f "${DIST_DIR}/$KERNEL_BINARY" ]; then
-      echo "kernel binary(KERNEL_BINARY = $KERNEL_BINARY) not present in ${DIST_DIR}"
+      echo "kernel binary(KERNEL_BINARY = $KERNEL_BINARY) not present in ${DIST_DIR}" >&2
       exit 1
     fi
     MKBOOTIMG_ARGS+=("--kernel" "${DIST_DIR}/${KERNEL_BINARY}")
