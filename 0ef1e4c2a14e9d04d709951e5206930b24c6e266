@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0ae8e65_1bc1d7b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-07T10:17:17Z",
+      "side": 1,
+      "message": "Please could you add appropriate comments to BUILD.bazel and build.config.gki* as part of the same commit or topic?",
+      "parentUuid": "ceb5f0c2_2a4f1624",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6559b46_5de59e41",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
