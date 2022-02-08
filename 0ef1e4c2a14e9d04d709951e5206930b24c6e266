@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88818a2e_781cad0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-08T21:54:08Z",
+      "side": 1,
+      "message": "Do you want me to put comments in build.config.gki*? and BUILD.bazel where define_common_kernels() are called?",
+      "parentUuid": "f0ae8e65_1bc1d7b9",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6559b46_5de59e41",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
