@@ -93,6 +93,30 @@
       },
       "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ea6fe53_992b93bf",
+        "filename": "kleaf/common_kernels_impl.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-09T22:43:02Z",
+      "side": 1,
+      "message": "Also maybe it should be named `full_symbols` not `full_kmi`. Or maybe `notrim`. WDYT?",
+      "parentUuid": "2f76296a_d76d2ef8",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 0
+      },
+      "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
