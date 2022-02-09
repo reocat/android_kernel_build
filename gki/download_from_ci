@@ -280,9 +280,13 @@ def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
     # Extract the tarball for system_dlkm image content
     system_dlkm_tarball = os.path.join(output_dir, "system_dlkm_staging_archive.tar.gz")
     system_dlkm_staging = os.path.join(output_dir, "system_dlkm_staging")
-    os.mkdir(system_dlkm_staging)
-    with tarfile.open(system_dlkm_tarball) as system_dlkm_tar:
-      system_dlkm_tar.extractall(system_dlkm_staging)
+    if not os.path.isdir(system_dlkm_staging):
+        os.mkdir(system_dlkm_staging)
+    try:
+        with tarfile.open(system_dlkm_tarball) as system_dlkm_tar:
+          system_dlkm_tar.extractall(system_dlkm_staging)
+    except:
+        print("ignore malformed " + system_dlkm_tarball)
     os.remove(system_dlkm_tarball)
 
 def download_kernel_modules(target, output_dir, fetch_initramfs=False):
