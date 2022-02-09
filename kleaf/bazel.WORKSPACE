@@ -28,5 +28,8 @@ local_repository(
 
 key_value_repo(
     name = "kernel_toolchain_info",
-    srcs = ["//common:build.config.constants"],
+    srcs = glob([
+        "//common:build.config.constants",
+        "//common:build.config/constants",
+    ]),
 )
