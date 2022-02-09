@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "127f65d5_d6f8fe97",
+        "filename": "kleaf/common_kernels_impl.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-09T22:41:30Z",
+      "side": 1,
+      "message": "I am aligning with the behavior in the build config. The debug build config inherits from the non debug one, so the KMI symbol lists are also built there.\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/build.config.gki-debug.aarch64",
+      "parentUuid": "ebe7df42_4a201f71",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4bb64e3_a0e44ef4",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-09T22:29:48Z",
       "side": 1,
       "message": "If a partner wants to setup their build with a mixed build configuration, are they able to disable trimming? For example, maybe they want to have trimming disabled during bring-up.",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 0
+      },
+      "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f76296a_d76d2ef8",
+        "filename": "kleaf/common_kernels_impl.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-09T22:41:30Z",
+      "side": 1,
+      "message": "They could use the debug target or the `kernel_aarch64_full_kmi` target. See this change.\n\nI didn\u0027t want to expose the `full_kmi` target though. I didn\u0027t express this in the docstring. Maybe I should?",
+      "parentUuid": "e4bb64e3_a0e44ef4",
       "range": {
         "startLine": 227,
         "startChar": 0,
