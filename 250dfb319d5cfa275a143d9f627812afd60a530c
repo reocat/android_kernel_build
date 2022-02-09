@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfe3b9b8_efd8be6d",
+        "filename": "kleaf/common_kernels_impl.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-09T22:58:34Z",
+      "side": 1,
+      "message": "okay, I guess that\u0027s fine. Idk if they have any purpose.",
+      "parentUuid": "127f65d5_d6f8fe97",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4bb64e3_a0e44ef4",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "Or maybe I shouldn\u0027t define the `full_kmi` target in the first place and just tell people to use the debug target",
       "parentUuid": "4ea6fe53_992b93bf",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 0
+      },
+      "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "890adc53_2b93d62f",
+        "filename": "kleaf/common_kernels_impl.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-09T22:58:34Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s guaranteed that the debug target will always only be a non-trimmed GKI kernel. For example, pixel adds additional debug configs for their debug configs and I think that could be possible for GKI. Using the _full_kmi target could be an option, but I don\u0027t think it\u0027s clear how to do that. Would you just do this:\n\nbase_kernel \u003d \"//common:kernel_aarch64_full_kmi\",\n\nIf that\u0027s right, then I think naming it _notrim would be better. However, I think it would be best to either have a label that they can set, e.g. trim_nonlisted_kmi \u003d 0, or just allow partners to override the flag in the `kernel_build_config` starlark or build.config.mix.\n\nIf it\u0027s easiest to go with the _notrim target, then I\u0027m fine with that. Whatever you choose, I think it should be made clear how to do this.",
+      "parentUuid": "9efa78bf_759ddbca",
       "range": {
         "startLine": 227,
         "startChar": 0,
