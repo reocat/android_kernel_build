@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebe7df42_4a201f71",
+        "filename": "kleaf/common_kernels_impl.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-09T22:29:48Z",
+      "side": 1,
+      "message": "what\u0027s the point of having the symbol list enabled for the debug target?",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 0
+      },
+      "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4bb64e3_a0e44ef4",
+        "filename": "kleaf/common_kernels_impl.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-09T22:29:48Z",
+      "side": 1,
+      "message": "If a partner wants to setup their build with a mixed build configuration, are they able to disable trimming? For example, maybe they want to have trimming disabled during bring-up.",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 0
+      },
+      "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
