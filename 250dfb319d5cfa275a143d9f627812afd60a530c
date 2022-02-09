@@ -117,6 +117,30 @@
       },
       "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9efa78bf_759ddbca",
+        "filename": "kleaf/common_kernels_impl.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-09T22:44:50Z",
+      "side": 1,
+      "message": "Or maybe I shouldn\u0027t define the `full_kmi` target in the first place and just tell people to use the debug target",
+      "parentUuid": "4ea6fe53_992b93bf",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 0
+      },
+      "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
