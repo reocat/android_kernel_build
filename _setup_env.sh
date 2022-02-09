@@ -23,7 +23,32 @@
 # TODO: Use a $(gettop) style method.
 export ROOT_DIR=$(readlink -f $PWD)
 
-export BUILD_CONFIG=${BUILD_CONFIG:-build.config}
+# usage:
+#   normalize_build_config xxx/build.config.x
+# If the file exists, returns the argument as-is. Otherwise, return xxx/build.config/x
+#   normalize_build_config xxx/build.config/x
+# If the file exists, returns the argument as-is. Otherwise, return xxx/build.config.x
+# If argument does not match any of these patterns, it is returned as-is.
+function normalize_build_config() {
+  local arg=$1
+
+  if [[ -f $arg ]]; then
+    echo $arg
+    return
+  fi
+  if [[ $arg =~ build[.]config[.](.*)$ ]]; then
+    echo $arg | sed -E -e 's:build[.]config[.](.*)$:build.config/\1:'
+    return
+  fi
+  if [[ $arg =~ build[.]config/(.*)$ ]]; then
+    echo $arg | sed -E -e 's:build[.]config/(.*)$:build.config.\1:'
+    return
+  fi
+  echo $arg
+  return
+}
+
+export BUILD_CONFIG=$(normalize_build_config ${BUILD_CONFIG:-build.config})
 
 # Helper function to let build.config files add command to PRE_DEFCONFIG_CMDS, EXTRA_CMDS, etc.
 # Usage: append_cmd PRE_DEFCONFIG_CMDS 'the_cmd'
@@ -48,6 +73,7 @@ if [ -z "${KERNEL_DIR}" ]; then
     build_config_dir=$(dirname ${build_config_path})
     build_config_dir=${build_config_dir##${ROOT_DIR}/}
     build_config_dir=${build_config_dir##${real_root_dir}}
+    build_config_dir=${build_config_dir%%/build.config}
     KERNEL_DIR="${build_config_dir}"
 fi
 
