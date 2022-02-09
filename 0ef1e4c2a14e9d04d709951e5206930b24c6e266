@@ -169,6 +169,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "025f6c1d_f6d36d6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-09T20:39:10Z",
+      "side": 1,
+      "message": "Wherever you think configuration will be duplicated. Or if it doesn\u0027t exist yet in the other place, do the next best thing and document the \"callees\".",
+      "parentUuid": "88818a2e_781cad0d",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "0ef1e4c2a14e9d04d709951e5206930b24c6e266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e6559b46_5de59e41",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
