@@ -15,6 +15,7 @@
 load(
     "//build/kernel/kleaf:constants.bzl",
     "GKI_DOWNLOAD_CONFIGS",
+    "TOOLCHAIN_VERSION_FILENAME",
     "aarch64_outs",
 )
 load("//build/kernel/kleaf:download_repo.bzl", "download_artifacts_repo")
@@ -40,5 +41,7 @@ key_value_repo(
 download_artifacts_repo(
     name = "gki_prebuilts",
     target = "kernel_kleaf",
-    files = aarch64_outs + [out for config in GKI_DOWNLOAD_CONFIGS for out in config["outs"]],
+    files = aarch64_outs + [out for config in GKI_DOWNLOAD_CONFIGS for out in config["outs"]] + [
+        TOOLCHAIN_VERSION_FILENAME,
+    ],
 )

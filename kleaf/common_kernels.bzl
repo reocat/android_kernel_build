@@ -27,6 +27,7 @@ load(
     ":constants.bzl",
     "GKI_DOWNLOAD_CONFIGS",
     "GKI_MODULES",
+    "TOOLCHAIN_VERSION_FILENAME",
     "aarch64_outs",
     "x86_64_outs",
 )
@@ -251,7 +252,10 @@ def define_common_kernels(
 # (Bazel target name, repo prefix in bazel.WORKSPACE, outs)
 _CI_TARGET_MAPPING = [
     # TODO(b/206079661): Allow downloaded prebuilts for x86_64 and debug targets.
-    ("kernel_aarch64", "gki_prebuilts", aarch64_outs),
+    ("kernel_aarch64", "gki_prebuilts", aarch64_outs + [
+        # List of additional files in the DefaultInfo of a _kernel_build rule
+        TOOLCHAIN_VERSION_FILENAME,
+    ]),
 ]
 
 def _define_prebuilts(**kwargs):
