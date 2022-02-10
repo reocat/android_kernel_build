@@ -14,6 +14,11 @@
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
+load(
+    ":utils.bzl",
+    "should_trim",
+    "trim_nonlisted_kmi_to_string",
+)
 
 # Outputs of a kernel_build rule needed to build kernel_module's
 _kernel_build_internal_outs = [
@@ -312,13 +317,25 @@ def kernel_build(
           ```
           kmi_symbol_lists = glob(["android/abi_gki_aarch64*"]),
           ```
-        trim_nonlisted_kmi: If `True`, trim symbols not listed in
-          `kmi_symbol_lists`. This is the Bazel equivalent of
+        trim_nonlisted_kmi: Whether trim symbols not listed in
+          `kmi_symbol_lists` are trimmed. This is the Bazel equivalent of
           `TRIM_NONLISTED_KMI`.
 
-          Requires `kmi_symbol_lists` to be non-empty. If `kmi_symbol_lists`
-          is a `glob()`, it is possible to set `trim_nonlisted_kmi` to be a
-          value based on that `glob()`. For example:
+          The following values are allowed:
+          - `"default_true"`: This is equivalent to `TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1}` in
+            `build.config`. Use the value specified in `--trim`. If `--trim`
+            is unspecified, use `True`.
+          - `"default_false"` or `None`: This is equivalent to `TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-""}` in
+            `build.config`. Use the value specified in `--trim`. If `--trim`
+            is unspecified, use `False`.
+          - `"true"` or `True`: This is equivalent to `TRIM_NONLISTED_KMI=1` in
+            `build.config`. Always trim this target.
+          - `"false"` or `False`: This is equivalent to `TRIM_NONLISTED_KMI=""` in
+            `build.config`. Always not trim this target.
+
+          If trimming, requires `kmi_symbol_lists` to be non-empty. If
+          `kmi_symbol_lists` is a `glob()`, it is possible to set
+          `trim_nonlisted_kmi` to be a value based on that `glob()`. For example:
           ```
           trim_nonlisted_kmi = len(glob(["android/abi_gki_aarch64*"])) > 0
           ```
@@ -330,6 +347,8 @@ def kernel_build(
 
           These arguments applies on the target with `{name}`, `{name}_headers`, `{name}_uapi_headers`, and `{name}_vmlinux_btf`.
     """
+
+    trim_nonlisted_kmi = trim_nonlisted_kmi_to_string(trim_nonlisted_kmi)
 
     env_target_name = name + "_env"
     config_target_name = name + "_config"
@@ -817,11 +836,17 @@ def _kernel_config_impl(ctx):
             for key, value in lto_config.items()
         ]))
 
-    if ctx.attr.trim_nonlisted_kmi and not ctx.file.raw_kmi_symbol_list:
+    trimming = should_trim(
+        build_value = ctx.attr.trim_nonlisted_kmi,
+        # TODO(b/215745244): handle --trim
+        cmdline_value = "default",
+    )
+
+    if trimming and not ctx.file.raw_kmi_symbol_list:
         fail("{}: trim_nonlisted_kmi is set but raw_kmi_symbol_list is empty.".format(ctx.labal))
 
     trim_kmi_command = ""
-    if ctx.attr.trim_nonlisted_kmi:
+    if trimming:
         # We can't use an absolute path in CONFIG_UNUSED_KSYMS_WHITELIST.
         # - ctx.file.raw_kmi_symbol_list is a relative path (e.g.
         #   bazel-out/k8-fastbuild/bin/common/kernel_aarch64_raw_kmi_symbol_list/abi_symbollist.raw)
@@ -908,7 +933,13 @@ _kernel_config = rule(
             doc = "the packaged include/ files",
         ),
         "lto": attr.label(default = "//build/kernel/kleaf:lto"),
-        "trim_nonlisted_kmi": attr.bool(doc = "If true, modify the config to trim non-listed symbols."),
+        "trim_nonlisted_kmi": attr.string(doc = """If one of the following, modify the config to trim non-listed symbols:
+
+- `trim_nonlisted_kmi = "true"`
+- `trim_nonlisted_kmi = "default_true"` and `--trim=default`
+- `trim_nonlisted_kmi = "default_true"` and `--trim=true`
+- `trim_nonlisted_kmi = "default_false"` and `--trim=true`
+"""),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
