@@ -248,12 +248,6 @@ def define_common_kernels(
 
     _define_prebuilts(visibility = visibility)
 
-# (Bazel target name, repo prefix in bazel.WORKSPACE, outs)
-_CI_TARGET_MAPPING = [
-    # TODO(b/206079661): Allow downloaded prebuilts for x86_64 and debug targets.
-    ("kernel_aarch64", "gki_prebuilts", aarch64_outs),
-]
-
 def _define_prebuilts(**kwargs):
     # Build number for GKI prebuilts
     bool_flag(
@@ -269,12 +263,12 @@ def _define_prebuilts(**kwargs):
         },
     )
 
-    for name, repo_prefix, outs in _CI_TARGET_MAPPING:
+    for name, value in CI_TARGET_MAPPING.items():
         source_package_name = ":" + name
 
         native.filegroup(
             name = name + "_downloaded",
-            srcs = ["@{}//{}".format(repo_prefix, filename) for filename in outs],
+            srcs = ["@{}//{}".format(value["repo_name"], filename) for filename in value["outs"]],
         )
 
         # A kernel_filegroup that:
@@ -293,7 +287,7 @@ def _define_prebuilts(**kwargs):
             target_suffix = config["target_suffix"]
             native.filegroup(
                 name = name + "_" + target_suffix + "_downloaded",
-                srcs = ["@{}//{}".format(repo_prefix, filename) for filename in config["outs"]],
+                srcs = ["@{}//{}".format(value["repo_name"], filename) for filename in config["outs"]],
             )
 
             # A filegroup that:
