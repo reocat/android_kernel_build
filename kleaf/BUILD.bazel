@@ -75,6 +75,7 @@ docs(
         "common_kernels.bzl",
         "constants.bzl",
         "download_repo.bzl",
+        "fail.bzl",
         "kernel.bzl",
         "key_value_repo.bzl",
     ],
@@ -82,6 +83,7 @@ docs(
     deps = [
         "utils.bzl",
         "//build/bazel_common_rules/dist",
+        "@bazel_skylib//lib:selects",
         "@bazel_skylib//rules:common_settings",
         "@kernel_toolchain_info//:dict",
     ],
