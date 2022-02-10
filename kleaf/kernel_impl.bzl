@@ -867,6 +867,10 @@ def _kernel_build_aspect_impl(target, ctx):
             kernel_uapi_headers = ctx.rule.attr.kernel_uapi_headers,
             env = ctx.rule.attr.config[_KernelBuildAspectInfo].env,
         )]
+    if ctx.rule.kind == "kernel_filegroup":
+        return [_KernelBuildAspectInfo(
+            kernel_uapi_headers = ctx.rule.attr.kernel_uapi_headers,
+        )]
     return []
 
 _kernel_build_aspect = aspect(
