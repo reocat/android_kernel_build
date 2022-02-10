@@ -19,6 +19,10 @@ load(
     ":utils.bzl",
     "should_trim",
 )
+load(
+    ":constants.bzl",
+    "TRIM_CMDLINE_VALID_VALUES",
+)
 
 # Outputs of a kernel_build rule needed to build kernel_module's
 _kernel_build_internal_outs = [
@@ -396,11 +400,13 @@ def kernel_build(
         src = abi_symbollist_target_name,
     )
 
-    trim_nonlisted_kmi_bool = should_trim(
-        build_value = trim_nonlisted_kmi,
-        # TODO(b/215745244): handle --trim
-        cmdline_value = "default",
-    )
+    trim_nonlisted_kmi_bool = select({
+        "//build/kernel/kleaf:trim_" + cmdline_value: should_trim(
+            build_value = trim_nonlisted_kmi,
+            cmdline_value = cmdline_value,
+        )
+        for cmdline_value in TRIM_CMDLINE_VALID_VALUES
+    })
 
     _kernel_config(
         name = config_target_name,
