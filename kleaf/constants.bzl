@@ -28,6 +28,8 @@ aarch64_outs = _common_outs + [
 # Common output files for x86_64 kernel builds.
 x86_64_outs = _common_outs + ["bzImage"]
 
+TRIM_CMDLINE_VALID_VALUES = ["true", "false", "default"]
+
 GKI_MODULES = [
 ]
 
