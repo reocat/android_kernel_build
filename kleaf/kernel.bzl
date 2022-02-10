@@ -623,6 +623,7 @@ def _get_tools(toolchain_version):
 
 _KernelToolchainInfo = provider(fields = {
     "toolchain_version": "The toolchain version",
+    "toolchain_version_file": "A file containing the toolchain version",
 })
 
 def _kernel_toolchain_aspect_impl(target, ctx):
@@ -633,8 +634,12 @@ def _kernel_toolchain_aspect_impl(target, ctx):
     if ctx.rule.kind == "_kernel_env":
         return _KernelToolchainInfo(toolchain_version = ctx.rule.attr.toolchain_version)
     if ctx.rule.kind == "kernel_filegroup":
-        # TODO(b/213939521): Support _KernelToolchainInfo on prebuilts
-        return _KernelToolchainInfo()
+        all_srcs = depset([], transitive = [src.files for src in ctx.rule.attr.srcs])
+        toolchain_version_file = None
+        for src in all_srcs.to_list():
+            if src.basename == TOOLCHAIN_VERSION_FILENAME:
+                toolchain_version_file = src
+        return _KernelToolchainInfo(toolchain_version_file = toolchain_version_file)
     fail("{label}: Unable to get toolchain info because {kind} is not supported.".format(
         kind = ctx.rule.kind,
         label = ctx.label,
@@ -874,12 +879,21 @@ def _kernel_build_check_toolchain(ctx):
 
     this_toolchain = ctx.attr.config[_KernelToolchainInfo].toolchain_version
     base_toolchain = _getoptattr(ctx.attr.base_kernel[_KernelToolchainInfo], "toolchain_version")
+    base_toolchain_file = _getoptattr(ctx.attr.base_kernel[_KernelToolchainInfo], "toolchain_version_file")
 
-    # TODO(b/213939521): Support _KernelToolchainInfo on kernel_filegroup and drop the None check
-    if base_toolchain == None:
+    if base_toolchain == None and base_toolchain_file == None:
+        print(("\nWARNING: {this_label}: No check is performed between the toolchain " +
+               "version of the base build ({base_kernel}) and the toolchain version of " +
+               "{this_name} ({this_toolchain}), because the toolchain version of {base_kernel} " +
+               "is unknown.").format(
+            this_label = ctx.label,
+            base_kernel = ctx.attr.base_kernel.label,
+            this_name = ctx.label.name,
+            this_toolchain = this_toolchain,
+        ))
         return
 
-    if this_toolchain != base_toolchain:
+    if base_toolchain != None and this_toolchain != base_toolchain:
         fail("""{this_label}:
 
 ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
@@ -897,6 +911,42 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
             base_toolchain = base_toolchain,
         ))
 
+    if base_toolchain_file != None:
+        out = ctx.actions.declare_file("{}_toolchain_version/toolchain_version_checked")
+        base_toolchain = "$(cat {})".format(base_toolchain_file.path)
+        msg = """ERROR: toolchain_version is {this_toolchain} for {this_label}, but
+       toolchain_version is {base_toolchain} for {base_kernel} (base_kernel).
+       They must use the same toolchain_version.
+
+       Fix by setting toolchain_version of {this_label} to be {base_toolchain}.
+""".format(
+            this_label = ctx.label,
+            this_toolchain = this_toolchain,
+            base_kernel = ctx.attr.base_kernel.label,
+            base_toolchain = base_toolchain,
+        )
+        command = """
+                # Check toolchain_version against base kernel
+                  if ! diff <(cat {base_toolchain_file}) <(echo "{this_toolchain}") > /dev/null; then
+                    echo "{msg}" >&2
+                    exit 1
+                  fi
+                  touch {out}
+        """.format(
+            base_toolchain_file = base_toolchain_file.path,
+            this_toolchain = this_toolchain,
+            msg = msg,
+            out = out.path,
+        )
+
+        ctx.actions.run_shell(
+            inputs = [base_toolchain_file],
+            outputs = [out],
+            command = command,
+            progress_message = "Checking toolchain version against base kernel {}".format(ctx.label),
+        )
+        return out
+
 def _kernel_build_dump_toolchain_version(ctx):
     this_toolchain = ctx.attr.config[_KernelToolchainInfo].toolchain_version
     out = ctx.actions.declare_file("{}_toolchain_version/{}".format(ctx.attr.name, TOOLCHAIN_VERSION_FILENAME))
@@ -909,8 +959,9 @@ def _kernel_build_dump_toolchain_version(ctx):
 def _kernel_build_impl(ctx):
     kbuild_mixed_tree = None
     base_kernel_files = []
+    check_toolchain_out = None
     if ctx.attr.base_kernel:
-        _kernel_build_check_toolchain(ctx)
+        check_toolchain_out = _kernel_build_check_toolchain(ctx)
 
         # Create a directory for KBUILD_MIXED_TREE. Flatten the directory structure of the files
         # that ctx.attr.base_kernel provides. declare_directory is sufficient because the directory should
@@ -943,6 +994,8 @@ def _kernel_build_impl(ctx):
     ]
     inputs += ctx.files.srcs
     inputs += ctx.files.deps
+    if check_toolchain_out:
+        inputs.append(check_toolchain_out)
     if kbuild_mixed_tree:
         inputs.append(kbuild_mixed_tree)
 
