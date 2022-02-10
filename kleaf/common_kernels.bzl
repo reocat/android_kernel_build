@@ -13,6 +13,7 @@
 # limitations under the License.
 
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
+load("@bazel_skylib//lib:selects.bzl", "selects")
 load(
     ":kernel.bzl",
     "kernel_build",
@@ -29,6 +30,10 @@ load(
     "GKI_MODULES",
     "aarch64_outs",
     "x86_64_outs",
+)
+load(
+    ":fail.bzl",
+    "fail_rule",
 )
 
 _ARCH_CONFIGS = {
@@ -384,6 +389,35 @@ def _define_prebuilts(**kwargs):
             ":use_prebuilt_gki": "true",
         },
     )
+    for trim_value in "true", "false", "default":
+        native.config_setting(
+            name = "internal_trim_" + trim_value,
+            flag_values = {"//build/kernel/kleaf:trim": trim_value},
+        )
+
+    # --trim=true or --trim=false
+    selects.config_setting_group(
+        name = "internal_trim_set",
+        match_any = [":internal_trim_true", ":internal_trim_false"],
+    )
+
+    # --use_prebuilt_gki=x --trim=default
+    selects.config_setting_group(
+        name = "use_prebuilt_gki_ok",
+        match_all = [":use_prebuilt_gki_set", ":internal_trim_default"],
+    )
+
+    # --use_prebuilt_gki=x --trim={true,false}
+    selects.config_setting_group(
+        name = "use_prebuilt_gki_bad",
+        match_all = [":use_prebuilt_gki_set", ":internal_trim_set"],
+    )
+
+    # A rule that fails unconditionally
+    fail_rule(
+        name = "internal_use_prebuilt_gki_trim_set_together",
+        message = "--use_prebuilt_gki and --trim cannot be set together.",
+    )
 
     for name, repo_prefix, outs in _CI_TARGET_MAPPING:
         source_package_name = ":" + name
@@ -399,7 +433,8 @@ def _define_prebuilts(**kwargs):
         kernel_filegroup(
             name = name + "_download_or_build",
             srcs = select({
-                ":use_prebuilt_gki_set": [":" + name + "_downloaded"],
+                ":use_prebuilt_gki_ok": [":" + name + "_downloaded"],
+                ":use_prebuilt_gki_bad": [":internal_use_prebuilt_gki_trim_set_together"],
                 "//conditions:default": [source_package_name],
             }),
             **kwargs
@@ -418,7 +453,8 @@ def _define_prebuilts(**kwargs):
             native.filegroup(
                 name = name + "_" + target_suffix + "_download_or_build",
                 srcs = select({
-                    ":use_prebuilt_gki_set": [":" + name + "_" + target_suffix + "_downloaded"],
+                    ":use_prebuilt_gki_ok": [":" + name + "_" + target_suffix + "_downloaded"],
+                    ":use_prebuilt_gki_bad": [":internal_use_prebuilt_gki_trim_set_together"],
                     "//conditions:default": [source_package_name + "_" + target_suffix],
                 }),
                 **kwargs
