@@ -19,6 +19,7 @@ load(
 )
 load("//build/kernel/kleaf:download_repo.bzl", "download_artifacts_repo")
 load("//build/kernel/kleaf:key_value_repo.bzl", "key_value_repo")
+load("//build/kernel/kleaf:scmversion_repo.bzl", "scmversion_repo")
 
 toplevel_output_directories(paths = ["out"])
 
@@ -41,4 +42,9 @@ download_artifacts_repo(
     name = "gki_prebuilts",
     target = "kernel_kleaf",
     files = aarch64_outs + [out for config in GKI_DOWNLOAD_CONFIGS for out in config["outs"]],
+)
+
+scmversion_repo(
+    name = "scmversion",
+    kernel_dir = "//.source_date_epoch_dir",
 )
