@@ -14,6 +14,10 @@
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
+load(
+    ":utils.bzl",
+    "should_trim",
+)
 
 # Outputs of a kernel_build rule needed to build kernel_module's
 _kernel_build_internal_outs = [
@@ -312,13 +316,26 @@ def kernel_build(
           ```
           kmi_symbol_lists = glob(["android/abi_gki_aarch64*"]),
           ```
-        trim_nonlisted_kmi: If `True`, trim symbols not listed in
-          `kmi_symbol_lists`. This is the Bazel equivalent of
+        trim_nonlisted_kmi: Whether trim symbols not listed in
+          `kmi_symbol_lists` are trimmed. This is the Bazel equivalent of
           `TRIM_NONLISTED_KMI`.
 
-          Requires `kmi_symbol_lists` to be non-empty. If `kmi_symbol_lists`
-          is a `glob()`, it is possible to set `trim_nonlisted_kmi` to be a
-          value based on that `glob()`. For example:
+          The following values are allowed:
+          - `"default_true"`: This is equivalent to `TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1}` in
+            `build.config`. Use the value specified in `--trim`. If `--trim`
+            is unspecified, use `True`.
+          - `"default_false"` or `None`: This is equivalent to not modifying `TRIM_NONLISTED_KMI`
+            , or `TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-""}`, in
+            `build.config`. Use the value specified in `--trim`. If `--trim`
+            is unspecified, use `False`.
+          - `"true"` or `True`: This is equivalent to `TRIM_NONLISTED_KMI=1` in
+            `build.config`. Always trim this target.
+          - `"false"` or `False`: This is equivalent to `TRIM_NONLISTED_KMI=""` in
+            `build.config`. Always not trim this target.
+
+          If trimming, requires `kmi_symbol_lists` to be non-empty. If
+          `kmi_symbol_lists` is a `glob()`, it is possible to set
+          `trim_nonlisted_kmi` to be a value based on that `glob()`. For example:
           ```
           trim_nonlisted_kmi = len(glob(["android/abi_gki_aarch64*"])) > 0
           ```
@@ -378,13 +395,19 @@ def kernel_build(
         src = abi_symbollist_target_name,
     )
 
+    trim_nonlisted_kmi_bool = should_trim(
+        build_value = trim_nonlisted_kmi,
+        # TODO(b/215745244): handle --trim
+        cmdline_value = "default",
+    )
+
     _kernel_config(
         name = config_target_name,
         env = env_target_name,
         srcs = srcs,
         config = config_target_name + "/.config",
         include_tar_gz = config_target_name + "/include.tar.gz",
-        trim_nonlisted_kmi = trim_nonlisted_kmi,
+        trim_nonlisted_kmi = trim_nonlisted_kmi_bool,
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if kmi_symbol_lists else None,
     )
 
