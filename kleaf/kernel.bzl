@@ -386,7 +386,8 @@ def kernel_build(
         srcs = srcs,
         config = config_target_name + "/.config",
         include_tar_gz = config_target_name + "/include.tar.gz",
-        raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if trim_nonlisted_kmi else None,
+        trim_nonlisted_kmi = trim_nonlisted_kmi,
+        raw_kmi_symbol_list = raw_kmi_symbol_list_target_name,
     )
 
     _modules_prepare(
@@ -819,7 +820,24 @@ def _kernel_config_impl(ctx):
         ]))
 
     trim_kmi_command = ""
-    if ctx.file.raw_kmi_symbol_list:
+
+    # --trim set in command line
+    trim_cmdline_value = ctx.attr.trim[BuildSettingInfo].value
+
+    # If --trim is not set, fallback to value set in BUILD files
+    if trim_cmdline_value == "default":
+        trim = ctx.attr.trim_nonlisted_kmi
+    else:
+        trim = (trim_cmdline_value == "true")
+
+    if trim and not ctx.file.raw_kmi_symbol_list:
+        fail("{this_label}: `--trim` ({cmdline_value}) or `trim_nonlisted_kmi` ({build_value}) is set, but `kmi_symbol_lists` is empty.".format(
+            this_label = ctx.label,
+            cmdline_value = trim_cmdline_value,
+            build_value = ctx.attr.trim_nonlisted_kmi,
+        ))
+
+    if trim:
         # We can't use an absolute path in CONFIG_UNUSED_KSYMS_WHITELIST.
         # - ctx.file.raw_kmi_symbol_list is a relative path (e.g.
         #   bazel-out/k8-fastbuild/bin/common/kernel_aarch64_raw_kmi_symbol_list/abi_symbollist.raw)
@@ -906,6 +924,8 @@ _kernel_config = rule(
             doc = "the packaged include/ files",
         ),
         "lto": attr.label(default = "//build/kernel/kleaf:lto"),
+        "trim": attr.label(default = "//build/kernel/kleaf:trim"),
+        "trim_nonlisted_kmi": attr.bool(),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw. If specified, modify the config to trim non-listed symbols.",
             allow_single_file = True,
