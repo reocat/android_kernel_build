@@ -189,6 +189,30 @@
       },
       "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef6b0ec5_50145ec5",
+        "filename": "kleaf/common_kernels_impl.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-10T20:18:57Z",
+      "side": 1,
+      "message": "\u003e `base_kernel \u003d \"//common:kernel_aarch64_full_kmi\",`\n\nCorrect. In addition, to copy the right artifacts to DIST_DIR, a change to the copy_to_dist_dir rule is also necessary. The change would be similar to aosp/1978989\n\nI will change it to _notrim.\n\n\u003e However, I think it would be best to either have a label that they can set, e.g. trim_nonlisted_kmi \u003d 0, \n\nThe problem of this approach is that `define_common_kernels()` is called in the common/ repo, which is shared across all devices.\n\nSetting trim_nonlisted_kmi on the device `kernel_build` (e.g. the slider target) has no effect, because it doesn\u0027t build vmlinux. The base_kernel builds vmlinux.\n\n\u003e or just allow partners to override the flag in the  kernel_build_config  starlark or build.config.mix.\n\nThe problem of this approach is that the device `kernel_build` (e.g. the slider target) has no effect, because it doesn\u0027t build vmlinux. The base_kernel builds vmlinux.\n\nIn addition, this flag has nothing to do with the value of `TRIM_NONLISTED_KMI` in build.config. If `trim_nonlisted_kmi` is set, it will be trimmed regardless of the value of `TRIM_NONLISTED_KMI` in build.config.\n\nI\u0027ll update the docs as well.",
+      "parentUuid": "890adc53_2b93d62f",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 0
+      },
+      "revId": "250dfb319d5cfa275a143d9f627812afd60a530c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
