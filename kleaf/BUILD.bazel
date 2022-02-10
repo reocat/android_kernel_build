@@ -14,9 +14,10 @@
 
 load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
-load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "int_flag", "string_flag")
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load("//build/bazel_common_rules/docs:docs.bzl", "docs")
+load("//build/kernel/kleaf:constants.bzl", "TRIM_CMDLINE_VALID_VALUES")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -31,6 +32,12 @@ string_flag(
         "thin",
         "full",
     ],
+)
+
+string_flag(
+    name = "trim",
+    build_setting_default = "default",
+    values = TRIM_CMDLINE_VALID_VALUES,
 )
 
 # Debug options

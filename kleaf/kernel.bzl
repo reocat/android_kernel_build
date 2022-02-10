@@ -838,8 +838,7 @@ def _kernel_config_impl(ctx):
 
     trimming = should_trim(
         build_value = ctx.attr.trim_nonlisted_kmi,
-        # TODO(b/215745244): handle --trim
-        cmdline_value = "default",
+        cmdline_value = ctx.attr.trim_cmdline,
     )
 
     if trimming and not ctx.file.raw_kmi_symbol_list:
@@ -933,8 +932,8 @@ _kernel_config = rule(
             doc = "the packaged include/ files",
         ),
         "lto": attr.label(default = "//build/kernel/kleaf:lto"),
+        "trim_cmdline": attr.label(default = "//build/kernel/kleaf:trim"),
         "trim_nonlisted_kmi": attr.string(doc = """If one of the following, modify the config to trim non-listed symbols:
-
 - `trim_nonlisted_kmi = "true"`
 - `trim_nonlisted_kmi = "default_true"` and `--trim=default`
 - `trim_nonlisted_kmi = "default_true"` and `--trim=true`
