@@ -34,12 +34,20 @@ def should_trim(build_value, cmdline_value):
     """
     build_value = _trim_nonlisted_kmi_to_string(build_value)
 
-    # TRIM_NONLISTED_KMI=1;
+    # TRIM_NONLISTED_KMI=???; TRIM_NONLISTED_KMI=1;
     if build_value == "true":
         return True
-
-    # TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1};
     if build_value == "default_true":
-        return True
+        # TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1};
+        if cmdline_value == "default":
+            return True
+
+        # TRIM_NONLISTED_KMI=1; TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1};
+        if cmdline_value == "true":
+            return True
+    if build_value == "default_false":
+        # TRIM_NONLISTED_KMI=1; TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-""};
+        if cmdline_value == "true":
+            return True
 
     return False
