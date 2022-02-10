@@ -286,6 +286,7 @@ def _define_prebuilts(**kwargs):
                 ":use_prebuilt_gki_set": [":" + name + "_downloaded"],
                 "//conditions:default": [source_package_name],
             }),
+            kernel_uapi_headers = ":" + name + "_kernel_uapi_headers_download_or_build",
             **kwargs
         )
 
