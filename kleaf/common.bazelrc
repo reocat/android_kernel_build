@@ -35,6 +35,7 @@ build --action_env=SOURCE_DATE_EPOCH
 
 # flag aliases for build settings
 build --flag_alias=lto=//build/kernel/kleaf:lto
+build --flag_alias=trim=//build/kernel/kleaf:trim
 
 # add a flag alias to allow passing --debug_* flags
 build --flag_alias=debug_annotate_scripts=//build/kernel/kleaf:debug_annotate_scripts
