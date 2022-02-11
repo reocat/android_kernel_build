@@ -27,8 +27,13 @@ load(
     ":constants.bzl",
     "GKI_DOWNLOAD_CONFIGS",
     "GKI_MODULES",
+    "TRIM_CMDLINE_VALID_VALUES",
     "aarch64_outs",
     "x86_64_outs",
+)
+load(
+    ":utils.bzl",
+    "should_trim",
 )
 
 _ARCH_CONFIGS = {
@@ -73,8 +78,8 @@ def _default_kmi_configs():
             "kmi_symbol_lists": aarch64_kmi_symbol_lists,
             # In build.config.gki-debug.aarch64:
             # - If there are kmi_symbol_lists: assume TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1}
-            # - If there aren't:               assume TRIM_NONLISTED_KMI unspecified
-            "trim_nonlisted_kmi": len(aarch64_kmi_symbol_lists) > 0,
+            # - If there aren't:               assume TRIM_NONLISTED_KMI unspecified (use environment value)
+            "trim_nonlisted_kmi": "default_true" if len(aarch64_kmi_symbol_lists) > 0 else None,
         },
         "kernel_aarch64_debug": {
             # Assume the value for KMI_SYMBOL_LIST and ADDITIONAL_KMI_SYMBOL_LISTS
@@ -103,7 +108,7 @@ def _filter_keys(d, valid_keys, what):
         ))
     return ret
 
-def _select_notrim_target(name, build_value):
+def _select_notrim_target(name, build_value, cmdline_value):
     """ Select the correct alias for `<name>_notrim`.
 
     `<name>_notrim` is an alias to either `<name>_notrim_internal` or `<name>`
@@ -113,8 +118,13 @@ def _select_notrim_target(name, build_value):
     Args:
         name: root name of target
         build_value: value of `trim_nonlisted_kmi` in `BUILD` files
+        cmdline_value: value of `--trim` in cmdline
     """
-    if build_value:
+    trimming = should_trim(
+        build_value = build_value,
+        cmdline_value = cmdline_value,
+    )
+    if trimming:
         return ":" + name + "_notrim_internal"
     return ":" + name
 
@@ -137,27 +147,27 @@ def define_kernel_build_and_notrim(
 
     If `kmi_configs` is not set explicitly in `define_common_kernels()`:
 
-    |                                   |trim?         |
-    |-----------------------------------|--------------|
-    |`kernel_aarch64`                   |TRIM          |
-    |(with symbol lists)                |              |
-    |(`trim_nonlisted_kmi=default_true`)|              |
-    |-----------------------------------|--------------|
-    |`kernel_aarch64`                   |NO TRIM       |
-    |(no symbol lists)                  |              |
-    |(`trim_nonlisted_kmi=None`)        |              |
-    |-----------------------------------|--------------|
-    |`kernel_aarch64_notrim`            |NO TRIM       |
-    |(`trim_nonlisted_kmi=False`)       |              |
-    |-----------------------------------|--------------|
-    |`kernel_aarch64_debug`             |NO TRIM       |
-    |(`trim_nonlisted_kmi=False`)       |              |
-    |-----------------------------------|--------------|
-    |`kernel_x86_64`                    |NO TRIM       |
-    |(`trim_nonlisted_kmi=None`)        |              |
-    |-----------------------------------|--------------|
-    |`kernel_x86_64_debug`              |NO TRIM       |
-    |(`trim_nonlisted_kmi=False`)       |              |
+    |                                   |--trim=default|--trim=true|--trim=false|
+    |-----------------------------------|--------------|-----------|------------|
+    |`kernel_aarch64`                   |TRIM          |TRIM       |NO TRIM     |
+    |(with symbol lists)                |              |           |            |
+    |(`trim_nonlisted_kmi=default_true`)|              |           |            |
+    |-----------------------------------|--------------|-----------|------------|
+    |`kernel_aarch64`                   |NO TRIM       |FAIL       |NO TRIM     |
+    |(no symbol lists)                  |              |           |            |
+    |(`trim_nonlisted_kmi=None`)        |              |           |            |
+    |-----------------------------------|--------------|-----------|------------|
+    |`kernel_aarch64_notrim`            |NO TRIM       |NO TRIM    |NO TRIM     |
+    |(`trim_nonlisted_kmi=False`)       |              |           |            |
+    |-----------------------------------|--------------|-----------|------------|
+    |`kernel_aarch64_debug`             |NO TRIM       |NO TRIM    |NO TRIM     |
+    |(`trim_nonlisted_kmi=False`)       |              |           |            |
+    |-----------------------------------|--------------|-----------|------------|
+    |`kernel_x86_64`                    |NO TRIM       |FAIL       |NO TRIM     |
+    |(`trim_nonlisted_kmi=None`)        |              |           |            |
+    |-----------------------------------|--------------|-----------|------------|
+    |`kernel_x86_64_debug`              |NO TRIM       |NO TRIM    |NO TRIM     |
+    |(`trim_nonlisted_kmi=False`)       |              |           |            |
 
     Args:
       name: name of the main `kernel_build`
@@ -185,7 +195,10 @@ def define_kernel_build_and_notrim(
     # building the extra <name>_notrim_internal target when it is not necessary.
     native.alias(
         name = name + "_notrim",
-        actual = _select_notrim_target(name, trim_nonlisted_kmi),
+        actual = select({
+            "//build/kernel/kleaf:trim_" + cmdline_value: _select_notrim_target(name, trim_nonlisted_kmi, cmdline_value)
+            for cmdline_value in TRIM_CMDLINE_VALID_VALUES
+        }),
     )
 
 def define_common_kernels(
@@ -321,7 +334,7 @@ def define_common_kernels(
         kmi_configs = {
             "kernel_aarch64": {
                 "kmi_symbol_lists": aarch64_kmi_symbol_lists,
-                "trim_nonlisted_kmi": len(aarch64_kmi_symbol_lists) > 0,
+                "trim_nonlisted_kmi": "default_true" if len(aarch64_kmi_symbol_lists) > 0 else None,
             },
             "kernel_aarch64_debug": {
                 "kmi_symbol_lists": aarch64_kmi_symbol_lists,
@@ -333,9 +346,22 @@ def define_common_kernels(
         }
         ```
 
+        Trimming can be enabled or disabled in the command line via the `--trim`
+        option.
+        - `--trim=false`: Disable trimming, regardless of the value of
+          `trim_nonlisted_kmi`. (This is equivalent to invoking
+          `TRIM_NONLISTED_KMI=0 build/build.sh`)
+        - `--trim=true`: Enable trimming, regardless of the value of
+          `trim_nonlisted_kmi`. (This is equivalent to invoking
+          `TRIM_NONLISTED_KMI=1 build/build.sh`). `kmi_symbol_lists` must be
+          set for the target. Otherwise, it is a build error.
+        - `--trim=default` or not specified: Use the value of
+          `trim_nonlisted_kmi`. (This is equivalent to invoking `build/build.sh`
+          without specifying `TRIM_NONLISTED_KMI` in the environment.)
+
         See [`define_kernel_build_and_notrim()`](#define_kernel_build_and_notrim)
-        for a table of whether trimming is enabled on a certain target
-        if `kmi_configs` is using defaults.
+        for a table of whether trimming is enabled on a certain target based
+        on the value of `--trim` if `kmi_configs` is using defaults.
 
       toolchain_version: If not set, use default value in `kernel_build`.
       visibility: visibility of the `kernel_build` and targets defined for downloaded prebuilts.
