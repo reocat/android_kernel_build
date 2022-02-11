@@ -16,6 +16,24 @@
       "message": "This probably all works fine. But is the extra complexity needed?\n\nAs far as I know, build configuration either specifies trimming or does not, the various Bash :- etc. are just ways of overriding the sourced script fragments.\n\nThe only other thing to note is whether you want to support a command line option to override configuration.\n",
       "revId": "c6e25938eafbba9d83a5e7b62d7d7ce81a76df0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f92cdf0_4ad826ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-11T20:19:12Z",
+      "side": 1,
+      "message": "Personally, I want to reduce the number of control knobs. But to reach higher feature parity with build.sh, I think this is necessary. So I decide to keep this to support the command line option.",
+      "parentUuid": "0a66e273_4afeb3e6",
+      "revId": "c6e25938eafbba9d83a5e7b62d7d7ce81a76df0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
