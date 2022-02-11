@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bef0a0c0_38b43b10",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-11T20:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be13372c_5744f9d5",
+      "range": {
+        "startLine": 692,
+        "startChar": 19,
+        "endLine": 692,
+        "endChar": 25
+      },
+      "revId": "e1271eb3720ece2c955d2506bf4a9640b2a183e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7d8d0b8_7c069721",
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "It would be named `base_kernel`, so I didn\u0027t feel very strong about naming it.\n\nWill do.",
       "parentUuid": "ce040570_7c71676b",
+      "range": {
+        "startLine": 1077,
+        "startChar": 38,
+        "endLine": 1077,
+        "endChar": 58
+      },
+      "revId": "e1271eb3720ece2c955d2506bf4a9640b2a183e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aed642bc_06a4ffb4",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-11T20:15:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecb2177e_3aa5a267",
       "range": {
         "startLine": 1077,
         "startChar": 38,
