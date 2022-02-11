@@ -16,6 +16,24 @@
       "message": "--trim\u003dtrue should trim unconditionally, overriding configuration. If this is not supported it should not be ignored, the build should fail.\n\nSimilarly, --trim\u003dfalse should unconditional not trim, overriding configuration. If this is not supported it should not be ignored, the build should fail.",
       "revId": "2e4567d97cfe022d8d34f3679d5a7d99378f80a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d235a702_4da6f434",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-11T20:22:27Z",
+      "side": 1,
+      "message": "--trim\u003dtrue should trim unconditionally\n\nThat\u0027s not true in the build.sh case.\n\nIf the build config says:\n```\nTRIM_NONLISTED_KMI\u003d\"\"\n```\nand you invoke\n```\nTRIM_NONLISTED_KMI\u003d1 build/build.sh\n```\n\nThat\u0027s not going to trim.\n\nIn the Bazel case, this would be having `trim_nonlisted_kmi\u003dFalse` and `--trim\u003dtrue`.\n\nI implemented this CL to behave exactly like what build.sh is doing.",
+      "parentUuid": "e58b7ee5_4a4d0aaa",
+      "revId": "2e4567d97cfe022d8d34f3679d5a7d99378f80a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
