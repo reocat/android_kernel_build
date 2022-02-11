@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e58b7ee5_4a4d0aaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-11T16:57:13Z",
+      "side": 1,
+      "message": "--trim\u003dtrue should trim unconditionally, overriding configuration. If this is not supported it should not be ignored, the build should fail.\n\nSimilarly, --trim\u003dfalse should unconditional not trim, overriding configuration. If this is not supported it should not be ignored, the build should fail.",
+      "revId": "2e4567d97cfe022d8d34f3679d5a7d99378f80a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
