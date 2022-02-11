@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc876d7f_1ead6a46",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-11T20:03:59Z",
+      "side": 1,
+      "message": "filter comprehension is not supported in Starlark. The following does not work:\n\n```\n[src for src in all_srcs.to_list() if src.base_name \u003d\u003d TOOLCHAIN_VERSION_FILENAME]\n```\n\nIt triggers a compilation error (requests an else clause)",
+      "parentUuid": "a7d8d0b8_7c069721",
+      "range": {
+        "startLine": 694,
+        "startChar": 8,
+        "endLine": 696,
+        "endChar": 44
+      },
+      "revId": "e1271eb3720ece2c955d2506bf4a9640b2a183e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce040570_7c71676b",
@@ -60,6 +84,30 @@
       "writtenOn": "2022-02-11T10:07:44Z",
       "side": 1,
       "message": "Consider naming this intermediate value. It\u0027s referenced several (5?) times.",
+      "range": {
+        "startLine": 1077,
+        "startChar": 38,
+        "endLine": 1077,
+        "endChar": 58
+      },
+      "revId": "e1271eb3720ece2c955d2506bf4a9640b2a183e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecb2177e_3aa5a267",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-11T20:03:59Z",
+      "side": 1,
+      "message": "It would be named `base_kernel`, so I didn\u0027t feel very strong about naming it.\n\nWill do.",
+      "parentUuid": "ce040570_7c71676b",
       "range": {
         "startLine": 1077,
         "startChar": 38,
