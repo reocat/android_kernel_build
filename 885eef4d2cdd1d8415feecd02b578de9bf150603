@@ -22,6 +22,30 @@
       },
       "revId": "885eef4d2cdd1d8415feecd02b578de9bf150603",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73833d77_5eec130c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 2720,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-12T03:41:11Z",
+      "side": 1,
+      "message": "I\u0027ve put it in a TODO. b/219112010 tracks this.",
+      "parentUuid": "9f0cb93f_5276f0ff",
+      "range": {
+        "startLine": 2720,
+        "startChar": 8,
+        "endLine": 2720,
+        "endChar": 23
+      },
+      "revId": "885eef4d2cdd1d8415feecd02b578de9bf150603",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
