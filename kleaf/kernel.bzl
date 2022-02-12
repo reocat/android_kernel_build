@@ -65,6 +65,17 @@ def _find_file(name, files, what, required = False):
         ))
     return result[0] if result else None
 
+def _filter_module_srcs(files):
+    """Create the list of `module_srcs` for a [`kernel_build`] or similar."""
+    return [
+        s
+        for s in files
+        if s.path.endswith(".h") or any([token in s.path for token in [
+            "Makefile",
+            "scripts/",
+        ]])
+    ]
+
 def _kernel_build_config_impl(ctx):
     out_file = ctx.actions.declare_file(ctx.attr.name + ".generated")
     command = "cat {srcs} > {out_file}".format(
@@ -1318,14 +1329,8 @@ def _kernel_build_impl(ctx):
         setup = env_info_setup,
     )
 
-    module_srcs = [
-        s
-        for s in ctx.files.srcs
-        if s.path.endswith(".h") or any([token in s.path for token in [
-            "Makefile",
-            "scripts/",
-        ]])
-    ]
+    module_srcs = _filter_module_srcs(ctx.files.srcs)
+
     kernel_build_info = _KernelBuildInfo(
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar,
         outs = all_output_files["outs"].values(),
@@ -2711,9 +2716,18 @@ def kernel_images(
     )
 
 def _kernel_filegroup_impl(ctx):
+    all_deps = ctx.files.srcs + ctx.files.deps
+    kernel_module_dev_info = _KernelBuildExtModuleInfo(
+        modules_staging_archive = _find_file("modules_staging_dir.tar.gz", all_deps, what = ctx.label),
+        # TODO(b/219112010): implement _KernelEnvInfo for the modules_prepare target
+        modules_prepare = _find_file("modules_prepare_outdir.tar.gz", all_deps, what = ctx.label),
+        # TODO(b/211515836): module_srcs might also be downloaded
+        module_srcs = _filter_module_srcs(ctx.files.kernel_srcs),
+    )
     return [
         DefaultInfo(files = depset(ctx.files.srcs)),
-        # TODO(b/218761417): implement other interfaces of _kernel_build
+        kernel_module_dev_info,
+        # TODO(b/219112010): implement _KernelEnvInfo for _kernel_build
     ]
 
 kernel_filegroup = rule(
@@ -2729,6 +2743,16 @@ It can be used in the `base_kernel` attribute of a [`kernel_build`](#kernel_buil
         "srcs": attr.label_list(
             allow_files = True,
             doc = "The list of labels that are members of this file group.",
+        ),
+        "deps": attr.label_list(
+            allow_files = True,
+            doc = """A list of additional labels that participates in implementing the providers.
+
+Unlike srcs, these labels are NOT added to the [`DefaultInfo`](https://docs.bazel.build/versions/main/skylark/lib/DefaultInfo.html)""",
+        ),
+        "kernel_srcs": attr.label_list(
+            allow_files = True,
+            doc = """A list of files that would have been listed as `srcs` if this rule were a [`kernel_build`](#kernel_build).""",
         ),
     },
 )
