@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f0cb93f_5276f0ff",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 2720,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-12T01:55:02Z",
+      "side": 1,
+      "message": "modules_prepare provides KernelEnvInfo. The setup script extracts the tarball to OUT_DIR.",
+      "range": {
+        "startLine": 2720,
+        "startChar": 8,
+        "endLine": 2720,
+        "endChar": 23
+      },
+      "revId": "885eef4d2cdd1d8415feecd02b578de9bf150603",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
