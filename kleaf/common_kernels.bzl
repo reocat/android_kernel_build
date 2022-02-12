@@ -424,6 +424,7 @@ def define_common_kernels(
                 name + "_modules_install",
                 name + "_images",
                 name + "_kmi_symbol_list",
+                name + "_kmi_symbol_list_strict_mode",
             ],
         )
 
