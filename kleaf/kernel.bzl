@@ -1056,6 +1056,7 @@ _KernelModuleDevInfo = provider(
         "modules_staging_archive": "Archive containing staging kernel modules. " +
                                    "Does not contain the lib/modules/* suffix.",
         "module_srcs": "sources for this kernel_build for building external modules",
+        "modules_prepare": "The `_modules_prepare` target.",
     },
 )
 
@@ -1070,23 +1071,6 @@ _srcs_aspect = aspect(
     implementation = _srcs_aspect_impl,
     doc = "An aspect that retrieves srcs attribute from a rule.",
     attr_aspects = ["srcs"],
-)
-
-_KernelBuildAspectInfo = provider(fields = {
-    "modules_prepare": "The *_modules_prepare target",
-})
-
-def _kernel_build_aspect_impl(target, ctx):
-    return [_KernelBuildAspectInfo(
-        modules_prepare = _getoptattr(ctx.rule.attr, "modules_prepare"),
-    )]
-
-_kernel_build_aspect = aspect(
-    implementation = _kernel_build_aspect_impl,
-    doc = "An aspect describing attributes of a _kernel_build rule.",
-    attr_aspects = [
-        "modules_prepare",
-    ],
 )
 
 def _kernel_build_check_toolchain(ctx):
@@ -1352,6 +1336,7 @@ def _kernel_build_impl(ctx):
     kernel_build_module_info = _KernelModuleDevInfo(
         modules_staging_archive = modules_staging_archive,
         module_srcs = module_srcs,
+        modules_prepare = ctx.attr.modules_prepare,
     )
 
     output_group_kwargs = {}
@@ -1482,7 +1467,7 @@ def _check_kernel_build(kernel_modules, kernel_build, this_label):
 def _kernel_module_impl(ctx):
     _check_kernel_build(ctx.attr.kernel_module_deps, ctx.attr.kernel_build, ctx.label)
 
-    modules_prepare = ctx.attr.kernel_build[_KernelBuildAspectInfo].modules_prepare
+    modules_prepare = ctx.attr.kernel_build[_KernelModuleDevInfo].modules_prepare
     inputs = []
     inputs += ctx.files.srcs
     inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
@@ -1651,7 +1636,6 @@ _kernel_module = rule(
         "kernel_build": attr.label(
             mandatory = True,
             providers = [_KernelEnvInfo, _KernelModuleDevInfo],
-            aspects = [_kernel_build_aspect],
         ),
         "kernel_module_deps": attr.label_list(
             providers = [_KernelEnvInfo, _KernelModuleInfo],
@@ -1808,7 +1792,7 @@ def _kernel_module_set_defaults(kwargs):
 def _kernel_modules_install_impl(ctx):
     _check_kernel_build(ctx.attr.kernel_modules, ctx.attr.kernel_build, ctx.label)
 
-    modules_prepare = ctx.attr.kernel_build[_KernelBuildAspectInfo].modules_prepare
+    modules_prepare = ctx.attr.kernel_build[_KernelModuleDevInfo].modules_prepare
 
     # A list of declared files for outputs of kernel_module rules
     external_modules = []
@@ -1963,7 +1947,6 @@ In `foo_dist`, specifying `foo_modules_install` in `data` won't include
         "kernel_build": attr.label(
             providers = [_KernelEnvInfo, _KernelModuleDevInfo],
             doc = "Label referring to the `kernel_build` module.",
-            aspects = [_kernel_build_aspect],
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_check_duplicated_files_in_archives": attr.label(
