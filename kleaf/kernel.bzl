@@ -49,6 +49,24 @@ def _getoptattr(thing, attr, default_value = None):
         return getattr(thing, attr)
     return default_value
 
+def _find_file(name, files):
+    """Find a file named |name| in the list of |files|."""
+    for file in files:
+        if file.basename == name:
+            return file
+    return None
+
+def _filter_module_srcs(files):
+    """Create the list of `module_srcs` for a [`kernel_build`] or similar."""
+    return [
+        s
+        for s in files
+        if s.path.endswith(".h") or any([token in s.path for token in [
+            "Makefile",
+            "scripts/",
+        ]])
+    ]
+
 def _kernel_build_config_impl(ctx):
     out_file = ctx.actions.declare_file(ctx.attr.name + ".generated")
     command = "cat {srcs} > {out_file}".format(
@@ -689,10 +707,7 @@ def _kernel_toolchain_aspect_impl(target, ctx):
         # Traverse this depset and look for a file named "toolchain_version".
         # If no file matches, leave it as None so that _kernel_build_check_toolchain prints a
         # warning.
-        toolchain_version_file = None
-        for src in all_srcs.to_list():
-            if src.basename == TOOLCHAIN_VERSION_FILENAME:
-                toolchain_version_file = src
+        toolchain_version_file = _find_file(TOOLCHAIN_VERSION_FILENAME, all_srcs.to_list())
         return _KernelToolchainInfo(toolchain_version_file = toolchain_version_file)
 
     fail("{label}: Unable to get toolchain info because {kind} is not supported.".format(
@@ -1302,14 +1317,8 @@ def _kernel_build_impl(ctx):
         setup = env_info_setup,
     )
 
-    module_srcs = [
-        s
-        for s in ctx.files.srcs
-        if s.path.endswith(".h") or any([token in s.path for token in [
-            "Makefile",
-            "scripts/",
-        ]])
-    ]
+    module_srcs = _filter_module_srcs(ctx.files.srcs)
+
     kernel_build_info = _KernelBuildInfo(
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar,
         outs = all_output_files["outs"].values(),
@@ -2705,8 +2714,15 @@ def kernel_images(
     )
 
 def _kernel_filegroup_impl(ctx):
+    all_deps = ctx.files.srcs + ctx.files.deps
+    kernel_module_dev_info = _KernelModuleDevInfo(
+        modules_staging_archive = _find_file("modules_staging_dir.tar.gz", all_deps),
+        modules_prepare = _find_file("modules_prepare_outdir.tar.gz", all_deps),
+        module_srcs = _filter_module_srcs(ctx.files.kernel_srcs),
+    )
     return [
         DefaultInfo(files = depset(ctx.files.srcs)),
+        kernel_module_dev_info,
         # TODO(b/218761417): implement other interfaces of _kernel_build
     ]
 
@@ -2723,6 +2739,16 @@ It can be used in the `base_kernel` attribute of a [`kernel_build`](#kernel_buil
         "srcs": attr.label_list(
             allow_files = True,
             doc = "The list of labels that are members of this file group.",
+        ),
+        "deps": attr.label_list(
+            allow_files = True,
+            doc = """A list of additional labels that participates in implementing the providers.
+
+Unlike srcs, these labels are NOT added to the [`DefaultInfo`](https://docs.bazel.build/versions/main/skylark/lib/DefaultInfo.html)""",
+        ),
+        "kernel_srcs": attr.label_list(
+            allow_files = True,
+            doc = """A list of files that would have been listed as `srcs` if this rule were a [`kernel_build`](#kernel_build).""",
         ),
     },
 )
