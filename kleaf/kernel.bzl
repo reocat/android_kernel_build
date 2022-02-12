@@ -25,10 +25,10 @@ def _debug_trap():
     return """set -x
               trap '>&2 /bin/date' DEBUG"""
 
-def _debug_print_scripts(ctx, command):
+def _debug_print_scripts(ctx, command, what = None):
     if ctx.attr._debug_print_scripts[BuildSettingInfo].value:
         print("""
-        # Script that runs %s:%s""" % (ctx.label, command))
+        # Script that runs %s%s:%s""" % (ctx.label, (" " + what if what else ""), command))
 
 def _reverse_dict(d):
     """Reverse a dictionary of {key: [value, ...]}
@@ -128,6 +128,7 @@ def kernel_build(
         dtstree = None,
         kmi_symbol_lists = None,
         trim_nonlisted_kmi = None,
+        kmi_symbol_list_strict_mode = None,
         toolchain_version = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -322,6 +323,12 @@ def kernel_build(
           ```
           trim_nonlisted_kmi = len(glob(["android/abi_gki_aarch64*"])) > 0
           ```
+        kmi_symbol_list_strict_mode: If `True`, add a build-time check between
+          the `kmi_symbol_lists` and the KMI resulting from the build, to ensure
+          they match 1-1.
+
+          If `True`, creates a target `{name}_kmi_symbol_list_strict_mode`.
+          Add the target to the `copy_to_dist_dir` rule to ensure check.
         toolchain_version: The toolchain version to depend on.
         kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
@@ -406,6 +413,8 @@ def kernel_build(
         deps = deps,
         base_kernel = base_kernel,
         modules_prepare = modules_prepare_target_name,
+        kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
+        raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if kmi_symbol_lists else None,
         **kwargs
     )
 
@@ -461,6 +470,13 @@ def kernel_build(
             vmlinux = name + "/vmlinux",
             env = env_target_name,
             **kwargs
+        )
+
+    if kmi_symbol_list_strict_mode:
+        native.filegroup(
+            name = name + "_kmi_symbol_list_strict_mode",
+            srcs = [name],
+            output_group = "kmi_symbol_list_strict_mode",
         )
 
 _DtsTreeInfo = provider(fields = {
@@ -881,6 +897,7 @@ def _kernel_config_impl(ctx):
         setup_deps.append(ctx.file.raw_kmi_symbol_list)
         setup += """
             # Restore abi_symbollist.raw to abs_srctree
+              mkdir -p ${{ROOT_DIR}}/${{KERNEL_DIR}}
               rsync -p -L {raw_kmi_symbol_list} ${{ROOT_DIR}}/${{KERNEL_DIR}}/abi_symbollist.raw
         """.format(raw_kmi_symbol_list = ctx.file.raw_kmi_symbol_list.path)
 
@@ -1094,6 +1111,49 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
             base_toolchain = base_toolchain,
         ))
 
+def _kmi_symbol_list_strict_mode(ctx, all_output_files):
+    """Run for `KMI_SYMBOL_LIST_STRICT_MODE`.
+    """
+    if not ctx.attr.kmi_symbol_list_strict_mode:
+        return None
+    if not ctx.file.raw_kmi_symbol_list:
+        fail("{}: kmi_symbol_list_strict_mode requires kmi_symbol_lists.")
+
+    vmlinux = all_output_files["outs"].get("vmlinux")
+    if not vmlinux:
+        fail("{}: with kmi_symbol_list_strict_mode, outs does not contain vmlinux")
+    module_symvers = all_output_files["internal_outs"].get("Module.symvers")
+    if not module_symvers:
+        fail("{}: with kmi_symbol_list_strict_mode, outs does not contain module_symvers")
+
+    modules = all_output_files["module_outs"].values()
+    objects = [f.basename for f in ([vmlinux] + modules)]
+
+    inputs = [
+        module_symvers,
+        ctx.file.raw_kmi_symbol_list,
+    ]
+    inputs += ctx.files._kernel_abi_scripts
+    inputs += ctx.attr.config[_KernelEnvInfo].dependencies
+
+    out = ctx.actions.declare_file("{}_kmi_strict_out/kmi_symbol_list_strict_mode_checked")
+    command = ctx.attr.config[_KernelEnvInfo].setup + """
+        KMI_STRICT_MODE_OBJECTS="{objects}" {compare_to_symbol_list} {module_symvers} {raw_kmi_symbol_list}
+    """.format(
+        objects = " ".join(objects),
+        compare_to_symbol_list = ctx.file._compare_to_symbol_list.path,
+        module_symvers = module_symvers.path,
+        raw_kmi_symbol_list = ctx.file.raw_kmi_symbol_list.path,
+    )
+    _debug_print_scripts(ctx, command, what = "kmi_symbol_list_strict_mode")
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [out],
+        command = command,
+        progress_message = "Checking for kmi_symbol_list_strict_mode {}".format(ctx.label),
+    )
+    return out
+
 def _kernel_build_impl(ctx):
     kbuild_mixed_tree = None
     base_kernel_files = []
@@ -1229,6 +1289,8 @@ def _kernel_build_impl(ctx):
         command = command,
     )
 
+    kmi_strict_mode_out = _kmi_symbol_list_strict_mode(ctx, all_output_files)
+
     # Only outs and internal_outs are needed. But for simplicity, copy the full {ruledir}
     # which includes module_outs and implicit_outs too.
     env_info_dependencies = []
@@ -1269,6 +1331,8 @@ def _kernel_build_impl(ctx):
     output_group_kwargs = {}
     for d in all_output_files.values():
         output_group_kwargs.update({name: depset([file]) for name, file in d.items()})
+    if kmi_strict_mode_out:
+        output_group_kwargs["kmi_symbol_list_strict_mode"] = depset([kmi_strict_mode_out])
     output_group_info = OutputGroupInfo(**output_group_kwargs)
 
     default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
@@ -1311,6 +1375,13 @@ _kernel_build = rule(
             aspects = [_kernel_toolchain_aspect],
         ),
         "modules_prepare": attr.label(),
+        "kmi_symbol_list_strict_mode": attr.bool(),
+        "raw_kmi_symbol_list": attr.label(
+            doc = "Label to abi_symbollist.raw.",
+            allow_single_file = True,
+        ),
+        "_kernel_abi_scripts": attr.label(default = "//build/kernel:kernel-abi-scripts"),
+        "_compare_to_symbol_list": attr.label(default = "//build/kernel:abi/compare_to_symbol_list", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
 )
