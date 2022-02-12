@@ -2734,7 +2734,13 @@ kernel_filegroup = rule(
 This is similar to [`filegroup`](https://docs.bazel.build/versions/main/be/general.html#filegroup)
 that gives a convenient name to a collection of targets, which can be referenced from other rules.
 
-It can be used in the `base_kernel` attribute of a [`kernel_build`](#kernel_build).
+In addition, `kernel_filegroup` implements a list of additional providers, so it can be used
+in various places where a `kernel_build` is wanted. This includes:
+- [`kernel_build`](#kernel_build), `base_kernel`
+- [`kernel_module`](#kernel_module), `kernel_build`
+- [`kernel_modules_install`](#kernel_modules_install), `kernel_build`
+
+These providers are implemented by looking at files in `srcs` and `deps`.
 """,
     attrs = {
         "srcs": attr.label_list(
