@@ -529,7 +529,7 @@ def _define_prebuilts(**kwargs):
                 ":use_prebuilt_gki_set": [source_package_name + "_ddk_artifacts_downloaded"],
                 "//conditions:default": [source_package_name + "_ddk_artifacts"],
             }),
-            kernel_srcs = source_package_name + "_sources",
+            kernel_srcs = [source_package_name + "_sources"],
             **kwargs
         )
 
