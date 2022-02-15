@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe20c201_44529680",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-15T19:47:22Z",
+      "side": 1,
+      "message": "do you need a fail here or will the \"exit 1\" handle exiting the build command on failure?",
+      "range": {
+        "startLine": 1145,
+        "startChar": 0,
+        "endLine": 1151,
+        "endChar": 0
+      },
+      "revId": "de0667dba2cdcbb0c2a15dad27e31e509b314326",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
