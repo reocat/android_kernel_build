@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efa10e20_727c9906",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 2753,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-16T22:20:58Z",
+      "side": 1,
+      "message": "It\u0027s confusing to me to have srcs and kernel_srcs. And it\u0027s not clear what the difference is. Based on above, is this basically the extra files like Makefiles and headers?",
+      "range": {
+        "startLine": 2753,
+        "startChar": 9,
+        "endLine": 2753,
+        "endChar": 20
+      },
+      "revId": "d0709740c8dcb1faf224df59ba0f38d05370683f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
