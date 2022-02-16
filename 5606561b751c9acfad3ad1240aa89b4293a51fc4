@@ -70,6 +70,30 @@
       },
       "revId": "5606561b751c9acfad3ad1240aa89b4293a51fc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b94ba163_e81a9caf",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-16T22:37:50Z",
+      "side": 1,
+      "message": "Changed it to _KernelBuildExtModuleInfo. It is an info that `kernel_build` (and `kernel_filegroup`) provides to build ExtModule-s.",
+      "parentUuid": "1efc808c_e822f35a",
+      "range": {
+        "startLine": 1050,
+        "startChar": 7,
+        "endLine": 1050,
+        "endChar": 20
+      },
+      "revId": "5606561b751c9acfad3ad1240aa89b4293a51fc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
