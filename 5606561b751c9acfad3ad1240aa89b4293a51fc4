@@ -46,6 +46,30 @@
       },
       "revId": "5606561b751c9acfad3ad1240aa89b4293a51fc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1efc808c_e822f35a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-16T22:13:07Z",
+      "side": 1,
+      "message": "What about _ExtModuleBuildInfo similar to _KernelBuildInfo?\n\nIf you like the original name, that\u0027s fine too 😊",
+      "parentUuid": "2965376d_4350ea58",
+      "range": {
+        "startLine": 1050,
+        "startChar": 7,
+        "endLine": 1050,
+        "endChar": 20
+      },
+      "revId": "5606561b751c9acfad3ad1240aa89b4293a51fc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
