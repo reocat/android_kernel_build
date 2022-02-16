@@ -22,6 +22,30 @@
       },
       "revId": "21f6e3fce0c43a1018e41d02554904feedf85176",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9095f5a5_f0494254",
+        "filename": "kleaf/workspace_status.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-16T23:10:28Z",
+      "side": 1,
+      "message": "Ah, it was because soc-modules does not contain a full kernel source tree any more!\n\nMaybe I should fallback to this logic?\n\n```\nKERNEL_DIR\u003d.source_date_epoch_dir\nCOMMON_KERNEL_DIR\u003dcommon\n\nif [[ -x $KERNEL_DIR/scripts/setlocalversion ]]\n  SETLOCALVERSION\u003d$KERNEL_DIR/scripts/setlocalversion\nelif [[ -x $COMMON_KERNEL_DIR/scripts/setlocalversion ]]\n  SETLOCALVERSION\u003d$COMMON_KERNEL_DIR/scripts/setlocalversion\nelse\n  SETLOCALVERSION\u003d\"\"\nfi\n\nif [[ $SETLOCALVERSION ]] ; then\n  STABLE_SCMVERSION\u003d$(cd $WORKING_DIR \u0026\u0026 $SETLOCALVERSION $KERNEL_DIR)\nfi\n```\n\nOr maybe don\u0027t even check the existence of `$KERNEL_DIR/scripts/setlocalversion` at all",
+      "parentUuid": "e305bf26_6065dc53",
+      "range": {
+        "startLine": 21,
+        "startChar": 41,
+        "endLine": 21,
+        "endChar": 76
+      },
+      "revId": "21f6e3fce0c43a1018e41d02554904feedf85176",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
