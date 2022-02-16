@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e05949b1_bddf43bc",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-16T19:10:48Z",
+      "side": 1,
+      "message": "What\u0027s the \"Dev\" in the name suppose to mean/refer to? Why not just _KernelModuleInfo?\n\nAlso, is this specific to external modules only? If so, maybe indicate that. For example, P21 does compile some modules from the GKI kernel tree and I don\u0027t think those would be defined with this provider, right?",
+      "range": {
+        "startLine": 1050,
+        "startChar": 7,
+        "endLine": 1050,
+        "endChar": 20
+      },
+      "revId": "5606561b751c9acfad3ad1240aa89b4293a51fc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
