@@ -22,6 +22,30 @@
       },
       "revId": "5606561b751c9acfad3ad1240aa89b4293a51fc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2965376d_4350ea58",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-16T19:54:22Z",
+      "side": 1,
+      "message": "Dev refers to the DDK:\n\nDriver Development Kit -\u003e Module Development Kit -\u003e ModuleDevelopmentInfo\n\nMaybe it is a bad name indeed.\n\nIt is not KernelModuleInfo because it is not an info a _kernel_module rule provides, but rather a _kernel_module or _kernel_modules_install rule expects from its kernel_build attribute.\n\nAny other suggestion in the name?\n\nAnd yes, this is specific to external modules only. For in-tree modules, they are specified in the kernel_build() rule instead. I\u0027ll update the doc.",
+      "parentUuid": "e05949b1_bddf43bc",
+      "range": {
+        "startLine": 1050,
+        "startChar": 7,
+        "endLine": 1050,
+        "endChar": 20
+      },
+      "revId": "5606561b751c9acfad3ad1240aa89b4293a51fc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
