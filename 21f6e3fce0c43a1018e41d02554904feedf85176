@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e305bf26_6065dc53",
+        "filename": "kleaf/workspace_status.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-16T18:54:10Z",
+      "side": 1,
+      "message": "This doesn\u0027t work for me on P21 mainline. I get this error:\n\nbuild/kernel/kleaf/workspace_status.sh: line 22: gs/google-modules/soc-modules/scripts/setlocalversion: No such file or directory",
+      "range": {
+        "startLine": 21,
+        "startChar": 41,
+        "endLine": 21,
+        "endChar": 76
+      },
+      "revId": "21f6e3fce0c43a1018e41d02554904feedf85176",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
