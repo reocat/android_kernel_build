@@ -595,6 +595,9 @@ def _kernel_env_impl(ctx):
     command += """
         # Increase parallelism # TODO(b/192655643): do not use -j anymore
           export MAKEFLAGS="${{MAKEFLAGS}} -j$(nproc)"
+        # Set the value of SOURCE_DATE_EPOCH
+          export SOURCE_DATE_EPOCH={source_date_epoch_cmd}
+          SOURCE_DATE_EPOCH=${{SOURCE_DATE_EPOCH:-0}}
         # create a build environment
           source {build_utils_sh}
           export BUILD_CONFIG={build_config}
@@ -607,6 +610,7 @@ def _kernel_env_impl(ctx):
         setup_env = setup_env.path,
         preserve_env = preserve_env.path,
         out = out_file.path,
+        source_date_epoch_cmd = _get_stable_status_cmd(ctx, "STABLE_SOURCE_DATE_EPOCH"),
     )
 
     _debug_print_scripts(ctx, command)
@@ -616,6 +620,7 @@ def _kernel_env_impl(ctx):
             build_config,
             setup_env,
             preserve_env,
+            ctx.info_file,
         ],
         outputs = [out_file],
         progress_message = "Creating build environment for %s" % ctx.attr.name,
