@@ -2911,10 +2911,14 @@ def _kernel_filegroup_impl(ctx):
         # TODO(b/211515836): module_srcs might also be downloaded
         module_srcs = _filter_module_srcs(ctx.files.kernel_srcs),
     )
+    uapi_info = _KernelBuildUapiInfo(
+        kernel_uapi_headers = ctx.attr.kernel_uapi_headers,
+    )
     return [
         DefaultInfo(files = depset(ctx.files.srcs)),
         kernel_module_dev_info,
         # TODO(b/219112010): implement _KernelEnvInfo for _kernel_build
+        uapi_info,
     ]
 
 kernel_filegroup = rule(
