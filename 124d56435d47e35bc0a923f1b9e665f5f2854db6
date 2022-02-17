@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04b28a51_2d256d18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-17T21:31:32Z",
+      "side": 1,
+      "message": "scmversion with build.sh generates an scmversion for all the external kernel modules as well which allows us to know the git sha1 of a given external module\u0027s git project. Are we going to be able to do that with this?",
+      "revId": "124d56435d47e35bc0a923f1b9e665f5f2854db6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d16ee191_d3076d39",
+        "filename": "kleaf/workspace_status.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-17T21:31:32Z",
+      "side": 1,
+      "message": "We don\u0027t require anyone to use the \"common\" folder for the GKI kernel. They could use \"gki\" if they wanted to. So I don\u0027t think it\u0027s a good idea to hard code this. For any kernel setup, the KERNEL_DIR should be set in the build config. For example, for P21 mainline we set KERNEL_DIR\u003dcommon in the build.config.slider. Why are we not able to use that?\n\nIn looking at the BUILD.bazel file in P21, I do see this:\n\n`base_kernel \u003d \"//common:kernel_aarch64_download_or_build\"`\n\nDoes this require the \"common\" be in the common folder? If so, could you use the `base_kernel` property to figure out the KERNEL_DIR?",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 18
+      },
+      "revId": "124d56435d47e35bc0a923f1b9e665f5f2854db6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
