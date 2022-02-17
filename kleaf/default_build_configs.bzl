@@ -16,4 +16,8 @@
 # Keys are variable names and values are default values of the variable
 # if not specified in the build configs.
 INTERESTING_BUILD_CONFIG_VARS = {
+    "KMI_SYMBOL_LIST": "",
+    "ADDITIONAL_KMI_SYMBOL_LISTS": "",
+    "TRIM_NONLISTED_KMI": "",
+    "KMI_SYMBOL_LIST_STRICT_MODE": "",
 }

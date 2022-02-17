@@ -32,6 +32,66 @@ load(
     "x86_64_outs",
 )
 
+# Execute ./update_common_kernels.py to update the following section.
+# DO NOT EDIT MANUALLY!
+# update_common_kernels TEMPLATE_BEGIN
+load(
+    "@build.config.gki.aarch64//:dict.bzl",
+    KERNEL_AARCH64_ADDITIONAL_KMI_SYMBOL_LISTS = "ADDITIONAL_KMI_SYMBOL_LISTS",
+    KERNEL_AARCH64_KMI_SYMBOL_LIST = "KMI_SYMBOL_LIST",
+    KERNEL_AARCH64_KMI_SYMBOL_LIST_STRICT_MODE = "KMI_SYMBOL_LIST_STRICT_MODE",
+    KERNEL_AARCH64_TRIM_NONLISTED_KMI = "TRIM_NONLISTED_KMI",
+)
+load(
+    "@build.config.gki-debug.aarch64//:dict.bzl",
+    KERNEL_AARCH64_DEBUG_ADDITIONAL_KMI_SYMBOL_LISTS = "ADDITIONAL_KMI_SYMBOL_LISTS",
+    KERNEL_AARCH64_DEBUG_KMI_SYMBOL_LIST = "KMI_SYMBOL_LIST",
+    KERNEL_AARCH64_DEBUG_KMI_SYMBOL_LIST_STRICT_MODE = "KMI_SYMBOL_LIST_STRICT_MODE",
+    KERNEL_AARCH64_DEBUG_TRIM_NONLISTED_KMI = "TRIM_NONLISTED_KMI",
+)
+load(
+    "@build.config.gki.x86_64//:dict.bzl",
+    KERNEL_X86_64_ADDITIONAL_KMI_SYMBOL_LISTS = "ADDITIONAL_KMI_SYMBOL_LISTS",
+    KERNEL_X86_64_KMI_SYMBOL_LIST = "KMI_SYMBOL_LIST",
+    KERNEL_X86_64_KMI_SYMBOL_LIST_STRICT_MODE = "KMI_SYMBOL_LIST_STRICT_MODE",
+    KERNEL_X86_64_TRIM_NONLISTED_KMI = "TRIM_NONLISTED_KMI",
+)
+load(
+    "@build.config.gki-debug.x86_64//:dict.bzl",
+    KERNEL_X86_64_DEBUG_ADDITIONAL_KMI_SYMBOL_LISTS = "ADDITIONAL_KMI_SYMBOL_LISTS",
+    KERNEL_X86_64_DEBUG_KMI_SYMBOL_LIST = "KMI_SYMBOL_LIST",
+    KERNEL_X86_64_DEBUG_KMI_SYMBOL_LIST_STRICT_MODE = "KMI_SYMBOL_LIST_STRICT_MODE",
+    KERNEL_X86_64_DEBUG_TRIM_NONLISTED_KMI = "TRIM_NONLISTED_KMI",
+)
+
+_ARCH_VALUES = {
+    "kernel_aarch64": {
+        "ADDITIONAL_KMI_SYMBOL_LISTS": KERNEL_AARCH64_ADDITIONAL_KMI_SYMBOL_LISTS,
+        "KMI_SYMBOL_LIST": KERNEL_AARCH64_KMI_SYMBOL_LIST,
+        "KMI_SYMBOL_LIST_STRICT_MODE": KERNEL_AARCH64_KMI_SYMBOL_LIST_STRICT_MODE,
+        "TRIM_NONLISTED_KMI": KERNEL_AARCH64_TRIM_NONLISTED_KMI,
+    },
+    "kernel_aarch64_debug": {
+        "ADDITIONAL_KMI_SYMBOL_LISTS": KERNEL_AARCH64_DEBUG_ADDITIONAL_KMI_SYMBOL_LISTS,
+        "KMI_SYMBOL_LIST": KERNEL_AARCH64_DEBUG_KMI_SYMBOL_LIST,
+        "KMI_SYMBOL_LIST_STRICT_MODE": KERNEL_AARCH64_DEBUG_KMI_SYMBOL_LIST_STRICT_MODE,
+        "TRIM_NONLISTED_KMI": KERNEL_AARCH64_DEBUG_TRIM_NONLISTED_KMI,
+    },
+    "kernel_x86_64": {
+        "ADDITIONAL_KMI_SYMBOL_LISTS": KERNEL_X86_64_ADDITIONAL_KMI_SYMBOL_LISTS,
+        "KMI_SYMBOL_LIST": KERNEL_X86_64_KMI_SYMBOL_LIST,
+        "KMI_SYMBOL_LIST_STRICT_MODE": KERNEL_X86_64_KMI_SYMBOL_LIST_STRICT_MODE,
+        "TRIM_NONLISTED_KMI": KERNEL_X86_64_TRIM_NONLISTED_KMI,
+    },
+    "kernel_x86_64_debug": {
+        "ADDITIONAL_KMI_SYMBOL_LISTS": KERNEL_X86_64_DEBUG_ADDITIONAL_KMI_SYMBOL_LISTS,
+        "KMI_SYMBOL_LIST": KERNEL_X86_64_DEBUG_KMI_SYMBOL_LIST,
+        "KMI_SYMBOL_LIST_STRICT_MODE": KERNEL_X86_64_DEBUG_KMI_SYMBOL_LIST_STRICT_MODE,
+        "TRIM_NONLISTED_KMI": KERNEL_X86_64_DEBUG_TRIM_NONLISTED_KMI,
+    },
+}
+# update_common_kernels TEMPLATE_END
+
 _ARCH_CONFIGS = {
     "kernel_aarch64": {
         "build_config": "build.config.gki.aarch64",
@@ -59,37 +119,26 @@ _KMI_CONFIG_VALID_KEYS = [
     "kmi_symbol_list_strict_mode",
 ]
 
+def _filter_out_false(items):
+    """Filter out elements that are equivalent to `False`."""
+    ret = []
+    for element in items:
+        if element:
+            ret.append(element)
+    return ret
+
 # glob() must be executed in a BUILD thread, so this cannot be a global
 # variable.
 def _default_kmi_configs():
     """Return the default value of `kmi_configs` of [`define_common_kernels()`](#define_common_kernels).
     """
-    aarch64_kmi_symbol_lists = native.glob(
-        ["android/abi_gki_aarch64*"],
-        exclude = ["**/*.xml"],
-    )
     return {
-        "kernel_aarch64": {
-            # Assume the value for KMI_SYMBOL_LIST and ADDITIONAL_KMI_SYMBOL_LISTS
-            # for build.config.gki.aarch64
-            "kmi_symbol_lists": aarch64_kmi_symbol_lists,
-            # In build.config.gki-debug.aarch64:
-            # - If there are kmi_symbol_lists: assume TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1}
-            # - If there aren't:               assume TRIM_NONLISTED_KMI unspecified
-            "trim_nonlisted_kmi": len(aarch64_kmi_symbol_lists) > 0,
-            "kmi_symbol_list_strict_mode": len(aarch64_kmi_symbol_lists) > 0,
-        },
-        "kernel_aarch64_debug": {
-            # Assume the value for KMI_SYMBOL_LIST and ADDITIONAL_KMI_SYMBOL_LISTS
-            # for build.config.gki-debug.aarch64
-            "kmi_symbol_lists": aarch64_kmi_symbol_lists,
-            # Assume TRIM_NONLISTED_KMI="" in build.config.gki-debug.aarch64
-            "trim_nonlisted_kmi": False,
-        },
-        "kernel_x86_64_debug": {
-            # Assume TRIM_NONLISTED_KMI="" in build.config.gki-debug.x86_64
-            "trim_nonlisted_kmi": False,
-        },
+        target: {
+            "kmi_symbol_lists": _filter_out_false([values["KMI_SYMBOL_LIST"]] + values["ADDITIONAL_KMI_SYMBOL_LISTS"].splitlines()),
+            "trim_nonlisted_kmi": values["TRIM_NONLISTED_KMI"].strip() == "1",
+            "kmi_symbol_list_strict_mode": values["KMI_SYMBOL_LIST_STRICT_MODE"].strip() == "1",
+        }
+        for target, values in _ARCH_VALUES.items()
     }
 
 def _filter_keys(d, valid_keys, what):
