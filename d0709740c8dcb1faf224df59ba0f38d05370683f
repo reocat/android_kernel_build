@@ -70,6 +70,30 @@
       },
       "revId": "d0709740c8dcb1faf224df59ba0f38d05370683f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5ccd454_7b09117d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 2753,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-17T05:07:45Z",
+      "side": 1,
+      "message": "In fact, I need this attribute only because to build external modules, headers from the ACK source tree is needed, and I can\u0027t figure out how to download that + fix the include dirs properly. Once that\u0027s resolved, I should be able to delete this attribute, and make all of DDK downloadable, i.e. you don\u0027t even need to check out the ACK source tree to common/ to build external modules at all",
+      "parentUuid": "07fb68ba_f1eac1a3",
+      "range": {
+        "startLine": 2753,
+        "startChar": 9,
+        "endLine": 2753,
+        "endChar": 20
+      },
+      "revId": "d0709740c8dcb1faf224df59ba0f38d05370683f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
