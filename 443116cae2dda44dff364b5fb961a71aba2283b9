@@ -22,6 +22,30 @@
       },
       "revId": "443116cae2dda44dff364b5fb961a71aba2283b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a38229a5_c5d508c8",
+        "filename": "kleaf/kernel_impl.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-17T22:49:08Z",
+      "side": 1,
+      "message": "Done, using tar directly now.",
+      "parentUuid": "64ad7595_cf2c40e3",
+      "range": {
+        "startLine": 857,
+        "startChar": 0,
+        "endLine": 857,
+        "endChar": 32
+      },
+      "revId": "443116cae2dda44dff364b5fb961a71aba2283b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
