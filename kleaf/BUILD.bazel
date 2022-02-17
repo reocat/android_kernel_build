@@ -57,6 +57,7 @@ exports_files([
 docs(
     name = "docs",
     srcs = [
+        "build_config_repo.bzl",
         "common_kernels.bzl",
         "constants.bzl",
         "download_repo.bzl",

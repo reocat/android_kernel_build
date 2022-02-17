@@ -46,6 +46,9 @@ and users of the repository can refer to the values with
 ```
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
 ```
+
+For support of other `build.config` syntax (e.g. `source`-ing, multi-line
+variables), see [`build_config_repo`](#build_config_repo).
 """,
     attrs = {"srcs": attr.label_list(
         mandatory = True,
