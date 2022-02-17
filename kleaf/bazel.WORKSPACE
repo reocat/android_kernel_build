@@ -17,6 +17,7 @@ load(
     "CI_TARGET_MAPPING",
     "GKI_DOWNLOAD_CONFIGS",
 )
+load("//build/kernel/kleaf:build_config_repo.bzl", "build_config_repo")
 load("//build/kernel/kleaf:download_repo.bzl", "download_artifacts_repo")
 load("//build/kernel/kleaf:key_value_repo.bzl", "key_value_repo")
 
@@ -43,3 +44,14 @@ download_artifacts_repo(
             [out for config in GKI_DOWNLOAD_CONFIGS for out in config["outs"]],
     target = "kernel_kleaf",
 )
+
+[build_config_repo(
+    name = name,
+    src = "//common:" + name,
+    root_dir = __workspace_dir__,
+) for name in [
+    "build.config.gki.aarch64",
+    "build.config.gki-debug.aarch64",
+    "build.config.gki.x86_64",
+    "build.config.gki-debug.x86_64",
+]]
