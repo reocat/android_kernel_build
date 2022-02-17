@@ -36,6 +36,30 @@ def _relpath(dst, base, what):
         ))
     return dst[len(base):]
 
+def sanitize_path(path, what):
+    """Sanitize path for the following when they are loaded from build configs:
+
+    - `MODULES_LIST`
+    - `MODULES_BLOCKLIST`
+    - `MODULES_OPTIONS`
+    - `VENDOR_DLKM_MODULES_LIST`
+    - `VENDOR_DLKM_MODULES_BLOCKLIST`
+
+    These variables from build configs contains values that may be relative to
+    `ROOT_DIR`. Make them relative to `package_name()` instead.
+    """
+
+    if not path:
+        return path
+
+    if path.startswith("/"):
+        fail("{}: Absolute paths are not supported: {}".format(what, path))
+
+    if path.startswith("./"):
+        path = path[2:]
+
+    return _relpath(path, native.package_name(), what)
+
 def _parse_set_vars(content, what):
     """Naive algorithm to parse the output of `set` to find environment variables."""
     in_fn = False
