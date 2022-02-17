@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "165011e9_180eb8e8",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-17T21:59:49Z",
+      "side": 1,
+      "message": "need to mkdir here because it doesn\u0027t exist for external modules\n\nOr just skip it if the directory does not exist?",
+      "range": {
+        "startLine": 672,
+        "startChar": 26,
+        "endLine": 672,
+        "endChar": 57
+      },
+      "revId": "a2f80f9b7c30e680ccf603ec895412a772881b77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
