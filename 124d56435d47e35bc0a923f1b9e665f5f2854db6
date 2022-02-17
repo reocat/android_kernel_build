@@ -39,6 +39,30 @@
       },
       "revId": "124d56435d47e35bc0a923f1b9e665f5f2854db6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d706aa8_f56e1dd5",
+        "filename": "kleaf/workspace_status.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-02-17T21:58:07Z",
+      "side": 1,
+      "message": "I\u0027ll do aosp/1991052 instead to fix raviole.\n\nI can\u0027t figure out KERNEL_DIR at this point because it is at early stages of the build, before any rules are loaded. All we can rely on is .source_date_epoch_dir.",
+      "parentUuid": "d16ee191_d3076d39",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 18
+      },
+      "revId": "124d56435d47e35bc0a923f1b9e665f5f2854db6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
