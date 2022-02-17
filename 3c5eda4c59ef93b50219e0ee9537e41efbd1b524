@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9404f809_a139b6a4",
+        "filename": "kleaf/workspace_status.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-02-17T22:34:57Z",
+      "side": 1,
+      "message": "Why not use [[ -n \"$SETLOCALVERSION\" ]]? Same with [[ -n \"$KERNEL_DIR\" ]]",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 35,
+        "endChar": 28
+      },
+      "revId": "3c5eda4c59ef93b50219e0ee9537e41efbd1b524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
