@@ -566,6 +566,15 @@ _KernelEnvInfo = provider(fields = {
     "setup": "setup script to initialize the environment",
 })
 
+def _label_sanitize_to_filename(label):
+    label_text = str(label)
+    return "".join([c if c.isalnum() else "_" for c in label_text.elems()])
+
+def _remove_suffix(s, suffix):
+    if s.endswith(suffix):
+        return s[:-len(suffix)]
+    return s
+
 def _kernel_env_impl(ctx):
     srcs = [
         s
@@ -618,6 +627,12 @@ def _kernel_env_impl(ctx):
         # Run Make in silence mode to suppress most of the info output
           export MAKEFLAGS="${MAKEFLAGS} -s"
         """
+
+    # If multiple targets have the same KERNEL_DIR are built simultaneously
+    # with --spawn_strategy=local, try to isolate their OUT_DIRs.
+    command += """
+          export OUT_DIR_SUFFIX={name}
+    """.format(name = _remove_suffix(_label_sanitize_to_filename(ctx.label), "_env"))
 
     command += """
         # Increase parallelism # TODO(b/192655643): do not use -j anymore
