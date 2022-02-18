@@ -1411,7 +1411,7 @@ def _kernel_build_impl(ctx):
         env_info_dependencies += d.values()
     env_info_setup = ctx.attr.config[_KernelEnvInfo].setup + """
          # Restore kernel build outputs
-           cp -R {ruledir}/* ${{OUT_DIR}}
+           rsync -p -L {ruledir}/* ${{OUT_DIR}}
            """.format(ruledir = ruledir.path)
     if kbuild_mixed_tree:
         env_info_dependencies.append(kbuild_mixed_tree)
