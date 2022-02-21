@@ -16,6 +16,24 @@
       "message": "There isn\u0027t exactly universal agreement on this point.\n\nAnd, leaving my personal preferences aside, for example: https://unix.stackexchange.com/questions/331611/do-progress-reports-logging-information-belong-on-stderr-or-stdout\n\nIs there a bug or some other issue for context here?",
       "revId": "992584d073ac37df8f0600c051674f09a61721cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52837d72_9c3596c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-21T15:42:38Z",
+      "side": 1,
+      "message": "I see that aosp/1772566 which introduced this script switched the original chat from stdout to stderr. I was probably not fully aware of this.\n\nI think a better version of your change might just eliminate the logging library altogether. It\u0027s overkill. Put the warning and error on stderr and put the old chat back onto stdout.\n\nHowever, maennich may have opinions here.",
+      "parentUuid": "59043ba5_7786b8b3",
+      "revId": "992584d073ac37df8f0600c051674f09a61721cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
