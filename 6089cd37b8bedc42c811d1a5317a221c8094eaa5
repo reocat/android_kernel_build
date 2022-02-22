@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f0929b9_eb795187",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-22T16:30:29Z",
+      "side": 1,
+      "message": "Tested manually:\n\n```\nsymbol \u0027int ___pskb_trim(struct sk_buff * skb, unsigned int len)\u0027 changed\n  CRC changed from 0x98b8a0db to 0x5942cd60\n\nsymbol \u0027struct sk_buff * __alloc_skb(unsigned int size, gfp_t gfp_mask, int flags, int node)\u0027 changed\n  CRC changed from 0x2c82a6c0 to 0x81ddad31\n\nsymbol \u0027struct sk_buff * __cfg80211_alloc_event_skb(struct wiphy * wiphy, struct wireless_dev * wdev, enum nl80211_commands cmd, enum nl80211_attrs attr, unsigned int portid, int vendor_event_idx, int approxlen, gfp_t gfp)\u0027 changed\n  CRC changed from 0x7b735c52 to 0x1f29bfd4\n\n... 2189 omitted; 2192 symbols have only CRC changes\n```\n\n```\ntype \u0027struct msghdr\u0027 changed\n  12 members (\u0027void * msg_name\u0027 .. \u0027int passing4\u0027) changed\n    offsets changed by 100\n```",
+      "revId": "6089cd37b8bedc42c811d1a5317a221c8094eaa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
