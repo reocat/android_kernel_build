@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d9b1049_3191314d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-02-22T16:27:32Z",
+      "side": 1,
+      "message": "This change is safe as all the relevant regexes begin with an ^ anchor.",
+      "revId": "4cce27239383abe31ce0400176a19ac663b30c0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
