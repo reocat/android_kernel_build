@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a0b7807_81719da6",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-02-23T17:06:52Z",
+      "side": 1,
+      "message": "os.makedirs(system_dlkm_staging, exist_ok\u003dTrue)",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 35
+      },
+      "revId": "b44e4a0fd9fccc3f6f225b94080ec83e8ca0cf64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6479e36_256b127b",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-02-23T17:06:52Z",
+      "side": 1,
+      "message": "this ignores _any_ issue caught in the try block. Please catch typed exceptions and also abort if something is \"malformed\", either by terminating ot re-raising the exception to let it bubble up.\n\nWhich let\u0027s me think: why to handle exceptions here in the first place? If this fails (and it usually should not) it creates a nice stack trace for debugging.",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 54
+      },
+      "revId": "b44e4a0fd9fccc3f6f225b94080ec83e8ca0cf64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
