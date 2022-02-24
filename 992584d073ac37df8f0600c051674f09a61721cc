@@ -34,6 +34,24 @@
       "parentUuid": "59043ba5_7786b8b3",
       "revId": "992584d073ac37df8f0600c051674f09a61721cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c58882eb_48a72240",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1067098
+      },
+      "writtenOn": "2022-02-24T02:16:05Z",
+      "side": 1,
+      "message": "I run my kernel builds with BASH_XTRACEFD\u003d1 and stdout essentially redirected to /dev/null (well, not exactly; chat me for details). This way I only get compiler error messages in my terminal output, with the usual hundreds of lines of noise hidden away. That is with the exception of the three lines of output from this script. (Yes, it\u0027s just three lines, but if every script thinks that way things will start getting as bad as the unredirected output.)\n\nDropping the dependency on the logging library sounds good to me. I\u0027ll upload a new change with that implemented.",
+      "parentUuid": "52837d72_9c3596c5",
+      "revId": "992584d073ac37df8f0600c051674f09a61721cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
