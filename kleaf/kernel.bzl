@@ -1315,6 +1315,7 @@ def _kernel_build_impl(ctx):
         "{name}/out-dir-kernel-headers.tar.gz".format(name = ctx.label.name),
     )
     interceptor_output = ctx.actions.declare_file("{name}/interceptor_output.bin".format(name = ctx.label.name))
+    interceptor_time = ctx.actions.declare_file("{name}/interceptor_time.log".format(name = ctx.label.name))
     modules_staging_dir = modules_staging_archive.dirname + "/staging"
 
     # all outputs that |command| generates
@@ -1323,6 +1324,7 @@ def _kernel_build_impl(ctx):
         modules_staging_archive,
         out_dir_kernel_headers_tar,
         interceptor_output,
+        interceptor_time,
     ]
     for d in all_output_files.values():
         command_outputs += d.values()
@@ -1339,7 +1341,7 @@ def _kernel_build_impl(ctx):
 
     command += """
          # Actual kernel build
-           interceptor -r -l {interceptor_output} -- make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
+           interceptor -r -l {interceptor_output} -t {interceptor_time} -- make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
          # Set variables and create dirs for modules
            if [ "${{DO_NOT_STRIP_MODULES}}" != "1" ]; then
              module_strip_flag="INSTALL_MOD_STRIP=1"
@@ -1380,6 +1382,7 @@ def _kernel_build_impl(ctx):
         modules_staging_archive = modules_staging_archive.path,
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
         interceptor_output = interceptor_output.path,
+        interceptor_time = interceptor_time.path,
         label = ctx.label,
     )
 
