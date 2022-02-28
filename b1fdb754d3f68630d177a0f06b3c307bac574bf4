@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "432928e0_6506d44a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 2154,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-02-28T16:38:26Z",
+      "side": 1,
+      "message": "doesn\u0027t the compression implicitly call \u0027gzip\u0027 from the host then?",
+      "range": {
+        "startLine": 2154,
+        "startChar": 14,
+        "endLine": 2154,
+        "endChar": 17
+      },
+      "revId": "b1fdb754d3f68630d177a0f06b3c307bac574bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3a84f4f_9b8db8b1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 2175,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-02-28T16:38:26Z",
+      "side": 1,
+      "message": "install",
+      "range": {
+        "startLine": 2175,
+        "startChar": 35,
+        "endLine": 2175,
+        "endChar": 43
+      },
+      "revId": "b1fdb754d3f68630d177a0f06b3c307bac574bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f29dcdd_a7f50b96",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 2178,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-02-28T16:38:26Z",
+      "side": 1,
+      "message": "conflicts",
+      "range": {
+        "startLine": 2178,
+        "startChar": 13,
+        "endLine": 2178,
+        "endChar": 21
+      },
+      "revId": "b1fdb754d3f68630d177a0f06b3c307bac574bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
