@@ -910,8 +910,8 @@ def _kernel_config_impl(ctx):
         # Trim nonlisted symbols
           {trim_kmi_command}
         # Grab outputs
-          cp -p ${{OUT_DIR}}/.config {config}
-          rsync -a ${{OUT_DIR}}/include/ {include_dir}/
+          rsync -aL ${{OUT_DIR}}/.config {config}
+          rsync -aL ${{OUT_DIR}}/include/ {include_dir}/
         """.format(
         config = config.path,
         include_dir = include_dir.path,
@@ -934,8 +934,8 @@ def _kernel_config_impl(ctx):
     setup = ctx.attr.env[_KernelEnvInfo].setup + """
          # Restore kernel config inputs
            mkdir -p ${{OUT_DIR}}/include/
-           rsync -p -L {config} ${{OUT_DIR}}/.config
-           rsync -a {include_dir}/ ${{OUT_DIR}}/include/
+           rsync -aL {config} ${{OUT_DIR}}/.config
+           rsync -aL {include_dir}/ ${{OUT_DIR}}/include/
     """.format(config = config.path, include_dir = include_dir.path)
     if ctx.file.raw_kmi_symbol_list:
         # When CONFIG_UNUSED_KSYMS_WHITELIST is a relative path, it is
@@ -945,7 +945,7 @@ def _kernel_config_impl(ctx):
         setup += """
             # Restore abi_symbollist.raw to abs_srctree
               mkdir -p ${{ROOT_DIR}}/${{KERNEL_DIR}}
-              rsync -p -L {raw_kmi_symbol_list} ${{ROOT_DIR}}/${{KERNEL_DIR}}/abi_symbollist.raw
+              rsync -aL {raw_kmi_symbol_list} ${{ROOT_DIR}}/${{KERNEL_DIR}}/abi_symbollist.raw
         """.format(raw_kmi_symbol_list = ctx.file.raw_kmi_symbol_list.path)
 
     return [
