@@ -1287,6 +1287,7 @@ def _kernel_build_impl(ctx):
 
     inputs = [
         ctx.file._search_and_mv_output,
+        ctx.file._timed_logger,
     ]
     inputs += ctx.files.srcs
     inputs += ctx.files.deps
@@ -1313,6 +1314,7 @@ def _kernel_build_impl(ctx):
         "{name}/out-dir-kernel-headers.tar.gz".format(name = ctx.label.name),
     )
     interceptor_output = ctx.actions.declare_file("{name}/interceptor_output.bin".format(name = ctx.label.name))
+    time_log = ctx.actions.declare_file("{name}/time.log".format(name = ctx.label.name))
     modules_staging_dir = modules_staging_archive.dirname + "/staging"
 
     # all outputs that |command| generates
@@ -1321,6 +1323,7 @@ def _kernel_build_impl(ctx):
         modules_staging_archive,
         out_dir_kernel_headers_tar,
         interceptor_output,
+        time_log,
     ]
     for d in all_output_files.values():
         command_outputs += d.values()
@@ -1337,7 +1340,7 @@ def _kernel_build_impl(ctx):
 
     command += """
          # Actual kernel build
-           interceptor -r -l {interceptor_output} -- make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
+           interceptor -r -l {interceptor_output} -- make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}} 2>&1 | {timed_logger} > {time_log}
          # Set variables and create dirs for modules
            if [ "${{DO_NOT_STRIP_MODULES}}" != "1" ]; then
              module_strip_flag="INSTALL_MOD_STRIP=1"
@@ -1378,6 +1381,8 @@ def _kernel_build_impl(ctx):
         modules_staging_archive = modules_staging_archive.path,
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
         interceptor_output = interceptor_output.path,
+        timed_logger = ctx.file._timed_logger.path,
+        time_log = time_log.path,
         label = ctx.label,
     )
 
@@ -1484,6 +1489,7 @@ _kernel_build = rule(
         "_kernel_abi_scripts": attr.label(default = "//build/kernel:kernel-abi-scripts"),
         "_compare_to_symbol_list": attr.label(default = "//build/kernel:abi/compare_to_symbol_list", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        "_timed_logger": attr.label(default = "//build/kernel/kleaf:timed_logger.py", allow_single_file = True),
     },
 )
 
