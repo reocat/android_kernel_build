@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d6dd247_256f9e4e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 2139,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-04T03:13:53Z",
+      "side": 1,
+      "message": "Maybe I should `$({readlink} -m {host_tools_path})` here?",
+      "range": {
+        "startLine": 2139,
+        "startChar": 21,
+        "endLine": 2139,
+        "endChar": 56
+      },
+      "revId": "3229f97eb4684902797e81bf50f65f63b8e6923f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
