@@ -106,14 +106,16 @@ _get_hermetic_path_dep_attrs = {
 
 def _kernel_build_config_impl(ctx):
     out_file = ctx.actions.declare_file(ctx.attr.name + ".generated")
-    command = "cat {srcs} > {out_file}".format(
+    command = _get_hermetic_path_cmd(ctx) + """
+        cat {srcs} > {out_file}
+    """.format(
         srcs = " ".join([src.path for src in ctx.files.srcs]),
         out_file = out_file.path,
     )
     _debug_print_scripts(ctx, command)
     ctx.actions.run_shell(
         mnemonic = "KernelBuildConfig",
-        inputs = ctx.files.srcs,
+        inputs = ctx.files.srcs + _get_hermetic_path_deps(ctx),
         outputs = [out_file],
         command = command,
         progress_message = "Generating build config {}".format(ctx.label),
@@ -123,7 +125,7 @@ def _kernel_build_config_impl(ctx):
 kernel_build_config = rule(
     implementation = _kernel_build_config_impl,
     doc = "Create a build.config file by concatenating build config fragments.",
-    attrs = {
+    attrs = _combine_dict(_get_hermetic_path_dep_attrs, {
         "srcs": attr.label_list(
             allow_files = True,
             doc = """List of build config fragments.
@@ -145,7 +147,7 @@ kernel_build_config(
 """,
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
-    },
+    }),
 )
 
 def _transform_kernel_build_outs(name, what, outs):
@@ -1207,7 +1209,7 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
             base_kernel = base_kernel.label,
             base_toolchain = base_toolchain,
         )
-        command = """
+        command = _get_hermetic_path_cmd(ctx) + """
                 # Check toolchain_version against base kernel
                   if ! diff <(cat {base_toolchain_file}) <(echo "{this_toolchain}") > /dev/null; then
                     echo "{msg}" >&2
@@ -1223,7 +1225,7 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
 
         ctx.actions.run_shell(
             mnemonic = "KernelBuildCheckToolchain",
-            inputs = [base_toolchain_file],
+            inputs = [base_toolchain_file] + _get_hermetic_path_deps(ctx),
             outputs = [out],
             command = command,
             progress_message = "Checking toolchain version against base kernel {}".format(ctx.label),
@@ -1297,7 +1299,7 @@ def _kernel_build_impl(ctx):
         # only change when the dependent ctx.attr.base_kernel changes.
         kbuild_mixed_tree = ctx.actions.declare_directory("{}_kbuild_mixed_tree".format(ctx.label.name))
         base_kernel_files = ctx.files.base_kernel
-        kbuild_mixed_tree_command = """
+        kbuild_mixed_tree_command = _get_hermetic_path_cmd(ctx) + """
           # Restore GKI artifacts for mixed build
             export KBUILD_MIXED_TREE=$(realpath {kbuild_mixed_tree})
             rm -rf ${{KBUILD_MIXED_TREE}}
@@ -1311,7 +1313,7 @@ def _kernel_build_impl(ctx):
         )
         ctx.actions.run_shell(
             mnemonic = "KernelBuildKbuildMixedTree",
-            inputs = base_kernel_files,
+            inputs = base_kernel_files + _get_hermetic_path_deps(ctx),
             outputs = [kbuild_mixed_tree],
             progress_message = "Creating KBUILD_MIXED_TREE",
             command = kbuild_mixed_tree_command,
@@ -1492,7 +1494,7 @@ def _kernel_build_impl(ctx):
 _kernel_build = rule(
     implementation = _kernel_build_impl,
     doc = "Defines a kernel build target.",
-    attrs = {
+    attrs = _combine_dict(_get_hermetic_path_dep_attrs, {
         "config": attr.label(
             mandatory = True,
             providers = [_KernelEnvInfo],
@@ -1529,7 +1531,7 @@ _kernel_build = rule(
         # `_kernel_build` target.
         "modules_prepare": attr.label(),
         "kernel_uapi_headers": attr.label(),
-    },
+    }),
 )
 
 def _modules_prepare_impl(ctx):
