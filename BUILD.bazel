@@ -14,8 +14,10 @@
 
 package(default_visibility = ["//visibility:public"])
 
+load("//build/kernel/kleaf:hermetic.bzl", "host_tools")
+
 # Provide access to some host tools for rules wanting to restrict PATH
-genrule(
+host_tools(
     name = "host-tools",
     outs = [
         "host-tools/bash",
@@ -25,8 +27,6 @@ genrule(
         "host-tools/sh",
         "host-tools/tar",
     ],
-    cmd = "for i in $(OUTS); do ln -s $$(which $$(basename $$i)) $$i; done",
-    tags = ["no-remote"],
 )
 
 filegroup(

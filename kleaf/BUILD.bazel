@@ -60,11 +60,13 @@ docs(
         "common_kernels.bzl",
         "constants.bzl",
         "download_repo.bzl",
+        "hermetic.bzl",
         "kernel.bzl",
         "key_value_repo.bzl",
     ],
     default = "kernel.bzl",
     deps = [
+        "utils.bzl",
         "//build/bazel_common_rules/dist",
         "@bazel_skylib//rules:common_settings",
         "@kernel_toolchain_info//:dict",

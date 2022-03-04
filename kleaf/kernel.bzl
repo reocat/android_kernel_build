@@ -15,6 +15,7 @@
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
 load(":constants.bzl", "TOOLCHAIN_VERSION_FILENAME")
+load(":utils.bzl", "get_stable_status_cmd")
 
 # Outputs of a kernel_build rule needed to build kernel_module's
 _kernel_build_internal_outs = [
@@ -584,12 +585,6 @@ def kernel_dtstree(
     )
     _kernel_dtstree(**kwargs)
 
-def _get_stable_status_cmd(ctx, var):
-    return """$(cat {stable_status} | grep "{var}" | cut -f2 -d' ')""".format(
-        stable_status = ctx.info_file.path,
-        var = var,
-    )
-
 _KernelEnvInfo = provider(fields = {
     "dependencies": "dependencies required to use this environment setup",
     "setup": "setup script to initialize the environment",
@@ -667,7 +662,7 @@ def _kernel_env_impl(ctx):
         setup_env = setup_env.path,
         preserve_env = preserve_env.path,
         out = out_file.path,
-        source_date_epoch_cmd = _get_stable_status_cmd(ctx, "STABLE_SOURCE_DATE_EPOCH"),
+        source_date_epoch_cmd = get_stable_status_cmd(ctx, "STABLE_SOURCE_DATE_EPOCH"),
     )
 
     _debug_print_scripts(ctx, command)
@@ -728,7 +723,7 @@ def _kernel_env_impl(ctx):
         host_tool_path = host_tool_path,
         build_utils_sh = ctx.file._build_utils_sh.path,
         linux_x86_libs_path = ctx.files._linux_x86_libs[0].dirname,
-        scmversion_cmd = _get_stable_status_cmd(ctx, "STABLE_SCMVERSION"),
+        scmversion_cmd = get_stable_status_cmd(ctx, "STABLE_SCMVERSION"),
     )
 
     dependencies += [
