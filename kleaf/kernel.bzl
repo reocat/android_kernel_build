@@ -640,6 +640,8 @@ def _kernel_env_impl(ctx):
           set -o pipefail
     """
 
+    command += _get_hermetic_path_cmd(ctx)
+
     if ctx.attr._debug_annotate_scripts[BuildSettingInfo].value:
         command += """
           export MAKEFLAGS="${MAKEFLAGS} V=1"
@@ -679,7 +681,7 @@ def _kernel_env_impl(ctx):
             setup_env,
             preserve_env,
             ctx.info_file,
-        ],
+        ] + _get_hermetic_path_deps(ctx),
         outputs = [out_file],
         progress_message = "Creating build environment for %s" % ctx.attr.name,
         command = command,
@@ -811,7 +813,7 @@ _kernel_env = rule(
               )
           ```
           """,
-    attrs = {
+    attrs = _combine_dict(_get_hermetic_path_dep_attrs, {
         "build_config": attr.label(
             mandatory = True,
             allow_single_file = True,
@@ -846,7 +848,6 @@ _kernel_env = rule(
             doc = "Device tree",
         ),
         "_tools": attr.label_list(default = _get_tools),
-        "_host_tools": attr.label(default = "//build/kernel:host-tools"),
         "_build_utils_sh": attr.label(
             allow_single_file = True,
             default = Label("//build/kernel:build_utils.sh"),
@@ -856,7 +857,7 @@ _kernel_env = rule(
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_linux_x86_libs": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
-    },
+    }),
 )
 
 def _kernel_config_impl(ctx):
