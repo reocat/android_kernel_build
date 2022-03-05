@@ -65,6 +65,17 @@ def _find_file(name, files, what, required = False):
         ))
     return result[0] if result else None
 
+def _find_files(files, what, suffix = None):
+    """Find files with given condition. The following conditions are accepted:
+
+    - Looking for files ending with a given suffix.
+    """
+    result = []
+    for file in files:
+        if suffix != None and file.basename.endswith(suffix):
+            result.append(file)
+    return result
+
 def _filter_module_srcs(files):
     """Create the list of `module_srcs` for a [`kernel_build`] or similar."""
     return [
@@ -1105,6 +1116,58 @@ _raw_kmi_symbol_list = rule(
         ),
         "_kernel_abi_scripts": attr.label(default = "//build/kernel:kernel-abi-scripts"),
         "_flatten_symbol_list": attr.label(default = "//build/kernel:abi/flatten_symbol_list", allow_single_file = True),
+        "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+    },
+)
+
+def _kernel_extracted_symbols_impl(ctx):
+    genfiles_dir = ctx.genfiles_dir.path
+    out = ctx.actions.declare_file("{}/symbol_list".format(ctx.attr.name))
+
+    vmlinux = _find_file(name = "vmlinux", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name), required = True)
+    modules = _find_files(suffix = ".ko", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name))
+    srcs = modules + [vmlinux]
+
+    inputs = [ctx.file._extract_symbols]
+    inputs += srcs
+    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
+
+    command = ctx.attr.kernel_build[_KernelEnvInfo].setup
+    command += """
+        cp -pl {srcs} {genfiles_dir}
+        {extract_symbols} --symbol-list {out} {skip_module_grouping} {genfiles_dir}
+    """.format(
+        srcs = " ".join([file.path for file in srcs]),
+        genfiles_dir = genfiles_dir,
+        extract_symbols = ctx.file._extract_symbols.path,
+        out = out.path,
+        skip_module_grouping = "" if ctx.attr.module_grouping else "--skip-module-grouping",
+    )
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [out],
+        command = command,
+        progress_message = "Extracting symbols {}".format(ctx.label),
+        mnemonic = "KernelExtractedSymbols",
+    )
+    return DefaultInfo(files = depset([out]))
+
+kernel_extracted_symbols = rule(
+    implementation = _kernel_extracted_symbols_impl,
+    doc = "Run `extract_symbols` to extract symbols from a given build.",
+    attrs = {
+        "kernel_build": attr.label(
+            doc = "The `kernel_build` that provides vmlinux, modules and toolchain.",
+            providers = [_KernelEnvInfo],
+        ),
+        "module_grouping": attr.bool(
+            default = True,
+            doc = """If `True`, then the symbol list will group symbols based on the kernel
+ modules that reference the symbol. Otherwise the symbol list will simply
+ be a sorted list of symbols used by all the kernel modules.
+            """,
+        ),
+        "_extract_symbols": attr.label(default = "//build/kernel:abi/extract_symbols", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
 )
