@@ -17,6 +17,7 @@ load(
     ":kernel.bzl",
     "kernel_build",
     "kernel_compile_commands",
+    "kernel_extracted_symbols",
     "kernel_filegroup",
     "kernel_images",
     "kernel_kythe",
@@ -199,6 +200,15 @@ def define_kernel_build_and_notrim(
         name = name + "_notrim",
         actual = _select_notrim_target(name, trim_nonlisted_kmi),
     )
+
+    # <name>_extracted_symbols target: extract symbols from <name>_notrim
+    if kwargs.get("kmi_symbol_list"):
+        kernel_extracted_symbols(
+            name = name + "_extracted_symbols",
+            kernel_build = name + "_notrim",
+            # Sync with KMI_SYMBOL_LIST_MODULE_GROUPING
+            module_grouping = None,
+        )
 
 def define_common_kernels(
         kmi_configs = None,

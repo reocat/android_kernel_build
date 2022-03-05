@@ -13,6 +13,7 @@
 # limitations under the License.
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
 load(":constants.bzl", "TOOLCHAIN_VERSION_FILENAME")
 
@@ -64,6 +65,17 @@ def _find_file(name, files, what, required = False):
             files = ":\n  " + ("\n  ".join(result)) if result else "",
         ))
     return result[0] if result else None
+
+def _find_files(files, what, suffix = None):
+    """Find files with given condition. The following conditions are accepted:
+
+    - Looking for files ending with a given suffix.
+    """
+    result = []
+    for file in files:
+        if suffix != None and file.basename.endswith(suffix):
+            result.append(file)
+    return result
 
 def _filter_module_srcs(files):
     """Create the list of `module_srcs` for a [`kernel_build`] or similar."""
@@ -452,6 +464,7 @@ def kernel_build(
         modules_prepare = modules_prepare_target_name,
         kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if all_kmi_symbol_lists else None,
+        kmi_symbol_list_src = kmi_symbol_list,
         **kwargs
     )
 
@@ -1114,6 +1127,7 @@ _KernelBuildInfo = provider(fields = {
     "outs": "A list of File object corresponding to the `outs` attribute (excluding `module_outs`, `implicit_outs` and `internal_outs`)",
     "base_kernel_files": "[Default outputs](https://docs.bazel.build/versions/main/skylark/rules.html#default-outputs) of the rule specified by `base_kernel`",
     "interceptor_output": "`interceptor` log. See [`interceptor`](https://android.googlesource.com/kernel/tools/interceptor/) project.",
+    "kmi_symbol_list_src": "The **source** main `kmi_symbol_list`. Not to be confused with the `_kmi_symbol_list` rule.",
 })
 
 _KernelBuildExtModuleInfo = provider(
@@ -1442,6 +1456,7 @@ def _kernel_build_impl(ctx):
         outs = all_output_files["outs"].values(),
         base_kernel_files = base_kernel_files,
         interceptor_output = interceptor_output,
+        kmi_symbol_list_src = ctx.file.kmi_symbol_list_src,
     )
 
     kernel_build_module_info = _KernelBuildExtModuleInfo(
@@ -1496,7 +1511,6 @@ _kernel_build = rule(
         "base_kernel": attr.label(
             aspects = [_kernel_toolchain_aspect],
         ),
-        "modules_prepare": attr.label(),
         "kmi_symbol_list_strict_mode": attr.bool(),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
@@ -1505,8 +1519,116 @@ _kernel_build = rule(
         "_kernel_abi_scripts": attr.label(default = "//build/kernel:kernel-abi-scripts"),
         "_compare_to_symbol_list": attr.label(default = "//build/kernel:abi/compare_to_symbol_list", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        # _kernel_build_impl does not depend on the following, but they are
+        # needed for providers of  _kernel_build.
+        "modules_prepare": attr.label(),
+        "kmi_symbol_list_src": attr.label(allow_single_file = True, doc = "The **source** `kmi_symbol_list`"),
     },
 )
+
+def _kernel_extracted_symbols_impl(ctx):
+    genfiles_dir = ctx.genfiles_dir.path
+
+    vmlinux = _find_file(name = "vmlinux", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name), required = True)
+    modules = _find_files(suffix = ".ko", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name))
+    srcs = modules + [vmlinux]
+
+    inputs = [ctx.file._extract_symbols]
+    inputs += srcs
+    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
+
+    command = ctx.attr.kernel_build[_KernelEnvInfo].setup
+    command += """
+        cp -pl {srcs} {genfiles_dir}
+        {extract_symbols} --symbol-list {out} {skip_module_grouping} {genfiles_dir}
+    """.format(
+        srcs = " ".join([file.path for file in srcs]),
+        genfiles_dir = genfiles_dir,
+        extract_symbols = ctx.file._extract_symbols.path,
+        out = ctx.outputs.out.path,
+        skip_module_grouping = "" if ctx.attr.module_grouping else "--skip-module-grouping",
+    )
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [ctx.outputs.out],
+        command = command,
+        progress_message = "Extracting symbols {}".format(ctx.label),
+        mnemonic = "KernelExtractedSymbols",
+    )
+
+    if not ctx.attr.kernel_build[_KernelBuildInfo].kmi_symbol_list_src:
+        fail("{}: Requires `kernel_build` {} to have `kmi_symbol_list` set".format(
+            ctx.label,
+            ctx.attr.kernel_build.label,
+        ))
+
+    ctx.actions.symlink(
+        output = ctx.outputs.kmi_symbol_list_symlink,
+        target_file = ctx.attr.kernel_build[_KernelBuildInfo].kmi_symbol_list_src,
+        progress_message = "Determining the destination for updating kmi_symbol_list {}".format(ctx.label),
+    )
+
+    # The symlink should not be part of the output. It is an implementation
+    # detail of kernel_extracted_symbols().
+    return DefaultInfo(files = depset([ctx.outputs.out]))
+
+_kernel_extracted_symbols = rule(
+    implementation = _kernel_extracted_symbols_impl,
+    attrs = {
+        # We can't use kernel_filegroup + hermetic_tools here because
+        # - extract_symbols depends on the clang toolchain, which requires us to
+        #   know the toolchain_version ahead of time.
+        # - We also need to know which `kmi_symbol_list` should be updated
+        # - We also don't have the necessity to extract symbols from prebuilts.
+        "kernel_build": attr.label(providers = [_KernelEnvInfo, _KernelBuildInfo]),
+        "module_grouping": attr.bool(default = True),
+        "out": attr.output(),
+        "kmi_symbol_list_symlink": attr.output(doc = "Symlink to the source `kmi_symbol_list` of the `kernel_build`"),
+        "_extract_symbols": attr.label(default = "//build/kernel:abi/extract_symbols", allow_single_file = True),
+        "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+    },
+)
+
+def kernel_extracted_symbols(
+        name,
+        kernel_build,
+        module_grouping = None):
+    """Run `extract_symbols` to extract symbols from a given build.
+
+    Args:
+      name: Name of target.
+      kernel_build: The `kernel_build` that provides vmlinux, modules and
+        toolchain.
+      module_grouping: If unspecified or `None`, it is `True` by default.
+        If `True`, then the symbol list will group symbols based
+        on the kernel modules that reference the symbol. Otherwise the symbol
+        list will simply be a sorted list of symbols used by all the kernel
+        modules.
+    """
+    _kernel_extracted_symbols(
+        name = name + "_internal",
+        kernel_build = kernel_build,
+        module_grouping = module_grouping,
+        out = name + "_out/symbol_list",
+        kmi_symbol_list_symlink = name + "_out/symlink",
+    )
+
+    copy_file(
+        name = name + "_tool",
+        src = "//build/kernel/kleaf:update_symbols.py",
+        out = name + "_out/dist.py",
+    )
+
+    native.py_binary(
+        name = name,
+        srcs = [name + "_out/dist.py"],
+        main = name + "_out/dist.py",
+        python_version = "PY3",
+        data = [
+            name + "_out/symbol_list",
+            name + "_out/symlink",
+        ],
+    )
 
 def _modules_prepare_impl(ctx):
     command = ctx.attr.config[_KernelEnvInfo].setup + """
