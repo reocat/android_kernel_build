@@ -13,6 +13,7 @@
 # limitations under the License.
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
 load(":constants.bzl", "TOOLCHAIN_VERSION_FILENAME")
 
@@ -64,6 +65,17 @@ def _find_file(name, files, what, required = False):
             files = ":\n  " + ("\n  ".join(result)) if result else "",
         ))
     return result[0] if result else None
+
+def _find_files(files, what, suffix = None):
+    """Find files with given condition. The following conditions are accepted:
+
+    - Looking for files ending with a given suffix.
+    """
+    result = []
+    for file in files:
+        if suffix != None and file.basename.endswith(suffix):
+            result.append(file)
+    return result
 
 def _filter_module_srcs(files):
     """Create the list of `module_srcs` for a [`kernel_build`] or similar."""
@@ -451,6 +463,7 @@ def kernel_build(
         modules_prepare = modules_prepare_target_name,
         kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if all_kmi_symbol_lists else None,
+        kmi_symbol_list_src = kmi_symbol_list,
         **kwargs
     )
 
@@ -1126,6 +1139,14 @@ _KernelBuildExtModuleInfo = provider(
     },
 )
 
+_KernelBuildAbiInfo = provider(
+    doc = "A provider that specifies the expectations of a [`kernel_abi`](#kernel_abi) on a `kernel_build`.",
+    fields = {
+        "trim_nonlisted_kmi": "Value of `trim_nonlisted_kmi` in [`kernel_build()`](#kernel_build).",
+        "kmi_symbol_list_src": "The **source** main `kmi_symbol_list`. Not to be confused with the `_kmi_symbol_list` rule.",
+    },
+)
+
 _SrcsInfo = provider(fields = {
     "srcs": "The srcs attribute of a rule.",
 })
@@ -1449,6 +1470,11 @@ def _kernel_build_impl(ctx):
         modules_prepare = ctx.attr.modules_prepare,
     )
 
+    kernel_build_abi_info = _KernelBuildAbiInfo(
+        trim_nonlisted_kmi = ctx.attr.trim_nonlisted_kmi,
+        kmi_symbol_list_src = ctx.file.kmi_symbol_list_src,
+    )
+
     output_group_kwargs = {}
     for d in all_output_files.values():
         output_group_kwargs.update({name: depset([file]) for name, file in d.items()})
@@ -1465,6 +1491,7 @@ def _kernel_build_impl(ctx):
         env_info,
         kernel_build_info,
         kernel_build_module_info,
+        kernel_build_abi_info,
         output_group_info,
         default_info,
     ]
@@ -1495,7 +1522,6 @@ _kernel_build = rule(
         "base_kernel": attr.label(
             aspects = [_kernel_toolchain_aspect],
         ),
-        "modules_prepare": attr.label(),
         "kmi_symbol_list_strict_mode": attr.bool(),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
@@ -1504,8 +1530,159 @@ _kernel_build = rule(
         "_kernel_abi_scripts": attr.label(default = "//build/kernel:kernel-abi-scripts"),
         "_compare_to_symbol_list": attr.label(default = "//build/kernel:abi/compare_to_symbol_list", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        # _kernel_build_impl does not depend on the following, but they are
+        # needed for providers of  _kernel_build.
+        "modules_prepare": attr.label(),
+        "trim_nonlisted_kmi": attr.bool(),
+        "kmi_symbol_list_src": attr.label(allow_single_file = True, doc = "The **source** `kmi_symbol_list`"),
     },
 )
+
+def _kernel_extracted_symbols_impl(ctx):
+    genfiles_dir = ctx.genfiles_dir.path
+
+    vmlinux = _find_file(name = "vmlinux", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name), required = True)
+    modules = _find_files(suffix = ".ko", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name))
+    srcs = modules + [vmlinux]
+
+    inputs = [ctx.file._extract_symbols]
+    inputs += srcs
+    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
+
+    command = ctx.attr.kernel_build[_KernelEnvInfo].setup
+    command += """
+        cp -pl {srcs} {genfiles_dir}
+        {extract_symbols} --symbol-list {out} {skip_module_grouping} {genfiles_dir}
+    """.format(
+        srcs = " ".join([file.path for file in srcs]),
+        genfiles_dir = genfiles_dir,
+        extract_symbols = ctx.file._extract_symbols.path,
+        out = ctx.outputs.out.path,
+        skip_module_grouping = "" if ctx.attr.module_grouping else "--skip-module-grouping",
+    )
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [ctx.outputs.out],
+        command = command,
+        progress_message = "Extracting symbols {}".format(ctx.label),
+        mnemonic = "KernelExtractedSymbols",
+    )
+
+    if ctx.attr.kernel_build[_KernelBuildAbiInfo].trim_nonlisted_kmi:
+        fail("{}: Requires `kernel_build` {} to have `trim_nonlisted_kmi = False`.".format(
+            ctx.label,
+            ctx.attr.kernel_build.label,
+        ))
+
+    if not ctx.attr.kernel_build[_KernelBuildAbiInfo].kmi_symbol_list_src:
+        fail("{}: Requires `kernel_build` {} to have `kmi_symbol_list` set".format(
+            ctx.label,
+            ctx.attr.kernel_build.label,
+        ))
+
+    ctx.actions.symlink(
+        output = ctx.outputs.kmi_symbol_list_symlink,
+        target_file = ctx.attr.kernel_build[_KernelBuildAbiInfo].kmi_symbol_list_src,
+        progress_message = "Determining the destination for updating kmi_symbol_list {}".format(ctx.label),
+    )
+
+    # The symlink should not be part of the output. It is an implementation
+    # detail of kernel_extracted_symbols().
+    return DefaultInfo(files = depset([ctx.outputs.out]))
+
+_kernel_extracted_symbols = rule(
+    implementation = _kernel_extracted_symbols_impl,
+    attrs = {
+        # We can't use kernel_filegroup + hermetic_tools here because
+        # - extract_symbols depends on the clang toolchain, which requires us to
+        #   know the toolchain_version ahead of time.
+        # - We also need to know which `kmi_symbol_list` should be updated
+        # - We also don't have the necessity to extract symbols from prebuilts.
+        "kernel_build": attr.label(providers = [_KernelEnvInfo, _KernelBuildAbiInfo]),
+        "module_grouping": attr.bool(default = True),
+        "out": attr.output(),
+        "kmi_symbol_list_symlink": attr.output(doc = "Symlink to the source `kmi_symbol_list` of the `kernel_build`"),
+        "_extract_symbols": attr.label(default = "//build/kernel:abi/extract_symbols", allow_single_file = True),
+        "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+    },
+)
+
+def kernel_abi(
+        name,
+        kernel_build,
+        module_grouping = None):
+    """Declare multiple targets to support ABI monitoring.
+
+    For example, you may have the following declaration. (For actual definition
+    of `kernel_aarch64`, see
+    [`define_common_kernels()`](#define_common_kernels).
+
+    ```
+    kernel_build(
+      name = "kernel_aarch64",
+      trim_nonlisted_kmi = True,
+      ...
+    )
+    kernel_build(
+      name = "kernel_aarch64_notrim,
+      trim_nonlisted_kmi = False,
+      kmi_symbol_list_strict_mode = False,
+      ... # Other args same as kernel_aarch64
+    )
+    copy_to_dist_dir(
+      name = "kernel_aarch64_dist",
+      data = [":kernel_aarch64", ...]
+    )
+    kernel_abi(
+      name = "kernel_aarch64_abi",
+      kernel_build = ":kernel_aarch64_notrim",
+      ...
+    )
+    ```
+
+    Assuming the above, here's a table for converting `build_abi.sh`
+    into Bazel commands. Note: it is recommended to disable the sandbox for
+    certain targets to boost incremental builds.
+
+    |Bazel command                                          |build_abi.sh equivalence           |
+    |-------------------------------------------------------|-----------------------------------|
+    |`bazel run kernel_aarch64_abi`                         |`build_abi.sh --update_symbol_list`|
+
+    Args:
+      name: Name of target.
+      kernel_build: The `kernel_build` that provides vmlinux, modules and
+        toolchain. This should be a `kernel_build` with
+        `trim_nonlisted_kmi = False`.
+      module_grouping: If unspecified or `None`, it is `True` by default.
+        If `True`, then the symbol list will group symbols based
+        on the kernel modules that reference the symbol. Otherwise the symbol
+        list will simply be a sorted list of symbols used by all the kernel
+        modules.
+    """
+    _kernel_extracted_symbols(
+        name = name + "_extracted_symbols",
+        kernel_build = kernel_build,
+        module_grouping = module_grouping,
+        out = name + "_internal/symbol_list",
+        kmi_symbol_list_symlink = name + "_internal/update_destination",
+    )
+
+    copy_file(
+        name = name + "_tool",
+        src = "//build/kernel/kleaf:update_symbols.py",
+        out = name + "_internal/dist.py",
+    )
+
+    native.py_binary(
+        name = name,
+        srcs = [name + "_internal/dist.py"],
+        main = name + "_internal/dist.py",
+        python_version = "PY3",
+        data = [
+            name + "_internal/symbol_list",
+            name + "_internal/update_destination",
+        ],
+    )
 
 def _modules_prepare_impl(ctx):
     command = ctx.attr.config[_KernelEnvInfo].setup + """

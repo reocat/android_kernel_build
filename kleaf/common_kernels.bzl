@@ -15,6 +15,7 @@
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 load(
     ":kernel.bzl",
+    "kernel_abi",
     "kernel_build",
     "kernel_compile_commands",
     "kernel_filegroup",
@@ -200,6 +201,15 @@ def define_kernel_build_and_notrim(
         actual = _select_notrim_target(name, trim_nonlisted_kmi),
     )
 
+    # <name>_extracted_symbols target: extract symbols from <name>_notrim
+    if kwargs.get("kmi_symbol_list"):
+        kernel_abi(
+            name = name + "_abi",
+            kernel_build = name + "_notrim",
+            # Sync with KMI_SYMBOL_LIST_MODULE_GROUPING
+            module_grouping = None,
+        )
+
 def define_common_kernels(
         kmi_configs = None,
         toolchain_version = None,
@@ -248,6 +258,14 @@ def define_common_kernels(
     Targets declared for cross referencing:
     - `kernel_aarch64_kythe_dist`
       - `kernel_aarch64_kythe`
+
+    **ABI monitoring**
+    On branches with ABI monitoring turned on (aka KMI symbol lists are checked
+    in; see argument `kmi_configs`), the following targets are declared:
+
+    - `kernel_aarch64_abi`
+
+    See [`kernel_abi()`](#kernel_abi) for details.
 
     **Prebuilts**
 
