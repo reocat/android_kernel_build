@@ -51,3 +51,7 @@ filegroup(
         "abi/symbols.deny",
     ],
 )
+
+exports_files([
+    "abi/extract_symbols",
+])
