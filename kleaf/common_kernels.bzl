@@ -17,6 +17,7 @@ load(
     ":kernel.bzl",
     "kernel_build",
     "kernel_compile_commands",
+    "kernel_extracted_symbols",
     "kernel_filegroup",
     "kernel_images",
     "kernel_kythe",
@@ -51,19 +52,28 @@ _ARCH_CONFIGS = {
     },
 }
 
-# Valid configs of the value of the kmi_config argument in
-# `define_common_kernels`
-_KMI_CONFIG_VALID_KEYS = [
+# Valid configs of the value of the kmi_config argument to kernel_build
+_KERNEL_BUILD_KMI_CONFIG_VALID_KEYS = [
+    # KMI_SYMBOL_LIST + ADDITIONAL_KMI_SYMBOL_LISTS
     "kmi_symbol_lists",
     "trim_nonlisted_kmi",
     "kmi_symbol_list_strict_mode",
 ]
+
+# Valid configs of the value of the kmi_config argument in
+# `define_common_kernels`
+_KMI_CONFIG_VALID_KEYS = [
+    # KMI_SYMBOL_LIST
+    "kmi_symbol_list",
+] + _KERNEL_BUILD_KMI_CONFIG_VALID_KEYS
 
 # glob() must be executed in a BUILD thread, so this cannot be a global
 # variable.
 def _default_kmi_configs():
     """Return the default value of `kmi_configs` of [`define_common_kernels()`](#define_common_kernels).
     """
+    aarch64_kmi_symbol_list = native.glob(["android/abi_gki_aarch64"])
+    aarch64_kmi_symbol_list = aarch64_kmi_symbol_list[0] if aarch64_kmi_symbol_list else None
     aarch64_kmi_symbol_lists = native.glob(
         ["android/abi_gki_aarch64*"],
         exclude = ["**/*.xml"],
@@ -72,6 +82,7 @@ def _default_kmi_configs():
         "kernel_aarch64": {
             # Assume the value for KMI_SYMBOL_LIST and ADDITIONAL_KMI_SYMBOL_LISTS
             # for build.config.gki.aarch64
+            "kmi_symbol_list": aarch64_kmi_symbol_list,
             "kmi_symbol_lists": aarch64_kmi_symbol_lists,
             # In build.config.gki-debug.aarch64:
             # - If there are kmi_symbol_lists: assume TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1}
@@ -82,6 +93,7 @@ def _default_kmi_configs():
         "kernel_aarch64_debug": {
             # Assume the value for KMI_SYMBOL_LIST and ADDITIONAL_KMI_SYMBOL_LISTS
             # for build.config.gki-debug.aarch64
+            "kmi_symbol_list": aarch64_kmi_symbol_list,
             "kmi_symbol_lists": aarch64_kmi_symbol_lists,
             # Assume TRIM_NONLISTED_KMI="" in build.config.gki-debug.aarch64
             "trim_nonlisted_kmi": False,
@@ -92,15 +104,15 @@ def _default_kmi_configs():
         },
     }
 
-def _filter_keys(d, valid_keys, what):
+def _filter_keys(d, valid_keys, what = None, allow_unknown = False):
     """Remove keys from `d` if the key is not in `valid_keys`.
 
     Fail if there are unknown keys in `d`.
     """
     ret = {key: value for key, value in d.items() if key in valid_keys}
-    if sorted(ret.keys()) != sorted(d.keys()):
+    if not allow_unknown and sorted(ret.keys()) != sorted(d.keys()):
         fail("{what} contains invalid keys {invalid_keys}. Valid keys are: {valid_keys}".format(
-            what = what,
+            what = "<unknown>" if what == None else what,
             invalid_keys = [key for key in d.keys() if key not in valid_keys],
             valid_keys = valid_keys,
         ))
@@ -296,8 +308,9 @@ def define_common_kernels(
         The values of the `kmi_configs` should be a dictionary, where keys
         are one of the following, and values are passed to the corresponding
         argument in [`kernel_build`](#kernel_build):
-        - `kmi_symbol_lists`
-        - `trim_nonlisted_kmi`
+        - `kmi_symbol_list` (corresponds to `KMI_SYMBOL_LIST`)
+        - `kmi_symbol_lists` (corresponds to **`KMI_SYMBOL_LIST` and `ADDITIONAL_KMI_SYMBOL_LISTS`**)
+        - `trim_nonlisted_kmi` (corresponds to `TRIM_NONLISTED_KMI`
 
         If an architecture or configuration is not specified in `kmi_configs`,
         its value is passed to `kernel_build` as `None`, so `kernel_build`
@@ -306,27 +319,32 @@ def define_common_kernels(
 
         If `kmi_configs` is unspecified or `None`, use sensible defaults:
         - `kernel_aarch64`:
+          - `kmi_symbol_list = glob(["android/abi_gki_aarch64"])`
           - `kmi_symbol_lists = glob(["android/abi_gki_aarch64*"])`
           - `TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1}` in `build.config`
         - `kernel_aarch64_debug`:
+          - `kmi_symbol_list = glob(["android/abi_gki_aarch64"])`
           - `kmi_symbol_lists = glob(["android/abi_gki_aarch64*"])`
           - `TRIM_NONLISTED_KMI=""` in `build.config`
         - `kernel_x86_64`:
-          - No `kmi_symbol_lists`
+          - No `kmi_symbol_list` nor `kmi_symbol_lists`
           - `TRIM_NONLISTED_KMI` is not specified in `build.config`
         - `kernel_x86_64_debug`:
-          - No `kmi_symbol_lists`
+          - No `kmi_symbol_list` nor `kmi_symbol_lists`
           - `TRIM_NONLISTED_KMI=""` in `build.config`
 
         That is, the default value is:
         ```
+        aarch64_kmi_symbol_list = native.glob(["android/abi_gki_aarch64"])
         aarch64_kmi_symbol_lists = native.glob(["android/abi_gki_aarch64*"])
         kmi_configs = {
             "kernel_aarch64": {
+                "kmi_symbol_list": aarch64_kmi_symbol_list
                 "kmi_symbol_lists": aarch64_kmi_symbol_lists,
                 "trim_nonlisted_kmi": len(aarch64_kmi_symbol_lists) > 0,
             },
             "kernel_aarch64_debug": {
+                "kmi_symbol_list": aarch64_kmi_symbol_list
                 "kmi_symbol_lists": aarch64_kmi_symbol_lists,
                 "trim_nonlisted_kmi": False,
             },
@@ -380,6 +398,23 @@ def define_common_kernels(
                 name = name,
             ),
         )
+
+        if "kmi_symbol_lists" in kmi_configs and "kmi_symbol_list" not in kmi_configs:
+            fail("//{package}:{name}: kmi_configs[\"{name}\"] must specify the main `kmi_symbol_list` if `kmi_symbol_lists` is specified.".format(
+                package = native.package_name(),
+                name = name,
+            ))
+
+        # For convenience, append kmi_symbol_list to kmi_symbol_lists if caller
+        # forgets to add it.
+        if kmi_config.get("kmi_symbol_list") and kmi_config["kmi_symbol_list"] not in kmi_config.get("kmi_symbol_lists", []):
+            kmi_config["kmi_symbol_lists"] = kmi_config.get("kmi_symbol_lists", []) + [kmi_config["kmi_symbol_list"]]
+
+        kernel_build_kmi_config = _filter_keys(
+            kmi_config,
+            valid_keys = _KERNEL_BUILD_KMI_CONFIG_VALID_KEYS,
+            allow_unknown = True,
+        )
         define_kernel_build_and_notrim(
             name = name,
             srcs = [name + "_sources"],
@@ -396,7 +431,7 @@ def define_common_kernels(
             build_config = arch_config["build_config"],
             visibility = visibility,
             toolchain_version = toolchain_version,
-            **kmi_config
+            **kernel_build_kmi_config
         )
 
         kernel_modules_install(
@@ -448,6 +483,14 @@ def define_common_kernels(
                 name + "_modules_staging_archive",
             ],
         )
+
+        if kmi_config.get("kmi_symbol_list"):
+            kernel_extracted_symbols(
+                name = name + "_extracted_symbols",
+                srcs = [name + "_notrim"],
+                # Sync with KMI_SYMBOL_LIST_MODULE_GROUPING
+                module_grouping = None,
+            )
 
         copy_to_dist_dir(
             name = name + "_dist",
