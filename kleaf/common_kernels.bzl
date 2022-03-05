@@ -17,10 +17,12 @@ load(
     ":kernel.bzl",
     "kernel_build",
     "kernel_compile_commands",
+    "kernel_extracted_symbols",
     "kernel_filegroup",
     "kernel_images",
     "kernel_kythe",
     "kernel_modules_install",
+    "kernel_update_symbols",
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load(
@@ -200,6 +202,19 @@ def define_kernel_build_and_notrim(
         actual = _select_notrim_target(name, trim_nonlisted_kmi),
     )
 
+    # <name>_extracted_symbols target: extract symbols from <name>_notrim
+    if kwargs.get("kmi_symbol_list"):
+        kernel_extracted_symbols(
+            name = name + "_extracted_symbols",
+            kernel_build = name + "_notrim",
+            # Sync with KMI_SYMBOL_LIST_MODULE_GROUPING
+            module_grouping = None,
+        )
+        kernel_update_symbols(
+            name = name + "_update_symbols",
+            src = name + "_extracted_symbols",
+        )
+
 def define_common_kernels(
         kmi_configs = None,
         toolchain_version = None,
@@ -248,6 +263,15 @@ def define_common_kernels(
     Targets declared for cross referencing:
     - `kernel_aarch64_kythe_dist`
       - `kernel_aarch64_kythe`
+
+    **ABI monitoring**
+    On branches with ABI monitoring turned on (aka KMI symbol lists are checked
+    in; see argument `kmi_configs`), the following targets are declared:
+
+    - `kernel_aarch64_update_symbols`
+
+    `bazel run`-ning the `<name>_extracted_symbols` target is equivalent to
+    running `build_abi.sh --update_symbol_list`.
 
     **Prebuilts**
 
