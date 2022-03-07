@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04525782_7fb28122",
+        "filename": "kleaf/search_and_mv_output.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-07T15:21:12Z",
+      "side": 1,
+      "message": "that is \n\n  sys.exit(f\"ERROR: srcdir {sdir} is not a directory.\")\n  \nhttps://docs.python.org/3.10/library/sys.html#sys.exit",
+      "range": {
+        "startLine": 102,
+        "startChar": 6,
+        "endLine": 102,
+        "endChar": 49
+      },
+      "revId": "96ceafd2fe90e705e04b44d9414f0394c959ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
