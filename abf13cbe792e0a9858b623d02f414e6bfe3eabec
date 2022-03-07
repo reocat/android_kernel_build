@@ -16,6 +16,23 @@
       "message": "We might want this to allow parallel building of multiple _kernel_build targets. Matthias, WDYT?",
       "revId": "abf13cbe792e0a9858b623d02f414e6bfe3eabec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8889fce1_0f5005b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-07T14:15:15Z",
+      "side": 1,
+      "message": "the OUT_DIR in local mode contains quite some artifacts that would be regenerated during the individual `make` runs. I can see how that eats up the benefit. But generally this will solve the concurrency problem.",
+      "revId": "abf13cbe792e0a9858b623d02f414e6bfe3eabec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
