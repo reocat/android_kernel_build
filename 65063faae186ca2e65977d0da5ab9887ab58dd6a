@@ -16,6 +16,24 @@
       "message": "For non-sandbox builds, I should NOT be removing the output artifacts from $OUT_DIR to allow caching. However, there\u0027re no way for me to distinguish sandbox vs local builds, except with one of these hacks:\n\n- Check the existence of .git\n- Add a `--local` flag to the bazel.py wrapper that expands to `--strategy KernelBuild\u003dlocal --//build/kernel/kleaf:local`, and let `_kernel_build` check `--//build/kernel/kleaf:local`. \n- Do this CL; do not distinguish sandbox and local builds, and ALWAYS copy.\n\nWDYT?",
       "revId": "65063faae186ca2e65977d0da5ab9887ab58dd6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37254d40_46e886ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-08T20:54:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9de56c43_78df41c6",
+      "revId": "65063faae186ca2e65977d0da5ab9887ab58dd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
