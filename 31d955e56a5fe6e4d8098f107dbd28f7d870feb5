@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42aa8b76_0a03b23b",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-08T20:50:40Z",
+      "side": 1,
+      "message": "Does it look better now?",
+      "parentUuid": "bf53cbcc_1404e7c7",
+      "revId": "31d955e56a5fe6e4d8098f107dbd28f7d870feb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbabeb5a_74313afe",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-02-28T16:57:11Z",
       "side": 1,
       "message": "I would expect this to be part of the bazel core or at least part of some common libraries. Have you checked?",
+      "revId": "31d955e56a5fe6e4d8098f107dbd28f7d870feb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6d4e038_3347d8c2",
+        "filename": "kleaf/fail.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-08T20:50:40Z",
+      "side": 1,
+      "message": "Yes; I am not able to find anything related to this.",
+      "parentUuid": "dbabeb5a_74313afe",
       "revId": "31d955e56a5fe6e4d8098f107dbd28f7d870feb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
