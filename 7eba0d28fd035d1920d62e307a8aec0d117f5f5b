@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24acd68a_fe736af6",
+        "filename": "BUILD.bazel",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-08T20:53:44Z",
+      "side": 1,
+      "message": "I need this in _get_hermetic_path_deps. I can move it to a separate change if you want...",
+      "parentUuid": "6b671c25_86b44270",
+      "revId": "7eba0d28fd035d1920d62e307a8aec0d117f5f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7540d66b_d5d9d9a1",
