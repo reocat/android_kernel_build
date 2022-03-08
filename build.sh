@@ -417,6 +417,24 @@ OLD_ENVIRONMENT=$(mktemp)
 export -p > ${OLD_ENVIRONMENT}
 
 export ROOT_DIR=$($(dirname $(readlink -f $0))/gettop.sh)
+
+eq_bazel_command=$(${ROOT_DIR}/build/kernel/kleaf/convert_to_bazel.sh)
+if [[ $? -eq 0 ]]; then
+    echo "************************************************************************" >&2
+    echo "* WARNING: build.sh is deprecated. Please migrate to Bazel."
+    echo "*          Possibly equivalent Bazel command:" >&2
+    echo "*" >&2
+    echo "*     $eq_bazel_command" >&2
+    echo "*" >&2
+    echo "************************************************************************" >&2
+else
+    echo "*********************************************************" >&2
+    echo "WARNING: build.sh is deprecated. Please migrate to Bazel."
+    echo "*********************************************************" >&2
+fi
+echo >&2
+
+
 source "${ROOT_DIR}/build/build_utils.sh"
 source "${ROOT_DIR}/build/_setup_env.sh"
 
