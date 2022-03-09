@@ -99,22 +99,24 @@ BUILDTOOLS_PREBUILT_BIN
 )
 
 if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
-  HOST_TOOLS=${OUT_DIR}/host_tools
-  rm -rf ${HOST_TOOLS}
-  mkdir -p ${HOST_TOOLS}
-  for tool in \
-      bash \
-      git \
-      install \
-      perl \
-      rsync \
-      sh \
-      tar \
-      ${ADDITIONAL_HOST_TOOLS}
-  do
-      ln -sf $(which $tool) ${HOST_TOOLS}
-  done
-  PATH=${HOST_TOOLS}
+  if [ "${KLEAF_HERMETIC_TOOLCHAIN:-0}" -eq 0 ]; then
+    HOST_TOOLS=${OUT_DIR}/host_tools
+    rm -rf ${HOST_TOOLS}
+    mkdir -p ${HOST_TOOLS}
+    for tool in \
+        bash \
+        git \
+        install \
+        perl \
+        rsync \
+        sh \
+        tar \
+        ${ADDITIONAL_HOST_TOOLS}
+    do
+        ln -sf $(which $tool) ${HOST_TOOLS}
+    done
+    PATH=${HOST_TOOLS}
+  fi
 
   # use relative paths for file name references in the binaries
   # (e.g. debug info)
