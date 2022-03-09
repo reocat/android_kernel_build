@@ -1210,6 +1210,7 @@ def _kernel_build_dump_toolchain_version(ctx):
 def _kmi_symbol_list_strict_mode(ctx, all_output_files):
     """Run for `KMI_SYMBOL_LIST_STRICT_MODE`.
     """
+    print("{}: ctx.attr.kmi_symbol_list_strict_mode = {}".format(ctx.label, ctx.attr.kmi_symbol_list_strict_mode))
     if not ctx.attr.kmi_symbol_list_strict_mode:
         return None
     if not ctx.file.raw_kmi_symbol_list:
