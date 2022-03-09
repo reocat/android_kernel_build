@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d08857a1_f38cf8e5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-09T04:07:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7540d66b_d5d9d9a1",
+      "revId": "7eba0d28fd035d1920d62e307a8aec0d117f5f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de045473_38139ebf",
@@ -66,6 +84,24 @@
       "writtenOn": "2022-03-07T15:04:08Z",
       "side": 1,
       "message": "We should rework this mechanism to have a rule that creates an output dir with host tools and build tools inside\n\nAll the tools need to be explicitly listed as files (labels) pointing into the corresponding build tools projects. That way we can get rid of the symbolic links in build/kernel/build-tools. Host tools could be listed as they are now.\n\nBy doing that we can either setup the path for kernel builds or use the tools directly by label for simpler rules.",
+      "revId": "7eba0d28fd035d1920d62e307a8aec0d117f5f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9250d289_9951028a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-09T04:07:04Z",
+      "side": 1,
+      "message": "Done, see CL:2017255",
+      "parentUuid": "de045473_38139ebf",
       "revId": "7eba0d28fd035d1920d62e307a8aec0d117f5f5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
