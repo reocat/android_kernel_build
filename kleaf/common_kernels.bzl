@@ -215,6 +215,16 @@ def define_kernel_build_and_notrim(
             src = name + "_extracted_symbols",
         )
 
+        new_kwargs = dict(kwargs)
+        new_kwargs["kmi_symbol_list"] = name + "_extracted_symbols"
+        kernel_build(
+            name = name + "_with_extracted_symbols",
+            trim_nonlisted_kmi = trim_nonlisted_kmi,
+            kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
+            # TODO(b/197938817): Shortcut the build if `name + "_extracted_symbols"` and kwargs["kmi_symbol_list"] have the same content
+            **new_kwargs
+        )
+
 def define_common_kernels(
         kmi_configs = None,
         toolchain_version = None,
