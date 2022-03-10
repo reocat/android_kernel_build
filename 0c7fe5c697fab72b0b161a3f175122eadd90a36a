@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d019780f_244b8884",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-10T11:11:38Z",
+      "side": 1,
+      "message": "mention LTO",
+      "revId": "0c7fe5c697fab72b0b161a3f175122eadd90a36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7225f765_2b53c120",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-10T11:11:38Z",
+      "side": 1,
+      "message": "let\u0027s actively opt in to that deprecation (or out). build.config.common could be defining a flag to either opt in or out the deprecation. Probably opt out on android13*",
+      "revId": "0c7fe5c697fab72b0b161a3f175122eadd90a36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3841b3c_302b2053",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-10T11:11:38Z",
+      "side": 1,
+      "message": "is deprecated for this branch. Please migrate to Kleaf.",
+      "range": {
+        "startLine": 425,
+        "startChar": 37,
+        "endLine": 425,
+        "endChar": 47
+      },
+      "revId": "0c7fe5c697fab72b0b161a3f175122eadd90a36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0af818d_1e088273",
+        "filename": "kleaf/convert_to_bazel.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-10T11:11:38Z",
+      "side": 1,
+      "message": "this might need to be prefixed with ${ROOT_DIR} if ${CWD} !\u003d ${ROOT_DIR}\n\n(but this is a rare case and alternatively we could also emit a `cd ${ROOT_DIR} \u0026\u0026 tools/bazel` in that case)",
+      "range": {
+        "startLine": 23,
+        "startChar": 54,
+        "endLine": 23,
+        "endChar": 69
+      },
+      "revId": "0c7fe5c697fab72b0b161a3f175122eadd90a36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
