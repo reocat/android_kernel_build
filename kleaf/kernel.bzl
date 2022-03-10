@@ -164,6 +164,7 @@ def kernel_build(
         additional_kmi_symbol_lists = None,
         trim_nonlisted_kmi = None,
         kmi_symbol_list_strict_mode = None,
+        unstripped_modules = None,
         toolchain_version = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -372,6 +373,7 @@ def kernel_build(
           `[kmi_symbol_list] + additional_kmi_symbol_lists`
           and the KMI resulting from the build, to ensure
           they match 1-1.
+        unstripped_modules: List of unstripped in-tree modules for debugging purposes.
         toolchain_version: The toolchain version to depend on.
         kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
@@ -464,6 +466,7 @@ def kernel_build(
         kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if all_kmi_symbol_lists else None,
         kmi_symbol_list_src = kmi_symbol_list,
+        unstripped_modules = unstripped_modules,
         **kwargs
     )
 
@@ -1144,6 +1147,8 @@ _KernelBuildAbiInfo = provider(
     fields = {
         "trim_nonlisted_kmi": "Value of `trim_nonlisted_kmi` in [`kernel_build()`](#kernel_build).",
         "kmi_symbol_list_src": "The **source** main `kmi_symbol_list`. Not to be confused with the `_kmi_symbol_list` rule.",
+        "unstripped_dir": "A directory containing unstripped modules.",
+        "unstripped_modules_archive": "An archive containing `unstripped_dir`. This should be used when `unstripped_dir` is not present.",
     },
 )
 
@@ -1236,6 +1241,26 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
             progress_message = "Checking toolchain version against base kernel {}".format(ctx.label),
         )
         return out
+
+def _kernel_build_unstripped_modules(ctx):
+    if not ctx.attr.unstripped_modules:
+        return {}
+    unstripped_dir = ctx.actions.declare_directory("{}_unstripped_modules/unstripped".format(ctx.attr.name))
+    unstripped_modules_archive = ctx.actions.declare_file("{}_unstripped_modules/unstripped_modules.tar.gz")
+
+    command = ""
+    command += ctx.attr.config[_KernelEnvInfo].setup + """
+        mkdir -p {unstripped_dir}
+      # TODO put unstripped modules inside
+        tar -czf {unstripped_modules_archive} -C $(dirname {unstripped_dir}) $(basename {unstripped_dir})
+    """.format(
+        unstripped_dir = unstripped_dir.path,
+        unstripped_modules_archive = unstripped_modules_archive.path,
+    )
+    return {
+        "unstripped_dir": unstripped_dir,
+        "unstripped_modules_archive": unstripped_modules_archive,
+    }
 
 def _kernel_build_dump_toolchain_version(ctx):
     this_toolchain = ctx.attr.config[_KernelToolchainInfo].toolchain_version
@@ -1436,6 +1461,7 @@ def _kernel_build_impl(ctx):
         command = command,
     )
 
+    unstripped_module_outs = _kernel_build_unstripped_modules(ctx)
     toolchain_version_out = _kernel_build_dump_toolchain_version(ctx)
     kmi_strict_mode_out = _kmi_symbol_list_strict_mode(ctx, all_output_files)
 
@@ -1477,6 +1503,7 @@ def _kernel_build_impl(ctx):
     kernel_build_abi_info = _KernelBuildAbiInfo(
         trim_nonlisted_kmi = ctx.attr.trim_nonlisted_kmi,
         kmi_symbol_list_src = ctx.file.kmi_symbol_list_src,
+        **unstripped_module_outs
     )
 
     output_group_kwargs = {}
@@ -1489,6 +1516,7 @@ def _kernel_build_impl(ctx):
     default_info_files.append(toolchain_version_out)
     if kmi_strict_mode_out:
         default_info_files.append(kmi_strict_mode_out)
+    default_info_files += unstripped_module_outs.values()
     default_info = DefaultInfo(files = depset(default_info_files))
 
     return [
@@ -1531,6 +1559,7 @@ _kernel_build = rule(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
         ),
+        "unstripped_modules": attr.string_list(),
         "_kernel_abi_scripts": attr.label(default = "//build/kernel:kernel-abi-scripts"),
         "_compare_to_symbol_list": attr.label(default = "//build/kernel:abi/compare_to_symbol_list", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
