@@ -444,6 +444,16 @@ def define_common_kernels(
             **kmi_config
         )
 
+        # For convenience, expose KMI symbol lists to public
+        alias(
+            name = name + "_kmi_symbol_list",
+            actual = kmi_config.get("kmi_symbol_list"),
+        )
+        filegroup(
+            name = name + "_additional_kmi_symbol_list",
+            srcs = kmi_config.get("additional_kmi_symbol_lists"),
+        )
+
         kernel_modules_install(
             name = name + "_modules_install",
             kernel_modules = [],
