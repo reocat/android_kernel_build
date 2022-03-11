@@ -1343,9 +1343,10 @@ def _kernel_build_impl(ctx):
     all_output_files = {}
     for attr in ("outs", "module_outs", "implicit_outs", "internal_outs"):
         all_output_files[attr] = {name: ctx.actions.declare_file("{}/{}".format(ctx.label.name, name)) for name in getattr(ctx.attr, attr)}
-    all_output_names = []
-    for d in all_output_files.values():
-        all_output_names += d.keys()
+    all_output_names_minus_modules = []
+    for attr, d in all_output_files.items():
+        if attr != "module_outs":
+            all_output_names_minus_modules += d.keys()
 
     modules_staging_archive = ctx.actions.declare_file(
         "{name}/modules_staging_dir.tar.gz".format(name = ctx.label.name),
@@ -1395,7 +1396,7 @@ def _kernel_build_impl(ctx):
                        --transform "s,^/,,"                             \
                        --null -T -
          # Grab outputs. If unable to find from OUT_DIR, look at KBUILD_MIXED_TREE as well.
-           {search_and_mv_output} --srcdir ${{OUT_DIR}} {kbuild_mixed_tree_arg} {dtstree_arg} --dstdir {ruledir} {all_output_names}
+           {search_and_mv_output} --srcdir ${{OUT_DIR}} {kbuild_mixed_tree_arg} {dtstree_arg} --dstdir {ruledir} {all_output_names_minus_modules}
          # Check if there are remaining *.ko files
            remaining_ko_files=$(find ${{OUT_DIR}} -type f -name '*.ko')
            if [[ ${{remaining_ko_files}} ]]; then
@@ -1407,6 +1408,10 @@ def _kernel_build_impl(ctx):
            fi
          # Archive modules_staging_dir
            tar czf {modules_staging_archive} -C {modules_staging_dir} .
+         # Grab in-tree modules
+           if [[ -n "{all_module_names}" ]]; then
+             {search_and_mv_output} --srcdir {modules_staging_dir} --dstdir {ruledir} {all_module_names}
+           fi
          # Clean up staging directories
            rm -rf {modules_staging_dir}
          """.format(
@@ -1414,7 +1419,8 @@ def _kernel_build_impl(ctx):
         kbuild_mixed_tree_arg = "--srcdir ${KBUILD_MIXED_TREE}" if kbuild_mixed_tree else "",
         dtstree_arg = "--srcdir ${OUT_DIR}/${dtstree}",
         ruledir = ruledir.path,
-        all_output_names = " ".join(all_output_names),
+        all_output_names_minus_modules = " ".join(all_output_names_minus_modules),
+        all_module_names = " ".join(all_output_files["module_outs"].keys()),
         modules_staging_dir = modules_staging_dir,
         modules_staging_archive = modules_staging_archive.path,
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
