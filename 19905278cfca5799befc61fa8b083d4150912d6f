@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613015ed_11bb0ae4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-11T03:15:36Z",
+      "side": 1,
+      "message": "NOTE: this was needed for https://android-review.googlesource.com/c/kernel/google-modules/raviole-device/+/2022075/1/BUILD.bazel, but we shouldn\u0027t do this because slider should have its own kmi symbol list.",
+      "revId": "19905278cfca5799befc61fa8b083d4150912d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
