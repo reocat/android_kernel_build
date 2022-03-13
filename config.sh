@@ -28,7 +28,7 @@ export ROOT_DIR=$($(dirname $(readlink -f $0))/gettop.sh)
 
 # Disable hermetic toolchain for ncurses
 # TODO: Support hermetic toolchain with ncurses menuconfig, xconfig
-HERMETIC_TOOLCHAIN=0
+HERMETIC_TOOLCHAIN=1
 
 set -e
 set -a
@@ -82,25 +82,19 @@ function menuconfig() {
   KCONFIG_CONFIG=${new_fragment} ${ROOT_DIR}/${KERNEL_DIR}/scripts/kconfig/merge_config.sh -m ${FRAGMENT_CONFIG} ${changed_config}
   sort_config ${new_fragment} > ${FRAGMENT_CONFIG}
   set +x
-
-
   echo
   echo "Updated ${FRAGMENT_CONFIG}"
   echo
 }
-
 menucommand="${1:-menuconfig}"
 MAKE_ARGS="${@:2}"
-
 if [[ "${menucommand}" =~ "*config" ]]; then
   MAKE_ARGS="$*"
   menucommand="menuconfig"
 fi
-
 # let all the POST_DEFCONFIG_CMDS run since they may clean up loose files, then exit
 append_cmd POST_DEFCONFIG_CMDS "exit"
 # menuconfig should go first. If POST_DEFCONFIG_CMDS modifies the .config, then we probably don't
 # want those changes to end up in the resulting saved defconfig
 POST_DEFCONFIG_CMDS="menuconfig ${menucommand} && ${POST_DEFCONFIG_CMDS}"
-
 ${ROOT_DIR}/build/build.sh ${MAKE_ARGS}
