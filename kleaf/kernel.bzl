@@ -188,6 +188,8 @@ def kernel_build(
         additional_kmi_symbol_lists = None,
         trim_nonlisted_kmi = None,
         kmi_symbol_list_strict_mode = None,
+        unstripped_modules = None,
+        compress_unstripped_modules = None,
         toolchain_version = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -396,6 +398,12 @@ def kernel_build(
           `[kmi_symbol_list] + additional_kmi_symbol_lists`
           and the KMI resulting from the build, to ensure
           they match 1-1.
+        unstripped_modules: If `True`, provide all unstripped in-tree.
+
+          Approximately equivalent to `UNSTRIPPED_MODULES=*` in `build.sh`.
+        compress_unstripped_modules: If `True`, compress the unstripped modules into a tarball.
+
+          Implies `unstripped_modules`.
         toolchain_version: The toolchain version to depend on.
         kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
@@ -438,6 +446,9 @@ def kernel_build(
         all_kmi_symbol_lists.append(kmi_symbol_list)
     if additional_kmi_symbol_lists:
         all_kmi_symbol_lists += additional_kmi_symbol_lists
+
+    if compress_unstripped_modules and not unstripped_modules:
+        unstripped_modules = True
 
     _kmi_symbol_list(
         name = kmi_symbol_list_target_name,
@@ -488,6 +499,8 @@ def kernel_build(
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if all_kmi_symbol_lists else None,
         kmi_symbol_list_src = kmi_symbol_list,
         additional_kmi_symbol_lists_src = additional_kmi_symbol_lists,
+        unstripped_modules = unstripped_modules,
+        compress_unstripped_modules = compress_unstripped_modules,
         **kwargs
     )
 
@@ -1262,6 +1275,31 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
         )
         return out
 
+def _kernel_build_unstripped_modules_archive(ctx, unstripped_dir):
+    if ctx.attr.compress_unstripped_modules and not ctx.attr.unstripped_modules:
+        fail("{}: compress_unstripped_modules requires unstripped_modules".format(ctx.label))
+
+    if not ctx.attr.unstripped_modules or not ctx.attr.compress_unstripped_modules:
+        return None
+
+    unstripped_modules_archive = ctx.actions.declare_file("{}_unstripped_modules/unstripped_modules.tar.gz")
+
+    command = ""
+    command += ctx.attr.config[_KernelEnvInfo].setup + """
+        tar -czf {unstripped_modules_archive} -C $(dirname {unstripped_dir}) $(basename {unstripped_dir})
+    """.format(
+        unstripped_dir = unstripped_dir.path,
+        unstripped_modules_archive = unstripped_modules_archive.path,
+    )
+    ctx.actions.run_shell(
+        inputs = [unstripped_dir] + ctx.attr.config[_KernelEnvInfo].dependencies,
+        outputs = [unstripped_modules_archive],
+        command = command,
+        mnemonic = "KernelBuildUnstrippedModulesArchive",
+        progress_message = "Archiving unstripped in-tree modules {}".format(ctx.label),
+    )
+    return unstripped_modules_archive
+
 def _kernel_build_dump_toolchain_version(ctx):
     this_toolchain = ctx.attr.config[_KernelToolchainInfo].toolchain_version
     out = ctx.actions.declare_file("{}_toolchain_version/{}".format(ctx.attr.name, TOOLCHAIN_VERSION_FILENAME))
@@ -1391,6 +1429,10 @@ def _kernel_build_impl(ctx):
     interceptor_output = ctx.actions.declare_file("{name}/interceptor_output.bin".format(name = ctx.label.name))
     modules_staging_dir = modules_staging_archive.dirname + "/staging"
 
+    unstripped_dir = None
+    if ctx.attr.unstripped_modules:
+        unstripped_dir = ctx.actions.declare_directory("{name}/unstripped".format(name = ctx.label.name))
+
     # all outputs that |command| generates
     command_outputs = [
         ruledir,
@@ -1400,6 +1442,8 @@ def _kernel_build_impl(ctx):
     ]
     for d in all_output_files.values():
         command_outputs += d.values()
+    if unstripped_dir:
+        command_outputs.append(unstripped_dir)
 
     command = ""
     command += ctx.attr.config[_KernelEnvInfo].setup
@@ -1421,6 +1465,13 @@ def _kernel_build_impl(ctx):
             ruledir = ruledir.path,
             all_module_names_file = all_module_names_file.path,
         )
+
+    grab_unstripped_intree_modules_cmd = ""
+    if unstripped_dir:
+        grab_unstripped_intree_modules_cmd = """
+            mkdir -p {unstripped_dir}
+            find ${{OUT_DIR}} -name '*.ko' -exec cp {{}} {unstripped_dir} \\;
+        """.format(unstripped_dir = unstripped_dir.path)
 
     command += """
          # Actual kernel build
@@ -1446,6 +1497,8 @@ def _kernel_build_impl(ctx):
            tar czf {modules_staging_archive} -C {modules_staging_dir} .
          # Grab in-tree modules
            {grab_intree_modules_cmd}
+         # Grab unstripped in-tree modules
+           {grab_unstripped_intree_modules_cmd}
          # Check if there are remaining *.ko files
            remaining_ko_files=$(comm -13 <(cat {all_module_names_file} | sort) <(find {modules_staging_dir} -type f -name '*.ko' -exec basename {{}} \\; | sort))
            if [[ ${{remaining_ko_files}} ]]; then
@@ -1464,6 +1517,7 @@ def _kernel_build_impl(ctx):
         ruledir = ruledir.path,
         all_output_names_minus_modules = " ".join(all_output_names_minus_modules),
         grab_intree_modules_cmd = grab_intree_modules_cmd,
+        grab_unstripped_intree_modules_cmd = grab_unstripped_intree_modules_cmd,
         all_module_names_file = all_module_names_file.path,
         modules_staging_dir = modules_staging_dir,
         modules_staging_archive = modules_staging_archive.path,
@@ -1482,6 +1536,7 @@ def _kernel_build_impl(ctx):
         command = command,
     )
 
+    unstripped_modules_archive = _kernel_build_unstripped_modules_archive(ctx, unstripped_dir)
     toolchain_version_out = _kernel_build_dump_toolchain_version(ctx)
     kmi_strict_mode_out = _kmi_symbol_list_strict_mode(ctx, all_output_files)
 
@@ -1536,6 +1591,8 @@ def _kernel_build_impl(ctx):
     default_info_files.append(toolchain_version_out)
     if kmi_strict_mode_out:
         default_info_files.append(kmi_strict_mode_out)
+    if unstripped_modules_archive:
+        default_info_files.append(unstripped_modules_archive)
     default_info = DefaultInfo(files = depset(default_info_files))
 
     return [
@@ -1578,6 +1635,8 @@ _kernel_build = rule(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
         ),
+        "unstripped_modules": attr.bool(),
+        "compress_unstripped_modules": attr.bool(),
         "_kernel_abi_scripts": attr.label(default = "//build/kernel:kernel-abi-scripts"),
         "_compare_to_symbol_list": attr.label(default = "//build/kernel:abi/compare_to_symbol_list", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
