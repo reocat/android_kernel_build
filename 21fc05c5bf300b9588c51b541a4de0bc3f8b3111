@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f746f12_2e5c3217",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-15T18:22:47Z",
+      "side": 1,
+      "message": "Not yet.\n\nCL:2008718 attempts to do this, but the build breaks for a non-obvious reason. See b/222592011",
+      "parentUuid": "42d17453_db216e71",
+      "revId": "21fc05c5bf300b9588c51b541a4de0bc3f8b3111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc1b8e43_1b7822fd",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-03-15T15:15:47Z",
       "side": 1,
       "message": "why would we offer that?",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 85
+      },
+      "revId": "21fc05c5bf300b9588c51b541a4de0bc3f8b3111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9730c77d_06b27ca2",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-15T18:22:47Z",
+      "side": 1,
+      "message": "This is for\n\nhttps://android-review.googlesource.com/c/kernel/build/+/2017255/11/kleaf/kernel.bzl#674\n\n_setup_env.sh completely overrides PATH because HERMETIC_TOOLCHAIN\u003d1, but we don\u0027t want it to.",
+      "parentUuid": "7c2963fe_f3a53fb8",
       "range": {
         "startLine": 6,
         "startChar": 0,
@@ -94,6 +136,30 @@
       "writtenOn": "2022-03-15T15:15:47Z",
       "side": 1,
       "message": "what PATH are you exporting?\nThat appears to work without here: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/BUILD.bazel;l\u003d18",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "21fc05c5bf300b9588c51b541a4de0bc3f8b3111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a93a8eac_5b5d8517",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-15T18:22:47Z",
+      "side": 1,
+      "message": "This is for L36 so which and basename in a subshell can work.\n\nThis PATH is the original PATH (that points to /usr/bin/ etc.)\n\nThis line is not needed in this CL, indeed. I have this line because of this CL:\n\nCL:2008718\n\nWhen I specify `--action_env\u003dPATH\u003d\u003cmypath\u003e`, Bazel executes the commands with the following:\n\n```\n  (cd \u003c...\u003e/execroot/__main__ \u0026\u0026 \\\n  exec env - \\\n    PATH\u003d\u0027\u003cmypath\u003e\u0027 \\\n  /bin/bash -c \u0027\u003ccommand\u003e\u0027)\n```\n\n... so PATH is not exported, and `which` in the subshell won\u0027t work (PATH does not propogate to the subshell).\n\nI can delete this line and move it to CL:2008718 if you want.",
+      "parentUuid": "b909a946_2bd29605",
       "range": {
         "startLine": 34,
         "startChar": 0,
