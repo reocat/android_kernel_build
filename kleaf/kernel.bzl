@@ -136,6 +136,30 @@ def _transform_kernel_build_outs(name, what, outs):
     else:
         fail("{}: Invalid type for {}: {}".format(name, what, type(outs)))
 
+def _kernel_build_outs_add_vmlinux(name, outs):
+    notrim_outs = outs
+    added_vmlinux = False
+    if notrim_outs == None:
+        notrim_outs = ["vmlinux"]
+        added_vmlinux = True
+    if type(notrim_outs) == type([]):
+        if "vmlinux" not in notrim_outs:
+            # don't use append to avoid changing outs
+            notrim_outs = notrim_outs + ["vmlinux"]
+            added_vmlinux = True
+    elif type(outs) == type({}):
+        notrim_outs_new = {}
+        for k, v in notrim_outs.items():
+            if "vmlinux" not in v:
+                # don't use append to avoid changing outs
+                v = v + ["vmlinux"]
+                added_vmlinux = True
+            notrim_outs_new[k] = v
+        notrim_outs = notrim_outs_new
+    else:
+        fail("{}: Invalid type for outs: {}".format(name, type(outs)))
+    return notrim_outs, added_vmlinux
+
 def kernel_build(
         name,
         build_config,
@@ -368,7 +392,6 @@ def kernel_build(
 
           These arguments applies on the target with `{name}`, `{name}_headers`, `{name}_uapi_headers`, and `{name}_vmlinux_btf`.
     """
-
     env_target_name = name + "_env"
     config_target_name = name + "_config"
     modules_prepare_target_name = name + "_modules_prepare"
@@ -1531,6 +1554,57 @@ _kernel_build = rule(
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
 )
+
+def kernel_build_and_abi(
+        name,
+        define_abi_targets = None,
+        # for kernel_build
+        **kwargs):
+    """Declare multiple targets to support ABI monitoring.
+
+    This macro is meant to be used in place of the [`kernel_build`](#kernel_build)
+    marco. All arguments in `kwargs` are passed to `kernel_build` directly.
+
+    For example, you may have the following declaration. (For actual definition
+    of `kernel_aarch64`, see
+    [`define_common_kernels()`](#define_common_kernels).
+
+    ```
+    kernel_build_and_abi(name = "kernel_aarch64", **kwargs)
+    ```
+
+    This is equivalent to the following:
+
+    ```
+    kernel_build(name = "kernel_aarch64", **kwargs)
+
+    # if define_abi_targets, also define some internal targets
+    ```
+
+    Args:
+      name: Name of the main `kernel_build`.
+      define_abi_targets: Whether to create the `<name>_abi` target and
+        targets to support it.
+
+        If `False`, this macro is equivalent to just calling
+        `kernel_build(name, **kwargs)`.
+      kwargs: See [`kernel_build.kwargs`](#kernel_build-kwargs)
+    """
+
+    kernel_build(name = name, **kwargs)
+
+    if not define_abi_targets:
+        return
+
+    notrim_outs, added_vmlinux = _kernel_build_outs_add_vmlinux(name, kwargs.get("outs"))
+    if kwargs.get("trim_nonlisted_kmi") or added_vmlinux:
+        notrim_kwargs = dict(kwargs)
+        notrim_kwargs["outs"] = _transform_kernel_build_outs(name + "_notrim", "outs", notrim_outs)
+        notrim_kwargs["trim_nonlisted_kmi"] = False
+        notrim_kwargs["kmi_symbol_list_strict_mode"] = False
+        kernel_build(name = name + "_notrim", **notrim_kwargs)
+    else:
+        native.alias(name = name + "_notrim", actual = name)
 
 def _modules_prepare_impl(ctx):
     command = ctx.attr.config[_KernelEnvInfo].setup + """
