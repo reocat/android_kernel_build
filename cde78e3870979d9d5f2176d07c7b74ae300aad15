@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "924a7a75_cfd618db",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 569,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-15T15:33:26Z",
+      "side": 1,
+      "message": "that function name does not really describe what the function does",
+      "revId": "cde78e3870979d9d5f2176d07c7b74ae300aad15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e13d712_fc9c1608",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-15T15:33:26Z",
+      "side": 1,
+      "message": "any chance we have access to `str.removesuffix`?\n\nhttps://docs.python.org/3.10/library/stdtypes.html#str.removesuffix",
+      "revId": "cde78e3870979d9d5f2176d07c7b74ae300aad15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8980b1b0_e05b842f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-15T15:33:26Z",
+      "side": 1,
+      "message": "this is generally a good change and we should have done this in build.sh already. Yet, it causes a lot of artifacts in parallel and we were naturally saving some disk space by reusing the same out dir.",
+      "revId": "cde78e3870979d9d5f2176d07c7b74ae300aad15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
