@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc1b8e43_1b7822fd",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-15T15:15:47Z",
+      "side": 1,
+      "message": "license header",
+      "revId": "21fc05c5bf300b9588c51b541a4de0bc3f8b3111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c2963fe_f3a53fb8",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-15T15:15:47Z",
+      "side": 1,
+      "message": "why would we offer that?",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 85
+      },
+      "revId": "21fc05c5bf300b9588c51b541a4de0bc3f8b3111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93adb27e_6e8cd1d2",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-15T15:15:47Z",
+      "side": 1,
+      "message": "_hermetic_tools_impl",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 9
+      },
+      "revId": "21fc05c5bf300b9588c51b541a4de0bc3f8b3111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b909a946_2bd29605",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-15T15:15:47Z",
+      "side": 1,
+      "message": "what PATH are you exporting?\nThat appears to work without here: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/BUILD.bazel;l\u003d18",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "21fc05c5bf300b9588c51b541a4de0bc3f8b3111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
