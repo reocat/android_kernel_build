@@ -16,6 +16,7 @@ load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 load(
     ":kernel.bzl",
     "kernel_build",
+    "kernel_build_and_abi",
     "kernel_compile_commands",
     "kernel_filegroup",
     "kernel_images",
@@ -177,27 +178,12 @@ def define_kernel_build_and_notrim(
       kwargs: passthrough to `kernel_build`
     """
 
-    kernel_build(
+    kernel_build_and_abi(
         name = name,
         visibility = visibility,
         trim_nonlisted_kmi = trim_nonlisted_kmi,
         kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
         **kwargs
-    )
-
-    # <name>_notrim_internal target: trimming is always disabled.
-    kernel_build(
-        name = name + "_notrim_internal",
-        trim_nonlisted_kmi = False,
-        kmi_symbol_list_strict_mode = False,
-        **kwargs
-    )
-
-    # <name>_notrim target: alias to the target with no trimming. This avoids
-    # building the extra <name>_notrim_internal target when it is not necessary.
-    native.alias(
-        name = name + "_notrim",
-        actual = _select_notrim_target(name, trim_nonlisted_kmi),
     )
 
 def define_common_kernels(
@@ -422,6 +408,7 @@ def define_common_kernels(
             module_outs = GKI_MODULES,
             build_config = arch_config["build_config"],
             visibility = visibility,
+            create_targets_for_abi = kmi_config.get("kmi_symbol_list"),
             toolchain_version = toolchain_version,
             **kmi_config
         )
