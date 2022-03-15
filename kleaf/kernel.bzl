@@ -189,6 +189,7 @@ def kernel_build(
         additional_kmi_symbol_lists = None,
         trim_nonlisted_kmi = None,
         kmi_symbol_list_strict_mode = None,
+        unstripped_modules = None,
         toolchain_version = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -397,6 +398,9 @@ def kernel_build(
           `[kmi_symbol_list] + additional_kmi_symbol_lists`
           and the KMI resulting from the build, to ensure
           they match 1-1.
+        unstripped_modules: If `True`, provide all unstripped in-tree.
+
+          Approximately equivalent to `UNSTRIPPED_MODULES=*` in `build.sh`.
         toolchain_version: The toolchain version to depend on.
         kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
@@ -488,6 +492,7 @@ def kernel_build(
         kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if all_kmi_symbol_lists else None,
         kernel_uapi_headers = uapi_headers_target_name,
+        unstripped_modules = unstripped_modules,
         **kwargs
     )
 
@@ -1396,6 +1401,10 @@ def _kernel_build_impl(ctx):
     interceptor_output = ctx.actions.declare_file("{name}/interceptor_output.bin".format(name = ctx.label.name))
     modules_staging_dir = modules_staging_archive.dirname + "/staging"
 
+    unstripped_dir = None
+    if ctx.attr.unstripped_modules:
+        unstripped_dir = ctx.actions.declare_directory("{name}/unstripped".format(name = ctx.label.name))
+
     # all outputs that |command| generates
     command_outputs = [
         ruledir,
@@ -1405,6 +1414,8 @@ def _kernel_build_impl(ctx):
     ]
     for d in all_output_files.values():
         command_outputs += d.values()
+    if unstripped_dir:
+        command_outputs.append(unstripped_dir)
 
     command = ""
     command += ctx.attr.config[_KernelEnvInfo].setup
@@ -1424,6 +1435,17 @@ def _kernel_build_impl(ctx):
             search_and_mv_output = ctx.file._search_and_mv_output.path,
             modules_staging_dir = modules_staging_dir,
             ruledir = ruledir.path,
+            all_module_names_file = all_module_names_file.path,
+        )
+
+    grab_unstripped_intree_modules_cmd = ""
+    if all_module_names and unstripped_dir:
+        grab_unstripped_intree_modules_cmd = """
+            mkdir -p {unstripped_dir}
+            {search_and_mv_output} --srcdir ${{OUT_DIR}} --dstdir {unstripped_dir} $(cat {all_module_names_file})
+        """.format(
+            search_and_mv_output = ctx.file._search_and_mv_output.path,
+            unstripped_dir = unstripped_dir.path,
             all_module_names_file = all_module_names_file.path,
         )
 
@@ -1451,6 +1473,8 @@ def _kernel_build_impl(ctx):
            tar czf {modules_staging_archive} -C {modules_staging_dir} .
          # Grab in-tree modules
            {grab_intree_modules_cmd}
+         # Grab unstripped in-tree modules
+           {grab_unstripped_intree_modules_cmd}
          # Check if there are remaining *.ko files
            remaining_ko_files=$(comm -13 <(cat {all_module_names_file} | sort) <(find {modules_staging_dir} -type f -name '*.ko' -exec basename {{}} \\; | sort))
            if [[ ${{remaining_ko_files}} ]]; then
@@ -1469,6 +1493,7 @@ def _kernel_build_impl(ctx):
         ruledir = ruledir.path,
         all_output_names_minus_modules = " ".join(all_output_names_minus_modules),
         grab_intree_modules_cmd = grab_intree_modules_cmd,
+        grab_unstripped_intree_modules_cmd = grab_unstripped_intree_modules_cmd,
         all_module_names_file = all_module_names_file.path,
         modules_staging_dir = modules_staging_dir,
         modules_staging_archive = modules_staging_archive.path,
@@ -1587,6 +1612,7 @@ _kernel_build = rule(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
         ),
+        "unstripped_modules": attr.bool(),
         "_kernel_abi_scripts": attr.label(default = "//build/kernel:kernel-abi-scripts"),
         "_compare_to_symbol_list": attr.label(default = "//build/kernel:abi/compare_to_symbol_list", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
