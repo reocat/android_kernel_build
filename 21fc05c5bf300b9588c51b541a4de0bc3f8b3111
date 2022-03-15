@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42d17453_db216e71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-15T15:18:19Z",
+      "side": 1,
+      "message": "can we maybe poison the PATH via tools/bazel to ensure the original PATH is never every accidentally used in a rule?",
+      "revId": "21fc05c5bf300b9588c51b541a4de0bc3f8b3111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc1b8e43_1b7822fd",
         "filename": "kleaf/hermetic_tools.bzl",
         "patchSetId": 11
