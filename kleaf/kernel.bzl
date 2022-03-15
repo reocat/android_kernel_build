@@ -487,6 +487,7 @@ def kernel_build(
         kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if all_kmi_symbol_lists else None,
         kmi_symbol_list_src = kmi_symbol_list,
+        additional_kmi_symbol_lists_src = additional_kmi_symbol_lists,
         **kwargs
     )
 
@@ -1167,6 +1168,7 @@ _KernelBuildAbiInfo = provider(
     fields = {
         "trim_nonlisted_kmi": "Value of `trim_nonlisted_kmi` in [`kernel_build()`](#kernel_build).",
         "kmi_symbol_list_src": "The **source** main `kmi_symbol_list`. Not to be confused with the `_kmi_symbol_list` rule.",
+        "additional_kmi_symbol_lists_src": "The **source** `additional_kmi_symbol_lists`. Not to be confused with the `_kmi_symbol_list` rule.",
     },
 )
 
@@ -1521,6 +1523,7 @@ def _kernel_build_impl(ctx):
     kernel_build_abi_info = _KernelBuildAbiInfo(
         trim_nonlisted_kmi = ctx.attr.trim_nonlisted_kmi,
         kmi_symbol_list_src = ctx.file.kmi_symbol_list_src,
+        additional_kmi_symbol_lists_src = ctx.files.additional_kmi_symbol_lists_src,
     )
 
     output_group_kwargs = {}
@@ -1665,6 +1668,15 @@ _kernel_update_symbols_dest_symlink = rule(
     },
 )
 
+def _kernel_build_get_addtional_kmi_symbol_lists_src_impl(ctx):
+    return DefaultInfo(files = depset(ctx.attr.kernel_build[_KernelBuildAbiInfo].additional_kmi_symbol_lists_src))
+
+_kernel_build_get_addtional_kmi_symbol_lists_src = rule(
+    implementation = _kernel_build_get_addtional_kmi_symbol_lists_src_impl,
+    doc = "Get `addtional_kmi_symbol_lists_src` from a `kernel_build`",
+    attrs = {"kernel_build": attr.label(providers = [_KernelBuildAbiInfo])},
+)
+
 def kernel_build_and_abi(
         name,
         create_targets_for_abi = None,
@@ -1761,6 +1773,21 @@ def kernel_build_and_abi(
         kernel_modules = kernel_modules,
         module_grouping = module_grouping,
         out = name + "_abi_internal/symbol_list",
+    )
+
+    _kernel_build_get_addtional_kmi_symbol_lists_src(
+        name = name + "_abi_additional_kmi_symbol_lists",
+        kernel_build = name,
+    )
+
+    # process_symbols ...
+    _kmi_symbol_list(
+        name = name + "_abi_processed_symbols",
+        env = name,
+        srcs = [
+            name + "_abi_extracted_symbols",  # The updated KMI_SYMBOL_LIST
+            name + "_abi_additional_kmi_symbol_lists",  # The original ADDITIONAL_KMI_SYMBOL_LISTS
+        ],
     )
 
     _kernel_update_symbols_dest_symlink(
