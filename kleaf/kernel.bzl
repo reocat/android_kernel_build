@@ -3611,6 +3611,7 @@ def _kernel_abi_dump_impl(ctx):
     abi_out_file = _kernel_abi_dump_filtered(ctx, full_abi_out_file)
     return [
         DefaultInfo(files = depset([full_abi_out_file, abi_out_file])),
+        OutputGroupInfo(abi_out_file = depset([abi_out_file])),
     ]
 
 def _kernel_abi_dump_epilog_cmd(path, append_version):
@@ -3728,6 +3729,8 @@ def kernel_build_abi(
         # for kernel_abi
         kernel_modules = None,
         module_grouping = None,
+        abi_definition = None,
+        kmi_enforced = None,
         # for kernel_build
         **kwargs):
     """Declare multiple targets to support ABI monitoring.
@@ -3759,6 +3762,8 @@ def kernel_build_abi(
       - Building this target extracts the ABI.
       - Include this target in a `copy_to_dist_dir` target to copy
         ABI dump to `--dist-dir`.
+    - kernel_aarch64_abi_update
+      - Running this target updates `abi_definition`.
 
     Assuming the above, here's a table for converting `build_abi.sh`
     into Bazel commands. Note: it is recommended to disable the sandbox for
@@ -3769,7 +3774,13 @@ def kernel_build_abi(
     |`build_abi.sh --update_symbol_list`|`bazel run kernel_aarch64_abi_update_symbol_list`[1]   |Update symbol list                                                     |
     |-----------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------|
     |`build_abi.sh --nodiff`            |`bazel build kernel_aarch64_abi_dump` [2]              |Extract the ABI (but do not compare it)                                |
-
+    |-----------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------|
+    |`build_abi.sh --nodiff --update`   |`bazel run kernel_aarch64_abi_update_symbol_list && \\`|Update symbol list,                                                    |
+    |                                   |`    bazel run kernel_aarch64_abi_update` [1][2][3]    |Extract the ABI (but do not compare it), then update `abi_definition`  |
+    |-----------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------|
+    |`build_abi.sh --update`            |`bazel run kernel_aarch64_abi_update_symbol_list && \\`|Update symbol list,                                                    |
+    |                                   |`    bazel build kernel_aarch64_abi && \\`             |Extract the ABI and compare it,                                        |
+    |                                   |`    bazel run kernel_aarch64_abi_update` [1][2][3]    |then update `abi_definition`                                           |
 
     Notes:
 
@@ -3780,7 +3791,9 @@ def kernel_build_abi(
        `build_abi.sh` command, but it does not copy the ABI dump and/or the diff
        report to `$DIST_DIR` like the `build_abi.sh` command. You may find the
        ABI dump in Bazel's output directory under `bazel-bin/`.
-
+    3. Order matters, and the two commands cannot run in parallel. This is
+       because updating the ABI definition requires the **source**
+       `kmi_symbol_list` to be updated first.
 
     Args:
       name: Name of the main `kernel_build`.
@@ -3799,6 +3812,10 @@ def kernel_build_abi(
         on the kernel modules that reference the symbol. Otherwise the symbol
         list will simply be a sorted list of symbols used by all the kernel
         modules.
+      abi_definition: Location of the ABI definition.
+      kmi_enforced: This is an indicative option to signal that KMI is enforced.
+        If set to `True`, KMI checking tools respects it and
+        reacts to it by failing if KMI differences are detected.
       kwargs: See [`kernel_build.kwargs`](#kernel_build-kwargs)
     """
 
@@ -3851,3 +3868,148 @@ def kernel_build_abi(
         kernel_build = name + "_with_vmlinux",
         kernel_modules = kernel_modules,
     )
+    if abi_definition:
+        native.filegroup(
+            name = name + "_abi_out_file",
+            srcs = [name + "_abi_dump"],
+            output_group = "abi_out_file",
+        )
+
+        _kernel_abi_diff(
+            name = name + "_abi_diff",
+            baseline = abi_definition,
+            new = name + "_abi_out_file",
+        )
+
+        if kmi_enforced:
+            _kernel_kmi_enforced(
+                name = name + "_kmi_enforced",
+                abi_diff = name + "_abi_diff",
+            )
+
+        update_source_file(
+            name = name + "_abi_update",
+            src = name + "_abi_out_file",
+            dst = abi_definition,
+        )
+
+_KernelAbiDiffInfo = provider(
+    doc = "Provider of `_kernel_abi_diff`.",
+    fields = {
+        "exit_code_file": "Output file containing the exit code of `diff_abi`.",
+        "error_msg_file": "Output file containing the error message to show if `exit_code_file` does not contain 0.",
+    },
+)
+
+def _kernel_abi_diff_impl(ctx):
+    inputs = [
+        ctx.file._diff_abi,
+        ctx.file.baseline,
+        ctx.file.new,
+    ]
+    inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
+    inputs += ctx.files._diff_abi_scripts
+
+    output_dir = ctx.actions.declare_directory("{}/abi_diff".format(ctx.attr.name))
+    default_outputs = [output_dir]
+
+    error_msg_file = ctx.actions.declare_file("{}/error_msg".format(ctx.attr.name))
+    exit_code_file = ctx.actions.declare_file("{}/exit_code_file".format(ctx.attr.name))
+    command_outputs = default_outputs + [error_msg_file, exit_code_file]
+
+    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+        set +e
+        {diff_abi} --baseline {baseline}                \\
+                   --new      {new}                     \\
+                   --report   {output_dir}/abi.report   \\
+                   --abi-tool delegated 2>&1 > {error_msg_file}
+        rc=$?
+        set -e
+        echo $rc > {exit_code_file}
+        if [ $rc -ne 0 ]; then
+            echo "ERROR: $(cat {error_msg_file})" >&2
+        else
+            echo "INFO: $(cat {error_msg_file})"
+        fi
+    """.format(
+        diff_abi = ctx.file._diff_abi.path,
+        baseline = ctx.file.baseline.path,
+        new = ctx.file.new.path,
+        output_dir = output_dir.path,
+        exit_code_file = exit_code_file.path,
+        error_msg_file = error_msg_file.path,
+    )
+
+    _debug_print_scripts(ctx, command)
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = command_outputs,
+        command = command,
+        mnemonic = "KernelDiffAbi",
+        progress_message = "Creating ABI diff report {}".format(ctx.label),
+    )
+
+    return [
+        DefaultInfo(files = depset(default_outputs)),
+        _KernelAbiDiffInfo(
+            error_msg_file = error_msg_file,
+            exit_code_file = exit_code_file,
+        ),
+    ]
+
+_kernel_abi_diff = rule(
+    implementation = _kernel_abi_diff_impl,
+    doc = "Run `diff_abi`",
+    attrs = {
+        "baseline": attr.label(allow_single_file = True),
+        "new": attr.label(allow_single_file = True),
+        "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
+        "_diff_abi_scripts": attr.label(default = "//build/kernel:diff-abi-scripts"),
+        "_diff_abi": attr.label(default = "//build/kernel:abi/diff_abi", allow_single_file = True),
+        "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+    },
+)
+
+def _kernel_kmi_enforced_impl(ctx):
+    out = ctx.actions.declare_file("{}/kmi_enforced".format(ctx.attr.name))
+
+    inputs = [
+        ctx.attr.abi_diff[_KernelAbiDiffInfo].error_msg_file,
+        ctx.attr.abi_diff[_KernelAbiDiffInfo].exit_code_file,
+    ]
+    inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
+
+    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+        if [[ "$(cat {exit_code_file})" != "0" ]]; then
+            echo "ERROR: $(cat {error_msg_file})" >&2
+            rc="$(cat {exit_code_file})"
+            if [[ "$rc" != "0" ]]; then
+                exit "$rc"
+            fi
+        fi
+        touch {out}
+    """.format(
+        error_msg_file = ctx.attr.abi_diff[_KernelAbiDiffInfo].error_msg_file.path,
+        exit_code_file = ctx.attr.abi_diff[_KernelAbiDiffInfo].exit_code_file.path,
+        out = out.path,
+    )
+
+    _debug_print_scripts(ctx, command)
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [out],
+        command = command,
+        mnemonic = "KernelKmiEnforced",
+        progress_message = "Enforcing KMI {}".format(ctx.label),
+    )
+    return DefaultInfo(files = depset([out]))
+
+_kernel_kmi_enforced = rule(
+    implementation = _kernel_kmi_enforced_impl,
+    doc = "Check if `diff_abi` fails.",
+    attrs = {
+        "abi_diff": attr.label(providers = [_KernelAbiDiffInfo]),
+        "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
+    },
+)
