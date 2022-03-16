@@ -492,6 +492,7 @@ def kernel_build(
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if all_kmi_symbol_lists else None,
         kmi_symbol_list_src = kmi_symbol_list,
         unstripped_modules = unstripped_modules,
+        combined_abi_symbollist = abi_symbollist_target_name if all_kmi_symbol_lists else None,
         **kwargs
     )
 
@@ -1173,6 +1174,25 @@ _KernelBuildAbiInfo = provider(
     fields = {
         "trim_nonlisted_kmi": "Value of `trim_nonlisted_kmi` in [`kernel_build()`](#kernel_build).",
         "kmi_symbol_list_src": "The **source** main `kmi_symbol_list`. Not to be confused with the `_kmi_symbol_list` rule.",
+        "combined_abi_symbollist": "The **combined** `abi_symbollist` file from the `_kmi_symbol_list` rule, consist of the source `kmi_symbol_list` and `additional_kmi_symbol_lists`.",
+    },
+)
+
+_KernelUnstrippedModulesInfo = provider(
+    doc = "A provider that provides unstripped modules",
+    fields = {
+        "unstripped_dir": """A [`File`](https://bazel.build/rules/lib/File) that
+points to a directory containing unstripped modules.
+
+For [`kernel_build()`](#kernel_build), this is a directory containing unstripped in-tree modules.
+- This is `None` if and only if `unstripped_modules = False`
+- Never `None` if and only if `unstripped_modules = True`
+- An empty directory if and only if `unstripped_modules = True` and `module_outs` is empty
+
+For an external [`kernel_module()`](#kernel_module), this is a directory containing unstripped external modules.
+- This is `None` if and only if the `kernel_build` argument has `unstripped_modules = False`
+- Never `None` if and only if the `kernel_build` argument has `unstripped_modules = True`
+""",
     },
 )
 
@@ -1544,6 +1564,11 @@ def _kernel_build_impl(ctx):
     kernel_build_abi_info = _KernelBuildAbiInfo(
         trim_nonlisted_kmi = ctx.attr.trim_nonlisted_kmi,
         kmi_symbol_list_src = ctx.file.kmi_symbol_list_src,
+        combined_abi_symbollist = ctx.file.combined_abi_symbollist,
+    )
+
+    kernel_unstripped_modules_info = _KernelUnstrippedModulesInfo(
+        unstripped_dir = unstripped_dir,
     )
 
     output_group_kwargs = {}
@@ -1563,6 +1588,7 @@ def _kernel_build_impl(ctx):
         kernel_build_info,
         kernel_build_module_info,
         kernel_build_abi_info,
+        kernel_unstripped_modules_info,
         output_group_info,
         default_info,
     ]
@@ -1608,6 +1634,7 @@ _kernel_build = rule(
         "trim_nonlisted_kmi": attr.bool(),
         "kmi_symbol_list_src": attr.label(allow_single_file = True, doc = "The **source** `kmi_symbol_list`"),
         "additional_kmi_symbol_lists_src": attr.label_list(allow_files = True, doc = "The **source** `additional_kmi_symbol_lists`"),
+        "combined_abi_symbollist": attr.label(allow_single_file = True, doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`."),
     },
 )
 
@@ -1869,6 +1896,9 @@ def _kernel_module_impl(ctx):
             kernel_build = ctx.attr.kernel_build,
             modules_staging_archive = modules_staging_archive,
             kernel_uapi_headers_archive = kernel_uapi_headers_archive,
+        ),
+        _KernelUnstrippedModulesInfo(
+            unstripped_dir = unstripped_dir,
         ),
     ]
 
@@ -3354,6 +3384,124 @@ _kernel_update_symbols_dest_symlink = rule(
     },
 )
 
+def _kernel_abi_dump_impl(ctx):
+    full_abi_out_file = _kernel_abi_dump_full(ctx)
+    abi_out_file = _kernel_abi_dump_filtered(ctx, full_abi_out_file)
+    return DefaultInfo(files = depset([full_abi_out_file, abi_out_file]))
+
+def _kernel_abi_dump_epilog_cmd(path):
+    return """
+  (
+      effective_kernel_dir=$(readlink -f ${{ROOT_DIR}}/${{KERNEL_DIR}})
+      # sanitize the abi.xml by removing any occurrences of the kernel path
+      # and also do that with any left over paths sneaking in
+      # (e.g. from the prebuilts)
+      sed -i -e "s#${{effective_kernel_dir}}/##g"   \
+             -e "s#${{ROOT_DIR}}/${{KERNEL_DIR}}/##g" \
+             -e "s#${{ROOT_DIR}}/##g" "{path}"
+      # Append debug information to abi file
+      echo "
+    <!--
+         libabigail: $(abidw --version)
+    -->" >> {path}
+  )
+""".format(path = path)
+
+def _kernel_abi_dump_full(ctx):
+    abi_linux_tree = ctx.genfiles_dir.path + "/abi_linux_tree"
+    full_abi_out_file = ctx.actions.declare_file("{}/abi-full.xml".format(ctx.attr.name))
+    vmlinux = _find_file(name = "vmlinux", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name), required = True)
+
+    unstripped_dir_provider_targets = [ctx.attr.kernel_build] + ctx.attr.kernel_modules
+    unstripped_dir_providers = [target[_KernelUnstrippedModulesInfo] for target in unstripped_dir_provider_targets]
+    for prov in unstripped_dir_providers:
+        if not prov.unstripped_dir:
+            fail("{}: Requires dep {} to set unstripped_modules = True".format(ctx.label, prov.label))
+    unstripped_dirs = [prov.unstripped_dir for prov in unstripped_dir_providers]
+
+    inputs = [vmlinux, ctx.file._dump_abi]
+    inputs += ctx.files._dump_abi_scripts
+    inputs += unstripped_dirs
+
+    # TODO(b/197938817): We might be able to use a smaller env here.
+    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
+
+    # Directories could be empty, so use a find + cp
+    command = ctx.attr.kernel_build[_KernelEnvInfo].setup + """
+        mkdir -p {abi_linux_tree}
+        find {unstripped_dirs} -type f -name '*.ko' -exec cp -pl {{}} {abi_linux_tree} \\;
+        cp -pl {vmlinux} {abi_linux_tree}
+        {dump_abi} --linux-tree {abi_linux_tree} --out-file {full_abi_out_file}
+        {epilog}
+    """.format(
+        abi_linux_tree = abi_linux_tree,
+        unstripped_dirs = " ".join([unstripped_dir.path for unstripped_dir in unstripped_dirs]),
+        dump_abi = ctx.file._dump_abi.path,
+        vmlinux = vmlinux.path,
+        full_abi_out_file = full_abi_out_file.path,
+        epilog = _kernel_abi_dump_epilog_cmd(full_abi_out_file.path),
+    )
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [full_abi_out_file],
+        command = command,
+        mnemonic = "AbiDumpFull",
+        progress_message = "Creating ABI dump {}".format(ctx.label),
+    )
+    return full_abi_out_file
+
+def _kernel_abi_dump_filtered(ctx, full_abi_out_file):
+    abi_out_file = ctx.actions.declare_file("{}/abi.xml".format(ctx.attr.name))
+    inputs = [full_abi_out_file]
+
+    # TODO(b/197938817): We might be able to use a smaller env here.
+    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
+    command = "" + ctx.attr.kernel_build[_KernelEnvInfo].setup
+    combined_abi_symbollist = ctx.attr.kernel_build[_KernelBuildAbiInfo].combined_abi_symbollist
+    if combined_abi_symbollist:
+        inputs += [
+            ctx.file._filter_abi,
+            combined_abi_symbollist,
+        ]
+
+        command += """
+            {filter_abi} --in-file {full_abi_out_file} --out-file {abi_out_file} --kmi-symbol-list {abi_symbollist}
+            {epilog}
+        """.format(
+            abi_out_file = abi_out_file.path,
+            full_abi_out_file = full_abi_out_file.path,
+            filter_abi = ctx.file._filter_abi.path,
+            abi_symbollist = combined_abi_symbollist.path,
+            epilog = _kernel_abi_dump_epilog_cmd(abi_out_file.path),
+        )
+    else:
+        command += """
+            cp -p {full_abi_out_file} {abi_out_file}
+        """.format(
+            abi_out_file = abi_out_file.path,
+            full_abi_out_file = full_abi_out_file.path,
+        )
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [abi_out_file],
+        command = command,
+        mnemonic = "AbiDumpFiltered",
+        progress_message = "Filtering ABI dump {}".format(ctx.label),
+    )
+    return abi_out_file
+
+_kernel_abi_dump = rule(
+    implementation = _kernel_abi_dump_impl,
+    doc = "Create ABI dump",
+    attrs = {
+        "kernel_build": attr.label(providers = [_KernelEnvInfo, _KernelBuildAbiInfo, _KernelUnstrippedModulesInfo]),
+        "kernel_modules": attr.label_list(providers = [_KernelUnstrippedModulesInfo]),
+        "_dump_abi_scripts": attr.label(default = "//build/kernel:dump-abi-scripts"),
+        "_dump_abi": attr.label(default = "//build/kernel:abi/dump_abi", allow_single_file = True),
+        "_filter_abi": attr.label(default = "//build/kernel:abi/filter_abi", allow_single_file = True),
+    },
+)
+
 def kernel_build_and_abi(
         name,
         define_abi_targets = None,
@@ -3432,6 +3580,14 @@ def kernel_build_and_abi(
     else:
         native.alias(name = name + "_notrim", actual = name)
 
+    # with_vmlinux: outs += [vmlinux]
+    if added_vmlinux:
+        with_vmlinux_kwargs = dict(kwargs)
+        with_vmlinux_kwargs["outs"] = _transform_kernel_build_outs(name + "_with_vmlinux", "outs", outs_and_vmlinux)
+        kernel_build(name = name + "_with_vmlinux", **with_vmlinux_kwargs)
+    else:
+        native.alias(name = name + "_with_vmlinux", actual = name)
+
     # extract_symbols ...
     _kernel_extracted_symbols(
         name = name + "_abi_extracted_symbols",
@@ -3462,4 +3618,10 @@ def kernel_build_and_abi(
             name + "_abi_internal/symbol_list",
             name + "_abi_internal/update_destination",
         ],
+    )
+
+    _kernel_abi_dump(
+        name = name + "_abi_dump",
+        kernel_build = name + "_with_vmlinux",
+        kernel_modules = kernel_modules,
     )
