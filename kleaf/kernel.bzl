@@ -1182,6 +1182,7 @@ _KernelBuildAbiInfo = provider(
         "trim_nonlisted_kmi": "Value of `trim_nonlisted_kmi` in [`kernel_build()`](#kernel_build).",
         "kmi_symbol_list_src": "The **source** main `kmi_symbol_list`. Not to be confused with the `_kmi_symbol_list` rule.",
         "additional_kmi_symbol_lists_src": "The **source** `additional_kmi_symbol_lists`. Not to be confused with the `_kmi_symbol_list` rule.",
+        "unstripped_dir": "A directory contianing unstripped in-tree modules",
     },
 )
 
@@ -1579,6 +1580,7 @@ def _kernel_build_impl(ctx):
         trim_nonlisted_kmi = ctx.attr.trim_nonlisted_kmi,
         kmi_symbol_list_src = ctx.file.kmi_symbol_list_src,
         additional_kmi_symbol_lists_src = ctx.files.additional_kmi_symbol_lists_src,
+        unstripped_dir = unstripped_dir,
     )
 
     output_group_kwargs = {}
@@ -1736,6 +1738,48 @@ _kernel_build_get_addtional_kmi_symbol_lists_src = rule(
     attrs = {"kernel_build": attr.label(providers = [_KernelBuildAbiInfo])},
 )
 
+def _abi_dump_impl(ctx):
+    if not ctx.attr.kernel_build[_KernelBuildAbiInfo].unstripped_dir:
+        fail("{}: Requires kernel_build {} to set unstripped_modules = True".format(ctx.label, ctx.attr.kernel_build.label))
+
+    genfiles_dir = ctx.genfiles_dir.path
+    full_abi_out_file = ctx.actions.declare_file("{}/abi-full.xml".format(ctx.attr.name))
+    vmlinux = _find_file(name = "vmlinux", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name), required = True)
+    in_tree_modules_dir = ctx.attr.kernel_build[_KernelBuildAbiInfo].unstripped_dir
+
+    # FIXME(b/197938817): Should use unstripped external modules
+    ext_modules = ctx.files.kernel_modules  # external modules
+
+    inputs = [ctx.file._dump_abi]
+    inputs += ctx.files._dump_abi_scripts
+    inputs += srcs
+    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
+
+    command = ctx.attr.kernel_build[_KernelEnvInfo].setup + """
+        cp -pl {in_tree_modules_dir}/* {genfiles_dir}
+        cp -pl {ext_modules} {genfiles_dir}
+        cp -pl {vmlinux} {genfiles_dir}
+        {dump_abi} --linux-tree {genfiles_dir}/abi_linux_tree {vmlinux} --out-file {full_abi_out_file}
+    """.format(
+        in_tree_modules_dir = in_tree_modules_dir.path,
+        ext_modules = " ".join([f.path for f in ext_modules]),
+        genfiles_dir = genfiles_dir,
+        vmlinux = vmlinux.path,
+        full_abi_out_file = full_abi_out_file.path,
+    )
+
+_abi_dump = rule(
+    implementation = _abi_dump_impl,
+    doc = "Create ABI dump",
+    attrs = {
+        "kernel_build": attr.label(providers = [_KernelEnvInfo, _KernelBuildAbiInfo]),
+        "kernel_modules": attr.label(),
+        "_dump_abi_scripts": attr.label(default = "//build/kernel:dump-abi-scripts"),
+        "_dump_abi": attr.label(default = "//build/kernel:abi/dump_abi", allow_single_file = True),
+        "_filter_abi": attr.label(default = "//build/kernel:abi/filter_abi", allow_single_file = True),
+    },
+)
+
 def kernel_build_and_abi(
         name,
         create_targets_for_abi = None,
@@ -1870,6 +1914,12 @@ def kernel_build_and_abi(
             name + "_abi_internal/symbol_list",
             name + "_abi_internal/update_destination",
         ],
+    )
+
+    _abi_dump(
+        name = name + "_abi_dump",
+        kernel_build = name,
+        kernel_modules = kernel_modules,
     )
 
 def _modules_prepare_impl(ctx):
