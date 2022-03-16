@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aa00746_04eaeb92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-16T00:30:48Z",
+      "side": 1,
+      "message": "Likely unnecessary because Bazel would figure out whether process_symbols needs to run again.",
+      "revId": "47e3feb3ec141423c95efe80c3d0890ce9037d1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
