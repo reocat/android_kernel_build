@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcc5ac76_3d8707c5",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-16T16:57:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc1b8e43_1b7822fd",
+      "revId": "21fc05c5bf300b9588c51b541a4de0bc3f8b3111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c2963fe_f3a53fb8",
@@ -131,6 +149,30 @@
       "writtenOn": "2022-03-15T15:15:47Z",
       "side": 1,
       "message": "_hermetic_tools_impl",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 9
+      },
+      "revId": "21fc05c5bf300b9588c51b541a4de0bc3f8b3111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa4c3b04_d402d130",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-16T16:57:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93adb27e_6e8cd1d2",
       "range": {
         "startLine": 13,
         "startChar": 4,
