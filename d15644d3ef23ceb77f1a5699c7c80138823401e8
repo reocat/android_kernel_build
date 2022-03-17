@@ -22,6 +22,30 @@
       },
       "revId": "d15644d3ef23ceb77f1a5699c7c80138823401e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8bc9805_73b8634b",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-03-17T20:55:21Z",
+      "side": 1,
+      "message": "I believe I tried that but it failed when no modules.order files existed.",
+      "parentUuid": "6d4f4b48_bcb44261",
+      "range": {
+        "startLine": 1115,
+        "startChar": 0,
+        "endLine": 1119,
+        "endChar": 91
+      },
+      "revId": "d15644d3ef23ceb77f1a5699c7c80138823401e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
