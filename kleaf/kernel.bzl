@@ -3660,6 +3660,9 @@ def kernel_build_and_abi(
 
     ```
     kernel_build_and_abi(name = "kernel_aarch64", **kwargs)
+    _dist_targets = ["kernel_aarch64", ...]
+    copy_to_dist_dir(name = "kernel_aarch64_dist", data = _dist_targets)
+    copy_to_dist_dir(name = "kernel_aarch64_abi_dist", data = _dist_targets + ["kernel_aarch64_abi"])
     ```
 
     The `kernel_build_and_abi` invocation is equivalent to the following:
@@ -3676,6 +3679,9 @@ def kernel_build_and_abi(
       - Running this target updates `kmi_symbol_list`.
     - kernel_aarch64_abi_update
       - Running this target updates `abi_definition`.
+    - kernel_aarch64_abi
+      - Include this target in a `copy_to_dist_dir` target to copy
+        ABI dump and diff to `-dist-dir`.
 
     Assuming the above, here's a table for converting `build_abi.sh`
     into Bazel commands. Note: it is recommended to disable the sandbox for
@@ -3687,6 +3693,8 @@ def kernel_build_and_abi(
     |-----------------------------------|-------------------------------------------------------|
     |`build_abi.sh --update`            |`bazel run kernel_aarch64_abi_update_symbol_list && \\`|
     |                                   |`    bazel run kernel_aarch64_abi_update` [1][2]       |
+    |-----------------------------------|-------------------------------------------------------|
+    |`build_abi.sh`                     |`bazel run kernel_aarch64_abi_dist -- --dist_dir=...`  |
 
     Notes:
 
@@ -3749,6 +3757,8 @@ def kernel_build_and_abi(
     else:
         native.alias(name = name + "_with_vmlinux", actual = name)
 
+    default_outputs = []
+
     # extract_symbols ...
     _kernel_extracted_symbols(
         name = name + "_abi_extracted_symbols",
@@ -3768,6 +3778,8 @@ def kernel_build_and_abi(
         kernel_modules = kernel_modules,
     )
 
+    default_outputs.append(name + "_abi_dump")
+
     if abi_definition:
         native.filegroup(
             name = name + "_abi_out_file",
@@ -3780,6 +3792,7 @@ def kernel_build_and_abi(
             baseline = abi_definition,
             new = name + "_abi_out_file",
         )
+        default_outputs.append(name + "_abi_diff")
 
         _kernel_abi_diff(
             name = name + "_abi_diff_stg",
@@ -3787,6 +3800,7 @@ def kernel_build_and_abi(
             new = name + "_abi_out_file",
             stg = True,
         )
+        default_outputs.append(name + "_abi_diff_stg")
 
         if kmi_enforced:
             _kernel_kmi_enforced(
@@ -3796,12 +3810,18 @@ def kernel_build_and_abi(
                     name + "_abi_diff_stg",
                 ],
             )
+            default_outputs.append(name + "_kmi_enforced")
 
         _kernel_update_source_file(
             name = name + "_abi_update",
             src = name + "_abi_out_file",
             dst = abi_definition,
         )
+
+    native.filegroup(
+        name = name + "_abi",
+        srcs = default_outputs,
+    )
 
 def _kernel_update_source_file(name, src, dst):
     """Helper function to declare rules to update a source file."""
