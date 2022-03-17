@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f775f4c1_c53e894b",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-17T23:24:45Z",
+      "side": 1,
+      "message": "There\u0027s no such thing in Starlark unfortunately...",
+      "parentUuid": "9e13d712_fc9c1608",
+      "revId": "cde78e3870979d9d5f2176d07c7b74ae300aad15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8980b1b0_e05b842f",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 4
