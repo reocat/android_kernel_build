@@ -1553,17 +1553,40 @@ _kernel_build = rule(
 )
 
 def _modules_prepare_impl(ctx):
+    out_dir = ctx.actions.declare_directory("{}/out_dir".format(ctx.attr.name))
     command = ctx.attr.config[_KernelEnvInfo].setup + """
          # Prepare for the module build
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules_prepare
-         # Package files
-           tar czf {outdir_tar_gz} -C ${{OUT_DIR}} .
-    """.format(outdir_tar_gz = ctx.outputs.outdir_tar_gz.path)
+         # HACK: Outside of the sandbox, the `source` symlink is not correct.
+         #   We may use readlink to resolve it properly, but it is not useful for modules, so just delete.
+           rm -f ${{OUT_DIR}}/source
+         # Copy to declared directory
+           rsync -a ${{OUT_DIR}}/ {out_dir}
+    """.format(
+        out_dir = out_dir.path,
+    )
 
     _debug_print_scripts(ctx, command)
     ctx.actions.run_shell(
         mnemonic = "ModulesPrepare",
         inputs = ctx.files.srcs,
+        outputs = [out_dir],
+        tools = ctx.attr.config[_KernelEnvInfo].dependencies,
+        progress_message = "Preparing for module build %s" % ctx.label,
+        command = command,
+    )
+
+    command = ctx.attr.config[_KernelEnvInfo].setup + """
+         # Package files
+           tar czf {outdir_tar_gz} -C {out_dir} .
+    """.format(
+        out_dir = out_dir.path,
+        outdir_tar_gz = ctx.outputs.outdir_tar_gz.path,
+    )
+    _debug_print_scripts(ctx, command)
+    ctx.actions.run_shell(
+        mnemonic = "ModulesPreparePackage",
+        inputs = [out_dir],
         outputs = [ctx.outputs.outdir_tar_gz],
         tools = ctx.attr.config[_KernelEnvInfo].dependencies,
         progress_message = "Preparing for module build %s" % ctx.label,
@@ -1573,13 +1596,16 @@ def _modules_prepare_impl(ctx):
     setup = """
          # Restore modules_prepare outputs. Assumes env setup.
            [ -z ${{OUT_DIR}} ] && echo "ERROR: modules_prepare setup run without OUT_DIR set!" >&2 && exit 1
-           tar xf {outdir_tar_gz} -C ${{OUT_DIR}}
-           """.format(outdir_tar_gz = ctx.outputs.outdir_tar_gz.path)
+           rsync -a {out_dir}/ ${{OUT_DIR}}
+           """.format(out_dir = out_dir.path)
 
-    return [_KernelEnvInfo(
-        dependencies = [ctx.outputs.outdir_tar_gz],
-        setup = setup,
-    )]
+    return [
+        DefaultInfo(files = depset([ctx.outputs.outdir_tar_gz])),
+        _KernelEnvInfo(
+            dependencies = [out_dir],
+            setup = setup,
+        ),
+    ]
 
 _modules_prepare = rule(
     implementation = _modules_prepare_impl,
