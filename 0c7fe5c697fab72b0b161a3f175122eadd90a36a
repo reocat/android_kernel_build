@@ -79,6 +79,30 @@
       },
       "revId": "0c7fe5c697fab72b0b161a3f175122eadd90a36a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23fd256f_1ae8a1e4",
+        "filename": "kleaf/convert_to_bazel.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-18T00:04:38Z",
+      "side": 1,
+      "message": "I don\u0027t think that\u0027s needed. For example, if I am in the `build` directory, executing `BUILD_CONFIG\u003d../common/build.config.gki.aarch64 ./build.sh` gives:\n\n```\n/mnt/sdc/android/kernel/build/../common/build.config.gki.aarch64: line 1: /mnt/sdc/android/kernel/build//mnt/sdc/android/kernel/common/build.config.common: No such file or directory\n```\n\nand executing `BUILD_CONFIG\u003dcommon/build.config.gki.aarch64 ./build.sh` exits immediately with a non-zero exit code.\n\nI think `_setup_env.sh` already assumes $ROOT_DIR\u003d$PWD:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/_setup_env.sh;l\u003d24;drc\u003de5f575376c3abcbc0cafe58746407af68b976c49\n\nso you can\u0027t really run build.sh from anywhere else.",
+      "parentUuid": "e0af818d_1e088273",
+      "range": {
+        "startLine": 23,
+        "startChar": 54,
+        "endLine": 23,
+        "endChar": 69
+      },
+      "revId": "0c7fe5c697fab72b0b161a3f175122eadd90a36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
