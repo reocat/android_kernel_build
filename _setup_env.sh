@@ -136,7 +136,12 @@ if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
   export HOSTCFLAGS="$sysroot_flags $cflags"
   export HOSTLDFLAGS="$sysroot_flags $ldflags"
 
-  export USERCFLAGS="--sysroot=/dev/null"
+  SYSROOT="${ROOT_DIR}/prebuilts/ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr"
+  IFLAGS="-I ${SYSROOT}/include/aarch64-linux-android"
+  LZFLAGS="-fuse-ld=lld --rtlib=compiler-rt "
+  LZFLAGS+="-Wl,--verbose "
+  LZFLAGS+="-B ${SYSROOT}/lib/aarch64-linux-android/31"
+  export USERCFLAGS="--sysroot=${SYSROOT} ${IFLAGS} ${LZFLAGS} --target=aarch64-linux-android31 -v"
 fi
 
 for prebuilt_bin in "${prebuilts_paths[@]}"; do
