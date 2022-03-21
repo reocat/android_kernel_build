@@ -754,12 +754,23 @@ def _kernel_env_impl(ctx):
            if [ -n "${{DTSTREE_MAKEFILE}}" ]; then
              export dtstree=$(rel_path $(realpath $(dirname ${{DTSTREE_MAKEFILE}})) ${{ROOT_DIR}}/${{KERNEL_DIR}})
            fi
+         # Set up USERCFLAGS and USERLDFLAGS if NDK_TRIPLE was set.
+           if [[ -n "${{NDK_TRIPLE}}" ]]; then
+             USERCFLAGS="--target=${{NDK_TRIPLE}} "
+             USERCFLAGS+="--sysroot=$PWD/{ndk_sysroot_path} "
+             USERCFLAGS+="-Wno-unused-function "
+             USERLDFLAGS="-fuse-ld=lld --rtlib=compiler-rt --target=${{NDK_TRIPLE}} "
+           else
+             USERCFLAGS="--sysroot=/dev/null "
+           fi
+           export USERCFLAGS USERLDFLAGS
            """.format(
         hermetic_tools_additional_setup = ctx.attr._hermetic_tools[HermeticToolsInfo].additional_setup,
         env = out_file.path,
         build_utils_sh = ctx.file._build_utils_sh.path,
         linux_x86_libs_path = ctx.files._linux_x86_libs[0].dirname,
         set_up_scmversion_cmd = set_up_scmversion_cmd,
+        ndk_sysroot_path = ctx.files._ndk_sysroot_path[0].dirname,
     )
 
     dependencies = ctx.files._tools + ctx.attr._hermetic_tools[HermeticToolsInfo].deps
@@ -785,6 +796,7 @@ def _get_tools(toolchain_version):
         for e in (
             "//build/kernel:kernel-build-scripts",
             "//prebuilts/clang/host/linux-x86/clang-%s:binaries" % toolchain_version,
+            "//prebuilts/ndk/toolchains/llvm/prebuilt/linux-x86_64:sysroot",
         )
     ]
 
@@ -886,6 +898,7 @@ _kernel_env = rule(
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_linux_x86_libs": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
+        "_ndk_sysroot_path": attr.label(default = "//prebuilts/ndk/toolchains/llvm/prebuilt/linux-x86_64:sysroot"),
     },
 )
 
