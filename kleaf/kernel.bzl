@@ -785,6 +785,7 @@ def _get_tools(toolchain_version):
         for e in (
             "//build/kernel:kernel-build-scripts",
             "//prebuilts/clang/host/linux-x86/clang-%s:binaries" % toolchain_version,
+            "//prebuilts/ndk/toolchains/llvm/prebuilt/linux-x86_64:binaries",
         )
     ]
 
