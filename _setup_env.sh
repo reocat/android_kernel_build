@@ -131,12 +131,23 @@ if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
   ldflags+="-L ${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
 
   # Have host compiler use LLD and compiler-rt.
-  ldflags+="-fuse-ld=lld --rtlib=compiler-rt"
+  LLD_COMPILER_RT="-fuse-ld=lld --rtlib=compiler-rt"
+  ldflags+=${LLD_COMPILER_RT}
 
   export HOSTCFLAGS="$sysroot_flags $cflags"
   export HOSTLDFLAGS="$sysroot_flags $ldflags"
 
-  export USERCFLAGS="--sysroot=/dev/null"
+  USERCFLAGS="--target=${NDK_TRIPLE} "
+  USERCFLAGS+="--sysroot=${ROOT_DIR}/prebuilts/ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot "
+  # TODO: this produces the warning:
+  # warning: argument unused during compilation: '-fuse-ld=lld'
+  # [-Wunused-command-line-argument]
+  USERCFLAGS+="${LLD_COMPILER_RT}"
+  # To help debug these flags, consider commenting back in the following, and
+  # add `echo $@ > /tmp/log.txt` and `2>>/tmp/log.txt` to the invocation of $@
+  # in scripts/cc-can-link.sh.
+  #USERCFLAGS+=" -Wl,--verbose -v"
+  export USERCFLAGS
 fi
 
 for prebuilt_bin in "${prebuilts_paths[@]}"; do
