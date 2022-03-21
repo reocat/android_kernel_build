@@ -32,6 +32,19 @@ def check_output(*args, **kwargs):
 def main(root_dir, bazel_args, env):
     env = env.copy()
 
+    # Record the original PATH as KLEAF_OLD_PATH. By tracking KLEAF_OLD_PATH
+    # in the kernel/build project, we know which tools we require the host to
+    # provide.
+    if "PATH" in env:
+        env["KLEAF_OLD_PATH"] = env["PATH"]
+
+    # Then, we overwrite PATH to be the hermetic tools. This is the set of bootstrap tools for:
+    # - Building //build/kernel:hermetic-tools itself
+    # - Some deps out of our control, e.g. copy_file from Skylib uses cp.
+    build_tools_path = "{root_dir}/build/kernel/build-tools/path/linux-x86".format(root_dir=root_dir)
+    env["PATH"] = os.path.abspath(build_tools_path)
+    env["KLEAF_RESTRICTED_PATH"] = env["PATH"]
+
     bazel_path = "{root_dir}/prebuilts/bazel/linux-x86_64/bazel".format(root_dir=root_dir)
     bazel_jdk_path = "{root_dir}/prebuilts/jdk/jdk11/linux-x86".format(root_dir=root_dir)
     bazelrc_name = "build/kernel/kleaf/common.bazelrc"

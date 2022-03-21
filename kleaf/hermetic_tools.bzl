@@ -46,6 +46,7 @@ def _hermetic_tools_impl(ctx):
 
     host_outs = ctx.outputs.host_tools
     command = """
+        echo $PATH
         set -e
       # export PATH so which can work
         export PATH

@@ -37,10 +37,21 @@ if [[ -n "$SETLOCALVERSION" ]] && [[ -n "$KERNEL_DIR" ]] && [[ -d "$KERNEL_DIR" 
   STABLE_SCMVERSION=$(cd "$WORKING_DIR" && "$SETLOCALVERSION" "$KERNEL_DIR")
 fi
 
-STABLE_SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH:-0}
-if [[ -n "$KERNEL_DIR" ]] && [[ -d "$KERNEL_DIR" ]]; then
-  # Use "git" from the environment.
-  STABLE_SOURCE_DATE_EPOCH=${SOURCE_DATE_EPOCH:-$(git -C "$KERNEL_DIR" log -1 --pretty=%ct)}
+# Determine STABLE_SOURCE_DATE_EPOCH, in the following order:
+# 1. The env variable SOURCE_DATE_EPOCH
+# 2. Otherwise, run `git` on $KERNEL_DIR
+# 3. Otherwise 0
+if [[ -n "$SOURCE_DATE_EPOCH" ]]; then
+  STABLE_SOURCE_DATE_EPOCH="$SOURCE_DATE_EPOCH"
+fi
+
+if [[ -z "$STABLE_SOURCE_DATE_EPOCH" ]] && [[ -n "$KERNEL_DIR" ]] && [[ -d "$KERNEL_DIR" ]]; then
+  # Use git from the environment.
+  STABLE_SOURCE_DATE_EPOCH="$(PATH=$PATH:$KLEAF_OLD_PATH git -C "$KERNEL_DIR" log -1 --pretty=%ct)"
+fi
+
+if [[ -z "$STABLE_SOURCE_DATE_EPOCH" ]]; then
+  STABLE_SOURCE_DATE_EPOCH=0
 fi
 
 echo "STABLE_SCMVERSION $STABLE_SCMVERSION"
