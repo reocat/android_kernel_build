@@ -131,12 +131,39 @@ if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
   ldflags+="-L ${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
 
   # Have host compiler use LLD and compiler-rt.
-  ldflags+="-fuse-ld=lld --rtlib=compiler-rt"
+  LLD_COMPILER_RT="-fuse-ld=lld --rtlib=compiler-rt"
+  ldflags+=${LLD_COMPILER_RT}
 
   export HOSTCFLAGS="$sysroot_flags $cflags"
   export HOSTLDFLAGS="$sysroot_flags $ldflags"
 
-  export USERCFLAGS="--sysroot=/dev/null"
+  if [[ -n "${NDK_TRIPLE}" ]]; then
+    if [[ ! -d "${ROOT_DIR}/prebuilts/ndk" ]]; then
+      echo "NDK_TRIPLE set, but unable to find prebuilts/ndk."
+      echo "Did you forget to checkout prebuilts/ndk?"
+      exit 1
+    fi
+    USERCFLAGS="--target=${NDK_TRIPLE} "
+    USERCFLAGS+="--sysroot=${ROOT_DIR}/prebuilts/ndk/toolchains/llvm/prebuilt/linux-x86_64/sysroot "
+    # We need to set -fuse-ld=lld for Android's build env since AOSP LLVM's clang
+    # is not configured to use LLD by default, and BFD has been intentionally
+    # removed. This way CC_CAN_LINK can properly link the test in
+    # scripts/cc-can-link.sh. But the actual UAPI_HEADER_TEST build rules use -c,
+    # so the linker is not invoked, so -fuse-ld=lld produces instances of
+    # -Wunused-command-line-argument for -fuse-ld=lld. Forgo checking of unused
+    # arguments for UAPI_HEADER_TEST tests.
+    USERCFLAGS+="${LLD_COMPILER_RT} -Wno-unused-command-line-argument "
+    # Some kernel headers trigger -Wunused-function for unused static functions
+    # with clang; GCC does not warn about unused static inline functions. The
+    # kernel sets __attribute__((maybe_unused)) on such functions when W=1 is
+    # not set.
+    USERCFLAGS+="-Wno-unused-function "
+    # To help debug these flags, consider commenting back in the following, and
+    # add `echo $@ > /tmp/log.txt` and `2>>/tmp/log.txt` to the invocation of $@
+    # in scripts/cc-can-link.sh.
+    #USERCFLAGS+=" -Wl,--verbose -v"
+    export USERCFLAGS
+  fi
 fi
 
 for prebuilt_bin in "${prebuilts_paths[@]}"; do
