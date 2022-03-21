@@ -746,7 +746,7 @@ def _kernel_env_impl(ctx):
          # PATH with HERMETIC_TOOLCHAIN=1
            {hermetic_tools_additional_setup}
          # setup LD_LIBRARY_PATH for prebuilts
-           export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/{linux_x86_libs_path}
+           export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${{ROOT_DIR}}/{linux_x86_libs_path}
            {set_up_scmversion_cmd}
          # Set up KCONFIG_EXT
            if [ -n "${{KCONFIG_EXT}}" ]; then
@@ -761,6 +761,7 @@ def _kernel_env_impl(ctx):
         build_utils_sh = ctx.file._build_utils_sh.path,
         linux_x86_libs_path = ctx.files._linux_x86_libs[0].dirname,
         set_up_scmversion_cmd = set_up_scmversion_cmd,
+        ndk_sysroot_path = ctx.files._ndk_sysroot_path[0].dirname,
     )
 
     dependencies = ctx.files._tools + ctx.attr._hermetic_tools[HermeticToolsInfo].deps
@@ -786,6 +787,7 @@ def _get_tools(toolchain_version):
         for e in (
             "//build/kernel:kernel-build-scripts",
             "//prebuilts/clang/host/linux-x86/clang-%s:binaries" % toolchain_version,
+            "@prebuilt_ndk//:sysroot",
         )
     ]
 
@@ -887,6 +889,7 @@ _kernel_env = rule(
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_linux_x86_libs": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
+        "_ndk_sysroot_path": attr.label(default = "@prebuilt_ndk//:sysroot"),
     },
 )
 
