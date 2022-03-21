@@ -33,6 +33,24 @@
       "message": "isn\u0027t that just the same as pulling out the one above?\n\nhttps://docs.bazel.build/versions/main/command-line-reference.html#flag--incompatible_strict_action_env",
       "revId": "fe6ccf5cb6883a6dcb2f359e4b64d68bb46d3f03",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb4ed211_e0b18da7",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-21T21:21:16Z",
+      "side": 1,
+      "message": "https://github.com/bazelbuild/bazel/issues/6648\n\nLooks like we need to pull out the one above but also leave this line here.",
+      "parentUuid": "634aaf3b_0e0e0090",
+      "revId": "fe6ccf5cb6883a6dcb2f359e4b64d68bb46d3f03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
