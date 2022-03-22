@@ -36,6 +36,22 @@ def call_setlocalversion(bin, srctree, *args):
   return None
 
 
+def get_make_vars(var_names):
+  cmd = """
+      source build/build_utils.sh
+      source build/_setup_env.sh
+  """
+  cmd += "\n".join(["echo $" + var_name for var_name in var_names])
+  try:
+    lines = subprocess.check_output(cmd, shell=True, text=True).splitlines()
+    return {k: v for k, v in zip(var_names, lines)}
+  except subprocess.CalledProcessError as e:
+    msg = "WARNING: Unable to determine variables {}; scmversion may be incorrect. code={}, stderr=\n{}\n".format(
+        var_names, e.returncode, e.stderr)
+    sys.stderr.write(msg)
+    return {}
+
+
 def collect(popen_obj):
   """Collect the result of a Popen object.
 
@@ -58,9 +74,21 @@ def main():
   if not os.access(setlocalversion, os.X_OK):
     setlocalversion = None
 
+  make_vars = get_make_vars(["EXT_MODULES"])
+
   stable_scmversion_obj = None
   if setlocalversion and os.path.isdir(kernel_dir):
     stable_scmversion_obj = call_setlocalversion(setlocalversion, kernel_dir)
+
+  ext_modules = []
+  stable_scmversion_extmod_objs = []
+  if setlocalversion:
+    ext_modules = make_vars.get("EXT_MODULES")
+    if ext_modules:
+      ext_modules = ext_modules.split()
+    stable_scmversion_extmod_objs = [
+        call_setlocalversion(setlocalversion, os.path.realpath(ext_mod))
+        for ext_mod in ext_modules]
 
   stable_source_date_epoch = os.environ.get("SOURCE_DATE_EPOCH")
   stable_source_date_epoch_obj = None
@@ -78,6 +106,12 @@ def main():
   if stable_source_date_epoch_obj:
     stable_source_date_epoch = collect(stable_source_date_epoch_obj)
   print("STABLE_SOURCE_DATE_EPOCH", stable_source_date_epoch)
+
+  print("STABLE_SCMVERSION_EXT_MOD", " ".join(
+      "{}:{}".format(ext_mod, result) for ext_mod, result in zip(ext_modules,
+                                                                 [collect(obj)
+                                                                  for obj in
+                                                                  stable_scmversion_extmod_objs])))
 
   return 0
 
