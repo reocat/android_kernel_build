@@ -23,6 +23,15 @@ def main():
   if setlocalversion and os.path.isdir(kernel_dir):
     stable_scmversion_obj = subprocess.Popen([setlocalversion, kernel_dir], text=True, stdout = subprocess.PIPE, cwd=working_dir)
 
+  stable_scmversion_extmod_objs = None
+  if setlocalversion:
+    ext_modules = subprocess.check_output("""
+  source build/build_utils.sh
+  source build/_setup_env.sh
+  echo $EXT_MODULES
+  """, shell = True, text = True).split()
+    stable_scmversion_extmod_objs = [subprocess.Popen([setlocalversion, os.path.realpath(ext_mod)], text=True, stdout = subprocess.PIPE, cwd=working_dir) for ext_mod in ext_modules]
+
   stable_source_date_epoch = None
   stable_source_date_epoch_obj = None
   if os.environ.get("SOURCE_DATE_EPOCH"):
@@ -36,6 +45,11 @@ def main():
   if stable_source_date_epoch_obj:
     stable_source_date_epoch = collect(stable_source_date_epoch_obj)
   print("STABLE_SOURCE_DATE_EPOCH", stable_source_date_epoch)
+
+  if stable_scmversion_extmod_objs:
+    print("STABLE_SCMVERSION_EXT_MOD", " ".join("{}:{}".format(ext_mod, result) for ext_mod, result in zip(ext_modules, [collect(obj) for obj in stable_scmversion_extmod_objs])))
+  else:
+    print("STABLE_SCMVERSION_EXT_MOD ")
 
 if __name__ == '__main__':
     main()
