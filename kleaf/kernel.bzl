@@ -16,6 +16,10 @@ load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
 load(":constants.bzl", "TOOLCHAIN_VERSION_FILENAME")
 load(":hermetic_tools.bzl", "HermeticToolsInfo")
+load(
+    "//build/kernel/kleaf/tests:kernel_test.bzl",
+    "kernel_module_test",
+)
 
 # Outputs of a kernel_build rule needed to build kernel_module's
 _kernel_build_internal_outs = [
@@ -479,6 +483,9 @@ def kernel_build(
         **kwargs
     )
 
+    # key = attribute name, value = a list of labels for that attribute
+    real_outs = {}
+
     for out_name, out_attr_val in (
         ("outs", outs),
         ("module_outs", module_outs),
@@ -490,6 +497,7 @@ def kernel_build(
         if type(out_attr_val) == type([]):
             for out in out_attr_val:
                 native.filegroup(name = name + "/" + out, srcs = [":" + name], output_group = out)
+            real_outs[out_name] = [name + "/" + out for out in out_attr_val]
         elif type(out_attr_val) == type({}):
             # out_attr_val = {config_setting: [out, ...], ...}
             # => reverse_dict = {out: [config_setting, ...], ...}
@@ -505,6 +513,7 @@ def kernel_build(
                     # Use "manual" tags to prevent it to be built with ...
                     tags = ["manual"],
                 )
+            real_outs[out_name] = [name + "/" + out for out, _ in _reverse_dict(out_attr_val).items()]
         else:
             fail("Unexpected type {} for {}: {}".format(type(out_attr_val), out_name, out_attr_val))
 
@@ -532,6 +541,11 @@ def kernel_build(
             env = env_target_name,
             **kwargs
         )
+
+    kernel_module_test(
+        name = name + "_modules_test",
+        modules = real_outs.get("modules"),
+    )
 
 _DtsTreeInfo = provider(fields = {
     "srcs": "DTS tree sources",
@@ -2005,6 +2019,11 @@ def kernel_module(
     )
     kwargs = _kernel_module_set_defaults(kwargs)
     _kernel_module(**kwargs)
+
+    kernel_module_test(
+        name = name + "_test",
+        modules = [name],
+    )
 
 def _kernel_module_set_defaults(kwargs):
     """
