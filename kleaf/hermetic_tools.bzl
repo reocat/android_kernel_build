@@ -103,6 +103,7 @@ _hermetic_tools = rule(
         "host_tools": attr.output_list(),
         "test_host_tools": attr.output_list(),
         "outs": attr.output_list(),
+        "runfiles_dir": attr.output(),
         "srcs": attr.label_list(doc = "Hermetic tools in the tree", allow_files = True),
         "deps": attr.label_list(doc = "Additional_deps", allow_files = True),
     },
