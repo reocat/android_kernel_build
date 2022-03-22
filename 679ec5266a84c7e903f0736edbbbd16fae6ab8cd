@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111dde61_b3aa990f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-22T21:50:02Z",
+      "side": 1,
+      "message": "I need to think about this a bit more. It looks like we\u0027ll also need to capture things like \"BUILD_NUMBER\" which are used in setlocalversion.",
+      "revId": "679ec5266a84c7e903f0736edbbbd16fae6ab8cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
