@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1af5f653_f90fed7e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T17:02:22Z",
+      "side": 1,
+      "message": "nowadays we rather use the terminology \"ABI extraction\" as we do much more than just dumping it.",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "252643722d39f3e1954bd7315c79bd44ef6bcbf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d28e64d8_5d6b2f69",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1191,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T17:02:22Z",
+      "side": 1,
+      "message": "directory or dir (unstripped is already in the provider name)",
+      "range": {
+        "startLine": 1191,
+        "startChar": 9,
+        "endLine": 1191,
+        "endChar": 23
+      },
+      "revId": "252643722d39f3e1954bd7315c79bd44ef6bcbf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6177da76_1988e49d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 3530,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T17:02:22Z",
+      "side": 1,
+      "message": "while we have a reference to ROOT_DIR and KERNEL_DIR, we do not necessarily need an actual kernel dir. The only condition to be satisfied is that within the directory that we let abidw search for files there is only the vmlinux and the .ko files that we care about; and nothing more or less. So, within a bazel sandbox and vmlinux+.ko files specified as dependencies, that should boil down to `abidw $(cwd)`",
+      "range": {
+        "startLine": 3530,
+        "startChar": 41,
+        "endLine": 3530,
+        "endChar": 71
+      },
+      "revId": "252643722d39f3e1954bd7315c79bd44ef6bcbf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd7bc033_59fb9d30",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 3565,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T17:02:22Z",
+      "side": 1,
+      "message": "do we really need a full blown kernel env?\n \nall we need is the input files and the tools",
+      "range": {
+        "startLine": 3565,
+        "startChar": 23,
+        "endLine": 3565,
+        "endChar": 56
+      },
+      "revId": "252643722d39f3e1954bd7315c79bd44ef6bcbf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afcceeda_a302c92f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 3568,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T17:02:22Z",
+      "side": 1,
+      "message": "this sounds like too much setup costs.",
+      "range": {
+        "startLine": 3566,
+        "startChar": 0,
+        "endLine": 3568,
+        "endChar": 41
+      },
+      "revId": "252643722d39f3e1954bd7315c79bd44ef6bcbf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
