@@ -1,0 +1,170 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ebe760c_03864d25",
+        "filename": "kleaf/abi_update_helper.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T15:53:24Z",
+      "side": 1,
+      "message": "that is not really ABI specific functionality, hence the name of the file is misleading",
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50327999_0492847e",
+        "filename": "kleaf/abi_update_helper.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T15:53:24Z",
+      "side": 1,
+      "message": "the functionality of this file needs an explanation. This looks like a very expensive cp.",
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0af22dff_96468547",
+        "filename": "kleaf/abi_update_helper.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T15:53:24Z",
+      "side": 1,
+      "message": "can those not rather be deducted as (positional) arguments rather than creating a convention?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 52
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b325ad_48cc6f1c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T15:53:24Z",
+      "side": 1,
+      "message": "should go into a utils.bzl or into the skylib?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 17
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bb7b7c9_25326269",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 3383,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T15:53:24Z",
+      "side": 1,
+      "message": "why do we need to copy them? In the bazel sandbox those should be the only ones visible? does this not make this rule unnecessary expensive?",
+      "range": {
+        "startLine": 3383,
+        "startChar": 8,
+        "endLine": 3383,
+        "endChar": 36
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "587140f6_cc0f6187",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 3384,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T15:53:24Z",
+      "side": 1,
+      "message": "skip_module_grouping_flag",
+      "range": {
+        "startLine": 3384,
+        "startChar": 47,
+        "endLine": 3384,
+        "endChar": 67
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7178a9e_c2b4c612",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 3435,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T15:53:24Z",
+      "side": 1,
+      "message": "this should go into a utils.bzl",
+      "range": {
+        "startLine": 3418,
+        "startChar": 0,
+        "endLine": 3435,
+        "endChar": 1
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82346940_b64cc1c0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 3534,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T15:53:24Z",
+      "side": 1,
+      "message": "there is nothing kernel specific here, this should go to a utility file where its complexity stands alone.",
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
