@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7229b58_9c8b6250",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-22T15:55:30Z",
+      "side": 1,
+      "message": "name it more descriptive: preserve_unstripped_modules or collect_ or ...\n\nno need to map the names 1:1",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 26
+      },
+      "revId": "0f52df0c441f0ba1f17b4f422c0c45b5dec63cfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
