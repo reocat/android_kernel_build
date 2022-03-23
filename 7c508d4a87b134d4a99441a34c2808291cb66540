@@ -254,6 +254,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a40af161_3f845170",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 3383,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T18:16:23Z",
+      "side": 1,
+      "message": "I see what you mean. Yeah that would work indeed.\n\nI\u0027ll keep it as-is. We can improve it later if we can prove that relying on the walkdir of extract_symbols is significantly faster.",
+      "parentUuid": "0a0c1083_7327804e",
+      "range": {
+        "startLine": 3383,
+        "startChar": 8,
+        "endLine": 3383,
+        "endChar": 36
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "587140f6_cc0f6187",
