@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "858c1bed_25360d20",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-23T15:38:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8acaaaa8_faccfa48",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 403,
+        "endChar": 19
+      },
+      "revId": "af550c703530e63ad89bced7893d0a4358df4281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "649eb6ec_1d039de3",
@@ -114,6 +138,24 @@
       "side": 1,
       "message": "OK, we can do that.\n\nps: for Android signing, the signing server expects to download the \"otatools.zip\". That\u0027s why we keep using gki_tools.zip. Anyway I think using .tar.gz should work as well, will do.",
       "parentUuid": "649eb6ec_1d039de3",
+      "revId": "af550c703530e63ad89bced7893d0a4358df4281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25743c43_0fda09e4",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-23T15:38:52Z",
+      "side": 1,
+      "message": "This is mostly because of the unnecessary dependency to soong_zip. I believe this is just a leftover and could actually be dropped. So, thanks for making this tar.",
+      "parentUuid": "033736e3_737c7777",
       "revId": "af550c703530e63ad89bced7893d0a4358df4281",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
