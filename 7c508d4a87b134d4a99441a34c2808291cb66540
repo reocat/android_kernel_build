@@ -159,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4085c84d_93cc00ce",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T03:51:54Z",
+      "side": 1,
+      "message": "Done, moved to a utils.bzl.",
+      "parentUuid": "75b325ad_48cc6f1c",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 17
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bb7b7c9_25326269",
@@ -219,6 +243,30 @@
       "writtenOn": "2022-03-22T15:53:24Z",
       "side": 1,
       "message": "skip_module_grouping_flag",
+      "range": {
+        "startLine": 3384,
+        "startChar": 47,
+        "endLine": 3384,
+        "endChar": 67
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9b9cdcc_50f791d3",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 3384,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T03:51:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "587140f6_cc0f6187",
       "range": {
         "startLine": 3384,
         "startChar": 47,
