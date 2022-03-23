@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea9de92d_5bd09d88",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 3773,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T20:47:46Z",
+      "side": 1,
+      "message": "Matthias, it appears that with this CL, when I run update via Bazel (with --lto\u003ddefault), the abi.xml actually changes from the one in the source tree. However, the ABI diff does not report any diffs.\n\nIs the abi.xml change safe? The change is pretty big that I cannot post it anywhere easily.",
+      "range": {
+        "startLine": 3768,
+        "startChar": 0,
+        "endLine": 3773,
+        "endChar": 9
+      },
+      "revId": "8f27b0364d2578796a588ee180ad4797fb9b9ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
