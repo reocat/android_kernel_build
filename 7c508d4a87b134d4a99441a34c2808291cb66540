@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d85c9243_2f0f72fa",
+        "filename": "kleaf/abi_update_helper.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T03:42:59Z",
+      "side": 1,
+      "message": "This comment no longer applies.",
+      "parentUuid": "8ebe760c_03864d25",
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50327999_0492847e",
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cc99d99_8c91485e",
+        "filename": "kleaf/abi_update_helper.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T03:42:59Z",
+      "side": 1,
+      "message": "This comment no longer applies.",
+      "parentUuid": "c6490858_59551514",
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0af22dff_96468547",
@@ -66,6 +102,30 @@
       "writtenOn": "2022-03-22T15:53:24Z",
       "side": 1,
       "message": "can those not rather be deducted as (positional) arguments rather than creating a convention?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 52
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cd95778_cd9373b5",
+        "filename": "kleaf/abi_update_helper.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T03:42:59Z",
+      "side": 1,
+      "message": "This comment no longer applies.",
+      "parentUuid": "0af22dff_96468547",
       "range": {
         "startLine": 23,
         "startChar": 0,
@@ -192,6 +252,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5059a02f_96626a35",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 3435,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T03:42:59Z",
+      "side": 1,
+      "message": "This comment no longer applies.",
+      "parentUuid": "d7178a9e_c2b4c612",
+      "range": {
+        "startLine": 3418,
+        "startChar": 0,
+        "endLine": 3435,
+        "endChar": 1
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82346940_b64cc1c0",
@@ -223,6 +307,24 @@
       "side": 1,
       "message": "ack, will do",
       "parentUuid": "82346940_b64cc1c0",
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73385ee0_4b5cca12",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 3534,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T03:42:59Z",
+      "side": 1,
+      "message": "Moved to a new extension.",
+      "parentUuid": "e09d15ff_98a4883c",
       "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
