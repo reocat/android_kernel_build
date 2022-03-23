@@ -34,6 +34,24 @@
       "parentUuid": "a86d4b0e_6a347949",
       "revId": "e2ceeaef5e96106f34d28b4c4b3f71c1c27b2cb0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aecc83ab_136e4645",
+        "filename": "kleaf/workspace_status.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T20:43:10Z",
+      "side": 1,
+      "message": "Without parallelization, the equivalent of next CL changes from 0.9s to 2.3s (see commit message)",
+      "parentUuid": "41fd7b79_ea1540df",
+      "revId": "e2ceeaef5e96106f34d28b4c4b3f71c1c27b2cb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
