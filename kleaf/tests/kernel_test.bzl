@@ -42,3 +42,18 @@ kernel_module_test = rule(
     },
     test = True,
 )
+
+def _kernel_build_test_impl(ctx):
+    arguments = " ".join([f.short_path for f in ctx.files.target])
+    runfiles = _write_script_and_arguments(ctx, arguments)
+    return [DefaultInfo(runfiles = ctx.runfiles(files = ctx.files.target + runfiles))]
+
+kernel_build_test = rule(
+    doc = "A test on artifacts produced by [kernel_build](#kernel_build).",
+    implementation = _kernel_build_test_impl,
+    attrs = {
+        "target": attr.label(doc = "The [`kernel_build()`](#kernel_build).", allow_files = True),
+        "_script": attr.label(default = "//build/kernel/kleaf/tests:kernel_build_test.py", allow_single_file = True),
+    },
+    test = True,
+)
