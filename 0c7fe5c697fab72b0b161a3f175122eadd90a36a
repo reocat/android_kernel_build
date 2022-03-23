@@ -103,6 +103,30 @@
       },
       "revId": "0c7fe5c697fab72b0b161a3f175122eadd90a36a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "055875be_72b550e4",
+        "filename": "kleaf/convert_to_bazel.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-23T17:35:29Z",
+      "side": 1,
+      "message": "yeah, there is probably only a very artificial way for calling this from anywhere else than root.",
+      "parentUuid": "23fd256f_1ae8a1e4",
+      "range": {
+        "startLine": 23,
+        "startChar": 54,
+        "endLine": 23,
+        "endChar": 69
+      },
+      "revId": "0c7fe5c697fab72b0b161a3f175122eadd90a36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
