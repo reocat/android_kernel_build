@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3e95b2b_731eac9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-23T15:09:14Z",
+      "side": 1,
+      "message": "This change effectively redistributes prebuilts that are available already (publicly) on ab/. Do we really bundle things together for verification?",
+      "revId": "af550c703530e63ad89bced7893d0a4358df4281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cede939_f40c55ff",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-23T15:09:14Z",
+      "side": 1,
+      "message": "Not sure I am happy with the naming. gki_tools implies a whole lot more than just tools to certify boot img files.",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 403,
+        "endChar": 19
+      },
+      "revId": "af550c703530e63ad89bced7893d0a4358df4281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "649eb6ec_1d039de3",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-23T15:09:14Z",
+      "side": 1,
+      "message": "can we use .tar.gz, that seems to be a more common choice on Linux",
+      "revId": "af550c703530e63ad89bced7893d0a4358df4281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
