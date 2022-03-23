@@ -68,6 +68,30 @@
       },
       "revId": "6f56c0abdd7e16fc5721ff63fdc61aa9dc41d927",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6820d5f_79130d86",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 3767,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T19:36:37Z",
+      "side": 1,
+      "message": "What you say is definitely doable -- `bazel run`-ing a diff target prints the report.\n\nI was planning to do this in a different CL to say that I am implementing the --print_report option in build_abi.sh.\n\nIn fact, according to Matthias\u0027s comment, I was even going to create a template file with git commit messages.\n\nDoes that sound good to you?",
+      "parentUuid": "9c19f05d_e17eeeea",
+      "range": {
+        "startLine": 3762,
+        "startChar": 0,
+        "endLine": 3767,
+        "endChar": 9
+      },
+      "revId": "6f56c0abdd7e16fc5721ff63fdc61aa9dc41d927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
