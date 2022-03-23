@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "843d63b1_59c5242c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T19:48:24Z",
+      "side": 1,
+      "message": "Yes, but the caller needs to do it explicitly.\n\nThis is mentioned in the doc of kernel_unstripped_modules_archive.",
+      "parentUuid": "bec0dcf6_e53069a3",
+      "revId": "269d49239e8ea0ac0c8a768c147fcc87fe24443a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a4493e4_42b607b9",
