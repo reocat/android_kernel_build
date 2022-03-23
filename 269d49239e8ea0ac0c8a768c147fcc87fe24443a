@@ -39,6 +39,30 @@
       },
       "revId": "269d49239e8ea0ac0c8a768c147fcc87fe24443a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0b508a_75347d5d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 3991,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T19:47:04Z",
+      "side": 1,
+      "message": "and with -h option in the tar command later? Sure!",
+      "parentUuid": "9a4493e4_42b607b9",
+      "range": {
+        "startLine": 3991,
+        "startChar": 42,
+        "endLine": 3991,
+        "endChar": 44
+      },
+      "revId": "269d49239e8ea0ac0c8a768c147fcc87fe24443a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
