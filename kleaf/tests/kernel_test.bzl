@@ -50,3 +50,20 @@ kernel_module_test = rule(
     },
     test = True,
 )
+
+def _kernel_build_test_impl(ctx):
+    arguments = [f.short_path for f in ctx.files.target]
+    runfiles = _write_script_and_arguments(ctx, arguments)
+    runfiles += ctx.files.target
+    return [DefaultInfo(runfiles = ctx.runfiles(files = runfiles))]
+
+kernel_build_test = rule(
+    doc = "A test on artifacts produced by [kernel_build](#kernel_build).",
+    implementation = _kernel_build_test_impl,
+    attrs = {
+        "target": attr.label(doc = "The [`kernel_build()`](#kernel_build).", allow_files = True),
+        "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
+        "_script": attr.label(default = "//build/kernel/kleaf/tests:kernel_build_test.py", allow_single_file = True),
+    },
+    test = True,
+)
