@@ -16,6 +16,24 @@
       "message": "the python interpreter adds another ~100ms startup time. Are you sure about that?",
       "revId": "e2ceeaef5e96106f34d28b4c4b3f71c1c27b2cb0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41fd7b79_ea1540df",
+        "filename": "kleaf/workspace_status.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T18:23:08Z",
+      "side": 1,
+      "message": "Yeah I need parallelization; see next CL.\n\nI could also do this in shell with wait(1p) (which is not in prebuilts, so we\u0027ll need to pull in another dependency from host) but it\u0027s not as clean as-is.\n\nI am also planning to disable this for non-release builds (and only enable on release builds; see b/226170550.",
+      "parentUuid": "a86d4b0e_6a347949",
+      "revId": "e2ceeaef5e96106f34d28b4c4b3f71c1c27b2cb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
