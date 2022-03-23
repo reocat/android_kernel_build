@@ -158,6 +158,24 @@
       "parentUuid": "033736e3_737c7777",
       "revId": "af550c703530e63ad89bced7893d0a4358df4281",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76882c08_c388115e",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-03-23T15:59:55Z",
+      "side": 1,
+      "message": "\u003e unnecessary dependency to soong_zip. \nAck, got it.\n\n\u003e So, thanks for making this tar.\n\nNp!",
+      "parentUuid": "25743c43_0fda09e4",
+      "revId": "af550c703530e63ad89bced7893d0a4358df4281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
