@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33943e1f_a41d54ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T03:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1af5f653_f90fed7e",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "252643722d39f3e1954bd7315c79bd44ef6bcbf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d28e64d8_5d6b2f69",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-22T17:02:22Z",
       "side": 1,
       "message": "directory or dir (unstripped is already in the provider name)",
+      "range": {
+        "startLine": 1191,
+        "startChar": 9,
+        "endLine": 1191,
+        "endChar": 23
+      },
+      "revId": "252643722d39f3e1954bd7315c79bd44ef6bcbf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9c51581_61847274",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1191,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T03:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d28e64d8_5d6b2f69",
       "range": {
         "startLine": 1191,
         "startChar": 9,
@@ -154,6 +202,30 @@
       "side": 1,
       "message": "This is just creating symlinks. Is that still too much? We are creating symlinks in sandboxes anyway.",
       "parentUuid": "afcceeda_a302c92f",
+      "range": {
+        "startLine": 3566,
+        "startChar": 0,
+        "endLine": 3568,
+        "endChar": 41
+      },
+      "revId": "252643722d39f3e1954bd7315c79bd44ef6bcbf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92f3c38a_6ead4e90",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 3568,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T03:59:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9351c3fc_e22137a3",
       "range": {
         "startLine": 3566,
         "startChar": 0,
