@@ -3701,6 +3701,12 @@ def kernel_build_abi(
       - Building this target creates the ABI dump.
       - Include this target in a `copy_to_dist_dir` target to copy
         ABI dump to `--dist-dir`.
+    - kernel_aarch64_abi_diff
+      - Building this target creates the STG ABI diff report.
+      - Running this target prints the STG ABI diff short report.
+    - kernel_aarch64_abi_diff_legacy
+      - Building this target creates the ABI diff report.
+      - Running this target prints the ABI diff short report.
     - kernel_aarch64_abi (if `abi_definition` is not `None`)
       - Building this target diffs the ABI dump with `abi_definition`.
       - Include this target in a `copy_to_dist_dir` target to copy
@@ -3722,6 +3728,9 @@ def kernel_build_abi(
     |`build_abi.sh --update`            |`bazel run kernel_aarch64_abi_update_symbol_list && \\`|Update symbol list,                                                    |
     |                                   |`    bazel build kernel_aarch64_abi && \\`             |create ABI dump and diff report,                                       |
     |                                   |`    bazel run kernel_aarch64_abi_update` [1][2][3]    |then update `abi_definition`                                           |
+    |-----------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------|
+    |`build_abi.sh --print_report`      |`bazel build kernel_aarch64_abi && \\`                 |Create ABI dump and diff report,                                       |
+    |                                   |`    bazel run kernel_aarch64_diff_legacy`             |then print the legacy report.                                          |
     |-----------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------|
     |`build_abi.sh`                     |`bazel build kernel_aarch64_abi` [2]                   |Create ABI dump and diff report                                        |
     |-----------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------|
@@ -3881,6 +3890,8 @@ _KernelAbiDiffInfo = provider(
 )
 
 def _kernel_abi_diff_impl(ctx):
+    default_outputs_dir = "{}_internal".format(ctx.attr.name)
+
     inputs = [
         ctx.file._diff_abi,
         ctx.file.baseline,
@@ -3891,19 +3902,19 @@ def _kernel_abi_diff_impl(ctx):
 
     if ctx.attr.stg:
         additional_args = "--abi-tool STG"
-        short_report = ctx.actions.declare_file("{}/abi.report.stg.short".format(ctx.attr.name))
+        short_report = ctx.actions.declare_file("{}/abi.report.stg.short".format(default_outputs_dir))
         default_outputs = [short_report]
         report_path = short_report.dirname + "/abi.report.stg"
         for suffix in ("errors", "flat", "plain", "short", "small", "viz"):
-            report = ctx.actions.declare_file("{}/abi.report.stg.{}".format(ctx.attr.name, suffix))
+            report = ctx.actions.declare_file("{}/abi.report.stg.{}".format(default_outputs_dir, suffix))
             default_outputs.append(report)
         error_msg = """stgdiff has reported ABI differences. See reports in
     {}.*
 """.format(report_path)
     else:
         additional_args = ""
-        short_report = ctx.actions.declare_file("{}/abi.report.short".format(ctx.attr.name))
-        report = ctx.actions.declare_file("{}/abi.report".format(ctx.attr.name))
+        short_report = ctx.actions.declare_file("{}/abi.report.short".format(default_outputs_dir))
+        report = ctx.actions.declare_file("{}/abi.report".format(default_outputs_dir))
         report_path = report.path
         default_outputs = [report, short_report]
         error_msg = """ABI DIFFERENCES HAVE BEEN DETECTED! See brief report in
@@ -3911,11 +3922,11 @@ def _kernel_abi_diff_impl(ctx):
   The detailed report is available in the same directory.
 """.format(short_report.path)
 
-    error_msg_file = ctx.actions.declare_file("{}/error_msg".format(ctx.attr.name))
+    error_msg_file = ctx.actions.declare_file("{}/error_msg".format(default_outputs_dir))
     ctx.actions.write(error_msg_file, error_msg)
     inputs.append(error_msg_file)
 
-    exit_code_file = ctx.actions.declare_file("{}/exit_code_file".format(ctx.attr.name))
+    exit_code_file = ctx.actions.declare_file("{}/exit_code_file".format(default_outputs_dir))
     command_outputs = default_outputs + [exit_code_file]
 
     command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
@@ -3951,8 +3962,19 @@ def _kernel_abi_diff_impl(ctx):
         progress_message = "Creating ABI diff report {}".format(ctx.label),
     )
 
+    script = ctx.attr._hermetic_tools[HermeticToolsInfo].run_setup + """
+        cat {short_report}
+    """.format(short_report = short_report.short_path)
+    ctx.actions.write(
+        content = script,
+        output = ctx.outputs.executable,
+        is_executable = True,
+    )
+    runfiles = [short_report] + ctx.attr._hermetic_tools[HermeticToolsInfo].deps
+    runfiles = ctx.runfiles(files = runfiles)
+
     return [
-        DefaultInfo(files = depset(default_outputs)),
+        DefaultInfo(files = depset(default_outputs), runfiles = runfiles),
         _KernelAbiDiffInfo(
             error_msg_file = error_msg_file,
             exit_code_file = exit_code_file,
@@ -3961,7 +3983,7 @@ def _kernel_abi_diff_impl(ctx):
 
 _kernel_abi_diff = rule(
     implementation = _kernel_abi_diff_impl,
-    doc = "Run `diff_abi`",
+    doc = "Run `diff_abi` to create the report. Running this target prints the short report.",
     attrs = {
         "baseline": attr.label(allow_single_file = True),
         "new": attr.label(allow_single_file = True),
@@ -3971,6 +3993,7 @@ _kernel_abi_diff = rule(
         "_diff_abi": attr.label(default = "//build/kernel:abi/diff_abi", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
+    executable = True,
 )
 
 def _kernel_kmi_enforced_impl(ctx):
