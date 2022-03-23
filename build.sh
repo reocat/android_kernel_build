@@ -399,6 +399,10 @@
 #         FILES="${FILES} rk3399-rock-pi-4b.dtb"
 #     where the dts file path is
 #     common-modules/virtual-device/rk3399-rock-pi-4b.dts
+#
+#   BUILD_GKI_TOOLS
+#     if set to "1", build a gki_tools.zip containing all the utilities used
+#     to certify GKI boot-*.img files.
 
 # Note: For historic reasons, internally, OUT_DIR will be copied into
 # COMMON_OUT_DIR, and OUT_DIR will be then set to
@@ -785,6 +789,15 @@ if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -n "${EXT_MODULES}" ]]; then
     set +x
   done
 
+fi
+
+if [ "${BUILD_GKI_TOOLS}" = "1"  ]; then
+  echo "========================================================"
+  echo " Generating gki_tools.zip"
+  GKI_TOOLS_BINARIES=(avbtool certify_bootimg)
+  GKI_TOOLS_ROOT="${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86"
+  GKI_TOOLS_FILES_TO_ZIP="${GKI_TOOLS_BINARIES[@]/#/-f ${GKI_TOOLS_ROOT}/bin/}"
+  soong_zip -o ${DIST_DIR}/gki_tools.zip -C ${GKI_TOOLS_ROOT} ${GKI_TOOLS_FILES_TO_ZIP}
 fi
 
 echo "========================================================"
