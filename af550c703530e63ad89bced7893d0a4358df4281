@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59288033_7029453f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-03-23T15:28:37Z",
+      "side": 1,
+      "message": "Yup, by default the signing server expects to download \"otatools.zip\" (the AOSP signing tools) and the signing artifacts (e.g., gsi_arm64-target_files-\u003cbuild-id\u003e.zip) from the same build artifacts.\n\nSo we\u0027d like to mimic this convention in the kernel tree as well.\n\nb/223168131 contains more details.",
+      "parentUuid": "b3e95b2b_731eac9a",
+      "revId": "af550c703530e63ad89bced7893d0a4358df4281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cede939_f40c55ff",
@@ -43,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8acaaaa8_faccfa48",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-03-23T15:28:37Z",
+      "side": 1,
+      "message": "OK, will use GKI_CERTIFICATION_TOOLS instead, to narrow down the scope in next PS.",
+      "parentUuid": "2cede939_f40c55ff",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 403,
+        "endChar": 19
+      },
+      "revId": "af550c703530e63ad89bced7893d0a4358df4281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "649eb6ec_1d039de3",
         "filename": "build.sh",
         "patchSetId": 2
@@ -54,6 +96,24 @@
       "writtenOn": "2022-03-23T15:09:14Z",
       "side": 1,
       "message": "can we use .tar.gz, that seems to be a more common choice on Linux",
+      "revId": "af550c703530e63ad89bced7893d0a4358df4281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "033736e3_737c7777",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-03-23T15:28:37Z",
+      "side": 1,
+      "message": "OK, we can do that.\n\nps: for Android signing, the signing server expects to download the \"otatools.zip\". That\u0027s why we keep using gki_tools.zip. Anyway I think using .tar.gz should work as well, will do.",
+      "parentUuid": "649eb6ec_1d039de3",
       "revId": "af550c703530e63ad89bced7893d0a4358df4281",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
