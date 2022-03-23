@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6490858_59551514",
+        "filename": "kleaf/abi_update_helper.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T00:28:52Z",
+      "side": 1,
+      "message": "Indeed, this is just an expensive cp.\n\nThe problem I was trying to solve with this script was that I cannot specify arguments statically to a build script. This is similar to the copy_to_dist_dir rule, where the locations of the dist files needs to be written to a manifest, and the copy_to_dist_dir rule needs to intelligently find the manifest to load all the arguments.\n\nHowever, I think I can use `ctx.actions.expand_template` or just `ctx.actions.write` to write a script to copy the file.\n\nI\u0027ll reduce the complexity and come back with an updated CL.",
+      "parentUuid": "50327999_0492847e",
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0af22dff_96468547",
         "filename": "kleaf/abi_update_helper.py",
         "patchSetId": 30
@@ -94,6 +112,30 @@
       "writtenOn": "2022-03-22T15:53:24Z",
       "side": 1,
       "message": "why do we need to copy them? In the bazel sandbox those should be the only ones visible? does this not make this rule unnecessary expensive?",
+      "range": {
+        "startLine": 3383,
+        "startChar": 8,
+        "endLine": 3383,
+        "endChar": 36
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1417205a_84c5afb5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 3383,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T00:28:52Z",
+      "side": 1,
+      "message": "-l creates links instead of copying.\n\nThese source files needs to be in the same directory for extract_symbols to work. In build_abi.sh, they are all copied to DIST_DIR before running extract_symbols. Here, I just use an intermediate directory, create symlinks to all of the files, then run extract_symbols.",
+      "parentUuid": "5bb7b7c9_25326269",
       "range": {
         "startLine": 3383,
         "startChar": 8,
@@ -163,6 +205,24 @@
       "writtenOn": "2022-03-22T15:53:24Z",
       "side": 1,
       "message": "there is nothing kernel specific here, this should go to a utility file where its complexity stands alone.",
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e09d15ff_98a4883c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 3534,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-23T00:28:52Z",
+      "side": 1,
+      "message": "ack, will do",
+      "parentUuid": "82346940_b64cc1c0",
       "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
