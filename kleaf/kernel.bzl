@@ -27,6 +27,7 @@ load(
 )
 load(
     "//build/kernel/kleaf/tests:kernel_test.bzl",
+    "kernel_build_test",
     "kernel_module_test",
 )
 
@@ -522,6 +523,10 @@ def kernel_build(
             **kwargs
         )
 
+    kernel_build_test(
+        name = name + "_test",
+        target = name,
+    )
     kernel_module_test(
         name = name + "_modules_test",
         modules = real_outs.get("modules"),
