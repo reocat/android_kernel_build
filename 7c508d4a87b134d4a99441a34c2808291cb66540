@@ -232,6 +232,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a0c1083_7327804e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 30
+      },
+      "lineNbr": 3383,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-23T15:17:31Z",
+      "side": 1,
+      "message": "but given the sandbox of bazel, should you not be able to just run extract_symbols on the current working directory? you should not see anything else in the sandbox than vmlinux + *.ko + perhaps some tools that do not bother. But I understand that cp -l is a fast way of ensuring the correct inputs.",
+      "parentUuid": "1417205a_84c5afb5",
+      "range": {
+        "startLine": 3383,
+        "startChar": 8,
+        "endLine": 3383,
+        "endChar": 36
+      },
+      "revId": "7c508d4a87b134d4a99441a34c2808291cb66540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "587140f6_cc0f6187",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 30
