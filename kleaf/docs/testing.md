@@ -11,7 +11,7 @@ For a `kernel_build()` named `foo`, the following targets are created. You
 may execute the tests with
 
 ```shell
-$ bazel test foo_module_test
+$ bazel test foo_module_test foo_test
 ```
 
 ## `kernel_module` rule
