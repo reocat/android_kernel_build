@@ -8,6 +8,20 @@ SCM version refers to the result of the `scripts/setlocalversion` script.
   release string, after the kernel version.
 - For kernel modules `*.ko`, SCM version can be found using `modinfo(8)`.
 
+## `--config=release`
+
+SCM version is only embedded in artifacts with `--config=release`.
+**All `bazel` commands below assumes `--config=release`.**
+
+The option is expected to be set only on build servers. Adding this option
+introduces a small overhead for almost all `bazel` commands that build targets.
+If you want to enable `--config=release` in your local development workflow, you
+may do so in `user.bazelrc` under the repository root. See the following for
+references:
+
+- [Kleaf `bazelrc` files](impl.md#bazelrc-files)
+- [Bazel's documentation on `bazelrc` files](https://bazel.build/docs/bazelrc)
+
 ## Handling SCM version in `kernel_build`
 
 For `kernel_build()` that produces `vmlinux`, the following is required to embed
