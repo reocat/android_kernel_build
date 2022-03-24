@@ -12,7 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+
 def _write_script_and_arguments(ctx, arguments):
+    if ctx.attr._config[BuildSettingInfo].value != "release":
+        ctx.actions.write(content = "", output = ctx.outputs.executable, is_executable = True)
+        return []
+
     arguments_file = ctx.actions.declare_file("{}.args".format(ctx.attr.name))
     ctx.actions.write(
         output = arguments_file,
@@ -39,6 +45,7 @@ kernel_module_test = rule(
     attrs = {
         "modules": attr.label_list(allow_files = True),
         "_script": attr.label(default = "//build/kernel/kleaf/tests:kernel_module_test.py", allow_single_file = True),
+        "_config": attr.label(default = "//build/kernel/kleaf:config"),
     },
     test = True,
 )
@@ -54,6 +61,7 @@ kernel_build_test = rule(
     attrs = {
         "target": attr.label(doc = "The [`kernel_build()`](#kernel_build).", allow_files = True),
         "_script": attr.label(default = "//build/kernel/kleaf/tests:kernel_build_test.py", allow_single_file = True),
+        "_config": attr.label(default = "//build/kernel/kleaf:config"),
     },
     test = True,
 )
