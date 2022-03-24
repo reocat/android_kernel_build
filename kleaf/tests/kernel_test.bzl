@@ -13,9 +13,14 @@
 # limitations under the License.
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 
 def _write_script_and_arguments(ctx, arguments):
+    if ctx.attr._config[BuildSettingInfo].value != "release":
+        ctx.actions.write(content = "", output = ctx.outputs.executable, is_executable = True)
+        return []
+        
     test_tools = ctx.attr._hermetic_tools[HermeticToolsInfo].test_deps
     arguments = arguments + ["--path", paths.dirname(ctx.attr._hermetic_tools[HermeticToolsInfo].test_tools_path)]
 
@@ -47,6 +52,7 @@ kernel_module_test = rule(
         "modules": attr.label_list(allow_files = True),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_script": attr.label(default = "//build/kernel/kleaf/tests:kernel_module_test.py", allow_single_file = True),
+        "_config": attr.label(default = "//build/kernel/kleaf:config"),
     },
     test = True,
 )
@@ -64,6 +70,7 @@ kernel_build_test = rule(
         "target": attr.label(doc = "The [`kernel_build()`](#kernel_build).", allow_files = True),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_script": attr.label(default = "//build/kernel/kleaf/tests:kernel_build_test.py", allow_single_file = True),
+        "_config": attr.label(default = "//build/kernel/kleaf:config"),
     },
     test = True,
 )
