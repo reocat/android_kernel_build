@@ -46,6 +46,30 @@
       },
       "revId": "cd4fc8afdcdb819ff85877cf5009dd00eb8f8b9b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b379e7a6_81a2370f",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2022-03-24T06:26:30Z",
+      "side": 1,
+      "message": "IMO it depends on the usage and convention.\n\nOne convention is to use \"-z/-n\" to test string nullness, another convention is check for explicit truthy strings \"y/yes/true/1\" and falsy strings \"n/no/false/0\".\n\nThe former is simpler and more robust to test and parse, but the latter forms more readable config files.",
+      "parentUuid": "02360ff2_1d627cc5",
+      "range": {
+        "startLine": 794,
+        "startChar": 39,
+        "endLine": 794,
+        "endChar": 42
+      },
+      "revId": "cd4fc8afdcdb819ff85877cf5009dd00eb8f8b9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
