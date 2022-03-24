@@ -3544,6 +3544,7 @@ def kernel_build_abi(
 
     kernel_build(name = name, **kwargs)
 
+    print(name, define_abi_targets)
     if not define_abi_targets:
         return
 
