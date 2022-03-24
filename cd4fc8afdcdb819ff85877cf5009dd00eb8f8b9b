@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "608e3e60_fe1de0a5",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2022-03-24T05:44:39Z",
+      "side": 1,
+      "message": "just a nit, but we usually don\u0027t call out explicit values, usually we just use \"-z\" or \"-n\".\n\n* empty \u003d\u003e false\n* not empty (1, true, yes, y etc) \u003d\u003e true",
+      "range": {
+        "startLine": 794,
+        "startChar": 39,
+        "endLine": 794,
+        "endChar": 42
+      },
+      "revId": "cd4fc8afdcdb819ff85877cf5009dd00eb8f8b9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
