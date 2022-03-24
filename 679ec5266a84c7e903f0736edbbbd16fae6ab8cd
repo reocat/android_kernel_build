@@ -16,6 +16,24 @@
       "message": "I need to think about this a bit more. It looks like we\u0027ll also need to capture things like \"BUILD_NUMBER\" which are used in setlocalversion.",
       "revId": "679ec5266a84c7e903f0736edbbbd16fae6ab8cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ebef29b_aee53d0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-24T04:18:48Z",
+      "side": 1,
+      "message": "Matthias, what do you think about this change? Should we set `--action_env\u003dBUILD_NUMBER` in common.bazelrc along with this change?",
+      "parentUuid": "111dde61_b3aa990f",
+      "revId": "679ec5266a84c7e903f0736edbbbd16fae6ab8cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
