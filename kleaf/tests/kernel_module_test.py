@@ -50,6 +50,19 @@ class ScmVersionTestCase(unittest.TestCase):
       any(re.match(ScmVersionTestCase._scmversion_pattern, s) for s in strings),
       "scmversion not found for {}".format(os.path.basename(module)))
 
+  _vermagic_pattern = re.compile(
+    r"^vermagic=[0-9]+[.][0-9]+[.][0-9]+(-[0-9]+)?-g[0-9a-f]{12}")
+
+  def _assert_contains_vermagic(self, module):
+    strings = subprocess.check_output(["strings", module],
+                                      text=True).strip().splitlines()
+    found_vermagic = [s for s in strings if s.startswith("vermagic=")]
+    self.assertTrue(
+        any(re.search(ScmVersionTestCase._vermagic_pattern, s) for s in
+            found_vermagic),
+        "no matching vermagic for {}, found {}".format(os.path.basename(module),
+                                                       found_vermagic))
+
 
 if __name__ == '__main__':
   unittest.main()
