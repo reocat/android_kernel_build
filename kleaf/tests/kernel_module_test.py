@@ -61,6 +61,21 @@ class ScmVersionTestCase(unittest.TestCase):
     if basename not in ScmVersionTestCase._modinfo_exempt_list:
       self.assertTrue(mo, "no matching scmversion, found {}".format(scmversion))
 
+  _vermagic_pattern = r"[0-9]+[.][0-9]+[.][0-9]+(-android[0-9]+)?(-[0-9]+)?(-[0-9]+)?-g[0-9a-f]{6,40}"
+
+  def _assert_contains_vermagic(self, module):
+    basename = os.path.basename(module)
+    try:
+      vermagic = subprocess.check_output(
+          ["modinfo", module, "-F", "vermagic"], text=True).strip()
+    except subprocess.CalledProcessError:
+      vermagic = None
+
+    mo = re.match(ScmVersionTestCase._vermagic_pattern, vermagic)
+
+    if basename not in ScmVersionTestCase._modinfo_exempt_list:
+      self.assertTrue(mo, "no matching vermagic, found {}".format(vermagic))
+
 
 if __name__ == '__main__':
   unittest.main()
