@@ -52,6 +52,24 @@
       "parentUuid": "41fd7b79_ea1540df",
       "revId": "e2ceeaef5e96106f34d28b4c4b3f71c1c27b2cb0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "676504f3_7dbe851b",
+        "filename": "kleaf/workspace_status.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-24T04:47:23Z",
+      "side": 1,
+      "message": "See CL:2038977 for disabling this on developer builds. I\u0027ll need to configure ci.android.com to run with --config\u003drelease first; for that I\u0027ll need to merge CL:2038976 first.",
+      "parentUuid": "aecc83ab_136e4645",
+      "revId": "e2ceeaef5e96106f34d28b4c4b3f71c1c27b2cb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
