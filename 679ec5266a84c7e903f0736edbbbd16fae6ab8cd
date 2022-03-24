@@ -34,6 +34,24 @@
       "parentUuid": "111dde61_b3aa990f",
       "revId": "679ec5266a84c7e903f0736edbbbd16fae6ab8cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08ebe117_8bfd4f5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-24T04:29:14Z",
+      "side": 1,
+      "message": "Ah that\u0027s okay. Because STABLE_SCMVERSION / STABLE_SCMVERSION_EXTMOD is executed in workspace_status_command, they will absorb the environment variable.\n\nI\u0027ve also checked the vmlinux from presubmit artifact that the build number is preserved.",
+      "parentUuid": "3ebef29b_aee53d0e",
+      "revId": "679ec5266a84c7e903f0736edbbbd16fae6ab8cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
