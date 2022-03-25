@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+import concurrent.futures
+import glob
 import logging
 import os
 import re
@@ -291,7 +293,7 @@ def dump_kernel_abi(linux_tree, dump_path, symbol_list, vmlinux_path=None):
 class AbiTool(object):
     """Base class for different kinds of abi analysis tools"""
     def diff_abi(self, old_dump, new_dump, diff_report, short_report,
-                 symbol_list, full_report):
+                 symbol_list, full_report, print_report):
         raise NotImplementedError()
 
 
@@ -411,7 +413,7 @@ def _shorten_stgdiff(diff_report, short_report):
 class Libabigail(AbiTool):
     """Concrete AbiTool implementation for libabigail"""
     def diff_abi(self, old_dump, new_dump, diff_report, short_report,
-                 symbol_list, full_report):
+                 symbol_list, full_report, print_report=None):
         abi_changed = _run_abidiff(
             old_dump, new_dump, diff_report, symbol_list, full_report)
         if short_report is not None:
@@ -422,7 +424,7 @@ class Libabigail(AbiTool):
 class Stg(AbiTool):
     """" Concrete AbiTool implementation for STG """
     def diff_abi(self, old_dump, new_dump, diff_report, short_report=None,
-                 symbol_list=None, full_report=None):
+                 symbol_list=None, full_report=None, print_report=None):
         # shoehorn the interface
         basename = diff_report
         abi_changed = _run_stgdiff(old_dump, new_dump, basename, symbol_list)
@@ -433,11 +435,81 @@ class Stg(AbiTool):
         return abi_changed
 
 
+def _line_count(path):
+    with open(path) as input:
+        count = sum(1 for _ in input)
+        return count
+
+
+class Combined(AbiTool):
+    """" Concrete AbiTool implementation"""
+    def diff_abi(self, old_dump, new_dump, diff_report, short_report=None,
+                 symbol_list=None, full_report=None, print_report=None):
+        # shoehorn the interface
+        basename = diff_report
+        abg_leaf = basename + ".leaf"
+        abg_full = basename + ".full"
+        stg_basename = basename + ".stg"
+        stg_small = stg_basename + ".small"
+
+        abidiff_leaf_changed = None
+        abidiff_full_changed = None
+        stgdiff_changed = None
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            # fork
+            abidiff_leaf = executor.submit(
+                _run_abidiff, old_dump, new_dump, abg_leaf, symbol_list, False)
+            abidiff_full = executor.submit(
+                _run_abidiff, old_dump, new_dump, abg_full, symbol_list, True)
+            stgdiff = executor.submit(
+                _run_stgdiff, old_dump, new_dump, stg_basename, symbol_list)
+            # join
+            abidiff_leaf_changed = abidiff_leaf.result()
+            abidiff_full_changed = abidiff_full.result()
+            stgdiff_changed = stgdiff.result()
+
+        # post-process
+        for report in [abg_leaf, abg_full]:
+           _shorten_abidiff(report, report + ".short")
+        _shorten_stgdiff(stg_small, stg_small + ".short")
+
+        # reinterpret exit status
+        stgdiff_changed = _reinterpret_stgdiff(stgdiff_changed, stg_small)
+
+        print("ABI diff reports have been created")
+        paths = glob.glob(basename + "*")
+        for path in sorted(paths):
+            count = _line_count(path)
+            print(f" {path} [{count} lines]")
+
+        changed = []
+        if abidiff_leaf_changed:
+            changed.append(("abidiff (leaf changes)", abg_leaf))
+        if abidiff_full_changed:
+            changed.append(("abidiff (full)", abg_full))
+        if stgdiff_changed:
+            changed.append(("stgdiff", stg_small))
+        if changed:
+            print()
+            print("ABI DIFFERENCES HAVE BEEN DETECTED!")
+            for which, _ in changed:
+                print(f" by {which}")
+            if print_report:
+                print()
+                with open(changed[0][1] + ".short") as input:
+                    for line in input:
+                        print(line, end="")
+            return True
+        return False
+
+
 def get_abi_tool(abi_tool = "libabigail"):
     log.info(f"using {abi_tool} for abi analysis")
     if abi_tool == "libabigail":
         return Libabigail()
     if abi_tool == "STG":
         return Stg()
+    if abi_tool == "combined":
+        return Combined()
 
     raise ValueError("not a valid abi_tool: %s" % abi_tool)
