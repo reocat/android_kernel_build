@@ -22,10 +22,10 @@ import sys
 from abitool import get_abi_tool
 
 def diff_abi(abitool, baseline, new, report, short_report, symbol_list,
-             full_report):
+             full_report, print_report):
     tool = get_abi_tool(abitool)
     return tool.diff_abi(baseline, new, report, short_report, symbol_list,
-                         full_report)
+                         full_report, print_report)
 
 def main():
     parser = argparse.ArgumentParser()
