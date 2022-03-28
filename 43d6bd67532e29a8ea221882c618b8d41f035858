@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf09a64_2e1a0ea6",
+        "filename": "kleaf/workspace_status.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T10:15:15Z",
+      "side": 1,
+      "message": "error handling",
+      "revId": "43d6bd67532e29a8ea221882c618b8d41f035858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0528fc83_5120f9f1",
+        "filename": "kleaf/workspace_status.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T10:15:15Z",
+      "side": 1,
+      "message": "consider using asyncio for that\n\nhttps://docs.python.org/3.10/library/asyncio-subprocess.html",
+      "revId": "43d6bd67532e29a8ea221882c618b8d41f035858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
