@@ -325,6 +325,24 @@
       "parentUuid": "e190c277_42612c79",
       "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5af17bf3_da8cdf76",
+        "filename": "kleaf/tests/kernel_test.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T22:16:34Z",
+      "side": 1,
+      "message": "Also, this is not unique to tests; I face the same problem when writing any kind of executables that can be `bazel run`.",
+      "parentUuid": "ad46fcc2_c5c1a596",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
