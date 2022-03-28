@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b93b583_265c2e2e",
+        "filename": "kleaf/docs/testing.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T22:10:58Z",
+      "side": 1,
+      "message": "The change is about \"testing scmversion\", not just \"scmversion\".\n\nI can split it if you want.",
+      "parentUuid": "bb5f1472_42ec0996",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff23e570_74e2449d",
         "filename": "kleaf/docs/testing.md",
         "patchSetId": 7
@@ -48,6 +66,24 @@
       "writtenOn": "2022-03-28T11:03:30Z",
       "side": 1,
       "message": "nit empty line, why the separation?",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cf15abd_70c2355d",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T22:10:58Z",
+      "side": 1,
+      "message": "because my code formatter is not smart enough :(\n\nwill do",
+      "parentUuid": "2215170a_36b6563f",
       "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -111,6 +147,48 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4b9c978_11b42145",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T22:10:58Z",
+      "side": 1,
+      "message": "Any suggestions? I could do {1,40} but 1 seems too small",
+      "parentUuid": "28eaf228_28d6f88b",
+      "range": {
+        "startLine": 44,
+        "startChar": 58,
+        "endLine": 44,
+        "endChar": 60
+      },
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3505f292_8e317c77",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T22:10:58Z",
+      "side": 1,
+      "message": "I think this is a class static constant, which is \"global\" in a sense. Any reason to put it outside fo the class?",
+      "parentUuid": "1b7fdc9a_868cccdf",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aef1d4d4_510ff696",
         "filename": "kleaf/tests/kernel_module_test.py",
         "patchSetId": 7
@@ -151,6 +229,48 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92d258d7_b019efec",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T22:10:58Z",
+      "side": 1,
+      "message": "Yes. Since this is a test, I don\u0027t think we care about hermeticity here, right?",
+      "parentUuid": "aef1d4d4_510ff696",
+      "range": {
+        "startLine": 47,
+        "startChar": 40,
+        "endLine": 47,
+        "endChar": 47
+      },
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72e3c211_68acfb05",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T22:10:58Z",
+      "side": 1,
+      "message": "This sounds like a better idea. I\u0027ll replace it with host modinfo for now, and maybe later change it to modinfo from kernel sources",
+      "parentUuid": "5ce9d228_1156e7e0",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "415850ae_b3006246",
         "filename": "kleaf/tests/kernel_module_test.py",
         "patchSetId": 7
@@ -185,6 +305,24 @@
       "writtenOn": "2022-03-28T11:03:30Z",
       "side": 1,
       "message": "it feels wasteful that you are writing a file with arguments, then you substitute the path to it in a templated test file and eventually return this as an executable to test.\n\nThere must be a better way to parameterize the tests. Perhaps unittest.bzl from the skylib? https://docs.bazel.build/versions/main/skylark/testing.html",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad46fcc2_c5c1a596",
+        "filename": "kleaf/tests/kernel_test.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T22:10:58Z",
+      "side": 1,
+      "message": "unittest.bzl is for analysis-time tests.\n\nThese `bazel test`s are for artifacts.\n\nhttps://docs.bazel.build/versions/main/skylark/testing.html#for-validating-artifacts",
+      "parentUuid": "e190c277_42612c79",
       "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
