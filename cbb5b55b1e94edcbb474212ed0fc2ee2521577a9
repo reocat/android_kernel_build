@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c03e937f_5d1f9350",
+        "filename": "kleaf/workspace_status.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T21:55:46Z",
+      "side": 1,
+      "message": "Not needed. os.path.realpath is similar to realpath(1) that it doesn\u0027t canonicalize the path if the path does not exist when `strict\u003dFalse`.\n\nhttps://docs.python.org/3/library/os.path.html#os.path.realpath",
+      "parentUuid": "0ea26340_aa8f0bab",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 57
+      },
+      "revId": "cbb5b55b1e94edcbb474212ed0fc2ee2521577a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ccffbf2_b523f189",
@@ -54,6 +78,24 @@
       "writtenOn": "2022-03-28T10:05:55Z",
       "side": 1,
       "message": "`subprocess.check_output()`?\n\nhttps://docs.python.org/3.10/library/subprocess.html#subprocess.check_output",
+      "revId": "cbb5b55b1e94edcbb474212ed0fc2ee2521577a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de85bd9f_bc300800",
+        "filename": "kleaf/workspace_status.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T21:55:46Z",
+      "side": 1,
+      "message": "This is intentional so that the subprocess runs in the background. Same below.\n\ncheck_output waits for the subprocess to finish and collects output. Popen runs it in the background and only collects output when communicate() is called at the end of the main() function.",
+      "parentUuid": "7ccffbf2_b523f189",
       "revId": "cbb5b55b1e94edcbb474212ed0fc2ee2521577a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -77,6 +119,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e9a4c62_9febb023",
+        "filename": "kleaf/workspace_status.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T21:55:46Z",
+      "side": 1,
+      "message": "ack, will simplify this",
+      "parentUuid": "2e54fdb8_0dc83669",
+      "revId": "cbb5b55b1e94edcbb474212ed0fc2ee2521577a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05b714b4_34a9da83",
         "filename": "kleaf/workspace_status.py",
         "patchSetId": 6
@@ -88,6 +148,30 @@
       "writtenOn": "2022-03-28T10:05:55Z",
       "side": 1,
       "message": "`subprocess.check_output()`\n\nThis will also keep the error handling here (and not further down).",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 161
+      },
+      "revId": "cbb5b55b1e94edcbb474212ed0fc2ee2521577a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82bec04e_c3959657",
+        "filename": "kleaf/workspace_status.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T21:55:46Z",
+      "side": 1,
+      "message": "(see above)",
+      "parentUuid": "05b714b4_34a9da83",
       "range": {
         "startLine": 44,
         "startChar": 0,
@@ -117,6 +201,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ffe0871_d9ea423f",
+        "filename": "kleaf/workspace_status.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T21:55:46Z",
+      "side": 1,
+      "message": "If no `git` then `stable_source_date_epoch_obj` will still be non-None, but collet() in the next line will fail.\n\nShould I be more lenient about missing git? Right now, in build.sh builds, _setup_env.sh simply fails when there\u0027s no git:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/_setup_env.sh;l\u003d115;drc\u003de5f575376c3abcbc0cafe58746407af68b976c49\n\n(I think `which git` will fail with empty output, and `ln -sf $OUT_DIR/host_tools/git` will fail because it does not exist; but I haven\u0027t double checked)",
+      "parentUuid": "7fc8ee97_904bdcec",
+      "revId": "cbb5b55b1e94edcbb474212ed0fc2ee2521577a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3fd3afcf_5fcff45b",
         "filename": "kleaf/workspace_status.py",
         "patchSetId": 6
@@ -128,6 +230,24 @@
       "writtenOn": "2022-03-28T10:05:55Z",
       "side": 1,
       "message": "`sys.exit(main())` and let `main()` return a status code",
+      "revId": "cbb5b55b1e94edcbb474212ed0fc2ee2521577a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bb5b22d_7539e007",
+        "filename": "kleaf/workspace_status.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T21:55:46Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "3fd3afcf_5fcff45b",
       "revId": "cbb5b55b1e94edcbb474212ed0fc2ee2521577a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
