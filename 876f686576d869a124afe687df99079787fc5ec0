@@ -16,6 +16,23 @@
       "message": "those are multiple changes: the flag and the tests definition reacting to the flag",
       "revId": "876f686576d869a124afe687df99079787fc5ec0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0284b8f8_5fc6c31b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:29:22Z",
+      "side": 1,
+      "message": "Isn\u0027t config\u003drelease what we run in the CI then? This in particular should be tested.",
+      "revId": "876f686576d869a124afe687df99079787fc5ec0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
