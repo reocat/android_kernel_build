@@ -1,0 +1,192 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb5f1472_42ec0996",
+        "filename": "kleaf/docs/testing.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:03:30Z",
+      "side": 1,
+      "message": "this document is about \"testing kleaf\", but the change is about scmversion. those are different changes that need to be split.",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff23e570_74e2449d",
+        "filename": "kleaf/docs/testing.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:03:30Z",
+      "side": 1,
+      "message": "explain what is tested. even if you leave out details, set some expectations in what is and what is not tested.",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2215170a_36b6563f",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:03:30Z",
+      "side": 1,
+      "message": "nit empty line, why the separation?",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28eaf228_28d6f88b",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:03:30Z",
+      "side": 1,
+      "message": "12 is unlikely guaranteed forever. In fact, the hardcoded 12 recommendation from the kernel has been dropped and these days you should rather check a bit more flexible. \n\nMore context: https://lore.kernel.org/lkml/20181220000112.24891-1-avarab@gmail.com/",
+      "range": {
+        "startLine": 44,
+        "startChar": 58,
+        "endLine": 44,
+        "endChar": 60
+      },
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b7fdc9a_868cccdf",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:03:30Z",
+      "side": 1,
+      "message": "define as a global constant",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9417dd58_8a03ea06",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:03:30Z",
+      "side": 1,
+      "message": "no need to pre-compile, the python interpreter will cache the compiled regex for you. Just pass the pattern as r\"string\"",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aef1d4d4_510ff696",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:03:30Z",
+      "side": 1,
+      "message": "host tool?",
+      "range": {
+        "startLine": 47,
+        "startChar": 40,
+        "endLine": 47,
+        "endChar": 47
+      },
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce9d228_1156e7e0",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:03:30Z",
+      "side": 1,
+      "message": "a better way of safely extracting the scmversion is using \u0027modinfo\u0027. This is a host tool that is unlikely missing anywhere, but can also be built from the kernel sources.",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "415850ae_b3006246",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:03:30Z",
+      "side": 1,
+      "message": "if you decide to keep the precompiled regex, then use it directly\n\n_scmversion_pattern.match(s)",
+      "range": {
+        "startLine": 50,
+        "startChar": 10,
+        "endLine": 50,
+        "endChar": 60
+      },
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e190c277_42612c79",
+        "filename": "kleaf/tests/kernel_test.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:03:30Z",
+      "side": 1,
+      "message": "it feels wasteful that you are writing a file with arguments, then you substitute the path to it in a templated test file and eventually return this as an executable to test.\n\nThere must be a better way to parameterize the tests. Perhaps unittest.bzl from the skylib? https://docs.bazel.build/versions/main/skylark/testing.html",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
