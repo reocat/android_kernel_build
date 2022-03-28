@@ -219,6 +219,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "426c4ae2_496d6bcc",
+        "filename": "kleaf/workspace_status.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T23:05:10Z",
+      "side": 1,
+      "message": "I can also call `shutil.which(\"git\")` before invoking the command",
+      "parentUuid": "8ffe0871_d9ea423f",
+      "revId": "cbb5b55b1e94edcbb474212ed0fc2ee2521577a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3fd3afcf_5fcff45b",
         "filename": "kleaf/workspace_status.py",
         "patchSetId": 6
