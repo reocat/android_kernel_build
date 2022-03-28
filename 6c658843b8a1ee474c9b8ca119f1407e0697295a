@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6436de39_f6e44641",
+        "filename": "kleaf/docs/testing.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:14:20Z",
+      "side": 1,
+      "message": "foo is a too far-fetched name for the target to make this a useful example. Try using real-world names (or at least close to those).",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 37
+      },
+      "revId": "6c658843b8a1ee474c9b8ca119f1407e0697295a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a66977f_badab116",
+        "filename": "kleaf/tests/kernel_build_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:14:20Z",
+      "side": 1,
+      "message": "the same comments as in an earlier patch apply, but generally this is a lot of code duplication with `kernel_module_test.py`.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 0
+      },
+      "revId": "6c658843b8a1ee474c9b8ca119f1407e0697295a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f7dd96f_65d8b255",
+        "filename": "kleaf/tests/kernel_build_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:14:20Z",
+      "side": 1,
+      "message": "don\u0027t rely on 12",
+      "range": {
+        "startLine": 39,
+        "startChar": 68,
+        "endLine": 39,
+        "endChar": 69
+      },
+      "revId": "6c658843b8a1ee474c9b8ca119f1407e0697295a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2939981_a7431043",
+        "filename": "kleaf/tests/kernel_build_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:14:20Z",
+      "side": 1,
+      "message": "if this is in a string section, the beginning of the line is not guaranteed. If something encodes \"ALinux\", a valid choice for a references to the string could be an offset into the line.",
+      "range": {
+        "startLine": 39,
+        "startChar": 6,
+        "endLine": 39,
+        "endChar": 7
+      },
+      "revId": "6c658843b8a1ee474c9b8ca119f1407e0697295a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e4978dc_38148740",
+        "filename": "kleaf/tests/kernel_test.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:14:20Z",
+      "side": 1,
+      "message": "I believe this needs to be a macro in order to define those tests in projects. And that is necessary in order to do `bazel test ...`",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 17
+      },
+      "revId": "6c658843b8a1ee474c9b8ca119f1407e0697295a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73304768_3363a1be",
+        "filename": "kleaf/tests/kernel_test.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-28T11:14:20Z",
+      "side": 1,
+      "message": "strictly speaking this is a template, not a script. But I hope in the final implementation (with the comments addressed), it can actually be a script.",
+      "range": {
+        "startLine": 56,
+        "startChar": 9,
+        "endLine": 56,
+        "endChar": 16
+      },
+      "revId": "6c658843b8a1ee474c9b8ca119f1407e0697295a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
