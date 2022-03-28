@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05653635_c9d4509c",
+        "filename": "kleaf/tests/kernel_build_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T22:17:25Z",
+      "side": 1,
+      "message": "Just 6 lines (L25, 27, 28, 29, 31, 34). Their arguments can be different. I think it is cleaner to duplicate rather than putting in a common utils script because the arguments are different.",
+      "parentUuid": "2a66977f_badab116",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 0
+      },
+      "revId": "6c658843b8a1ee474c9b8ca119f1407e0697295a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f7dd96f_65d8b255",
         "filename": "kleaf/tests/kernel_build_test.py",
         "patchSetId": 6
@@ -118,6 +142,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac2f4b7b_241b2305",
+        "filename": "kleaf/tests/kernel_test.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T22:17:25Z",
+      "side": 1,
+      "message": "What do you mean? This works",
+      "parentUuid": "6e4978dc_38148740",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 17
+      },
+      "revId": "6c658843b8a1ee474c9b8ca119f1407e0697295a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73304768_3363a1be",
         "filename": "kleaf/tests/kernel_test.bzl",
         "patchSetId": 6
@@ -129,6 +177,30 @@
       "writtenOn": "2022-03-28T11:14:20Z",
       "side": 1,
       "message": "strictly speaking this is a template, not a script. But I hope in the final implementation (with the comments addressed), it can actually be a script.",
+      "range": {
+        "startLine": 56,
+        "startChar": 9,
+        "endLine": 56,
+        "endChar": 16
+      },
+      "revId": "6c658843b8a1ee474c9b8ca119f1407e0697295a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4463489_ac422150",
+        "filename": "kleaf/tests/kernel_test.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-28T22:17:25Z",
+      "side": 1,
+      "message": "Yeah I know 😞\nSee the other comment in aosp/2036989",
+      "parentUuid": "73304768_3363a1be",
       "range": {
         "startLine": 56,
         "startChar": 9,
