@@ -16,6 +16,52 @@
       "message": "Looks like the change can go independently with CL:2030441? Once this is merged, I can change the commands to always use --abitool combined",
       "revId": "c8b9ea9b322c11acc35a5a8510111feade1af0de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7795fc8_127b8bba",
+        "filename": "abi/abitool.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T21:51:35Z",
+      "side": 1,
+      "message": "Can we create the list from the variables above instead of looking into the filesystem, which is slower \u0026 less reliable?",
+      "range": {
+        "startLine": 480,
+        "startChar": 8,
+        "endLine": 480,
+        "endChar": 41
+      },
+      "revId": "c8b9ea9b322c11acc35a5a8510111feade1af0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de2de294_8b6ba8f6",
+        "filename": "abi/abitool.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T21:51:35Z",
+      "side": 1,
+      "message": "I remembered that f strings are supported by `./prebuilts/build-tools/path/linux-x86/python3` (Python 3.9.1), but not by the python runtime from the build servers (older version). So this is fine with Kleaf (it uses the prebuilt Python3), but you probably want to make sure build targets that uses build_abi.sh don\u0027t crash at this?\n\nOr ensures that build_abi.sh also uses the prebuilt Python binary",
+      "range": {
+        "startLine": 496,
+        "startChar": 22,
+        "endLine": 496,
+        "endChar": 23
+      },
+      "revId": "c8b9ea9b322c11acc35a5a8510111feade1af0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
