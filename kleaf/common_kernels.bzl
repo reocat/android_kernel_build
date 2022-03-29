@@ -83,7 +83,7 @@ def _default_kmi_configs():
             # - If there are symbol lists: assume TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1}
             # - If there aren't:           assume TRIM_NONLISTED_KMI unspecified
             "trim_nonlisted_kmi": aarch64_trim_and_check,
-            "kmi_symbol_list_strict_mode": aarch64_trim_and_check,
+            "kmi_symbol_list_strict_mode": False,
         },
         "kernel_aarch64_debug": {
             # Assume the value for KMI_SYMBOL_LIST and ADDITIONAL_KMI_SYMBOL_LISTS
