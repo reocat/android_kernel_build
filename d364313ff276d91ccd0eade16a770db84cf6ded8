@@ -16,6 +16,24 @@
       "message": "again, better extract that value with `modinfo mod.ko`",
       "revId": "d364313ff276d91ccd0eade16a770db84cf6ded8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bd394cd_f1d268cd",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:16:53Z",
+      "side": 1,
+      "message": "See other comment: https://android-review.googlesource.com/c/kernel/build/+/2036989/7..10/kleaf/tests/kernel_module_test.py#b47",
+      "parentUuid": "66f21c81_061994ad",
+      "revId": "d364313ff276d91ccd0eade16a770db84cf6ded8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
