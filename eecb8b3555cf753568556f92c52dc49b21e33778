@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e5196d8_157f0214",
+        "filename": "abi/abitool.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T21:41:32Z",
+      "side": 1,
+      "message": "Unrelated to this change, but do we have command line flags that control whether certain level of logs are displayed? e.g. for Bazel builds we want to suppress info level logs (less spammy), but for manual invocation we might want these logs to be shown.",
+      "range": {
+        "startLine": 305,
+        "startChar": 8,
+        "endLine": 305,
+        "endChar": 12
+      },
+      "revId": "eecb8b3555cf753568556f92c52dc49b21e33778",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
