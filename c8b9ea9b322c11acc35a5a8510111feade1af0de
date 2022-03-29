@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0df2cd99_c4908662",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T21:42:59Z",
+      "side": 1,
+      "message": "Looks like the change can go independently with CL:2030441? Once this is merged, I can change the commands to always use --abitool combined",
+      "revId": "c8b9ea9b322c11acc35a5a8510111feade1af0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
