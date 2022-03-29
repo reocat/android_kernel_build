@@ -457,6 +457,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9780c830_23ee4717",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T01:45:51Z",
+      "side": 1,
+      "message": "I add strings and modinfo to hermetic-tools specifically for tests. See CL:2047004.",
+      "parentUuid": "92d258d7_b019efec",
+      "range": {
+        "startLine": 47,
+        "startChar": 40,
+        "endLine": 47,
+        "endChar": 47
+      },
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "415850ae_b3006246",
         "filename": "kleaf/tests/kernel_module_test.py",
         "patchSetId": 7
