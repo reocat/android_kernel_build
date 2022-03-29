@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "213f5bfd_396eee58",
+        "filename": "kleaf/docs/testing.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:16:07Z",
+      "side": 1,
+      "message": "Moved to a different CL.",
+      "parentUuid": "3b93b583_265c2e2e",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff23e570_74e2449d",
@@ -49,6 +67,24 @@
       "writtenOn": "2022-03-28T11:03:30Z",
       "side": 1,
       "message": "explain what is tested. even if you leave out details, set some expectations in what is and what is not tested.",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b70f4eb6_951477ff",
+        "filename": "kleaf/docs/testing.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:16:07Z",
+      "side": 1,
+      "message": "Done, see follow up CL.",
+      "parentUuid": "ff23e570_74e2449d",
       "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -84,6 +120,24 @@
       "side": 1,
       "message": "because my code formatter is not smart enough :(\n\nwill do",
       "parentUuid": "2215170a_36b6563f",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed44e73d_9579e876",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:16:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cf15abd_70c2355d",
       "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -187,6 +241,66 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9302a132_76488aff",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:16:07Z",
+      "side": 1,
+      "message": "Resolving, let me know if you think global is better.",
+      "parentUuid": "3505f292_8e317c77",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7d93b55_b4cdaca6",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:16:07Z",
+      "side": 1,
+      "message": "Good to know! But with the usage below, let me keep it as a compiled regex.",
+      "parentUuid": "9417dd58_8a03ea06",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e760362_2b7fbfcf",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:16:07Z",
+      "side": 1,
+      "message": "Using 6,40 now",
+      "parentUuid": "a4b9c978_11b42145",
+      "range": {
+        "startLine": 44,
+        "startChar": 58,
+        "endLine": 44,
+        "endChar": 60
+      },
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aef1d4d4_510ff696",
@@ -271,6 +385,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a284e722_14dd1ef4",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:16:07Z",
+      "side": 1,
+      "message": "I tried modinfo but on my machine, it is installed to `/usr/sbin`, where `bazel test ...` won\u0027t recognize as part of the `PATH`, so it won\u0027t be able to use modinfo from host.\n\nI added a TODO to change this to modinfo from the one build from kernel source, but for now, can I keep using host strings?",
+      "parentUuid": "72e3c211_68acfb05",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "415850ae_b3006246",
         "filename": "kleaf/tests/kernel_module_test.py",
         "patchSetId": 7
@@ -282,6 +414,30 @@
       "writtenOn": "2022-03-28T11:03:30Z",
       "side": 1,
       "message": "if you decide to keep the precompiled regex, then use it directly\n\n_scmversion_pattern.match(s)",
+      "range": {
+        "startLine": 50,
+        "startChar": 10,
+        "endLine": 50,
+        "endChar": 60
+      },
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6da8edd4_52be5b17",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:16:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "415850ae_b3006246",
       "range": {
         "startLine": 50,
         "startChar": 10,
