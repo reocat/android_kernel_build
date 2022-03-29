@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "159132dc_a5e1649f",
+        "filename": "kleaf/tests/kernel_build_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T01:55:24Z",
+      "side": 1,
+      "message": "yeah now it grows bigger.\n\nMaybe I should move it to a common utils script with function pointers?\n\n```\n# common.py\ndef load_arguments(parser_fn):\n  ...\n  parser_fn(parser)\n  return parser.parse_args(...)\n```\n\n```\nkernel_module_test.py\ndef argparser_fn(parser):\n  parser.add_argument(...)\narguments \u003d common.load_arguments(argparser_fn)\n```",
+      "parentUuid": "05653635_c9d4509c",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 0
+      },
+      "revId": "6c658843b8a1ee474c9b8ca119f1407e0697295a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f7dd96f_65d8b255",
         "filename": "kleaf/tests/kernel_build_test.py",
         "patchSetId": 6
