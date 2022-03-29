@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7f203ad_defab9cd",
+        "filename": "kleaf/workspace_status.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:13:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cf09a64_2e1a0ea6",
+      "revId": "43d6bd67532e29a8ea221882c618b8d41f035858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0528fc83_5120f9f1",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "Any reason? Popen is also \"asynchronous\"",
       "parentUuid": "0528fc83_5120f9f1",
+      "revId": "43d6bd67532e29a8ea221882c618b8d41f035858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfc3a82d_c1c5b60a",
+        "filename": "kleaf/workspace_status.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:13:01Z",
+      "side": 1,
+      "message": "Resolving, let me know if you think asyncio has some benefits that Popen does not give us.",
+      "parentUuid": "5ef53e95_b36797c0",
       "revId": "43d6bd67532e29a8ea221882c618b8d41f035858",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
