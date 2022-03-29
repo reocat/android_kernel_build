@@ -33,6 +33,42 @@
       "message": "Isn\u0027t config\u003drelease what we run in the CI then? This in particular should be tested.",
       "revId": "876f686576d869a124afe687df99079787fc5ec0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e35c8a2_c72bd280",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:25:10Z",
+      "side": 1,
+      "message": "Done, I moved them to CL:2047003",
+      "parentUuid": "a81c5119_1da6f874",
+      "revId": "876f686576d869a124afe687df99079787fc5ec0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5413f3f_0ce9a575",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:25:10Z",
+      "side": 1,
+      "message": "Ha, my commit message is wrong. It should be \"skip tests on NOT --config\u003drelease\".\n\nI fixed the commit message.",
+      "parentUuid": "0284b8f8_5fc6c31b",
+      "revId": "876f686576d869a124afe687df99079787fc5ec0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
