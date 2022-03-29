@@ -421,6 +421,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18a393cf_1eba44b4",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T01:17:00Z",
+      "side": 1,
+      "message": "I resolved the problem of using modinfo in CL:2047004, but then I also hit the problem of modinfo not returning the scmversion / vermagic. It appears that modinfo doesn\u0027t work for a subset of modules (I am hitting errors with spidev.ko in raviole-5.15 build), but strings will find the strings properly.\n\nMaybe I have an old version of modinfo that doesn\u0027t support certain new kernel module binary layouts?",
+      "parentUuid": "3ad8f34c_237b1632",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "415850ae_b3006246",
         "filename": "kleaf/tests/kernel_module_test.py",
         "patchSetId": 7
