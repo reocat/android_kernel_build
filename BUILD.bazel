@@ -29,6 +29,14 @@ hermetic_tools(
         "rsync",
         "sh",
         "tar",
+
+        # For --strategy KernelBuild=local, scmversion is not pre-calculated
+        # in --workspace_status_command. Instead, it is calculated using
+        # git when the action is executed.
+        # Hence, git is needed for --strategy KernelBuild=local.
+        # However, we do not have ways to select() on --strategy, so just
+        # include git unconditionally for now until we find a better option.
+        "git",
     ],
     test_host_tools = [
         "modinfo",
