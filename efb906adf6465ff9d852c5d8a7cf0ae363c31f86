@@ -403,6 +403,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ad8f34c_237b1632",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-29T00:34:59Z",
+      "side": 1,
+      "message": "I also don\u0027t see modinfo.c anywhere in the kernel source tree.",
+      "parentUuid": "a284e722_14dd1ef4",
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "415850ae_b3006246",
         "filename": "kleaf/tests/kernel_module_test.py",
         "patchSetId": 7
