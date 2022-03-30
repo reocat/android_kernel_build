@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77cd4c12_4d651984",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-03-30T17:45:18Z",
+      "side": 1,
+      "message": "nit: have",
+      "range": {
+        "startLine": 43,
+        "startChar": 30,
+        "endLine": 43,
+        "endChar": 33
+      },
+      "revId": "44e4f5857893876431e38a8a51aa394897d2e09c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "175db0a9_845a2e55",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-03-30T17:45:18Z",
+      "side": 1,
+      "message": "So currently the script will always use 12 characters. I guess that could change in the future, but I highly doubt they will ever use less than 12. So can you change this to {12,40}?",
+      "range": {
+        "startLine": 50,
+        "startChar": 36,
+        "endLine": 50,
+        "endChar": 37
+      },
+      "revId": "44e4f5857893876431e38a8a51aa394897d2e09c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
