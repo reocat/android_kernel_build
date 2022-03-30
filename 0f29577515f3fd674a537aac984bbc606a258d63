@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0443c22_c9dd9bd5",
+        "filename": "BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-03-30T04:46:09Z",
+      "side": 1,
+      "message": "Hi,\nCan you please add \"unpack_bootimg\" here? (to accommodate aosp/2043037).\n\nThanks,\n\nps: I can also send another CL for that, if this is preferred.",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 22
+      },
+      "revId": "0f29577515f3fd674a537aac984bbc606a258d63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
