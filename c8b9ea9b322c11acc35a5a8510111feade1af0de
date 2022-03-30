@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "910dba02_c98c1d75",
+        "filename": "abi/abitool.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T10:53:17Z",
+      "side": 1,
+      "message": "The main issue with that is the possibility of non-existence due to tool failure.\n\nI\u0027d already had the thought that tool failure might cause trouble at the point a report is printed.\n\nHowever, tool failure will actually result in an exception being thrown before this code is even reached.\n\nSo, I\u0027ll follow your suggestion. Thanks! It will be good to get rid of `glob`.",
+      "parentUuid": "f7795fc8_127b8bba",
+      "range": {
+        "startLine": 480,
+        "startChar": 8,
+        "endLine": 480,
+        "endChar": 41
+      },
+      "revId": "c8b9ea9b322c11acc35a5a8510111feade1af0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de2de294_8b6ba8f6",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-03-29T21:51:35Z",
       "side": 1,
       "message": "I remembered that f strings are supported by `./prebuilts/build-tools/path/linux-x86/python3` (Python 3.9.1), but not by the python runtime from the build servers (older version). So this is fine with Kleaf (it uses the prebuilt Python3), but you probably want to make sure build targets that uses build_abi.sh don\u0027t crash at this?\n\nOr ensures that build_abi.sh also uses the prebuilt Python binary",
+      "range": {
+        "startLine": 496,
+        "startChar": 22,
+        "endLine": 496,
+        "endChar": 23
+      },
+      "revId": "c8b9ea9b322c11acc35a5a8510111feade1af0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e248c813_0127d00b",
+        "filename": "abi/abitool.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T10:53:17Z",
+      "side": 1,
+      "message": "Hmm. Python f-strings came out in 3.6, over 5 years ago. I hope we are using some version of 3 later than this!\n\nb/218677634 seems to be a relevant.\n\nPre-built Python throughout the (hermetic) build should already be the case.\n\n```\n$ ls -ld build/kernel/build-tools/path/linux-x86/python3\nlrwxrwxrwx 1 gprocida primarygroup 59 Feb 24 16:17 build/kernel/build-tools/path/linux-x86/python3 -\u003e ../../../../../prebuilts/build-tools/path/linux-x86/python3\n$ prebuilts/build-tools/path/linux-x86/python3  --version\nPython 3.9.1\n```",
+      "parentUuid": "de2de294_8b6ba8f6",
       "range": {
         "startLine": 496,
         "startChar": 22,
