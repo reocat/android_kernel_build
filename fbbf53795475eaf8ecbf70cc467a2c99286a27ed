@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ac26e8b_1170372a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "It\u0027s the other way around:\n\n* `dump_abi` `vmlinux` `*.ko` -\u003e `abi-full.xml`\n* `filter_abi` `abi-full.xml` -\u003e `abi.xml`",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 38
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8a29869c_e661dae7",
@@ -14,6 +37,282 @@
       "writtenOn": "2022-03-28T22:20:26Z",
       "side": 1,
       "message": "ping",
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59d28b5d_93c87991",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3518,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "Should not be needed.",
+      "range": {
+        "startLine": 3518,
+        "startChar": 4,
+        "endLine": 3518,
+        "endChar": 11
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "174efd52_9b6202c4",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3525,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "The present behaviours are:\n\nA - trimming NOT configured for this branch / target\n\n`dump_abi` is run on the artefacts in the out directory (containing an *untrimmed* `vmlinux`)\n`filter_abi` is run on the resulting XML file to produce another XML file\n\nB - trimming IS configured for this branch / target\n\n`dump_abi` is run on the artefacts in the out directory (containing a *trimmed* `vmlinux`)\n`filter_abi` is run on the resulting XML file to produce another XML file - and these are almost certainly identical\n\nIf you unconditionally extract ABIs using an untrimmed output, you will change the meaning of `full-abi.xml` for typical builds.\n\nI actually think this is a good thing to do, but it is a change in behaviour and would need to be communicated to partners etc. ahead of time.\n\nNow, you may not actually be doing this, I\u0027ll read more of the Bazel code to see if I can work it out.",
+      "range": {
+        "startLine": 3520,
+        "startChar": 1,
+        "endLine": 3525,
+        "endChar": 75
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e12ccf1c_4f9bb211",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3527,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "Should not be needed.",
+      "range": {
+        "startLine": 3527,
+        "startChar": 14,
+        "endLine": 3527,
+        "endChar": 21
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4acdc89_b50369f4",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3536,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "You can use:\n\n* `cp -t {abi_linux_tree}`\n* `find \u0027(\u0027 -name \u0027vmlinux\u0027 -or -name \u0027*.ko\u0027 \u0027)\u0027`\n* `-exec ... +` (instead of `-exec ... ;`)\n\nAnd so typically execute `cp` exactly once.",
+      "range": {
+        "startLine": 3536,
+        "startChar": 0,
+        "endLine": 3536,
+        "endChar": 90
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a185c2e_a09937c8",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3544,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "This should be obsoleted by the changes proposed above.",
+      "range": {
+        "startLine": 3544,
+        "startChar": 8,
+        "endLine": 3544,
+        "endChar": 31
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac44e9ec_beb9d808",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3563,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "Is this really needed? Aren\u0027t strings immutable in Python or is this `str(...)` or `f\"{...}\"` written differently?",
+      "range": {
+        "startLine": 3563,
+        "startChar": 14,
+        "endLine": 3563,
+        "endChar": 20
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95bc1f83_d826f3f7",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3583,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "Why not `ln -f`?",
+      "range": {
+        "startLine": 3583,
+        "startChar": 12,
+        "endLine": 3583,
+        "endChar": 17
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5bfd2a5_29af3ec4",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3646,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "As maennich@ suggested, it would be better to refer to \"extract{,s,ing,ed} the ABI\".",
+      "range": {
+        "startLine": 3646,
+        "startChar": 29,
+        "endLine": 3646,
+        "endChar": 49
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de1b6c73_9e57ad60",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3658,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "Perhaps: \"but do not compare it\"?",
+      "range": {
+        "startLine": 3658,
+        "startChar": 114,
+        "endLine": 3658,
+        "endChar": 133
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8adbd0c1_e433dc80",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3658,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 3658,
+        "startChar": 97,
+        "endLine": 3658,
+        "endChar": 112
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2c15607_1167e675",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3669,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "Similar wording changes: extract (the) ABI, compare (the) ABI(s). Try to use a consistent phrasing throughout.",
+      "range": {
+        "startLine": 3666,
+        "startChar": 7,
+        "endLine": 3669,
+        "endChar": 43
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8229690c_71917da8",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3722,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:19:14Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of \"with vmlinux\"?\n\nPerhaps it should either be \"vmlinux + *.ko\" or not be needed at all.",
+      "range": {
+        "startLine": 3715,
+        "startChar": 4,
+        "endLine": 3722,
+        "endChar": 0
+      },
       "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
