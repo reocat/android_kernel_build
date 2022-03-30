@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f138c90a_890a57cf",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 1804,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-03-30T17:26:39Z",
+      "side": 1,
+      "message": "This seems overlay complicated. If you can use sed, then please consider this:\n\n\"\"\" | sed -n \u0027s|.*\\\u003c{ext_mod}:\\([a-fA-F0-9]\\+\\).*|\\1|p\u0027\"\"\"",
+      "range": {
+        "startLine": 1804,
+        "startChar": 26,
+        "endLine": 1804,
+        "endChar": 92
+      },
+      "revId": "0e53a52a1a31577a64744d5a9e6e03b22945b0bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
