@@ -22,6 +22,30 @@
       },
       "revId": "eecb8b3555cf753568556f92c52dc49b21e33778",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "becf2168_22fd6b1d",
+        "filename": "abi/abitool.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T09:42:02Z",
+      "side": 1,
+      "message": "There was a reviewer comment a while ago about some related logging and issues with stdout / stderr. In the end, I just stripped it out (and replaced it with print) as it was overkill.\n\nI\u0027ll audit the logging in the build Python and see what can be done.",
+      "parentUuid": "1e5196d8_157f0214",
+      "range": {
+        "startLine": 305,
+        "startChar": 8,
+        "endLine": 305,
+        "endChar": 12
+      },
+      "revId": "eecb8b3555cf753568556f92c52dc49b21e33778",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
