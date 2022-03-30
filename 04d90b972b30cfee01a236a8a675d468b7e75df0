@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04286a8a_84de6657",
+        "filename": "_setup_env.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-03-30T20:39:15Z",
+      "side": 1,
+      "message": "This can probably be dropped if we add `LLD_COMPILER_RT` to `USERLDFLAGS` rather than `USERCFLAGS`.",
+      "revId": "04d90b972b30cfee01a236a8a675d468b7e75df0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
