@@ -22,6 +22,30 @@
       },
       "revId": "6ae8ee1a17d6faa93152ff9eb6d214fe61bc17a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "857a8521_840a88fb",
+        "filename": "abi/abitool.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T09:36:49Z",
+      "side": 1,
+      "message": "https://g3doc.corp.google.com/company/teams/opensource/copyright.md#the-year\n\nThe update is optional.\n\nWe can view this as part of the copyright enforcement (though I\u0027m not sure who\u0027s going to care in 50 to 75 years, so that\u0027s not a strong argument).\n\nWe can also view this as documentation. Given we are forced to document a year, my preference is to keep this documentation fresh.",
+      "parentUuid": "f77acb30_924ed94a",
+      "range": {
+        "startLine": 3,
+        "startChar": 20,
+        "endLine": 3,
+        "endChar": 25
+      },
+      "revId": "6ae8ee1a17d6faa93152ff9eb6d214fe61bc17a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
