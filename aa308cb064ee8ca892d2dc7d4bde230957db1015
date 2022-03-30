@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e11ed76_59ef2a43",
+        "filename": "kleaf/docs/scmversion.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-30T23:51:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f54a7f1_d3b558b4",
+      "range": {
+        "startLine": 65,
+        "startChar": 48,
+        "endLine": 65,
+        "endChar": 55
+      },
+      "revId": "aa308cb064ee8ca892d2dc7d4bde230957db1015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a502aa2_528db4f4",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-30T18:15:37Z",
       "side": 1,
       "message": "Having a fake build.config file I think would mess up build.sh since it uses the ${ROOT_DIR}/build.config if you don\u0027t specify BUILD_CONFIG\u003d. I wouldn\u0027t recommend this since we haven\u0027t fully deprecated build.sh and some partners might want to keep both kleaf and build.sh working together while transitioning.",
+      "range": {
+        "startLine": 68,
+        "startChar": 33,
+        "endLine": 68,
+        "endChar": 52
+      },
+      "revId": "aa308cb064ee8ca892d2dc7d4bde230957db1015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f8cd7f3_8c11772d",
+        "filename": "kleaf/docs/scmversion.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-30T23:51:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a502aa2_528db4f4",
       "range": {
         "startLine": 68,
         "startChar": 33,
