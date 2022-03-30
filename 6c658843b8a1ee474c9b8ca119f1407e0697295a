@@ -215,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6927dab_a5b030cf",
+        "filename": "kleaf/tests/kernel_build_test.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-03-30T18:06:31Z",
+      "side": 1,
+      "message": "I don\u0027t think the kernel will ever use anything less than 12.",
+      "parentUuid": "8962cbb3_536bd162",
+      "range": {
+        "startLine": 39,
+        "startChar": 68,
+        "endLine": 39,
+        "endChar": 69
+      },
+      "revId": "6c658843b8a1ee474c9b8ca119f1407e0697295a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6e4978dc_38148740",
         "filename": "kleaf/tests/kernel_test.bzl",
         "patchSetId": 6
