@@ -116,6 +116,30 @@
       },
       "revId": "b75722a178d9c8b0e8e0b137d983f77b10d867a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34e997ad_245451d0",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-30T23:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c573662b_b46c5150",
+      "range": {
+        "startLine": 64,
+        "startChar": 49,
+        "endLine": 64,
+        "endChar": 62
+      },
+      "revId": "b75722a178d9c8b0e8e0b137d983f77b10d867a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
