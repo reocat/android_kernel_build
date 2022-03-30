@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a106ba2_8d3bddf6",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-03-30T17:58:45Z",
+      "side": 1,
+      "message": "Please make this {12,40}",
+      "range": {
+        "startLine": 64,
+        "startChar": 90,
+        "endLine": 64,
+        "endChar": 91
+      },
+      "revId": "b75722a178d9c8b0e8e0b137d983f77b10d867a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "859c01ec_b3c45ef1",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-03-30T17:58:45Z",
+      "side": 1,
+      "message": "Please add a comment showing the format. Something like this:\n\nVERSION.PATCHLEVEL.SUBLEVEL-android_release-kmi_generation-tag-sha1",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 19
+      },
+      "revId": "b75722a178d9c8b0e8e0b137d983f77b10d867a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c573662b_b46c5150",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-03-30T17:58:45Z",
+      "side": 1,
+      "message": "I believe for android-mainline, this is just \"mainline\", e.g. \"5.17.0-mainline-16931-g3379906bd33b\"",
+      "range": {
+        "startLine": 64,
+        "startChar": 49,
+        "endLine": 64,
+        "endChar": 62
+      },
+      "revId": "b75722a178d9c8b0e8e0b137d983f77b10d867a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
