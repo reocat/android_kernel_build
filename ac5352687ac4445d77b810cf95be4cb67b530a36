@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b43ff4c5_4703e0f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-30T23:33:38Z",
+      "side": 1,
+      "message": "PTAL, I completely reworked this. The original approach does not work if $ROOT_DIR/build.config does not exist (the common-android* branches for example).\n\nThis introduces some duplicated logic, which I hope to eliminate with b/227520025.",
+      "revId": "ac5352687ac4445d77b810cf95be4cb67b530a36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
