@@ -16,6 +16,24 @@
       "message": "Please keep the `USERCFLAGS\u003d\"--sysroot\u003d/dev/null\"` in case NDK\u0027s not expected to present (like in case of android13-5.15)\n\n  else\n     export USERCFLAGS\u003d\"--sysroot\u003d/dev/null\"",
       "revId": "be958219841ba8f44c4a210457d6849d2831c7c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1de3269e_c2842697",
+        "filename": "_setup_env.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-03-30T20:24:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7c12e5d_4f092cfc",
+      "revId": "be958219841ba8f44c4a210457d6849d2831c7c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
