@@ -74,11 +74,15 @@ def main():
   if not os.access(setlocalversion, os.X_OK):
     setlocalversion = None
 
-  make_vars = get_make_vars(["EXT_MODULES"])
+  make_vars = get_make_vars(["EXT_MODULES", "BRANCH", "KMI_GENERATION"])
 
   stable_scmversion_obj = None
   if setlocalversion and os.path.isdir(kernel_dir):
-    stable_scmversion_obj = call_setlocalversion(setlocalversion, kernel_dir)
+    android_release = make_vars.get("BRANCH", "")
+    kmi_generation = make_vars.get("KMI_GENERATION", "")
+    stable_scmversion_obj = call_setlocalversion(setlocalversion, kernel_dir,
+                                                 android_release,
+                                                 kmi_generation)
 
   ext_modules = []
   stable_scmversion_extmod_objs = []
