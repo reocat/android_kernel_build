@@ -22,6 +22,30 @@
       },
       "revId": "8f27b0364d2578796a588ee180ad4797fb9b9ac8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77e15615_908e2e62",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 3773,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:33:37Z",
+      "side": 1,
+      "message": "The easiest way to gain confidence in that the XML files are equivalent is:\n\n```\nprebuilts/path/to/stgdiff --abi old.xml new.xml --format small --output -\necho $?\n```\n\nIf the (possibly 0) diffs are all symbol type added/removed or type only declared/fully defined, then you can rest easy.\n\nAnother thing to do is to actually run `diff_abi` specifying that you want STG to be used. This will do the necessary post-processing and interpreting to ignore certain kinds of noise diff. `PATH` will need to be set appropriately.",
+      "parentUuid": "ea9de92d_5bd09d88",
+      "range": {
+        "startLine": 3768,
+        "startChar": 0,
+        "endLine": 3773,
+        "endChar": 9
+      },
+      "revId": "8f27b0364d2578796a588ee180ad4797fb9b9ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

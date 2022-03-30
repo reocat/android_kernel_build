@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0243522_cd1a0231",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:33:37Z",
+      "side": 0,
+      "message": "Not related to this change, but is this saying that `debug` targets will have trimming turned on if and only if a symbol list has been specified?\n\nAlso, what is this comment doing here (is `-debug`) a typo?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 80
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

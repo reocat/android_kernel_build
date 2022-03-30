@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa2e98e0_6b165473",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:33:37Z",
+      "side": 1,
+      "message": "Does this match up with current configuration?",
+      "range": {
+        "startLine": 415,
+        "startChar": 12,
+        "endLine": 415,
+        "endChar": 32
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c41d2923_64625378",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3670,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:33:37Z",
+      "side": 1,
+      "message": "Same comments about wording. ABI extraction. ABI comparison. etc.",
+      "range": {
+        "startLine": 3664,
+        "startChar": 100,
+        "endLine": 3670,
+        "endChar": 133
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e5aba9f_effb96cd",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3702,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:33:37Z",
+      "side": 1,
+      "message": "ABI",
+      "range": {
+        "startLine": 3702,
+        "startChar": 38,
+        "endLine": 3702,
+        "endChar": 41
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17b289a5_08a13948",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3702,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:33:37Z",
+      "side": 1,
+      "message": "\"file\" is a bit redundant.",
+      "range": {
+        "startLine": 3702,
+        "startChar": 52,
+        "endLine": 3702,
+        "endChar": 57
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55142d68_24b3b48f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3776,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:33:37Z",
+      "side": 1,
+      "message": "I think this bit is going to change.",
+      "range": {
+        "startLine": 3765,
+        "startChar": 0,
+        "endLine": 3776,
+        "endChar": 23
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "864d15b5_8ef037e7",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3812,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:33:37Z",
+      "side": 1,
+      "message": "Should be obsolete once the \"delegated\" mode is implemented.",
+      "range": {
+        "startLine": 3812,
+        "startChar": 8,
+        "endLine": 3812,
+        "endChar": 23
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50522951_94a363b4",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3829,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:33:37Z",
+      "side": 1,
+      "message": "I think this should all change as discussed. These are \"inner workings\" of `diff_abi` and perhaps should not be exposed to the build system.",
+      "range": {
+        "startLine": 3811,
+        "startChar": 1,
+        "endLine": 3829,
+        "endChar": 6
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bd17338_87264f31",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3859,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:33:37Z",
+      "side": 1,
+      "message": "Same comment.",
+      "range": {
+        "startLine": 3859,
+        "startChar": 8,
+        "endLine": 3859,
+        "endChar": 23
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e88e303_d30a6684",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3887,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-30T16:33:37Z",
+      "side": 1,
+      "message": "Same comment.",
+      "range": {
+        "startLine": 3887,
+        "startChar": 9,
+        "endLine": 3887,
+        "endChar": 12
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
