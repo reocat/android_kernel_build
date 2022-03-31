@@ -51,9 +51,8 @@ class ScmVersionTestCase(unittest.TestCase):
                 continue
             strings = subprocess.check_output(["strings", artifact],
                                               text=True).strip().splitlines()
-            matches = any(
-                re.search(ScmVersionTestCase._scmversion_pattern, s)
-                for s in strings)
+            matches = any(ScmVersionTestCase._scmversion_pattern.search(s)
+                          for s in strings)
             msg = "scmversion not found for vmlinux, found {}".format(
                 [s for s in strings if "Linux version" in s]
             )
