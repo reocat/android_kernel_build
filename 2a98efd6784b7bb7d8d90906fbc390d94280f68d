@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "645e5d94_caf53e34",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T21:28:56Z",
+      "side": 1,
+      "message": "Isn\u0027t this already done in _setup_env.sh?",
+      "range": {
+        "startLine": 758,
+        "startChar": 0,
+        "endLine": 766,
+        "endChar": 0
+      },
+      "revId": "2a98efd6784b7bb7d8d90906fbc390d94280f68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c1a92940_db9f4744",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 10
