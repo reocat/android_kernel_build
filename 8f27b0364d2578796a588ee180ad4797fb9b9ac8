@@ -46,6 +46,30 @@
       },
       "revId": "8f27b0364d2578796a588ee180ad4797fb9b9ac8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a8f74fe_81036eee",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 3773,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:54:08Z",
+      "side": 1,
+      "message": "The reason I ask is that it appears that the _abi_diff_legacy and _abi_diff targets below all runs successfully, indicating there are no change.\n\nHowever, I think it might be related to trimming as you suggested in the other CL. Let me turn trimming on before dumping ABI and see if the diff is smaller.",
+      "parentUuid": "77e15615_908e2e62",
+      "range": {
+        "startLine": 3768,
+        "startChar": 0,
+        "endLine": 3773,
+        "endChar": 9
+      },
+      "revId": "8f27b0364d2578796a588ee180ad4797fb9b9ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

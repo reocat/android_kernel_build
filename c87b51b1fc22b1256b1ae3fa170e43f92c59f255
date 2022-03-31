@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb3ba181_8d0115b4",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:54:08Z",
+      "side": 1,
+      "message": "Yes\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android13-5.10:common/build.config.gki.aarch64;l\u003d29\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android13-5.15:common/build.config.gki.aarch64;l\u003d29",
+      "parentUuid": "fa2e98e0_6b165473",
+      "range": {
+        "startLine": 415,
+        "startChar": 12,
+        "endLine": 415,
+        "endChar": 32
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c41d2923_64625378",
@@ -118,6 +142,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e07d828_d3aa12d5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3776,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:54:08Z",
+      "side": 1,
+      "message": "Yeah I know, but that can change later after your CL merges, right?",
+      "parentUuid": "55142d68_24b3b48f",
+      "range": {
+        "startLine": 3765,
+        "startChar": 0,
+        "endLine": 3776,
+        "endChar": 23
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "864d15b5_8ef037e7",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 12
@@ -129,6 +177,30 @@
       "writtenOn": "2022-03-30T16:33:37Z",
       "side": 1,
       "message": "Should be obsolete once the \"delegated\" mode is implemented.",
+      "range": {
+        "startLine": 3812,
+        "startChar": 8,
+        "endLine": 3812,
+        "endChar": 23
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2913b6d_af75dec5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3812,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:54:08Z",
+      "side": 1,
+      "message": "Yeah I know, but that can change later after your CL merges, right?",
+      "parentUuid": "864d15b5_8ef037e7",
       "range": {
         "startLine": 3812,
         "startChar": 8,
@@ -164,6 +236,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60d0442b_662e0fc0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3829,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:54:08Z",
+      "side": 1,
+      "message": "Yeah I know, but that can change later after your CL merges, right?",
+      "parentUuid": "50522951_94a363b4",
+      "range": {
+        "startLine": 3811,
+        "startChar": 1,
+        "endLine": 3829,
+        "endChar": 6
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0bd17338_87264f31",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 12
@@ -175,6 +271,30 @@
       "writtenOn": "2022-03-30T16:33:37Z",
       "side": 1,
       "message": "Same comment.",
+      "range": {
+        "startLine": 3859,
+        "startChar": 8,
+        "endLine": 3859,
+        "endChar": 23
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23cbb0bf_1aba7036",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3859,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:54:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0bd17338_87264f31",
       "range": {
         "startLine": 3859,
         "startChar": 8,
@@ -198,6 +318,30 @@
       "writtenOn": "2022-03-30T16:33:37Z",
       "side": 1,
       "message": "Same comment.",
+      "range": {
+        "startLine": 3887,
+        "startChar": 9,
+        "endLine": 3887,
+        "endChar": 12
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f639ce4_c9600710",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3887,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:54:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4e88e303_d30a6684",
       "range": {
         "startLine": 3887,
         "startChar": 9,

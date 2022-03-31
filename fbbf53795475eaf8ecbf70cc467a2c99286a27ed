@@ -22,6 +22,30 @@
       },
       "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa2cbe48_345e13c4",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:54:08Z",
+      "side": 0,
+      "message": "yep it is a typo. It should have said\n\n```\n            # In build.config.gki.aarch64:\n            # - If there are symbol lists: assume TRIM_NONLISTED_KMI\u003d${TRIM_NONLISTED_KMI:-1}\n            # - If there aren\u0027t:           assume TRIM_NONLISTED_KMI unspecified\n```",
+      "parentUuid": "a0243522_cd1a0231",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 80
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
