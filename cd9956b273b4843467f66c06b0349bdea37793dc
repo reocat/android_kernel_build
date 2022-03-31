@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84e2b459_b95942ce",
+        "filename": "kleaf/tests/kernel_build_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-03-31T18:57:40Z",
+      "side": 1,
+      "message": "Not sure if this works, but Matthias had a similar comment in another patch like this:\n\nScmVersionTestCase._scmversion_pattern.search(s)",
+      "range": {
+        "startLine": 55,
+        "startChar": 16,
+        "endLine": 55,
+        "endChar": 68
+      },
+      "revId": "cd9956b273b4843467f66c06b0349bdea37793dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
