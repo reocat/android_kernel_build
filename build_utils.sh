@@ -375,8 +375,13 @@ function build_boot_images() {
       MKBOOTIMG_ARGS+=("--ramdisk" "${GKI_RAMDISK_PREBUILT_BINARY}")
     fi
 
-    if [ -z "${SKIP_VENDOR_BOOT}" ]; then
-      MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img")
+    if [ "${BUILD_VENDOR_KERNEL_BOOT}" = "1" ]; then
+      VENDOR_BOOT_NAME="vendor_kernel_boot.img"
+    elif [ -z "${SKIP_VENDOR_BOOT}" ]; then
+      VENDOR_BOOT_NAME="vendor_boot.img"
+    fi
+    if [ -n ${VENDOR_BOOT_NAME} ]; then
+      MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/${VENDOR_BOOT_NAME}")
       if [ -n "${KERNEL_VENDOR_CMDLINE}" ]; then
         MKBOOTIMG_ARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
       fi
@@ -442,6 +447,9 @@ function build_boot_images() {
     && [ "${BOOT_IMAGE_HEADER_VERSION}" -ge "3" ] \
     && [ -f "${DIST_DIR}/vendor_boot.img" ]; then
       echo "vendor boot image created at ${DIST_DIR}/vendor_boot.img"
+  fi
+  if [ "${BUILD_VENDOR_KERNEL_BOOT}" = "1" ]; then
+      echo "Create vendor_kernel_boot with kernel modules. Please flash ${DIST_DIR}/vendor_kernel_boot.img instead."
   fi
 }
 
