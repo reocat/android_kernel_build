@@ -110,6 +110,30 @@
       },
       "revId": "c8b9ea9b322c11acc35a5a8510111feade1af0de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "931e7f74_f9627aea",
+        "filename": "abi/abitool.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T01:44:16Z",
+      "side": 1,
+      "message": "As long as build_abi.sh builds aren\u0027t broken, I am happy. That should be the case because of `source \"${ROOT_DIR}/build/_setup_env.sh\"` above. And if anything breaks Treehugger will yell at us.\n\nKleaf always uses the hermetic Python so that wouldn\u0027t be affected.",
+      "parentUuid": "e248c813_0127d00b",
+      "range": {
+        "startLine": 496,
+        "startChar": 22,
+        "endLine": 496,
+        "endChar": 23
+      },
+      "revId": "c8b9ea9b322c11acc35a5a8510111feade1af0de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
