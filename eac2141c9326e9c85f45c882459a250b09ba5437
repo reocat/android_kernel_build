@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "740ecb5e_9e459d86",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-03-31T18:51:05Z",
+      "side": 1,
+      "message": "Is this going to work with android-mainline where we set the android_release string via CONFIG_LOCALVERSION\u003d-mainline?",
+      "range": {
+        "startLine": 738,
+        "startChar": 4,
+        "endLine": 738,
+        "endChar": 25
+      },
+      "revId": "eac2141c9326e9c85f45c882459a250b09ba5437",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
