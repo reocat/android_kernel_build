@@ -343,6 +343,11 @@
 #       modules.builtin.modinfo
 #       Image.lz4
 #
+#   BUILD_VENDOR_KERNEL_BOOT
+#     if set to "1", build a vendor_kernel_boot for kernel artifacts, such as kernel modules.
+#     Since we design this partition to isolate kernel artifacts from vendor_boot image,
+#     vendor_boot would not be repack and built if we set this property to "1".
+#
 # Note: For historic reasons, internally, OUT_DIR will be copied into
 # COMMON_OUT_DIR, and OUT_DIR will be then set to
 # ${COMMON_OUT_DIR}/${KERNEL_DIR}. This has been done to accommodate existing
@@ -1250,8 +1255,13 @@ if [ -n "${BUILD_BOOT_IMG}" -o -n "${BUILD_VENDOR_BOOT_IMG}" ] ; then
       MKBOOTIMG_ARGS+=("--ramdisk" "${GKI_RAMDISK_PREBUILT_BINARY}")
     fi
 
-    if [ -z "${SKIP_VENDOR_BOOT}" ]; then
-      MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img")
+    if [ "${BUILD_VENDOR_KERNEL_BOOT}" = "1" ]; then
+      VENDOR_BOOT_NAME="vendor_kernel_boot.img"
+    elif [ -z "${SKIP_VENDOR_BOOT}" ]; then
+      VENDOR_BOOT_NAME="vendor_boot.img"
+    fi
+    if [ -n ${VENDOR_BOOT_NAME} ]; then
+      MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/${VENDOR_BOOT_NAME}")
       if [ -n "${KERNEL_VENDOR_CMDLINE}" ]; then
         MKBOOTIMG_ARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
       fi
@@ -1306,8 +1316,8 @@ if [ -n "${BUILD_BOOT_IMG}" -o -n "${BUILD_VENDOR_BOOT_IMG}" ] ; then
 
   [ -z "${SKIP_VENDOR_BOOT}" ] \
     && [ "${BOOT_IMAGE_HEADER_VERSION}" -ge "3" ] \
-    && [ -f "${DIST_DIR}/vendor_boot.img" ] \
-    && echo "vendor boot image created at ${DIST_DIR}/vendor_boot.img"
+    && [ -f "${DIST_DIR}/${VENDOR_BOOT_NAME}" ] \
+    && echo "Created ${VENDOR_BOOT_NAME} at ${DIST_DIR}/${VENDOR_BOOT_NAME}"
 fi
 
 
