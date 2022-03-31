@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3381aecd_ce194512",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3670,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T01:20:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c41d2923_64625378",
+      "range": {
+        "startLine": 3664,
+        "startChar": 100,
+        "endLine": 3670,
+        "endChar": 133
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e5aba9f_effb96cd",
@@ -112,6 +136,54 @@
         "startChar": 52,
         "endLine": 3702,
         "endChar": 57
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8d7268e_afe56993",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3702,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T01:20:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17b289a5_08a13948",
+      "range": {
+        "startLine": 3702,
+        "startChar": 52,
+        "endLine": 3702,
+        "endChar": 57
+      },
+      "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "658f9f14_8110f4ed",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 3702,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T01:20:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e5aba9f_effb96cd",
+      "range": {
+        "startLine": 3702,
+        "startChar": 38,
+        "endLine": 3702,
+        "endChar": 41
       },
       "revId": "c87b51b1fc22b1256b1ae3fa170e43f92c59f255",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
