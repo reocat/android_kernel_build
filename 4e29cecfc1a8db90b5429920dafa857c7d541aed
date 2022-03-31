@@ -134,6 +134,24 @@
       "parentUuid": "6b74c586_6aa5e83d",
       "revId": "4e29cecfc1a8db90b5429920dafa857c7d541aed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e69b16b0_b8b34a3c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-03-31T18:10:49Z",
+      "side": 1,
+      "message": "Yeah, so I think the BUILD.bazel file in the NDK prebuilts will need to be fixed.\n\nIf I copy most of the newly added logic from _setup_env.sh into kleaf/kernel.bzl, the kernel build fails during the .config check because UAPI_HEADER_TEST gets disabled because CC_CAN_LINK fails because bazel is only including bin and lib64 from the NDK, but not sysroot.\n\nLet me send a patch to the NDK.",
+      "parentUuid": "5dbf817f_99c3a1c6",
+      "revId": "4e29cecfc1a8db90b5429920dafa857c7d541aed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
