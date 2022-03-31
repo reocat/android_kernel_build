@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bd88637_c94802b3",
+        "filename": "_setup_env.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-03-31T19:34:39Z",
+      "side": 1,
+      "message": "I think this is the last TODO that I\u0027d like to solve before committing.\n\nIt looks like kleaf sources this file, but it\u0027s done in a way where ROOT_DIR doesn\u0027t have prebuilts/ndk yet (I might be wrong, but commenting back in the below directory check fails during the kleaf build).\n\nMaybe I could move this block into build.sh?  It\u0027s nice having all exported env vars in a source named _setup_env.sh, but we need to do things a little different between build.sh and kleaf for now. Maybe there\u0027s a way to unify some of this though?",
+      "revId": "a490b44ffa857709123582178aeb0a5dc4dd2001",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
