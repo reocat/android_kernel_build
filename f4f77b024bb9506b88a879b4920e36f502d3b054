@@ -22,6 +22,30 @@
       },
       "revId": "f4f77b024bb9506b88a879b4920e36f502d3b054",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2e314b7_e5b86c8c",
+        "filename": "abi/abitool.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-03-31T15:07:46Z",
+      "side": 1,
+      "message": "That will load the entire file into memory, print it and add an extra newline.\n\nI\u0027m not too bothered about the file size, so I can just preserve the end\u003d\"\".\n\nDone. Works.",
+      "parentUuid": "33f79cf2_df448e68",
+      "range": {
+        "startLine": 493,
+        "startChar": 0,
+        "endLine": 494,
+        "endChar": 39
+      },
+      "revId": "f4f77b024bb9506b88a879b4920e36f502d3b054",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
