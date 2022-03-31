@@ -22,6 +22,30 @@
       },
       "revId": "7b74ad983cd09eb7e5f6f1fbb9eb2d2b96fab12f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41dae7cf_5fb41c55",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T21:15:05Z",
+      "side": 1,
+      "message": "I changed it to a string as you suggested in another PS",
+      "parentUuid": "ff9e6a08_391074c8",
+      "range": {
+        "startLine": 59,
+        "startChar": 13,
+        "endLine": 59,
+        "endChar": 73
+      },
+      "revId": "7b74ad983cd09eb7e5f6f1fbb9eb2d2b96fab12f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

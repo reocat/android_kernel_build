@@ -529,6 +529,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e344c30_e7fa8401",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T21:15:05Z",
+      "side": 1,
+      "message": "strings aren\u0027t part of the prebuilts.\n\nI can\u0027t see how modinfo can be built in a kernel source tree (I tried googling it but no luck). Any suggestions?",
+      "parentUuid": "cf611d5e_0dd0a886",
+      "range": {
+        "startLine": 47,
+        "startChar": 40,
+        "endLine": 47,
+        "endChar": 47
+      },
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "415850ae_b3006246",
         "filename": "kleaf/tests/kernel_module_test.py",
         "patchSetId": 7
