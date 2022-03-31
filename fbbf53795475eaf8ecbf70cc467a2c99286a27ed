@@ -64,6 +64,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c9c9feb_544d39ea",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3518,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:48:37Z",
+      "side": 1,
+      "message": "(See below)",
+      "parentUuid": "59d28b5d_93c87991",
+      "range": {
+        "startLine": 3518,
+        "startChar": 4,
+        "endLine": 3518,
+        "endChar": 11
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "174efd52_9b6202c4",
@@ -77,6 +101,30 @@
       "writtenOn": "2022-03-30T16:19:14Z",
       "side": 1,
       "message": "The present behaviours are:\n\nA - trimming NOT configured for this branch / target\n\n`dump_abi` is run on the artefacts in the out directory (containing an *untrimmed* `vmlinux`)\n`filter_abi` is run on the resulting XML file to produce another XML file\n\nB - trimming IS configured for this branch / target\n\n`dump_abi` is run on the artefacts in the out directory (containing a *trimmed* `vmlinux`)\n`filter_abi` is run on the resulting XML file to produce another XML file - and these are almost certainly identical\n\nIf you unconditionally extract ABIs using an untrimmed output, you will change the meaning of `full-abi.xml` for typical builds.\n\nI actually think this is a good thing to do, but it is a change in behaviour and would need to be communicated to partners etc. ahead of time.\n\nNow, you may not actually be doing this, I\u0027ll read more of the Bazel code to see if I can work it out.",
+      "range": {
+        "startLine": 3520,
+        "startChar": 1,
+        "endLine": 3525,
+        "endChar": 75
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c728baca_862d8249",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3525,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:48:37Z",
+      "side": 1,
+      "message": "Aha! I read build_abi.sh incorrectly and thought that dump_abi / filter_abi executes on the untrimmed vmlinux.\n\nI can definitely fix this by changing the \"_with_vmlinux\" target below.",
+      "parentUuid": "174efd52_9b6202c4",
       "range": {
         "startLine": 3520,
         "startChar": 1,
@@ -110,6 +158,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04603be3_9c821344",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3527,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:48:37Z",
+      "side": 1,
+      "message": "Sorry I don\u0027t understand. I do need the file vmlinux as an input to the command, right? Otherwise the vmlinux file isn\u0027t even seen in the sandbox executing the command.",
+      "parentUuid": "e12ccf1c_4f9bb211",
+      "range": {
+        "startLine": 3527,
+        "startChar": 14,
+        "endLine": 3527,
+        "endChar": 21
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4acdc89_b50369f4",
@@ -133,6 +205,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "934fcf20_e1175ed6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3536,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:48:37Z",
+      "side": 1,
+      "message": "tl;dr: \"vmlinux\" does not necessary live besides the kernel modules.\n\nThe path of \"vmlinux\" is defined by (approximately; list comprehension with filtering doesn\u0027t work in Starlark)\n\n```\n[f for f in ctx.files.kernel_build if f.basename \u003d\u003d \"vmlinux\"][0].path\n```\n\n(This is what I am doing in the find_file invocation)\n\nWe do not know where vmlinux actually lives without actually getting the file object with the logic above.\n\nFor example, if you have\n\n```\nkernel_build(\n  name \u003d \"tuna\",\n  outs \u003d [\n    \"vmlinux\",\n    \"path/to/my_great_module.ko\"\n  ]\n)\n```\n\nthen you have `tuna/vmlinux`, `tuna/path/to/my_great_module.ko`.",
+      "parentUuid": "b4acdc89_b50369f4",
+      "range": {
+        "startLine": 3536,
+        "startChar": 0,
+        "endLine": 3536,
+        "endChar": 90
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a185c2e_a09937c8",
@@ -146,6 +242,30 @@
       "writtenOn": "2022-03-30T16:19:14Z",
       "side": 1,
       "message": "This should be obsoleted by the changes proposed above.",
+      "range": {
+        "startLine": 3544,
+        "startChar": 8,
+        "endLine": 3544,
+        "endChar": 31
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f403b7cd_182da67d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3544,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:48:37Z",
+      "side": 1,
+      "message": "(see above)",
+      "parentUuid": "8a185c2e_a09937c8",
       "range": {
         "startLine": 3544,
         "startChar": 8,
@@ -181,6 +301,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d7b3b5c_04ceb80b",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3563,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:48:37Z",
+      "side": 1,
+      "message": "Strings are indeed immutable. \n\nhttps://github.com/bazelbuild/starlark/blob/master/spec.md#strings\n\nI\u0027ll change this",
+      "parentUuid": "ac44e9ec_beb9d808",
+      "range": {
+        "startLine": 3563,
+        "startChar": 14,
+        "endLine": 3563,
+        "endChar": 20
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95bc1f83_d826f3f7",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 15
@@ -192,6 +336,30 @@
       "writtenOn": "2022-03-30T16:19:14Z",
       "side": 1,
       "message": "Why not `ln -f`?",
+      "range": {
+        "startLine": 3583,
+        "startChar": 12,
+        "endLine": 3583,
+        "endChar": 17
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab0b9cc8_8e07e49a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3583,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:48:37Z",
+      "side": 1,
+      "message": "I am just copying the logic here:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/build_abi.sh;l\u003d280;drc\u003d95fcfc6957722caf08f639df14c8642afd052fe7\n\nIn fact, I think changing this to an ln will create a \"dangling symlink\" as Bazel will tear down sandboxes. But I haven\u0027t actually tried this.",
+      "parentUuid": "95bc1f83_d826f3f7",
       "range": {
         "startLine": 3583,
         "startChar": 12,
@@ -307,6 +475,30 @@
       "writtenOn": "2022-03-30T16:19:14Z",
       "side": 1,
       "message": "What\u0027s the purpose of \"with vmlinux\"?\n\nPerhaps it should either be \"vmlinux + *.ko\" or not be needed at all.",
+      "range": {
+        "startLine": 3715,
+        "startChar": 4,
+        "endLine": 3722,
+        "endChar": 0
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef10c16c_9fafa8c0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3722,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T00:48:37Z",
+      "side": 1,
+      "message": "This corresponds to this logic:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/build_abi.sh;l\u003d173;drc\u003d95fcfc6957722caf08f639df14c8642afd052fe7\n\n```\nMAKE_GOALS+\u003d\" vmlinux\"\n```\n\nSome device builds may not have vmlinux built. In that case, I need to manually create another build that builds the vmlinux.",
+      "parentUuid": "8229690c_71917da8",
       "range": {
         "startLine": 3715,
         "startChar": 4,
