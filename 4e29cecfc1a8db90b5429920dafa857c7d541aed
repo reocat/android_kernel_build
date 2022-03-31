@@ -116,6 +116,24 @@
       "parentUuid": "fbdd7cd9_e99101e5",
       "revId": "4e29cecfc1a8db90b5429920dafa857c7d541aed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dbf817f_99c3a1c6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-03-31T17:57:29Z",
+      "side": 1,
+      "message": "Ah, looks like I need to update `setup` in kleaf/kernel.bzl.",
+      "parentUuid": "6b74c586_6aa5e83d",
+      "revId": "4e29cecfc1a8db90b5429920dafa857c7d541aed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
