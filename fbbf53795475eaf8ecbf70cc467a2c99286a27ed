@@ -347,6 +347,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7116572e_930200ed",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3563,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T01:18:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d7b3b5c_04ceb80b",
+      "range": {
+        "startLine": 3563,
+        "startChar": 14,
+        "endLine": 3563,
+        "endChar": 20
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95bc1f83_d826f3f7",
@@ -417,6 +441,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eb4800d_550cb889",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3646,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T01:18:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5bfd2a5_29af3ec4",
+      "range": {
+        "startLine": 3646,
+        "startChar": 29,
+        "endLine": 3646,
+        "endChar": 49
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de1b6c73_9e57ad60",
@@ -463,6 +511,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59a75b4f_33b88196",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3658,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T01:18:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8adbd0c1_e433dc80",
+      "range": {
+        "startLine": 3658,
+        "startChar": 97,
+        "endLine": 3658,
+        "endChar": 112
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0d6de6e_ab3f90b3",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3658,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T01:18:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de1b6c73_9e57ad60",
+      "range": {
+        "startLine": 3658,
+        "startChar": 114,
+        "endLine": 3658,
+        "endChar": 133
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2c15607_1167e675",
@@ -476,6 +572,30 @@
       "writtenOn": "2022-03-30T16:19:14Z",
       "side": 1,
       "message": "Similar wording changes: extract (the) ABI, compare (the) ABI(s). Try to use a consistent phrasing throughout.",
+      "range": {
+        "startLine": 3666,
+        "startChar": 7,
+        "endLine": 3669,
+        "endChar": 43
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d33b92d6_263b5a96",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3669,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T01:18:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2c15607_1167e675",
       "range": {
         "startLine": 3666,
         "startChar": 7,
