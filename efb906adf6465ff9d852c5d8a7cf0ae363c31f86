@@ -505,6 +505,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf611d5e_0dd0a886",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-03-31T15:12:56Z",
+      "side": 1,
+      "message": "eventually we want to run tests in CI, then they should be hermetic. I believe, `strings` is already part of the prebuilts and `modinfo` can be provided by a kernel build or a smaller kernel build run that just builds modinfo.",
+      "parentUuid": "bf445f52_598d23fd",
+      "range": {
+        "startLine": 47,
+        "startChar": 40,
+        "endLine": 47,
+        "endChar": 47
+      },
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "415850ae_b3006246",
         "filename": "kleaf/tests/kernel_module_test.py",
         "patchSetId": 7
