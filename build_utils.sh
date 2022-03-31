@@ -375,8 +375,14 @@ function build_boot_images() {
       MKBOOTIMG_ARGS+=("--ramdisk" "${GKI_RAMDISK_PREBUILT_BINARY}")
     fi
 
-    if [ -z "${SKIP_VENDOR_BOOT}" ]; then
-      MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img")
+    if [ "${BUILD_VENDOR_KERNEL_BOOT}" = "1" ]; then
+      VENDOR_BOOT_NAME="vendor_kernel_boot.img"
+      cp "${DIST_DIR}/initramfs.img" "${DIST_DIR}/ramdisk.${RAMDISK_EXT}"
+    elif [ -z "${SKIP_VENDOR_BOOT}" ]; then
+      VENDOR_BOOT_NAME="vendor_boot.img"
+    fi
+    if [ -n ${VENDOR_BOOT_NAME} ]; then
+      MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/${VENDOR_BOOT_NAME}")
       if [ -n "${KERNEL_VENDOR_CMDLINE}" ]; then
         MKBOOTIMG_ARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
       fi
@@ -411,6 +417,13 @@ function build_boot_images() {
   done
 
   "${MKBOOTIMG_PATH}" "${MKBOOTIMG_ARGS[@]}"
+
+  if [ "${BUILD_VENDOR_KERNEL_BOOT}" = "1" ]; then
+      echo "vendor_kernel_boot image created at ${DIST_DIR}/vendor_kernel_boot.img"
+      echo "  NOTICE: While BUILD_VENDOR_KERNEL_BOOT=1, local built modules will be"
+      echo "  included in vendor_kernel_boot.img."
+      echo "  Please use 'fastboot flash vendor_kernel_boot vendor_kernel_boot.img' instead."
+  fi
 
   if [ -n "${BUILD_BOOT_IMG}" -a -f "${DIST_DIR}/${BOOT_IMAGE_FILENAME}" ]; then
     echo "boot image created at ${DIST_DIR}/${BOOT_IMAGE_FILENAME}"
