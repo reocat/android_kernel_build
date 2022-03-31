@@ -22,6 +22,30 @@
       },
       "revId": "eac2141c9326e9c85f45c882459a250b09ba5437",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "448b4017_09167a1a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T21:11:43Z",
+      "side": 1,
+      "message": "yes, I run the test on both android-mainline and raviole-5.15 branches.\n\nOn android-mainline, the android_release is cleared.",
+      "parentUuid": "740ecb5e_9e459d86",
+      "range": {
+        "startLine": 738,
+        "startChar": 4,
+        "endLine": 738,
+        "endChar": 25
+      },
+      "revId": "eac2141c9326e9c85f45c882459a250b09ba5437",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
