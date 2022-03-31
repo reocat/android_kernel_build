@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1a92940_db9f4744",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T21:25:44Z",
+      "side": 1,
+      "message": "Note: kernel/build master branch is also used in the following branches of kernel/common:\n\n- common-android13-5.15\n- common-android13-5.10\n- gs-android-gs-raviole-mainline\n- gs-android13-gs-raviole-5.10\n- gs-android13-gs-raviole-5.15\n\nSo you probably want to cherry pick the manifest changes to those branches as well.",
+      "range": {
+        "startLine": 799,
+        "startChar": 0,
+        "endLine": 799,
+        "endChar": 76
+      },
+      "revId": "2a98efd6784b7bb7d8d90906fbc390d94280f68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
