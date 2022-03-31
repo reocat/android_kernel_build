@@ -135,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8142ef8_b6e04659",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 3525,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T01:00:13Z",
+      "side": 1,
+      "message": "Actually, `_with_vmlinux` does not have trimming explicitly turned on. See `with_vmlinux_kwargs` below. That applies to the kernel binary `vmlinux`; that is, `vmlinux` will be trimmed only when the target / branch is configured to trim.\n\nHowever, the kernel modules always uses unstripped ones because of this logic:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/build_abi.sh;l\u003d256;drc\u003d95fcfc6957722caf08f639df14c8642afd052fe7\n\nSo I think this is consistent with the behavior of build_abi.sh.",
+      "parentUuid": "c728baca_862d8249",
+      "range": {
+        "startLine": 3520,
+        "startChar": 1,
+        "endLine": 3525,
+        "endChar": 75
+      },
+      "revId": "fbbf53795475eaf8ecbf70cc467a2c99286a27ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e12ccf1c_4f9bb211",
