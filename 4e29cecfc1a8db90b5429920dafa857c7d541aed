@@ -16,6 +16,29 @@
       "message": "Looks like kleaf needs to be updated, too. The error I get locally is:\n\nNDK_TRIPLE set, but unable to find prebuilts/ndk.\nDid you forget to checkout prebuilts/ndk?\n\nwhich is a sanity-check I added in this commit. So it looks like kleaf is running _setup_env.sh.\n\nPrinting the value of ROOT_DIR for a given run of\n\n$ tools/bazel run --verbose_failures //common:kernel_dist -- --flat\n\nI see:\n\nROOT_DIR is /android0/kernel-common/out/bazel/output_user_root/31dd3ce66350cac040c9977548931ec2/sandbox/linux-sandbox/7/execroot/__main__\n\nI assume I need to tell kleaf about the newly added prebuilts/ndk/ somehow?",
       "revId": "4e29cecfc1a8db90b5429920dafa857c7d541aed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d6dc066_65f63e1d",
+        "filename": "_setup_env.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T01:24:12Z",
+      "side": 1,
+      "message": "```\n      echo \"ERROR: NDK_TRIPLE set, but unable to find prebuilts/ndk.\" \u003e\u00262\n      echo \"Did you forget to checkout prebuilts/ndk?\" \u003e\u00262\n      exit 1\n```",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 12
+      },
+      "revId": "4e29cecfc1a8db90b5429920dafa857c7d541aed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
