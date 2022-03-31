@@ -286,7 +286,7 @@ function build_boot_images() {
   MKBOOTIMG_RAMDISK_STAGING_DIR="${MKBOOTIMG_STAGING_DIR}/ramdisk_root"
   mkdir -p "${MKBOOTIMG_RAMDISK_STAGING_DIR}"
 
-  if [ -z "${SKIP_UNPACKING_RAMDISK}" ]; then
+  if [ -z ${BUILD_VENDOR_KERNEL_BOOT} ] && [ -z "${SKIP_UNPACKING_RAMDISK}" ]; then
     if [ -n "${VENDOR_RAMDISK_BINARY}" ]; then
       VENDOR_RAMDISK_CPIO="${MKBOOTIMG_STAGING_DIR}/vendor_ramdisk_binary.cpio"
       rm -f "${VENDOR_RAMDISK_CPIO}"
@@ -375,7 +375,17 @@ function build_boot_images() {
       MKBOOTIMG_ARGS+=("--ramdisk" "${GKI_RAMDISK_PREBUILT_BINARY}")
     fi
 
-    if [ -z "${SKIP_VENDOR_BOOT}" ]; then
+    if [ -n ${BUILD_VENDOR_KERNEL_BOOT} ]; then
+      VENDOR_KERNEL_BOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/vendor_kernel_boot.img")
+      VENDOR_KERNEL_BOOTIMG_ARGS+=("--header_version" "${BOOT_IMAGE_HEADER_VERSION}")
+      VENDOR_KERNEL_BOOTIMG_ARGS+=("--dtb" "${DIST_DIR}/dtb.img")
+      if [ -n  "${PAGE_SIZE}" ]; then
+        VENDOR_KERNEL_BOOTIMG_ARGS+=("--pagesize" "${PAGE_SIZE}")
+      fi
+      if [ "${BUILD_INITRAMFS}" = "1" ]; then
+        VENDOR_KERNEL_BOOTIMG_ARGS+=("--vendor_ramdisk" "${DIST_DIR}/initramfs.img")
+      fi
+    elif [ -z "${SKIP_VENDOR_BOOT}" ]; then
       MKBOOTIMG_ARGS+=("--vendor_boot" "${DIST_DIR}/vendor_boot.img")
       if [ -n "${KERNEL_VENDOR_CMDLINE}" ]; then
         MKBOOTIMG_ARGS+=("--vendor_cmdline" "${KERNEL_VENDOR_CMDLINE}")
@@ -412,6 +422,15 @@ function build_boot_images() {
 
   "${MKBOOTIMG_PATH}" "${MKBOOTIMG_ARGS[@]}"
 
+  if [ -n ${BUILD_VENDOR_KERNEL_BOOT} ]; then
+      "${MKBOOTIMG_PATH}" "${VENDOR_KERNEL_BOOTIMG_ARGS[@]}"
+      echo "vendor_kernel_boot image created at ${DIST_DIR}/vendor_kernel_boot.img"
+      echo "NOTICE: While BUILD_VENDOR_KERNEL_BOOT=1, local built modules will be "
+      echo "included in vendor_kernel_boot.img. The vendor_boot.img will no longer build"
+      echo "through this flow."
+      echo "Please 'fastboot flash vendor_kernel_boot vendor_kernel_boot.img' instead."
+  fi
+
   if [ -n "${BUILD_BOOT_IMG}" -a -f "${DIST_DIR}/${BOOT_IMAGE_FILENAME}" ]; then
     echo "boot image created at ${DIST_DIR}/${BOOT_IMAGE_FILENAME}"
 
@@ -443,6 +462,7 @@ function build_boot_images() {
     && [ -f "${DIST_DIR}/vendor_boot.img" ]; then
       echo "vendor boot image created at ${DIST_DIR}/vendor_boot.img"
   fi
+
 }
 
 function make_dtbo() {
