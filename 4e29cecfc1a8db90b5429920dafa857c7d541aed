@@ -152,6 +152,24 @@
       "parentUuid": "5dbf817f_99c3a1c6",
       "revId": "4e29cecfc1a8db90b5429920dafa857c7d541aed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6013574_a916ccb6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-03-31T18:32:13Z",
+      "side": 1,
+      "message": "aosp/2052029\n\nNow I need to update this to use :sysroot rather than :binaries.\n\nThe configs don\u0027t match still, not sure yet why.",
+      "parentUuid": "e69b16b0_b8b34a3c",
+      "revId": "4e29cecfc1a8db90b5429920dafa857c7d541aed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
