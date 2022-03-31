@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82c8d8ac_fdada712",
+        "filename": "abi/abitool.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-03-31T21:38:09Z",
+      "side": 1,
+      "message": "TH not happy with this; maybe check if file exists before doing so?",
+      "range": {
+        "startLine": 484,
+        "startChar": 0,
+        "endLine": 484,
+        "endChar": 30
+      },
+      "revId": "fafba15496846df1b8ec46607f58419c13d89463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
