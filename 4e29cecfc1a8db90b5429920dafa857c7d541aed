@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdfd4689_8400e71f",
+        "filename": "_setup_env.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-03-31T17:27:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d6dc066_65f63e1d",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 12
+      },
+      "revId": "4e29cecfc1a8db90b5429920dafa857c7d541aed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b22d0abe_87a1932b",
@@ -72,6 +96,24 @@
       "side": 1,
       "message": "Note: you can\u0027t add a \"directory\" (prebuilts/ndk) as a dependency, only files under it. See prebuilts/clang/host/linux-x86/clang-*/BUILD.bazel for an example.",
       "parentUuid": "b22d0abe_87a1932b",
+      "revId": "4e29cecfc1a8db90b5429920dafa857c7d541aed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b74c586_6aa5e83d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-03-31T17:27:22Z",
+      "side": 1,
+      "message": "The dependency will be required for all builds.\n\nRight, so last night I had added the below, but this was still failing.\n\nSo the newly added dependency on the prebuilt NDK does contain a BUILD.bazel file.\nhttps://android.googlesource.com/toolchain/prebuilts/ndk/r23/+/refs/heads/master/toolchains/llvm/prebuilt/linux-x86_64/BUILD.bazel\n\nWhile it declares bin/* and lib64/*, I suspect I also need to update the NDK to declare the headers from that dir...I think...? (since we\u0027re using the NDK as a sysroot, we need the libc headers and libraries from Bionic).\n\nThe build is still failing because of the check I added in _setup_env.sh that ${ROOT_DIR} does not contain prebuilts/ndk/.  So I\u0027m not sure in the bazel sandbox where, how, or even if the prebuiltds/ndk/ gets included or is available.",
+      "parentUuid": "fbdd7cd9_e99101e5",
       "revId": "4e29cecfc1a8db90b5429920dafa857c7d541aed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
