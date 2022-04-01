@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "520c0c3d_41dc6a05",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-01T16:39:15Z",
+      "side": 1,
+      "message": "We don\u0027t need to disable these somewhere right since this shell won\u0027t be reused, right?",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 17
+      },
+      "revId": "a8cdeb018d5f3fea2e31a6d31d02c9de263d9bdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
