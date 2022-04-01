@@ -70,6 +70,30 @@
       },
       "revId": "8f27b0364d2578796a588ee180ad4797fb9b9ac8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "408a560a_ce6e8584",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 3773,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-01T01:01:30Z",
+      "side": 1,
+      "message": "It is not related to trimming; trimming is not enabled on the _with_vmlinux target. I\u0027ll run stgdiff manually to see why that changes.",
+      "parentUuid": "9a8f74fe_81036eee",
+      "range": {
+        "startLine": 3768,
+        "startChar": 0,
+        "endLine": 3773,
+        "endChar": 9
+      },
+      "revId": "8f27b0364d2578796a588ee180ad4797fb9b9ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
