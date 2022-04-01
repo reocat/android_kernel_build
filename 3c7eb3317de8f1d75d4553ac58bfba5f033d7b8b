@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bbc7791c_b953d6bc",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-01T20:33:00Z",
+      "side": 1,
+      "message": "nit: ${{ROOT_DIR}}\n\n(I wonder why it is PWD in LD_LIBRARY_PATH above)",
+      "range": {
+        "startLine": 760,
+        "startChar": 37,
+        "endLine": 760,
+        "endChar": 40
+      },
+      "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab03f214_a4ff6d43",
+        "filename": "kleaf/ndk.BUILD",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-01T20:33:00Z",
+      "side": 1,
+      "message": "licence",
+      "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c938a2a1_432d00b6",
         "filename": "kleaf/ndk.BUILD",
         "patchSetId": 11
@@ -32,6 +72,41 @@
       "side": 1,
       "message": "I reached out to one of the maintainers of bazel (ahumetsky@) who mentioned to me that globs wont recurse further than any BUILD files they encounter.\n\nSo aosp/2051548 (and aosp/2053106) actually help us. Will add aosp/2053106 to the topic, and rekick TH.  Though, I did just abandon 2 kernel patches that were merged down into mainline, but not yet android common...",
       "parentUuid": "c938a2a1_432d00b6",
+      "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e0fac7d_a6984d34",
+        "filename": "kleaf/ndk.BUILD",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-01T20:33:00Z",
+      "side": 1,
+      "message": "\u003e globs wont recurse further than any BUILD files they encounter.\n\nYes -- because a BUILD file corresponds to a package, and glob() only works on a package (but not subpackages within the package)\n\nOther than deleting that BUILD file in aosp/2053106, you could technically also export a filegroup in that package and add it to here. But I do not object to aosp/2053106 though.",
+      "parentUuid": "a76681aa_389d862b",
+      "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e108b608_46b54b75",
+        "filename": "kleaf/ndk.BUILD",
+        "patchSetId": 11
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-01T20:33:00Z",
+      "side": 1,
+      "message": "please use buildifier to fix indentation",
       "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
