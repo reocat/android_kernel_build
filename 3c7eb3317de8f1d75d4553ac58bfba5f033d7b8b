@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c938a2a1_432d00b6",
+        "filename": "kleaf/ndk.BUILD",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-04-01T18:33:41Z",
+      "side": 1,
+      "message": "Blaze is giving me a hard time.  I _think_ this is what I should use (relying on the prebuilts/ndk/ prefix from addition to kleaf/bazel.WORKSPACE.\n\nThat said, the glob as written is failing, unexpectedly.\n\nIt seems that Bazel will recognize `\"toolchains/renderscript/**\"`, but if I use `\"toolchains/llvm/**\"` it doesn\u0027t `glob` anything.\n\nI\u0027m at a loss for how globbing isn\u0027t working.",
+      "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
