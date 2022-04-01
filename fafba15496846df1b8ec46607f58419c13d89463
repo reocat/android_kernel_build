@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e389cbc_7f3ec70b",
+        "filename": "abi/abitool.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-01T09:33:56Z",
+      "side": 1,
+      "message": "Resolved.",
+      "parentUuid": "82c8d8ac_fdada712",
+      "range": {
+        "startLine": 484,
+        "startChar": 0,
+        "endLine": 484,
+        "endChar": 30
+      },
+      "revId": "fafba15496846df1b8ec46607f58419c13d89463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d9780b9_7859863f",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-01T00:45:00Z",
       "side": 1,
       "message": "Also I don\u0027t think you need this",
+      "range": {
+        "startLine": 3,
+        "startChar": 20,
+        "endLine": 3,
+        "endChar": 25
+      },
+      "revId": "fafba15496846df1b8ec46607f58419c13d89463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "478a8ef6_3b329f8d",
+        "filename": "build_abi.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-01T09:33:56Z",
+      "side": 1,
+      "message": "I agree that it is not necessary. It is not disallowed either.\n\nIt\u0027s optional, as per https://opensource.google/documentation/reference/copyright.\n\nGiven that it is a quick view into the freshness of a file, I think it makes sense to keep it up to date.",
+      "parentUuid": "4d9780b9_7859863f",
       "range": {
         "startLine": 3,
         "startChar": 20,
