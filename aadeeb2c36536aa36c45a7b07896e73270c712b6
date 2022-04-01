@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d8e197e_8cf8df48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-04-01T09:03:40Z",
+      "side": 1,
+      "message": "we did sanitizing until we had the file-prefix-maps in place. Ideally we should only need the file-prefix maps. If we need to sanitize, then that means the build is not deterministic across environments.",
+      "revId": "aadeeb2c36536aa36c45a7b07896e73270c712b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7eab544_027a7696",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 1
