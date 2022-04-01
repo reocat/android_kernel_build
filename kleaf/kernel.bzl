@@ -3530,7 +3530,17 @@ def _kernel_abi_dump_impl(ctx):
     ]
 
 def _kernel_abi_dump_epilog_cmd(path, append_version):
-    ret = ""
+    # For `--strategy KernelBuild=local --strategy KernelConfig=local`, absolute
+    # paths slips in. Sanitize them.
+    ret = """
+        (
+          # Use --output_user_root set by bazel.py to determine workspace root
+            workspace_root=${{PWD/\\/out\\/bazel\\/output_user_root\\/*/}}
+            sed -i -e "s#${{workspace_root}}/${{KERNEL_DIR}}/##g" {path}
+        )
+    """.format(
+        path = path,
+    )
     if append_version:
         ret += """
              # Append debug information to abi file
@@ -3557,10 +3567,10 @@ def _kernel_abi_dump_full(ctx):
     inputs += ctx.files._dump_abi_scripts
     inputs += unstripped_dirs
 
-    inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
+    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
 
     # Directories could be empty, so use a find + cp
-    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+    command = ctx.attr.kernel_build[_KernelEnvInfo].setup + """
         mkdir -p {abi_linux_tree}
         find {unstripped_dirs} -type f -name '*.ko' -exec cp -pl -t {abi_linux_tree} {{}} +
         cp -pl {vmlinux} {abi_linux_tree}
@@ -3588,8 +3598,8 @@ def _kernel_abi_dump_filtered(ctx, full_abi_out_file):
     abi_out_file = ctx.actions.declare_file("{}/abi.xml".format(ctx.attr.name))
     inputs = [full_abi_out_file]
 
-    inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
-    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup
+    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
+    command = ctx.attr.kernel_build[_KernelEnvInfo].setup
     combined_abi_symbollist = ctx.attr.kernel_build[_KernelBuildAbiInfo].combined_abi_symbollist
     if combined_abi_symbollist:
         inputs += [
