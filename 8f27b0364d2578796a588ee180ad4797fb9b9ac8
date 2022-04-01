@@ -94,6 +94,30 @@
       },
       "revId": "8f27b0364d2578796a588ee180ad4797fb9b9ac8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b311e63_852a8577",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 3773,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-01T19:46:33Z",
+      "side": 1,
+      "message": "Done. The differences are explained in b/227709102. They aren\u0027t significant.",
+      "parentUuid": "408a560a_ce6e8584",
+      "range": {
+        "startLine": 3768,
+        "startChar": 0,
+        "endLine": 3773,
+        "endChar": 9
+      },
+      "revId": "8f27b0364d2578796a588ee180ad4797fb9b9ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
