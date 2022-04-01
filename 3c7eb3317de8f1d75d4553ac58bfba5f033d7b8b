@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6905eae4_dc121904",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-04-01T20:47:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbc7791c_b953d6bc",
+      "range": {
+        "startLine": 760,
+        "startChar": 37,
+        "endLine": 760,
+        "endChar": 40
+      },
+      "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab03f214_a4ff6d43",
@@ -55,6 +79,24 @@
       "side": 1,
       "message": "(just nit. I know that there\u0027s a debate on whether license headers go into BUILD files or not...)",
       "parentUuid": "ab03f214_a4ff6d43",
+      "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed51d69b_a9ef777b",
+        "filename": "kleaf/ndk.BUILD",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-04-01T20:47:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61029625_e2746d87",
       "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -112,6 +154,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59f7c4d7_65b178d1",
+        "filename": "kleaf/ndk.BUILD",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-04-01T20:47:24Z",
+      "side": 1,
+      "message": "Right. I tried that in aosp/2052029, but the NDK maintainer preferred to remove such a file. aosp/2051548.",
+      "parentUuid": "0e0fac7d_a6984d34",
+      "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e108b608_46b54b75",
@@ -125,6 +185,24 @@
       "writtenOn": "2022-04-01T20:33:00Z",
       "side": 1,
       "message": "please use buildifier to fix indentation",
+      "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2cca98c_56c7b75d",
+        "filename": "kleaf/ndk.BUILD",
+        "patchSetId": 11
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-04-01T20:47:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e108b608_46b54b75",
       "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
