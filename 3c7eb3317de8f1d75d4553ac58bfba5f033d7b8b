@@ -16,6 +16,24 @@
       "message": "Blaze is giving me a hard time.  I _think_ this is what I should use (relying on the prebuilts/ndk/ prefix from addition to kleaf/bazel.WORKSPACE.\n\nThat said, the glob as written is failing, unexpectedly.\n\nIt seems that Bazel will recognize `\"toolchains/renderscript/**\"`, but if I use `\"toolchains/llvm/**\"` it doesn\u0027t `glob` anything.\n\nI\u0027m at a loss for how globbing isn\u0027t working.",
       "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a76681aa_389d862b",
+        "filename": "kleaf/ndk.BUILD",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-04-01T19:07:31Z",
+      "side": 1,
+      "message": "I reached out to one of the maintainers of bazel (ahumetsky@) who mentioned to me that globs wont recurse further than any BUILD files they encounter.\n\nSo aosp/2051548 (and aosp/2053106) actually help us. Will add aosp/2053106 to the topic, and rekick TH.  Though, I did just abandon 2 kernel patches that were merged down into mainline, but not yet android common...",
+      "parentUuid": "c938a2a1_432d00b6",
+      "revId": "3c7eb3317de8f1d75d4553ac58bfba5f033d7b8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
