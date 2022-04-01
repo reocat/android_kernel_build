@@ -712,6 +712,8 @@ def _kernel_env_impl(ctx):
           export MAKEFLAGS="${{MAKEFLAGS}} -j$(nproc)"
         # Set the value of SOURCE_DATE_EPOCH
           export SOURCE_DATE_EPOCH=$({source_date_epoch_cmd})
+        # Set the value of KLEAF_WORKSPACE_ROOT for _setup_env.sh to use
+          export KLEAF_WORKSPACE_ROOT=$({workspace_root_cmd})
         # create a build environment
           source {build_utils_sh}
           export BUILD_CONFIG={build_config}
@@ -725,6 +727,7 @@ def _kernel_env_impl(ctx):
         preserve_env = preserve_env.path,
         out = out_file.path,
         source_date_epoch_cmd = _get_stable_status_cmd(ctx, "STABLE_SOURCE_DATE_EPOCH"),
+        workspace_root_cmd = _get_stable_status_cmd(ctx, "STABLE_WORKSPACE_ROOT"),
     )
 
     _debug_print_scripts(ctx, command)

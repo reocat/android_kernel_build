@@ -52,6 +52,8 @@ def collect(popen_obj):
 
 
 def main():
+  print("STABLE_WORKSPACE_ROOT", os.getcwd())
+
   kernel_dir = os.path.realpath(".source_date_epoch_dir")
   has_kernel_dir = os.path.isdir(kernel_dir)
 

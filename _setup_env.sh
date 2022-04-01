@@ -118,7 +118,11 @@ if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
 
   # use relative paths for file name references in the binaries
   # (e.g. debug info)
-  export KCPPFLAGS="-ffile-prefix-map=${ROOT_DIR}/${KERNEL_DIR}/= -ffile-prefix-map=${ROOT_DIR}/="
+  KCPPFLAGS="-ffile-prefix-map=${ROOT_DIR}/${KERNEL_DIR}/= -ffile-prefix-map=${ROOT_DIR}/="
+  if [[ -n "$KLEAF_WORKSPACE_ROOT" ]]; then
+    KCPPFLAGS="$KCPPFLAGS -ffile-prefix-map=${KLEAF_WORKSPACE_ROOT}/${KERNEL_DIR}/=  -ffile-prefix-map=${KLEAF_WORKSPACE_ROOT}/="
+  fi
+  export KCPPFLAGS
 
   # set the common sysroot
   sysroot_flags+="--sysroot=${ROOT_DIR}/build/kernel/build-tools/sysroot "
