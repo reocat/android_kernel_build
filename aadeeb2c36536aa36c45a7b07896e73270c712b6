@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7eab544_027a7696",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 3573,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-01T06:13:25Z",
+      "side": 1,
+      "message": "Matthias explicitly suggested against using a full blown kernel_env here.\n\nOptions:\n- use the one from _kernel_env instead. This requires kernel_build to expose the _kernel_env to us.\n- somehow be smart to avoid the necessity to use KERNEL_DIR.\n\nAny suggestions?",
+      "range": {
+        "startLine": 3569,
+        "startChar": 0,
+        "endLine": 3573,
+        "endChar": 63
+      },
+      "revId": "aadeeb2c36536aa36c45a7b07896e73270c712b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
