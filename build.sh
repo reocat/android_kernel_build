@@ -426,6 +426,7 @@ source "${ROOT_DIR}/build/build_utils.sh"
 source "${ROOT_DIR}/build/_setup_env.sh"
 
 (
+    [[ "$KLEAF_SUPPRESS_BUILD_SH_DEPRECATION_WARNING" == "1" ]] && exit 0 || true
     echo     "************************************************************************" >&2
     echo     "* WARNING: build.sh is deprecated for this branch. Please migrate to Bazel."
     echo -ne "*          Inferring equivalent Bazel command...\r"
