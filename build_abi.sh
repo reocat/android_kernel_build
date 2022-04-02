@@ -86,6 +86,7 @@ if [[ -z "$FULL_GKI_ABI" ]]; then
   FULL_GKI_ABI=0
 fi
 
+ORIG_ARGS=$@
 ARGS=()
 for i in "$@"
 do
@@ -120,6 +121,26 @@ case $i in
     ;;
 esac
 done
+
+(
+    echo     "************************************************************************" >&2
+    echo     "* WARNING: build_abi.sh is deprecated for this branch. Please migrate to Bazel."
+    echo -ne "*          Inferring equivalent Bazel command...\r"
+    bazel_command_code=0
+    eq_bazel_command=$(${ROOT_DIR}/build/kernel/kleaf/convert_to_bazel.sh --abi $ORIG_ARGS 2>&1) || bazel_command_code=$?
+    if [[ $bazel_command_code -eq 0 ]]; then
+        echo "*          Possibly equivalent Bazel command:                           " >&2
+        echo "*" >&2
+        echo "*   \$ $eq_bazel_command" >&2
+        echo "*" >&2
+    else
+        echo "WARNING: Unable to infer an equivalent Bazel command:" >&2
+        echo "$eq_bazel_command" >&2
+    fi
+    echo     "************************************************************************" >&2
+    echo >&2
+)
+export KLEAF_SUPPRESS_BUILD_SH_DEPRECATION_WARNING=1
 
 set -- "${ARGS[@]}"
 
