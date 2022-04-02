@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d7f0f65_7d9260a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-02T00:13:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d019780f_244b8884",
+      "revId": "0c7fe5c697fab72b0b161a3f175122eadd90a36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7225f765_2b53c120",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3dc42d6_55593b33",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-02T00:13:23Z",
+      "side": 1,
+      "message": "Matthias says that let\u0027s actively enable this on android13 too",
+      "parentUuid": "7225f765_2b53c120",
+      "revId": "0c7fe5c697fab72b0b161a3f175122eadd90a36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3841b3c_302b2053",
@@ -48,6 +84,30 @@
       "writtenOn": "2022-03-10T11:11:38Z",
       "side": 1,
       "message": "is deprecated for this branch. Please migrate to Kleaf.",
+      "range": {
+        "startLine": 425,
+        "startChar": 37,
+        "endLine": 425,
+        "endChar": 47
+      },
+      "revId": "0c7fe5c697fab72b0b161a3f175122eadd90a36a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8e4326b_17e11cba",
+        "filename": "build.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-02T00:13:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3841b3c_302b2053",
       "range": {
         "startLine": 425,
         "startChar": 37,
