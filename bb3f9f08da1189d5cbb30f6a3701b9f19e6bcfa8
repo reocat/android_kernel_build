@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7df89df5_fbccc876",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 3848,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T21:39:27Z",
+      "side": 1,
+      "message": "Note: the downside of the current approach is that, with CL:2055225, the directory abi_diff is not flattened in $DIST_DIR, unlike build_abi.sh where abi.report.* are in the $DIST_DIR directly.\n\nI can make CL:2055225 to flatten the directory too but I think it is not so correct. I am open to ideas here.",
+      "parentUuid": "7bfb71bf_f68cab32",
+      "range": {
+        "startLine": 3845,
+        "startChar": 0,
+        "endLine": 3848,
+        "endChar": 5
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8800d5d_b2ef70c3",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 20
