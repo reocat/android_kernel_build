@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51cbda76_91f8adc0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-04T17:16:34Z",
+      "side": 1,
+      "message": "If you are including \"short\" then you should also include \"\" (well, minus \".\", if you see what I mean).\n\nEither drop \"short\" (which is just a link) or prepend \".\" to all of the existing ones and add \"\" (which will also just be a link).\n\nThe links are for backwards compatibility, I\u0027d rather not add more dependencies on them.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 1
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08391eed_23c3642b",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 3848,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-04T17:16:34Z",
+      "side": 1,
+      "message": "This ties Kleaf to the particular diff_abi implementation choice and means we need to update them together. Is it really needed?",
+      "range": {
+        "startLine": 3845,
+        "startChar": 0,
+        "endLine": 3848,
+        "endChar": 5
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8800d5d_b2ef70c3",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 3867,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-04T17:16:34Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it be simpler to add a diff_abi argument of the form --enforce or --ignore-breaks to turn ABI breaks into a useful exit code (0 or 1), according to whether or not enforcement is needed?\n\nThis would be a continuation of moving logic out of build_abi.sh and into diff_abi.",
+      "range": {
+        "startLine": 3856,
+        "startChar": 0,
+        "endLine": 3867,
+        "endChar": 10
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "589d575e_a91f8b98",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 3923,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-04T17:16:34Z",
+      "side": 1,
+      "message": "I hope this can be simplified away if we treat diff_abi.",
+      "range": {
+        "startLine": 3916,
+        "startChar": 0,
+        "endLine": 3923,
+        "endChar": 10
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
