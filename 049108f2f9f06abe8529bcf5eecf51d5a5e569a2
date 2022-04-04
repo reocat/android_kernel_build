@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0866dcca_3cee7ea9",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T20:27:35Z",
+      "side": 1,
+      "message": "This is problematic because the tree has nested files. You don\u0027t know what path the first item is.\n\nSome solutions:\n\n- One possible solution would be to find the common base path of these files. \n- The other would be to find the \"NOTICE\" file and get the dirname of it (that would depend on the existence of the NOTICE file, and it is not technically part of the sources). You can use the \"find_file\" function to find the NOTICE file\n- The third would be to do something like kernel_dtstree. You can see an example in the raviole-mainline branch:\n\nhttps://android.googlesource.com/kernel/google-modules/raviole-device/+/refs/heads/android-gs-raviole-mainline/arch/arm64/boot/dts/BUILD.bazel",
+      "range": {
+        "startLine": 764,
+        "startChar": 37,
+        "endLine": 764,
+        "endChar": 57
+      },
+      "revId": "049108f2f9f06abe8529bcf5eecf51d5a5e569a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2fce4d72_fbd2e2fd",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 14
