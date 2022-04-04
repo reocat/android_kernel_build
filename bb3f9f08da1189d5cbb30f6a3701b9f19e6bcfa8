@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "764bcd93_d778d218",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T20:43:07Z",
+      "side": 1,
+      "message": "The \"\" one is the \"report\" one in L3844. It is kept separate because it is needed as an argument to diff_abi.",
+      "parentUuid": "51cbda76_91f8adc0",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 1
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08391eed_23c3642b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-04T17:16:34Z",
       "side": 1,
       "message": "This ties Kleaf to the particular diff_abi implementation choice and means we need to update them together. Is it really needed?",
+      "range": {
+        "startLine": 3845,
+        "startChar": 0,
+        "endLine": 3848,
+        "endChar": 5
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f90fafb_d3e5f24c",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 3848,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T20:43:07Z",
+      "side": 1,
+      "message": "Yes, because Bazel needs to know all output paths ahead.\n\nA second choice is to declare a \"directory\", or a tarball, of all of the reports. Though I don\u0027t know how that works with copy_to_dist_dir yet. Let me try that.",
+      "parentUuid": "08391eed_23c3642b",
       "range": {
         "startLine": 3845,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09369de0_2a5d637d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 3867,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T20:43:07Z",
+      "side": 1,
+      "message": "I moved this logic to a separate kmi_enforced rule to avoid re-diffing when nothing\u0027s changed.\n\nSo, if I were to put the KMI_ENFORCED check here, and if building the diff report fails because of the KMI_ENFORCED check, then doing a no-op rebuild will re-do the diffing when it doesn\u0027t need to.\n\nThat\u0027s why I put the exit code in a file but don\u0027t immediately fail.",
+      "parentUuid": "f8800d5d_b2ef70c3",
+      "range": {
+        "startLine": 3856,
+        "startChar": 0,
+        "endLine": 3867,
+        "endChar": 10
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "589d575e_a91f8b98",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-04-04T17:16:34Z",
       "side": 1,
       "message": "I hope this can be simplified away if we treat diff_abi.",
+      "range": {
+        "startLine": 3916,
+        "startChar": 0,
+        "endLine": 3923,
+        "endChar": 10
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "432d19c0_6c589999",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 3923,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T20:43:07Z",
+      "side": 1,
+      "message": "See previous comment",
+      "parentUuid": "589d575e_a91f8b98",
       "range": {
         "startLine": 3916,
         "startChar": 0,
