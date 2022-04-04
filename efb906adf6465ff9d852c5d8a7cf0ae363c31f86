@@ -551,6 +551,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28ab0b1f_bda3056c",
+        "filename": "kleaf/tests/kernel_module_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T21:45:38Z",
+      "side": 1,
+      "message": "Resolving, will use test_tools in hermetic_tools now.",
+      "parentUuid": "3e344c30_e7fa8401",
+      "range": {
+        "startLine": 47,
+        "startChar": 40,
+        "endLine": 47,
+        "endChar": 47
+      },
+      "revId": "efb906adf6465ff9d852c5d8a7cf0ae363c31f86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "415850ae_b3006246",
