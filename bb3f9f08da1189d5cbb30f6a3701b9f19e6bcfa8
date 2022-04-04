@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7bfb71bf_f68cab32",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 3848,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T21:32:23Z",
+      "side": 1,
+      "message": "This will need CL:2055225.\n\nThough, missing CL:2055225 won\u0027t break the build, just missing the outputs.",
+      "parentUuid": "2a70d604_f5b5b52b",
+      "range": {
+        "startLine": 3845,
+        "startChar": 0,
+        "endLine": 3848,
+        "endChar": 5
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f8800d5d_b2ef70c3",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 20
