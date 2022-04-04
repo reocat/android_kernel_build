@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "743506a2_a1318a6b",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T20:33:40Z",
+      "side": 1,
+      "message": "Oh wait, you don\u0027t actually need this argument any more",
+      "parentUuid": "6d73098f_233a03e4",
+      "range": {
+        "startLine": 764,
+        "startChar": 37,
+        "endLine": 764,
+        "endChar": 57
+      },
+      "revId": "049108f2f9f06abe8529bcf5eecf51d5a5e569a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2fce4d72_fbd2e2fd",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 14
