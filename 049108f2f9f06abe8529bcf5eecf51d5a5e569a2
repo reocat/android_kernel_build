@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91e26c5d_57583514",
+        "filename": "_setup_env.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T20:22:24Z",
+      "side": 1,
+      "message": "I would prefer to check in BUILD files in that directory instead, but if we can\u0027t do that, I am okay with this too.",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 47
+      },
+      "revId": "049108f2f9f06abe8529bcf5eecf51d5a5e569a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fce4d72_fbd2e2fd",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T20:22:24Z",
+      "side": 1,
+      "message": "You don\u0027t need this line if you have L892",
+      "revId": "049108f2f9f06abe8529bcf5eecf51d5a5e569a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
