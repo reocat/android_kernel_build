@@ -22,6 +22,30 @@
       },
       "revId": "8786c54c6f38d05abb983779f7bc855505431702",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b68bd81_72e04c31",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 21
+      },
+      "lineNbr": 3705,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T21:42:51Z",
+      "side": 1,
+      "message": "currently the _abi is a filegroup to contain all files to be used in the copy_to_dist_dir, not the diff.\n\nThe diff target you are looking at is `kernel_aarch64_abi_diff`.\n\nThe naming is so that, e.g., kernel_aarch64 corresponds to build.sh, and kernel_aarch64_abi corresponds to build_abi.sh. And kernel_aarch64_dist and kernel_aarch64_abi_dist are the corresponding dist rules, respectively.",
+      "parentUuid": "4e62d197_961580e2",
+      "range": {
+        "startLine": 3695,
+        "startChar": 10,
+        "endLine": 3705,
+        "endChar": 60
+      },
+      "revId": "8786c54c6f38d05abb983779f7bc855505431702",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
