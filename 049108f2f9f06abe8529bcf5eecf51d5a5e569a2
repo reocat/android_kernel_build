@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09c5ebdf_291be832",
+        "filename": "_setup_env.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-04-04T20:41:56Z",
+      "side": 1,
+      "message": "Marking this done.\nSee also: aosp/2053106 (landed, unblocks this series)\naosp/2051548 (further cements the removal of internal bazel files)(not yet landed)\nand aosp/2052029 (abandoned) (for keeping the existing internal bazel file, but modifying it)\n\nMy hands are tied here.",
+      "parentUuid": "91e26c5d_57583514",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 47
+      },
+      "revId": "049108f2f9f06abe8529bcf5eecf51d5a5e569a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b56c7e85_148ade61",
