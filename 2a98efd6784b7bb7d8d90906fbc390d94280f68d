@@ -117,6 +117,30 @@
       },
       "revId": "2a98efd6784b7bb7d8d90906fbc390d94280f68d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ffe3d3a_dbcf70e7",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-04-04T22:04:19Z",
+      "side": 1,
+      "message": "Thank you for the list. I\u0027ve cherry picked aosp/2033028 to:\n\n1. aosp/2055129\n2. aosp/2055130\n3. aosp/2055131\n4. aosp/2055132\n\nPTAL.\n\nAlso, I don\u0027t think there\u0027s a branch named gs-android13-gs-raviole-5.10, but I could have been mistaken.",
+      "parentUuid": "c1a92940_db9f4744",
+      "range": {
+        "startLine": 799,
+        "startChar": 0,
+        "endLine": 799,
+        "endChar": 76
+      },
+      "revId": "2a98efd6784b7bb7d8d90906fbc390d94280f68d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
