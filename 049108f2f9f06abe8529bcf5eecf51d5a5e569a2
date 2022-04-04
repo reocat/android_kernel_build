@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6d73098f_233a03e4",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T20:30:32Z",
+      "side": 1,
+      "message": "I recommend the dtstree approach, but it still requires some sort of \"anchor\" to figure out the path. Maybe we can use package_name() or ctx.build_file_path etc. to do this",
+      "parentUuid": "0866dcca_3cee7ea9",
+      "range": {
+        "startLine": 764,
+        "startChar": 37,
+        "endLine": 764,
+        "endChar": 57
+      },
+      "revId": "049108f2f9f06abe8529bcf5eecf51d5a5e569a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2fce4d72_fbd2e2fd",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 14
