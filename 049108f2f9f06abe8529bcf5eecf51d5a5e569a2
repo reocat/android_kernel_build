@@ -133,6 +133,41 @@
       "message": "You don\u0027t need this line if you have L892",
       "revId": "049108f2f9f06abe8529bcf5eecf51d5a5e569a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d6e4872_0baf5fdd",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T20:36:44Z",
+      "side": 1,
+      "message": "Since you don\u0027t need _ndk_sysroot_path any more, I recommend you to keep this and delete L892 instead",
+      "parentUuid": "2fce4d72_fbd2e2fd",
+      "revId": "049108f2f9f06abe8529bcf5eecf51d5a5e569a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a80acb68_074ffa72",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-04T20:36:44Z",
+      "side": 1,
+      "message": "You can delete this",
+      "revId": "049108f2f9f06abe8529bcf5eecf51d5a5e569a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
