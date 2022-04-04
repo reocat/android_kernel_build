@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e62d197_961580e2",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 21
+      },
+      "lineNbr": 3705,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-04T17:19:50Z",
+      "side": 1,
+      "message": "Naming...\n\nI would suggest _abi_dump should just be _abi.\n\nAlso, what\u0027s currently _abi should be _abi_comparison or _abi_diff.\nIt could also be a run action rather than a build rule.",
+      "range": {
+        "startLine": 3695,
+        "startChar": 10,
+        "endLine": 3705,
+        "endChar": 60
+      },
+      "revId": "8786c54c6f38d05abb983779f7bc855505431702",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
