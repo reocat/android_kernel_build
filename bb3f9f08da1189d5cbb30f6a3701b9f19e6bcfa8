@@ -286,6 +286,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aac87e55_6e5c0a53",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 3867,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-05T20:24:05Z",
+      "side": 1,
+      "message": "I did what you said, but please check this out:\n\nhttps://docs.bazel.build/versions/0.24.0/skylark/testing.html#for-validating-artifacts\n\nIf the action / rule fails on KMI_ENFORCED, then I cannot think of a way to add a negative test that given two incompatible ABI dumps, the rule fails. However, if I defer KMI_ENFORCED check to another rule / action, then I can build the ABI diff reports successfully, and check that the error code file contains a non-zero status.\n\nThough, I think this is a shortcoming of Bazel testing. I\u0027ll keep the code as-is as you suggested, then I\u0027ll send an email about negative tests at execution time.",
+      "parentUuid": "358c8fb5_77f1c0a7",
+      "range": {
+        "startLine": 3856,
+        "startChar": 0,
+        "endLine": 3867,
+        "endChar": 10
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "589d575e_a91f8b98",
