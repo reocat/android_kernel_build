@@ -16,6 +16,24 @@
       "message": "Is there anything you can usefully do to \"test\" this to see if you can achieve equivalent build configuration files for the various 11, 12 and 13 targets?\n\nIf not, there may be some functionality missing that we\u0027ll run into sooner or later.",
       "revId": "3947432d0c017d93a6aab98254827f1969d5ac58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed286fb6_ec01bdc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-05T05:13:48Z",
+      "side": 1,
+      "message": "What do you mean? I am just building the same abi.prop file as build.sh is building.\n\nWhere is this file used? Perhaps I can enable the kleaf build there to ensure it is built correctly.",
+      "parentUuid": "e0514b77_ee6040ac",
+      "revId": "3947432d0c017d93a6aab98254827f1969d5ac58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
