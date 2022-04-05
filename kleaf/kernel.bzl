@@ -4110,3 +4110,8 @@ It requires that the base `kernel_build` has `collect_unstripped_modules = True`
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
 )
+
+# Export names for testing
+testing = struct(
+    kernel_abi_diff = _kernel_abi_diff,
+)

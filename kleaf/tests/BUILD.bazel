@@ -13,6 +13,18 @@
 # limitations under the License.
 
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("//build/kernel/kleaf/tests:abi/abi.bzl", "abi_diff_test_suite")
+
+# Unit tests on rules
+abi_diff_test_suite(name = "abi_diff_tests")
+
+test_suite(
+    name = "all_tests",
+    tests = [
+        ":abi_diff_tests",
+    ],
+)
+# Integration tests on artifacts.
 
 exports_files([
     "kernel_build_test.py",

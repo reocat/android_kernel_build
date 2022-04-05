@@ -26,6 +26,8 @@ local_repository(
     name = "bazel_skylib",
     path = "external/bazel-skylib",
 )
+load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+bazel_skylib_workspace()
 
 local_repository(
     name = "io_bazel_stardoc",
