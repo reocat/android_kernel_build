@@ -38,6 +38,7 @@ def kernel_module_test(
         python_version = "PY3",
         data = data,
         args = args,
+        size = "small",
     )
 
 def kernel_build_test(
@@ -62,4 +63,5 @@ def kernel_build_test(
         python_version = "PY3",
         data = [target, strings],
         args = args,
+        size = "small",
     )
