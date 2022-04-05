@@ -43,11 +43,15 @@ def _record(directory_with_structure):
         directory_with_structure: struct returned by `[directory_with_structure.declare](#directory_with_structuredeclare)`.
     """
     return """
+        mkdir -p {structure_file_dir}
         : > {structure_file}
-        real_structure_file=$(readlink -e {structure_file})
-        cd {directory}
-        find . -type d > $real_structure_file
+        (
+            real_structure_file=$(readlink -e {structure_file})
+            cd {directory}
+            find . -type d > $real_structure_file
+        )
     """.format(
+        structure_file_dir = directory_with_structure.structure_file.dirname,
         directory = directory_with_structure.directory.path,
         structure_file = directory_with_structure.structure_file.path,
     )
