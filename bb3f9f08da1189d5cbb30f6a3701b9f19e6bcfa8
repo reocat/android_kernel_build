@@ -167,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62d155a1_e6bdd47d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 3848,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-05T05:11:46Z",
+      "side": 1,
+      "message": "I think this is a minor implementation detail, so closing until someone complains about this",
+      "parentUuid": "7df89df5_fbccc876",
+      "range": {
+        "startLine": 3845,
+        "startChar": 0,
+        "endLine": 3848,
+        "endChar": 5
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8800d5d_b2ef70c3",
