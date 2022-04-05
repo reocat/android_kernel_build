@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2349090e_2151123e",
+        "filename": "_setup_env.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-05T01:19:07Z",
+      "side": 1,
+      "message": "I could also do something like:\n\n```\nif [[ $ROOT_DIR ~\u003d *out/bazel/output_user_root* ]]; then\n  KLEAF_WORKSPACE_ROOT\u003d${ROOT_DIR/out\\/bazel\\/output_user_root*/}\n  # ...\nfi\n```\n\nto avoid setting STABLE_WORKSPACE_ROOT. However, I am already relying on workspace_status.py to calculate SOURCE_DATE_EPOCH, so I think it is okay to add another non-remote-able value.",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 43
+      },
+      "revId": "ba7cfda9492950d44eaf84c6ee3b390b628b7d42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba580c7f_84d55546",
