@@ -240,6 +240,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4032d588_c29b6a86",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 3867,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-05T17:18:32Z",
+      "side": 1,
+      "message": "You can still cache an \"outcome\" if you like and it won\u0027t change if the diff inputs, KMI_ENFORCED and UPDATE do not. Given that UPDATE\u003d1 updates the XML used as one of the inputs for the diff, I\u0027m not sure what the caching buys unless UPDATE is always 0. And in the UPDATE\u003d1 case, how often will a user request an update after a failure without actually changing anything at all? Actually, it will be odd, just like it is now, the XML update will happen, but the command will fail.\n\nAt a philosophical level I am uncomfortable about the diff_abi script being a build rule at all... it fundamentally has to consume a \"baseline\" XML file which is not built, but either should be fetched from a readonly store or is read from the tree but can be overwritten in update mode.\n\nI do feel this is building up if not technical debt then at least overengineering for an action that will in the future complete in less than 1s, if the inputs are in page cache, and I think diff_abi is being more tightly coupled than it could or should be.",
+      "parentUuid": "09369de0_2a5d637d",
+      "range": {
+        "startLine": 3856,
+        "startChar": 0,
+        "endLine": 3867,
+        "endChar": 10
+      },
+      "revId": "bb3f9f08da1189d5cbb30f6a3701b9f19e6bcfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "589d575e_a91f8b98",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 20
