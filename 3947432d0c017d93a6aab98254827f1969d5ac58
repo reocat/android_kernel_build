@@ -34,6 +34,24 @@
       "parentUuid": "e0514b77_ee6040ac",
       "revId": "3947432d0c017d93a6aab98254827f1969d5ac58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d05bdcc4_3a888f59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-05T16:37:47Z",
+      "side": 1,
+      "message": "Android 11 and 12 don\u0027t use Kleaf. By \"test\" I mean see if it is possible to reproduce their build configuration easily with Kleaf. Why? Because they have reached a different phase of the ABI monitoring lifecycle compared with where Android 13 is now.",
+      "parentUuid": "ed286fb6_ec01bdc5",
+      "revId": "3947432d0c017d93a6aab98254827f1969d5ac58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
