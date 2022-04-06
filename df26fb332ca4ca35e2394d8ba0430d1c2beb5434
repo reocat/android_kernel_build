@@ -22,6 +22,30 @@
       },
       "revId": "df26fb332ca4ca35e2394d8ba0430d1c2beb5434",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cb1bf88_b6f6cf3d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 28
+      },
+      "lineNbr": 4036,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-06T20:18:05Z",
+      "side": 1,
+      "message": "Yeah.\n\nThough, at a second thought, maybe we should fail hard in case of duplicates. This directory should only contain kernel modules. If there\u0027s a conflict on kernel modules names, there\u0027s definitely something bad going on.\n\nPerhaps there\u0027s a way to make cp fail when the destination file exists? I don\u0027t know how to do this with a find + cp oneliner with less execs...",
+      "parentUuid": "67b4ef14_959e301f",
+      "range": {
+        "startLine": 4036,
+        "startChar": 3,
+        "endLine": 4036,
+        "endChar": 38
+      },
+      "revId": "df26fb332ca4ca35e2394d8ba0430d1c2beb5434",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
