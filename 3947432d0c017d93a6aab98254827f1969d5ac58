@@ -52,6 +52,24 @@
       "parentUuid": "ed286fb6_ec01bdc5",
       "revId": "3947432d0c017d93a6aab98254827f1969d5ac58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77fca940_b1c85249",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-06T16:59:41Z",
+      "side": 1,
+      "message": "\u003e Android11/12 will use a different process than Android13 is. It is not trivial to backport Kleaf because there are too many changes\n\nMy question was more about seeing whether you could forward port the later build configuration and see if Kleaf could reproduce it. If this is also infeasible, never mind.",
+      "parentUuid": "d05bdcc4_3a888f59",
+      "revId": "3947432d0c017d93a6aab98254827f1969d5ac58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
