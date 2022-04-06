@@ -49,6 +49,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60653973_d80dfe33",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-04-06T18:07:28Z",
+      "side": 1,
+      "message": "Yes, to remove .ko from the end of the module list for comparison to work in compare_to_symbol_list. I have changed it and also add to replace \\n with space though not strictly required for Array conversion but prints better during the build.",
+      "parentUuid": "3b56d04e_1eb64119",
+      "range": {
+        "startLine": 737,
+        "startChar": 48,
+        "endLine": 737,
+        "endChar": 51
+      },
+      "revId": "c0c57865cc026f7580b1df9f082ae114c0583010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cf771dd_1d9044e3",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-04-06T18:07:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3322022_58d7d5f7",
+      "range": {
+        "startLine": 737,
+        "startChar": 35,
+        "endLine": 737,
+        "endChar": 36
+      },
+      "revId": "c0c57865cc026f7580b1df9f082ae114c0583010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6af4602c_f9689599",
         "filename": "build.sh",
         "patchSetId": 1
@@ -60,6 +108,30 @@
       "writtenOn": "2022-04-06T17:30:03Z",
       "side": 1,
       "message": "Please indent to make continuation obvious.",
+      "range": {
+        "startLine": 738,
+        "startChar": 1,
+        "endLine": 739,
+        "endChar": 78
+      },
+      "revId": "c0c57865cc026f7580b1df9f082ae114c0583010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33e3b6ba_72ca0f9a",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-04-06T18:07:28Z",
+      "side": 1,
+      "message": "Done. Suggest if that\u0027s not how it should be indented; as there is inconsistency in the file when it comes to indenting the continuation.",
+      "parentUuid": "6af4602c_f9689599",
       "range": {
         "startLine": 738,
         "startChar": 1,
