@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b56d04e_1eb64119",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-06T17:30:03Z",
+      "side": 1,
+      "message": "Dot-separated? If you are stripping \\.ko$, make it more obvious using sed.",
+      "range": {
+        "startLine": 737,
+        "startChar": 48,
+        "endLine": 737,
+        "endChar": 51
+      },
+      "revId": "c0c57865cc026f7580b1df9f082ae114c0583010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3322022_58d7d5f7",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-06T17:30:03Z",
+      "side": 1,
+      "message": "Prefer $() over ``.",
+      "range": {
+        "startLine": 737,
+        "startChar": 35,
+        "endLine": 737,
+        "endChar": 36
+      },
+      "revId": "c0c57865cc026f7580b1df9f082ae114c0583010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6af4602c_f9689599",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-06T17:30:03Z",
+      "side": 1,
+      "message": "Please indent to make continuation obvious.",
+      "range": {
+        "startLine": 738,
+        "startChar": 1,
+        "endLine": 739,
+        "endChar": 78
+      },
+      "revId": "c0c57865cc026f7580b1df9f082ae114c0583010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
