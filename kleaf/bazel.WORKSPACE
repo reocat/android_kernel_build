@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_tools//tools/jdk:local_java_repository.bzl", "local_java_repository")
 load(
     "//build/kernel/kleaf:constants.bzl",
     "CI_TARGET_MAPPING",
@@ -25,6 +26,16 @@ toplevel_output_directories(paths = ["out"])
 local_repository(
     name = "bazel_skylib",
     path = "external/bazel-skylib",
+)
+
+local_repository(
+    name = "rules_java",
+    path = "build/kernel/kleaf/native_rules_java"
+)
+
+local_repository(
+    name = "rules_cc",
+    path = "build/kernel/kleaf/native_rules_cc"
 )
 
 local_repository(
