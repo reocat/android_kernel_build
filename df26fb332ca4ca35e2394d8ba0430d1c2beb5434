@@ -70,6 +70,30 @@
       },
       "revId": "df26fb332ca4ca35e2394d8ba0430d1c2beb5434",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa1660e6_8d3bd2e2",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 28
+      },
+      "lineNbr": 4036,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-07T18:39:50Z",
+      "side": 1,
+      "message": "I don\u0027t know the list of kernel modules at this point, though I can pass it through _KernelUnstrippedModulesInfo. This could solve the immediate issue of repackaging unstripped modules for kernel_aarch64 built from source.\n\nHowever, it wouldn\u0027t work for prebuilts (See kernel_filegroup). For example, for DDK, I am going to replace //common:kernel_aarch64 with a list of artifacts downloaded from ci.android.com. One of them is `unstripped_modules.tar.gz`. But we only have the tarball, not the list of files in it, at analysis time.\n\nHence, I would rather not check this at analysis time, but at execution time (when the shell commands are executed), so the check works for both kernel_build and kernel_filegroup.\n\nWhat do you think about something like:\n\n`find {src} -name \u0027*.ko\u0027 -exec basename \\\\; | sort | uniq -d`?",
+      "parentUuid": "5f00cc71_4d456617",
+      "range": {
+        "startLine": 4036,
+        "startChar": 3,
+        "endLine": 4036,
+        "endChar": 38
+      },
+      "revId": "df26fb332ca4ca35e2394d8ba0430d1c2beb5434",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
