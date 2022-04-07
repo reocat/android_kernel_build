@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_tools//tools/jdk:local_java_repository.bzl", "local_java_repository")
 load(
     "//build/kernel/kleaf:constants.bzl",
     "CI_TARGET_MAPPING",
@@ -27,9 +28,22 @@ local_repository(
     path = "external/bazel-skylib",
 )
 
+local_java_repository(
+    name = "prebuilt_jre",
+    version = "11",
+    java_home = __workspace_dir__ + "/prebuilts/jdk/jdk11/linux-x86/",
+)
+register_toolchains("//build/kernel/kleaf:prebuilt_jdk")
+
+local_repository(
+    name = "kleaf_native_rules_java",
+    path = "build/kernel/kleaf/native_rules_java"
+)
+
 local_repository(
     name = "io_bazel_stardoc",
     path = "external/stardoc",
+    repo_mapping = {"@rules_java": "@kleaf_native_rules_java"},
 )
 
 key_value_repo(

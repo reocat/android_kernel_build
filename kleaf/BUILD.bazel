@@ -17,6 +17,11 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load("//build/bazel_common_rules/docs:docs.bzl", "docs")
+load(
+    "@bazel_tools//tools/jdk:default_java_toolchain.bzl",
+    "DEFAULT_TOOLCHAIN_CONFIGURATION",
+    "default_java_toolchain",
+)
 
 package(default_visibility = ["//visibility:public"])
 
@@ -61,6 +66,15 @@ exports_files([
     "check_duplicated_files_in_archives.py",
     "no_host_tool.sh",
 ])
+
+# Java, for docs
+
+default_java_toolchain(
+    name = "prebuilt_jdk",
+    configuration = DEFAULT_TOOLCHAIN_CONFIGURATION,
+    java_runtime = "@prebuilt_jre//:prebuilt_jre",
+    source_version = "11",
+)
 
 # Docs. To view them:
 #   bazel run //build/kernel/kleaf:docs_server
