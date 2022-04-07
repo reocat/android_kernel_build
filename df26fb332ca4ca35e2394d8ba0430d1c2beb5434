@@ -46,6 +46,30 @@
       },
       "revId": "df26fb332ca4ca35e2394d8ba0430d1c2beb5434",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f00cc71_4d456617",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 28
+      },
+      "lineNbr": 4036,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-07T13:19:36Z",
+      "side": 1,
+      "message": "This is basically Python, why not build a dict from target file name to source file name. Detection key collisions as you insert keys?",
+      "parentUuid": "5cb1bf88_b6f6cf3d",
+      "range": {
+        "startLine": 4036,
+        "startChar": 3,
+        "endLine": 4036,
+        "endChar": 38
+      },
+      "revId": "df26fb332ca4ca35e2394d8ba0430d1c2beb5434",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
