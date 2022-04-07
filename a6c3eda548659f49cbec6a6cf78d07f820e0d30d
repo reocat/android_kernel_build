@@ -22,6 +22,30 @@
       },
       "revId": "a6c3eda548659f49cbec6a6cf78d07f820e0d30d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d385c8d_a2ebc615",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-07T23:44:35Z",
+      "side": 1,
+      "message": "I say \"all build configs\" but it means only for \n\ngki.aarch64 / gki.x86_64\n\nand the debug ones, which also include the two.",
+      "parentUuid": "35934ee2_5bb4b509",
+      "range": {
+        "startLine": 431,
+        "startChar": 54,
+        "endLine": 431,
+        "endChar": 71
+      },
+      "revId": "a6c3eda548659f49cbec6a6cf78d07f820e0d30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
