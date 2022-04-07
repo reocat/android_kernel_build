@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc56303f_54b5edff",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2022-04-07T08:51:29Z",
+      "side": 1,
+      "message": "If this guys hasn\u0027t changed, I think this will fail to flag a vendor module using a \u0027protected\u0027 symbol, which is useful to have at build time. This script might require a bigger rework to make sure that:\n 1. the vendor symbol list is a strict subset of the ABI exported by the kernel image + GKI modules;\n 2. all undefined symbols in vendor modules are in the vendor symbol list.\n \nFollowing my comment on the other CL, all this can be done without maintaining a list of protected symbols I think?",
+      "range": {
+        "startLine": 738,
+        "startChar": 26,
+        "endLine": 738,
+        "endChar": 48
+      },
+      "revId": "1e21c3e98d261f58bdf20560b7a4df1ce988a70a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
