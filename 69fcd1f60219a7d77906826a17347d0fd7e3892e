@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e281c1e_f8ec4663",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-07T02:20:39Z",
+      "side": 1,
+      "message": "No impact on Bazel build because SKIP_EXT_MODULES is not directly supported; the caller can just skip building those targets in the command line.",
+      "revId": "69fcd1f60219a7d77906826a17347d0fd7e3892e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
