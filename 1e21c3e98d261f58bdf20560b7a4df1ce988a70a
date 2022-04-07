@@ -22,6 +22,30 @@
       },
       "revId": "1e21c3e98d261f58bdf20560b7a4df1ce988a70a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5b82c0d_92b5f662",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 738,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-04-07T19:01:21Z",
+      "side": 1,
+      "message": "We still need the list for the runtime protection look up, right?\n\nMay be we should set up a GVC; somehow I feel like I am not fully understanding what you have been suggesting. I\u0027ll set one up for my tonight.",
+      "parentUuid": "dc56303f_54b5edff",
+      "range": {
+        "startLine": 738,
+        "startChar": 26,
+        "endLine": 738,
+        "endChar": 48
+      },
+      "revId": "1e21c3e98d261f58bdf20560b7a4df1ce988a70a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
