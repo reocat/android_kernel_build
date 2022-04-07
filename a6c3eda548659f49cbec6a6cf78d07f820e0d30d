@@ -46,6 +46,30 @@
       },
       "revId": "a6c3eda548659f49cbec6a6cf78d07f820e0d30d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c508ddd8_adcace98",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-07T23:45:31Z",
+      "side": 1,
+      "message": "Because common_kernels.bzl only create targets for these four",
+      "parentUuid": "0d385c8d_a2ebc615",
+      "range": {
+        "startLine": 431,
+        "startChar": 54,
+        "endLine": 431,
+        "endChar": 71
+      },
+      "revId": "a6c3eda548659f49cbec6a6cf78d07f820e0d30d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
