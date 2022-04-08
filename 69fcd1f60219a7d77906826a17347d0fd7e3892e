@@ -33,6 +33,24 @@
       "message": "where is this new variable defined or documented?",
       "revId": "69fcd1f60219a7d77906826a17347d0fd7e3892e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aebe992c_09e8fce3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1810596
+      },
+      "writtenOn": "2022-04-08T07:28:22Z",
+      "side": 1,
+      "message": "definded for build.sh",
+      "parentUuid": "66f05a8d_f9cb10bd",
+      "revId": "69fcd1f60219a7d77906826a17347d0fd7e3892e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
