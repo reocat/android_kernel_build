@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f1d714e_abc5b404",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-08T15:07:08Z",
+      "side": 1,
+      "message": "This commit message addresses the past. Perhaps say something like:\n\nSimplify management of temporary directories using the new utils.intermediates_dir facility.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 50
+      },
+      "revId": "dd495cd4a4c9c03a3ac4f86482ab7f342ce44fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8889e30d_a5220268",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 3509,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-08T15:07:08Z",
+      "side": 1,
+      "message": "May as well put these in one invocation of rm.",
+      "range": {
+        "startLine": 3508,
+        "startChar": 13,
+        "endLine": 3509,
+        "endChar": 42
+      },
+      "revId": "dd495cd4a4c9c03a3ac4f86482ab7f342ce44fb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
