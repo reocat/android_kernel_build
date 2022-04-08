@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bbbfc8c_1f9b7103",
+        "filename": "kleaf/utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-08T15:06:53Z",
+      "side": 1,
+      "message": "declare_directory actually supports a sibling argument, so maybe reword this comment to reflect why you are not using that.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 62
+      },
+      "revId": "7e8f9b67738308704355d60cc54057e7c73bb106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f3be84c_999407a0",
+        "filename": "kleaf/utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-08T15:06:53Z",
+      "side": 1,
+      "message": "later",
+      "range": {
+        "startLine": 78,
+        "startChar": 47,
+        "endLine": 78,
+        "endChar": 49
+      },
+      "revId": "7e8f9b67738308704355d60cc54057e7c73bb106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
