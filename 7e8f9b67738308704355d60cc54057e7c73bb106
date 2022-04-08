@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30214a7d_42c06189",
+        "filename": "kleaf/utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-08T22:20:36Z",
+      "side": 1,
+      "message": "I\u0027ve updated the comment, PTAL.",
+      "parentUuid": "506e2b04_78706d34",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 62
+      },
+      "revId": "7e8f9b67738308704355d60cc54057e7c73bb106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f3be84c_999407a0",
@@ -61,6 +85,30 @@
       "writtenOn": "2022-04-08T15:06:53Z",
       "side": 1,
       "message": "later",
+      "range": {
+        "startLine": 78,
+        "startChar": 47,
+        "endLine": 78,
+        "endChar": 49
+      },
+      "revId": "7e8f9b67738308704355d60cc54057e7c73bb106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdc57eeb_0563c7c8",
+        "filename": "kleaf/utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-08T22:20:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f3be84c_999407a0",
       "range": {
         "startLine": 78,
         "startChar": 47,
