@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "506e2b04_78706d34",
+        "filename": "kleaf/utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-08T21:06:06Z",
+      "side": 1,
+      "message": "What do you mean? This just gives an alternative command to use. In fact, I am using this declare_directory in many places already, but I notice the shortcoming explained in this comment. Also it will conflict if I have an action to output this directory, then have another action to output to a file within that directory, even when the second action takes the directory as an input. declare_directory simply doesn\u0027t make sense here because intermediates aren\u0027t final outputs.",
+      "parentUuid": "2bbbfc8c_1f9b7103",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 62
+      },
+      "revId": "7e8f9b67738308704355d60cc54057e7c73bb106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f3be84c_999407a0",
         "filename": "kleaf/utils.bzl",
         "patchSetId": 3
