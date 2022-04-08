@@ -24,6 +24,7 @@ load(
     "find_files",
     "getoptattr",
     "reverse_dict",
+    "utils",
 )
 load(
     "//build/kernel/kleaf/tests:kernel_test.bzl",
@@ -1000,6 +1001,9 @@ def _kernel_config_impl(ctx):
     if ctx.attr.trim_nonlisted_kmi and not ctx.file.raw_kmi_symbol_list:
         fail("{}: trim_nonlisted_kmi is set but raw_kmi_symbol_list is empty.".format(ctx.label))
 
+    # Note: this is a path relative to execroot.
+    intermediates_dir = utils.intermediates_dir(ctx)
+
     trim_kmi_command = ""
     if ctx.attr.trim_nonlisted_kmi:
         # We can't use an absolute path in CONFIG_UNUSED_KSYMS_WHITELIST.
@@ -1011,18 +1015,29 @@ def _kernel_config_impl(ctx):
         # Hence we use a relative path. In this case, it is
         # interpreted as a path relative to $abs_srctree, which is
         # ${ROOT_DIR}/${KERNEL_DIR}. See common/scripts/gen_autoksyms.sh.
-        # Hence we set CONFIG_UNUSED_KSYMS_WHITELIST to the path of abi_symobllist.raw
-        # relative to ${KERNEL_DIR}.
+        # Hence we set CONFIG_UNUSED_KSYMS_WHITELIST to the path of
+        # $PWD/<intermediates>/abi_symbollist.raw relative to ${KERNEL_DIR}.
+        # That is:
+        #   ROOT_DIR=$PWD
+        #   abs_srctree=$(realpath ${ROOT_DIR}/${KERNEL_DIR})
+        #   pwd_relative_to_abs_srctree=$(relpath $PWD ${abs_srctree})
+        #   destination_relative_to_abs_srctree=${pwd_relative_to_abs_srctree}/<intermediates>/abi_symbollist.raw
+        # ... except that we can't actually use $(relpath) here because in
+        # local builds, abs_srctree is not under $PWD. e.g. if KERNEL_DIR=common:
+        # <workspace_root>/
+        #   |- common                                # This is $abs_srctree
+        #   |- <execroot>                            # This is $ROOT_DIR and $PWD
+        #       |- common -> <workspace_root>/common # symlink to $abs_srctree
+        # We use sed to hack this. E.g. if KERNEL_DIR=common, UNUSED_KSYMS_WHITELIST
+        # will always be ../<intermediates>/abi_symbollist.raw.
         trim_kmi_command = """
             # Modify .config to trim symbols not listed in KMI
-              ${{KERNEL_DIR}}/scripts/config --file ${{OUT_DIR}}/.config \
-                  -d UNUSED_SYMBOLS -e TRIM_UNUSED_KSYMS \
-                  --set-str UNUSED_KSYMS_WHITELIST $(rel_path {raw_kmi_symbol_list} ${{KERNEL_DIR}})
+              ${{KERNEL_DIR}}/scripts/config --file ${{OUT_DIR}}/.config \\
+                  -d UNUSED_SYMBOLS -e TRIM_UNUSED_KSYMS \\
+                  --set-str UNUSED_KSYMS_WHITELIST \\
+                      $(echo ${{KERNEL_DIR}} | sed -E 's/\\w+/../g')/{intermediates_dir}/abi_symbollist.raw
               make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} olddefconfig
-        """.format(raw_kmi_symbol_list = ctx.file.raw_kmi_symbol_list.path)
-
-        # rel_path requires the file to exist.
-        inputs.append(ctx.file.raw_kmi_symbol_list)
+        """.format(intermediates_dir = intermediates_dir)
 
     command = ctx.attr.env[_KernelEnvInfo].setup + """
         # Pre-defconfig commands
@@ -1066,8 +1081,23 @@ def _kernel_config_impl(ctx):
            rsync -aL {include_dir}/ ${{OUT_DIR}}/include/
            find ${{OUT_DIR}}/include -type d -exec chmod +w {{}} \\;
     """.format(config = config.path, include_dir = include_dir.path)
-    if ctx.file.raw_kmi_symbol_list:
-        setup_deps.append(ctx.file.raw_kmi_symbol_list)
+
+    # If trim_nonlisted_kmi = False but kmi_symbol_list is not None, there's
+    # no need to restore because CONFIG_UNUSED_KSYMS_WHITELIST is not set.
+    # CONFIG_UNUSED_KSYMS_WHITELIST is only needed when
+    # trim_nonlisted_kmi = True.
+    if ctx.attr.trim_nonlisted_kmi:
+        # Restore to $abs_srctree/$CONFIG_UNUSED_KSYMS_WHITELIST
+        # abs_srctree = $(realpath ${{ROOT_DIR}}/${{KERNEL_DIR}})
+        setup += """
+            rsync --mkpath -aL {raw_kmi_symbol_list} \\
+              $(realpath ${{ROOT_DIR}}/${{KERNEL_DIR}})/$(sed -n 's/^CONFIG_UNUSED_KSYMS_WHITELIST="\\(.*\\)"$/\\1/p' {config})
+        """.format(
+            raw_kmi_symbol_list = ctx.file.raw_kmi_symbol_list.path,
+            intermediates_dir = intermediates_dir,
+            config = config.path,
+        )
+        setup_deps += [ctx.file.raw_kmi_symbol_list, config]
 
     return [
         _KernelEnvInfo(
