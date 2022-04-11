@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7eec5c1_716e335d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1409599
+      },
+      "writtenOn": "2022-04-11T10:34:42Z",
+      "side": 1,
+      "message": "From the commit message I don\u0027t understand if it\u0027s safe to ignore these changes (cannot quantify \"highly likely\").\n\nThe last paragraph of the commit message, instead, mentions that we are moving away from that tool, so this change seems to be a cleanup instead.\n\nI don\u0027t have enough context to understand if this change is fixing false positives, or a cleanup, or both :)",
+      "revId": "af83d8f5d2a08568e1b992027c7729b4279cc86e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
