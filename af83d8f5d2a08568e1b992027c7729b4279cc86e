@@ -16,6 +16,24 @@
       "message": "From the commit message I don\u0027t understand if it\u0027s safe to ignore these changes (cannot quantify \"highly likely\").\n\nThe last paragraph of the commit message, instead, mentions that we are moving away from that tool, so this change seems to be a cleanup instead.\n\nI don\u0027t have enough context to understand if this change is fixing false positives, or a cleanup, or both :)",
       "revId": "af83d8f5d2a08568e1b992027c7729b4279cc86e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afef3ba8_fc246efa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-11T17:07:46Z",
+      "side": 1,
+      "message": "I added plain `abidiff` output as this used to be available with `build_abi.sh --full-report`. However, the old build script would not be passed this argument in automated builds. So, it\u0027s a minor reversion to ignore its exit status. In that sense, this change is \"safe\".\n\nThe next step is ignore all `abidiff` exit codes and then stop generating `abidiff` reports as well. This has a few more moving pieces.\n\nThe discrepancy in `abidiff` reporting modes may be sufficiently rare that *this* change never achieves much.\n\n\"False positive\" is an interesting term... libabigail is outputting varying incomplete types in its XML but it usually ignores such differences at diff time. Here, for some reason, they have triggered a report. `stgdiff` always reports such differences, so I\u0027m having to suppress them with post-processing. They are genuine changes to the ABI representation but do not reflect actual ABI changes. Or: usually, two libabigail wrongs make a right, but not today.",
+      "parentUuid": "e7eec5c1_716e335d",
+      "revId": "af83d8f5d2a08568e1b992027c7729b4279cc86e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
