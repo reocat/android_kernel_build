@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "268ac2df_b2960dcf",
+        "filename": "kleaf/utils.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2022-04-11T10:58:51Z",
+      "side": 1,
+      "message": "nit: bindir (genfiles/ isn\u0027t a thing anymore in Bazel). It works this way, too, but genfiles is gone.",
+      "range": {
+        "startLine": 83,
+        "startChar": 12,
+        "endLine": 83,
+        "endChar": 24
+      },
+      "revId": "ed042de3dabfba37570ca2e57b2067b57674ee63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
