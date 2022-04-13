@@ -19,3 +19,9 @@
 ### Configurations
 
 `--config=release`: [Release builds](docs/release.md)
+
+`--config=fast`: [Make local builds faster](docs/fast.md)
+
+`--config=local`: [Sandboxing](docs/sandbox.md)
+
+`--config=skip_scm`: [Disabling SCM version](docs/scmversion.md#disable-scm-version)
