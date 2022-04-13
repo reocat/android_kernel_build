@@ -15,3 +15,11 @@
 [References to Bazel rules and macros for the Android Kernel](https://ci.android.com/builds/latest/branches/aosp_kernel-common-android-mainline/targets/kleaf_docs/view/index.html)
 
 [Kleaf testing](docs/testing.md)
+
+### Configurations
+
+`--config=fast`: [Make local builds faster](docs/fast.md)
+
+`--config=local`: [Sandboxing](docs/sandbox.md)
+
+`--config=skip_scm`: [Disabling SCM version](docs/scmversion.md#disable-scm-version)
