@@ -19,3 +19,7 @@
 ### Configurations
 
 `--config=release`: [Release builds](docs/release.md)
+
+`--config=fast`: [Make local builds faster](docs/fast.md)
+
+`--config=local`: [Sandboxing](docs/sandbox.md)
