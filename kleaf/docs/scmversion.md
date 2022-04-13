@@ -76,4 +76,3 @@ check the following.
   see [testing.md#external-kernel_module](testing.md#external-kernel_module).
 - `modinfo -F scmversion <modulename>.ko`
 - Boot the device, and check `/sys/module/<MODULENAME>/scmversion`.
-
