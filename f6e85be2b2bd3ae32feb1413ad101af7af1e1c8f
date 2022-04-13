@@ -46,6 +46,30 @@
       },
       "revId": "f6e85be2b2bd3ae32feb1413ad101af7af1e1c8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7790f675_1bc41312",
+        "filename": "build.sh",
+        "patchSetId": 19
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-13T22:58:44Z",
+      "side": 1,
+      "message": "Or https://android.googlesource.com/kernel/build/+/refs/heads/master/kleaf/README.md",
+      "parentUuid": "3d0ba557_1c86a5f4",
+      "range": {
+        "startLine": 431,
+        "startChar": 72,
+        "endLine": 431,
+        "endChar": 88
+      },
+      "revId": "f6e85be2b2bd3ae32feb1413ad101af7af1e1c8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
