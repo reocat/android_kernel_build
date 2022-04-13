@@ -163,6 +163,30 @@
       },
       "revId": "b0b920e27e94ec963f50a971b497eb60fd9210c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f117ea2_f23ea905",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-13T18:49:49Z",
+      "side": 1,
+      "message": "The reason we set this is to avoid side effects of a kernel build (which, as you suggested, will write to ~/.cache)",
+      "parentUuid": "1f31faa4_207febea",
+      "range": {
+        "startLine": 1027,
+        "startChar": 11,
+        "endLine": 1027,
+        "endChar": 19
+      },
+      "revId": "b0b920e27e94ec963f50a971b497eb60fd9210c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
