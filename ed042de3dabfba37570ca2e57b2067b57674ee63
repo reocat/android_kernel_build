@@ -22,6 +22,30 @@
       },
       "revId": "ed042de3dabfba37570ca2e57b2067b57674ee63",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce51856b_f99ffcdc",
+        "filename": "kleaf/utils.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-13T18:43:57Z",
+      "side": 1,
+      "message": "Ack, I\u0027ll submit a separate CL to fix this.\n\nAre they just the same?",
+      "parentUuid": "268ac2df_b2960dcf",
+      "range": {
+        "startLine": 83,
+        "startChar": 12,
+        "endLine": 83,
+        "endChar": 24
+      },
+      "revId": "ed042de3dabfba37570ca2e57b2067b57674ee63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
