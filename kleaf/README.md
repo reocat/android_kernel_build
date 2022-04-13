@@ -8,6 +8,8 @@
 
 [Building your kernels and drivers with Bazel](docs/impl.md)
 
+[Make local builds faster](docs/fast.md)
+
 [Handling SCM version](docs/scmversion.md)
 
 [Resolving common errors](docs/errors.md)

@@ -77,3 +77,7 @@ check the following.
 - `modinfo -F scmversion <modulename>.ko`
 - Boot the device, and check `/sys/module/<MODULENAME>/scmversion`.
 
+## Disable SCM version altogether
+
+With `--config=fast`, SCM version is **NOT** embedded in `vmlinux` or any
+modules. See [fast.md](fast.md).

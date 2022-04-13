@@ -52,6 +52,7 @@ string_flag(
     build_setting_default = "",
     values = [
         "",
+        "fast",
         "release",
         "remote",
     ],
