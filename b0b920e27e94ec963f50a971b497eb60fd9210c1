@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dd37f90_539fc949",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-13T18:48:31Z",
+      "side": 1,
+      "message": "this",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 80
+      },
+      "revId": "b0b920e27e94ec963f50a971b497eb60fd9210c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e8f20bc_e0ef982c",
@@ -14,6 +37,30 @@
       "writtenOn": "2022-04-11T11:06:52Z",
       "side": 1,
       "message": "nit: $PWD is ambiguous: it can either be the working directory at the beginning of each action or from where Bazel is called. So I\u0027d call this \"execroot\"",
+      "range": {
+        "startLine": 1004,
+        "startChar": 39,
+        "endLine": 1004,
+        "endChar": 44
+      },
+      "revId": "b0b920e27e94ec963f50a971b497eb60fd9210c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7e4553c_9772a86a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-13T18:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e8f20bc_e0ef982c",
       "range": {
         "startLine": 1004,
         "startChar": 39,
@@ -47,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1b550bc_cbac4649",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-13T18:48:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcf22b8d_4bb2d4bc",
+      "range": {
+        "startLine": 1019,
+        "startChar": 31,
+        "endLine": 1019,
+        "endChar": 45
+      },
+      "revId": "b0b920e27e94ec963f50a971b497eb60fd9210c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3691205b_ff6be78d",
@@ -60,6 +131,30 @@
       "writtenOn": "2022-04-11T11:06:52Z",
       "side": 1,
       "message": "I\u0027m confused. How is the execroot a child of $ROOT_DIR? I assume $ROOT_DIR is the source tree that the user has checked out, but execroot should be somewhere under $HOME/.cache/bazel and this comment depicts the latter being the direct child of the former.",
+      "range": {
+        "startLine": 1027,
+        "startChar": 11,
+        "endLine": 1027,
+        "endChar": 19
+      },
+      "revId": "b0b920e27e94ec963f50a971b497eb60fd9210c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f31faa4_207febea",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1027,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-13T18:48:31Z",
+      "side": 1,
+      "message": "output_user_root is set. See the other comment in bazel.py.\n\nAlso updated the wording.",
+      "parentUuid": "3691205b_ff6be78d",
       "range": {
         "startLine": 1027,
         "startChar": 11,
