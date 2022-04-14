@@ -22,6 +22,7 @@ This config implies:
 
 - `--lto=thin`. See [LTO](#lto).
 - `--config=local`. See [sandbox.md](sandbox.md).
+- `--config=skip_scm`. See [scmversion.md](scmversion.md#disable-scm-version)
 
 ## LTO
 
