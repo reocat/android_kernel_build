@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23e72102_7fe77911",
+        "filename": "kleaf/convert_to_bazel.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-14T21:30:10Z",
+      "side": 1,
+      "message": "Can you print the value of BUILD_CONFIG here as well?",
+      "range": {
+        "startLine": 46,
+        "startChar": 21,
+        "endLine": 46,
+        "endChar": 33
+      },
+      "revId": "4d167299bd818bd0d9a6656568c53834a6534378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b349491b_21d8fc88",
+        "filename": "kleaf/convert_to_bazel.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-14T21:30:10Z",
+      "side": 1,
+      "message": "where is this defined? Is this suppose to be `packge_path`?",
+      "range": {
+        "startLine": 60,
+        "startChar": 11,
+        "endLine": 60,
+        "endChar": 28
+      },
+      "revId": "4d167299bd818bd0d9a6656568c53834a6534378",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
