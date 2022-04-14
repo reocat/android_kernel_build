@@ -22,6 +22,30 @@
       },
       "revId": "f6bec0ec12470bbf0f8aacc6c05caf3b44dca779",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1601be1_c5097549",
+        "filename": "build_abi.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-14T21:45:43Z",
+      "side": 1,
+      "message": "See L140. I can split stdout and stderr to two different variables, but I think the logic is rather complicated.",
+      "parentUuid": "bd937629_5e919685",
+      "range": {
+        "startLine": 135,
+        "startChar": 65,
+        "endLine": 135,
+        "endChar": 69
+      },
+      "revId": "f6bec0ec12470bbf0f8aacc6c05caf3b44dca779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
