@@ -77,3 +77,16 @@ check the following.
 - `modinfo -F scmversion <modulename>.ko`
 - Boot the device, and check `/sys/module/<MODULENAME>/scmversion`.
 
+## Disable SCM version
+
+Handling SCM version properly creates some overhead for almost every
+meaningful `bazel` commands via `--workspace_status_command`; see documentation
+[here](https://bazel.build/reference/command-line-reference#flag--workspace_status_command)
+.
+
+With `--config=skip_scm`, SCM version is **NOT** embedded in `vmlinux` or any
+modules.
+
+The flag `--config=skip_scm` is also implied by other flags, e.g.:
+
+* `--config=fast`. See [fast.md](fast.md).
