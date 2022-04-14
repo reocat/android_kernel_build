@@ -34,6 +34,24 @@
       "parentUuid": "ce34039c_3d6b50f2",
       "revId": "ce150b3c9b15a1be17fcbd31212e44525ef670ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1972e683_81122573",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-14T05:57:33Z",
+      "side": 1,
+      "message": "(latest PS \u003d PS24)\n\nThe exact error is:\n\n```\nERROR: /mnt/sdc/android/raviole-5.15/common/BUILD.bazel:26:22: Running depmod //common:kernel_aarch64_modules_install failed: (Exit 1): bash failed: error executing command (from target //common:kernel_aarch64_modules_install) /bin/bash -c ... (remaining 1 argument skipped)\n\nUse --sandbox_debug to see verbose messages from the sandbox\ndepmod: ERROR: could not open directory /mnt/sdc/android/raviole-5.15/out/bazel/output_user_root/6c6dc0367e4329eb8f1cf98d2ebf14c2/sandbox/linux-sandbox/39/execroot/__main__/bazel-out/k8-fastbuild/bin/common/staging/lib/modules/5.15.32: No such file or directory\ndepmod: FATAL: could not search modules: No such file or directory\n```\n\nbecause `//common:kernel_aarch64` produces modules_prepare tarball with scmversion, but the depmod rule (modules_install) does not know what scmversion it was.",
+      "parentUuid": "c41ed92d_6ddf50de",
+      "revId": "ce150b3c9b15a1be17fcbd31212e44525ef670ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
