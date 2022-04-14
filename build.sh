@@ -778,6 +778,8 @@ if [ "${LTO}" = "none" -o "${LTO}" = "thin" -o "${LTO}" = "full" ]; then
       -d LTO_CLANG_THIN \
       -d LTO_CLANG_FULL \
       -d THINLTO
+    # Disable STRICT_MODE as LTO=none is incompatible with it
+    KMI_SYMBOL_LIST_STRICT_MODE=0
   elif [ "${LTO}" = "thin" ]; then
     # This is best-effort; some kernels don't support LTO_THIN mode
     # THINLTO was the old name for LTO_THIN, and it was 'default y'
@@ -1324,4 +1326,15 @@ if readelf -a ${DIST_DIR}/vmlinux 2>&1 | grep -q trace_printk_fmt; then
     echo "ERROR: stop ship on trace_printk usage." 1>&2
     exit 1
   fi
+fi
+
+# Warn users not to submit patches only tested w/ LTO=none
+if [ "${LTO}" = "none" ] ; then
+  echo "========================================================"
+  echo "WARN: This build used LTO=none and disabled KMI checking"
+  echo ""
+  echo "DO NOT submit patches only tested with LTO=none."
+  echo "Please test with LTO=thin or without overriding LTO before"
+  echo "submitting any patches."
+  echo ""
 fi
