@@ -16,6 +16,24 @@
       "message": "I think this can potentially break the build with --strategy X\u003dlocal. For the local actions, scmversion is not empty, but for the sandbox actions, they are. The inconsistency may create different staging paths.",
       "revId": "ce150b3c9b15a1be17fcbd31212e44525ef670ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c41ed92d_6ddf50de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-14T05:37:31Z",
+      "side": 1,
+      "message": "This is still not resolved. In the latest PS, --skip_scm would be mutually exclusive with --local.",
+      "parentUuid": "ce34039c_3d6b50f2",
+      "revId": "ce150b3c9b15a1be17fcbd31212e44525ef670ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
