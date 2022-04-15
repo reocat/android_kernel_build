@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35ada92e_6c2148d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-15T06:54:35Z",
+      "side": 1,
+      "message": "Maybe you are looking for this?\n\nhttps://android.googlesource.com/kernel/build/+/refs/heads/master/kleaf/docs/cheatsheet.md",
+      "parentUuid": "bd1e6ad6_65ffd413",
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96af36d8_689e1943",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-04-15T05:31:39Z",
       "side": 1,
       "message": "This symbol list is more of just a placeholder for special symbols since we don\u0027t have any GKI modules. I think it would be more useful to cover how to update a vendor symbol list and how to update the ABI xml.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 43
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63cf0e22_476053b6",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-15T06:54:35Z",
+      "side": 1,
+      "message": "I plan to formalize the process in b/228557311 first, then amend this doc for vendor symbol list.\n\nPerhaps I should put all these in a \"GKI\" section?",
+      "parentUuid": "96af36d8_689e1943",
       "range": {
         "startLine": 11,
         "startChar": 0,
@@ -163,6 +205,30 @@
       "writtenOn": "2022-04-15T05:31:39Z",
       "side": 1,
       "message": "This is confusing to me. What are \"dist artifacts\" and how is that related to the ABI. From what I gather, this is the most important section that will be run 99% of the time, right? If that\u0027s true, then this section needs to be highlighted (maybe even first with the vendor symbol list section) as the path vendors take to update the ABI xml when they change it.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 24
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffa4c0ce_fe8c8d6e",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-15T06:54:35Z",
+      "side": 1,
+      "message": "This corresponds to the content of $DIST_DIR when `build_abi.sh` is executed.",
+      "parentUuid": "eff6c46c_ed654f7b",
       "range": {
         "startLine": 30,
         "startChar": 0,
