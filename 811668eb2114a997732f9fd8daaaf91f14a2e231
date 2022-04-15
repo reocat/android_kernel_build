@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bfb6fc5_cc444d54",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1925,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-15T06:35:48Z",
+      "side": 0,
+      "message": "Where did this go? Did you verify P21 boots with this new change because this stuff is boot critical.",
+      "range": {
+        "startLine": 1915,
+        "startChar": 0,
+        "endLine": 1925,
+        "endChar": 0
+      },
+      "revId": "811668eb2114a997732f9fd8daaaf91f14a2e231",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
