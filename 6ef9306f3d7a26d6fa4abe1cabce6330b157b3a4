@@ -16,6 +16,207 @@
       "message": "@gprocida, please take a look and +2 if you\u0027re happy.",
       "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd1e6ad6_65ffd413",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-15T05:31:39Z",
+      "side": 1,
+      "message": "IMO, this abi.md document isn\u0027t really that helpful because it doesn\u0027t really explain which commands should be used to update the ABI xml and symbol lists. Having the extra ABI commands is informative, but can add additional confusion since now partners will wonder which one they should be using.",
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96af36d8_689e1943",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-15T05:31:39Z",
+      "side": 1,
+      "message": "This symbol list is more of just a placeholder for special symbols since we don\u0027t have any GKI modules. I think it would be more useful to cover how to update a vendor symbol list and how to update the ABI xml.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 43
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b56e4ec1_5ec4290d",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-15T05:31:39Z",
+      "side": 1,
+      "message": "the ABI",
+      "range": {
+        "startLine": 14,
+        "startChar": 11,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f28e1692_e112e82e",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-15T05:31:39Z",
+      "side": 1,
+      "message": "I think this Note and frankly this section might be more confusing than helpful. I don\u0027t think most people are just updating the ABI and not wanting a report. I would suggest dropping the note and maybe even this section because any time you update the ABI xml you want to share the ABI diff report to show what is being updated.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 0
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b96f7348_a472a4bc",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-15T05:31:39Z",
+      "side": 1,
+      "message": "the `abi_definition`",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 14
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c3d07c5_36a45381",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-15T05:31:39Z",
+      "side": 1,
+      "message": "you can drop typically since it\u0027s always been `abi_gki_aarch64.xml`.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 9
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eff6c46c_ed654f7b",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-15T05:31:39Z",
+      "side": 1,
+      "message": "This is confusing to me. What are \"dist artifacts\" and how is that related to the ABI. From what I gather, this is the most important section that will be run 99% of the time, right? If that\u0027s true, then this section needs to be highlighted (maybe even first with the vendor symbol list section) as the path vendors take to update the ABI xml when they change it.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 24
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "990ef388_2f7e75f7",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-15T05:31:39Z",
+      "side": 1,
+      "message": "the ABI",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e029463_c4d736ba",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-15T05:31:39Z",
+      "side": 1,
+      "message": "copies them",
+      "range": {
+        "startLine": 37,
+        "startChar": 32,
+        "endLine": 37,
+        "endChar": 38
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
