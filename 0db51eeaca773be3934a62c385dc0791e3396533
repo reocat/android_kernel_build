@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08726eb4_c605932a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 3381,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-15T06:48:38Z",
+      "side": 1,
+      "message": "Do we always need to extract this when it\u0027s defined? For example, do we extract this during a normal kernel build?",
+      "range": {
+        "startLine": 3381,
+        "startChar": 20,
+        "endLine": 3381,
+        "endChar": 29
+      },
+      "revId": "0db51eeaca773be3934a62c385dc0791e3396533",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
