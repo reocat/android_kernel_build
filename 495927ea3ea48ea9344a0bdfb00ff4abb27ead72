@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "44f8b6b8_bad97a59",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-18T23:16:30Z",
+      "side": 1,
+      "message": "My understanding is that Module.symvers is only needed from module foo when I build a module bar that depends on foo. It is not needed for depmod. Depmod only requires the ko files to exist.\n\nBut I\u0027ll double check.",
+      "parentUuid": "d7b0b356_169bfd59",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "495927ea3ea48ea9344a0bdfb00ff4abb27ead72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e71ded02_e13c60da",
