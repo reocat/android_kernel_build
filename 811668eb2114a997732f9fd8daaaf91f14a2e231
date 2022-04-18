@@ -46,6 +46,30 @@
       },
       "revId": "811668eb2114a997732f9fd8daaaf91f14a2e231",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d765c1d2_c10360e0",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1925,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-18T23:46:49Z",
+      "side": 0,
+      "message": "I have booted oriole locally to confirm that this does not affect P21 to boot.",
+      "parentUuid": "01ef096a_80af7214",
+      "range": {
+        "startLine": 1915,
+        "startChar": 0,
+        "endLine": 1925,
+        "endChar": 0
+      },
+      "revId": "811668eb2114a997732f9fd8daaaf91f14a2e231",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
