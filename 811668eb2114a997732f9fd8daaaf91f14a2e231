@@ -22,6 +22,30 @@
       },
       "revId": "811668eb2114a997732f9fd8daaaf91f14a2e231",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93adfb82_175bbaa7",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 1775,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-18T21:02:32Z",
+      "side": 1,
+      "message": "Frankly I don\u0027t know either:\n\nhttps://android-review.googlesource.com/c/kernel/build/+/1934580/2/kleaf/kernel.bzl#1097\n\nmaennich@ suggested this",
+      "parentUuid": "bbf1d28c_9900399e",
+      "range": {
+        "startLine": 1775,
+        "startChar": 83,
+        "endLine": 1775,
+        "endChar": 100
+      },
+      "revId": "811668eb2114a997732f9fd8daaaf91f14a2e231",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
