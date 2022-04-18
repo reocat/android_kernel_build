@@ -22,6 +22,30 @@
       },
       "revId": "0db51eeaca773be3934a62c385dc0791e3396533",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f92634b0_e5a01165",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 3381,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-18T20:58:33Z",
+      "side": 1,
+      "message": "What do you mean by a \"normal kernel build\"?\n\nOn a kernel build that relies on downloaded prebuilts, this is extracted ONLY IF the output of this action is requested somewhere. The output of this action is `unstripped_dir` in `_KernelUnstrippedModulesInfo`. `_KernelUnstrippedModulesInfo` is currently only used in:\n\n1. Extracting ABI (see `_kernel_abi_dump`)\n2. Creating the archive of unstripped modules (see `kernel_unstripped_modules_archive`).\n\nIn particular, #2 may be included for a device build. E.g. you don\u0027t extract it when `bazel build slider` but you do extract it during `bazel build slider_dist` with [1], if `--use_prebuilt_gki` is defined (if `slider_unstripped_modules_archive` were added to `slider_dist`).\n\n[1] https://android-review.googlesource.com/c/kernel/google-modules/raviole-device/+/2022075/7/BUILD.bazel#319\n\nDoes this answer your question?",
+      "parentUuid": "08726eb4_c605932a",
+      "range": {
+        "startLine": 3381,
+        "startChar": 20,
+        "endLine": 3381,
+        "endChar": 29
+      },
+      "revId": "0db51eeaca773be3934a62c385dc0791e3396533",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
