@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb0d7d46_a563c294",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-18T23:17:54Z",
+      "side": 1,
+      "message": "The impression I have is because depmod runs on top of the module_staging_dir, which doesn\u0027t have Module.symvers. Module.symvers is in OUT_DIR.\n\nBut let me double check first.",
+      "parentUuid": "44f8b6b8_bad97a59",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 0
+      },
+      "revId": "495927ea3ea48ea9344a0bdfb00ff4abb27ead72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e71ded02_e13c60da",
