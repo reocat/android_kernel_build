@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92d260e8_36171899",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-18T22:36:02Z",
+      "side": 1,
+      "message": "This needs to mention a way to use thin LTO by default, e.g. for slider.\n\nCurrently this is possible to do in device.bazelrc, but I think there should be a better way to do this (e.g. in kernel_build).",
+      "revId": "c7c7f839716fb67a3a3f60ab0720ff50ac3189ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
