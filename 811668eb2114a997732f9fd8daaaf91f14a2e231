@@ -22,6 +22,30 @@
       },
       "revId": "811668eb2114a997732f9fd8daaaf91f14a2e231",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01ef096a_80af7214",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1925,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-18T21:07:07Z",
+      "side": 0,
+      "message": "I\u0027ll run forrest.\n\n\u003e Where did this go?\n\nThe archive was needed because the directory needs to be restored for subsequent actions. Now that I am using `directory_with_structure`, the archiving and extracting logic can be deleted, because I can restore the directory directly.\n\nThe module staging archive isn\u0027t part of the dist output, so it shouldn\u0027t affect the final result.",
+      "parentUuid": "3bfb6fc5_cc444d54",
+      "range": {
+        "startLine": 1915,
+        "startChar": 0,
+        "endLine": 1925,
+        "endChar": 0
+      },
+      "revId": "811668eb2114a997732f9fd8daaaf91f14a2e231",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
