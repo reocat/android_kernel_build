@@ -52,6 +52,7 @@ _config_values = (
     "fast",
     "release",
     "remote",
+    "skip_scm",
 )
 
 [bool_flag(
