@@ -20,3 +20,6 @@ build:local --//build/kernel/kleaf:config_local
 # Skip sandboxing to cache $OUT_DIR.
 build:local --strategy KernelConfig=local
 build:local --strategy KernelBuild=local
+
+# Do not set scmversion for local builds.
+build:local --workspace_status_command=
