@@ -15,13 +15,6 @@
 # Various configs for disabling as many sandboxes as possible.
 
 # Let rules know what configs we are using now
-build:local --//build/kernel/kleaf:config_local
+build:skip_scm --//build/kernel/kleaf:config_skip_scm
 
-# Skip sandboxing to cache $OUT_DIR.
-build:local --strategy KernelConfig=local
-build:local --strategy KernelBuild=local
-
-# Always skip SCM version.
-# Some actions run in the sandbox and some does not. Ensure that
-# all actions get a consistently empty SCM version.
-build:local --config=skip_scm
+build:skip_scm --workspace_status_command=
