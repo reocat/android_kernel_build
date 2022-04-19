@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "780bc0fe_336fd101",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2022-04-19T09:35:19Z",
+      "side": 1,
+      "message": "@Lars: I don\u0027t think there is a lot that can be done about this without a lot of work because the way tree artifacts work is that they list the contained files and not directories, but still, you probably want to know about this limitation.",
+      "revId": "2037961ae289658a99f48645eed1baeeffec795e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
