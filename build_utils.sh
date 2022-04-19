@@ -241,8 +241,7 @@ function build_vendor_dlkm() {
     "${DIST_DIR}/vendor_dlkm.img" /dev/null
 }
 
-function build_boot_images() {
-  BOOT_IMAGE_HEADER_VERSION=${BOOT_IMAGE_HEADER_VERSION:-3}
+function check_mkbootimg_path() {
   if [ -z "${MKBOOTIMG_PATH}" ]; then
     MKBOOTIMG_PATH="tools/mkbootimg/mkbootimg.py"
   fi
@@ -250,7 +249,12 @@ function build_boot_images() {
     echo "mkbootimg.py script not found. MKBOOTIMG_PATH = ${MKBOOTIMG_PATH}"
     exit 1
   fi
+}
 
+function build_boot_images() {
+  check_mkbootimg_path
+
+  BOOT_IMAGE_HEADER_VERSION=${BOOT_IMAGE_HEADER_VERSION:-3}
   MKBOOTIMG_ARGS=("--header_version" "${BOOT_IMAGE_HEADER_VERSION}")
   if [ -n  "${BASE_ADDRESS}" ]; then
     MKBOOTIMG_ARGS+=("--base" "${BASE_ADDRESS}")
@@ -452,4 +456,54 @@ function make_dtbo() {
     cd ${OUT_DIR}
     mkdtimg create "${DIST_DIR}"/dtbo.img ${MKDTIMG_FLAGS} ${MKDTIMG_DTBOS}
   )
+}
+
+function build_gki_artifacts() {
+  check_mkbootimg_path
+
+  if ! [ -f "${DIST_DIR}/Image" ]; then
+    echo "ERROR: '${DIST_DIR}/Image' doesn't exist" >&2
+    exit 1
+  fi
+
+  if ! ${COMPRESS_GZIP} "${DIST_DIR}/Image" 2>/dev/null > "${DIST_DIR}/Image.gz"; then
+    echo "Failed to generate the compressed '${DIST_DIR}/Image.gz'"
+    exit 1
+  fi
+
+  DEFAULT_MKBOOTIMG_ARGS=("--header_version" "4")
+  if [ -n "${GKI_KERNEL_CMDLINE}" ]; then
+    DEFAULT_MKBOOTIMG_ARGS+=("--cmdline" "${GKI_KERNEL_CMDLINE}")
+  fi
+
+  local built_boot_images=""
+  local kernel_version=${BRANCH##*-}
+  for kernel_image in Image Image.lz4 Image.gz; do
+    GKI_MKBOOTIMG_ARGS=("${DEFAULT_MKBOOTIMG_ARGS[@]}")
+    GKI_MKBOOTIMG_ARGS+=("--kernel" "${DIST_DIR}/${kernel_image}")
+
+    compression=$(echo "${kernel_image}" | sed 's/Image//' | sed 's/\.//')
+    if [ -n "${compression}" ]; then
+      boot_image="boot-${kernel_version}-${compression}.img"
+    else
+      boot_image="boot-${kernel_version}.img"
+    fi
+
+    GKI_MKBOOTIMG_ARGS+=("--output" "${DIST_DIR}/${boot_image}")
+    "${MKBOOTIMG_PATH}" "${GKI_MKBOOTIMG_ARGS[@]}"
+
+    if [ -z "${built_boot_images}" ]; then
+      built_boot_images="${boot_image}"
+    else
+      built_boot_images="${built_boot_images} ${boot_image}"
+    fi
+  done
+
+  if [ -n "${BUILD_NUMBER}" ]; then
+    GKI_BOOT_IMG_ARCHIVE="boot-img-${BUILD_NUMBER}.tar.gz"
+  else
+    GKI_BOOT_IMG_ARCHIVE="boot-img.tar.gz"
+  fi
+  echo "Making ${GKI_BOOT_IMG_ARCHIVE} for ${built_boot_images}"
+  tar -czf "${DIST_DIR}/${GKI_BOOT_IMG_ARCHIVE}" -C "${DIST_DIR}" ${built_boot_images}
 }

@@ -1003,6 +1003,10 @@ if [ -n "${BUILD_BOOT_IMG}" -o -n "${BUILD_VENDOR_BOOT_IMG}" ] ; then
   build_boot_images
 fi
 
+if [ -n "${BUILD_GKI_ARTIFACTS}" ] ; then
+  build_gki_artifacts
+fi
+
 if [ -n "${BUILD_DTBO_IMG}" ]; then
   make_dtbo
 fi
