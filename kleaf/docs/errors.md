@@ -150,21 +150,17 @@ If `/proc/version` shows something like
 5.14.0-mainline
 ```
 
-without a SHA, this is a known issue.
+without a SHA, the SCM version is not embedded.
 
-[comment]: <> (Bug 202077908)
+The SCM version is only embedded for `--config=stamp` or any other configs that
+inherits from it (e.g. `--config=release`).
 
-This is also the cause of the following dialog on the phone screen with Android
-12 userspace:
+You may embed SCM version in local builds with `--config=stamp`.
 
-```
-There's an internal problem with your device. Contact your manufacturer for details.
-```
+The SCM version should be embedded properly on release builds, where
+`--config=release` should not be specified.
 
-The dialog should not show if your device is running Android 13 in userspace
-with
-[CL 1843574](https://android-review.googlesource.com/c/platform/system/libvintf/+/1843574/)
-.
+See [scmversion.md](scmversion.md) for details.
 
 ## error: unable to open output file [...]: 'Operation not permitted' {#operation-not-permitted}
 
