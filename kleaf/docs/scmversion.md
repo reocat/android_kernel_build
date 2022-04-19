@@ -8,6 +8,19 @@ SCM version refers to the result of the `scripts/setlocalversion` script.
   release string, after the kernel version.
 - For kernel modules `*.ko`, SCM version can be found using `modinfo(8)`.
 
+## The `release` config
+
+The SCM version is only embedded to artifacts for the release builds. For
+non-release builds (typically executed on a developer's machine), embedding
+the SCM version:
+- Introduces extra overhead for every `bazel` command
+- Unnecessarily triggers rebuilds when unrelated code changes
+
+Hence, the SCM version is only embedded on release builds, a.k.a. when 
+`--config=release` is set.
+
+For details on release builds, see [release.md](release.md) for details.
+
 ## Handling SCM version in `kernel_build`
 
 For `kernel_build()` that produces `vmlinux`, the following is required to embed
