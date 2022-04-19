@@ -8,6 +8,22 @@ SCM version refers to the result of the `scripts/setlocalversion` script.
   release string, after the kernel version.
 - For kernel modules `*.ko`, SCM version can be found using `modinfo(8)`.
 
+## The `skip_scm` config
+
+Embedding the SCM version:
+- Introduces extra overhead for every `bazel` command
+- Unnecessarily triggers rebuilds when unrelated code changes
+
+The SCM version is not embedded when `--config=skip_scm` is set.
+
+On a developer's machine, the configuration is recommended to be set.
+
+### Other flags
+
+The flag `--config=skip_scm` is also implied by other flags, e.g.:
+
+* `--config=local`. See [sandbox.md](sandbox.md).
+
 ## Handling SCM version in `kernel_build`
 
 For `kernel_build()` that produces `vmlinux`, the following is required to embed
