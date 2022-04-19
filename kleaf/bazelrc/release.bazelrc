@@ -14,3 +14,6 @@
 
 # Let rules know what configs we are using now
 build:release --//build/kernel/kleaf:config_release
+
+# Embed scmversion
+build:release --workspace_status_command=build/kernel/kleaf/workspace_status.sh
