@@ -148,6 +148,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0f94769_1c7ea1ff",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-20T16:25:01Z",
+      "side": 1,
+      "message": "I think two^Wthree things are important:\n\n1. to describe the building blocks users can use and describe their dependency and sequencing requirements\n2. to describe the typical workflow in order: build, ABI extraction (which implies build), ABI comparison, ABI update (overwrite) and insert optional symbol extraction and update where needed.\n3. how Kleaf relates to legacy build_abi.sh\n\n2. should probably be primary view of things\n3. should be hidden away at the end; you will want the new flow to become primary as soon as possible",
+      "parentUuid": "f28e1692_e112e82e",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 0
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b96f7348_a472a4bc",
         "filename": "kleaf/docs/abi.md",
         "patchSetId": 9
@@ -241,6 +265,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46a55306_2670f425",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-20T16:25:01Z",
+      "side": 1,
+      "message": "Perhaps just say \"Build kernel and ABI art[ei]facts\"",
+      "parentUuid": "ffa4c0ce_fe8c8d6e",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 24
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ca5fe77a_cc579fd1",
         "filename": "kleaf/docs/abi.md",
         "patchSetId": 9
@@ -275,6 +323,30 @@
       "writtenOn": "2022-04-15T05:31:39Z",
       "side": 1,
       "message": "the ABI",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fecf4d10_15d9bb94",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-04-20T16:25:01Z",
+      "side": 1,
+      "message": "the current ABI (where?) and the freshly-generated ABI (where?)",
+      "parentUuid": "990ef388_2f7e75f7",
       "range": {
         "startLine": 36,
         "startChar": 14,
