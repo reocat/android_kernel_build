@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1224762b_05dbc8be",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2022-04-20T16:19:20Z",
+      "side": 1,
+      "message": "\"${kernel_image#Image.}\"\n\n\"${A#xxxx}\" \u003d\u003e remove prefix \u0027xxxx\u0027 from ${A}",
+      "revId": "41d613761c51ed8ea9328181e8b3e8eee1fc307c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea69ff12_34d18ee3",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2022-04-20T16:19:20Z",
+      "side": 1,
+      "message": "why not declare `built_boot_images` an array?",
+      "revId": "41d613761c51ed8ea9328181e8b3e8eee1fc307c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
