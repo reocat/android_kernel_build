@@ -15,6 +15,7 @@
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
+load("//build/bazel_common_rules/exec:execrule.bzl", "execrule")
 load(":constants.bzl", "TOOLCHAIN_VERSION_FILENAME")
 load(":hermetic_tools.bzl", "HermeticToolsInfo")
 load(":update_source_file.bzl", "update_source_file")
@@ -4001,10 +4002,36 @@ def kernel_build_abi(
         )
         default_outputs.append(name + "_abi_diff")
 
+        # The default outputs of _abi_diff does not contain the executable,
+        # but the reports. Use this filegroup to select the executable
+        # so rootpath in _abi_update works.
+        native.filegroup(
+            name = name + "_abi_diff_executable",
+            srcs = [name + "_abi_diff"],
+            output_group = "executable",
+        )
+
         update_source_file(
-            name = name + "_abi_update",
+            name = name + "_abi_nodiff_update",
             src = name + "_abi_out_file",
             dst = abi_definition,
+        )
+
+        execrule(
+            name = name + "_abi_update",
+            data = [
+                name + "_abi_diff_executable",
+                name + "_abi_nodiff_update",
+            ],
+            script = """
+              # Update abi_definition
+                $(rootpath {nodiff_update})
+              # Check return code of diff_abi and kmi_enforced
+                $(rootpath {diff})
+            """.format(
+                diff = name + "_abi_diff_executable",
+                nodiff_update = name + "_abi_nodiff_update",
+            ),
         )
 
     _kernel_abi_prop(
@@ -4092,11 +4119,14 @@ def _kernel_abi_diff_impl(ctx):
         """
     ctx.actions.write(script, script_content, is_executable = True)
 
-    return DefaultInfo(
-        files = depset(default_outputs),
-        executable = script,
-        runfiles = ctx.runfiles(files = command_outputs),
-    )
+    return [
+        DefaultInfo(
+            files = depset(default_outputs),
+            executable = script,
+            runfiles = ctx.runfiles(files = command_outputs),
+        ),
+        OutputGroupInfo(executable = depset([script])),
+    ]
 
 _kernel_abi_diff = rule(
     implementation = _kernel_abi_diff_impl,
