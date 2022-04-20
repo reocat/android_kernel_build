@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff6ed1a8_de735c89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2022-04-20T18:34:52Z",
+      "side": 1,
+      "message": "It\u0027s not clear to me why SCM version should be set correctly only for \"release\" config. All that SCM version is trying to capture is the git SHA from which a module was built. That should always work.",
+      "revId": "c430feb1ddcd3eb86b139b974fb2c6986e8b4629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
