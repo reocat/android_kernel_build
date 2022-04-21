@@ -33,6 +33,42 @@
       "message": "Marking unresolved.",
       "revId": "c430feb1ddcd3eb86b139b974fb2c6986e8b4629",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a634d805_b6a0719c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-21T01:00:34Z",
+      "side": 1,
+      "message": "The reason is that, when you touch any code (or even no code but documentation), SCM version changes to -dirty, triggerring unnecessary rebuild.\n\nWhat\u0027s worse, the mechanism to determine SCM version for the main kernel build (common/) and for modules (e.g. gs/google-modules/...) are tied together in a way that, touching code for external modules adds -dirty to the module\u0027s scmversion, but also unnecessarily changes the file that stores all SCM version, therefore re-trigering rebuilds for the main kernel.",
+      "parentUuid": "ff6ed1a8_de735c89",
+      "revId": "c430feb1ddcd3eb86b139b974fb2c6986e8b4629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "221cb657_1691e145",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-21T01:00:34Z",
+      "side": 1,
+      "message": "resovling",
+      "parentUuid": "bce9a1cf_94e7ed2f",
+      "revId": "c430feb1ddcd3eb86b139b974fb2c6986e8b4629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
