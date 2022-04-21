@@ -24,6 +24,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f013b4a4_96ba2b9f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-21T14:17:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7440692c_2ba0f616",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "4ccdc1c8486367cfaeb6a2cdb43e40dd35c7f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "906b2ec8_478b62a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-21T14:17:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7440692c_2ba0f616",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "4ccdc1c8486367cfaeb6a2cdb43e40dd35c7f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "190a84a1_b84a4b9a",
@@ -37,6 +85,30 @@
       "writtenOn": "2022-04-21T09:28:42Z",
       "side": 1,
       "message": "Individual",
+      "range": {
+        "startLine": 414,
+        "startChar": 58,
+        "endLine": 414,
+        "endChar": 67
+      },
+      "revId": "4ccdc1c8486367cfaeb6a2cdb43e40dd35c7f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1a361e5_304c0ac9",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-21T14:17:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "190a84a1_b84a4b9a",
       "range": {
         "startLine": 414,
         "startChar": 58,
@@ -66,6 +138,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "924280ed_6ec7fead",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-21T14:17:23Z",
+      "side": 1,
+      "message": "sgtm!",
+      "parentUuid": "05625c07_4fa61cf8",
+      "revId": "4ccdc1c8486367cfaeb6a2cdb43e40dd35c7f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "20fd8048_a8f79753",
         "filename": "build_utils.sh",
         "patchSetId": 2
@@ -77,6 +167,30 @@
       "writtenOn": "2022-04-21T09:22:11Z",
       "side": 1,
       "message": "bash actually knows how to do this... https://wiki.bash-hackers.org/syntax/pe#case_modification\n\nI\u0027ve never used this personally, and I understand it\u0027s niche syntax. I\u0027m fine with either, `tr` or `${VAR^^}`.",
+      "range": {
+        "startLine": 477,
+        "startChar": 48,
+        "endLine": 477,
+        "endChar": 72
+      },
+      "revId": "4ccdc1c8486367cfaeb6a2cdb43e40dd35c7f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d0ddb76_8e49e26b",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-21T14:17:23Z",
+      "side": 1,
+      "message": "Thanks for the info. I\u0027d prefer using tr (with :upper), which has better readability.",
+      "parentUuid": "20fd8048_a8f79753",
       "range": {
         "startLine": 477,
         "startChar": 48,
