@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d072d48_76b50c67",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-21T03:03:13Z",
+      "side": 1,
+      "message": "But when kernel_image\u003dImage (no .), \"${kernel_image#Image.}\" is Image (not empty).",
+      "parentUuid": "1224762b_05dbc8be",
+      "revId": "41d613761c51ed8ea9328181e8b3e8eee1fc307c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea69ff12_34d18ee3",
         "filename": "build_utils.sh",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2022-04-20T16:19:20Z",
       "side": 1,
       "message": "why not declare `built_boot_images` an array?",
+      "revId": "41d613761c51ed8ea9328181e8b3e8eee1fc307c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d8da2ce_976a6f19",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-21T03:03:13Z",
+      "side": 1,
+      "message": "Nice suggestion, will do.",
+      "parentUuid": "ea69ff12_34d18ee3",
       "revId": "41d613761c51ed8ea9328181e8b3e8eee1fc307c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
