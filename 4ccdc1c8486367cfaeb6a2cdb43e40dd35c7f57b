@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7440692c_2ba0f616",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2022-04-21T09:32:08Z",
+      "side": 1,
+      "message": "should we name these with \"GKI_\" or \"BUILD_GKI_\" prefix? To namespace these so it\u0027s obvious they are GKI-build-specific.",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "4ccdc1c8486367cfaeb6a2cdb43e40dd35c7f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "190a84a1_b84a4b9a",
         "filename": "build.sh",
         "patchSetId": 2
