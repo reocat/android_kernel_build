@@ -104,6 +104,24 @@
       "message": "Do I understand correctly that this fixes b/202077908 my making the KernelEnv / KernelBuild rules also use a nulled out scmversion in non-relesae builds, thereby making them consistent with the nulled-out scmversion forced on KernelModule by the sandbox?",
       "revId": "c430feb1ddcd3eb86b139b974fb2c6986e8b4629",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62203b7d_a4955915",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2022-04-21T19:03:44Z",
+      "side": 1,
+      "message": "\u003e The reason is that, when you touch any code (or even no code but documentation), SCM version changes to -dirty, \n\nThat\u0027s the right behavior. We don\u0027t need to distinguish between every file type.\n\n\u003e triggerring unnecessary rebuild.\n\nWhy is a rebuild of modules unnecessary if the tree is dirty?\n\n\u003e What\u0027s worse, the mechanism to determine SCM version for the main kernel build (common/) and for modules (e.g. gs/google-modules/...) are tied together in a way that, touching code for external modules adds -dirty to the module\u0027s scmversion, but also unnecessarily changes the file that stores all SCM version, therefore re-trigering rebuilds for the main kernel.\n\nThis is the real problem and needs to be fixed. We shouldn\u0027t limit scmversion setting only for release builds.",
+      "parentUuid": "d033214c_f53f5b57",
+      "revId": "c430feb1ddcd3eb86b139b974fb2c6986e8b4629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
