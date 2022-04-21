@@ -87,6 +87,23 @@
       "parentUuid": "a634d805_b6a0719c",
       "revId": "c430feb1ddcd3eb86b139b974fb2c6986e8b4629",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6580a80_0b9aab97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2022-04-21T06:48:19Z",
+      "side": 1,
+      "message": "Do I understand correctly that this fixes b/202077908 my making the KernelEnv / KernelBuild rules also use a nulled out scmversion in non-relesae builds, thereby making them consistent with the nulled-out scmversion forced on KernelModule by the sandbox?",
+      "revId": "c430feb1ddcd3eb86b139b974fb2c6986e8b4629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
