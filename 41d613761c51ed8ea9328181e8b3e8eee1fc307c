@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6845888e_c4519a4e",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-21T07:12:17Z",
+      "side": 1,
+      "message": "This is unneeded.\n\nThe kernel tree build system supports generating the kernel \"Image\" with various compression format.\n\nhttps://android.googlesource.com/kernel/common/+/refs/heads/android-mainline/arch/arm64/boot/Makefile#19",
+      "range": {
+        "startLine": 469,
+        "startChar": 5,
+        "endLine": 469,
+        "endChar": 81
+      },
+      "revId": "41d613761c51ed8ea9328181e8b3e8eee1fc307c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1224762b_05dbc8be",
