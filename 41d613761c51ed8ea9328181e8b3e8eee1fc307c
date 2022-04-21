@@ -61,6 +61,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "807862cf_b974bc92",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2022-04-21T07:38:44Z",
+      "side": 1,
+      "message": "```\nif [ \"${kernel_image}\" \u003d\u003d \"Image\" ]; then\n  boot_image\u003d\"boot-${kernel_version}.img\"\nelse\n  compression\u003d\"${kernel_image#Image.}\"\n  boot_image\u003d\"boot-${kernel_version}-${compression}.img\"\nfi\n```",
+      "parentUuid": "9d072d48_76b50c67",
+      "revId": "41d613761c51ed8ea9328181e8b3e8eee1fc307c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea69ff12_34d18ee3",
         "filename": "build_utils.sh",
         "patchSetId": 1
