@@ -16,6 +16,46 @@
       "message": "lgtm",
       "revId": "0f1ea75d161d64f3bac31cb0eb7a0ad5b168ea60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea34e213_f0965cc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-22T18:11:54Z",
+      "side": 1,
+      "message": "Please file a go/kleaf-bug as well",
+      "revId": "0f1ea75d161d64f3bac31cb0eb7a0ad5b168ea60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58a8ed3d_75ef9f2d",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-22T18:11:54Z",
+      "side": 1,
+      "message": "Does it have to contain the build number? This makes the build output indeterministic without reading environment variables, which requires unnecessary churn in Bazel.\n\nCan it be just boot-img.tar.gz, regardless of BUILD_NUMBER?",
+      "range": {
+        "startLine": 409,
+        "startChar": 37,
+        "endLine": 409,
+        "endChar": 49
+      },
+      "revId": "0f1ea75d161d64f3bac31cb0eb7a0ad5b168ea60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
