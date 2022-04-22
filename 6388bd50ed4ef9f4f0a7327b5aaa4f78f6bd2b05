@@ -39,6 +39,30 @@
       },
       "revId": "6388bd50ed4ef9f4f0a7327b5aaa4f78f6bd2b05",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "450aa43a_2e26f687",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-22T19:07:49Z",
+      "side": 1,
+      "message": "Yeah if the path contains . and .. then it would break. Sub-paths are fine though.\n\nAck on the regex part; I can do that in the next CL.\n\nThough -- All I want is the reverse of KERNEL_DIR. That is, KERNEL_DIR is ROOT_DIR/KERNEL_DIR relative to ROOT_DIR, and I want ROOT_DIR relative to ROOT_DIR/KERNEL_DIR. I can\u0027t use rel_path because it calls readlink on ROOT_DIR/KERNEL_DIR, which resolves to \u003cworkspace_root\u003e/KERNEL_DIR for local builds.\n\nAny suggestions?",
+      "parentUuid": "84ef739f_580c493e",
+      "range": {
+        "startLine": 1040,
+        "startChar": 0,
+        "endLine": 1047,
+        "endChar": 57
+      },
+      "revId": "6388bd50ed4ef9f4f0a7327b5aaa4f78f6bd2b05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
