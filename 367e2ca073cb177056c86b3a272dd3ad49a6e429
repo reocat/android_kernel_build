@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3750f1c1_e41c7db6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-22T21:46:10Z",
+      "side": 1,
+      "message": "I\u0027m curious how you know the symbol list needs to be updated? For GKI, the symbol list is mostly just a list of symbols that partners provide to us based on what their vendor drivers use. Is this support to detect when partners setup ABI monitoring on their own builds or am I missing something else here?\n\nSee my other comment as well.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 29
+      },
+      "revId": "367e2ca073cb177056c86b3a272dd3ad49a6e429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cfae138_b6444575",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 4028,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-22T21:46:10Z",
+      "side": 1,
+      "message": "I\u0027m a bit confused about this diff and when it runs. I see that the src_symbol_list is called \"_abi_extracted_symbols\", but I\u0027m wondering the build flow in how this is generated? Can you give me an example of when you would hit this failure?",
+      "range": {
+        "startLine": 4028,
+        "startChar": 0,
+        "endLine": 4028,
+        "endChar": 94
+      },
+      "revId": "367e2ca073cb177056c86b3a272dd3ad49a6e429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
