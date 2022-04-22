@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18e53665_be2e5015",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-22T21:29:43Z",
+      "side": 1,
+      "message": "Why is this a dependency? I imagine when the DDK is ready and vendors can compile their drivers against the GKI kernel headers, you won\u0027t want/need to package the boot image. There\u0027s definitely no reason you\u0027d need the boot image in order to package the vendor_boot image.",
+      "range": {
+        "startLine": 407,
+        "startChar": 0,
+        "endLine": 407,
+        "endChar": 56
+      },
+      "revId": "207ea3566a9560511401e21898c57632f9b74c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faf45ab1_4268cb0b",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-22T21:29:43Z",
+      "side": 1,
+      "message": "The order of loading modules is defined by the Makefile ordering. Bazel doesn\u0027t define this. `kbuild` generates the module.order file based on the Makefile ordering and `build_utils.sh` uses that as the `modules.load` file.",
+      "range": {
+        "startLine": 474,
+        "startChar": 8,
+        "endLine": 475,
+        "endChar": 67
+      },
+      "revId": "207ea3566a9560511401e21898c57632f9b74c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
