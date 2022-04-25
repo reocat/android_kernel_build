@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6482cd79_20bfa0d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-25T04:06:56Z",
+      "side": 1,
+      "message": "Sure, will do.\n\nMy original plan is to file that after this CL is reviewed and merged.\n\nAlso, there will be one more CL to come (and *might* have other CLs after we perform the end-to-end integration with go/ab-sign).\n\nDo you prefer filing go/kleaf-bug per CL?",
+      "parentUuid": "ea34e213_f0965cc7",
+      "revId": "0f1ea75d161d64f3bac31cb0eb7a0ad5b168ea60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "58a8ed3d_75ef9f2d",
         "filename": "build.sh",
         "patchSetId": 3
@@ -48,6 +66,30 @@
       "writtenOn": "2022-04-22T18:11:54Z",
       "side": 1,
       "message": "Does it have to contain the build number? This makes the build output indeterministic without reading environment variables, which requires unnecessary churn in Bazel.\n\nCan it be just boot-img.tar.gz, regardless of BUILD_NUMBER?",
+      "range": {
+        "startLine": 409,
+        "startChar": 37,
+        "endLine": 409,
+        "endChar": 49
+      },
+      "revId": "0f1ea75d161d64f3bac31cb0eb7a0ad5b168ea60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "feb8ba9c_4dac95de",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-25T04:06:56Z",
+      "side": 1,
+      "message": "OK, looks ok to me.\n\nLet\u0027s have more discussions there: b/222078981#comment6",
+      "parentUuid": "58a8ed3d_75ef9f2d",
       "range": {
         "startLine": 409,
         "startChar": 37,
