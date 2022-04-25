@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7e254df_d327b2e3",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-25T16:43:44Z",
+      "side": 1,
+      "message": "This option needs documentation at the top of build.sh",
+      "range": {
+        "startLine": 289,
+        "startChar": 12,
+        "endLine": 289,
+        "endChar": 36
+      },
+      "revId": "05630461a0c7a2230626a9dcebac6505af040572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cace4e0_f0f0570d",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-25T16:43:44Z",
+      "side": 1,
+      "message": "A lot of this is a duplicate of vendor_boot.img. Why not just do this:\n\n\n  if [ -n \"${BUILD_VENDOR_KERNEL_BOOT}\" ]; then\n    VENDOR_BOOT_NAME\u003d\"${DIST_DIR}/vendor_kernel_boot.img\"\n  else\n    VENDOR_BOOT_NAME\u003d\"${DIST_DIR}/vendor_boot.img\"\n  fi\n  MKBOOTIMG_ARGS+\u003d(\"--vendor_boot\" \"${VENDOR_BOOT_NAME}\")\n\nAnd you if you don\u0027t want --vendor_cmdline or --vendor_ramdisk, then don\u0027t set it in the BUILD_CONFIG. All the options are customizable via the BUILD_CONFIG.",
+      "range": {
+        "startLine": 379,
+        "startChar": 0,
+        "endLine": 388,
+        "endChar": 0
+      },
+      "revId": "05630461a0c7a2230626a9dcebac6505af040572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
