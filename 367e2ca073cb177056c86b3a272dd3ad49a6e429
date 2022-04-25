@@ -45,6 +45,30 @@
       },
       "revId": "367e2ca073cb177056c86b3a272dd3ad49a6e429",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "647defda_e29406fb",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 4028,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-25T19:03:34Z",
+      "side": 1,
+      "message": "In the build_abi.sh world, you would run:\n\n```\nbuild_abi.sh [--nodiff] --update\n```\n\nThen it does the following:\n\n1. Create $DIST_DIR/abi_symbollist\n2. Copy $DIST_DIR/abi_symbollist to common/android/abi_gki_aarch64\n3. create $DIST_DIR/abi.xml\n4. if not --nodiff, compare $DIST_DIR/abi.xml with common/android/abi_gki_aarch64.xml and record the exit code\n5. copy $DIST_DIR/abi.xml to common/android/abi_gki_aarch64.xml\n6. return exit code\n\nThe corresponding step in Bazel is\n\n```\nbazel run kernel_aarch64_abi_[nodiff_]update\n```\n\nHowever, step 2 cannot be executed within a single Bazel command because it updates source files for step 3~6. Hence, step 1 \u0026 2 changes to the following:\n\n1. Create bazel-bin/.../abi_symbollist\n2. Compare the resulting abi_symbollist with common/android/abi_gki_aarch64. If `diff -q` returns non-zero, exit immediately.",
+      "parentUuid": "7cfae138_b6444575",
+      "range": {
+        "startLine": 4028,
+        "startChar": 0,
+        "endLine": 4028,
+        "endChar": 94
+      },
+      "revId": "367e2ca073cb177056c86b3a272dd3ad49a6e429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
