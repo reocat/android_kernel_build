@@ -16,6 +16,24 @@
       "message": "Note: Waiting on aosp/2066971",
       "revId": "d653283f38a422ddf7f392fe38d0474031adfdd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1a7962b_b25c1367",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-26T19:12:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bd7dd86_6f1ec7e9",
+      "revId": "d653283f38a422ddf7f392fe38d0474031adfdd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
