@@ -22,6 +22,30 @@
       },
       "revId": "4a3bdadd93fef37b5b9350ca0435f38b91d3b253",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2127f8fc_5cca53d7",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-26T22:33:47Z",
+      "side": 1,
+      "message": "How about something like \"The variable is not supported in Bazel, but here are the alternatives\"?",
+      "parentUuid": "fe3bdef0_286acd25",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 17
+      },
+      "revId": "4a3bdadd93fef37b5b9350ca0435f38b91d3b253",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
