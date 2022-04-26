@@ -34,6 +34,52 @@
       "parentUuid": "f5003b4b_abab1d7f",
       "revId": "a8d1678dd00daf3f95c2bb6b1bd6122a6e04e6e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9920f80_8f428194",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-26T17:03:00Z",
+      "side": 1,
+      "message": "I don\u0027t think you need this. Line 338 adds the initramfs dir to the MKBOOTIMG_RAMDISK_DIRS which then gets added to ramdisk.${RAMDISK_EXT} on line 352. For the ramdisk fragment logic, if INITRAMFS_VENDOR_RAMDISK_FRAGMENT_NAME is set, then initramfs.img gets used directly.\n\nPlease test without this line and update accordingly.",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 380,
+        "endChar": 73
+      },
+      "revId": "a8d1678dd00daf3f95c2bb6b1bd6122a6e04e6e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbae1e04_14f5a005",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-26T17:03:00Z",
+      "side": 1,
+      "message": "This is just going to add noise to the build output. Please make this a single line and move down to line 454 where we print a vendor_boot.img message.",
+      "range": {
+        "startLine": 422,
+        "startChar": 0,
+        "endLine": 426,
+        "endChar": 0
+      },
+      "revId": "a8d1678dd00daf3f95c2bb6b1bd6122a6e04e6e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
