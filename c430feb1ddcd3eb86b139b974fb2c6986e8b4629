@@ -158,6 +158,24 @@
       "parentUuid": "a6580a80_0b9aab97",
       "revId": "c430feb1ddcd3eb86b139b974fb2c6986e8b4629",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7cc0e6c_46cfb88a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-26T04:03:30Z",
+      "side": 1,
+      "message": "I have made skip_scm an option that a developer needs to actively opt into. The default is to embed scm versions. PTAL.",
+      "parentUuid": "5d35ce25_d2132892",
+      "revId": "c430feb1ddcd3eb86b139b974fb2c6986e8b4629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
