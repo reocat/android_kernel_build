@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "416f3c0f_528c9d1d",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1576409
+      },
+      "writtenOn": "2022-04-26T17:19:22Z",
+      "side": 1,
+      "message": "Yes, you\u0027re right.\nAfter clearing value of INITRAMFS_VENDOR_RAMDISK_FRAGMENT_NAME and VENDOR_RAMDISK_BINARY on pa/2186370, the ramdisk.${RAMDISK_EXT} will contain same artifacts as initramfs.img.\n\n```\n  if [ \"${BUILD_INITRAMFS}\" \u003d \"1\" ]; then\n    HAS_RAMDISK\u003d\"1\"\n    if [ -z \"${INITRAMFS_VENDOR_RAMDISK_FRAGMENT_NAME}\" ]; then                                                                                                                                                                                               \n      MKBOOTIMG_RAMDISK_DIRS+\u003d(\"${INITRAMFS_STAGING_DIR}\")\n    fi  \n  fi \n```",
+      "parentUuid": "f9920f80_8f428194",
+      "range": {
+        "startLine": 380,
+        "startChar": 0,
+        "endLine": 380,
+        "endChar": 73
+      },
+      "revId": "a8d1678dd00daf3f95c2bb6b1bd6122a6e04e6e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbae1e04_14f5a005",
@@ -72,6 +96,30 @@
       "writtenOn": "2022-04-26T17:03:00Z",
       "side": 1,
       "message": "This is just going to add noise to the build output. Please make this a single line and move down to line 454 where we print a vendor_boot.img message.",
+      "range": {
+        "startLine": 422,
+        "startChar": 0,
+        "endLine": 426,
+        "endChar": 0
+      },
+      "revId": "a8d1678dd00daf3f95c2bb6b1bd6122a6e04e6e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d33248d2_8ed79156",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1576409
+      },
+      "writtenOn": "2022-04-26T17:19:22Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "bbae1e04_14f5a005",
       "range": {
         "startLine": 422,
         "startChar": 0,
