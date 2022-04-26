@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d547d91_f9ba6878",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-26T19:08:41Z",
+      "side": 1,
+      "message": "This is already the case in build.sh. See logic in build.sh and build_utils.sh.\n\n```\nif [ -n \"${BUILD_BOOT_IMG}\" -o -n \"${BUILD_VENDOR_BOOT_IMG}\" ] ; then\n  build_boot_images\nfi\n```\n\nand build_boot_images always builds boot.img.\n\nSo we can decouple this and drop the requirement when we develop DDK, but for now, the coupling needs to stay, unfortunately.",
+      "parentUuid": "18e53665_be2e5015",
+      "range": {
+        "startLine": 407,
+        "startChar": 0,
+        "endLine": 407,
+        "endChar": 56
+      },
+      "revId": "207ea3566a9560511401e21898c57632f9b74c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "faf45ab1_4268cb0b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-22T21:29:43Z",
       "side": 1,
       "message": "The order of loading modules is defined by the Makefile ordering. Bazel doesn\u0027t define this. `kbuild` generates the module.order file based on the Makefile ordering and `build_utils.sh` uses that as the `modules.load` file.",
+      "range": {
+        "startLine": 474,
+        "startChar": 8,
+        "endLine": 475,
+        "endChar": 67
+      },
+      "revId": "207ea3566a9560511401e21898c57632f9b74c98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "992fdb29_46d8cb5b",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-26T19:08:41Z",
+      "side": 1,
+      "message": "\u003e The order of loading modules is defined by the Makefile ordering. \n\nBazel uses Kbuild internally, so it should also define this.",
+      "parentUuid": "faf45ab1_4268cb0b",
       "range": {
         "startLine": 474,
         "startChar": 8,
