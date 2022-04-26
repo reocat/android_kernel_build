@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe3bdef0_286acd25",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1539256
+      },
+      "writtenOn": "2022-04-26T22:27:24Z",
+      "side": 1,
+      "message": "Suggest saying \"used\" or \"understood\" instead of \"customizable\". In many cases, there is an equivalent customization for this build.config variable, but it\u0027s done differently in bazel. Gut read of \"customizable\" means there\u0027s no control over any of these variables.",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 17
+      },
+      "revId": "4a3bdadd93fef37b5b9350ca0435f38b91d3b253",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
