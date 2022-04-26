@@ -102,6 +102,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20d3a87d_ba30cef8",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-26T18:14:29Z",
+      "side": 1,
+      "message": "That\u0027s a good idea. Having a GKI section that covers how to update the GKI ABI would be useful.",
+      "parentUuid": "63cf0e22_476053b6",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 43
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b56e4ec1_5ec4290d",
         "filename": "kleaf/docs/abi.md",
         "patchSetId": 9
@@ -160,6 +184,30 @@
       "side": 1,
       "message": "I think two^Wthree things are important:\n\n1. to describe the building blocks users can use and describe their dependency and sequencing requirements\n2. to describe the typical workflow in order: build, ABI extraction (which implies build), ABI comparison, ABI update (overwrite) and insert optional symbol extraction and update where needed.\n3. how Kleaf relates to legacy build_abi.sh\n\n2. should probably be primary view of things\n3. should be hidden away at the end; you will want the new flow to become primary as soon as possible",
       "parentUuid": "f28e1692_e112e82e",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 0
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eb50c67_df0a1df3",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-26T18:14:29Z",
+      "side": 1,
+      "message": "I agree. The primary process that most users should/will do should be first and also clear. Having the additional details is totally fine, but should be in a following section and clear that it\u0027s describing additional details.",
+      "parentUuid": "f0f94769_1c7ea1ff",
       "range": {
         "startLine": 20,
         "startChar": 0,
