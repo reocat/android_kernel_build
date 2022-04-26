@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bb7b8c3_4a68654b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-26T06:38:02Z",
+      "side": 1,
+      "message": "Filed: b/230428252",
+      "parentUuid": "6482cd79_20bfa0d3",
+      "revId": "0f1ea75d161d64f3bac31cb0eb7a0ad5b168ea60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58a8ed3d_75ef9f2d",
@@ -90,6 +108,30 @@
       "side": 1,
       "message": "OK, looks ok to me.\n\nLet\u0027s have more discussions there: b/222078981#comment6",
       "parentUuid": "58a8ed3d_75ef9f2d",
+      "range": {
+        "startLine": 409,
+        "startChar": 37,
+        "endLine": 409,
+        "endChar": 49
+      },
+      "revId": "0f1ea75d161d64f3bac31cb0eb7a0ad5b168ea60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b666ea4c_c5a56afd",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-26T06:38:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feb8ba9c_4dac95de",
       "range": {
         "startLine": 409,
         "startChar": 37,
