@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cfab932_a26476e2",
+        "filename": "build_utils.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-27T16:53:15Z",
+      "side": 1,
+      "message": "Can you just update this to check what was packaged and then print that out? For example, you could do this:\n\nif [ -f \"${DIST_DIR}/${VENDOR_BOOT_NAME}\" ]; then\n  echo \"Created ${VENDOR_BOOT_NAME} at ${DIST_DIR}/${VENDOR_BOOT_NAME}\"\nfi",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 449,
+        "endChar": 0
+      },
+      "revId": "04c1a1e83da1801828a9c8a680ca6e6902f5ef2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4625a773_651c2dbe",
+        "filename": "build_utils.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-04-27T16:53:15Z",
+      "side": 1,
+      "message": "No need to mention this.",
+      "range": {
+        "startLine": 452,
+        "startChar": 59,
+        "endLine": 452,
+        "endChar": 115
+      },
+      "revId": "04c1a1e83da1801828a9c8a680ca6e6902f5ef2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
