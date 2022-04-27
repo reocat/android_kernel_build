@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8aab3413_e9f78748",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-04-27T21:07:39Z",
+      "side": 1,
+      "message": "Can I get +2 for this change?\n\nThis fixes the issue to take account of GKI modules during symbol comparison with build.sh. It is already claimed to be working but that\u0027s not the case with build.sh. However, kleaf do account for the GKI modules as an objects for comparison. This will sync build.sh and kleaf and shouldn\u0027t be tied with the GKI module protected/exported symbol list tooling I have been trying to figure out.\n\nRef: https://source.android.com/devices/architecture/kernel/abi-monitor#comparing-kernel-binaries-to-gki-ref-kmi ",
+      "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
