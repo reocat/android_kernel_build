@@ -16,6 +16,24 @@
       "message": "As long as most of the logic stays in build_utils, I am happy!",
       "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b9216d1_16e9f666",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-04-27T06:57:29Z",
+      "side": 1,
+      "message": "Oh, ok.\n\nJust noticed that only the \"build.sh is deprecated in the mainline branch.\n\n  * WARNING: build.sh is deprecated for this branch. Please migrate to Bazel.\n  *   See build/kernel/kleaf/README.md\n  \nI can only modify build_utils.sh and our short-term focus is on the android13-* branches, not the mainline branch.\n  aosp_kernel-common-android13-5.10[-YYYY-MM]  \n  aosp_kernel-common-android13-5.15[-YYYY-MM]",
+      "parentUuid": "87ebdb4f_7bb03c4b",
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
