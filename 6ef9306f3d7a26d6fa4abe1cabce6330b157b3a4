@@ -124,6 +124,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28ebdfa2_693eb426",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-28T22:35:12Z",
+      "side": 1,
+      "message": "I already have the title \"ABI monitoring for GKI builds\"",
+      "parentUuid": "20d3a87d_ba30cef8",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 43
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b56e4ec1_5ec4290d",
@@ -137,6 +161,30 @@
       "writtenOn": "2022-04-15T05:31:39Z",
       "side": 1,
       "message": "the ABI",
+      "range": {
+        "startLine": 14,
+        "startChar": 11,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9507ee40_34100386",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-28T22:35:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b56e4ec1_5ec4290d",
       "range": {
         "startLine": 14,
         "startChar": 11,
@@ -218,6 +266,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b46702a9_486cc77e",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-28T22:35:12Z",
+      "side": 1,
+      "message": "Done; now that the process has changed, this text is deleted.",
+      "parentUuid": "2eb50c67_df0a1df3",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 0
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b96f7348_a472a4bc",
@@ -241,6 +313,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85b51525_ea7d0bdd",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-28T22:35:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b96f7348_a472a4bc",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 14
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c3d07c5_36a45381",
@@ -254,6 +350,30 @@
       "writtenOn": "2022-04-15T05:31:39Z",
       "side": 1,
       "message": "you can drop typically since it\u0027s always been `abi_gki_aarch64.xml`.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 9
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "648a042b_1f627e10",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-28T22:35:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c3d07c5_36a45381",
       "range": {
         "startLine": 28,
         "startChar": 0,
@@ -335,6 +455,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7806c539_60119773",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-28T22:35:12Z",
+      "side": 1,
+      "message": "Changed to `Build kernel and ABI artifacts`",
+      "parentUuid": "46a55306_2670f425",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 24
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ca5fe77a_cc579fd1",
@@ -348,6 +492,30 @@
       "writtenOn": "2022-04-18T22:53:39Z",
       "side": 1,
       "message": "delete",
+      "range": {
+        "startLine": 33,
+        "startChar": 45,
+        "endLine": 33,
+        "endChar": 68
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99ee568c_0661bcb8",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-28T22:35:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca5fe77a_cc579fd1",
       "range": {
         "startLine": 33,
         "startChar": 45,
@@ -405,6 +573,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c65aef5_cfd4079a",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-28T22:35:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fecf4d10_15d9bb94",
+      "range": {
+        "startLine": 36,
+        "startChar": 14,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e029463_c4d736ba",
@@ -418,6 +610,30 @@
       "writtenOn": "2022-04-15T05:31:39Z",
       "side": 1,
       "message": "copies them",
+      "range": {
+        "startLine": 37,
+        "startChar": 32,
+        "endLine": 37,
+        "endChar": 38
+      },
+      "revId": "6ef9306f3d7a26d6fa4abe1cabce6330b157b3a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b5625fa_81b81d7c",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-28T22:35:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e029463_c4d736ba",
       "range": {
         "startLine": 37,
         "startChar": 32,
