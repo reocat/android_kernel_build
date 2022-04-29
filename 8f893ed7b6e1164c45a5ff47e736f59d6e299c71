@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97d54ec1_22eb2c71",
+        "filename": "kleaf/docs/errors.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-29T18:29:14Z",
+      "side": 1,
+      "message": "The statement here is technically correct.\n\n\"The SCM version should be embedded properly on release builds\", but it can also be embedded on non-release builds like on go/ab. Here, it signifies the fact that if we are doing a real release build that\u0027s signed properly and ready to ship, it needs to have SCM version embedded properly.\n\nSo I think this is correct.",
+      "parentUuid": "6f9d4061_8cfe74ca",
+      "range": {
+        "startLine": 170,
+        "startChar": 47,
+        "endLine": 170,
+        "endChar": 54
+      },
+      "revId": "8f893ed7b6e1164c45a5ff47e736f59d6e299c71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9bcac65a_df910316",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-29T01:05:03Z",
       "side": 1,
       "message": "Should not? Or did you meant to say \"should be\"?",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 42
+      },
+      "revId": "8f893ed7b6e1164c45a5ff47e736f59d6e299c71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acffc578_196f8e88",
+        "filename": "kleaf/docs/errors.md",
+        "patchSetId": 21
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-29T18:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bcac65a_df910316",
       "range": {
         "startLine": 171,
         "startChar": 0,
