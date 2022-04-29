@@ -339,14 +339,15 @@ class Libabigail(AbiTool):
                     raise
                 abi_changed = True  # actual abi change
 
-        if short_report is not None:
-            with open(diff_report) as full_report:
-                with open(short_report, "w") as out:
-                    text = full_report.read()
-                    text = _collapse_abidiff_impacted_interfaces(text)
-                    text = _collapse_abidiff_offset_changes(text)
-                    text = _collapse_abidiff_CRC_changes(text, 3)
-                    out.write(text)
+        if short_report is None:
+            short_report = diff_report + ".short"
+        with open(diff_report) as full:
+            with open(short_report, "w") as short:
+                text = full.read()
+                text = _collapse_abidiff_impacted_interfaces(text)
+                text = _collapse_abidiff_offset_changes(text)
+                text = _collapse_abidiff_CRC_changes(text, 3)
+                short.write(text)
 
         return abi_changed
 
@@ -413,13 +414,14 @@ class Stg(AbiTool):
                 if override:
                     abi_changed = False
 
-            if short_report is not None:
-                with open(f"{basename}.small") as full_report:
-                    with open(short_report, "w") as out:
-                        text = full_report.read()
-                        text = _collapse_stgdiff_offset_changes(text)
-                        text = _collapse_stgdiff_CRC_changes(text, 3)
-                        out.write(text)
+            if short_report is None:
+                short_report = f"{basename}.short"
+            with open(f"{basename}.small") as full:
+                with open(short_report, "w") as short:
+                    text = full.read()
+                    text = _collapse_stgdiff_offset_changes(text)
+                    text = _collapse_stgdiff_CRC_changes(text, 3)
+                    short.write(text)
 
             return abi_changed
 
