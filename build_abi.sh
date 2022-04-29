@@ -177,9 +177,12 @@ function build_kernel() {
   # Suppress possible values of ABI_DEFINITION when invoking build.sh to avoid
   # the generated abi.xml to be copied to <DIST_DIR>/abi.out.
   # Turn on symtypes generation to assist in the diagnosis of CRC differences.
+  _start=$(date +%s)
   ABI_DEFINITION= \
     KBUILD_SYMTYPES=1 \
     ${ROOT_DIR}/build/build.sh "$@"
+  _finish=$(date +%s)
+  echo BUILD: $(($_finish - $_start))
 }
 
 # define a common KMI symbol list flag for the abi tools
@@ -267,10 +270,13 @@ COMMON_OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
 id=${ABI_OUT_TAG:-$(git -C $KERNEL_DIR describe --dirty --always)}
 abi_out_file=abi-${id}.xml
 full_abi_out_file=abi-full-${id}.xml
+_start=$(date +%s)
 ${ROOT_DIR}/build/abi/dump_abi                \
     --linux-tree ${ABI_LINUX_TREE}            \
     ${ABI_VMLINUX_PATH}                       \
     --out-file ${DIST_DIR}/${full_abi_out_file}
+_finish=$(date +%s)
+echo ABIDW: $(($_finish - $_start))
 if [ "$KMI_SYMBOL_LIST_FLAG" ]; then
   ${ROOT_DIR}/build/abi/filter_abi               \
       --in-file ${DIST_DIR}/${full_abi_out_file} \
@@ -314,11 +320,14 @@ if [ -n "$ABI_DEFINITION" ]; then
         fi
 
         set +e
+        _start=$(date +%s)
         ${ROOT_DIR}/build/abi/diff_abi --baseline $KERNEL_DIR/$ABI_DEFINITION \
                                        --new      ${DIST_DIR}/${abi_out_file} \
                                        --report   ${abi_report}               \
                                        $FULL_REPORT_FLAG
         rc=$?
+        _finish=$(date +%s)
+        echo ABIDIFF: $(($_finish - $_start))
         set -e
         echo "========================================================"
         echo " A brief ABI report has been created at ${abi_report}.short"
