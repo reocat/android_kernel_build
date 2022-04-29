@@ -22,6 +22,7 @@ import subprocess
 import tempfile
 
 from contextlib import nullcontext
+from typing import List
 
 log = logging.getLogger(__name__)
 
@@ -256,6 +257,30 @@ def _collapse_stgdiff_CRC_changes(text: str, limit: int) -> str:
     return "".join(new_lines)
 
 
+def _remove_matching_lines(regexes: List[str], text: str) -> str:
+    """Removes lines matching the given regexes."""
+    if not regexes:
+        return text
+    num_regexes = len(regexes)
+    lines = text.splitlines(True)
+    num_lines = len(lines)
+    new_lines = []
+    index = 0
+    while index < num_lines:
+        match = True
+        for offset in range(0, num_regexes):
+            i = index + offset
+            if i == num_lines or not re.search(regexes[offset], lines[i]):
+                match = False
+                break
+        if match:
+            index += num_regexes
+        else:
+            new_lines.append(lines[index])
+            index += 1
+    return "".join(new_lines)
+
+
 class AbiTool(object):
     """Base class for different kinds of abi analysis tools"""
     def dump_kernel_abi(self, linux_tree, dump_path, symbol_list,
@@ -399,26 +424,25 @@ class Stg(AbiTool):
                         raise
                     abi_changed = True
 
-            # TODO(b/214966642): Remove once ABI XML type definitions are more stable.
-            # TODO(b/221022839): Remove once ABI XML symbol definitions are more stable.
-            if abi_changed:
-                # Override this if there are only declaration <-> definition or
-                # type added / removed changes.
-                ignorable = r"^(|type '.*' changed|  (was fully defined, is now only declared|was only declared, is now fully defined)|symbol changed from '.*' to '.*'|  type '.*' was (added|removed))$"
-                override = True
-                with open(f"{basename}.small", "r") as input:
-                    for line in input:
-                        if not re.search(ignorable, line):
-                            override = False
-                            break
-                if override:
-                    abi_changed = False
-
             if short_report is None:
                 short_report = f"{basename}.short"
             with open(f"{basename}.small") as full:
                 with open(short_report, "w") as short:
                     text = full.read()
+                    # TODO(b/214966642): Remove once ABI XML type definitions are more stable.
+                    text = _remove_matching_lines([
+                        r"^type '.*' changed$",
+                        r"^  was (fully defined|only declared), is now (fully defined|only declared)$",
+                        r"^$"
+                    ], text)
+                    # TODO(b/221022839): Remove once ABI XML symbol definitions are more stable.
+                    text = _remove_matching_lines([
+                        r"^symbol changed from '.*' to '.*'",
+                        r"^  type '.*' was (added|removed))$", r"^$"
+                        r"^$"
+                    ], text)
+                    if not text:
+                        abi_changed = False
                     text = _collapse_stgdiff_offset_changes(text)
                     text = _collapse_stgdiff_CRC_changes(text, 3)
                     short.write(text)
