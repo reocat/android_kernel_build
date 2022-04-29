@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19dcbdc8_8bbe4bff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-04-29T01:41:34Z",
+      "side": 1,
+      "message": "Multiple kernel_module rules all create Module.symvers, which may cause collision. Maybe there\u0027s a better way to do this?",
+      "revId": "ab5db5bb77222f349028b9a4998a9fecf4bb1a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
