@@ -17,7 +17,6 @@ load(
     ":kernel.bzl",
     "kernel_build",
     "kernel_build_abi",
-    "kernel_build_abi_dist",
     "kernel_compile_commands",
     "kernel_filegroup",
     "kernel_images",
@@ -529,10 +528,10 @@ def define_common_kernels(
             dist_dir = "out/{branch}/dist".format(branch = BRANCH),
         )
 
-        kernel_build_abi_dist(
+        # TODO(b/229350514): run _abi_diff to check KMI_ENFORCED as well.
+        copy_to_dist_dir(
             name = name + "_abi_dist",
-            kernel_build_abi = name,
-            data = dist_targets,
+            data = dist_targets + [name + "_abi"],
             flat = True,
             dist_dir = "out_abi/{branch}/dist".format(branch = BRANCH),
         )
