@@ -33,6 +33,24 @@
       "message": "I think the code works. However, please make sure Quentin is OK with this.\n\nI am not an owner.",
       "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0e52364_5cd9b980",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-01T20:18:54Z",
+      "side": 1,
+      "message": "Ok. Thanks. I\u0027ll wait for Matthias to comeback. This is actually a bug in current build.sh technically as without this anything set as module in gki_defconfig will cause a build error for \"symbols missing from ksymtab\" which is different from symbols missing from the symbollist.",
+      "parentUuid": "4bb3a685_7cc3571c",
+      "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
