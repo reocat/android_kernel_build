@@ -16,6 +16,24 @@
       "message": "Better solution at CL:2082199; let me wait for that to be resolved first",
       "revId": "cc47debc802aec9dd68ee6f0e716d1dc17cca74e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9033e06f_32ab2cc2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-02T23:49:01Z",
+      "side": 1,
+      "message": "this still resolves error from build.sh",
+      "parentUuid": "a5d6be78_abb20e94",
+      "revId": "cc47debc802aec9dd68ee6f0e716d1dc17cca74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
