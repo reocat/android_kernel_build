@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08552355_ab46e35f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1446383
+      },
+      "writtenOn": "2022-05-02T23:52:57Z",
+      "side": 1,
+      "message": "LGTM, but I think in the future we should probably add a --config\u003dbuild_server (or whatever name) that sets all the flags that should be set for any build running on server (basically any non-dev and non-local build). Say things like stamp or LTO\u003dfull, etc.",
+      "revId": "5b05bf7a9b9c640483c902daf33fb6494dc8e6ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
