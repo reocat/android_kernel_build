@@ -69,6 +69,24 @@
       "parentUuid": "f0e52364_5cd9b980",
       "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e0df2ac_4655c590",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-03T16:32:25Z",
+      "side": 1,
+      "message": "What I meant is the presubmit errors on this: http://aosp/2078620\n\nThat\u0027s a different behavior than kleaf system; because kleaf does account for the GKI modules where build.sh claims it in doc but it doesn\u0027t account for it.\n\nI am working on the build time check of vendor modules against protected symbol; but that thing is not that straight forward and probably check should not be here. IIUC, this should be considered independent of it; as with out without this change vendor accessing protected symbol behavior doesn\u0027t change.",
+      "parentUuid": "18c50ee4_748c3946",
+      "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
