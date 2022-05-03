@@ -51,6 +51,24 @@
       "parentUuid": "4bb3a685_7cc3571c",
       "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18c50ee4_748c3946",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2022-05-03T08:55:10Z",
+      "side": 1,
+      "message": "Sorry I\u0027m not sure to understand that last comment, what would cause \"symbols missing from ksymtab\" to be reported?\n\nAlso, I still believe this regresses the current behaviour as we may not flag vendor modules accessing symbols they shouldn\u0027t access (protected symbols specifically).",
+      "parentUuid": "f0e52364_5cd9b980",
+      "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
