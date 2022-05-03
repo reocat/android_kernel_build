@@ -38,6 +38,16 @@ function rel_path() {
   echo ${path}${to#$stem}
 }
 
+# rel_path_py <to> <from>
+# Generate relative directory path to reach directory <to> from <from>
+# This is slower than rel_path, but returns a simpler path when <from>
+# is directly under <to>.
+function rel_path_py() {
+  local to=$1
+  local from=$2
+  python3 -c 'import os,sys;print(os.path.relpath(*(sys.argv[1:])))' "$to" "$from"
+}
+
 # $1 directory of kernel modules ($1/lib/modules/x.y)
 # $2 flags to pass to depmod
 # $3 kernel version
