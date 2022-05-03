@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbe3fc0e_5244518a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 3421,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-05-03T22:19:08Z",
+      "side": 1,
+      "message": "This logic is not very accurate. You don\u0027t have to fix it in this patch, but we should follow up at some point and fix this. Here is what you should fix:\n\n1) `build_boot` should not require `build_initramfs`. Since GKI the initramfs image was moved to the vendor_boot image.\n\n2) build_vendor_boot and build_vendor_kernel_boot should not require build_boot\u003dTrue. You should be able to build a vendor boot image without building the boot image. One example would be if you want to just compile the kernel modules against the prebuilt GKI kernel. For that case, you would not package a boot.img, but instead would use a prebuilt boot.img.\n\n3) Do we need default boot_image_outs? I think you should just require these to be defined by the user. For example, not all users might use vendor-bootconfig.img. Also, I don\u0027t think any GKI builds would have ramdisk.lz4 as a boot_image_out. That probably would be a vendor_boot_out artifacts.",
+      "range": {
+        "startLine": 3395,
+        "startChar": 0,
+        "endLine": 3421,
+        "endChar": 0
+      },
+      "revId": "1433e25bcadc3d2c7cb0c899d786297d807d7328",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
