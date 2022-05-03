@@ -87,6 +87,24 @@
       "parentUuid": "18c50ee4_748c3946",
       "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c542f76_f5c76d6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2022-05-03T17:06:37Z",
+      "side": 1,
+      "message": "Dunno if that belongs anywhere else: the idea of this check is to make sure vendor module developers get a build-time error if their module will fail to load because it accesses a symbol it shouldn\u0027t. So far this was checked by ensuring ksymtab \u003d\u003d union of vendor symbol lists, but to support GKI modules the correct extension of this check involves checking that vendor modules don\u0027t access protected symbols as that would lead to a module loading failure as well.\n\nIt seems like the correct check is to iterate over vendor modules (which can easily be distinguished from GKI modules as we have a list of GKI modules somewhere in the tree IIRC), and make sure that all undefined symbols in those modules are either on the vendor symbol list, or exported by another vendor module.",
+      "parentUuid": "0e0df2ac_4655c590",
+      "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
