@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "319a5ee0_dc9431a5",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1952,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-05-03T21:31:25Z",
+      "side": 1,
+      "message": "I\u0027m not sure I get what\u0027s going on here. The commit message states that you\u0027re adding Module.symvers to the outputs regardless of whether or not there are kernel modules being built, right? What is this file for? From what I can tell, it looks like it\u0027s just an empty file.",
+      "range": {
+        "startLine": 1952,
+        "startChar": 0,
+        "endLine": 1952,
+        "endChar": 114
+      },
+      "revId": "acec3e7dfa60d732ce833146cede3016ca071e2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
