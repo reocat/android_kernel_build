@@ -34,6 +34,24 @@
       "parentUuid": "87ebdb4f_7bb03c4b",
       "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15cf7705_e09e9720",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-03T00:13:47Z",
+      "side": 1,
+      "message": "For you purpose you can ignore this warning, because the feature is backported to android13-* branches.",
+      "parentUuid": "6b9216d1_16e9f666",
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
