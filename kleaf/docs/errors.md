@@ -254,7 +254,7 @@ save disk space, you may run `bazel clean`. See
 documentation for the `clean` command
 [here](https://bazel.build/docs/user-manual#cleaning-build-outputs).
 
-## cp: <workspace\_root>/out/bazel/output\_user\_root/[...]/execroot/\_\_main\_\_/[...]/[...]_defconfig: Read-only file system
+## cp: <workspace\_root>/out/bazel/output\_user\_root/[...]/execroot/\_\_main\_\_/[...]/[...]_defconfig: Read-only file system {#defconfig-readonly}
 
 This is likely because a previous build from one of the following does not clean
 up the `$ROOT_DIR/$KERNEL_DIR/$DEFCONFIG` file:
@@ -274,7 +274,13 @@ to prevent this in the future. See [sandbox.md](sandbox.md).
 `--experimental_strip_sandbox_path` to get a cleaner path of the file that needs
 to be deleted.
 
-[comment]: <> (Bug 229309039)
+To prevent `--config=local` builds from writing `$DEFCONFIG` into
+the source tree in the future, you may modify `PRE_DEFCONFIG_CMDS` to
+write to `\${OUT_DIR}` instead. Note that because `${OUT_DIR}` is not
+defined when `build.config` is loaded, the preceding `$` must be escaped
+so `$OUT_DIR` is evaluated properly when `$PRE_DEFCONFIG_CMDS` are executed.
+See the following CL as an example: 
+[CL:2082199](https://android-review.googlesource.com/2082199).
 
 ## fatal: not a git repository: '[...]/.git' {#not-git}
 
