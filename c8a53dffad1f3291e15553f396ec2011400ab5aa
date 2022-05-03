@@ -122,6 +122,24 @@
       "message": "I think you did say that kleaf already correctly handles this, right? Please resolve this comment if it is the case.",
       "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d33019e5_52cb6d5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-03T18:13:20Z",
+      "side": 1,
+      "message": "When we are just building the aarch64 from ACK; there are no vendor modules; only GKI modules - so we can\u0027t rely on the vendor modules iteration for this check globally. It will work for the device builds.",
+      "parentUuid": "7c542f76_f5c76d6b",
+      "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
