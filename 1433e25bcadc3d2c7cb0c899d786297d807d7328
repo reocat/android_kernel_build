@@ -46,6 +46,30 @@
       },
       "revId": "1433e25bcadc3d2c7cb0c899d786297d807d7328",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1833f1c5_50030dd8",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 3421,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-03T22:39:15Z",
+      "side": 1,
+      "message": "\u003e 2) build_vendor_boot and build_vendor_kernel_boot should not require build_boot\u003dTrue\n\nIdeally it shouldn\u0027t, but they are both built by build_utils build_boot_images function. It appears to me that the boot and vendor_boot/vendor_kernel_boot are generated simultaneously in one mkbootimg.py invocation. This is the case for both build.sh and Kleaf.\n\nIn the build.sh world, BUILD_BOOT_IMAGE and BUILD_VENDOR_BOOT_IMAGE are equivalent (the latter is clearly a misnomer); it is SKIP_VENDOR_BOOT taking effect of controlling wither vendor_boot is built or not. Even if SKIP_VENDOR_BOOT is not set, it\u0027ll require (BUILD_BOOT_IMAGE||BUILD_VENDOR_BOOT_IMAGE) to build vendor_boot.\n\nIn Kleaf world, I rectify the names:\n\n* build_boot \u003d (BUILD_BOOT_IMAGE||BUILD_VENDOR_BOOT_IMAGE)\n* build_vendor_boot \u003d !SKIP_VENDOR_BOOT\n\n... but build_vendor_boot would still rely on build_boot.\n\nThat\u0027s why it is designed this way. \n\nI completely agree on what you said (especially for the GKI prebuilts part). But yeah, this needs to be addressed in follow up CLs. b/231362027\n\n\u003e 1)  build_boot  should not require  build_initramfs . Since GKI the initramfs image was moved to the vendor_boot image.\n\nbuild_vendor_boot requires build_boot which requires build_initramfs. But yeah the logic is awkward here.\n\n\u003e 3) Do we need default boot_image_outs?\n\nI am just trying to come up with reasonable defaults here. They can always override the list.",
+      "parentUuid": "8fdef977_1509c853",
+      "range": {
+        "startLine": 3395,
+        "startChar": 0,
+        "endLine": 3421,
+        "endChar": 0
+      },
+      "revId": "1433e25bcadc3d2c7cb0c899d786297d807d7328",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
