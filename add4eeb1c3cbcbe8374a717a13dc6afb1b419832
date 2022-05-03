@@ -46,6 +46,30 @@
       },
       "revId": "add4eeb1c3cbcbe8374a717a13dc6afb1b419832",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "542c69a4_f096b6a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1139038
+      },
+      "writtenOn": "2022-05-03T19:57:14Z",
+      "side": 1,
+      "message": "I just tacked it on to the same bug used by the other CL, it shouldn\u0027t close it.",
+      "parentUuid": "49eec994_1de1beb7",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "add4eeb1c3cbcbe8374a717a13dc6afb1b419832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
