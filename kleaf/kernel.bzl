@@ -4099,43 +4099,106 @@ def kernel_build_abi(
     if define_abi_targets and kwargs.get("collect_unstripped_modules") == None:
         kwargs["collect_unstripped_modules"] = True
 
+    _kernel_build_abi_define_other_targets(
+        name = name,
+        define_abi_targets = define_abi_targets,
+        kernel_modules = kernel_modules,
+        module_grouping = module_grouping,
+        abi_definition = abi_definition,
+        kmi_enforced = kmi_enforced,
+        unstripped_modules_archive = unstripped_modules_archive,
+        kernel_build_kwargs = kwargs,
+    )
+
     kernel_build(name = name, **kwargs)
 
-    outs_and_vmlinux, added_vmlinux = _kernel_build_outs_add_vmlinux(name, kwargs.get("outs"))
+def _kernel_build_abi_define_other_targets(
+        name,
+        define_abi_targets,
+        kernel_modules,
+        module_grouping,
+        abi_definition,
+        kmi_enforced,
+        unstripped_modules_archive,
+        kernel_build_kwargs):
+    """Helper to `kernel_build_abi`.
+
+    Define targets other than the main `kernel_build()`."""
+    outs_and_vmlinux, added_vmlinux = _kernel_build_outs_add_vmlinux(name, kernel_build_kwargs.get("outs"))
 
     # with_vmlinux: outs += [vmlinux]
     if added_vmlinux:
-        with_vmlinux_kwargs = dict(kwargs)
+        with_vmlinux_kwargs = dict(kernel_build_kwargs)
         with_vmlinux_kwargs["outs"] = _transform_kernel_build_outs(name + "_with_vmlinux", "outs", outs_and_vmlinux)
         kernel_build(name = name + "_with_vmlinux", **with_vmlinux_kwargs)
     else:
         native.alias(name = name + "_with_vmlinux", actual = name)
-
-    default_outputs = []
 
     _kernel_abi_dump(
         name = name + "_abi_dump",
         kernel_build = name + "_with_vmlinux",
         kernel_modules = kernel_modules,
     )
-    default_outputs.append(name + "_abi_dump")
 
     if not define_abi_targets:
-        native.filegroup(
-            name = name + "_abi",
-            srcs = default_outputs,
+        _kernel_build_abi_not_define_abi_targets(
+            name = name,
+            abi_dump_target = name + "_abi_dump",
+        )
+    else:
+        _kernel_build_abi_define_abi_targets(
+            name = name,
+            kernel_modules = kernel_modules,
+            module_grouping = module_grouping,
+            abi_definition = abi_definition,
+            kmi_enforced = kmi_enforced,
+            unstripped_modules_archive = unstripped_modules_archive,
+            added_vmlinux = added_vmlinux,
+            outs_and_vmlinux = outs_and_vmlinux,
+            abi_dump_target = name + "_abi_dump",
+            kernel_build_kwargs = kernel_build_kwargs,
         )
 
-        # For kernel_build_abi_dist to use when define_abi_targets is not set.
-        exec(
-            name = name + "_abi_diff_executable",
-            script = "",
-        )
-        return
+def _kernel_build_abi_not_define_abi_targets(
+        name,
+        abi_dump_target):
+    """Helper to `_kernel_build_abi_define_other_targets` when `define_abi_targets = False.`
+
+    Define `{name}_abi` filegroup that only contains the ABI dump, provided
+    in `abi_dump_target`.
+    """
+    native.filegroup(
+        name = name + "_abi",
+        srcs = [abi_dump_target],
+    )
+
+    # For kernel_build_abi_dist to use when define_abi_targets is not set.
+    exec(
+        name = name + "_abi_diff_executable",
+        script = "",
+    )
+
+def _kernel_build_abi_define_abi_targets(
+        name,
+        kernel_modules,
+        module_grouping,
+        abi_definition,
+        kmi_enforced,
+        unstripped_modules_archive,
+        added_vmlinux,
+        outs_and_vmlinux,
+        abi_dump_target,
+        kernel_build_kwargs):
+    """Helper to `_kernel_build_abi_define_other_targets` when `define_abi_targets = True.`
+
+    Define targets to extract symbol list, extract ABI, update them, etc.
+    """
+
+    default_outputs = [abi_dump_target]
 
     # notrim: outs += [vmlinux], trim_nonlisted_kmi = False
-    if kwargs.get("trim_nonlisted_kmi") or added_vmlinux:
-        notrim_kwargs = dict(kwargs)
+    if kernel_build_kwargs.get("trim_nonlisted_kmi") or added_vmlinux:
+        notrim_kwargs = dict(kernel_build_kwargs)
         notrim_kwargs["outs"] = _transform_kernel_build_outs(name + "_notrim", "outs", outs_and_vmlinux)
         notrim_kwargs["trim_nonlisted_kmi"] = False
         notrim_kwargs["kmi_symbol_list_strict_mode"] = False
@@ -4153,7 +4216,7 @@ def kernel_build_abi(
     update_source_file(
         name = name + "_abi_update_symbol_list",
         src = name + "_abi_extracted_symbols",
-        dst = kwargs.get("kmi_symbol_list"),
+        dst = kernel_build_kwargs.get("kmi_symbol_list"),
     )
 
     if abi_definition:
@@ -4191,7 +4254,7 @@ def kernel_build_abi(
             data = [
                 name + "_abi_extracted_symbols",
                 name + "_abi_update_definition",
-                kwargs.get("kmi_symbol_list"),
+                kernel_build_kwargs.get("kmi_symbol_list"),
             ],
             script = """
               # Ensure that symbol list is updated
@@ -4203,7 +4266,7 @@ def kernel_build_abi(
                 $(rootpath {update_definition})
             """.format(
                 src_symbol_list = name + "_abi_extracted_symbols",
-                dst_symbol_list = kwargs.get("kmi_symbol_list"),
+                dst_symbol_list = kernel_build_kwargs.get("kmi_symbol_list"),
                 package = native.package_name(),
                 update_symbol_list_label = name + "_abi_update_symbol_list",
                 update_definition = name + "_abi_update_definition",
