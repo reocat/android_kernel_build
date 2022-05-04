@@ -46,6 +46,30 @@
       },
       "revId": "acec3e7dfa60d732ce833146cede3016ca071e2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b270fa9_f7273edc",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1952,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-04T19:45:47Z",
+      "side": 1,
+      "message": "Done, I fix the commit message.",
+      "parentUuid": "6cf47df7_85182dd6",
+      "range": {
+        "startLine": 1952,
+        "startChar": 0,
+        "endLine": 1952,
+        "endChar": 114
+      },
+      "revId": "acec3e7dfa60d732ce833146cede3016ca071e2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
