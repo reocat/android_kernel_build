@@ -93,6 +93,30 @@
       },
       "revId": "d5383c4935e7e568e68c8c46efc02c26ca740ac9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9da51917_429e0e2e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-04T19:45:34Z",
+      "side": 1,
+      "message": "Done; the other fix is in CL:2086108",
+      "parentUuid": "c9ec76ff_7a75e565",
+      "range": {
+        "startLine": 2020,
+        "startChar": 127,
+        "endLine": 2020,
+        "endChar": 128
+      },
+      "revId": "d5383c4935e7e568e68c8c46efc02c26ca740ac9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
