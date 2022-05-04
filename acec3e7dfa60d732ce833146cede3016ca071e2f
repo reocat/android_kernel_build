@@ -22,6 +22,30 @@
       },
       "revId": "acec3e7dfa60d732ce833146cede3016ca071e2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cf47df7_85182dd6",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1952,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-04T00:07:31Z",
+      "side": 1,
+      "message": "The commit message is incorrect. I am adding this empty file to the output to ensure this \"KernelModule\" action is executed, even when `outs` is empty.\n\nLet me fix the commit message.",
+      "parentUuid": "319a5ee0_dc9431a5",
+      "range": {
+        "startLine": 1952,
+        "startChar": 0,
+        "endLine": 1952,
+        "endChar": 114
+      },
+      "revId": "acec3e7dfa60d732ce833146cede3016ca071e2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
