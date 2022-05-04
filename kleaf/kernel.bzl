@@ -457,6 +457,7 @@ def kernel_build(
     _kernel_build(
         name = name,
         config = config_target_name,
+        env = env_target_name,
         srcs = srcs,
         outs = _transform_kernel_build_outs(name, "outs", outs),
         module_outs = _transform_kernel_build_outs(name, "module_outs", module_outs),
@@ -1748,6 +1749,7 @@ def _kernel_build_impl(ctx):
 
     default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
     default_info_files.append(toolchain_version_out)
+    default_info_files += ctx.files.env
     if kmi_strict_mode_out:
         default_info_files.append(kmi_strict_mode_out)
     default_info = DefaultInfo(
@@ -1771,6 +1773,7 @@ _kernel_build = rule(
     implementation = _kernel_build_impl,
     doc = "Defines a kernel build target.",
     attrs = {
+        "env": attr.label(allow_files = True),
         "config": attr.label(
             mandatory = True,
             providers = [_KernelEnvInfo],
