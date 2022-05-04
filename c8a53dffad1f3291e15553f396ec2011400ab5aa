@@ -140,6 +140,24 @@
       "parentUuid": "7c542f76_f5c76d6b",
       "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acd62a22_f295abf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2022-05-04T08:56:14Z",
+      "side": 1,
+      "message": "Yep, this doesn\u0027t matter when building from ACK, but some things in our build system (including this check) are done to help partners with their device builds. And we\u0027ve pushed partners to use our stuff for their device builds since the beginning of GKI, so we should be careful not to regress now.",
+      "parentUuid": "d33019e5_52cb6d5d",
+      "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
