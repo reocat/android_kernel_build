@@ -42,6 +42,8 @@ _kernel_build_internal_outs = [
     "include/config/kernel.release",
 ]
 
+_SELF = "//build/kernel/kleaf:self_placeholder"
+
 def _debug_trap():
     return """set -x
               trap '>&2 /bin/date' DEBUG"""
@@ -167,6 +169,7 @@ def kernel_build(
         kmi_symbol_list_strict_mode = None,
         collect_unstripped_modules = None,
         enable_interceptor = None,
+        _siblings = None,
         toolchain_version = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
@@ -380,6 +383,11 @@ def kernel_build(
           Approximately equivalent to `UNSTRIPPED_MODULES=*` in `build.sh`.
         enable_interceptor: If set to `True`, enable interceptor so it can be
           used in [`kernel_compile_commands`](#kernel_compile_commands).
+        _siblings: **INTERNAL USE ONLY.** Use by `kernel_build_abi` to determine
+          siblings to this kernel build.
+
+          Each key is a sibling name. Each value is a label. Multiple names
+          may correspond to the same label (N names -- 1 label).
         toolchain_version: The toolchain version to depend on.
         kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
@@ -457,6 +465,16 @@ def kernel_build(
         outdir_tar_gz = modules_prepare_target_name + "/modules_prepare_outdir.tar.gz",
     )
 
+    if _siblings != None:
+        # name: [label]
+        _siblings = {sib_name: [label] for sib_name, label in _siblings.items()}
+
+        # label: [name,name]
+        _siblings = reverse_dict(_siblings)
+
+        # label: "name,name"
+        _siblings = {label: ",".join(sib_names) for label, sib_names in _siblings.items()}
+
     _kernel_build(
         name = name,
         config = config_target_name,
@@ -474,6 +492,7 @@ def kernel_build(
         collect_unstripped_modules = collect_unstripped_modules,
         combined_abi_symbollist = abi_symbollist_target_name if all_kmi_symbol_lists else None,
         enable_interceptor = enable_interceptor,
+        siblings = _siblings,
         **kwargs
     )
 
@@ -1829,6 +1848,7 @@ _kernel_build = rule(
         "kernel_uapi_headers": attr.label(),
         "trim_nonlisted_kmi": attr.bool(),
         "combined_abi_symbollist": attr.label(allow_single_file = True, doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`."),
+        "siblings": attr.label_keyed_string_dict(),
     },
 )
 
@@ -4136,7 +4156,7 @@ def kernel_build_abi(
     if define_abi_targets and kwargs.get("collect_unstripped_modules") == None:
         kwargs["collect_unstripped_modules"] = True
 
-    _kernel_build_abi_define_other_targets(
+    siblings = _kernel_build_abi_define_other_targets(
         name = name,
         define_abi_targets = define_abi_targets,
         kernel_modules = kernel_modules,
@@ -4147,6 +4167,7 @@ def kernel_build_abi(
         kernel_build_kwargs = kwargs,
     )
 
+    kwargs["_siblings"] = siblings
     kernel_build(name = name, **kwargs)
 
 def _kernel_build_abi_define_other_targets(
@@ -4169,14 +4190,17 @@ def _kernel_build_abi_define_other_targets(
     * `{name}_abi`
     """
     outs_and_vmlinux, added_vmlinux = _kernel_build_outs_add_vmlinux(name, kernel_build_kwargs.get("outs"))
+    siblings = {}
 
     # with_vmlinux: outs += [vmlinux]
     if added_vmlinux:
         with_vmlinux_kwargs = dict(kernel_build_kwargs)
         with_vmlinux_kwargs["outs"] = _transform_kernel_build_outs(name + "_with_vmlinux", "outs", outs_and_vmlinux)
         kernel_build(name = name + "_with_vmlinux", **with_vmlinux_kwargs)
+        siblings["with_vmlinux"] = name + "_with_vmlinux"
     else:
         native.alias(name = name + "_with_vmlinux", actual = name)
+        siblings["with_vmlinux"] = _SELF
 
     _kernel_abi_dump(
         name = name + "_abi_dump",
@@ -4185,12 +4209,12 @@ def _kernel_build_abi_define_other_targets(
     )
 
     if not define_abi_targets:
-        _kernel_build_abi_not_define_abi_targets(
+        siblings.update(_kernel_build_abi_not_define_abi_targets(
             name = name,
             abi_dump_target = name + "_abi_dump",
-        )
+        ))
     else:
-        _kernel_build_abi_define_abi_targets(
+        siblings.update(_kernel_build_abi_define_abi_targets(
             name = name,
             kernel_modules = kernel_modules,
             module_grouping = module_grouping,
@@ -4201,7 +4225,9 @@ def _kernel_build_abi_define_other_targets(
             outs_and_vmlinux = outs_and_vmlinux,
             abi_dump_target = name + "_abi_dump",
             kernel_build_kwargs = kernel_build_kwargs,
-        )
+        ))
+
+    return siblings
 
 def _kernel_build_abi_not_define_abi_targets(
         name,
@@ -4226,6 +4252,8 @@ def _kernel_build_abi_not_define_abi_targets(
         script = "",
     )
 
+    return {}
+
 def _kernel_build_abi_define_abi_targets(
         name,
         kernel_modules,
@@ -4248,6 +4276,7 @@ def _kernel_build_abi_define_abi_targets(
     """
 
     default_outputs = [abi_dump_target]
+    siblings = {}
 
     # notrim: outs += [vmlinux], trim_nonlisted_kmi = False
     if kernel_build_kwargs.get("trim_nonlisted_kmi") or added_vmlinux:
@@ -4256,8 +4285,10 @@ def _kernel_build_abi_define_abi_targets(
         notrim_kwargs["trim_nonlisted_kmi"] = False
         notrim_kwargs["kmi_symbol_list_strict_mode"] = False
         kernel_build(name = name + "_notrim", **notrim_kwargs)
+        siblings["notrim"] = name + "_notrim"
     else:
         native.alias(name = name + "_notrim", actual = name)
+        siblings["notrim"] = _SELF
 
     # extract_symbols ...
     _kernel_extracted_symbols(
@@ -4292,6 +4323,8 @@ def _kernel_build_abi_define_abi_targets(
         name = name + "_abi",
         srcs = default_outputs,
     )
+
+    return siblings
 
 def _kernel_build_abi_define_abi_definition_targets(
         name,

@@ -139,3 +139,10 @@ test_suite(
         "//prebuilts/build-tools/tests",
     ],
 )
+
+# Placeholder rule to refer to the "self". How "self" is defined depends
+# on the context.
+filegroup(
+    name = "self_placeholder",
+    srcs = [],
+)
