@@ -1980,6 +1980,9 @@ def _check_kernel_build(kernel_modules, kernel_build, this_label):
 def _kernel_module_impl(ctx):
     kernel_build = ctx.attr.kernel_build
     kernel_module_deps = ctx.attr.kernel_module_deps
+    if ctx.attr.sibling_name:
+        kernel_build = _get_sibling(kernel_build, ctx.attr.sibling_name, "{}: kernel_build".format(ctx.label))
+        kernel_module_deps = [_get_sibling(dep, ctx.attr.sibling_name, "{}: kernel_module_deps".format(ctx.label)) for dep in kernel_module_deps]
 
     _check_kernel_build(kernel_module_deps, kernel_build, ctx.label)
 
@@ -2220,6 +2223,7 @@ def _kernel_module_impl(ctx):
         _KernelUnstrippedModulesInfo(
             directory = unstripped_dir,
         ),
+        _SiblingsInfo(**{name: label for label, name in ctx.attr.siblings.items()}),
     ]
 
 _kernel_module = rule(
@@ -2238,10 +2242,16 @@ _kernel_module = rule(
             mandatory = True,
             providers = [_KernelEnvInfo, _KernelBuildExtModuleInfo],
         ),
+        "sibling_name": attr.string(),
         "kernel_module_deps": attr.label_list(
             providers = [_KernelEnvInfo, _KernelModuleInfo],
         ),
         "ext_mod": attr.string(mandatory = True),
+        "siblings": attr.label_keyed_string_dict(doc = """Sibling modules.
+
+Each key is a label. Each value is the sibling name for that label. One-to-one mapping
+because siblings of `kernel_module` aren't aliased to the main one.
+        """),
         # Not output_list because it is not a list of labels. The list of
         # output labels are inferred from name and outs.
         "outs": attr.output_list(),
@@ -2363,22 +2373,38 @@ def kernel_module(
     kwargs.update(
         # This should be the exact list of arguments of kernel_module.
         # Default arguments of _kernel_module go into _kernel_module_set_defaults.
-        name = name,
         srcs = srcs,
         kernel_build = kernel_build,
         kernel_module_deps = kernel_module_deps,
         outs = outs,
     )
     kwargs = _kernel_module_set_defaults(kwargs)
-    kwargs.update(
-        outs = ["{name}/{out}".format(name = name, out = out) for out in kwargs["outs"]],
+
+    main_kwargs = dict(kwargs)
+    main_kwargs.update(
+        name = name,
+        outs = ["{name}/{out}".format(name = name, out = out) for out in main_kwargs["outs"]],
+        siblings = {name + "_" + sibling_name: sibling_name for sibling_name in _sibling_names},
     )
-    _kernel_module(**kwargs)
+    _kernel_module(**main_kwargs)
 
     kernel_module_test(
         name = name + "_test",
         modules = [name],
     )
+
+    # Define external module for sibling kernel_build's.
+    # It may be possible to optimize this to alias some of them with the same
+    # kernel_build, but we don't have a way to get this information in
+    # the load phase right now.
+    for sibling_name in _sibling_names:
+        sibling_kwargs = dict(kwargs)
+        sibling_target_name = name + "_" + sibling_name
+        sibling_kwargs.update(
+            name = sibling_target_name,
+            outs = ["{sibling_target_name}/{out}".format(sibling_target_name = sibling_target_name, out = out) for out in outs],
+        )
+        _kernel_module(sibling_name = sibling_name, **sibling_kwargs)
 
 def _kernel_module_set_defaults(kwargs):
     """
