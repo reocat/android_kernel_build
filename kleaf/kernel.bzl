@@ -42,6 +42,11 @@ _kernel_build_internal_outs = [
     "include/config/kernel.release",
 ]
 
+_sibling_names = [
+    "notrim",
+    "with_vmlinux",
+]
+
 _SELF = "//build/kernel/kleaf:self_placeholder"
 
 def _debug_trap():
@@ -1366,6 +1371,34 @@ For an external [`kernel_module()`](#kernel_module), this is a directory contain
     },
 )
 
+_SiblingsInfo = provider(
+    doc = """A provider specifying sibling targets of a `kernel_build`.
+
+Use `_get_sibling` to get a sibling target from this info instead of reading
+directly, because `_get_sibling` handles `//build/kernel/kleaf:self_placeholder`.
+""",
+    fields = {name: name for name in _sibling_names},
+)
+
+def _get_sibling(target, key, what = "<unknown>"):
+    """Get a sibling from the `_SiblingsInfo` of a target.
+
+    Args:
+        target: The target providing the `_SiblingsInfo`
+        key: The name of the sibling
+    """
+    info = target[_SiblingsInfo]
+    sibling_target = getoptattr(info, key)
+    if sibling_target == None:
+        fail("{what}: {target} has no sibling {key}".format(
+            what = what,
+            target = target,
+            key = key,
+        ))
+    if str(sibling_target.label) == _SELF:
+        return target
+    return sibling_target
+
 _SrcsInfo = provider(fields = {
     "srcs": "The srcs attribute of a rule.",
 })
@@ -1772,6 +1805,18 @@ def _kernel_build_impl(ctx):
         directory = unstripped_dir,
     )
 
+    siblings = ctx.attr.siblings
+
+    # label: [name,name]
+    siblings = {label: sib_names.split(",") for label, sib_names in siblings.items()}
+
+    # name: [label]
+    siblings = reverse_dict(siblings)
+
+    # name: label
+    siblings = {name: labels[0] for name, labels in siblings.items()}
+    siblings_info = _SiblingsInfo(**siblings)
+
     output_group_kwargs = {}
     for d in all_output_files.values():
         output_group_kwargs.update({name: depset([file]) for name, file in d.items()})
@@ -1795,6 +1840,7 @@ def _kernel_build_impl(ctx):
         kernel_build_uapi_info,
         kernel_build_abi_info,
         kernel_unstripped_modules_info,
+        siblings_info,
         output_group_info,
         default_info,
     ]
