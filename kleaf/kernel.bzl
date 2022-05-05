@@ -3894,26 +3894,29 @@ Extract Kythe source code index (kzip file) from a `kernel_build`.
 )
 
 def _kernel_extracted_symbols_impl(ctx):
-    if ctx.attr.kernel_build_notrim[_KernelBuildAbiInfo].trim_nonlisted_kmi:
+    kernel_build = ctx.attr.kernel_build
+    kernel_modules = ctx.attr.kernel_modules
+
+    if kernel_build[_KernelBuildAbiInfo].trim_nonlisted_kmi:
         fail("{}: Requires `kernel_build` {} to have `trim_nonlisted_kmi = False`.".format(
             ctx.label,
-            ctx.attr.kernel_build_notrim.label,
+            kernel_build.label,
         ))
 
     out = ctx.actions.declare_file("{}/extracted_symbols".format(ctx.attr.name))
     intermediates_dir = utils.intermediates_dir(ctx)
 
-    vmlinux = find_file(name = "vmlinux", files = ctx.files.kernel_build_notrim, what = "{}: kernel_build_notrim".format(ctx.attr.name), required = True)
-    in_tree_modules = find_files(suffix = ".ko", files = ctx.files.kernel_build_notrim, what = "{}: kernel_build_notrim".format(ctx.attr.name))
+    vmlinux = find_file(name = "vmlinux", files = kernel_build.files.to_list(), what = "{}: kernel_build".format(ctx.attr.name), required = True)
+    in_tree_modules = find_files(suffix = ".ko", files = kernel_build.files.to_list(), what = "{}: kernel_build".format(ctx.attr.name))
     srcs = [vmlinux] + in_tree_modules
-    for kernel_module in ctx.attr.kernel_modules:  # external modules
+    for kernel_module in kernel_modules:  # external modules
         srcs += kernel_module[_KernelModuleInfo].files
 
     inputs = [ctx.file._extract_symbols]
     inputs += srcs
-    inputs += ctx.attr.kernel_build_notrim[_KernelEnvInfo].dependencies
+    inputs += kernel_build[_KernelEnvInfo].dependencies
 
-    command = ctx.attr.kernel_build_notrim[_KernelEnvInfo].setup
+    command = kernel_build[_KernelEnvInfo].setup
     command += """
         mkdir -p {intermediates_dir}
         cp -pl {srcs} {intermediates_dir}
@@ -3944,7 +3947,7 @@ _kernel_extracted_symbols = rule(
         # - extract_symbols depends on the clang toolchain, which requires us to
         #   know the toolchain_version ahead of time.
         # - We also don't have the necessity to extract symbols from prebuilts.
-        "kernel_build_notrim": attr.label(providers = [_KernelEnvInfo, _KernelBuildAbiInfo]),
+        "kernel_build": attr.label(providers = [_KernelEnvInfo, _KernelBuildAbiInfo]),
         "kernel_modules": attr.label_list(),
         "module_grouping": attr.bool(default = True),
         "_extract_symbols": attr.label(default = "//build/kernel:abi/extract_symbols", allow_single_file = True),
@@ -4379,7 +4382,7 @@ def _kernel_build_abi_define_abi_targets(
     # extract_symbols ...
     _kernel_extracted_symbols(
         name = name + "_abi_extracted_symbols",
-        kernel_build_notrim = name + "_notrim",
+        kernel_build = name + "_notrim",
         kernel_modules = kernel_modules,
         module_grouping = module_grouping,
     )
