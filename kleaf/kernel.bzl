@@ -3952,8 +3952,11 @@ _kernel_extracted_symbols = rule(
 )
 
 def _kernel_abi_dump_impl(ctx):
-    full_abi_out_file = _kernel_abi_dump_full(ctx)
-    abi_out_file = _kernel_abi_dump_filtered(ctx, full_abi_out_file)
+    kernel_build = ctx.attr.kernel_build
+    kernel_modules = ctx.attr.kernel_modules
+
+    full_abi_out_file = _kernel_abi_dump_full(ctx, kernel_build, kernel_modules)
+    abi_out_file = _kernel_abi_dump_filtered(ctx, kernel_build, full_abi_out_file)
     return [
         DefaultInfo(files = depset([full_abi_out_file, abi_out_file])),
         OutputGroupInfo(abi_out_file = depset([abi_out_file])),
@@ -3971,12 +3974,12 @@ def _kernel_abi_dump_epilog_cmd(path, append_version):
 """.format(path = path)
     return ret
 
-def _kernel_abi_dump_full(ctx):
+def _kernel_abi_dump_full(ctx, kernel_build, kernel_modules):
     abi_linux_tree = utils.intermediates_dir(ctx) + "/abi_linux_tree"
     full_abi_out_file = ctx.actions.declare_file("{}/abi-full.xml".format(ctx.attr.name))
-    vmlinux = find_file(name = "vmlinux", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name), required = True)
+    vmlinux = find_file(name = "vmlinux", files = kernel_build.files.to_list(), what = "{}: kernel_build".format(ctx.attr.name), required = True)
 
-    unstripped_dir_provider_targets = [ctx.attr.kernel_build] + ctx.attr.kernel_modules
+    unstripped_dir_provider_targets = [kernel_build] + kernel_modules
     unstripped_dir_providers = [target[_KernelUnstrippedModulesInfo] for target in unstripped_dir_provider_targets]
     for prov in unstripped_dir_providers:
         if not prov.directory:
@@ -4015,13 +4018,13 @@ def _kernel_abi_dump_full(ctx):
     )
     return full_abi_out_file
 
-def _kernel_abi_dump_filtered(ctx, full_abi_out_file):
+def _kernel_abi_dump_filtered(ctx, kernel_build, full_abi_out_file):
     abi_out_file = ctx.actions.declare_file("{}/abi.xml".format(ctx.attr.name))
     inputs = [full_abi_out_file]
 
     inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
     command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup
-    combined_abi_symbollist = ctx.attr.kernel_build[_KernelBuildAbiInfo].combined_abi_symbollist
+    combined_abi_symbollist = kernel_build[_KernelBuildAbiInfo].combined_abi_symbollist
     if combined_abi_symbollist:
         inputs += [
             ctx.file._filter_abi,
