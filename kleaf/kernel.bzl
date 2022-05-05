@@ -3895,7 +3895,10 @@ Extract Kythe source code index (kzip file) from a `kernel_build`.
 
 def _kernel_extracted_symbols_impl(ctx):
     kernel_build = ctx.attr.kernel_build
+    kernel_build = _get_sibling(kernel_build, "notrim", "{}: kernel_build".format(ctx.label))
+
     kernel_modules = ctx.attr.kernel_modules
+    kernel_modules = [_get_sibling(kernel_module, "notrim", "{}: kernel_modules".format(ctx.label)) for kernel_module in kernel_modules]
 
     if kernel_build[_KernelBuildAbiInfo].trim_nonlisted_kmi:
         fail("{}: Requires `kernel_build` {} to have `trim_nonlisted_kmi = False`.".format(
@@ -4382,9 +4385,10 @@ def _kernel_build_abi_define_abi_targets(
     # extract_symbols ...
     _kernel_extracted_symbols(
         name = name + "_abi_extracted_symbols",
-        kernel_build = name + "_notrim",
-        kernel_modules = kernel_modules,
         module_grouping = module_grouping,
+        # _kernel_extracted_symbols selects the _notrim targets for the below.
+        kernel_build = name,
+        kernel_modules = kernel_modules,
     )
     update_source_file(
         name = name + "_abi_update_symbol_list",
