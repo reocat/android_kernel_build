@@ -158,6 +158,42 @@
       "parentUuid": "d33019e5_52cb6d5d",
       "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3c15b3d_405b02b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-05T22:01:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65420155_15d5fdab",
+      "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96986c17_6e1eedb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-05T22:01:03Z",
+      "side": 1,
+      "message": "In case of the unprotected GKI module which is being override by the vendor; same module will be present in both lists.\n\nI have added the build time check as http://aosp/2089063.",
+      "parentUuid": "acd62a22_f295abf0",
+      "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
