@@ -3953,7 +3953,10 @@ _kernel_extracted_symbols = rule(
 
 def _kernel_abi_dump_impl(ctx):
     kernel_build = ctx.attr.kernel_build
+    kernel_build = _get_sibling(kernel_build, "with_vmlinux", "{}: kernel_build".format(ctx.label))
+
     kernel_modules = ctx.attr.kernel_modules
+    kernel_modules = [_get_sibling(kernel_module, "with_vmlinux", "{}: kernel_modules".format(ctx.label)) for kernel_module in kernel_modules]
 
     full_abi_out_file = _kernel_abi_dump_full(ctx, kernel_build, kernel_modules)
     abi_out_file = _kernel_abi_dump_filtered(ctx, kernel_build, full_abi_out_file)
@@ -4062,8 +4065,8 @@ _kernel_abi_dump = rule(
     implementation = _kernel_abi_dump_impl,
     doc = "Extracts the ABI.",
     attrs = {
-        "kernel_build": attr.label(providers = [_KernelEnvInfo, _KernelBuildAbiInfo, _KernelUnstrippedModulesInfo]),
-        "kernel_modules": attr.label_list(providers = [_KernelUnstrippedModulesInfo]),
+        "kernel_build": attr.label(providers = [_SiblingsInfo]),
+        "kernel_modules": attr.label_list(providers = [_SiblingsInfo]),
         "_dump_abi_scripts": attr.label(default = "//build/kernel:dump-abi-scripts"),
         "_dump_abi": attr.label(default = "//build/kernel:abi/dump_abi", allow_single_file = True),
         "_filter_abi": attr.label(default = "//build/kernel:abi/filter_abi", allow_single_file = True),
@@ -4285,7 +4288,8 @@ def _kernel_build_abi_define_other_targets(
 
     _kernel_abi_dump(
         name = name + "_abi_dump",
-        kernel_build = name + "_with_vmlinux",
+        # _kernel_abi_dump selects the _with_vmlinux targets for the below.
+        kernel_build = name,
         kernel_modules = kernel_modules,
     )
 
