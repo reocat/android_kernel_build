@@ -687,6 +687,7 @@ def _kernel_env_impl(ctx):
         build_config,
         setup_env,
         preserve_env,
+        ctx.info_file,
     ]
     inputs += srcs
     inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
@@ -735,7 +736,6 @@ def _kernel_env_impl(ctx):
         command += """
               export SOURCE_DATE_EPOCH=$({source_date_epoch_cmd})
         """.format(source_date_epoch_cmd = _get_stable_status_cmd(ctx, "STABLE_SOURCE_DATE_EPOCH"))
-        inputs.append(ctx.info_file)
     else:
         command += """
               export SOURCE_DATE_EPOCH=0
@@ -743,7 +743,14 @@ def _kernel_env_impl(ctx):
 
     command += """
         # Increase parallelism # TODO(b/192655643): do not use -j anymore
-          export MAKEFLAGS="${{MAKEFLAGS}} -j$(nproc)"
+          export MAKEFLAGS="${{MAKEFLAGS}} -j$(
+            make_jobs="$({get_make_jobs_cmd})"
+            if [[ -n "$make_jobs" ]]; then
+              echo "$make_jobs"
+            else
+              nproc
+            fi
+          )"
         # create a build environment
           source {build_utils_sh}
           export BUILD_CONFIG={build_config}
@@ -751,6 +758,7 @@ def _kernel_env_impl(ctx):
         # capture it as a file to be sourced in downstream rules
           {preserve_env} > {out}
         """.format(
+        get_make_jobs_cmd = _get_stable_status_cmd(ctx, "STABLE_MAKE_JOBS"),
         build_utils_sh = ctx.file._build_utils_sh.path,
         build_config = build_config.path,
         setup_env = setup_env.path,
