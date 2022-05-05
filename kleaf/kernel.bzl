@@ -1978,19 +1978,22 @@ def _check_kernel_build(kernel_modules, kernel_build, this_label):
             ))
 
 def _kernel_module_impl(ctx):
-    _check_kernel_build(ctx.attr.kernel_module_deps, ctx.attr.kernel_build, ctx.label)
+    kernel_build = ctx.attr.kernel_build
+    kernel_module_deps = ctx.attr.kernel_module_deps
+
+    _check_kernel_build(kernel_module_deps, kernel_build, ctx.label)
 
     inputs = []
     inputs += ctx.files.srcs
-    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
-    inputs += ctx.attr.kernel_build[_KernelBuildExtModuleInfo].modules_prepare_deps
-    inputs += ctx.attr.kernel_build[_KernelBuildExtModuleInfo].module_srcs
+    inputs += kernel_build[_KernelEnvInfo].dependencies
+    inputs += kernel_build[_KernelBuildExtModuleInfo].modules_prepare_deps
+    inputs += kernel_build[_KernelBuildExtModuleInfo].module_srcs
     inputs += ctx.files.makefile
     inputs += [
         ctx.file._search_and_cp_output,
         ctx.file._check_declared_output_list,
     ]
-    for kernel_module_dep in ctx.attr.kernel_module_deps:
+    for kernel_module_dep in kernel_module_deps:
         inputs += kernel_module_dep[_KernelEnvInfo].dependencies
     if ctx.attr._config_is_stamp[BuildSettingInfo].value:
         inputs.append(ctx.info_file)
@@ -2000,7 +2003,7 @@ def _kernel_module_impl(ctx):
     outdir = modules_staging_dws.directory.dirname
 
     unstripped_dir = None
-    if ctx.attr.kernel_build[_KernelBuildExtModuleInfo].collect_unstripped_modules:
+    if kernel_build[_KernelBuildExtModuleInfo].collect_unstripped_modules:
         unstripped_dir = ctx.actions.declare_directory("{name}/unstripped".format(name = ctx.label.name))
 
     # Original `outs` attribute of `kernel_module` macro.
@@ -2040,15 +2043,15 @@ def _kernel_module_impl(ctx):
         command_outputs.append(unstripped_dir)
 
     command = ""
-    command += ctx.attr.kernel_build[_KernelEnvInfo].setup
-    command += ctx.attr.kernel_build[_KernelBuildExtModuleInfo].modules_prepare_setup
+    command += kernel_build[_KernelEnvInfo].setup
+    command += kernel_build[_KernelBuildExtModuleInfo].modules_prepare_setup
     command += """
              # create dirs for modules
                mkdir -p {kernel_uapi_headers_dir}/usr
     """.format(
         kernel_uapi_headers_dir = kernel_uapi_headers_dws.directory.path,
     )
-    for kernel_module_dep in ctx.attr.kernel_module_deps:
+    for kernel_module_dep in kernel_module_deps:
         command += kernel_module_dep[_KernelEnvInfo].setup
 
     grab_unstripped_cmd = ""
@@ -2209,7 +2212,7 @@ def _kernel_module_impl(ctx):
             setup = setup,
         ),
         _KernelModuleInfo(
-            kernel_build = ctx.attr.kernel_build,
+            kernel_build = kernel_build,
             modules_staging_dws = modules_staging_dws,
             kernel_uapi_headers_dws = kernel_uapi_headers_dws,
             files = ctx.outputs.outs,
