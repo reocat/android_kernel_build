@@ -1380,7 +1380,7 @@ directly, because `_get_sibling` handles `//build/kernel/kleaf:self_placeholder`
     fields = {name: name for name in _sibling_names},
 )
 
-def _get_sibling(target, key, what = "<unknown>"):
+def _get_sibling(target, key):
     """Get a sibling from the `_SiblingsInfo` of a target.
 
     Args:
@@ -1389,12 +1389,6 @@ def _get_sibling(target, key, what = "<unknown>"):
     """
     info = target[_SiblingsInfo]
     sibling_target = getoptattr(info, key)
-    if sibling_target == None:
-        fail("{what}: {target} has no sibling {key}".format(
-            what = what,
-            target = target,
-            key = key,
-        ))
     if str(sibling_target.label) == _SELF:
         return target
     return sibling_target
@@ -1949,7 +1943,6 @@ _KernelModuleInfo = provider(fields = {
     "modules_staging_dws": "`directory_with_structure` containing staging kernel modules. " +
                            "Contains the lib/modules/* suffix.",
     "kernel_uapi_headers_dws": "`directory_with_structure` containing UAPI headers to use the module.",
-    "files": "The list of output `*.ko` files.",
 })
 
 def _check_kernel_build(kernel_modules, kernel_build, this_label):
@@ -1988,7 +1981,6 @@ def _kernel_module_impl(ctx):
     inputs += ctx.files.makefile
     inputs += [
         ctx.file._search_and_cp_output,
-        ctx.file._check_declared_output_list,
     ]
     for kernel_module_dep in ctx.attr.kernel_module_deps:
         inputs += kernel_module_dep[_KernelEnvInfo].dependencies
@@ -2021,18 +2013,9 @@ def _kernel_module_impl(ctx):
         original_outs.append(short_name)
         original_outs_base.append(out.basename)
 
-    all_module_names_file = ctx.actions.declare_file("{}/all_module_names.txt".format(ctx.label.name))
-    ctx.actions.write(
-        output = all_module_names_file,
-        content = "\n".join(original_outs) + "\n",
-    )
-    inputs.append(all_module_names_file)
-
     module_symvers = ctx.actions.declare_file("{}/Module.symvers".format(ctx.attr.name))
-    check_no_remaining = ctx.actions.declare_file("{name}/{name}.check_no_remaining".format(name = ctx.attr.name))
     command_outputs = [
         module_symvers,
-        check_no_remaining,
     ]
     command_outputs += dws.files(modules_staging_dws)
     command_outputs += dws.files(kernel_uapi_headers_dws)
@@ -2096,35 +2079,17 @@ def _kernel_module_impl(ctx):
                    KERNEL_UAPI_HEADERS_DIR=$(realpath {kernel_uapi_headers_dir}) \
                    INSTALL_HDR_PATH=$(realpath {kernel_uapi_headers_dir}/usr)  \
                    ${{module_strip_flag}} modules_install
-
-             # Check if there are remaining *.ko files
-               remaining_ko_files=$({check_declared_output_list} \\
-                    --declared $(cat {all_module_names_file}) \\
-                    --actual $(cd {modules_staging_dir}/lib/modules/*/extra/{ext_mod} && find . -type f -name '*.ko' | sed 's:^[.]/::'))
-               if [[ ${{remaining_ko_files}} ]]; then
-                 echo "ERROR: The following kernel modules are built but not copied. Add these lines to the module_outs attribute of {label}:" >&2
-                 for ko in ${{remaining_ko_files}}; do
-                   echo '    "'"${{ko}}"'",' >&2
-                 done
-                 exit 1
-               fi
-               touch {check_no_remaining}
-
              # Grab unstripped modules
                {grab_unstripped_cmd}
              # Move Module.symvers
                mv ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers {module_symvers}
                """.format(
-        label = ctx.label,
         ext_mod = ctx.attr.ext_mod,
         module_symvers = module_symvers.path,
         modules_staging_dir = modules_staging_dws.directory.path,
         outdir = outdir,
         kernel_uapi_headers_dir = kernel_uapi_headers_dws.directory.path,
-        check_declared_output_list = ctx.file._check_declared_output_list.path,
-        all_module_names_file = all_module_names_file.path,
         grab_unstripped_cmd = grab_unstripped_cmd,
-        check_no_remaining = check_no_remaining.path,
     )
 
     command += dws.record(modules_staging_dws)
@@ -2149,31 +2114,29 @@ def _kernel_module_impl(ctx):
                 basename = out.basename,
             )))
         original_outs_base.append(out.basename)
-    cp_cmd_outputs = ctx.outputs.outs + additional_declared_outputs
 
-    if cp_cmd_outputs:
-        command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
-             # Copy files into place
-               {search_and_cp_output} --srcdir {modules_staging_dir}/lib/modules/*/extra/{ext_mod}/ --dstdir {outdir} {outs}
-        """.format(
-            search_and_cp_output = ctx.file._search_and_cp_output.path,
-            modules_staging_dir = modules_staging_dws.directory.path,
-            ext_mod = ctx.attr.ext_mod,
-            outdir = outdir,
-            outs = " ".join(original_outs),
-        )
-        _debug_print_scripts(ctx, command, what = "cp_outputs")
-        ctx.actions.run_shell(
-            mnemonic = "KernelModuleCpOutputs",
-            inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [
-                # We don't need structure_file here because we only care about files in the directory.
-                modules_staging_dws.directory,
-                ctx.file._search_and_cp_output,
-            ],
-            outputs = cp_cmd_outputs,
-            command = command,
-            progress_message = "Copying outputs {}".format(ctx.label),
-        )
+    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+         # Copy files into place
+           {search_and_cp_output} --srcdir {modules_staging_dir}/lib/modules/*/extra/{ext_mod}/ --dstdir {outdir} {outs}
+    """.format(
+        search_and_cp_output = ctx.file._search_and_cp_output.path,
+        modules_staging_dir = modules_staging_dws.directory.path,
+        ext_mod = ctx.attr.ext_mod,
+        outdir = outdir,
+        outs = " ".join(original_outs),
+    )
+    _debug_print_scripts(ctx, command, what = "cp_outputs")
+    ctx.actions.run_shell(
+        mnemonic = "KernelModuleCpOutputs",
+        inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [
+            # We don't need structure_file here because we only care about files in the directory.
+            modules_staging_dws.directory,
+            ctx.file._search_and_cp_output,
+        ],
+        outputs = ctx.outputs.outs + additional_declared_outputs,
+        command = command,
+        progress_message = "Copying outputs {}".format(ctx.label),
+    )
 
     setup = """
              # Use a new shell to avoid polluting variables
@@ -2195,12 +2158,9 @@ def _kernel_module_impl(ctx):
 
     # Only declare outputs in the "outs" list. For additional outputs that this rule created,
     # the label is available, but this rule doesn't explicitly return it in the info.
-    # Also add check_no_remaining in the list of default outputs so that, when
-    # outs is empty, the KernelModule action is still executed, and so
-    # is check_declared_output_list.
     return [
         DefaultInfo(
-            files = depset(ctx.outputs.outs + [check_no_remaining]),
+            files = depset(ctx.outputs.outs),
             # For kernel_module_test
             runfiles = ctx.runfiles(files = ctx.outputs.outs),
         ),
@@ -2212,7 +2172,6 @@ def _kernel_module_impl(ctx):
             kernel_build = ctx.attr.kernel_build,
             modules_staging_dws = modules_staging_dws,
             kernel_uapi_headers_dws = kernel_uapi_headers_dws,
-            files = ctx.outputs.outs,
         ),
         _KernelUnstrippedModulesInfo(
             directory = unstripped_dir,
@@ -2247,10 +2206,6 @@ _kernel_module = rule(
             allow_single_file = True,
             default = Label("//build/kernel/kleaf:search_and_cp_output.py"),
             doc = "Label referring to the script to process outputs",
-        ),
-        "_check_declared_output_list": attr.label(
-            allow_single_file = True,
-            default = Label("//build/kernel/kleaf:check_declared_output_list.py"),
         ),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
@@ -2416,7 +2371,9 @@ def _kernel_modules_install_impl(ctx):
     for kernel_module in ctx.attr.kernel_modules:
         inputs += dws.files(kernel_module[_KernelModuleInfo].modules_staging_dws)
 
-        for module_file in kernel_module[_KernelModuleInfo].files:
+        # Intentionally expand depset.to_list() to figure out what module files
+        # will be installed to module install directory.
+        for module_file in kernel_module[DefaultInfo].files.to_list():
             declared_file = ctx.actions.declare_file("{}/{}".format(ctx.label.name, module_file.basename))
             external_modules.append(declared_file)
 

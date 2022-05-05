@@ -1380,7 +1380,7 @@ directly, because `_get_sibling` handles `//build/kernel/kleaf:self_placeholder`
     fields = {name: name for name in _sibling_names},
 )
 
-def _get_sibling(target, key, what = "<unknown>"):
+def _get_sibling(target, key, this_label):
     """Get a sibling from the `_SiblingsInfo` of a target.
 
     Args:
@@ -1390,8 +1390,8 @@ def _get_sibling(target, key, what = "<unknown>"):
     info = target[_SiblingsInfo]
     sibling_target = getoptattr(info, key)
     if sibling_target == None:
-        fail("{what}: {target} has no sibling {key}".format(
-            what = what,
+        fail("{this}: {target} has no sibling {key}".format(
+            this = this_label,
             target = target,
             key = key,
         ))
@@ -1949,7 +1949,6 @@ _KernelModuleInfo = provider(fields = {
     "modules_staging_dws": "`directory_with_structure` containing staging kernel modules. " +
                            "Contains the lib/modules/* suffix.",
     "kernel_uapi_headers_dws": "`directory_with_structure` containing UAPI headers to use the module.",
-    "files": "The list of output `*.ko` files.",
 })
 
 def _check_kernel_build(kernel_modules, kernel_build, this_label):
@@ -1978,19 +1977,32 @@ def _check_kernel_build(kernel_modules, kernel_build, this_label):
             ))
 
 def _kernel_module_impl(ctx):
-    _check_kernel_build(ctx.attr.kernel_module_deps, ctx.attr.kernel_build, ctx.label)
+    kernel_build = ctx.attr.kernel_build
+    kernel_module_deps = ctx.attr.kernel_module_deps
+    if ctx.attr.sibling_name:
+        kernel_build = _get_sibling(kernel_build, ctx.attr.sibling_name)
+        if not kernel_build:
+            fail("{}: kernel_build {} has no sibling named {}.".format(ctx.label, kernel_build.label, ctx.attr.sibling_name))
+        sibling_kernel_module_deps = []
+        for dep in kernel_module_deps:
+            sibling_dep = _get_sibling(dep, ctx.attr.sibling_name)
+            if not sibling_dep:
+                fail("{}: kernel_module_deps {} has no sibling named {}.".format(ctx.label, dep.label, ctx.attr.sibling_name))
+            sibling_kernel_module_deps.append(sibling_dep)
+        kernel_module_deps = sibling_kernel_module_deps
+
+    _check_kernel_build(kernel_module_deps, kernel_build, ctx.label)
 
     inputs = []
     inputs += ctx.files.srcs
-    inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
-    inputs += ctx.attr.kernel_build[_KernelBuildExtModuleInfo].modules_prepare_deps
-    inputs += ctx.attr.kernel_build[_KernelBuildExtModuleInfo].module_srcs
+    inputs += kernel_build[_KernelEnvInfo].dependencies
+    inputs += kernel_build[_KernelBuildExtModuleInfo].modules_prepare_deps
+    inputs += kernel_build[_KernelBuildExtModuleInfo].module_srcs
     inputs += ctx.files.makefile
     inputs += [
         ctx.file._search_and_cp_output,
-        ctx.file._check_declared_output_list,
     ]
-    for kernel_module_dep in ctx.attr.kernel_module_deps:
+    for kernel_module_dep in kernel_module_deps:
         inputs += kernel_module_dep[_KernelEnvInfo].dependencies
     if ctx.attr._config_is_stamp[BuildSettingInfo].value:
         inputs.append(ctx.info_file)
@@ -2000,7 +2012,7 @@ def _kernel_module_impl(ctx):
     outdir = modules_staging_dws.directory.dirname
 
     unstripped_dir = None
-    if ctx.attr.kernel_build[_KernelBuildExtModuleInfo].collect_unstripped_modules:
+    if kernel_build[_KernelBuildExtModuleInfo].collect_unstripped_modules:
         unstripped_dir = ctx.actions.declare_directory("{name}/unstripped".format(name = ctx.label.name))
 
     # Original `outs` attribute of `kernel_module` macro.
@@ -2021,18 +2033,9 @@ def _kernel_module_impl(ctx):
         original_outs.append(short_name)
         original_outs_base.append(out.basename)
 
-    all_module_names_file = ctx.actions.declare_file("{}/all_module_names.txt".format(ctx.label.name))
-    ctx.actions.write(
-        output = all_module_names_file,
-        content = "\n".join(original_outs) + "\n",
-    )
-    inputs.append(all_module_names_file)
-
     module_symvers = ctx.actions.declare_file("{}/Module.symvers".format(ctx.attr.name))
-    check_no_remaining = ctx.actions.declare_file("{name}/{name}.check_no_remaining".format(name = ctx.attr.name))
     command_outputs = [
         module_symvers,
-        check_no_remaining,
     ]
     command_outputs += dws.files(modules_staging_dws)
     command_outputs += dws.files(kernel_uapi_headers_dws)
@@ -2040,15 +2043,15 @@ def _kernel_module_impl(ctx):
         command_outputs.append(unstripped_dir)
 
     command = ""
-    command += ctx.attr.kernel_build[_KernelEnvInfo].setup
-    command += ctx.attr.kernel_build[_KernelBuildExtModuleInfo].modules_prepare_setup
+    command += kernel_build[_KernelEnvInfo].setup
+    command += kernel_build[_KernelBuildExtModuleInfo].modules_prepare_setup
     command += """
              # create dirs for modules
                mkdir -p {kernel_uapi_headers_dir}/usr
     """.format(
         kernel_uapi_headers_dir = kernel_uapi_headers_dws.directory.path,
     )
-    for kernel_module_dep in ctx.attr.kernel_module_deps:
+    for kernel_module_dep in kernel_module_deps:
         command += kernel_module_dep[_KernelEnvInfo].setup
 
     grab_unstripped_cmd = ""
@@ -2096,35 +2099,17 @@ def _kernel_module_impl(ctx):
                    KERNEL_UAPI_HEADERS_DIR=$(realpath {kernel_uapi_headers_dir}) \
                    INSTALL_HDR_PATH=$(realpath {kernel_uapi_headers_dir}/usr)  \
                    ${{module_strip_flag}} modules_install
-
-             # Check if there are remaining *.ko files
-               remaining_ko_files=$({check_declared_output_list} \\
-                    --declared $(cat {all_module_names_file}) \\
-                    --actual $(cd {modules_staging_dir}/lib/modules/*/extra/{ext_mod} && find . -type f -name '*.ko' | sed 's:^[.]/::'))
-               if [[ ${{remaining_ko_files}} ]]; then
-                 echo "ERROR: The following kernel modules are built but not copied. Add these lines to the module_outs attribute of {label}:" >&2
-                 for ko in ${{remaining_ko_files}}; do
-                   echo '    "'"${{ko}}"'",' >&2
-                 done
-                 exit 1
-               fi
-               touch {check_no_remaining}
-
              # Grab unstripped modules
                {grab_unstripped_cmd}
              # Move Module.symvers
                mv ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers {module_symvers}
                """.format(
-        label = ctx.label,
         ext_mod = ctx.attr.ext_mod,
         module_symvers = module_symvers.path,
         modules_staging_dir = modules_staging_dws.directory.path,
         outdir = outdir,
         kernel_uapi_headers_dir = kernel_uapi_headers_dws.directory.path,
-        check_declared_output_list = ctx.file._check_declared_output_list.path,
-        all_module_names_file = all_module_names_file.path,
         grab_unstripped_cmd = grab_unstripped_cmd,
-        check_no_remaining = check_no_remaining.path,
     )
 
     command += dws.record(modules_staging_dws)
@@ -2149,31 +2134,29 @@ def _kernel_module_impl(ctx):
                 basename = out.basename,
             )))
         original_outs_base.append(out.basename)
-    cp_cmd_outputs = ctx.outputs.outs + additional_declared_outputs
 
-    if cp_cmd_outputs:
-        command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
-             # Copy files into place
-               {search_and_cp_output} --srcdir {modules_staging_dir}/lib/modules/*/extra/{ext_mod}/ --dstdir {outdir} {outs}
-        """.format(
-            search_and_cp_output = ctx.file._search_and_cp_output.path,
-            modules_staging_dir = modules_staging_dws.directory.path,
-            ext_mod = ctx.attr.ext_mod,
-            outdir = outdir,
-            outs = " ".join(original_outs),
-        )
-        _debug_print_scripts(ctx, command, what = "cp_outputs")
-        ctx.actions.run_shell(
-            mnemonic = "KernelModuleCpOutputs",
-            inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [
-                # We don't need structure_file here because we only care about files in the directory.
-                modules_staging_dws.directory,
-                ctx.file._search_and_cp_output,
-            ],
-            outputs = cp_cmd_outputs,
-            command = command,
-            progress_message = "Copying outputs {}".format(ctx.label),
-        )
+    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+         # Copy files into place
+           {search_and_cp_output} --srcdir {modules_staging_dir}/lib/modules/*/extra/{ext_mod}/ --dstdir {outdir} {outs}
+    """.format(
+        search_and_cp_output = ctx.file._search_and_cp_output.path,
+        modules_staging_dir = modules_staging_dws.directory.path,
+        ext_mod = ctx.attr.ext_mod,
+        outdir = outdir,
+        outs = " ".join(original_outs),
+    )
+    _debug_print_scripts(ctx, command, what = "cp_outputs")
+    ctx.actions.run_shell(
+        mnemonic = "KernelModuleCpOutputs",
+        inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [
+            # We don't need structure_file here because we only care about files in the directory.
+            modules_staging_dws.directory,
+            ctx.file._search_and_cp_output,
+        ],
+        outputs = ctx.outputs.outs + additional_declared_outputs,
+        command = command,
+        progress_message = "Copying outputs {}".format(ctx.label),
+    )
 
     setup = """
              # Use a new shell to avoid polluting variables
@@ -2195,12 +2178,9 @@ def _kernel_module_impl(ctx):
 
     # Only declare outputs in the "outs" list. For additional outputs that this rule created,
     # the label is available, but this rule doesn't explicitly return it in the info.
-    # Also add check_no_remaining in the list of default outputs so that, when
-    # outs is empty, the KernelModule action is still executed, and so
-    # is check_declared_output_list.
     return [
         DefaultInfo(
-            files = depset(ctx.outputs.outs + [check_no_remaining]),
+            files = depset(ctx.outputs.outs),
             # For kernel_module_test
             runfiles = ctx.runfiles(files = ctx.outputs.outs),
         ),
@@ -2209,14 +2189,14 @@ def _kernel_module_impl(ctx):
             setup = setup,
         ),
         _KernelModuleInfo(
-            kernel_build = ctx.attr.kernel_build,
+            kernel_build = kernel_build,
             modules_staging_dws = modules_staging_dws,
             kernel_uapi_headers_dws = kernel_uapi_headers_dws,
-            files = ctx.outputs.outs,
         ),
         _KernelUnstrippedModulesInfo(
             directory = unstripped_dir,
         ),
+        _SiblingsInfo(**{name: label for label, name in ctx.attr.siblings.items()}),
     ]
 
 _kernel_module = rule(
@@ -2235,10 +2215,16 @@ _kernel_module = rule(
             mandatory = True,
             providers = [_KernelEnvInfo, _KernelBuildExtModuleInfo],
         ),
+        "sibling_name": attr.string(),
         "kernel_module_deps": attr.label_list(
             providers = [_KernelEnvInfo, _KernelModuleInfo],
         ),
         "ext_mod": attr.string(mandatory = True),
+        "siblings": attr.label_keyed_string_dict(doc = """Sibling modules.
+
+Each key is a label. Each value is the sibling name for that label. One-to-one mapping
+because siblings of `kernel_module` aren't aliased to the main one.
+        """),
         # Not output_list because it is not a list of labels. The list of
         # output labels are inferred from name and outs.
         "outs": attr.output_list(),
@@ -2247,10 +2233,6 @@ _kernel_module = rule(
             allow_single_file = True,
             default = Label("//build/kernel/kleaf:search_and_cp_output.py"),
             doc = "Label referring to the script to process outputs",
-        ),
-        "_check_declared_output_list": attr.label(
-            allow_single_file = True,
-            default = Label("//build/kernel/kleaf:check_declared_output_list.py"),
         ),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
@@ -2360,19 +2342,38 @@ def kernel_module(
     kwargs.update(
         # This should be the exact list of arguments of kernel_module.
         # Default arguments of _kernel_module go into _kernel_module_set_defaults.
-        name = name,
         srcs = srcs,
         kernel_build = kernel_build,
         kernel_module_deps = kernel_module_deps,
-        outs = ["{name}/{out}".format(name = name, out = out) for out in outs] if outs else [],
+        outs = outs,
     )
     kwargs = _kernel_module_set_defaults(kwargs)
-    _kernel_module(**kwargs)
+
+    main_kwargs = dict(kwargs)
+    main_kwargs.update(
+        name = name,
+        outs = ["{name}/{out}".format(name = name, out = out) for out in main_kwargs["outs"]],
+        siblings = {name + "_" + sibling_name: sibling_name for sibling_name in _sibling_names},
+    )
+    _kernel_module(**main_kwargs)
 
     kernel_module_test(
         name = name + "_test",
         modules = [name],
     )
+
+    # Define external module for sibling kernel_build's.
+    # It may be possible to optimize this to alias some of them with the same
+    # kernel_build, but we don't have a way to get this information in
+    # the load phase right now.
+    for sibling_name in _sibling_names:
+        sibling_kwargs = dict(kwargs)
+        sibling_target_name = name + "_" + sibling_name
+        sibling_kwargs.update(
+            name = sibling_target_name,
+            outs = ["{sibling_target_name}/{out}".format(sibling_target_name = sibling_target_name, out = out) for out in outs],
+        )
+        _kernel_module(sibling_name = sibling_name, **sibling_kwargs)
 
 def _kernel_module_set_defaults(kwargs):
     """
@@ -2416,7 +2417,9 @@ def _kernel_modules_install_impl(ctx):
     for kernel_module in ctx.attr.kernel_modules:
         inputs += dws.files(kernel_module[_KernelModuleInfo].modules_staging_dws)
 
-        for module_file in kernel_module[_KernelModuleInfo].files:
+        # Intentionally expand depset.to_list() to figure out what module files
+        # will be installed to module install directory.
+        for module_file in kernel_module[DefaultInfo].files.to_list():
             declared_file = ctx.actions.declare_file("{}/{}".format(ctx.label.name, module_file.basename))
             external_modules.append(declared_file)
 
@@ -3862,25 +3865,32 @@ Extract Kythe source code index (kzip file) from a `kernel_build`.
 )
 
 def _kernel_extracted_symbols_impl(ctx):
-    if ctx.attr.kernel_build_notrim[_KernelBuildAbiInfo].trim_nonlisted_kmi:
+    kernel_build = ctx.attr.kernel_build
+    kernel_build = _get_sibling(kernel_build, "notrim")
+
+    kernel_modules = ctx.attr.kernel_modules
+    kernel_modules = [_get_sibling(kernel_module, "notrim") for kernel_module in kernel_modules]
+
+    if kernel_build[_KernelBuildAbiInfo].trim_nonlisted_kmi:
         fail("{}: Requires `kernel_build` {} to have `trim_nonlisted_kmi = False`.".format(
             ctx.label,
-            ctx.attr.kernel_build_notrim.label,
+            kernel_build.label,
         ))
 
     out = ctx.actions.declare_file("{}/extracted_symbols".format(ctx.attr.name))
     intermediates_dir = utils.intermediates_dir(ctx)
 
-    vmlinux = find_file(name = "vmlinux", files = ctx.files.kernel_build_notrim, what = "{}: kernel_build_notrim".format(ctx.attr.name), required = True)
-    in_tree_modules = find_files(suffix = ".ko", files = ctx.files.kernel_build_notrim, what = "{}: kernel_build_notrim".format(ctx.attr.name))
+    vmlinux = find_file(name = "vmlinux", files = kernel_build.files, what = "{}: kernel_build".format(ctx.attr.name), required = True)
+    in_tree_modules = find_files(suffix = ".ko", files = kernel_build.files, what = "{}: kernel_build".format(ctx.attr.name))
     srcs = [vmlinux] + in_tree_modules
-    srcs += ctx.files.kernel_modules  # external modules
+    for kernel_module in kernel_modules:  # external modules
+        srcs += kernel_module[_KernelModuleInfo].files
 
     inputs = [ctx.file._extract_symbols]
     inputs += srcs
-    inputs += ctx.attr.kernel_build_notrim[_KernelEnvInfo].dependencies
+    inputs += kernel_build[_KernelEnvInfo].dependencies
 
-    command = ctx.attr.kernel_build_notrim[_KernelEnvInfo].setup
+    command = kernel_build[_KernelEnvInfo].setup
     command += """
         mkdir -p {intermediates_dir}
         cp -pl {srcs} {intermediates_dir}
@@ -3911,7 +3921,7 @@ _kernel_extracted_symbols = rule(
         # - extract_symbols depends on the clang toolchain, which requires us to
         #   know the toolchain_version ahead of time.
         # - We also don't have the necessity to extract symbols from prebuilts.
-        "kernel_build_notrim": attr.label(providers = [_KernelEnvInfo, _KernelBuildAbiInfo]),
+        "kernel_build": attr.label(providers = [_KernelEnvInfo, _KernelBuildAbiInfo]),
         "kernel_modules": attr.label_list(),
         "module_grouping": attr.bool(default = True),
         "_extract_symbols": attr.label(default = "//build/kernel:abi/extract_symbols", allow_single_file = True),
@@ -3920,8 +3930,14 @@ _kernel_extracted_symbols = rule(
 )
 
 def _kernel_abi_dump_impl(ctx):
-    full_abi_out_file = _kernel_abi_dump_full(ctx)
-    abi_out_file = _kernel_abi_dump_filtered(ctx, full_abi_out_file)
+    kernel_build = ctx.attr.kernel_build
+    kernel_build = _get_sibling(kernel_build, "with_vmlinux")
+
+    kernel_modules = ctx.attr.kernel_modules
+    kernel_modules = [_get_sibling(kernel_module, "with_vmlinux") for kernel_module in kernel_modules]
+
+    full_abi_out_file = _kernel_abi_dump_full(ctx, kernel_build, kernel_modules)
+    abi_out_file = _kernel_abi_dump_filtered(ctx, kernel_build, full_abi_out_file)
     return [
         DefaultInfo(files = depset([full_abi_out_file, abi_out_file])),
         OutputGroupInfo(abi_out_file = depset([abi_out_file])),
@@ -3939,12 +3955,12 @@ def _kernel_abi_dump_epilog_cmd(path, append_version):
 """.format(path = path)
     return ret
 
-def _kernel_abi_dump_full(ctx):
+def _kernel_abi_dump_full(ctx, kernel_build, kernel_modules):
     abi_linux_tree = utils.intermediates_dir(ctx) + "/abi_linux_tree"
     full_abi_out_file = ctx.actions.declare_file("{}/abi-full.xml".format(ctx.attr.name))
-    vmlinux = find_file(name = "vmlinux", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name), required = True)
+    vmlinux = find_file(name = "vmlinux", files = kernel_build.files, what = "{}: kernel_build".format(ctx.attr.name), required = True)
 
-    unstripped_dir_provider_targets = [ctx.attr.kernel_build] + ctx.attr.kernel_modules
+    unstripped_dir_provider_targets = [kernel_build] + kernel_modules
     unstripped_dir_providers = [target[_KernelUnstrippedModulesInfo] for target in unstripped_dir_provider_targets]
     for prov in unstripped_dir_providers:
         if not prov.directory:
@@ -3983,13 +3999,13 @@ def _kernel_abi_dump_full(ctx):
     )
     return full_abi_out_file
 
-def _kernel_abi_dump_filtered(ctx, full_abi_out_file):
+def _kernel_abi_dump_filtered(ctx, kernel_build, full_abi_out_file):
     abi_out_file = ctx.actions.declare_file("{}/abi.xml".format(ctx.attr.name))
     inputs = [full_abi_out_file]
 
     inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
     command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup
-    combined_abi_symbollist = ctx.attr.kernel_build[_KernelBuildAbiInfo].combined_abi_symbollist
+    combined_abi_symbollist = kernel_build[_KernelBuildAbiInfo].combined_abi_symbollist
     if combined_abi_symbollist:
         inputs += [
             ctx.file._filter_abi,
@@ -4027,8 +4043,8 @@ _kernel_abi_dump = rule(
     implementation = _kernel_abi_dump_impl,
     doc = "Extracts the ABI.",
     attrs = {
-        "kernel_build": attr.label(providers = [_KernelEnvInfo, _KernelBuildAbiInfo, _KernelUnstrippedModulesInfo]),
-        "kernel_modules": attr.label_list(providers = [_KernelUnstrippedModulesInfo]),
+        "kernel_build": attr.label(providers = [_SiblingsInfo]),
+        "kernel_modules": attr.label_list(providers = [_SiblingsInfo]),
         "_dump_abi_scripts": attr.label(default = "//build/kernel:dump-abi-scripts"),
         "_dump_abi": attr.label(default = "//build/kernel:abi/dump_abi", allow_single_file = True),
         "_filter_abi": attr.label(default = "//build/kernel:abi/filter_abi", allow_single_file = True),
@@ -4250,7 +4266,8 @@ def _kernel_build_abi_define_other_targets(
 
     _kernel_abi_dump(
         name = name + "_abi_dump",
-        kernel_build = name + "_with_vmlinux",
+        # _kernel_abi_dump selects the _with_vmlinux targets for the below.
+        kernel_build = name,
         kernel_modules = kernel_modules,
     )
 
@@ -4339,9 +4356,10 @@ def _kernel_build_abi_define_abi_targets(
     # extract_symbols ...
     _kernel_extracted_symbols(
         name = name + "_abi_extracted_symbols",
-        kernel_build_notrim = name + "_notrim",
-        kernel_modules = kernel_modules,
         module_grouping = module_grouping,
+        # _kernel_extracted_symbols selects the _notrim targets for the below.
+        kernel_build = name,
+        kernel_modules = kernel_modules,
     )
     update_source_file(
         name = name + "_abi_update_symbol_list",
