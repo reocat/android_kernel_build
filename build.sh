@@ -756,6 +756,12 @@ fi
 
 if [ "${KMI_SYMBOL_LIST_STRICT_MODE}" = "1" ]; then
   echo "========================================================"
+  echo " Checking protected symbol access violation:"
+  set -x
+  ${ROOT_DIR}/build/abi/check_protected_symbol_access
+  set +x
+
+  echo "========================================================"
   echo " Comparing the KMI and the symbol lists:"
   set -x
 
