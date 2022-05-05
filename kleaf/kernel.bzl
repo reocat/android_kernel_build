@@ -3808,7 +3808,8 @@ def _kernel_extracted_symbols_impl(ctx):
     vmlinux = find_file(name = "vmlinux", files = ctx.files.kernel_build_notrim, what = "{}: kernel_build_notrim".format(ctx.attr.name), required = True)
     in_tree_modules = find_files(suffix = ".ko", files = ctx.files.kernel_build_notrim, what = "{}: kernel_build_notrim".format(ctx.attr.name))
     srcs = [vmlinux] + in_tree_modules
-    srcs += ctx.files.kernel_modules  # external modules
+    for kernel_module in ctx.attr.kernel_modules:  # external modules
+        srcs += kernel_module[_KernelModuleInfo].files
 
     inputs = [ctx.file._extract_symbols]
     inputs += srcs
