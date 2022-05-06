@@ -42,6 +42,11 @@ _kernel_build_internal_outs = [
     "include/config/kernel.release",
 ]
 
+_sibling_names = [
+    "notrim",
+    "with_vmlinux",
+]
+
 def _debug_trap():
     return """set -x
               trap '>&2 /bin/date' DEBUG"""
@@ -1915,9 +1920,6 @@ def _check_kernel_build(kernel_modules, kernel_build, this_label):
 
 def _kernel_module_impl(ctx):
     _check_kernel_build(ctx.attr.kernel_module_deps, ctx.attr.kernel_build, ctx.label)
-    if ctx.attr.sibling_name:
-        kernel_build = _get_sibling(kernel_build, ctx.attr.sibling_name, "{}: kernel_build".format(ctx.label))
-        kernel_module_deps = [_get_sibling(dep, ctx.attr.sibling_name, "{}: kernel_module_deps".format(ctx.label)) for dep in kernel_module_deps]
 
     inputs = []
     inputs += ctx.files.srcs
@@ -2308,11 +2310,8 @@ def kernel_module(
     kwargs = _kernel_module_set_defaults(kwargs)
 
     main_kwargs = dict(kwargs)
-    main_kwargs.update(
-        name = name,
-        outs = ["{name}/{out}".format(name = name, out = out) for out in main_kwargs["outs"]],
-        siblings = {name + "_" + sibling_name: sibling_name for sibling_name in _sibling_names},
-    )
+    main_kwargs["name"] = name
+    main_kwargs["outs"] = ["{name}/{out}".format(name = name, out = out) for out in main_kwargs["outs"]]
     _kernel_module(**main_kwargs)
 
     kernel_module_test(
@@ -2327,11 +2326,21 @@ def kernel_module(
     for sibling_name in _sibling_names:
         sibling_kwargs = dict(kwargs)
         sibling_target_name = name + "_" + sibling_name
-        sibling_kwargs.update(
-            name = sibling_target_name,
-            outs = ["{sibling_target_name}/{out}".format(sibling_target_name = sibling_target_name, out = out) for out in outs],
-        )
-        _kernel_module(sibling_name = sibling_name, **sibling_kwargs)
+        sibling_kwargs["name"] = sibling_target_name
+        sibling_kwargs["outs"] = ["{sibling_target_name}/{out}".format(sibling_target_name = sibling_target_name, out = out) for out in outs]
+
+        # This assumes the target is a kernel_build_abi with define_abi_targets
+        # etc., which may not be the case. See below for adding "manual" tag.
+        # TODO(b/231647455): clean up dependencies on implementation details.
+        sibling_kwargs["kernel_build"] = sibling_kwargs["kernel_build"] + "_" + sibling_name
+        if sibling_kwargs.get("kernel_module_deps") != None:
+            sibling_kwargs["kernel_module_deps"] = [dep + "_" + sibling_name for dep in sibling_kwargs["kernel_module_deps"]]
+
+        # We don't know if {kernel_build}_{sibling_name} exists or not, so
+        # add "manual" tag to prevent it from being built by default.
+        sibling_kwargs["tags"] = sibling_kwargs.get("tags", []) + ["manual"]
+
+        _kernel_module(**sibling_kwargs)
 
 def _kernel_module_set_defaults(kwargs):
     """
