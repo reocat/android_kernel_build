@@ -34,6 +34,24 @@
       "parentUuid": "208fad06_bc638b38",
       "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "678a6bff_a283f01b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2022-05-06T16:36:46Z",
+      "side": 1,
+      "message": "This tells me that GKI module A.ko should not be listed as a GKI module at all if we allow overriding? That is, an unprotected GKI module is nothing more than a normal kernel module that partners can mess with like normal?",
+      "parentUuid": "9f00538c_870f40e5",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
