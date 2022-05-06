@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e734822_29d93cb2",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-05-06T11:53:41Z",
+      "side": 1,
+      "message": "No directory is given on the command line. Please clarify.",
+      "range": {
+        "startLine": 14,
+        "startChar": 71,
+        "endLine": 15,
+        "endChar": 9
+      },
+      "revId": "a587a7272003565a87c8be85add33904028fde96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c33563f1_bc3c4626",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-05-06T11:53:41Z",
+      "side": 1,
+      "message": "Suggest rephrasing with \"before X\" for some \"X\".",
+      "range": {
+        "startLine": 38,
+        "startChar": 65,
+        "endLine": 38,
+        "endChar": 70
+      },
+      "revId": "a587a7272003565a87c8be85add33904028fde96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b626310_90a680bc",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-05-06T11:53:41Z",
+      "side": 1,
+      "message": "suggest: does not also update",
+      "range": {
+        "startLine": 39,
+        "startChar": 20,
+        "endLine": 39,
+        "endChar": 35
+      },
+      "revId": "a587a7272003565a87c8be85add33904028fde96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a84703e_b4deca13",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-05-06T11:53:41Z",
+      "side": 1,
+      "message": "ABIs",
+      "range": {
+        "startLine": 46,
+        "startChar": 18,
+        "endLine": 46,
+        "endChar": 21
+      },
+      "revId": "a587a7272003565a87c8be85add33904028fde96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a231116_dffc30f1",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-05-06T11:53:41Z",
+      "side": 1,
+      "message": "ABIs",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 37
+      },
+      "revId": "a587a7272003565a87c8be85add33904028fde96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56ccbbf9_6260dfcc",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-05-06T11:53:41Z",
+      "side": 1,
+      "message": "The subject of this sentence should be the build script. Perhaps:\n\n`build_abi.sh` will try to provide an equivalent Bazel command, according to the arguments it\u0027s given.",
+      "range": {
+        "startLine": 68,
+        "startChar": 10,
+        "endLine": 68,
+        "endChar": 65
+      },
+      "revId": "a587a7272003565a87c8be85add33904028fde96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27dc8078_49c18613",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-05-06T11:53:41Z",
+      "side": 1,
+      "message": "I noticed that running this for the first time (in a while) results in mangled output. It would be good to avoid invoking Blaze in the middle of a line of output.",
+      "range": {
+        "startLine": 72,
+        "startChar": 2,
+        "endLine": 72,
+        "endChar": 35
+      },
+      "revId": "a587a7272003565a87c8be85add33904028fde96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a769bcc_811d0d91",
+        "filename": "kleaf/docs/cheatsheet.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-05-06T11:53:41Z",
+      "side": 1,
+      "message": "Similar issue with this \"first\" here. Please be more explicit about what needs to precede these commands.",
+      "range": {
+        "startLine": 62,
+        "startChar": 65,
+        "endLine": 62,
+        "endChar": 70
+      },
+      "revId": "a587a7272003565a87c8be85add33904028fde96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3826d038_754e5869",
+        "filename": "kleaf/docs/cheatsheet.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-05-06T11:53:41Z",
+      "side": 1,
+      "message": "the symbol",
+      "range": {
+        "startLine": 62,
+        "startChar": 53,
+        "endLine": 62,
+        "endChar": 59
+      },
+      "revId": "a587a7272003565a87c8be85add33904028fde96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84d2e824_0c5fe8cc",
+        "filename": "kleaf/docs/cheatsheet.md",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-05-06T11:53:41Z",
+      "side": 1,
+      "message": "require",
+      "range": {
+        "startLine": 62,
+        "startChar": 35,
+        "endLine": 62,
+        "endChar": 43
+      },
+      "revId": "a587a7272003565a87c8be85add33904028fde96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
