@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "208fad06_bc638b38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2022-05-06T15:39:37Z",
+      "side": 1,
+      "message": "This check looks like a desirable thing to have to ensure the list of protected symbols and \u0027vendor\u0027 symbols are exclusive, so thanks for that. But this still doesn\u0027t help with the case where a vendor module gets out of sync with the symbol list and starts using a protected symbol. At that point the vendor will get no build error and they won\u0027t know their symbol list is out of date. So they\u0027ll have to try and load the module, fail, and realise that things have gotten out of sync, which is what the build time check should try to prevent.\n\nSuggested alternative: iterate over the vendor modules (which is the set of all modules minus the GKI modules), and for each, make sure that the undefined symbols are not protected.",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
