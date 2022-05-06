@@ -52,6 +52,24 @@
       "parentUuid": "9f00538c_870f40e5",
       "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02213245_6f89b11d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-06T16:41:35Z",
+      "side": 1,
+      "message": "We may need to make module unprotected just for a vendor; but all other still want to use open source version and they don\u0027t have to carry extra module in vendor module because of another vendor. So, we still need to keep the unprotected module as part of the GKI module. This will also encourage the use of maximum open source code vs custom code.",
+      "parentUuid": "678a6bff_a283f01b",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
