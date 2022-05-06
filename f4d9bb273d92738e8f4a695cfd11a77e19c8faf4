@@ -16,6 +16,24 @@
       "message": "This check looks like a desirable thing to have to ensure the list of protected symbols and \u0027vendor\u0027 symbols are exclusive, so thanks for that. But this still doesn\u0027t help with the case where a vendor module gets out of sync with the symbol list and starts using a protected symbol. At that point the vendor will get no build error and they won\u0027t know their symbol list is out of date. So they\u0027ll have to try and load the module, fail, and realise that things have gotten out of sync, which is what the build time check should try to prevent.\n\nSuggested alternative: iterate over the vendor modules (which is the set of all modules minus the GKI modules), and for each, make sure that the undefined symbols are not protected.",
       "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f00538c_870f40e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-06T16:27:10Z",
+      "side": 1,
+      "message": "Thanks Quentin for providing feedback on this.\n\nI understood the alternative you mentioned last time; but I believe that will not be fool proof as well. For example,\n\n1. GKI module A.ko (unprotected) so vendor can override it if they desire so.\n2. Vendor module A.ko (modified open source version - same name) accesses the protected symbol.\n3. We don\u0027t catch it as A.ko will get filtered out as it\u0027s a GKI module as well.\n\nWe don\u0027t want any vendor to start using protected symbol without our notice; so once we have anything in protected list; they will not be able to use it unless they first ask us to whitelist it (making module unprotected and removing the symbol). This will make sure we have build time check as well as runtime check and we don\u0027t have to actively police what is in the vendor symbol lists (less review burden for vendor patches), and we only maintain protected list.\n\nI chose this simple exclusivity check as it\u0027s quick and simple and add values on top of the runtime check; otherwise we need to rely on the runtime check and most failures will be found in the dev with loading; so that should be fine.\n\nLet me know, what do you think?",
+      "parentUuid": "208fad06_bc638b38",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
