@@ -3069,11 +3069,13 @@ Modules listed in this file is stripped away from the `vendor_dlkm` image.""",
 )
 
 def _boot_images_impl(ctx):
-    initramfs_staging_archive = ctx.attr.initramfs[_InitramfsInfo].initramfs_staging_archive
     outdir = ctx.actions.declare_directory(ctx.label.name)
     modules_staging_dir = outdir.path + "/staging"
-    initramfs_staging_dir = modules_staging_dir + "/initramfs_staging"
     mkbootimg_staging_dir = modules_staging_dir + "/mkbootimg_staging"
+
+    if ctx.attr.initramfs:
+        initramfs_staging_archive = ctx.attr.initramfs[_InitramfsInfo].initramfs_staging_archive
+        initramfs_staging_dir = modules_staging_dir + "/initramfs_staging"
 
     outs = []
     for out in ctx.outputs.outs:
@@ -3082,11 +3084,14 @@ def _boot_images_impl(ctx):
     kernel_build_outs = ctx.attr.kernel_build[_KernelBuildInfo].outs + ctx.attr.kernel_build[_KernelBuildInfo].base_kernel_files
 
     inputs = [
-        ctx.attr.initramfs[_InitramfsInfo].initramfs_img,
-        initramfs_staging_archive,
         ctx.file.mkbootimg,
         ctx.file._search_and_cp_output,
     ]
+    if ctx.attr.initramfs:
+        inputs += [
+            ctx.attr.initramfs[_InitramfsInfo].initramfs_img,
+            initramfs_staging_archive,
+        ]
     inputs += ctx.files.deps
     inputs += ctx.attr.kernel_build[_KernelEnvInfo].dependencies
     inputs += kernel_build_outs
@@ -3130,20 +3135,32 @@ def _boot_images_impl(ctx):
         )
 
     command += """
-             # Create and restore initramfs_staging_dir
-               mkdir -p {initramfs_staging_dir}
-               tar xf {initramfs_staging_archive} -C {initramfs_staging_dir}
              # Create and restore DIST_DIR.
              # We don't need all of *_for_dist. Copying all declared outputs of kernel_build is
              # sufficient.
                mkdir -p ${{DIST_DIR}}
                cp {kernel_build_outs} ${{DIST_DIR}}
+    """
+
+    set_initramfs_var_cmd = ""
+    if ctx.attr.initramfs:
+        command += """
                cp {initramfs_img} ${{DIST_DIR}}/initramfs.img
+             # Create and restore initramfs_staging_dir
+               mkdir -p {initramfs_staging_dir}
+               tar xf {initramfs_staging_archive} -C {initramfs_staging_dir}
+        """
+        set_initramfs_var_cmd = """
+               BUILD_INITRAMFS=1
+               INITRAMFS_STAGING_DIR={initramfs_staging_dir}
+        """
+
+    command += """
              # Build boot images
                (
                  {boot_flag_cmd}
                  {vendor_boot_flag_cmd}
-                 INITRAMFS_STAGING_DIR={initramfs_staging_dir}
+                 {set_initramfs_var_cmd}
                  MKBOOTIMG_STAGING_DIR=$(realpath {mkbootimg_staging_dir})
                  build_boot_images
                )
@@ -3162,6 +3179,7 @@ def _boot_images_impl(ctx):
         kernel_build_outs = " ".join([out.path for out in kernel_build_outs]),
         boot_flag_cmd = boot_flag_cmd,
         vendor_boot_flag_cmd = vendor_boot_flag_cmd,
+        set_initramfs_var_cmd = set_initramfs_var_cmd,
     )
 
     _debug_print_scripts(ctx, command)
@@ -3511,7 +3529,7 @@ def kernel_images(
             kernel_build = kernel_build,
             outs = ["{}_boot_images/{}".format(name, out) for out in boot_image_outs],
             deps = deps,
-            initramfs = ":{}_initramfs".format(name),
+            initramfs = ":{}_initramfs".format(name) if build_initramfs else None,
             mkbootimg = mkbootimg,
             vendor_ramdisk_binaries = vendor_ramdisk_binaries,
             build_boot = build_boot,
