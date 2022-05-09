@@ -284,6 +284,17 @@
 #     and resulting depmod artifacts. GKI build exclusive; DO NOT USE with device
 #     build configs files.
 #
+#   SYSTEM_DLKM_MODULES_LIST
+#     location (relative to the repo root directory) of an optional file
+#     containing the list of kernel modules which shall be copied into a
+#     system_dlkm partition image.
+#
+#   SYSTEM_DLKM_MODULES_BLOCKLIST
+#     location (relative to the repo root directory) of an optional file
+#     containing a list of modules which are blocked from being loaded. This
+#     file is copied directly to the staging directory and should be in the
+#     format: blocklist module_name
+#
 #   MODULES_OPTIONS
 #     A /lib/modules/modules.options file is created on the ramdisk containing
 #     the contents of this variable, lines should be of the form: options
@@ -978,8 +989,8 @@ if [ "${BUILD_SYSTEM_DLKM}" = "1"  ]; then
   echo " Creating system_dlkm image"
 
   rm -rf ${SYSTEM_DLKM_STAGING_DIR}
-  create_modules_staging "${MODULES_LIST}" ${MODULES_STAGING_DIR} \
-    ${SYSTEM_DLKM_STAGING_DIR} "${MODULES_BLOCKLIST}" "-e"
+  create_modules_staging "${SYSTEM_DLKM_MODULES_LIST}" ${MODULES_STAGING_DIR} \
+    ${SYSTEM_DLKM_STAGING_DIR} "${SYSTEM_DLKM_MODULES_BLOCKLIST}" "-e"
 
   SYSTEM_DLKM_ROOT_DIR=$(echo ${SYSTEM_DLKM_STAGING_DIR}/lib/modules/*)
   # Re-sign the stripped modules using kernel build time key
