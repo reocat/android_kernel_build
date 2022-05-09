@@ -70,6 +70,24 @@
       "parentUuid": "678a6bff_a283f01b",
       "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6690ea81_316e4c4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2022-05-09T10:00:36Z",
+      "side": 1,
+      "message": "Right, we can keep compiling the \u0027unprotected\u0027 module if some vendors want to keep using our pre-built, no problem, but why should we keep it on the list of GKI modules? This makes things extra complicated no? Clearly this causes issues like the one you\u0027ve mentioned above, and it feels like we\u0027re mixing concepts a bit. IOW, can we simplify this a bit please :) ?",
+      "parentUuid": "02213245_6f89b11d",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
