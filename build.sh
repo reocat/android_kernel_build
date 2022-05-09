@@ -227,13 +227,13 @@
 #
 #     BUILD_VENDOR_BOOT_IMG is incompatible with SKIP_VENDOR_BOOT, and is effectively a
 #     nop if BUILD_BOOT_IMG is set.
-#     - MODULES_LIST=<file to list of modules> list of modules to use for
+#     - VENDOR_DLKM_MODULES_LIST=<file to list of modules> list of modules to use for
 #       vendor_boot.modules.load. If this property is not set, then the default
 #       modules.load is used.
 #     - TRIM_UNUSED_MODULES. If set, then modules not mentioned in
 #       modules.load are removed from initramfs. If MODULES_LIST is unset, then
 #       having this variable set effectively becomes a no-op.
-#     - MODULES_BLOCKLIST=<modules.blocklist file> A list of modules which are
+#     - VENDOR_DLKM_MODULES_BLOCKLIST=<modules.blocklist file> A list of modules which are
 #       blocked from being loaded. This file is copied directly to staging directory,
 #       and should be in the format:
 #       blocklist module_name
@@ -283,6 +283,17 @@
 #     if set to "1", build a system_dlkm.img containing all signed GKI modules
 #     and resulting depmod artifacts. GKI build exclusive; DO NOT USE with device
 #     build configs files.
+#
+#   SYSTEM_DLKM_MODULES_LIST
+#     location (relative to the repo root directory) of an optional file
+#     containing the list of kernel modules which shall be copied into a
+#     system_dlkm partition image.
+#
+#   SYSTEM_DLKM_MODULES_BLOCKLIST
+#     location (relative to the repo root directory) of an optional file
+#     containing a list of modules which are blocked from being loaded. This
+#     file is copied directly to the staging directory and should be in the
+#     format: blocklist module_name
 #
 #   MODULES_OPTIONS
 #     A /lib/modules/modules.options file is created on the ramdisk containing
@@ -978,10 +989,14 @@ if [ "${BUILD_SYSTEM_DLKM}" = "1"  ]; then
   echo " Creating system_dlkm image"
 
   rm -rf ${SYSTEM_DLKM_STAGING_DIR}
-  create_modules_staging "${MODULES_LIST}" ${MODULES_STAGING_DIR} \
-    ${SYSTEM_DLKM_STAGING_DIR} "${MODULES_BLOCKLIST}" "-e"
+  create_modules_staging "${SYSTEM_DLKM_MODULES_LIST}" ${MODULES_STAGING_DIR} \
+    ${SYSTEM_DLKM_STAGING_DIR} "${SYSTEM_DLKM_MODULES_BLOCKLIST}" "-e"
 
   SYSTEM_DLKM_ROOT_DIR=$(echo ${SYSTEM_DLKM_STAGING_DIR}/lib/modules/*)
+  cp ${SYSTEM_DLKM_ROOT_DIR}/modules.load ${DIST_DIR}/system_dlkm.modules.load
+  if [ -e "${SYSTEM_DLKM_ROOT_DIR}/modules.blocklist" ]; then
+    cp ${SYSTEM_DLKM_ROOT_DIR}/modules.blocklist ${DIST_DIR}/system_dlkm.modules.blocklist
+  fi
   # Re-sign the stripped modules using kernel build time key
   find ${SYSTEM_DLKM_STAGING_DIR} -type f -name "*.ko" \
     -exec ${OUT_DIR}/scripts/sign-file sha1 \
