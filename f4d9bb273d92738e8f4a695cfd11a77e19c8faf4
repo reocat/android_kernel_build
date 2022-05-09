@@ -124,6 +124,24 @@
       "parentUuid": "82dea59c_99a33e5c",
       "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7842763a_8ef1ded0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-09T16:40:09Z",
+      "side": 1,
+      "message": "Thanks.\n\nYou definitely have many good design ideas around these but unfortunately it\u0027s little too late at this point of time; since 5.10 is already frozen I don\u0027t think I can do big design changes. I am still trying to have some modules for 5.15 go in but at this speed looks like I will miss that train as well. Let me see, if I can still do these changes for both 5.10 and 5.15. Tooling changes are OK because both repos are using master from kernel build tools; but changing lists and what it means, I am not sure - I need to assess.",
+      "parentUuid": "39c80ce1_b700a9f7",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
