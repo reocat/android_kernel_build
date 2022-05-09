@@ -88,6 +88,24 @@
       "parentUuid": "02213245_6f89b11d",
       "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82dea59c_99a33e5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-09T15:50:09Z",
+      "side": 1,
+      "message": "They are still GKI modules but unprotected; so should be on the list of GKI modules. 😊\nThe reason is without being on the list; they won\u0027t be copied as part of the system_dlkm archive and hence partition. The blind copy to the archive can cause the issue with device build as there may be vendor modules; so just copying all *.ko is not an option.",
+      "parentUuid": "6690ea81_316e4c4d",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
