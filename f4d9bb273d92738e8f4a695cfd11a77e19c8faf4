@@ -106,6 +106,24 @@
       "parentUuid": "6690ea81_316e4c4d",
       "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39c80ce1_b700a9f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2022-05-09T16:16:57Z",
+      "side": 1,
+      "message": "Presumably this can be solved trivially by having a separate list for those modules? I really think it is worthwhile to separate them as they have entirely different semantics, which will make things much easier to reason about IMO.",
+      "parentUuid": "82dea59c_99a33e5c",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
