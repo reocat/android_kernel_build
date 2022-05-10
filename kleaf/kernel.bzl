@@ -3815,18 +3815,23 @@ def _kernel_extracted_symbols_impl(ctx):
     inputs += srcs
     inputs += ctx.attr.kernel_build_notrim[_KernelEnvInfo].dependencies
 
+    flags = ["--symbol-list", out.path]
+    if not ctx.attr.module_grouping:
+        flags.append("--skip-module-grouping")
+    if ctx.attr.kmi_symbol_list_add_only:
+        flags.append("--additions-only")
+
     command = ctx.attr.kernel_build_notrim[_KernelEnvInfo].setup
     command += """
         mkdir -p {intermediates_dir}
         cp -pl {srcs} {intermediates_dir}
-        {extract_symbols} --symbol-list {out} {skip_module_grouping_flag} {intermediates_dir}
+        {extract_symbols} {flags} {intermediates_dir}
         rm -rf {intermediates_dir}
     """.format(
         srcs = " ".join([file.path for file in srcs]),
         intermediates_dir = intermediates_dir,
         extract_symbols = ctx.file._extract_symbols.path,
-        out = out.path,
-        skip_module_grouping_flag = "" if ctx.attr.module_grouping else "--skip-module-grouping",
+        flags = " ".join(flags),
     )
     _debug_print_scripts(ctx, command)
     ctx.actions.run_shell(
@@ -3849,6 +3854,7 @@ _kernel_extracted_symbols = rule(
         "kernel_build_notrim": attr.label(providers = [_KernelEnvInfo, _KernelBuildAbiInfo]),
         "kernel_modules": attr.label_list(providers = [_KernelModuleInfo]),
         "module_grouping": attr.bool(default = True),
+        "kmi_symbol_list_add_only": attr.bool(),
         "_extract_symbols": attr.label(default = "//build/kernel:abi/extract_symbols", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
@@ -4020,6 +4026,7 @@ def kernel_build_abi(
         abi_definition = None,
         kmi_enforced = None,
         unstripped_modules_archive = None,
+        kmi_symbol_list_add_only = None,
         # for kernel_build
         **kwargs):
     """Declare multiple targets to support ABI monitoring.
@@ -4099,6 +4106,14 @@ def kernel_build_abi(
         reacts to it by failing if KMI differences are detected.
       unstripped_modules_archive: A [`kernel_unstripped_modules_archive`](#kernel_unstripped_modules_archive)
         which name is specified in `abi.prop`.
+      kmi_symbol_list_add_only: If unspecified or `None`, it is `False` by
+        default. If `True`,
+        then any symbols in the symbol list that would have been
+        removed are preserved (at the end of the file). Symbol list update will
+        fail if there is no pre-existing symbol list file to read from. This
+        property is intended to prevent unintentional shrinkage of a stable ABI.
+
+        This should be set to `True` if `KMI_SYMBOL_LIST_ADD_ONLY=1`.
       kwargs: See [`kernel_build.kwargs`](#kernel_build-kwargs)
     """
 
@@ -4159,6 +4174,7 @@ def kernel_build_abi(
         kernel_build_notrim = name + "_notrim",
         kernel_modules = kernel_modules,
         module_grouping = module_grouping,
+        add_only = add_only,
     )
     update_source_file(
         name = name + "_abi_update_symbol_list",
