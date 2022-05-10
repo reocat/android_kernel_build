@@ -16,6 +16,24 @@
       "message": "What code generates this `$DIST_DIR/kernel-gdb-scripts.tar.gz` ?",
       "revId": "716838c8865a95ac9f2b9968760aedff350e81c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f5a05a9_43944599",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1878680
+      },
+      "writtenOn": "2022-05-10T21:33:15Z",
+      "side": 1,
+      "message": "The archive is generated only when CONFIG_GDB_SCRIPTS is enabled and it contains gdb python scripts for debugging the kernel.",
+      "parentUuid": "20e3774f_e4590242",
+      "revId": "716838c8865a95ac9f2b9968760aedff350e81c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
