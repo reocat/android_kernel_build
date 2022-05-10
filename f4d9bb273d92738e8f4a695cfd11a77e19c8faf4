@@ -227,6 +227,72 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7fb51d4_90726869",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-10T18:15:36Z",
+      "side": 1,
+      "message": "`[abi_symbol_list]`\n\nI am planning to come up with a script to generate this file; so unless someone modifies it manually it should be an issue. I\u0027ll put a note on the script usage document to not edit file manually. Does that work?",
+      "parentUuid": "0d57d0ba_61364d79",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 7
+      },
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2716df2_3b3e046b",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-10T18:15:36Z",
+      "side": 1,
+      "message": "`awk` loads the first file in the memory and compare against the second. So, if either file is empty there won\u0027t be any match which is correct behavior. Though we expect the file to be present and non empty but possible that someone might have deleted it - I need to handle the existence case. I\u0027ll add that one.",
+      "parentUuid": "7a074b19_2a2fc7fa",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "648358ac_43c5c073",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-10T18:15:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19c6ebfb_cd566f20",
+      "range": {
+        "startLine": 20,
+        "startChar": 44,
+        "endLine": 20,
+        "endChar": 69
+      },
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f4cdcb2_e6a82e7d",
         "filename": "abi/check_protected_symbol_access",
         "patchSetId": 1
@@ -238,6 +304,30 @@
       "writtenOn": "2022-05-10T12:38:53Z",
       "side": 1,
       "message": "those files contain comments, section tags and most symbols are prefixed by an arbitrary number of whitespaces. is this all taken into account?",
+      "range": {
+        "startLine": 21,
+        "startChar": 39,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a5c7695_5f045f0b",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-10T18:15:36Z",
+      "side": 1,
+      "message": "Logic is to have the protected symbol file in the memory and compare against; so as long as protected symbol file is clean with unnecessary commentary (which it should be as it will be script generated file) it\u0027s fine. Spaces are no issue in the comparison. I believe I have tested it but I\u0027ll double check again and as long as comments doesn\u0027t match in both files they won\u0027t be part of the `$violation`.",
+      "parentUuid": "2f4cdcb2_e6a82e7d",
       "range": {
         "startLine": 21,
         "startChar": 39,
@@ -273,6 +363,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64b0db5a_0a6e16ed",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-10T18:15:36Z",
+      "side": 1,
+      "message": "`trap \"rm -f $protected_symbols \u0026\u0026 rm -f $vendor_symbols\" EXIT` ?",
+      "parentUuid": "da24cbef_27df307e",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e001132f_3cc413c0",
         "filename": "build.sh",
         "patchSetId": 1
@@ -284,6 +398,24 @@
       "writtenOn": "2022-05-10T12:38:53Z",
       "side": 1,
       "message": "why -x?",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b166a9a3_fcff048f",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-10T18:15:36Z",
+      "side": 1,
+      "message": "Can you please provide more details on what\u0027s wrong here? Isn\u0027t every commands in this script wrapped around with `set -x` and `set +x`. I just followed the existing format within the script.",
+      "parentUuid": "e001132f_3cc413c0",
       "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
