@@ -111,6 +111,30 @@
       },
       "revId": "ef362b2a44193a1910362a77cb272234adc40eec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28903a10_ece3e685",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2022-05-10T21:29:26Z",
+      "side": 1,
+      "message": "(we have a libziparchive-based unzip already in the build-tools prebuilts, but no-one\u0027s written zip yet, in part because it seemed like the build system would stick with soong_zip...)",
+      "parentUuid": "e5c69796_87c323da",
+      "range": {
+        "startLine": 899,
+        "startChar": 50,
+        "endLine": 899,
+        "endChar": 69
+      },
+      "revId": "ef362b2a44193a1910362a77cb272234adc40eec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
