@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e10c9606_5e7a1a47",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-10T22:11:06Z",
+      "side": 1,
+      "message": "It\u0027s not. For the `vendor_dlkm` there are seperate defines, no?\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/build.sh;l\u003d303",
+      "parentUuid": "667f90a1_6f132669",
+      "range": {
+        "startLine": 230,
+        "startChar": 8,
+        "endLine": 230,
+        "endChar": 20
+      },
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a114522_73b1b98e",
         "filename": "build.sh",
         "patchSetId": 1
@@ -91,6 +115,57 @@
         "endLine": 236,
         "endChar": 25
       },
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "028ca667_83032d4d",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-10T22:11:06Z",
+      "side": 1,
+      "message": "MODULES_LIST is for GKI modules; so no need to define this one more time. There is seperate VENDOR_DLKM_MODULES_LIST and blocklist is available.",
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7419ca5_3cb49d70",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-10T22:11:06Z",
+      "side": 1,
+      "message": "It\u0027s nice to have this but we wanted to make all the modules available to load to be generic for everyone and blocking of the module loading and the copying of the module on the partition itself should be controlled from the platform build. Kernel build system_dlkm.img is not useful except for the dev environment.",
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe10956d_a6bec318",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 992,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-10T22:11:06Z",
+      "side": 1,
+      "message": "Where is SYSTEM_DLKM_MODULES_LIST being set?\n\nMODULES_LIST is being set here for arm64 GKI builds: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/build.config.gki.aarch64;l\u003d14",
       "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
