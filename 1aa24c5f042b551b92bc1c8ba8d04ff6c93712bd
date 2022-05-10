@@ -69,6 +69,109 @@
       "message": "Hi Matthias,\n\nCan you help to review the CL?\nThanks,",
       "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b219d2fc_53cd63da",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T11:55:24Z",
+      "side": 1,
+      "message": "do we really want to encode the branch name in the artifact? is this necessary? as of now, we even encode the branch name in the default out/dist directories, hence there would not even be a collision when switching branches. Similarly to how we do not create Image-mainline.gz, we should not generate boot-mainline-gz.img, but instead boot-gz.img and boot-lz4.img.",
+      "range": {
+        "startLine": 416,
+        "startChar": 6,
+        "endLine": 417,
+        "endChar": 77
+      },
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81960220_b7bed662",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T11:55:24Z",
+      "side": 1,
+      "message": "the documentation says the default is v4, but here we fall back to v3? I know later in the code the default is set to 4, but this inconsistency itches.",
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aef762ba_6c4c8ec0",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T11:55:24Z",
+      "side": 1,
+      "message": "the introduction of the variables feels unnecessary, how about you just document $1 and $2?",
+      "range": {
+        "startLine": 486,
+        "startChar": 0,
+        "endLine": 487,
+        "endChar": 25
+      },
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f497d7b4_8ca4aef9",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T11:55:24Z",
+      "side": 1,
+      "message": "as mentioned earlier, do we absolutely need the version encoded in the filename?",
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5961923_bdf024b6",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T11:55:24Z",
+      "side": 1,
+      "message": "Creating",
+      "range": {
+        "startLine": 529,
+        "startChar": 8,
+        "endLine": 529,
+        "endChar": 14
+      },
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
