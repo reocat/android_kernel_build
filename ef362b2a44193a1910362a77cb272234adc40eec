@@ -39,6 +39,30 @@
       },
       "revId": "ef362b2a44193a1910362a77cb272234adc40eec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d441acdf_63881291",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2022-05-10T19:55:00Z",
+      "side": 1,
+      "message": "(if you\u0027re _not_ root, the default is to ignore owner/group when un-tarring. and if you _are_ root ... :-) so this should be fine.)",
+      "parentUuid": "b75d4b83_2c50352a",
+      "range": {
+        "startLine": 899,
+        "startChar": 50,
+        "endLine": 899,
+        "endChar": 69
+      },
+      "revId": "ef362b2a44193a1910362a77cb272234adc40eec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
