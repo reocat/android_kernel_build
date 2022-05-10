@@ -142,6 +142,150 @@
       "parentUuid": "39c80ce1_b700a9f7",
       "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d1a6bf2_493e1473",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T12:38:53Z",
+      "side": 1,
+      "message": "Just for the record, we should rather not settle with an inferior solution just because we ran out of time ...",
+      "parentUuid": "7842763a_8ef1ded0",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a074b19_2a2fc7fa",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T12:38:53Z",
+      "side": 1,
+      "message": "what if said file does not exist?",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d57d0ba_61364d79",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T12:38:53Z",
+      "side": 1,
+      "message": "what do we expect the first line of this file to be? if it is commentary, what if there are more lines?",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 7
+      },
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c6ebfb_cd566f20",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T12:38:53Z",
+      "side": 1,
+      "message": "this is a hardcoded convention. At least define elsewhere as a constant.",
+      "range": {
+        "startLine": 20,
+        "startChar": 44,
+        "endLine": 20,
+        "endChar": 69
+      },
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f4cdcb2_e6a82e7d",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T12:38:53Z",
+      "side": 1,
+      "message": "those files contain comments, section tags and most symbols are prefixed by an arbitrary number of whitespaces. is this all taken into account?",
+      "range": {
+        "startLine": 21,
+        "startChar": 39,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da24cbef_27df307e",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T12:38:53Z",
+      "side": 1,
+      "message": "that is one line, and perhaps you can make this an exit TRAP",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e001132f_3cc413c0",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T12:38:53Z",
+      "side": 1,
+      "message": "why -x?",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
