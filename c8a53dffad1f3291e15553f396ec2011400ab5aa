@@ -194,6 +194,24 @@
       "parentUuid": "acd62a22_f295abf0",
       "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63335f55_329afcdf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-10T17:46:22Z",
+      "side": 1,
+      "message": "Pushing this change so that http://aosp/2078620 which is for unprotected modules request from Qualcomm can move ahead while we have resolution for protected modules and symbols for 80211 modules.",
+      "parentUuid": "96986c17_6e1eedb6",
+      "revId": "c8a53dffad1f3291e15553f396ec2011400ab5aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
