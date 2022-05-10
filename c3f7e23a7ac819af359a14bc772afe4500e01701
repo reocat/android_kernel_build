@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "667f90a1_6f132669",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1891695
+      },
+      "writtenOn": "2022-05-10T20:53:42Z",
+      "side": 1,
+      "message": "This MODULES_LIST here is related to vendor_dlkm and can i modify this here in this commit ??",
+      "parentUuid": "fc04fcce_55f698d0",
+      "range": {
+        "startLine": 230,
+        "startChar": 8,
+        "endLine": 230,
+        "endChar": 20
+      },
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a114522_73b1b98e",
         "filename": "build.sh",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-10T12:59:51Z",
       "side": 1,
       "message": "and here?",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 25
+      },
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afb87535_478b062e",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1891695
+      },
+      "writtenOn": "2022-05-10T20:53:42Z",
+      "side": 1,
+      "message": "same as above comment",
+      "parentUuid": "7a114522_73b1b98e",
       "range": {
         "startLine": 236,
         "startChar": 8,
