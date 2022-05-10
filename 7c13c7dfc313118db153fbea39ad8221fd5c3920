@@ -22,6 +22,30 @@
       },
       "revId": "7c13c7dfc313118db153fbea39ad8221fd5c3920",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89af9382_a75fd59a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-10T17:42:43Z",
+      "side": 1,
+      "message": "Targets with tags \u003d [\"manual\"] are not included in wildcard target patterns (..., :*, :all, etc.) when specified in commands like bazel build and bazel test; you should specify such test targets with explicit target patterns on the command line if you want Bazel to build/test them. In contrast, bazel query doesn’t perform any such filtering automatically (that would defeat the purpose of bazel query).\n\nhttps://docs.bazel.build/versions/main/guide.html#specifying-targets-to-build",
+      "parentUuid": "eb335cdf_fd4eac3c",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 10
+      },
+      "revId": "7c13c7dfc313118db153fbea39ad8221fd5c3920",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
