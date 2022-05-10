@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "481f61d4_606b23f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T12:07:08Z",
+      "side": 1,
+      "message": "thanks for that excellent idea. Perhaps we can use `TAR_OPTIONS` to not repeat ourselves and to propagate this to all `tar` invocations.",
+      "revId": "ef362b2a44193a1910362a77cb272234adc40eec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b75d4b83_2c50352a",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-10T12:07:08Z",
+      "side": 1,
+      "message": "is that not effectively leading to unpacking as root (or the attempt of that)?",
+      "range": {
+        "startLine": 899,
+        "startChar": 50,
+        "endLine": 899,
+        "endChar": 69
+      },
+      "revId": "ef362b2a44193a1910362a77cb272234adc40eec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
