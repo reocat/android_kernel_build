@@ -87,6 +87,30 @@
       },
       "revId": "ef362b2a44193a1910362a77cb272234adc40eec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45c3c9e0_23bf819f",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1069238
+      },
+      "writtenOn": "2022-05-10T21:29:14Z",
+      "side": 1,
+      "message": "\u003e with support for 7z, xz, zst and the other formats\n\ns/with/without/\n\nMarking thread as resolved.",
+      "parentUuid": "e5c69796_87c323da",
+      "range": {
+        "startLine": 899,
+        "startChar": 50,
+        "endLine": 899,
+        "endChar": 69
+      },
+      "revId": "ef362b2a44193a1910362a77cb272234adc40eec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
