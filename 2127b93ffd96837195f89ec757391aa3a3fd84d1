@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6a8096f_c7e0986a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1356264
+      },
+      "writtenOn": "2022-05-10T20:22:58Z",
+      "side": 1,
+      "message": "go/abtd runs in a different project than postsubmit builds. So while this fails using abtd, I _think_ this should work when submitted in postsubmit. \n\nWe can continue to work on fixing ABTD but you can try to submit this and see if it resolves the current permission error",
+      "revId": "2127b93ffd96837195f89ec757391aa3a3fd84d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
