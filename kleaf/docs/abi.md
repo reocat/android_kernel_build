@@ -50,6 +50,22 @@ of `//common:kernel_aarch64`, which is `common/android/abi_gki_aarch64.xml`. The
 exit code reflects whether an ABI change is detected in the comparison, just
 like `build_abi.sh --update`.
 
+Executing the command yields a git command to create a git commit with
+templated message. For example:
+
+```shell
+$ bazel run //common:kernel_aarch64_abi_update
+[...]
+INFO: To create a git commit with templated message, execute:
+  cd common/android
+  git add abi_gki_aarch64.xml
+  git commit -F [...]/bazel-out/k8-fastbuild/bin/common/kernel_aarch64_abi_diff/git_message.txt
+```
+
+You may execute the provided commands to create a git commit with templated
+message, then run `git commit --amend` to provide the subject line, additional
+message, and bug number.
+
 If you do not wish to compare the ABIs before the update, you may execute the
 following instead:
 
