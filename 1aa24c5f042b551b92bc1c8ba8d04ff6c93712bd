@@ -71,6 +71,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68c3552b_2304f81d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-11T08:10:03Z",
+      "side": 1,
+      "message": "Let\u0027s discuss the file name first: b/222078981#comment16.\n\nWill address other comments in the next PS.\n\nThanks for the suggestion!",
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b219d2fc_53cd63da",
@@ -84,6 +101,30 @@
       "writtenOn": "2022-05-10T11:55:24Z",
       "side": 1,
       "message": "do we really want to encode the branch name in the artifact? is this necessary? as of now, we even encode the branch name in the default out/dist directories, hence there would not even be a collision when switching branches. Similarly to how we do not create Image-mainline.gz, we should not generate boot-mainline-gz.img, but instead boot-gz.img and boot-lz4.img.",
+      "range": {
+        "startLine": 416,
+        "startChar": 6,
+        "endLine": 417,
+        "endChar": 77
+      },
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fb3ca22_b8c91030",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-11T08:10:03Z",
+      "side": 1,
+      "message": "\u003e do we really want to encode the branch name in the artifact? is this necessary? \n\nThis is a good suggestion as we already know the kernel version from a GKI branch name or out/dist directories.\n\nHowever, I\u0027m not sure its impact from GKI release / testing\u0027s POV.\n\nAdded b/222078981#comment16 for discussions.",
+      "parentUuid": "b219d2fc_53cd63da",
       "range": {
         "startLine": 416,
         "startChar": 6,
