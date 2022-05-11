@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa0060f_d151e5d3",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-05-11T07:11:45Z",
+      "side": 1,
+      "message": "I\u0027m concerned (but only a little) about suppressing other possible messages.\n\nI see this code is actually written to overwrite on the terminal.\n\nIt might be simpler to not do that.\n\nI\u0027ve also noticed that some lines go to stderr and others to stdout. Please be consistent so that anyone using a pager or redirecting to a file, for example, gets meaningful output.\n\nSame comments for the other file.",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 440,
+        "endChar": 111
+      },
+      "revId": "39d92e4e27e04460175429740b529edbe1b45aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
