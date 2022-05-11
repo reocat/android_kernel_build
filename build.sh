@@ -437,7 +437,7 @@ source "${ROOT_DIR}/build/_setup_env.sh"
     echo     "*   See build/kernel/kleaf/README.md"
     echo -ne "*          Inferring equivalent Bazel command...\r"
     bazel_command_code=0
-    eq_bazel_command=$(${ROOT_DIR}/build/kernel/kleaf/convert_to_bazel.sh 2>&1) || bazel_command_code=$?
+    eq_bazel_command=$(${ROOT_DIR}/build/kernel/kleaf/convert_to_bazel.sh 2>/dev/null) || bazel_command_code=$?
     if [[ $bazel_command_code -eq 0 ]]; then
         echo "*          Possibly equivalent Bazel command:                           " >&2
         echo "*" >&2
