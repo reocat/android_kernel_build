@@ -168,6 +168,24 @@
       "message": "Where is SYSTEM_DLKM_MODULES_LIST being set?\n\nMODULES_LIST is being set here for arm64 GKI builds: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/build.config.gki.aarch64;l\u003d14",
       "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4554c91_ec11c405",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 992,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-05-11T16:52:09Z",
+      "side": 1,
+      "message": "That is wrong, isn\u0027t it?\n\n```\nMODULES_LIST\u003d\u003cfile to list of modules\u003e list of modules to use for\n#       vendor_boot.modules.load. If this property is not set, then the default\n#       modules.load is used.\n\n```\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/build.sh;l\u003d230-232",
+      "parentUuid": "fe10956d_a6bec318",
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
