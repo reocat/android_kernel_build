@@ -132,7 +132,7 @@ done
         export UPDATE
         export UPDATE_SYMBOL_LIST
         export DIFF
-        ${ROOT_DIR}/build/kernel/kleaf/convert_to_bazel.sh --abi 2>&1
+        ${ROOT_DIR}/build/kernel/kleaf/convert_to_bazel.sh --abi 2>/dev/null
     ) || bazel_command_code=$?
     if [[ $bazel_command_code -eq 0 ]]; then
         echo "*          Possibly equivalent Bazel command:                           " >&2
