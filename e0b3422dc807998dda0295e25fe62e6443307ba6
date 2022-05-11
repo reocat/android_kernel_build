@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea8d0901_0fb6e301",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 4248,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-11T09:59:25Z",
+      "side": 1,
+      "message": "how about making this a run target? then you can print here the corresponding `bazel run` command instead",
+      "range": {
+        "startLine": 4244,
+        "startChar": 0,
+        "endLine": 4248,
+        "endChar": 76
+      },
+      "revId": "e0b3422dc807998dda0295e25fe62e6443307ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
