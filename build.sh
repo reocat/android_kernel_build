@@ -450,6 +450,7 @@ source "${ROOT_DIR}/build/_setup_env.sh"
     echo     "************************************************************************" >&2
     echo >&2
 )
+export KLEAF_SUPPRESS_BUILD_SH_DEPRECATION_WARNING=1
 
 MAKE_ARGS=( "$@" )
 export MAKEFLAGS="-j$(nproc) ${MAKEFLAGS}"
