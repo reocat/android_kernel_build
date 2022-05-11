@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50fa233f_f1d495f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-05-11T15:43:41Z",
+      "side": 1,
+      "message": "I think this message is useful. I\u0027m not sure whether inferring the command takes a moment or starting the Bazel server is what takes majority of time, however the message implies that something is happening rather than the build script hanging. ",
+      "revId": "39d92e4e27e04460175429740b529edbe1b45aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caa0060f_d151e5d3",
