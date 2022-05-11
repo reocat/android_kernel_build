@@ -16,6 +16,24 @@
       "message": "This CL needs some discussion. Maybe vmlinux and System.map should be from GKI, and we shouldn\u0027t need this _with_vmlinux target.",
       "revId": "c50f3de6fb0aa22026864df32fa5e563676afa93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a8e152f_9bc09699",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-11T21:21:35Z",
+      "side": 1,
+      "message": "To be consistent with what build_abi.sh is doing, I\u0027m going to stick with the current approach.",
+      "parentUuid": "cdfcd291_e9008e61",
+      "revId": "c50f3de6fb0aa22026864df32fa5e563676afa93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
