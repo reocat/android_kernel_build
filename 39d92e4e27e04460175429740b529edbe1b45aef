@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "997787bb_ef59cad6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-11T20:40:43Z",
+      "side": 1,
+      "message": "I do have the \"Inferring equivalent Bazel command...\" text to tell the developer that it is doing this task. Maybe I can do something else to make it look less like hanging?\n\nAlso, without the CL, the \"Starting local Bazel server and connecting to it...\" text actually shows after everything is completed. So it is not indicating the progress.",
+      "parentUuid": "50fa233f_f1d495f6",
+      "revId": "39d92e4e27e04460175429740b529edbe1b45aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caa0060f_d151e5d3",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-05-11T07:11:45Z",
       "side": 1,
       "message": "I\u0027m concerned (but only a little) about suppressing other possible messages.\n\nI see this code is actually written to overwrite on the terminal.\n\nIt might be simpler to not do that.\n\nI\u0027ve also noticed that some lines go to stderr and others to stdout. Please be consistent so that anyone using a pager or redirecting to a file, for example, gets meaningful output.\n\nSame comments for the other file.",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 440,
+        "endChar": 111
+      },
+      "revId": "39d92e4e27e04460175429740b529edbe1b45aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32b1a24a_8b059f1b",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-11T20:40:43Z",
+      "side": 1,
+      "message": "The goal here is to suppress stderr and only show stdout, which contains the command. If there are any error or warning messages, it is likely not the interesting to a regular build.sh user. I assume a regular build.sh user would only be interested that the step to infer a bazel command fails.\n\nA Kleaf developer can determine the real error message by running `convert_to_bazel.sh` directly. Or, I can redirect stderr to a file created by mktemp.\n\nWDYT?",
+      "parentUuid": "caa0060f_d151e5d3",
       "range": {
         "startLine": 440,
         "startChar": 0,
