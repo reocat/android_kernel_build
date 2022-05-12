@@ -164,6 +164,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "980ff715_06512a16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-12T20:20:23Z",
+      "side": 1,
+      "message": "I agree. But I believe, there should be a point where we cutoff addressing the new ideas for the first release and push them towards future improvements. It\u0027s difficult to deliver even an inferior solution otherwise on time.",
+      "parentUuid": "3d1a6bf2_493e1473",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a074b19_2a2fc7fa",
         "filename": "abi/check_protected_symbol_access",
         "patchSetId": 1
@@ -433,6 +451,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33f734e1_3366d5b1",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-12T20:20:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87d908b7_a5e16699",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e001132f_3cc413c0",
@@ -482,6 +524,24 @@
       "side": 1,
       "message": "set -x causes the emission of the commands the shell and the subshell executes to stdout. Do we really need this here right after the corresponding echo two lines above?\n\nIt is mostly put around `eval` blocks as those are expanded from arbitrary input in the build.config files.",
       "parentUuid": "b166a9a3_fcff048f",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "276d936e_fc3babb2",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-12T20:20:23Z",
+      "side": 1,
+      "message": "I see. I\u0027ll remove them.",
+      "parentUuid": "2fc35679_9b572443",
       "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
