@@ -105,6 +105,30 @@
       },
       "revId": "39d92e4e27e04460175429740b529edbe1b45aef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9093a0fe_e356c6a2",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-12T15:05:55Z",
+      "side": 1,
+      "message": "`bazel version \u003e /dev/null` ?",
+      "parentUuid": "899a9220_d90be8d5",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 440,
+        "endChar": 111
+      },
+      "revId": "39d92e4e27e04460175429740b529edbe1b45aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
