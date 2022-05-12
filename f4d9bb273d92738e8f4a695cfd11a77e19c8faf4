@@ -291,6 +291,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffa5f87e_5495488d",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-12T13:55:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c7fb51d4_90726869",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 7
+      },
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f4cdcb2_e6a82e7d",
@@ -387,6 +411,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87d908b7_a5e16699",
+        "filename": "abi/check_protected_symbol_access",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-12T13:55:06Z",
+      "side": 1,
+      "message": "rm \u003cfile1\u003e \u003cfile2\u003e",
+      "parentUuid": "64b0db5a_0a6e16ed",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 18
+      },
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e001132f_3cc413c0",
         "filename": "build.sh",
         "patchSetId": 1
@@ -416,6 +464,24 @@
       "side": 1,
       "message": "Can you please provide more details on what\u0027s wrong here? Isn\u0027t every commands in this script wrapped around with `set -x` and `set +x`. I just followed the existing format within the script.",
       "parentUuid": "e001132f_3cc413c0",
+      "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc35679_9b572443",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 760,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-12T13:55:06Z",
+      "side": 1,
+      "message": "set -x causes the emission of the commands the shell and the subshell executes to stdout. Do we really need this here right after the corresponding echo two lines above?\n\nIt is mostly put around `eval` blocks as those are expanded from arbitrary input in the build.config files.",
+      "parentUuid": "b166a9a3_fcff048f",
       "revId": "f4d9bb273d92738e8f4a695cfd11a77e19c8faf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
