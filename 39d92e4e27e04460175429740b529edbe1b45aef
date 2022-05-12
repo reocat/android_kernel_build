@@ -129,6 +129,30 @@
       },
       "revId": "39d92e4e27e04460175429740b529edbe1b45aef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e35067a_9e0dd8d3",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-12T19:25:57Z",
+      "side": 1,
+      "message": "I can do that, but still, it is wrong to `2\u003e\u00261` here because the message in stderr isn\u0027t part of the command.\n\nHow about:\n\n```\neq_bazel_command\u003d$(\n    ${ROOT_DIR}/tools/bazel version \u003e /dev/null # prints start up message to stderr\n    ${ROOT_DIR}/build/kernel/kleaf/convert_to_bazel.sh # additional error messages goes to stderr\n) || bazel_command_code\u003d$?\n```",
+      "parentUuid": "9093a0fe_e356c6a2",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 440,
+        "endChar": 111
+      },
+      "revId": "39d92e4e27e04460175429740b529edbe1b45aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
