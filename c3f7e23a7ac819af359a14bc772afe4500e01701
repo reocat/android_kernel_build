@@ -155,6 +155,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4e013f7_dc1bcce1",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1891695
+      },
+      "writtenOn": "2022-05-12T17:54:26Z",
+      "side": 1,
+      "message": "Hi Ramji, We are using the blocklist only if it is specified by the vendor and so thought that this change might be useful at the upstream.",
+      "parentUuid": "b7419ca5_3cb49d70",
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe10956d_a6bec318",
         "filename": "build.sh",
         "patchSetId": 1
