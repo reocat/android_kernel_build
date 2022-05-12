@@ -81,6 +81,30 @@
       },
       "revId": "39d92e4e27e04460175429740b529edbe1b45aef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "899a9220_d90be8d5",
+        "filename": "build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-12T15:04:36Z",
+      "side": 1,
+      "message": "maybe there is a command one can issue to ensure the bazel service is already running?",
+      "parentUuid": "32b1a24a_8b059f1b",
+      "range": {
+        "startLine": 440,
+        "startChar": 0,
+        "endLine": 440,
+        "endChar": 111
+      },
+      "revId": "39d92e4e27e04460175429740b529edbe1b45aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
