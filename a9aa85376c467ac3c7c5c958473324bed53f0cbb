@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37dbe73e_a0bff019",
+        "filename": "build_abi.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-13T19:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48118d40_c04df3aa",
+      "revId": "a9aa85376c467ac3c7c5c958473324bed53f0cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad5d69f7_a602e342",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-05-13T14:51:06Z",
       "side": 1,
       "message": "\u003e\u00262",
+      "range": {
+        "startLine": 145,
+        "startChar": 89,
+        "endLine": 145,
+        "endChar": 92
+      },
+      "revId": "a9aa85376c467ac3c7c5c958473324bed53f0cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "341f5bdb_e52713ed",
+        "filename": "build_abi.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-13T19:11:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad5d69f7_a602e342",
       "range": {
         "startLine": 145,
         "startChar": 89,
