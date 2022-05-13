@@ -426,9 +426,22 @@ set -e
 OLD_ENVIRONMENT=$(mktemp)
 export -p > ${OLD_ENVIRONMENT}
 
+KERNEL_BUILD_START_TIME=$(date +%s)
+
 export ROOT_DIR=$($(dirname $(readlink -f $0))/gettop.sh)
 source "${ROOT_DIR}/build/build_utils.sh"
 source "${ROOT_DIR}/build/_setup_env.sh"
+
+# usage: record_time "message"
+KERNEL_BUILD_TIME_FILE=$(basename ${BUILD_CONFIG})
+KERNEL_BUILD_TIME_FILE=${KERNEL_BUILD_TIME_FILE#build.config.}
+KERNEL_BUILD_TIME_FILE="${DIST_DIR}/logs/build_time_${KERNEL_BUILD_TIME_FILE}.csv"
+function record_time() {
+    echo "$(( $(date +%s) - ${KERNEL_BUILD_START_TIME} )),$@" >> $KERNEL_BUILD_TIME_FILE
+}
+mkdir -p ${DIST_DIR}/logs
+: > $KERNEL_BUILD_TIME_FILE
+record_time "setup_env_${BUILD_CONFIG}"
 
 (
     [[ "$KLEAF_SUPPRESS_BUILD_SH_DEPRECATION_WARNING" == "1" ]] && exit 0 || true
@@ -450,6 +463,7 @@ source "${ROOT_DIR}/build/_setup_env.sh"
     echo     "************************************************************************" >&2
     echo >&2
 )
+record_time "bazel_command"
 
 MAKE_ARGS=( "$@" )
 export MAKEFLAGS="-j$(nproc) ${MAKEFLAGS}"
@@ -502,6 +516,8 @@ if [ -n "${GKI_BUILD_CONFIG}" ]; then
 else
   rm -f ${OLD_ENVIRONMENT}
 fi
+
+record_time "gki"
 
 if [ -n "${KCONFIG_EXT_PREFIX}" ]; then
   # Since this is a prefix, make sure it ends with "/"
@@ -578,6 +594,8 @@ if [ -n "${GKI_PREBUILTS_DIR}" ]; then
   MAKE_ARGS+=("KBUILD_MIXED_TREE=${GKI_PREBUILTS_DIR}")
 fi
 
+record_time "prep"
+
 echo "========================================================"
 echo " Setting up for build"
 if [ "${SKIP_MRPROPER}" != "1" ] ; then
@@ -644,6 +662,8 @@ elif [ -n "${LTO}" ]; then
   echo "LTO= must be one of 'none', 'thin' or 'full'."
   exit 1
 fi
+
+record_time "defconfig"
 
 if [ -n "${TAGS_CONFIG}" ]; then
   echo "========================================================"
@@ -728,12 +748,16 @@ elif [ "${KMI_SYMBOL_LIST_STRICT_MODE}" = "1" ]; then
   exit 1
 fi
 
+record_time "abi_prep"
+
 echo "========================================================"
 echo " Building kernel"
 
 set -x
 (cd ${OUT_DIR} && make O=${OUT_DIR} ${TOOL_ARGS} "${MAKE_ARGS[@]}" ${MAKE_GOALS})
 set +x
+
+record_time "kernel"
 
 if [ -n "${POST_KERNEL_BUILD_CMDS}" ]; then
   echo "========================================================"
@@ -770,6 +794,7 @@ if [ "${DO_NOT_STRIP_MODULES}" != "1" ]; then
   MODULE_STRIP_FLAG="INSTALL_MOD_STRIP=1"
 fi
 
+
 if [ "${BUILD_INITRAMFS}" = "1" -o  -n "${IN_KERNEL_MODULES}" ]; then
   echo "========================================================"
   echo " Installing kernel modules into staging directory"
@@ -778,6 +803,8 @@ if [ "${BUILD_INITRAMFS}" = "1" -o  -n "${IN_KERNEL_MODULES}" ]; then
    make O=${OUT_DIR} ${TOOL_ARGS} ${MODULE_STRIP_FLAG}                        \
         INSTALL_MOD_PATH=${MODULES_STAGING_DIR} "${MAKE_ARGS[@]}" modules_install)
 fi
+
+record_time "modules_install"
 
 if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -n "${EXT_MODULES_MAKEFILE}" ]]; then
   echo "========================================================"
@@ -788,6 +815,8 @@ if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -n "${EXT_MODULES_MAKEFILE}" ]]; then
           INSTALL_HDR_PATH="${KERNEL_UAPI_HEADERS_DIR}/usr"              \
           INSTALL_MOD_PATH=${MODULES_STAGING_DIR} "${MAKE_ARGS[@]}"
 fi
+
+record_time "ext_modules_makefile"
 
 if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -n "${EXT_MODULES}" ]]; then
   echo "========================================================"
@@ -815,8 +844,10 @@ if [[ -z "${SKIP_EXT_MODULES}" ]] && [[ -n "${EXT_MODULES}" ]]; then
                        "${MAKE_ARGS[@]}" modules_install
     set +x
   done
-
+  record_time "ext_mod_${EXT_MOD}"
 fi
+
+record_time "ext_mod"
 
 if [ "${BUILD_GKI_CERTIFICATION_TOOLS}" = "1"  ]; then
   GKI_CERTIFICATION_TOOLS_TAR="gki_certification_tools.tar.gz"
@@ -945,6 +976,8 @@ if [ -n "${DIST_CMDS}" ]; then
   set +x
 fi
 
+record_time "copying_files"
+
 MODULES=$(find ${MODULES_STAGING_DIR} -type f -name "*.ko")
 if [ -n "${MODULES}" ]; then
   if [ -n "${IN_KERNEL_MODULES}" -o -n "${EXT_MODULES}" -o -n "${EXT_MODULES_MAKEFILE}" ]; then
@@ -972,6 +1005,8 @@ if [ -n "${MODULES}" ]; then
     ${RAMDISK_COMPRESS} "${MODULES_STAGING_DIR}/initramfs.cpio" >"${DIST_DIR}/initramfs.img"
   fi
 fi
+
+record_time "initramfs"
 
 if [ "${BUILD_SYSTEM_DLKM}" = "1"  ]; then
   echo "========================================================"
@@ -1020,6 +1055,8 @@ if [ -n "${UNSTRIPPED_MODULES}" ]; then
   fi
 fi
 
+record_time "system_dlkm"
+
 [ -n "${GKI_MODULES_LIST}" ] && cp ${KERNEL_DIR}/${GKI_MODULES_LIST} ${DIST_DIR}/
 
 echo "========================================================"
@@ -1047,3 +1084,5 @@ if readelf -a ${DIST_DIR}/vmlinux 2>&1 | grep -q trace_printk_fmt; then
     exit 1
   fi
 fi
+
+record_time "fin"
