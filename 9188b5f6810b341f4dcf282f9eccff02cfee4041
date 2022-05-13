@@ -22,6 +22,30 @@
       },
       "revId": "9188b5f6810b341f4dcf282f9eccff02cfee4041",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14685092_3dabeb16",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-13T19:31:13Z",
+      "side": 1,
+      "message": "Fixes and Bug are the same; the problem is that gitwatcher isn\u0027t posting CLs to the GKI bug component. If gitwatcher does, then Fixes also mark the bug as fixed.",
+      "parentUuid": "dea2bc54_13ecf505",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 5
+      },
+      "revId": "9188b5f6810b341f4dcf282f9eccff02cfee4041",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

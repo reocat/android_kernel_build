@@ -70,6 +70,30 @@
       },
       "revId": "e0b3422dc807998dda0295e25fe62e6443307ba6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4d1c5d0_7626d7fc",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 4248,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-13T19:31:13Z",
+      "side": 1,
+      "message": "I can do that. I didn\u0027t do that because the commit message is incomplete, and I can\u0027t find a way to pre-fill the commit message then prompt the user to re-edit the message again. Let me think about this a bit more.",
+      "parentUuid": "b6697a58_dc463bbf",
+      "range": {
+        "startLine": 4244,
+        "startChar": 0,
+        "endLine": 4248,
+        "endChar": 76
+      },
+      "revId": "e0b3422dc807998dda0295e25fe62e6443307ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
