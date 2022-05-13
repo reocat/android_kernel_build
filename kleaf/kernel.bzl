@@ -3819,7 +3819,7 @@ def _kernel_extracted_symbols_impl(ctx):
     command += """
         mkdir -p {intermediates_dir}
         cp -pl {srcs} {intermediates_dir}
-        {extract_symbols} --symbol-list {out} {skip_module_grouping_flag} {intermediates_dir}
+        {extract_symbols} --symbol-list {out} --include-module-exports {skip_module_grouping_flag} {intermediates_dir}
         rm -rf {intermediates_dir}
     """.format(
         srcs = " ".join([file.path for file in srcs]),
