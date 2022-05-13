@@ -14,8 +14,8 @@
 
 # Flags used for ci.android.com builds.
 
-# Embed scmversion
-build:android_ci --config=stamp
+build:android_ci --config=local
+build:android_ci --announce_rc
 
 # Upload test results
 test:android_ci --config=ants
