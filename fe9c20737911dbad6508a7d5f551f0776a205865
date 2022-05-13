@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3469a227_db15b4bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-13T19:26:07Z",
+      "side": 1,
+      "message": "Is it that only GKI build configs will set BUILD_GKI_ARTIFACTS? Device build configs won\u0027t set BUILD_GKI_ARTIFACTS, right?",
+      "revId": "fe9c20737911dbad6508a7d5f551f0776a205865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0d38e38b_ac68ec23",
         "filename": "build_utils.sh",
         "patchSetId": 5
