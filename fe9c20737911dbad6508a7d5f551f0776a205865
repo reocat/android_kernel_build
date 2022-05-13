@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d38e38b_ac68ec23",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-13T13:28:41Z",
+      "side": 1,
+      "message": "The main change here is moving the check of MKBOOTIMG_PATH into a new function above.\n\nBUILD_GKI_ARTIFACTS will _NOT_ invoke build_boot_images(), which has more complex logic as below.",
+      "range": {
+        "startLine": 267,
+        "startChar": 2,
+        "endLine": 267,
+        "endChar": 22
+      },
+      "revId": "fe9c20737911dbad6508a7d5f551f0776a205865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f99c5c6_a71e4dfa",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-13T13:28:41Z",
+      "side": 1,
+      "message": "Invokes the function defined at L256.",
+      "range": {
+        "startLine": 509,
+        "startChar": 2,
+        "endLine": 509,
+        "endChar": 22
+      },
+      "revId": "fe9c20737911dbad6508a7d5f551f0776a205865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
