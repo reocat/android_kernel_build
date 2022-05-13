@@ -135,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a90832e3_369d768a",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-13T13:20:42Z",
+      "side": 1,
+      "message": "Per discussion, this shouldn\u0027t be difficult for any existing testing infra to adopt this (i.e., file name without kernel version).\n\nFor Android builds, we also don\u0027t encode version info into the image file name, e.g., system.img, vendor.img, etc.\n\nWill go for the approach of building boot-gz.img, boot-lz4.img.",
+      "parentUuid": "4fb3ca22_b8c91030",
+      "range": {
+        "startLine": 416,
+        "startChar": 6,
+        "endLine": 417,
+        "endChar": 77
+      },
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81960220_b7bed662",
@@ -148,6 +172,24 @@
       "writtenOn": "2022-05-10T11:55:24Z",
       "side": 1,
       "message": "the documentation says the default is v4, but here we fall back to v3? I know later in the code the default is set to 4, but this inconsistency itches.",
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1faa9714_67c3d3c0",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-13T13:20:42Z",
+      "side": 1,
+      "message": "Oh, the existing logic here is for BUILD_BOOT_IMG and isn\u0027t related to BUILD_GKI_ARTIFACTS (new). I just created check_mkbootimg_path() at L244 so BUILD_GKI_ARTIFACTS can reuse it.\n\nhttps://android-review.googlesource.com/c/kernel/build/+/1838754\n\nBUILD_BOOT_IMG seems to build boot.img and vendor_boot.img with more flags (e.g., ramdisk, dtb, etc). While BUILD_GKI_ARTIFACTS only builds GKI boot-*.img (kernel only, without a ramdisk).",
+      "parentUuid": "81960220_b7bed662",
       "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -175,6 +217,53 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1652ecb0_bf894394",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-13T13:20:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aef762ba_6c4c8ec0",
+      "range": {
+        "startLine": 486,
+        "startChar": 0,
+        "endLine": 487,
+        "endChar": 25
+      },
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20ccd6c1_c9840276",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-13T13:20:42Z",
+      "side": 1,
+      "message": "BUILD_GKI_ARTIFACTS uses boot header v4.",
+      "range": {
+        "startLine": 501,
+        "startChar": 26,
+        "endLine": 501,
+        "endChar": 48
+      },
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f497d7b4_8ca4aef9",
@@ -192,6 +281,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f4e2b05_69127f92",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-13T13:20:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f497d7b4_8ca4aef9",
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5961923_bdf024b6",
@@ -205,6 +312,30 @@
       "writtenOn": "2022-05-10T11:55:24Z",
       "side": 1,
       "message": "Creating",
+      "range": {
+        "startLine": 529,
+        "startChar": 8,
+        "endLine": 529,
+        "endChar": 14
+      },
+      "revId": "1aa24c5f042b551b92bc1c8ba8d04ff6c93712bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "960ffb15_8c0931d1",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-13T13:20:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5961923_bdf024b6",
       "range": {
         "startLine": 529,
         "startChar": 8,
