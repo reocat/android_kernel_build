@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48118d40_c04df3aa",
+        "filename": "build_abi.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-13T14:51:06Z",
+      "side": 1,
+      "message": "those two lines don\u0027t redirect to stderr",
+      "revId": "a9aa85376c467ac3c7c5c958473324bed53f0cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad5d69f7_a602e342",
+        "filename": "build_abi.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-13T14:51:06Z",
+      "side": 1,
+      "message": "\u003e\u00262",
+      "range": {
+        "startLine": 145,
+        "startChar": 89,
+        "endLine": 145,
+        "endChar": 92
+      },
+      "revId": "a9aa85376c467ac3c7c5c958473324bed53f0cbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
