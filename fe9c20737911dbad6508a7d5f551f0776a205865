@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1af73514_69f68649",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-14T03:01:37Z",
+      "side": 1,
+      "message": "Yes, I think so. \n\nThis is similar to BUILD_GKI_CERTIFICATION_TOOLS, which is only enabled in build.config.gki.aarch64 and build.config.gki.x86_64.\n\nhttps://android-review.googlesource.com/c/kernel/common/+/2044804\n\nThe GKI artifacts here is used for GKI binaries release.\n\n\n\nFor device build configs, did you mean some non-GKI configs under kernel/common?\n\nhttps://android.googlesource.com/kernel/common/+/refs/heads/android-mainline\n\ne.g., build.config.rockpi4, build.config.db845c, etc.",
+      "parentUuid": "3469a227_db15b4bf",
+      "revId": "fe9c20737911dbad6508a7d5f551f0776a205865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0d38e38b_ac68ec23",
         "filename": "build_utils.sh",
         "patchSetId": 5
