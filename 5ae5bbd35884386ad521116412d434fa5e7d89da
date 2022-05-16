@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34e63c56_c9167392",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-16T23:31:43Z",
+      "side": 1,
+      "message": "This seems to break device ABI monitoring that it includes module exports. This probably needs to be a conditional thing to be enabled on GKI only.",
+      "revId": "5ae5bbd35884386ad521116412d434fa5e7d89da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
