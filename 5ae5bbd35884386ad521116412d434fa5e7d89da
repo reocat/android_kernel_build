@@ -34,6 +34,24 @@
       "parentUuid": "34e63c56_c9167392",
       "revId": "5ae5bbd35884386ad521116412d434fa5e7d89da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a04e3c7e_24805309",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-17T03:32:12Z",
+      "side": 1,
+      "message": "Probably device builds need to set the flag GKI_MODULES_LIST for build_abi to ignore exports from the GKI modules. I updated the b/232866296 with the details and CL with the flag implementation.\n\nWe can have further discussion on the b/232866296.",
+      "parentUuid": "cd5917b5_001ad323",
+      "revId": "5ae5bbd35884386ad521116412d434fa5e7d89da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
