@@ -61,6 +61,11 @@
 #     If this is set to 1 then, when updating the symbol list, use all defined
 #     symbols from vmlinux and GKI modules, instead of the undefined symbols
 #     from vendor modules. This property is disabled by default.
+#
+#   INCLUDE_GKI_MODULE_EXPORTS
+#     If this is set to 1 then, when updating the symbol list, use all defined
+#     symbols from vmlinux and GKI modules. It should be set for the GKI builds
+#     with GKI modules. This property is disabled by default.
 
 export ROOT_DIR=$($(dirname $(readlink -f $0))/gettop.sh)
 
@@ -84,6 +89,9 @@ if [[ -z "$KMI_SYMBOL_LIST_ADD_ONLY" ]]; then
 fi
 if [[ -z "$FULL_GKI_ABI" ]]; then
   FULL_GKI_ABI=0
+fi
+if [[ -z "$INCLUDE_GKI_MODULE_EXPORTS" ]]; then
+  INCLUDE_GKI_MODULE_EXPORTS=0
 fi
 
 ARGS=()
@@ -230,6 +238,15 @@ if [ -n "$KMI_SYMBOL_LIST" ]; then
         if [ "$FULL_GKI_ABI" -eq 1 ]; then
             FULL_ABI_FLAG="--full-gki-abi"
         fi
+        # Include module exports (required for builds with GKI modules)
+        if [ "$INCLUDE_GKI_MODULE_EXPORTS" -eq 1 ]; then
+            INCLUDE_MODULE_EXPORTS="--include-module-exports"
+            # We shouldn't exclude GKI modules in this case
+            if [ -n "${GKI_MODULES_LIST}" ]; then
+                echo "Ignoring GKI_MODULES_LIST flag for GKI builds" >&2
+                GKI_MOD_FLAG=""
+            fi
+        fi
 
         if [ "${KMI_SYMBOL_LIST_MODULE_GROUPING}" -eq "0" ]; then
           SKIP_MODULE_GROUPING="--skip-module-grouping"
@@ -237,7 +254,7 @@ if [ -n "$KMI_SYMBOL_LIST" ]; then
 
         ${ROOT_DIR}/build/abi/extract_symbols          \
             --symbol-list $KERNEL_DIR/$KMI_SYMBOL_LIST \
-            --include-module-exports                   \
+            ${INCLUDE_MODULE_EXPORTS}                  \
             ${SKIP_MODULE_GROUPING}                    \
             ${ADD_ONLY_FLAG}                           \
             ${GKI_MOD_FLAG}                            \
