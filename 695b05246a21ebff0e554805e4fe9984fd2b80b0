@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1855af48_36e28a97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-18T07:40:12Z",
+      "side": 1,
+      "message": "This is to replace \"x86_64\" in go/ab/aosp-gki13-boot-release.\n\ni.e., we can just build the boot.img in the kernel tree directly.",
+      "revId": "695b05246a21ebff0e554805e4fe9984fd2b80b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
