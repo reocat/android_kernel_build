@@ -22,6 +22,30 @@
       },
       "revId": "bcd1ad31f834c4d824e0cb5fa6781db021c51935",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4557e9de_4fe9b97c",
+        "filename": "static_analysis/checkpatch.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-05-18T16:32:53Z",
+      "side": 1,
+      "message": "So passing in --ext_mod will set the variable EXT_MOD_DIR which will make this script change to the external module\u0027s directory instead of the KERNEL_DIR directory on line 98.\n\nThe point of this patch is to allow checkpatch_presubmit.sh to be able to run checkpatch.sh under an external module\u0027s git folder vs only being able to run under the KERNEL_DIR folder. We still want checkpatch_presubmit.sh to be able to run for kernel patches as well since we can have a topic that includes both external module changes and kernel changes.",
+      "parentUuid": "07211960_542f67bc",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 9
+      },
+      "revId": "bcd1ad31f834c4d824e0cb5fa6781db021c51935",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
