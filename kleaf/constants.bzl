@@ -57,6 +57,10 @@ GKI_DOWNLOAD_CONFIGS = [
             "kernel-headers.tar.gz",
             # _images
             "system_dlkm.img",
+            # _gki_artifacts
+            "boot.img",
+            "boot-lz4.img",
+            "boot-img.tar.gz",
         ] + GKI_MODULES,  # corresponding to _modules_install
     },
     {
