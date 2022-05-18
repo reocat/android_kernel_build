@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 load(
     ":kernel.bzl",
@@ -26,6 +27,8 @@ load(
     "kernel_unstripped_modules_archive",
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
+load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts")
+load("//build/kernel/kleaf/impl:utils.bzl", "utils")
 load(
     ":constants.bzl",
     "CI_TARGET_MAPPING",
@@ -493,6 +496,26 @@ def define_common_kernels(
             modules_list = "android/gki_system_dlkm_modules",
         )
 
+        # TODO(b/230428252): Set variables properly
+        gki_artifacts_srcs = []
+        gki_artifacts_sizes = {}
+        gki_artifacts_default_size = str(64 * 1024 * 1024)
+        for out in arch_config["outs"]:
+            basename = paths.basename(out)
+            if basename == "Image":
+                gki_artifacts_srcs.append("{}/{}".format(name, out))
+                gki_artifacts_sizes[""] = gki_artifacts_default_size
+            elif basename.startswith("Image."):
+                gki_artifacts_srcs.append("{}/{}".format(name, out))
+                compression = utils.removeprefix(basename, "Image.")
+                gki_artifacts_sizes[compression] = gki_artifacts_default_size
+
+        gki_artifacts(
+            name = name + "_gki_artifacts",
+            srcs = gki_artifacts_srcs,
+            boot_img_sizes = gki_artifacts_sizes,
+        )
+
         # module_staging_archive from <name>
         native.filegroup(
             name = name + "_modules_staging_archive",
@@ -510,6 +533,7 @@ def define_common_kernels(
                 name + "_modules_install",
                 name + "_images",
                 name + "_kmi_symbol_list",
+                name + "_gki_artifacts",
             ],
         )
 
