@@ -3886,6 +3886,7 @@ def _kernel_extracted_symbols_impl(ctx):
             src = ctx.file.src.path,
             out = out.path,
         )
+
     # Always consider symbols exported by modules
     flags.append("--include-module-exports")
 
@@ -4192,7 +4193,7 @@ def kernel_build_abi(
         define_abi_targets = True
 
     kwargs = dict(kwargs)
-    if define_abi_targets and kwargs.get("collect_unstripped_modules") == None:
+    if kwargs.get("collect_unstripped_modules") == None:
         kwargs["collect_unstripped_modules"] = True
 
     _kernel_build_abi_define_other_targets(
