@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f6ee656_e79ffd72",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-19T09:31:57Z",
+      "side": 1,
+      "message": "is it possible to make `kernel_build()` do that for us (perhaps there with the flag `define_abi_targets`) and all those targets get created automatically?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 76
+      },
+      "revId": "93a90b4589942ec2f6b8d20f5a64e301da2ce08a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51df7097_bb67bbe4",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-19T09:31:57Z",
+      "side": 1,
+      "message": "move this up to be the first argument.",
+      "revId": "93a90b4589942ec2f6b8d20f5a64e301da2ce08a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec60c99e_ab72f554",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-19T09:31:57Z",
+      "side": 1,
+      "message": "Change 2022075, as in Git/Gerrit we have \"Commit\"/\"Change\"",
+      "range": {
+        "startLine": 40,
+        "startChar": 5,
+        "endLine": 40,
+        "endChar": 15
+      },
+      "revId": "93a90b4589942ec2f6b8d20f5a64e301da2ce08a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
