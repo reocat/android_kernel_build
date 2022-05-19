@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "347e7bc2_36494fcc",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-19T18:52:19Z",
+      "side": 1,
+      "message": "Here\u0027s what I can do:\n\n- kernel_build -\u003e _kernel_build_internal\n- kernel_build_abi -\u003e kernel_build\n- set `kernel_build_abi \u003d kernel_build` before migrating all users\n\nHowever, kernel_build_abi with define_abi_targets\u003dFalse is still a bit different from kernel_build in that:\n\n- abi.xml is always created (because CL:2064551)\n- collect_unstripped_modules is True by default (because it is needed by abi.xml)\n\n... and collect_unstripped_modules adds overhead to the kernel_build in the critical path, though only by a little bit.\n\nAlternatively, I could also make ABI targets on mainline no longer generate abi.xml. This will deviate from what build_abi.sh is doing on mainline branches.\n\nWDYT?",
+      "parentUuid": "0f6ee656_e79ffd72",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 76
+      },
+      "revId": "93a90b4589942ec2f6b8d20f5a64e301da2ce08a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51df7097_bb67bbe4",
         "filename": "kleaf/docs/abi_device.md",
         "patchSetId": 4
