@@ -65,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5b9e897_f9337e27",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-19T19:22:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51df7097_bb67bbe4",
+      "revId": "93a90b4589942ec2f6b8d20f5a64e301da2ce08a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec60c99e_ab72f554",
@@ -78,6 +96,30 @@
       "writtenOn": "2022-05-19T09:31:57Z",
       "side": 1,
       "message": "Change 2022075, as in Git/Gerrit we have \"Commit\"/\"Change\"",
+      "range": {
+        "startLine": 40,
+        "startChar": 5,
+        "endLine": 40,
+        "endChar": 15
+      },
+      "revId": "93a90b4589942ec2f6b8d20f5a64e301da2ce08a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c58d17bb_b495d53f",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-19T19:22:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec60c99e_ab72f554",
       "range": {
         "startLine": 40,
         "startChar": 5,
