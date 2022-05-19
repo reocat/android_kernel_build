@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeded413_b4a590c3",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-19T21:18:37Z",
+      "side": 1,
+      "message": "I can do this in a follow-up CL if you think the plan looks good. The doc right now is consistent with abi.md, which is already checked-in.",
+      "parentUuid": "347e7bc2_36494fcc",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 76
+      },
+      "revId": "93a90b4589942ec2f6b8d20f5a64e301da2ce08a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51df7097_bb67bbe4",
