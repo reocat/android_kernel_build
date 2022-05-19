@@ -16,6 +16,24 @@
       "message": "This breaks when base_kernel is a kernel_filegroup",
       "revId": "4bbcf21c5605740010e6a2242200aa4776b72bf3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfc0dcae_41bd8043",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 3935,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-19T05:14:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e3a50fd_6c3aaa0c",
+      "revId": "4bbcf21c5605740010e6a2242200aa4776b72bf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
