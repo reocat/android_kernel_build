@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81c79611_f1894650",
+        "filename": "kleaf/impl/gki_artifacts.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-19T19:50:29Z",
+      "side": 1,
+      "message": "we still have the BUILD_GKI_BOOT_IMG_SIZE etc. even after I clean these 3 up. That probably means build_gki_artifacts needs getopt.\n\nMaybe we\u0027ll skip this for now?",
+      "parentUuid": "a1fbf27d_731f4132",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 41
+      },
+      "revId": "12baed4b9987df34c5dc3fb51f25220634df2287",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c6241c3_ea6c5606",
@@ -84,6 +108,24 @@
       "writtenOn": "2022-05-19T16:14:03Z",
       "side": 1,
       "message": "add a # TODO (b/123456789)",
+      "revId": "12baed4b9987df34c5dc3fb51f25220634df2287",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e09ee29d_72379758",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-19T19:50:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c6241c3_ea6c5606",
       "revId": "12baed4b9987df34c5dc3fb51f25220634df2287",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
