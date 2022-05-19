@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d78ee973_cd2bf0f1",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4283,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-19T05:40:59Z",
+      "side": 1,
+      "message": "This breaks because the base_kernel is lost.",
+      "revId": "71acd78318e99828d09a7330ee186c5d0481b93e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
