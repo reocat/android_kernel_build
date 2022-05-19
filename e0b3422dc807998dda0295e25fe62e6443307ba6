@@ -94,6 +94,30 @@
       },
       "revId": "e0b3422dc807998dda0295e25fe62e6443307ba6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e2df6bf_fbab7f0e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 4248,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-19T21:05:10Z",
+      "side": 1,
+      "message": "PTAL. I even bring up the vi window for re-editing the message.",
+      "parentUuid": "d4d1c5d0_7626d7fc",
+      "range": {
+        "startLine": 4244,
+        "startChar": 0,
+        "endLine": 4248,
+        "endChar": 76
+      },
+      "revId": "e0b3422dc807998dda0295e25fe62e6443307ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
