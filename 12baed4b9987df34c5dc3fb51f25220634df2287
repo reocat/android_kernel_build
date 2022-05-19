@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d36e14c_08cb03a1",
+        "filename": "kleaf/impl/gki_artifacts.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-19T18:42:46Z",
+      "side": 1,
+      "message": "This is not expensive but this is also unnecessary, so I would refrain from doing that. I think HermeticTools should just provide a shell environment with the hermetic tools, but it has nothing to do with anything related to kernel build. build_utils.sh, however, is related to kernel build.",
+      "parentUuid": "1401a386_5d0725b0",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 31
+      },
+      "revId": "12baed4b9987df34c5dc3fb51f25220634df2287",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1fbf27d_731f4132",
