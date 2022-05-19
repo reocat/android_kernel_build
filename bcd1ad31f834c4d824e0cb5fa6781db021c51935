@@ -46,6 +46,30 @@
       },
       "revId": "bcd1ad31f834c4d824e0cb5fa6781db021c51935",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "762b9695_72f0304d",
+        "filename": "static_analysis/checkpatch.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-19T16:08:58Z",
+      "side": 1,
+      "message": "Yeah, I think the interface is a little odd, but since we are almost always using it from checkpatch_presubmit.sh it should be ok.",
+      "parentUuid": "4557e9de_4fe9b97c",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 9
+      },
+      "revId": "bcd1ad31f834c4d824e0cb5fa6781db021c51935",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
