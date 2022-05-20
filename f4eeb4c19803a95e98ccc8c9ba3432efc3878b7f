@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "531fa0e1_fa3632bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-05-20T23:06:52Z",
+      "side": 1,
+      "message": "Tested fine with https://android-review.googlesource.com/q/topic:zram_zsmalloc_unprotected_modules and tools/bazel run //common:kernel_aarch64_abi_dist which was showing errors earlier.",
+      "revId": "f4eeb4c19803a95e98ccc8c9ba3432efc3878b7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
