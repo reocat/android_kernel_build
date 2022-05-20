@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb94dfd4_e57e29eb",
+        "filename": "kleaf/impl/KernelEnvInfo.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-20T15:10:39Z",
+      "side": 1,
+      "message": "probably we can group the providers in a common location? `kleaf/impl/Providers.bzl` at least for the most common ones?",
+      "revId": "4ab097f8adede223871795f0bab2d200b6d4afa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98c77e4d_c9952473",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-20T15:10:39Z",
+      "side": 1,
+      "message": "debug.bzl?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "4ab097f8adede223871795f0bab2d200b6d4afa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
