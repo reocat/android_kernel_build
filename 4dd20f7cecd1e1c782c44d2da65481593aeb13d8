@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed28e9f4_cbd79e8c",
+        "filename": "kleaf/impl/debug.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-20T15:04:46Z",
+      "side": 1,
+      "message": "this is confusing as the attr has the same name as the function itself.",
+      "range": {
+        "startLine": 22,
+        "startChar": 14,
+        "endLine": 22,
+        "endChar": 34
+      },
+      "revId": "4dd20f7cecd1e1c782c44d2da65481593aeb13d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
