@@ -524,6 +524,10 @@ if [ -n "${GKI_BUILD_CONFIG}" ]; then
   # e.g. GKI_BUILD_CONFIG=common/build.config.gki.x86 ./build/build.sh would cause
   # gki build recursively
   GKI_ENVIRON+=("GKI_BUILD_CONFIG=")
+  # Explicitly unset CLANG_TIDY in the GKI environment
+  GKI_ENVIRON+=("CLANG_TIDY")
+  # Explicitly unset CLANG_ANALYZER in the GKI environment
+  GKI_ENVIRON+=("CLANG_ANALYZER")
   # Explicitly unset KCONFIG_EXT_PREFIX in case it was set by the older environment.
   GKI_ENVIRON+=("KCONFIG_EXT_PREFIX=")
   # Any variables prefixed with GKI_ get set without that prefix in the GKI build environment
@@ -762,6 +766,22 @@ elif [ "${TRIM_NONLISTED_KMI}" = "1" ]; then
 elif [ "${KMI_SYMBOL_LIST_STRICT_MODE}" = "1" ]; then
   echo "ERROR: KMI_SYMBOL_LIST_STRICT_MODE requires a KMI_SYMBOL_LIST" >&2
   exit 1
+fi
+
+if [ -n "${CLANG_TIDY}" = "1" ]; then
+  echo "======================================================="
+  echo " Running clang-tidy "
+  set -x
+  (cd ${OUT_DIR} && make ${TOOL_ARGS} clang-tidy)
+  set +x
+fi
+
+if [ -n "${CLANG_ANALYZER}" = "1" ]; then
+  echo "======================================================="
+  echo " Running clang-analyzer "
+  set -x
+  (cd ${OUT_DIR} && make ${TOOL_ARGS} clang-analyzer)
+  set +x
 fi
 
 echo "========================================================"
