@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f9610e0_eedf735d",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-05-24T23:22:38Z",
+      "side": 1,
+      "message": "I think you can do `make -C ${OUT_DIR} ${TOOL_ARGS} clang-tidy`. Then you don\u0027t have to cd back to where you were before.",
+      "range": {
+        "startLine": 775,
+        "startChar": 2,
+        "endLine": 775,
+        "endChar": 49
+      },
+      "revId": "764bee80b70d535c6345a41e44c855287519c80a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e89df463_4df14e00",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2022-05-24T23:22:38Z",
+      "side": 1,
+      "message": "Did you mean to enable output from the command (via `set -x`), or was that just for debugging?",
+      "revId": "764bee80b70d535c6345a41e44c855287519c80a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
