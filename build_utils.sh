@@ -525,6 +525,24 @@ function build_gki_artifacts_x86_64() {
   gki_add_avb_footer "${boot_image_path}" "$(gki_get_boot_img_size)"
 }
 
+# gki_dry_run_certify_bootimg <boot_image> <gki_info_file>
+function gki_dry_run_certify_bootimg() {
+  certify_bootimg --boot_img "$1" \
+    --algorithm SHA256_RSA4096 \
+    --key tools/mkbootimg/gki/testdata/testkey_rsa4096.pem \
+    --gki_info "$2" \
+    --output "$1"
+}
+
+# build_gki_info <output_gki_info_file>
+function build_gki_info() {
+  KERNEL_RELEASE="$(cat "${OUT_DIR}"/include/config/kernel.release)"
+  GKI_INFO="certify_bootimg_extra_args=--prop ARCH:${ARCH} \
+--prop BRANCH:${BRANCH} --prop KERNEL_RELEASE:${KERNEL_RELEASE}"
+
+  echo "${GKI_INFO}" > "$1"
+}
+
 function build_gki_artifacts_aarch64() {
   if ! [ -f "${DIST_DIR}/Image" ]; then
     echo "ERROR: '${DIST_DIR}/Image' doesn't exist" >&2
@@ -536,7 +554,10 @@ function build_gki_artifacts_aarch64() {
     DEFAULT_MKBOOTIMG_ARGS+=("--cmdline" "${GKI_KERNEL_CMDLINE}")
   fi
 
-  local built_boot_images=()
+  GKI_INFO_FILE="${DIST_DIR}/gki-info.txt"
+  build_gki_info "${GKI_INFO_FILE}"
+  local images_to_pack=("$(basename "${GKI_INFO_FILE}")")
+
   for kernel_path in "${DIST_DIR}"/Image*; do
     GKI_MKBOOTIMG_ARGS=("${DEFAULT_MKBOOTIMG_ARGS[@]}")
     GKI_MKBOOTIMG_ARGS+=("--kernel" "${kernel_path}")
@@ -552,14 +573,15 @@ function build_gki_artifacts_aarch64() {
     GKI_MKBOOTIMG_ARGS+=("--output" "${DIST_DIR}/${boot_image}")
     "${MKBOOTIMG_PATH}" "${GKI_MKBOOTIMG_ARGS[@]}"
 
+    gki_dry_run_certify_bootimg "${DIST_DIR}/${boot_image}" "${GKI_INFO_FILE}"
     gki_add_avb_footer "${DIST_DIR}/${boot_image}" \
       "$(gki_get_boot_img_size "${compression}")"
-    built_boot_images+=("${boot_image}")
+    images_to_pack+=("${boot_image}")
   done
 
   GKI_BOOT_IMG_ARCHIVE="boot-img.tar.gz"
-  echo "Creating ${GKI_BOOT_IMG_ARCHIVE} for" "${built_boot_images[@]}"
-  tar -czf "${DIST_DIR}/${GKI_BOOT_IMG_ARCHIVE}" -C "${DIST_DIR}" "${built_boot_images[@]}"
+  echo "Creating ${GKI_BOOT_IMG_ARCHIVE} for" "${images_to_pack[@]}"
+  tar -czf "${DIST_DIR}/${GKI_BOOT_IMG_ARCHIVE}" -C "${DIST_DIR}" "${images_to_pack[@]}"
 }
 
 function build_gki_artifacts() {
