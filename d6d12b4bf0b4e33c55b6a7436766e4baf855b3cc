@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f99e6b1_5067c576",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2022-05-25T08:49:55Z",
+      "side": 1,
+      "message": "Could we include the \"${BUILD_NUMBER}\" if it is defined as well?",
+      "revId": "d6d12b4bf0b4e33c55b6a7436766e4baf855b3cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
