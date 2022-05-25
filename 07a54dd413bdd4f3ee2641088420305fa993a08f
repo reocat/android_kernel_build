@@ -16,6 +16,24 @@
       "message": "is this re-export temporary? otherwise it might need a comment?",
       "revId": "07a54dd413bdd4f3ee2641088420305fa993a08f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2100fa18_36caf49e",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-25T17:51:22Z",
+      "side": 1,
+      "message": "No. `kernel.bzl` is meant to be the central place for people to import these functions.\n\nI need to re-export it because if I `load(foo.bzl, foo)` in bar.bzl, then foo becomes a symbol available only to the current extension; that is, `load(bar.bzl, foo)` won\u0027t work. Hence I intentionally renamed the private symbol (add a underscore) and re-export with the original name.",
+      "parentUuid": "d33560c1_cff24473",
+      "revId": "07a54dd413bdd4f3ee2641088420305fa993a08f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
