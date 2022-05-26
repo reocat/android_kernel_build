@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed2fa3b9_09f64f0b",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-26T20:09:30Z",
+      "side": 1,
+      "message": "Even if I switch to `kernel_build` to have `kernel_build_abi`\u0027s functionality, it still needs the additional attributes defined below.\n\nFiled b/234047734.",
+      "parentUuid": "208952c3_eb62ca81",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 76
+      },
+      "revId": "93a90b4589942ec2f6b8d20f5a64e301da2ce08a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51df7097_bb67bbe4",
