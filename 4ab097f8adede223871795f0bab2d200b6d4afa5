@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6508603_41d9d499",
+        "filename": "kleaf/impl/KernelEnvInfo.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-26T15:14:49Z",
+      "side": 1,
+      "message": "`Perhaps I move this to kleaf/impl/common_providers.bzl, but keep things like DtstreeInfo in their respective extensions?` \n\n^^ that :-)",
+      "parentUuid": "4238e9c5_e70a458f",
+      "revId": "4ab097f8adede223871795f0bab2d200b6d4afa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98c77e4d_c9952473",
         "filename": "kleaf/impl/kernel_env.bzl",
         "patchSetId": 1
@@ -109,6 +127,30 @@
       "side": 1,
       "message": "I intentionally placed it in kernel_env.bzl because it is only used there.\n\nShould I put it in debug.bzl? After all, it has the name \"debug\" in it.",
       "parentUuid": "98c77e4d_c9952473",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "4ab097f8adede223871795f0bab2d200b6d4afa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "256ed9ff_4dcb65fd",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-26T15:14:49Z",
+      "side": 1,
+      "message": "yes, please still move it there, it feels like a leftover",
+      "parentUuid": "50a982a4_b78c5a48",
       "range": {
         "startLine": 24,
         "startChar": 0,
