@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ef16fd2_a06b9cc4",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 4475,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-26T21:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a300924_f277cd81",
+      "range": {
+        "startLine": 4474,
+        "startChar": 0,
+        "endLine": 4475,
+        "endChar": 70
+      },
+      "revId": "c7a290485b47fe11e866195348186eb1b0e556a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ad13ecc_97e70296",
@@ -54,6 +78,24 @@
       "writtenOn": "2022-05-26T14:52:13Z",
       "side": 1,
       "message": "how about making this a bazel flag or a flag to the executable that is executed?",
+      "revId": "c7a290485b47fe11e866195348186eb1b0e556a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab6747a9_68871a11",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 4573,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-26T21:51:46Z",
+      "side": 1,
+      "message": "This will require me to not build the git message file ahead of time OR parse the git message file to inject the bug number. Neither seems very easy.\n\nThe user is expected to edit the commit message anyway, so I think it is okay to ask them to do this when they are editing the commit message.",
+      "parentUuid": "5ad13ecc_97e70296",
       "revId": "c7a290485b47fe11e866195348186eb1b0e556a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
