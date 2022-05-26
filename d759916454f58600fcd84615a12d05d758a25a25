@@ -22,6 +22,30 @@
       },
       "revId": "d759916454f58600fcd84615a12d05d758a25a25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d16c6d63_a1fb5e3a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-26T21:34:09Z",
+      "side": 1,
+      "message": "The goal is to get the _KernelToolchainInfo from a _kernel_build. But _kernel_build does not contain that; only _kernel_env contains that.\n\nHow do you suggest me to do this?",
+      "parentUuid": "8e8194ac_74283b97",
+      "range": {
+        "startLine": 629,
+        "startChar": 8,
+        "endLine": 629,
+        "endChar": 57
+      },
+      "revId": "d759916454f58600fcd84615a12d05d758a25a25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
