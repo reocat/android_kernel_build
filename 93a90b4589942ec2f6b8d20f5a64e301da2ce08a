@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "208952c3_eb62ca81",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-26T14:48:07Z",
+      "side": 1,
+      "message": "We need ABI tooling to run on android-mainline to catch if kernel source code changes break the tooling. But if this is just a matter of migrating there, I am fine. What I suggested in the first comment was rather an \"ideal state\". I would like to have `kernel_build()` just have the ABI flag to enable additional functionality. The additional target definition looked like a lot of work on user side.",
+      "parentUuid": "aeded413_b4a590c3",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 76
+      },
+      "revId": "93a90b4589942ec2f6b8d20f5a64e301da2ce08a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51df7097_bb67bbe4",
         "filename": "kleaf/docs/abi_device.md",
         "patchSetId": 4
