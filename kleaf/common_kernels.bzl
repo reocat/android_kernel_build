@@ -27,12 +27,15 @@ load(
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load(
+    "//build/kernel/kleaf/impl:constants.bzl",
+    "MODULE_OUTS_FILE_OUTPUT_GROUP",
+    "MODULE_OUTS_FILE_SUFFIX",
+)
+load(
     ":constants.bzl",
     "CI_TARGET_MAPPING",
     "GKI_DOWNLOAD_CONFIGS",
     "GKI_MODULES",
-    "MODULE_OUTS_FILE_OUTPUT_GROUP",
-    "MODULE_OUTS_FILE_SUFFIX",
     "aarch64_outs",
     "x86_64_outs",
 )
