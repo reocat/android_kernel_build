@@ -90,6 +90,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ae1d65c_c41e84eb",
+        "filename": "kleaf/impl/KernelEnvInfo.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-26T18:04:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6508603_41d9d499",
+      "revId": "4ab097f8adede223871795f0bab2d200b6d4afa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98c77e4d_c9952473",
@@ -151,6 +169,30 @@
       "side": 1,
       "message": "yes, please still move it there, it feels like a leftover",
       "parentUuid": "50a982a4_b78c5a48",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "4ab097f8adede223871795f0bab2d200b6d4afa5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a774cd1_dfd9f054",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-26T18:04:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "256ed9ff_4dcb65fd",
       "range": {
         "startLine": 24,
         "startChar": 0,
