@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fcf6a83_884e54c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-26T15:03:15Z",
+      "side": 1,
+      "message": "This change does 3 things. Usually we prefer as many changes.\n\n1) add the certify_bootimg to the build tools path\n2) collect and store information about the build (environment)\n3) do a dry run test with the above",
+      "revId": "8f096e2b79ee7250f56d882ed8c17560787d6edf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e1f94a2_20466c11",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-26T15:03:15Z",
+      "side": 1,
+      "message": "more documentation about the purpose of this function could not harm.",
+      "range": {
+        "startLine": 528,
+        "startChar": 0,
+        "endLine": 528,
+        "endChar": 58
+      },
+      "revId": "8f096e2b79ee7250f56d882ed8c17560787d6edf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c1ebd11_f6de562e",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-26T15:03:15Z",
+      "side": 1,
+      "message": "the name gki_info is very generic. What it basically does is extract and store build time information in an artifact ... maybe there is a better name for that.",
+      "range": {
+        "startLine": 538,
+        "startChar": 9,
+        "endLine": 538,
+        "endChar": 23
+      },
+      "revId": "8f096e2b79ee7250f56d882ed8c17560787d6edf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa16c91e_c55543a2",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-26T15:03:15Z",
+      "side": 1,
+      "message": "that is a local variable, the capitalisation is misleading",
+      "range": {
+        "startLine": 539,
+        "startChar": 2,
+        "endLine": 539,
+        "endChar": 10
+      },
+      "revId": "8f096e2b79ee7250f56d882ed8c17560787d6edf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18f376b3_82f31a06",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-26T15:03:15Z",
+      "side": 1,
+      "message": "use_a_variable_for_this\u003d${DIST_DIR}/${boot_image}",
+      "range": {
+        "startLine": 579,
+        "startChar": 37,
+        "endLine": 579,
+        "endChar": 62
+      },
+      "revId": "8f096e2b79ee7250f56d882ed8c17560787d6edf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
