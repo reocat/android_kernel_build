@@ -16,6 +16,46 @@
       "message": "ping?",
       "revId": "c7a290485b47fe11e866195348186eb1b0e556a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a300924_f277cd81",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 4475,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-26T14:52:13Z",
+      "side": 1,
+      "message": "See the comment below, alternatively just commit and suggest the \"git commit --amend\" as next step.",
+      "range": {
+        "startLine": 4474,
+        "startChar": 0,
+        "endLine": 4475,
+        "endChar": 70
+      },
+      "revId": "c7a290485b47fe11e866195348186eb1b0e556a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ad13ecc_97e70296",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 4573,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-05-26T14:52:13Z",
+      "side": 1,
+      "message": "how about making this a bazel flag or a flag to the executable that is executed?",
+      "revId": "c7a290485b47fe11e866195348186eb1b0e556a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
