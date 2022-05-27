@@ -22,6 +22,30 @@
       },
       "revId": "f749002b40619f75c38e2a0250cfee284cafaa38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed29001c_535bd02a",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-27T18:32:32Z",
+      "side": 1,
+      "message": "Yeah, will do:\n\n```\nkernel_build.AbiInfo\n```\n\nNot sure what cases we should use for struct names",
+      "parentUuid": "babe5d7a_b4d33a78",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 34
+      },
+      "revId": "f749002b40619f75c38e2a0250cfee284cafaa38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
