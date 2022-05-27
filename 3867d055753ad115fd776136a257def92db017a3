@@ -16,6 +16,24 @@
       "message": "kleaf is always about the kernel, perhaps we can consider dropping the kernel_ prefix for most of them?",
       "revId": "3867d055753ad115fd776136a257def92db017a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed8f3d0f_8830b4a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-27T18:36:19Z",
+      "side": 1,
+      "message": "These two are \"public\" APIs, so I think it makes more sense to keep the `kernel_` prefix. For example, without it:\n\n```\nload(kernel.bzl, compile_commands)\n\ncompile_commands(...) # looks like a platform compile_commands\n```",
+      "parentUuid": "4afdd9ce_3366ba0f",
+      "revId": "3867d055753ad115fd776136a257def92db017a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
