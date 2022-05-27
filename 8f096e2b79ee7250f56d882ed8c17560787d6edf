@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f21ddfe1_2ba5ae6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-27T13:58:15Z",
+      "side": 1,
+      "message": "Ack, will using three CLs instead.\n\nLet\u0027s focus on one CL first.",
+      "parentUuid": "9fcf6a83_884e54c7",
+      "revId": "8f096e2b79ee7250f56d882ed8c17560787d6edf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e1f94a2_20466c11",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-05-26T15:03:15Z",
       "side": 1,
       "message": "more documentation about the purpose of this function could not harm.",
+      "range": {
+        "startLine": 528,
+        "startChar": 0,
+        "endLine": 528,
+        "endChar": 58
+      },
+      "revId": "8f096e2b79ee7250f56d882ed8c17560787d6edf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7b35177_bed8b56f",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-27T13:58:15Z",
+      "side": 1,
+      "message": "OK, will add this function in a separate CL with more comments.",
+      "parentUuid": "2e1f94a2_20466c11",
       "range": {
         "startLine": 528,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11a5b556_1ac94737",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-27T13:58:15Z",
+      "side": 1,
+      "message": "How about using build_gki_artifacts_info() ?",
+      "parentUuid": "8c1ebd11_f6de562e",
+      "range": {
+        "startLine": 538,
+        "startChar": 9,
+        "endLine": 538,
+        "endChar": 23
+      },
+      "revId": "8f096e2b79ee7250f56d882ed8c17560787d6edf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa16c91e_c55543a2",
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84f97f18_55dbe2ee",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-27T13:58:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa16c91e_c55543a2",
+      "range": {
+        "startLine": 539,
+        "startChar": 2,
+        "endLine": 539,
+        "endChar": 10
+      },
+      "revId": "8f096e2b79ee7250f56d882ed8c17560787d6edf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18f376b3_82f31a06",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-05-26T15:03:15Z",
       "side": 1,
       "message": "use_a_variable_for_this\u003d${DIST_DIR}/${boot_image}",
+      "range": {
+        "startLine": 579,
+        "startChar": 37,
+        "endLine": 579,
+        "endChar": 62
+      },
+      "revId": "8f096e2b79ee7250f56d882ed8c17560787d6edf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6cdb64c_66ed5e5c",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-05-27T13:58:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18f376b3_82f31a06",
       "range": {
         "startLine": 579,
         "startChar": 37,
