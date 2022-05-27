@@ -16,6 +16,24 @@
       "message": "headers.bzl? and combine with kernel_uapi_headers.bzl",
       "revId": "a6f2d35b086f60ecb07c307f8a364bcfc8cc3f56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a1c2c8c_663a3ab5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-27T18:33:13Z",
+      "side": 1,
+      "message": "I tend to have one public rule / macro per extension. This is easier to look up when navigating through files too.",
+      "parentUuid": "3132f130_fe553c3a",
+      "revId": "a6f2d35b086f60ecb07c307f8a364bcfc8cc3f56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
