@@ -34,6 +34,24 @@
       "parentUuid": "6280d30f_19866c93",
       "revId": "75eb2df073895d368db5ab737f3ed68ff37d34f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6035330_6bce6ed0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-27T18:42:23Z",
+      "side": 1,
+      "message": "This also make the source code easier to navigate, IMO. It makes the code more modularized.",
+      "parentUuid": "1cdfe9d7_3ae45d94",
+      "revId": "75eb2df073895d368db5ab737f3ed68ff37d34f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
