@@ -16,6 +16,24 @@
       "message": "it feels like this belongs into the parent change. isn\u0027t that actually something like kmi_symbol_lists.bzl ?",
       "revId": "75eb2df073895d368db5ab737f3ed68ff37d34f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cdfe9d7_3ae45d94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-27T18:30:04Z",
+      "side": 1,
+      "message": "These are two rules, so I keep them separate. I tend to have one public rule / macro + the infos it provides in one extension.",
+      "parentUuid": "6280d30f_19866c93",
+      "revId": "75eb2df073895d368db5ab737f3ed68ff37d34f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
