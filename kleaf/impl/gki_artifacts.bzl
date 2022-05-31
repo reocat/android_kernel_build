@@ -30,7 +30,7 @@ def _gki_artifacts_impl(ctx):
     outs = [tarball]
     size_cmd = ""
     for image in ctx.files.srcs:
-        if image.basename == "Image":
+        if image.basename in ("Image", "bzImage"):
             outs.append(ctx.actions.declare_file("{}/boot.img".format(ctx.label.name)))
             size_key = ""
             var_name = ""
