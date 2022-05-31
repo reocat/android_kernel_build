@@ -16,6 +16,24 @@
       "message": "combine into kernel_modules.bzl",
       "revId": "fb58ab6dffb5b3b39604c8d6ddb4904e42f7edc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9699b2ae_b53a302f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-31T17:54:36Z",
+      "side": 1,
+      "message": "I tend to have one public rule / macro per extension. This is easier to look up when navigating through files too.",
+      "parentUuid": "69ff7f08_6539e332",
+      "revId": "fb58ab6dffb5b3b39604c8d6ddb4904e42f7edc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
