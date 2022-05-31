@@ -16,6 +16,24 @@
       "message": "combine into headers.bzl",
       "revId": "52115563fdca50a87612c47372b55cb6317aae41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b6442ac_5195bbf7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-31T17:54:47Z",
+      "side": 1,
+      "message": "I tend to have one public rule / macro per extension. This is easier to look up when navigating through files too.",
+      "parentUuid": "bee5ca04_2146b259",
+      "revId": "52115563fdca50a87612c47372b55cb6317aae41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
