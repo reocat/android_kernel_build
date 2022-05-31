@@ -46,6 +46,30 @@
       },
       "revId": "f749002b40619f75c38e2a0250cfee284cafaa38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffe40f3d_d4eb316d",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-05-31T18:01:46Z",
+      "side": 1,
+      "message": "Let\u0027s do this later if we want, since the name `kernel_build.AbiInfo` doesn\u0027t seem very stylish.",
+      "parentUuid": "ed29001c_535bd02a",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 34
+      },
+      "revId": "f749002b40619f75c38e2a0250cfee284cafaa38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
