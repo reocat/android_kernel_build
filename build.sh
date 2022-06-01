@@ -521,10 +521,16 @@ function build_vendor_dlkm() {
   local vendor_dlkm_modules_root_dir=$(echo ${VENDOR_DLKM_STAGING_DIR}/lib/modules/*)
   local vendor_dlkm_modules_load=${vendor_dlkm_modules_root_dir}/modules.load
 
+  if [ -n "${BUILD_VENDOR_BOOT_IMG}" ]; then
+    local vendor_boot_modules_load_name="vendor_boot.modules.load"
+  elif [ -n "${BUILD_VENDOR_KERNEL_BOOT}" ]; then
+    local vendor_boot_modules_load_name="vendor_kernel_boot.moudles.load"
+  fi
+
   # Modules loaded in vendor_boot should not be loaded in vendor_dlkm.
-  if [ -f ${DIST_DIR}/vendor_boot.modules.load ]; then
+  if [ -f ${DIST_DIR}/${vendor_boot_modules_load_name} ]; then
     local stripped_modules_load="$(mktemp)"
-    ! grep -x -v -F -f ${DIST_DIR}/vendor_boot.modules.load \
+    ! grep -x -v -F -f ${DIST_DIR}/${vendor_boot_modules_load_name} \
       ${vendor_dlkm_modules_load} > ${stripped_modules_load}
     mv -f ${stripped_modules_load} ${vendor_dlkm_modules_load}
   fi
@@ -1097,7 +1103,11 @@ if [ -n "${MODULES}" ]; then
 
     MODULES_ROOT_DIR=$(echo ${INITRAMFS_STAGING_DIR}/lib/modules/*)
     cp ${MODULES_ROOT_DIR}/modules.load ${DIST_DIR}/modules.load
-    cp ${MODULES_ROOT_DIR}/modules.load ${DIST_DIR}/vendor_boot.modules.load
+    if [ -n "${BUILD_VENDOR_BOOT_IMG}" ]; then
+      cp ${MODULES_ROOT_DIR}/modules.load ${DIST_DIR}/vendor_boot.modules.load
+    elif [ -n "${BUILD_VENDOR_KERNEL_BOOT}" ]; then
+      cp ${MODULES_ROOT_DIR}/modules.load ${DIST_DIR}/vendor_kernel_boot.modules.load
+    fi
     echo "${MODULES_OPTIONS}" > ${MODULES_ROOT_DIR}/modules.options
 
     mkbootfs "${INITRAMFS_STAGING_DIR}" >"${MODULES_STAGING_DIR}/initramfs.cpio"
