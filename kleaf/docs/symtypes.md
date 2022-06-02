@@ -1,0 +1,21 @@
+# `KBUILD_SYMTYPES`
+
+The equivalent of setting `KBUILD_SYMTYPES=1` in `build/build.sh` is the
+`--kbuild_symtypes` flag. For example:
+
+```shell
+$ bazel build --kbuild_symtypes //common:kernel_aarch64
+```
+
+```shell
+$ bazel run --kbuild_symtypes //common:kernel_aarch64_dist
+```
+
+You may find the `*.symtypes` files under the
+`bazel-bin/<package_name>/<target_name>/symtypes` directory,
+where `<target_name>` is the name of the `kernel_build()`
+macro. In the above example, the symtypes file can be found at
+
+```
+bazel-bin/common/kernel_aarch64/symtypes/kernel/module.symtypes
+```

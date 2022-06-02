@@ -31,3 +31,5 @@
 `--config=stamp`: [Handling SCM version](docs/scmversion.md)
 
 `--lto`: [Disable LTO during development](docs/lto.md)
+
+`--kbuild_symtypes`: [KBUILD\_SYMTYPES](docs/symtypes.md)
