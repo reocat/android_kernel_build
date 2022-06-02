@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12cf0e0f_b8f40cea",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-06-02T23:00:43Z",
+      "side": 1,
+      "message": "MODULES_LIST is used for vendor_boot and VENDOR_DLKM_MODULES_LIST is used for vendor_dlkm. This section should be fine.",
+      "parentUuid": "e10c9606_5e7a1a47",
+      "range": {
+        "startLine": 230,
+        "startChar": 8,
+        "endLine": 230,
+        "endChar": 20
+      },
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a114522_73b1b98e",
@@ -119,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1782e0d2_71bc2e5f",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-06-02T23:00:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afb87535_478b062e",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 25
+      },
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "028ca667_83032d4d",
@@ -132,6 +180,24 @@
       "writtenOn": "2022-05-10T22:11:06Z",
       "side": 1,
       "message": "MODULES_LIST is for GKI modules; so no need to define this one more time. There is seperate VENDOR_DLKM_MODULES_LIST and blocklist is available.",
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c74bc92a_7f17276c",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-06-02T23:00:43Z",
+      "side": 1,
+      "message": "MODULES_LIST is for vendor_boot. Not for GKI modules. I do see we have GKI_MODULES_LIST to copy GKI modules to the DIST_DIR.\n\nThis new define is okay to have for vendors that want to package a system_dlkm in the kernel with a given set of GKI modules.",
+      "parentUuid": "028ca667_83032d4d",
       "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
