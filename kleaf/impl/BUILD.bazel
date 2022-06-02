@@ -58,6 +58,7 @@ bzl_library(
     deps = [
         "//build/kernel/kleaf:directory_with_structure_def",
         "//build/kernel/kleaf:hermetic_tools_def",
+        "//build/kernel/kleaf:update_source_file_def",
         "@bazel_skylib//lib:paths",
         "@bazel_skylib//lib:shell",
         "@bazel_skylib//rules:common_settings",
