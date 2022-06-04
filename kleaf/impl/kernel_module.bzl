@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load("//build/kernel/kleaf:directory_with_structure.bzl", dws = "directory_with_structure")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(
@@ -25,6 +26,7 @@ load(
     "KernelModuleInfo",
     "KernelUnstrippedModulesInfo",
 )
+load(":ddk/ddk_headers.bzl", "DdkHeadersInfo")
 load(":debug.bzl", "debug")
 load(":stamp.bzl", "stamp")
 
@@ -135,14 +137,14 @@ def kernel_module(
     """
     kwargs.update(
         # This should be the exact list of arguments of kernel_module.
-        # Default arguments of _kernel_module go into _kernel_module_set_defaults.
+        # Default arguments of _kernel_module go into kernel_module_set_defaults.
         name = name,
         srcs = srcs,
         kernel_build = kernel_build,
         kernel_module_deps = kernel_module_deps,
         outs = outs,
     )
-    kwargs = _kernel_module_set_defaults(kwargs)
+    kwargs = kernel_module_set_defaults(kwargs)
 
     main_kwargs = dict(kwargs)
     main_kwargs["name"] = name
@@ -205,12 +207,18 @@ def _check_kernel_build(kernel_modules, kernel_build, this_label):
 def _kernel_module_impl(ctx):
     _check_kernel_build(ctx.attr.kernel_module_deps, ctx.attr.kernel_build, ctx.label)
 
+    if ctx.files.makefile and ctx.file.internal_ddk_makefiles_dir:
+        fail("{}: must not define `makefile` for `ddk_module`")
+
     inputs = []
     inputs += ctx.files.srcs
+    inputs += ctx.files.internal_ddk_srcs
+    inputs += ctx.files.internal_ddk_hdrs
     inputs += ctx.attr.kernel_build[KernelEnvInfo].dependencies
     inputs += ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_prepare_deps
     inputs += ctx.attr.kernel_build[KernelBuildExtModuleInfo].module_srcs
     inputs += ctx.files.makefile
+    inputs += ctx.files.internal_ddk_makefiles_dir
     inputs += [
         ctx.file._search_and_cp_output,
         ctx.file._check_declared_output_list,
@@ -289,6 +297,15 @@ def _kernel_module_impl(ctx):
     scmversion_ret = stamp.get_ext_mod_scmversion(ctx)
     inputs += scmversion_ret.deps
     command += scmversion_ret.cmd
+
+    if ctx.file.internal_ddk_makefiles_dir:
+        command += """
+             # Restore Makefile and Kbuild
+               cp -r -l {ddk_makefiles}/* {ext_mod}/
+        """.format(
+            ddk_makefiles = ctx.file.internal_ddk_makefiles_dir.path,
+            ext_mod = ctx.attr.ext_mod,
+        )
 
     command += """
              # Set variables
@@ -442,9 +459,22 @@ _kernel_module = rule(
             mandatory = True,
             allow_files = True,
         ),
+        "internal_ddk_srcs": attr.label_list(
+            allow_files = True,
+            doc = """Additional sources that `ddk_module` may provide us.
+
+This is a separate label because if `ddk_module` were to add the sources
+to `srcs` directly, there may be duplicated labels in `srcs`.""",
+        ),
         "makefile": attr.label_list(
             allow_files = True,
+            doc = "Used internally. The makefile for this module.",
         ),
+        "internal_ddk_makefiles_dir": attr.label(
+            allow_single_file = True,  # A single directory
+            doc = "A `makefiles` target that denotes a list of makefiles to restore",
+        ),
+        "internal_ddk_hdrs": attr.label_list(),
         "kernel_build": attr.label(
             mandatory = True,
             providers = [KernelEnvInfo, KernelBuildExtModuleInfo],
@@ -471,12 +501,12 @@ _kernel_module = rule(
     },
 )
 
-def _kernel_module_set_defaults(kwargs):
+def kernel_module_set_defaults(kwargs):
     """
     Set default values for `_kernel_module` that can't be specified in
     `attr.*(default=...)` in rule().
     """
-    if kwargs.get("makefile") == None:
+    if kwargs.get("makefile") == None and kwargs.get("internal_ddk_makefiles_dir") == None:
         kwargs["makefile"] = native.glob(["Makefile"])
 
     if kwargs.get("ext_mod") == None:
@@ -490,7 +520,8 @@ def _kernel_module_set_defaults(kwargs):
             "**/*.c",
             "**/*.h",
             "**/Kbuild",
-            "**/Makefile",
         ])
+        if kwargs.get("internal_ddk_makefiles_dir") == None:
+            kwargs["srcs"] += native.glob(["**/Makefile"])
 
     return kwargs
