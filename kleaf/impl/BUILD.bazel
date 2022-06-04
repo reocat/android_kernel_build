@@ -28,6 +28,8 @@ bzl_library(
         "btf.bzl",
         "common_providers.bzl",
         "constants.bzl",
+        "ddk/ddk_module.bzl",
+        "ddk/makefiles.bzl",
         "debug.bzl",
         "gki_artifacts.bzl",
         "image/boot_images.bzl",
@@ -72,3 +74,7 @@ bzl_library(
         "@bazel_skylib//rules:common_settings",
     ],
 )
+
+exports_files([
+    "ddk/gen_makefiles.py",
+])
