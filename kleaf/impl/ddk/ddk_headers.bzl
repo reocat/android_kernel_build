@@ -108,6 +108,9 @@ ddk_headers(
         "includes": attr.string_list(
             doc = """A list of directories, relative to the current package, that are re-exported as include directories.
 
+[`ddk_module`](#ddk_module) with `deps` including this target automatically
+adds the given include directory in the generated `Kbuild` files.
+
 You still need to add the actual header files to `hdrs`.
 """,
         ),
