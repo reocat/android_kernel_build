@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//lib:sets.bzl", "sets")
 load("//build/kernel/kleaf:directory_with_structure.bzl", dws = "directory_with_structure")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(
@@ -24,7 +26,10 @@ load(
     "KernelEnvInfo",
     "KernelModuleInfo",
     "KernelUnstrippedModulesInfo",
+    "ModuleSymversInfo",
 )
+load(":ddk/ddk_headers.bzl", "DdkHeadersInfo")
+load(":ddk/ddk_module_info.bzl", "DdkModuleInfo")
 load(":debug.bzl", "debug")
 load(":stamp.bzl", "stamp")
 
@@ -202,21 +207,53 @@ def _check_kernel_build(kernel_modules, kernel_build, this_label):
                 dep_kernel_build = kernel_module[KernelModuleInfo].kernel_build.label,
             ))
 
+def _check_module_symvers_restore_path(kernel_modules, this_label):
+    # TODO add analysis test for this failure
+    all_restore_paths = dict()
+    for kernel_module in kernel_modules:
+        restore_path = kernel_module[ModuleSymversInfo].restore_path
+        if restore_path not in all_restore_paths:
+            all_restore_paths[restore_path] = []
+        all_restore_paths[restore_path].append(str(kernel_module.label))
+
+    dups = dict()
+    for key, values in all_restore_paths.items():
+        if len(values) > 1:
+            dups[key] = values
+
+    if dups:
+        fail("""{this_label}: Conflicting dependencies. Dependencies from a package must either be a list of `ddk_module`s only, or a single `kernel_module`.
+{conflicts}
+        """.format(
+            this_label = this_label,
+            conflicts = json.encode_indent(list(dups.values), indent = "  "),
+        ))
+
 def _kernel_module_impl(ctx):
     _check_kernel_build(ctx.attr.kernel_module_deps, ctx.attr.kernel_build, ctx.label)
+    _check_module_symvers_restore_path(ctx.attr.kernel_module_deps, ctx.label)
+
+    if ctx.files.makefile and ctx.file.internal_ddk_makefiles_dir:
+        fail("{}: must not define `makefile` for `ddk_module`")
 
     inputs = []
+    transitive_inputs = []
+
     inputs += ctx.files.srcs
     inputs += ctx.attr.kernel_build[KernelEnvInfo].dependencies
     inputs += ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_prepare_deps
     inputs += ctx.attr.kernel_build[KernelBuildExtModuleInfo].module_srcs
     inputs += ctx.files.makefile
+    inputs += ctx.files.internal_ddk_makefiles_dir
     inputs += [
         ctx.file._search_and_cp_output,
         ctx.file._check_declared_output_list,
     ]
     for kernel_module_dep in ctx.attr.kernel_module_deps:
         inputs += kernel_module_dep[KernelEnvInfo].dependencies
+
+    for hdr in ctx.attr.hdrs:
+        transitive_inputs.append(hdr[DdkHeadersInfo].files)
 
     modules_staging_dws = dws.make(ctx, "{}/staging".format(ctx.attr.name))
     kernel_uapi_headers_dws = dws.make(ctx, "{}/kernel-uapi-headers.tar.gz_staging".format(ctx.attr.name))
@@ -226,19 +263,21 @@ def _kernel_module_impl(ctx):
     if ctx.attr.kernel_build[KernelBuildExtModuleInfo].collect_unstripped_modules:
         unstripped_dir = ctx.actions.declare_directory("{name}/unstripped".format(name = ctx.label.name))
 
+    module_outs = [] + ctx.outputs.outs
+
     # Original `outs` attribute of `kernel_module` macro.
     original_outs = []
 
     # apply basename to all of original_outs
     original_outs_base = []
 
-    for out in ctx.outputs.outs:
+    for out in module_outs:
         # outdir includes target name at the end already. So short_name is the original
         # token in `outs` of `kernel_module` macro.
         # e.g. kernel_module(name = "foo", outs = ["bar"])
         #   => _kernel_module(name = "foo", outs = ["foo/bar"])
         #   => outdir = ".../foo"
-        #      ctx.outputs.outs = [File(".../foo/bar")]
+        #      module_outs = [File(".../foo/bar")]
         #   => short_name = "bar"
         short_name = out.path[len(outdir) + 1:]
         original_outs.append(short_name)
@@ -251,7 +290,7 @@ def _kernel_module_impl(ctx):
     )
     inputs.append(all_module_names_file)
 
-    module_symvers = ctx.actions.declare_file("{}/Module.symvers".format(ctx.attr.name))
+    module_symvers = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, ctx.attr.internal_module_symvers_name))
     check_no_remaining = ctx.actions.declare_file("{name}/{name}.check_no_remaining".format(name = ctx.attr.name))
     command_outputs = [
         module_symvers,
@@ -265,12 +304,14 @@ def _kernel_module_impl(ctx):
     command = ""
     command += ctx.attr.kernel_build[KernelEnvInfo].setup
     command += ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_prepare_setup
+
     command += """
              # create dirs for modules
                mkdir -p {kernel_uapi_headers_dir}/usr
     """.format(
         kernel_uapi_headers_dir = kernel_uapi_headers_dws.directory.path,
     )
+
     for kernel_module_dep in ctx.attr.kernel_module_deps:
         command += kernel_module_dep[KernelEnvInfo].setup
 
@@ -286,9 +327,28 @@ def _kernel_module_impl(ctx):
             outs = " ".join(original_outs_base),
         )
 
+    drop_modules_order_cmd = ""
+    if ctx.attr.internal_drop_modules_order:
+        drop_modules_order_cmd = """
+            # Delete unnecessary modules.order.*, which will be re-generated by depmod.
+              rm -f {modules_staging_dir}/lib/modules/*/extra/{ext_mod}/modules.order.*
+        """.format(
+            ext_mod = ctx.label.package,
+            modules_staging_dir = modules_staging_dws.directory.path,
+        )
+
     scmversion_ret = stamp.get_ext_mod_scmversion(ctx)
     inputs += scmversion_ret.deps
     command += scmversion_ret.cmd
+
+    if ctx.file.internal_ddk_makefiles_dir:
+        command += """
+             # Restore Makefile and Kbuild
+               cp -r -l {ddk_makefiles}/* {ext_mod}/
+        """.format(
+            ddk_makefiles = ctx.file.internal_ddk_makefiles_dir.path,
+            ext_mod = ctx.label.package,
+        )
 
     command += """
              # Set variables
@@ -328,6 +388,8 @@ def _kernel_module_impl(ctx):
                {grab_unstripped_cmd}
              # Move Module.symvers
                mv ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers {module_symvers}
+
+               {drop_modules_order_cmd}
                """.format(
         label = ctx.label,
         ext_mod = ctx.label.package,
@@ -339,6 +401,7 @@ def _kernel_module_impl(ctx):
         all_module_names_file = all_module_names_file.path,
         grab_unstripped_cmd = grab_unstripped_cmd,
         check_no_remaining = check_no_remaining.path,
+        drop_modules_order_cmd = drop_modules_order_cmd,
     )
 
     command += dws.record(modules_staging_dws)
@@ -347,7 +410,7 @@ def _kernel_module_impl(ctx):
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
         mnemonic = "KernelModule",
-        inputs = inputs,
+        inputs = depset(inputs, transitive = transitive_inputs),
         outputs = command_outputs,
         command = command,
         progress_message = "Building external kernel module {}".format(ctx.label),
@@ -356,14 +419,14 @@ def _kernel_module_impl(ctx):
     # Additional outputs because of the value in outs. This is
     # [basename(out) for out in outs] - outs
     additional_declared_outputs = []
-    for short_name, out in zip(original_outs, ctx.outputs.outs):
+    for short_name, out in zip(original_outs, module_outs):
         if "/" in short_name:
             additional_declared_outputs.append(ctx.actions.declare_file("{name}/{basename}".format(
                 name = ctx.attr.name,
                 basename = out.basename,
             )))
         original_outs_base.append(out.basename)
-    cp_cmd_outputs = ctx.outputs.outs + additional_declared_outputs
+    cp_cmd_outputs = module_outs + additional_declared_outputs
 
     if cp_cmd_outputs:
         command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
@@ -398,13 +461,14 @@ def _kernel_module_impl(ctx):
                mkdir -p ${{ROOT_DIR}}/{ext_mod}
                ext_mod_rel=$(rel_path ${{ROOT_DIR}}/{ext_mod} ${{KERNEL_DIR}})
              # Restore Modules.symvers
-               mkdir -p ${{OUT_DIR}}/${{ext_mod_rel}}
-               cp {module_symvers} ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers
+               mkdir -p $(dirname ${{OUT_DIR}}/${{ext_mod_rel}}/{internal_module_symvers_name})
+               cp {module_symvers} ${{OUT_DIR}}/${{ext_mod_rel}}/{internal_module_symvers_name}
              # New shell ends
                )
     """.format(
         ext_mod = ctx.label.package,
         module_symvers = module_symvers.path,
+        internal_module_symvers_name = ctx.attr.internal_module_symvers_name,
     )
 
     # Only declare outputs in the "outs" list. For additional outputs that this rule created,
@@ -414,9 +478,9 @@ def _kernel_module_impl(ctx):
     # is check_declared_output_list.
     return [
         DefaultInfo(
-            files = depset(ctx.outputs.outs + [check_no_remaining]),
+            files = depset(module_outs + [check_no_remaining]),
             # For kernel_module_test
-            runfiles = ctx.runfiles(files = ctx.outputs.outs),
+            runfiles = ctx.runfiles(files = module_outs),
         ),
         KernelEnvInfo(
             dependencies = [module_symvers],
@@ -431,6 +495,13 @@ def _kernel_module_impl(ctx):
         KernelUnstrippedModulesInfo(
             directory = unstripped_dir,
         ),
+        ModuleSymversInfo(
+            # path/to/package/target_name/Module.symvers -> path/to/package/Module.symvers;
+            # path/to/package/target_name/target_name_Module.symvers -> path/to/package/target_name_Module.symvers;
+            # This is similar to ${{OUT_DIR}}/${{ext_mod_rel}}
+            # It is needed to remove the `target_name` because we declare_file({name}/{internal_module_symvers_name}) above.
+            restore_path = paths.join(ctx.label.package, ctx.attr.internal_module_symvers_name),
+        ),
     ]
 
 _kernel_module = rule(
@@ -438,13 +509,24 @@ _kernel_module = rule(
     doc = """
 """,
     attrs = {
+        # Sync list with ddk_package
         "srcs": attr.label_list(
             mandatory = True,
             allow_files = True,
         ),
-        "makefile": attr.label_list(
+        "hdrs": attr.label_list(
             allow_files = True,
         ),
+        "makefile": attr.label_list(
+            allow_files = True,
+            doc = "Used internally. The makefile for this module.",
+        ),
+        "internal_ddk_makefiles_dir": attr.label(
+            allow_single_file = True,  # A single directory
+            doc = "A `makefiles` target that denotes a list of makefiles to restore",
+        ),
+        "internal_module_symvers_name": attr.string(default = "Module.symvers"),
+        "internal_drop_modules_order": attr.bool(),
         "kernel_build": attr.label(
             mandatory = True,
             providers = [KernelEnvInfo, KernelBuildExtModuleInfo],
@@ -475,7 +557,7 @@ def _kernel_module_set_defaults(kwargs):
     Set default values for `_kernel_module` that can't be specified in
     `attr.*(default=...)` in rule().
     """
-    if kwargs.get("makefile") == None:
+    if kwargs.get("makefile") == None and kwargs.get("internal_ddk_makefiles_dir") == None:
         kwargs["makefile"] = native.glob(["Makefile"])
 
     if kwargs.get("outs") == None:
@@ -485,8 +567,8 @@ def _kernel_module_set_defaults(kwargs):
         kwargs["srcs"] = native.glob([
             "**/*.c",
             "**/*.h",
-            "**/Kbuild",
             "**/Makefile",
+            "**/Kbuild",
         ])
 
     return kwargs
