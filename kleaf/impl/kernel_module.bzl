@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load("//build/kernel/kleaf:directory_with_structure.bzl", dws = "directory_with_structure")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(
@@ -135,14 +136,14 @@ def kernel_module(
     """
     kwargs.update(
         # This should be the exact list of arguments of kernel_module.
-        # Default arguments of _kernel_module go into _kernel_module_set_defaults.
+        # Default arguments of _kernel_module go into kernel_module_set_defaults.
         name = name,
         srcs = srcs,
         kernel_build = kernel_build,
         kernel_module_deps = kernel_module_deps,
         outs = outs,
     )
-    kwargs = _kernel_module_set_defaults(kwargs)
+    kwargs = kernel_module_set_defaults(kwargs)
 
     main_kwargs = dict(kwargs)
     main_kwargs["name"] = name
@@ -204,6 +205,9 @@ def _check_kernel_build(kernel_modules, kernel_build, this_label):
 
 def _kernel_module_impl(ctx):
     _check_kernel_build(ctx.attr.kernel_module_deps, ctx.attr.kernel_build, ctx.label)
+
+    if len(ctx.files.makefile) > 1:
+        fail("_kernel_module must have 0 or 1 item in the makefile attribute")
 
     inputs = []
     inputs += ctx.files.srcs
@@ -289,6 +293,15 @@ def _kernel_module_impl(ctx):
     scmversion_ret = stamp.get_ext_mod_scmversion(ctx)
     inputs += scmversion_ret.deps
     command += scmversion_ret.cmd
+
+    if ctx.files.makefile and ctx.files.makefile[0].path != paths.join(ctx.attr.ext_mod, "Makefile"):
+        command += """
+                 # Copy makefile
+                   cp -l {src} {ext_mod}/Makefile
+        """.format(
+            src = ctx.files.makefile[0].path,
+            ext_mod = ctx.attr.ext_mod,
+        )
 
     command += """
              # Set variables
@@ -468,7 +481,7 @@ _kernel_module = rule(
     },
 )
 
-def _kernel_module_set_defaults(kwargs):
+def kernel_module_set_defaults(kwargs, exclude_makefiles = False):
     """
     Set default values for `_kernel_module` that can't be specified in
     `attr.*(default=...)` in rule().
@@ -487,7 +500,8 @@ def _kernel_module_set_defaults(kwargs):
             "**/*.c",
             "**/*.h",
             "**/Kbuild",
-            "**/Makefile",
         ])
+        if not exclude_makefiles:
+            kwargs["srcs"] += native.glob(["**/Makefile"])
 
     return kwargs
