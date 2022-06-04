@@ -101,11 +101,11 @@ def main():
 
   # If the list is empty, this prints "STABLE_SCMVERSION_EXT_MOD", and is
   # filtered by Bazel.
-  print("STABLE_SCMVERSION_EXT_MOD", " ".join(
-      "{}:{}".format(ext_mod, result) for ext_mod, result in zip(ext_modules,
-                                                                 [collect(obj)
-                                                                  for obj in
-                                                                  stable_scmversion_extmod_objs])))
+  # print("STABLE_SCMVERSION_EXT_MOD", " ".join(
+  #     "{}:{}".format(ext_mod, result) for ext_mod, result in zip(ext_modules,
+  #                                                                [collect(obj)
+  #                                                                 for obj in
+  #                                                                 stable_scmversion_extmod_objs])))
 
   return 0
 
