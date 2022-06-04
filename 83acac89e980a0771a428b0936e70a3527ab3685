@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3aec7dda_0b7dc700",
+        "filename": "kleaf/gen_ddk_makefile.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-04T00:52:12Z",
+      "side": 1,
+      "message": "expand_template actually consumes time for the analysis phase, and it can become a bottleneck if there are too much calculations. I\u0027d rather do this in the extra script so it is executed in the execution phase, and can be parallelized with other things.",
+      "parentUuid": "a89ffddf_eba4fe7e",
+      "revId": "83acac89e980a0771a428b0936e70a3527ab3685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ba62b21_cd0e12be",
         "filename": "kleaf/gen_ddk_makefile.py",
         "patchSetId": 1
