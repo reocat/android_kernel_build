@@ -72,7 +72,7 @@ def main():
         source build/build_utils.sh
         source build/_setup_env.sh
         echo $EXT_MODULES
-        """, shell=True, text=True, stderr=subprocess.PIPE).split()
+        """, shell=True, text=True, stderr=subprocess.PIPE, executable="/bin/bash").split()
     except subprocess.CalledProcessError as e:
       msg = "WARNING: Unable to determine EXT_MODULES; scmversion for external modules may be incorrect. code={}, stderr={}\n".format(
           e.returncode, e.stderr.strip())
@@ -80,6 +80,8 @@ def main():
     stable_scmversion_extmod_objs = [
         call_setlocalversion(setlocalversion, os.path.realpath(ext_mod))
         for ext_mod in ext_modules]
+
+  sys.stderr.write("WARNING: Looking at SCM versions for external modules in {}\n".format(ext_modules))
 
   stable_source_date_epoch = os.environ.get("SOURCE_DATE_EPOCH")
   stable_source_date_epoch_obj = None
@@ -107,7 +109,7 @@ def main():
                                                                   for obj in
                                                                   stable_scmversion_extmod_objs])))
 
-  return 0
+  return 1
 
 
 if __name__ == '__main__':
