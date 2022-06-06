@@ -81,6 +81,8 @@ def main():
         call_setlocalversion(setlocalversion, os.path.realpath(ext_mod))
         for ext_mod in ext_modules]
 
+  sys.stderr.write("WARNING: Looking at SCM versions for external modules in {}\n".format(ext_modules))
+
   stable_source_date_epoch = os.environ.get("SOURCE_DATE_EPOCH")
   stable_source_date_epoch_obj = None
   if not stable_source_date_epoch and has_kernel_dir and shutil.which("git"):
