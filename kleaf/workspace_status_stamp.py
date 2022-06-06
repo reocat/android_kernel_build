@@ -63,6 +63,18 @@ def main():
   if setlocalversion and has_kernel_dir:
     stable_scmversion_obj = call_setlocalversion(setlocalversion, kernel_dir)
 
+
+  sys.stderr.write("WARNING: CWD is {}\n".format(os.getcwd()));
+
+  try:
+    output = subprocess.check_output("""
+        echo "***** $PWD"
+        ls build/build_utils.sh build/_setup_env.sh
+      """, shell=True, text=True)
+    sys.stderr.write("WARNING: build_utils.sh exist? \"{}\"\n".format(output))
+  except subprocess.CalledProcessError as e:
+    sys.stderr.write("WARNING: Can't run ls: code={}, stderr={}\n".format(e.returncode, e.stderr.strip()))
+
   ext_modules = []
   stable_scmversion_extmod_objs = []
   if setlocalversion:
@@ -80,6 +92,8 @@ def main():
     stable_scmversion_extmod_objs = [
         call_setlocalversion(setlocalversion, os.path.realpath(ext_mod))
         for ext_mod in ext_modules]
+
+  sys.stderr.write("WARNING: Looking at SCM versions for external modules in {}\n".format(ext_modules))
 
   stable_source_date_epoch = os.environ.get("SOURCE_DATE_EPOCH")
   stable_source_date_epoch_obj = None
@@ -107,7 +121,7 @@ def main():
                                                                   for obj in
                                                                   stable_scmversion_extmod_objs])))
 
-  return 0
+  return 1
 
 
 if __name__ == '__main__':
