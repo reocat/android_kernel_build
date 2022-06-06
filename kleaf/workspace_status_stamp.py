@@ -63,6 +63,23 @@ def main():
   if setlocalversion and has_kernel_dir:
     stable_scmversion_obj = call_setlocalversion(setlocalversion, kernel_dir)
 
+  try:
+    with open("build.config") as f:
+      content = f.read()
+    sys.stderr.write("WARNING: build.config=\"{}\"\n".format(content))
+  except BaseException as e:
+    sys.stderr.write("WARNING: Can't get build config {}\n".format(e))
+
+  try:
+    output = subprocess.check_output("""
+        source build/build_utils.sh
+        source build/_setup_env.sh
+        env
+      """, shell=True, text=True)
+    sys.stderr.write("WARNING: env is \"{}\"\n".format(output))
+  except subprocess.CalledProcessError as e:
+    sys.stderr.write("WARNING: Can't determine env: code={}, stderr={}\n".format(e.returncode, e.stderr.strip()))
+
   ext_modules = []
   stable_scmversion_extmod_objs = []
   if setlocalversion:
@@ -80,6 +97,8 @@ def main():
     stable_scmversion_extmod_objs = [
         call_setlocalversion(setlocalversion, os.path.realpath(ext_mod))
         for ext_mod in ext_modules]
+
+  sys.stderr.write("WARNING: Looking at SCM versions for external modules in {}\n".format(ext_modules))
 
   stable_source_date_epoch = os.environ.get("SOURCE_DATE_EPOCH")
   stable_source_date_epoch_obj = None
