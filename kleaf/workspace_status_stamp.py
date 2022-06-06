@@ -63,6 +63,10 @@ def main():
   if setlocalversion and has_kernel_dir:
     stable_scmversion_obj = call_setlocalversion(setlocalversion, kernel_dir)
 
+  if os.path.exists("build.config"):
+    with open("build.config") as f:
+      sys.stderr.write("WARNING: build.config=\"{}\"".format(f.read()))
+
   ext_modules = []
   stable_scmversion_extmod_objs = []
   if setlocalversion:
@@ -80,6 +84,8 @@ def main():
     stable_scmversion_extmod_objs = [
         call_setlocalversion(setlocalversion, os.path.realpath(ext_mod))
         for ext_mod in ext_modules]
+
+  sys.stderr.write("WARNING: Looking at SCM versions for external modules in {}\n".format(ext_modules))
 
   stable_source_date_epoch = os.environ.get("SOURCE_DATE_EPOCH")
   stable_source_date_epoch_obj = None
