@@ -64,6 +64,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44b66e50_3eec64d6",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-06-07T20:42:54Z",
+      "side": 1,
+      "message": "It was not able to find the file and was erroring with ls; but then I found out in initramfs that we are using echo and that worked. 😊\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/image/initramfs.bzl;l\u003d43\n\nI think `ls` states the files where as `echo` generates the path as text to be used by other commands.",
+      "parentUuid": "2b65b175_f24f380a",
+      "range": {
+        "startLine": 31,
+        "startChar": 34,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46ea7214_400cb600",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-06-07T20:42:54Z",
+      "side": 1,
+      "message": "It was not able to find the file and was erroring with ls; but then I found out in initramfs that we are using echo and that worked. 😊\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/image/initramfs.bzl;l\u003d43\n\nI think  ls  states the files where as  echo  generates the path as text to be used by other commands.",
+      "parentUuid": "2f579d78_50b1850e",
+      "range": {
+        "startLine": 31,
+        "startChar": 34,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16ed2989_45a18ee3",
@@ -111,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5ad26c1_aedded8a",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-06-07T20:42:54Z",
+      "side": 1,
+      "message": "It should overwrite old one to reflect changes, if any.",
+      "parentUuid": "16ed2989_45a18ee3",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 17
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eec88657_fa6acec4",
@@ -124,6 +196,30 @@
       "writtenOn": "2022-06-07T20:22:41Z",
       "side": 1,
       "message": "nit: make this a multi-line code and use buildifier\n\n```\noutputs \u003d [\n    foo,\n    bar,\n]",
+      "range": {
+        "startLine": 60,
+        "startChar": 18,
+        "endLine": 60,
+        "endChar": 91
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39c0958c_80fdb817",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-06-07T20:42:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eec88657_fa6acec4",
       "range": {
         "startLine": 60,
         "startChar": 18,
