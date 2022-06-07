@@ -16,6 +16,75 @@
       "message": "kleaf change for the http://aosp/2092689",
       "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b65b175_f24f380a",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-07T20:22:41Z",
+      "side": 1,
+      "message": "What\u0027s the difference between `echo` and `ls` here?",
+      "range": {
+        "startLine": 31,
+        "startChar": 34,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16ed2989_45a18ee3",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-07T20:22:41Z",
+      "side": 1,
+      "message": "`cp -l` to avoid actual copy, if the file doesn\u0027t need to be overwritten",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 17
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eec88657_fa6acec4",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-07T20:22:41Z",
+      "side": 1,
+      "message": "nit: make this a multi-line code and use buildifier\n\n```\noutputs \u003d [\n    foo,\n    bar,\n]",
+      "range": {
+        "startLine": 60,
+        "startChar": 18,
+        "endLine": 60,
+        "endChar": 91
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
