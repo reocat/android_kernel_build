@@ -237,6 +237,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52a8ca83_6906008a",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-06-07T20:15:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4e013f7_dc1bcce1",
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe10956d_a6bec318",
@@ -286,6 +304,24 @@
       "side": 1,
       "message": "Yes, if we go by it\u0027s description which we have to. Just building GKI from ACK this is not an issue; but using the same build script to build device kernel it\u0027s an issue. Let me go through how this did not affect the `virtual_device` and how pixel is using and handling this.",
       "parentUuid": "f4554c91_ec11c405",
+      "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9cc94d6_006cc3cf",
+        "filename": "build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 992,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-06-07T20:15:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "598fe767_e8d99525",
       "revId": "c3f7e23a7ac819af359a14bc772afe4500e01701",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
