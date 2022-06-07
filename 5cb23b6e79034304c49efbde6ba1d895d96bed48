@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1182725_fadb6fad",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-07T20:23:32Z",
+      "side": 1,
+      "message": "oh wait this is the actual output file. ignore this if cp -l doesn\u0027t work",
+      "parentUuid": "16ed2989_45a18ee3",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 17
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eec88657_fa6acec4",
         "filename": "kleaf/impl/image/system_dlkm_image.bzl",
         "patchSetId": 1
