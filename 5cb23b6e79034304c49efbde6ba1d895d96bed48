@@ -210,6 +210,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "45f6973c_8ae01a63",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-06-07T20:52:42Z",
+      "side": 1,
+      "message": "No, `ls` variant was working there; that\u0027s why I end up using echo as in `initramfs`\n\nHere is the error log if you can take a look: https://paste.googleplex.com/4805168773201920",
+      "parentUuid": "860e9087_82c873d9",
+      "range": {
+        "startLine": 31,
+        "startChar": 34,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16ed2989_45a18ee3",
         "filename": "kleaf/impl/image/system_dlkm_image.bzl",
         "patchSetId": 1
