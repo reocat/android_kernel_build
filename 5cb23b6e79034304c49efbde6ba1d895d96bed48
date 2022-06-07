@@ -138,6 +138,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1cc69127_b81ec681",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-07T20:46:18Z",
+      "side": 1,
+      "message": "If * doesn\u0027t match anything, echo does return the string as is, but the line should immediately below will fail because it can\u0027t find the non-existent file.",
+      "parentUuid": "cd8c58c3_66ace236",
+      "range": {
+        "startLine": 31,
+        "startChar": 34,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16ed2989_45a18ee3",
         "filename": "kleaf/impl/image/system_dlkm_image.bzl",
         "patchSetId": 1
