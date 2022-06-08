@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d20d6eec_c060cc2e",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-08T22:36:51Z",
+      "side": 1,
+      "message": "I would suggest adding CL:2121012 to the same topic because of this change. Otherwise, the Kleaf build stills restores the file to vendor_boot.modules.load, and this code will be missed.",
+      "range": {
+        "startLine": 224,
+        "startChar": 22,
+        "endLine": 224,
+        "endChar": 34
+      },
+      "revId": "308a7826a598653bca45dc2a356941403a3ed94a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
