@@ -256,6 +256,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c912979f_ec390780",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-08T00:32:19Z",
+      "side": 1,
+      "message": "I see:\n\n```\nmodules_root_dir\u003dkernel\n```\n\nBecause ls does not expand the path.\n\nSo, the problem is that it is skipping the prefix. Changing to `readlink` should work.",
+      "parentUuid": "89403032_74036851",
+      "range": {
+        "startLine": 31,
+        "startChar": 34,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16ed2989_45a18ee3",
