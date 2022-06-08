@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "384f463c_933810ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1864326
+      },
+      "writtenOn": "2022-06-08T14:49:21Z",
+      "side": 1,
+      "message": "Would fix below error if current working for some reason is not $ROOT_DIR\n\ncp: bad \u0027android/gki_aarch64_modules\u0027: No such file or directory",
+      "revId": "857570207a7bf8fab5c48ad735ff2b976e156a7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
