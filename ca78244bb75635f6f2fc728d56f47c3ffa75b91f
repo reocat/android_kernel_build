@@ -16,6 +16,24 @@
       "message": "I also want it to pass pa/2233242, but the CI is not set up properly yet. So I am going to manually test it for now.",
       "revId": "ca78244bb75635f6f2fc728d56f47c3ffa75b91f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "601a498a_3d3d0def",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-08T22:58:26Z",
+      "side": 1,
+      "message": "I mean, I want slider_test_images to pass but it needs pa/2233242 to be in first",
+      "parentUuid": "69e0cf87_3cb44744",
+      "revId": "ca78244bb75635f6f2fc728d56f47c3ffa75b91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
