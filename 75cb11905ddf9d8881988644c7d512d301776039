@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93a229ba_d71cd92c",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-08T13:04:35Z",
+      "side": 1,
+      "message": "nit: typo",
+      "range": {
+        "startLine": 529,
+        "startChar": 37,
+        "endLine": 529,
+        "endChar": 46
+      },
+      "revId": "75cb11905ddf9d8881988644c7d512d301776039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "981d622e_ee9fe66b",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-08T13:04:35Z",
+      "side": 1,
+      "message": "this is a comment for the other code location. This does not really document what _this_ function is doing independently of where it is called from.",
+      "range": {
+        "startLine": 530,
+        "startChar": 25,
+        "endLine": 531,
+        "endChar": 15
+      },
+      "revId": "75cb11905ddf9d8881988644c7d512d301776039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
