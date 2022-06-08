@@ -234,6 +234,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89403032_74036851",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-08T00:20:56Z",
+      "side": 1,
+      "message": "Let me cp this and get to the bottom of this.\n\nSeparately, initramfs should also use ls || exit 1",
+      "parentUuid": "45f6973c_8ae01a63",
+      "range": {
+        "startLine": 31,
+        "startChar": 34,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "5cb23b6e79034304c49efbde6ba1d895d96bed48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "16ed2989_45a18ee3",
         "filename": "kleaf/impl/image/system_dlkm_image.bzl",
         "patchSetId": 1
