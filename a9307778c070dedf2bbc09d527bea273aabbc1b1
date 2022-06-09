@@ -22,6 +22,30 @@
       },
       "revId": "a9307778c070dedf2bbc09d527bea273aabbc1b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76e57e68_3c32110a",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1014,
+      "author": {
+        "id": 1576409
+      },
+      "writtenOn": "2022-06-09T04:20:26Z",
+      "side": 1,
+      "message": "Thanks for catching that! Fixed.",
+      "parentUuid": "df341f29_a16bc523",
+      "range": {
+        "startLine": 1014,
+        "startChar": 0,
+        "endLine": 1014,
+        "endChar": 1
+      },
+      "revId": "a9307778c070dedf2bbc09d527bea273aabbc1b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
