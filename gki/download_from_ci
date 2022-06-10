@@ -41,10 +41,12 @@ BASE_URL = "https://ci.android.com/builds/submitted/{build_id}/{target}/latest/r
 ARM_TARGETS = ["u-boot_qemu_arm"]
 ARM64_TARGETS = ["kernel_aarch64", "kernel_debug_aarch64",
                  "u-boot_crosvm_aarch64", "u-boot_qemu_aarch64",
-                 "u-boot_crosvm_locked_aarch64"]
+                 "u-boot_crosvm_locked_aarch64",
+                 "kernel_microdroid_aarch64"]
 X86_64_TARGETS = ["kernel_x86_64", "kernel_debug_x86_64",
                   "u-boot_crosvm_x86_64", "u-boot_qemu_x86_64",
-                  "u-boot_crosvm_locked_x86_64"]
+                  "u-boot_crosvm_locked_x86_64",
+                  "kernel_microdroid_x86_64"]
 GIT_COMMIT_LOG_LENGTH = 100
 
 # Arguments from argparse.
@@ -85,6 +87,10 @@ def parse_args():
       action="store_true",
       help="update U-Boot prebuilts in Android platform (set $ANDROID_BUILD_TOP)")
   parser.add_argument(
+      "--update-microdroid",
+      action="store_true",
+      help="update Microdroid kernel prebuilts in Android platform (set $ANDROID_BUILD_TOP)")
+  parser.add_argument(
       "-r",
       "--repo-branch",
       action="store_true",
@@ -98,7 +104,7 @@ def parse_args():
 
   _args = parser.parse_args()
 
-  if _args.update_gki or _args.update_u_boot:
+  if _args.update_gki or _args.update_u_boot or _args.update_microdroid:
     if _args.build_target is not None:
       raise Exception("build_target cannot be specified when updating prebuilts")
     if "ANDROID_BUILD_TOP" not in os.environ:
@@ -570,6 +576,36 @@ def update_u_boot():
   else:
     print("Unknown u-boot branch %s for build" % branch)
 
+def update_microdroid_kernel():
+  url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_microdroid_aarch64")
+  url = os.path.join(url_base, "BUILD_INFO")
+  response = urllib.request.urlopen(url)
+  data = response.read().decode("utf-8")
+  branch = json.loads(data)["branch"]
+  version = get_build_kernel_version(data)
+
+  output_dir = os.environ["ANDROID_BUILD_TOP"]
+  base_dir = os.path.join(output_dir, "packages", "modules", "Virtualization",
+                          "microdroid", "kernel")
+  arm64_dir = os.path.join(base_dir, "arm64")
+  x86_64_dir = os.path.join(base_dir, "x86_64")
+  arm64_kernel = os.path.join(arm64_dir, "kernel-" + version)
+  (old_version, old_sha) = get_binary_kernel_version(arm64_kernel)
+
+  subprocess.check_call(["git", "rm", "-rf", "*"], cwd=arm64_dir)
+  subprocess.check_call(["git", "checkout", "HEAD", "Android.bp"], cwd=arm64_dir)
+  download_kernel("kernel_microdroid_aarch64", version, arm64_dir)
+  write_prebuilt_info(arm64_dir)
+  (new_version, new_sha) = get_binary_kernel_version(arm64_kernel)
+  gitlog = get_git_log(old_sha, new_sha)
+  commit_prebuilts(arm64_dir, gitlog)
+
+  subprocess.check_call(["git", "rm", "-rf", "*"], cwd=x86_64_dir)
+  subprocess.check_call(["git", "checkout", "HEAD", "Android.bp"], cwd=x86_64_dir)
+  download_kernel("kernel_microdroid_x86_64", version, x86_64_dir)
+  write_prebuilt_info(x86_64_dir)
+  commit_prebuilts(x86_64_dir, gitlog)
+
 def main():
   global _pool
   _pool = multiprocessing.Pool(10)
@@ -582,6 +618,10 @@ def main():
 
   if _args.update_u_boot:
     update_u_boot()
+    return
+
+  if _args.update_microdroid:
+    update_microdroid_kernel()
     return
 
   url_base = BASE_URL.format(build_id=_args.build_id, target=_args.build_target)
