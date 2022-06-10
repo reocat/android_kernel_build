@@ -16,6 +16,24 @@
       "message": "to be honest I do not like the approach. we should not create build artifacts that are only valid if a later process \"overrides\" them partially. In particular, I am opposed to depending on a later step in the delivery chain and adding mock data to a build artefact. There must be a better way to achieve that.",
       "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "820270d0_4bc8d856",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-06-10T13:08:26Z",
+      "side": 1,
+      "message": "I see.\n\nIf so, there are probably just two options:\n  1) Adding those mock AVB props in somewhere else, before entering the GKI pre-release test.\n  2) Treat those failures as known failure in the pre-release testing, as discussed in b/232062499#comment4.\n  \nWill discuss with related owners to see if it\u0027s possible.",
+      "parentUuid": "15af50e4_350f72de",
+      "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
