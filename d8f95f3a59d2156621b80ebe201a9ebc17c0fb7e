@@ -22,6 +22,30 @@
       },
       "revId": "d8f95f3a59d2156621b80ebe201a9ebc17c0fb7e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "899cb82d_a73c196f",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-10T23:11:41Z",
+      "side": 1,
+      "message": "rsync is from host right now:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/BUILD.bazel;l\u003d29;drc\u003d60934a8a1d0858e87c0ee3ac42c018537b4da56e",
+      "parentUuid": "548f5558_a4a94bf3",
+      "range": {
+        "startLine": 634,
+        "startChar": 12,
+        "endLine": 634,
+        "endChar": 17
+      },
+      "revId": "d8f95f3a59d2156621b80ebe201a9ebc17c0fb7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
