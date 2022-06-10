@@ -539,8 +539,9 @@ function gki_dry_run_certify_bootimg() {
     --output "$1"
 }
 
-# build_gki_artifacts_info <output_gki_artifacts_info_file>
-function build_gki_artifacts_info() {
+# Some information, e.g., BRANCH, BUILD_NUMBER, etc., related to the GKI
+# artifacts, that should be added to the GKI certificate.
+function gki_artifacts_info() {
   local artifacts_info="certify_bootimg_extra_args=--prop ARCH:${ARCH} \
 --prop BRANCH:${BRANCH}"
 
@@ -551,7 +552,24 @@ function build_gki_artifacts_info() {
   KERNEL_RELEASE="$(cat "${OUT_DIR}"/include/config/kernel.release)"
   artifacts_info="${artifacts_info} --prop KERNEL_RELEASE:${KERNEL_RELEASE}"
 
-  echo "${artifacts_info}" > "$1"
+  echo "${artifacts_info}"
+}
+
+# The 'os_version' and 'security_patch' information in a boot.img AVB footer
+# should be added by device manufacturers when incorporating a GKI boot.img.
+# However, to pass GKI pre-release testing process, some mock properties in
+# the AVB footer are required because Android VTS will check the existence of
+# those information. Specifying those values by
+# `certify_bootimg_extra_footer_args` for the certify_bootimg script to add
+# them into the AVB footer.
+# Using larger values so the pre-released GKI boot.img won't be blocked by
+# device-specific rollback protection.
+function gki_artifacts_mock_avb_info() {
+  local mock_avb_info="certify_bootimg_extra_footer_args=\
+--prop com.android.build.boot.os_version:41 \
+--prop com.android.build.boot.security_patch:2050-08-05"
+
+  echo "${mock_avb_info}"
 }
 
 function build_gki_artifacts_aarch64() {
@@ -566,7 +584,8 @@ function build_gki_artifacts_aarch64() {
   fi
 
   GKI_ARTIFACTS_INFO_FILE="${DIST_DIR}/gki-info.txt"
-  build_gki_artifacts_info "${GKI_ARTIFACTS_INFO_FILE}"
+  gki_artifacts_info > "${GKI_ARTIFACTS_INFO_FILE}"
+  gki_artifacts_mock_avb_info >> "${GKI_ARTIFACTS_INFO_FILE}"
   local images_to_pack=("$(basename "${GKI_ARTIFACTS_INFO_FILE}")")
 
   for kernel_path in "${DIST_DIR}"/Image*; do
