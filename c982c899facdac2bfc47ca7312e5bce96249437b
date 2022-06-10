@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15af50e4_350f72de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-10T11:12:08Z",
+      "side": 1,
+      "message": "to be honest I do not like the approach. we should not create build artifacts that are only valid if a later process \"overrides\" them partially. In particular, I am opposed to depending on a later step in the delivery chain and adding mock data to a build artefact. There must be a better way to achieve that.",
+      "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
