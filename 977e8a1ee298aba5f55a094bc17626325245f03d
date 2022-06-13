@@ -33,6 +33,24 @@
       "message": "To be honest I do not remember the details, yet there was a reason why I added it back then. I suspect I ran into issues when having \"out\" within the WORKSPACE, either when working side-by-side with build.sh or as a performance issue that the out directory is scanned for BUILD files then. We should make sure both of those are non-issues by now.",
       "revId": "977e8a1ee298aba5f55a094bc17626325245f03d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dfeef21_9ae6aea0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1605027
+      },
+      "writtenOn": "2022-06-13T14:04:02Z",
+      "side": 1,
+      "message": "Can you elaborate on how I might verify this other than running through your presubmits?",
+      "parentUuid": "4346de0d_55f7bc34",
+      "revId": "977e8a1ee298aba5f55a094bc17626325245f03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
