@@ -51,6 +51,24 @@
       "parentUuid": "4346de0d_55f7bc34",
       "revId": "977e8a1ee298aba5f55a094bc17626325245f03d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a53c701d_a75b01c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-13T20:41:38Z",
+      "side": 1,
+      "message": "Yes indeed, I think I\u0027ve run into the same issues. I vaguely remember that the repro steps are:\n\n- `BUILD_CONFIG\u003dcommon/build.config.gki.aarch64 LTO\u003dthin build/build.sh`\n  This creates an out directory, and there are symlinks in the out directory that\n  points back to the repository\n- `tools/bazel build //common:kernel_aarch64`\n  This fails because `out/` is scanned for BUILD files but it shouldn\u0027t.",
+      "parentUuid": "7dfeef21_9ae6aea0",
+      "revId": "977e8a1ee298aba5f55a094bc17626325245f03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
