@@ -16,6 +16,23 @@
       "message": "Matthias adds these so I am not sure. Matthias could you PTAL?",
       "revId": "977e8a1ee298aba5f55a094bc17626325245f03d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4346de0d_55f7bc34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-13T09:51:18Z",
+      "side": 1,
+      "message": "To be honest I do not remember the details, yet there was a reason why I added it back then. I suspect I ran into issues when having \"out\" within the WORKSPACE, either when working side-by-side with build.sh or as a performance issue that the out directory is scanned for BUILD files then. We should make sure both of those are non-issues by now.",
+      "revId": "977e8a1ee298aba5f55a094bc17626325245f03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
