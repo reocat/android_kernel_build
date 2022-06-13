@@ -22,6 +22,30 @@
       },
       "revId": "31b2c3c53d03dd5b1f1e4aebf758a185a04bd7e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28422210_d47f5dcf",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2022-06-13T11:46:05Z",
+      "side": 1,
+      "message": "Done, but note that x86 and arm64 cases were not identical. The x86 case reused the sha1 values extracted from the arm64 kernel. Unfortunately, get_binary_kernel_version doesn\u0027t work for x86_64 and I had to make another change aosp/2121518",
+      "parentUuid": "5631b03c_8ed8548c",
+      "range": {
+        "startLine": 590,
+        "startChar": 0,
+        "endLine": 607,
+        "endChar": 38
+      },
+      "revId": "31b2c3c53d03dd5b1f1e4aebf758a185a04bd7e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
