@@ -171,9 +171,19 @@ def commit_prebuilts(output_dir, gitlog, name="kernel"):
 
 def get_binary_kernel_version(path):
   """Returns a tuple of strings of the x.y.z (LTS) version and the SHA."""
-  rawdata = subprocess.check_output(["grep", "-a", "Linux version ", path])
-  pattern = b"Linux version (?P<release>(?P<version>[0-9]+[.][0-9]+[.][0-9]+)(-rc\d+)?(-\w+(-\d+)?)?-\d+-g(?P<sha>\w+)-ab\d+) \(.*@.*\) \((?P<compiler>.*)\) .*\n"
-  result = re.search(pattern, rawdata)
+  # The binary kernel is Image (in case for arm64) and bzImage (in case for x86)
+  # grep'ing wouldn't work for the bzImage case. Use file(1) first to extract
+  # the version string, and then fall back to grep.
+  file_info = subprocess.check_output(["file",  "--brief", path])
+  # example: version 5.15.54-android14-5-01029-g438c4387f91-ab8711073
+  # 5.15.54 is version, 438c4387f91 is sha.
+  pattern = b"version (?P<release>(?P<version>[0-9]+[.][0-9]+[.][0-9]+)(-rc\d+)?(-\w+(-\d+)?)?-\d+-g(?P<sha>\w+)-ab\d+)"
+  result = re.search(pattern, file_info)
+  if not result:
+    # fallback
+    line = subprocess.check_output(["grep", "-a", "Linux version ", path])
+    result = re.search(pattern, line)
+
   if not result:
     raise Exception("Could not determine version in kernel binary " + path)
   return (result.group("version").decode('ascii'),
