@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5631b03c_8ed8548c",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-13T09:56:22Z",
+      "side": 1,
+      "message": "can we please avoid the code duplication, at least locally if not even across the update_xxx() functions?\n\n  for arch in \"x86_64\", \"aarch64\":\n    \u003cdeduplicate the code\u003e",
+      "range": {
+        "startLine": 590,
+        "startChar": 0,
+        "endLine": 607,
+        "endChar": 38
+      },
+      "revId": "31b2c3c53d03dd5b1f1e4aebf758a185a04bd7e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
