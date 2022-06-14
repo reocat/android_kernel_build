@@ -104,6 +104,24 @@
       "message": "isn\u0027t that also an issue for the platform roboleaf build when creating out/ in the workspace?",
       "revId": "977e8a1ee298aba5f55a094bc17626325245f03d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "030ce970_7ea6d50d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1605027
+      },
+      "writtenOn": "2022-06-14T16:24:40Z",
+      "side": 1,
+      "message": "This was needed only specifically for Bazel\u0027s functionality to execute ninja files in AOSP. IIRC `toplevel_output_directories` was so that bazel could output files under `out/`, but not under `out/.../bazel-out`. \n\nThis functionality is no longer needed in AOSP, and has been removed from Bazel (Bazel no longer executes ninja files).",
+      "parentUuid": "a65fbc06_8406467f",
+      "revId": "977e8a1ee298aba5f55a094bc17626325245f03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
