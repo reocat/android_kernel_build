@@ -39,6 +39,30 @@
       },
       "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0bf6ef4_0dabb14c",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2022-06-14T13:01:40Z",
+      "side": 1,
+      "message": "It\u0027s a quite ubiquitous utility. From `man file`: \n\nThere has been a file command in every UNIX since at least Research Version 4 (man page dated November, 1973). \n\nWhat\u0027s your suggestion for bzImage then?",
+      "parentUuid": "27a0122d_224a6b25",
+      "range": {
+        "startLine": 177,
+        "startChar": 40,
+        "endLine": 177,
+        "endChar": 44
+      },
+      "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
