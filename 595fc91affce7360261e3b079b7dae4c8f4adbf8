@@ -111,6 +111,30 @@
       },
       "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5d8f4e4_bdfad5a4",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2022-06-14T15:42:27Z",
+      "side": 1,
+      "message": "In my understanding, file doesn\u0027t format the version string. It instead can locate the place where the version string is [1] and prints it.\n\n[1] https://github.com/file/file/blob/master/magic/Magdir/linux#L154\n\n\u003e the comment implies that the version is compressed data, rather than part of an uncompressed header?\n\nI was wrong about this. The version string is stored in the uncompressed region, so grep should work. But the problem is that the bzImage for x86_64 doesn\u0027t contain the prefix \"Linux version \" before the version string, so we need to grep a string that \"looks\" like a version. I think letting file(1) handle this problem is easier/better than passing yet another regex to grep.",
+      "parentUuid": "cc045591_23faa3bd",
+      "range": {
+        "startLine": 177,
+        "startChar": 40,
+        "endLine": 177,
+        "endChar": 44
+      },
+      "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
