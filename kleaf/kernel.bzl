@@ -45,3 +45,25 @@ kernel_module = _kernel_module_macro
 kernel_modules_install = _kernel_modules_install
 kernel_unstripped_modules_archive = _kernel_unstripped_modules_archive
 merged_kernel_uapi_headers = _merged_kernel_uapi_headers
+
+def my_rule_impl(ctx):
+    out_file = ctx.actions.declare_file(ctx.attr.name)
+    ctx.actions.run_shell(
+        mnemonic = "MyRule",
+        inputs = ctx.files.srcs,
+        outputs = [out_file],
+        command = """
+            if [[ ! -f my_cache ]]; then
+              date > my_cache
+            fi
+            cp -l my_cache {}
+        """.format(out_file.path),
+    )
+    return DefaultInfo(files = depset([out_file]))
+
+my_rule = rule(
+    implementation = my_rule_impl,
+    attrs = {
+        "srcs": attr.label_list(allow_files = True),
+    },
+)

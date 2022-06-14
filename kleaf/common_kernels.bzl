@@ -25,6 +25,7 @@ load(
     "kernel_kythe",
     "kernel_modules_install",
     "kernel_unstripped_modules_archive",
+    "my_rule",
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts")
@@ -422,6 +423,11 @@ def define_common_kernels(
 
     if visibility == None:
         visibility = ["//visibility:public"]
+
+    my_rule(
+        name = "my_rule",
+        srcs = ["init/main.c"],
+    )
 
     default_target_configs = None  # _default_target_configs is lazily evaluated.
     if target_configs == None:
