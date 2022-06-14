@@ -87,6 +87,30 @@
       },
       "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc045591_23faa3bd",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2022-06-14T15:12:51Z",
+      "side": 1,
+      "message": "yes, toybox has a file. i don\u0027t remember seeing any code for kernel image version strings. is there documentation for that? (the comment implies that the version is compressed data, rather than part of an uncompressed header?)",
+      "parentUuid": "53f878e8_728a6f97",
+      "range": {
+        "startLine": 177,
+        "startChar": 40,
+        "endLine": 177,
+        "endChar": 44
+      },
+      "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
