@@ -135,6 +135,30 @@
       },
       "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a925ff8_ee1c20e4",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2022-06-14T15:50:31Z",
+      "side": 1,
+      "message": "I actually think that the version and sha1 values should be included in a (new) build artifact that go/ab produces.",
+      "parentUuid": "b5d8f4e4_bdfad5a4",
+      "range": {
+        "startLine": 177,
+        "startChar": 40,
+        "endLine": 177,
+        "endChar": 44
+      },
+      "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
