@@ -63,6 +63,30 @@
       },
       "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53f878e8_728a6f97",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-14T15:07:09Z",
+      "side": 1,
+      "message": "I would prefer to provide `file` through the hermetic toolchain. In particular, the code creates a dependency on the exact output format of the tool. Even if universally available, there are likely differences in the output for different versions of it. Does toybox perhaps has \"file\" ?",
+      "parentUuid": "a0bf6ef4_0dabb14c",
+      "range": {
+        "startLine": 177,
+        "startChar": 40,
+        "endLine": 177,
+        "endChar": 44
+      },
+      "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
