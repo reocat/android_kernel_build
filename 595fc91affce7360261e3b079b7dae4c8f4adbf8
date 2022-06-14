@@ -16,6 +16,29 @@
       "message": "ping",
       "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a0122d_224a6b25",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-14T12:58:20Z",
+      "side": 1,
+      "message": "this creates a dependency to a host tool \"file\". I would prefer avoiding this.",
+      "range": {
+        "startLine": 177,
+        "startChar": 40,
+        "endLine": 177,
+        "endChar": 44
+      },
+      "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
