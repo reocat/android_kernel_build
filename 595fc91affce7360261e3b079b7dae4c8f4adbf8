@@ -159,6 +159,30 @@
       },
       "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "890aedb5_f099f40a",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2022-06-14T16:25:20Z",
+      "side": 1,
+      "message": "looks like kernel_version in https://www.kernel.org/doc/Documentation/x86/boot.txt is what\u0027s needed here, so another option (since this is python already) would just be to read the uint16 at 0x20e, then read the NUL-terminated string at that + 0x200. (like maennich said, even if you do have a file(1) that displays the version number, the exact output changes over time. it\u0027s a great tool for humans, but not so great for scripting.)\n\ni\u0027ll add this to toybox file anyway (because we still have lots of humans lying around), but it\u0027s still probably not a great idea to rely on it.",
+      "parentUuid": "7a925ff8_ee1c20e4",
+      "range": {
+        "startLine": 177,
+        "startChar": 40,
+        "endLine": 177,
+        "endChar": 44
+      },
+      "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
