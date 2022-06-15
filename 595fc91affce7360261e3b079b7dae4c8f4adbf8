@@ -207,6 +207,30 @@
       },
       "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b7f74ae_a11e1d29",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2022-06-15T03:33:10Z",
+      "side": 1,
+      "message": "(and for any meatbags messing around on the command line, here\u0027s the toybox file support for x86 and arm64 kernel images: http://lists.landley.net/pipermail/toybox-landley.net/2022-June/012914.html)",
+      "parentUuid": "96e713df_df00b277",
+      "range": {
+        "startLine": 177,
+        "startChar": 40,
+        "endLine": 177,
+        "endChar": 44
+      },
+      "revId": "595fc91affce7360261e3b079b7dae4c8f4adbf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
