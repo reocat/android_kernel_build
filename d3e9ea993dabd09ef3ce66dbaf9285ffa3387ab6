@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d42fa652_04002e24",
+        "filename": "kleaf/impl/gki_artifacts.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-16T18:03:18Z",
+      "side": 1,
+      "message": "we are piling more and more actions on this here. Should we not split this in separate actions?",
+      "revId": "d3e9ea993dabd09ef3ce66dbaf9285ffa3387ab6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
