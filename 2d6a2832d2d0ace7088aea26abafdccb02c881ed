@@ -16,6 +16,24 @@
       "message": "those are constants that should be stored elsewhere",
       "revId": "2d6a2832d2d0ace7088aea26abafdccb02c881ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73743045_0ac8aeba",
+        "filename": "kleaf/impl/gki_artifacts.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-16T19:48:48Z",
+      "side": 1,
+      "message": "They are only used once.\n\nPlus, the logic here really should\u0027ve been:\n\n```\nif ((arch \u003d\u003d arm64 \u0026\u0026 image \u003d\u003d \"Image\") || (arch \u003d\u003d x86_64 \u0026\u0026 image \u003d\u003d \"bzImage\"))\n```\n\nI am just being lazy here.\n\nI don\u0027t think it is very useful to create a constant unless we are going to reuse it in the future. And the value isn\u0027t very likely to change either.",
+      "parentUuid": "55f460de_7c2bfad0",
+      "revId": "2d6a2832d2d0ace7088aea26abafdccb02c881ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
