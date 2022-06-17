@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc1f5b4_1cbf0761",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-17T12:55:57Z",
+      "side": 1,
+      "message": "that is now outdated",
+      "range": {
+        "startLine": 175,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 50
+      },
+      "revId": "a079cb28350d0dd9ca0bad165da651ce172227ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "095a0928_497d6e98",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-17T12:55:57Z",
+      "side": 1,
+      "message": "usually the guidance is to exit out to avoid the indentation. In this case this becomes hard to spot. I suggest to swap the cases:\n\nif magic \u003d\u003d b\"HdrS\":\n   # x86 block ...\n   return \n   \n# fallback for arm64\n\n# arm64 block\nreturn",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 81
+      },
+      "revId": "a079cb28350d0dd9ca0bad165da651ce172227ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dc3de55_3ad1102a",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-17T12:55:57Z",
+      "side": 1,
+      "message": "looking forward to that version string :-)",
+      "range": {
+        "startLine": 190,
+        "startChar": 21,
+        "endLine": 190,
+        "endChar": 25
+      },
+      "revId": "a079cb28350d0dd9ca0bad165da651ce172227ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
