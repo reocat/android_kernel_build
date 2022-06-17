@@ -33,6 +33,75 @@
       "message": "Friendly ping to Matthias.",
       "revId": "58e856db342ce9609c059ca196ed979835dbfcd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3953bf4_c70aecca",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-17T08:18:33Z",
+      "side": 1,
+      "message": "we should put into the name that this is x86 only or add arm64 capabilities to the function",
+      "range": {
+        "startLine": 173,
+        "startChar": 4,
+        "endLine": 173,
+        "endChar": 31
+      },
+      "revId": "58e856db342ce9609c059ca196ed979835dbfcd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baedb75b_6af8d8cc",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-17T08:18:33Z",
+      "side": 1,
+      "message": "this reads the entire file into memory. Consider limiting to the first 128(?) characters.",
+      "range": {
+        "startLine": 188,
+        "startChar": 16,
+        "endLine": 188,
+        "endChar": 22
+      },
+      "revId": "58e856db342ce9609c059ca196ed979835dbfcd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26d64063_4617f04a",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-17T08:18:33Z",
+      "side": 1,
+      "message": "this should go into extract_version_from_kernel()",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 0
+      },
+      "revId": "58e856db342ce9609c059ca196ed979835dbfcd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
