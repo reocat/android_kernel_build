@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d454b1ae_eb5d4f4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2022-06-17T13:28:03Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "a079cb28350d0dd9ca0bad165da651ce172227ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcc1f5b4_1cbf0761",
@@ -24,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef59b47c_9e57abe4",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2022-06-17T13:28:03Z",
+      "side": 1,
+      "message": "This comment is still valid. The arm64 case is still handled as an exceptional case.",
+      "parentUuid": "bcc1f5b4_1cbf0761",
+      "range": {
+        "startLine": 175,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 50
+      },
+      "revId": "a079cb28350d0dd9ca0bad165da651ce172227ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "095a0928_497d6e98",
@@ -37,6 +78,30 @@
       "writtenOn": "2022-06-17T12:55:57Z",
       "side": 1,
       "message": "usually the guidance is to exit out to avoid the indentation. In this case this becomes hard to spot. I suggest to swap the cases:\n\nif magic \u003d\u003d b\"HdrS\":\n   # x86 block ...\n   return \n   \n# fallback for arm64\n\n# arm64 block\nreturn",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 81
+      },
+      "revId": "a079cb28350d0dd9ca0bad165da651ce172227ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2db3b35c_7e67c0bd",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1132673
+      },
+      "writtenOn": "2022-06-17T13:28:03Z",
+      "side": 1,
+      "message": "Yeah, but I think this falls into the category of personal preference. If we don\u0027t have a strong style guideline enforcement here, I\u0027d rather not change this.",
+      "parentUuid": "095a0928_497d6e98",
       "range": {
         "startLine": 180,
         "startChar": 0,
