@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dac2ca04_b0044daf",
+        "filename": "kleaf/docs/download_prebuilt.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-17T12:41:12Z",
+      "side": 1,
+      "message": "the sorting is odd, mainline is the newest, but 13-5.10 is the oldest, perhaps swap 14-5.15 with 13-5.10",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 116
+      },
+      "revId": "c70b9eadc977e84e634c679e5a21fb7b0414e229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1cdb7df_2a1da48f",
+        "filename": "kleaf/docs/download_prebuilt.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-17T12:41:12Z",
+      "side": 1,
+      "message": "this indirection feels unnecessary and suggests the uses of environment variables. I would like to not do that.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 96
+      },
+      "revId": "c70b9eadc977e84e634c679e5a21fb7b0414e229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0196ae24_2e4c4e36",
+        "filename": "kleaf/docs/download_prebuilt.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-17T12:41:12Z",
+      "side": 1,
+      "message": "not sure about that reference. we usually refer to kernel-team@android.com.",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 71,
+        "endChar": 41
+      },
+      "revId": "c70b9eadc977e84e634c679e5a21fb7b0414e229",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
