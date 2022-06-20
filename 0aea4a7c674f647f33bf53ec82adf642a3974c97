@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20018f62_26c72381",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2022-06-20T06:55:28Z",
+      "side": 1,
+      "message": "Update: sadly, `toplevel_output_directories()` had a good reason to be there, see\n\nhttps://buganizer.corp.google.com/issues/235632059#comment30",
+      "revId": "0aea4a7c674f647f33bf53ec82adf642a3974c97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
