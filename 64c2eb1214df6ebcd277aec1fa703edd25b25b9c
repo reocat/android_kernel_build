@@ -46,6 +46,30 @@
       },
       "revId": "64c2eb1214df6ebcd277aec1fa703edd25b25b9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5021ed46_d90893ac",
+        "filename": "kleaf/tests/kernel_build_symtypes_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-21T22:35:05Z",
+      "side": 1,
+      "message": "Actually, this needs #299 from bazel-skylib. Updated here: CL:2132643\n\nI\u0027ll wait for that to merge before merging this.",
+      "parentUuid": "71d63bbd_87ce52c1",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "64c2eb1214df6ebcd277aec1fa703edd25b25b9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
