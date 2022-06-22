@@ -58,22 +58,30 @@ class ScmVersionTestCase(unittest.TestCase):
             self.assertTrue(mo, "no matching scmversion, found {}".format(
                 scmversion))
 
+    def test_contains_vermagic(self):
+        """Test that all ko files have vermagic."""
+        for module in arguments.modules:
+            with self.subTest(module=module):
+                self._assert_contains_vermagic(module)
+
     # Version.PatchLevel.SubLevel-AndroidRelease-KmiGeneration[-Tag]-Sha1
     # e.g. 5.4.42-android12-0-00544-ged21d463f856
     # e.g. 5.4.42-mainline-00544-ged21d463f856
     _vermagic_pattern = re.compile(
-        r"[0-9]+[.][0-9]+[.][0-9]+(-android[0-9]+-[0-9]+|-mainline)(-[0-9]+)?-g[0-9a-f]{12,40}")
+        r"^[0-9]+[.][0-9]+[.][0-9]+(-android[0-9]+-[0-9]+|-mainline)(-[0-9]+)?-g[0-9a-f]{12,40}")
 
     def _assert_contains_vermagic(self, module):
         basename = os.path.basename(module)
+        if os.path.splitext(basename)[1] != ".ko":
+            self.skipTest("{} is not a kernel module".format(basename))
         try:
             vermagic = subprocess.check_output(
                 [arguments.modinfo, module, "-F", "vermagic"],
                 text=True).strip()
-        except subprocess.CalledProcessError:
-            vermagic = None
+        except subprocess.CalledProcessError as e:
+            self.fail("modinfo returns {}: {}".format(e.returncode, e.stderr))
 
-        mo = ScmVersionTestCase._vermagic_pattern.match(vermagic)
+        mo = ScmVersionTestCase._vermagic_pattern.search(vermagic)
 
         if basename not in ScmVersionTestCase._modinfo_exempt_list:
             self.assertTrue(mo, "no matching vermagic, found {}".format(
