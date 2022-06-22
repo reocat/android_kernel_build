@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6c608f6_e3edef96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-22T21:20:18Z",
+      "side": 1,
+      "message": "Matthias, does it make sense to test for existence of vermagic in all modules? I checked that virtio_console.ko (for virtual_device) and some i2c modules (for db845c) fails this test, though none of them are enabled on go/ab.\n\nIf the test doesn\u0027t make sense, I would just delete it completely.",
+      "revId": "f7a544807701b5a50301ba3d3261fb89dbedc15b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
