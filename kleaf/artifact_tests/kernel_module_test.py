@@ -32,6 +32,7 @@ arguments = None
 
 
 class ScmVersionTestCase(unittest.TestCase):
+    @unittest.skip("b/236871190")
     def test_contains_scmversion(self):
         """Test that all ko files have scmversion."""
         for module in arguments.modules:
