@@ -53,6 +53,7 @@ def collect(popen_obj):
 
 def main():
   kernel_dir = os.path.realpath(".source_date_epoch_dir")
+  rel_kernel_dir = os.path.relpath(kernel_dir)
   has_kernel_dir = os.path.isdir(kernel_dir)
 
   setlocalversion = os.path.join(kernel_dir, "scripts/setlocalversion")
@@ -66,9 +67,9 @@ def main():
   ext_modules = []
   stable_scmversion_extmod_objs = []
   if setlocalversion:
-    ext_modules = []
+    ext_modules.append(rel_kernel_dir)
     try:
-      ext_modules = subprocess.check_output("""
+      ext_modules += subprocess.check_output("""
         source build/build_utils.sh
         source build/_setup_env.sh
         echo $EXT_MODULES
