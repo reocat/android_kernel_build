@@ -16,6 +16,23 @@
       "message": "I\u0027ll add hvd@ as a reviewer, who has been working on analysis tests.\n\nHe\u0027ll need to register for Android Gerrit, so I couldn\u0027t add him right now.",
       "revId": "78ab1aa3f77c1f6dc0f963970732b9f69f63d9ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1347f41f_28998d50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956510
+      },
+      "writtenOn": "2022-06-23T17:29:31Z",
+      "side": 1,
+      "message": "All looks okay to me. I did find the tests somewhat hard to read, but unfortunately there isn\u0027t much support right now to make it better. Hopefully we can land go/starlark-analysis-testing-2022 soon and improve the experience.",
+      "revId": "78ab1aa3f77c1f6dc0f963970732b9f69f63d9ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
