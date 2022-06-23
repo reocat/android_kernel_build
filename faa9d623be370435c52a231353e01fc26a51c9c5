@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6ddad7f_b462e971",
+        "filename": "kleaf/artifact_tests/kernel_module_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1356264
+      },
+      "writtenOn": "2022-06-23T22:48:59Z",
+      "side": 1,
+      "message": "I don\u0027t know absl, but I think if you use absltest.main() the XML_OUTPUT_FILE will be automatically picked up\n\nRelated code: http://google3/third_party/py/absl/testing/absltest.py;l\u003d2348;rcl\u003d454734291",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 17
+      },
+      "revId": "faa9d623be370435c52a231353e01fc26a51c9c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
