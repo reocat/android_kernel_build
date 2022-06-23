@@ -19,6 +19,7 @@ import sys
 import subprocess
 import unittest
 
+from absl.testing import xml_reporter
 
 def load_arguments():
     parser = argparse.ArgumentParser()
@@ -55,4 +56,7 @@ class ScmVersionTestCase(unittest.TestCase):
 if __name__ == '__main__':
     arguments, unknown = load_arguments()
     sys.argv[1:] = unknown
-    unittest.main()
+    xml_output_file = os.environ.get("XML_OUTPUT_FILE")
+    xml_stream = open(xml_output_file, "w") if xml_output_file else None
+    test_runner = xml_reporter.TextAndXMLTestRunner(xml_stream=xml_stream)
+    unittest.main(testRunner=test_runner)

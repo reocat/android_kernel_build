@@ -11,7 +11,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 import unittest
+import os
+
+from absl.testing import xml_reporter
 from check_declared_output_list import check
 
 
@@ -45,4 +49,7 @@ class MyTestCase(unittest.TestCase):
 
 
 if __name__ == '__main__':
-  unittest.main(verbosity=2)
+  xml_output_file = os.environ.get("XML_OUTPUT_FILE")
+  xml_stream = open(xml_output_file, "w") if xml_output_file else None
+  test_runner = xml_reporter.TextAndXMLTestRunner(xml_stream=xml_stream)
+  unittest.main(testRunner=test_runner)
