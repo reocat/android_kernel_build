@@ -51,12 +51,16 @@ if [ -z "${KERNEL_DIR}" ]; then
     KERNEL_DIR="${build_config_dir}"
 fi
 
+set -x
 set -a
 . ${ROOT_DIR}/${BUILD_CONFIG}
 for fragment in ${BUILD_CONFIG_FRAGMENTS}; do
   . ${ROOT_DIR}/${fragment}
 done
 set +a
+set +x
+
+echo "Eric: ROOT_DIR=${ROOT_DIR} and KENREL_DIR=${KERNEL_DIR}"
 
 # For incremental kernel development, it is beneficial to trade certain
 # optimizations for faster builds.

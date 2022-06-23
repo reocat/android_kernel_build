@@ -725,17 +725,19 @@ fi
 # Copy the abi_${arch}.xml file from the sources into the dist dir
 if [ -n "${ABI_DEFINITION}" ]; then
   echo "========================================================"
-  echo " Copying abi definition to ${ABI_XML}"
+  echo " Copying abi definition from ${ABI_DEFINITION} to ${ABI_XML}"
   pushd $ROOT_DIR/$KERNEL_DIR
+    echo "Eric: current dir = ${PWD}"
     cp "${ABI_DEFINITION}" ${ABI_XML}
   popd
 fi
 
+set -x
 # Copy the abi symbol list file from the sources into the dist dir
 if [ -n "${KMI_SYMBOL_LIST}" ]; then
   ${ROOT_DIR}/build/abi/process_symbols --out-dir="$DIST_DIR" --out-file=abi_symbollist \
     --report-file=abi_symbollist.report --in-dir="$ROOT_DIR/$KERNEL_DIR" \
-    "${KMI_SYMBOL_LIST}" ${ADDITIONAL_KMI_SYMBOL_LISTS}
+    "${KMI_SYMBOL_LIST}" ${ADDITIONAL_KMI_SYMBOL_LISTS} ${MSM_KMI_SYMBOL_LIST}
   pushd $ROOT_DIR/$KERNEL_DIR
   if [ "${TRIM_NONLISTED_KMI}" = "1" ]; then
       # Create the raw symbol list
@@ -768,6 +770,7 @@ elif [ "${KMI_SYMBOL_LIST_STRICT_MODE}" = "1" ]; then
   echo "ERROR: KMI_SYMBOL_LIST_STRICT_MODE requires a KMI_SYMBOL_LIST" >&2
   exit 1
 fi
+set +x
 
 echo "========================================================"
 echo " Building kernel"
