@@ -22,6 +22,22 @@ load(
 load(":debug.bzl", "debug")
 load(":stamp.bzl", "stamp")
 
+_KASAN_COMMAND = """
+    ${KERNEL_DIR}/scripts/config --file ${OUT_DIR}/.config \\
+         -e CONFIG_KASAN \\
+         -e CONFIG_KASAN_INLINE \\
+         -e CONFIG_KCOV \\
+         -e CONFIG_PANIC_ON_WARN_DEFAULT_ENABLE \\
+         -d CONFIG_RANDOMIZE_BASE \\
+         -d CONFIG_KASAN_OUTLINE \\
+         --set-val CONFIG_FRAME_WARN 0 \\
+         -d CFI \\
+         -d CFI_PERMISSIVE \\
+         -d CFI_CLANG \\
+         -d SHADOW_CALL_STACK
+    make -C ${KERNEL_DIR} ${TOOL_ARGS} O=${OUT_DIR} olddefconfig
+"""
+
 def _determine_raw_symbollist_path(ctx):
     """A local action that stores the path to `abi_symbollist.raw` to a file object."""
 
@@ -83,7 +99,15 @@ def _kernel_config_impl(ctx):
 
     scmversion_command = stamp.scmversion_config_cmd(ctx)
 
+    kasan = ctx.attr.kasan[BuildSettingInfo].value
     lto_config_flag = ctx.attr.lto[BuildSettingInfo].value
+
+    if kasan:
+        # --lto=none: no conflict.
+        # --lto=default or not specified: --kasan implies --lto=none
+        if lto_config_flag != "none" and lto_config_flag != "default":
+            fail("{}: --kasan requires --lto=none, but --lto is {}".format(ctx.label, lto_config_flag))
+        lto_config_flag = "none"
 
     lto_command = ""
     if lto_config_flag != "default":
@@ -144,9 +168,11 @@ def _kernel_config_impl(ctx):
         # SCM version configuration
           {scmversion_command}
         # LTO configuration
-        {lto_command}
+          {lto_command}
         # Trim nonlisted symbols
           {trim_kmi_command}
+        # kasan configuration
+          {kasan_command}
         # HACK: run syncconfig to avoid re-triggerring kernel_build
           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} syncconfig
         # Grab outputs
@@ -158,6 +184,7 @@ def _kernel_config_impl(ctx):
         scmversion_command = scmversion_command,
         lto_command = lto_command,
         trim_kmi_command = trim_kmi_command,
+        kasan_command = _KASAN_COMMAND if kasan else "",
     )
 
     debug.print_scripts(ctx, command)
@@ -205,6 +232,7 @@ kernel_config = rule(
         ),
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
         "config": attr.output(mandatory = True, doc = "the .config file"),
+        "kasan": attr.label(default = "//build/kernel/kleaf:kasan"),
         "lto": attr.label(default = "//build/kernel/kleaf:lto"),
         "trim_nonlisted_kmi": attr.bool(doc = "If true, modify the config to trim non-listed symbols."),
         "raw_kmi_symbol_list": attr.label(

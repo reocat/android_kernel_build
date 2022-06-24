@@ -14,6 +14,7 @@
 
 # Define all analysis test for kernel_build().
 
+load(":kasan_test.bzl", "kasan_test")
 load(":kernel_build_symtypes_test.bzl", "kernel_build_symtypes_test")
 
 def kernel_build_analysis_test_suite(name):
@@ -21,6 +22,7 @@ def kernel_build_analysis_test_suite(name):
     native.test_suite(
         name = name,
         tests = [
+            kasan_test(name),
             kernel_build_symtypes_test(name),
         ],
     )
