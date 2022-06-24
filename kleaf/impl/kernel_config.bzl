@@ -26,11 +26,15 @@ load(":stamp.bzl", "stamp")
 def _set_str(value):
     return "--set-str {{config}} {}".format(value)
 
+def _set_val(value):
+    return "--set-val {{config}} {}".format(value)
+
 # Helper to construct options to `scripts/config`.
 _config = struct(
     disable = "-d {config}",
     enable = "-e {config}",
     set_str = _set_str,
+    set_val = _set_val,
 )
 
 def _determine_raw_symbollist_path(ctx):
@@ -128,6 +132,27 @@ def _config_trim(ctx):
         UNUSED_KSYMS_WHITELIST = _config.set_str("$(cat {})".format(raw_symbol_list_path_file.path)),
     )
     return struct(configs = configs, deps = [raw_symbol_list_path_file])
+
+def _config_kasan(ctx):
+    """Return configs for --kasan.
+
+    Key are configs names. Values are from `_config`, which is a format string that
+    can produce an option to `scripts/config`.
+    """
+    configs = dicts.add(
+        KASAN = _config.enable,
+        KASAN_INLINE = _config.enable,
+        KCOV = _config.enable,
+        PANIC_ON_WARN_DEFAULT_ENABLE = _config.enable,
+        RANDOMIZE_BASE = _config.disable,
+        KASAN_OUTLINE = _config.disable,
+        FRAME_WARN = _config.set_val(0),
+        CFI = _config.disable,
+        CFI_PERMISSIVE = _config.disable,
+        CFI_CLANG = _config.disable,
+        SHADOW_CALL_STACK = _config.disable,
+    )
+    return struct(configs = configs, deps = [])
 
 def _reconfig(ctx):
     """Return a command and extra inputs to re-configure `.config` file."""
