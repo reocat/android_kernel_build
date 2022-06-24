@@ -111,6 +111,12 @@ def _lto_test(name):
         expected = ["data/kernel_config_option_test/{}_config".format(lto) for lto in LTO_VALUES],
     )
 
+_kasan_test_data = rule(
+    implementation = _get_transitioned_config_impl,
+    doc = "Get `.config` for a kernel with the kasan transition.",
+    attrs = _get_config_attrs_common(kasan_transition),
+)
+
 def _get_config_impl(ctx):
     symlink = _symlink_config(ctx, ctx.attr.kernel_build, ctx.attr.prefix + "_config")
     return DefaultInfo(files = depset([symlink]), runfiles = ctx.runfiles(files = [symlink]))
@@ -217,6 +223,12 @@ def kernel_config_option_test_suite(name):
     unittest.suite(
         name,
         _lto_test,
+        # FIXME
+        #        partial.make(
+        #            _transition_test,
+        #            test_data_rule = _kasan_test_data,
+        #            expected = ["data/kernel_config_option_test/{}kasan_config".format(kasan) for kasan in ("", "no")],
+        #        ),
         _trim_test,
         _combined_option_test,
     )

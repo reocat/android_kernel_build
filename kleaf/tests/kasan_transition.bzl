@@ -12,17 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Define all analysis test for kernel_build().
+# A transition on the kasan setting. Explodes into multiple targets, each
+# with a different kasan setting.
+# https://bazel.build/rules/lib/transition
 
-load(":kasan_test.bzl", "kasan_test")
-load(":kernel_build_symtypes_test.bzl", "kernel_build_symtypes_test")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 
-def kernel_build_analysis_test_suite(name):
-    """Define all analysis test for `kernel_build()`."""
-    native.test_suite(
-        name = name,
-        tests = [
-            kasan_test(name),
-            kernel_build_symtypes_test(name),
-        ],
-    )
+_KASAN_FLAG = "//build/kernel/kleaf:kasan"
+
+def _kasan_transition_impl(settings, attr):
+    return {
+        "kasan": {_KASAN_FLAG: True},
+        "nokasan": {_KASAN_FLAG: False},
+    }
+
+kasan_transition = transition(
+    implementation = _kasan_transition_impl,
+    inputs = [],
+    outputs = [_KASAN_FLAG],
+)
