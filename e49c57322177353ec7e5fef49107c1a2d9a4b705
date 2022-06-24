@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0018bac_a753a3d8",
+        "filename": "kleaf/docs/kasan.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-24T16:04:58Z",
+      "side": 1,
+      "message": "link to https://docs.kernel.org/dev-tools/kasan.html",
+      "range": {
+        "startLine": 3,
+        "startChar": 14,
+        "endLine": 3,
+        "endChar": 19
+      },
+      "revId": "e49c57322177353ec7e5fef49107c1a2d9a4b705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aff3a59_2d49cdf5",
+        "filename": "kleaf/docs/kasan.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-24T16:04:58Z",
+      "side": 1,
+      "message": "I think in our examples we should always refer to `bazel build` and the non-dist target. It reads confusing otherwise.",
+      "range": {
+        "startLine": 6,
+        "startChar": 14,
+        "endLine": 6,
+        "endChar": 17
+      },
+      "revId": "e49c57322177353ec7e5fef49107c1a2d9a4b705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2431ee0e_3081e4d1",
+        "filename": "kleaf/docs/kasan.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-24T16:04:58Z",
+      "side": 1,
+      "message": "disable",
+      "range": {
+        "startLine": 9,
+        "startChar": 27,
+        "endLine": 9,
+        "endChar": 35
+      },
+      "revId": "e49c57322177353ec7e5fef49107c1a2d9a4b705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea4e1393_51435dd0",
+        "filename": "kleaf/docs/kasan.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-24T16:04:58Z",
+      "side": 1,
+      "message": "its value to",
+      "range": {
+        "startLine": 9,
+        "startChar": 51,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "e49c57322177353ec7e5fef49107c1a2d9a4b705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a246bbf1_3aafcdf7",
+        "filename": "kleaf/docs/kasan.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-24T16:04:58Z",
+      "side": 1,
+      "message": "the build",
+      "range": {
+        "startLine": 10,
+        "startChar": 58,
+        "endLine": 10,
+        "endChar": 63
+      },
+      "revId": "e49c57322177353ec7e5fef49107c1a2d9a4b705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d29e651_49b00a78",
+        "filename": "kleaf/docs/kasan.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-24T16:04:58Z",
+      "side": 1,
+      "message": "on",
+      "range": {
+        "startLine": 30,
+        "startChar": 56,
+        "endLine": 30,
+        "endChar": 58
+      },
+      "revId": "e49c57322177353ec7e5fef49107c1a2d9a4b705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8dfc5b3_b6bf5c7b",
+        "filename": "kleaf/docs/kasan.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-24T16:04:58Z",
+      "side": 1,
+      "message": "on",
+      "range": {
+        "startLine": 32,
+        "startChar": 61,
+        "endLine": 32,
+        "endChar": 63
+      },
+      "revId": "e49c57322177353ec7e5fef49107c1a2d9a4b705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9f5f19f_7f404402",
+        "filename": "kleaf/docs/lto.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-24T16:04:58Z",
+      "side": 1,
+      "message": "not sure that cross reference is needed here.",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 5
+      },
+      "revId": "e49c57322177353ec7e5fef49107c1a2d9a4b705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b0db28a_37a2eca3",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-24T16:04:58Z",
+      "side": 1,
+      "message": "I believe those are set by lto\u003dnone already and we do not necessarily need to set them. But perhaps we need to run the LTO config before this one.\n\nIn theory we can combine the scripts and get away with a single make scripts/config invocation: -e -d -m and --set-val/--set-str should be the only things to support; if we collect the flags we can 1) check for conflicts, 2) avoid having so many script calls and 3) only have one make invocation as a result. That might even fit well into the build-config-in-bazel idea where we could allow fragment configs defined like this as well.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 29
+      },
+      "revId": "e49c57322177353ec7e5fef49107c1a2d9a4b705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
