@@ -23,6 +23,7 @@ load("//build/kernel/kleaf:constants.bzl", "LTO_VALUES")
 load("//build/kernel/kleaf:kernel.bzl", "kernel_build")
 load("//build/kernel/kleaf/impl:utils.bzl", "utils")
 load(":contain_lines_test.bzl", "contain_lines_test")
+load(":kasan_transition.bzl", "kasan_transition")
 load(":lto_transition.bzl", "lto_transition")
 load(":kernel_config_aspect.bzl", "KernelConfigAspectInfo", "kernel_config_aspect")
 
@@ -131,6 +132,23 @@ def _lto_test(name, kernel_build):
         kernel_build = kernel_build,
         test_data_rule = _lto_test_data,
         expected = ["data/kernel_config_option_test/{}_config".format(lto) for lto in LTO_VALUES],
+    )
+
+## Tests on --kasan
+
+_kasan_test_data = rule(
+    implementation = _get_transitioned_config_impl,
+    doc = "Get `.config` for a kernel with the LTO transition.",
+    attrs = _get_config_attrs_common(kasan_transition),
+)
+
+def _kasan_test(name, kernel_build):
+    """Test the effect of a `--kasan` on `kernel_config`."""
+    _transition_test(
+        name = name,
+        kernel_build = kernel_build,
+        test_data_rule = _kasan_test_data,
+        expected = ["data/kernel_config_option_test/{}kasan_config".format(kasan) for kasan in ["", "no"]],
     )
 
 ## Tests on `trim_nonlisted_kmi`
