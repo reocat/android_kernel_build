@@ -86,6 +86,11 @@ def _intermediates_dir(ctx):
         ctx.attr.name + "_intermediates",
     )
 
+def _sanitize_label_as_filename(label):
+    """Sanitize a Bazel label so it is safe to be used as a filename."""
+    label_text = str(label)
+    return "".join([c if c.isalnum() else "_" for c in label_text.elems()])
+
 # Utilities that applies to all Bazel stuff in general. These functions are
 # not Kleaf specific.
 utils = struct(
@@ -94,6 +99,7 @@ utils = struct(
     getoptattr = _getoptattr,
     find_file = find_file,
     find_files = find_files,
+    sanitize_label_as_filename = _sanitize_label_as_filename,
 )
 
 def _filter_module_srcs(files):
