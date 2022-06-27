@@ -14,8 +14,18 @@
 
 import argparse
 import os
+import pathlib
+import shutil
 import sys
+import traceback
 from typing import Tuple, Optional
+
+
+def _require_absolute_path(p: str) -> pathlib.Path:
+    p = pathlib.Path(p)
+    if not p.is_absolute():
+        raise argparse.ArgumentTypeError("need to specify an absolute path")
+    return p
 
 
 def _split_triple(lst: list[str], index: int) -> Tuple[list[str], Optional[str], list[str]]:
@@ -66,12 +76,14 @@ def _split_bazel_args(bazel_args: list[str]) \
     return startup_options, command, command_args, dash_dash, target_patterns
 
 
-def _parse_command_args(command_args: list[str]) -> \
+def _parse_command_args(command_args: list[str], absolute_out_dir: str) -> \
         Tuple[argparse.Namespace, list[str], dict[str, str]]:
     """Parse the given list of command_args.
 
     Args:
+        command: see _split_bazel_args
         command_args: see _split_bazel_args
+        absolute_out_dir: Absolute path to the out directory.
     Return:
         A tuple (known_args, transformed_command_args, updated_environment_variables)
         where:
@@ -82,6 +94,7 @@ def _parse_command_args(command_args: list[str]) -> \
           to be updated.
     """
 
+    absolute_cache_dir = f"{absolute_out_dir}/cache"
     env = {}
 
     # Arguments known by this bazel wrapper.
@@ -90,6 +103,9 @@ def _parse_command_args(command_args: list[str]) -> \
     parser.add_argument("--experimental_strip_sandbox_path",
                         action='store_true')
     parser.add_argument("--make_jobs", type=int, default=None)
+    parser.add_argument("--cache_dir",
+                        type=_require_absolute_path,
+                        default=absolute_cache_dir)
 
     # known_args: List of arguments known by this bazel wrapper. These
     #   are stripped from the final bazel invocation.
@@ -104,6 +120,8 @@ def _parse_command_args(command_args: list[str]) -> \
     if known_args.make_jobs is not None:
         env["KLEAF_MAKE_JOBS"] = str(known_args.make_jobs)
 
+    remaining_command_args.append(f"--//build/kernel/kleaf:cache_dir={known_args.cache_dir}")
+
     return known_args, remaining_command_args, env
 
 
@@ -117,7 +135,8 @@ def main(root_dir, bazel_args, env):
     startup_options, command, command_args, dash_dash, target_patterns = \
         _split_bazel_args(bazel_args)
 
-    known_args, transformed_command_args, env_update = _parse_command_args(command_args)
+    known_args, transformed_command_args, env_update = \
+        _parse_command_args(command_args, absolute_out_dir)
     updated_env = env.copy()
     updated_env.update(env_update)
 
@@ -138,6 +157,12 @@ def main(root_dir, bazel_args, env):
     if dash_dash is not None:
         final_args.append(dash_dash)
     final_args += target_patterns
+
+    if command == "clean":
+        sys.stderr.write(f"INFO: Removing cache directory for $OUT_DIR: {known_args.cache_dir}\n")
+        shutil.rmtree(known_args.cache_dir, ignore_errors=True)
+    else:
+        os.makedirs(known_args.cache_dir, exist_ok=True)
 
     if known_args.experimental_strip_sandbox_path:
         import asyncio
