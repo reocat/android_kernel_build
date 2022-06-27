@@ -58,3 +58,16 @@ You may build the following to confirm the value of LTO setting:
 ```shell
 $ tools/bazel build [flags] //build/kernel/kleaf:print_flags
 ```
+
+## Local cache dir
+
+Building with `--config=fast` implies `--config=local` for some rules, such as
+the `kernel_build` rule. The `local` mode makes use of a persistent `$OUT_DIR`
+across invocations to cache the rule execution state. The default cache
+directory is `$WORKSPACE/out/cache`, but can be overridden by passing
+`--cache_dir=/some/fast/disk` in order to make use of a file system that
+performs well or better for the kernel build workload. Full example:
+
+```shell
+$ tools/bazel run --config=fast //common:kernel_aarch64 --cache_dir=/some/fast/disk -- --dist_dir=out/dist
+```

@@ -14,6 +14,7 @@
 
 import argparse
 import os
+import pathlib
 import sys
 
 
@@ -25,12 +26,24 @@ def main(root_dir, bazel_args, env):
     bazelrc_name = "build/kernel/kleaf/common.bazelrc"
 
     absolute_out_dir = f"{root_dir}/out"
+    absolute_cache_dir = f"{absolute_out_dir}/cache"
 
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument("--use_prebuilt_gki")
     parser.add_argument("--experimental_strip_sandbox_path",
                         action='store_true')
     parser.add_argument("--make_jobs", type=int, default=None)
+
+    def require_absolute_path(p):
+        p = pathlib.Path(p)
+        if not p.is_absolute():
+            raise argparse.ArgumentTypeError("need to specify an absolute path")
+        return p
+
+    parser.add_argument("--cache_dir",
+                        type=require_absolute_path,
+                        default=absolute_cache_dir)
+
     known_args, bazel_args = parser.parse_known_args(bazel_args)
     if known_args.use_prebuilt_gki:
         # Insert before positional arguments
@@ -50,6 +63,16 @@ def main(root_dir, bazel_args, env):
         f"--host_jvm_args=-Djava.io.tmpdir={absolute_out_dir}/bazel/javatmp",
         f"--bazelrc={root_dir}/{bazelrc_name}",
     ]
+
+    for command in ("build", "run", "test"):
+        try:
+            bazel_args.insert(bazel_args.index(command)+1,
+                              f"--cache_dir={known_args.cache_dir}")
+            os.makedirs(known_args.cache_dir, exist_ok=True)
+            break
+        except ValueError:
+            continue
+
     command_args += bazel_args
 
     if known_args.experimental_strip_sandbox_path:
