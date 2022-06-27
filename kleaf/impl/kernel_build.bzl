@@ -13,6 +13,7 @@
 # limitations under the License.
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(
     "//build/kernel/kleaf/artifact_tests:kernel_test.bzl",
@@ -727,10 +728,15 @@ def _kernel_build_impl(ctx):
     env_info_dependencies += ctx.attr.config[KernelEnvInfo].dependencies
     for d in all_output_files.values():
         env_info_dependencies += d.values()
-    env_info_setup = ctx.attr.config[KernelEnvInfo].setup + """
-         # Restore kernel build outputs
-           cp -R {ruledir}/* ${{OUT_DIR}}
-           """.format(ruledir = ruledir.path)
+    env_info_setup = ctx.attr.config[KernelEnvInfo].setup
+
+    # Only restore $OUT_DIR if not using --config=local. With
+    # --config=local, we use a cache directory, so the output is already there.
+    if not ctx.attr._config_is_local[BuildSettingInfo].value:
+        env_info_setup += """
+             # Restore kernel build outputs
+               cp -R {ruledir}/* ${{OUT_DIR}}
+               """.format(ruledir = ruledir.path)
     if kbuild_mixed_tree:
         env_info_dependencies.append(kbuild_mixed_tree)
         env_info_setup += """
@@ -855,6 +861,7 @@ _kernel_build = rule(
         "_compare_to_symbol_list": attr.label(default = "//build/kernel:abi/compare_to_symbol_list", allow_single_file = True),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
         # Though these rules are unrelated to the `_kernel_build` rule, they are added as fake
         # dependencies so KernelBuildExtModuleInfo and KernelBuildUapiInfo works.
         # There are no real dependencies. Bazel does not build these targets before building the

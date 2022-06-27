@@ -17,6 +17,11 @@
 # Let rules know what configs we are using now
 build:local --//build/kernel/kleaf:config_local
 
-# Skip sandboxing to cache $OUT_DIR.
+# For all other rules, use processwrapper-sandbox
+# but not linux-sandbox so that $OUT_DIR is not mounted as read-only, so
+# it can be written to by sandboxed actions.
+build:local --spawn_strategy processwrapper-sandbox
+
+# A list of actions to skip sandboxing.
 build:local --strategy KernelConfig=local
 build:local --strategy KernelBuild=local
