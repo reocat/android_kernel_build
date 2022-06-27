@@ -240,13 +240,19 @@ def _kernel_config_impl(ctx):
 
     setup_deps = ctx.attr.env[KernelEnvInfo].dependencies + \
                  [config, include_dir]
-    setup = ctx.attr.env[KernelEnvInfo].setup + """
-         # Restore kernel config inputs
-           mkdir -p ${{OUT_DIR}}/include/
-           rsync -aL {config} ${{OUT_DIR}}/.config
-           rsync -aL {include_dir}/ ${{OUT_DIR}}/include/
-           find ${{OUT_DIR}}/include -type d -exec chmod +w {{}} \\;
-    """.format(config = config.path, include_dir = include_dir.path)
+
+    setup = ctx.attr.env[KernelEnvInfo].setup
+
+    # Only restore $OUT_DIR if not using --config=local. With
+    # --config=local, we use a cache directory, so the output is already there.
+    if not ctx.attr._config_is_local[BuildSettingInfo].value:
+        setup += """
+             # Restore kernel config inputs
+               mkdir -p ${{OUT_DIR}}/include/
+               rsync -aL {config} ${{OUT_DIR}}/.config
+               rsync -aL {include_dir}/ ${{OUT_DIR}}/include/
+               find ${{OUT_DIR}}/include -type d -exec chmod +w {{}} \\;
+        """.format(config = config.path, include_dir = include_dir.path)
 
     if ctx.attr.trim_nonlisted_kmi:
         # Ensure the dependent action uses the up-to-date abi_symbollist.raw
@@ -282,6 +288,7 @@ kernel_config = rule(
             allow_single_file = True,
         ),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
+        "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_allowlist_function_transition": attr.label(

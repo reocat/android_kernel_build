@@ -116,9 +116,16 @@ def _kernel_env_impl(ctx):
 
     # If multiple targets have the same KERNEL_DIR are built simultaneously
     # with --spawn_strategy=local, try to isolate their OUT_DIRs.
-    command += """
-          export OUT_DIR_SUFFIX={name}
-    """.format(name = _sanitize_label_as_filename(ctx.label).removesuffix("_env"))
+    if ctx.attr._config_is_local[BuildSettingInfo].value:
+        if not ctx.attr._local_cache_dir[BuildSettingInfo].value:
+            fail("--config=local is specified, but --cache_dir is not provided.")
+        command += """
+              export OUT_DIR={cache_dir}/{name}
+              mkdir -p "${{OUT_DIR}}"
+        """.format(
+            cache_dir = ctx.attr._local_cache_dir[BuildSettingInfo].value,
+            name = _sanitize_label_as_filename(ctx.label).removesuffix("_env"),
+        )
 
     set_source_date_epoch_ret = stamp.set_source_date_epoch(ctx)
     command += set_source_date_epoch_ret.cmd
@@ -305,6 +312,7 @@ kernel_env = rule(
             default = "//build/kernel/kleaf:debug_annotate_scripts",
         ),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
+        "_local_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_kbuild_symtypes_flag": attr.label(default = "//build/kernel/kleaf:kbuild_symtypes"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
