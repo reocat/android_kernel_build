@@ -16,6 +16,24 @@
       "message": "having to define this dependency everywhere is tedious. anything we can do about that?",
       "revId": "b9a834fc8a7253d2f9f3d50a8ff0f4363f50ea61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a570c6d8_e8077a2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-27T18:49:05Z",
+      "side": 1,
+      "message": "Either define this dependency or define a new test rule, which creates another abstraction layer. I think it is more reasonable to continue using py_test because it is universal knowledge to all Bazel users.",
+      "parentUuid": "a97992d3_fa52c5df",
+      "revId": "b9a834fc8a7253d2f9f3d50a8ff0f4363f50ea61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
