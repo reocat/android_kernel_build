@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a44814af_a8bb1664",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2022-06-27T11:39:35Z",
+      "side": 1,
+      "message": "I assume this means that is cache_dir is a relative path, it will be taken relative to the execroot?\n\n(might be useful to add this to a comment at some convenient location)",
+      "range": {
+        "startLine": 122,
+        "startChar": 14,
+        "endLine": 122,
+        "endChar": 37
+      },
+      "revId": "bb4e80d7cfee97764391ebe12169026f751dd399",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
