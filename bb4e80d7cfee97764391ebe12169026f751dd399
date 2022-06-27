@@ -22,6 +22,30 @@
       },
       "revId": "bb4e80d7cfee97764391ebe12169026f751dd399",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8796a361_23393838",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-27T12:22:29Z",
+      "side": 1,
+      "message": "oh, perhaps that should not be possible to do. I think it should always be an absolute path. Let me see whether we can restrict that properly.",
+      "parentUuid": "a44814af_a8bb1664",
+      "range": {
+        "startLine": 122,
+        "startChar": 14,
+        "endLine": 122,
+        "endChar": 37
+      },
+      "revId": "bb4e80d7cfee97764391ebe12169026f751dd399",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
