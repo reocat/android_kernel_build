@@ -14,6 +14,7 @@
 
 import argparse
 import os
+import pathlib
 import sys
 
 
@@ -25,12 +26,15 @@ def main(root_dir, bazel_args, env):
     bazelrc_name = "build/kernel/kleaf/common.bazelrc"
 
     absolute_out_dir = f"{root_dir}/out"
+    absolute_cache_dir = f"{absolute_out_dir}/cache"
 
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument("--use_prebuilt_gki")
     parser.add_argument("--experimental_strip_sandbox_path",
                         action='store_true')
     parser.add_argument("--make_jobs", type=int, default=None)
+    parser.add_argument("--cache_dir", type=pathlib.Path,
+                        default=absolute_cache_dir)
     known_args, bazel_args = parser.parse_known_args(bazel_args)
     if known_args.use_prebuilt_gki:
         # Insert before positional arguments
@@ -51,6 +55,12 @@ def main(root_dir, bazel_args, env):
         f"--bazelrc={root_dir}/{bazelrc_name}",
     ]
     command_args += bazel_args
+
+    if (any(command in bazel_args for command in ["build", "run", "test"])):
+        command_args += [
+            f"--cache_dir={known_args.cache_dir}",
+        ]
+        os.makedirs(known_args.cache_dir, exist_ok=True)
 
     if known_args.experimental_strip_sandbox_path:
         import asyncio

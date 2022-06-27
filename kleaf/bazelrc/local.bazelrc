@@ -18,5 +18,6 @@
 build:local --//build/kernel/kleaf:config_local
 
 # Skip sandboxing to cache $OUT_DIR.
+build:local --strategy KernelEnv=local
 build:local --strategy KernelConfig=local
 build:local --strategy KernelBuild=local
