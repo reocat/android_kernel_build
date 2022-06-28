@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28fd6938_03c12699",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-28T23:01:36Z",
+      "side": 1,
+      "message": "I think you used to have a filter in preserve_env.sh that changes the value of $PWD becomes the reference to $PWD. However, with the cache dir outside of $PWD, absolute paths now flow into kernel_env\u0027s output script. Does that matter?",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 52
+      },
+      "revId": "7709848c9995fdf9ce6393f2a3964ca3f787ed9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28588453_d9229b12",
         "filename": "kleaf/bazel.py",
         "patchSetId": 2
