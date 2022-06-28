@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("//build/bazel_common_rules/workspace:external.bzl", "import_common_external_repositories")
 load(
     "//build/kernel/kleaf:constants.bzl",
     "CI_TARGET_MAPPING",
@@ -24,15 +25,7 @@ def define_kleaf_workspace(common_kernel_package = None):
     if common_kernel_package == None:
         common_kernel_package = "common"
 
-    native.local_repository(
-        name = "bazel_skylib",
-        path = "external/bazel-skylib",
-    )
-
-    native.local_repository(
-        name = "io_abseil_py",
-        path = "external/python/absl-py",
-    )
+    import_common_external_repositories()
 
     native.local_repository(
         name = "io_bazel_stardoc",
