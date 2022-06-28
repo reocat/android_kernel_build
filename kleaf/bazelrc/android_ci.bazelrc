@@ -17,6 +17,10 @@
 common:android_ci --verbose_failures
 common:android_ci --noshow_progress
 
+# These are disabled when outputs are piped. Force enable them here.
+common:android_ci --color=yes
+common:android_ci --curses=yes
+
 # Embed scmversion
 build:android_ci --config=stamp
 
