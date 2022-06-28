@@ -84,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3b9565e_983aa200",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-28T23:52:35Z",
+      "side": 1,
+      "message": "Actually, putting the path under output_user_root does NOT make `bazel clean` to clean it. I think we\u0027ll just have to make that, if a clean command is issued, then also delete the cache directory.",
+      "parentUuid": "008c58bd_2fe6b6c8",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 52
+      },
+      "revId": "7709848c9995fdf9ce6393f2a3964ca3f787ed9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28588453_d9229b12",
         "filename": "kleaf/bazel.py",
         "patchSetId": 2
