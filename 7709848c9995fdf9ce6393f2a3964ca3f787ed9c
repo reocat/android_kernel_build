@@ -142,6 +142,30 @@
       },
       "revId": "7709848c9995fdf9ce6393f2a3964ca3f787ed9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f384f90_0a9de1b1",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-28T22:43:35Z",
+      "side": 1,
+      "message": "And if we do want to support --config\u003dlocal --cache-dir\u003d\"\", I think we want to retain the OUT_DIR_SUFFIX logic; otherwise it will break parallel builds. (For ABI monitoring, multiple kernel_env / kernel_config may be executed simultaneously).",
+      "parentUuid": "60ecfc76_601957ce",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 111
+      },
+      "revId": "7709848c9995fdf9ce6393f2a3964ca3f787ed9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
