@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea79274d_889fe8e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-06-28T22:33:25Z",
+      "side": 1,
+      "message": "Sample output:\n\nhttps://android-build.googleplex.com/builds/pending/P36852911/kleaf_tests/latest/view/logs/build.log\n\nHowever, this doesn\u0027t work on ci.android.com:\n\nhttps://ci.android.com/builds/pending/P36852911/kleaf_tests/latest/view/logs/build.log\n\nMatthias, WDYT? Should I not submit this?",
+      "revId": "b17b04753a3ef1cef598f35d0263a51ab2d99234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
