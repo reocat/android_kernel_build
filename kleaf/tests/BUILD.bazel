@@ -39,6 +39,15 @@ diff_test(
     expected = "data/build_config_test/build.config.expected",
 )
 
+## Test kernel_config against options (e.g. lto)
+
+kernel_build(
+    name = "kernel_config_options_test_kernel_build",
+    outs = [],
+    build_config = "data/kernel_config_options_test/build.config",
+    tags = ["manual"],
+)
+
 # Analysis tests
 
 kernel_build_analysis_test_suite(name = "kernel_build_analysis_test_suite")
