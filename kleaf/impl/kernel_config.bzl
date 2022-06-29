@@ -85,54 +85,53 @@ def _kernel_config_impl(ctx):
 
     lto_config_flag = ctx.attr.lto[BuildSettingInfo].value
 
-    lto_command = ""
+    configs = {}
     if lto_config_flag != "default":
         # none config
-        lto_config = {
-            "LTO_CLANG": "d",
-            "LTO_NONE": "e",
-            "LTO_CLANG_THIN": "d",
-            "LTO_CLANG_FULL": "d",
-            "THINLTO": "d",
-        }
+        configs.update(
+            LTO_CLANG = "d",
+            LTO_NONE = "e",
+            LTO_CLANG_THIN = "d",
+            LTO_CLANG_FULL = "d",
+            THINLTO = "d",
+        )
         if lto_config_flag == "thin":
-            lto_config.update(
+            configs.update(
                 LTO_CLANG = "e",
                 LTO_NONE = "d",
                 LTO_CLANG_THIN = "e",
                 THINLTO = "e",
             )
         elif lto_config_flag == "full":
-            lto_config.update(
+            configs.update(
                 LTO_CLANG = "e",
                 LTO_NONE = "d",
                 LTO_CLANG_FULL = "e",
             )
 
-        lto_command = """
-            ${{KERNEL_DIR}}/scripts/config --file ${{OUT_DIR}}/.config {configs}
-            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} olddefconfig
-        """.format(configs = " ".join([
-            "-%s %s" % (value, key)
-            for key, value in lto_config.items()
-        ]))
-
     if ctx.attr.trim_nonlisted_kmi and not ctx.file.raw_kmi_symbol_list:
         fail("{}: trim_nonlisted_kmi is set but raw_kmi_symbol_list is empty.".format(ctx.label))
 
-    trim_kmi_command = ""
     if ctx.attr.trim_nonlisted_kmi:
         raw_symbol_list_path_file = _determine_raw_symbollist_path(ctx)
-        trim_kmi_command = """
-            # Modify .config to trim symbols not listed in KMI
-              ${{KERNEL_DIR}}/scripts/config --file ${{OUT_DIR}}/.config \\
-                  -d UNUSED_SYMBOLS -e TRIM_UNUSED_KSYMS \\
-                  --set-str UNUSED_KSYMS_WHITELIST $(cat {raw_symbol_list_path_file})
-              make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} olddefconfig
-        """.format(
-            raw_symbol_list_path_file = raw_symbol_list_path_file.path,
+        configs.update(
+            UNUSED_SYMBOLS = "d",
+            TRIM_UNUSED_KSYMS = "e",
+            UNUSED_KSYMS_WHITELIST = "$(cat {})".format(raw_symbol_list_path_file.path),
         )
-        inputs.append(raw_symbol_list_path_file)
+
+    config_command = {}
+    if configs:
+        config_opts = []
+        for key, value in configs.items():
+            if value in ("d", "e"):
+                config_opts += ["-" + value, key]
+            else:
+                config_opts += ["--set-str", key, value]
+        config_command = """
+            ${{KERNEL_DIR}}/scripts/config --file ${{OUT_DIR}}/.config {configs}
+            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} olddefconfig
+        """.format(configs = " ".join(config_opts))
 
     command = ctx.attr.env[KernelEnvInfo].setup + """
         # Pre-defconfig commands
@@ -143,10 +142,8 @@ def _kernel_config_impl(ctx):
           eval ${{POST_DEFCONFIG_CMDS}}
         # SCM version configuration
           {scmversion_command}
-        # LTO configuration
-        {lto_command}
-        # Trim nonlisted symbols
-          {trim_kmi_command}
+        # Re-config
+          {config_command}
         # HACK: run syncconfig to avoid re-triggerring kernel_build
           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} syncconfig
         # Grab outputs
@@ -156,8 +153,7 @@ def _kernel_config_impl(ctx):
         config = config.path,
         include_dir = include_dir.path,
         scmversion_command = scmversion_command,
-        lto_command = lto_command,
-        trim_kmi_command = trim_kmi_command,
+        config_command = config_command,
     )
 
     debug.print_scripts(ctx, command)
