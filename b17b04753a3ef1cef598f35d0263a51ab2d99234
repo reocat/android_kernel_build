@@ -16,6 +16,24 @@
       "message": "Sample output:\n\nhttps://android-build.googleplex.com/builds/pending/P36852911/kleaf_tests/latest/view/logs/build.log\n\nHowever, this doesn\u0027t work on ci.android.com:\n\nhttps://ci.android.com/builds/pending/P36852911/kleaf_tests/latest/view/logs/build.log\n\nMatthias, WDYT? Should I not submit this?",
       "revId": "b17b04753a3ef1cef598f35d0263a51ab2d99234",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05874fd6_80760ddb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-06-29T07:57:49Z",
+      "side": 1,
+      "message": "Can we file a bug for fixing ci.android.com first? Let\u0027s wait until we get at least an initial response there.",
+      "parentUuid": "ea79274d_889fe8e1",
+      "revId": "b17b04753a3ef1cef598f35d0263a51ab2d99234",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
