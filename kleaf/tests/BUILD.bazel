@@ -19,20 +19,27 @@ load(
 load(":diff_test.bzl", "diff_test")
 load(":kernel_build_analysis_test.bzl", "kernel_build_analysis_test_suite")
 
+# Quick tests on built artifacts
+
+## Test kernel_build_config
+
 kernel_build_config(
-    name = "test_build_config",
+    name = "build_config_test_actual",
     srcs = [
         # do not sort
-        "build.config.2",
-        "build.config.1",
+        "data/build_config_test/build.config.2",
+        "data/build_config_test/build.config.1",
     ],
+    tags = ["manual"],
 )
 
 diff_test(
     name = "build_config_test",
-    actual = ":test_build_config",
-    expected = "build.config.expected",
+    actual = ":build_config_test_actual",
+    expected = "data/build_config_test/build.config.expected",
 )
+
+# Analysis tests
 
 kernel_build_analysis_test_suite(name = "kernel_build_analysis_test_suite")
 
