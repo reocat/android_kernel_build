@@ -18,6 +18,7 @@ load(
 )
 load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
 load(":kernel_build_analysis_test.bzl", "kernel_build_analysis_test_suite")
+load(":kernel_config_option_test.bzl", "kernel_config_option_test_suite")
 
 # Quick tests on built artifacts
 
@@ -39,6 +40,10 @@ diff_test(
     file2 = "data/build_config_test/build.config.expected",
 )
 
+## Test kernel_config
+
+kernel_config_option_test_suite(name = "kernel_config_option_test_suite")
+
 # Analysis tests
 
 kernel_build_analysis_test_suite(name = "kernel_build_analysis_test_suite")
@@ -48,5 +53,6 @@ test_suite(
     tests = [
         ":build_config_test",
         ":kernel_build_analysis_test_suite",
+        ":kernel_config_option_test_suite",
     ],
 )
