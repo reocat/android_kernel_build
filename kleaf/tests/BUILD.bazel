@@ -16,7 +16,7 @@ load(
     "//build/kernel/kleaf:kernel.bzl",
     "kernel_build_config",
 )
-load(":diff_test.bzl", "diff_test")
+load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
 load(":kernel_build_analysis_test.bzl", "kernel_build_analysis_test_suite")
 
 # Quick tests on built artifacts
@@ -35,8 +35,8 @@ kernel_build_config(
 
 diff_test(
     name = "build_config_test",
-    actual = ":build_config_test_actual",
-    expected = "data/build_config_test/build.config.expected",
+    file1 = ":build_config_test_actual",
+    file2 = "data/build_config_test/build.config.expected",
 )
 
 # Analysis tests
