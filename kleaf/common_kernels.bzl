@@ -111,6 +111,16 @@ def _default_target_configs():
     aarch64_abi_definition = native.glob(["android/abi_gki_aarch64.xml"])
     aarch64_abi_definition = aarch64_abi_definition[0] if aarch64_abi_definition else None
 
+    x86_64_kmi_symbol_list = native.glob(["android/abi_gki_x86_64"])
+    x86_64_kmi_symbol_list = x86_64_kmi_symbol_list[0] if x86_64_kmi_symbol_list else None
+    x86_64_additional_kmi_symbol_lists = native.glob(
+        ["android/abi_gki_x86_64*"],
+        exclude = ["**/*.xml", "android/abi_gki_x86_64"],
+    )
+    x86_64_trim_and_check = bool(x86_64_kmi_symbol_list) or len(x86_64_additional_kmi_symbol_lists) > 0
+    x86_64_abi_definition = native.glob(["android/abi_gki_x86_64.xml"])
+    x86_64_abi_definition = x86_64_abi_definition[0] if x86_64_abi_definition else None
+
     # Common configs for aarch64 and aarch64_debug
     aarch64_common = {
         # Assume the value for KMI_SYMBOL_LIST, ADDITIONAL_KMI_SYMBOL_LISTS, ABI_DEFINITION, and KMI_ENFORCED
@@ -134,6 +144,12 @@ def _default_target_configs():
 
     # Common configs for x86_64 and x86_64_debug
     x86_64_common = {
+        # Assume the value for KMI_SYMBOL_LIST, ADDITIONAL_KMI_SYMBOL_LISTS, ABI_DEFINITION, and KMI_ENFORCED
+        # for build.config.gki.aarch64
+        "kmi_symbol_list": x86_64_kmi_symbol_list,
+        "additional_kmi_symbol_lists": x86_64_additional_kmi_symbol_lists,
+        "abi_definition": x86_64_abi_definition,
+        "kmi_enforced": bool(x86_64_abi_definition),
         "module_outs": GKI_MODULES,
         # Assume BUILD_GKI_ARTIFACTS=1
         "build_gki_artifacts": True,
@@ -155,7 +171,13 @@ def _default_target_configs():
             # Assume TRIM_NONLISTED_KMI="" in build.config.gki-debug.aarch64
             "trim_nonlisted_kmi": False,
         }),
-        "kernel_x86_64": x86_64_common,
+        "kernel_x86_64": dicts.add(x86_64_common, {
+            # In build.config.gki.x86_64:
+            # - If there are symbol lists: assume TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1}
+            # - If there aren't:           assume TRIM_NONLISTED_KMI unspecified
+            "trim_nonlisted_kmi": x86_64_trim_and_check,
+            "kmi_symbol_list_strict_mode": x86_64_trim_and_check,
+        }),
         "kernel_x86_64_debug": dicts.add(x86_64_common, {
             # Assume TRIM_NONLISTED_KMI="" in build.config.gki-debug.x86_64
             "trim_nonlisted_kmi": False,
