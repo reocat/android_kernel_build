@@ -34,6 +34,24 @@
       "parentUuid": "afcc81d3_2dce7de6",
       "revId": "6ca501a33a55705e1b93478330b6bc135ad7007b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d913326_662cb697",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1247518
+      },
+      "writtenOn": "2022-07-06T20:48:49Z",
+      "side": 1,
+      "message": "Having a build option for erofs sounds useful, settable by a project config file.  However I\u0027d like to re-set the default to ext4 while that\u0027s developed as I imagine many projects will continue to use ext4.",
+      "parentUuid": "84c3fa88_4277a49c",
+      "revId": "6ca501a33a55705e1b93478330b6bc135ad7007b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
