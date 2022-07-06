@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08c6db36_9e446e71",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1247518
+      },
+      "writtenOn": "2022-07-06T22:51:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4347cb60_7393413f",
+      "revId": "519f0389d2edeee5495f0dd11fd58ee20ab64913",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef65705a_2694b35e",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-06T22:46:16Z",
       "side": 1,
       "message": "nit: unnecessary change",
+      "revId": "519f0389d2edeee5495f0dd11fd58ee20ab64913",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb64c0ed_1c474c51",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1247518
+      },
+      "writtenOn": "2022-07-06T22:51:47Z",
+      "side": 1,
+      "message": "I made this change to match the usage order and the vendor_dlkm_image .bzl file",
+      "parentUuid": "ef65705a_2694b35e",
       "revId": "519f0389d2edeee5495f0dd11fd58ee20ab64913",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
