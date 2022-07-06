@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c558426f_38949ad9",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1247518
+      },
+      "writtenOn": "2022-07-06T18:33:09Z",
+      "side": 1,
+      "message": "Done.  (This quoting was carried over from the original source.  I don\u0027t think there should be any side effects of adding quoting though.)",
+      "parentUuid": "0bce2c7e_910bba83",
+      "range": {
+        "startLine": 215,
+        "startChar": 72,
+        "endLine": 215,
+        "endChar": 94
+      },
+      "revId": "a784b093eb459d0838b1ad4d0c50a069416d8c8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cd8129e_5fb0fbdf",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-07-06T18:29:13Z",
       "side": 1,
       "message": "Did you mean system_dlkm_props_file ?",
+      "revId": "a784b093eb459d0838b1ad4d0c50a069416d8c8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33c4e5b2_6b74eae8",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1247518
+      },
+      "writtenOn": "2022-07-06T18:33:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cd8129e_5fb0fbdf",
       "revId": "a784b093eb459d0838b1ad4d0c50a069416d8c8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
