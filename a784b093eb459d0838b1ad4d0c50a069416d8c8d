@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bce2c7e_910bba83",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2022-07-06T18:29:13Z",
+      "side": 1,
+      "message": "Quote arguments consistently. Compare with line 261",
+      "range": {
+        "startLine": 215,
+        "startChar": 72,
+        "endLine": 215,
+        "endChar": 94
+      },
+      "revId": "a784b093eb459d0838b1ad4d0c50a069416d8c8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cd8129e_5fb0fbdf",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2022-07-06T18:29:13Z",
+      "side": 1,
+      "message": "Did you mean system_dlkm_props_file ?",
+      "revId": "a784b093eb459d0838b1ad4d0c50a069416d8c8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
