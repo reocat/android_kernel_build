@@ -52,6 +52,24 @@
       "parentUuid": "84c3fa88_4277a49c",
       "revId": "6ca501a33a55705e1b93478330b6bc135ad7007b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef13c701_b21bacad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-07-06T21:29:42Z",
+      "side": 1,
+      "message": "Since all RO fs for T is ext4 and I don\u0027t think there is any other consumer for the image built in kernel except pixel for dev purposes; defaulting to ext4 is fine.",
+      "parentUuid": "8d913326_662cb697",
+      "revId": "6ca501a33a55705e1b93478330b6bc135ad7007b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
