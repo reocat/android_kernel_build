@@ -16,6 +16,24 @@
       "message": "We are pushing towards erofs for RO fs. So, that\u0027s what we would like to default to.\n\nThough kernel build images are not releasable and for dev purposes only; do we need to support both ext4 and erofs at the sametime and can generate both images like `system_dlkm.img.erofs` \u0026 `system_dlkm.img.ext4`.",
       "revId": "6ca501a33a55705e1b93478330b6bc135ad7007b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84c3fa88_4277a49c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-07-06T20:09:01Z",
+      "side": 1,
+      "message": "?",
+      "parentUuid": "afcc81d3_2dce7de6",
+      "revId": "6ca501a33a55705e1b93478330b6bc135ad7007b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
