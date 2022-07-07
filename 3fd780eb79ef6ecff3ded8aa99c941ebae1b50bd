@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6ce5b18_e22fea68",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-07T11:23:08Z",
+      "side": 1,
+      "message": "This looks like a test utility. Should it go into kleaf/tests/util/ instead?",
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42ead03a_eceeb11e",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-07T11:23:08Z",
+      "side": 1,
+      "message": "have you considered the use cases?\n\n`--actual tests/actual.txt --expected tests/expected.txt`",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d479092_f2462a57",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-07T11:23:08Z",
+      "side": 1,
+      "message": "if expecting paths, you can set `type\u003dpathlib.Path`\n\nThere might be also issues with absolute/relative paths when tests run, for that you could transform with pathlib.Path.absolute() to ensure to always get absolute arguments. But that might not be an actual issue here.",
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebacfa93_c6394555",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-07T11:23:08Z",
+      "side": 1,
+      "message": "+, otherwise not specifying files is valid, but seems not useful.",
+      "range": {
+        "startLine": 58,
+        "startChar": 43,
+        "endLine": 58,
+        "endChar": 44
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3baf00c1_8116a811",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-07T11:23:08Z",
+      "side": 1,
+      "message": "+",
+      "range": {
+        "startLine": 59,
+        "startChar": 45,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fa52ae0_b71264c1",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-07T11:23:08Z",
+      "side": 1,
+      "message": "return [line.strip() for line in f.readlines() if line.strip()]\n\nIt appears like an additional cost, but otherwise additional copies of the lists are made and held in memory. The approach above uses iterators and manifests one copy in memory.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 48
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
