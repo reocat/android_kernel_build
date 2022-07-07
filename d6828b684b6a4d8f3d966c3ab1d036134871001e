@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce282ec2_1ee7ca72",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-07T09:01:23Z",
+      "side": 1,
+      "message": "How about\n\n  for arch in [\"aarch64\", \"x86_64\"]:",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 87
+      },
+      "revId": "d6828b684b6a4d8f3d966c3ab1d036134871001e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
