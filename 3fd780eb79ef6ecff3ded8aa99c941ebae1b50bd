@@ -125,6 +125,52 @@
       },
       "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e36fc171_d89f3bb6",
+        "filename": "kleaf/tests/kernel_config_test/data/none_config",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-07T11:35:29Z",
+      "side": 1,
+      "message": "CFI depends on LTO, so no LTO should always also lead to no CFI",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff4154c5_8e3d1869",
+        "filename": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-07T11:35:29Z",
+      "side": 1,
+      "message": "for trim, prefix in {True:\"trim\", False: \"notrim\"}.items():",
+      "range": {
+        "startLine": 157,
+        "startChar": 4,
+        "endLine": 158,
+        "endChar": 45
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
