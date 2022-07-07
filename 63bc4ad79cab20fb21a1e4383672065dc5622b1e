@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc54e5a0_ee80b9b4",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-07T11:47:32Z",
+      "side": 1,
+      "message": "that is implicit by disabling LTO",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 36
+      },
+      "revId": "63bc4ad79cab20fb21a1e4383672065dc5622b1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
