@@ -81,6 +81,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c61085d6_c94d7fea",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-07-07T22:40:12Z",
+      "side": 1,
+      "message": "starlark does not support lambda but do support function pointers (but no partials or bound methods).\n\nPartials are partly implemented in skylib but there\u0027s no native support: https://github.com/bazelbuild/bazel-skylib/blob/main/lib/partial.bzl",
+      "parentUuid": "09194fb0_a14f3134",
+      "range": {
+        "startLine": 33,
+        "startChar": 14,
+        "endLine": 33,
+        "endChar": 22
+      },
+      "revId": "1e453f9fc5fff2d06420a362958140e90c428eed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74ba07e3_aa7d3055",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-07-07T22:40:12Z",
+      "side": 1,
+      "message": "I know, but I don\u0027t need them now.\n\n--set-val is added in the next CL",
+      "parentUuid": "42054423_2bd14870",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 23
+      },
+      "revId": "1e453f9fc5fff2d06420a362958140e90c428eed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "833a2c42_23b66d2a",
