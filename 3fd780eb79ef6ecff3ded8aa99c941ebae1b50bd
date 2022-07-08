@@ -85,6 +85,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4196435_d8b059a4",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-08T11:31:23Z",
+      "side": 1,
+      "message": "As I read it you are relying on the basename, but the basename here is different.",
+      "parentUuid": "2c54b892_b811a5c1",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7d479092_f2462a57",
         "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
         "patchSetId": 8
@@ -296,6 +320,30 @@
       "side": 1,
       "message": "Ack. But I can\u0027t check the existence of line\n\n```\n# CONFIG_CFI is not set\n```\n\nbecause the existence of a comment line is not guaranteed.",
       "parentUuid": "e36fc171_d89f3bb6",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a513836_5f84ea42",
+        "filename": "kleaf/tests/kernel_config_test/data/none_config",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-08T11:31:23Z",
+      "side": 1,
+      "message": "Maybe test for the absence of CONFIG_CFI\u003dy ?",
+      "parentUuid": "e60a262d_11e09d95",
       "range": {
         "startLine": 1,
         "startChar": 0,

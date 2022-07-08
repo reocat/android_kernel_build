@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5810a73c_b1aec402",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-08T11:31:23Z",
+      "side": 1,
+      "message": "ybe",
+      "revId": "0fcff3c18e85fd0ec5e140b96d7ff0b88ec70b3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33868a84_dfd213f9",
+        "filename": "kleaf/tests/utils/contain_lines_test.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-08T11:31:23Z",
+      "side": 1,
+      "message": "shouldn\u0027t that remain relative?",
+      "range": {
+        "startLine": 27,
+        "startChar": 17,
+        "endLine": 27,
+        "endChar": 49
+      },
+      "revId": "0fcff3c18e85fd0ec5e140b96d7ff0b88ec70b3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5afcc05a_d57a3181",
+        "filename": "kleaf/tests/utils/contain_lines_test.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-07-08T11:31:23Z",
+      "side": 1,
+      "message": "-\u003e None",
+      "range": {
+        "startLine": 97,
+        "startChar": 81,
+        "endLine": 97,
+        "endChar": 82
+      },
+      "revId": "0fcff3c18e85fd0ec5e140b96d7ff0b88ec70b3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
