@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c759f2b7_e5650a6c",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-07-08T00:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6ce5b18_e22fea68",
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42ead03a_eceeb11e",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-07-07T11:23:08Z",
       "side": 1,
       "message": "have you considered the use cases?\n\n`--actual tests/actual.txt --expected tests/expected.txt`",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c54b892_b811a5c1",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-07-08T00:01:35Z",
+      "side": 1,
+      "message": "What do you mean? This is a supported use case.",
+      "parentUuid": "42ead03a_eceeb11e",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -81,6 +123,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1df3336_192463f9",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-07-08T00:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebacfa93_c6394555",
+      "range": {
+        "startLine": 58,
+        "startChar": 43,
+        "endLine": 58,
+        "endChar": 44
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ee482f9_40233811",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-07-08T00:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d479092_f2462a57",
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3baf00c1_8116a811",
@@ -94,6 +178,30 @@
       "writtenOn": "2022-07-07T11:23:08Z",
       "side": 1,
       "message": "+",
+      "range": {
+        "startLine": 59,
+        "startChar": 45,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae6f9197_dce370d7",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-07-08T00:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3baf00c1_8116a811",
       "range": {
         "startLine": 59,
         "startChar": 45,
@@ -127,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e6ab31b_22a8c595",
+        "filename": "kleaf/tests/kernel_config_test/contain_lines_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-07-08T00:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fa52ae0_b71264c1",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 48
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e36fc171_d89f3bb6",
@@ -150,6 +282,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e60a262d_11e09d95",
+        "filename": "kleaf/tests/kernel_config_test/data/none_config",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-07-08T00:01:35Z",
+      "side": 1,
+      "message": "Ack. But I can\u0027t check the existence of line\n\n```\n# CONFIG_CFI is not set\n```\n\nbecause the existence of a comment line is not guaranteed.",
+      "parentUuid": "e36fc171_d89f3bb6",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff4154c5_8e3d1869",
@@ -163,6 +319,30 @@
       "writtenOn": "2022-07-07T11:35:29Z",
       "side": 1,
       "message": "for trim, prefix in {True:\"trim\", False: \"notrim\"}.items():",
+      "range": {
+        "startLine": 157,
+        "startChar": 4,
+        "endLine": 158,
+        "endChar": 45
+      },
+      "revId": "3fd780eb79ef6ecff3ded8aa99c941ebae1b50bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "876d7ace_43057735",
+        "filename": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-07-08T00:01:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff4154c5_8e3d1869",
       "range": {
         "startLine": 157,
         "startChar": 4,
