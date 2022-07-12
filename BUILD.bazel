@@ -28,7 +28,6 @@ hermetic_tools(
         "perl",
         "rsync",
         "sh",
-        "tar",
     ],
     test_host_tools = [
         "modinfo",
