@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8e369d3_592cef06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-07-20T22:36:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac13182c_1c49f43a",
+      "revId": "e6e931b08d597d3d7b9dfc1895c6cafeeacd8536",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3f24e9a_1bdcb948",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-07-19T17:19:48Z",
       "side": 1,
       "message": "The commit message does not address why this conditional was added.",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 37
+      },
+      "revId": "e6e931b08d597d3d7b9dfc1895c6cafeeacd8536",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a99c6be4_017e3967",
+        "filename": "build_abi.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-07-20T22:36:43Z",
+      "side": 1,
+      "message": "We only want to add these new files for mixed building scenarios. For regular builds, we should rely on the BUILD_CONFIG to set these accordingly. It doesn\u0027t makes sense to unconditionally add these files and vmlinux to the MAKE_GOALS.",
+      "parentUuid": "f3f24e9a_1bdcb948",
       "range": {
         "startLine": 192,
         "startChar": 0,
