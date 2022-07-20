@@ -16,6 +16,24 @@
       "message": "Please fix commit message formatting.\n\nIf you are going to do this, please check all other occurrences, in particular in `build.sh`.",
       "revId": "180c558bb9153ed77b57639d537e6e12ebb18f3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe7ae960_99706198",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-07-20T22:38:12Z",
+      "side": 1,
+      "message": "build.sh already handles it correctly",
+      "parentUuid": "02cec715_b0d163de",
+      "revId": "180c558bb9153ed77b57639d537e6e12ebb18f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
