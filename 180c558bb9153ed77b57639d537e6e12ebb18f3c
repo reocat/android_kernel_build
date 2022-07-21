@@ -52,6 +52,24 @@
       "parentUuid": "fe7ae960_99706198",
       "revId": "180c558bb9153ed77b57639d537e6e12ebb18f3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e7281b3_2581544a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-07-21T12:43:15Z",
+      "side": 1,
+      "message": "`build.sh` uses `\"${TRIM_NONLISTED_KMI}\" \u003d \"1\"` consistently. Why not just use the negation of that?\n\nI think the commit message folding was some Gerrit / Chrome / gLinux interaction at my end. Looks fine on my laptop, for instance.",
+      "parentUuid": "1b83b914_48438449",
+      "revId": "180c558bb9153ed77b57639d537e6e12ebb18f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
