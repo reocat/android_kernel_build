@@ -96,7 +96,7 @@ For [`kernel_build()`](#kernel_build), this is a directory containing unstripped
 
 For an external [`kernel_module()`](#kernel_module), this is a directory containing unstripped external modules.
 - This is `None` if and only if the `kernel_build` argument has `collect_unstripped_modules = False`
-- Never `None` if and only if the `kernel_build` argument has `collect_unstripped_modules = True`
+- Never `None` if and only if the `kernel_build` argument   has `collect_unstripped_modules = True`
 """,
     },
 )
@@ -109,5 +109,12 @@ KernelModuleInfo = provider(
                                "Contains the lib/modules/* suffix.",
         "kernel_uapi_headers_dws": "`directory_with_structure` containing UAPI headers to use the module.",
         "files": "The list of output `*.ko` files.",
+    },
+)
+
+KernelImagesInfo = provider(
+    doc = "A provider that represents the expectation of [`kernel_images`](#kernel_images) to [`kernel_build`](#kernel_build)",
+    fields = {
+        "base_kernel": "the `base_kernel` target, if exists",
     },
 )
