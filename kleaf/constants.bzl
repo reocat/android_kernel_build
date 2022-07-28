@@ -57,6 +57,12 @@ GKI_DOWNLOAD_CONFIGS = [
         ],
     },
     {
+        "target_suffix": "headers",
+        "outs": [
+            "kernel-headers.tar.gz",
+        ],
+    },
+    {
         "target_suffix": "additional_artifacts",
         "outs": [
             # _headers
