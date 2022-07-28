@@ -29,6 +29,7 @@ def _gki_artifacts_impl(ctx):
     kernel_release = ctx.attr.kernel_build[KernelBuildInfo].kernel_release
     inputs.append(kernel_release)
 
+    # Sync with constants.bzl, _AARCH64_GKI_ARTIFACTS_OUTS
     outs = []
 
     # build_gki_artifacts_aarch64 builds boot-img.tar.gz additionally.
