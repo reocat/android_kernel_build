@@ -244,11 +244,13 @@ function build_system_dlkm() {
   system_dlkm_props_file=$(build_system_dlkm_props) || exit 1
 
   # Re-sign the stripped modules using kernel build time key
+  if [[ ${SYSTEM_DLKM_RE_SIGN:-1} == "1" ]]; then
   for module in $(find ${SYSTEM_DLKM_STAGING_DIR} -type f -name "*.ko"); do
     ${OUT_DIR}/scripts/sign-file sha1 \
     ${OUT_DIR}/certs/signing_key.pem \
     ${OUT_DIR}/certs/signing_key.x509 "${module}"
   done
+  fi
 
   build_image "${SYSTEM_DLKM_STAGING_DIR}" "${system_dlkm_props_file}" \
     "${DIST_DIR}/system_dlkm.img" /dev/null
