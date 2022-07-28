@@ -37,6 +37,9 @@ def kernel_images(
         modules_blocklist = None,
         modules_options = None,
         vendor_ramdisk_binaries = None,
+        system_dlkm_modules_list = None,
+        system_dlkm_modules_blocklist = None,
+        system_dlkm_props = None,
         vendor_dlkm_modules_list = None,
         vendor_dlkm_modules_blocklist = None,
         vendor_dlkm_props = None):
@@ -165,6 +168,27 @@ def kernel_images(
           ```
 
           This corresponds to `MODULES_OPTIONS` in `build.config` for `build.sh`.
+        system_dlkm_modules_list: location of an optional file
+          containing the list of kernel modules which shall be copied into a
+          system_dlkm partition image.
+
+          This corresponds to `SYSTEM_DLKM_MODULES_LIST` in `build.config` for `build.sh`.
+        system_dlkm_modules_blocklist: location of an optional file containing a list of modules
+          which are blocked from being loaded.
+
+          This file is copied directly to the staging directory and should be in the format:
+          ```
+          blocklist module_name
+          ```
+
+          This corresponds to `SYSTEM_DLKM_MODULES_BLOCKLIST` in `build.config` for `build.sh`.
+        system_dlkm_props: location of a text file containing
+          the properties to be used for creation of a `system_dlkm` image
+          (filesystem, partition size, etc). If this is not set (and
+          `build_system_dlkm` is), a default set of properties will be used
+          which assumes an ext4 filesystem and a dynamic partition.
+
+          This corresponds to `SYSTEM_DLKM_PROPS` in `build.config` for `build.sh`.
         vendor_dlkm_modules_list: location of an optional file
           containing the list of kernel modules which shall be copied into a
           `vendor_dlkm` partition image. Any modules passed into `MODULES_LIST` which
@@ -254,6 +278,9 @@ def kernel_images(
             deps = deps,
             modules_list = modules_list,
             modules_blocklist = modules_blocklist,
+            system_dlkm_modules_list = system_dlkm_modules_list,
+            system_dlkm_modules_blocklist = system_dlkm_modules_blocklist,
+            system_dlkm_props = system_dlkm_props,
         )
         all_rules.append(":{}_system_dlkm_image".format(name))
 
