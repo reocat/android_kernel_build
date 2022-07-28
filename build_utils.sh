@@ -207,18 +207,7 @@ function create_modules_staging() {
   cp ${dest_dir}/modules.order ${dest_dir}/modules.load
 }
 
-function build_system_dlkm() {
-  echo "========================================================"
-  echo " Creating system_dlkm image"
-
-  rm -rf ${SYSTEM_DLKM_STAGING_DIR}
-  create_modules_staging "${SYSTEM_DLKM_MODULES_LIST:-${MODULES_LIST}}" "${MODULES_STAGING_DIR}" \
-    ${SYSTEM_DLKM_STAGING_DIR} "${MODULES_BLOCKLIST}" "-e"
-
-  local system_dlkm_root_dir=$(echo ${SYSTEM_DLKM_STAGING_DIR}/lib/modules/*)
-  cp ${system_dlkm_root_dir}/modules.load ${DIST_DIR}/system_dlkm.modules.load
-  local system_dlkm_props_file
-
+function build_system_dlkm_props() {
   if [ -z "${SYSTEM_DLKM_PROPS}" ]; then
     system_dlkm_props_file="$(mktemp)"
     echo -e "system_dlkm_fs_type=ext4\n" >> ${system_dlkm_props_file}
@@ -237,6 +226,22 @@ function build_system_dlkm() {
       exit 1
     fi
   fi
+  echo "${system_dlkm_props_file}"
+}
+
+function build_system_dlkm() {
+  echo "========================================================"
+  echo " Creating system_dlkm image"
+
+  rm -rf ${SYSTEM_DLKM_STAGING_DIR}
+  create_modules_staging "${SYSTEM_DLKM_MODULES_LIST:-${MODULES_LIST}}" "${MODULES_STAGING_DIR}" \
+    ${SYSTEM_DLKM_STAGING_DIR} "${MODULES_BLOCKLIST}" "-e"
+
+  local system_dlkm_root_dir=$(echo ${SYSTEM_DLKM_STAGING_DIR}/lib/modules/*)
+  cp ${system_dlkm_root_dir}/modules.load ${DIST_DIR}/system_dlkm.modules.load
+  local system_dlkm_props_file
+
+  system_dlkm_props_file=$(build_system_dlkm_props) || exit 1
 
   # Re-sign the stripped modules using kernel build time key
   for module in $(find ${SYSTEM_DLKM_STAGING_DIR} -type f -name "*.ko"); do
