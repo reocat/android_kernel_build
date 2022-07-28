@@ -18,6 +18,7 @@ load(":image/initramfs.bzl", "initramfs")
 load(":image/system_dlkm_image.bzl", "system_dlkm_image")
 load(":image/vendor_dlkm_image.bzl", "vendor_dlkm_image")
 
+# FIXME docs for system_dlkm*
 def kernel_images(
         name,
         kernel_modules_install,
@@ -37,6 +38,9 @@ def kernel_images(
         modules_blocklist = None,
         modules_options = None,
         vendor_ramdisk_binaries = None,
+        system_dlkm_modules_list = None,
+        system_dlkm_modules_blocklist = None,
+        system_dlkm_props = None,
         vendor_dlkm_modules_list = None,
         vendor_dlkm_modules_blocklist = None,
         vendor_dlkm_props = None):
@@ -165,6 +169,9 @@ def kernel_images(
           ```
 
           This corresponds to `MODULES_OPTIONS` in `build.config` for `build.sh`.
+        system_dlkm_modules_list: `SYSTEM_DLKM_MODULES_LIST`
+        system_dlkm_modules_blocklist: `SYSTEM_DLKM_MODULES_BLOCKLIST`
+        system_dlkm_props: `SYSTEM_DLKM_PROPS`
         vendor_dlkm_modules_list: location of an optional file
           containing the list of kernel modules which shall be copied into a
           `vendor_dlkm` partition image. Any modules passed into `MODULES_LIST` which
@@ -254,6 +261,9 @@ def kernel_images(
             deps = deps,
             modules_list = modules_list,
             modules_blocklist = modules_blocklist,
+            system_dlkm_modules_list = system_dlkm_modules_list,
+            system_dlkm_modules_blocklist = system_dlkm_modules_blocklist,
+            system_dlkm_props = system_dlkm_props,
         )
         all_rules.append(":{}_system_dlkm_image".format(name))
 

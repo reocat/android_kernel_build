@@ -40,6 +40,7 @@ KernelBuildInfo = provider(
         "out_dir_kernel_headers_tar": "Archive containing headers in `OUT_DIR`",
         "outs": "A list of File object corresponding to the `outs` attribute (excluding `module_outs`, `implicit_outs` and `internal_outs`)",
         "base_kernel_files": "[Default outputs](https://docs.bazel.build/versions/main/skylark/rules.html#default-outputs) of the rule specified by `base_kernel`",
+        "base_kernel_images": "If `base_kernel` is a `kernel_filegroup`, this is [`KernelImagesInfo.images`](#KernelImagesInfo-images). Otherwise this is `None`.",
         "interceptor_output": "`interceptor` log. See [`interceptor`](https://android.googlesource.com/kernel/tools/interceptor/) project.",
         "kernel_release": "The file `kernel.release`.",
     },
@@ -109,5 +110,12 @@ KernelModuleInfo = provider(
                                "Contains the lib/modules/* suffix.",
         "kernel_uapi_headers_dws": "`directory_with_structure` containing UAPI headers to use the module.",
         "files": "The list of output `*.ko` files.",
+    },
+)
+
+KernelImagesInfo = provider(
+    doc = "A provider that provides information to build images from prebuilts.",
+    fields = {
+        "images": "A target the provides the same files as the [`kernel_images`](#kernel_images) target.",
     },
 )
