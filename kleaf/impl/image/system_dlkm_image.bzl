@@ -49,6 +49,7 @@ def _system_dlkm_image_impl(ctx):
     default_info = image_utils.build_modules_image_impl_common(
         ctx = ctx,
         what = "system_dlkm",
+        # Sync with GKI_DOWNLOAD_CONFIGS, "images"
         outputs = [
             system_dlkm_img,
             system_dlkm_modules_load,

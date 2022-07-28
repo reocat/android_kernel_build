@@ -174,6 +174,10 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
             allow_single_file = True,
             doc = """A file containing `module_outs` of the original [`kernel_build`](#kernel_build) target.""",
         ),
+        "images": attr.label(
+            allow_files = True,
+            doc = """A label providing files similar to a [`kernel_images`](#kernel_images) target.""",
+        ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
     },
