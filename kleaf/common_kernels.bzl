@@ -436,6 +436,8 @@ def define_common_kernels(
     default_target_configs = None  # _default_target_configs is lazily evaluated.
     if target_configs == None:
         target_configs = {}
+    else:
+        target_configs = dict(target_configs)
     for name in _ARCH_CONFIGS.keys():
         target_configs[name] = _filter_keys(
             target_configs.get(name, {}),
@@ -649,9 +651,12 @@ def define_common_kernels(
         flat = True,
     )
 
-    _define_prebuilts(visibility = visibility)
+    _define_prebuilts(
+        target_configs = target_configs,
+        visibility = visibility,
+    )
 
-def _define_prebuilts(**kwargs):
+def _define_prebuilts(target_configs, **kwargs):
     # Build number for GKI prebuilts
     bool_flag(
         name = "use_prebuilt_gki",
@@ -669,12 +674,17 @@ def _define_prebuilts(**kwargs):
     for name, value in CI_TARGET_MAPPING.items():
         repo_name = value["repo_name"]
         main_target_outs = value["outs"]  # outs of target named {name}
+        main_target_module_outs = target_configs[name].get("module_outs", [])
+        main_target_module_outs = [paths.basename(e) for e in main_target_module_outs]
 
         source_package_name = ":" + name
 
         native.filegroup(
             name = name + "_downloaded",
-            srcs = ["@{}//{}".format(repo_name, filename) for filename in main_target_outs],
+            srcs = [
+                "@{}//{}".format(repo_name, filename)
+                for filename in (main_target_outs + main_target_module_outs)
+            ],
             tags = ["manual"],
         )
 

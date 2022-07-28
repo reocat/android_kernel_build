@@ -14,7 +14,12 @@
 
 load("//build/kernel/kleaf:workspace.bzl", "define_kleaf_workspace")
 
-define_kleaf_workspace()
+# By default, load from common_kernel_package = common
+load("//common:gki_config.bzl", "COMMON_KERNEL_CONFIGS")
+define_kleaf_workspace(
+  common_kernel_package = "common",
+  common_kernel_configs = COMMON_KERNEL_CONFIGS,
+)
 
 # Optional epilog for analysis testing.
 load("//build/kernel/kleaf:workspace_epilog.bzl", "define_kleaf_workspace_epilog")

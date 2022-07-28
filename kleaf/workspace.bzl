@@ -21,7 +21,13 @@ load(
 load("//build/kernel/kleaf:download_repo.bzl", "download_artifacts_repo")
 load("//build/kernel/kleaf:key_value_repo.bzl", "key_value_repo")
 
-def define_kleaf_workspace(common_kernel_package = None):
+def _basename(p):
+    # We can't use paths.basename because skylib can't be loaded in this extension.
+    return p.rpartition("/")[-1]
+
+def define_kleaf_workspace(
+        common_kernel_package = None,
+        common_kernel_configs = None):
     if common_kernel_package == None:
         common_kernel_package = "common"
 
@@ -48,10 +54,16 @@ def define_kleaf_workspace(common_kernel_package = None):
         },
     )
 
+    gki_modules = []
+    if common_kernel_configs:
+        gki_modules = common_kernel_configs.get("kernel_aarch64", {}).get("module_outs", [])
+        gki_modules = [_basename(e) for e in gki_modules]
+
     download_artifacts_repo(
         name = "gki_prebuilts",
         files = CI_TARGET_MAPPING["kernel_aarch64"]["outs"] +
-                [out for config in GKI_DOWNLOAD_CONFIGS for out in config["outs"]],
+                [out for config in GKI_DOWNLOAD_CONFIGS for out in config["outs"]] +
+                gki_modules,
         target = "kernel_kleaf",
     )
 
