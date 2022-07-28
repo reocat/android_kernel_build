@@ -76,7 +76,10 @@ GKI_DOWNLOAD_CONFIGS = [
     {
         "target_suffix": "images",
         "outs": [
+            # Sync with system_dlkm_image.bzl
             "system_dlkm.img",
+            "system_dlkm_staging_archive.tar.gz",
+            "system_dlkm.modules.load",
         ],
     },
     {
