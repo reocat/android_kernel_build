@@ -775,7 +775,7 @@ def _kernel_build_impl(ctx):
         directory = unstripped_dir,
     )
 
-    base_kernel_info = KernelBuildInTreeModulesInfo(
+    in_tree_modules_info = KernelBuildInTreeModulesInfo(
         module_outs_file = all_module_names_file,
     )
 
@@ -804,7 +804,7 @@ def _kernel_build_impl(ctx):
         kernel_build_uapi_info,
         kernel_build_abi_info,
         kernel_unstripped_modules_info,
-        base_kernel_info,
+        in_tree_modules_info,
         output_group_info,
         default_info,
     ]
