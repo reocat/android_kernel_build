@@ -27,12 +27,14 @@ _common_outs = [
     "vmlinux.symvers",
 ]
 
-# Common output files for aarch64 kernel builds.
-aarch64_outs = _common_outs + [
+_AARCH64_IMAGES = [
     "Image",
     "Image.lz4",
     "Image.gz",
 ]
+
+# Common output files for aarch64 kernel builds.
+aarch64_outs = _common_outs + _AARCH64_IMAGES
 
 aarch64_gz_outs = _common_outs + [
     "Image",
@@ -41,6 +43,16 @@ aarch64_gz_outs = _common_outs + [
 
 # Common output files for x86_64 kernel builds.
 x86_64_outs = _common_outs + ["bzImage"]
+
+# We only download GKI for arm64, not x86_64
+# Sync with gki_artifacts.bzl
+_AARCH64_GKI_ARTIFACTS_OUTS = [
+    "boot-img.tar.gz",
+    "gki-info.txt",
+] + [
+    "boot.img" if e == "Image" else "boot-{}.img".format(e[len("Image."):])
+    for e in _AARCH64_IMAGES
+]
 
 # See common_kernels.bzl.
 GKI_DOWNLOAD_CONFIGS = [
@@ -63,13 +75,17 @@ GKI_DOWNLOAD_CONFIGS = [
         ],
     },
     {
+        "target_suffix": "gki_artifacts",
+        "outs": _AARCH64_GKI_ARTIFACTS_OUTS,
+    },
+    {
         "target_suffix": "additional_artifacts",
         "outs": [
             # _headers
             "kernel-headers.tar.gz",
             # _images
             "system_dlkm.img",
-        ],
+        ] + _AARCH64_GKI_ARTIFACTS_OUTS,  # _gki_artifacts
     },
     {
         "target_suffix": "ddk_artifacts",
