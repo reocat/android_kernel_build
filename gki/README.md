@@ -134,3 +134,27 @@ instrument_module_init
     USAGE: instrument_module_init [dir|file]
 
 Add debug instrumentation to module_init and probe functions.
+
+device_dependencies
+-------------------
+
+USAGE="USAGE: ${progname} [-s \<serialno>]  -k \<kernel_src_root> [-o \<out_dir>] [-l|-g]
+
+This script can be used to derive information about the supplier and consumer
+relationships between devices, and by extension, their device drivers.
+
+-s \<serialno> will allow one to specify a device to connect to when multiples
+are available, otherwise will default to one available or ANDROID_SERIAL
+environment variable.
+
+-k \<kernel_src_root> this is the root directory of the kernel source. This is
+needed so that the dev-needs.sh script can be located.
+
+-o \<out_dir> the directory to place the output files in. If this is not
+specified, the current directory will be used.
+
+-l causes the script to create a dependency ordered list of drivers found on
+the device.
+
+-g causes the script to create a graph of the device dependencies in a format
+that graphviz understands."

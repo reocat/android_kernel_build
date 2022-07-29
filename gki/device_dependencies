@@ -1,0 +1,153 @@
+#! /bin/sh
+# SPDX-License-Identifier: Apache-2.0
+#
+# (c) 2022, Google
+
+progname=${0##*/}
+
+USAGE="USAGE: ${progname} [-s <serialno>]  -k <kernel_src_root> [-o <out_dir>] [-l|-g]
+
+This script can be used to derive information about the supplier and consumer
+relationships between devices, and by extension, their device drivers.
+
+-s <serialno> will allow one to specify a device to connect to when multiples
+are available, otherwise will default to one available or ANDROID_SERIAL
+environment variable.
+
+-k <kernel_src_root> this is the root directory of the kernel source. This is
+needed so that the dev-needs.sh script can be located.
+
+-o <out_dir> the directory to place the output files in. If this is not
+specified, the current directory will be used.
+
+-l causes the script to create a dependency ordered list of drivers found on
+the device.
+
+-g causes the script to create a graph of the device dependencies in a format
+that graphviz understands."
+
+KERNEL_DIR=
+WANT_DEP_LIST=0
+WANT_DEP_GRAPH=0
+OUT_DIR=
+# Relative to the root of the kernel source directory
+DEV_NEEDS_PATH="scripts/dev-needs.sh"
+# Scratch directory on the device
+DEV_TMP_DIR="/data/local/tmp"
+SCRIPT_DEV_PATH="${DEV_TMP_DIR}/$(basename ${DEV_NEEDS_PATH})"
+DEV_LIST=
+
+prepare_device() {
+  adb wait-for-device root >/dev/null
+  if [ $? -ne 0 ]; then
+    echo "Failed to root device"
+    return 1
+  fi
+
+  adb push "${KERNEL_DIR}/${DEV_NEEDS_PATH}" "${DEV_TMP_DIR}/" >/dev/null
+  if [ $? -ne 0 ]; then
+    echo "Failed to push the dev-needs.sh script to the device"
+    return 1
+  fi
+
+  return 0
+}
+
+cleanup_device() {
+  adb shell "rm ${SCRIPT_DEV_PATH}"
+}
+
+print_dev_compatible_string() {
+  local compat_str=$(adb shell "cat '$1'/of_node/compatible 2>/dev/null" | tr -d '\0')
+
+  if [ -n "${compat_str}" ]; then
+    printf "%s\n" "${compat_str}" >> "${2}"
+  fi
+}
+
+populate_dev_list() {
+  DEV_LIST=$(adb shell 'find /sys/devices -name driver | sed -e "s/\/driver//"')
+}
+
+create_device_driver_dependency_list() {
+  local tmp_ordered_driver_list=$(mktemp)
+  local out_file="${OUT_DIR}/driver-dependency-list.txt"
+  local tsort_edges
+  local ordered_dev_list
+
+  populate_dev_list
+
+  tsort_edges=$(adb shell "${SCRIPT_DEV_PATH} -t '$DEV_LIST'")
+  ordered_dev_list=$(echo "${tsort_edges}" | tsort | sed -e "s/\"//g")
+
+  for dev in ${ordered_dev_list[@]}; do
+    print_dev_compatible_string "${dev}" "${tmp_ordered_driver_list}"
+  done
+
+  # Remove duplicates while keeping the list in the same order
+  cat -n "${tmp_ordered_driver_list}" | sort -uk2 | sort -n | cut -f2- > "${out_file}"
+  rm "${tmp_ordered_driver_list}"
+}
+
+create_device_dependency_graph() {
+  local out_file="${OUT_DIR}/device-dependency-graph.txt"
+
+  populate_dev_list
+
+  adb shell "${SCRIPT_DEV_PATH} -g '$DEV_LIST'" > "${out_file}"
+}
+
+while getopts "s:k:lgo:" f; do
+  case "$f" in
+    s)
+      export ANDROID_SERIAL="${OPTARG}"
+      ;;
+    k)
+      KERNEL_DIR="${OPTARG}"
+      ;;
+    l)
+      WANT_DEP_LIST=1
+      ;;
+    g)
+      WANT_DEP_GRAPH=1
+      ;;
+    o)
+      OUT_DIR="${OPTARG}"
+      ;;
+  esac
+done
+
+if [  -z "${KERNEL_DIR}" ]; then
+  echo "${USAGE}"
+  exit 1
+elif [ WANT_DEP_LIST = 0 ] && [ WANT_DEP_GRAPH = 0 ]; then
+  echo "${USAGE}"
+  exit 1
+elif [ ! -f "${KERNEL_DIR}/${DEV_NEEDS_PATH}" ]; then
+  echo "Kernel does not contain the required dev-needs.sh script"
+  exit 1
+elif [ ! -d "${KERNEL_DIR}" ]; then
+  echo "Cannot locate kernel directory"
+  exit 1
+fi
+
+if [ -z "${OUT_DIR}" ]; then
+  OUT_DIR=$(pwd)
+elif [ ! -d "${OUT_DIR}" ]; then
+  echo "Cannot locate output directory"
+  exit 1
+fi
+
+if ! prepare_device; then
+  exit 1
+fi
+
+if [ $WANT_DEP_LIST = 1 ]; then
+  create_device_driver_dependency_list
+fi
+
+if [ $WANT_DEP_GRAPH = 1 ]; then
+  create_device_dependency_graph
+fi
+
+cleanup_device
