@@ -134,3 +134,38 @@ instrument_module_init
     USAGE: instrument_module_init [dir|file]
 
 Add debug instrumentation to module_init and probe functions.
+
+device_dependencies
+-------------------
+    USAGE: device_dependencies [-s \<serialno>] [-o \<out_dir>] -l|-m
+
+This script can be used to derive information about the supplier and consumer
+relationships between devices on a system, and by extension, their device
+drivers.
+
+-s \<serialno> specifies a device to connect to when multiple devices
+are available, otherwise will default to one available or ANDROID_SERIAL
+environment variable.
+
+-o \<out_dir> the directory to place the output files in. If this is not
+specified, the current directory will be used.
+
+At least one of the following arguments must be provided:
+
+-l causes the script to create a dependency ordered list of drivers found on
+the system. Each driver is represented by the compatible string that it used
+to match with a device on the system. The list is ordered such that for any
+driver entry, that driver does not depend on drivers listed below it, but may
+depend on drivers listed above it. This list can be used as is to figure out
+what order drivers need to be ported to a new kernel in, as suppliers are
+listed first, followed by their consumers. The list can also be reversed and
+used to figure out the order in which drivers need to be modularized on an
+existing kernel, since that would cause consumers to be listed first, followed
+by suppliers.
+
+-m causes the script to create a dependency ordered list of modules found on
+the system. Each module is represented by its name. The list is ordered such
+that for any module entry, that module does not depend on modules below it, but
+may depend on modules listed above it. Since this list contains the supplier
+modules first, followed by their consumers, it can be used as the optimal
+module loading order."
