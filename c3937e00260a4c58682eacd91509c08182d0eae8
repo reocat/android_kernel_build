@@ -62,6 +62,30 @@
       },
       "revId": "c3937e00260a4c58682eacd91509c08182d0eae8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "964f3d94_d3841ee6",
+        "filename": "kleaf/env.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-03T19:43:30Z",
+      "side": 1,
+      "message": "yep, this is the final functionality of this module.\n\nI want this script to replace \"/usr/bin/env\" so the environment variables are captured in a format that Python can recognize (JSON).\n\nI\u0027ll add more comments to all scripts.",
+      "parentUuid": "ac3f3fcc_ff356a42",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 45
+      },
+      "revId": "c3937e00260a4c58682eacd91509c08182d0eae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
