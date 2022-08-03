@@ -92,8 +92,10 @@ def _hermetic_tools_impl(ctx):
                 export PATH=$({path}/readlink -m {path})
 """.format(path = paths.dirname(all_outputs[0].short_path))
 
+    runfiles = ctx.runfiles(deps)
+
     return [
-        DefaultInfo(files = depset(all_outputs)),
+        DefaultInfo(files = depset(all_outputs), runfiles = runfiles),
         HermeticToolsInfo(
             deps = deps,
             setup = setup,
