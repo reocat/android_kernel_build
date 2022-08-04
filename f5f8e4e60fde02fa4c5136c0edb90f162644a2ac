@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "202bb7c8_933f0eb5",
+        "filename": "kleaf/docs/workspace.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-04T23:05:03Z",
+      "side": 1,
+      "message": "Using the",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 6
+      },
+      "revId": "f5f8e4e60fde02fa4c5136c0edb90f162644a2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6b51062_31c12606",
+        "filename": "kleaf/docs/workspace.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-04T23:05:03Z",
+      "side": 1,
+      "message": "To make use of the provided `WORKSPACE` file, define `WORKSPACE` in the repo manifest as symbolic link that points to `build/kernel/kleaf/bazel.WORKSPACE`.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 40
+      },
+      "revId": "f5f8e4e60fde02fa4c5136c0edb90f162644a2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "092d7257_1d6964a0",
+        "filename": "kleaf/docs/workspace.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-04T23:05:03Z",
+      "side": 1,
+      "message": "Using a",
+      "range": {
+        "startLine": 12,
+        "startChar": 3,
+        "endLine": 12,
+        "endChar": 6
+      },
+      "revId": "f5f8e4e60fde02fa4c5136c0edb90f162644a2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dee8d5f8_081f96fa",
+        "filename": "kleaf/docs/workspace.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-04T23:05:03Z",
+      "side": 1,
+      "message": "except for define() being called with the argument ... set to ...",
+      "range": {
+        "startLine": 18,
+        "startChar": 38,
+        "endLine": 18,
+        "endChar": 44
+      },
+      "revId": "f5f8e4e60fde02fa4c5136c0edb90f162644a2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29a52cb_c44d7696",
+        "filename": "kleaf/docs/workspace.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-04T23:05:03Z",
+      "side": 1,
+      "message": "let\u0027s avoid that reference to pa/",
+      "range": {
+        "startLine": 47,
+        "startChar": 1,
+        "endLine": 48,
+        "endChar": 71
+      },
+      "revId": "f5f8e4e60fde02fa4c5136c0edb90f162644a2ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
