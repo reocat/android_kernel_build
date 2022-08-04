@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05fc0f9e_096c41ee",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-04T19:27:36Z",
+      "side": 1,
+      "message": "Because the target name is different. Right now the target name is hardcoded here:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/workspace.bzl;l\u003d55;drc\u003d0644b867beb023a95a808ffc3c6a3d49f74cfb20\n\nThat\u0027s what the bug is about.",
+      "parentUuid": "26cb7ad7_4e9e57a0",
+      "revId": "a4ca7fd4609c1302586b9bfab1d4c4a47cf4bc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3db115df_dd103084",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-08-04T19:03:22Z",
       "side": 1,
       "message": "of you were to iterate from the second entry onwards, you would not need the distinction.",
+      "revId": "a4ca7fd4609c1302586b9bfab1d4c4a47cf4bc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69bb7ee2_fd002369",
+        "filename": "kleaf/impl/constants.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-04T19:27:36Z",
+      "side": 1,
+      "message": "I don\u0027t like to rely on orders because Bazel usually don\u0027t care about order in lists. buildifier may also re-order lists (though it won\u0027t in this case because I think only `# keep sorted` will be ordered in extensions)",
+      "parentUuid": "3db115df_dd103084",
       "revId": "a4ca7fd4609c1302586b9bfab1d4c4a47cf4bc27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
