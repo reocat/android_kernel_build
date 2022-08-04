@@ -156,10 +156,23 @@ def kernel_images(
           ```
 
           This corresponds to `MODULES_BLOCKLIST` in `build.config` for `build.sh`.
-        modules_options: A `/lib/modules/modules.options` file is created on the ramdisk containing
+        modules_options: A dictionary, where keys are module names, and values
+          are a list of options for the given module.
+
+          For example:
+          ```
+          {
+             "modulename": [
+                 "param1=val",
+                 "param2=val",
+             ],
+          }
+          ```
+
+          A `/lib/modules/modules.options` file is created on the ramdisk with
           the contents of this variable.
 
-          Lines should be of the form:
+          Lines of the file will be of the form:
           ```
           options <modulename> <param1>=<val> <param2>=<val> ...
           ```
