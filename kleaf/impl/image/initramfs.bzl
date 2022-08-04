@@ -26,6 +26,10 @@ def _initramfs_impl(ctx):
     vendor_boot_modules_load = ctx.outputs.vendor_boot_modules_load
     initramfs_staging_archive = ctx.actions.declare_file("{}/initramfs_staging_archive.tar.gz".format(ctx.label.name))
 
+    modules_options_file = ctx.actions.declare_file("{}/modules.options".format(ctx.label.name))
+    modules_options_content = "\n".join(["options {} {}".format(modulename, " ".join(params)) for modulename, params in ctx.attr.modules_options])
+    ctx.actions.write(modules_options_file, modules_options_content)
+
     outputs = [
         initramfs_img,
         modules_load,
@@ -52,7 +56,7 @@ def _initramfs_impl(ctx):
                modules_root_dir=$(readlink -e {initramfs_staging_dir}/lib/modules/*) || exit 1
                cp ${{modules_root_dir}}/modules.load {modules_load}
                {cp_vendor_boot_modules_load_cmd}
-               echo "${{MODULES_OPTIONS}}" > ${{modules_root_dir}}/modules.options
+               cp -pl {modules_options_file} ${{modules_root_dir}}/modules.options
                mkbootfs "{initramfs_staging_dir}" >"{modules_staging_dir}/initramfs.cpio"
                ${{RAMDISK_COMPRESS}} "{modules_staging_dir}/initramfs.cpio" >"{initramfs_img}"
              # Archive initramfs_staging_dir
@@ -66,6 +70,7 @@ def _initramfs_impl(ctx):
         initramfs_img = initramfs_img.path,
         initramfs_staging_archive = initramfs_staging_archive.path,
         cp_vendor_boot_modules_load_cmd = cp_vendor_boot_modules_load_cmd,
+        modules_options_file = modules_options_file.path,
     )
 
     default_info = image_utils.build_modules_image_impl_common(
@@ -74,6 +79,7 @@ def _initramfs_impl(ctx):
         outputs = outputs,
         build_command = command,
         modules_staging_dir = modules_staging_dir,
+        additional_inputs = [modules_options_file],
         implicit_outputs = [
             initramfs_staging_archive,
         ],
@@ -105,6 +111,6 @@ corresponding files.
         ),
         "modules_list": attr.label(allow_single_file = True),
         "modules_blocklist": attr.label(allow_single_file = True),
-        "modules_options": attr.label(allow_single_file = True),
+        "modules_options": attr.string_list_dict(),
     }),
 )
