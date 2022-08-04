@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26cb7ad7_4e9e57a0",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-04T19:03:22Z",
+      "side": 1,
+      "message": "why is debug not working ? should they not serve the same interface just with a different target name?",
+      "revId": "a4ca7fd4609c1302586b9bfab1d4c4a47cf4bc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3db115df_dd103084",
+        "filename": "kleaf/impl/constants.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-04T19:03:22Z",
+      "side": 1,
+      "message": "of you were to iterate from the second entry onwards, you would not need the distinction.",
+      "revId": "a4ca7fd4609c1302586b9bfab1d4c4a47cf4bc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a8cf4f2_378d4285",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-04T19:03:22Z",
+      "side": 1,
+      "message": "the function name is quite generic. perhaps \u0027compare\u0027?",
+      "revId": "a4ca7fd4609c1302586b9bfab1d4c4a47cf4bc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6e3031c_0545d86a",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-04T19:03:22Z",
+      "side": 1,
+      "message": "\u0027what\u0027 documentation is missing",
+      "revId": "a4ca7fd4609c1302586b9bfab1d4c4a47cf4bc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
