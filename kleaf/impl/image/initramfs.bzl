@@ -52,7 +52,7 @@ def _initramfs_impl(ctx):
                modules_root_dir=$(readlink -e {initramfs_staging_dir}/lib/modules/*) || exit 1
                cp ${{modules_root_dir}}/modules.load {modules_load}
                {cp_vendor_boot_modules_load_cmd}
-               echo "${{MODULES_OPTIONS}}" > ${{modules_root_dir}}/modules.options
+               cp {modules_options} > ${{modules_root_dir}}/modules.options
                mkbootfs "{initramfs_staging_dir}" >"{modules_staging_dir}/initramfs.cpio"
                ${{RAMDISK_COMPRESS}} "{modules_staging_dir}/initramfs.cpio" >"{initramfs_img}"
              # Archive initramfs_staging_dir
@@ -66,6 +66,7 @@ def _initramfs_impl(ctx):
         initramfs_img = initramfs_img.path,
         initramfs_staging_archive = initramfs_staging_archive.path,
         cp_vendor_boot_modules_load_cmd = cp_vendor_boot_modules_load_cmd,
+        modules_options = ctx.file.modules_options,
     )
 
     default_info = image_utils.build_modules_image_impl_common(
