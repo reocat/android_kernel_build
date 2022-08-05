@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84005e5b_329d873c",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-05T02:26:26Z",
+      "side": 1,
+      "message": "This can take some visible time after a build. Perhaps it should be an async task. Or perhaps there should be some text printed.",
+      "range": {
+        "startLine": 162,
+        "startChar": 15,
+        "endLine": 162,
+        "endChar": 21
+      },
+      "revId": "56f37ab00791cce53cc6674f7d92d4b234a726d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
