@@ -28,6 +28,7 @@ load(
     "kernel_unstripped_modules_archive",
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
+load("//build/kernel/kleaf/artifact_tests:kernel_test.bzl", "initramfs_modules_options_test")
 load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts")
 load("//build/kernel/kleaf/impl:utils.bzl", "utils")
 load(
@@ -616,6 +617,10 @@ def define_common_kernels(
             tests = [
                 name + "_test",
                 name + "_modules_test",
+                _define_common_kernels_additional_tests(
+                    kernel_build_name = name,
+                    kernel_modules_install = name + "_modules_install",
+                ),
             ],
         )
 
@@ -749,6 +754,27 @@ def _define_prebuilts(**kwargs):
             name = name + "_additional_artifacts_download_or_build",
             srcs = [item + "_download_or_build" for item in additional_artifacts_items],
         )
+
+def _define_common_kernels_additional_tests(
+        kernel_build_name,
+        kernel_modules_install):
+    test_name = kernel_build_name + "_additional_tests"
+    modules_options = "//build/kernel/kleaf/artifact_tests:fake_modules_options.txt"
+
+    kernel_images(
+        name = test_name + "_images",
+        kernel_modules_install = kernel_build_name + "_modules_install",
+        build_initramfs = True,
+        modules_options = modules_options,
+    )
+
+    initramfs_modules_options_test(
+        name = test_name,
+        kernel_images = test_name + "_images",
+        expected_modules_options = modules_options,
+    )
+
+    return test_name
 
 def define_db845c(
         name,
