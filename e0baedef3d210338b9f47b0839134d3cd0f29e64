@@ -33,6 +33,24 @@
       "message": "bug#?",
       "revId": "e0baedef3d210338b9f47b0839134d3cd0f29e64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4adf0245_a09184e5",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-05T21:35:11Z",
+      "side": 1,
+      "message": "This is resolved immediately in the next CL.",
+      "parentUuid": "f6c6533a_71c85580",
+      "revId": "e0baedef3d210338b9f47b0839134d3cd0f29e64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
