@@ -16,6 +16,24 @@
       "message": "system_dlkm does not work yet",
       "revId": "fff2a54631242bdc51e30f8331ffa4a0f143d5aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e1380d7_ed6e19d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-08T23:00:47Z",
+      "side": 1,
+      "message": "Done, fixed by CL:2177718",
+      "parentUuid": "e26b1231_e7131058",
+      "revId": "fff2a54631242bdc51e30f8331ffa4a0f143d5aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
