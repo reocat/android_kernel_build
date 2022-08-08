@@ -46,6 +46,8 @@ class MyTestCase(unittest.TestCase):
         check(declared=["some/path/for/foo"], actual=["other/path/for/foo"]),
         ["other/path/for/foo"])
 
+  def test_fail(self):
+    self.fail("123456")
 
 if __name__ == '__main__':
   absltest.main()
