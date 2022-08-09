@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27678f27_b2b7d751",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-09T21:35:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "180e833e_8b056217",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 17
+      },
+      "revId": "7cd431895018a0866995e95bdda3150be0bd5acd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d6a3d52_c71e7a6a",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "593ea190_0a2d070b",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-09T21:35:02Z",
+      "side": 1,
+      "message": "No longer returned. It is now set in `self`. (I could also not set it, but the string is in the memory anyway)",
+      "parentUuid": "8d6a3d52_c71e7a6a",
+      "range": {
+        "startLine": 45,
+        "startChar": 60,
+        "endLine": 45,
+        "endChar": 69
+      },
+      "revId": "7cd431895018a0866995e95bdda3150be0bd5acd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c1eaf48_0066ab0e",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-08-09T15:38:07Z",
       "side": 1,
       "message": "that gets quite long, perhaps define a data structure for clarity",
+      "range": {
+        "startLine": 118,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 70
+      },
+      "revId": "7cd431895018a0866995e95bdda3150be0bd5acd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "699ca046_0b4cb5f7",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-09T21:35:02Z",
+      "side": 1,
+      "message": "Done, using OOP now",
+      "parentUuid": "8c1eaf48_0066ab0e",
       "range": {
         "startLine": 118,
         "startChar": 4,
