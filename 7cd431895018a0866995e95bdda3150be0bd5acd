@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcb9aeec_415f5500",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-09T15:38:07Z",
+      "side": 1,
+      "message": "nice cleanup work!",
+      "revId": "7cd431895018a0866995e95bdda3150be0bd5acd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "180e833e_8b056217",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-09T15:38:07Z",
+      "side": 1,
+      "message": "a more suitable name might be `partition`, similar to `str.partition`\n\nhttps://docs.python.org/3.10/library/stdtypes.html#str.partition",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 17
+      },
+      "revId": "7cd431895018a0866995e95bdda3150be0bd5acd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d6a3d52_c71e7a6a",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-09T15:38:07Z",
+      "side": 1,
+      "message": "isn\u0027t that constant? do we need to return it?",
+      "range": {
+        "startLine": 45,
+        "startChar": 60,
+        "endLine": 45,
+        "endChar": 69
+      },
+      "revId": "7cd431895018a0866995e95bdda3150be0bd5acd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c1eaf48_0066ab0e",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-09T15:38:07Z",
+      "side": 1,
+      "message": "that gets quite long, perhaps define a data structure for clarity",
+      "range": {
+        "startLine": 118,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 70
+      },
+      "revId": "7cd431895018a0866995e95bdda3150be0bd5acd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
