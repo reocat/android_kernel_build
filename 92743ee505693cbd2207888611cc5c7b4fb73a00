@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5ab523e_ef57154b",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-08-09T22:49:35Z",
+      "side": 1,
+      "message": "Nit: Here and in kleaf/impl/image/system_dlkm_image.bzl: I understand Starlark is not python but also that it\u0027s recommended to follow the python guidelines when possible. So, should we follow http://go/pystyle#s2.14-truefalse-evaluations and use the implicit false when possible combined with the not[0] operator?\n\n[0]: https://github.com/bazelbuild/starlark/blob/master/spec.md#unary-operators",
+      "range": {
+        "startLine": 48,
+        "startChar": 7,
+        "endLine": 48,
+        "endChar": 38
+      },
+      "revId": "92743ee505693cbd2207888611cc5c7b4fb73a00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
