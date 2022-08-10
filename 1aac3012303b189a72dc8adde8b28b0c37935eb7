@@ -81,6 +81,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0903f461_c6997915",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T19:46:34Z",
+      "side": 1,
+      "message": "Yes, what about it?\n\nThis is documented in buildozer\u0027s doc, in the module docstring.",
+      "parentUuid": "d6cbd91c_9dc696a7",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 25
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69c0f83f_557fff60",
@@ -128,6 +152,30 @@
       "writtenOn": "2022-08-10T16:50:35Z",
       "side": 1,
       "message": "definitely needs translation for arm64 vs x86_64",
+      "range": {
+        "startLine": 69,
+        "startChar": 5,
+        "endLine": 69,
+        "endChar": 9
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "676b8a0d_f5d5ef9f",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T19:46:34Z",
+      "side": 1,
+      "message": "We don\u0027t differ kernel_build between them.",
+      "parentUuid": "c95fa3a2_4471b29e",
       "range": {
         "startLine": 69,
         "startChar": 5,
@@ -272,6 +320,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1050fa1e_5c26d233",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T19:46:34Z",
+      "side": 1,
+      "message": "I think StringIO would work; let me try that. This is not passed to buildozer.",
+      "parentUuid": "ab9cd194_9136c672",
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1161196f_17a91115",
         "filename": "kleaf/build_config_to_bazel_test.py",
         "patchSetId": 12
@@ -283,6 +349,30 @@
       "writtenOn": "2022-08-10T16:50:35Z",
       "side": 1,
       "message": "are you doing this to keep the file alive?\n\naccording to the documentation, you should be able to omit those lines:\n\n```\nIt will be destroyed as soon as it is closed (including an implicit close when the object is garbage collected).\n```\nhttps://docs.python.org/3.10/library/tempfile.html#tempfile.TemporaryFile",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 63
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ff17cd7_66334477",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T19:46:34Z",
+      "side": 1,
+      "message": "No, this is the line to close it after the test is finished.\n\nThis is like:\n\n```\nwith tempfile.TemporaryFile():\n  run_test()\n```",
+      "parentUuid": "1161196f_17a91115",
       "range": {
         "startLine": 38,
         "startChar": 0,
@@ -306,6 +396,24 @@
       "writtenOn": "2022-08-10T16:50:35Z",
       "side": 1,
       "message": "that looks like parameterized tests could make this a little more compact.\n\nIn particular the self.assertIn can basically be fed from an (annotted) array of strings.",
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7947fa7f_799c4dac",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T19:46:34Z",
+      "side": 1,
+      "message": "The array would be pretty unstructured though, especially with multiline strings.\n\nI personally don\u0027t think repeating `self.assertIn` is too much.",
+      "parentUuid": "5f568207_201da952",
       "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
