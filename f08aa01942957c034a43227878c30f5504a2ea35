@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b605851c_b2a4a421",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-10T14:22:32Z",
+      "side": 1,
+      "message": "Why is this necessary? In theory we do not have any other OUT_DIR other than the fast cache path. That is why I put it initially as part of kernel_env. Why is that not working as expected? It appears that the rsync cost might be quite high ...",
+      "revId": "f08aa01942957c034a43227878c30f5504a2ea35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
