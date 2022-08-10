@@ -325,10 +325,10 @@ class Delegated(AbiTool):
             os.link(target, link)
 
         changed = []
-        if abidiff_leaf_changed:
-            changed.append(("abidiff (leaf changes)", abg_leaf + ".short"))
         if stgdiff_changed:
             changed.append(("stgdiff", stg_short))
+        if abidiff_leaf_changed:
+            changed.append(("abidiff (leaf changes)", abg_leaf + ".short"))
         if changed:
             print()
             print("ABI DIFFERENCES HAVE BEEN DETECTED!")
