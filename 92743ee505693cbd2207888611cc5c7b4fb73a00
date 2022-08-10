@@ -22,6 +22,30 @@
       },
       "revId": "92743ee505693cbd2207888611cc5c7b4fb73a00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71e54098_c6e3be70",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-10T14:37:27Z",
+      "side": 1,
+      "message": "+1, I somewhat also really have a hard time agreeing with the default\u003dNone definition of boolean parameters. I probably asked that many times, but do we have a technical reason not to do `restore_modules_install \u003d True` in L31?",
+      "parentUuid": "a5ab523e_ef57154b",
+      "range": {
+        "startLine": 48,
+        "startChar": 7,
+        "endLine": 48,
+        "endChar": 38
+      },
+      "revId": "92743ee505693cbd2207888611cc5c7b4fb73a00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
