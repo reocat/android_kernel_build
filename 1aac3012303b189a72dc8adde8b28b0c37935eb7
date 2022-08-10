@@ -534,6 +534,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76c8bb38_56c86a4b",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T22:07:34Z",
+      "side": 1,
+      "message": "Ah StringIO can\u0027t be passed to subprocess module as stdout / stderr:\n\n```\n  File \"/usr/lib/python3.10/subprocess.py\", line 420, in check_output\n    return run(*popenargs, stdout\u003dPIPE, timeout\u003dtimeout, check\u003dTrue,\n  File \"/usr/lib/python3.10/subprocess.py\", line 501, in run\n    with Popen(*popenargs, **kwargs) as process:\n  File \"/usr/lib/python3.10/subprocess.py\", line 835, in __init__\n    errread, errwrite) \u003d self._get_handles(stdin, stdout, stderr)\n  File \"/usr/lib/python3.10/subprocess.py\", line 1639, in _get_handles\n    errwrite \u003d stderr.fileno()\nio.UnsupportedOperation: fileno\n```",
+      "parentUuid": "1050fa1e_5c26d233",
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1161196f_17a91115",
