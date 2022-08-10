@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "951549ca_2df5c1de",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-10T14:32:04Z",
+      "side": 1,
+      "message": "The docstring should be descriptive-style.\n\ngo/no-imperative\n\nhttps://google.github.io/styleguide/pyguide.html#383-functions-and-methods",
+      "revId": "7cd305ce7a14b1d5a62f6d2120bd2e42cdc8b85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70e39ce8_bd50f181",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-10T14:32:04Z",
+      "side": 1,
+      "message": "looking forward to native arm64 builds :-)\n\nAt least make it a constant at the top of the file.",
+      "range": {
+        "startLine": 51,
+        "startChar": 66,
+        "endLine": 51,
+        "endChar": 72
+      },
+      "revId": "7cd305ce7a14b1d5a62f6d2120bd2e42cdc8b85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
