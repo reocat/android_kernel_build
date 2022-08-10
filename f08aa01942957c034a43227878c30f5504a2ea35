@@ -34,6 +34,24 @@
       "parentUuid": "b605851c_b2a4a421",
       "revId": "f08aa01942957c034a43227878c30f5504a2ea35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "860a89a7_615fe8d2",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T19:32:52Z",
+      "side": 1,
+      "message": "Having multiple rules writing / reading the same output directory can cause race conditions, so I\u0027d rather just keep them sandboxed as they are right now. Right now, only kernel_build rules have the ability to write to cache/, and different kernel_build are separated by names.",
+      "parentUuid": "e2e6530f_7faebc6c",
+      "revId": "f08aa01942957c034a43227878c30f5504a2ea35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
