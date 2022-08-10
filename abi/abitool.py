@@ -289,40 +289,22 @@ class Delegated(AbiTool):
                  symbol_list=None, full_report=None):
         # shoehorn the interface
         basename = diff_report
-        abg_leaf = basename + ".leaf"
-        abg_full = basename + ".full"
         stg_basename = basename + ".stg"
         stg_short = stg_basename + ".short"
         links = {
-            basename: abg_leaf,
-            basename + ".short": abg_leaf + ".short",
             stg_basename + ".small.short": stg_short,
         }
 
-        abidiff_leaf_changed = None
-        abidiff_full_changed = None
         stgdiff_changed = None
         with concurrent.futures.ThreadPoolExecutor() as executor:
             # fork
-            abidiff_leaf = executor.submit(
-                _run_abidiff, old_dump, new_dump, abg_leaf, symbol_list, False)
-            abidiff_full = executor.submit(
-                _run_abidiff, old_dump, new_dump, abg_full, symbol_list, True)
             stgdiff = executor.submit(
                 _run_stgdiff, old_dump, new_dump, stg_basename, symbol_list)
             # join
-            abidiff_leaf_changed = abidiff_leaf.result()
-            abidiff_full_changed = abidiff_full.result()
             stgdiff_changed = stgdiff.result()
 
-        # post-process
-        for report in [abg_leaf, abg_full]:
-           _shorten_abidiff(report, report + ".short")
-
         print("ABI diff reports have been created")
-        paths = [abg_leaf, abg_full,
-                 *(f"{stg_basename}.{format}" for format in STGDIFF_FORMATS),
-                 *(f"{path}.short" for path in [abg_leaf, abg_full])]
+        paths = [*(f"{stg_basename}.{format}" for format in STGDIFF_FORMATS)]
         for path in paths:
             count = _line_count(path)
             print(f" {path} [{count} lines]")
@@ -332,8 +314,6 @@ class Delegated(AbiTool):
         changed = []
         if stgdiff_changed:
             changed.append(("stgdiff", stg_short))
-        if abidiff_leaf_changed:
-            changed.append(("abidiff (leaf changes)", abg_leaf + ".short"))
         if changed:
             print()
             print("ABI DIFFERENCES HAVE BEEN DETECTED!")
