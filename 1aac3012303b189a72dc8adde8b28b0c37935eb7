@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41289816_95de3532",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T22:03:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abf75c2d_0ef24402",
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8082411c_50ceaea9",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-08-10T16:50:35Z",
       "side": 1,
       "message": "_CAPS_WITH_UNDER\n\nhttps://google.github.io/styleguide/pyguide.html#382-modules",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 19
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1013d899_d20228d4",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T22:03:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8082411c_50ceaea9",
       "range": {
         "startLine": 35,
         "startChar": 0,
@@ -124,6 +166,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "831d1e59_ff7f52e8",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T22:03:26Z",
+      "side": 1,
+      "message": "Do you mean it is being set to 0 by some build.config files, and we should flag this?",
+      "parentUuid": "69c0f83f_557fff60",
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36b2acc6_3d831fb4",
         "filename": "kleaf/build_config_to_bazel.py",
         "patchSetId": 12
@@ -135,6 +195,24 @@
       "writtenOn": "2022-08-10T16:50:35Z",
       "side": 1,
       "message": "another \"unsupported, but used\"",
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6cabefc_4018ef31",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T22:03:26Z",
+      "side": 1,
+      "message": "It is actually \"supported\" to some degree. If the command just reads and checks files, it should be kept as is. If the command deletes defconfig files then it needs to be handled with\n\nhttps://android.googlesource.com/kernel/build/+/refs/heads/master/kleaf/docs/errors.md#defconfig-readonly\n\nBut this URL link is already shown in PRE_DEFCONFIG_CMDS. So I think it is safe to just ignore POST_DEFCONFIG_CMDS here.",
+      "parentUuid": "36b2acc6_3d831fb4",
       "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -209,6 +287,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8cb045e_4fbadd74",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T22:03:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ee315a2_46c25a5d",
+      "range": {
+        "startLine": 133,
+        "startChar": 4,
+        "endLine": 133,
+        "endChar": 8
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "608a6a96_81b26f9d",
@@ -222,6 +324,30 @@
       "writtenOn": "2022-08-10T16:50:35Z",
       "side": 1,
       "message": "critical, since you die in the next line",
+      "range": {
+        "startLine": 134,
+        "startChar": 12,
+        "endLine": 134,
+        "endChar": 17
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ddcb300_4555631e",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T22:03:26Z",
+      "side": 1,
+      "message": "The message would be\n\n```\nCRITICAL: error message here\n```\n\nBut with .error it is\n\n```\nERROR: error message here\n```\n\nI think the latter is much more visible. (Of course I can change how logging works in config_logging, but I think it is easier to just use .error here)",
+      "parentUuid": "608a6a96_81b26f9d",
       "range": {
         "startLine": 134,
         "startChar": 12,
@@ -255,6 +381,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f83c54a_859a393c",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T22:03:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1cc0e0c_62d81b31",
+      "range": {
+        "startLine": 138,
+        "startChar": 4,
+        "endLine": 138,
+        "endChar": 20
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a54b7a4_136f77b3",
@@ -278,6 +428,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dd9693b_0a251e4d",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T22:03:26Z",
+      "side": 1,
+      "message": "No. realpath is like `readlink -e`. I intended to do\n\n```\nif [[ -l $x ]]; then readlink $x; else echo $x; fi\n```\n\nIn this case, the top level `build.config` will point to a relative path `path/to/package/build.config.device_name`, and this `readlink_if_link` function will return the relative path.\n\nrealpath returns an absolute path.\n\nBut of course, I can do `relpath(realpath(x))` here. WDYT? (See latest PS)",
+      "parentUuid": "3a54b7a4_136f77b3",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 148,
+        "endChar": 20
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37781f25_e436dae8",
@@ -291,6 +465,30 @@
       "writtenOn": "2022-08-10T16:50:35Z",
       "side": 1,
       "message": "not sure that mechanism is still used and whether we need to support this here.",
+      "range": {
+        "startLine": 159,
+        "startChar": 40,
+        "endLine": 159,
+        "endChar": 62
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "936c7c16_be255024",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T22:03:26Z",
+      "side": 1,
+      "message": "The script intends to \"help people transition from build.sh with build config to Bazel\". build.sh supports this, so this script should also support this.",
+      "parentUuid": "37781f25_e436dae8",
       "range": {
         "startLine": 159,
         "startChar": 40,
