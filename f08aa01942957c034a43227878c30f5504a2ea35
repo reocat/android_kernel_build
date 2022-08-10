@@ -16,6 +16,24 @@
       "message": "Why is this necessary? In theory we do not have any other OUT_DIR other than the fast cache path. That is why I put it initially as part of kernel_env. Why is that not working as expected? It appears that the rsync cost might be quite high ...",
       "revId": "f08aa01942957c034a43227878c30f5504a2ea35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2e6530f_7faebc6c",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T18:59:50Z",
+      "side": 1,
+      "message": "This only syncs the output from the kernel_config() rule, which is just the configs.\n\nThe reason that putting in kernel_env does not work is that kernel_env is also used by other rules. When multiple rules execute on the same $OUT_DIR in parallel, it is problematic. The exact error I am seeing is that, while kernel_build was using the cached out directory, the modules_prepare target is also using the cached out directory and packing it up:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/modules_prepare.bzl;l\u003d23;drc\u003d6df678c0f391f4f1330e46cb44c575421c375129\n\nHence, I changed to the current implementation; that is, only kernel_build will use the cached out directory.",
+      "parentUuid": "b605851c_b2a4a421",
+      "revId": "f08aa01942957c034a43227878c30f5504a2ea35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
