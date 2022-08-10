@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6889ddf_7a1cbacb",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T19:29:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "951549ca_2df5c1de",
+      "revId": "7cd305ce7a14b1d5a62f6d2120bd2e42cdc8b85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70e39ce8_bd50f181",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-08-10T14:32:04Z",
       "side": 1,
       "message": "looking forward to native arm64 builds :-)\n\nAt least make it a constant at the top of the file.",
+      "range": {
+        "startLine": 51,
+        "startChar": 66,
+        "endLine": 51,
+        "endChar": 72
+      },
+      "revId": "7cd305ce7a14b1d5a62f6d2120bd2e42cdc8b85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6380a54c_54d3d29a",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-10T19:29:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70e39ce8_bd50f181",
       "range": {
         "startLine": 51,
         "startChar": 66,
