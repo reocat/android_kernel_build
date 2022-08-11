@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c4386c0_368e1e8d",
+        "filename": "abi/abitool.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T10:12:34Z",
+      "side": 1,
+      "message": "that is an odd sorting",
+      "revId": "0f7466d81f546b6143bd7ae81fa038f21ae21fa2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dce989eb_7e339704",
+        "filename": "abi/abitool.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T10:12:34Z",
+      "side": 1,
+      "message": "do we really need those links? Are they used by the linters? I would like to see them go as they clutter up the build artifact distribution. I don\u0027t think we made a guarantee for their existence anyway.",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 470,
+        "endChar": 9
+      },
+      "revId": "0f7466d81f546b6143bd7ae81fa038f21ae21fa2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
