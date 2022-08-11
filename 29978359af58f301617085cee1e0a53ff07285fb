@@ -46,6 +46,30 @@
       },
       "revId": "29978359af58f301617085cee1e0a53ff07285fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12467dd8_ff427f59",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-08-11T11:41:26Z",
+      "side": 1,
+      "message": "Actually restored. Needed for active monitoring.",
+      "parentUuid": "d4be0d0c_460d06eb",
+      "range": {
+        "startLine": 282,
+        "startChar": 28,
+        "endLine": 282,
+        "endChar": 32
+      },
+      "revId": "29978359af58f301617085cee1e0a53ff07285fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
