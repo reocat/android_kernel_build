@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a36f9bf4_c5615aa4",
+        "filename": "abi/abitool.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-08-11T11:42:51Z",
+      "side": 1,
+      "message": "The sort key is (text vs graph, verbosity DESC).\n\nIt\u0027s also the order `stgdiff --help` gives.",
+      "parentUuid": "1c4386c0_368e1e8d",
+      "revId": "0f7466d81f546b6143bd7ae81fa038f21ae21fa2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dce989eb_7e339704",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-08-11T10:12:34Z",
       "side": 1,
       "message": "do we really need those links? Are they used by the linters? I would like to see them go as they clutter up the build artifact distribution. I don\u0027t think we made a guarantee for their existence anyway.",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 470,
+        "endChar": 9
+      },
+      "revId": "0f7466d81f546b6143bd7ae81fa038f21ae21fa2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01e6915b_377be764",
+        "filename": "abi/abitool.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-08-11T11:42:51Z",
+      "side": 1,
+      "message": "I suppose there\u0027s no need for the STG on here as probably no one has been using it.\n\nHowever, active monitoring currently picks up `report.abi.short` and there are probably references to `report.abi` in various places.",
+      "parentUuid": "dce989eb_7e339704",
       "range": {
         "startLine": 466,
         "startChar": 0,
