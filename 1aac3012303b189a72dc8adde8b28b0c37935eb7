@@ -147,6 +147,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f92d6c80_32118f3a",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T15:47:52Z",
+      "side": 1,
+      "message": "I like the revised name more :-) thanks!",
+      "parentUuid": "0903f461_c6997915",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 25
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69c0f83f_557fff60",
@@ -178,6 +202,24 @@
       "side": 1,
       "message": "Do you mean it is being set to 0 by some build.config files, and we should flag this?",
       "parentUuid": "69c0f83f_557fff60",
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b35125e2_5a5895f1",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T15:47:52Z",
+      "side": 1,
+      "message": "occasionally we cannot build all configurations with the hermetic tools (e.g. allmodconfig builds). In that case we need to let more host tools sneak in. We did this by either disabling the hermetic tools `HERMETIC_TOOLCHAIN\u003d0` or by adding `ADDITIONAL_HOST_TOOLS\u003d...`. Perhaps the latter approach works better in the Kleaf world and should somehow be supported. OTOH, the solution for additional host tools might look very different in Kleaf and we might drop this support here altogether.",
+      "parentUuid": "831d1e59_ff7f52e8",
       "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -358,6 +400,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13eeb436_e710fdf5",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T15:47:52Z",
+      "side": 1,
+      "message": "agreed.",
+      "parentUuid": "7ddcb300_4555631e",
+      "range": {
+        "startLine": 134,
+        "startChar": 12,
+        "endLine": 134,
+        "endChar": 17
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1cc0e0c_62d81b31",
@@ -442,6 +508,30 @@
       "side": 1,
       "message": "No. realpath is like `readlink -e`. I intended to do\n\n```\nif [[ -l $x ]]; then readlink $x; else echo $x; fi\n```\n\nIn this case, the top level `build.config` will point to a relative path `path/to/package/build.config.device_name`, and this `readlink_if_link` function will return the relative path.\n\nrealpath returns an absolute path.\n\nBut of course, I can do `relpath(realpath(x))` here. WDYT? (See latest PS)",
       "parentUuid": "3a54b7a4_136f77b3",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 148,
+        "endChar": 20
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a64796e4_b55c9fe1",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T15:47:52Z",
+      "side": 1,
+      "message": "and that is why I do not like this build.config symlink feature :-)\n\nI like relpath(realpath(x)) as a solid solution.",
+      "parentUuid": "9dd9693b_0a251e4d",
       "range": {
         "startLine": 148,
         "startChar": 4,
@@ -601,6 +691,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9671b80f_6379ca5d",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T15:47:52Z",
+      "side": 1,
+      "message": "but you do not need to do this as the file will get garbage collected and is guaranteed to be unlinked. I think in this case readability wins over precise cleanup.",
+      "parentUuid": "6ff17cd7_66334477",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 63
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f568207_201da952",
         "filename": "kleaf/build_config_to_bazel_test.py",
         "patchSetId": 12
@@ -630,6 +744,24 @@
       "side": 1,
       "message": "The array would be pretty unstructured though, especially with multiline strings.\n\nI personally don\u0027t think repeating `self.assertIn` is too much.",
       "parentUuid": "5f568207_201da952",
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a721e814_97ae1d74",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T15:47:52Z",
+      "side": 1,
+      "message": "defining the parameters with comments as in the text makes it perhaps more readable:\n\n```\nexpected_inclusions \u003d [\n  # Check defined targets\n  \u0027\"everything\"\u0027,\n  \u0027\"everything_dist\"\u0027,\n\n  # BUILD_CONFIG\n  \u0027build_config \u003d \"build.config.everything\"\u0027,  \n  # BUILD_CONFIG_FRAGMENTS\n  \"build.config.fragment\",  \n\n   ...\n]\n\ndef test_everything(self, expected):\n   out, err \u003d self._run_test(\"build.config.everything\")\n   self.assertIn(expected, out)\n```",
+      "parentUuid": "7947fa7f_799c4dac",
       "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

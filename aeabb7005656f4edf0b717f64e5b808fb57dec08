@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3545036_d4270569",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T15:47:52Z",
+      "side": 1,
+      "message": "what is there to join? perhaps just `build_file` ?",
+      "range": {
+        "startLine": 179,
+        "startChar": 18,
+        "endLine": 179,
+        "endChar": 42
+      },
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e96f36ea_bb463d45",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T15:47:52Z",
+      "side": 1,
+      "message": "maennich@: continue here",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45021f6e_074a0a4d",
+        "filename": "kleaf/tests/build_config_to_bazel_test_data/BUILD.bazel",
+        "patchSetId": 14
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T15:47:52Z",
+      "side": 1,
+      "message": "testonly\u003dTrue\n\nhttps://bazel.build/reference/be/common-definitions#common.testonly",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86a49414_aaf3fa73",
+        "filename": "kleaf/tests/build_config_to_bazel_test_data/BUILD.bazel",
+        "patchSetId": 14
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T15:47:52Z",
+      "side": 1,
+      "message": "could be restricted, but can become a hassle if we were to relocate the package",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f9c0f36_65abd051",
+        "filename": "kleaf/tests/build_config_to_bazel_test_data/build.config.everything",
+        "patchSetId": 14
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T15:47:52Z",
+      "side": 1,
+      "message": "consider adding a malicious newline to this \"array\" for testing purposes",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
