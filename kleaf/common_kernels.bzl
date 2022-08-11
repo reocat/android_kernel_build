@@ -17,6 +17,7 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 load(
     ":kernel.bzl",
+    "ddk_headers",
     "kernel_build",
     "kernel_build_abi",
     "kernel_build_abi_dist",
@@ -658,6 +659,8 @@ def define_common_kernels(
 
     _define_prebuilts(visibility = visibility)
 
+    _define_ddk_headers()
+
 def _define_prebuilts(**kwargs):
     # Build number for GKI prebuilts
     bool_flag(
@@ -867,4 +870,12 @@ def define_db845c(
         dist_dir = dist_dir,
         flat = True,
         log = "info",
+    )
+
+def _define_ddk_headers():
+    ddk_headers(
+        name = "drivers/pinctrl/headers",
+        srcs = native.glob(["drivers/pinctrl/headers/**/*.h"]),
+        export_include_dirs = ["drivers/pinctrl"],
+        visibility = ["//visibility:public"],
     )
