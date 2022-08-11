@@ -399,7 +399,7 @@ def _kernel_module_impl(ctx):
                ext_mod_rel=$(rel_path ${{ROOT_DIR}}/{ext_mod} ${{KERNEL_DIR}})
              # Restore Modules.symvers
                mkdir -p ${{OUT_DIR}}/${{ext_mod_rel}}
-               cp {module_symvers} ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers
+               cat {module_symvers} >> ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers
              # New shell ends
                )
     """.format(
