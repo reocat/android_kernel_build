@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef62788a_15173ef2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-08-11T16:12:56Z",
+      "side": 1,
+      "message": "I expect presubmit to fail due to infra errors.\n\nFTR, here is a sample output (with `repB9` used instead of `abi.report`):\n\n```\n-rw-r----- 1 gprocida primarygroup     0 Aug 11 17:07 repB9.errors\n-rw-r----- 1 gprocida primarygroup 14448 Aug 11 17:07 repB9.small\n-rw-r----- 1 gprocida primarygroup 14448 Aug 11 17:07 repB9.plain\n-rw-r----- 1 gprocida primarygroup 14448 Aug 11 17:07 repB9.flat\n-rw-r----- 1 gprocida primarygroup 25344 Aug 11 17:07 repB9.viz\n-rw-r----- 2 gprocida primarygroup  9737 Aug 11 17:07 repB9.short\n-rw-r----- 2 gprocida primarygroup  9737 Aug 11 17:07 repB9\n```\n",
+      "revId": "4b777b2d4233d958a4d782c2e6887a6a443502c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
