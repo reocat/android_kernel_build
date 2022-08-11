@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3437d072_2a924c31",
+        "filename": "abi/abitool.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T10:17:24Z",
+      "side": 1,
+      "message": "I would get rid of this one as well. Unless we need it for a (very very) short time to keep linters happy.",
+      "revId": "08c180cfe3194aa3edb93d2057cdc0cb8ac6b5d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
