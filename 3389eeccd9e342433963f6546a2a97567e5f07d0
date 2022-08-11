@@ -16,6 +16,41 @@
       "message": "Can\u0027t we actually take over their names entirely and don\u0027t use the stg names instead?",
       "revId": "3389eeccd9e342433963f6546a2a97567e5f07d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4270723a_25c8e6f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-08-11T15:33:57Z",
+      "side": 1,
+      "message": "I\u0027ll do this in a follow-up change.",
+      "parentUuid": "792c8d95_412f9398",
+      "revId": "3389eeccd9e342433963f6546a2a97567e5f07d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a65b6185_ddbac6ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-08-11T15:33:57Z",
+      "side": 1,
+      "message": "Remaining builds and tests are not relevant to ABI tooling.",
+      "revId": "3389eeccd9e342433963f6546a2a97567e5f07d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
