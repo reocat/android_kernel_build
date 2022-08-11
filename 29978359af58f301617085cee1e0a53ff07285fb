@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa441cd2_6ecd7f97",
+        "filename": "abi/abitool.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-11T10:08:34Z",
+      "side": 1,
+      "message": "nit: `src` and `dst` or their long versions would match the names in `os.link`",
+      "range": {
+        "startLine": 282,
+        "startChar": 28,
+        "endLine": 282,
+        "endChar": 32
+      },
+      "revId": "29978359af58f301617085cee1e0a53ff07285fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
