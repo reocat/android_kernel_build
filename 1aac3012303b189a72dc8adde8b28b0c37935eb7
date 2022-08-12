@@ -224,6 +224,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51c38a4e_f3c0c1e5",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b35125e2_5a5895f1",
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36b2acc6_3d831fb4",
@@ -542,6 +560,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a0432f0_d11dc810",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a64796e4_b55c9fe1",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 148,
+        "endChar": 20
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37781f25_e436dae8",
@@ -737,6 +779,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e546257_b40f9eaa",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Actually, if it is implicitly closed when it is GC\u0027ed, then it will print a warning message. To suppress it, I am going to leave an `addCleanup(self.stdout.close)` here.",
+      "parentUuid": "580296f7_2bf1644e",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 63
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ac5826c_d4304202",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "580296f7_2bf1644e",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 63
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f568207_201da952",
@@ -786,6 +876,24 @@
       "side": 1,
       "message": "defining the parameters with comments as in the text makes it perhaps more readable:\n\n```\nexpected_inclusions \u003d [\n  # Check defined targets\n  \u0027\"everything\"\u0027,\n  \u0027\"everything_dist\"\u0027,\n\n  # BUILD_CONFIG\n  \u0027build_config \u003d \"build.config.everything\"\u0027,  \n  # BUILD_CONFIG_FRAGMENTS\n  \"build.config.fragment\",  \n\n   ...\n]\n\ndef test_everything(self, expected):\n   out, err \u003d self._run_test(\"build.config.everything\")\n   self.assertIn(expected, out)\n```",
       "parentUuid": "7947fa7f_799c4dac",
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70e9a212_f2b135e9",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Because I don\u0027t have absl.testing.parameterized (because this cannot be migrated to a Bazel py_test, because of the buildozer host tool dependency, because buildozer is not installed in $PATH), self.subTest is the best I can do. See latest PS.",
+      "parentUuid": "a721e814_97ae1d74",
       "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

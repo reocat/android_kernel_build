@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b15ff7a8_698c4c8f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "973fde55_e65c4ce8",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3545036_d4270569",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "996c3321_25e3a9ad",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3545036_d4270569",
+      "range": {
+        "startLine": 179,
+        "startChar": 18,
+        "endLine": 179,
+        "endChar": 42
+      },
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "130ced56_8a1124a0",
@@ -54,6 +96,24 @@
       "writtenOn": "2022-08-12T15:30:25Z",
       "side": 1,
       "message": "consider using dataclasses\n\nhttps://docs.python.org/3.10/library/dataclasses.html#module-dataclasses\n\nMost of what is implemented here is done automatically then.",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddb0065a_9a5d4372",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "130ced56_8a1124a0",
       "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +152,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb8e215b_8d9a8a15",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "103f63bc_fdb88970",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc8f614d_d41085c7",
@@ -105,6 +183,30 @@
       "writtenOn": "2022-08-12T15:30:25Z",
       "side": 1,
       "message": "def __enter__(self):\n        self.out_file \u003d tempfile.NamedTemporaryFile(\"w+\")\n        return self\n\n    def __exit__(self, exc, value, tb):\n        self.out_file.close()\n        self.out_file \u003d None\n        \n\"If delete is true (the default), the file is deleted as soon as it is closed.\"\nhttps://docs.python.org/3.10/library/tempfile.html#tempfile.NamedTemporaryFile",
+      "range": {
+        "startLine": 318,
+        "startChar": 4,
+        "endLine": 326,
+        "endChar": 0
+      },
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1156006d_058942e7",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc8f614d_d41085c7",
       "range": {
         "startLine": 318,
         "startChar": 4,
@@ -173,6 +275,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6daf6bf4_95f6c484",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62d3682e_e0b07429",
+      "range": {
+        "startLine": 336,
+        "startChar": 43,
+        "endLine": 336,
+        "endChar": 45
+      },
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "934cabcd_e1641681",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62d3682e_e0b07429",
+      "range": {
+        "startLine": 336,
+        "startChar": 43,
+        "endLine": 336,
+        "endChar": 45
+      },
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7fc336a6_2b397330",
@@ -186,6 +336,54 @@
       "writtenOn": "2022-08-12T15:30:25Z",
       "side": 1,
       "message": "Executes",
+      "range": {
+        "startLine": 352,
+        "startChar": 11,
+        "endLine": 352,
+        "endChar": 18
+      },
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4196be04_f9233747",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fc336a6_2b397330",
+      "range": {
+        "startLine": 352,
+        "startChar": 11,
+        "endLine": 352,
+        "endChar": 18
+      },
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c46b393_aa9eb5d6",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fc336a6_2b397330",
       "range": {
         "startLine": 352,
         "startChar": 11,
@@ -213,6 +411,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91f00c58_0b0c574b",
+        "filename": "kleaf/tests/build_config_to_bazel_test_data/BUILD.bazel",
+        "patchSetId": 14
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45021f6e_074a0a4d",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86a49414_aaf3fa73",
@@ -230,6 +446,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70edbf88_c21563e5",
+        "filename": "kleaf/tests/build_config_to_bazel_test_data/BUILD.bazel",
+        "patchSetId": 14
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86a49414_aaf3fa73",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f9c0f36_65abd051",
@@ -243,6 +477,24 @@
       "writtenOn": "2022-08-11T15:47:52Z",
       "side": 1,
       "message": "consider adding a malicious newline to this \"array\" for testing purposes",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4716063_fb735b9c",
+        "filename": "kleaf/tests/build_config_to_bazel_test_data/build.config.everything",
+        "patchSetId": 14
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T23:06:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f9c0f36_65abd051",
       "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
