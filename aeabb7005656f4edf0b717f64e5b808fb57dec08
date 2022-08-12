@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "130ced56_8a1124a0",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-12T15:30:25Z",
+      "side": 1,
+      "message": "consider using dataclasses\n\nhttps://docs.python.org/3.10/library/dataclasses.html#module-dataclasses\n\nMost of what is implemented here is done automatically then.",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e96f36ea_bb463d45",
         "filename": "kleaf/build_config_to_bazel.py",
         "patchSetId": 14
@@ -37,6 +54,109 @@
       "writtenOn": "2022-08-11T15:47:52Z",
       "side": 1,
       "message": "maennich@: continue here",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "103f63bc_fdb88970",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-12T15:30:25Z",
+      "side": 1,
+      "message": "self.stdout \u003d stdout or sys.stdout",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc8f614d_d41085c7",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-12T15:30:25Z",
+      "side": 1,
+      "message": "def __enter__(self):\n        self.out_file \u003d tempfile.NamedTemporaryFile(\"w+\")\n        return self\n\n    def __exit__(self, exc, value, tb):\n        self.out_file.close()\n        self.out_file \u003d None\n        \n\"If delete is true (the default), the file is deleted as soon as it is closed.\"\nhttps://docs.python.org/3.10/library/tempfile.html#tempfile.NamedTemporaryFile",
+      "range": {
+        "startLine": 318,
+        "startChar": 4,
+        "endLine": 326,
+        "endChar": 0
+      },
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1eb5fcb_e80a0041",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-12T15:30:25Z",
+      "side": 1,
+      "message": "why not /usr/bin/buildozer? it is commonly packaged.\n\nperhaps even better to require it just in `PATH` and to discover with `shutil.which()`. \n\nhttps://docs.python.org/3.10/library/shutil.html#shutil.which",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62d3682e_e0b07429",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-12T15:30:25Z",
+      "side": 1,
+      "message": "about",
+      "range": {
+        "startLine": 336,
+        "startChar": 43,
+        "endLine": 336,
+        "endChar": 45
+      },
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fc336a6_2b397330",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-12T15:30:25Z",
+      "side": 1,
+      "message": "Executes",
+      "range": {
+        "startLine": 352,
+        "startChar": 11,
+        "endLine": 352,
+        "endChar": 18
+      },
       "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
