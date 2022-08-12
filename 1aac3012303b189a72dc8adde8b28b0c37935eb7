@@ -715,6 +715,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "580296f7_2bf1644e",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T19:31:10Z",
+      "side": 1,
+      "message": "Oh \"including an implicit close when the object is garbage collected\"; I missed this part!",
+      "parentUuid": "9671b80f_6379ca5d",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 63
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f568207_201da952",
         "filename": "kleaf/build_config_to_bazel_test.py",
         "patchSetId": 12

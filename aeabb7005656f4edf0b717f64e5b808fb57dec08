@@ -134,6 +134,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e5b7767e_1d9fc61a",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-12T19:31:10Z",
+      "side": 1,
+      "message": "Which package did you find /usr/bin/buildozer? The instructions in https://github.com/bazelbuild/buildtools/blob/master/buildozer/README.md only says it will be installed to $GOPATH, or ~/go",
+      "parentUuid": "c1eb5fcb_e80a0041",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "62d3682e_e0b07429",
         "filename": "kleaf/build_config_to_bazel.py",
         "patchSetId": 14
