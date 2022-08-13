@@ -92,8 +92,13 @@ def _hermetic_tools_impl(ctx):
                 export PATH=$({path}/readlink -m {path})
 """.format(path = paths.dirname(all_outputs[0].short_path))
 
+    # Allow hermetic-tools to be used in data. When this is the case,
+    # all outputs (symlinks) + all dependencies (symlink destinations) are
+    # added.
+    runfiles = ctx.runfiles(files = deps + all_outputs)
+
     return [
-        DefaultInfo(files = depset(all_outputs)),
+        DefaultInfo(files = depset(all_outputs), runfiles = runfiles),
         HermeticToolsInfo(
             deps = deps,
             setup = setup,

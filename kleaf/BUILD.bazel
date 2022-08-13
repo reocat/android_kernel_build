@@ -170,6 +170,22 @@ platform(
 # tests
 
 py_test(
+    name = "build_config_to_bazel_test",
+    srcs = ["build_config_to_bazel_test.py"],
+    data = [
+        "dump_env.py",
+        "//build/kernel:hermetic-tools",
+        "//build/kernel:kernel-build-scripts",
+        "//build/kernel/kleaf/tests/build_config_to_bazel_test_data",
+        "//common:kernel_aarch64_sources",
+    ],
+    python_version = "PY3",
+    deps = [
+        "@io_abseil_py//absl/testing:absltest",
+    ],
+)
+
+py_test(
     name = "check_declared_output_list_test",
     srcs = ["check_declared_output_list_test.py"],
     python_version = "PY3",
