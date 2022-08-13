@@ -166,7 +166,9 @@ def find_build_config(env: Mapping[str, str]) -> str:
         real_build_config = os.path.realpath(env["BUILD_CONFIG"])
         real_this = os.path.realpath(".")
         if os.path.commonpath([real_build_config, real_this]) != real_this:
-            die(f"realpath $BUILD_CONFIG ({real_build_config}) is not under the repository root")
+            # FIXME
+            logging.warning(f"realpath $BUILD_CONFIG ({real_build_config}) is not under the repository root")
+            return env.get("BUILD_CONFIG")
         return os.path.relpath(real_build_config, real_this)
     die("$BUILD_CONFIG is not set, and top level build.config file is not found.")
 
