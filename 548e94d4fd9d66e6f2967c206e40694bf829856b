@@ -52,6 +52,24 @@
       "parentUuid": "2563ba0a_df3b74b8",
       "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fb1da7a_cf7eb7fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-15T20:58:45Z",
+      "side": 1,
+      "message": "I am not sure, but here\u0027s what I see when I try to reproduce it locally:\n\nThe command I am running:\n\n```\n$ find /mnt/sdc/android/kernel/out/bazel/output_user_root/1b6b21355d7d8de5177bf0bcb725bd7f/sandbox/linux-sandbox/11/execroot/__main__/out__common_kernel_aarch64/android-mainline/common -name \u0027*.h\u0027 -print0 | strace prebuilts/build-tools/path/linux-x86/tar czf /tmp/out-dir-kernel-headers.tar.gz --absolute-names --dereference --transform \u0027s,.*/mnt/sdc/android/kernel/out/bazel/output_user_root/1b6b21355d7d8de5177bf0bcb725bd7f/sandbox/linux-sandbox/11/execroot/__main__/out__common_kernel_aarch64/android-mainline/common,,\u0027 --show-transformed  --null -T -\n```\n\nThe last few lines of the strace is:\n\n```\nnewfstatat(AT_FDCWD, \"/mnt/sdc/android/kernel/out/bazel/output_user_root/1b6b21355d7d8de5177bf0bcb725bd7f/sandbox/linux-sandbox/11/execroot/__main__/out__common_kernel_aarch64/android-mainline/common/include/generated/asm-offsets.h\", {st_mode\u003dS_IFREG|0644, st_size\u003d7440, ...}, 0) \u003d 0\npipe([3, 4])                            \u003d 0\npipe([6, 7])                            \u003d 0\nclone(child_stack\u003dNULL, flags\u003dCLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr\u003d0x7fbce9eb6a10) \u003d 456535\nclose(3)                                \u003d 0\nclose(7)                                \u003d 0\nwrite(4, \"/mnt/sdc/android/kernel/out/baze\"..., 209) \u003d 209\nclose(4)                                \u003d 0\nread(6, \"\", 4096)                       \u003d 0\n--- SIGCHLD {si_signo\u003dSIGCHLD, si_code\u003dCLD_EXITED, si_pid\u003d456535, si_uid\u003d406530, si_status\u003d0, si_utime\u003d0, si_stime\u003d0} ---\nclose(6)                                \u003d 0\nwait4(456535, [{WIFEXITED(s) \u0026\u0026 WEXITSTATUS(s) \u003d\u003d 0}], 0, NULL) \u003d 456535\nwrite(2, \"tar: \", 5tar: )                    \u003d 5\nwrite(2, \"bad xform\", 9bad xform)                \u003d 9\nwrite(2, \"\\n\", 1\n```\n\n... So this means it sees an error when executing sed?",
+      "parentUuid": "913e9669_01cef6b7",
+      "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
