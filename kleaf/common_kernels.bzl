@@ -762,18 +762,24 @@ def define_db845c(
     """
 
     if build_config == None:
-        build_config = "build.config.db845c"
+        # build_config = "build.config.db845c"
+        # Enable mixed build.
+        build_config = "build.config.gki.aarch64"
 
     if dist_dir == None:
         dist_dir = "out/{branch}/dist".format(branch = BRANCH)
 
     kernel_build(
         name = name,
+        # Enable mixed build.
+        # srcs = ["//common:kernel_aarch64_common_sources"],
         outs = outs,
         # List of in-tree kernel modules.
         module_outs = module_outs,
         build_config = build_config,
         kmi_symbol_list = kmi_symbol_list,
+        # Enable mixed build.
+        base_kernel = "//common:kernel_aarch64",
     )
 
     kernel_modules_install(
