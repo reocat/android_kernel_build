@@ -34,6 +34,24 @@
       "parentUuid": "abc63957_64c4dfeb",
       "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "913e9669_01cef6b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2022-08-15T20:49:50Z",
+      "side": 1,
+      "message": "can you run under strace to see what filename it actually tried to open? (apologies that the diagnostics are so unhelpful here. i\u0027ll pass that on upstream...)",
+      "parentUuid": "2563ba0a_df3b74b8",
+      "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
