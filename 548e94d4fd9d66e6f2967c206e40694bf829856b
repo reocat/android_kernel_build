@@ -70,6 +70,24 @@
       "parentUuid": "913e9669_01cef6b7",
       "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dc71bc3_bbb6a5f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-15T21:01:58Z",
+      "side": 1,
+      "message": "How do I know what `sed` command it is trying to execute? All I see before those logs are:\n\n```\nclone(child_stack\u003dNULL, flags\u003dCLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr\u003d0x7fbce9eb6a10) \u003d 456534\nclose(4)                                \u003d 0\nclose(3)                                \u003d 0\n```\n\nbut I don\u0027t see any `exec` etc.",
+      "parentUuid": "6fb1da7a_cf7eb7fb",
+      "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
