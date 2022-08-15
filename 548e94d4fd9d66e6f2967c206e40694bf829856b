@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abc63957_64c4dfeb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-15T20:32:30Z",
+      "side": 1,
+      "message": "I don\u0027t see this error message in TH but when I build locally I see:\n\n```\ntar: bad xform\n```\n\nNeed to check which transform expression is not accepted by the toybox tar.",
+      "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
