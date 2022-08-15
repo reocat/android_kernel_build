@@ -106,6 +106,24 @@
       "parentUuid": "6dc71bc3_bbb6a5f4",
       "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44630a33_566ddb4e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-15T21:23:59Z",
+      "side": 1,
+      "message": "Here\u0027s a minimal repro:\n\n```\necho \u003e /tmp/foo.txt; echo /tmp/foo.txt \u003e /tmp/find.txt\n\ncat /tmp/find.txt | prebuilts/build-tools/path/linux-x86/tar czf /tmp/out-dir-kernel-headers.tar.gz --absolute-names --dereference --transform \u0027s,^/,,\u0027 --show-transformed -T -\n```\n\ntoybox tar fails (passes for host tar), but\n\n```\necho \u003e /tmp/foo.txt; echo /tmp/foo.txt \u003e /tmp/find.txt\n\nprebuilts/build-tools/path/linux-x86/tar czf /tmp/out-dir-kernel-headers.tar.gz --absolute-names --dereference --transform \u0027s,^/,,\u0027 --show-transformed -T /tmp/find.txt\n```\n\nThis passes.",
+      "parentUuid": "543b70de_19636a35",
+      "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
