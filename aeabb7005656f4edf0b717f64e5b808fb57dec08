@@ -254,6 +254,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81ffdf93_955f2432",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-15T17:01:41Z",
+      "side": 1,
+      "message": "What\u0027s more painful is that /home is not visible from Bazel test:\n\nhttps://bazel.build/reference/test-encyclopedia#filesystem",
+      "parentUuid": "e5b7767e_1d9fc61a",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "62d3682e_e0b07429",
         "filename": "kleaf/build_config_to_bazel.py",
         "patchSetId": 14

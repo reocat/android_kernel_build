@@ -584,6 +584,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e188a261_779d944f",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-15T17:01:41Z",
+      "side": 1,
+      "message": "Note: the logic doesn\u0027t work in the tests: CL:2185385 I need to find a better way",
+      "parentUuid": "6a0432f0_d11dc810",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 148,
+        "endChar": 20
+      },
+      "revId": "1aac3012303b189a72dc8adde8b28b0c37935eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37781f25_e436dae8",
