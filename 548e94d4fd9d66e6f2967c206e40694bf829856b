@@ -142,6 +142,24 @@
       "parentUuid": "44630a33_566ddb4e",
       "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa134105_349c22e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2022-08-15T22:31:26Z",
+      "side": 1,
+      "message": "\u003e How do I know what  sed  command it is trying to execute?\n\n`strace -f` follows forks. (you can also use `-e execve` if you _just_ want to see the execs and not everything else.)\n\nyou\u0027ll probably also want `-s 9999` to get full strings too (so the `write` you had above wouldn\u0027t be truncated).\n\n\u003e Filed b/242599148\n\nthanks! i\u0027ll send that upstream...",
+      "parentUuid": "4f48bf67_8b0177a6",
+      "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
