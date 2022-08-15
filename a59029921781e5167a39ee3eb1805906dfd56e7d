@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b33cab26_495d1bb1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-15T17:03:50Z",
+      "side": 1,
+      "message": "consider doing this on android14 / android-mainline, now that android13 is branched out to master-kernel-build-2022 and we don\u0027t care about backporting this specific change",
+      "revId": "a59029921781e5167a39ee3eb1805906dfd56e7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
