@@ -16,6 +16,24 @@
       "message": "https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/build_utils.sh;l\u003d435;drc\u003de8a8dd2e7febffa10ef4329712e7add2a61e3f4a\n\nThe VENDOR_BOOTCONFIG option seems to always produce vendor-bootconfig.img.\n\nIf it is so that \"vendor_kernel_boot.img would leave eampty in the field of bootconfig\", then please fix the logic in build_utils.sh as well.",
       "revId": "e6b95a03e9898ba4fa3a6239734cff43239eb84c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7668abf4_cf03cb27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-16T18:41:32Z",
+      "side": 1,
+      "message": "(The Bazel change itself looks good; I just have a concern on the consistency in the declared output list and the actual logic to build them)",
+      "parentUuid": "8dc77d0a_3b0ac746",
+      "revId": "e6b95a03e9898ba4fa3a6239734cff43239eb84c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
