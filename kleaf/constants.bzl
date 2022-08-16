@@ -41,43 +41,58 @@ aarch64_gz_outs = _common_outs + [
 # Common output files for x86_64 kernel builds.
 x86_64_outs = _common_outs + ["bzImage"]
 
-# See common_kernels.bzl.
+# See common_kernels.bzl and download_repo.bzl.
+# - mandatory: If False, download errors are ignored.
 GKI_DOWNLOAD_CONFIGS = [
     {
         "target_suffix": "uapi_headers",
+        "mandatory": True,
         "outs": [
             "kernel-uapi-headers.tar.gz",
         ],
     },
     {
         "target_suffix": "unstripped_modules_archive",
+        "mandatory": True,
         "outs": [
             "unstripped_modules.tar.gz",
         ],
     },
     {
         "target_suffix": "headers",
+        "mandatory": True,
         "outs": [
             "kernel-headers.tar.gz",
         ],
     },
     {
         "target_suffix": "images",
+        "mandatory": True,
         "outs": SYSTEM_DLKM_OUTS,
     },
     {
         "target_suffix": "gki_artifacts",
+        "mandatory": True,
         # We only download GKI for arm64, not x86_64
         # TODO(b/206079661): Allow downloaded prebuilts for x86_64 and debug targets.
         "outs": GKI_ARTIFACTS_AARCH64_OUTS,
     },
     {
         "target_suffix": "ddk_artifacts",
+        "mandatory": True,
         "outs": [
             # _modules_prepare
             "modules_prepare_outdir.tar.gz",
             # _modules_staging_archive
             "modules_staging_dir.tar.gz",
+        ],
+    },
+    {
+        "target_suffix": "kmi_symbol_list",
+        "mandatory": False,
+        "outs": [
+            "abi_symbollist",
+            "abi_symbollist.report",
         ],
     },
 ]
