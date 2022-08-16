@@ -272,6 +272,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec4156e8_85a56e26",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-16T01:01:31Z",
+      "side": 1,
+      "message": "I am thinking that maybe we should pull in buildozer repository just like stardoc.",
+      "parentUuid": "81ffdf93_955f2432",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "62d3682e_e0b07429",
         "filename": "kleaf/build_config_to_bazel.py",
         "patchSetId": 14
