@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95efd058_e3b3db10",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-08-18T16:30:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "738e0bba_09ec2e9e",
+      "revId": "c0a0f5ac9599befc1d0807c3635f6e32f556e8ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8104633_c7dad495",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-08-18T09:23:19Z",
       "side": 1,
       "message": "in a follow-up change we should probably move out this definition in an own file specific to db845c. Otherwise it feels buried here in the \"common\" part.",
+      "revId": "c0a0f5ac9599befc1d0807c3635f6e32f556e8ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80b915aa_f0f24dc1",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-08-18T16:30:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c8104633_c7dad495",
       "revId": "c0a0f5ac9599befc1d0807c3635f6e32f556e8ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
