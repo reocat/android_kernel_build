@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "738e0bba_09ec2e9e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-18T09:23:19Z",
+      "side": 1,
+      "message": "nit: remove the empty line, the trailors should stick together to form a single block:\n\n```\nANDROID: Convert db845c to a mixed build.\n\nBug: 233404531\nSigned-off-by: Ulises Mendez Martinez \u003cumendez@google.com\u003e\nChange-Id: I6680cb8efed7b9b27fd40a7dd998db035a949b80\n```",
+      "revId": "c0a0f5ac9599befc1d0807c3635f6e32f556e8ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8104633_c7dad495",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-18T09:23:19Z",
+      "side": 1,
+      "message": "in a follow-up change we should probably move out this definition in an own file specific to db845c. Otherwise it feels buried here in the \"common\" part.",
+      "revId": "c0a0f5ac9599befc1d0807c3635f6e32f556e8ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
