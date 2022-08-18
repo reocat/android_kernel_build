@@ -1,0 +1,164 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5baac3ce_5d6bde2c",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-18T11:06:33Z",
+      "side": 1,
+      "message": "not sure we need ddk_headers as a separate thing.\n\nFollowing the convention for C/C++ libraries, the definition is done as part of the library with the `hdrs` argument: https://bazel.build/reference/be/c-cpp#cc_library_args\n\n`hdrs` - The list of header files published by this library to be directly included by sources in dependent rules.\n\nperhaps that should rather be an optional list of labels on ddk_module itself?\n\n... written a little later:\n\nLooking ahead and seeing the `hdrs` parameter in ddk_module now ... I believe what you have there in ddk_module as hdrs are actually srcs. Header files are defined as part of the srcs to make them privately available to the module, they just don\u0027t get compiled.",
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a224352_aa537747",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-18T11:06:33Z",
+      "side": 1,
+      "message": "see my other comment in ddk_headers.bzl",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 12
+      },
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbb2d1a8_116371f5",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-18T11:06:33Z",
+      "side": 1,
+      "message": "Use import statements for packages and modules only, not for individual classes or functions.\n\nhttps://google.github.io/styleguide/pyguide.html#22-imports",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 24
+      },
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aee0d60_118a5d2b",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-18T11:06:33Z",
+      "side": 1,
+      "message": "not sure we need this functionality separated out, perhaps inline as just\n```\nos.makedirs(os.path.dirname(path), exist_ok\u003dTrue)\nwith open(path):\n ...\n```",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 26
+      },
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3bab68a_419ed891",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-18T11:06:33Z",
+      "side": 1,
+      "message": "Multi-line strings do not flow with the indentation of the rest of the program. If you need to avoid embedding extra space in the string, use either concatenated single-line strings or a multi-line string with `textwrap.dedent()` to remove the initial space on each line:\n\nhttps://google.github.io/styleguide/pyguide.html#310-strings",
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "324619b7_ac3be8b3",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-18T11:06:33Z",
+      "side": 1,
+      "message": "do we really need to generate this through a python program? Can we perhaps use \n`ctx.actions.write` or `ctx.actions.expand_template`?\n\nIn that case we even generate Makefile and Kbuild file in parallel and do not need to write intermediate files for sources and flags.\n\nhttps://bazel.build/rules/lib/actions#write \nhttps://bazel.build/rules/lib/actions#expand_template",
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cac17388_19dc29d2",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-18T11:06:33Z",
+      "side": 1,
+      "message": "isn\u0027t that actually just an error or are there valid use cases for that?",
+      "range": {
+        "startLine": 465,
+        "startChar": 0,
+        "endLine": 466,
+        "endChar": 65
+      },
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8cc549b_21acb077",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-18T11:06:33Z",
+      "side": 1,
+      "message": "huh?",
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
