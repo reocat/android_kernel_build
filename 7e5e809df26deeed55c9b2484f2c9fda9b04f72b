@@ -16,6 +16,23 @@
       "message": "Is there a ticket associated with this? or is it just a cleanup to make explicit these files are not executables?",
       "revId": "7e5e809df26deeed55c9b2484f2c9fda9b04f72b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "885fa571_5a306903",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-18T09:13:52Z",
+      "side": 1,
+      "message": "One would think that `executable \u003d False` is the default.",
+      "revId": "7e5e809df26deeed55c9b2484f2c9fda9b04f72b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
