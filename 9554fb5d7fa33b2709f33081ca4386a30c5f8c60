@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75119ba8_daa3420b",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-19T19:29:11Z",
+      "side": 1,
+      "message": "I also need `ddk_headers` in the //common package to expose headers to DDK modules.\n\nCurrently, I am using the `ddk_headers` as a way to export headers to other modules. Another idea is to have ddk_module should just return DdkHeadersInfo directly. A separate ddk_headers rule for each module should not be necessary.",
+      "parentUuid": "5baac3ce_5d6bde2c",
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a224352_aa537747",
         "filename": "kleaf/impl/ddk/ddk_module.bzl",
         "patchSetId": 12
