@@ -16,6 +16,29 @@
       "message": "Wait for aosp/2190451",
       "revId": "0b09c70bc33f5414af71a75119c5f7a3880b7da7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3243b829_f4afd27d",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-22T10:17:55Z",
+      "side": 1,
+      "message": "That makes it a little more readable and the intent (extension change) more obvious:\n\n```\n  extension \u003d \"rom\"\n  if target is \"u-boot_gem5_aarch64\":\n    extension \u003d \"elf\"\n  elif target in ARM_TARGETS + ARM64_TARGETS:\n    extension \u003d \"bin\"\n\n  files \u003d [f\"u-boot.{extension}\"]\n```",
+      "range": {
+        "startLine": 529,
+        "startChar": 0,
+        "endLine": 536,
+        "endChar": 26
+      },
+      "revId": "0b09c70bc33f5414af71a75119c5f7a3880b7da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
