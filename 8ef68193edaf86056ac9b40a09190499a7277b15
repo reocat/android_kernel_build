@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97f4f76c_223db55b",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-23T15:07:09Z",
+      "side": 1,
+      "message": "can we make \"mandatory\" an optional argument (the irony! 😊) that defaults to True if not set?",
+      "revId": "8ef68193edaf86056ac9b40a09190499a7277b15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e15413b_f1436da2",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-23T15:07:09Z",
+      "side": 1,
+      "message": "no need to initialize it empty if you unconditionally add something to it two lines later?",
+      "revId": "8ef68193edaf86056ac9b40a09190499a7277b15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
