@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d29612d_83c8c37b",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-23T22:28:25Z",
+      "side": 1,
+      "message": "I tend to be explicit here; hence I intentionally set all of them.\n\nAlso, if I were to use optional arguments, I would actually have the optional argument `\"optional\"` that defaults to False. But on a second thought, \"mandatory\" is a common keyword in Bazel rules, so I would re-use that instead of using \"optional\".",
+      "parentUuid": "97f4f76c_223db55b",
+      "revId": "8ef68193edaf86056ac9b40a09190499a7277b15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e15413b_f1436da2",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-08-23T15:07:09Z",
       "side": 1,
       "message": "no need to initialize it empty if you unconditionally add something to it two lines later?",
+      "revId": "8ef68193edaf86056ac9b40a09190499a7277b15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "307a665e_9f4fb175",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-23T22:28:25Z",
+      "side": 1,
+      "message": "This is necessary to avoid changes to the list of `CI_TARGET_MAPPING[\"kernel_aarch64\"][\"outs\"]`.\n\nBasically, I intend to do\n\n```\ngki_prebuilts_files \u003d list(CI_TARGET_MAPPING[\"kernel_aarch64\"][\"outs\"])\n```\nhere. Using the \n\n```\nfoo \u003d []\nfoo +\u003d list1\nfoo +\u003d list2\n```\nidiom so that, if we are deleting `list1` from foo in the future, the diff looks nicer.\n\nWDYT?",
+      "parentUuid": "4e15413b_f1436da2",
       "revId": "8ef68193edaf86056ac9b40a09190499a7277b15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
