@@ -1,3 +1,4 @@
+
 # Copyright (C) 2021 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,14 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 package(default_visibility = ["//visibility:public"])
-
 load("//build/kernel/kleaf:hermetic_tools.bzl", "hermetic_tools")
-
-hermetic_tools(
-    name = "hermetic-tools",
-    srcs = glob(
+hermetic_tools(    name = "hermetic-tools", srcs = glob(
         ["build-tools/path/**"],
         allow_empty = False,
     ),
@@ -43,7 +39,6 @@ hermetic_tools(
         "@prebuilt_ndk//:sysroot",
     ],
 )
-
 filegroup(
     name = "kernel-build-scripts",
     srcs = [
@@ -52,7 +47,6 @@ filegroup(
         "build_utils.sh",
     ],
 )
-
 filegroup(
     name = "kernel-abi-scripts",
     srcs = [
@@ -63,7 +57,6 @@ filegroup(
         "abi/symbols.deny",
     ],
 )
-
 filegroup(
     name = "dump-abi-scripts",
     srcs = [
@@ -71,7 +64,6 @@ filegroup(
         "abi/dump_abi",
     ],
 )
-
 filegroup(
     name = "diff-abi-scripts",
     srcs = [
@@ -79,14 +71,11 @@ filegroup(
         "abi/diff_abi",
     ],
 )
-
 _GKI_CERTIFICATION_BINARIES_PREFIX = "//prebuilts/kernel-build-tools:linux-x86/bin/"
-
 _GKI_CERTIFICATION_BINARIES = [
     "avbtool",
     "certify_bootimg",
 ]
-
 genrule(
     name = "gki_certification_tools",
     srcs = [_GKI_CERTIFICATION_BINARIES_PREFIX + tool for tool in _GKI_CERTIFICATION_BINARIES],
@@ -109,7 +98,6 @@ genrule(
         ":hermetic-tools/tar",
     ],
 )
-
 exports_files([
     "abi/extract_symbols",
     "abi/filter_abi",
