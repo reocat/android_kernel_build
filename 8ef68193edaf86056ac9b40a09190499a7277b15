@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bef003ce_14ee1fe7",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-24T09:07:46Z",
+      "side": 1,
+      "message": "What bothers me a little is that most of the files are mandatory and only a few are not. Further, I find the interface explicit enough to expect that files in the list are expected to be there unless told otherwise even without explicit \"mandatory: True\". So, despite convention, I would prefer to reduce the amount of lines one has to write and the \"mandatory: True\" feels overly repetitive.",
+      "parentUuid": "3d29612d_83c8c37b",
+      "revId": "8ef68193edaf86056ac9b40a09190499a7277b15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e15413b_f1436da2",
         "filename": "kleaf/workspace.bzl",
         "patchSetId": 5
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "This is necessary to avoid changes to the list of `CI_TARGET_MAPPING[\"kernel_aarch64\"][\"outs\"]`.\n\nBasically, I intend to do\n\n```\ngki_prebuilts_files \u003d list(CI_TARGET_MAPPING[\"kernel_aarch64\"][\"outs\"])\n```\nhere. Using the \n\n```\nfoo \u003d []\nfoo +\u003d list1\nfoo +\u003d list2\n```\nidiom so that, if we are deleting `list1` from foo in the future, the diff looks nicer.\n\nWDYT?",
       "parentUuid": "4e15413b_f1436da2",
+      "revId": "8ef68193edaf86056ac9b40a09190499a7277b15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69b0df65_c30b487d",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-24T09:07:46Z",
+      "side": 1,
+      "message": "that might be looking too far in the future, but I will not insist. :-)",
+      "parentUuid": "307a665e_9f4fb175",
       "revId": "8ef68193edaf86056ac9b40a09190499a7277b15",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
