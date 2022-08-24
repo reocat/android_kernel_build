@@ -64,13 +64,7 @@ filegroup(
     ],
 )
 
-filegroup(
-    name = "dump-abi-scripts",
-    srcs = [
-        "abi/abitool.py",
-        "abi/dump_abi",
-    ],
-)
+filegroup(name = "dump-abi-scripts",srcs = ["abi/abitool.py","abi/dump_abi",],)
 
 filegroup(
     name = "diff-abi-scripts",
