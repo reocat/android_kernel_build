@@ -19,6 +19,8 @@ def _modules_prepare_impl(ctx):
     command = ctx.attr.config[KernelEnvInfo].setup + """
          # Prepare for the module build
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules_prepare
+         # Remove symlink that would become invalid
+           rm -f source
          # Package files
            tar czf {outdir_tar_gz} -C ${{OUT_DIR}} .
     """.format(outdir_tar_gz = ctx.outputs.outdir_tar_gz.path)
