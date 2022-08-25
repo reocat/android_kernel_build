@@ -30,7 +30,7 @@ def _kernel_headers_impl(ctx):
     command = ctx.attr.env[KernelEnvInfo].setup + """
             # Restore headers in ${{OUT_DIR}}
               mkdir -p ${{OUT_DIR}}
-              tar xf {out_dir_kernel_headers_tar} -C ${{OUT_DIR}}
+              tar xzf {out_dir_kernel_headers_tar} -C ${{OUT_DIR}}
             # Create archive
               (
                 real_out_file=$(realpath {out_file})

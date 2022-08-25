@@ -37,7 +37,7 @@ def _kernel_filegroup_impl(ctx):
     modules_prepare_setup = """
          # Restore modules_prepare outputs. Assumes env setup.
            [ -z ${{OUT_DIR}} ] && echo "ERROR: modules_prepare setup run without OUT_DIR set!" >&2 && exit 1
-           tar xf {outdir_tar_gz} -C ${{OUT_DIR}}
+           tar xzf {outdir_tar_gz} -C ${{OUT_DIR}}
     """.format(outdir_tar_gz = modules_prepare_out_dir_tar_gz)
     modules_prepare_deps = [modules_prepare_out_dir_tar_gz]
 
@@ -63,7 +63,7 @@ def _kernel_filegroup_impl(ctx):
         unstripped_modules_archive = utils.find_file("unstripped_modules.tar.gz", all_deps, what = ctx.label, required = True)
         unstripped_dir = ctx.actions.declare_directory("{}/unstripped".format(ctx.label.name))
         command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
-            tar xf {unstripped_modules_archive} -C $(dirname {unstripped_dir}) $(basename {unstripped_dir})
+            tar xzf {unstripped_modules_archive} -C $(dirname {unstripped_dir}) $(basename {unstripped_dir})
         """
         debug.print_scripts(ctx, command, what = "unstripped_modules_archive")
         ctx.actions.run_shell(

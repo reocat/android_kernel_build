@@ -61,7 +61,7 @@ def _merged_kernel_uapi_headers_impl(ctx):
 
     for src in reversed(srcs):
         command += """
-            tar xf {src} -C {intermediates_dir}
+            tar xzf {src} -C {intermediates_dir}
         """.format(
             src = src.path,
             intermediates_dir = intermediates_dir,

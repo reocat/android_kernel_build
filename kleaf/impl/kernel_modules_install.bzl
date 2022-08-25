@@ -56,7 +56,7 @@ def _kernel_modules_install_impl(ctx):
              # create dirs for modules
                mkdir -p {modules_staging_dir}
              # Restore modules_staging_dir from kernel_build
-               tar xf {kernel_build_modules_staging_archive} -C {modules_staging_dir}
+               tar xzf {kernel_build_modules_staging_archive} -C {modules_staging_dir}
     """.format(
         modules_staging_dir = modules_staging_dws.directory.path,
         kernel_build_modules_staging_archive =

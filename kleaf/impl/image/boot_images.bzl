@@ -98,7 +98,7 @@ def _boot_images_impl(ctx):
                cp {initramfs_img} ${{DIST_DIR}}/initramfs.img
              # Create and restore initramfs_staging_dir
                mkdir -p {initramfs_staging_dir}
-               tar xf {initramfs_staging_archive} -C {initramfs_staging_dir}
+               tar xzf {initramfs_staging_archive} -C {initramfs_staging_dir}
         """.format(
             initramfs_img = ctx.attr.initramfs[InitramfsInfo].initramfs_img.path,
             initramfs_staging_dir = initramfs_staging_dir,
