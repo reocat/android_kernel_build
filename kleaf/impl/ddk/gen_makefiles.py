@@ -37,6 +37,7 @@ def gen_ddk_makefile(
     ccflags: TextIO,
     package: str,
 ):
+  # FIXME this can be in bazel because there are only one
   with open_with_dir(output_makefiles / "Makefile", "w") as out_file:
     # FIXME W=1
     out_file.write(
@@ -53,7 +54,7 @@ def gen_ddk_makefile(
   assert kernel_module_out.endswith(".ko")
   kernel_module_name = kernel_module_out.removesuffix(".ko")
 
-  with open(output_makefiles / "Kbuild", "w") as out_file:
+  with open(output_makefiles / "Kbuild", "a") as out_file:
     out_file.write(f"obj-m += {kernel_module_name}.o\n")
     for src in srcs:
       assert src.suffix == ".c", f"Invalid source {src}"
