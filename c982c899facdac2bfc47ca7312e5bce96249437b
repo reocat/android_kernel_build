@@ -106,6 +106,24 @@
       "parentUuid": "1af3438b_6289f729",
       "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2421e251_2f13e2fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-26T13:39:13Z",
+      "side": 1,
+      "message": "How about addressing the verification in CTS such that it accepts non-existing values and ensure the values are set via VTS check?\n\nDoes \"avbtool  doesn\u0027t support replacing a single prop, but only replaces the entire AVB footer.\" mean you can replace an empty file by a file with content?",
+      "parentUuid": "105a0ece_be728243",
+      "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
