@@ -16,6 +16,23 @@
       "message": "We need this to fix b/243878085.\n",
       "revId": "a98ff8d73a6a51b14d6649c73f841419933b54b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "848e974d_16bfbd7d",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2022-08-26T10:11:07Z",
+      "side": 1,
+      "message": "funny how shell quoting rules are so complex, gerrit cannot correctly highlight this quoted expression",
+      "revId": "a98ff8d73a6a51b14d6649c73f841419933b54b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

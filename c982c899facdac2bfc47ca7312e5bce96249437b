@@ -52,6 +52,24 @@
       "parentUuid": "820270d0_4bc8d856",
       "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc911f02_1852648a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1337669
+      },
+      "writtenOn": "2022-08-26T10:11:07Z",
+      "side": 1,
+      "message": "in other words, the platform (which is governed by VTS) always expects AVB footer to have \"something\" in it. It\u0027s actually abnormal to have empty footer.",
+      "parentUuid": "3bc3bfa3_a9aa13de",
+      "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
