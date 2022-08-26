@@ -70,6 +70,24 @@
       "parentUuid": "3bc3bfa3_a9aa13de",
       "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1af3438b_6289f729",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-26T10:17:52Z",
+      "side": 1,
+      "message": "Ok, I want to help making the release process easier, so let\u0027s work this out.\n\nSigning keys are different in the way that they are still creating a locally valid and consistent result. They might not be accepted elsewhere, but they are consistent with the build result and not dangerously wrong values when passed on unpatched.\n\nThe content that is put here in gki-info.txt is arbitrary and does not at all reflect the build result:\n```\n--prop com.android.build.boot.os_version:41 \\\n--prop com.android.build.boot.security_patch:2050-08-05\n```\n\nA user of this data via the build artifact must assume that this is correct information that is valid along the build artifacts, which it is not. (a temporary signing key is even though it is of little use if not replaced later). In particular, a downstream build is now _required_ to replace those values or otherwise risks to pass on the wrong information. In this case, if the downstream process misses to replace the security patch level, it passes on a date far in the future making consumers of that data believe they have the correct patches until 2050.\n\nSo, my two concerns that I would like to see addressed are:\n - how can we ensure the data put along the build result is consistent with the build artifacts\n - how can we break the dependency cycle that this build artifact requires a later build step to do something?",
+      "parentUuid": "3bc3bfa3_a9aa13de",
+      "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
