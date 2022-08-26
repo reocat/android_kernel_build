@@ -124,6 +124,24 @@
       "parentUuid": "105a0ece_be728243",
       "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4da1cbee_04aea26d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-08-26T14:06:46Z",
+      "side": 1,
+      "message": "\u003e How about addressing the verification in CTS such that it accepts non-existing \n\u003e values and ensure the values are set via VTS check?\n\nGKI pre-release will run VTS as well, iirc.\n\nThe CTS is to ensure boot-SPL is correctly set on all devices, it shouldn\u0027t accept non-existing values.\n\n\n\u003e mean you can replace an empty file by a file with content?\n\nNo, AVB footers is added by taking the original boot.img as input then calculate a ash. So an empty file cannot generate a AVB footer.",
+      "parentUuid": "2421e251_2f13e2fb",
+      "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
