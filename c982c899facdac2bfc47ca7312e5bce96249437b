@@ -34,6 +34,24 @@
       "parentUuid": "15af50e4_350f72de",
       "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bc3bfa3_a9aa13de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-08-26T07:55:17Z",
+      "side": 1,
+      "message": "\u003e we should not create build artifacts that are only valid if a later process \"overrides\" them partially \n\nJust to be clear, overriding AVB footer is quite common.\n\ne.g., in Android build system:\n\n1. For developer\u0027s local builds, we\u0027re using \"test key\" to generate a AVB footer per image file.\n\n2. For release-signed images, a signing server will override those test-key signed AVB footers with a release-key-signed AVB footers.\n   2.1 The signing key is different per device, to mitigate the impact if something went wrong with a release key.\n \nIn CTS/VTS, it will assert some fields exist in the avb footer.\nThus we have the issue in b/243878085 (lacking SPL in boot.img AVB footer).\n\nHaving this CL will greatly reduces the churns for GKI release process, when we switches the release from Android trees to the kernel trees here.",
+      "parentUuid": "820270d0_4bc8d856",
+      "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
