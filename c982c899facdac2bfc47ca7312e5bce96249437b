@@ -88,6 +88,24 @@
       "parentUuid": "3bc3bfa3_a9aa13de",
       "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "105a0ece_be728243",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-08-26T12:57:24Z",
+      "side": 1,
+      "message": "\u003e A user of this data via the build artifact must assume that this is correct information that is valid along the build artifacts, which it is not.\n\n\u003e , if the downstream process misses to replace the security patch level, it passes on a date far in the future making consumers of that data believe they have the correct patches until 2050.\n\nGood point.\n\nActually this CL isn\u0027t aim at providing _correct_ information, that\u0027s why I chose unreal values, such as os_version 41 and SPL 2050-*. \n\nTo ensure those mock props are replaced in the downstream process, we can add \"com.android.build.boot.mock_prop:true\" and have a VTS to check the prop don\u0027t exists. \n\n  --prop com.android.build.boot.os_version:41 \\\n  --prop com.android.build.boot.security_patch:2050-08-05 \\\n  --prop com.android.build.boot.mock_prop:true\n  \nNote: `avbtool` doesn\u0027t support replacing a single prop, but only replaces the entire AVB footer. We can also check that os_version is not 41 and SPL is not 2050-08-05 (this is not ideal tho, but can ensure those mock props are erased).\n\nThoughts? \n\n\u003e   - how can we ensure the data put along the build result is consistent with the build artifacts\n\nThe CL here isn\u0027t to provide consistent info (the CL is just to pass a keymint CTS test).\nThis should be handled by a later process.\n\n\u003e  - how can we break the dependency cycle that this build artifact requires a later build step to do something?\n\nAdding a VTS to check those mock props doesn\u0027t exist should work?",
+      "parentUuid": "1af3438b_6289f729",
+      "revId": "c982c899facdac2bfc47ca7312e5bce96249437b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
