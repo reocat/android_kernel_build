@@ -162,6 +162,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e3b527e_dead8d53",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-26T22:43:31Z",
+      "side": 1,
+      "message": "No longer applies",
+      "parentUuid": "cac17388_19dc29d2",
+      "range": {
+        "startLine": 465,
+        "startChar": 0,
+        "endLine": 466,
+        "endChar": 65
+      },
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8cc549b_21acb077",
