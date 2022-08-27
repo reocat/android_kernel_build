@@ -253,9 +253,14 @@ class BuildConfigToBazelTest(unittest.TestCase):
                     kernel_build = "//{_TEST_DATA}:everything",
                 )'''),
 
-            # TODO(b/241320850): Support these variables in build_config_to_bazel
-            'ABI_DEFINITION',
-            'KMI_ENFORCED',
+            # ABI_DEFINITION
+            f'abi_definition = "//common:androidabi.xml"',
+            # KMI_ENFORCED
+            f'kmi_enforced = True',
+            # KMI_SYMBOL_LIST_ADD_ONLY
+            f'kmi_symbol_list_add_only = True',
+            # KMI_SYMBOL_LIST_MODULE_GROUPING
+            f'module_grouping = True',
         ]
 
         expected_files = {
