@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a119b66_5252a7af",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-27T01:51:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08effa8f_560ed3a4",
+      "range": {
+        "startLine": 339,
+        "startChar": 11,
+        "endLine": 339,
+        "endChar": 14
+      },
+      "revId": "1792b74fee3a81f262f8ea1ba657b6baecee8b63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9f70fdb_da3a112d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8dbd2cf_c26729ee",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-27T01:51:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9f70fdb_da3a112d",
+      "range": {
+        "startLine": 424,
+        "startChar": 12,
+        "endLine": 425,
+        "endChar": 71
+      },
+      "revId": "1792b74fee3a81f262f8ea1ba657b6baecee8b63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38ac308f_c344d482",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-08-27T00:57:39Z",
       "side": 1,
       "message": "Maybe a naive question: IIUIC this will create a `+ [elem] ` for each file, maybe it\u0027ll be worth to include a comment to fix this, or will buildozer format and fix it?",
+      "range": {
+        "startLine": 521,
+        "startChar": 25,
+        "endLine": 521,
+        "endChar": 34
+      },
+      "revId": "1792b74fee3a81f262f8ea1ba657b6baecee8b63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0be9c703_0e83fbc8",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-27T01:51:05Z",
+      "side": 1,
+      "message": "\u003e IIUIC this will create a  + [elem]  for each file\n\nIt will do that only for the in-memory value, `AttributeValue.value`, which is only use for limited purposes. We can\u0027t parse the list without parsing Starlark in this script, so I am keeping it simple for the in-memory value.\n\nThe buildozer command, `add attr value|target`, will handle this correctly and not create the complicated value.",
+      "parentUuid": "38ac308f_c344d482",
       "range": {
         "startLine": 521,
         "startChar": 25,
