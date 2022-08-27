@@ -570,6 +570,10 @@ class BuildozerCommandBuilder(object):
                     self._rename(module, "temp_outs", "outs")
                     modules_install = self._new("kernel_modules_install", self.modules_install_name)
                     self._add_attr(modules_install, "kernel_modules", module, quote=True)
+
+                    if isinstance_or_die(self.existing[TargetKey(target)],
+                                         TargetValue).kind == "kernel_build_abi":
+                        self._add_attr(target, "kernel_modules", module, quote=True)
             elif key == "KERNEL_DIR":
                 if value != self.package:
                     if value.removesuffix("/") == common:
@@ -593,10 +597,17 @@ class BuildozerCommandBuilder(object):
                     self._set_attr(unstripped_modules, "kernel_build", target, quote=True)
                     self._add_comment(unstripped_modules, "kernel_modules",
                                       f"FIXME: set kernel_modules to the list of kernel_module()s")
-            elif key in ("ABI_DEFINITION", "KMI_ENFORCED"):
-                # TODO(b/241320850): also ABI monitoring
-                target_comment.append(
-                    f"FIXME: {key}={esc_value}: Please manually convert to kernel_build_abi")
+            elif key == "ABI_DEFINITION":
+                self._set_kind(target, "kernel_build_abi")
+                self._set_attr(target, "abi_definition", f"//{common}:{value}", quote=True)
+            elif key in ("KMI_ENFORCED", "KMI_SYMBOL_LIST_ADD_ONLY"):
+                self._set_kind(target, "kernel_build_abi")
+                if value == "1":
+                    self._set_attr(target, key.lower(), True)
+            elif key == "KMI_SYMBOL_LIST_MODULE_GROUPING":
+                self._set_kind(target, "kernel_build_abi")
+                if value == "1":
+                    self._set_attr(target, "module_grouping", True)
             elif key == "KMI_SYMBOL_LIST":
                 self._set_attr(target, "kmi_symbol_list", f"//{common}:{value}", quote=True)
             elif key == "ADDITIONAL_KMI_SYMBOL_LISTS":
