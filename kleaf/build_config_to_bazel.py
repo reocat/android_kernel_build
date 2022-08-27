@@ -255,6 +255,8 @@ class BuildozerCommandBuilder(object):
         self.stderr = stderr or sys.stderr
         self.environ = environ or os.environ
 
+        self._add_packge_comment_for_test = False
+
         self.new_env = order_dict_by_key(json.loads(subprocess.check_output(
             "source build/kernel/_setup_env.sh > /dev/null && build/kernel/kleaf/dump_env.py",
             shell=True, stderr=self.stderr, env=self.environ)))
@@ -385,6 +387,10 @@ class BuildozerCommandBuilder(object):
 
         if add_to_dist:
             self.dist_targets.add(new_target)
+
+        if self._add_packge_comment_for_test:
+            self._add_comment(new_target, "name", new_target)
+
         return new_target
 
     def _add_comment(self, target: str, attribute: str, expected_comment: str,
@@ -465,6 +471,27 @@ class BuildozerCommandBuilder(object):
             # We could flatten this list, but we don't care about the value for now.
             attr_val.value += f" + [{command_value}]"
 
+    def _rename(self, target: str, old_attr: str, new_attr: str):
+        """Writes a buildozer command that renames an attribute.
+
+        Args:
+            target: full label of target
+            old_attr: old attribute name
+            new_attr: new attribute name
+        """
+        self.out_file.write(f"rename {old_attr} {new_attr}|{target}\n")
+
+        old_key = AttributeKey(target, old_attr)
+        new_key = AttributeKey(target, new_attr)
+
+        # move value in self.existing
+        if old_key not in self.existing:
+            # This will fail when excuting buildozer, but let buildozer
+            # provide a detailed error message. Don't fail here.
+            self.existing[old_key] = AttributeValue()
+        self.existing[new_key] = self.existing[old_key]
+        self.existing[old_key] = AttributeValue()
+
     def _create_extra_file(self, path: str, content: str):
         """Creates an extra file in the filesystem."""
         if self.args.stdout:
@@ -524,11 +551,24 @@ class BuildozerCommandBuilder(object):
                 for elem in value.split():
                     self._add_attr(target, "outs", elem, quote=True)
             elif key == "EXT_MODULES":
-                # TODO(b/241320850): add kernel_modules_install (modules_install) to EXT_MODULES
-                modules = value.split()
-                if modules:
-                    target_comment.append(
-                        f"FIXME: {key}={esc_value}: Please manually convert to kernel_module")
+                modules = [token.strip() for token in value.split() if token.strip()]
+                for module_package in modules:
+                    module = self._new("kernel_module",
+                                              name=os.path.basename(module_package),
+                                              package=module_package,
+                                              add_to_dist=False)
+                    self._set_attr(module, "kernel_build", target, quote=True)
+                    # buildozer converts None to ["None"] for outs, so use a different name
+                    # then rename.
+                    self._add_comment(module, "temp_outs",
+                          f"FIXME: set to the list of external modules in this package. You may "
+                          f"run `tools/bazel build {module}` and follow the instructions "
+                          f"in the error message.",
+                          lambda attr_val: attr_val.value is InfoValue.MISSING or
+                                           attr_val.value == InfoValue.NONE)
+                    self._rename(module, "temp_outs", "outs")
+                    modules_install = self._new("kernel_modules_install", self.modules_install_name)
+                    self._add_attr(modules_install, "kernel_modules", module, quote=True)
             elif key == "KERNEL_DIR":
                 if value != self.package:
                     if value.removesuffix("/") == common:
@@ -648,15 +688,12 @@ class BuildozerCommandBuilder(object):
             self._add_attr(dist, "data", dist_target, quote=True)
 
         if images:
-            if not modules_install:
-                modules_install = self._new("kernel_modules_install", self.modules_install_name)
-                self._set_attr(modules_install, "kernel_build", target, quote=True)
-                self._add_comment(modules_install, "kernel_modules",
-                                  "FIXME: kernel_modules should include the list of "
-                                  "kernel_module()s")
-
+            modules_install = self._new("kernel_modules_install", self.modules_install_name)
             self._set_attr(images, "kernel_build", target, quote=True)
             self._set_attr(images, "kernel_modules_install", modules_install, quote=True)
+
+        if modules_install:
+            self._set_attr(modules_install, "kernel_build", target, quote=True)
 
         self._add_comment(target, "base_kernel",
                           f"FIXME: base_kernel should be migrated to //{common}:kernel_aarch64.",
