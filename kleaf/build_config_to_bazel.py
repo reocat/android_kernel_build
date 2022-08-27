@@ -394,6 +394,11 @@ class BuildozerCommandBuilder(object):
 
         return new_target
 
+    def _set_kind(self, target: str, kind: str):
+        """Writes a buildozer command that sets the kind of a target."""
+        self.out_file.write(f"""set kind {kind}|{target}\n""")
+        self.existing[TargetKey(target)] = TargetValue(kind=kind)
+
     def _add_comment(self, target: str, attribute: str, expected_comment: str,
                      should_set_comment_pred: Callable[[AttributeValue], bool] = lambda e: True):
         """Adds comment to attribute of the given target.
@@ -516,6 +521,7 @@ class BuildozerCommandBuilder(object):
 
         images = None
         modules_install = None
+        unstripped_modules = None
         modules = []
 
         target_comment = []
@@ -593,10 +599,17 @@ class BuildozerCommandBuilder(object):
                     self._set_attr(unstripped_modules, "kernel_build", target, quote=True)
                     self._add_comment(unstripped_modules, "kernel_modules",
                                       f"FIXME: set kernel_modules to the list of kernel_module()s")
-            elif key in ("ABI_DEFINITION", "KMI_ENFORCED"):
-                # TODO(b/241320850): also ABI monitoring
-                target_comment.append(
-                    f"FIXME: {key}={esc_value}: Please manually convert to kernel_build_abi")
+            elif key == "ABI_DEFINITION":
+                self._set_kind(target, "kernel_build_abi")
+                self._set_attr(target, "abi_definition", f"//{common}:{value}", quote=True)
+            elif key in ("KMI_ENFORCED", "KMI_SYMBOL_LIST_ADD_ONLY"):
+                self._set_kind(target, "kernel_build_abi")
+                if value == "1":
+                    self._set_attr(target, key.lower(), True)
+            elif key == "KMI_SYMBOL_LIST_MODULE_GROUPING":
+                self._set_kind(target, "kernel_build_abi")
+                if value == "1":
+                    self._set_attr(target, "module_grouping", True)
             elif key == "KMI_SYMBOL_LIST":
                 self._set_attr(target, "kmi_symbol_list", f"//{common}:{value}", quote=True)
             elif key == "ADDITIONAL_KMI_SYMBOL_LISTS":
@@ -694,6 +707,13 @@ class BuildozerCommandBuilder(object):
             self._set_attr(modules_install, "kernel_build", target, quote=True)
             for module in modules:
                 self._add_attr(modules_install, "kernel_modules", module, quote=True)
+
+        if isinstance_or_die(self.existing[TargetKey(target)],
+                             TargetValue).kind == "kernel_build_abi":
+            for module in modules:
+                self._add_attr(target, "kernel_modules", module, quote=True)
+            if unstripped_modules:
+                self._set_attr(target, "unstripped_modules_archive", unstripped_modules, quote=True)
 
         if images:
             self._set_attr(images, "kernel_build", target, quote=True)
