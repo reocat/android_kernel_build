@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12080f99_257e8f88",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-30T23:11:21Z",
+      "side": 1,
+      "message": "ping. The `ddk_headers` exposes `DdkHeadersInfo` that also include information on the `-I` ccflag, i.e. which directory to include. See the pinctrl case for example.",
+      "parentUuid": "75119ba8_daa3420b",
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a224352_aa537747",
@@ -49,6 +67,30 @@
       "writtenOn": "2022-08-18T11:06:33Z",
       "side": 1,
       "message": "see my other comment in ddk_headers.bzl",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 12
+      },
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c6c945f_efe795c8",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-30T23:11:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9a224352_aa537747",
       "range": {
         "startLine": 22,
         "startChar": 8,
@@ -82,6 +124,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e15ec3e_c85922e7",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-30T23:11:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbb2d1a8_116371f5",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 24
+      },
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2aee0d60_118a5d2b",
@@ -95,6 +161,30 @@
       "writtenOn": "2022-08-18T11:06:33Z",
       "side": 1,
       "message": "not sure we need this functionality separated out, perhaps inline as just\n```\nos.makedirs(os.path.dirname(path), exist_ok\u003dTrue)\nwith open(path):\n ...\n```",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 26
+      },
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7d3e7ab_88d10c55",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-30T23:11:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aee0d60_118a5d2b",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -122,6 +212,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e83294e_4391b7fb",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-30T23:11:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3bab68a_419ed891",
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "324619b7_ac3be8b3",
@@ -135,6 +243,24 @@
       "writtenOn": "2022-08-18T11:06:33Z",
       "side": 1,
       "message": "do we really need to generate this through a python program? Can we perhaps use \n`ctx.actions.write` or `ctx.actions.expand_template`?\n\nIn that case we even generate Makefile and Kbuild file in parallel and do not need to write intermediate files for sources and flags.\n\nhttps://bazel.build/rules/lib/actions#write \nhttps://bazel.build/rules/lib/actions#expand_template",
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a2a5228_47ec32b7",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-30T23:11:21Z",
+      "side": 1,
+      "message": "This is getting more and more complicated, so I am still inclined to use a separate script.\n\nPlus, the more complicated algorithms we put in rule implementations, the longer the analysis phase. The analysis phase isn\u0027t parallelized a lot IIUC; the execution phase are heavily parallelized. So it is in fact more beneficial to put things in the separate script than in the .bzl files.",
+      "parentUuid": "324619b7_ac3be8b3",
       "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -199,6 +325,24 @@
       "writtenOn": "2022-08-18T11:06:33Z",
       "side": 1,
       "message": "huh?",
+      "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68d468d6_c911f6bb",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-30T23:11:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8cc549b_21acb077",
       "revId": "9554fb5d7fa33b2709f33081ca4386a30c5f8c60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
