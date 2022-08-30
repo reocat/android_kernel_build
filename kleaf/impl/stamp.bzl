@@ -132,7 +132,7 @@ def _get_ext_mod_scmversion(ctx):
     scmversion_cmd += " || true"
 
     return struct(deps = [ctx.info_file], cmd = _get_scmversion_cmd(
-        srctree = "${{ROOT_DIR}}/{ext_mod}".format(ext_mod = ctx.attr.ext_mod),
+        srctree = "${{ROOT_DIR}}/{ext_mod}".format(ext_mod = ctx.label.package),
         scmversion = "$({})".format(scmversion_cmd),
     ))
 
