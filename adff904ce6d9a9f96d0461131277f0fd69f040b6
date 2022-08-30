@@ -16,6 +16,24 @@
       "message": "Let\u0027s await aosp/2200038 to materialize in a prebuilt binary, perhaps we do not need this one then.",
       "revId": "adff904ce6d9a9f96d0461131277f0fd69f040b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "785b616a_2886d2e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-30T17:02:47Z",
+      "side": 1,
+      "message": "enh says with aosp/2200038 this is no longer needed.",
+      "parentUuid": "d2e8e204_d7dc488e",
+      "revId": "adff904ce6d9a9f96d0461131277f0fd69f040b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
