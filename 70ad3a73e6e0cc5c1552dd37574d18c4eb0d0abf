@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8adaa0f_3f494fee",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-30T15:28:21Z",
+      "side": 1,
+      "message": "readability/error-prone suggestion:\n\n```\n_IGNORED_BUILD_CONFIGS \u003d dict.fromkeys(\n    [\n        # Variables set by build configs or _setup_env.sh that does not need to be\n        # translated into BUILD definitions. Ignore these variables.\n        # ^(.|\\n)*$ matches any (multi-line) string.\n        \"_\",  # reserved by bash\n        \"OUT_DIR\",\n        \"MAKE_GOALS\",\n        \"LD\",\n        \"SKIP_MRPROPER\",\n        \"SKIP_DEFCONFIG\",\n        \"SKIP_IF_VERSION_MATCHES\",\n        \"SKIP_EXT_MODULES\",\n        \"SKIP_CP_KERNEL_HDR\",\n        \"SKIP_UNPACKING_RAMDISK\",\n        \"POST_DEFCONFIG_CMDS\",\n        \"IN_KERNEL_MODULES\",\n        \"DO_NOT_STRIP_MODULES\",\n        \"AVB_SIGN_BOOT_IMG\",\n        \"AVB_BOOT_PARTITION_SIZE\",\n        \"AVB_BOOT_KEY\",\n        \"AVB_BOOT_ALGORITHM\",\n        \"AVB_BOOT_PARTITION_NAME\",\n        \"MODULES_ORDER\",\n        \"GKI_MODULES_LIST\",\n        \"LZ4_RAMDISK\",\n        \"LZ4_RAMDISK_COMPRESS_ARGS\",\n        \"KMI_STRICT_MODE_OBJECTS\",\n        \"GKI_DIST_DIR\",\n        \"BUILD_GKI_ARTIFACTS\",\n        \"GKI_KERNEL_CMDLINE\",\n        \"AR\",\n        \"ARCH\",\n        \"BRANCH\",\n        \"BUILDTOOLS_PREBUILT_BIN\",\n        \"CC\",\n        \"CLANG_PREBUILT_BIN\",\n        \"CLANG_VERSION\",\n        \"COMMON_OUT_DIR\",\n        \"DECOMPRESS_GZIP\",\n        \"DECOMPRESS_LZ4\",\n        \"DEFCONFIG\",\n        \"DEPMOD\",\n        \"DTC\",\n        \"HOSTCC\",\n        \"HOSTCFLAGS\",\n        \"HOSTCXX\",\n        \"HOSTLDFLAGS\",\n        \"KBUILD_BUILD_HOST\",\n        \"KBUILD_BUILD_TIMESTAMP\",\n        \"KBUILD_BUILD_USER\",\n        \"KBUILD_BUILD_VERSION\",\n        \"KCFLAGS\",\n        \"KCPPFLAGS\",\n        \"KMI_GENERATION\",\n        \"LC_ALL\",\n        \"LLVM\",\n        \"MODULES_ARCHIVE\",\n        \"NDK_TRIPLE\",\n        \"NM\",\n        \"OBJCOPY\",\n        \"OBJDUMP\",\n        \"OBJSIZE\",\n        \"PATH\",\n        \"RAMDISK_COMPRESS\",\n        \"RAMDISK_DECOMPRESS\",\n        \"RAMDISK_EXT\",\n        \"READELF\",\n        \"ROOT_DIR\",\n        \"SOURCE_DATE_EPOCH\",\n        \"STRIP\",\n        \"TOOL_ARGS\",\n        \"TZ\",\n        \"UNSTRIPPED_DIR\",\n        \"UNSTRIPPED_MODULES_ARCHIVE\",\n        \"USERCFLAGS\",\n        \"USERLDFLAGS\",\n        \"_SETUP_ENV_SH_INCLUDED\",\n    ],\n    r\"^(.|\\n)*$\")\n\n_IGNORED_BUILD_CONFIGS.update({\n    # Conditionally ignored.\n    # These variables are ignored only if the value matches the condition.\n    \"HERMETIC_TOOLCHAIN\": r\"^1$\",  # Ignore iff HERMETIC_TOOLCHAIN\u003d1\n})\n\n_IGNORED_BUILD_CONFIGS.update(\n    dict.fromkeys(\n        [\n            # Variables not supported by Kleaf. If any of these variables are set to\n            # a non-empty value, it is considered unsupported.\n            # Device owners will need to migrate away from these variables.\n            \"EXT_MODULES_MAKEFILE\",\n            \"COMPRESS_MODULES\",\n            \"ADDITIONAL_HOST_TOOLS\",\n            \"POST_KERNEL_BUILD_CMDS\",\n            \"TAGS_CONFIG\",\n            \"EXTRA_CMDS\",\n            \"DIST_CMDS\",\n            \"VENDOR_RAMDISK_CMDS\",\n            \"STOP_SHIP_TRACEPRINTK\",\n        ],\n        r\"^$\"))\n```",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 0
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a5bbcf9_12d09725",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-30T15:28:21Z",
+      "side": 1,
+      "message": "`: Mapping[str, Any]` ?",
+      "range": {
+        "startLine": 244,
+        "startChar": 23,
+        "endLine": 244,
+        "endChar": 27
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36dbbda8_ac8c4562",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-30T15:28:21Z",
+      "side": 1,
+      "message": "\"package\"  ... do we need that still?",
+      "range": {
+        "startLine": 259,
+        "startChar": 18,
+        "endLine": 259,
+        "endChar": 24
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cf96847_048cac09",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-30T15:28:21Z",
+      "side": 1,
+      "message": "see suggestion below, perhaps all we need is `--verbose`",
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7d6bf6f_a9501fd9",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-30T15:28:21Z",
+      "side": 1,
+      "message": "also add `--keep-going` then",
+      "range": {
+        "startLine": 740,
+        "startChar": 25,
+        "endLine": 740,
+        "endChar": 27
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "044a22e0_a4730f70",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-30T15:28:21Z",
+      "side": 1,
+      "message": "`--ack-tree` or `--common-kernel-tree` or `--common-kernel-sources` might be easier to grasp.",
+      "range": {
+        "startLine": 747,
+        "startChar": 27,
+        "endLine": 747,
+        "endChar": 30
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0624cf9a_7106e4af",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-30T15:28:21Z",
+      "side": 1,
+      "message": "why exactly are you passing `argv` through `main` here? parser.parse_args() defaults to sys.argv and if for some reason you need to slice it, `sys.argv` is global and you could slice it right here ...",
+      "range": {
+        "startLine": 749,
+        "startChar": 29,
+        "endLine": 749,
+        "endChar": 33
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04b5064b_7c74e2a2",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-30T15:28:21Z",
+      "side": 1,
+      "message": "not sure we need to make this so sophisticated. It appears that every use of logging.error() and logging.warning() should be emitted unconditionally as it is good information in any case. and perhaps all we need is --verbose to also print whatever logging.info() has to say?",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 81
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

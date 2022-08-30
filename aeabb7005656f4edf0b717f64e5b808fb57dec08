@@ -135,6 +135,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2de0e84b_f45ebc06",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-30T15:28:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e96f36ea_bb463d45",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "103f63bc_fdb88970",
@@ -284,6 +302,24 @@
       "side": 1,
       "message": "I am thinking that maybe we should pull in buildozer repository just like stardoc.",
       "parentUuid": "81ffdf93_955f2432",
+      "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c817c1a7_913ae8b7",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-30T15:28:21Z",
+      "side": 1,
+      "message": "You mean as a prebuilt? I am rather not interested in adding an entire go toolchain. I think it is ok to make this a problem of the user for now. Let\u0027s not go down this rabbit hole. After all, this is a migration tool. I have it locally as `build-tools` package, but that might be corp specific.",
+      "parentUuid": "ec4156e8_85a56e26",
       "revId": "aeabb7005656f4edf0b717f64e5b808fb57dec08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

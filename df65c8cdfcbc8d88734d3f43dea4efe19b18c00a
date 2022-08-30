@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e70efed5_d2bccb9f",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-30T15:28:21Z",
+      "side": 1,
+      "message": "Use import statements for packages and modules only, not for individual classes or functions.\n\nhttps://google.github.io/styleguide/pyguide.html#22-imports",
+      "revId": "df65c8cdfcbc8d88734d3f43dea4efe19b18c00a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c5558a9a_42038e3d",
         "filename": "kleaf/build_config_to_bazel_test.py",
         "patchSetId": 20
