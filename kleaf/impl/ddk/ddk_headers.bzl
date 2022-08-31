@@ -52,6 +52,24 @@ def get_include_depset(label, deps, includes):
         transitive = transitive_includes,
     )
 
+def get_headers_depset(deps):
+    """Return a depset containing headers from the list of dependencies
+
+    Args:
+        deps: A list of depended targets. If [`DdkHeadersInfo`](#DdkHeadersInfo) is in the target,
+          `target[DdkHeadersInfo].files` are included in the returned depset. Otherwise
+          the default output files are included in the returned depset.
+    """
+    transitive_deps = []
+
+    for dep in deps:
+        if DdkHeadersInfo in dep:
+            transitive_deps.append(dep[DdkHeadersInfo].files)
+        else:
+            transitive_deps.append(dep.files)
+
+    return depset(transitive = transitive_deps)
+
 def ddk_headers_common_impl(label, hdrs, includes):
     """Common implementation for rules that returns `DdkHeadersInfo`.
 
@@ -61,16 +79,8 @@ def ddk_headers_common_impl(label, hdrs, includes):
         includes: The list of exported include directories, e.g. [`ddk_headers.includes`](#ddk_headers-includes)
     """
 
-    transitive_deps = []
-
-    for hdr in hdrs:
-        if DdkHeadersInfo in hdr:
-            transitive_deps.append(hdr[DdkHeadersInfo].files)
-        else:
-            transitive_deps.append(hdr.files)
-
     return DdkHeadersInfo(
-        files = depset(transitive = transitive_deps),
+        files = get_headers_depset(hdrs),
         includes = get_include_depset(label, hdrs, includes),
     )
 
