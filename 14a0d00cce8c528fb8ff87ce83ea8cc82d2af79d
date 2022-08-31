@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1b661e71_4d4130c0",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-31T13:27:16Z",
+      "side": 1,
+      "message": "I think we can expect from the users of `ddk_headers` to actually pass a normalized path. So, I would suggest to assert that `include_dir \u003d\u003d paths.normalize(include_dir)`. This helps consistent API usage even if the build files are generated. The error message in that case could suggest the normalized path, though.\n\nhttps://github.com/bazelbuild/bazel-skylib/blob/main/docs/paths_doc.md#pathsnormalize",
+      "revId": "14a0d00cce8c528fb8ff87ce83ea8cc82d2af79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1850a4c6_68df7993",
         "filename": "kleaf/impl/ddk/ddk_headers.bzl",
         "patchSetId": 4
@@ -14,6 +31,23 @@
       "writtenOn": "2022-08-31T02:40:26Z",
       "side": 1,
       "message": "elsk@google.com",
+      "revId": "14a0d00cce8c528fb8ff87ce83ea8cc82d2af79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90eb3027_4972acdb",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-31T13:27:16Z",
+      "side": 1,
+      "message": "What if `.` should be the actual include dir? I think you need to handle the special case of `dir \u003d\u003d \".\"` and make `ctx.label.package` the include dir later. Note, `paths.normalize(\"\") \u003d\u003d \".\"`.",
       "revId": "14a0d00cce8c528fb8ff87ce83ea8cc82d2af79d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
