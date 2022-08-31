@@ -50,6 +50,24 @@
       "message": "What if `.` should be the actual include dir? I think you need to handle the special case of `dir \u003d\u003d \".\"` and make `ctx.label.package` the include dir later. Note, `paths.normalize(\"\") \u003d\u003d \".\"`.",
       "revId": "14a0d00cce8c528fb8ff87ce83ea8cc82d2af79d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f33858a_86060ce8",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-31T18:54:24Z",
+      "side": 1,
+      "message": "Oh right, this should be a valid path!",
+      "parentUuid": "90eb3027_4972acdb",
+      "revId": "14a0d00cce8c528fb8ff87ce83ea8cc82d2af79d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
