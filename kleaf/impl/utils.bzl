@@ -113,6 +113,28 @@ def _sanitize_label_as_filename(label):
     label_text = str(label)
     return "".join([c if c.isalnum() else "_" for c in label_text.elems()])
 
+def _require_providers(targets, providers, what):
+    """Require that all targets have the given providers.
+
+    Args:
+        targets: a list of targets.
+        providers: a list of providers to be expected from targets.
+        what: description of the caller that checks this.
+    """
+    result = {}
+    for target in targets:
+        for prov in providers:
+            if prov not in target:
+                if target not in result:
+                    result[target] = []
+                result[target].append(prov)
+    if result:
+        # TODO add analysis test
+        fail("{what}: The following targets does not provide the expected providers: {errors}".format(
+            what = what,
+            errors = json.encode_indent({str(target.label): str(prov) for target, providers in result.items() for prov in providers}),
+        ))
+
 # Utilities that applies to all Bazel stuff in general. These functions are
 # not Kleaf specific.
 utils = struct(
@@ -123,6 +145,7 @@ utils = struct(
     find_files = find_files,
     compare_file_names = _compare_file_names,
     sanitize_label_as_filename = _sanitize_label_as_filename,
+    require_providers = _require_providers,
 )
 
 def _filter_module_srcs(files):

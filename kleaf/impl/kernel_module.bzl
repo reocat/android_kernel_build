@@ -21,6 +21,7 @@ load(
     "//build/kernel/kleaf/artifact_tests:kernel_test.bzl",
     "kernel_module_test",
 )
+load("//build/kernel/kleaf:target_group.bzl", "target_group", "targets_to_depset")
 load(
     ":common_providers.bzl",
     "KernelBuildExtModuleInfo",
@@ -32,6 +33,7 @@ load(
 load(":ddk/ddk_headers.bzl", "DdkHeadersInfo")
 load(":debug.bzl", "debug")
 load(":stamp.bzl", "stamp")
+load(":utils.bzl", "utils")
 
 _sibling_names = [
     "notrim",
@@ -79,6 +81,8 @@ def kernel_module(
           ```
         kernel_build: Label referring to the kernel_build module.
         kernel_module_deps: A list of other kernel_module dependencies.
+
+          Also accept [`target_group()`](#target_group)s.
 
           Before building this target, `Modules.symvers` from the targets in
           `kernel_module_deps` are restored, so this target can be built against
@@ -230,8 +234,11 @@ def _check_module_symvers_restore_path(kernel_modules, this_label):
         ))
 
 def _kernel_module_impl(ctx):
-    _check_kernel_build(ctx.attr.kernel_module_deps, ctx.attr.kernel_build, ctx.label)
-    _check_module_symvers_restore_path(ctx.attr.kernel_module_deps, ctx.label)
+    kernel_module_deps = targets_to_depset(ctx.attr.kernel_module_deps).to_list()
+    utils.require_providers(kernel_module_deps, [KernelEnvInfo, KernelModuleInfo], what = ctx.label)
+
+    _check_kernel_build(kernel_module_deps, ctx.attr.kernel_build, ctx.label)
+    _check_module_symvers_restore_path(kernel_module_deps, ctx.label)
 
     if ctx.files.makefile and ctx.file.internal_ddk_makefiles_dir:
         fail("{}: must not define `makefile` for `ddk_module`")
@@ -249,10 +256,10 @@ def _kernel_module_impl(ctx):
         ctx.file._search_and_cp_output,
         ctx.file._check_declared_output_list,
     ]
-    for kernel_module_dep in ctx.attr.kernel_module_deps:
+    for kernel_module_dep in kernel_module_deps:
         inputs += kernel_module_dep[KernelEnvInfo].dependencies
 
-    for target in ctx.attr.hdrs + ctx.attr.exported_hdrs + ctx.attr.kernel_module_deps:
+    for target in ctx.attr.hdrs + ctx.attr.exported_hdrs + kernel_module_deps:
         transitive_inputs.append(target[DdkHeadersInfo].files)
 
     modules_staging_dws = dws.make(ctx, "{}/staging".format(ctx.attr.name))
@@ -308,7 +315,7 @@ def _kernel_module_impl(ctx):
     """.format(
         kernel_uapi_headers_dir = kernel_uapi_headers_dws.directory.path,
     )
-    for kernel_module_dep in ctx.attr.kernel_module_deps:
+    for kernel_module_dep in kernel_module_deps:
         command += kernel_module_dep[KernelEnvInfo].setup
 
     grab_unstripped_cmd = ""
@@ -539,9 +546,7 @@ _kernel_module = rule(
             mandatory = True,
             providers = [KernelEnvInfo, KernelBuildExtModuleInfo],
         ),
-        "kernel_module_deps": attr.label_list(
-            providers = [KernelEnvInfo, KernelModuleInfo],
-        ),
+        "kernel_module_deps": attr.label_list(),
         # Not output_list because it is not a list of labels. The list of
         # output labels are inferred from name and outs.
         "outs": attr.output_list(),
