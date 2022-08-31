@@ -98,7 +98,7 @@ def kernel_build_abi(
         If `True`, implies `collect_unstripped_modules = True`. See
         [`kernel_build.collect_unstripped_modules`](#kernel_build-collect_unstripped_modules).
       kernel_modules: A list of external [`kernel_module()`](#kernel_module)s
-        to extract symbols from.
+        to extract symbols from. Also accept [`target_group()`](#target_group)s.
       module_grouping: If unspecified or `None`, it is `True` by default.
         If `True`, then the symbol list will group symbols based
         on the kernel modules that reference the symbol. Otherwise the symbol

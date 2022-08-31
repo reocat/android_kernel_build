@@ -86,6 +86,8 @@ def ddk_module(
             - [`kernel_module`](#kernel_module)
             - [`ddk_module`](#ddk_module)
             - [`ddk_headers`](#ddk_headers).
+
+            Also accept [`target_group()`](#target_group)s.
         hdrs: See [`ddk_headers.hdrs`](#ddk_headers-hdrs)
         includes: See [`ddk_headers.includes`](#ddk_headers-includes)
         kernel_build: [`kernel_build`](#kernel_build)
