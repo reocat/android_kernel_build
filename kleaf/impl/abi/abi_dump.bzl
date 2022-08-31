@@ -13,6 +13,7 @@
 # limitations under the License.
 
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
+load("//build/kernel/kleaf:target_group.bzl", "target_group", "targets_to_depset")
 load(
     ":common_providers.bzl",
     "KernelBuildAbiInfo",
@@ -43,6 +44,9 @@ def _abi_dump_epilog_cmd(path, append_version):
     return ret
 
 def _abi_dump_full(ctx):
+    kernel_modules = targets_to_depset(ctx.attr.kernel_modules).to_list()
+    utils.require_providers(kernel_modules, [KernelUnstrippedModulesInfo], what = ctx.label)
+
     abi_linux_tree = utils.intermediates_dir(ctx) + "/abi_linux_tree"
     full_abi_out_file = ctx.actions.declare_file("{}/abi-full.xml".format(ctx.attr.name))
     vmlinux = utils.find_file(name = "vmlinux", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name), required = True)
@@ -131,7 +135,7 @@ abi_dump = rule(
     doc = "Extracts the ABI.",
     attrs = {
         "kernel_build": attr.label(providers = [KernelEnvInfo, KernelBuildAbiInfo, KernelUnstrippedModulesInfo]),
-        "kernel_modules": attr.label_list(providers = [KernelUnstrippedModulesInfo]),
+        "kernel_modules": attr.label_list(),
         "_dump_abi_scripts": attr.label(default = "//build/kernel:dump-abi-scripts"),
         "_dump_abi": attr.label(default = "//build/kernel:abi/dump_abi", allow_single_file = True),
         "_filter_abi": attr.label(default = "//build/kernel:abi/filter_abi", allow_single_file = True),
