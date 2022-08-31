@@ -37,10 +37,11 @@ def _makefiles_impl(ctx):
             ))
 
     # Calculate the list of include directories from the list of dependencies
+    # and my includes.
     this_ddk_headers_info = ddk_headers_common_impl(
         module_label,
-        ctx.attr.module_deps,
-        [],
+        ctx.attr.module_deps + ctx.attr.module_hdrs,
+        ctx.attr.module_includes,
     )
     this_includes = this_ddk_headers_info.includes
 
@@ -86,6 +87,8 @@ makefiles = rule(
         # module_X is the X attribute of the ddk_module. Prefixed with `module_`
         # because they aren't real srcs / hdrs / deps to the makefiles rule.
         "module_srcs": attr.label_list(allow_files = [".c", ".h", ".s"]),
+        "module_hdrs": attr.label_list(allow_files = [".h"]),
+        "module_includes": attr.string_list(),
         "module_deps": attr.label_list(),
         "module_out": attr.string(),
         "_gen_makefile": attr.label(
