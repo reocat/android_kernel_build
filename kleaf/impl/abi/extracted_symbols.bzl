@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("//build/kernel/kleaf:target_group.bzl", "target_group", "targets_to_depset")
 load(
     ":common_providers.bzl",
     "KernelBuildAbiInfo",
@@ -22,6 +23,9 @@ load(":debug.bzl", "debug")
 load(":utils.bzl", "utils")
 
 def _extracted_symbols_impl(ctx):
+    kernel_modules = targets_to_depset(ctx.attr.kernel_modules).to_list()
+    utils.require_providers(kernel_modules, [KernelModuleInfo], what = ctx.label)
+
     if ctx.attr.kernel_build_notrim[KernelBuildAbiInfo].trim_nonlisted_kmi:
         fail("{}: Requires `kernel_build` {} to have `trim_nonlisted_kmi = False`.".format(
             ctx.label,
@@ -42,7 +46,7 @@ def _extracted_symbols_impl(ctx):
         vmlinux,
     ]
     srcs += in_tree_modules
-    for kernel_module in ctx.attr.kernel_modules:  # external modules
+    for kernel_module in kernel_modules:  # external modules
         srcs += kernel_module[KernelModuleInfo].files
 
     inputs = [ctx.file._extract_symbols]
@@ -98,7 +102,7 @@ extracted_symbols = rule(
         #   know the toolchain_version ahead of time.
         # - We also don't have the necessity to extract symbols from prebuilts.
         "kernel_build_notrim": attr.label(providers = [KernelEnvInfo, KernelBuildAbiInfo]),
-        "kernel_modules": attr.label_list(providers = [KernelModuleInfo]),
+        "kernel_modules": attr.label_list(),
         "module_grouping": attr.bool(default = True),
         "src": attr.label(doc = "Source `abi_gki_*` file. Used when `kmi_symbol_list_add_only`.", allow_single_file = True),
         "kmi_symbol_list_add_only": attr.bool(),
