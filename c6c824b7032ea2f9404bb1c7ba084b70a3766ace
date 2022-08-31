@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e5ee0c6_42c38015",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-31T13:34:11Z",
+      "side": 1,
+      "message": "having this definition in common_kernels.bzl valid for all kernel branches might break over time. At some point we might have to move some of those definitions into the kernel tree.",
+      "revId": "c6c824b7032ea2f9404bb1c7ba084b70a3766ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ebaeffe9_37b4259c",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 7
