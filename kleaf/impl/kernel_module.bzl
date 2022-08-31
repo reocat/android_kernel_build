@@ -20,6 +20,7 @@ load(
     "//build/kernel/kleaf/artifact_tests:kernel_test.bzl",
     "kernel_module_test",
 )
+load("//build/kernel/kleaf:target_group.bzl", "target_group", "targets_to_depset")
 load(
     ":common_providers.bzl",
     "KernelBuildExtModuleInfo",
@@ -31,6 +32,7 @@ load(
 load(":ddk/ddk_headers.bzl", "DdkHeadersInfo", "ddk_headers_common_impl")
 load(":debug.bzl", "debug")
 load(":stamp.bzl", "stamp")
+load(":utils.bzl", "utils")
 
 _sibling_names = [
     "notrim",
@@ -83,6 +85,8 @@ def kernel_module(
           Before building this target, `Modules.symvers` from the targets in
           `deps` are restored, so this target can be built against
           them.
+
+          Also accept [`target_group()`](#target_group)s.
         kernel_module_deps: **Deprecated**. Same as `deps`.
         outs: The expected output files. If unspecified or value is `None`, it
           is `["{name}.ko"]` by default.
@@ -235,9 +239,11 @@ def _check_module_symvers_restore_path(kernel_modules, this_label):
         ))
 
 def _kernel_module_impl(ctx):
+    deps = targets_to_depset(ctx.attr.deps).to_list()
+
     kernel_module_deps = []
     hdr_deps = []
-    for dep in ctx.attr.deps:
+    for dep in deps:
         is_valid_dep = False
         if DdkHeadersInfo in dep:
             hdr_deps.append(dep)
