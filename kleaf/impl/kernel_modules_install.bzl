@@ -13,6 +13,7 @@
 # limitations under the License.
 
 load("//build/kernel/kleaf:directory_with_structure.bzl", dws = "directory_with_structure")
+load("//build/kernel/kleaf:target_group.bzl", "target_group", "targets_to_depset")
 load(
     ":common_providers.bzl",
     "KernelBuildExtModuleInfo",
@@ -23,10 +24,14 @@ load(":debug.bzl", "debug")
 load(
     ":utils.bzl",
     "kernel_utils",
+    "utils",
 )
 
 def _kernel_modules_install_impl(ctx):
-    kernel_utils.check_kernel_build(ctx.attr.kernel_modules, ctx.attr.kernel_build, ctx.label)
+    kernel_modules = targets_to_depset(ctx.attr.kernel_modules).to_list()
+    utils.require_providers(kernel_modules, [KernelModuleInfo], what = ctx.label)
+
+    kernel_utils.check_kernel_build(kernel_modules, ctx.attr.kernel_build, ctx.label)
 
     # A list of declared files for outputs of kernel_module rules
     external_modules = []
@@ -39,7 +44,7 @@ def _kernel_modules_install_impl(ctx):
         ctx.file._check_duplicated_files_in_archives,
         ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_staging_archive,
     ]
-    for kernel_module in ctx.attr.kernel_modules:
+    for kernel_module in kernel_modules:
         inputs += dws.files(kernel_module[KernelModuleInfo].modules_staging_dws)
 
         for module_file in kernel_module[KernelModuleInfo].files:
@@ -63,7 +68,7 @@ def _kernel_modules_install_impl(ctx):
         kernel_build_modules_staging_archive =
             ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_staging_archive.path,
     )
-    for kernel_module in ctx.attr.kernel_modules:
+    for kernel_module in kernel_modules:
         # Allow directories to be written because we are merging multiple directories into one.
         # However, don't allow files to be written because we don't expect modules to produce
         # conflicting files. check_duplicated_files_in_archives further enforces this.
@@ -104,7 +109,7 @@ def _kernel_modules_install_impl(ctx):
     """.format(
         modules_staging_archives = " ".join(
             [ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_staging_archive.path] +
-            [kernel_module[KernelModuleInfo].modules_staging_dws.directory.path for kernel_module in ctx.attr.kernel_modules],
+            [kernel_module[KernelModuleInfo].modules_staging_dws.directory.path for kernel_module in kernel_modules],
         ),
         modules_staging_dir = modules_staging_dws.directory.path,
         check_duplicated_files_in_archives = ctx.file._check_duplicated_files_in_archives.path,
@@ -176,8 +181,12 @@ In `foo_dist`, specifying `foo_modules_install` in `data` won't include
 """,
     attrs = {
         "kernel_modules": attr.label_list(
-            providers = [KernelModuleInfo],
-            doc = "A list of labels referring to `kernel_module`s to install. Must have the same `kernel_build` as this rule.",
+            doc = """A list of labels referring to `kernel_module`s to install.
+
+    Must have the same `kernel_build` as this rule.
+
+    Also accept [`target_group()`](#target_group)s.
+            """,
         ),
         "kernel_build": attr.label(
             providers = [KernelEnvInfo, KernelBuildExtModuleInfo],
