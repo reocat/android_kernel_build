@@ -123,6 +123,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7ed4ec42_744bdf4c",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-08-31T18:56:41Z",
+      "side": 1,
+      "message": "Yeah I also write two new lines at the end. Though \u0027\\\\\\n\u0027.join is probably better",
+      "parentUuid": "e9092061_05e7f7b4",
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b17e09e9_cd4b02dc",
         "filename": "kleaf/impl/ddk/gen_makefiles.py",
         "patchSetId": 8
