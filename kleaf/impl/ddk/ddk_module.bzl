@@ -28,6 +28,7 @@ def ddk_module(
         kernel_build,
         srcs = None,
         hdrs = None,
+        exported_hdrs = None,
         deps = None,
         **kwargs):
     """
@@ -44,6 +45,24 @@ def ddk_module(
 
             - In a `ddk_headers` target in the same package, if you need to auto-generate `-I` ccflags;
             - Or in `srcs` if you don't need the `-I` ccflags.
+        exported_hdrs: Like `hdrs`, but also exported.
+
+            This makes the rule similar to a `ddk_headers` target when specified as an item of `deps` in another
+            `ddk_module`; that is, if you have:
+
+            ```
+            ddk_headers(name = "hdrs")
+            ddk_module(name = "foo", exported_hdrs = ":hdrs")
+            ddk_module(name = "bar", deps = ":foo")
+            ```
+
+            It is equivalent to
+
+            ```
+            ddk_headers(name = "hdrs")
+            ddk_module(name = "foo", hdrs = ":hdrs")
+            ddk_module(name = "bar", deps = ":foo", hdrs = ":hdrs")
+            ```
         deps: Other [`kernel_module`](#kernel_module)s or [`ddk_module`](#ddk_module)s
         kernel_build: [`kernel_build`](#kernel_build)
         kwargs: Additional attributes to the internal rule.
@@ -68,6 +87,7 @@ def ddk_module(
         internal_drop_modules_order = True,
         srcs = srcs,
         hdrs = hdrs,
+        exported_hdrs = exported_hdrs,
         kernel_module_deps = deps,
         outs = [out],
         **kwargs
@@ -79,6 +99,7 @@ def ddk_module(
         name = name + "_makefiles",
         module_srcs = srcs,
         module_hdrs = hdrs,
+        module_exported_hdrs = exported_hdrs,
         module_out = out,
         module_deps = deps,
         **makefile_kwargs
