@@ -63,7 +63,9 @@ def ddk_module(
             ddk_module(name = "foo", hdrs = ":hdrs")
             ddk_module(name = "bar", deps = ":foo", hdrs = ":hdrs")
             ```
-        deps: Other [`kernel_module`](#kernel_module)s or [`ddk_module`](#ddk_module)s
+        deps: Other [`kernel_module`](#kernel_module)s or [`ddk_module`](#ddk_module)s.
+
+          Also accept [`target_group()`](#target_group)s.
         kernel_build: [`kernel_build`](#kernel_build)
         kwargs: Additional attributes to the internal rule.
           See complete list
