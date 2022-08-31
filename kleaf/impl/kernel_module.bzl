@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_skylib//lib:collections.bzl", "collections")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("//build/kernel/kleaf:directory_with_structure.bzl", dws = "directory_with_structure")
@@ -251,8 +252,8 @@ def _kernel_module_impl(ctx):
     for kernel_module_dep in ctx.attr.kernel_module_deps:
         inputs += kernel_module_dep[KernelEnvInfo].dependencies
 
-    for hdr in ctx.attr.hdrs:
-        transitive_inputs.append(hdr[DdkHeadersInfo].files)
+    for target in ctx.attr.hdrs + ctx.attr.exported_hdrs + ctx.attr.kernel_module_deps:
+        transitive_inputs.append(target[DdkHeadersInfo].files)
 
     modules_staging_dws = dws.make(ctx, "{}/staging".format(ctx.attr.name))
     kernel_uapi_headers_dws = dws.make(ctx, "{}/kernel-uapi-headers.tar.gz_staging".format(ctx.attr.name))
@@ -466,6 +467,12 @@ def _kernel_module_impl(ctx):
         internal_module_symvers_name = ctx.attr.internal_module_symvers_name,
     )
 
+    # TODO use depset
+    exported_include_dirs = []
+    for hdr in ctx.attr.exported_hdrs:
+        exported_include_dirs += hdr[DdkHeadersInfo].exported_include_dirs
+    exported_include_dirs = collections.uniq(exported_include_dirs)
+
     # Only declare outputs in the "outs" list. For additional outputs that this rule created,
     # the label is available, but this rule doesn't explicitly return it in the info.
     # Also add check_no_remaining in the list of default outputs so that, when
@@ -497,6 +504,10 @@ def _kernel_module_impl(ctx):
             # It is needed to remove the `target_name` because we declare_file({name}/{internal_module_symvers_name}) above.
             restore_path = paths.join(ctx.label.package, ctx.attr.internal_module_symvers_name),
         ),
+        DdkHeadersInfo(
+            files = depset(transitive = [hdr[DdkHeadersInfo].files for hdr in ctx.attr.exported_hdrs]),
+            exported_include_dirs = exported_include_dirs,
+        ),
     ]
 
 _kernel_module = rule(
@@ -509,6 +520,9 @@ _kernel_module = rule(
             allow_files = True,
         ),
         "hdrs": attr.label_list(
+            providers = [DdkHeadersInfo],
+        ),
+        "exported_hdrs": attr.label_list(
             providers = [DdkHeadersInfo],
         ),
         "makefile": attr.label_list(
