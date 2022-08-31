@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a81aa90c_82a23498",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-31T15:37:43Z",
+      "side": 1,
+      "message": "2022",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a77ecf40_72a37047",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-31T15:37:43Z",
+      "side": 1,
+      "message": "that should rather get a filename in an existing directory where it can write to.",
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9e470d7_8d527e4a",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-31T15:37:43Z",
+      "side": 1,
+      "message": "what about .s ? Should we warn?",
+      "range": {
+        "startLine": 81,
+        "startChar": 31,
+        "endLine": 81,
+        "endChar": 32
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc39b911_479c1558",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-31T15:37:43Z",
+      "side": 1,
+      "message": "2 spaces ?",
+      "range": {
+        "startLine": 100,
+        "startChar": 28,
+        "endLine": 100,
+        "endChar": 30
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b17e09e9_cd4b02dc",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-31T15:37:43Z",
+      "side": 1,
+      "message": "NIT:\n\nThis effectively throws away all arguments that have been seen, so\n\n`--params some_file --package pkg` will not consider the value of `package`.\n\nYou could use an argparse.Action to do the parsing in place when the command line is discovered. https://docs.python.org/3.10/library/argparse.html#argparse.Action\nThere is an example on stackoverflow.\n\nAlternatively, just disallow any other parameters via mutually_exclusive_group to avoid misuse of the API.",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 65
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e4af2a4_57ec9b99",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-08-31T15:37:43Z",
+      "side": 1,
+      "message": "parameters",
+      "range": {
+        "startLine": 28,
+        "startChar": 27,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
