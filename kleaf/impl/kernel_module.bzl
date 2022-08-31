@@ -28,7 +28,7 @@ load(
     "KernelUnstrippedModulesInfo",
     "ModuleSymversInfo",
 )
-load(":ddk/ddk_headers.bzl", "DdkHeadersInfo")
+load(":ddk/ddk_headers.bzl", "DdkHeadersInfo", "ddk_headers_common_impl")
 load(":debug.bzl", "debug")
 load(":stamp.bzl", "stamp")
 
@@ -247,6 +247,7 @@ def _kernel_module_impl(ctx):
             is_valid_dep = True
         if not is_valid_dep:
             fail("{}: {} is not a valid item in deps. Only kernel_module, ddk_module, ddk_headers are accepted.".format(ctx.label, dep.label))
+    hdr_deps += ctx.attr.internal_hdrs
 
     _check_kernel_build(kernel_module_deps, ctx.attr.kernel_build, ctx.label)
     _check_module_symvers_restore_path(kernel_module_deps, ctx.label)
@@ -516,6 +517,7 @@ def _kernel_module_impl(ctx):
             # It is needed to remove the `target_name` because we declare_file({name}/{internal_module_symvers_name}) above.
             restore_path = paths.join(ctx.label.package, ctx.attr.internal_module_symvers_name),
         ),
+        ddk_headers_common_impl(ctx.label, ctx.attr.internal_hdrs, ctx.attr.internal_includes),
     ]
 
 _kernel_module = rule(
@@ -537,6 +539,10 @@ _kernel_module = rule(
         ),
         "internal_module_symvers_name": attr.string(default = "Module.symvers"),
         "internal_drop_modules_order": attr.bool(),
+        "internal_hdrs": attr.label_list(
+            providers = [DdkHeadersInfo],
+        ),
+        "internal_includes": attr.string_list(doc = "exported include directories"),
         "kernel_build": attr.label(
             mandatory = True,
             providers = [KernelEnvInfo, KernelBuildExtModuleInfo],

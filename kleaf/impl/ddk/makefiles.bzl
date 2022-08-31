@@ -38,6 +38,7 @@ def _makefiles_impl(ctx):
                 str(ctx.label).removesuffix("_makefiles"),
                 dep.label,
             ))
+    hdr_deps += ctx.attr.module_hdrs
 
     args = ctx.actions.args()
 
@@ -85,6 +86,7 @@ makefiles = rule(
         # module_X is the X attribute of the ddk_module. Prefixed with `module_`
         # because they aren't real srcs / hdrs / deps to the makefiles rule.
         "module_srcs": attr.label_list(allow_files = [".c", ".h", ".s"]),
+        "module_hdrs": attr.label_list(providers = [DdkHeadersInfo]),
         "module_deps": attr.label_list(),
         "module_out": attr.string(),
         "_gen_makefile": attr.label(
