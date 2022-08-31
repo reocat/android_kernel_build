@@ -28,6 +28,8 @@ def ddk_module(
         kernel_build,
         srcs = None,
         deps = None,
+        hdrs = None,
+        includes = None,
         **kwargs):
     """
     Defines a DDK (Driver Development Kit) module.
@@ -48,6 +50,8 @@ def ddk_module(
             - [`kernel_module`](#kernel_module)
             - [`ddk_module`](#ddk_module)
             - [`ddk_headers`](#ddk_headers).
+        hdrs: See [`ddk_headers.hdrs`](#ddk_headers-hdrs)
+        includes: See [`ddk_headers.includes`](#ddk_headers-includes)
         kernel_build: [`kernel_build`](#kernel_build)
         kwargs: Additional attributes to the internal rule.
           See complete list
@@ -69,6 +73,8 @@ def ddk_module(
         internal_drop_modules_order = True,
         srcs = srcs,
         deps = deps,
+        internal_hdrs = hdrs,
+        internal_includes = includes,
         outs = [out],
         **kwargs
     )
@@ -78,6 +84,7 @@ def ddk_module(
     makefiles(
         name = name + "_makefiles",
         module_srcs = srcs,
+        module_hdrs = hdrs,
         module_out = out,
         module_deps = deps,
         **makefile_kwargs

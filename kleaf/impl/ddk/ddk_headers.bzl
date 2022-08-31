@@ -67,7 +67,7 @@ ddk_headers = rule(
     attrs = {
         "hdrs": attr.label_list(allow_files = [".h"], doc = """One of the following:
         - Local header files to be exported. You may also need to set the `includes` attribute.
-        - Other `ddk_headers` targets to be re-exported.
+        - Other `ddk_headers` or `ddk_module` targets, which headers are re-exported.
 """),
         "includes": attr.string_list(
             doc = """A list of directories, relative to the current package, that are re-exported as include directories.
