@@ -40,8 +40,8 @@ def _makefiles_impl(ctx):
     ])
 
     args.add("--include_dirs")
-    for hdr in ctx.attr.module_hdrs:
-        args.add_all(hdr[DdkHeadersInfo].exported_include_dirs)
+    for target in ctx.attr.module_hdrs + ctx.attr.module_exported_hdrs + ctx.attr.module_deps:
+        args.add_all(target[DdkHeadersInfo].exported_include_dirs)
 
     args.add("--module_symvers_list")
     for dep in ctx.attr.module_deps:
@@ -62,7 +62,8 @@ makefiles = rule(
     attrs = {
         "module_srcs": attr.label_list(allow_files = True),
         "module_hdrs": attr.label_list(providers = [DdkHeadersInfo]),
-        "module_deps": attr.label_list(providers = [ModuleSymversInfo]),
+        "module_exported_hdrs": attr.label_list(providers = [DdkHeadersInfo]),
+        "module_deps": attr.label_list(providers = [ModuleSymversInfo, DdkHeadersInfo]),
         "module_out": attr.string(),
         "_gen_makefile": attr.label(
             default = "//build/kernel/kleaf/impl:ddk/gen_makefiles",
