@@ -83,6 +83,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f05ab755_66988a14",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-01T23:51:56Z",
+      "side": 1,
+      "message": "Oh I didn\u0027t know that we have .s as well.\n\nPerhaps I should make this an error?",
+      "parentUuid": "a9e470d7_8d527e4a",
+      "range": {
+        "startLine": 81,
+        "startChar": 31,
+        "endLine": 81,
+        "endChar": 32
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc39b911_479c1558",
         "filename": "kleaf/impl/ddk/gen_makefiles.py",
         "patchSetId": 8
@@ -94,6 +118,30 @@
       "writtenOn": "2022-08-31T15:37:43Z",
       "side": 1,
       "message": "2 spaces ?",
+      "range": {
+        "startLine": 100,
+        "startChar": 28,
+        "endLine": 100,
+        "endChar": 30
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "049b1b96_dd4bf4d8",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-01T23:51:56Z",
+      "side": 1,
+      "message": "yeah -- to make the final output easy to read.\n\nPerhaps I should use str.join + textwrap.indent",
+      "parentUuid": "bc39b911_479c1558",
       "range": {
         "startLine": 100,
         "startChar": 28,
