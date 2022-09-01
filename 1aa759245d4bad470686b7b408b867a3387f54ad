@@ -1,0 +1,24 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000028518120",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2199979?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "df767b53_8d26256f",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-09-01T19:48:39Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/common_kernels.bzl` to format the file.",
+      "revId": "1aa759245d4bad470686b7b408b867a3387f54ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
