@@ -83,7 +83,7 @@ _KERNEL_BUILD_ABI_VALID_KEYS = [
     "kmi_symbol_list_strict_mode",
     "abi_definition",
     "kmi_enforced",
-    "module_outs",
+    "module_implicit_outs",
 ]
 
 # Valid configs of the value of the target_config argument in
@@ -290,7 +290,7 @@ def define_common_kernels(
         - `ADDITIONAL_KMI_SYMBOL_LISTS`
         - `TRIM_NONLISTED_KMI`
         - `KMI_SYMBOL_LIST_STRICT_MODE`
-        - `GKI_MODULES_LIST` (corresponds to [`kernel_build.module_outs`](#kernel_build-module_outs))
+        - `GKI_MODULES_LIST` (corresponds to [`kernel_build.module_implicit_outs`](#kernel_build-module_implicit_outs))
         - `BUILD_GKI_ARTIFACTS`
         - `BUILD_GKI_BOOT_IMG_SIZE` and `BUILD_GKI_BOOT_IMG_{COMPRESSION}_SIZE`
 
@@ -307,7 +307,7 @@ def define_common_kernels(
         - `additional_kmi_symbol_lists`
         - `trim_nonlisted_kmi`
         - `kmi_symbol_list_strict_mode`
-        - `module_outs` (corresponds to `GKI_MODULES_LIST`)
+        - `module_implicit_outs` (corresponds to `GKI_MODULES_LIST`)
 
         In addition, the values of `target_configs` may contain the following keys:
         - `build_gki_artifacts`
@@ -518,7 +518,7 @@ def define_common_kernels(
         kernel_modules_install(
             name = name + "_modules_install",
             # The GKI target does not have external modules. GKI modules goes
-            # into the in-tree kernel module list, aka kernel_build.module_outs.
+            # into the in-tree kernel module list, aka kernel_build.module_implicit_outs.
             # Hence, this is empty, and name + "_dist" does NOT include
             # name + "_modules_install".
             kernel_modules = [],
@@ -593,6 +593,11 @@ def define_common_kernels(
             name + "_ddk_artifacts",
             # BUILD_GKI_CERTIFICATION_TOOLS=1 for all kernel_build defined here.
             "//build/kernel:gki_certification_tools",
+        ]
+
+        dist_targets += [
+            "{}/{}".format(name, module)
+            for module in (kernel_build_abi_kwargs["module_implicit_outs"] or [])
         ]
 
         copy_to_dist_dir(
