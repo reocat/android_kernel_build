@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a9446eb_b8de1ee9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-01T15:41:04Z",
+      "side": 1,
+      "message": "This change needs a corresponding change in `master` merged before this one. Preferably both changes will carry the same Change-Id to identify them as cherry-picks.",
+      "revId": "85c197702aa1acf3a57266aec19d3bcb6fd8e0bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
