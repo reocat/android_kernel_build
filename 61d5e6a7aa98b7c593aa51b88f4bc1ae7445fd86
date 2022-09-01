@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "63050e30_ad7ba65a",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 37
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-01T23:57:38Z",
+      "side": 1,
+      "message": "No, I made this default. I am okay to delete this default and require this to be set.",
+      "parentUuid": "5ca613a8_e5cacc21",
+      "range": {
+        "startLine": 55,
+        "startChar": 7,
+        "endLine": 56,
+        "endChar": 32
+      },
+      "revId": "61d5e6a7aa98b7c593aa51b88f4bc1ae7445fd86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d98e8603_2abb4e47",
         "filename": "kleaf/impl/ddk/ddk_module.bzl",
         "patchSetId": 37
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-31T16:03:15Z",
       "side": 1,
       "message": "I think we should require explicit inputs. Especially with multiple modules in the same directory we create unnecessary dependencies. Again, perhaps make the simple case of `mod.c + mod.h` automatic and brief?",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 23
+      },
+      "revId": "61d5e6a7aa98b7c593aa51b88f4bc1ae7445fd86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e81d6584_094ee36a",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 37
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-01T23:57:38Z",
+      "side": 1,
+      "message": "I deleted the glob. The default is now `mod.c`. WDYT?",
+      "parentUuid": "d98e8603_2abb4e47",
       "range": {
         "startLine": 58,
         "startChar": 0,
