@@ -220,6 +220,13 @@ that the outputs are analogous to those produced by `build/build.sh`:
   * `//common:kernel_aarch64`
   * `//common:kernel_aarch64_additional_artifacts`
 * UAPI headers, e.g. `//common:kernel_aarch64_uapi_headers`
+* If you are using GKI modules, also add the list of GKI modules you are
+  using from `//common:kernel_aarch64`. If you are using building these modules
+  in your device kernel build, skip them, because your `kernel_modules_install`
+  target (e.g. `tuna_modules_install`) already contains them. For example, on 
+  the `android13-5.15` branch:
+  * `//common:kernel_aarch64/zram.ko`
+  * `//common:kernel_aarch64/zsmalloc.ko`
 
 Example for Pixel 2021 (see the `copy_to_dist_dir` target named `slider_dist`):
 
