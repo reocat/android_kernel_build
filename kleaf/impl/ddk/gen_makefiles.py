@@ -1,4 +1,4 @@
-# Copyright (C) 2021 The Android Open Source Project
+# Copyright (C) 2022 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import pathlib
 def _gen_makefile(
     package: pathlib.Path,
     module_symvers_list: list[pathlib.Path],
-    output_makefiles: pathlib.Path,
+    output_makefile: pathlib.Path,
 ):
     # kernel_module always executes in a sandbox. So ../ only traverses within
     # the sandbox.
@@ -37,6 +37,7 @@ def _gen_makefile(
 
     for module_symvers in module_symvers_list:
         content += textwrap.dedent(f"""\
+            # Include symbol: {module_symvers}
             EXTRA_SYMBOLS += $(OUT_DIR)/$(M)/{rel_root}/{module_symvers}
             """)
 
@@ -45,8 +46,8 @@ def _gen_makefile(
         \t$(MAKE) -C $(KERNEL_SRC) M=$(M) $(KBUILD_OPTIONS) KBUILD_EXTRA_SYMBOLS="$(EXTRA_SYMBOLS)" $(@)
         """)
 
-    os.makedirs(output_makefiles, exist_ok=True)
-    with open(output_makefiles / "Makefile", "w") as out_file:
+    os.makedirs(output_makefile.parent, exist_ok=True)
+    with open(output_makefile, "w") as out_file:
         out_file.write(content)
 
 
@@ -61,7 +62,7 @@ def gen_ddk_makefile(
     _gen_makefile(
         package=package,
         module_symvers_list=module_symvers_list,
-        output_makefiles=output_makefiles,
+        output_makefile=output_makefiles / "Makefile",
     )
 
     rel_srcs = []
@@ -76,39 +77,56 @@ def gen_ddk_makefile(
     os.makedirs(kbuild.parent, exist_ok=True)
 
     with open(kbuild, "w") as out_file:
-        out_file.write(f"obj-m += {kernel_module_out.with_suffix('.o').name}\n")
+        out_file.write(textwrap.dedent(f"""\
+            # Build {package / kernel_module_out}
+            obj-m += {kernel_module_out.with_suffix('.o').name}
+            """))
+        out_file.write("\n")
+
         for src in rel_srcs:
-            # Ignore non-sources
-            if src.suffix != ".c":
+            # Ignore non-exported headers specified in srcs
+            if src.suffix.lower() in (".h"):
                 continue
+            assert src.suffix.lower() in (".c", ".s"), f"Invalid source {src}"
             # Ignore self (don't omit obj-foo += foo.o)
             if src.with_suffix(".ko") == kernel_module_out:
+                out_file.write(textwrap.dedent(f"""\
+                    # This module has a single source file {src}
+                """))
                 continue
             assert src.parent == kernel_module_out.parent, \
                 f"{src} is not a valid source because it is not under " \
                 f"{kernel_module_out.parent}"
             out = src.with_suffix(".o").name
-            out_file.write(
-                f"{kernel_module_out.with_suffix('').name}-y += {out}\n")
+            out_file.write(textwrap.dedent(f"""\
+                # Source: {package / src}
+                {kernel_module_out.with_suffix('').name}-y += {out}
+            """))
+
+        out_file.write("\n")
 
         #    //path/to/package:target/name/foo.ko
         # =>   path/to/package/target/name
         rel_root_reversed = pathlib.Path(package) / kernel_module_out.parent
         rel_root = "/".join([".."] * len(rel_root_reversed.parts))
 
-        out_file.write("\nccflags-y += \\\n")
         for include_dir in include_dirs:
-            out_file.write("  ")
-            out_file.write(
-                shlex.quote(f"-I$(srctree)/$(src)/{rel_root}/{include_dir}"))
-            out_file.write("\\\n")
+            ccflag = f"-I$(srctree)/$(src)/{rel_root}/{include_dir}"
+            out_file.write(textwrap.dedent(f"""\
+                # Include {include_dir}
+                ccflags-y += {shlex.quote(ccflag)}
+                """))
+
         out_file.write("\n")
 
     top_kbuild = output_makefiles / "Kbuild"
     if top_kbuild != kbuild:
         os.makedirs(output_makefiles, exist_ok=True)
         with open(top_kbuild, "w") as out_file:
-            out_file.write(f"obj-y += {kernel_module_out.parent}/")
+            out_file.write(textwrap.dedent(f"""\
+                # Build {package / kernel_module_out}
+                obj-y += {kernel_module_out.parent}/
+                """))
 
 
 if __name__ == "__main__":

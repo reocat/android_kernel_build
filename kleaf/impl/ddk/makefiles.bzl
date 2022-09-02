@@ -85,7 +85,7 @@ makefiles = rule(
     attrs = {
         # module_X is the X attribute of the ddk_module. Prefixed with `module_`
         # because they aren't real srcs / hdrs / deps to the makefiles rule.
-        "module_srcs": attr.label_list(allow_files = True),
+        "module_srcs": attr.label_list(allow_files = [".c", ".h", ".s"]),
         "module_hdrs": attr.label_list(providers = [DdkHeadersInfo]),
         "module_deps": attr.label_list(),
         "module_out": attr.string(),
