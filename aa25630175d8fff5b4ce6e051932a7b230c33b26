@@ -16,6 +16,24 @@
       "message": "Should use incoming edge transition to minimize call-site changes",
       "revId": "aa25630175d8fff5b4ce6e051932a7b230c33b26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "903fcf38_60a5a28c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-02T00:17:22Z",
+      "side": 1,
+      "message": "transitions are for build settings not input targets.",
+      "parentUuid": "e4a5b2d4_12b5406f",
+      "revId": "aa25630175d8fff5b4ce6e051932a7b230c33b26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
