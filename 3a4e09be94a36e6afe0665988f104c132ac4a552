@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74ad2300_f5ae17e6",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-02T23:14:34Z",
+      "side": 1,
+      "message": "Here and below: Maybe this is not possible but if `out \u003d\u003d paths.basename(out)` will that mean we will end with two duplicated file-groups?",
+      "range": {
+        "startLine": 443,
+        "startChar": 16,
+        "endLine": 443,
+        "endChar": 46
+      },
+      "revId": "3a4e09be94a36e6afe0665988f104c132ac4a552",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
