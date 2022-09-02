@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5984e3ca_5fd9bce5",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-02T03:47:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a81aa90c_82a23498",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a77ecf40_72a37047",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00aefb37_f60099ec",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-02T03:47:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a77ecf40_72a37047",
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76d7b28a_b50aedfd",
@@ -54,6 +96,24 @@
       "writtenOn": "2022-08-31T15:46:24Z",
       "side": 1,
       "message": "The makefiles (all files) should have some commentary to make it easier to understand what is going on when debugging. For example where do the header includes come from, where do dependencies come from. What is the module we are building.",
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05d99497_8b061df6",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-02T03:47:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76d7b28a_b50aedfd",
       "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -95,6 +155,30 @@
       "side": 1,
       "message": "Oh I didn\u0027t know that we have .s as well.\n\nPerhaps I should make this an error?",
       "parentUuid": "a9e470d7_8d527e4a",
+      "range": {
+        "startLine": 81,
+        "startChar": 31,
+        "endLine": 81,
+        "endChar": 32
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76a6d484_79696895",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-02T03:47:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f05ab755_66988a14",
       "range": {
         "startLine": 81,
         "startChar": 31,
@@ -152,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7df67c8d_1a26f914",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-02T03:47:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "049b1b96_dd4bf4d8",
+      "range": {
+        "startLine": 100,
+        "startChar": 28,
+        "endLine": 100,
+        "endChar": 30
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9092061_05e7f7b4",
@@ -187,6 +295,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1829926_13ba5d6d",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-02T03:47:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ed4ec42_744bdf4c",
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b17e09e9_cd4b02dc",
@@ -210,6 +336,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da165119_73f2cf94",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-02T03:47:03Z",
+      "side": 1,
+      "message": "Done, I am using the --flagfile option in absl flags library now. Though, there are two caveats:\n\n- https://github.com/abseil/abseil-py/issues/199\n- https://android-review.googlesource.com/c/kernel/build/+/2199428/8..14/kleaf/impl/ddk/makefiles.bzl#44\n\nLet me know if you think using absl flags library is an overkill / does not fit this situation. I can try argparse.Action as you suggested.",
+      "parentUuid": "b17e09e9_cd4b02dc",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 65
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e4af2a4_57ec9b99",
@@ -223,6 +373,30 @@
       "writtenOn": "2022-08-31T15:37:43Z",
       "side": 1,
       "message": "parameters",
+      "range": {
+        "startLine": 28,
+        "startChar": 27,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82ee3b18_7b7f4afe",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-02T03:47:03Z",
+      "side": 1,
+      "message": "It is \"--flagfile\" now.",
+      "parentUuid": "4e4af2a4_57ec9b99",
       "range": {
         "startLine": 28,
         "startChar": 27,
