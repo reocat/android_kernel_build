@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8d39939_4d32926e",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-02T23:53:53Z",
+      "side": 1,
+      "message": "TIL",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 19
+      },
+      "revId": "b65d40e1bf64fe88c35137083eb6cecb8928ebac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c730e832_83f9cc15",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-02T23:53:53Z",
+      "side": 1,
+      "message": "Maybe a silly question: shouldn\u0027t this be the other way `dep in DdkHeadersInfo`?",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "b65d40e1bf64fe88c35137083eb6cecb8928ebac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
