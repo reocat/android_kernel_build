@@ -22,6 +22,30 @@
       },
       "revId": "3a4e09be94a36e6afe0665988f104c132ac4a552",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6da7073a_7e2e69c7",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-03T01:21:15Z",
+      "side": 1,
+      "message": "if out !\u003d paths.basename(out), then we\u0027ll have two filegroups pointing to the same file.\n\nif out \u003d\u003d paths.basename(out), then we\u0027ll just have one filegroup.\n\nIn this example, we have `mm/zsmalloc.ko` in `module_implicit_outs`; hence, both `//common:kernel_aarch64/mm/zsmalloc.ko` and `//common:kernel_aarch64/zsmalloc.ko` are valid labels.\n\nWe also have `vmlinux` in outs. Hence, the only valid label is `//common:kernel_aarch64/vmlinux`.",
+      "parentUuid": "74ad2300_f5ae17e6",
+      "range": {
+        "startLine": 443,
+        "startChar": 16,
+        "endLine": 443,
+        "endChar": 46
+      },
+      "revId": "3a4e09be94a36e6afe0665988f104c132ac4a552",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
