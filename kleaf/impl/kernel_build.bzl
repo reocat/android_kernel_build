@@ -597,15 +597,22 @@ def _kernel_build_impl(ctx):
     )
 
     modules_staging_archive = ctx.actions.declare_file(
-        "{name}/modules_staging_dir.tar.gz".format(name = ctx.label.name),
+        "{name}_module_staging_archive/modules_staging_dir.tar.gz".format(name = ctx.label.name),
     )
+    if ctx.attr.base_kernel:
+        modules_staging_archive_self = ctx.actions.declare_file(
+            "{name}_module_staging_archive/modules_staging_dir_self.tar.gz".format(name = ctx.label.name),
+        )
+    else:
+        modules_staging_archive_self = modules_staging_archive
+
     out_dir_kernel_headers_tar = ctx.actions.declare_file(
         "{name}/out-dir-kernel-headers.tar.gz".format(name = ctx.label.name),
     )
     interceptor_output = None
     if ctx.attr.enable_interceptor:
         interceptor_output = ctx.actions.declare_file("{name}/interceptor_output.bin".format(name = ctx.label.name))
-    modules_staging_dir = modules_staging_archive.dirname + "/staging"
+    modules_staging_dir_self = modules_staging_archive_self.dirname + "/staging"
 
     unstripped_dir = None
     if ctx.attr.collect_unstripped_modules:
@@ -614,7 +621,7 @@ def _kernel_build_impl(ctx):
     # all outputs that |command| generates
     command_outputs = [
         ruledir,
-        modules_staging_archive,
+        modules_staging_archive_self,
         out_dir_kernel_headers_tar,
     ]
     if interceptor_output:
@@ -660,10 +667,10 @@ def _kernel_build_impl(ctx):
     grab_intree_modules_cmd = ""
     if all_module_names:
         grab_intree_modules_cmd = """
-            {search_and_cp_output} --srcdir {modules_staging_dir}/lib/modules/*/kernel --dstdir {ruledir} $(cat {all_module_names_file})
+            {search_and_cp_output} --srcdir {modules_staging_dir_self}/lib/modules/*/kernel --dstdir {ruledir} $(cat {all_module_names_file})
         """.format(
             search_and_cp_output = ctx.file._search_and_cp_output.path,
-            modules_staging_dir = modules_staging_dir,
+            modules_staging_dir_self = modules_staging_dir_self,
             ruledir = ruledir.path,
             all_module_names_file = all_module_names_file.path,
         )
@@ -697,9 +704,9 @@ def _kernel_build_impl(ctx):
            if [ "${{DO_NOT_STRIP_MODULES}}" != "1" ]; then
              module_strip_flag="INSTALL_MOD_STRIP=1"
            fi
-           mkdir -p {modules_staging_dir}
+           mkdir -p {modules_staging_dir_self}
          # Install modules
-           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} ${{module_strip_flag}} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) modules_install
+           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} ${{module_strip_flag}} INSTALL_MOD_PATH=$(realpath {modules_staging_dir_self}) modules_install
          # Archive headers in OUT_DIR
            find ${{OUT_DIR}} -name *.h -print0                          \
                | tar czf {out_dir_kernel_headers_tar}                   \
@@ -710,8 +717,8 @@ def _kernel_build_impl(ctx):
                        --null -T -
          # Grab outputs. If unable to find from OUT_DIR, look at KBUILD_MIXED_TREE as well.
            {search_and_cp_output} --srcdir ${{OUT_DIR}} {kbuild_mixed_tree_arg} {dtstree_arg} --dstdir {ruledir} {all_output_names_minus_modules}
-         # Archive modules_staging_dir
-           tar czf {modules_staging_archive} -C {modules_staging_dir} .
+         # Archive modules_staging_dir_self
+           tar czf {modules_staging_archive_self} -C {modules_staging_dir_self} .
          # Grab *.symtypes
            {grab_symtypes_cmd}
          # Grab in-tree modules
@@ -721,7 +728,7 @@ def _kernel_build_impl(ctx):
          # Check if there are remaining *.ko files
            remaining_ko_files=$({check_declared_output_list} \\
                 --declared $(cat {all_module_names_file} {base_kernel_all_module_names_file_path}) \\
-                --actual $(cd {modules_staging_dir}/lib/modules/*/kernel && find . -type f -name '*.ko' | sed 's:^[.]/::'))
+                --actual $(cd {modules_staging_dir_self}/lib/modules/*/kernel && find . -type f -name '*.ko' | sed 's:^[.]/::'))
            if [[ ${{remaining_ko_files}} ]]; then
              echo "ERROR: The following kernel modules are built but not copied. Add these lines to the module_outs attribute of {label}:" >&2
              for ko in ${{remaining_ko_files}}; do
@@ -733,7 +740,7 @@ def _kernel_build_impl(ctx):
              exit 1
            fi
          # Clean up staging directories
-           rm -rf {modules_staging_dir}
+           rm -rf {modules_staging_dir_self}
          """.format(
         check_declared_output_list = ctx.file._check_declared_output_list.path,
         search_and_cp_output = ctx.file._search_and_cp_output.path,
@@ -746,8 +753,8 @@ def _kernel_build_impl(ctx):
         grab_symtypes_cmd = grab_symtypes_cmd,
         all_module_names_file = all_module_names_file.path,
         base_kernel_all_module_names_file_path = base_kernel_all_module_names_file_path,
-        modules_staging_dir = modules_staging_dir,
-        modules_staging_archive = modules_staging_archive.path,
+        modules_staging_dir_self = modules_staging_dir_self,
+        modules_staging_archive_self = modules_staging_archive_self.path,
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
         interceptor_command_prefix = interceptor_command_prefix,
         label = ctx.label,
@@ -762,6 +769,46 @@ def _kernel_build_impl(ctx):
         progress_message = "Building kernel %s" % ctx.attr.name,
         command = command,
     )
+
+    if ctx.attr.base_kernel:
+        # Re-package module_staging_dir to also include the one from base_kernel.
+        # Pick ko files only from base_kernel, while keeping all depmod files from self.
+        modules_staging_dir = modules_staging_archive.dirname + "/staging"
+        module_staging_repack_cmd = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+            mkdir -p {modules_staging_dir}
+            tar xf {self_archive} -C {modules_staging_dir}
+
+            # Filter out device-customized modules that has the same name as GKI modules
+            base_modules=$(tar tf {base_archive} | grep '[.]ko$')
+            for module in $(cat {all_module_basenames_file}); do
+              base_modules=$(echo "${{base_modules}}" | grep -v "${{module}}"'$')
+            done
+
+            if [[ -n "${{base_modules}}" ]]; then
+                tar xf {base_archive} -C {modules_staging_dir} ${{base_modules}}
+            fi
+            tar czf {out_archive} -C  {modules_staging_dir} .
+            rm -rf {modules_staging_dir}
+        """.format(
+            modules_staging_dir = modules_staging_dir,
+            self_archive = modules_staging_archive_self.path,
+            base_archive = ctx.attr.base_kernel[KernelBuildExtModuleInfo].modules_staging_archive.path,
+            out_archive = modules_staging_archive.path,
+            all_module_basenames_file = all_module_basenames_file.path,
+        )
+        debug.print_scripts(ctx, module_staging_repack_cmd, what = "repackage_module_staging_archive")
+        ctx.actions.run_shell(
+            mnemonic = "KernelBuildModuleStagingArchive",
+            inputs = [
+                modules_staging_archive_self,
+                ctx.attr.base_kernel[KernelBuildExtModuleInfo].modules_staging_archive,
+                all_module_basenames_file,
+            ],
+            outputs = [modules_staging_archive],
+            tools = ctx.attr._hermetic_tools[HermeticToolsInfo].deps,
+            progress_message = "Repackaging module_staging_archive {}".format(ctx.label),
+            command = module_staging_repack_cmd,
+        )
 
     toolchain_version_out = _kernel_build_dump_toolchain_version(ctx)
     kmi_strict_mode_out = _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file)
@@ -887,7 +934,7 @@ _kernel_build = rule(
         ),
         "base_kernel": attr.label(
             aspects = [kernel_toolchain_aspect],
-            providers = [KernelBuildInTreeModulesInfo],
+            providers = [KernelBuildInTreeModulesInfo, KernelBuildExtModuleInfo],
         ),
         "base_kernel_for_module_outs": attr.label(
             providers = [KernelBuildInTreeModulesInfo],
