@@ -45,6 +45,30 @@
       },
       "revId": "b65d40e1bf64fe88c35137083eb6cecb8928ebac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de60a288_f3feded7",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-03T01:17:05Z",
+      "side": 1,
+      "message": "This is essentially checking if `dep` provides a `DdkHeadersInfo`. In other words, it is checking if `dep[DdkHeadersInfo]` is valid. Hence `DdkHeadersInfo in dep`.\n\nThink of it as:\n\n```\ntry:\n  dep[DdkHeadersInfo]\n  hdr_deps.append(dep)\nexcept:\n  pass\n```\n\n... Except that we don\u0027t have exceptions in Starlark 😊",
+      "parentUuid": "c730e832_83f9cc15",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "b65d40e1bf64fe88c35137083eb6cecb8928ebac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
