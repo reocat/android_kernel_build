@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9c796f2_33acafbe",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-05T14:56:22Z",
+      "side": 1,
+      "message": "this is master ... break it? Or at least put a `# TODO (b/)` to remove it in a month or so?",
+      "revId": "0382f35d937ca53f2ba232552e1b18c7533633cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f09fb927_1b0527d2",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-05T14:56:22Z",
+      "side": 1,
+      "message": "emit a loud warning that this is deprecated.",
+      "revId": "0382f35d937ca53f2ba232552e1b18c7533633cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
