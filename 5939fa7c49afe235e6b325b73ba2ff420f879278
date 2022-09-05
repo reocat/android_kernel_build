@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4050b570_9c18943c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-05T14:24:59Z",
+      "side": 1,
+      "message": "not applicable for master",
+      "revId": "5939fa7c49afe235e6b325b73ba2ff420f879278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af6b476_68943db0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-05T14:24:59Z",
+      "side": 1,
+      "message": "mention the short forms?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 43
+      },
+      "revId": "5939fa7c49afe235e6b325b73ba2ff420f879278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d0ad14b_5e4ecb7d",
+        "filename": "kleaf/docs/impl.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-05T14:24:59Z",
+      "side": 1,
+      "message": "use the shortened forms? .../zram.ko and .../zsmalloc.ko ?",
+      "revId": "5939fa7c49afe235e6b325b73ba2ff420f879278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8347fbf_2ce1585b",
+        "filename": "kleaf/docs/impl.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-05T14:24:59Z",
+      "side": 1,
+      "message": "this branch does not apply to 13-5.15, rather drop this reference as it is immediately stale.",
+      "range": {
+        "startLine": 230,
+        "startChar": 5,
+        "endLine": 230,
+        "endChar": 27
+      },
+      "revId": "5939fa7c49afe235e6b325b73ba2ff420f879278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
