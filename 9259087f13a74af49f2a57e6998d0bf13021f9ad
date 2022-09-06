@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0fbc196_432b746e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-06T19:41:23Z",
+      "side": 1,
+      "message": "Lukács, any suggestions? I am trying to create something like a `filegroup` but for targets, though the implementation seems to be pretty nasty, because it requires non-trivial refactoring in the rule implementation that supports accepting target_group\u0027s.\n\nPerhaps there\u0027s a better way to do this? I looked at transitions, but that seems to address build configs, not targets. ",
+      "revId": "9259087f13a74af49f2a57e6998d0bf13021f9ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
