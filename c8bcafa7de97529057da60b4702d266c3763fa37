@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9944c0c5_ea45b4f7",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-06T17:48:05Z",
+      "side": 1,
+      "message": "Done; buildifier does not enforce line length nor wrap lines automatically, so I\u0027ll have to do it myself.",
+      "parentUuid": "0fc012c8_a4e86d32",
+      "range": {
+        "startLine": 32,
+        "startChar": 95,
+        "endLine": 32,
+        "endChar": 100
+      },
+      "revId": "c8bcafa7de97529057da60b4702d266c3763fa37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e59d8255_0754ec94",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-05T15:34:36Z",
       "side": 1,
       "message": "directories",
+      "range": {
+        "startLine": 34,
+        "startChar": 31,
+        "endLine": 34,
+        "endChar": 35
+      },
+      "revId": "c8bcafa7de97529057da60b4702d266c3763fa37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "805a313a_6d5a4185",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-06T17:48:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e59d8255_0754ec94",
       "range": {
         "startLine": 34,
         "startChar": 31,
