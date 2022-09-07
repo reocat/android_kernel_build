@@ -22,6 +22,30 @@
       },
       "revId": "40829e385eb5fa8009a2742112e29f7df6534743",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e53424a8_0b6158b5",
+        "filename": "kleaf/tests/kernel_build_test/kernel_toolchain_aspect_test.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-07T23:13:04Z",
+      "side": 1,
+      "message": "yes -- for the case of having a `kernel_build` as a base_kernel, the check happens at analysis phase.",
+      "parentUuid": "54c37c26_4294e341",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 40
+      },
+      "revId": "40829e385eb5fa8009a2742112e29f7df6534743",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
