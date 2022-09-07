@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3777470_c6d33c30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-09-07T07:19:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e593d9b_4eb39724",
+      "revId": "6d49125622cf0c08a0bfba7b9998032f70e3ef00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90d61273_2ae5dbf6",
@@ -41,6 +59,53 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dead22aa_96b9deab",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-09-07T07:19:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90d61273_2ae5dbf6",
+      "range": {
+        "startLine": 430,
+        "startChar": 33,
+        "endLine": 431,
+        "endChar": 37
+      },
+      "revId": "6d49125622cf0c08a0bfba7b9998032f70e3ef00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a46dfbe4_f414c61d",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-09-07T07:19:56Z",
+      "side": 1,
+      "message": "This function seems to build device-specific boot.img or vendor_boot.img, as it may include vendor ramdisk below.\n\nNote: this function was added before we added GKI artifacts.",
+      "range": {
+        "startLine": 321,
+        "startChar": 9,
+        "endLine": 321,
+        "endChar": 26
+      },
+      "revId": "6d49125622cf0c08a0bfba7b9998032f70e3ef00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26a176fe_8403bcd3",
@@ -54,6 +119,30 @@
       "writtenOn": "2022-09-06T13:28:24Z",
       "side": 1,
       "message": "build_boot_images() ?",
+      "range": {
+        "startLine": 592,
+        "startChar": 2,
+        "endLine": 592,
+        "endChar": 31
+      },
+      "revId": "6d49125622cf0c08a0bfba7b9998032f70e3ef00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d22bb02_b2b5755f",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2022-09-07T07:19:56Z",
+      "side": 1,
+      "message": "How about build_gki_boot_images()?\n\nAs we already have a function named build_boot_images() at L321, which seems to build device-specific boot.img (not a generic image).",
+      "parentUuid": "26a176fe_8403bcd3",
       "range": {
         "startLine": 592,
         "startChar": 2,
