@@ -35,6 +35,7 @@ load(
     "//build/kernel/kleaf/impl:constants.bzl",
     "MODULE_OUTS_FILE_OUTPUT_GROUP",
     "MODULE_OUTS_FILE_SUFFIX",
+    "TOOLCHAIN_VERSION_FILENAME",
 )
 load(
     ":constants.bzl",
@@ -555,6 +556,13 @@ def define_common_kernels(
                 srcs = [],
             )
 
+        # toolchain_version from <name>
+        native.filegroup(
+            name = name + "_" + TOOLCHAIN_VERSION_FILENAME,
+            srcs = [name],
+            output_group = TOOLCHAIN_VERSION_FILENAME,
+        )
+
         # module_staging_archive from <name>
         native.filegroup(
             name = name + "_modules_staging_archive",
@@ -562,8 +570,13 @@ def define_common_kernels(
             output_group = "modules_staging_archive",
         )
 
-        # Everything in name + "_dist", minus UAPI headers & DDK, because
-        # device-specific external kernel modules may install different headers.
+        # The purpose of this target is to allow device kernel build to include reasonable
+        # defaults of artifacts from GKI. Hence, this target includes everything in name + "_dist",
+        # excluding the following:
+        # - UAPI headers, because device-specific external kernel modules may install different
+        #   headers.
+        # - DDK; see _ddk_artifacts below.
+        # - toolchain_version: avoid conflict with device kernel's kernel_build() in dist dir.
         native.filegroup(
             name = name + "_additional_artifacts",
             srcs = [
@@ -593,6 +606,7 @@ def define_common_kernels(
             name + "_unstripped_modules_archive",
             name + "_additional_artifacts",
             name + "_ddk_artifacts",
+            name + "_" + TOOLCHAIN_VERSION_FILENAME,
             # BUILD_GKI_CERTIFICATION_TOOLS=1 for all kernel_build defined here.
             "//build/kernel:gki_certification_tools",
         ]
