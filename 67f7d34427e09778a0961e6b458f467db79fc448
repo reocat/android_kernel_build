@@ -22,6 +22,30 @@
       },
       "revId": "67f7d34427e09778a0961e6b458f467db79fc448",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20728b8a_d66536e1",
+        "filename": "kleaf/impl/kernel_toolchain_aspect.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-07T21:55:54Z",
+      "side": 1,
+      "message": "Because toolchain_version is now part of `deps` (common_kernels.bzl, L730)\n\nIt is part of `deps` because `srcs` is returned in the DefaultInfo but `deps` isn\u0027t.\n\nI keep the logic to also search in srcs in case partners were relying on kernel_filegroup.",
+      "parentUuid": "8b4816da_456f2619",
+      "range": {
+        "startLine": 35,
+        "startChar": 54,
+        "endLine": 35,
+        "endChar": 72
+      },
+      "revId": "67f7d34427e09778a0961e6b458f467db79fc448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
