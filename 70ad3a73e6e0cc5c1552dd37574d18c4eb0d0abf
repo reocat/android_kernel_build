@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "716c6dd0_7d1ef2cf",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-07T23:31:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8adaa0f_3f494fee",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 0
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a5bbcf9_12d09725",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-30T15:28:21Z",
       "side": 1,
       "message": "`: Mapping[str, Any]` ?",
+      "range": {
+        "startLine": 244,
+        "startChar": 23,
+        "endLine": 244,
+        "endChar": 27
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5ef5273_06b869f0",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-07T23:31:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a5bbcf9_12d09725",
       "range": {
         "startLine": 244,
         "startChar": 23,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcb048ad_a843f42a",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-07T23:31:32Z",
+      "side": 1,
+      "message": "This is for testing.\n\n`buildozer` needs to write to the source tree. Without a sandbox, this will pollute the real source tree. Hence, the test is executed with `--stdout` appended to `buildozer`.\n\nHowever, if multiple files are modified, buildozer simply concatenate all modified BUILD.bazel files and print to stdout. This makes stdout harder to test without knowing what targets buildozer is modifying.\n\nHence, for testing purposes, I append the full label of the target as a comment to the `name` of every target I am generating. This allows me to not only check if a target is generated, but also check that it is in the correct package.",
+      "parentUuid": "36dbbda8_ac8c4562",
+      "range": {
+        "startLine": 259,
+        "startChar": 18,
+        "endLine": 259,
+        "endChar": 24
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1cf96847_048cac09",
@@ -87,6 +159,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7e742ba_dad2a3e1",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-07T23:31:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cf96847_048cac09",
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7d6bf6f_a9501fd9",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-08-30T15:28:21Z",
       "side": 1,
       "message": "also add `--keep-going` then",
+      "range": {
+        "startLine": 740,
+        "startChar": 25,
+        "endLine": 740,
+        "endChar": 27
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e31ea06_1eab2478",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-07T23:31:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7d6bf6f_a9501fd9",
       "range": {
         "startLine": 740,
         "startChar": 25,
@@ -133,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab5c2696_d4dff377",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-07T23:31:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "044a22e0_a4730f70",
+      "range": {
+        "startLine": 747,
+        "startChar": 27,
+        "endLine": 747,
+        "endChar": 30
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0624cf9a_7106e4af",
@@ -156,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d581562c_3bfc314b",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-07T23:31:32Z",
+      "side": 1,
+      "message": "This is for testing so that I can mock the arguments pass to the script.\n\nI don\u0027t think changing global states for tests is a good idea, since side effects make unit tests potentially affect each other.",
+      "parentUuid": "0624cf9a_7106e4af",
+      "range": {
+        "startLine": 749,
+        "startChar": 29,
+        "endLine": 749,
+        "endChar": 33
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04b5064b_7c74e2a2",
@@ -169,6 +331,30 @@
       "writtenOn": "2022-08-30T15:28:21Z",
       "side": 1,
       "message": "not sure we need to make this so sophisticated. It appears that every use of logging.error() and logging.warning() should be emitted unconditionally as it is good information in any case. and perhaps all we need is --verbose to also print whatever logging.info() has to say?",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 81
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6676188b_192ff228",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-07T23:31:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04b5064b_7c74e2a2",
       "range": {
         "startLine": 752,
         "startChar": 0,
