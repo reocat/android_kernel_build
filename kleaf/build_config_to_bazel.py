@@ -629,6 +629,8 @@ class BuildozerCommandBuilder(object):
                     "VENDOR_DLKM_PROPS",
             ):
                 images = self._new("kernel_images", self.images_name)
+                if os.path.isabs(value):
+                    value = os.path.relpath(value)
                 if os.path.commonpath((value, self.package)) == self.package:
                     self._set_attr(images, key.lower(), os.path.relpath(value, start=self.package),
                                    quote=True)
