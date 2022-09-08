@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "58679b6b_ecdf5cd5",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 34
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-08T00:17:08Z",
+      "side": 1,
+      "message": "From http://aosp/2200035 review I noticed this is not the expected tuple from the doc-string: `A tuple, where the first element is the text to be found in the final output, and the second element is the expected number of occurrences.` \n\nPlease fix or the doc string.",
+      "range": {
+        "startLine": 90,
+        "startChar": 24,
+        "endLine": 90,
+        "endChar": 59
+      },
+      "revId": "200472dc974b7fafd533612b2ba15890ec6e7819",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "d1f925e1_b5c0491f",
