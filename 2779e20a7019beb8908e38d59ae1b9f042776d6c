@@ -69,6 +69,30 @@
       },
       "revId": "2779e20a7019beb8908e38d59ae1b9f042776d6c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f13356f8_81bb807b",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-08T22:35:50Z",
+      "side": 1,
+      "message": "And what would be the consequences of not calling them together? will the user receive a clear error for why is the target failing? \n\nCan we avoid having that dependency somehow? maybe by having a similar filegroup within db45c target? or by putting the filegroup outside of `define_common_kernels`?",
+      "parentUuid": "8811b700_58035d82",
+      "range": {
+        "startLine": 836,
+        "startChar": 4,
+        "endLine": 836,
+        "endChar": 96
+      },
+      "revId": "2779e20a7019beb8908e38d59ae1b9f042776d6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
