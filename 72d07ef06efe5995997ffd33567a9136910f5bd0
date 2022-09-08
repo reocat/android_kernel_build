@@ -22,6 +22,30 @@
       },
       "revId": "72d07ef06efe5995997ffd33567a9136910f5bd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8493c63f_1673a6d7",
+        "filename": "kleaf/tests/ddk_test/ddk_headers_test.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-08T23:16:01Z",
+      "side": 1,
+      "message": "I think it is intentional that the constants in tests are duplicated from the constants used in actual code. For example, suppose you have this code:\n\n```\ndef foo(): \n  return \"Your string is bad!\"\n```\n\nThen, your test may be something like:\n\n```\ndef test_foo():\n  assert \"bad\" in foo()\n```\n\n... instead of defining a constant used in both.\n\nNote that here, I am only checking a substring in the message.",
+      "parentUuid": "51f81bfc_07b48e26",
+      "range": {
+        "startLine": 100,
+        "startChar": 25,
+        "endLine": 100,
+        "endChar": 43
+      },
+      "revId": "72d07ef06efe5995997ffd33567a9136910f5bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
