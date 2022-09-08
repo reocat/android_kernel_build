@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69ba1f02_ecd39a78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-08T21:22:17Z",
+      "side": 1,
+      "message": "TH fails on android13.\n\nIt is possible that some Bazel binary update is missing on android13, causing build to fail.\n\nPerhaps we should update the binaries? See https://android.googlesource.com/platform/prebuilts/bazel/linux-x86_64/",
+      "revId": "b907c800a2006f3906bd8cfca4bff0d4d0b322c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
