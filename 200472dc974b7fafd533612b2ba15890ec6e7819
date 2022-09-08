@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1f925e1_b5c0491f",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 34
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-08T00:10:15Z",
+      "side": 1,
+      "message": "I wonder if this also need to check if no other instance of `name \u003d \"default_name\"` is found. but not a CL blocker.",
+      "range": {
+        "startLine": 123,
+        "startChar": 8,
+        "endLine": 123,
+        "endChar": 33
+      },
+      "revId": "200472dc974b7fafd533612b2ba15890ec6e7819",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
