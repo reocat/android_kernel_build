@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc305dbc_5ba07c4a",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-08T00:22:04Z",
+      "side": 1,
+      "message": "Just checking, this is also defined in L717.",
+      "range": {
+        "startLine": 538,
+        "startChar": 8,
+        "endLine": 538,
+        "endChar": 33
+      },
+      "revId": "d68919225973662867d9fbdb336490a7354dd344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74e71542_be7a6ac7",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-08T00:22:04Z",
+      "side": 1,
+      "message": "I left a comment in http://aosp/2172953 w.r.t the correct usage for this tuple.",
+      "range": {
+        "startLine": 258,
+        "startChar": 12,
+        "endLine": 259,
+        "endChar": 49
+      },
+      "revId": "d68919225973662867d9fbdb336490a7354dd344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
