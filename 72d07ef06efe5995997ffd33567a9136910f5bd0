@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51f81bfc_07b48e26",
+        "filename": "kleaf/tests/ddk_test/ddk_headers_test.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-08T23:09:01Z",
+      "side": 1,
+      "message": "nit: Not necessarily for this CL, but have we considered defining a set of string errors? or error formats? this way if changes are done in the future we will only need to perform them in one place.",
+      "range": {
+        "startLine": 100,
+        "startChar": 25,
+        "endLine": 100,
+        "endChar": 43
+      },
+      "revId": "72d07ef06efe5995997ffd33567a9136910f5bd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
