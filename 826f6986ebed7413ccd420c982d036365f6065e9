@@ -22,6 +22,30 @@
       },
       "revId": "826f6986ebed7413ccd420c982d036365f6065e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db86a748_4ce2b103",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-09T22:15:49Z",
+      "side": 1,
+      "message": "This is to be consistent with ddk_modules.\n\n`srcs` are local sources and headers.\n\n`hdrs` are exported headers.",
+      "parentUuid": "4e5955b9_e4e19dbc",
+      "range": {
+        "startLine": 915,
+        "startChar": 8,
+        "endLine": 915,
+        "endChar": 12
+      },
+      "revId": "826f6986ebed7413ccd420c982d036365f6065e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
