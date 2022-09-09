@@ -87,6 +87,24 @@
       "parentUuid": "ee08958f_578c5049",
       "revId": "b667150de72367977d83cdd103e1044c03d0064e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "748caa93_79487c1d",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-09-09T16:39:15Z",
+      "side": 1,
+      "message": "The brace grouping works in `zsh`, but not in `bash`. They\u0027re not needed though! We can just drop the `|| true` after `grep` and it has the same effect. Good suggestion!",
+      "parentUuid": "e67abc03_fe52f810",
+      "revId": "b667150de72367977d83cdd103e1044c03d0064e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
