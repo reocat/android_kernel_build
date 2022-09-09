@@ -51,6 +51,24 @@
       "parentUuid": "c1465175_dcf6ee08",
       "revId": "b667150de72367977d83cdd103e1044c03d0064e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee08958f_578c5049",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-09-09T01:32:00Z",
+      "side": 1,
+      "message": "If it works for you, then I\u0027ll leave as is. I think it\u0027s a very tiny bit safer. If we did `|| true`, we\u0027d miss something like the script lacking permission to `rm` the files (something we\u0027d want bubbling up and halting the script).",
+      "parentUuid": "2888bb4e_d884c9b8",
+      "revId": "b667150de72367977d83cdd103e1044c03d0064e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
