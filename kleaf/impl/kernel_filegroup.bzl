@@ -18,6 +18,7 @@ load(
     "KernelBuildAbiInfo",
     "KernelBuildExtModuleInfo",
     "KernelBuildInTreeModulesInfo",
+    "KernelBuildMixedTreeInfo",
     "KernelBuildUapiInfo",
     "KernelImagesInfo",
     "KernelUnstrippedModulesInfo",
