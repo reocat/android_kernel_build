@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0f824a0_024e37c3",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-09T19:16:24Z",
+      "side": 1,
+      "message": "I think this still\n\n\u003e masks errors of `find` , what you actually want to do is allowing `grep` to fail. \n\nMaybe try the subshell?",
+      "range": {
+        "startLine": 199,
+        "startChar": 6,
+        "endLine": 199,
+        "endChar": 100
+      },
+      "revId": "1ba85bc9c2cc027770997bd0b231bf7136abc6d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
