@@ -16,6 +16,24 @@
       "message": "note, this function is _very_ long by now and this change hard to review due to the distance of the initial definition of `base_kernel_files` and its eventual use.\nFor maintainability, this needs to be refactored in smaller units.",
       "revId": "e54225c2dad181625e12725223c42088bb8268e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1b6c75b_d2263f79",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-09T23:08:33Z",
+      "side": 1,
+      "message": "100% agree",
+      "parentUuid": "4012616f_be6ab73b",
+      "revId": "e54225c2dad181625e12725223c42088bb8268e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
