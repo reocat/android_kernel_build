@@ -16,6 +16,24 @@
       "message": "Though simple and straightforward enough, adds too much flexibility that counters the design rationale of Kleaf. It adds too many \"switches and knobs\" to the build system, which Kleaf tries to reduce when switching from build/build.sh. One disadvantage about build/build.sh is the numerous environment variables controlling different branches everywhere in the build. I would avoid adding environment variables back.",
       "revId": "013cc6edbb4214d8b70081967f56f7580dae973f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5393a1a_3870d822",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-09T18:28:15Z",
+      "side": 1,
+      "message": "I agree that exporting variables is not the way to go. I would be open to discuss make args a la\n\n  make VAR\u003dvalue target\n\nthat also creates some sort of environment, but at least local to the make invocations. I expect that feature to be requested in the future, but before landing, let\u0027s discuss what exact problem is to be solved by this that cannot be solved in a more idiomatic way.",
+      "parentUuid": "89b26db6_0000ab6a",
+      "revId": "013cc6edbb4214d8b70081967f56f7580dae973f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
