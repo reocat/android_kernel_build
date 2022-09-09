@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "adb6196e_03a16bc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-09T23:14:14Z",
+      "side": 1,
+      "message": "Bypassing due to TH bug: b/245569480",
+      "revId": "e54225c2dad181625e12725223c42088bb8268e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4012616f_be6ab73b",
