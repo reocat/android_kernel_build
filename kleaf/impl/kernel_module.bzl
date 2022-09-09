@@ -40,6 +40,7 @@ def kernel_module(
         srcs = None,
         deps = None,
         kernel_module_deps = None,
+        defines = None,
         **kwargs):
     """Generates a rule that builds an external kernel module.
 
@@ -130,6 +131,12 @@ def kernel_module(
             `nfc/nfc.ko` is the label to the file.
 
             See `search_and_cp_output.py` for details.
+        defines: Additional environment variables definitions to set during `make` build.
+
+            Example:
+            ```
+            defines: ["MY_VAR_1=foo", "MY_VAR_2=bar"]
+            ```
         kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -152,6 +159,7 @@ def kernel_module(
         srcs = srcs,
         kernel_build = kernel_build,
         deps = deps,
+        defines = defines,
         outs = outs,
     )
     kwargs = _kernel_module_set_defaults(kwargs)
@@ -306,6 +314,9 @@ def _kernel_module_impl(ctx):
 
     command += """
              # Set variables
+               for var_set in {defines}; do
+                 export ${{var_set}}
+               done
                if [ "${{DO_NOT_STRIP_MODULES}}" != "1" ]; then
                  module_strip_flag="INSTALL_MOD_STRIP=1"
                fi
@@ -348,6 +359,7 @@ def _kernel_module_impl(ctx):
         module_symvers = module_symvers.path,
         modules_staging_dir = modules_staging_dws.directory.path,
         outdir = outdir,
+        defines = " ".join(ctx.attr.defines),
         kernel_uapi_headers_dir = kernel_uapi_headers_dws.directory.path,
         check_declared_output_list = ctx.file._check_declared_output_list.path,
         all_module_names_file = all_module_names_file.path,
@@ -466,6 +478,7 @@ _kernel_module = rule(
         "deps": attr.label_list(
             providers = [KernelEnvInfo, KernelModuleInfo],
         ),
+        "defines": attr.string_list(),
         # Not output_list because it is not a list of labels. The list of
         # output labels are inferred from name and outs.
         "outs": attr.output_list(),
@@ -494,6 +507,9 @@ def _kernel_module_set_defaults(kwargs):
 
     if kwargs.get("outs") == None:
         kwargs["outs"] = ["{}.ko".format(kwargs["name"])]
+
+    if kwargs.get("defines") == None:
+        kwargs["defines"] = []
 
     if kwargs.get("srcs") == None:
         kwargs["srcs"] = native.glob([
