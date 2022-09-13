@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35460cbc_1c76fa8e",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-13T19:03:21Z",
+      "side": 1,
+      "message": "includes should also be passed into makefiles to generate -I flags",
+      "revId": "ec4b930b8bbd2a7cb25bd9db65e926b044a4ad5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0534c6d4_0a248286",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-13T19:03:21Z",
+      "side": 1,
+      "message": "These can be files\n\nAlso, add ddk_module.includes as well.",
+      "revId": "ec4b930b8bbd2a7cb25bd9db65e926b044a4ad5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
