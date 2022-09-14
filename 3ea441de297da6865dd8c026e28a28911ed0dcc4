@@ -22,6 +22,30 @@
       },
       "revId": "3ea441de297da6865dd8c026e28a28911ed0dcc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4424304_7cc5e3d1",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-14T22:08:18Z",
+      "side": 1,
+      "message": "Are the outputs sorted? if so maybe https://man7.org/linux/man-pages/man1/comm.1.html?",
+      "parentUuid": "ade42c6e_5d01df98",
+      "range": {
+        "startLine": 758,
+        "startChar": 0,
+        "endLine": 762,
+        "endChar": 16
+      },
+      "revId": "3ea441de297da6865dd8c026e28a28911ed0dcc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
