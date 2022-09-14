@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000029017683",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2199428?revision\u003d21",
+      "fixSuggestions": [
+        {
+          "fixId": "9ebc7507_f2db9c9a",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/ddk/makefiles.bzl",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 21,
+                "endChar": 0
+              },
+              "replacement": "load(\":ddk/ddk_headers.bzl\", \"DdkHeadersInfo\", \"ddk_headers_common_impl\")\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e013831b_96b35ae2",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-09-14T00:50:49Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/ddk/makefiles.bzl` to format the file, or apply the suggested fix.",
+      "revId": "01280476fe0b1938e7deb657f380ba19168f469d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
