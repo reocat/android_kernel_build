@@ -877,7 +877,7 @@ def define_db845c(
         build_config = build_config,
         kmi_symbol_list = kmi_symbol_list,
         # Enable mixed build.
-        base_kernel = "//common:kernel_aarch64",
+        base_kernel = ":kernel_aarch64",
     )
 
     kernel_modules_install(
@@ -900,8 +900,9 @@ def define_db845c(
             name,
             name + "_images",
             name + "_modules_install",
-            # mixed build.
-            "//common:kernel_aarch64",
+            # Mixed build: Additional GKI artifacts.
+            ":kernel_aarch64",
+            ":kernel_aarch64_uapi_headers",
         ],
         dist_dir = dist_dir,
         flat = True,
