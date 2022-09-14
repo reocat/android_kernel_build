@@ -1,0 +1,51 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000029085367",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2215235?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "1fab605f_ec7c7cfe",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/common_kernels.bzl",
+              "range": {
+                "startLine": 892,
+                "startChar": 0,
+                "endLine": 895,
+                "endChar": 0
+              },
+              "replacement": "        name \u003d name + \"_merged_kernel_uapi_headers\",\n        kernel_build \u003d name,\n        kernel_modules \u003d [],\n"
+            },
+            {
+              "path": "kleaf/common_kernels.bzl",
+              "range": {
+                "startLine": 913,
+                "startChar": 0,
+                "endLine": 914,
+                "endChar": 0
+              },
+              "replacement": "            \":\" + name + \"_merged_kernel_uapi_headers\",\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "4b6f6d09_ac8f0ae5",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-09-14T23:38:49Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/common_kernels.bzl` to format the file, or apply the suggested fix.",
+      "revId": "f2db6068d98aa950049fce4fdaa36b8635e1eac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
