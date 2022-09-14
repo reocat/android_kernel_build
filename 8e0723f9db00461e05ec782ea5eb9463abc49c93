@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000029084714",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2194843?revision\u003d16",
+      "fixSuggestions": [
+        {
+          "fixId": "367ba01f_e6ec1140",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "BUILD.bazel",
+              "range": {
+                "startLine": 54,
+                "startChar": 0,
+                "endLine": 55,
+                "endChar": 0
+              },
+              "replacement": "filegroup(\n    name \u003d \"dump-abi-scripts\",\n    srcs \u003d [\n        \"abi/abitool.py\",\n        \"abi/dump_abi\",\n    ],\n)\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "61ea2dad_8cb24f53",
+        "filename": "BUILD.bazel",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-09-14T23:25:59Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "8e0723f9db00461e05ec782ea5eb9463abc49c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
