@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b409e818_28046214",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-14T22:55:21Z",
+      "side": 1,
+      "message": "Also missing:\n\nkernel_aarch64_headers\nkernel_aarch64_images (this includes system_dlkm)\n\n(Or you can use kernel_aarch64_additional_artifacts directly)\n\nPlease also test with CL:2199977 to ensure no conflicts",
+      "revId": "2ebf520f7cd9812188decd3841753718e6a9ce5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "901f80b4_2e0f1836",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 905,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-14T22:55:21Z",
+      "side": 1,
+      "message": "Instead of this, I think you need to merge the UAPI headers. See the merged_kernel_uapi_headers rule and https://android.googlesource.com/kernel/google-modules/raviole-device/+/refs/heads/android13-gs-raviole-5.15/BUILD.bazel#329 for an example.",
+      "range": {
+        "startLine": 905,
+        "startChar": 12,
+        "endLine": 905,
+        "endChar": 43
+      },
+      "revId": "2ebf520f7cd9812188decd3841753718e6a9ce5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
