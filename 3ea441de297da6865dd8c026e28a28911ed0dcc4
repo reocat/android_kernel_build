@@ -46,6 +46,30 @@
       },
       "revId": "3ea441de297da6865dd8c026e28a28911ed0dcc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48f9896c_34fce957",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-14T23:08:14Z",
+      "side": 1,
+      "message": "I can\u0027t use comm because:\n\nbase_modules contains paths like:\n\n```\nfoo/bar/baz.ko\n```\n\nand all_module_basenames_file contains basenames like:\n\n```\nbaz.ko\n```\n\nMy job is to filter out items in base_modules that contains basenames in all_module_basenames_file.",
+      "parentUuid": "f4424304_7cc5e3d1",
+      "range": {
+        "startLine": 758,
+        "startChar": 0,
+        "endLine": 762,
+        "endChar": 16
+      },
+      "revId": "3ea441de297da6865dd8c026e28a28911ed0dcc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
