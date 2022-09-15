@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2db62bf5_940b457d",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-15T11:35:54Z",
+      "side": 1,
+      "message": "That was not the first time this was reported, one other instance from 2016 is here: https://github.com/bazelbuild/bazel/issues/1958 \n\nThe suggested solution is to get your editor to do a better job and not place files in the sources but in ~/.bak or ~/.swp or wherever ...\n\nI am not a big fan of having those extra wrinkles here. Similarly that would constantly invalidate your build if you work in common/scripts/... as they are globbed **/* as well.\n\nPerhaps a more sustainable solution here is to give abi symbol list files an extension and glob inclusively for that. Now is the time to break things on android-14*, shall we?  How about .symbols ?",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 20
+      },
+      "revId": "67e88a473c41adb934edc961f54fe7b9932b4578",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
