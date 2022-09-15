@@ -16,6 +16,24 @@
       "message": "see discussion in cherry-pick. I am not liking it to accommodate editors placing files into source trees in the first place.",
       "revId": "61eb31279baa6276c3334985751d6e5d78741263",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09bd556e_c7eb5290",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-09-15T16:15:38Z",
+      "side": 1,
+      "message": "In the beginning... there was a list of files, and it was good.\nThen man (a partner) forgot to add a file and the symbols were ignored, and it was bad.\nThen a developer thought, \"let us use a glob\", and it was good.\nExcept for the pesky XML file which needed a special case, and it was bad...\n... as the next developer pointed out at the time. But it worked well, and it was good...\n... until one day an editor somehow failed to notice it was in a Git tree, and created a backup file, and another developer spent quite some time trying to work out what was wrong, including examining manifest files, and it was again bad.\nSo a new glob exception was added, and it was again good.\nBut another developer pointed the finger of blame at the second developer\u0027s editor, which had been bad.\n\nWhen will this end?\nCan we go back to an explicit list?",
+      "parentUuid": "c1efe501_ccf85198",
+      "revId": "61eb31279baa6276c3334985751d6e5d78741263",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
