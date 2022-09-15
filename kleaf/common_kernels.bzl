@@ -868,7 +868,7 @@ def define_db845c(
     if dist_dir == None:
         dist_dir = "out/{branch}/dist".format(branch = BRANCH)
 
-    kernel_build(
+    kernel_build_abi(
         name = name,
         outs = outs,
         srcs = [":common_kernel_sources"],
