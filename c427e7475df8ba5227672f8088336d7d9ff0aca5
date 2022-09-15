@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad03c4e2_14b05823",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-15T00:03:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2c14ce4_804cdaee",
+      "range": {
+        "startLine": 894,
+        "startChar": 25,
+        "endLine": 894,
+        "endChar": 27
+      },
+      "revId": "c427e7475df8ba5227672f8088336d7d9ff0aca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61a8f384_163ddd39",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-14T23:50:21Z",
       "side": 1,
       "message": "nit: you can drop this (same as L907~909)\n\nI know \":\" are recommended for targets, but if the target name is constructed programatically, adding the \":\" seems extraneous.\n\nAlso please move to below L909",
+      "range": {
+        "startLine": 913,
+        "startChar": 12,
+        "endLine": 913,
+        "endChar": 18
+      },
+      "revId": "c427e7475df8ba5227672f8088336d7d9ff0aca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6dfddda_ccff4ba9",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-15T00:03:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61a8f384_163ddd39",
       "range": {
         "startLine": 913,
         "startChar": 12,
