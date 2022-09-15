@@ -33,6 +33,24 @@
       "message": "These can be files\n\nAlso, add ddk_module.includes as well.",
       "revId": "ec4b930b8bbd2a7cb25bd9db65e926b044a4ad5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cf36563_a28d11f0",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 20
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-15T00:22:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0534c6d4_0a248286",
+      "revId": "ec4b930b8bbd2a7cb25bd9db65e926b044a4ad5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
