@@ -33,6 +33,42 @@
       "message": "some more documentation and perhaps an example would be useful now that this is standalone and as such lacks the context it is used in.",
       "revId": "d5265f2febf52e064b386b31440b4c6cc8543ee5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "047be8db_f611f434",
+        "filename": "kleaf/tests/failure_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:06:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8ec0452_c35fa858",
+      "revId": "d5265f2febf52e064b386b31440b4c6cc8543ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5582ea3f_42db7812",
+        "filename": "kleaf/tests/failure_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:06:50Z",
+      "side": 1,
+      "message": "b/247159475\n\n(Same for diff_test which doesn\u0027t use hermetic tools for the skylib one: b/237831223)",
+      "parentUuid": "62222e11_a260e4d2",
+      "revId": "d5265f2febf52e064b386b31440b4c6cc8543ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
