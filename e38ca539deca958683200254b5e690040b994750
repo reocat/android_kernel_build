@@ -1,0 +1,158 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daacb461_5902eae0",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 29
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:27:58Z",
+      "side": 1,
+      "message": "should this rather go into kleaf/impl/ddk/BUILD.bazel?",
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6557ce6_3f214af0",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 29
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:27:58Z",
+      "side": 1,
+      "message": "do we need public visibility because of the macro invocation?",
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4caaa743_ab171ed1",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 29
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:27:58Z",
+      "side": 1,
+      "message": "nit: line length.",
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db9b89ba_766b73f1",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:27:58Z",
+      "side": 1,
+      "message": "nit: the changes here could go to a separate change",
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffacb61b_4a2f9cee",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:27:58Z",
+      "side": 1,
+      "message": "can you explain how you come to the conclusion that there are no more source files under the conditions you checked?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 64
+      },
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "806ca8f8_2c3640f3",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:27:58Z",
+      "side": 1,
+      "message": "\"Do not use assert statements for validating argument values of a public API. assert is used to ensure internal correctness, not to enforce correct usage nor to indicate that some unexpected event occurred.\"\n\nhttps://google.github.io/styleguide/pyguide.html#24-exceptions",
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45e9d416_19fc43d9",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 29
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:27:58Z",
+      "side": 1,
+      "message": "those names will likely become stale, rather tell exactly what went wrong, i.e. nothing that provides `DdkHeadersInfo` could be found?",
+      "range": {
+        "startLine": 34,
+        "startChar": 59,
+        "endLine": 34,
+        "endChar": 97
+      },
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79464558_9b981c25",
+        "filename": "kleaf/tests/ddk_test/makefiles_test.bzl",
+        "patchSetId": 29
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:27:58Z",
+      "side": 1,
+      "message": "--",
+      "range": {
+        "startLine": 44,
+        "startChar": 28,
+        "endLine": 44,
+        "endChar": 29
+      },
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

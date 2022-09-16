@@ -191,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83531125_25b750ff",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:27:58Z",
+      "side": 1,
+      "message": "We could have, probably not too common.\n\nThough in future we might see .rs files there. In fact, the Rust support in the kernel is shaping up nicely and from a toolchain perspective it is reasonable to believe that we could support it.",
+      "parentUuid": "76a6d484_79696895",
+      "range": {
+        "startLine": 81,
+        "startChar": 31,
+        "endLine": 81,
+        "endChar": 32
+      },
+      "revId": "03f7aab14d7a321fd3eefd2bc1014a87bf5cd91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc39b911_479c1558",
         "filename": "kleaf/impl/ddk/gen_makefiles.py",
         "patchSetId": 8

@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60b788db_547a2802",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:27:58Z",
+      "side": 1,
+      "message": "os.path.join()",
+      "range": {
+        "startLine": 34,
+        "startChar": 15,
+        "endLine": 34,
+        "endChar": 18
+      },
+      "revId": "71c02ec1d6fa70089bd8a986779abaa0e67e6f83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f43045d_d8ac9058",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:27:58Z",
+      "side": 1,
+      "message": "this might lead to a stacktrace looking like a crash. printing an error and sys.exit(1) might give the better feedback to developers.\n\nIn particular, this does not assert an internal state but rather a user error. Especially see below when you assert on the valid file extensions.\n\nAnd then there is the style guide saying\n\n```\nassert is used to ensure internal correctness, not to enforce correct usage nor to indicate that some unexpected event occurred. \n```\nhttps://google.github.io/styleguide/pyguide.html#24-exceptions",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 65
+      },
+      "revId": "71c02ec1d6fa70089bd8a986779abaa0e67e6f83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
