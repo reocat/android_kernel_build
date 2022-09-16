@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b12fc6_41513472",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:45:55Z",
+      "side": 1,
+      "message": "This breaks when kmi_symbol_list_strict_mode is enabled. An action in kernel_build (the one that checks kmi_symbol_list_strict_mode) needs the kmi symbol lists.\n\nPerhaps add it back to that particular action?",
+      "revId": "a06ba8107a4434389988e0b8f7e680e9df8fd363",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
