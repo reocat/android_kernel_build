@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc16da49_6a5104cc",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 33
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:52:22Z",
+      "side": 1,
+      "message": "maybe rename this in the example (parent change) to \"private\" header to hint at the visibility?",
+      "range": {
+        "startLine": 42,
+        "startChar": 32,
+        "endLine": 42,
+        "endChar": 44
+      },
+      "revId": "223ec019fedf571162d7eefbaf79e9d24ead2a22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aa30ec1_a5ed1274",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 33
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:52:22Z",
+      "side": 1,
+      "message": "perhaps two examples. one simple one that is \n\n```\n    ddk_module(\n        name \u003d \"my_module\",\n        srcs \u003d [\"my_module.c\", \"local_header.h\"],\n        # Exported headers\n        hdrs \u003d [\"my_module.h\"],\n        includes \u003d [\".\"],\n    )\n```\n\nand for the record, the include dirs should _not_ be automatic in order to allow\n\n```\n        hdrs \u003d [\"some_name/exported.h\"],\n        includes \u003d [\".\"],\n```\n\nand require `#include \u003csome_name/exported.h\u003e`",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 31
+      },
+      "revId": "223ec019fedf571162d7eefbaf79e9d24ead2a22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
