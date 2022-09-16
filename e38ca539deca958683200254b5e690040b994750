@@ -123,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d2123e1_da1429a4",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 29
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:28:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4caaa743_ab171ed1",
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db9b89ba_766b73f1",
@@ -136,6 +154,24 @@
       "writtenOn": "2022-09-16T17:27:58Z",
       "side": 1,
       "message": "nit: the changes here could go to a separate change",
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "540f72e2_9d14ffcd",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:28:15Z",
+      "side": 1,
+      "message": "CL:2218550",
+      "parentUuid": "db9b89ba_766b73f1",
       "revId": "e38ca539deca958683200254b5e690040b994750",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -165,6 +201,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a135b796_a37e3ebf",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:28:15Z",
+      "side": 1,
+      "message": "This is to skip the case for `obj-foo +\u003d foo.o` because that confuses Kbuild. I leave a comment here in case the reader is confused about why foo.c has no lines generated.\n\nThis usually indicates we only have foo.c that builds into foo.ko. However, such restriction is not kept by this script, but by Kbuild. Perhaps I should delete the text \"single\" here?",
+      "parentUuid": "ffacb61b_4a2f9cee",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 64
+      },
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "806ca8f8_2c3640f3",
         "filename": "kleaf/impl/ddk/gen_makefiles.py",
         "patchSetId": 29
@@ -176,6 +236,24 @@
       "writtenOn": "2022-09-16T17:27:58Z",
       "side": 1,
       "message": "\"Do not use assert statements for validating argument values of a public API. assert is used to ensure internal correctness, not to enforce correct usage nor to indicate that some unexpected event occurred.\"\n\nhttps://google.github.io/styleguide/pyguide.html#24-exceptions",
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5df5288_6e0ed546",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:28:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "806ca8f8_2c3640f3",
       "revId": "e38ca539deca958683200254b5e690040b994750",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -193,6 +271,30 @@
       "writtenOn": "2022-09-16T17:27:58Z",
       "side": 1,
       "message": "those names will likely become stale, rather tell exactly what went wrong, i.e. nothing that provides `DdkHeadersInfo` could be found?",
+      "range": {
+        "startLine": 34,
+        "startChar": 59,
+        "endLine": 34,
+        "endChar": 97
+      },
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bc9c34f_4729e263",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 29
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:28:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45e9d416_19fc43d9",
       "range": {
         "startLine": 34,
         "startChar": 59,
