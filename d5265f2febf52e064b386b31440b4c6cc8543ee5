@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62222e11_a260e4d2",
+        "filename": "kleaf/tests/failure_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:09:49Z",
+      "side": 1,
+      "message": "perhaps this should go into the skylib?",
+      "revId": "d5265f2febf52e064b386b31440b4c6cc8543ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8ec0452_c35fa858",
+        "filename": "kleaf/tests/failure_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-16T17:09:49Z",
+      "side": 1,
+      "message": "some more documentation and perhaps an example would be useful now that this is standalone and as such lacks the context it is used in.",
+      "revId": "d5265f2febf52e064b386b31440b4c6cc8543ee5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
