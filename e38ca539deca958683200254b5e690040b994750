@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9218c3a7_db55446f",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 29
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:10:03Z",
+      "side": 1,
+      "message": "Yes this is needed, because we use the makefiles() rule in other packages.",
+      "parentUuid": "50f76eb4_e15b498a",
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4caaa743_ab171ed1",
