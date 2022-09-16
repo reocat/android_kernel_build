@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "faffb404_666f5793",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 29
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T22:10:08Z",
+      "side": 1,
+      "message": "I don\u0027t have ddk/BUILD.bazel; the whole impl is its own package (I don\u0027t want to deal with cross dependency between impl/*.bzl and impl/ddk/*.bzl)",
+      "parentUuid": "daacb461_5902eae0",
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6557ce6_3f214af0",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-09-16T17:27:58Z",
       "side": 1,
       "message": "do we need public visibility because of the macro invocation?",
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50f76eb4_e15b498a",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 29
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T22:10:08Z",
+      "side": 1,
+      "message": "good point, let me try removing it",
+      "parentUuid": "e6557ce6_3f214af0",
       "revId": "e38ca539deca958683200254b5e690040b994750",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -162,6 +198,30 @@
       "writtenOn": "2022-09-16T17:27:58Z",
       "side": 1,
       "message": "--",
+      "range": {
+        "startLine": 44,
+        "startChar": 28,
+        "endLine": 44,
+        "endChar": 29
+      },
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4c05ebc_d95ecf5d",
+        "filename": "kleaf/tests/ddk_test/makefiles_test.bzl",
+        "patchSetId": 29
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T22:10:08Z",
+      "side": 1,
+      "message": "technically we can have short options, though we don\u0027t have any now. So I think it makes sense to use - here.",
+      "parentUuid": "79464558_9b981c25",
       "range": {
         "startLine": 44,
         "startChar": 28,
