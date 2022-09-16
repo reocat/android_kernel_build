@@ -41,6 +41,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "874edee5_69232fd8",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 60
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:56:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b186497_17d3936d",
+      "revId": "e65908fe3047263d46d49d85a631fbc13c3171f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a4cb2df_34e6c92e",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 60
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:56:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a6e0cb9_7470346c",
+      "range": {
+        "startLine": 46,
+        "startChar": 96,
+        "endLine": 46,
+        "endChar": 100
+      },
+      "revId": "e65908fe3047263d46d49d85a631fbc13c3171f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d332018_3da7a724",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-09-16T17:38:07Z",
       "side": 1,
       "message": "specify the `ddk_headers` target in `deps`. \n\n(just a clarification)",
+      "range": {
+        "startLine": 47,
+        "startChar": 10,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "e65908fe3047263d46d49d85a631fbc13c3171f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf1e76cb_7c5543c7",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 60
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:56:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d332018_3da7a724",
       "range": {
         "startLine": 47,
         "startChar": 10,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47182ff2_b5e94257",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 60
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:56:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99e7d910_d9d6b70a",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 10
+      },
+      "revId": "e65908fe3047263d46d49d85a631fbc13c3171f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f7210e6_810c4039",
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c8c9c46_cc25a1f2",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 60
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:56:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f7210e6_810c4039",
+      "range": {
+        "startLine": 54,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 45
+      },
+      "revId": "e65908fe3047263d46d49d85a631fbc13c3171f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "007306b5_4a8de032",
@@ -123,6 +237,24 @@
       "writtenOn": "2022-09-16T17:38:07Z",
       "side": 1,
       "message": "Is there a naming convention for internal things? perhaps `__ddk_makefiles_dir` to idiomatically discourage use?",
+      "revId": "e65908fe3047263d46d49d85a631fbc13c3171f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d436b20c_3600a9ac",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 60
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:56:56Z",
+      "side": 1,
+      "message": "There are no naming conventions here. I just invent `internal_*`.\n\nI can\u0027t use `__` because things with `_` are private, meaning that it won\u0027t be accessible from `ddk_module` macro invocation.\n\nBTW, the `_kernel_module` (rule) itself isn\u0027t public either. The public interfaces are `kernel_module` (macro) and `ddk_module` (macro).\n\n- ddk_module always override this.\n- For `kernel_module`, because I pass kwargs to the rule directly (for visibility, tags and other things), it is possible that a user changes its value. There\u0027s nothing I can do to stop that, honestly, beside creating another wrapper over kernel_module to check if the `internal_*` keys are set in kwargs (but skip the check for ddk_modules).",
+      "parentUuid": "007306b5_4a8de032",
       "revId": "e65908fe3047263d46d49d85a631fbc13c3171f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
