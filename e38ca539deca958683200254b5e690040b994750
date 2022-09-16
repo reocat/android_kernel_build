@@ -223,6 +223,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e6ead6e_9bc03969",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-16T23:28:38Z",
+      "side": 1,
+      "message": "Resolving, let me know if this looks better now",
+      "parentUuid": "a135b796_a37e3ebf",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 64
+      },
+      "revId": "e38ca539deca958683200254b5e690040b994750",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "806ca8f8_2c3640f3",
