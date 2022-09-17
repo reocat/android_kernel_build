@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2a5e774_ec2610c5",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 33
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-17T00:07:18Z",
+      "side": 1,
+      "message": "Done (in the previous CL)",
+      "parentUuid": "cc16da49_6a5104cc",
+      "range": {
+        "startLine": 42,
+        "startChar": 32,
+        "endLine": 42,
+        "endChar": 44
+      },
+      "revId": "223ec019fedf571162d7eefbaf79e9d24ead2a22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0aa30ec1_a5ed1274",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-16T17:52:22Z",
       "side": 1,
       "message": "perhaps two examples. one simple one that is \n\n```\n    ddk_module(\n        name \u003d \"my_module\",\n        srcs \u003d [\"my_module.c\", \"local_header.h\"],\n        # Exported headers\n        hdrs \u003d [\"my_module.h\"],\n        includes \u003d [\".\"],\n    )\n```\n\nand for the record, the include dirs should _not_ be automatic in order to allow\n\n```\n        hdrs \u003d [\"some_name/exported.h\"],\n        includes \u003d [\".\"],\n```\n\nand require `#include \u003csome_name/exported.h\u003e`",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 31
+      },
+      "revId": "223ec019fedf571162d7eefbaf79e9d24ead2a22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bf989ca_4da22eee",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 33
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-17T00:07:18Z",
+      "side": 1,
+      "message": "Sorry I don\u0027t follow. How is your example different from the existing one? You mean `includes`?\n\nI actually want to encourage the use of a separate include directory so that you one can clearly see what is exported in the filesystem level (not just in BUILD files). e.g.\n\n```\n# BUILD.bazel\nddk_module(\n  name \u003d \"foo\",\n  includes \u003d [\"includes\"],\n  hdrs \u003d [\"includes/foo/exported.h\"],\n  srcs \u003d [\"foo.c\", \"private.h\"],\n)\n```\n\n```\n// foo.c\n#include \"private.h\"\n#include \u003cfoo/exported.h\u003e\n// #include \"include/foo/exported.h\" works too, but foo/exported.h is simpler\n```\n\n```\n// Another module that depends on foo.ko\n#include \u003cfoo/exported.h\u003e\n```\n\nIn this setup, a reader on `foo` knows immediately that it is exporting headers under `includes`, and to use it, they need to `#include \u003cfoo/exported.h\u003e`.\n\nThough this is encouraged, I don\u0027t stop people from using `includes \u003d [\".\"]`; it is less nice because then you need to control what are exported in the BUILD files.\n\nWDYT?\n\n(Also ack on the FTR part. The default values for incldues is empty.)",
+      "parentUuid": "0aa30ec1_a5ed1274",
       "range": {
         "startLine": 44,
         "startChar": 0,
