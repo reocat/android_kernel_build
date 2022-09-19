@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82e111fe_c33477d6",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 35
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2022-09-19T12:05:41Z",
+      "side": 1,
+      "message": "What is the benefit of using a target_group here?\n\nIt appears that you are recreating some functionality in Starlark that Bazel offers natively (e.g. requiring that a target have a specific set of providers)\n\nYou also seem to put references to ConfiguredTarget objects in providers; this, by itself, works, but it\u0027s also a little strange. The Bazelic way is to aggregate all the information you need at every node in the dependency graph. In addition to being \"Bazelic\", it\u0027s also not O(n^2): as it is, if you have a dependency chain of `kernel_module` rules, the bottom-most one would process one provider, the second from the bottom, two, etc.\n\nFor example, instead of saying (like below) \"for dep in every transitive dependency, collect its DdkHeadersInfo then iterate over the headers in them to construct transitive_inputs\", you\u0027d add a \"set of transitive headers\" field to DdkHeadersInfo and use that. Then you wouldn\u0027t need all the DdkHeadersInfo objects from your transitive closure, only the direct ones.\n\nThis might also obviate the need for target_group?\n\nA quick look at DdkHeadersInfo in `ddk_headers.bzl` indicates that `DdkHeaders.files` is already the transitive headers. But then why do you need to look at your transitive DdkHeaderInfo providers?",
+      "range": {
+        "startLine": 247,
+        "startChar": 5,
+        "endLine": 247,
+        "endChar": 53
+      },
+      "revId": "52288610ea611611a7ea8bb1b3424e881483065b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
