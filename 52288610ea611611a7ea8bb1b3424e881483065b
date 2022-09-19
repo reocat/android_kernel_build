@@ -22,6 +22,30 @@
       },
       "revId": "52288610ea611611a7ea8bb1b3424e881483065b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d6b7726_4487f78c",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 35
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-19T22:55:00Z",
+      "side": 1,
+      "message": "\u003e\u003e\u003e WALL OF TEXT WARNING \u003c\u003c\u003c\n\nThe use of `target_group` allows me to do CL:2201118 and CL:2201916. As the comment says, I want a filegroup, but for targets so that a dependent target also sees all providers of targets in the group.\n\nTake the two CLs for example. I want to have `slider_ddk_modules_install` to say:\n\n```\nkernel_modules \u003d [\"//...:nfc\"]\n```\n\n... that is effectively equivalent to ...\n\n```\nkernel_modules \u003d [\"//...:st21nfc\", \"//...:ese/st33spi\", \"//...:ese/st54spi\"]\n```\n\nkernel_modules_install requests `KernelModuleInfo` from its `kernel_modules` attribute.\n\nThis is just an example. I might want to put a `target_group` of `kernel_modules` in the `deps` of a `kernel_module` too, which requests `KernelEnvInfo`, `DdkHeadersInfo` as well. (KernelEnvInfo has a list[File] which needs to be converted to depset too, I know -\u003e b/247624301)\n\n\u003e You also seem to put references to ConfiguredTarget objects in providers; this, by itself, works, but it\u0027s also a little strange. The Bazelic way is to aggregate all the information you need at every node in the dependency graph.\n\nIndeed, there are many examples of doing this in Kleaf project. I\u0027ll clean this up with b/247622808.\n\nIs there any text in the Bazel documentation to discourage people from doing this?\n\n\u003e A quick look at DdkHeadersInfo in ddk_headers.bzl indicates that DdkHeaders.files is already the transitive headers. But then why do you need to look at your transitive DdkHeaderInfo providers?\n\nI think you are suggesting to create a rule that exports DdkHeadersInfo as the merged info. I assume you are referring to this solution:\n\n```\ndef _kernel_module_group_impl(ctx):\n  return [\n    DdkHeadersInfo(\n      files \u003d depset(transitive \u003d [target[DdkHeadersInfo].files for target in ctx.attr.srcs),\n      includes \u003d \u003csame, merge ctx.attr.srcs\u003e\n    ),\n    # Other infos\n  ]\nkernel_module_group \u003d rule(\n  impl \u003d _kernel_module_group_impl,\n  attrs \u003d {\"srcs\": attr.label_list(providers \u003d [DdkHeadersInfo, ...])},\n)\n```\n\n```\nkernel_module(name \u003d \"a\")\nkernel_module(name \u003d \"b\")\n\nkernel_modules_install(name \u003d \"x\", kernel_modules \u003d [\"a\", \"b\"])\n# becomes\nkernel_module_group(name \u003d \"group\", srcs \u003d [\"a\", \"b\"])\nkernel_modules_install(name \u003d \"x\", kernel_modules \u003d [\"group\"])\n```\n\nThis solution:\n\n- Is specific to kernel_module / ddk_module\u0027s. Unlike target_group, I can\u0027t use it for other rules with other infos.\n  - This means if the providers that kernel_module exports changes, kernel_module_group also need to change.\n- Does not work for other infos. See below.\n\nFor example, a `kernel_module` also exports `KernelUnstrippedModulesInfo(directory: File)`, `ModuleSymversInfo(restore_path: str)`, and `KernelEnvInfo(setup: str)`. These pieces information can\u0027t be joined as easily as `depset()`s or `list`s; they must be merged in a case-by-case basis. Admittedly, I can deal with them one by one (in this case, they all happen to be able to transformed to `depset`s). But I\u0027ll need to do this process again for other rules if I want to use them later.\n\nI hope this use case makes sense. What\u0027s your suggestion on approaching this problem?",
+      "parentUuid": "82e111fe_c33477d6",
+      "range": {
+        "startLine": 247,
+        "startChar": 5,
+        "endLine": 247,
+        "endChar": 53
+      },
+      "revId": "52288610ea611611a7ea8bb1b3424e881483065b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
