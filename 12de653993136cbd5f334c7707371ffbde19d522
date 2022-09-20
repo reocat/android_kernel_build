@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "602c35cc_16825785",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-20T00:22:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c25ddf10_95ba0f5d",
+      "range": {
+        "startLine": 18,
+        "startChar": 26,
+        "endLine": 18,
+        "endChar": 31
+      },
+      "revId": "12de653993136cbd5f334c7707371ffbde19d522",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdd51d74_16864cba",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e32ef7b6_469ad9d5",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-20T00:22:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdd51d74_16864cba",
+      "range": {
+        "startLine": 23,
+        "startChar": 7,
+        "endLine": 23,
+        "endChar": 13
+      },
+      "revId": "12de653993136cbd5f334c7707371ffbde19d522",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b745e6ec_f1a1e1b3",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-09-19T23:15:46Z",
       "side": 1,
       "message": "nit: The docstring should be descriptive-style",
+      "range": {
+        "startLine": 56,
+        "startChar": 7,
+        "endLine": 56,
+        "endChar": 13
+      },
+      "revId": "12de653993136cbd5f334c7707371ffbde19d522",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dde8cf0_103b6cd1",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-20T00:22:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b745e6ec_f1a1e1b3",
       "range": {
         "startLine": 56,
         "startChar": 7,
