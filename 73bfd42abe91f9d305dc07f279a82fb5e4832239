@@ -16,6 +16,24 @@
       "message": "I don\u0027t see a way to contain the list of dependent repositories within the workspace without exporting a macro like this. \n\nLukács, any suggestions?\n\n(See bug in commit message for background)",
       "revId": "73bfd42abe91f9d305dc07f279a82fb5e4832239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a53e2827_a3ecf393",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-20T20:01:12Z",
+      "side": 1,
+      "message": "This doesn\u0027t work yet because in bazel.py I manually specified the bazelrc path to be common.bazelrc, which in turn imports other bazelrc files:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/common.bazelrc;l\u003d22;drc\u003d9a176062bc87cbe4c99b2ebafacea37b52597ab9\n\nHowever, `%workspace%` points to the parent workspace in this case.",
+      "parentUuid": "0b44180c_3e7d3b37",
+      "revId": "73bfd42abe91f9d305dc07f279a82fb5e4832239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
