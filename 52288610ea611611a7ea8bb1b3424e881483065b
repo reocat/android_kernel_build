@@ -70,6 +70,30 @@
       },
       "revId": "52288610ea611611a7ea8bb1b3424e881483065b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13e9edca_fe7a374e",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 35
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-20T16:54:32Z",
+      "side": 1,
+      "message": "\u003e NFC_MODULE_LIST\n\nI\u0027ll probably reside with this solution! This is good enough from the interface point of view (that st21nfc etc. do not need to be explicitly written in the list of kernel modules).\n\nOr I\u0027ll do this kernel_module_group thing with lower priority.\n\nThank you for your suggestion!\n\n\u003e KernelUnstrippedModulesInfo and ModuleSymversInfo\n\nIn this specific case, because the call site just merge the items into a list from the list of dependencies, they can be changed to `KernelUnstrippedModulesInfo(directory: depset[File])`, `ModuleSymversInfo(depset[str])`, respectively.",
+      "parentUuid": "ec34b60b_2995aa28",
+      "range": {
+        "startLine": 247,
+        "startChar": 5,
+        "endLine": 247,
+        "endChar": 53
+      },
+      "revId": "52288610ea611611a7ea8bb1b3424e881483065b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
