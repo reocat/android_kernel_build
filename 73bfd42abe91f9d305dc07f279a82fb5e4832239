@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b44180c_3e7d3b37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-20T19:38:46Z",
+      "side": 1,
+      "message": "I don\u0027t see a way to contain the list of dependent repositories within the workspace without exporting a macro like this. \n\nLukács, any suggestions?\n\n(See bug in commit message for background)",
+      "revId": "73bfd42abe91f9d305dc07f279a82fb5e4832239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
