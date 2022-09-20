@@ -125,6 +125,7 @@ def _kernel_env_impl(ctx):
         # create a build environment
           source {build_utils_sh}
           export BUILD_CONFIG={build_config}
+          export _KLEAF_SETUP_ENV=1
           source {setup_env}
         # capture it as a file to be sourced in downstream rules
           {preserve_env} > {out}

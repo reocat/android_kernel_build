@@ -16,13 +16,13 @@ import argparse
 import os
 import pathlib
 import shutil
+import subprocess
 import sys
 from typing import Tuple, Optional
 
 _BAZEL_REL_PATH = "prebuilts/bazel/linux-x86_64/bazel"
 _BAZEL_JDK_REL_PATH = "prebuilts/jdk/jdk11/linux-x86"
-_BAZEL_RC_NAME = "build/kernel/kleaf/common.bazelrc"
-
+_BAZEL_RC_TEMPLATE = "build/kernel/kleaf/common.bazelrc.template"
 
 def _require_absolute_path(p: str) -> pathlib.Path:
     p = pathlib.Path(p)
@@ -44,7 +44,6 @@ def _partition(lst: list[str], index: Optional[int]) \
         return lst[:], None, []
     return lst[:index], lst[index], lst[index + 1:]
 
-
 class BazelWrapper(object):
     def __init__(self, root_dir: str, bazel_args: list[str], env):
         """Splits arguments to the bazel binary based on the functionality.
@@ -55,7 +54,7 @@ class BazelWrapper(object):
         See https://bazel.build/reference/command-line-reference
 
         Args:
-            root_dir: root of repository
+            root_dir: root of Kleaf workspace
             bazel_args: The list of arguments the user provides through command line
             env: existing environment
         """
@@ -64,7 +63,6 @@ class BazelWrapper(object):
         self.env = env.copy()
 
         self.bazel_path = f"{self.root_dir}/{_BAZEL_REL_PATH}"
-        self.absolute_out_dir = f"{self.root_dir}/out"
 
         command_idx = None
         for idx, arg in enumerate(bazel_args):
@@ -74,6 +72,17 @@ class BazelWrapper(object):
 
         self.startup_options, self.command, remaining_args = _partition(bazel_args,
                                                                         command_idx)
+
+        self.startup_options += [
+            f"--server_javabase={self.root_dir}/{_BAZEL_JDK_REL_PATH}",
+        ]
+        self._main_workspace = self._get_main_workspace()
+
+        self.absolute_out_dir = f"{self._main_workspace}/out"
+        self.startup_options += [
+            f"--output_user_root={self.absolute_out_dir}/bazel/output_user_root",
+            f"--host_jvm_args=-Djava.io.tmpdir={self.absolute_out_dir}/bazel/javatmp",
+        ]
 
         # Split command_args into `command_args -- target_patterns`
         dash_dash_idx = None
@@ -101,6 +110,12 @@ class BazelWrapper(object):
 
         absolute_cache_dir = f"{self.absolute_out_dir}/cache"
 
+        # TODO(b/242752091): Ensure that all Kleaf WORKSPACE defines workspace(name = "kleaf"),
+        # then drop the default == "" branch.
+        default_kleaf_workspace_name = ""
+        if os.path.abspath(self._main_workspace) != os.path.abspath(self.root_dir):
+            default_kleaf_workspace_name = "kleaf"
+
         # Arguments known by this bazel wrapper.
         parser = argparse.ArgumentParser(add_help=False)
         parser.add_argument("--use_prebuilt_gki")
@@ -110,6 +125,9 @@ class BazelWrapper(object):
         parser.add_argument("--cache_dir",
                             type=_require_absolute_path,
                             default=absolute_cache_dir)
+        parser.add_argument("--kleaf_workspace_name", default=default_kleaf_workspace_name,
+                            help="Must be consistent with name of Kleaf workspace in the main "
+                                 "WORKSPACE file")
 
         # known_args: List of arguments known by this bazel wrapper. These
         #   are stripped from the final bazel invocation.
@@ -127,20 +145,69 @@ class BazelWrapper(object):
 
         if self.command not in ("query", "version"):
             self.transformed_command_args.append(
-                f"--//build/kernel/kleaf:cache_dir={self.known_args.cache_dir}")
+                f"--@{self.known_args.kleaf_workspace_name}//build/kernel/kleaf:cache_dir"
+                f"={self.known_args.cache_dir}")
 
-    def _build_final_args(self) -> list[str]:
+    def _get_main_workspace(self) -> str:
+        """Returns root of the parent workspace.
+
+        This may not be the same as self.root_dir. If the Kleaf workspace is a
+        subworkspace of a parent workspace, for example:
+
+        ```
+        root
+        |- WORKSAPCE.bazel
+        `- kernel
+           |- WORKSPACE.bazel
+           |- common
+           `- build
+              `- kernel
+                 `- kleaf
+                    `- workspace.bzl
+        ```
+
+        Then, `_get_main_workspace` returns `abspath(root)`, and `self.root_dir`
+        is `abspath(root/kernel)`.
+        """
+        final_args = [self.bazel_path] + self.startup_options + [
+            "info",
+            "workspace"
+        ]
+        main_workspace = subprocess.check_output(final_args, text=True)
+        return main_workspace.strip()
+
+    def _write_bazelrc(self):
+        """Expands the bazelrc template, and returns the path to the generated file."""
+        bazelrc = os.path.join(self.absolute_out_dir, "bazelrc/generated.bazelrc")
+        source_template = os.path.join(self.root_dir, _BAZEL_RC_TEMPLATE)
+        with open(source_template) as f:
+            source_template_content = f.read()
+
+        # TODO: use a rel path to main_workspace
+        # klaef_workspace_rel = os.path.relpath(self.root_dir, self._main_workspace)
+        # kleaf_workspace_path = os.path.join("%workspace%", klaef_workspace_rel)
+        kleaf_workspace_path = self.root_dir
+
+        content = source_template_content.replace("%kleaf_workspace_path%", kleaf_workspace_path).replace(
+            "%kleaf_workspace_name%", self.known_args.kleaf_workspace_name
+        )
+
+        os.makedirs(os.path.dirname(bazelrc), exist_ok=True)
+        with open(bazelrc, "w") as f:
+            f.write("# Generated by bazel.py\n")
+            f.write(content)
+        return bazelrc
+
+
+    def _build_final_args(self, bazelrc) -> list[str]:
         """Builds the final arguments for the subprocess."""
         # final_args:
         # bazel [startup_options] [additional_startup_options] command [transformed_command_args] -- [target_patterns]
 
-        bazel_jdk_path = f"{self.root_dir}/{_BAZEL_JDK_REL_PATH}"
-        final_args = [self.bazel_path] + self.startup_options + [
-            f"--server_javabase={bazel_jdk_path}",
-            f"--output_user_root={self.absolute_out_dir}/bazel/output_user_root",
-            f"--host_jvm_args=-Djava.io.tmpdir={self.absolute_out_dir}/bazel/javatmp",
-            f"--bazelrc={self.root_dir}/{_BAZEL_RC_NAME}",
-        ]
+        final_args = [self.bazel_path] + self.startup_options
+
+        final_args.append(f"--bazelrc={bazelrc}")
+
         if self.command is not None:
             final_args.append(self.command)
         final_args += self.transformed_command_args
@@ -158,7 +225,8 @@ class BazelWrapper(object):
         return final_args
 
     def run(self):
-        final_args = self._build_final_args()
+        bazelrc = self._write_bazelrc()
+        final_args = self._build_final_args(bazelrc)
         if self.known_args.experimental_strip_sandbox_path:
             import asyncio
             import re

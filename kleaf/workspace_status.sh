@@ -22,5 +22,7 @@ if [[ ! -f "WORKSPACE" ]]; then
   exit 1
 fi
 
-build/kernel/kleaf/workspace_status_common.sh
-build/kernel/build-tools/path/linux-x86/python3 build/kernel/kleaf/workspace_status_stamp.py
+ROOT_DIR=$($(dirname $(dirname $(readlink -f "$0")))/gettop.sh)
+
+${ROOT_DIR}/build/kernel/kleaf/workspace_status_common.sh
+${ROOT_DIR}/build/kernel/build-tools/path/linux-x86/python3 ${ROOT_DIR}/build/kernel/kleaf/workspace_status_stamp.py

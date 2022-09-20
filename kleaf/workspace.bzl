@@ -132,6 +132,8 @@ def define_kleaf_as_subworkspace(
         common_kernel_package = common_kernel_package,
     )
 
+# TODO(b/242752091): Ensure that all Kleaf WORKSPACE defines workspace(name = "kleaf"),
+# then drop the workspace_name == "" branch.
 def _define_kleaf_workspace_internal(
         workspace_root = None,
         workspace_name = None,

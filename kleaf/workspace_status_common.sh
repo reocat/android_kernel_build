@@ -18,6 +18,7 @@
 # https://docs.bazel.build/versions/main/command-line-reference.html#flag--workspace_status_command
 
 if [[ ! -f "WORKSPACE" ]]; then
+  echo "PWD=$(pwd)" >&2
   echo "ERROR: workspace_status.sh must be executed at the root of Bazel workspace." >&2
   exit 1
 fi

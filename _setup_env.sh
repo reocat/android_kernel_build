@@ -43,7 +43,15 @@ if [ -z "${KERNEL_DIR}" ]; then
     # for the case that KERNEL_DIR is specified in the BUILD_CONFIG file,
     # or via the config files sourced, the value of KERNEL_DIR
     # set here would be overwritten, and the specified value would be used.
-    build_config_path=$(readlink -f ${ROOT_DIR}/${BUILD_CONFIG})
+    if [[ "${_KLEAF_SETUP_ENV}" == "1" ]]; then
+      # In the case of Kleaf, BUILD_CONFIG is already set to a path that
+      # does not need to be readlink-ed. Not readlinking prevents incorrectly
+      # resolving the path outside of the sandbox, causing KERNEL_DIR to be
+      # an absolute path.
+      build_config_path=${ROOT_DIR}/${BUILD_CONFIG}
+    else
+      build_config_path=$(readlink -f ${ROOT_DIR}/${BUILD_CONFIG})
+    fi
     real_root_dir=${build_config_path%%${BUILD_CONFIG}}
     build_config_dir=$(dirname ${build_config_path})
     build_config_dir=${build_config_dir##${ROOT_DIR}/}
