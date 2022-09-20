@@ -18,6 +18,10 @@ updates `toolchain_version` to be `CLANG_VERSION`, which is loaded from
 [build.config.constants](https://android-review.googlesource.com/c/kernel/common/+/1918432/3/build.config.constants)
 .
 
+To utilize a different path to clang, such as when debugging when using top of
+tree LLVM, you can modify `CLANG_PREBUILT_BIN=` to have the value
+`:/path/to/llvm-project/llvm/build/bin`.
+
 ## fatal error: '[some\_header\_file].h' file not found {#header-not-found}
 
 This means the header file is not visible to the kernel module build.
