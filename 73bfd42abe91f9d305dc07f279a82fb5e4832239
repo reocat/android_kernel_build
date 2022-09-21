@@ -34,6 +34,24 @@
       "parentUuid": "0b44180c_3e7d3b37",
       "revId": "73bfd42abe91f9d305dc07f279a82fb5e4832239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e8b9673_54954aa5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2022-09-21T10:08:42Z",
+      "side": 1,
+      "message": "Oof. The reason why we don\u0027t have \"relative to this file\" imports is that we thought that the location of the rcfile relative to the workspace root is known anyway, so there is no point in providing anything else other than `%workspace%`.\n\nMaybe you can tweak bazel.py to list all the rcfiles explicitly?\n\nSadly, changing the semantics of \"import\" to be relative to the current bazelrc doesn\u0027t quite work, because it would be a hairy incompatible change.",
+      "parentUuid": "a53e2827_a3ecf393",
+      "revId": "73bfd42abe91f9d305dc07f279a82fb5e4832239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
