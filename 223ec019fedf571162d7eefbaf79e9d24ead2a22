@@ -117,6 +117,30 @@
       },
       "revId": "223ec019fedf571162d7eefbaf79e9d24ead2a22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d5fa702_66340a2c",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 33
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-21T22:58:28Z",
+      "side": 1,
+      "message": "Yes, I have explicit tests that the latter approach `includes \u003d [\".\"]` is supported.",
+      "parentUuid": "5065c79f_21d45296",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 31
+      },
+      "revId": "223ec019fedf571162d7eefbaf79e9d24ead2a22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
