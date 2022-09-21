@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9022b1f_b2ba4d90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 36
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-21T22:44:10Z",
+      "side": 1,
+      "message": "Great work! Thanks for your patience during the review!",
+      "revId": "31cc351ef8e7bf815c40ee4445198959c29e98e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7f9834c_b3e05f56",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-21T22:44:10Z",
+      "side": 1,
+      "message": "nit: sort",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 10
+      },
+      "revId": "31cc351ef8e7bf815c40ee4445198959c29e98e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f1c4d98_d5b18638",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-21T22:44:10Z",
+      "side": 1,
+      "message": "nit: technically that should be \n\n`def die(message, *args, **kwargs)` and forward `args` and `kwargs` to `logging.error`. That way you get to do things like `die(\"error: %s not found\", file_name)`\n\n, *args, **kwargs",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 15
+      },
+      "revId": "31cc351ef8e7bf815c40ee4445198959c29e98e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
