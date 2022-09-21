@@ -695,9 +695,6 @@ def _kernel_build_impl(ctx):
          # Actual kernel build
            {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
          # Set variables and create dirs for modules
-           if [ "${{DO_NOT_STRIP_MODULES}}" != "1" ]; then
-             module_strip_flag="INSTALL_MOD_STRIP=1"
-           fi
            mkdir -p {modules_staging_dir}
          # Install modules
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} ${{module_strip_flag}} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) modules_install
@@ -749,6 +746,7 @@ def _kernel_build_impl(ctx):
         base_kernel_all_module_names_file_path = base_kernel_all_module_names_file_path,
         modules_staging_dir = modules_staging_dir,
         modules_staging_archive = modules_staging_archive.path,
+        module_strip_flag = "INSTALL_MOD_STRIP=1" if strip_modules else "",
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
         interceptor_command_prefix = interceptor_command_prefix,
         label = ctx.label,
@@ -920,6 +918,7 @@ _kernel_build = rule(
         "kernel_uapi_headers": attr.label(),
         "trim_nonlisted_kmi": attr.bool(),
         "combined_abi_symbollist": attr.label(allow_single_file = True, doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`."),
+        "strip_modules": attr.bool(default = True, doc = "if set, debug information won't be kept for distributed modules.  Note, modules will still be stripped when copied into the ramdisk."),
     },
 )
 
