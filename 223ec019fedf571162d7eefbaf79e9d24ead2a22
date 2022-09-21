@@ -93,6 +93,30 @@
       },
       "revId": "223ec019fedf571162d7eefbaf79e9d24ead2a22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5065c79f_21d45296",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 33
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-21T22:54:04Z",
+      "side": 1,
+      "message": "for `// #include \"include/foo/exported.h\" works too, but foo/exported.h is simpler`\n\nThis would only work because it is a relative include and hence `includes \u003d [\".\"]` is implied (only for the local module compilation).\n\nBut I agree with your approach to create that sort of consistency. Let\u0027s hope it sticks. Since it creates 2 layers of directories, this might not be so popular, especially in the presence of simple module layouts like this leading to `mod.ko`:\n\n```\n mod.c\n mod_priv.h\n mod.h\n```\n\nand the corresponding simple `#include \u003cmod.h\u003e`, which by name is unique.",
+      "parentUuid": "8bf989ca_4da22eee",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 31
+      },
+      "revId": "223ec019fedf571162d7eefbaf79e9d24ead2a22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
