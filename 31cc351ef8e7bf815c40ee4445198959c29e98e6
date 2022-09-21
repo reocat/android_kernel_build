@@ -62,6 +62,30 @@
       },
       "revId": "31cc351ef8e7bf815c40ee4445198959c29e98e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ed54657_867c0c05",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-21T22:45:35Z",
+      "side": 1,
+      "message": "sorry, the gibberish at the end was supposed to be\n\nhttps://google.github.io/styleguide/pyguide.html#3101-logging",
+      "parentUuid": "7f1c4d98_d5b18638",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 15
+      },
+      "revId": "31cc351ef8e7bf815c40ee4445198959c29e98e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
