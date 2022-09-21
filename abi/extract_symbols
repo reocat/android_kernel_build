@@ -220,6 +220,14 @@ def create_symbol_list(symbol_list, undefined_symbols, exported,
       wl.write("\n  ".join(symbol_sort(precious_symbols)))
       wl.write("\n")
 
+def is_signature_present(module):
+  """Checks whether module has a signature appeneded(GKI) or not(vendor)"""
+  out = subprocess.check_output(['llvm-strings', module],
+                                stderr=subprocess.DEVNULL).decode("ascii")
+  if out.endswith("~Module signature appended~\n"):
+    return True
+  else:
+    return False
 
 def main():
   """Extracts the required symbols for a directory full of kernel modules."""
@@ -306,13 +314,10 @@ def main():
             [re.search(f, os.path.basename(mod)) for f in args.module_filters])
     ]
 
-  # Partition vendor and GKI modules in two lists
+  # Partition vendor(unsigned) and GKI modules(signed) in two lists
   gki_modules = []
-  if args.gki_modules is not None:
-    with open(args.gki_modules) as f:
-      gki_modules = [ os.path.basename(mod) for mod in f.read().splitlines() ]
-    gki_modules = [ mod for mod in modules if os.path.basename(mod) in gki_modules ]
-    modules = [ mod for mod in modules if mod not in gki_modules ]
+  gki_modules = [ mod for mod in modules if is_signature_present(mod) ]
+  modules = [ mod for mod in modules if mod not in gki_modules ]
 
 
   if vmlinux is None or not os.path.isfile(vmlinux):
