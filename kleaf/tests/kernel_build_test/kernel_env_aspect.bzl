@@ -12,9 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-KernelEnvAspectInfo = provider(fields = {
-    "kernel_env": "The `kernel_env` target",
-})
+KernelEnvAspectInfo = provider(
+    doc = "An auxiliar provider for testing purposes",
+    fields = {
+        "kernel_env": "The `kernel_env` target",
+    },
+)
 
 def _kernel_env_aspect_impl(target, ctx):
     if ctx.rule.kind == "_kernel_build":
