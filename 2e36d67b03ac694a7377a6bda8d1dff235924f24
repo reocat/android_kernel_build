@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b09d7653_05dad9b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-22T01:41:20Z",
+      "side": 1,
+      "message": "As a follow up, please update https://android.googlesource.com/kernel/build/+/refs/heads/master/kleaf/docs/abi.md and https://android.googlesource.com/kernel/build/+/refs/heads/master/kleaf/docs/abi_device.md. Please say that unlike build_abi.sh, the \"ABI_OUT_TAG\" is always set to `-generated`.",
+      "revId": "2e36d67b03ac694a7377a6bda8d1dff235924f24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
