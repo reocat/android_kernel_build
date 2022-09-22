@@ -1,6 +1,75 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a62c7b63_a657a147",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-09-22T16:12:48Z",
+      "side": 1,
+      "message": "space before open-paren",
+      "range": {
+        "startLine": 224,
+        "startChar": 52,
+        "endLine": 224,
+        "endChar": 53
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89468779_149539e3",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-09-22T16:12:48Z",
+      "side": 1,
+      "message": "^space here too",
+      "range": {
+        "startLine": 224,
+        "startChar": 64,
+        "endLine": 224,
+        "endChar": 65
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e0e55e8_e0a50438",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-09-22T16:12:48Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 224,
+        "startChar": 43,
+        "endLine": 224,
+        "endChar": 52
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0cf0e5cb_bdbd9702",
@@ -14,6 +83,121 @@
       "writtenOn": "2022-09-21T06:40:09Z",
       "side": 1,
       "message": "I differed from `modinfo` based approach to check whether a module is signed or not because of these reasons:\n\n1. Every signed module has last string as \"~Module signature appended~\\n\". `llvm-strings` is already available as part of our prebuilts where as `modinfo` needs to be added to keep our build system self contained.\n\n2. Initially I spent lot of time to get the `modinfo` working with python\u0027s `subprocess.run()` and `subprocess.check_output()` on my desktop before finding and settling with `llvm-strings` approach. It doesn\u0027t give error but output is always empty with return code as 0. However, `os.system()` does work but again `llvm-strings` is more efficient.\n\nThis works:\n\n```\ncmd \u003d \"modinfo -F signer \" + module\nos.system(cmd)\n```\n\nThese don\u0027t work:\n\n```\nmodinfo_result \u003d subprocess.run([\"/usr/sbin/modinfo\", \"-F signer\", module], capture_output\u003dTrue, check\u003dTrue)\n```\n\n```\nout \u003d subprocess.check_output([\"/usr/sbin/modinfo\", \"-F signer\", module],\n                                stderr\u003dsubprocess.DEVNULL).decode(\"ascii\")\n```\n\nMy guess is Python\u0027s `subprocess` doesn\u0027t work with program name as symbolic link as `insmod`, `rmmmod` and `modinfo` are symbolic link to `/bin/kmod` and depending on the link name `/bin/kmod` changes its behavior.",
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d35a69_95e13604",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-09-22T16:12:48Z",
+      "side": 1,
+      "message": "Just return boolean-expression",
+      "range": {
+        "startLine": 227,
+        "startChar": 1,
+        "endLine": 227,
+        "endChar": 4
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6b1916a_de88a3da",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-09-22T16:12:48Z",
+      "side": 1,
+      "message": "^space",
+      "range": {
+        "startLine": 317,
+        "startChar": 46,
+        "endLine": 317,
+        "endChar": 47
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c99cc889_af54592a",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-09-22T16:12:48Z",
+      "side": 1,
+      "message": "^space",
+      "range": {
+        "startLine": 317,
+        "startChar": 19,
+        "endLine": 317,
+        "endChar": 22
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e668353f_720c5349",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-09-22T16:12:48Z",
+      "side": 1,
+      "message": "I think the correct style is no extra space after [ or before ].",
+      "range": {
+        "startLine": 319,
+        "startChar": 16,
+        "endLine": 319,
+        "endChar": 18
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab10132_9b55a30c",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-09-22T16:12:48Z",
+      "side": 1,
+      "message": "There is going to be a partition by predicate function in the standard library.[^0]\n\nAlso, it would be a good idea to use a new name instead of modules.\n\nThere is even the chance that some code wants the original combined modules list.\n\n[^0] I\u0027d be wrong. https://stackoverflow.com/questions/8793772 and https://giannitedesco.github.io/2020/12/14/a-faster-partition-function.html and many more.",
+      "range": {
+        "startLine": 319,
+        "startChar": 1,
+        "endLine": 320,
+        "endChar": 64
+      },
       "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
