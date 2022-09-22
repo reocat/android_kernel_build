@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 load("//build/bazel_common_rules/workspace:external.bzl", "import_external_repositories")
 load(
     "//build/kernel/kleaf:constants.bzl",
@@ -78,6 +79,29 @@ def define_kleaf_workspace(common_kernel_package = None):
         target = "kernel_kleaf",
     )
 
+    _vendor_local_java()
+
     native.register_toolchains(
         "//prebuilts/build-tools:py_toolchain",
+    )
+
+def _vendor_local_java():
+    # The following 2 repositories contain prebuilts that are necessary to the Java Rules.
+    # They are vendored locally to avoid the need for CI bots to download them.
+    maybe(
+        repo_rule = native.local_repository,
+        name = "remote_java_tools",
+        path = "prebuilts/bazel/common/remote_java_tools",
+    )
+
+    maybe(
+        repo_rule = native.local_repository,
+        name = "remote_java_tools_linux",
+        path = "prebuilts/bazel/linux-x86_64/remote_java_tools_linux",
+    )
+
+    maybe(
+        repo_rule = native.local_repository,
+        name = "rules_java",
+        path = "build/bazel/rules/java/rules_java",
     )

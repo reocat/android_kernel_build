@@ -22,6 +22,7 @@ from typing import Tuple, Optional
 _BAZEL_REL_PATH = "prebuilts/bazel/linux-x86_64/bazel"
 _BAZEL_JDK_REL_PATH = "prebuilts/jdk/jdk11/linux-x86"
 _BAZEL_RC_NAME = "build/kernel/kleaf/common.bazelrc"
+_JAVA_REL = "prebuilts/jdk/jdk11/linux-x86"
 
 
 def _require_absolute_path(p: str) -> pathlib.Path:
@@ -86,6 +87,8 @@ class BazelWrapper(object):
 
         self.command_args, self.dash_dash, self.target_patterns = _partition(remaining_args,
                                                                              dash_dash_idx)
+
+        self.env["JAVA_HOME"] = os.path.join(self.root_dir, _JAVA_REL)
 
         self._parse_command_args()
 
