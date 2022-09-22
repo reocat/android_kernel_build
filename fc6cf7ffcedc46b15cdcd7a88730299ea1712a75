@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8fc81e33_07d486dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-22T10:06:33Z",
+      "side": 1,
+      "message": "Instead of checking in empty files, can we not use repository_ctx to create this on the fly?",
+      "revId": "fc6cf7ffcedc46b15cdcd7a88730299ea1712a75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35efe25f_d2b755e7",
         "filename": "kleaf/workspace.bzl",
         "patchSetId": 3
