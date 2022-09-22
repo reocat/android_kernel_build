@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 load("//build/bazel_common_rules/workspace:external.bzl", "import_external_repositories")
 load(
     "//build/kernel/kleaf:constants.bzl",
@@ -76,6 +77,14 @@ def define_kleaf_workspace(common_kernel_package = None):
         files = gki_prebuilts_files,
         optional_files = gki_prebuilts_optional_files,
         target = "kernel_kleaf",
+    )
+
+    # Fake local_jdk to avoid fetching rules_java for any exec targets.
+    # See b/245624185.
+    maybe(
+        repo_rule = native.local_repository,
+        name = "local_jdk",
+        path = "build/kernel/kleaf/fake_local_jdk",
     )
 
     native.register_toolchains(
