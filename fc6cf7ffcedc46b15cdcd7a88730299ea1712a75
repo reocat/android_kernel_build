@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84428b7_7b15c917",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-22T21:09:33Z",
+      "side": 1,
+      "message": "We can use `new_local_repository` with `workspace_file_content` and `build_file_content`.\n\nHowever, we\u0027ll still need an empty directory in the filesystem for the \"path\" argument.\n\nWe can also use a self-defined repo_rule as you suggested, but then we still need to create an extension (which is a new file) and we don\u0027t use the already-existing local_repository. So I think this is the cleanest.",
+      "parentUuid": "8fc81e33_07d486dd",
+      "revId": "fc6cf7ffcedc46b15cdcd7a88730299ea1712a75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35efe25f_d2b755e7",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-22T07:25:43Z",
       "side": 1,
       "message": "nit: are you sure you want this to be a \"maybe\"? That would mean that if anyone else defines the `local_jdk` repository, it\u0027ll override this one and then you will still depend on `@rules_java`.",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 9
+      },
+      "revId": "fc6cf7ffcedc46b15cdcd7a88730299ea1712a75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fb21673_78517da1",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-22T21:09:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35efe25f_d2b755e7",
       "range": {
         "startLine": 84,
         "startChar": 4,
