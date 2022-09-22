@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35efe25f_d2b755e7",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2022-09-22T07:25:43Z",
+      "side": 1,
+      "message": "nit: are you sure you want this to be a \"maybe\"? That would mean that if anyone else defines the `local_jdk` repository, it\u0027ll override this one and then you will still depend on `@rules_java`.",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 9
+      },
+      "revId": "fc6cf7ffcedc46b15cdcd7a88730299ea1712a75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
