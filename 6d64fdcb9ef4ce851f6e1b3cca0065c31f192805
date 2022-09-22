@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa853a97_bd68fb2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-22T15:53:00Z",
+      "side": 1,
+      "message": "By now this needs a revision after the first version of the DDK has been finalized. Hence deferring review to an updated version.",
+      "revId": "6d64fdcb9ef4ce851f6e1b3cca0065c31f192805",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "27465435_8878bcff",
         "filename": "kleaf/docs/ddk.md",
         "patchSetId": 9
