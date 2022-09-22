@@ -72,6 +72,78 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "8e6dc7c6_c5da1295",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-22T20:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e0e55e8_e0a50438",
+      "range": {
+        "startLine": 224,
+        "startChar": 43,
+        "endLine": 224,
+        "endChar": 52
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66bb02d6_1a8a9de7",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-22T20:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a62c7b63_a657a147",
+      "range": {
+        "startLine": 224,
+        "startChar": 52,
+        "endLine": 224,
+        "endChar": 53
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07c3a70b_c5c0448b",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-22T20:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89468779_149539e3",
+      "range": {
+        "startLine": 224,
+        "startChar": 64,
+        "endLine": 224,
+        "endChar": 65
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0cf0e5cb_bdbd9702",
         "filename": "abi/extract_symbols",
         "patchSetId": 1
@@ -100,6 +172,30 @@
       "writtenOn": "2022-09-22T16:12:48Z",
       "side": 1,
       "message": "Just return boolean-expression",
+      "range": {
+        "startLine": 227,
+        "startChar": 1,
+        "endLine": 227,
+        "endChar": 4
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d954dd_9dfc3831",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-22T20:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d35a69_95e13604",
       "range": {
         "startLine": 227,
         "startChar": 1,
@@ -156,6 +252,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d31bfea_1b59df75",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-22T20:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c99cc889_af54592a",
+      "range": {
+        "startLine": 317,
+        "startChar": 19,
+        "endLine": 317,
+        "endChar": 22
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bda9078_cedc8c8c",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-22T20:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6b1916a_de88a3da",
+      "range": {
+        "startLine": 317,
+        "startChar": 46,
+        "endLine": 317,
+        "endChar": 47
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e668353f_720c5349",
@@ -179,6 +323,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "524683a4_8c2b3082",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-22T20:32:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e668353f_720c5349",
+      "range": {
+        "startLine": 319,
+        "startChar": 16,
+        "endLine": 319,
+        "endChar": 18
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cab10132_9b55a30c",
@@ -192,6 +360,30 @@
       "writtenOn": "2022-09-22T16:12:48Z",
       "side": 1,
       "message": "There is going to be a partition by predicate function in the standard library.[^0]\n\nAlso, it would be a good idea to use a new name instead of modules.\n\nThere is even the chance that some code wants the original combined modules list.\n\n[^0] I\u0027d be wrong. https://stackoverflow.com/questions/8793772 and https://giannitedesco.github.io/2020/12/14/a-faster-partition-function.html and many more.",
+      "range": {
+        "startLine": 319,
+        "startChar": 1,
+        "endLine": 320,
+        "endChar": 64
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "874c8673_76a21dd8",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-22T20:32:44Z",
+      "side": 1,
+      "message": "Thanks for taking a look.\n\nI did some execution time analysis with 211 modules on my desktop for this piece of code.\n\nCurrent code takes `4.84s` on avg, that\u0027s what is being taken by other approaches with +/- `0.01s` variation from those stack overflow links.\n\nFastest is the `from more_itertools import partition` approch; which is taking just `0.10s` but it returns generators and converting those to lists ends up at `4.83s`. Though I have to install more_itertools on desktop. This is an overhead and not worth the benefits received.\n\nSo, leaving this as it is. Wdyt?",
+      "parentUuid": "cab10132_9b55a30c",
       "range": {
         "startLine": 319,
         "startChar": 1,
