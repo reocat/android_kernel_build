@@ -16,6 +16,24 @@
       "message": "This misses the corresponding Kleaf change.",
       "revId": "bfaf00f82aff51e06c01eb42bbcd6422d8ac1da0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3294089_6b4393b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-23T09:09:50Z",
+      "side": 1,
+      "message": "https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_config.bzl;l\u003d93",
+      "parentUuid": "24fa8c63_e723c3ee",
+      "revId": "bfaf00f82aff51e06c01eb42bbcd6422d8ac1da0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
