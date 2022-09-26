@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fe8779f_92aaf372",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-26T18:10:39Z",
+      "side": 1,
+      "message": "\u003e get will throw an exception if \"BUILD_CONFIG\" is not a valid key\n\nNo when I tested it:\n\n```\nPython 3.10.7 [...]\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n\u003e\u003e\u003e import os\n\u003e\u003e\u003e os.environ.get(\"FOO\")\n\u003e\u003e\u003e \n```",
+      "parentUuid": "f3f9cb5a_5dbdf2d4",
+      "range": {
+        "startLine": 178,
+        "startChar": 11,
+        "endLine": 178,
+        "endChar": 14
+      },
+      "revId": "08236cea91d418bdb6ef227552757c6bc3e483fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0580343b_40321e97",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-09-26T13:06:49Z",
       "side": 1,
       "message": "rather ask users to provide a \"buildozer\" in `PATH`? I would rather not build it from source and have a `GOPATH` setup for that to work.",
+      "revId": "08236cea91d418bdb6ef227552757c6bc3e483fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5bc8963_1ecbacb9",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-26T18:10:39Z",
+      "side": 1,
+      "message": "How about this? I am checking both.\n\nIf you follow https://github.com/bazelbuild/buildtools/blob/master/buildozer/README.md it will install to ~/go/bin/buildozer.",
+      "parentUuid": "0580343b_40321e97",
       "revId": "08236cea91d418bdb6ef227552757c6bc3e483fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
