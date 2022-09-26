@@ -95,3 +95,9 @@ py_binary(
         "@io_abseil_py//absl/flags:argparse_flags",
     ],
 )
+
+py_binary(
+    name = "ddk/analyze_inputs",
+    srcs = ["ddk/analyze_inputs.py"],
+    visibility = ["//visibility:public"],
+)
