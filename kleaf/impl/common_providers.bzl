@@ -14,6 +14,13 @@
 
 # Providers that are provided by multiple rules in different extensions.
 
+KernelCmdsInfo = provider(
+    doc = """Provides a directory of `.cmd` files.""",
+    fields = {
+        "directory": "A directory containing the .cmd files",
+    },
+)
+
 KernelEnvInfo = provider(
     doc = """Describe a generic environment setup with some dependencies and a setup script.
 
