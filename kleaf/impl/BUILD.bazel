@@ -175,3 +175,9 @@ py_binary(
     srcs = ["print_gcno_mapping.py"],
     visibility = ["//visibility:public"],
 )
+
+py_binary(
+    name = "ddk/analyze_inputs",
+    srcs = ["ddk/analyze_inputs.py"],
+    visibility = ["//visibility:public"],
+)
