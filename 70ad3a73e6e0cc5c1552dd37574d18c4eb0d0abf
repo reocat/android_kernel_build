@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cdfea2d2_2b59e5c8",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-26T13:06:49Z",
+      "side": 1,
+      "message": "ack; the typo is intentional?",
+      "parentUuid": "bcb048ad_a843f42a",
+      "range": {
+        "startLine": 259,
+        "startChar": 18,
+        "endLine": 259,
+        "endChar": 24
+      },
+      "revId": "70ad3a73e6e0cc5c1552dd37574d18c4eb0d0abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1cf96847_048cac09",
         "filename": "kleaf/build_config_to_bazel.py",
         "patchSetId": 31

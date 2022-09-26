@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3f9cb5a_5dbdf2d4",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-26T13:06:49Z",
+      "side": 1,
+      "message": "get will throw an exception if \"BUILD_CONFIG\" is not a valid key, hence, consider\n\n```\nif env.get(\"BUILD_CONFIG\", None):\n```\n\nor according to style guide\n\n```\nif env.get(\"BUILD_CONFIG\", None) is not None:\n```\n\nhttps://google.github.io/styleguide/pyguide.html#214-truefalse-evaluations",
+      "range": {
+        "startLine": 178,
+        "startChar": 11,
+        "endLine": 178,
+        "endChar": 14
+      },
+      "revId": "08236cea91d418bdb6ef227552757c6bc3e483fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0580343b_40321e97",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 36
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-26T13:06:49Z",
+      "side": 1,
+      "message": "rather ask users to provide a \"buildozer\" in `PATH`? I would rather not build it from source and have a `GOPATH` setup for that to work.",
+      "revId": "08236cea91d418bdb6ef227552757c6bc3e483fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
