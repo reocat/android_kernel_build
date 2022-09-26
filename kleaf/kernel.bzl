@@ -19,6 +19,7 @@
 
 load("//build/kernel/kleaf/impl:abi/kernel_build_abi.bzl", _kernel_build_abi = "kernel_build_abi")
 load("//build/kernel/kleaf/impl:abi/kernel_build_abi_dist.bzl", _kernel_build_abi_dist = "kernel_build_abi_dist")
+load("//build/kernel/kleaf/impl:analyze_inputs.bzl", _analyze_inputs = "analyze_inputs")
 load("//build/kernel/kleaf/impl:ddk/ddk_headers.bzl", _ddk_headers = "ddk_headers")
 load("//build/kernel/kleaf/impl:ddk/ddk_module.bzl", _ddk_module = "ddk_module")
 load("//build/kernel/kleaf/impl:image/kernel_images.bzl", _kernel_images = "kernel_images")
@@ -34,6 +35,7 @@ load("//build/kernel/kleaf/impl:kernel_unstripped_modules_archive.bzl", _kernel_
 load("//build/kernel/kleaf/impl:merged_kernel_uapi_headers.bzl", _merged_kernel_uapi_headers = "merged_kernel_uapi_headers")
 
 # Re-exports. This is the list of public rules and macros.
+analyze_inputs = _analyze_inputs
 ddk_headers = _ddk_headers
 ddk_module = _ddk_module
 kernel_build = _kernel_build_macro
