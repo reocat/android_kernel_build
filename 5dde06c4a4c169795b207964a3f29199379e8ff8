@@ -392,6 +392,30 @@
       },
       "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dea8f2c_a63c2b44",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-09-26T10:57:59Z",
+      "side": 1,
+      "message": "Given that is_signature_present spawns a process. How about this?\n\nMake a temporary list that just contains (name, boolean) for each module. Then you can write two list comprehensions.\n\nThis restores symmetry and avoids someone later thinking that the second comprehension second one is O(N^2) and replacing the condition with !is_signature_present (which will make it O(N) but much slower).",
+      "parentUuid": "874c8673_76a21dd8",
+      "range": {
+        "startLine": 319,
+        "startChar": 1,
+        "endLine": 320,
+        "endChar": 64
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
