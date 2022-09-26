@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "657854f0_9bf298a1",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-09-26T17:35:18Z",
+      "side": 1,
+      "message": "What\u0027s the reasoning behind using `llvm-strings`? I would recommend using `modinfo -F signature MODULENAME`. And if you wanted to go a step further, you could verify the module signature to see if it\u0027s a GKI module or not.",
+      "range": {
+        "startLine": 225,
+        "startChar": 34,
+        "endLine": 225,
+        "endChar": 47
+      },
+      "revId": "b9a0ba5057a33019ddb0c20fc71c2b7fac0baf3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
