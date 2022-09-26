@@ -22,6 +22,30 @@
       },
       "revId": "b9a0ba5057a33019ddb0c20fc71c2b7fac0baf3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e26947e_114aa7cf",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-26T20:13:15Z",
+      "side": 1,
+      "message": "Reasoning: https://android-review.googlesource.com/c/kernel/build/+/2221377/comment/0cf0e5cb_bdbd9702/\n\nNo we don\u0027t want to go to the step further and keep it simple as singed module as GKI and unsigned module as other with others can\u0027t sign their modules. The reason being this will require us to hold on to the key pair and make it available to partners for them to able to successfully update their symbol list changes. Anything which requires us to hold on to the key pair defeats the purpose as others can use it and sign their modules to imposter as GKI module. There is a big key management aspect to it as well.",
+      "parentUuid": "657854f0_9bf298a1",
+      "range": {
+        "startLine": 225,
+        "startChar": 34,
+        "endLine": 225,
+        "endChar": 47
+      },
+      "revId": "b9a0ba5057a33019ddb0c20fc71c2b7fac0baf3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
