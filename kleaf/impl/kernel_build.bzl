@@ -29,6 +29,7 @@ load(
     "KernelBuildInfo",
     "KernelBuildMixedTreeInfo",
     "KernelBuildUapiInfo",
+    "KernelCmdsInfo",
     "KernelEnvAttrInfo",
     "KernelEnvInfo",
     "KernelImagesInfo",
@@ -691,6 +692,17 @@ def _kernel_build_impl(ctx):
             symtypes_dir = symtypes_dir.path,
         )
 
+    grab_cmd_cmd = ""
+    cmd_dir = None
+    if ctx.attr._preserve_cmd[BuildSettingInfo].value:
+        cmd_dir = ctx.actions.declare_directory("{name}/cmds".format(name = ctx.label.name))
+        command_outputs.append(cmd_dir)
+        grab_cmd_cmd = """
+            rsync -a --prune-empty-dirs --include '*/' --include '*.cmd' --exclude '*' ${{OUT_DIR}}/ {cmd_dir}/
+        """.format(
+            cmd_dir = cmd_dir.path,
+        )
+
     command += """
          # Actual kernel build
            {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
@@ -715,6 +727,8 @@ def _kernel_build_impl(ctx):
            tar czf {modules_staging_archive} -C {modules_staging_dir} .
          # Grab *.symtypes
            {grab_symtypes_cmd}
+         # Grab *.cmd
+           {grab_cmd_cmd}
          # Grab in-tree modules
            {grab_intree_modules_cmd}
          # Grab unstripped in-tree modules
@@ -745,6 +759,7 @@ def _kernel_build_impl(ctx):
         grab_intree_modules_cmd = grab_intree_modules_cmd,
         grab_unstripped_intree_modules_cmd = grab_unstripped_intree_modules_cmd,
         grab_symtypes_cmd = grab_symtypes_cmd,
+        grab_cmd_cmd = grab_cmd_cmd,
         all_module_names_file = all_module_names_file.path,
         base_kernel_all_module_names_file_path = base_kernel_all_module_names_file_path,
         modules_staging_dir = modules_staging_dir,
@@ -840,6 +855,8 @@ def _kernel_build_impl(ctx):
         files = depset(kbuild_mixed_tree_files),
     )
 
+    cmds_info = KernelCmdsInfo(directory = cmd_dir)
+
     default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
     default_info_files.append(all_module_names_file)
     if kmi_strict_mode_out:
@@ -851,6 +868,7 @@ def _kernel_build_impl(ctx):
     )
 
     return [
+        cmds_info,
         env_info,
         kbuild_mixed_tree_info,
         kernel_build_info,
@@ -912,6 +930,7 @@ _kernel_build = rule(
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
         "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
+        "_preserve_cmd": attr.label(default = "//build/kernel/kleaf:preserve_cmd"),
         # Though these rules are unrelated to the `_kernel_build` rule, they are added as fake
         # dependencies so KernelBuildExtModuleInfo and KernelBuildUapiInfo works.
         # There are no real dependencies. Bazel does not build these targets before building the
