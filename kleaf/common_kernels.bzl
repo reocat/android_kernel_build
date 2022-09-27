@@ -525,6 +525,13 @@ def define_common_kernels(
         if arch_config.get("enable_interceptor"):
             continue
 
+        # A subset of _headers that only contains scripts/. This is useful
+        # for DDK headers interpolation.
+        _define_script_headers(
+            name = name + "_script_headers",
+            headers = name + "_headers",
+        )
+
         kernel_modules_install(
             name = name + "_modules_install",
             # The GKI target does not have external modules. GKI modules goes
@@ -790,6 +797,33 @@ def _define_prebuilts(**kwargs):
             name = name + "_additional_artifacts_download_or_build",
             srcs = [item + "_download_or_build" for item in additional_artifacts_items],
         )
+
+def _define_script_headers(name, headers):
+    native.genrule(
+        name = name,
+        srcs = [headers],
+        outs = [name + ".tar.gz"],
+        cmd = """
+              set -e
+              PATH=$$( $(location //build/kernel:hermetic-tools/readlink) -m \
+                       $$( $(location //build/kernel:hermetic-tools/dirname) \
+                           $(location //build/kernel:hermetic-tools/readlink)))
+              mkdir -p $(location {name}.tar.gz)_tmp
+              tar xf $(location {headers}) \
+                -C $(location {name}.tar.gz)_tmp
+              tar czf $(location {name}.tar.gz) \
+                -C $(location {name}.tar.gz)_tmp/kernel-headers scripts/
+              rm -rf $(location {name}.tar.gz)_tmp
+              """.format(
+            name = name,
+            headers = headers,
+        ),
+        tools = [
+            "//build/kernel:hermetic-tools",
+            "//build/kernel:hermetic-tools/dirname",
+            "//build/kernel:hermetic-tools/readlink",
+        ],
+    )
 
 def _define_common_kernels_additional_tests(
         kernel_build_name,
