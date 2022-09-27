@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efe836c7_d38a093f",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-27T22:33:33Z",
+      "side": 1,
+      "message": "nit: mention DO_NOT_STRIP_MODULES here.",
+      "revId": "32f3611a9e124c7314feef2b1de77691ee0d647f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ac99c43_53858d46",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-27T22:33:33Z",
+      "side": 1,
+      "message": "nit: break this into 3 lines (it is too long)\n\n```\nfoo \u003d \"\"\nif X:\n  foo \u003d \"something\"\n```",
+      "revId": "32f3611a9e124c7314feef2b1de77691ee0d647f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f59921ed_23a08ee7",
+        "filename": "kleaf/tests/kernel_build_test/kernel_env_aspect.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-27T22:33:33Z",
+      "side": 1,
+      "message": "nit: this is a separate change",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "32f3611a9e124c7314feef2b1de77691ee0d647f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
