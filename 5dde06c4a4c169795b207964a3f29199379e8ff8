@@ -161,6 +161,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1dd9a541_6aa968c4",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-27T15:17:33Z",
+      "side": 1,
+      "message": "`\"-F\", \"signer\"` are two separate strings\n\nsymbolic links should not be an issue here at all. please make it work with `subprocess`. There is no proper error handling with `os.system`.\n\n`llvm-strings` works coincidentally and not because it is using a well defined interface. I would rather not recommend using that for this purpose.\n\nThis also does not work for modules that are signed by a different key, which is technically a valid use case.",
+      "parentUuid": "0cf0e5cb_bdbd9702",
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96d35a69_95e13604",
         "filename": "abi/extract_symbols",
         "patchSetId": 1

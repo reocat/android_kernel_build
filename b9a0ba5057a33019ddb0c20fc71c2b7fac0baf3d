@@ -46,6 +46,30 @@
       },
       "revId": "b9a0ba5057a33019ddb0c20fc71c2b7fac0baf3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bbbc596_51564144",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-27T15:17:33Z",
+      "side": 1,
+      "message": "But for verification you would only need the public key part that is anyway part of the kernel binary ...",
+      "parentUuid": "3e26947e_114aa7cf",
+      "range": {
+        "startLine": 225,
+        "startChar": 34,
+        "endLine": 225,
+        "endChar": 47
+      },
+      "revId": "b9a0ba5057a33019ddb0c20fc71c2b7fac0baf3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
