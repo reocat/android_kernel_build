@@ -70,6 +70,30 @@
       },
       "revId": "b9a0ba5057a33019ddb0c20fc71c2b7fac0baf3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb6a1ba0_4eea6b0b",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-27T19:08:54Z",
+      "side": 1,
+      "message": "Thanks for the review.\n\nYes, but we are using the build time generated key pair; so with every GKI image we need to hold onto that public key make it available for the vendors to use during their build so they can generate symbol list. I don\u0027t think the logistics required for key management is worth just to partition the modules. We don\u0027t get anything extra out of verifying signature during the build to partition the modules. If someone try to gimmick it then they won\u0027t have working device at runtime; so there is no motivation for anyone to gimmick it either.",
+      "parentUuid": "2bbbc596_51564144",
+      "range": {
+        "startLine": 225,
+        "startChar": 34,
+        "endLine": 225,
+        "endChar": 47
+      },
+      "revId": "b9a0ba5057a33019ddb0c20fc71c2b7fac0baf3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
