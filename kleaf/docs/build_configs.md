@@ -72,7 +72,6 @@ _"Not supported"_ is displayed. Contact [owners](../OWNERS) if you need support.
 * [`BUILD_INITRAMFS`](#build_initramfs)
 * [`MODULES_OPTIONS`](#modules_options)
 * [`MODULES_ORDER`](#modules_order)
-* [`GKI_MODULES_LIST`](#gki_modules_list)
 * [`VENDOR_DLKM_MODULES_LIST`](#vendor_dlkm_modules_list)
 * [`VENDOR_DLKM_MODULES_BLOCKLIST`](#vendor_dlkm_modules_blocklist)
 * [`VENDOR_DLKM_PROPS`](#vendor_dlkm_props)
