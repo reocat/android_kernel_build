@@ -16,6 +16,24 @@
       "message": "oh wow, that really works? nice!",
       "revId": "2867d75b5b9aac375e5a2068e06b852e11657a97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dfad345_0c06d126",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-28T19:05:10Z",
+      "side": 1,
+      "message": "Yes. It\u0027s standard way for `toybox` \u0026 `busybox` for all of it\u0027s utilities. They all are symlink to `/bin/busbox` and the link name dictates what execution does. Ideally, binary should be named `kmod` and `lsmod`, `rmmod`, `depmod`, `modprobe`, `remove` \u0026 `modinfo` all of these should be symlink to `kmod` binary. I\u0027ll probably have this sorted out someday as it will require to change in platform/external\u0027s Android.bp and sync it timely with kernel repos for things to not break in between.",
+      "parentUuid": "6c190147_9f6c7a61",
+      "revId": "2867d75b5b9aac375e5a2068e06b852e11657a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
