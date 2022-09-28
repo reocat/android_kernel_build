@@ -123,7 +123,7 @@ def _default_target_configs():
         "build_gki_artifacts": True,
         "gki_boot_img_sizes": {
             # Assume BUILD_GKI_BOOT_IMG_SIZE is the following
-            "": "67108864",
+            "": "100663296",
             # Assume BUILD_GKI_BOOT_IMG_LZ4_SIZE is the following
             "lz4": "53477376",
             # Assume BUILD_GKI_BOOT_IMG_GZ_SIZE is the following
@@ -137,7 +137,7 @@ def _default_target_configs():
         "build_gki_artifacts": True,
         "gki_boot_img_sizes": {
             # Assume BUILD_GKI_BOOT_IMG_SIZE is the following
-            "": "67108864",
+            "": "100663296",
         },
     }
 
