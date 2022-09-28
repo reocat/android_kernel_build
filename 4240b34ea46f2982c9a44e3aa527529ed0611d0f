@@ -22,6 +22,30 @@
       },
       "revId": "4240b34ea46f2982c9a44e3aa527529ed0611d0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6e83b5b_8f956aa7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1569742
+      },
+      "writtenOn": "2022-09-28T15:20:39Z",
+      "side": 1,
+      "message": "Ack, maybe we should start referring to the \u0027stable part of the KMI\u0027 as the VMI for Vendor Module Interface to avoid more confusion?",
+      "parentUuid": "94b06b07_9a1ece34",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 23
+      },
+      "revId": "4240b34ea46f2982c9a44e3aa527529ed0611d0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
