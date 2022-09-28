@@ -512,6 +512,30 @@
       },
       "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e3b18ea_53967609",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-28T20:58:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87dafc6f_787f02f2",
+      "range": {
+        "startLine": 319,
+        "startChar": 1,
+        "endLine": 320,
+        "endChar": 64
+      },
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
