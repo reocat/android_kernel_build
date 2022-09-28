@@ -16,6 +16,7 @@
 
 load("@bazel_skylib//lib:unittest.bzl", "analysistest", "asserts")
 load("//build/kernel/kleaf/impl:kernel_build.bzl", "kernel_build")
+load("//build/kernel/kleaf/impl:kernel_module.bzl", "kernel_module")
 load(":kernel_env_aspect.bzl", "KernelEnvAspectInfo", "kernel_env_aspect")
 
 def _kbuild_symtypes_test_make_vars(ctx, env):
@@ -99,6 +100,14 @@ def kernel_build_symtypes_test(name):
             build_config = "//common:build.config.gki.aarch64",
             outs = [],
             kbuild_symtypes = kbuild_symtypes,
+        )
+
+        # TODO(umendez): This is just demostrative it will be
+        # deleted before pushing this.
+        kernel_module(
+            name = name + "_" + kbuild_symtypes + "module__subject",
+            kernel_build = name + "_" + kbuild_symtypes + "_subject",
+            tags = ["manual"],
         )
 
         kbuild_symtypes_flag_true_test(
