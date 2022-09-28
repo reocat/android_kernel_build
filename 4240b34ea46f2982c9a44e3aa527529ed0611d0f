@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94b06b07_9a1ece34",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-28T14:52:35Z",
+      "side": 1,
+      "message": "What confused me about this statement: I tried to think what changes there are to the KMI. But actually, we are only talking about additions that we do not want in that case. So, this change prevents that additional symbols are exposed (to the vendor lists) just because we move a functionality into a module. \n\nAnd: while this change prevents a change to the vendor module list, there is still a change to the ABI as those newly needed symbols are not trimmed any longer to allow loading of the GKI modules. What is correct is that the tracked KMI (i.e. the surface of the ABI we keep stable) should be unchanged.\n\nNow that I rubberduck-explained it to myself ... maybe some of those bits can be put into the commit message for a future me? That would be great :-)",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 23
+      },
+      "revId": "4240b34ea46f2982c9a44e3aa527529ed0611d0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
