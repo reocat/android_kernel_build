@@ -94,6 +94,30 @@
       },
       "revId": "b9a0ba5057a33019ddb0c20fc71c2b7fac0baf3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2caba25_3d5ad38b",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-28T15:14:00Z",
+      "side": 1,
+      "message": "The public key can be extracted from `vmlinux`, so technically it is available wherever `vmlinux` is available: `scripts/extract-sys-certs.pl`. Similarly, the module signature can be extracted: `scripts/extract-module-sig.pl`.\n\nWhile verification is nice (and possible), I agree that we do not absolutely need this here for this purpose of partitioning symbols. \n\nThough, if somebody mixes build artifacts wrongly and happens to accidentally put in signed (GKI) modules from a wrong build (mixed build mess up), this could be flagged at this stage. But again, that is perhaps another check elsewhere to check the integrity of a GKI+GKI_Modules+Vendor_Modules distribution.",
+      "parentUuid": "eb6a1ba0_4eea6b0b",
+      "range": {
+        "startLine": 225,
+        "startChar": 34,
+        "endLine": 225,
+        "endChar": 47
+      },
+      "revId": "b9a0ba5057a33019ddb0c20fc71c2b7fac0baf3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

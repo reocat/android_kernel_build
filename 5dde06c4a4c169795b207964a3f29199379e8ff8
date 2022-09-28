@@ -213,6 +213,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdfb10ce_1cbe419f",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-09-28T15:14:00Z",
+      "side": 1,
+      "message": "Ack on the vendor module signing use case. My fault.\n\nThanks for moving to `modinfo`, I think that is a better choice.",
+      "parentUuid": "fce0780b_171c67f6",
+      "revId": "5dde06c4a4c169795b207964a3f29199379e8ff8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96d35a69_95e13604",
