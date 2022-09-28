@@ -229,10 +229,6 @@ if [ -n "$KMI_SYMBOL_LIST" ]; then
         echo "========================================================"
         echo " Updating the ABI symbol list"
 
-        # Exclude GKI modules from non-GKI builds
-        if [ -n "${GKI_MODULES_LIST}" ]; then
-            GKI_MOD_FLAG="--gki-modules ${DIST_DIR}/$(basename ${GKI_MODULES_LIST})"
-        fi
         if [ "$KMI_SYMBOL_LIST_ADD_ONLY" -eq 1 ]; then
             ADD_ONLY_FLAG="--additions-only"
         fi
