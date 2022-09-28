@@ -16,6 +16,24 @@
       "message": "A better way would be to capture kwargs here and delete the \"internal_\" keys (see the _kernel_module rule) and pass it to kernel_module_test below, but I am fine with this now.",
       "revId": "b6dbd0a8994acde4a61f2f7ec7039e7fbbd43abf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6e7aa68_3d3e623b",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-28T22:34:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "74aad9fb_f7c84a34",
+      "revId": "b6dbd0a8994acde4a61f2f7ec7039e7fbbd43abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
