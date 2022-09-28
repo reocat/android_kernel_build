@@ -16,6 +16,7 @@ load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("@bazel_skylib//lib:unittest.bzl", "analysistest", "asserts")
 load("//build/kernel/kleaf/impl:kernel_build.bzl", "kernel_build")
 load("//build/kernel/kleaf/impl:kernel_filegroup.bzl", "kernel_filegroup")
+load("//build/kernel/kleaf/impl:kernel_module.bzl", "kernel_module")
 load("//build/kernel/kleaf/tests:failure_test.bzl", "failure_test")
 
 def _find_check_action(actions):
@@ -76,6 +77,14 @@ def kernel_toolchain_aspect_test(name):
             toolchain_version = base_toolchain.label,
             build_config = "build.config.fake",
             outs = [],
+            tags = ["manual"],
+        )
+
+        # TODO(umendez): This is just demostrative it will be
+        # deleted before pushing this.
+        kernel_module(
+            name = name + "_kernel_module_" + base_suffix,
+            kernel_build = name + "_kernel_" + base_suffix,
             tags = ["manual"],
         )
 
