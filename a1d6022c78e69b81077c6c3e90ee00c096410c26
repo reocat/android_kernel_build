@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b36a6bdd_82002bd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2022-09-29T16:34:28Z",
+      "side": 1,
+      "message": "You should update android/abi_gki_aarch64_qcom and coordinate with QC, and if you cannot coordinate with QC you should add another symbol list there instead, then you won\u0027t need this change.",
+      "revId": "a1d6022c78e69b81077c6c3e90ee00c096410c26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
