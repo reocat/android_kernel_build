@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8129d64a_f3f7e4a0",
+        "filename": "kleaf/impl/analyze_inputs.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-30T23:37:52Z",
+      "side": 1,
+      "message": "This should be an incoming edge transition on analyze_inputs directly, which will be applied on all deps of analyze_inputs (including \"deps\" and \"input_archives\").\n\nhttps://bazel.build/extending/config#incoming-edge-transitions",
+      "range": {
+        "startLine": 94,
+        "startChar": 18,
+        "endLine": 94,
+        "endChar": 42
+      },
+      "revId": "3cd966f97d85cd327e3a78f3f374054a7b2034df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
