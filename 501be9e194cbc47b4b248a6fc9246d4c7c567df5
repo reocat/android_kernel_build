@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad8760da_32ac82f0",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 17
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-30T23:40:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaebb9f6_731bcbca",
+      "range": {
+        "startLine": 323,
+        "startChar": 31,
+        "endLine": 323,
+        "endChar": 50
+      },
+      "revId": "501be9e194cbc47b4b248a6fc9246d4c7c567df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "082f1497_bdba77ae",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8ca2123_cea111f0",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 17
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-30T23:40:20Z",
+      "side": 1,
+      "message": "In a previous review comment of this change, it was pointed out that the convention is to use None in the definition and assign the default later.",
+      "parentUuid": "082f1497_bdba77ae",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 351,
+        "endChar": 29
+      },
+      "revId": "501be9e194cbc47b4b248a6fc9246d4c7c567df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afc4d54e_e5f12790",
@@ -60,6 +108,24 @@
       "writtenOn": "2022-09-30T23:14:49Z",
       "side": 1,
       "message": "default \u003d False\n\nIs there a reason to use default\u003dTrue here?",
+      "revId": "501be9e194cbc47b4b248a6fc9246d4c7c567df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9f5deb1_4d3ff252",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 17
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-30T23:40:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afc4d54e_e5f12790",
       "revId": "501be9e194cbc47b4b248a6fc9246d4c7c567df5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
