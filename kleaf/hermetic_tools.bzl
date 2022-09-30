@@ -49,9 +49,8 @@ def _hermetic_tools_impl(ctx):
     all_outputs += hermetic_outs
     deps += hermetic_outs
 
-    for attr in ("host_tools", "test_host_tools"):
-        host_outs = getattr(ctx.outputs, attr)
-        command = """
+    host_outs = getattr(ctx.outputs, "host_tools")
+    command = """
             set -e
           # export PATH so which can work
             export PATH
@@ -59,20 +58,20 @@ def _hermetic_tools_impl(ctx):
                 {hermetic_base}/ln -s $({hermetic_base}/which $({hermetic_base}/basename $i)) $i
             done
         """.format(
-            host_outs = " ".join([f.path for f in host_outs]),
-            hermetic_base = hermetic_outs[0].dirname,
-        )
-        ctx.actions.run_shell(
-            inputs = deps,
-            outputs = host_outs,
-            command = command,
-            progress_message = "Creating symlinks to {}".format(attr),
-            mnemonic = "HermeticTools",
-            execution_requirements = {
-                "no-remote": "1",
-            },
-        )
-        all_outputs += host_outs
+        host_outs = " ".join([f.path for f in host_outs]),
+        hermetic_base = hermetic_outs[0].dirname,
+    )
+    ctx.actions.run_shell(
+        inputs = deps,
+        outputs = host_outs,
+        command = command,
+        progress_message = "Creating symlinks to {}".format(attr),
+        mnemonic = "HermeticTools",
+        execution_requirements = {
+            "no-remote": "1",
+        },
+    )
+    all_outputs += host_outs
 
     deps += ctx.outputs.host_tools
 
