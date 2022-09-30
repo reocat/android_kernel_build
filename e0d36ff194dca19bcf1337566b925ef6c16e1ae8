@@ -22,6 +22,29 @@
       },
       "revId": "e0d36ff194dca19bcf1337566b925ef6c16e1ae8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da8bdd77_1f918c5a",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-30T21:28:17Z",
+      "side": 1,
+      "message": "nit: just drop it :)",
+      "range": {
+        "startLine": 52,
+        "startChar": 32,
+        "endLine": 52,
+        "endChar": 47
+      },
+      "revId": "e0d36ff194dca19bcf1337566b925ef6c16e1ae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
