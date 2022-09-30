@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bc16a57_beca52e4",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-30T23:25:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f112569_64453b37",
+      "range": {
+        "startLine": 577,
+        "startChar": 56,
+        "endLine": 577,
+        "endChar": 87
+      },
+      "revId": "bb641d9d2db827ad19dfa9ee103d57c14dc25ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2238254a_630a5cad",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-30T23:25:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc292c32_c66c9ec0",
+      "range": {
+        "startLine": 577,
+        "startChar": 89,
+        "endLine": 577,
+        "endChar": 100
+      },
+      "revId": "bb641d9d2db827ad19dfa9ee103d57c14dc25ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5860adb_8760498f",
@@ -60,6 +108,24 @@
       "writtenOn": "2022-09-30T23:09:07Z",
       "side": 1,
       "message": "Add a new line and a comment above please:\n\n```\n\n# DO_NOT_STRIP_MODULES\n```",
+      "revId": "bb641d9d2db827ad19dfa9ee103d57c14dc25ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e1875b3_b1b44800",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-30T23:25:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5860adb_8760498f",
       "revId": "bb641d9d2db827ad19dfa9ee103d57c14dc25ecc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
