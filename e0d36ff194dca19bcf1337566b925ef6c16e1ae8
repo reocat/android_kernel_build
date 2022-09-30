@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55322a7c_fd5228ac",
+        "filename": "kleaf/artifact_tests/kernel_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-30T21:27:41Z",
+      "side": 1,
+      "message": "Technically this should be determined from the toolchain_version of the kernel_build attribute of the kernel_module attribute. But I don\u0027t think that the llvm-strings will change a lot, honestly...\n\nMatthias?",
+      "range": {
+        "startLine": 71,
+        "startChar": 82,
+        "endLine": 71,
+        "endChar": 95
+      },
+      "revId": "e0d36ff194dca19bcf1337566b925ef6c16e1ae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
