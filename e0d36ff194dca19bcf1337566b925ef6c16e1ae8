@@ -45,6 +45,30 @@
       },
       "revId": "e0d36ff194dca19bcf1337566b925ef6c16e1ae8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "499181d8_ed96766e",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-09-30T21:37:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da8bdd77_1f918c5a",
+      "range": {
+        "startLine": 52,
+        "startChar": 32,
+        "endLine": 52,
+        "endChar": 47
+      },
+      "revId": "e0d36ff194dca19bcf1337566b925ef6c16e1ae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
