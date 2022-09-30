@@ -51,6 +51,8 @@ def _hermetic_tools_impl(ctx):
 
     for attr in ("host_tools", "test_host_tools"):
         host_outs = getattr(ctx.outputs, attr)
+        if not host_outs:
+            continue
         command = """
             set -e
           # export PATH so which can work
