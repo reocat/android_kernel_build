@@ -16,6 +16,24 @@
       "message": "Delete the text below in the `GKI\\_MODULES\\_LIST` section as well?\n\nOr rather, keep this text and say things are deprecated below",
       "revId": "996789238ab3b3c4b49faa06b924c74cfdec4b4e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "007b97e6_fa9f51ad",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-09-30T01:20:09Z",
+      "side": 0,
+      "message": "Put the entry back and added a note about deprecation instead in the details section. PTAL.",
+      "parentUuid": "7dbc48d9_23958b2d",
+      "revId": "996789238ab3b3c4b49faa06b924c74cfdec4b4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
