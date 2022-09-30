@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f112569_64453b37",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-30T23:09:07Z",
+      "side": 1,
+      "message": "value !\u003d \"1\"",
+      "range": {
+        "startLine": 577,
+        "startChar": 56,
+        "endLine": 577,
+        "endChar": 87
+      },
+      "revId": "bb641d9d2db827ad19dfa9ee103d57c14dc25ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc292c32_c66c9ec0",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-30T23:09:07Z",
+      "side": 1,
+      "message": "nit: you may drop this",
+      "range": {
+        "startLine": 577,
+        "startChar": 89,
+        "endLine": 577,
+        "endChar": 100
+      },
+      "revId": "bb641d9d2db827ad19dfa9ee103d57c14dc25ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5860adb_8760498f",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-30T23:09:07Z",
+      "side": 1,
+      "message": "Add a new line and a comment above please:\n\n```\n\n# DO_NOT_STRIP_MODULES\n```",
+      "revId": "bb641d9d2db827ad19dfa9ee103d57c14dc25ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
