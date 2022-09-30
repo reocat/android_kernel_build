@@ -95,6 +95,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8aa0841_d58722d9",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-30T23:25:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f112569_64453b37",
+      "range": {
+        "startLine": 577,
+        "startChar": 56,
+        "endLine": 577,
+        "endChar": 87
+      },
+      "revId": "bb641d9d2db827ad19dfa9ee103d57c14dc25ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d6bad1b_8a25a3ff",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-30T23:25:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc292c32_c66c9ec0",
+      "range": {
+        "startLine": 577,
+        "startChar": 89,
+        "endLine": 577,
+        "endChar": 100
+      },
+      "revId": "bb641d9d2db827ad19dfa9ee103d57c14dc25ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5860adb_8760498f",
@@ -123,6 +171,24 @@
         "id": 1961395
       },
       "writtenOn": "2022-09-30T23:25:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5860adb_8760498f",
+      "revId": "bb641d9d2db827ad19dfa9ee103d57c14dc25ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71d1a08f_3f32a699",
+        "filename": "kleaf/build_config_to_bazel_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-09-30T23:25:54Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "d5860adb_8760498f",
