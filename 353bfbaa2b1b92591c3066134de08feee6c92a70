@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "049e3486_841ded21",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-10-03T23:13:01Z",
+      "side": 1,
+      "message": "Does `base_archive` include *all* of the GKI modules, or just the ones that the vendor wants to use? \n\nBasically, I\u0027m wondering how a vendor lists the GKI modules they want to include in their build? For example, the `gki_defconfig` sets `\u003dM` to for all of the GKI modules, but I may only want to ship a subset of these modules. \n\nThere\u0027s an edge-case to this as well which is a vendor may decide to rename a GKI module while overriding it. For example, I may want to override the zram module and in doing so I rename the module to `zram-vendor-a.ko`. If `base_archive` includes `zram.ko`, then based on this logic `modules_staging_dir` will include both `zram.ko` and `zram-vendor-a.ko`.\n\nI know I can control which modules get loaded via the `modules.load` file, but I don\u0027t want to ship the `zram.ko` file if I\u0027m overriding it and don\u0027t plan to load the module.",
+      "range": {
+        "startLine": 1390,
+        "startChar": 20,
+        "endLine": 1390,
+        "endChar": 32
+      },
+      "revId": "353bfbaa2b1b92591c3066134de08feee6c92a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
