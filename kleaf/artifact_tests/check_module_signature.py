@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import subprocess
+import tarfile
+import tempfile
 
 from absl import flags
 from absl.testing import absltest
@@ -21,39 +23,51 @@ import subprocess
 import unittest
 
 flags.DEFINE_string("dir", None, "Directory of modules")
+flags.DEFINE_string("archive", None, "Archive of modules")
 flags.DEFINE_string("module", None, "name of module to check")
 flags.DEFINE_boolean("expect_signature", None, "Whether to expect signature from the module")
 flags.DEFINE_string("modinfo", None, "Location of modinfo")
 flags.mark_flags_as_required(
-    ["dir", "module", "expect_signature", "modinfo"]
+    ["module", "expect_signature", "modinfo"]
 )
 
 FLAGS = flags.FLAGS
 
 
 class CheckModuleSignatureTest(unittest.TestCase):
-    def test_module_signature(self):
+    def test_module_signature_dir(self):
+        if not FLAGS.dir:
+            return
+        self.check_dir_module_signature(FLAGS.dir)
+
+    def test_module_signature_archive(self):
+        if not FLAGS.archive:
+            return
+        with tempfile.TemporaryDirectory() as temp_dir, \
+                tarfile.open(FLAGS.archive) as tar:
+            tar.extractall(temp_dir)
+            self.check_dir_module_signature(temp_dir)
+
+    def check_dir_module_signature(self, dir):
         found = False
         module_parts = pathlib.Path(FLAGS.module).parts
-        for root, dirs, files in os.walk(FLAGS.dir):
+        for root, dirs, files in os.walk(dir):
             root_path = pathlib.Path(root)
             for filename in files:
                 file_path = root_path / filename
                 file_path_parts = file_path.parts
                 if len(file_path_parts) >= len(module_parts) and \
-                    file_path_parts[-len(module_parts):] == module_parts:
-
+                        file_path_parts[-len(module_parts):] == module_parts:
                     found = True
-                    with self.subTest(file_path = file_path):
+                    with self.subTest(file_path=file_path):
                         self.assert_signature(file_path)
 
         self.assertTrue(found, f"{FLAGS.module} is not found under {FLAGS.dir}")
 
-
     def assert_signature(self, file_path):
         # TODO(b/250667773): Use signer or signature
-        sig_id=subprocess.check_output([FLAGS.modinfo, "-F", "sig_id", file_path],
-                                             text=True).strip()
+        sig_id = subprocess.check_output([FLAGS.modinfo, "-F", "sig_id", file_path],
+                                         text=True).strip()
         expected_sig_id = "PKCS#7" if FLAGS.expect_signature else ""
         self.assertEqual(expected_sig_id, sig_id)
 
