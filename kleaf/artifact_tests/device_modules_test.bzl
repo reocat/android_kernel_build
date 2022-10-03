@@ -123,6 +123,43 @@ def _check_signature_for_initramfs(
         expect_signature = expect_signature,
     )
 
+def _get_file_impl(ctx):
+    archive = utils.find_file(
+        name = ctx.attr.filename,
+        files = ctx.files.target,
+        what = "{}: {}".format(ctx.label, ctx.attr.target.label),
+    )
+    runfiles = ctx.runfiles(files = [archive])
+    return DefaultInfo(files = depset([archive]), runfiles = runfiles)
+
+_get_file = rule(
+    implementation = _get_file_impl,
+    attrs = {
+        "target": attr.label(),
+        "filename": attr.string(),
+    },
+)
+
+def _check_signature_for_target_archive(
+        name,
+        target,
+        archive_name,
+        base_kernel_module,
+        expect_signature):
+    """Checks signature in the |base_kernel_module| in the archive |archive_name| in |target|."""
+
+    _get_file(
+        name = name + "_archive",
+        target = target,
+        filename = archive_name,
+    )
+    _check_signature(
+        name = name,
+        archive = name + "_archive",
+        base_kernel_module = base_kernel_module,
+        expect_signature = expect_signature,
+    )
+
 def _create_one_device_modules_test(
         name,
         arch,
@@ -174,6 +211,7 @@ def _create_one_device_modules_test(
         kernel_modules_install = name + "_modules_install",
         base_kernel_images = str(base_kernel_label) + "_images",
         build_initramfs = True,
+        build_system_dlkm = True,
     )
 
     tests = []
@@ -192,6 +230,15 @@ def _create_one_device_modules_test(
         expect_signature = expect_signature,
     )
     tests.append(name + "_initramfs_check_signature_test")
+
+    _check_signature_for_target_archive(
+        name = name + "_system_dlkm_check_signature_test",
+        target = name + "_images_system_dlkm_image",
+        archive_name = "system_dlkm_staging_archive.tar.gz",
+        base_kernel_module = base_kernel_module,
+        expect_signature = expect_signature,
+    )
+    tests.append(name + "_system_dlkm_check_signature_test")
 
     native.test_suite(
         name = name,
