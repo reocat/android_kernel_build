@@ -12,24 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+# A test that does nothing.
 
-exports_files([
-    "build.config.modules",
-    "check_module_signature.py",
-    "fake_modules_options.txt",
-    "kernel_build_test.py",
-    "kernel_module_test.py",
-    "initramfs_modules_options_test.py",
-])
+def _empty_test_impl(ctx):
+    exec = ctx.actions.declare_file("{}.sh".format(ctx.label.name))
+    ctx.actions.write(exec, "", is_executable = True)
+    return DefaultInfo(executable = exec)
 
-bzl_library(
-    name = "artifact_tests",
-    srcs = [
-        "kernel_test.bzl",
-    ],
-    visibility = ["//build/kernel/kleaf:__subpackages__"],
-    deps = [
-        "//build/kernel/kleaf/impl",
-    ],
+empty_test = rule(
+    implementation = _empty_test_impl,
+    test = True,
 )
