@@ -70,6 +70,30 @@
       },
       "revId": "3ea441de297da6865dd8c026e28a28911ed0dcc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61e676a3_0cb6d819",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-03T20:45:32Z",
+      "side": 1,
+      "message": "I am going to close it because I can\u0027t find a good way to handle it for now.",
+      "parentUuid": "48f9896c_34fce957",
+      "range": {
+        "startLine": 758,
+        "startChar": 0,
+        "endLine": 762,
+        "endChar": 16
+      },
+      "revId": "3ea441de297da6865dd8c026e28a28911ed0dcc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
