@@ -46,6 +46,30 @@
       },
       "revId": "353bfbaa2b1b92591c3066134de08feee6c92a70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a1cdc7d_e62d05df",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-03T23:50:31Z",
+      "side": 1,
+      "message": "base_archive includes all GKI modules. But note that I filter the list; so base_modules only contains the ones we need from GKI.\n\nIn the slider case, base_modules will contain (path to zsmalloc.ko) only.\n\n\u003e and in doing so I rename the module to zram-vendor-a.ko\n\nI didn\u0027t think about the module renaming case. However, to handle this we\u0027ll need a mapping on what GKI module a device module is trying to override.\n\nDo we have a use case for this? We can follow up and allow such mapping later. Right now, this only allows overriding when the name of the module is the same.",
+      "parentUuid": "6a3fce0c_6dee94c9",
+      "range": {
+        "startLine": 1390,
+        "startChar": 20,
+        "endLine": 1390,
+        "endChar": 32
+      },
+      "revId": "353bfbaa2b1b92591c3066134de08feee6c92a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
