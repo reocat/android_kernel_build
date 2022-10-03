@@ -16,6 +16,8 @@ load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("//build/kernel/kleaf/tests:empty_test.bzl", "empty_test")
 load("//build/kernel/kleaf/impl:common_providers.bzl", "KernelModuleInfo")
 load("//build/kernel/kleaf/impl:kernel_build.bzl", "kernel_build")
+load("//build/kernel/kleaf/impl:image/kernel_images.bzl", "kernel_images")
+load("//build/kernel/kleaf/impl:image/initramfs.bzl", "InitramfsInfo")
 load("//build/kernel/kleaf/impl:kernel_modules_install.bzl", "kernel_modules_install")
 
 def _get_module_staging_dir_impl(ctx):
@@ -53,6 +55,53 @@ def _check_signature_for_modules_install(
         args = [
             "--dir",
             "$(location {}_modules_install_staging_dir)".format(name),
+            "--module",
+            base_kernel_module,
+            "--expect_signature" if expect_signature else "--noexpect_signature",
+            "--modinfo",
+            "$(location {})".format(modinfo),
+        ],
+        timeout = "short",
+        deps = [
+            "@io_abseil_py//absl/flags",
+            "@io_abseil_py//absl/testing:absltest",
+        ],
+    )
+
+def _get_initramfs_staging_archive_impl(ctx):
+    archive = ctx.attr.initramfs[InitramfsInfo].initramfs_staging_archive
+    runfiles = ctx.runfiles(files = [archive])
+    return DefaultInfo(files = depset([archive]), runfiles = runfiles)
+
+_get_initramfs_staging_archive = rule(
+    implementation = _get_initramfs_staging_archive_impl,
+    attrs = {
+        "initramfs": attr.label(providers = [InitramfsInfo]),
+    },
+)
+
+def _check_signature_for_initramfs(
+        name,
+        initramfs,
+        base_kernel_module,
+        expect_signature):
+    """Checks signature in the |base_kernel_module| in |initramfs|."""
+    script = "//build/kernel/kleaf/artifact_tests:check_module_signature.py"
+    modinfo = "//build/kernel:hermetic-tools/modinfo"
+    _get_initramfs_staging_archive(
+        name = name + "_initramfs_staging_archive",
+        initramfs = initramfs,
+    )
+
+    native.py_test(
+        name = name,
+        main = script,
+        srcs = [script],
+        python_version = "PY3",
+        data = [modinfo, name + "_initramfs_staging_archive"],
+        args = [
+            "--archive",
+            "$(location {}_initramfs_staging_archive)".format(name),
             "--module",
             base_kernel_module,
             "--expect_signature" if expect_signature else "--noexpect_signature",
@@ -111,6 +160,13 @@ def _create_one_device_modules_test(
         kernel_build = name + "_kernel_build",
     )
 
+    kernel_images(
+        name = name + "_images",
+        tags = ["manual"],
+        kernel_modules_install = name + "_modules_install",
+        build_initramfs = True,
+    )
+
     tests = []
     _check_signature_for_modules_install(
         name = name + "_modules_install_check_signature_test",
@@ -119,6 +175,14 @@ def _create_one_device_modules_test(
         expect_signature = expect_signature,
     )
     tests.append(name + "_modules_install_check_signature_test")
+
+    _check_signature_for_initramfs(
+        name = name + "_initramfs_check_signature_test",
+        initramfs = name + "_images_initramfs",
+        base_kernel_module = base_kernel_module,
+        expect_signature = expect_signature,
+    )
+    tests.append(name + "_initramfs_check_signature_test")
 
     native.test_suite(
         name = name,
