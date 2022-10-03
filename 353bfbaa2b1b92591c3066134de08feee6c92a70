@@ -22,6 +22,30 @@
       },
       "revId": "353bfbaa2b1b92591c3066134de08feee6c92a70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a3fce0c_6dee94c9",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-03T23:40:08Z",
+      "side": 1,
+      "message": "What vendor ships is not dependent on the kernel build; it\u0027s dependent on the AOSP build of the `system_dlkm.img`. GKI releases the archive of all GKI modules and GKI; vendor can point source with only the modules they need from that archive. Kernel built `system_dlkm.img` is for dev purposes only. Kernel built image doesn\u0027t boot without disabling the `dm-verity` otherwise hashtree footer will not match and device won\u0027t boot.\n\nVendor can only ship what they want to load via system_dlkm.img built in the AoSP and load only they wants to load from where (vendor_dlkm/system_dlkm) from their init script.",
+      "parentUuid": "049e3486_841ded21",
+      "range": {
+        "startLine": 1390,
+        "startChar": 20,
+        "endLine": 1390,
+        "endChar": 32
+      },
+      "revId": "353bfbaa2b1b92591c3066134de08feee6c92a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
