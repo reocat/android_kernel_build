@@ -142,6 +142,30 @@
       },
       "revId": "353bfbaa2b1b92591c3066134de08feee6c92a70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbfb27f2_741ae2ac",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-04T23:41:12Z",
+      "side": 1,
+      "message": "What I was mentioning in the meeting is for the `system_dlkm` and not for the `initramfs.img`. Vendor can choose which modules they want on the `system_dlkm` partition by only having those modules in the directory pointed `BOARD_SYSTEM_DLKM_SRC` by in the platform build.\n\nRef: https://preview.source.android.com/docs/core/architecture/bootloader/partitions/gki-partitions",
+      "parentUuid": "6d81dd78_6267e302",
+      "range": {
+        "startLine": 1390,
+        "startChar": 20,
+        "endLine": 1390,
+        "endChar": 32
+      },
+      "revId": "353bfbaa2b1b92591c3066134de08feee6c92a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
