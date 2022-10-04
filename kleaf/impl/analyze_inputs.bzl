@@ -57,7 +57,7 @@ def _analyze_inputs_impl(ctx):
     )
     ctx.actions.write(executable, content, is_executable = True)
 
-    runfiles = ctx.runfiles(files = dirs + input_archives)
+    runfiles = ctx.runfiles(files = input_archives, transitive_files = dirs)
     transitive_runfiles = [ctx.attr._analyze_inputs[DefaultInfo].default_runfiles]
     runfiles = runfiles.merge_all(transitive_runfiles)
 

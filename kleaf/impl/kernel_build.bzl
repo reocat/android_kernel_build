@@ -1022,7 +1022,7 @@ def _build_main_action(
         modules_staging_archive_self = modules_staging_archive_self,
         unstripped_dir = grab_unstripped_modules_step.unstripped_dir,
         ruledir = ruledir,
-        cmd_dir = grab_symtypes_step.cmd_dir,
+        cmd_dir = grab_cmd_step.cmd_dir,
     )
 
 def _create_infos(
