@@ -31,6 +31,7 @@ import %workspace%/build/kernel/kleaf/bazelrc/release.bazelrc
 build --flag_alias=lto=//build/kernel/kleaf:lto
 build --flag_alias=kbuild_symtypes=//build/kernel/kleaf:kbuild_symtypes
 build --flag_alias=kasan=//build/kernel/kleaf:kasan
+build --flag_alias=gen_ddk_headers_target=//build/kernel/kleaf:gen_ddk_headers_target
 
 # add a flag alias to allow passing --debug_* flags
 build --flag_alias=debug_annotate_scripts=//build/kernel/kleaf:debug_annotate_scripts
