@@ -64,11 +64,14 @@ Example:
 
 This means a kernel module dependency is missing.
 
-Solution: Add the `kernel_module` in `foo` to `kernel_module_deps` of the build
-rule.
+Solution:
 
-Example:
-[Power Reset module depends on BMS](https://android.googlesource.com/kernel/google-modules/power/reset/+/refs/heads/android-gs-raviole-mainline/BUILD.bazel).
+* Add the `kernel_module` in `foo` to `deps` of the build rule. Example:
+  [Power Reset module depends on BMS](https://android.googlesource.com/kernel/google-modules/power/reset/+/refs/heads/android-gs-raviole-mainline/BUILD.bazel)
+  .
+* For `kernel_module`s, set `KBUILD_EXTRA_SYMBOLS` accordingly in `Makefile`. Example:
+  [Makefile for Power Reset module](https://android.googlesource.com/kernel/google-modules/power/reset/+/refs/heads/android-gs-raviole-mainline/Makefile)
+  . This is unnecessary for `ddk_module` because `Makefile` is generated.
 
 ## Exception: Unable to find \[some file\] in any of the following directories: ... {#no-files-match}
 
