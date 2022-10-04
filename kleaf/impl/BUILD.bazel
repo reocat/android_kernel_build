@@ -101,3 +101,12 @@ py_binary(
     srcs = ["ddk/analyze_inputs.py"],
     visibility = ["//visibility:public"],
 )
+
+py_binary(
+    name = "ddk/gen_ddk_headers",
+    srcs = ["ddk/gen_ddk_headers.py"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//build/kernel/kleaf:buildozer_command_builder",
+    ],
+)
