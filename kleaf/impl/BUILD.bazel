@@ -172,6 +172,34 @@ selects.config_setting_group(
     visibility = ["//visibility:public"],
 )
 
+# Analyze DDK targets
+
+# Usage:
+#  bazel run //build/kernel/kleaf:gen_ddk_headers --gen_ddk_headers_target=//label/of:tuna_modules_install -- [flags]
+#  bazel run //build/kernel/kleaf:gen_ddk_headers --gen_ddk_headers_target=//label/of:tuna_ext_module -- [flags]
+#  bazel run //build/kernel/kleaf:gen_ddk_headers --gen_ddk_headers_target=//label/of:tuna -- [flags]
+gen_ddk_headers(
+    name = "gen_ddk_headers",
+    gen_files_archives = [":gen_ddk_headers_gen_files_archives"],
+    target = ":gen_ddk_headers_target",
+)
+
+label_flag(
+    name = "gen_ddk_headers_target",
+    build_setting_default = ":gen_ddk_headers_target_unspecified",
+)
+
+label_flag(
+    name = "gen_ddk_headers_gen_files_archives",
+    build_setting_default = ":gen_ddk_headers_target_unspecified",
+)
+
+filegroup(
+    name = "gen_ddk_headers_target_unspecified",
+    srcs = [],
+    visibility = ["//visibility:private"],
+)
+
 py_binary(
     name = "ddk/gen_makefiles",
     srcs = ["ddk/gen_makefiles.py"],
@@ -204,6 +232,15 @@ py_binary(
     name = "ddk/analyze_inputs",
     srcs = ["ddk/analyze_inputs.py"],
     visibility = ["//visibility:public"],
+)
+
+py_binary(
+    name = "ddk/gen_ddk_headers",
+    srcs = ["ddk/gen_ddk_headers.py"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//build/kernel/kleaf:buildozer_command_builder",
+    ],
 )
 
 # Local build platforms
