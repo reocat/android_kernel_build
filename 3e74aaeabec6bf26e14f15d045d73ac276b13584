@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8509c3a7_d9c51ca7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-04T23:23:02Z",
+      "side": 1,
+      "message": "Per today\u0027s meeting, we aren\u0027t going to fix it for raviole that doesn\u0027t have system_dlkm. GKI modules are only supported with system_dlkm present.",
+      "revId": "3e74aaeabec6bf26e14f15d045d73ac276b13584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb8aae7a_84f7cfb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-04T23:23:02Z",
+      "side": 1,
+      "message": "Per today\u0027s meeting, we aren\u0027t going to fix it for raviole that doesn\u0027t have system_dlkm. GKI modules are only supported with system_dlkm present.",
+      "revId": "3e74aaeabec6bf26e14f15d045d73ac276b13584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
