@@ -70,6 +70,30 @@
       },
       "revId": "353bfbaa2b1b92591c3066134de08feee6c92a70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57150192_0241d8b7",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-04T16:25:13Z",
+      "side": 1,
+      "message": "On a second thought, I think what William said is the proper solution to this:\n\n\u003e I know I can control which modules get loaded via the modules.load file, \n\nYes; that means at least we have a mechanism to support this zram-vendor-a.ko overriding zram.ko case. We have a way to stop zram.ko from being loaded.\n\n\u003e but I don\u0027t want to ship the zram.ko file if I\u0027m overriding it and don\u0027t plan to load the module.\n\nWe can support \"TRIM_UNUSED_MODULES\". it isn\u0027t supported right now but we can do that in follow up CLs.\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/build_utils.sh;l\u003d187;drc\u003d3567ad13950c2619c5e29918d257d12a548a7853\n\nAs for dist_dir, the device maintainer can just remove `//common:kernel_aarch64/zram.ko` from the `data` attribute of the dist directory.",
+      "parentUuid": "9a1cdc7d_e62d05df",
+      "range": {
+        "startLine": 1390,
+        "startChar": 20,
+        "endLine": 1390,
+        "endChar": 32
+      },
+      "revId": "353bfbaa2b1b92591c3066134de08feee6c92a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
