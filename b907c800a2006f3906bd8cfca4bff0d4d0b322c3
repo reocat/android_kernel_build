@@ -52,6 +52,24 @@
       "parentUuid": "c268f570_423da937",
       "revId": "b907c800a2006f3906bd8cfca4bff0d4d0b322c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89fbe6be_e5de477b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-04T17:21:44Z",
+      "side": 1,
+      "message": "Right, abandoning this change.\n\nFor CL:2215822 (the change on aosp-master), I think we want to vendor the real cc toolchain for host tools. So I don\u0027t think setting BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN is right.",
+      "parentUuid": "08c67cd8_93059d45",
+      "revId": "b907c800a2006f3906bd8cfca4bff0d4d0b322c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
