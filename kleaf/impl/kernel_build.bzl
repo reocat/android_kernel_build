@@ -1042,6 +1042,7 @@ def _create_infos(
 
     in_tree_modules_info = KernelBuildInTreeModulesInfo(
         module_outs_file = all_module_names_file,
+        all_modules = all_output_files["module_implicit_outs"].values() + all_output_files["module_outs"].values(),
     )
 
     images_info = KernelImagesInfo(base_kernel = ctx.attr.base_kernel)
