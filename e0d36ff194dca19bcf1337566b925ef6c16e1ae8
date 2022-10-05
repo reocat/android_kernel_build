@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e79591e3_09f80c47",
+        "filename": "kleaf/artifact_tests/kernel_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-05T14:17:31Z",
+      "side": 1,
+      "message": "I think the change here is fine. But perhaps we can reach a final state where we pull the CLANG_VERSION only once to define the hermetic toolchain including prebuilts and compilers of all sorts and then we reference that from everywhere.\n\nMaybe we can define the tools in a PATH like we do with the host tools now or even if we alias some tools to a different consistent output location to be able to pull in exactly what we are needing for a rule ... That needs some work generally, but this change looks good to me.",
+      "parentUuid": "55322a7c_fd5228ac",
+      "range": {
+        "startLine": 71,
+        "startChar": 82,
+        "endLine": 71,
+        "endChar": 95
+      },
+      "revId": "e0d36ff194dca19bcf1337566b925ef6c16e1ae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da8bdd77_1f918c5a",
         "filename": "kleaf/hermetic_tools.bzl",
         "patchSetId": 3
