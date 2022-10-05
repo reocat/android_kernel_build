@@ -86,6 +86,7 @@ KernelBuildInTreeModulesInfo = provider(
 for the list of in-tree modules in the `base_kernel`.""",
     fields = {
         "module_outs_file": "A file containing `[kernel_build.module_outs]`(#kernel_build-module_outs) and `[kernel_build.module_implicit_outs]`(#kernel_build-module_implicit_outs).",
+        "all_modules": "All modules from `[kernel_build.module_outs]`(#kernel_build-module_outs) and `[kernel_build.module_implicit_outs]`(#kernel_build-module_implicit_outs).",
     },
 )
 

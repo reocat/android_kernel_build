@@ -62,6 +62,7 @@ def _kernel_filegroup_impl(ctx):
         kernel_uapi_headers = depset(transitive = kernel_uapi_depsets, order = "postorder"),
     )
 
+
     unstripped_modules_info = None
     for target in ctx.attr.srcs:
         if KernelUnstrippedModulesInfo in target:
@@ -87,7 +88,29 @@ def _kernel_filegroup_impl(ctx):
         unstripped_modules_info = KernelUnstrippedModulesInfo(directory = unstripped_dir)
 
     abi_info = KernelBuildAbiInfo(module_outs_file = ctx.file.module_outs_file)
-    in_tree_modules_info = KernelBuildInTreeModulesInfo(module_outs_file = ctx.file.module_outs_file)
+
+    # Extract tarball and get all the modules
+    modules_staging_archive = utils.find_file("modules_staging_dir.tar.gz", all_deps, what = ctx.label)
+    all_modules_from_archive = []
+    if modules_staging_archive:
+        modules_dir = ctx.actions.declare_directory("{}/modules".format(ctx.label.name))
+        command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+            tar xf {modules_staging_archive} -C $(dirname {modules_dir}) $(basename {modules_dir})
+            find $(dirname {modules_dir}) -name *.ko
+        """
+        debug.print_scripts(ctx, command, what = "modules_staging_archive")
+        ctx.actions.run_shell(
+            command = command,
+            inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [
+                modules_staging_archive,
+            ],
+            outputs = [modules_dir],
+            progress_message = "Extracting modules_staging_archive {}".format(ctx.label),
+            mnemonic = "KernelFilegroupModulesArchive",
+        )
+        print("DEBUG modules_dir", modules_dir)
+        all_modules_from_archive = []
+    in_tree_modules_info = KernelBuildInTreeModulesInfo(module_outs_file = ctx.file.module_outs_file, all_modules = all_modules_from_archive)
 
     images_info = KernelImagesInfo(base_kernel = None)
 
