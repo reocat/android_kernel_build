@@ -86,7 +86,7 @@ def _kernel_filegroup_impl(ctx):
         )
         unstripped_modules_info = KernelUnstrippedModulesInfo(directory = unstripped_dir)
 
-    abi_info = KernelBuildAbiInfo(module_outs_file = ctx.file.module_outs_file)
+    abi_info = KernelBuildAbiInfo(module_outs_file = ctx.file.module_outs_file, modules_staging_archive = utils.find_file("modules_staging_dir.tar.gz", all_deps, what = ctx.label))
     in_tree_modules_info = KernelBuildInTreeModulesInfo(module_outs_file = ctx.file.module_outs_file)
 
     images_info = KernelImagesInfo(base_kernel = None)

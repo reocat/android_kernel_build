@@ -43,6 +43,10 @@ def _extracted_symbols_impl(ctx):
     for kernel_module in ctx.attr.kernel_modules:  # external modules
         srcs += kernel_module[KernelModuleInfo].files
 
+    gki_modules_archive = ctx.attr.gki_modules_src[KernelBuildAbiInfo].modules_staging_archive
+    print("DEBUG Base Kernel = ", ctx.attr.gki_modules_src)
+    print("DEBUG Base Kernel = ", gki_modules_archive)
+
     inputs = [ctx.file._extract_symbols]
     inputs += srcs
     inputs += ctx.attr.kernel_build_notrim[KernelEnvInfo].dependencies
@@ -99,6 +103,7 @@ extracted_symbols = rule(
         "module_grouping": attr.bool(default = True),
         "src": attr.label(doc = "Source `abi_gki_*` file. Used when `kmi_symbol_list_add_only`.", allow_single_file = True),
         "kmi_symbol_list_add_only": attr.bool(),
+        "gki_modules_src": attr.label(doc = "The `kernel_build` which `modules_staging_archive` is treated as GKI modules.", providers = [KernelBuildAbiInfo]),
         "_extract_symbols": attr.label(default = "//build/kernel:abi/extract_symbols", allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
