@@ -190,6 +190,30 @@
       },
       "revId": "353bfbaa2b1b92591c3066134de08feee6c92a70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbf0b88c_3ade2ffc",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-05T00:11:15Z",
+      "side": 1,
+      "message": "initramfs is also built in the platform build, so it is the same as system_dlkm: https://cs.android.com/android/platform/superproject/+/master:build/make/core/Makefile;l\u003d495;drc\u003dd058fc33a3c6a818e86a4814f7fcbe486b637db2",
+      "parentUuid": "c537e801_bac18de8",
+      "range": {
+        "startLine": 1390,
+        "startChar": 20,
+        "endLine": 1390,
+        "endChar": 32
+      },
+      "revId": "353bfbaa2b1b92591c3066134de08feee6c92a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
