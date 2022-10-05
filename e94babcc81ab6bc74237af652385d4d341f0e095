@@ -16,6 +16,24 @@
       "message": "How to fill in this list with the modules from the extracted archive?",
       "revId": "e94babcc81ab6bc74237af652385d4d341f0e095",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e22edee_4905b3a1",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-05T21:37:27Z",
+      "side": 1,
+      "message": "You can\u0027t.\n\nThis list is an object in the \"analysis phase\". The archive is extracted in the \"execution phase\". You may read about phases here: \n\nhttps://bazel.build/reference/glossary#analysis-phase\n\nhttps://bazel.build/reference/glossary#execution-phase",
+      "parentUuid": "3397a852_f75e3491",
+      "revId": "e94babcc81ab6bc74237af652385d4d341f0e095",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
