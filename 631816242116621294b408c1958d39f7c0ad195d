@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b57e6a8d_92ecd43d",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-06T18:33:44Z",
+      "side": 1,
+      "message": "nit: this was imported above, why is needed again?\n\nAlso http://go/pystyle#s2.2-imports",
+      "range": {
+        "startLine": 37,
+        "startChar": 5,
+        "endLine": 37,
+        "endChar": 30
+      },
+      "revId": "631816242116621294b408c1958d39f7c0ad195d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
