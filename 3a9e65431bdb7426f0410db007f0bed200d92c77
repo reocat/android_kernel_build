@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb941e7d_4750094b",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 8
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-06T06:20:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47b51ebe_ff7791b1",
+      "range": {
+        "startLine": 227,
+        "startChar": 9,
+        "endLine": 227,
+        "endChar": 28
+      },
+      "revId": "3a9e65431bdb7426f0410db007f0bed200d92c77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90a8d29e_b2d20743",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-05T14:39:22Z",
       "side": 1,
       "message": "Consider avoiding the copies by using iterators, it arguably expresses the intent a little more clearly:\n\n```\nimport itertools\n\nt1, t2 \u003d itertools.tee(modules)\ngki_modules \u003d list(filter(is_signature_present, t1))\nlocal_modules \u003d list(itertools.filterfalse(is_signature_present, t2))\n```",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 317,
+        "endChar": 74
+      },
+      "revId": "3a9e65431bdb7426f0410db007f0bed200d92c77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "344dfaf6_acc2a9b5",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 8
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-06T06:20:11Z",
+      "side": 1,
+      "message": "Done. Thanks for review and providing the code snippet; it worked as it is and seems to be faster in execution.",
+      "parentUuid": "90a8d29e_b2d20743",
       "range": {
         "startLine": 313,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea484175_9b6197b9",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 8
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-06T06:20:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dc700de_4d2504d3",
+      "revId": "3a9e65431bdb7426f0410db007f0bed200d92c77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7297ecc5_49c26ab1",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-10-05T14:39:22Z",
       "side": 1,
       "message": "does this need a line break \"\\n  \" ? Otherwise the first module ends up on the same line as the describing text.",
+      "range": {
+        "startLine": 360,
+        "startChar": 11,
+        "endLine": 360,
+        "endChar": 13
+      },
+      "revId": "3a9e65431bdb7426f0410db007f0bed200d92c77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae1cfc7b_75ad2ffc",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 8
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-06T06:20:11Z",
+      "side": 1,
+      "message": "Isn\u0027t the describing text print will have the newline printed at the end? Two print in python are printing on two lines without having the newline char in the string.\n\nThis is how it is printing currently (Actual output with first list stripped to avoid long dump here). \n\n```\nThese modules have been considered when creating the symbol list:\n  abrolhos.ko\n  acpm_flexpmu_dbg.ko\n  acpm_mbox_test.ko\n  aoc_alsa_dev.ko\n  aoc_alsa_dev_util.ko\n  aoc_channel_dev.ko\n  aoc_char_dev.ko\n  aoc_control_dev.ko\nThese modules have *NOT* been considered when creating the symbol list:\n  zram.ko\n  zsmalloc.ko\n```",
+      "parentUuid": "7297ecc5_49c26ab1",
       "range": {
         "startLine": 360,
         "startChar": 11,
