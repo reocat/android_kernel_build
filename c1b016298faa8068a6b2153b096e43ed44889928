@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbf7fe9c_74b3754b",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-06T21:25:57Z",
+      "side": 1,
+      "message": "avoid the name \"gki\"; use \"base\" instead. (same as \"base_kernel\", etc.)\n\nI suggest to just call it \"base_kernel_for_modules\" like \"base_kernel_for_module_outs\" in https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_build.bzl;l\u003d76;drc\u003d1671e4f59ec1d7cdc2f0a9e7a823421846d6d39f\n\nEDIT: Oh it is not necessary a `base_kernel`. Perhaps `kernel_build_for_base_modules`?\n\n(You can keep GKI in the description; I think that\u0027s fine)",
+      "range": {
+        "startLine": 115,
+        "startChar": 9,
+        "endLine": 115,
+        "endChar": 12
+      },
+      "revId": "c1b016298faa8068a6b2153b096e43ed44889928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd57f435_bd941547",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-06T21:25:57Z",
+      "side": 1,
+      "message": "unrelated: Do you still need this? I thought we are just looking at all ko files now",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 183
+      },
+      "revId": "c1b016298faa8068a6b2153b096e43ed44889928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d54aabdf_01fe2abe",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-06T21:25:57Z",
+      "side": 1,
+      "message": "put in different line + use buildifier to clean up the code",
+      "range": {
+        "startLine": 89,
+        "startChar": 80,
+        "endLine": 89,
+        "endChar": 103
+      },
+      "revId": "c1b016298faa8068a6b2153b096e43ed44889928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
