@@ -22,6 +22,30 @@
       },
       "revId": "17a6873304a5b30cd6b9015596b8736abd3fa667",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d85f91c3_eab632f9",
+        "filename": "kleaf/buildozer_command_builder.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-06T21:52:37Z",
+      "side": 1,
+      "message": "The buildozer output separate list items with spaces -- which is a weird design choice IMO.\n\nThis is also relying on the output of buildozer that may change in the future -- but we have no other choice now, I think.",
+      "parentUuid": "b8ad8bf4_1c508d56",
+      "range": {
+        "startLine": 190,
+        "startChar": 63,
+        "endLine": 190,
+        "endChar": 66
+      },
+      "revId": "17a6873304a5b30cd6b9015596b8736abd3fa667",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
