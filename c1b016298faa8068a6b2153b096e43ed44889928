@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9cd4fc93_ca4bede4",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-06T22:04:32Z",
+      "side": 1,
+      "message": "or kernel_build_for_signed_modules -- though \"sign\" is an implementation detail.",
+      "parentUuid": "dbf7fe9c_74b3754b",
+      "range": {
+        "startLine": 115,
+        "startChar": 9,
+        "endLine": 115,
+        "endChar": 12
+      },
+      "revId": "c1b016298faa8068a6b2153b096e43ed44889928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd57f435_bd941547",
         "filename": "kleaf/impl/common_providers.bzl",
         "patchSetId": 4
