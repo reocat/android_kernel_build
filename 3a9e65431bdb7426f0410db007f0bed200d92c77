@@ -175,6 +175,30 @@
       },
       "revId": "3a9e65431bdb7426f0410db007f0bed200d92c77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29e00eea_f19c1eb8",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 8
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-06T21:49:20Z",
+      "side": 1,
+      "message": "my bad, was reading it wrong\n\nThere might be a way to not have multiple print() calls, but I will not insist.\nhttps://google.github.io/styleguide/pyguide.html#310-strings",
+      "parentUuid": "ae1cfc7b_75ad2ffc",
+      "range": {
+        "startLine": 360,
+        "startChar": 11,
+        "endLine": 360,
+        "endChar": 13
+      },
+      "revId": "3a9e65431bdb7426f0410db007f0bed200d92c77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
