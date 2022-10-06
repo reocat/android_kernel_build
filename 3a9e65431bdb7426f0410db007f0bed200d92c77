@@ -199,6 +199,30 @@
       },
       "revId": "3a9e65431bdb7426f0410db007f0bed200d92c77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11a1714c_b2efb9d1",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 8
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-06T22:47:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "29e00eea_f19c1eb8",
+      "range": {
+        "startLine": 360,
+        "startChar": 11,
+        "endLine": 360,
+        "endChar": 13
+      },
+      "revId": "3a9e65431bdb7426f0410db007f0bed200d92c77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
