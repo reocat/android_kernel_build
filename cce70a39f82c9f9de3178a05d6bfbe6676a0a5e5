@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac2b1fa5_82a9a464",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-07T19:42:29Z",
+      "side": 1,
+      "message": "Does extract_symbols script look into subdirectories? If so, there\u0027s no need to extract to some temp directory then move them; just extract to {intermediates_dir} directly.\n\nTricks you can do to extract only certain files (*.ko) from a tar: https://superuser.com/a/1524665 (I am not sure if --wildcards are supported in the prebuilt tar binary)\n\nTricks you can do to flatten the directory if extract_symbols doesn\u0027t support subdirectories: use --transform",
+      "parentUuid": "e2b53947_8e64f39a",
+      "revId": "cce70a39f82c9f9de3178a05d6bfbe6676a0a5e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f395b7ed_73a17b24",
         "filename": "kleaf/impl/abi/extracted_symbols.bzl",
         "patchSetId": 7
