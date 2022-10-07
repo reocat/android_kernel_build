@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96156679_3d459f6f",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-07T23:57:02Z",
+      "side": 1,
+      "message": "Q: Does it matter if this value is `None`?",
+      "range": {
+        "startLine": 547,
+        "startChar": 45,
+        "endLine": 547,
+        "endChar": 52
+      },
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eaebf82_dbd6d19b",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-07T23:57:02Z",
+      "side": 1,
+      "message": "nit: Initially I thought it was a typo, maybe use `target` instead?",
+      "range": {
+        "startLine": 146,
+        "startChar": 47,
+        "endLine": 146,
+        "endChar": 48
+      },
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
