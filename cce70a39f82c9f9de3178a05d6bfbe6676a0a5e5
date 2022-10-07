@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e04a1209_ef0d9ed6",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-07T20:01:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e4a8f27_88e6517b",
+      "revId": "cce70a39f82c9f9de3178a05d6bfbe6676a0a5e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f395b7ed_73a17b24",
@@ -84,6 +102,30 @@
       "writtenOn": "2022-10-07T12:42:45Z",
       "side": 1,
       "message": "instead of extracting and copying around (`mv` would be a better option here!), perhaps tell `tar` to extract right to the correct location:\n\n`--transform\u003d\u0027s/.*lib\\///\u0027`  (untested)\n\nor use `--strip-components`. \n\nI am not familiar with the properties of that archive.",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 76,
+        "endChar": 38
+      },
+      "revId": "cce70a39f82c9f9de3178a05d6bfbe6676a0a5e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08ca6f40_b3c650b2",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-07T20:01:08Z",
+      "side": 1,
+      "message": "For transform/strip-components to work we need to know how many levels we need to jump to reach .ko file and it will differ for every .ko file. `xform` will leave lot of mess in the directory and leftover may accidentally collide with something in future.\n\n```\nramjiyani@ramjiyani-desktop:/tmp/mods$ tar xvzf modules_staging_dir.tar.gz --xform\u003d\u0027s#^.+/##x\u0027\n./\n./lib/\n./lib/modules/\n./lib/modules/5.15.41-maybe-dirty/\n./lib/modules/5.15.41-maybe-dirty/kernel/\n./lib/modules/5.15.41-maybe-dirty/kernel/drivers/\n./lib/modules/5.15.41-maybe-dirty/kernel/drivers/block/\n./lib/modules/5.15.41-maybe-dirty/kernel/drivers/block/zram/\n./lib/modules/5.15.41-maybe-dirty/kernel/drivers/block/zram/zram.ko\n./lib/modules/5.15.41-maybe-dirty/kernel/mm/\n./lib/modules/5.15.41-maybe-dirty/kernel/mm/zsmalloc.ko\n./lib/modules/5.15.41-maybe-dirty/source\n./lib/modules/5.15.41-maybe-dirty/build\n./lib/modules/5.15.41-maybe-dirty/modules.order\n./lib/modules/5.15.41-maybe-dirty/modules.builtin.modinfo\n./lib/modules/5.15.41-maybe-dirty/modules.builtin\nramjiyani@ramjiyani-desktop:/tmp/mods$ ls\n5.15.41-maybe-dirty  drivers  mm               modules.builtin.modinfo     source   zsmalloc.ko\nblock                kernel   modules          modules.order               zram\nbuild                lib      modules.builtin  modules_staging_dir.tar.gz  zram.ko\nramjiyani@ramjiyani-desktop:/tmp/mods$\n```\n\nAnother thing I tried is this:\n\n`tar --directory\u003d{intermediates_dir} --wildcards -xf {gki_modules_archive} \u0027*.ko\u0027`\n\nBut this again extracts only .ko but in the full directory structure starting from /lib/.... ; so still have to do the `find exec mv`.",
+      "parentUuid": "f395b7ed_73a17b24",
       "range": {
         "startLine": 75,
         "startChar": 1,
