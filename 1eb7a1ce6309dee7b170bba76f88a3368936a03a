@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec4a2c60_9a10439d",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-07T01:21:08Z",
+      "side": 1,
+      "message": "nit: Use MODULES_STAGING_ARCHIVE from constants.bzl\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/constants.bzl;l\u003d47;drc\u003da5561e866dacee0ed1fc7e6aee4bf5c6669dedef",
+      "range": {
+        "startLine": 91,
+        "startChar": 50,
+        "endLine": 91,
+        "endChar": 78
+      },
+      "revId": "1eb7a1ce6309dee7b170bba76f88a3368936a03a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
