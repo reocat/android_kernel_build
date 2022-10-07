@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ffdb4aa4_7d9bbc48",
+        "filename": "kleaf/docs/best_practices.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-07T20:17:40Z",
+      "side": 1,
+      "message": ".",
+      "range": {
+        "startLine": 3,
+        "startChar": 66,
+        "endLine": 3,
+        "endChar": 68
+      },
+      "revId": "fc88f7457327eeb7e9822f90f7aad9eb3173a515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e712f05_4f505bd7",
         "filename": "kleaf/docs/best_practices.md",
         "patchSetId": 1
@@ -43,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fefcdea1_d4962804",
+        "filename": "kleaf/docs/best_practices.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-07T20:17:40Z",
+      "side": 1,
+      "message": "+1, please provide link to https://bazel.build/extending/macros#conventions",
+      "parentUuid": "0e712f05_4f505bd7",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 54
+      },
+      "revId": "fc88f7457327eeb7e9822f90f7aad9eb3173a515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "35483168_798a081d",
         "filename": "kleaf/docs/best_practices.md",
         "patchSetId": 1
@@ -54,6 +101,30 @@
       "writtenOn": "2022-10-07T12:33:06Z",
       "side": 1,
       "message": "as above, perhaps a link to a discussion why and perhaps an example of an antipattern.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 16
+      },
+      "revId": "fc88f7457327eeb7e9822f90f7aad9eb3173a515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c42b286_a1598c48",
+        "filename": "kleaf/docs/best_practices.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-07T20:17:40Z",
+      "side": 1,
+      "message": "+1; please provide link to https://bazel.build/rules/performance#use-depsets\n\nalso maybe mention that use depsets **instead of list**; depsets are a tree of objects that can be concatenated effortlessly. lists are concatenated by copying contents",
+      "parentUuid": "35483168_798a081d",
       "range": {
         "startLine": 16,
         "startChar": 0,
