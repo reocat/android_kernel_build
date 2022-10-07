@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2b53947_8e64f39a",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-07T19:38:47Z",
+      "side": 1,
+      "message": "This would be better IMO:\n\n```\nmkdir -p {intermediates_dir}/module_staging_dir\ntar xf {base_modules_archive} -C {intermediates_dir}/module_staging_dir\nfind {intermediates_dir}/module_staging_dir -name \u0027*.ko\u0027 -exec mv -t {intermediates_dir}/ \\\\+\nrm -rf {intermediates_dir}/module_staging_dir\n```\n\n... though, I think there might be cleverer tar tricks that avoid the find \u0026 mv \u0026 extra extraction.",
+      "parentUuid": "6e4a8f27_88e6517b",
+      "revId": "cce70a39f82c9f9de3178a05d6bfbe6676a0a5e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f395b7ed_73a17b24",
         "filename": "kleaf/impl/abi/extracted_symbols.bzl",
         "patchSetId": 7
