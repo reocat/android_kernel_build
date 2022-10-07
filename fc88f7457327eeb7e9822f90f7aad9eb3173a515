@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ac253aa_a961ab23",
+        "filename": "kleaf/docs/best_practices.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-07T12:33:06Z",
+      "side": 1,
+      "message": "The name of the file should reflect that this is about Kleaf development and not so much about how to use Kleaf for end-users.",
+      "revId": "fc88f7457327eeb7e9822f90f7aad9eb3173a515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e712f05_4f505bd7",
+        "filename": "kleaf/docs/best_practices.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-07T12:33:06Z",
+      "side": 1,
+      "message": "add some reasoning or link to some background information to provide more context. Otherwise I will ask the same question about why we can\u0027t have default bools again and again ;-)",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 54
+      },
+      "revId": "fc88f7457327eeb7e9822f90f7aad9eb3173a515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35483168_798a081d",
+        "filename": "kleaf/docs/best_practices.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-07T12:33:06Z",
+      "side": 1,
+      "message": "as above, perhaps a link to a discussion why and perhaps an example of an antipattern.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 16
+      },
+      "revId": "fc88f7457327eeb7e9822f90f7aad9eb3173a515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
