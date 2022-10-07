@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db87108f_caae9faa",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-07T22:59:16Z",
+      "side": 1,
+      "message": "nit:\n\n```\nmv -t {intermediates_dir} \\\\+\n```",
+      "range": {
+        "startLine": 77,
+        "startChar": 57,
+        "endLine": 77,
+        "endChar": 88
+      },
+      "revId": "8b5e84facd1dde327e5277b9cbfc74119b59900c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
