@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b9fbd35_8cf4e368",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-07T21:37:13Z",
+      "side": 1,
+      "message": "This works now but it might start breaking when we switch to prebuilt tar. Maybe add a TODO with b/243570975?",
+      "range": {
+        "startLine": 73,
+        "startChar": 44,
+        "endLine": 73,
+        "endChar": 55
+      },
+      "revId": "a967fec884bcc5cdeb74fd7827a07a86f13839e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
