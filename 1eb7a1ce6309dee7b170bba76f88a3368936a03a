@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa8df2a6_f4c1fa43",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-07T01:22:57Z",
+      "side": 1,
+      "message": "This is technically not \"ddk_artifacts\" any more (but a core file in L105), but let\u0027s deal with this later. It is NBD.",
+      "revId": "1eb7a1ce6309dee7b170bba76f88a3368936a03a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec4a2c60_9a10439d",
