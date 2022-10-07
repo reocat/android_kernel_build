@@ -134,6 +134,30 @@
       },
       "revId": "cce70a39f82c9f9de3178a05d6bfbe6676a0a5e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd0372db_3cf0ec87",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-07T20:14:21Z",
+      "side": 1,
+      "message": "how about --xform \u0026\u0026 --wildcards together?",
+      "parentUuid": "08ca6f40_b3c650b2",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 76,
+        "endChar": 38
+      },
+      "revId": "cce70a39f82c9f9de3178a05d6bfbe6676a0a5e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
