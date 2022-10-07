@@ -26,6 +26,8 @@
 
 [Cheatsheet](docs/cheatsheet.md)
 
+[Best Practices](docs/best_practices.md)
+
 ### Configurations
 
 `--config=release`: [Release builds](docs/release.md)
