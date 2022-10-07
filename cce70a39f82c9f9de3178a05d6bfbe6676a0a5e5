@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e4a8f27_88e6517b",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-07T12:42:45Z",
+      "side": 1,
+      "message": "I know it is a hardlink, but why does it need to be copied there anyway? can the tar not use the original file location?",
+      "revId": "cce70a39f82c9f9de3178a05d6bfbe6676a0a5e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f395b7ed_73a17b24",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-07T12:42:45Z",
+      "side": 1,
+      "message": "instead of extracting and copying around (`mv` would be a better option here!), perhaps tell `tar` to extract right to the correct location:\n\n`--transform\u003d\u0027s/.*lib\\///\u0027`  (untested)\n\nor use `--strip-components`. \n\nI am not familiar with the properties of that archive.",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 76,
+        "endChar": 38
+      },
+      "revId": "cce70a39f82c9f9de3178a05d6bfbe6676a0a5e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
