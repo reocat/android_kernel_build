@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af5326f2_bca6a98c",
+        "filename": "kleaf/docs/kleaf_development.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-07T22:23:59Z",
+      "side": 1,
+      "message": "What about \"None\" from PEP 8?\n\nIt appears that PEP 8 suggests using `is None` which is not what we can do in Starlark, so I am not sure if we want to mention this",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 68
+      },
+      "revId": "43c5d5be02d5d8d075c90c45795e78db2a682e60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
