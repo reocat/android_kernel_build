@@ -16,6 +16,7 @@ load("//build/kernel/kleaf:directory_with_structure.bzl", dws = "directory_with_
 load(
     ":common_providers.bzl",
     "KernelBuildExtModuleInfo",
+    "KernelCmdsInfo",
     "KernelEnvInfo",
     "KernelModuleInfo",
 )
@@ -133,11 +134,16 @@ def _kernel_modules_install_impl(ctx):
         progress_message = "Running depmod {}".format(ctx.label),
     )
 
+    cmds_info_targets = [ctx.attr.kernel_build] + ctx.attr.kernel_modules
+
     return [
         DefaultInfo(files = depset(external_modules)),
         KernelModuleInfo(
             kernel_build = ctx.attr.kernel_build,
             modules_staging_dws = modules_staging_dws,
+        ),
+        KernelCmdsInfo(
+            directories = depset(transitive = [t[KernelCmdsInfo].directories for t in cmds_info_targets]),
         ),
     ]
 
