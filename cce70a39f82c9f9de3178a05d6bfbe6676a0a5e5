@@ -158,6 +158,30 @@
       },
       "revId": "cce70a39f82c9f9de3178a05d6bfbe6676a0a5e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "897e2941_a7878807",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-07T21:14:59Z",
+      "side": 1,
+      "message": "Thanks Yifan. This worked.\n\n`tar --directory\u003d. --wildcards --xform\u003d\u0027s#^.+/##x\u0027 -xf ./modules_staging_dir.tar.gz \u0027*.ko\u0027`",
+      "parentUuid": "dd0372db_3cf0ec87",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 76,
+        "endChar": 38
+      },
+      "revId": "cce70a39f82c9f9de3178a05d6bfbe6676a0a5e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

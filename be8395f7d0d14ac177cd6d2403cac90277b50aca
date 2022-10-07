@@ -69,6 +69,54 @@
       },
       "revId": "be8395f7d0d14ac177cd6d2403cac90277b50aca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c0cdf93_2c147f6c",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-07T21:14:59Z",
+      "side": 1,
+      "message": "It\u0027s an archive from the module staging directory so we know there won\u0027t be any other file at the root of archive including any .ko files. it\u0027s standard structure for modules `lib/modules/uname-a/kernel/...`\n\nAlso not applicable in the latest version of the code.",
+      "parentUuid": "6b316468_2c7b3ee0",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 36
+      },
+      "revId": "be8395f7d0d14ac177cd6d2403cac90277b50aca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "941078dc_3783e906",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-07T21:14:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46f3f9c8_d94faf5a",
+      "range": {
+        "startLine": 74,
+        "startChar": 56,
+        "endLine": 74,
+        "endChar": 87
+      },
+      "revId": "be8395f7d0d14ac177cd6d2403cac90277b50aca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
