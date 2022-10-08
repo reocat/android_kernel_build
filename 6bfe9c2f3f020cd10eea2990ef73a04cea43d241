@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "19375381_ecdddb84",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-08T01:02:51Z",
+      "side": 1,
+      "message": "No; I think depset([None]) is valid. It\u0027ll be shown as [None] when converting it to a list. (Let me double check though)",
+      "parentUuid": "96156679_3d459f6f",
+      "range": {
+        "startLine": 547,
+        "startChar": 45,
+        "endLine": 547,
+        "endChar": 52
+      },
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9eaebf82_dbd6d19b",
         "filename": "kleaf/impl/kernel_modules_install.bzl",
         "patchSetId": 3
