@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a52045e6_dc65224f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-10-09T15:19:05Z",
+      "side": 1,
+      "message": "Hi, Yifan, Ulises\n\nThanks for this change to include the GKI kernel for the dist!\nBut the version from the kernel file seems not correct.\nit reports like \"6.0.0-mainline-maybe-dirty\", instead of the normal one which has the git commit information.\nCould you please help check if there is any issue with this?\n\nThanks,\nYongqin Liu",
+      "revId": "25216b0bbe0e1c78d2c12d6486a1d73a04fb90d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c379c6f_24ecf822",
