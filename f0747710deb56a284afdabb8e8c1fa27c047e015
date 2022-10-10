@@ -16,6 +16,24 @@
       "message": "any chance we can use this value directly from kernel_utils without having to provide it here via a label? It will for all build rules always be the same and the default is never going to change either.",
       "revId": "f0747710deb56a284afdabb8e8c1fa27c047e015",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93222294_0993bfa8",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-10T19:39:57Z",
+      "side": 1,
+      "message": "I don\u0027t think so unless you add something to attrs in either L273 or L296, but then you\u0027ll still need to specify something here.",
+      "parentUuid": "1513d24c_d7563519",
+      "revId": "f0747710deb56a284afdabb8e8c1fa27c047e015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
