@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f3be44d_2155c5c7",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-10T23:53:45Z",
+      "side": 1,
+      "message": "Done. I re-write the whole thing, and I took this suggestion. See out_headers_allowlist_archive.bzl",
+      "parentUuid": "ff4e3742_2678a4b1",
+      "range": {
+        "startLine": 841,
+        "startChar": 14,
+        "endLine": 841,
+        "endChar": 23
+      },
+      "revId": "6cef9fff0fc86c2df0b3a2178360c35bc08dbb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17b8d8f9_79e13866",
