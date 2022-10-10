@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6a31f1a_415bc90a",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:32:50Z",
+      "side": 1,
+      "message": "hermetic tool as well",
+      "range": {
+        "startLine": 840,
+        "startChar": 14,
+        "endLine": 840,
+        "endChar": 19
+      },
+      "revId": "6cef9fff0fc86c2df0b3a2178360c35bc08dbb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b6f36eb_15678b2f",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:32:50Z",
+      "side": 1,
+      "message": "I wish we could refer to `//build/kernel:hermetic-tools/tar` already independently of whether it comes from the host right now.",
+      "range": {
+        "startLine": 841,
+        "startChar": 14,
+        "endLine": 841,
+        "endChar": 17
+      },
+      "revId": "6cef9fff0fc86c2df0b3a2178360c35bc08dbb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff4e3742_2678a4b1",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:32:50Z",
+      "side": 1,
+      "message": "you should be able to extract only the scripts/ subdirectory instead of extracting everything and then packing partially.",
+      "range": {
+        "startLine": 841,
+        "startChar": 14,
+        "endLine": 841,
+        "endChar": 23
+      },
+      "revId": "6cef9fff0fc86c2df0b3a2178360c35bc08dbb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17b8d8f9_79e13866",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:32:50Z",
+      "side": 1,
+      "message": "if you have that, why you need the other two? just for the location? why both then?",
+      "revId": "6cef9fff0fc86c2df0b3a2178360c35bc08dbb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
