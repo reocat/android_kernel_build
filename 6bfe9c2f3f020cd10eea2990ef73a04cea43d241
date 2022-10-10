@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7132cabf_c5188185",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-10T19:38:19Z",
+      "side": 1,
+      "message": "This is not a flag; it is a \"bool_setting\", meaning that it can only be used in transitions. This cannot be set in the command line.\n\nhttps://bazel.build/extending/config#rule-parameter\n\n\u003e The config module\u0027s functions takes an optional boolean parameter, flag, which is set to false by default. if flag is set to true, the build setting can be set on the command line by users as well as internally by rule writers via default values and transitions. Not all settings should be settable by users. For example, if you as a rule writer have some debug mode that you\u0027d like to turn on inside test rules, you don\u0027t want to give users the ability to indiscriminately turn on that feature inside other non-test rules.",
+      "parentUuid": "3bee5b75_483ed635",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 24
+      },
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f0b3e491_7613a770",
         "filename": "kleaf/impl/common_providers.bzl",
         "patchSetId": 3
@@ -58,6 +82,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9021510_85d6d916",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-10T19:38:19Z",
+      "side": 1,
+      "message": "I think this makes the caller (_build_main_action) shorter.\n\n(This is consistent with other \"steps\" too)",
+      "parentUuid": "de8c6138_89071cf3",
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63240796_a0d7c31f",
@@ -71,6 +113,30 @@
       "writtenOn": "2022-10-10T14:41:12Z",
       "side": 1,
       "message": "isn\u0027t the OUT_DIR where things get collected?",
+      "range": {
+        "startLine": 829,
+        "startChar": 87,
+        "endLine": 829,
+        "endChar": 100
+      },
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03bba531_b0fcaa74",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-10T19:38:19Z",
+      "side": 1,
+      "message": "Yes, this is the source directory; cmd_dir is the dest directory.\n\nWhat\u0027s up with this?",
+      "parentUuid": "63240796_a0d7c31f",
       "range": {
         "startLine": 829,
         "startChar": 87,
@@ -106,6 +172,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5188bf8_e0365f91",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-10T19:38:19Z",
+      "side": 1,
+      "message": "ack, but I think this is more complicated because L964, L1025 all needs to check the build setting.\n\nWith my current code, setting the step to an \"empty\" value allows me to unconditionally add things here.",
+      "parentUuid": "ad8bb5d9_6daf1ad5",
+      "range": {
+        "startLine": 891,
+        "startChar": 0,
+        "endLine": 899,
+        "endChar": 5
+      },
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b51e7a5_781d4855",
         "filename": "kleaf/impl/kernel_module.bzl",
         "patchSetId": 3
@@ -117,6 +207,24 @@
       "writtenOn": "2022-10-10T14:41:12Z",
       "side": 1,
       "message": "would be good to reuse the function from kernel_build.bzl to avoid this duplication.",
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ce9cb8_d9aa0c5a",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-10T19:38:19Z",
+      "side": 1,
+      "message": "there are actually a few differences like the declared directory and the destination directory, so I think duplication is fine here?",
+      "parentUuid": "4b51e7a5_781d4855",
       "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
