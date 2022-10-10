@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "307f3c1c_81b2baeb",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-10T19:47:04Z",
+      "side": 1,
+      "message": "The PATH above enforces hermetic tools already.",
+      "parentUuid": "a6a31f1a_415bc90a",
+      "range": {
+        "startLine": 840,
+        "startChar": 14,
+        "endLine": 840,
+        "endChar": 19
+      },
+      "revId": "6cef9fff0fc86c2df0b3a2178360c35bc08dbb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b6f36eb_15678b2f",
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43a54b28_dd686799",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-10T19:47:04Z",
+      "side": 1,
+      "message": "Yes we can use `//build/kernel:hermetic-tools/tar`.\n\nHowever, note that `tar czf` requires `gzip` in PATH, so PATH needs to be modified to the list of hermetic tools anyways. That\u0027s why I do L837, then use `tar` directly here.",
+      "parentUuid": "7b6f36eb_15678b2f",
+      "range": {
+        "startLine": 841,
+        "startChar": 14,
+        "endLine": 841,
+        "endChar": 17
+      },
+      "revId": "6cef9fff0fc86c2df0b3a2178360c35bc08dbb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17b8d8f9_79e13866",
@@ -83,6 +131,24 @@
       "writtenOn": "2022-10-10T14:32:50Z",
       "side": 1,
       "message": "if you have that, why you need the other two? just for the location? why both then?",
+      "revId": "6cef9fff0fc86c2df0b3a2178360c35bc08dbb66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a4a3c95_39f28b3b",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-10T19:47:04Z",
+      "side": 1,
+      "message": "I have the first to get all tools as the dependency.\n\nI have the next two so I can specify them in L837/838. `$(location //build/kernel:hermetic-tools)` will be an error (because it has multiple output files), and `$(locations //build/kernel:hermetic-tools)` will expand to a list of tools. But to parse this **list** of tools to get the correct PATH, I\u0027ll need some tools like sed/head etc; so it is a chicken-and-egg problem.\n\nHence, here, I explicitly need the full path of dirname and readlink, then do\n\n```\nPATH\u003d$(readlink $(dirname path/to/readlink))\n```",
+      "parentUuid": "17b8d8f9_79e13866",
       "revId": "6cef9fff0fc86c2df0b3a2178360c35bc08dbb66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
