@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d838bfc_6c461d80",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-10T22:47:22Z",
+      "side": 1,
+      "message": "the previous check was using \".h\", I wonder if there are scripts with names \"*.sh\" or \"*.bash\" that would aso match this.",
+      "range": {
+        "startLine": 133,
+        "startChar": 31,
+        "endLine": 133,
+        "endChar": 32
+      },
+      "revId": "e3214ab296c8ecafc09c837e213f5486b778e6dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
