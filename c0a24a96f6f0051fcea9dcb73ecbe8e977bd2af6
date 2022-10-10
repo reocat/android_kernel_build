@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa2399bd_f8507979",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:56:24Z",
+      "side": 1,
+      "message": "if performance matters (given that we are iterating over the entirety of kernel sources), consider building both depsets at the same iteration:\n\n```\ndef _filter_module_hdrs_and_scripts(files):\n  hdrs \u003d []\n  scripts \u003d []\n  for file in files:\n    if file.path.endswith(\".h\"):\n      hdrs.append(file)\n    elif \"Makefile\" in file.path or \"scripts/\" in file.path:\n      scripts.append(file)\n\n  return depset(hdrs), depset(scripts)\n```\n\n\nAlternatively, offer a partition function based one .endswith(\".h\")",
+      "revId": "c0a24a96f6f0051fcea9dcb73ecbe8e977bd2af6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
