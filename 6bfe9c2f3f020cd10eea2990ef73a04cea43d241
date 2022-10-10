@@ -3,6 +3,126 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3bee5b75_483ed635",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:41:12Z",
+      "side": 1,
+      "message": "that is very generic as part of the `bazel` invocation. Consider something more explicit, like `--preserve_kbuild_cmd_files`.",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 24
+      },
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0b3e491_7613a770",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:41:12Z",
+      "side": 1,
+      "message": "nit: line length.",
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de8c6138_89071cf3",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:41:12Z",
+      "side": 1,
+      "message": "Instead of checking inside here, should not rather the caller check for the flag?",
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63240796_a0d7c31f",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:41:12Z",
+      "side": 1,
+      "message": "isn\u0027t the OUT_DIR where things get collected?",
+      "range": {
+        "startLine": 829,
+        "startChar": 87,
+        "endLine": 829,
+        "endChar": 100
+      },
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad8bb5d9_6daf1ad5",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:41:12Z",
+      "side": 1,
+      "message": "```\nif ctx.attr._preserve_cmd[BuildSettingInfo].value:\n  steps.append(_get_grab_cmd_step)\n```",
+      "range": {
+        "startLine": 891,
+        "startChar": 0,
+        "endLine": 899,
+        "endChar": 5
+      },
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b51e7a5_781d4855",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:41:12Z",
+      "side": 1,
+      "message": "would be good to reuse the function from kernel_build.bzl to avoid this duplication.",
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96156679_3d459f6f",
         "filename": "kleaf/impl/kernel_module.bzl",
         "patchSetId": 3
@@ -61,6 +181,30 @@
       "writtenOn": "2022-10-07T23:57:02Z",
       "side": 1,
       "message": "nit: Initially I thought it was a typo, maybe use `target` instead?",
+      "range": {
+        "startLine": 146,
+        "startChar": 47,
+        "endLine": 146,
+        "endChar": 48
+      },
+      "revId": "6bfe9c2f3f020cd10eea2990ef73a04cea43d241",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4689e120_c0abb9df",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:41:12Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "9eaebf82_dbd6d19b",
       "range": {
         "startLine": 146,
         "startChar": 47,
