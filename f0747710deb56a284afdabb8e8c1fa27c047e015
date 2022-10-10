@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1513d24c_d7563519",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:25:19Z",
+      "side": 1,
+      "message": "any chance we can use this value directly from kernel_utils without having to provide it here via a label? It will for all build rules always be the same and the default is never going to change either.",
+      "revId": "f0747710deb56a284afdabb8e8c1fa27c047e015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
