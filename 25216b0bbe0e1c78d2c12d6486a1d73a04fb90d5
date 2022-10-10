@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "928e56ee_60f0c0de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-10-10T11:26:44Z",
+      "side": 1,
+      "message": "hmm, the kernel version information is correct from the build here:\nhttps://ci.android.com/builds/submitted/9155912/kernel_db845c_kleaf/latest\n\nsomething wrong with my local setup?",
+      "parentUuid": "a52045e6_dc65224f",
+      "revId": "25216b0bbe0e1c78d2c12d6486a1d73a04fb90d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c379c6f_24ecf822",
