@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e7cb9841_c0b9c8fe",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-10T14:57:54Z",
+      "side": 1,
+      "message": "return depset([\n        s\n        for s in files\n        if \"Makefile\" in s.path or s.path.startswith(\"scripts/\")\n    ])",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 6
+      },
+      "revId": "c0a24a96f6f0051fcea9dcb73ecbe8e977bd2af6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa2399bd_f8507979",
         "filename": "kleaf/impl/utils.bzl",
         "patchSetId": 2
