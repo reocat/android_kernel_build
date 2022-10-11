@@ -41,34 +41,40 @@ def _analyze_to_raw_paths(ctx):
     input_archives = depset(transitive = [t.files for t in ctx.attr.input_archives])
 
     raw_paths = ctx.actions.declare_file("{}/raw_paths.txt".format(ctx.label.name))
+    raw_includes = ctx.actions.declare_file("{}/raw_includes.txt".format(ctx.label.name))
 
     args = ctx.actions.args()
     args.add_all("--include_filters", ctx.attr.include_filters)
     args.add_all("--exclude_filters", ctx.attr.exclude_filters)
     args.add_all("--input_archives", input_archives)
     args.add("--out", raw_paths)
+    args.add("--out_includes", raw_includes)
     args.add_all("--dirs", dirs, expand_directories = False)
 
     ctx.actions.run(
         mnemonic = "AnalyzeInputs",
         inputs = depset(transitive = [dirs, input_archives]),
-        outputs = [raw_paths],
+        outputs = [raw_paths, raw_includes],
         executable = ctx.executable._analyze_inputs,
         arguments = [args],
+        progress_message = "Analyzing inputs for {}".format(ctx.label),
     )
-    return raw_paths
 
-def _create_sanitize_script(ctx, raw_paths):
+    return struct(raw_paths = raw_paths, raw_includes = raw_includes)
+
+def _create_sanitize_script(ctx, files):
     executable = ctx.actions.declare_file("{name}/{name}.sh".format(name = ctx.label.name))
     content = """#!/bin/bash -e
-                 {sanitize_inputs} --input {raw_paths} $@
+                 {sanitize_inputs} --input {raw_paths} --output $1 && \
+                 {sanitize_inputs} --input {raw_includes} --output $2
                  """.format(
         sanitize_inputs = shell.quote(ctx.executable._sanitize_inputs.short_path),
-        raw_paths = shell.quote(raw_paths.short_path),
+        raw_paths = shell.quote(files.raw_paths.short_path),
+        raw_includes = shell.quote(files.raw_includes.short_path),
     )
     ctx.actions.write(executable, content, is_executable = True)
 
-    runfiles = ctx.runfiles(files = [raw_paths])
+    runfiles = ctx.runfiles(files = [files.raw_paths, files.raw_includes])
     transitive_runfiles = [ctx.attr._sanitize_inputs[DefaultInfo].default_runfiles]
     runfiles = runfiles.merge_all(transitive_runfiles)
 
@@ -79,8 +85,8 @@ def _create_sanitize_script(ctx, raw_paths):
     )
 
 def _analyze_inputs_impl(ctx):
-    raw_paths = _analyze_to_raw_paths(ctx)
-    default_info = _create_sanitize_script(ctx, raw_paths)
+    files = _analyze_to_raw_paths(ctx)
+    default_info = _create_sanitize_script(ctx, files)
     return default_info
 
 analyze_inputs = rule(

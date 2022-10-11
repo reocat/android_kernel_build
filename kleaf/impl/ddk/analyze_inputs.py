@@ -30,16 +30,22 @@ _RE = r"^(?P<key>\S*?)\s*:=(?P<values>((\\\n| |\t)+(\S*))*)"
 
 @dataclasses.dataclass
 class CmdParseData(object):
-    include_dirs: list[pathlib.Path] = dataclasses.field(default_factory=list)
-    include_files: list[pathlib.Path] = dataclasses.field(default_factory=list)
+    include_dirs: set[pathlib.Path] = dataclasses.field(default_factory=set)
+    include_files: set[pathlib.Path] = dataclasses.field(default_factory=set)
+
+    def __ior__(self, other):
+        self.include_dirs |= other.include_dirs
+        self.include_files |= other.include_files
+        return self
 
 
 class AnalyzeInputs(object):
 
-    def __init__(self, out: TextIO, dirs: list[pathlib.Path],
+    def __init__(self, out: TextIO, out_includes: TextIO, dirs: list[pathlib.Path],
                  include_filters: list[str], exclude_filters: list[str],
                  input_archives: list[tarfile.TarFile], **ignored):
         self._out = out
+        self._out_includes = out_includes
         self._dirs = dirs
         self._include_filters = include_filters
         self._exclude_filters = exclude_filters
@@ -57,17 +63,24 @@ class AnalyzeInputs(object):
             self._archived_input_names.update(paths)
 
     def run(self):
-        result: set[pathlib.Path] = set()
+        result = CmdParseData()
         for dir in self._dirs:
             for root, _, files in os.walk(dir):
                 root_path = pathlib.Path(root)
                 for filename in files:
-                    result.update(self._get_deps(root_path / filename))
+                    result |= self._get_deps(root_path / filename)
 
-        for e in sorted(result):
+        for e in sorted(result.include_files):
             self._out.write(str(e))
             self._out.write("\n")
-            self._out.flush()
+        self._out.flush()
+
+        for e in sorted(result.include_dirs):
+            # FIXME fix non-absolute incldues!
+            if e.is_absolute():
+                self._out_includes.write(str(e))
+                self._out_includes.write("\n")
+        self._out_includes.flush()
 
         bad = {
             "unresolved": self._unresolved,
@@ -81,8 +94,8 @@ class AnalyzeInputs(object):
         if any(bad.values()):
             sys.exit(1)
 
-    def _get_deps(self, path: pathlib.Path) -> set[pathlib.Path]:
-        ret: set[pathlib.Path] = set()
+    def _get_deps(self, path: pathlib.Path) -> CmdParseData:
+        ret = CmdParseData()
 
         deps = dict()
         cmds = dict()
@@ -97,8 +110,8 @@ class AnalyzeInputs(object):
             for object, deps_str in deps.items():
                 deps_str = deps_str.replace("\\\n", " ")
                 one_deps = set(self._filter_deps(deps_str.split()))
-                one_deps = self._resolve_files(one_deps, cmds.get(object), path)
-                ret.update(one_deps)
+                one_parse_data = self._resolve_files(one_deps, cmds.get(object), path)
+                ret |= one_parse_data
         return ret
 
     def _filter_deps(self, dep_strs: Iterable[str]) -> Iterable[pathlib.Path]:
@@ -131,33 +144,24 @@ class AnalyzeInputs(object):
             if not tokens or "clang" not in pathlib.Path(tokens[0]).name:
                 continue
             known, _ = self._cmd_parser.parse_known_args(tokens[1:])
-            ret.include_files += known.include
-            ret.include_dirs += known.I
+            ret.include_files |= set(known.include)
+            ret.include_dirs |= set(known.I)
             if known.sysroot:
-                ret.include_dirs.append(known.sysroot)
+                ret.include_dirs.add(known.sysroot)
         return ret
 
     def _resolve_files(self, deps: Iterable[pathlib.Path], cmd: Optional[str],
-                       cmd_file_path: pathlib.Path) -> Iterable[pathlib.Path]:
+                       cmd_file_path: pathlib.Path) -> CmdParseData:
         cmd_parse_data = self._parse_cmd(cmd)
+
+        ret_deps = set()
 
         for dep_list in (cmd_parse_data.include_files, deps):
             for dep in dep_list:
                 # Pass through absolute paths.
                 # They might be in the sandbox, so don't check for existence.
                 if dep.is_absolute():
-                    yield dep
-                    continue
-
-                found = False
-                for include in cmd_parse_data.include_dirs:
-                    include_path = include / dep
-                    if include_path.is_file():
-                        yield include_path.resolve()
-                        found = True
-                        break
-
-                if found:
+                    ret_deps.add(dep)
                     continue
 
                 # Ignore headers in given archives
@@ -167,10 +171,13 @@ class AnalyzeInputs(object):
                 logging.debug("%s: Unknown dep %s", cmd_file_path, dep)
                 self._unresolved.add(dep)
 
+        return CmdParseData(cmd_parse_data.include_dirs, ret_deps)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=argparse.FileType("w"), default=sys.stdout)
+    parser.add_argument("--out_includes", type=argparse.FileType("w"), default=sys.stdout)
     parser.add_argument("--dirs", type=pathlib.Path, nargs="*", default=[])
     parser.add_argument("-v", "--verbose", action="store_true", default=False)
     parser.add_argument("--include_filters", nargs="*", default=["*"])
