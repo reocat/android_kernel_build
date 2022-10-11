@@ -32,6 +32,7 @@ def _gen_ddk_headers_impl(ctx):
                    --input_includes {intermediates_dir}/sanitized_includes.txt \
                    $@
                  """.format(
+        intermediates_dir = intermediates,
         input_script = shell.quote(ctx.executable.input_script.short_path),
         generator = shell.quote(ctx.executable._generator.short_path),
     )
