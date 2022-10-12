@@ -22,6 +22,30 @@
       },
       "revId": "fc91835b3245aadc8b949311e08a4b1a5c7c77a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d06c55c_3cf59f84",
+        "filename": "kleaf/docs/errors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-12T22:17:58Z",
+      "side": 1,
+      "message": "+1, specifying environment variables like CLANG_PREBUILT_BIN is not going to take effect for Kleaf.\n\nAlso, do we want to restrict the use to only clang prebuilts under prebuilt/ (possibly different versions), or do we want to support arbitrary clang toolchains (e.g. installed on host)? If the former, I would rather have `--toolchain_version\u003dr123456` instead.",
+      "parentUuid": "d7551c79_bcacf430",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 40
+      },
+      "revId": "fc91835b3245aadc8b949311e08a4b1a5c7c77a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
