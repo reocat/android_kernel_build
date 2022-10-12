@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7551c79_bcacf430",
+        "filename": "kleaf/docs/errors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-12T15:25:56Z",
+      "side": 1,
+      "message": "How would you like `--clang_prebuilt_path\u003d/path/to/llvm-project/llvm/build/bin` instead? If so, please open a go/kleaf-bug",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 40
+      },
+      "revId": "fc91835b3245aadc8b949311e08a4b1a5c7c77a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
