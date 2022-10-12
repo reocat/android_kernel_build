@@ -1062,16 +1062,13 @@ def _create_infos(
         modules_staging_archive = modules_staging_archive,
     )
 
+    # TODO(b/250097199): the device GKI modules should be prioritized over generic modules
     unstripped_modules_depsets = []
     if ctx.attr.base_kernel:
         unstripped_modules_depsets.append(ctx.attr.base_kernel[KernelUnstrippedModulesInfo].directories)
+    unstripped_modules_depsets.append(depset([main_action_ret.unstripped_dir]))
     kernel_unstripped_modules_info = KernelUnstrippedModulesInfo(
-        directories = depset(
-            [main_action_ret.unstripped_dir],
-            transitive = unstripped_modules_depsets,
-            # TODO(b/250097199): the device GKI modules should be prioritized over generic modules
-            order = "postorder",
-        ),
+        directories = depset(transitive = unstripped_modules_depsets, order = "postorder"),
     )
 
     in_tree_modules_info = KernelBuildInTreeModulesInfo(
