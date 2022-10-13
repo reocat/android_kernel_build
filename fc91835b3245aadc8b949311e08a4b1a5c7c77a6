@@ -46,6 +46,30 @@
       },
       "revId": "fc91835b3245aadc8b949311e08a4b1a5c7c77a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a20e6bf9_41e9488e",
+        "filename": "kleaf/docs/errors.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-10-13T11:43:05Z",
+      "side": 1,
+      "message": "I think `--toolchain_version\u003dr123456` would be equivalent to changing the TOOLCHAIN_VERSION file and likely anyway be used when updating the toolchain. So, there is little value for that use case.\n\nThe intention here is to try out arbitrary clang builds (local dev builds) and for that we basically need to allow things from the host (not really hermetic, but totally ok for that case).\n\nNick, correct me if I am wrong with the above. Assuming I am right, what would be actually a useful path to specify to also include other files like clang runtime libs and/or stdlib headers and stubs etc. ?",
+      "parentUuid": "3d06c55c_3cf59f84",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 40
+      },
+      "revId": "fc91835b3245aadc8b949311e08a4b1a5c7c77a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
