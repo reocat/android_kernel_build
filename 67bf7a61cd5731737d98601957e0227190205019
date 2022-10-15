@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8feccdd5_8943b615",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-10-15T07:30:23Z",
+      "side": 1,
+      "message": "Now that I think about this, I don\u0027t think we can use the $(mixed-build-prefix)Module.symvers because it will lack the exported symbols from modules that were built from the ACK source (not in the gki_defconfig) during the mixed build pass that vendors want to use.",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 63
+      },
+      "revId": "67bf7a61cd5731737d98601957e0227190205019",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
