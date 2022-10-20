@@ -62,6 +62,7 @@ def _initramfs_impl(ctx):
             : > ${modules_root_dir}/modules.options
     """
 
+    ramdisk_compress = image_utils.ramdisk_options().ramdisk_compress
     command = """
                mkdir -p {initramfs_staging_dir}
              # Build initramfs
@@ -72,7 +73,7 @@ def _initramfs_impl(ctx):
                {cp_vendor_boot_modules_load_cmd}
                {cp_modules_options_cmd}
                mkbootfs "{initramfs_staging_dir}" >"{modules_staging_dir}/initramfs.cpio"
-               ${{RAMDISK_COMPRESS}} "{modules_staging_dir}/initramfs.cpio" >"{initramfs_img}"
+               {ramdisk_compress} "{modules_staging_dir}/initramfs.cpio" >"{initramfs_img}"
              # Archive initramfs_staging_dir
                tar czf {initramfs_staging_archive} -C {initramfs_staging_dir} .
              # Remove staging directories
@@ -80,6 +81,7 @@ def _initramfs_impl(ctx):
     """.format(
         modules_staging_dir = modules_staging_dir,
         initramfs_staging_dir = initramfs_staging_dir,
+        ramdisk_compress = ramdisk_compress,
         modules_load = modules_load.path,
         initramfs_img = initramfs_img.path,
         initramfs_staging_archive = initramfs_staging_archive.path,

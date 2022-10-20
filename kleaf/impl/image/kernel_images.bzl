@@ -17,6 +17,7 @@ Build multiple kernel images.
 
 load(":image/boot_images.bzl", "boot_images")
 load(":image/dtbo.bzl", "dtbo")
+load(":image/image_utils.bzl", "image_utils")
 load(":image/initramfs.bzl", "initramfs")
 load(":image/system_dlkm_image.bzl", "system_dlkm_image")
 load(":image/vendor_dlkm_image.bzl", "vendor_dlkm_image")
@@ -241,16 +242,22 @@ def kernel_images(
     build_any_boot_image = build_boot or build_vendor_boot or build_vendor_kernel_boot
     if build_any_boot_image:
         if kernel_build == None:
-            fail("{}: Must set kernel_build if any of these are true: build_boot={}, build_vendor_boot={}, build_vendor_kernel_boot={}".format(name, build_boot, build_vendor_boot, build_vendor_kernel_boot))
+            fail("{}: Must set kernel_build if any of these are true: build_boot={}, build_vendor_boot={}, build_vendor_kernel_boot={}".format(
+                name,
+                build_boot,
+                build_vendor_boot,
+                build_vendor_kernel_boot,
+            ))
 
     # Set default value for boot_image_outs according to build_boot
     if boot_image_outs == None:
         if not build_any_boot_image:
             boot_image_outs = []
         else:
+            ramdisk_out = "ramdisk." + image_utils.ramdisk_options().ramdisk_ext
             boot_image_outs = [
                 "dtb.img",
-                "ramdisk.lz4",
+                ramdisk_out,
             ]
 
     boot_image_outs = list(boot_image_outs)
