@@ -27,6 +27,7 @@ def ddk_module(
         name,
         kernel_build,
         srcs,
+        local_defines = None,
         deps = None,
         hdrs = None,
         includes = None,
@@ -92,6 +93,12 @@ def ddk_module(
         includes: See [`ddk_headers.includes`](#ddk_headers-includes)
         kernel_build: [`kernel_build`](#kernel_build)
         out: The output module file. By default, this is `"{name}.ko"`.
+        local_defines: List of defines to add to the compile line.
+
+          Each string, which must consist of a single Bourne shell token, is
+          prepended with `-D` and added to the compile command line for this
+          target, but not to its dependents.
+
         kwargs: Additional attributes to the internal rule.
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
@@ -125,5 +132,6 @@ def ddk_module(
         module_includes = includes,
         module_out = out,
         module_deps = deps,
+        module_local_defines = local_defines,
         **private_kwargs
     )
