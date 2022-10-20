@@ -60,13 +60,14 @@ def _makefiles_impl(ctx):
     args.add("--kernel-module-out", ctx.attr.module_out)
     args.add("--output-makefiles", output_makefiles.path)
     args.add("--package", ctx.label.package)
-
     args.add_all("--include-dirs", include_dirs, uniquify = True)
 
     args.add_all(
         "--module-symvers-list",
         [kernel_module[ModuleSymversInfo].restore_path for kernel_module in kernel_module_deps],
     )
+
+    args.add_all("--local-defines", ctx.attr.module_local_defines)
 
     ctx.actions.run(
         outputs = [output_makefiles],
@@ -88,6 +89,7 @@ makefiles = rule(
         "module_includes": attr.string_list(),
         "module_deps": attr.label_list(),
         "module_out": attr.string(),
+        "module_local_defines": attr.string_list(),
         "_gen_makefile": attr.label(
             default = "//build/kernel/kleaf/impl:ddk/gen_makefiles",
             executable = True,
