@@ -70,6 +70,7 @@ def gen_ddk_makefile(
         include_dirs: list[pathlib.Path],
         module_symvers_list: list[pathlib.Path],
         package: pathlib.Path,
+        local_defines: list[str],
 ):
     _gen_makefile(
         package=package,
@@ -130,7 +131,17 @@ def gen_ddk_makefile(
                 ccflags-y += {shlex.quote(ccflag)}
                 """))
 
-        out_file.write("\n")
+        if local_defines:
+            out_file.write("\n")
+            out_file.write(textwrap.dedent("""\
+                # local defines
+                """))
+
+        for local_define in local_defines:
+            flag = f"-D{local_define}"
+            out_file.write(textwrap.dedent(f"""\
+                ccflags-y += {shlex.quote(flag)}
+                """))
 
     top_kbuild = output_makefiles / "Kbuild"
     if top_kbuild != kbuild:
@@ -157,4 +168,5 @@ if __name__ == "__main__":
     parser.add_argument("--output-makefiles", type=pathlib.Path)
     parser.add_argument("--include-dirs", type=pathlib.Path, nargs="*", default=[])
     parser.add_argument("--module-symvers-list", type=pathlib.Path, nargs="*", default=[])
+    parser.add_argument("--local-defines", nargs="*", default=[])
     gen_ddk_makefile(**vars(parser.parse_args()))
