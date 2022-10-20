@@ -17,6 +17,7 @@ Build multiple kernel images.
 
 load(":image/boot_images.bzl", "boot_images")
 load(":image/dtbo.bzl", "dtbo")
+load(":image/image_utils.bzl", "image_utils")
 load(":image/initramfs.bzl", "initramfs")
 load(":image/system_dlkm_image.bzl", "system_dlkm_image")
 load(":image/vendor_dlkm_image.bzl", "vendor_dlkm_image")
@@ -47,6 +48,8 @@ def kernel_images(
         vendor_dlkm_modules_list = None,
         vendor_dlkm_modules_blocklist = None,
         vendor_dlkm_props = None,
+        lz4_ramdisk = None,
+        lz4_ramdisk_compress_args = None,
         **kwargs):
     """Build multiple kernel images.
 
@@ -86,8 +89,7 @@ def kernel_images(
           - `BOOT_IMAGE_FILENAME` is not set (which takes default value `boot.img`), or is set to
             `"boot.img"`
           - `vendor_boot.img` if `build_vendor_boot`
-          - `RAMDISK_EXT=lz4`. If the build configuration has a different value, replace
-            `ramdisk.lz4` with `ramdisk.{RAMDISK_EXT}` accordingly.
+          - `RAMDISK_EXT=lz4`. Is used when `lz4_ramdisk`(see below) is not specified.
           - `BOOT_IMAGE_HEADER_VERSION >= 4`, which creates `vendor-bootconfig.img` to contain
             `VENDOR_BOOTCONFIG if `build_vendor_boot`.
           - The list contains `dtb.img`
@@ -231,6 +233,10 @@ def kernel_images(
           ```
 
           This corresponds to `VENDOR_RAMDISK_BINARY` in `build.config` for `build.sh`.
+        lz4_ramdisk: if set to `True`, any ramdisks generated will be lz4
+          compressed instead of gzip compressed.
+        lz4_ramdisk_compress_args: Command line arguments passed to lz4 command
+          to control compression level. It only has effect when used with `lz4_ramdisk`.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -241,16 +247,25 @@ def kernel_images(
     build_any_boot_image = build_boot or build_vendor_boot or build_vendor_kernel_boot
     if build_any_boot_image:
         if kernel_build == None:
-            fail("{}: Must set kernel_build if any of these are true: build_boot={}, build_vendor_boot={}, build_vendor_kernel_boot={}".format(name, build_boot, build_vendor_boot, build_vendor_kernel_boot))
+            fail("{}: Must set kernel_build if any of these are true: build_boot={}, build_vendor_boot={}, build_vendor_kernel_boot={}".format(
+                name,
+                build_boot,
+                build_vendor_boot,
+                build_vendor_kernel_boot,
+            ))
 
     # Set default value for boot_image_outs according to build_boot
     if boot_image_outs == None:
         if not build_any_boot_image:
             boot_image_outs = []
         else:
+            ramdisk_out = "ramdisk." + image_utils.ramdisk_options(
+                lz4_ramdisk,
+                lz4_ramdisk_compress_args,
+            ).ramdisk_ext
             boot_image_outs = [
                 "dtb.img",
-                "ramdisk.lz4",
+                ramdisk_out,
             ]
 
     boot_image_outs = list(boot_image_outs)
@@ -272,6 +287,15 @@ def kernel_images(
         elif build_vendor_kernel_boot:
             vendor_boot_modules_load = "{}_initramfs/vendor_kernel_boot.modules.load".format(name)
 
+        compression = None
+        if lz4_ramdisk != None:
+            compression = "gzip"
+            if lz4_ramdisk:
+                compression = "lz4"
+
+        if lz4_ramdisk_compress_args and not lz4_ramdisk:
+            fail('"lz4_ramdisk_compress_args" was provided but "lz4_ramdisk" was not set.')
+
         initramfs(
             name = "{}_initramfs".format(name),
             kernel_modules_install = kernel_modules_install,
@@ -280,6 +304,8 @@ def kernel_images(
             modules_list = modules_list,
             modules_blocklist = modules_blocklist,
             modules_options = modules_options,
+            compression = compression,
+            lz4_ramdisk_compress_args = lz4_ramdisk_compress_args,
             **kwargs
         )
         all_rules.append(":{}_initramfs".format(name))
