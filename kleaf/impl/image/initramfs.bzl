@@ -62,6 +62,16 @@ def _initramfs_impl(ctx):
             : > ${modules_root_dir}/modules.options
     """
 
+    # TODO(umendez@) Investigate if there is a better way to do this tristate.
+    lz4_ramdisk = None
+    if ctx.attr.lz4_ramdisk >= 0:
+        lz4_ramdisk = bool(ctx.attr.lz4_ramdisk)
+
+    ramdisk_compress = image_utils.ramdisk_options(
+        lz4_ramdisk = lz4_ramdisk,
+        lz4_ramdisk_compress_args = ctx.attr.lz4_ramdisk_compress_args,
+    ).ramdisk_compress
+
     command = """
                mkdir -p {initramfs_staging_dir}
              # Build initramfs
@@ -72,7 +82,7 @@ def _initramfs_impl(ctx):
                {cp_vendor_boot_modules_load_cmd}
                {cp_modules_options_cmd}
                mkbootfs "{initramfs_staging_dir}" >"{modules_staging_dir}/initramfs.cpio"
-               ${{RAMDISK_COMPRESS}} "{modules_staging_dir}/initramfs.cpio" >"{initramfs_img}"
+               {ramdisk_compress} "{modules_staging_dir}/initramfs.cpio" >"{initramfs_img}"
              # Archive initramfs_staging_dir
                tar czf {initramfs_staging_archive} -C {initramfs_staging_dir} .
              # Remove staging directories
@@ -80,6 +90,7 @@ def _initramfs_impl(ctx):
     """.format(
         modules_staging_dir = modules_staging_dir,
         initramfs_staging_dir = initramfs_staging_dir,
+        ramdisk_compress = ramdisk_compress,
         modules_load = modules_load.path,
         initramfs_img = initramfs_img.path,
         initramfs_staging_archive = initramfs_staging_archive.path,
@@ -126,5 +137,15 @@ corresponding files.
         "modules_list": attr.label(allow_single_file = True),
         "modules_blocklist": attr.label(allow_single_file = True),
         "modules_options": attr.label(allow_single_file = True),
+        # TODO(umendez@) Investigate if there is a better way to do this tristate.
+        "lz4_ramdisk": attr.int(
+            default = -1,
+            doc = "If set to `1`, any ramdisks generated will be lz4 compressed instead of gzip compressed.",
+            values = [-1, 0, 1],
+        ),
+        "lz4_ramdisk_compress_args": attr.string(
+            default = "",
+            doc = "Command line arguments passed to lz4 command to control compression level.",
+        ),
     }),
 )
