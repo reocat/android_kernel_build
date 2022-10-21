@@ -23,6 +23,29 @@ load(":print_flags.bzl", "print_flags")
 
 package(default_visibility = ["//visibility:public"])
 
+string_flag(
+    name = "my_cpu",
+    build_setting_default = "aarch64",
+    values = [
+        "aarch64",
+        "x86_64",
+    ],
+)
+
+config_setting(
+    name = "my_cpu_is_aarch64",
+    flag_values = {
+        ":my_cpu": "aarch64",
+    },
+)
+
+config_setting(
+    name = "my_cpu_is_x86_64",
+    flag_values = {
+        ":my_cpu": "x86_64",
+    },
+)
+
 # Build flags
 
 string_flag(

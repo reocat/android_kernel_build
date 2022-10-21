@@ -17,6 +17,7 @@
 # rules and macros. The implementations stays in sub-extensions,
 # which is not expected to be loaded directly by users.
 
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("//build/kernel/kleaf/impl:abi/kernel_build_abi.bzl", _kernel_build_abi = "kernel_build_abi")
 load("//build/kernel/kleaf/impl:abi/kernel_build_abi_dist.bzl", _kernel_build_abi_dist = "kernel_build_abi_dist")
 load("//build/kernel/kleaf/impl:ddk/ddk_headers.bzl", _ddk_headers = "ddk_headers")
@@ -49,3 +50,54 @@ kernel_module = _kernel_module_macro
 kernel_modules_install = _kernel_modules_install
 kernel_unstripped_modules_archive = _kernel_unstripped_modules_archive
 merged_kernel_uapi_headers = _merged_kernel_uapi_headers
+
+MyRuleInfo = provider(
+    fields = {
+        "build_config": "",
+        "arch": "",
+    },
+)
+
+def _impl(ctx):
+    print("{}: build_config {}".format(ctx.attr.name, ctx.file.build_config))
+    print("{}: arch {}".format(ctx.attr.name, ctx.attr._real_arch[BuildSettingInfo].value))
+
+    return MyRuleInfo(
+        build_config = ctx.file.build_config,
+        arch = ctx.attr._real_arch[BuildSettingInfo].value,
+    )
+
+myrule = rule(
+    implementation = _impl,
+    attrs = {
+        "build_config": attr.label(allow_single_file = True),
+        "_real_arch": attr.label(default = "//build/kernel/kleaf:my_cpu"),
+    },
+)
+
+def _trans_impl(settings, attr):
+    return {
+        "//build/kernel/kleaf:my_cpu": attr.arch,
+    }
+
+myrule_transition = transition(
+    implementation = _trans_impl,
+    inputs = [],
+    outputs = ["//build/kernel/kleaf:my_cpu"],
+)
+
+def _alias_impl(ctx):
+    return [ctx.attr.actual[MyRuleInfo]]
+
+my_alias = rule(
+    implementation = _alias_impl,
+    attrs = {
+        "arch": attr.string(),
+        "actual": attr.label(providers = [MyRuleInfo]),
+        "_allowlist_function_transition": attr.label(
+            # Because we don't know where the common package is
+            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
+        ),
+    },
+    cfg = myrule_transition,
+)
