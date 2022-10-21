@@ -22,6 +22,30 @@
       },
       "revId": "94a482e95980d33895844ae1a92c366a66fcfd9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c83a5dae_a4f36428",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-21T20:31:49Z",
+      "side": 1,
+      "message": "Yes. This is checked here:\n\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/ddk/gen_makefiles.py;l\u003d85;drc\u003d368725132788c4556fc8d258c9b4f2f25d62e20e",
+      "parentUuid": "25fff820_961ca5a9",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 11
+      },
+      "revId": "94a482e95980d33895844ae1a92c366a66fcfd9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
