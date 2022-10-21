@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d7dfcf4_e17141b3",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-21T05:02:00Z",
+      "side": 1,
+      "message": "This should be \"subject to bourne shell tokenization\" like the native cc_library one. AFAIK, they should not be quoted unless it is quoted explictly. Right?\n\nhttps://docs.bazel.build/versions/4.1.0/be/common-definitions.html#sh-tokenization",
+      "revId": "9ed3e3f800e0c386f1efb3e11f6f89b41f4f1d1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
