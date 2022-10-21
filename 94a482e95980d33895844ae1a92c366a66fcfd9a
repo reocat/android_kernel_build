@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25fff820_961ca5a9",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-21T07:26:17Z",
+      "side": 1,
+      "message": "is there any requirement for this? e.g. to have a suffix `.ko` or something else?",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 11
+      },
+      "revId": "94a482e95980d33895844ae1a92c366a66fcfd9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
