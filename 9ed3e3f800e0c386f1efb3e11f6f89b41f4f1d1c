@@ -33,6 +33,23 @@
       "message": "This should keep the same logic as cc_library:\n\n```\ntokens \u003d shlex.split(local_define)\nif len(tokens) !\u003d 1:\n  die()\nwrite_ccflag(out_file, f\"-D{tokens[0]}\")\n```\n\nFor copts, skip the `len(tokens) \u003d\u003d 1` check and `write_ccflag` on each token.",
       "revId": "9ed3e3f800e0c386f1efb3e11f6f89b41f4f1d1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5017b3a7_4660912d",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-21T07:02:38Z",
+      "side": 1,
+      "message": "Should \"expand_location\" here",
+      "revId": "9ed3e3f800e0c386f1efb3e11f6f89b41f4f1d1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
