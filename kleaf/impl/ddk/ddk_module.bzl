@@ -32,6 +32,7 @@ def ddk_module(
         includes = None,
         out = None,
         local_defines = None,
+        copts = None,
         **kwargs):
     """
     Defines a DDK (Driver Development Kit) module.
@@ -116,6 +117,54 @@ def ddk_module(
           The behavior is similar to `cc_library` with the `no_copts_tokenization`
           [feature](https://bazel.build/reference/be/functions#package.features).
 
+        copts: Add these options to the compilation command.
+
+          **Order matters**. To prevent buildifier from sorting the list, use the
+          `# do not sort` magic line.
+
+          Subject to
+          [`$(location)` substitution](https://bazel.build/reference/be/make-variables#predefined_label_variables).
+
+          Each string in this attribute is added in the given order to COPTS before compiling the
+          binary target. The flags take effect only for compiling this target, not its
+          dependencies, so be careful about header files included elsewhere.
+          All paths should be provided via
+          [`$(location)` substitution](https://bazel.build/reference/be/make-variables#predefined_label_variables).
+
+          Unlike
+          [`cc_library.copts`](https://bazel.build/reference/be/c-cpp#cc_library.copts)
+          and
+          [`cc_library.local_defines`](https://bazel.build/reference/be/c-cpp#cc_library.local_defines),
+          this is not subject to
+          [Bourne shell tokenization](https://bazel.build/reference/be/common-definitions#sh-tokenization).
+          The behavior is similar to `cc_library` with the `no_copts_tokenization`
+          [feature](https://bazel.build/reference/be/functions#package.features).
+
+          **Implementation detail**: Unlike usual `$(location)` expansion,
+          `$(location)` in copts is expanded to a path relative to the current
+          package before sending to the compiler. This is unlike
+          other attributes with `$(location)` expansions, e.g `local_defines`.
+
+          For example:
+
+          ```
+          # package: //package
+          ddk_module(
+            name = "my_module",
+            copts = ["-include", "$(location //other:header.h)"],
+            srcs = ["//other:header.h", "my_module.c"],
+          )
+          ```
+          Then the generated Makefile contains:
+
+          ```
+          ccflags-y += -include ../other/header.h
+          ```
+
+          The behavior is such because the generated `Makefile` is located in
+          `package/Makefile`, and `make` is executed under `package/`. In order
+          to find `other/header.h`, its path relative to `package/` is given.
+
         kwargs: Additional attributes to the internal rule.
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
@@ -150,5 +199,6 @@ def ddk_module(
         module_out = out,
         module_deps = deps,
         module_local_defines = local_defines,
+        module_copts = copts,
         **private_kwargs
     )
