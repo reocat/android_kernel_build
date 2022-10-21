@@ -104,6 +104,24 @@
       "parentUuid": "5017b3a7_4660912d",
       "revId": "9ed3e3f800e0c386f1efb3e11f6f89b41f4f1d1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b4308e6_88aa83f9",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-21T22:44:04Z",
+      "side": 1,
+      "message": "That is, if you specify \n\n```\nlocal_defines \u003d [\"FOO\u003d$(location //other:foo)\"]\n```\n\nthen the option to clang is\n\n```\nclang -D FOO\u003dother/foo\n```\n\nBut if you specify\n\n```\n# in package //package\ncopt \u003d [\"-include\", \"$(location //other:foo)\"]\n```\n\nthen the option to clang is\n\n```\nclang -include ../other/foo\n```\n\nThis can cause confusion, I guess?",
+      "parentUuid": "3d0ad5da_939acb7b",
+      "revId": "9ed3e3f800e0c386f1efb3e11f6f89b41f4f1d1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
