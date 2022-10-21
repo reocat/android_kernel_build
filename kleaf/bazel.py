@@ -100,6 +100,7 @@ class BazelWrapper(object):
         """
 
         absolute_cache_dir = f"{self.absolute_out_dir}/cache"
+        absolute_user_root = f"{self.absolute_out_dir}/bazel/output_user_root"
 
         # Arguments known by this bazel wrapper.
         parser = argparse.ArgumentParser(add_help=False)
@@ -110,6 +111,9 @@ class BazelWrapper(object):
         parser.add_argument("--cache_dir",
                             type=_require_absolute_path,
                             default=absolute_cache_dir)
+        parser.add_argument("--output_user_root",
+                            type=_require_absolute_path,
+                            default=absolute_user_root)
 
         # known_args: List of arguments known by this bazel wrapper. These
         #   are stripped from the final bazel invocation.
@@ -137,7 +141,7 @@ class BazelWrapper(object):
         bazel_jdk_path = f"{self.root_dir}/{_BAZEL_JDK_REL_PATH}"
         final_args = [self.bazel_path] + self.startup_options + [
             f"--server_javabase={bazel_jdk_path}",
-            f"--output_user_root={self.absolute_out_dir}/bazel/output_user_root",
+            f"--output_user_root={self.known_args.output_user_root}",
             f"--host_jvm_args=-Djava.io.tmpdir={self.absolute_out_dir}/bazel/javatmp",
             f"--bazelrc={self.root_dir}/{_BAZEL_RC_NAME}",
         ]
