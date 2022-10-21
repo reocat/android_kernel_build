@@ -65,6 +65,7 @@ class BazelWrapper(object):
 
         self.bazel_path = f"{self.root_dir}/{_BAZEL_REL_PATH}"
         self.absolute_out_dir = f"{self.root_dir}/out"
+        self.absolute_user_root = f"{self.absolute_out_dir}/bazel/output_user_root"
 
         command_idx = None
         for idx, arg in enumerate(bazel_args):
@@ -110,6 +111,8 @@ class BazelWrapper(object):
         parser.add_argument("--cache_dir",
                             type=_require_absolute_path,
                             default=absolute_cache_dir)
+        parser.add_argument("--output_user_root",
+                            type=_require_absolute_path)
 
         # known_args: List of arguments known by this bazel wrapper. These
         #   are stripped from the final bazel invocation.
@@ -125,6 +128,9 @@ class BazelWrapper(object):
         if self.known_args.make_jobs is not None:
             self.env["KLEAF_MAKE_JOBS"] = str(self.known_args.make_jobs)
 
+        if self.known_args.output_user_root:
+            self.absolute_user_root = f"{self.known_args.output_user_root}"
+
         if self.command not in ("query", "version"):
             self.transformed_command_args.append(
                 f"--//build/kernel/kleaf:cache_dir={self.known_args.cache_dir}")
@@ -137,7 +143,7 @@ class BazelWrapper(object):
         bazel_jdk_path = f"{self.root_dir}/{_BAZEL_JDK_REL_PATH}"
         final_args = [self.bazel_path] + self.startup_options + [
             f"--server_javabase={bazel_jdk_path}",
-            f"--output_user_root={self.absolute_out_dir}/bazel/output_user_root",
+            f"--output_user_root={self.absolute_user_root}",
             f"--host_jvm_args=-Djava.io.tmpdir={self.absolute_out_dir}/bazel/javatmp",
             f"--bazelrc={self.root_dir}/{_BAZEL_RC_NAME}",
         ]
@@ -162,7 +168,10 @@ class BazelWrapper(object):
         if self.known_args.experimental_strip_sandbox_path:
             import asyncio
             import re
-            filter_regex = re.compile(self.absolute_out_dir + r"/\S+?/sandbox/.*?/__main__/")
+            if self.absolute_user_root.startswith(self.absolute_out_dir):
+                filter_regex = re.compile(self.absolute_out_dir + r"/\S+?/sandbox/.*?/__main__/")
+            else:
+                filter_regex = re.compile(self.absolute_user_root + r"/\S+?/sandbox/.*?/__main__/")
             asyncio.run(run(final_args, self.env, filter_regex))
         else:
             os.execve(path=self.bazel_path, argv=final_args, env=self.env)
