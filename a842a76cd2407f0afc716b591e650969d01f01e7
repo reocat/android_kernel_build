@@ -1,0 +1,170 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eee7a7c_5f923796",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-22T01:16:38Z",
+      "side": 1,
+      "message": "nit: no default arguments; this ensures the call site always pass the intended values for them\n\nIt is a private function so we control all the call site",
+      "range": {
+        "startLine": 171,
+        "startChar": 35,
+        "endLine": 171,
+        "endChar": 39
+      },
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7c74e37_c5a4d194",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-22T01:16:38Z",
+      "side": 1,
+      "message": "nit: explain that `None` \u003d\u003d fallback to build.config",
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13a56e2a_b0c05b7a",
+        "filename": "kleaf/impl/image/initramfs.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-22T01:16:38Z",
+      "side": 1,
+      "message": "nit:\n\n```\ncompression \u003d one of {\"lz4\", \"gzip\", None}\n```",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 78
+      },
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d53c6684_3a29497f",
+        "filename": "kleaf/impl/image/initramfs.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-22T01:16:38Z",
+      "side": 1,
+      "message": "same here, use \n\n```\n\"compression\": attr.string(values \u003d [\"lz4\", \"gzip\"])\n```",
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b9ede25_750800dc",
+        "filename": "kleaf/impl/image/initramfs.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-22T01:16:38Z",
+      "side": 1,
+      "message": "nit: just curious, do we not allow args for gzip?",
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "541e02a6_31387712",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-22T01:16:38Z",
+      "side": 1,
+      "message": "Same here; consider using `None, \"lz4\", \"gzip\"` tristate",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 237,
+        "endChar": 19
+      },
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9c84ae6_4ecccd85",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-22T01:16:38Z",
+      "side": 1,
+      "message": "no args here?",
+      "range": {
+        "startLine": 263,
+        "startChar": 66,
+        "endLine": 263,
+        "endChar": 67
+      },
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62b42f6e_7fb0ab50",
+        "filename": "kleaf/tests/kernel_images_test/kernel_images_test.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-22T01:16:38Z",
+      "side": 1,
+      "message": "nit: just hardcode this in L28",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 10
+      },
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
