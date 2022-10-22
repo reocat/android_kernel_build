@@ -140,6 +140,24 @@
       "parentUuid": "7b4308e6_88aa83f9",
       "revId": "9ed3e3f800e0c386f1efb3e11f6f89b41f4f1d1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d991bb4_cb4d62fd",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-22T00:59:53Z",
+      "side": 1,
+      "message": "I agree that this is an awful thing to support. Dropping it and, if someone ever request about it, we\u0027ll discuss with them about the needs and add it back as an optional feature.",
+      "parentUuid": "b02c611a_0a776215",
+      "revId": "9ed3e3f800e0c386f1efb3e11f6f89b41f4f1d1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
