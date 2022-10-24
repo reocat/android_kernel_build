@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2133862_0e4ea409",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-24T20:22:17Z",
+      "side": 1,
+      "message": "Q: This is just a lint clean up?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 0
+      },
+      "revId": "a2d2fdd8bfb1734e5e7b5ad9c3bbd510b3a4c4f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e594d737_80966964",
+        "filename": "kleaf/impl/image/initramfs.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-24T20:22:17Z",
+      "side": 1,
+      "message": "nit: just provide \"ctx.attr.compression\" to \"ramdisk_options()\" directly?",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 34
+      },
+      "revId": "a2d2fdd8bfb1734e5e7b5ad9c3bbd510b3a4c4f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

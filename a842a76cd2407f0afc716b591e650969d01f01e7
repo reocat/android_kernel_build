@@ -249,6 +249,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "588ece38_687c628e",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-24T20:22:17Z",
+      "side": 1,
+      "message": "Yes, let\u0027s do that, now that we are using a new build system now.\n\nWe always have the script and go/kleaf-build-configs for people to look up the corresponding attributes.\n\nIt probably needs to be named `\"ramdisk_compression\"` or something like that because it is related to \"ramdisk\" only (not other images)",
+      "parentUuid": "6a1cb41f_effa6cd1",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 237,
+        "endChar": 19
+      },
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9c84ae6_4ecccd85",
         "filename": "kleaf/impl/image/kernel_images.bzl",
         "patchSetId": 4
