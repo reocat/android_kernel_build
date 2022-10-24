@@ -22,6 +22,30 @@
       },
       "revId": "92f62952be89d3171a2f0ee215d13fce38c9c533",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5e8acba_e3fea213",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-24T18:58:35Z",
+      "side": 1,
+      "message": "Can\u0027t do without an extra wrapper over kernel_build. I think that\u0027s an overkill...",
+      "parentUuid": "d360ad23_faddc924",
+      "range": {
+        "startLine": 147,
+        "startChar": 42,
+        "endLine": 147,
+        "endChar": 68
+      },
+      "revId": "92f62952be89d3171a2f0ee215d13fce38c9c533",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
