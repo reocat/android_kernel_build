@@ -79,6 +79,61 @@ def ddk_module(
     ddk_module(name = "module_B", deps = ["module_A", "module_A_hdrs"], ...)
     ```
 
+    **Ordering of `includes`**
+
+    A [`ddk_module`](#ddk_module) compiles with the following order of includes (`-I`) options:
+
+    1. `LINUXINCLUDE` (See `common/Makefile`)
+    2. All `deps`, recursively, in the specified order
+       - If a dependent target is a `ddk_header`, recursively apply #2 ~ #4
+       - If a dependent target is a `ddk_module`, recursively apply #3 ~ #4
+    3. All `hdrs`, recursively, in the specified order
+       - If a dependent target is a `ddk_header`, recursively apply #2 ~ #4
+       - If a dependent target is a `ddk_module`, recursively apply #3 ~ #4
+    4. All `includes` of this target, in the specified order
+
+    In other words, except that `LINUXINCLUDE` always has the highest priority,
+    this uses the "postorder" of [depset](https://bazel.build/rules/lib/depset).
+
+    To prevent buildifier from sorting `includes`, use the `# do not sort` magic line.
+
+    For example
+
+    ```
+    ddk_headers(name = "dep_a", includes = ["dep_a"])
+    ddk_headers(name = "dep_b", includes = ["dep_b"])
+    ddk_headers(name = "dep_c", includes = ["dep_c"], hdrs = ["dep_a"])
+    ddk_headers(name = "hdrs_a", includes = ["hdrs_a"])
+    ddk_headers(name = "hdrs_b", includes = ["hdrs_b"])
+
+    ddk_module(
+        name = "module",
+        deps = [":dep_b", ":dep_c"],
+        hdrs = [":hdrs_a", ":hdrs_b"],
+        includes = ["self_1", "self_2"],
+    )
+    ```
+
+    Then modules are compiled with these flags, in this order:
+
+    ```
+    # 1.
+    $(LINUXINCLUDE)
+
+    # 2. deps, recursively
+    -Idep_b
+    -Idep_a   # :dep_c depends on :dep_a, so include dep_a/ first
+    -Idep_c
+
+    # 3. hdrs
+    -Ihdrs_a
+    -Ihdrs_b
+
+    # 4. includes
+    -Iself_1
+    -Iself_2
+    ```
+
     Args:
         name: Name of target. This should usually be name of the output `.ko` file without the
           suffix.
