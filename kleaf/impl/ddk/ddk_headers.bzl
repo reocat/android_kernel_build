@@ -50,6 +50,7 @@ def get_include_depset(label, deps, includes):
     return depset(
         [paths.normalize(paths.join(label.package, d)) for d in includes],
         transitive = transitive_includes,
+        order = "postorder",
     )
 
 def get_headers_depset(deps):
@@ -120,6 +121,40 @@ ddk_headers(
    includes = ["include"],
 )
 ```
+
+**Ordering of `includes`**
+
+A [`ddk_module`](#ddk_module) compiles with the following order of includes (`-I`) options:
+
+1. `LINUXINCLUDE` (See `common/Makefile`)
+2. All `includes` of dependent targets in `deps`
+3. All `includes` of this target.
+
+In other words, besides that `LINUXINCLUDE` always has the highest priority,
+this uses the "postorder" of [depset](https://bazel.build/rules/lib/depset).
+
+To prevent buildifier from sorting `includes`, use the `# do not sort` magic line.
+
+For example, using `foo` and `headers` above:
+
+```
+ddk_module(
+    name = "module",
+    hdrs = [":headers"],
+    includes = ["include_modules", "include_modules_2"],
+)
+```
+
+Then modules are compiled with:
+
+```
+$(LINUXINCLUDE) \
+-Iinclude_foo \
+-Iinclude \
+-Iinclude_modules \
+-Iinclude_modules_2 \
+```
+
 """,
     attrs = {
         "hdrs": attr.label_list(allow_files = [".h"], doc = """One of the following:

@@ -73,10 +73,11 @@ def _makefiles_test_impl(ctx):
         sets.make([]),
     )
 
-    asserts.set_equals(
+    # Check content + ordering of include dirs, so do list comparison.
+    asserts.equals(
         env,
-        sets.make(argv_dict.get("--include-dirs", [])),
-        sets.make(ctx.attr.expected_includes),
+        argv_dict.get("--include-dirs", []),
+        ctx.attr.expected_includes,
     )
 
     return analysistest.end(env)
@@ -209,6 +210,25 @@ def makefiles_test_suite(name):
 
     _makefiles_build_test(name = name + "_build_test")
     tests.append(name + "_build_test")
+
+    _makefiles_test_make(
+        name = name + "_include_ordering",
+        module_srcs = ["dep.c"],
+        module_out = "dep.ko",
+        module_includes = [
+            # do not sort
+            "include",
+            "subdir",
+        ],
+        module_hdrs = [name + "_base_headers"],
+        expected_includes = [
+            # do not sort
+            native.package_name(),
+            "{}/include".format(native.package_name()),
+            "{}/subdir".format(native.package_name()),
+        ],
+    )
+    tests.append(name + "_include_ordering")
 
     native.test_suite(
         name = name,
