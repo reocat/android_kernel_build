@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c5d46ee_ec6430e6",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-24T11:09:02Z",
+      "side": 1,
+      "message": "just out of curiosity, why using `1` and not `True`? if it\u0027s because this is the value returned by some command line parsing, how can I know where the parsing is done?",
+      "range": {
+        "startLine": 62,
+        "startChar": 38,
+        "endLine": 62,
+        "endChar": 39
+      },
+      "revId": "fbd64329d2b2030c663dfb03e4bd6e41d770b858",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
