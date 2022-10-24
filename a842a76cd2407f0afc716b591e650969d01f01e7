@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f704b80_3123d9a9",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-24T13:03:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8eee7a7c_5f923796",
+      "range": {
+        "startLine": 171,
+        "startChar": 35,
+        "endLine": 171,
+        "endChar": 39
+      },
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7c74e37_c5a4d194",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-10-22T01:16:38Z",
       "side": 1,
       "message": "nit: explain that `None` \u003d\u003d fallback to build.config",
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f9063ef_b19c1e0a",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-24T13:03:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7c74e37_c5a4d194",
       "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a73ba095_6052250b",
+        "filename": "kleaf/impl/image/initramfs.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-24T13:03:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13a56e2a_b0c05b7a",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 78
+      },
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d53c6684_3a29497f",
@@ -77,6 +143,24 @@
       "writtenOn": "2022-10-22T01:16:38Z",
       "side": 1,
       "message": "same here, use \n\n```\n\"compression\": attr.string(values \u003d [\"lz4\", \"gzip\"])\n```",
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a32d10dd_d9e68a9d",
+        "filename": "kleaf/impl/image/initramfs.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-24T13:03:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d53c6684_3a29497f",
       "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -98,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4f2ed8a_9c3ea3cf",
+        "filename": "kleaf/impl/image/initramfs.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-24T13:03:21Z",
+      "side": 1,
+      "message": "Apparently not, it\u0027s a hardcoded value https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/_setup_env.sh;l\u003d254-266",
+      "parentUuid": "2b9ede25_750800dc",
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "541e02a6_31387712",
@@ -111,6 +213,30 @@
       "writtenOn": "2022-10-22T01:16:38Z",
       "side": 1,
       "message": "Same here; consider using `None, \"lz4\", \"gzip\"` tristate",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 237,
+        "endChar": 19
+      },
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a1cb41f_effa6cd1",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-24T13:03:21Z",
+      "side": 1,
+      "message": "This is to keep the logic as close as it was before, let me know if instead I should treat everything as `ramdisk_compression`.",
+      "parentUuid": "541e02a6_31387712",
       "range": {
         "startLine": 237,
         "startChar": 8,
@@ -144,6 +270,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecc51ede_c38fe7b6",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-24T13:03:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e9c84ae6_4ecccd85",
+      "range": {
+        "startLine": 263,
+        "startChar": 66,
+        "endLine": 263,
+        "endChar": 67
+      },
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62b42f6e_7fb0ab50",
@@ -157,6 +307,30 @@
       "writtenOn": "2022-10-22T01:16:38Z",
       "side": 1,
       "message": "nit: just hardcode this in L28",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 10
+      },
+      "revId": "a842a76cd2407f0afc716b591e650969d01f01e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ef2c907_ff87f9d1",
+        "filename": "kleaf/tests/kernel_images_test/kernel_images_test.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-24T13:03:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62b42f6e_7fb0ab50",
       "range": {
         "startLine": 47,
         "startChar": 8,
