@@ -73,10 +73,11 @@ def _makefiles_test_impl(ctx):
         sets.make([]),
     )
 
-    asserts.set_equals(
+    # Check content + ordering of include dirs, so do list comparison.
+    asserts.equals(
         env,
-        sets.make(argv_dict.get("--include-dirs", [])),
-        sets.make(ctx.attr.expected_includes),
+        argv_dict.get("--include-dirs", []),
+        ctx.attr.expected_includes,
     )
 
     return analysistest.end(env)
@@ -160,16 +161,34 @@ def makefiles_test_suite(name):
     tests.append(name + "_multiple_sources")
 
     ddk_headers(
-        name = name + "_base_headers",
+        name = name + "_self_headers",
         hdrs = ["self.h"],
         includes = ["."],
+    )
+
+    ddk_headers(
+        name = name + "_include_headers",
+        hdrs = ["include/subdir.h"],
+        includes = ["include"],
+    )
+
+    ddk_headers(
+        name = name + "_base_headers",
+        hdrs = ["include/base/base.h"],
+        includes = ["include/base"],
+    )
+
+    ddk_headers(
+        name = name + "_foo_headers",
+        hdrs = ["foo.h"],
+        includes = ["include/foo"],
     )
 
     _makefiles_test_make(
         name = name + "_dep_on_headers",
         module_srcs = ["dep.c"],
         module_out = "dep.ko",
-        module_deps = [name + "_base_headers"],
+        module_deps = [name + "_self_headers"],
         expected_includes = [native.package_name()],
     )
     tests.append(name + "_dep_on_headers")
@@ -192,7 +211,7 @@ def makefiles_test_suite(name):
         name = name + "_export_other_headers",
         module_srcs = ["dep.c"],
         module_out = "dep.ko",
-        module_hdrs = [name + "_base_headers"],
+        module_hdrs = [name + "_self_headers"],
         expected_includes = [native.package_name()],
     )
     tests.append(name + "_export_other_headers")
@@ -209,6 +228,59 @@ def makefiles_test_suite(name):
 
     _makefiles_build_test(name = name + "_build_test")
     tests.append(name + "_build_test")
+
+    _makefiles_test_make(
+        name = name + "_include_ordering",
+        module_srcs = ["dep.c"],
+        module_out = "dep.ko",
+        module_includes = [
+            # do not sort
+            "include/transitive",
+            "subdir",
+        ],
+        module_deps = [
+            # do not sort
+            name + "_self_headers",
+            name + "_include_headers",
+        ],
+        module_hdrs = [
+            # do not sort
+            name + "_foo_headers",
+            name + "_base_headers",
+        ],
+        expected_includes = [
+            # do not sort
+            # First, deps
+            native.package_name(),
+            "{}/include".format(native.package_name()),
+            # Then, hdrs
+            "{}/include/foo".format(native.package_name()),
+            "{}/include/base".format(native.package_name()),
+            # Then, includes
+            "{}/include/transitive".format(native.package_name()),
+            "{}/subdir".format(native.package_name()),
+        ],
+    )
+    tests.append(name + "_include_ordering")
+
+    # Test that to include hdrs before deps, one must duplicate the hdrs targets in deps
+    _makefiles_test_make(
+        name = name + "_include_hdrs_before_deps",
+        module_deps = [
+            # do not sort
+            name + "_include_headers",
+            name + "_self_headers",
+        ],
+        module_hdrs = [
+            name + "_include_headers",
+        ],
+        expected_includes = [
+            # do not sort
+            "{}/include".format(native.package_name()),
+            native.package_name(),
+        ],
+    )
+    tests.append(name + "_include_hdrs_before_deps")
 
     native.test_suite(
         name = name,
