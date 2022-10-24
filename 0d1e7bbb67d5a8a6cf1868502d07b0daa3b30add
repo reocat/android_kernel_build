@@ -16,6 +16,24 @@
       "message": "Also test for multiple deps",
       "revId": "0d1e7bbb67d5a8a6cf1868502d07b0daa3b30add",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ddaf49b_dc8c327f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-24T17:45:46Z",
+      "side": 1,
+      "message": "Also both deps and hdrs are examined; what\u0027s the ordering between them?",
+      "parentUuid": "22b8011b_010fbe3f",
+      "revId": "0d1e7bbb67d5a8a6cf1868502d07b0daa3b30add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
