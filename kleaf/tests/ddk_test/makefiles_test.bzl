@@ -16,7 +16,10 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//lib:unittest.bzl", "analysistest", "asserts")
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("//build/kernel/kleaf/impl:ddk/makefiles.bzl", "makefiles")
+load("//build/kernel/kleaf/impl:ddk/ddk_module.bzl", "ddk_module")
 load("//build/kernel/kleaf/impl:ddk/ddk_headers.bzl", "ddk_headers")
+load("//build/kernel/kleaf/impl:common_providers.bzl", "ModuleSymversInfo")
+load("//build/kernel/kleaf/impl:kernel_build.bzl", "kernel_build")
 load("//build/kernel/kleaf/tests:failure_test.bzl", "failure_test")
 
 def _argv_to_dict(argv):
@@ -66,17 +69,21 @@ def _makefiles_test_impl(ctx):
     )
     asserts.equals(env, argv_dict.get("--kernel-module-out"), [ctx.attr.expected_module_out])
 
-    # We don't have tests on deps = [some module], so it is always empty
+    expected_module_symvers = []
+    for dep in ctx.attr.expected_deps:
+        if ModuleSymversInfo in dep:
+            expected_module_symvers.append(dep[ModuleSymversInfo].restore_path)
     asserts.set_equals(
         env,
         sets.make(argv_dict.get("--module-symvers-list", [])),
-        sets.make([]),
+        sets.make(expected_module_symvers),
     )
 
-    asserts.set_equals(
+    # Check content + ordering of include dirs, so do list comparison.
+    asserts.equals(
         env,
-        sets.make(argv_dict.get("--include-dirs", [])),
-        sets.make(ctx.attr.expected_includes),
+        argv_dict.get("--include-dirs", []),
+        ctx.attr.expected_includes,
     )
 
     return analysistest.end(env)
@@ -87,6 +94,7 @@ _makefiles_test = analysistest.make(
         "expected_module_srcs": attr.label_list(allow_files = True),
         "expected_module_out": attr.string(),
         "expected_includes": attr.string_list(),
+        "expected_deps": attr.label_list(),
     },
 )
 
@@ -106,6 +114,7 @@ def _makefiles_test_make(
         expected_module_srcs = kwargs.get("module_srcs"),
         expected_module_out = kwargs.get("module_out"),
         expected_includes = expected_includes,
+        expected_deps = kwargs.get("module_deps"),
     )
 
 def _bad_dep_test_make(
@@ -160,16 +169,34 @@ def makefiles_test_suite(name):
     tests.append(name + "_multiple_sources")
 
     ddk_headers(
-        name = name + "_base_headers",
+        name = name + "_self_headers",
         hdrs = ["self.h"],
         includes = ["."],
+    )
+
+    ddk_headers(
+        name = name + "_include_headers",
+        hdrs = ["include/subdir.h"],
+        includes = ["include"],
+    )
+
+    ddk_headers(
+        name = name + "_base_headers",
+        hdrs = ["include/base/base.h"],
+        includes = ["include/base"],
+    )
+
+    ddk_headers(
+        name = name + "_foo_headers",
+        hdrs = ["foo.h"],
+        includes = ["include/foo"],
     )
 
     _makefiles_test_make(
         name = name + "_dep_on_headers",
         module_srcs = ["dep.c"],
         module_out = "dep.ko",
-        module_deps = [name + "_base_headers"],
+        module_deps = [name + "_self_headers"],
         expected_includes = [native.package_name()],
     )
     tests.append(name + "_dep_on_headers")
@@ -192,7 +219,7 @@ def makefiles_test_suite(name):
         name = name + "_export_other_headers",
         module_srcs = ["dep.c"],
         module_out = "dep.ko",
-        module_hdrs = [name + "_base_headers"],
+        module_hdrs = [name + "_self_headers"],
         expected_includes = [native.package_name()],
     )
     tests.append(name + "_export_other_headers")
@@ -209,6 +236,101 @@ def makefiles_test_suite(name):
 
     _makefiles_build_test(name = name + "_build_test")
     tests.append(name + "_build_test")
+
+    _makefiles_test_make(
+        name = name + "_include_ordering",
+        module_srcs = ["dep.c"],
+        module_out = "dep.ko",
+        module_includes = [
+            # do not sort
+            "include/transitive",
+            "subdir",
+        ],
+        module_deps = [
+            # do not sort
+            name + "_self_headers",
+            name + "_include_headers",
+        ],
+        module_hdrs = [
+            # do not sort
+            name + "_foo_headers",
+            name + "_base_headers",
+        ],
+        expected_includes = [
+            # do not sort
+            # First, deps
+            native.package_name(),
+            "{}/include".format(native.package_name()),
+            # Then, hdrs
+            "{}/include/foo".format(native.package_name()),
+            "{}/include/base".format(native.package_name()),
+            # Then, includes
+            "{}/include/transitive".format(native.package_name()),
+            "{}/subdir".format(native.package_name()),
+        ],
+    )
+    tests.append(name + "_include_ordering")
+
+    # Test that to include hdrs before deps, one must duplicate the hdrs targets in deps
+    _makefiles_test_make(
+        name = name + "_include_hdrs_before_deps",
+        module_deps = [
+            # do not sort
+            name + "_include_headers",
+            name + "_self_headers",
+        ],
+        module_hdrs = [
+            name + "_base_headers",
+            name + "_include_headers",
+        ],
+        expected_includes = [
+            # do not sort
+            # deps
+            "{}/include".format(native.package_name()),
+            native.package_name(),
+            # hdrs
+            "{}/include/base".format(native.package_name()),
+            # skip _include_headers
+        ],
+    )
+    tests.append(name + "_include_hdrs_before_deps")
+
+    kernel_build(
+        name = name + "_kernel_build",
+        build_config = "build.config.fake",
+        outs = [],
+        tags = ["manual"],
+    )
+    ddk_module(
+        name = name + "_parent_include_hdrs_before_deps",
+        deps = [
+            # do not sort
+            name + "_include_headers",
+            name + "_self_headers",
+        ],
+        hdrs = [
+            name + "_base_headers",
+            name + "_include_headers",
+        ],
+        kernel_build = name + "_kernel_build",
+        srcs = [],
+        tags = ["manual"],
+    )
+
+    # Children of _include_hdrs_before_deps still gets
+    _makefiles_test_make(
+        name = name + "_child_include_hdrs_before_deps",
+        module_deps = [
+            name + "_parent_include_hdrs_before_deps",
+        ],
+        expected_includes = [
+            # do not sort
+            # in _include_hdrs_before_deps, in hdrs, _base_headers comes before _include_headers
+            "{}/include/base".format(native.package_name()),
+            "{}/include".format(native.package_name()),
+        ],
+    )
+    tests.append(name + "_child_include_hdrs_before_deps")
 
     native.test_suite(
         name = name,
