@@ -22,6 +22,30 @@
       },
       "revId": "b00c5437d9ed60e848d70072e56206930a8c60bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b19924cf_32cee869",
+        "filename": "kleaf/tests/ddk_test/makefiles_test.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T21:22:21Z",
+      "side": 1,
+      "message": "Thanks for catching -- https://b.corp.google.com/issues/254553297#comment3",
+      "parentUuid": "665336d5_8410492f",
+      "range": {
+        "startLine": 183,
+        "startChar": 4,
+        "endLine": 183,
+        "endChar": 22
+      },
+      "revId": "b00c5437d9ed60e848d70072e56206930a8c60bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
