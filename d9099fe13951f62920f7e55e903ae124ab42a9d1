@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff57522e_25b490a0",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T18:24:54Z",
+      "side": 1,
+      "message": "also if we \n\n\u003e only support running the savedefconfig\n\nthen I\u0027ll probably create another target called `kernel_aarch64_savedefconfig` instead 😊",
+      "parentUuid": "b61b68e1_390f3367",
+      "range": {
+        "startLine": 284,
+        "startChar": 33,
+        "endLine": 284,
+        "endChar": 40
+      },
+      "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ddcba104_728a6bbd",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 4
