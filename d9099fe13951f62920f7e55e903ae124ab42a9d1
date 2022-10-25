@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "333fef62_39d667f1",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T21:19:04Z",
+      "side": 1,
+      "message": "Will, let me know if you still think we should drop menuconfig etc.",
+      "parentUuid": "343f2c54_3f75e980",
+      "range": {
+        "startLine": 284,
+        "startChar": 33,
+        "endLine": 284,
+        "endChar": 40
+      },
+      "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddcba104_728a6bbd",
@@ -277,6 +301,30 @@
       "side": 1,
       "message": "I think, yes. `savedefconfig` should be default.",
       "parentUuid": "46a1a15c_1b81f71f",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 40
+      },
+      "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8bbc80f_dcf0a3bc",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T21:19:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ebeb47a_7c9c9377",
       "range": {
         "startLine": 291,
         "startChar": 0,
