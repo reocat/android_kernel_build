@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "665336d5_8410492f",
+        "filename": "kleaf/tests/ddk_test/makefiles_test.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-25T13:58:45Z",
+      "side": 1,
+      "message": "From kleaf/impl/ddk/ddk_module.bzl: `**Order matters**.`.\nFrom kleaf/tests/utils/contain_lines_test.py: `\"Order of lines does not matter.\"`.\n\nis this a concern?",
+      "range": {
+        "startLine": 183,
+        "startChar": 4,
+        "endLine": 183,
+        "endChar": 22
+      },
+      "revId": "b00c5437d9ed60e848d70072e56206930a8c60bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
