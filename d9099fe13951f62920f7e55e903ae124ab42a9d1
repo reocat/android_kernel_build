@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "343f2c54_3f75e980",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T20:58:50Z",
+      "side": 1,
+      "message": "menuconfig, nconfig are supported. xconfig is not (I think it has some host package dependencies)\n\nWill, since there might be people using menuconfig, maybe let\u0027s keep it?",
+      "parentUuid": "cb59a191_fba936e4",
+      "range": {
+        "startLine": 284,
+        "startChar": 33,
+        "endLine": 284,
+        "endChar": 40
+      },
+      "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ddcba104_728a6bbd",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 4
@@ -205,6 +229,30 @@
       "side": 1,
       "message": "Never used the `xconfig`",
       "parentUuid": "10ae4c30_bd8b9e31",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 40
+      },
+      "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46a1a15c_1b81f71f",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T20:58:50Z",
+      "side": 1,
+      "message": "so -- what do we want for default? savedefconfig?",
+      "parentUuid": "ffc0c87a_1d2c0a00",
       "range": {
         "startLine": 291,
         "startChar": 0,
