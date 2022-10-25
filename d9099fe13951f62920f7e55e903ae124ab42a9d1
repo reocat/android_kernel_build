@@ -261,6 +261,30 @@
       },
       "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ebeb47a_7c9c9377",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-25T21:06:20Z",
+      "side": 1,
+      "message": "I think, yes. `savedefconfig` should be default.",
+      "parentUuid": "46a1a15c_1b81f71f",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 40
+      },
+      "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
