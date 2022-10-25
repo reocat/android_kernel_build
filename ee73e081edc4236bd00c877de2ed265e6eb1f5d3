@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d31d769_2725553f",
+        "filename": "kleaf/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T21:43:37Z",
+      "side": 1,
+      "message": "This is actually intentional to say `--lto`, because the page talks about other lto options too.\n\nPerhaps:\n\n```\n`--lto`: [Configure LTO during development](docs/lto.md)\n```\n\n?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 59
+      },
+      "revId": "ee73e081edc4236bd00c877de2ed265e6eb1f5d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
