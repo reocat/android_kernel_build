@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ff3371c_79c9826b",
+        "filename": "kleaf/docs/ddk.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T23:38:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27465435_8878bcff",
+      "revId": "6d64fdcb9ef4ce851f6e1b3cca0065c31f192805",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a69ddef_b265cd92",
@@ -66,6 +84,30 @@
       "writtenOn": "2021-12-16T00:01:22Z",
       "side": 1,
       "message": "\"or equivalent\" ? (if \"therelike\" is a word, it isn\u0027t in common use)",
+      "range": {
+        "startLine": 52,
+        "startChar": 25,
+        "endLine": 52,
+        "endChar": 34
+      },
+      "revId": "6d64fdcb9ef4ce851f6e1b3cca0065c31f192805",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d004002_fa91bee6",
+        "filename": "kleaf/docs/ddk.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T23:38:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a69ddef_b265cd92",
       "range": {
         "startLine": 52,
         "startChar": 25,
@@ -99,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17f26fdb_17869440",
+        "filename": "kleaf/docs/ddk.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T23:38:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b02b6e4c_a2b3e58b",
+      "range": {
+        "startLine": 55,
+        "startChar": 27,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "6d64fdcb9ef4ce851f6e1b3cca0065c31f192805",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef687910_dbbf730f",
@@ -112,6 +178,30 @@
       "writtenOn": "2021-12-16T00:01:22Z",
       "side": 1,
       "message": "Is AOSP the right place for \"Design Ideas\"? Maybe we should give PDF versions of this to the partners we want to reach. I don\u0027t think we want to invite everyone to chime in our design ideas. Should we wait until this is fully baked to publish here?",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 15
+      },
+      "revId": "6d64fdcb9ef4ce851f6e1b3cca0065c31f192805",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07a0efec_97916f10",
+        "filename": "kleaf/docs/ddk.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T23:38:54Z",
+      "side": 1,
+      "message": "Done; it will focus on implementation instructions.",
+      "parentUuid": "ef687910_dbbf730f",
       "range": {
         "startLine": 79,
         "startChar": 0,
