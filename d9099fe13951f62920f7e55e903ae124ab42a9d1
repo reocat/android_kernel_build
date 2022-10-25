@@ -165,6 +165,54 @@
       },
       "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3115d21_8d4fca05",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-25T20:23:29Z",
+      "side": 1,
+      "message": "We can keep the `menuconfig` at least. Probably `xconfig` is not of much use and can be nuked.",
+      "parentUuid": "10ae4c30_bd8b9e31",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 40
+      },
+      "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffc0c87a_1d2c0a00",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-10-25T20:23:29Z",
+      "side": 1,
+      "message": "Never used the `xconfig`",
+      "parentUuid": "10ae4c30_bd8b9e31",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 40
+      },
+      "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
