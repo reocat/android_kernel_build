@@ -22,6 +22,30 @@
       },
       "revId": "b8a79135f21fa7a9f91fef18131ffe53c05ed756",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90fcf831_215f3135",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T21:24:35Z",
+      "side": 1,
+      "message": "\"relativise\" here doesn\u0027t refer to the distinction between short_paths and paths.\n\nShort_paths should, in general, be used for paths interpreted in the `bazel run `-ed executables. Here, the script is used during `bazel build`, so \"path\" should be used instead.\n\nI am relativising the path based on the current package.",
+      "parentUuid": "d189d2a7_11c4da10",
+      "range": {
+        "startLine": 35,
+        "startChar": 23,
+        "endLine": 35,
+        "endChar": 38
+      },
+      "revId": "b8a79135f21fa7a9f91fef18131ffe53c05ed756",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
