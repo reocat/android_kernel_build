@@ -144,6 +144,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0e28a83_4b3c4e93",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T21:34:53Z",
+      "side": 1,
+      "message": "One use of menuconfig: https://android-review.googlesource.com/c/kernel/common-modules/virtual-device/+/2267508",
+      "parentUuid": "333fef62_39d667f1",
+      "range": {
+        "startLine": 284,
+        "startChar": 33,
+        "endLine": 284,
+        "endChar": 40
+      },
+      "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddcba104_728a6bbd",
