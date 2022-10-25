@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d189d2a7_11c4da10",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-25T14:45:30Z",
+      "side": 1,
+      "message": "Just checking if you did consider the option `short_paths` from https://bazel.build/rules/lib/ctx#expand_location as it seems there is some work in kleaf/impl/ddk/gen_makefiles.py to relativize the paths.",
+      "range": {
+        "startLine": 35,
+        "startChar": 23,
+        "endLine": 35,
+        "endChar": 38
+      },
+      "revId": "b8a79135f21fa7a9f91fef18131ffe53c05ed756",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
