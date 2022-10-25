@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b61b68e1_390f3367",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T18:23:10Z",
+      "side": 1,
+      "message": "Ramji originally requested this feature.\n\nRamji, do you agree?",
+      "parentUuid": "4188087a_53fa12d2",
+      "range": {
+        "startLine": 284,
+        "startChar": 33,
+        "endLine": 284,
+        "endChar": 40
+      },
+      "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ddcba104_728a6bbd",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-25T17:24:54Z",
       "side": 1,
       "message": "I don\u0027t think menuconfig should be the default. I doubt if anyone is even using this. We really just need this config.sh script for updating the gki_defconfig when the configs get scrambled.",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 40
+      },
+      "revId": "d9099fe13951f62920f7e55e903ae124ab42a9d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85ea59ba_d41a4a76",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-25T18:23:10Z",
+      "side": 1,
+      "message": "Ramji originally requested this feature.\n\nRamji, do you agree?",
+      "parentUuid": "ddcba104_728a6bbd",
       "range": {
         "startLine": 291,
         "startChar": 0,
