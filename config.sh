@@ -38,6 +38,31 @@ set -a
 # Disable mixed build
 GKI_BUILD_CONFIG=
 
+(
+    [[ "$KLEAF_SUPPRESS_BUILD_SH_DEPRECATION_WARNING" == "1" ]] && exit 0 || true
+    echo     "Inferring equivalent Bazel command..."
+    bazel_command_code=0
+    eq_bazel_command=$(
+        ${ROOT_DIR}/build/kernel/kleaf/convert_to_bazel.sh --config $@ # error messages goes to stderr
+    ) || bazel_command_code=$?
+    echo     "*****************************************************************************" >&2
+    echo     "* WARNING: build.sh is deprecated for this branch. Please migrate to Bazel.  " >&2
+    echo     "*   See build/kernel/kleaf/README.md                                         " >&2
+    if [[ $bazel_command_code -eq 0 ]]; then
+        echo "*          Possibly equivalent Bazel command:                                " >&2
+        echo "*" >&2
+        echo "*   \$ $eq_bazel_command" >&2
+        echo "*" >&2
+    else
+        echo "WARNING: Unable to infer an equivalent Bazel command.                        " >&2
+    fi
+    echo     "* To suppress this warning, set KLEAF_SUPPRESS_BUILD_SH_DEPRECATION_WARNING=1" >&2
+    echo     "*****************************************************************************" >&2
+    echo >&2
+)
+# Suppress deprecation warning for the last build.sh invocation
+export KLEAF_SUPPRESS_BUILD_SH_DEPRECATION_WARNING=1
+
 menucommand="${1:-menuconfig}"
 MAKE_ARGS="${@:2}"
 
