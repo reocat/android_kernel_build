@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcff69a7_dff53fd8",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-26T10:38:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c5423c1_855320cc",
+      "revId": "49a7fef9c3f34a0a4aa0e12e7a3d820fac251b49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b0b18b6_109780c7",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4eb939e_b6838e0d",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-26T10:38:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b0b18b6_109780c7",
+      "range": {
+        "startLine": 236,
+        "startChar": 29,
+        "endLine": 236,
+        "endChar": 45
+      },
+      "revId": "49a7fef9c3f34a0a4aa0e12e7a3d820fac251b49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1437550f_567519e3",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-10-25T21:40:46Z",
       "side": 1,
       "message": "nit:\n\nis different from\nis not",
+      "range": {
+        "startLine": 293,
+        "startChar": 75,
+        "endLine": 293,
+        "endChar": 90
+      },
+      "revId": "49a7fef9c3f34a0a4aa0e12e7a3d820fac251b49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d77f3fb0_ed995cd7",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-26T10:38:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1437550f_567519e3",
       "range": {
         "startLine": 293,
         "startChar": 75,
