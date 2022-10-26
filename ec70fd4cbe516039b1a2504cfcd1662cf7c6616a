@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16b147aa_1b946c3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-26T21:09:52Z",
+      "side": 1,
+      "message": "I think the non-existence of `KBUILD_MIXED_TREE` requires vmlinux to build for 5.15, but the dependency is healthily broken in mainline. Therefore, I think this change is good to go.",
+      "revId": "ec70fd4cbe516039b1a2504cfcd1662cf7c6616a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
