@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf180f64_f422bf0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-26T17:50:19Z",
+      "side": 1,
+      "message": "LGTM! Are you just working on tests?",
+      "revId": "c3cf3e1ea9a06bb0d544b3776b00deee84e2edb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc44f8cc_6ec2c2a7",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-26T17:50:19Z",
+      "side": 1,
+      "message": "nit:\n```\n... IGNORED because --nokmi_symbol_list_strict_mode is set!\n```",
+      "range": {
+        "startLine": 1390,
+        "startChar": 78,
+        "endLine": 1390,
+        "endChar": 85
+      },
+      "revId": "c3cf3e1ea9a06bb0d544b3776b00deee84e2edb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
