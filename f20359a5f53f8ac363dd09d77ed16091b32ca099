@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e62b225_ebcbcad1",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-26T19:05:09Z",
+      "side": 1,
+      "message": "The CL adds `--output_user_root` to \"command_args\", but it is actually a startup_option. That is, the following becomes allowed:\n\n```\nbazel build --output_user_root\u003dX //target\n```\n\nbut it shouldn\u0027t be. The correct way should be\n\n```\nbazel --output_user_root\u003dX build //target\n```\n\nHence, I am suggesting the following.\n\nPerhaps instead of doing all these in the CL, change these lines into the following instead:\n\n```\n        final_args \u003d [self.bazel_path] + [\n            f\"--server_javabase\u003d{bazel_jdk_path}\",\n            f\"--output_user_root\u003d{self.absolute_user_root}\",\n            f\"--host_jvm_args\u003d-Djava.io.tmpdir\u003d{self.absolute_out_dir}/bazel/javatmp\",\n            f\"--bazelrc\u003d{self.root_dir}/{_BAZEL_RC_NAME}\",\n        ] + self.startup_options\n```\n\n(that is, make the provided self.startup_options override the default)\n\nIn addition to this, we should probably parse self.startup_options too to restrict what can be overwritten (e.g. we might not want to allow overwriting --bazelrc). But I can clean it up later.",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 9
+      },
+      "revId": "f20359a5f53f8ac363dd09d77ed16091b32ca099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
