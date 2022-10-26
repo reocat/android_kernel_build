@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "350ee4d6_220d29b1",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-26T10:24:43Z",
+      "side": 1,
+      "message": "Nit: can we rename this to something else to avoid ambiguity with the `executable` (bool) value from the rule definition? maybe `executable_script` or something like that? thank you.",
+      "range": {
+        "startLine": 277,
+        "startChar": 4,
+        "endLine": 277,
+        "endChar": 14
+      },
+      "revId": "2bbd38eec63212633acf25b22c0389d957310526",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
