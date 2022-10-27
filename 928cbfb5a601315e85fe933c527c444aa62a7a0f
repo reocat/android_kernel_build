@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e37770e4_4780566c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-27T22:29:25Z",
+      "side": 1,
+      "message": "This will conflict with https://android-review.googlesource.com/c/kernel/build/+/2265301. Waiting for that to go in...",
+      "revId": "928cbfb5a601315e85fe933c527c444aa62a7a0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
