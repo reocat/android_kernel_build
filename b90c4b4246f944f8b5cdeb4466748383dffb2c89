@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "54a6dd22_3c742ed1",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1140383
+      },
+      "writtenOn": "2022-10-28T00:54:35Z",
+      "side": 1,
+      "message": "After checking bazel.sh, seems prebuilt python3 instead of host\u0027s is used. I think the version issue is gone.\nI will update according to your suggestion.",
+      "parentUuid": "00b4eb25_c161243a",
+      "range": {
+        "startLine": 107,
+        "startChar": 38,
+        "endLine": 107,
+        "endChar": 41
+      },
+      "revId": "b90c4b4246f944f8b5cdeb4466748383dffb2c89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b22afc7_6b0cb4a1",
         "filename": "kleaf/bazel.py",
         "patchSetId": 6
