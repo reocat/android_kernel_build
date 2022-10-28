@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d2f991c_7b531b08",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1140383
+      },
+      "writtenOn": "2022-10-28T01:56:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfcd1343_a0e3941e",
+      "range": {
+        "startLine": 107,
+        "startChar": 38,
+        "endLine": 107,
+        "endChar": 41
+      },
+      "revId": "b90c4b4246f944f8b5cdeb4466748383dffb2c89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b22afc7_6b0cb4a1",
@@ -109,6 +133,24 @@
       "writtenOn": "2022-10-27T22:26:40Z",
       "side": 1,
       "message": "nit: instead of doing this, just \n\n```\ndefault\u003d_require_aboslute_path(f\"{self.absolute_out_dir}/bazel/output_user_root\")\n```\n\nat L103? Then you can drop the conditional",
+      "revId": "b90c4b4246f944f8b5cdeb4466748383dffb2c89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ee79eb9_cff05186",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1140383
+      },
+      "writtenOn": "2022-10-28T01:56:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b22afc7_6b0cb4a1",
       "revId": "b90c4b4246f944f8b5cdeb4466748383dffb2c89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
