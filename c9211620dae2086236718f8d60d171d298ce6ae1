@@ -16,6 +16,24 @@
       "message": "Don\u0027t forget to mention that `-include` needs to be specified in srcs / deps too.\n\nhttps://b.corp.google.com/issues/254476198#comment13",
       "revId": "c9211620dae2086236718f8d60d171d298ce6ae1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a3fe530_ae35b0a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-10-29T08:00:47Z",
+      "side": 1,
+      "message": "This is already in `ddk_module.bzl`",
+      "parentUuid": "7083b5b0_03c6926b",
+      "revId": "c9211620dae2086236718f8d60d171d298ce6ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
