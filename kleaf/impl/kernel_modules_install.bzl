@@ -52,7 +52,7 @@ def _kernel_modules_install_impl(ctx):
         inputs += dws.files(modules_staging_dws)
 
     for kernel_module in ctx.attr.kernel_modules:
-        for module_file in kernel_module[KernelModuleInfo].files:
+        for module_file in kernel_module[KernelModuleInfo].files.to_list():
             declared_file = ctx.actions.declare_file("{}/{}".format(ctx.label.name, module_file.basename))
             external_modules.append(declared_file)
 
