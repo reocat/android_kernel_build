@@ -17,6 +17,22 @@ load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
 
 package(default_visibility = ["//visibility:public"])
 
+cc_library(
+    name = "foo",
+    srcs = ["foo.c"],
+    defines = ["FOO"],
+    includes = ["include_foo"],
+)
+
+cc_library(
+    name = "bar",
+    srcs = ["bar.c"],
+    copts = ["-DCOPTS"],
+    includes = ["include_bar"],
+    local_defines = ["BAR"],
+    deps = ["foo"],
+)
+
 hermetic_tools(
     name = "hermetic-tools",
     srcs = glob(
