@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f46afffd_81c31619",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 65
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "Is this still true, from the code commented in kleaf/impl/kernel_modules_install.bzl it seems only modules are added.",
+      "range": {
+        "startLine": 7,
+        "startChar": 39,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d8f3b20_790389a5",
+        "filename": "kleaf/impl/ddk/analyze_inputs.bzl",
+        "patchSetId": 65
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "https://github.com/bazelbuild/buildtools/blob/master/WARNINGS.md#module-docstring",
+      "range": {
+        "startLine": 13,
+        "startChar": 31,
+        "endLine": 13,
+        "endChar": 32
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bad32d62_7e901ef6",
+        "filename": "kleaf/impl/ddk/analyze_inputs.bzl",
+        "patchSetId": 65
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "https://github.com/bazelbuild/buildtools/blob/master/WARNINGS.md#loaded-symbol-is-unused",
+      "range": {
+        "startLine": 15,
+        "startChar": 38,
+        "endLine": 15,
+        "endChar": 43
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57a2ccf9_f7bbdb7e",
+        "filename": "kleaf/impl/ddk/analyze_inputs.bzl",
+        "patchSetId": 65
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "https://github.com/bazelbuild/buildtools/blob/master/WARNINGS.md#loaded-symbol-is-unused",
+      "range": {
+        "startLine": 16,
+        "startChar": 50,
+        "endLine": 16,
+        "endChar": 66
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de790dca_2168e0b7",
+        "filename": "kleaf/impl/ddk/analyze_inputs.bzl",
+        "patchSetId": 65
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "https://github.com/bazelbuild/buildtools/blob/master/WARNINGS.md#loaded-symbol-is-unused",
+      "range": {
+        "startLine": 17,
+        "startChar": 31,
+        "endLine": 17,
+        "endChar": 50
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40ea8309_a3687d06",
+        "filename": "kleaf/impl/ddk/analyze_inputs.bzl",
+        "patchSetId": 65
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "https://github.com/bazelbuild/buildtools/blob/master/WARNINGS.md#print",
+      "range": {
+        "startLine": 21,
+        "startChar": 8,
+        "endLine": 21,
+        "endChar": 13
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c17b9f1_00051963",
+        "filename": "kleaf/impl/ddk/analyze_inputs.bzl",
+        "patchSetId": 65
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "nit: Remove this if not needed.",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 27
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4b23d3e_f2aa03d7",
+        "filename": "kleaf/impl/ddk/analyze_inputs.py",
+        "patchSetId": 65
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "This is not very descriptive, please rename it or add a comment explaining what it is useful for.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 3
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35056300_15b338bc",
+        "filename": "kleaf/impl/ddk/analyze_inputs.py",
+        "patchSetId": 65
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "TIL",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 15
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94f58bd8_50e91c7b",
+        "filename": "kleaf/impl/ddk/analyze_inputs.py",
+        "patchSetId": 65
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "Note: go/pystyle#comprehensions is `Okay to use for simple cases.` but this seems rather complicated.",
+      "range": {
+        "startLine": 56,
+        "startChar": 21,
+        "endLine": 57,
+        "endChar": 66
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc5506f_f5c47f95",
+        "filename": "kleaf/impl/ddk/analyze_inputs.py",
+        "patchSetId": 65
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "nit: Maybe a naive question but can\u0027t this be used directly in the `split()` function as a separator?",
+      "range": {
+        "startLine": 116,
+        "startChar": 45,
+        "endLine": 116,
+        "endChar": 49
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd094071_d5029bae",
+        "filename": "kleaf/impl/ddk/analyze_inputs.py",
+        "patchSetId": 65
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T12:50:28Z",
+      "side": 1,
+      "message": "nit: Most of the options are self-explanatory, except maybe for `input_archives`, please consider including `help`[0] wherever is convenient.\n\n[0] https://docs.python.org/3/library/argparse.html?highlight\u003dadd_argument#help",
+      "range": {
+        "startLine": 184,
+        "startChar": 4,
+        "endLine": 184,
+        "endChar": 10
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
