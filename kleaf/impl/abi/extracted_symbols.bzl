@@ -41,7 +41,7 @@ def _extracted_symbols_impl(ctx):
     ]
     srcs += in_tree_modules
     for kernel_module in ctx.attr.kernel_modules:  # external modules
-        srcs += kernel_module[KernelModuleInfo].files
+        srcs += kernel_module[KernelModuleInfo].files.to_list()
 
     inputs = [ctx.file._extract_symbols]
     inputs += srcs
