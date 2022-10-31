@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf21e19_7795715e",
+        "filename": "kleaf/impl/ddk/ddk_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T13:13:51Z",
+      "side": 1,
+      "message": "Could you please include a comment saying this is the way required by `cc_library`? Thank you.",
+      "range": {
+        "startLine": 53,
+        "startChar": 8,
+        "endLine": 53,
+        "endChar": 27
+      },
+      "revId": "d07399f834641d7ba091ab13dff53314afae47d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cc40ea8_555daa8c",
+        "filename": "kleaf/tests/ddk_test/ddk_headers_test.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T13:13:51Z",
+      "side": 1,
+      "message": "nit-typo: `Then`",
+      "range": {
+        "startLine": 183,
+        "startChar": 14,
+        "endLine": 183,
+        "endChar": 17
+      },
+      "revId": "d07399f834641d7ba091ab13dff53314afae47d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56b5e634_c28cf3bb",
+        "filename": "kleaf/tests/ddk_test/ddk_headers_test.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-10-31T13:13:51Z",
+      "side": 1,
+      "message": "nit-typo: `Then`",
+      "range": {
+        "startLine": 209,
+        "startChar": 14,
+        "endLine": 209,
+        "endChar": 17
+      },
+      "revId": "d07399f834641d7ba091ab13dff53314afae47d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
