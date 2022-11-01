@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8344ddfd_22c740b5",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-01T06:37:16Z",
+      "side": 1,
+      "message": "Should use full `depset(transitive\u003d).to_list()` to avoid duplicates",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 63
+      },
+      "revId": "0c84f2c585fea1dbf79f3655c410eade5fae0739",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad3886a0_2ab203dd",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-01T06:37:16Z",
+      "side": 1,
+      "message": "Should use full `depset(transitive\u003d).to_list()` to avoid duplicates",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 75
+      },
+      "revId": "0c84f2c585fea1dbf79f3655c410eade5fae0739",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
