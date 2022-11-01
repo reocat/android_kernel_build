@@ -1,3 +1,4 @@
+#
 # Copyright (C) 2021 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +17,6 @@
 # This file serves as a central place for users to import these public
 # rules and macros. The implementations stays in sub-extensions,
 # which is not expected to be loaded directly by users.
-
 load("//build/kernel/kleaf/impl:abi/kernel_build_abi.bzl", _kernel_build_abi = "kernel_build_abi")
 load("//build/kernel/kleaf/impl:abi/kernel_build_abi_dist.bzl", _kernel_build_abi_dist = "kernel_build_abi_dist")
 load("//build/kernel/kleaf/impl:ddk/ddk_headers.bzl", _ddk_headers = "ddk_headers")
