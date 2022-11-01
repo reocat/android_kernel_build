@@ -43,10 +43,12 @@ ARM_TARGETS = ["u-boot_qemu_arm"]
 ARM64_TARGETS = ["kernel_aarch64",
                  "kernel_debug_aarch64",
                  "kernel_microdroid_aarch64",
+                 "kernel_rockpi4",
                  "u-boot_crosvm_aarch64",
                  "u-boot_crosvm_locked_aarch64",
                  "u-boot_gem5_aarch64",
-                 "u-boot_qemu_aarch64"]
+                 "u-boot_qemu_aarch64",
+                 "u-boot_rockpi4"]
 X86_64_TARGETS = ["kernel_x86_64",
                   "kernel_debug_x86_64",
                   "kernel_microdroid_x86_64",
@@ -437,6 +439,20 @@ def update_androidx_virtual_device_modules(gitlog, output_dir, version):
   commit_prebuilts(arm64_mods_dir, gitlog)
   commit_prebuilts(x86_64_mods_dir, gitlog)
 
+def update_androidx_rockpi_cf(gitlog, output_dir, version):
+  rockpi_cf_dirname = version + "-arm64-rockpi"
+
+  cf_dir = os.path.join(output_dir, "device", "google", "cuttlefish_prebuilts",
+                        "kernel")
+  rockpi_cf_dir = os.path.join(cf_dir, rockpi_cf_dirname)
+
+  subprocess.check_call(["git", "rm", "-rf", rockpi_cf_dirname], cwd=cf_dir)
+
+  download_kernel("kernel_rockpi4", version, rockpi_cf_dir)
+  download_kernel_modules("kernel_rockpi4", rockpi_cf_dir)
+
+  commit_prebuilts(cf_dir, gitlog)
+
 def update_androidx_cf(gitlog, output_dir, version):
   i686_cf_dirname = version + "-i686"
 
@@ -482,6 +498,7 @@ def update_androidx(output_dir, version):
 
   update_androidx_virtual_device_modules(gitlog, output_dir, version)
   update_androidx_cf(gitlog, output_dir, version)
+  update_androidx_rockpi_cf(gitlog, output_dir, version)
 
 def update_android_mainline(output_dir):
   arm64_dir = os.path.join(output_dir, "kernel", "prebuilts", "mainline",
