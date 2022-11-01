@@ -43,10 +43,12 @@ ARM_TARGETS = ["u-boot_qemu_arm"]
 ARM64_TARGETS = ["kernel_aarch64",
                  "kernel_debug_aarch64",
                  "kernel_microdroid_aarch64",
+                 "kernel_rockpi4",
                  "u-boot_crosvm_aarch64",
                  "u-boot_crosvm_locked_aarch64",
                  "u-boot_gem5_aarch64",
-                 "u-boot_qemu_aarch64"]
+                 "u-boot_qemu_aarch64",
+                 "u-boot_rockpi4"]
 X86_64_TARGETS = ["kernel_x86_64",
                   "kernel_debug_x86_64",
                   "kernel_microdroid_x86_64",
