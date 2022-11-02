@@ -71,7 +71,7 @@ def _kernel_modules_install_impl(ctx):
         command += dws.restore(
             kernel_module[KernelModuleInfo].modules_staging_dws,
             dst = modules_staging_dws.directory.path,
-            options = "-aL --chmod=D+w",
+            options = "-acL --chmod=D+w",
         )
 
     # TODO(b/194347374): maybe run depmod.sh with CONFIG_SHELL?

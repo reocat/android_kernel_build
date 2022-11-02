@@ -707,7 +707,7 @@ def _get_cache_dir_step(ctx):
         cache_dir_cmd = """
               KLEAF_CACHED_OUT_DIR={cache_dir}/{name}
               mkdir -p "${{KLEAF_CACHED_OUT_DIR}}"
-              rsync -aL "${{OUT_DIR}}/" "${{KLEAF_CACHED_OUT_DIR}}/"
+              rsync -acL "${{OUT_DIR}}/" "${{KLEAF_CACHED_OUT_DIR}}/"
               export OUT_DIR=${{KLEAF_CACHED_OUT_DIR}}
               unset KLEAF_CACHED_OUT_DIR
         """.format(
@@ -806,7 +806,7 @@ def _get_grab_symtypes_step(ctx):
         symtypes_dir = ctx.actions.declare_directory("{name}/symtypes".format(name = ctx.label.name))
         outputs.append(symtypes_dir)
         grab_symtypes_cmd = """
-            rsync -a --prune-empty-dirs --include '*/' --include '*.symtypes' --exclude '*' ${{OUT_DIR}}/ {symtypes_dir}/
+            rsync -ac --prune-empty-dirs --include '*/' --include '*.symtypes' --exclude '*' ${{OUT_DIR}}/ {symtypes_dir}/
         """.format(
             symtypes_dir = symtypes_dir.path,
         )
@@ -839,7 +839,7 @@ def get_grab_cmd_step(ctx, src_dir):
         cmd_dir = ctx.actions.declare_directory("{name}/cmds".format(name = ctx.label.name))
         outputs.append(cmd_dir)
         cmd = """
-            rsync -a --prune-empty-dirs --include '*/' --include '*.cmd' --exclude '*' {src_dir}/ {cmd_dir}/
+            rsync -ac --prune-empty-dirs --include '*/' --include '*.cmd' --exclude '*' {src_dir}/ {cmd_dir}/
         """.format(
             src_dir = src_dir,
             cmd_dir = cmd_dir.path,

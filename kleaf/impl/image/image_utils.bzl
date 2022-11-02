@@ -118,7 +118,7 @@ def _build_modules_image_impl_common(
         command += dws.restore(
             modules_install_staging_dws,
             dst = modules_staging_dir,
-            options = "-aL --chmod=F+w --exclude=source --exclude=build",
+            options = "-acL --chmod=F+w --exclude=source --exclude=build",
         )
 
         # source/ and build/ are symlinks to the source tree and $OUT_DIR, respectively,
@@ -126,7 +126,7 @@ def _build_modules_image_impl_common(
         command += dws.restore(
             modules_install_staging_dws,
             dst = modules_staging_dir,
-            options = "-al --chmod=F+w --include=source --include=build --exclude='*'",
+            options = "-acl --chmod=F+w --include=source --include=build --exclude='*'",
         )
 
     command += """

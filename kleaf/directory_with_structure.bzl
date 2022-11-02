@@ -78,7 +78,7 @@ def _restore(
     """
 
     if options == None:
-        options = "-a"
+        options = "-ac"
 
     return """
         cat {structure_file} | sed 's:^:{dst}/:' | xargs mkdir -p

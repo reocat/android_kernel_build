@@ -223,8 +223,8 @@ def _kernel_config_impl(ctx):
         # HACK: run syncconfig to avoid re-triggerring kernel_build
           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} syncconfig
         # Grab outputs
-          rsync -aL ${{OUT_DIR}}/.config {config}
-          rsync -aL ${{OUT_DIR}}/include/ {include_dir}/
+          rsync -acL ${{OUT_DIR}}/.config {config}
+          rsync -acL ${{OUT_DIR}}/include/ {include_dir}/
         """.format(
         config = config.path,
         include_dir = include_dir.path,
@@ -247,8 +247,8 @@ def _kernel_config_impl(ctx):
     setup = ctx.attr.env[KernelEnvInfo].setup + """
          # Restore kernel config inputs
            mkdir -p ${{OUT_DIR}}/include/
-           rsync -aL {config} ${{OUT_DIR}}/.config
-           rsync -aL {include_dir}/ ${{OUT_DIR}}/include/
+           rsync -acL {config} ${{OUT_DIR}}/.config
+           rsync -acL {include_dir}/ ${{OUT_DIR}}/include/
            find ${{OUT_DIR}}/include -type d -exec chmod +w {{}} \\;
     """.format(config = config.path, include_dir = include_dir.path)
 

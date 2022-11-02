@@ -52,7 +52,7 @@ def _merged_kernel_uapi_headers_impl(ctx):
         command += dws.restore(
             dws_src,
             dst = intermediates_dir,
-            options = "-aL --chmod=+w",
+            options = "-acL --chmod=+w",
         )
 
     for src in reversed(srcs):
