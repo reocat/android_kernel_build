@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b55e3d6_a0b425ed",
+        "filename": "kleaf/tests/kernel_module_group_test/kernel_module_group_test.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-02T11:47:36Z",
+      "side": 1,
+      "message": "nit: module-docstring: The file has no module docstring.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 1
+      },
+      "revId": "11b1589249ff69cd8265191b32e232cc89c3fa97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc4a4752_cf850dc6",
+        "filename": "kleaf/tests/kernel_module_group_test/kernel_module_group_test.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-02T11:47:36Z",
+      "side": 1,
+      "message": "load: Loaded symbol \"ModuleSymversInfo\" is unused. Please remove it.",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 22
+      },
+      "revId": "11b1589249ff69cd8265191b32e232cc89c3fa97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b81cdfc0_9817a37c",
+        "filename": "kleaf/tests/kernel_module_group_test/kernel_module_group_test.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-02T11:47:36Z",
+      "side": 1,
+      "message": "nit: function-docstring: The function \"kernel_module_group_test\" has no docstring.",
+      "range": {
+        "startLine": 125,
+        "startChar": 34,
+        "endLine": 125,
+        "endChar": 35
+      },
+      "revId": "11b1589249ff69cd8265191b32e232cc89c3fa97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
