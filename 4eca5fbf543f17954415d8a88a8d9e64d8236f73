@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66db1623_3e24d35d",
+        "filename": "kleaf/build_cleaner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-02T14:33:39Z",
+      "side": 1,
+      "message": "nit: Here and L132, should it handle `CalledProcessError` or it Ok as it\u0027s an standalone script?",
+      "range": {
+        "startLine": 128,
+        "startChar": 58,
+        "endLine": 128,
+        "endChar": 70
+      },
+      "revId": "4eca5fbf543f17954415d8a88a8d9e64d8236f73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0f3337_3afeff3c",
+        "filename": "kleaf/build_cleaner.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-02T14:33:39Z",
+      "side": 1,
+      "message": "nit: Not a blocker but `help` argument missing.",
+      "range": {
+        "startLine": 211,
+        "startChar": 44,
+        "endLine": 211,
+        "endChar": 45
+      },
+      "revId": "4eca5fbf543f17954415d8a88a8d9e64d8236f73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
