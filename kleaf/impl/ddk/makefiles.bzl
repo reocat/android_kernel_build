@@ -90,6 +90,14 @@ def _makefiles_impl(ctx):
         module_label,
         ctx.attr.module_deps + ctx.attr.module_hdrs,
         ctx.attr.module_includes,
+        "includes",
+    )
+
+    linux_include_dirs = get_include_depset(
+        module_label,
+        ctx.attr.module_deps + ctx.attr.module_hdrs,
+        [],  # ddk_module does not have linux_includes
+        "linux_includes",
     )
 
     args = ctx.actions.args()
@@ -111,6 +119,7 @@ def _makefiles_impl(ctx):
     args.add("--output-makefiles", output_makefiles.path)
     args.add("--package", ctx.label.package)
 
+    args.add_all("--linux-include-dirs", linux_include_dirs, uniquify = True)
     args.add_all("--include-dirs", include_dirs, uniquify = True)
 
     args.add_all(
