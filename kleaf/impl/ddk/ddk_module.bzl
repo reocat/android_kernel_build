@@ -24,6 +24,7 @@ def ddk_module(
         deps = None,
         hdrs = None,
         includes = None,
+        linux_includes = None,
         out = None,
         local_defines = None,
         copts = None,
@@ -84,34 +85,38 @@ def ddk_module(
     A [`ddk_module`](#ddk_module) is compiled with the following order of include directories
     (`-I` options):
 
-    1. `LINUXINCLUDE` (See `common/Makefile`)
-    2. All `includes` of this target, in the specified order
-    3. All `deps`, in the specified order (recursively apply #2 and #4 on each target)
-    4. All `hdrs`, in the specified order (recursively apply #2 and #4 on each target)
+    1. Traverse depedencies for `linux_includes`:
+      1. All `linux_includes` of `deps`, in the specified order (recursively apply #1.2 on each target)
+      2. All `linux_includes` of `hdrs`, in the specified order (recursively apply #1.2 on each target)
+    2. `LINUXINCLUDE` (See `${KERNEL_DIR}/Makefile`)
+    3. Traverse depedencies for `includes`:
+      1. All `includes` of this target, in the specified order
+      2. All `deps`, in the specified order (recursively apply #3.1 and #3.3 on each target)
+      3. All `hdrs`, in the specified order (recursively apply #3.1 and #3.3 on each target)
 
-    In other words, except that `LINUXINCLUDE` always has the highest priority,
-    this uses the `preorder` of [depset](https://bazel.build/rules/lib/depset).
+    In other words, #1 and #3 uses the `preorder` of
+    [depset](https://bazel.build/rules/lib/depset).
 
     "In the specified order" means that order matters within these lists.
     To prevent buildifier from sorting these lists, use the `# do not sort` magic line.
 
     To export a target `:x` in `hdrs` before other targets in `deps`
-    (that is, if you need #4 before #3), specify `:x` in the `deps`
-    list in the position you want. See example below.
+    (that is, if you need #3.3 before #3.2, or #1.2 before #1.1),
+    specify `:x` in the `deps` list in the position you want. See example below.
 
     To export an include directory in `includes` that needs to be included
-    after other targets in `hdrs` or `deps` (that is, if you need #2 after #3
-    or #4), specify the include directory in a separate `ddk_headers` target,
+    after other targets in `hdrs` or `deps` (that is, if you need #3.1 after #3.2
+    or #3.3), specify the include directory in a separate `ddk_headers` target,
     then specify this `ddk_headers` target in `hdrs` and/or `deps` based on
     your needs.
 
     For example:
 
     ```
-    ddk_headers(name = "dep_a", includes = ["dep_a"])
+    ddk_headers(name = "dep_a", includes = ["dep_a"], linux_includes = ["uapi/dep_a"])
     ddk_headers(name = "dep_b", includes = ["dep_b"])
     ddk_headers(name = "dep_c", includes = ["dep_c"], hdrs = ["dep_a"])
-    ddk_headers(name = "hdrs_a", includes = ["hdrs_a"])
+    ddk_headers(name = "hdrs_a", includes = ["hdrs_a"], linux_includes = ["uapi/hdrs_a"])
     ddk_headers(name = "hdrs_b", includes = ["hdrs_b"])
     ddk_headers(name = "x", includes = ["x"])
 
@@ -126,20 +131,26 @@ def ddk_module(
     Then `":module"` is compiled with these flags, in this order:
 
     ```
-    # 1.
+    # 1.1 deps, linux_includes, recursively
+    -Iuapi/dep_a
+
+    # 1.2 hdrs, linux_includes, recursively
+    -Iuapi/hdrs_a
+
+    # 2.
     $(LINUXINCLUDE)
 
-    # 2. includes
+    # 3.1 includes
     -Iself_1
     -Iself_2
 
-    # 3. deps, recursively
+    # 3.2. deps, recursively
     -Idep_b
     -Ix
     -Idep_a   # :dep_c depends on :dep_a, so include dep_a/ first
     -Idep_c
 
-    # 4. hdrs
+    # 3.3. hdrs, recursively
     -Ihdrs_a
     # x is already included, skip
     -Ihdrs_b
@@ -180,6 +191,7 @@ def ddk_module(
             - [`ddk_headers`](#ddk_headers).
         hdrs: See [`ddk_headers.hdrs`](#ddk_headers-hdrs)
         includes: See [`ddk_headers.includes`](#ddk_headers-includes)
+        linux_includes: See [`ddk_headers.linux_includes`](#ddk_headers-linux_includes)
         kernel_build: [`kernel_build`](#kernel_build)
         out: The output module file. By default, this is `"{name}.ko"`.
         local_defines: List of defines to add to the compile line.
@@ -311,6 +323,7 @@ def ddk_module(
         module_srcs = srcs,
         module_hdrs = hdrs,
         module_includes = includes,
+        module_linux_includes = linux_includes,
         module_out = out,
         module_deps = deps,
         module_local_defines = local_defines,
