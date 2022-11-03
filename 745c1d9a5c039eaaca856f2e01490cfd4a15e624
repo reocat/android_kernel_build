@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2aecd19_cb7a4143",
+        "filename": "kleaf/tests/debug_test/debug_modpost_warn_test.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-03T11:05:39Z",
+      "side": 1,
+      "message": "Naive question: Why is this needed? I thought this was only used to specify an external workspace.",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 10
+      },
+      "revId": "745c1d9a5c039eaaca856f2e01490cfd4a15e624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
