@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""
+Device modules tests.
+"""
+
 load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("//build/kernel/kleaf/tests:empty_test.bzl", "empty_test")
 load("//build/kernel/kleaf/impl:common_providers.bzl", "KernelModuleInfo")
