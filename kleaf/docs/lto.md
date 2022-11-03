@@ -1,10 +1,29 @@
 # Disable LTO during development
 
-**Warning**: You may want to re-enable LTO in production.
+**WARNING**: Note that in most cases a full LTO value is recommended for
+ production builds, only modify it if you understand its trade-offs.
 
 Building with link-time optimization (LTO) may take a very long time that brings
 little benefit during development. You may disable LTO to shorten the build time
 for development purposes.
+
+## Confirming the value of --lto
+
+The default value for `--lto` is set differently depending on the branch (i.e.
+the default `mainline` might differ from the `android14-5.15` one, etc). 
+
+You may build the following to confirm the value of LTO setting:
+
+```shell
+$ tools/bazel build [flags] //build/kernel/kleaf:print_flags
+```
+
+Note: `print_flags` shows values specified in the command line. For LTO, the
+above command may show `default` or `none`. However, if `--kasan` is specified,
+`--lto` is coerced into `none`, no matter if `--lto` is specified in the command
+line.
+
+Note: `default` in this context means to not do any additional re-configuration.
 
 ## Option 1: One-time build without LTO
 
@@ -50,19 +69,6 @@ $ tools/bazel build //private/path/to/sources:tuna_dist
 
 If you are using `--config=fast`, you need to add `build:fast --lto=none` as
 well, because `--config=fast` implies thin LTO. See [fast.md](fast.md#lto).
-
-## Confirming the value of --lto
-
-You may build the following to confirm the value of LTO setting:
-
-```shell
-$ tools/bazel build [flags] //build/kernel/kleaf:print_flags
-```
-
-Note: `print_flags` shows values specified in the command line. For LTO, the
-above command may show `default` or `none`. However, if `--kasan` is specified,
-`--lto` is coerced into `none`, no matter if `--lto` is specified in the command
-line.
 
 ## See also
 
