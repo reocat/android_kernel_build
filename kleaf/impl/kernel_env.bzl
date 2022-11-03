@@ -11,7 +11,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+"""
+Rules that generate a source-able build environment.
+"""
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
@@ -313,6 +315,7 @@ kernel_env = rule(
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_kbuild_symtypes_flag": attr.label(default = "//build/kernel/kleaf:kbuild_symtypes"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        "_debug_clang_bin_path": attr.label(default = "//build/kernel/kleaf:debug_clang_bin_path"),
         "_linux_x86_libs": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
     },
 )

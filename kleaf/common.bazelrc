@@ -38,6 +38,7 @@ build --flag_alias=nokmi_symbol_list_strict_mode=no//build/kernel/kleaf:kmi_symb
 build --flag_alias=debug_annotate_scripts=//build/kernel/kleaf:debug_annotate_scripts
 build --flag_alias=debug_print_scripts=//build/kernel/kleaf:debug_print_scripts
 build --flag_alias=debug_modpost_warn=//build/kernel/kleaf:debug_modpost_warn
+build --flag_alias=debug_clang_bin_path=//build/kernel/kleaf:debug_clang_bin_path
 
 # By default, do not embed scmversion.
 build --workspace_status_command=build/kernel/kleaf/workspace_status_common.sh
