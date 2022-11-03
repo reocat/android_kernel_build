@@ -194,6 +194,7 @@ def _create_makefiles_artifact_test(
         name = name,
         expected = name + "_expected",
         actual = name + "_kbuild",
+        order = True,
     )
 
 def _makefiles_build_test(name):
@@ -250,6 +251,7 @@ def _makefiles_local_defines_test(name):
     _create_makefiles_artifact_test(
         name = name + "_multiple",
         expected_lines = [
+            # do not sort
             "ccflags-y += -DFOO",
             "ccflags-y += -DBAR",
         ],
@@ -270,6 +272,7 @@ def _makefiles_local_defines_test(name):
     _create_makefiles_artifact_test(
         name = name + "_multiple_copt",
         expected_lines = [
+            # do not sort
             "ccflags-y += -Wno-foo",
             "ccflags-y += -Wno-bar",
         ],
@@ -283,6 +286,7 @@ def _makefiles_local_defines_test(name):
     _create_makefiles_artifact_test(
         name = name + "_include_location",
         expected_lines = [
+            # do not sort
             "ccflags-y += -include",
             "ccflags-y += {}/{}/self.h".format(
                 paths.join(*([".."] * len(native.package_name().split("/")))),
