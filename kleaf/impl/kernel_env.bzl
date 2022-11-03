@@ -313,6 +313,7 @@ kernel_env = rule(
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_kbuild_symtypes_flag": attr.label(default = "//build/kernel/kleaf:kbuild_symtypes"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        "_debug_clang_bin_path": attr.label(default = "//build/kernel/kleaf:debug_clang_bin_path"),
         "_linux_x86_libs": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
     },
 )
