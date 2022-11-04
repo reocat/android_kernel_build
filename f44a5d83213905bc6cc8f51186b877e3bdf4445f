@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72ffd382_9ff6e438",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-04T18:56:44Z",
+      "side": 1,
+      "message": "Since this is a new flag, consider adding to `build_config_to_bazel.py` too.",
+      "revId": "f44a5d83213905bc6cc8f51186b877e3bdf4445f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
