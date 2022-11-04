@@ -20,6 +20,7 @@ load(
     "kernel_build_test",
     "kernel_module_test",
 )
+load(":abi/force_add_vmlinux_utils.bzl", "force_add_vmlinux_utils")
 load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
 load(":btf.bzl", "btf")
 load(
@@ -59,6 +60,8 @@ _kernel_build_internal_outs = [
     "Module.symvers",
     "include/config/kernel.release",
 ]
+
+_KERNEL_BUILD_OUT_ATTRS = ("outs", "module_outs", "implicit_outs", "module_implicit_outs", "internal_outs")
 
 def kernel_build(
         name,
@@ -579,13 +582,21 @@ def _kernel_build_impl(ctx):
         inputs.append(base_kernel_all_module_names_file)
         base_kernel_all_module_names_file_path = base_kernel_all_module_names_file.path
 
+    attr_vals = {attr: getattr(ctx.attr, attr) for attr in _KERNEL_BUILD_OUT_ATTRS}
+    if force_add_vmlinux_utils.get_value(ctx):
+        # The list is immutable, so make a copy
+        attr_vals["outs"] = attr_vals["outs"] + ["vmlinux"]
+
     # kernel_build(name="kernel", outs=["out"])
     # => _kernel_build(name="kernel", outs=["kernel/out"], internal_outs=["kernel/Module.symvers", ...])
     # => all_output_names = ["foo", "Module.symvers", ...]
     #    all_output_files = {"out": {"foo": File(...)}, "internal_outs": {"Module.symvers": File(...)}, ...}
     all_output_files = {}
-    for attr in ("outs", "module_outs", "implicit_outs", "module_implicit_outs", "internal_outs"):
-        all_output_files[attr] = {name: ctx.actions.declare_file("{}/{}".format(ctx.label.name, name)) for name in getattr(ctx.attr, attr)}
+    for attr, val in attr_vals.items():
+        all_output_files[attr] = {
+            name: ctx.actions.declare_file("{}/{}".format(ctx.label.name, name))
+            for name in val
+        }
     all_output_names_minus_modules = []
     for attr, d in all_output_files.items():
         if attr not in ("module_outs", "module_implicit_outs"):
@@ -938,7 +949,7 @@ _kernel_build = rule(
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
-    } | trim_nonlisted_kmi_utils.attrs(),
+    } | trim_nonlisted_kmi_utils.attrs() | force_add_vmlinux_utils.attrs(),
     cfg = kernel_build_transition,
 )
 
