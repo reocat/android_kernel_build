@@ -16,6 +16,24 @@
       "message": "Since this is a new flag, consider adding to `build_config_to_bazel.py` too.",
       "revId": "f44a5d83213905bc6cc8f51186b877e3bdf4445f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6124b9f1_9d2750de",
+        "filename": "build.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-04T18:57:01Z",
+      "side": 1,
+      "message": "Never mind, this already exists.",
+      "parentUuid": "72ffd382_9ff6e438",
+      "revId": "f44a5d83213905bc6cc8f51186b877e3bdf4445f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
