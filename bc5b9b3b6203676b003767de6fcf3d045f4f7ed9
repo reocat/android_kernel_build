@@ -16,6 +16,24 @@
       "message": "It is intentional that these are dropped from DIST_DIR unless explicitly stated, because GKI modules can be overridden by individual devices.\n\nIf you need to use the GKI version of GKI modules, just speicify the item in your individual copy_to_dist_dir rule.",
       "revId": "bc5b9b3b6203676b003767de6fcf3d045f4f7ed9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceb7aea8_3335ad82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-04T18:28:19Z",
+      "side": 1,
+      "message": "unresolving",
+      "parentUuid": "e95be40f_d88b6908",
+      "revId": "bc5b9b3b6203676b003767de6fcf3d045f4f7ed9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
