@@ -125,6 +125,19 @@ def _boot_images_impl(ctx):
                BUILD_INITRAMFS=
                INITRAMFS_STAGING_DIR=
         """
+    if cts.attr.avb_sign_boot_img:
+        boot_flag_cmd += """
+        AVB_SIGN_BOOT_IMG=1
+        AVB_BOOT_PARTITION_SIZE={avb_boot_partition_size}
+        AVB_BOOT_KEY={avb_boot_key}
+        AVB_BOOT_ALGORITHM={avb_boot_algorithm}
+        AVB_BOOT_PARTITION_NAME={avb_boot_partition_name}
+        """.format(
+            avb_boot_partition_size = ctx.attr.avb_boot_partition_size,
+            avb_boot_key = ctx.attr.avb_boot_key,
+            avb_boot_algorithm = ctx.attr.avb_boot_algorithm,
+            avb_boot_partition_name = ctx.attr.avb_boot_partition_name,
+        )
 
     command += """
              # Build boot images
@@ -186,6 +199,39 @@ Execute `build_boot_images` in `build_utils.sh`.""",
 * If `None`, skip `vendor_boot`.
 """, values = ["vendor_boot", "vendor_kernel_boot"]),
         "vendor_ramdisk_binaries": attr.label_list(allow_files = True),
+        "avb_sign_boot_img": attr.bool(
+            doc = """ If set to `True` signs the boot image using the avb_boot_key.
+            The kernel prebuilt tool `avbtool` is used for signing.""",
+        ),
+        "avb_boot_partition_size": attr.int(doc = """Size of the boot partition
+            in bytes. Used when `avb_sign_boot_img` is True.""", values = [
+            # Size of a RSA-2048 signature.
+            256,
+            # Size of a RSA-4096 signature.
+            512,
+            # Size of a RSA-8192 signature.
+            1024,
+            # Size in bytes of a SHA-1 digest.
+            20,
+            # Size in bytes of a SHA-256 digest.
+            32,
+            # Size in bytes of a SHA-512 digest.
+            64,
+        ]),
+        "avb_boot_key": attr.label(doc = """ Path to the key used for signing.
+            Used when `avb_sign_boot_img` is True.""", allow_single_file = True),
+        "avb_boot_algorithm": attr.string(doc = """ `avb_boot_key` algorithm
+            used e.g. SHA256_RSA2048. Used when `avb_sign_boot_img` is True.""", values = [
+            "AVB_ALGORITHM_TYPE_NONE",
+            "AVB_ALGORITHM_TYPE_SHA256_RSA2048",
+            "AVB_ALGORITHM_TYPE_SHA256_RSA4096",
+            "AVB_ALGORITHM_TYPE_SHA256_RSA8192",
+            "AVB_ALGORITHM_TYPE_SHA512_RSA2048",
+            "AVB_ALGORITHM_TYPE_SHA512_RSA4096",
+            "AVB_ALGORITHM_TYPE_SHA512_RSA8192",
+        ]),
+        "avb_boot_partition_name": attr.string(doc = """Name of the boot partition.
+            Used when `avb_sign_boot_img` is True."""),
         "_debug_print_scripts": attr.label(
             default = "//build/kernel/kleaf:debug_print_scripts",
         ),
