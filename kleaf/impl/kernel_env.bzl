@@ -15,6 +15,7 @@
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
+load(":abi/force_add_vmlinux_utils.bzl", "force_add_vmlinux_utils")
 load(
     ":common_providers.bzl",
     "KernelEnvAttrInfo",
@@ -121,20 +122,25 @@ def _kernel_env_impl(ctx):
 
     command += stamp.set_localversion_cmd(ctx)
 
+    # TODO(b/237706175): drop internal_additional_make_goals
+    additional_make_goals = [] + ctx.attr.internal_additional_make_goals
+    if force_add_vmlinux_utils.get_value(ctx):
+        additional_make_goals.append("vmlinux")
+
     command += """
         # create a build environment
           source {build_utils_sh}
           export BUILD_CONFIG={build_config}
           source {setup_env}
         # Add to MAKE_GOALS if necessary
-          export MAKE_GOALS="${{MAKE_GOALS}} {internal_additional_make_goals}"
+          export MAKE_GOALS="${{MAKE_GOALS}} {additional_make_goals}"
         # capture it as a file to be sourced in downstream rules
           {preserve_env} > {out}
         """.format(
         build_utils_sh = ctx.file._build_utils_sh.path,
         build_config = build_config.path,
         setup_env = setup_env.path,
-        internal_additional_make_goals = " ".join(ctx.attr.internal_additional_make_goals),
+        additional_make_goals = " ".join(additional_make_goals),
         preserve_env = preserve_env.path,
         out = out_file.path,
     )
@@ -314,5 +320,5 @@ kernel_env = rule(
         "_kbuild_symtypes_flag": attr.label(default = "//build/kernel/kleaf:kbuild_symtypes"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_linux_x86_libs": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
-    },
+    } | force_add_vmlinux_utils.attrs(),
 )

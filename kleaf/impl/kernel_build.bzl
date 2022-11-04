@@ -24,6 +24,7 @@ load(
     "kernel_build_test",
     "kernel_module_test",
 )
+load(":abi/force_add_vmlinux_utils.bzl", "force_add_vmlinux_utils")
 load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
 load(":btf.bzl", "btf")
 load(
@@ -614,13 +615,23 @@ def _get_base_kernel_all_module_names_file(ctx):
 def _declare_all_output_files(ctx):
     """Declares output files based on `ctx.attr.*outs`."""
 
+    attr_vals = {attr: getattr(ctx.attr, attr) for attr in _KERNEL_BUILD_OUT_ATTRS}
+
+    if force_add_vmlinux_utils.get_value(ctx):
+        # The list is immutable, so use += to make a copy
+        attr_vals["outs"] = attr_vals["outs"] + ["vmlinux"]
+
     # kernel_build(name="kernel", outs=["out"])
     # => _kernel_build(name="kernel", outs=["kernel/out"], internal_outs=["kernel/Module.symvers", ...])
     # => all_output_names = ["foo", "Module.symvers", ...]
     #    all_output_files = {"out": {"foo": File(...)}, "internal_outs": {"Module.symvers": File(...)}, ...}
     all_output_files = {}
-    for attr in _KERNEL_BUILD_OUT_ATTRS:
-        all_output_files[attr] = {name: ctx.actions.declare_file("{}/{}".format(ctx.label.name, name)) for name in getattr(ctx.attr, attr)}
+    for attr, val in attr_vals.items():
+        all_output_files[attr] = {
+            name: ctx.actions.declare_file("{}/{}".format(ctx.label.name, name))
+            for name in val
+        }
+
     return all_output_files
 
 def _split_out_attrs(ctx):
@@ -1287,7 +1298,7 @@ _kernel_build = rule(
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
-    } | trim_nonlisted_kmi_utils.attrs(),
+    } | trim_nonlisted_kmi_utils.attrs() | force_add_vmlinux_utils.attrs(),
     cfg = kernel_build_transition,
 )
 
