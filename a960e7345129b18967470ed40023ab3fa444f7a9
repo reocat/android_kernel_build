@@ -16,6 +16,24 @@
       "message": "Lint error already fixed in previous patchset",
       "revId": "a960e7345129b18967470ed40023ab3fa444f7a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b7f859b_29bcb88b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-04T00:37:26Z",
+      "side": 1,
+      "message": "In previous CL:2286184",
+      "parentUuid": "a6e8ff23_631f4f59",
+      "revId": "a960e7345129b18967470ed40023ab3fa444f7a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
