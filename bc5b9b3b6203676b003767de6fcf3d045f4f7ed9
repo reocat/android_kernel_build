@@ -52,6 +52,24 @@
       "parentUuid": "ceb7aea8_3335ad82",
       "revId": "bc5b9b3b6203676b003767de6fcf3d045f4f7ed9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84c6ddef_015199a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2022-11-04T18:30:43Z",
+      "side": 1,
+      "message": "Ah -- better to add only to the db845c rule then?",
+      "parentUuid": "cab89fdd_7bd63467",
+      "revId": "bc5b9b3b6203676b003767de6fcf3d045f4f7ed9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
