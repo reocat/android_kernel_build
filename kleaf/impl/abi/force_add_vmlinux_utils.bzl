@@ -25,6 +25,7 @@ def _force_add_vmlinux_config_settings_raw():
     }
 
 def _force_add_vmlinux_get_value(ctx):
+    """Returns the value of the `force_add_vmlinux` configuration."""
     return ctx.attr._force_add_vmlinux[BuildSettingInfo].value
 
 force_add_vmlinux_utils = struct(
