@@ -113,6 +113,14 @@ bool_setting(
     visibility = ["//visibility:public"],
 )
 
+# Forcefully ignore base_kernel.
+bool_setting(
+    name = "force_ignore_base_kernel",
+    build_setting_default = False,
+    # All kernel_* from different packages can see this
+    visibility = ["//visibility:public"],
+)
+
 py_binary(
     name = "ddk/gen_makefiles",
     srcs = ["ddk/gen_makefiles.py"],
