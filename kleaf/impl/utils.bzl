@@ -226,10 +226,20 @@ def _local_mnemonic_suffix(ctx):
         return "Local"
     return ""
 
+def _label_append_suffix(this_label, label_text, suffix):
+    """Given a label text, append suffix to the target name."""
+
+    label = Label(this_label).relative(label_text)
+    has_workspace = label_text.startswith("@")
+    new_workspace = "@{}".format(label.workspace_name) if has_workspace else ""
+    new_label_text = "{}//{}:{}".format(new_workspace, label.package, label.name + suffix)
+    return new_label_text
+
 kernel_utils = struct(
     filter_module_srcs = _filter_module_srcs,
     transform_kernel_build_outs = _transform_kernel_build_outs,
     check_kernel_build = _check_kernel_build,
     kernel_build_outs_add_vmlinux = _kernel_build_outs_add_vmlinux,
     local_mnemonic_suffix = _local_mnemonic_suffix,
+    label_append_suffix = _label_append_suffix,
 )
