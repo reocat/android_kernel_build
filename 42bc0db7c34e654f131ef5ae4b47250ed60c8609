@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "513d0c48_eb70713a",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-04T21:07:49Z",
+      "side": 1,
+      "message": "nit: not sure if you need \"export\" or not",
+      "revId": "42bc0db7c34e654f131ef5ae4b47250ed60c8609",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a39f357a_5dfe239d",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-04T21:07:49Z",
+      "side": 1,
+      "message": "maybe read into the script and see what values are allowed, and put it in `values` here? This may seem like a duplication but we can catch errors early.",
+      "revId": "42bc0db7c34e654f131ef5ae4b47250ed60c8609",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
