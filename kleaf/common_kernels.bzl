@@ -632,6 +632,7 @@ def define_common_kernels(
                 name + "_images",
                 name + "_kmi_symbol_list",
                 name + "_gki_artifacts",
+                name + "_modules",
             ],
         )
 
@@ -817,6 +818,7 @@ def _define_prebuilts(**kwargs):
             name + "_images",
             name + "_kmi_symbol_list",
             name + "_gki_artifacts",
+            name + "_modules",
         ]
 
         native.filegroup(
