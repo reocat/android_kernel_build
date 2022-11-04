@@ -20,6 +20,7 @@ load(
     "kernel_build_test",
     "kernel_module_test",
 )
+load(":abi/base_kernel_utils.bzl", "base_kernel_utils")
 load(":abi/force_add_vmlinux_utils.bzl", "force_add_vmlinux_utils")
 load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
 load(":btf.bzl", "btf")
@@ -529,14 +530,14 @@ def _kernel_build_impl(ctx):
     kbuild_mixed_tree = None
     base_kernel_files = depset()
     check_toolchain_out = None
-    if ctx.attr.base_kernel:
+    if base_kernel_utils.get_base_kernel(ctx):
         check_toolchain_out = _kernel_build_check_toolchain(ctx)
 
         # Create a directory for KBUILD_MIXED_TREE. Flatten the directory structure of the files
-        # that ctx.attr.base_kernel provides. declare_directory is sufficient because the directory should
-        # only change when the dependent ctx.attr.base_kernel changes.
+        # that base_kernel_utils.get_base_kernel(ctx) provides. declare_directory is sufficient because the directory should
+        # only change when the dependent base_kernel_utils.get_base_kernel(ctx) changes.
         kbuild_mixed_tree = ctx.actions.declare_directory("{}_kbuild_mixed_tree".format(ctx.label.name))
-        base_kernel_files = ctx.attr.base_kernel[KernelBuildMixedTreeInfo].files
+        base_kernel_files = base_kernel_utils.get_base_kernel(ctx)[KernelBuildMixedTreeInfo].files
         kbuild_mixed_tree_command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
           # Restore GKI artifacts for mixed build
             export KBUILD_MIXED_TREE=$(realpath {kbuild_mixed_tree})
@@ -572,13 +573,11 @@ def _kernel_build_impl(ctx):
         inputs.append(kbuild_mixed_tree)
 
     base_kernel_all_module_names_file_path = ""
-    base_kernel_for_module_outs = ctx.attr.base_kernel_for_module_outs
-    if base_kernel_for_module_outs == None:
-        base_kernel_for_module_outs = ctx.attr.base_kernel
+    base_kernel_for_module_outs = base_kernel_utils.get_base_kernel_for_module_outs(ctx)
     if base_kernel_for_module_outs:
         base_kernel_all_module_names_file = base_kernel_for_module_outs[KernelBuildInTreeModulesInfo].module_outs_file
         if not base_kernel_all_module_names_file:
-            fail("{}: base_kernel {} does not provide module_outs_file.".format(ctx.label, ctx.attr.base_kernel.label))
+            fail("{}: base_kernel {} does not provide module_outs_file.".format(ctx.label, base_kernel_utils.get_base_kernel(ctx).label))
         inputs.append(base_kernel_all_module_names_file)
         base_kernel_all_module_names_file_path = base_kernel_all_module_names_file.path
 
@@ -826,7 +825,7 @@ def _kernel_build_impl(ctx):
     )
 
     kernel_build_uapi_info = KernelBuildUapiInfo(
-        base_kernel = ctx.attr.base_kernel,
+        base_kernel = base_kernel_utils.get_base_kernel(ctx),
         kernel_uapi_headers = ctx.attr.kernel_uapi_headers,
     )
 
@@ -841,8 +840,8 @@ def _kernel_build_impl(ctx):
     unstripped_modules_depsets = []
     if unstripped_dir:
         unstripped_modules_depsets.append(depset([unstripped_dir]))
-    if ctx.attr.base_kernel:
-        unstripped_modules_depsets.append(ctx.attr.base_kernel[KernelUnstrippedModulesInfo].directories)
+    if base_kernel_utils.get_base_kernel(ctx):
+        unstripped_modules_depsets.append(base_kernel_utils.get_base_kernel(ctx)[KernelUnstrippedModulesInfo].directories)
     kernel_unstripped_modules_info = KernelUnstrippedModulesInfo(
         directories = depset(transitive = unstripped_modules_depsets, order = "postorder"),
     )
@@ -851,7 +850,7 @@ def _kernel_build_impl(ctx):
         module_outs_file = all_module_names_file,
     )
 
-    images_info = KernelImagesInfo(base_kernel = ctx.attr.base_kernel)
+    images_info = KernelImagesInfo(base_kernel = base_kernel_utils.get_base_kernel(ctx))
 
     output_group_kwargs = {}
     for d in all_output_files.values():
@@ -918,14 +917,6 @@ _kernel_build = rule(
         "deps": attr.label_list(
             allow_files = True,
         ),
-        "base_kernel": attr.label(
-            aspects = [kernel_toolchain_aspect],
-            providers = [KernelBuildInTreeModulesInfo, KernelBuildMixedTreeInfo],
-        ),
-        "base_kernel_for_module_outs": attr.label(
-            providers = [KernelBuildInTreeModulesInfo],
-            doc = "If set, use the `module_outs` and `module_implicit_outs` of this label as an allowlist for modules in the staging directory. Otherwise use `base_kernel`.",
-        ),
         "kmi_symbol_list_strict_mode": attr.bool(),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
@@ -949,7 +940,7 @@ _kernel_build = rule(
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
-    } | trim_nonlisted_kmi_utils.attrs() | force_add_vmlinux_utils.attrs(),
+    } | trim_nonlisted_kmi_utils.attrs() | force_add_vmlinux_utils.attrs() | base_kernel_utils.attrs(),
     cfg = kernel_build_transition,
 )
 
@@ -958,7 +949,7 @@ def _kernel_build_check_toolchain(ctx):
     Check toolchain_version is the same as base_kernel.
     """
 
-    base_kernel = ctx.attr.base_kernel
+    base_kernel = base_kernel_utils.get_base_kernel(ctx)
     this_toolchain = ctx.attr.config[KernelToolchainInfo].toolchain_version
     base_toolchain = utils.getoptattr(base_kernel[KernelToolchainInfo], "toolchain_version")
     base_toolchain_file = utils.getoptattr(base_kernel[KernelToolchainInfo], "toolchain_version_file")
