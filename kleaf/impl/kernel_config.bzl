@@ -15,6 +15,7 @@
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
+load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
 load(
     ":common_providers.bzl",
     "KernelEnvAttrInfo",
@@ -120,10 +121,10 @@ def _config_trim(ctx):
     Keys are configs names. Values are from `_config`, which is a format string that
     can produce an option to `scripts/config`.
     """
-    if ctx.attr.trim_nonlisted_kmi and not ctx.file.raw_kmi_symbol_list:
+    if trim_nonlisted_kmi_utils.get_value(ctx) and not ctx.file.raw_kmi_symbol_list:
         fail("{}: trim_nonlisted_kmi is set but raw_kmi_symbol_list is empty.".format(ctx.label))
 
-    if not ctx.attr.trim_nonlisted_kmi:
+    if not trim_nonlisted_kmi_utils.get_value(ctx):
         return struct(configs = {}, deps = [])
 
     raw_symbol_list_path_file = _determine_raw_symbollist_path(ctx)
@@ -248,7 +249,7 @@ def _kernel_config_impl(ctx):
            find ${{OUT_DIR}}/include -type d -exec chmod +w {{}} \\;
     """.format(config = config.path, include_dir = include_dir.path)
 
-    if ctx.attr.trim_nonlisted_kmi:
+    if trim_nonlisted_kmi_utils.get_value(ctx):
         # Ensure the dependent action uses the up-to-date abi_symbollist.raw
         # at the absolute path specified in abi_symbollist.raw.abspath
         setup_deps.append(ctx.file.raw_kmi_symbol_list)
@@ -276,7 +277,6 @@ kernel_config = rule(
         "config": attr.output(mandatory = True, doc = "the .config file"),
         "kasan": attr.label(default = "//build/kernel/kleaf:kasan"),
         "lto": attr.label(default = "//build/kernel/kleaf:lto"),
-        "trim_nonlisted_kmi": attr.bool(doc = "If true, modify the config to trim non-listed symbols."),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
@@ -288,5 +288,5 @@ kernel_config = rule(
             # Allow everything because kernel_config is indirectly called in device packages.
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
-    },
+    } | trim_nonlisted_kmi_utils.attrs(),
 )

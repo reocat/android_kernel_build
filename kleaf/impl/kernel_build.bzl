@@ -20,6 +20,7 @@ load(
     "kernel_build_test",
     "kernel_module_test",
 )
+load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
 load(":btf.bzl", "btf")
 load(
     ":common_providers.bzl",
@@ -42,6 +43,7 @@ load(
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
+load(":kernel_build_transition.bzl", "kernel_build_transition")
 load(":kernel_config.bzl", "kernel_config")
 load(":kernel_env.bzl", "kernel_env")
 load(":kernel_headers.bzl", "kernel_headers")
@@ -818,7 +820,7 @@ def _kernel_build_impl(ctx):
     )
 
     kernel_build_abi_info = KernelBuildAbiInfo(
-        trim_nonlisted_kmi = ctx.attr.trim_nonlisted_kmi,
+        trim_nonlisted_kmi = trim_nonlisted_kmi_utils.get_value(ctx),
         combined_abi_symbollist = ctx.file.combined_abi_symbollist,
         module_outs_file = all_module_names_file,
         modules_staging_archive = modules_staging_archive,
@@ -932,9 +934,12 @@ _kernel_build = rule(
         # `_kernel_build` target.
         "modules_prepare": attr.label(),
         "kernel_uapi_headers": attr.label(),
-        "trim_nonlisted_kmi": attr.bool(),
         "combined_abi_symbollist": attr.label(allow_single_file = True, doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`."),
-    },
+        "_allowlist_function_transition": attr.label(
+            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
+        ),
+    } | trim_nonlisted_kmi_utils.attrs(),
+    cfg = kernel_build_transition,
 )
 
 def _kernel_build_check_toolchain(ctx):
