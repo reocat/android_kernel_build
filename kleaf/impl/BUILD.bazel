@@ -105,6 +105,14 @@ bool_setting(
     visibility = ["//visibility:public"],
 )
 
+# Forcefully add vmlinux to outs (implicitly) and to MAKE_GOALS.
+bool_setting(
+    name = "force_add_vmlinux",
+    build_setting_default = False,
+    # All kernel_* from different packages can see this
+    visibility = ["//visibility:public"],
+)
+
 py_binary(
     name = "ddk/gen_makefiles",
     srcs = ["ddk/gen_makefiles.py"],
