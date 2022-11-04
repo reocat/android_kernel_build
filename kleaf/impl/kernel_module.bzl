@@ -37,6 +37,7 @@ load(":ddk/ddk_headers.bzl", "DdkHeadersInfo", "ddk_headers_common_impl", "get_h
 load(":debug.bzl", "debug")
 load(":kernel_build.bzl", "get_grab_cmd_step")
 load(":stamp.bzl", "stamp")
+load(":utils.bzl", "kernel_utils")
 
 _sibling_names = [
     "notrim",
@@ -182,12 +183,14 @@ def kernel_module(
         sibling_kwargs["name"] = sibling_target_name
         sibling_kwargs["outs"] = ["{sibling_target_name}/{out}".format(sibling_target_name = sibling_target_name, out = out) for out in sibling_kwargs["outs"]]
 
+        this_label = "//{}:{}".format(native.package_name(), sibling_target_name)
+
         # This assumes the target is a kernel_build_abi with define_abi_targets
         # etc., which may not be the case. See below for adding "manual" tag.
         # TODO(b/231647455): clean up dependencies on implementation details.
-        sibling_kwargs["kernel_build"] = sibling_kwargs["kernel_build"] + "_" + sibling_name
+        sibling_kwargs["kernel_build"] = kernel_utils.label_append_suffix(this_label, sibling_kwargs["kernel_build"], "_" + sibling_name)
         if sibling_kwargs.get("deps") != None:
-            sibling_kwargs["deps"] = [dep + "_" + sibling_name for dep in sibling_kwargs["deps"]]
+            sibling_kwargs["deps"] = [kernel_utils.label_append_suffix(this_label, dep, "_" + sibling_name) for dep in sibling_kwargs["deps"]]
 
         # We don't know if {kernel_build}_{sibling_name} exists or not, so
         # add "manual" tag to prevent it from being built by default.
