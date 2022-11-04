@@ -33,6 +33,24 @@
       "message": "maybe read into the script and see what values are allowed, and put it in `values` here? This may seem like a duplication but we can catch errors early.",
       "revId": "42bc0db7c34e654f131ef5ae4b47250ed60c8609",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c486ad76_c44307d6",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-04T21:08:20Z",
+      "side": 1,
+      "message": "just nit, this does introduce some duplication of information, so consider ignoring this comment",
+      "parentUuid": "a39f357a_5dfe239d",
+      "revId": "42bc0db7c34e654f131ef5ae4b47250ed60c8609",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
