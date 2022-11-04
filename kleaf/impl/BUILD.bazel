@@ -72,3 +72,19 @@ bzl_library(
         "@bazel_skylib//rules:common_settings",
     ],
 )
+# Whether trimming is actually enabled.
+bool_setting(
+    name = "trim_nonlisted_kmi_setting",
+    build_setting_default = False,
+    # All kernel_* from different packages can see this
+    visibility = ["//visibility:public"],
+)
+
+# Helper setting to forcefully disable trimming.
+bool_setting(
+    name = "force_disable_trim",
+    build_setting_default = False,
+    # All kernel_* from different packages can see this
+    visibility = ["//visibility:public"],
+)
+
