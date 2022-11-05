@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38e5127d_c36b40a2",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-05T05:55:06Z",
+      "side": 1,
+      "message": "This causes L71:\n\n```\n    base_modules_archive \u003d ctx.attr.kernel_build_notrim[KernelBuildAbiInfo].base_modules_staging_archive\n```\n\n... to use the GKI modules that forcefully disables trimming.\n\nRamji, it used to be that `ctx.attr.kernel_build_for_base_modules[KernelBuildAbiInfo].modules_staging_archive` uses GKI modules that builds regularly (respecting the value of `trim_nonlisted_kmi` in common/BUILD.bazel). Is that the expected behavior?",
+      "range": {
+        "startLine": 126,
+        "startChar": 10,
+        "endLine": 126,
+        "endChar": 27
+      },
+      "revId": "93dc3788a537bbdeeab6602a7b58f921d71c34c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
