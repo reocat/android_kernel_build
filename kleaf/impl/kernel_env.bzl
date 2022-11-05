@@ -152,7 +152,7 @@ def _kernel_env_impl(ctx):
         mnemonic = "KernelEnv",
         inputs = inputs,
         outputs = [out_file],
-        progress_message = "Creating build environment for %s" % ctx.attr.name,
+        progress_message = "Creating build environment ({}) {}".format(config_tags, ctx.label),
         command = command,
     )
 
@@ -233,6 +233,7 @@ def _kernel_env_impl(ctx):
         ),
         KernelEnvAttrInfo(
             kbuild_symtypes = kbuild_symtypes,
+            progress_message_note = config_tags,
         ),
         DefaultInfo(files = depset([out_file])),
     ]
