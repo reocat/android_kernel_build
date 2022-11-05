@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c07a166_9b15a6f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-05T06:33:45Z",
+      "side": 1,
+      "message": "This does seem to cause an ABI difference, but it shouldn\u0027t. I need to look deeper into this.",
+      "revId": "ca62283c868d255d060139a69dcdd16013df7599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
