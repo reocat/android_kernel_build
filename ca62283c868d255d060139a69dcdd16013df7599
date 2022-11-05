@@ -16,6 +16,24 @@
       "message": "This does seem to cause an ABI difference, but it shouldn\u0027t. I need to look deeper into this.",
       "revId": "ca62283c868d255d060139a69dcdd16013df7599",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c158e74b_13405690",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-05T06:34:03Z",
+      "side": 1,
+      "message": "before and after the change",
+      "parentUuid": "4c07a166_9b15a6f8",
+      "revId": "ca62283c868d255d060139a69dcdd16013df7599",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
