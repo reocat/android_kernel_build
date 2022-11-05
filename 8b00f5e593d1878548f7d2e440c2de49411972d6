@@ -22,6 +22,30 @@
       },
       "revId": "8b00f5e593d1878548f7d2e440c2de49411972d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3891b23_d47d5e9e",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-05T06:32:41Z",
+      "side": 1,
+      "message": "But it is probably fine. This is useful when inspecting into `out/cache` when there are multiple configs.",
+      "parentUuid": "c0ea3d48_34f2a40b",
+      "range": {
+        "startLine": 155,
+        "startChar": 71,
+        "endLine": 155,
+        "endChar": 82
+      },
+      "revId": "8b00f5e593d1878548f7d2e440c2de49411972d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
