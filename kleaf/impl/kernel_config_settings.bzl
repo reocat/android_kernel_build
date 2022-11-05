@@ -85,9 +85,36 @@ def _kernel_env_get_out_dir_suffix(ctx):
     ret = sorted(sets.to_list(sets.make(ret)))
     return paths.join(*ret)
 
+def _get_progress_message_note(ctx):
+    """Returns a description text for progress message.
+
+    This is a shortened and human-readable version of `kernel_env_get_out_dir_suffix`.
+    """
+    attr_to_label = _kernel_env_config_settings_raw()
+    seen_labels = sets.make()
+
+    ret = []
+    for attr_name in attr_to_label:
+        attr_target = getattr(ctx.attr, attr_name)
+        attr_label_name = attr_target.label.name
+        attr_val = attr_target[BuildSettingInfo].value
+        if not attr_val:
+            continue
+        if attr_val == True:
+            item = attr_label_name
+        else:
+            item = "{}={}".format(attr_label_name, attr_val)
+        ret.append(item)
+    ret = sorted(sets.to_list(sets.make(ret)))
+    ret = ";".join(ret)
+    if ret:
+        ret = "({}) ".format(ret)
+    return ret
+
 kernel_config_settings = struct(
     of_kernel_build = _kernel_build_config_settings,
     of_kernel_config = _kernel_config_config_settings,
     of_kernel_env = _kernel_env_config_settings,
     kernel_env_get_out_dir_suffix = _kernel_env_get_out_dir_suffix,
+    get_progress_message_note = _get_progress_message_note,
 )
