@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "162ade67_e3e48fcd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-05T05:57:18Z",
+      "side": 1,
+      "message": "Still fails with:\n\n```\nERROR: /[redacted]/BUILD.bazel:23:14: output \u0027[redacted]/slider/vmlinux\u0027 was not created\n```",
+      "revId": "e98c36ba29fa5a1cdfc51a16ea824bde6e09937e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
