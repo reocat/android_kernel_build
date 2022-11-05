@@ -16,6 +16,24 @@
       "message": "Still fails with:\n\n```\nERROR: /[redacted]/BUILD.bazel:23:14: output \u0027[redacted]/slider/vmlinux\u0027 was not created\n```",
       "revId": "e98c36ba29fa5a1cdfc51a16ea824bde6e09937e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7eb25dd_85ef79af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-05T06:17:10Z",
+      "side": 1,
+      "message": "Done, now it has the following warning:\n\n```\nWarning: modules_install: missing \u0027System.map\u0027 file. Skipping depmod.\n```\n\nPerhaps I should add System.map to outs too?",
+      "parentUuid": "162ade67_e3e48fcd",
+      "revId": "e98c36ba29fa5a1cdfc51a16ea824bde6e09937e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
