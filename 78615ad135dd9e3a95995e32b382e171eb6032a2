@@ -70,6 +70,24 @@
       "parentUuid": "e88293fa_d8e4a16d",
       "revId": "78615ad135dd9e3a95995e32b382e171eb6032a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c57b8baf_d234f9d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-07T11:41:44Z",
+      "side": 1,
+      "message": "Hi,  Ulises\n\nNo, the db845c needs to use its own cfg80211.ko and mac80211.ko, with the gki version, it will cause \"ath10k_core: disagrees about version of symbol ieee80211_alloc_hw_nm\" like I mentioned in my first comment above.",
+      "parentUuid": "f44425f2_2d4061f3",
+      "revId": "78615ad135dd9e3a95995e32b382e171eb6032a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
