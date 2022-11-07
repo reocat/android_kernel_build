@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab1ac452_25b09c58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-07T09:29:41Z",
+      "side": 1,
+      "message": "This change caused the build broken here:\nhttps://ci.android.com/builds/branches/aosp_kernel-common-android14-5.15/grid?\n```\nINFO: Running command line: bazel-bin/common/db845c_dist \u0027--dist_dir\u003d/buildbot/dist_dirs/aosp_kernel-common-android14-5.15-linux-kernel_db845c_kleaf/9259544\u0027 --flat\n[dist] ERROR: Destination filename \"mac80211.ko\" has multiple possible sources: [\u0027common/db845c/net/mac80211/mac80211.ko\u0027, \u0027common/kernel_aarch64/net/mac80211/mac80211.ko\u0027]\n[dist] ERROR: Destination filename \"cfg80211.ko\" has multiple possible sources: [\u0027common/db845c/net/wireless/cfg80211.ko\u0027, \u0027common/kernel_aarch64/net/wireless/cfg80211.ko\u0027]\n```\n\nit seems the vendor cfg80211.ko and mac80211.ko could not override the gki modules with this method.\n\nIt needs to specify the gki modules explicitly here, but I don\u0027t know how to do that. \":kernel_aarch64_modules/net/can/can-bcm.ko\" does not work here\n\nOr drop the vendor cfg80211.ko and mac80211.ko for db845c and use the gki modules.\nbut that causes the db845c build failed to boot with error like this:\n```\n[    2.197390][    T1] init: Loading module /lib/modules/cfg80211.ko with args \u0027\u0027\n[    2.261072][    T1] cfg80211: Loading compiled-in X.509 certificates for regulatory database\n[    2.274003][    T1] cfg80211: Loaded X.509 cert \u0027sforshee: 00b28ddf47aef9cea7\u0027\n[    2.281517][   T69] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2\n[    2.290850][    T1] init: Loaded kernel module /lib/modules/cfg80211.ko\n[    2.290928][   T69] cfg80211: failed to load regulatory.db\n[    2.297759][    T1] init: Loading module /lib/modules/ath.ko with args \u0027\u0027\n[    2.334765][    T1] init: Loaded kernel module /lib/modules/ath.ko\n[    2.341445][    T1] init: Loading module /lib/modules/mac80211.ko with args \u0027\u0027\n[    2.404956][    T1] init: Loaded kernel module /lib/modules/mac80211.ko\n[    2.411819][    T1] init: Loading module /lib/modules/ath10k_core.ko with args \u0027\u0027\n[    2.423710][    T1] ath10k_core: disagrees about version of symbol ieee80211_alloc_hw_nm\n[    2.431971][    T1] ath10k_core: Unknown symbol ieee80211_alloc_hw_nm (err -22)\n[    2.466270][    T1] init: Failed to insmod \u0027/lib/modules/ath10k_core.ko\u0027 with args \u0027\u0027: Invalid argument\n[    2.475822][    T1] init: LoadWithAliases was unable to load ath10k_core\n[    2.483187][    T1] init: Failed to load kernel modules\n[    2.489201][    T1] init: InitFatalReboot: signal 6\n\n```\nCould you please give any suggestions on this? I can it first.",
+      "revId": "78615ad135dd9e3a95995e32b382e171eb6032a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
