@@ -125,6 +125,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67ba5441_1c93908d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-11-07T18:52:11Z",
+      "side": 1,
+      "message": "`android14-5.15` has the KMI symbol lists so, the symbol list `common/android/abi_gki_aarch64_db845c` needs to be updated as it seems outdated.\n\nFor `mainline` since there are no KMI symbol list; http://aosp/2288213 has been added to allow every symbol access.",
+      "parentUuid": "dd6d8a93_018c9693",
+      "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73464cea_eb574e4a",
