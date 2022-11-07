@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "452927c4_fb970d89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-11-07T09:39:49Z",
+      "side": 1,
+      "message": "The empty regex (in the case vendors *do* format the file correctly) matches everything.\n\n```\n$ echo \u003e/tmp/zz\n$ echo asdf | grep -f /tmp/zz\nasdf\n```\n\nperhaps an additional: sed -i \u0027/^$/d\u0027",
+      "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
