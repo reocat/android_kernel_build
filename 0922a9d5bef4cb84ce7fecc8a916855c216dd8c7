@@ -34,6 +34,24 @@
       "parentUuid": "b0158963_8cdc2d78",
       "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f67d9b2e_d833474f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-07T13:17:21Z",
+      "side": 1,
+      "message": "the db845c does not boot for some reason, will check more:\n```\n[    1.942182][    T1] init: Loaded kernel module /lib/modules/arm_smmu.ko\n[    1.949111][    T1] init: Loading module /lib/modules/ath.ko with args \u0027\u0027\n[    1.956238][    T1] ath: Unknown symbol reg_initiator_name (err -2)\n[    1.962599][    T1] ath: Unknown symbol wiphy_apply_custom_regulatory (err -2)\n[    1.969908][    T1] ath: Unknown symbol ieee80211_get_channel_khz (err -2)\n[    1.976865][    T1] ath: Unknown symbol freq_reg_info (err -2)\n[    1.993225][    T1] init: Failed to insmod \u0027/lib/modules/ath.ko\u0027 with args \u0027\u0027: No such file or diy\n[    2.002863][    T1] init: LoadWithAliases was unable to load ath\n[    2.009576][    T1] init: Failed to load kernel modules\n[    2.015642][    T1] init: InitFatalReboot: signal 6\n[    2.035749][    T1] init:   #00 pc 0000000000315bd0  /init (unwindstack::AndroidLocalUnwinder::In)\n[    2.055226][    T1] init:   #01 pc 000000000030a40c  /init (android::init::InitFatalReboot(int)+2)\n[    2.068326][    T1] init:   #02 pc 000000000030aac0  /init (android::init::InstallRebootSignalHan)\n[    2.083931][    T1] init:   #03 pc 0000000000000874  [vdso]\n[    2.089587][    T1] init:   #04 pc 00000000004c0730  /init (abort+176) (BuildId: 294889f837e5cfad)\n[    2.100050][    T1] init:   #05 pc 000000000030fcdc  /init (android::init::InitAborter(char const)\n[    2.113418][    T1] init:   #06 pc 00000000004827a0  /init (android::base::SetAborter(std::__1::f)\n[    2.131663][    T1] init:   #07 pc 0000000000481fa4  /init (android::base::LogMessage::~LogMessag)\n[    2.145183][    T1] init:   #08 pc 0000000000300be8  /init (android::init::FirstStageMain(int, ch)\n[    2.158993][    T1] init:   #09 pc 00000000004bdf5c  /init (__real_libc_init(void*, void (*)(), i)\n[    2.178096][    T1] init: Reboot ending, jumping to kernel\n[    2.199274][    T1] arm-smmu 15000000.iommu: disabling translation\n[    2.206486][    T1] reboot: Restarting system with command \u0027bootloader\u0027\n```",
+      "parentUuid": "c037470f_173c3e8c",
+      "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
