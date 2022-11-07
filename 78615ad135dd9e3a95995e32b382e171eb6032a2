@@ -34,6 +34,24 @@
       "parentUuid": "ab1ac452_25b09c58",
       "revId": "78615ad135dd9e3a95995e32b382e171eb6032a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fefeccfb_645748ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-07T10:55:39Z",
+      "side": 1,
+      "message": "I think something like https://android-review.googlesource.com/c/kernel/common/+/2289394 is needed. Not sure if this change was made in mainline but not cherry-picked to android14, so I\u0027ll double check before sending it for review.",
+      "parentUuid": "e88293fa_d8e4a16d",
+      "revId": "78615ad135dd9e3a95995e32b382e171eb6032a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
