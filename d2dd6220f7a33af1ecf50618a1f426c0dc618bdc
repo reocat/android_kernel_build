@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c57896a9_6f30c707",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-11-07T23:27:17Z",
+      "side": 1,
+      "message": "Thanks, Giuliano.\n\nI did not see this issue in my testing i.e. if the input file already has an extra empty line at the end.\n\nDebugging further I noticed, grep is using `--word-regexp` i.e. `grep -w -f` so only with whole words will be used as filters.\n\nLine#172:\n`! grep -w -f ${modules_list_filter} ${old_modules_list} \u003e ${dest_dir}/modules.order`",
+      "parentUuid": "452927c4_fb970d89",
+      "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "79137123_7334cf49",
         "filename": "build_utils.sh",
         "patchSetId": 2
@@ -31,6 +49,30 @@
       "writtenOn": "2022-11-07T09:42:17Z",
       "side": 1,
       "message": "1. I\u0027d move the line correction to be the first thing (just add an empty line unconditionally).\n2. Then strip off space*#.*$\n3. Then delete completely empty lines.\n\nThis will resolve the issue I\u0027ve already mentioned and handle in-line comments.",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 40
+      },
+      "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c371ecb2_cb10f426",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-11-07T23:27:17Z",
+      "side": 1,
+      "message": "I don\u0027t know whether you notice it or not; but I am not modifying the original file but a temp file `modules_list_filter` before it being used at Line#172 as filter and getting deleted at Line#173.\n\nIn addition, I don\u0027t see the issue you are referring as empty regex matching to everything, as mentioned in my other comment; probably due to `--word-regexp`.\n\nAlso, something like below doesn\u0027t work either and it strips the last module listed in the file; so I think filter do need an extra empty line at the end.\n\n```\n    # Append a new line at the end of file\n    # If file doesn\u0027t end in newline the last module is skipped from filter\n    echo \"\" \u003e\u003e ${modules_list_filter}\n\n    # Remove end spaces and tabs\n    sed -i \u0027s/[[:blank:]]*$//\u0027 ${modules_list_filter}\n\n    # Remove empty lines\n    sed -i \u0027/^$/d\u0027 ${modules_list_filter}\n```\n\nLet me know, if I misunderstood something here.",
+      "parentUuid": "79137123_7334cf49",
       "range": {
         "startLine": 166,
         "startChar": 0,
