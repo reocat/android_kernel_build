@@ -46,6 +46,30 @@
       },
       "revId": "f78748c3bc4fa43eafb465d08e8374d52fe9522b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "115615ae_4f2f20b7",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-07T18:43:02Z",
+      "side": 1,
+      "message": "dicts.add will indent L337~357, but a chain of \"or\"\u0027s will also be annoying. Hence I add a new function in L323~326 so I can add more things.",
+      "parentUuid": "27269822_fdb8eb9f",
+      "range": {
+        "startLine": 357,
+        "startChar": 6,
+        "endLine": 357,
+        "endChar": 8
+      },
+      "revId": "f78748c3bc4fa43eafb465d08e8374d52fe9522b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
