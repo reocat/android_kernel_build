@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e3814ebd_0c965a03",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-07T12:27:56Z",
+      "side": 1,
+      "message": "I took the example from L67-L87, I guess I can export them just to be sure. Note: These values are only used in `build_boot_images` function within `build_utils.sh` script.",
+      "parentUuid": "513d0c48_eb70713a",
+      "revId": "42bc0db7c34e654f131ef5ae4b47250ed60c8609",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a39f357a_5dfe239d",
         "filename": "kleaf/impl/image/boot_images.bzl",
         "patchSetId": 1
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "just nit, this does introduce some duplication of information, so consider ignoring this comment",
       "parentUuid": "a39f357a_5dfe239d",
+      "revId": "42bc0db7c34e654f131ef5ae4b47250ed60c8609",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1e7233d_f3172b4d",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-07T12:27:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c486ad76_c44307d6",
       "revId": "42bc0db7c34e654f131ef5ae4b47250ed60c8609",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
