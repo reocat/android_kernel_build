@@ -52,6 +52,24 @@
       "parentUuid": "e88293fa_d8e4a16d",
       "revId": "78615ad135dd9e3a95995e32b382e171eb6032a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f44425f2_2d4061f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-07T11:39:01Z",
+      "side": 1,
+      "message": "I submitted a fix here:\nhttps://android-review.googlesource.com/c/kernel/build/+/2289633\n\nThe boot failures mentioned above seems caused by not having the power cable plugged in:(",
+      "parentUuid": "e88293fa_d8e4a16d",
+      "revId": "78615ad135dd9e3a95995e32b382e171eb6032a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
