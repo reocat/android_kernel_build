@@ -111,6 +111,30 @@
       },
       "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcb5d9e7_136aa3e1",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-07T18:48:04Z",
+      "side": 1,
+      "message": "That is, please add an argument to `define_db845c` that contains a list of GKI modules to be copied",
+      "parentUuid": "73464cea_eb574e4a",
+      "range": {
+        "startLine": 961,
+        "startChar": 37,
+        "endLine": 961,
+        "endChar": 49
+      },
+      "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
