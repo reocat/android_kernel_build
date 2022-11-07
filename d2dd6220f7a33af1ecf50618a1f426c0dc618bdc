@@ -16,6 +16,29 @@
       "message": "The empty regex (in the case vendors *do* format the file correctly) matches everything.\n\n```\n$ echo \u003e/tmp/zz\n$ echo asdf | grep -f /tmp/zz\nasdf\n```\n\nperhaps an additional: sed -i \u0027/^$/d\u0027",
       "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79137123_7334cf49",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-11-07T09:42:17Z",
+      "side": 1,
+      "message": "1. I\u0027d move the line correction to be the first thing (just add an empty line unconditionally).\n2. Then strip off space*#.*$\n3. Then delete completely empty lines.\n\nThis will resolve the issue I\u0027ve already mentioned and handle in-line comments.",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 40
+      },
+      "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
