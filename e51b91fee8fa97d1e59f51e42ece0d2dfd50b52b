@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000031955337",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2287957?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "c54cb1eb_78eccbb7",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/image/boot_images.bzl",
+              "range": {
+                "startLine": 209,
+                "startChar": 0,
+                "endLine": 210,
+                "endChar": 0
+              },
+              "replacement": "            Used when `avb_sign_boot_img` is True.\"\"\", allow_single_file \u003d True),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "c2271c66_dbd1a427",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-11-07T11:25:01Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/image/boot_images.bzl` to format the file, or apply the suggested fix.",
+      "revId": "e51b91fee8fa97d1e59f51e42ece0d2dfd50b52b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
