@@ -110,6 +110,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bed4beb6_59de231b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-07T18:50:24Z",
+      "side": 1,
+      "message": "Note: change will also be reverted in https://android-review.git.corp.google.com/c/kernel/build/+/2288499",
+      "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73464cea_eb574e4a",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 1
