@@ -88,6 +88,29 @@
       "parentUuid": "50da9a92_4f4ed43a",
       "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73464cea_eb574e4a",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-07T18:47:26Z",
+      "side": 1,
+      "message": "These names does not exist in common_kernels.bzl, so it can be different for different branches. Consider passing them in as an argument.",
+      "range": {
+        "startLine": 961,
+        "startChar": 37,
+        "endLine": 961,
+        "endChar": 49
+      },
+      "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
