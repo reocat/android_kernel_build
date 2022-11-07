@@ -958,7 +958,12 @@ def define_db845c(
             # Mixed build: Additional GKI artifacts.
             ":kernel_aarch64",
             ":kernel_aarch64_additional_artifacts",
-            ":kernel_aarch64_modules",
+            "//common:kernel_aarch64/can-bcm.ko",
+            "//common:kernel_aarch64/can-dev.ko",
+            "//common:kernel_aarch64/can-gw.ko",
+            "//common:kernel_aarch64/can-raw.ko",
+            "//common:kernel_aarch64/slcan.ko",
+            "//common:kernel_aarch64/vcan.ko",
             name + "_merged_kernel_uapi_headers",
         ],
         dist_dir = dist_dir,
