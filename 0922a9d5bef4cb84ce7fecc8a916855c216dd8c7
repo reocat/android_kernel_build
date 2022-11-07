@@ -70,6 +70,24 @@
       "parentUuid": "f67d9b2e_d833474f",
       "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd6d8a93_018c9693",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-07T18:29:38Z",
+      "side": 1,
+      "message": "build the android14-5.15 branch from one clean environment again with Ulises\u0027s change here(ANDROID: db845c: Remove duplicated modules)\" https://android-review.googlesource.com/c/kernel/common/+/2289394, and the \"ath10k_core: disagrees about version of symbol ieee80211_alloc_hw_nm\" error is still there.\n\nAnd build the android-mainline branch from clean environment as well, it could boot by default without any change, it could boot too with this change + mac80211.ko and cfg80211.ko which either from the gki modules or from the db845c modules.\n\nWhich means the android-mainline GKI mac80211.ko could be used by the db845c ath10k_core.ko, the android14-5.15 GKI mac80211.ko could not be used by the db845c ath10k_core.ko.\n(The ieee80211_alloc_hw_nm function is defined in the mac80211.ko module)\n\ncopy the android14-5.15 failure here for convenience:\n```\n[    2.375377][    T1] init: Loaded kernel module /lib/modules/mac80211.ko\n[    2.382255][    T1] init: Loading module /lib/modules/ath10k_core.ko with args \u0027\u0027\n[    2.394144][    T1] ath10k_core: disagrees about version of symbol ieee80211_alloc_hw_nm\n[    2.402379][    T1] ath10k_core: Unknown symbol ieee80211_alloc_hw_nm (err -22)\n[    2.436823][    T1] init: Failed to insmod \u0027/lib/modules/ath10k_core.ko\u0027 with args \u0027\u0027: Invalid argument\n[    2.446360][    T1] init: LoadWithAliases was unable to load ath10k_core\n[    2.453737][    T1] init: Failed to load kernel modules\n\n```\n\nAny idea what causes the difference here between the android-mainline and the android14-5.15 branches?",
+      "parentUuid": "50da9a92_4f4ed43a",
+      "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
