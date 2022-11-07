@@ -22,6 +22,30 @@
       },
       "revId": "93dc3788a537bbdeeab6602a7b58f921d71c34c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "362728d8_959d7d2a",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-11-07T21:38:50Z",
+      "side": 1,
+      "message": "I am not understanding what exactly you are point out; but for modules purposes trimming has no effects as only `vmlinux` get trimmed and not modules. But, what we want is modules built in a base GKI kernel here... trimming and no trimming shouldn\u0027t affect that, afaict.",
+      "parentUuid": "38e5127d_c36b40a2",
+      "range": {
+        "startLine": 126,
+        "startChar": 10,
+        "endLine": 126,
+        "endChar": 27
+      },
+      "revId": "93dc3788a537bbdeeab6602a7b58f921d71c34c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
