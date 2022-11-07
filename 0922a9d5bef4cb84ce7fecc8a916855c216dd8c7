@@ -52,6 +52,24 @@
       "parentUuid": "c037470f_173c3e8c",
       "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50da9a92_4f4ed43a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-07T14:52:03Z",
+      "side": 1,
+      "message": "hmm, it does not break for the db845c android-mainline build, and the mac80211.ko and cfg80211.ko and the can ko files are copied successfully:\nhttps://ci.android.com/builds/submitted/9262377/kernel_db845c_kleaf/latest\n\nand comparing the BUILD.bazel between two branches, it seems the difference is that the cfg80211 and mac80211 modules are not in the define_db845c for the mainline branch. \nwhich means  Ulises Mendez Martinez\u0027s change here should work:\nhttps://android-review.googlesource.com/c/kernel/common/+/2289394\n\nSorry for the confusion, I will re-check again:(",
+      "parentUuid": "f67d9b2e_d833474f",
+      "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
