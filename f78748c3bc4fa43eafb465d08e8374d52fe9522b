@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42a4194d_1ac13650",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-07T18:26:07Z",
+      "side": 1,
+      "message": "nit: Here and the other files: there is something with this that doesn\u0027t feel readable to me, however I couldn\u0027t find a better alternative from the docs about dicts.",
+      "range": {
+        "startLine": 357,
+        "startChar": 6,
+        "endLine": 357,
+        "endChar": 8
+      },
+      "revId": "f78748c3bc4fa43eafb465d08e8374d52fe9522b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
