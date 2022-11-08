@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff7dc852_8dc85df1",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-08T15:57:52Z",
+      "side": 1,
+      "message": "Is it intended that this will add more attributes to `kernel_env` rule?",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 45
+      },
+      "revId": "1c81d108442cad4e15acfc3da2389f55661983c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
