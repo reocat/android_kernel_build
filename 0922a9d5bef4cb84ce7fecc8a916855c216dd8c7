@@ -145,6 +145,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd6a0c74_481d4955",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-08T07:42:00Z",
+      "side": 1,
+      "message": "Thanks a lot for the suggestions, Yifan!\nI updated this change, which should support both the android-mainline and android14-5.15 branches now, please help check it again!",
+      "parentUuid": "bed4beb6_59de231b",
+      "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b52f5384_6bfcf176",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-08T07:42:00Z",
+      "side": 1,
+      "message": "Thanks a lot for the explanation, Ramji! Maybe we could update to have the db845c use all the GKI modules some time later, so that Ulises Mendez Martinez\u0027s removal change would work. Here let\u0027s keep using the db845c mac80211.ko and cfg80211.ko for the moment.",
+      "parentUuid": "67ba5441_1c93908d",
+      "revId": "0922a9d5bef4cb84ce7fecc8a916855c216dd8c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73464cea_eb574e4a",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 1
