@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3dda2af_0e581c2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-11-08T07:34:24Z",
+      "side": 1,
+      "message": "This looks more flexible than http://aosp/2287191.\n\nHowever, since this is changing common_kernel targets; someone else with greater understanding should approve.",
+      "revId": "d6100e9d8d795fe236e29043611662d52aafc5d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
