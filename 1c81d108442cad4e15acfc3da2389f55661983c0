@@ -22,6 +22,30 @@
       },
       "revId": "1c81d108442cad4e15acfc3da2389f55661983c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eff972f6_85ed8d5a",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-08T17:44:05Z",
+      "side": 1,
+      "message": "Yes. \n\nkernel_env is the environment for kernel_config and kernel_build. So for these different configurations (e.g. lto, kasan, add_vmlinux (later)) for kernel_config and kernel_build (which may run without the sandbox), I need to manually isolate them too. Hence adding here as well.",
+      "parentUuid": "ff7dc852_8dc85df1",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 45
+      },
+      "revId": "1c81d108442cad4e15acfc3da2389f55661983c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
