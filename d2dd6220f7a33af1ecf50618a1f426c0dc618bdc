@@ -123,6 +123,30 @@
       },
       "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4660457_11f2e173",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-11-08T07:49:32Z",
+      "side": 1,
+      "message": "Thanks Guiliano.\n\nHow do I check whether I have mix of CRLF and LF? (I don\u0027t think I do but don\u0027t know as well on how to check it.)\n\nIssue can be reproduced on `android14-5.15` with this file which is default module list:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/android/gki_system_dlkm_modules\n\nAnd checking the content of `out/android14-5.15/dist/system_dlkm.modules.load` file at the end of the `kernel_aarch64` build.\n\nIs it worth going this complex when `sed -i \u0027$a\\\\\u0027 ${modules_list_filter}` addresses the issue without any downside in all cases?\n\nI\u0027ll give your other suggestions a try tomorrow; if you think we should go with it.",
+      "parentUuid": "a9786098_98521839",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 40
+      },
+      "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
