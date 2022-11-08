@@ -99,6 +99,30 @@
       },
       "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9786098_98521839",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-11-08T07:15:01Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be dropping the last module, perhaps something else is going on. Do you have a mix of CRLF and LF line endings?\n\necho \"\" can be just echo\n\n\u0027s/[[:blank:]]*$//\u0027 should be \u0027s/[[:blank:]]*#[[:blank:]]*$//\u0027 or perhaps -r \u0027s/[[:blank:]]*(#[[:blank:]]*)?$//\u0027\n\nAnother thing to note is that `comm` or `join` may do exactly what you need. However, the inputs need to be \"clean\" (I\u0027m not sure to what degree) and sorted.",
+      "parentUuid": "c371ecb2_cb10f426",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 40
+      },
+      "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
