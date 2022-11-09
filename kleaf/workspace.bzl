@@ -85,6 +85,6 @@ def define_kleaf_workspace(common_kernel_package = None):
         path = "build/kernel/kleaf/impl/fake_local_jdk",
     )
 
-    native.register_toolchains(
-        "//prebuilts/build-tools:py_toolchain",
-    )
+    # native.register_toolchains(
+    #    "//prebuilts/build-tools:py_toolchain",
+    # )

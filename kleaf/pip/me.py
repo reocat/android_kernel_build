@@ -1,0 +1,3 @@
+import dtschema
+
+print(dtschema)
