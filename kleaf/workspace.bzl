@@ -85,6 +85,7 @@ def define_kleaf_workspace(common_kernel_package = None):
         path = "build/kernel/kleaf/impl/fake_local_jdk",
     )
 
-    native.register_toolchains(
-        "//prebuilts/build-tools:py_toolchain",
-    )
+    # Hermetic python doesn't have sysconfig.get_config_var("SOABI")
+    # native.register_toolchains(
+    #    "//prebuilts/build-tools:py_toolchain",
+    # )
