@@ -169,6 +169,32 @@ def _config_kasan(ctx):
     )
     return struct(configs = configs, deps = [])
 
+def _config_kprobes(ctx):
+    """Returns configs for --kprobes.
+
+    Key are configs names. Values are from `_config`, which is a format string that
+    can produce an option to `scripts/config`.
+    """
+    lto = ctx.attr.lto[BuildSettingInfo].value
+    kprobes = ctx.attr.kprobes[BuildSettingInfo].value
+
+    if not kprobes:
+        return struct(configs = {}, deps = [])
+
+    configs = dicts.add(
+        CFI = _config.disable,
+        CFI_PERMISSIVE = _config.disable,
+        CFI_CLANG = _config.disable,
+        DYNAMIC_FTRACE = _config.enable,
+        FUNCTION_TRACER = _config.enable,
+        IRQSOFF_TRACER = _config.enable,
+        FUNCTION_PROFILER = _config.enable,
+        PREEMPT_TRACER = _config.enable,
+        CHECKPOINT_RESTORE = _config.enable,
+        RANDOMIZE_BAS = _config.disable,
+    )
+    return struct(configs = configs, deps = [])
+
 def _reconfig(ctx):
     """Return a command and extra inputs to re-configure `.config` file."""
     configs = {}
@@ -178,6 +204,7 @@ def _reconfig(ctx):
         _config_lto,
         _config_trim,
         _config_kasan,
+        _config_kprobes,
     ):
         pair = fn(ctx)
         configs.update(pair.configs)

@@ -52,6 +52,7 @@ def _kernel_config_config_settings_raw():
         trim_nonlisted_kmi_utils.config_settings_raw(),
         {
             "kasan": "//build/kernel/kleaf:kasan",
+            "kprobes": "//build/kernel/kleaf:kprobes",
             "lto": "//build/kernel/kleaf:lto",
         },
     )
