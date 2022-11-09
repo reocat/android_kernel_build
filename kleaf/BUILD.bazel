@@ -48,6 +48,14 @@ bool_flag(
     build_setting_default = False,
 )
 
+# If true, enable kprobes. This assumes --lto=none, but :print_flags only shows
+# values from the command line.
+# https://www.kernel.org/doc/Documentation/kprobes.txt
+bool_flag(
+    name = "kprobes",
+    build_setting_default = False,
+)
+
 # If true, //{common}:all_headers also includes //{common}:all_headers_unsafe.
 bool_flag(
     name = "allow_ddk_unsafe_headers",

@@ -21,9 +21,12 @@ load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
 
 _LTO_FLAG = "//build/kernel/kleaf:lto"
 _KASAN_FLAG = "//build/kernel/kleaf:kasan"
+_KPROBES_FLAG = "//build/kernel/kleaf:kprobes"
 
 def _lto(settings, _attr):
-    if settings[_KASAN_FLAG] and settings[_LTO_FLAG] == "default":
+    should_use_lto_none = settings[_KASAN_FLAG] or settings[_KPROBES_FLAG]
+
+    if should_use_lto_none and settings[_LTO_FLAG] == "default":
         return {_LTO_FLAG: "none"}
 
     return {_LTO_FLAG: settings[_LTO_FLAG]}
@@ -35,6 +38,10 @@ def _impl(settings, attr):
 
 kernel_config_transition = transition(
     implementation = _impl,
-    inputs = [_KASAN_FLAG, _LTO_FLAG] + trim_nonlisted_kmi_utils.transition_inputs(),
+    inputs = [
+        _KASAN_FLAG,
+        _KPROBES_FLAG,
+        _LTO_FLAG,
+    ] + trim_nonlisted_kmi_utils.transition_inputs(),
     outputs = [_LTO_FLAG] + trim_nonlisted_kmi_utils.transition_outputs(),
 )
