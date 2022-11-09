@@ -52,6 +52,23 @@
       "parentUuid": "d5393a1a_3870d822",
       "revId": "013cc6edbb4214d8b70081967f56f7580dae973f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30b4f5d4_f0c2df1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966817
+      },
+      "writtenOn": "2022-11-09T17:51:12Z",
+      "side": 1,
+      "message": "FYI, after transitioning to the DDK, this feature is no longer needed.",
+      "revId": "013cc6edbb4214d8b70081967f56f7580dae973f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
