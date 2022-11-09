@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000032093935",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2293997?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "e5073e56_7e0e0bed",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.WORKSPACE",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 21,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/bazel.WORKSPACE",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/bazel.WORKSPACE",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 30,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/bazel.WORKSPACE",
+              "range": {
+                "startLine": 31,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/bazel.WORKSPACE",
+              "range": {
+                "startLine": 35,
+                "startChar": 0,
+                "endLine": 35,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/bazel.WORKSPACE",
+              "range": {
+                "startLine": 36,
+                "startChar": 0,
+                "endLine": 36,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "14c28776_32108f56",
+        "filename": "kleaf/bazel.WORKSPACE",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-11-09T00:26:18Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/bazel.WORKSPACE` to format the file, or apply the suggested fix.",
+      "revId": "dedd63f5b9b6ee923313dde1716983d91c9a21b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
