@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4007de5_e299fdfe",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1466604
+      },
+      "writtenOn": "2022-11-09T16:36:50Z",
+      "side": 1,
+      "message": "The bootloader download should also occur here. You\u0027ll have to add the new names (u-boot.itb and idbloader.img).\n\nAre you planning to submit that in a separate change?",
+      "range": {
+        "startLine": 560,
+        "startChar": 0,
+        "endLine": 592,
+        "endChar": 56
+      },
+      "revId": "00fa01c19e00434151f96aad51a86e9dddf574e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
