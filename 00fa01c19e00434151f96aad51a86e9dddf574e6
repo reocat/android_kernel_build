@@ -22,6 +22,30 @@
       },
       "revId": "00fa01c19e00434151f96aad51a86e9dddf574e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c94bbbb0_dedb1025",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 1955333
+      },
+      "writtenOn": "2022-11-10T01:34:05Z",
+      "side": 1,
+      "message": "I\u0027ll add it in this patch. Thanks.",
+      "parentUuid": "f4007de5_e299fdfe",
+      "range": {
+        "startLine": 560,
+        "startChar": 0,
+        "endLine": 592,
+        "endChar": 56
+      },
+      "revId": "00fa01c19e00434151f96aad51a86e9dddf574e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
