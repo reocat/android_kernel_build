@@ -22,6 +22,46 @@
       },
       "revId": "e16c2d42f3871a1f9d7a0b7d6bb117ed42ba4f26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f381346_ce0e6eb2",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-10T19:51:31Z",
+      "side": 1,
+      "message": "This always exists if kernel_modules is not empty, so no need to check here.\n\ne.g. kernel_modules[0].kernel_build if the list is not empty",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 21
+      },
+      "revId": "e16c2d42f3871a1f9d7a0b7d6bb117ed42ba4f26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ba3d479_ffaa67c0",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-10T19:51:31Z",
+      "side": 1,
+      "message": "You need to fix the usages too?",
+      "revId": "e16c2d42f3871a1f9d7a0b7d6bb117ed42ba4f26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
