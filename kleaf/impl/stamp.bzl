@@ -123,7 +123,9 @@ def _get_ext_mod_scmversion(ctx):
 
     # {ext_mod}:{scmversion} {ext_mod}:{scmversion} ...
     scmversion_cmd = status.get_stable_status_cmd(ctx, "STABLE_SCMVERSION_EXT_MOD")
-    scmversion_cmd += """ | sed -n 's|.*\\<{ext_mod}:\\(\\S\\+\\).*|\\1|p'""".format(ext_mod = ctx.label.package)
+    scmversion_cmd += """ | sed -n 's|.*\\<{ext_mod}:\\(\\S\\+\\).*|\\1|p'""".format(
+        ext_mod = ctx.attr.makefile[0].label.package if ctx.attr.makefile else ctx.label.package,
+    )
 
     # workspace_status.py does not set STABLE_SCMVERSION if setlocalversion
     # should not run on KERNEL_DIR. However, for STABLE_SCMVERSION_EXT_MOD,
@@ -132,7 +134,9 @@ def _get_ext_mod_scmversion(ctx):
     scmversion_cmd += " || true"
 
     return struct(deps = [ctx.info_file], cmd = _get_scmversion_cmd(
-        srctree = "${{ROOT_DIR}}/{ext_mod}".format(ext_mod = ctx.label.package),
+        srctree = "${{ROOT_DIR}}/{ext_mod}".format(
+            ext_mod = ctx.attr.makefile[0].label.package if ctx.attr.makefile else ctx.label.package,
+        ),
         scmversion = "$({})".format(scmversion_cmd),
     ))
 
