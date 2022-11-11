@@ -138,6 +138,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd312b70_3dddba99",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T19:29:28Z",
+      "side": 1,
+      "message": "Looking a little deeper, since this is a header-only library, I think this works just fine even if no toolchain is available at all. No toolchain commands are invoked when this is built. It simply exposes the headers to the native `cc` interface. After a `bazel clean --expunge`:\n```\nStarting local Bazel server and connecting to it...\nINFO: Analyzed target //\u003ckernel\u003e:\u003cbuild\u003e_uapi_header_library (48 packages loaded, 93895 targets configured).\nINFO: Found 1 target...\nTarget //\u003ckernel\u003e:\u003cbuild\u003e_uapi_header_library up-to-date (nothing to build)\nINFO: Elapsed time: 29.816s, Critical Path: 0.04s\nINFO: 1 process: 1 internal.\nINFO: Build completed successfully, 1 total action\n```\n\nWhy can\u0027t this be supported without proper toolchain declaration?",
+      "parentUuid": "2da96427_dc8e763e",
+      "range": {
+        "startLine": 526,
+        "startChar": 0,
+        "endLine": 526,
+        "endChar": 22
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00ecb407_5c38a4f0",
         "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
         "patchSetId": 2
