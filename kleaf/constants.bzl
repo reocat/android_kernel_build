@@ -18,7 +18,7 @@ Utility public constants.
 
 load(
     "//build/kernel/kleaf/impl:constants.bzl",
-    "AARCH64_IMAGES",
+    "AARCH64_RISCV64_IMAGES",
     "GKI_ARTIFACTS_AARCH64_OUTS",
     "MODULES_STAGING_ARCHIVE",
     "MODULE_OUTS_FILE_SUFFIX",
@@ -36,13 +36,16 @@ _common_outs = [
 
 # Common output files for aarch64 kernel builds.
 # Sync with build.config.gki.aarch64
-AARCH64_GKI_OUTS = _common_outs + AARCH64_IMAGES
+AARCH64_RISCV64_GKI_OUTS = _common_outs + AARCH64_RISCV64_IMAGES
 
 # Common output files for x86_64 kernel builds.
 X86_64_OUTS = _common_outs + ["bzImage"]
 
 # Deprecated; use AARCH64_GKI_OUTS
-aarch64_outs = AARCH64_GKI_OUTS
+aarch64_outs = AARCH64_RISCV64_GKI_OUTS
+
+# Deprecated; use AARCH64_GKI_OUTS
+riscv64_outs = AARCH64_RISCV64_GKI_OUTS
 
 # Deprecated; use X86_64_OUTS
 x86_64_outs = X86_64_OUTS
@@ -80,8 +83,8 @@ GKI_DOWNLOAD_CONFIGS = [
     },
     {
         "target_suffix": "gki_artifacts",
-        # We only download GKI for arm64, not x86_64
-        # TODO(b/206079661): Allow downloaded prebuilts for x86_64 and debug targets.
+        # We only download GKI for arm64, not riscv64 or x86_64
+        # TODO(b/206079661): Allow downloaded prebuilts for risc64/x86_64/debug targets.
         "outs": GKI_ARTIFACTS_AARCH64_OUTS,
     },
     {
