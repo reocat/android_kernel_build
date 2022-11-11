@@ -234,6 +234,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2d4ac9f_ddd1d301",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T20:59:27Z",
+      "side": 1,
+      "message": "Sure, I\u0027m okay with the DAMP rules, but can we add a `kernel_uapi_header_cc_library` or something to make it easier for a userspace `cc_binary()` rule to consume? Since it\u0027s a header-only library, no toolchain (hermetic or non-hermetic) is used.",
+      "parentUuid": "8a501e37_3b7309b6",
+      "range": {
+        "startLine": 526,
+        "startChar": 0,
+        "endLine": 526,
+        "endChar": 22
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00ecb407_5c38a4f0",
         "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
         "patchSetId": 2
