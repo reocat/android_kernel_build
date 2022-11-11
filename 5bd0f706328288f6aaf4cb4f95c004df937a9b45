@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5238d2fd_5be0bb41",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T18:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2356e11_a2df01c2",
+      "range": {
+        "startLine": 520,
+        "startChar": 4,
+        "endLine": 520,
+        "endChar": 34
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbcdfcb0_5644db84",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-11-11T18:01:23Z",
       "side": 1,
       "message": "This is not supported without proper toolchain declaration, so please delete from here.",
+      "range": {
+        "startLine": 526,
+        "startChar": 0,
+        "endLine": 526,
+        "endChar": 22
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2da96427_dc8e763e",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T18:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbcdfcb0_5644db84",
       "range": {
         "startLine": 526,
         "startChar": 0,
@@ -158,6 +206,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5b726a6_c61e7be5",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T18:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9be5663a_fca697b1",
+      "range": {
+        "startLine": 9,
+        "startChar": 27,
+        "endLine": 9,
+        "endChar": 51
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "701680b4_75ccd735",
@@ -175,6 +247,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4865236_710ef8eb",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T18:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "701680b4_75ccd735",
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73bb3b4e_521e3319",
@@ -188,6 +278,30 @@
       "writtenOn": "2022-11-11T18:06:34Z",
       "side": 1,
       "message": "Do you need a realpath though? Why not just $1?\n\nIf you do, once you\u0027ve set up hermetic tools, just use `$(realpath)`. Same below.\n\nnit: Also the convention for Kleaf (not for Bazel in general) is to actually embed them in the script, so something like:\n\n```\n\"\"\"\ntar_file\u003d{input_tar}\n\"\"\".format(input_tar \u003d input_tar.path)\n```\n\nIMO this is clearer than $1",
+      "range": {
+        "startLine": 13,
+        "startChar": 19,
+        "endLine": 13,
+        "endChar": 30
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e90f6948_c8f9c102",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T18:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73bb3b4e_521e3319",
       "range": {
         "startLine": 13,
         "startChar": 19,
@@ -221,6 +335,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67675d3f_2acf631a",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T18:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ccd210d_dcfa6370",
+      "range": {
+        "startLine": 16,
+        "startChar": 33,
+        "endLine": 16,
+        "endChar": 45
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83f41ff1_ed1ce79c",
@@ -234,6 +372,24 @@
       "writtenOn": "2022-11-11T18:06:34Z",
       "side": 1,
       "message": "Please mention that usr/include is stripped",
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c177f415_83e9c112",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T18:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83f41ff1_ed1ce79c",
       "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -269,6 +425,24 @@
       "side": 1,
       "message": "(and below)",
       "parentUuid": "f4e0f5b6_c7b21711",
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a96b6a4c_55b47b68",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T18:48:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d046acaa_24083217",
       "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
