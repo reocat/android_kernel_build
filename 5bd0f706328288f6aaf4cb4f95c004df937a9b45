@@ -183,6 +183,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f488342_aaff12a4",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T19:00:24Z",
+      "side": 1,
+      "message": "I think this is resolved. Other 100% QC files that we\u0027ve contributed do not have any markings, so the current state should be correct.",
+      "parentUuid": "bf242df5_67c748df",
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9be5663a_fca697b1",
