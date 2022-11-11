@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ca292ac_74afc89a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:01:23Z",
+      "side": 1,
+      "message": "Thanks for your contribution! LGTM overall. Please see the following comments.",
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2356e11_a2df01c2",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:01:23Z",
+      "side": 1,
+      "message": "Rather than defining this in kernel_build, I would suggest executing the DAMP principle and ask `BUILD.bazel` to declare it.\n\nThat is, please don\u0027t change kernel_build.bzl but rather export `kernel_unarchived_uapi_headers` in `kernel.bzl`",
+      "range": {
+        "startLine": 520,
+        "startChar": 4,
+        "endLine": 520,
+        "endChar": 34
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbcdfcb0_5644db84",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:01:23Z",
+      "side": 1,
+      "message": "This is not supported without proper toolchain declaration, so please delete from here.",
+      "range": {
+        "startLine": 526,
+        "startChar": 0,
+        "endLine": 526,
+        "endChar": 22
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00ecb407_5c38a4f0",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:01:23Z",
+      "side": 1,
+      "message": "AOSP license please",
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9be5663a_fca697b1",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:01:23Z",
+      "side": 1,
+      "message": "```\n\"Unpacking UAPI headers {}\".format(ctx.label)\n```\n\n(In case there are multiple of these actions)",
+      "range": {
+        "startLine": 9,
+        "startChar": 27,
+        "endLine": 9,
+        "endChar": 51
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "701680b4_75ccd735",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:01:23Z",
+      "side": 1,
+      "message": "Use hermetic tools. Example:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_env.bzl;l\u003d78;drc\u003dd691fc1e1a2213c1ba3b872b988fb49ab7ab8fe8\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_env.bzl;l\u003d81;drc\u003dd691fc1e1a2213c1ba3b872b988fb49ab7ab8fe8\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_env.bzl;l\u003d331;drc\u003dd691fc1e1a2213c1ba3b872b988fb49ab7ab8fe8",
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4e0f5b6_c7b21711",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:01:23Z",
+      "side": 1,
+      "message": "please export kernel_unarchived_uapi_headers here",
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
