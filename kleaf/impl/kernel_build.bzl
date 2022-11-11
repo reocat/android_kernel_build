@@ -58,6 +58,7 @@ load(":kernel_env.bzl", "kernel_env")
 load(":kernel_headers.bzl", "kernel_headers")
 load(":kernel_toolchain_aspect.bzl", "KernelToolchainInfo", "kernel_toolchain_aspect")
 load(":kernel_uapi_headers.bzl", "kernel_uapi_headers")
+load(":kernel_unarchived_uapi_headers.bzl", "kernel_unarchived_uapi_headers")
 load(":kmi_symbol_list.bzl", _kmi_symbol_list = "kmi_symbol_list")
 load(":modules_prepare.bzl", "modules_prepare")
 load(":raw_kmi_symbol_list.bzl", "raw_kmi_symbol_list")
@@ -353,6 +354,8 @@ def kernel_build(
     config_target_name = name + "_config"
     modules_prepare_target_name = name + "_modules_prepare"
     uapi_headers_target_name = name + "_uapi_headers"
+    unarchived_uapi_headers_target_name = name + "_unarchived_uapi_headers"
+    uapi_header_library_target_name = name + "_uapi_header_library"
     headers_target_name = name + "_headers"
     kmi_symbol_list_target_name = name + "_kmi_symbol_list"
     abi_symbollist_target_name = name + "_kmi_symbol_list_abi_symbollist"
@@ -512,6 +515,18 @@ def kernel_build(
         config = config_target_name,
         srcs = srcs,
         **kwargs
+    )
+
+    kernel_unarchived_uapi_headers(
+        name = unarchived_uapi_headers_target_name,
+        kernel_uapi_headers = uapi_headers_target_name,
+        **kwargs
+    )
+
+    native.cc_library(
+        name =uapi_header_library_target_name,
+        hdrs = [unarchived_uapi_headers_target_name],
+        includes = [unarchived_uapi_headers_target_name],
     )
 
     kernel_headers(
