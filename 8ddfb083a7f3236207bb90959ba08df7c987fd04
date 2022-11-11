@@ -92,6 +92,24 @@
       "parentUuid": "94d7b3aa_c78219c4",
       "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d2941ea_e9f7eefb",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T21:11:06Z",
+      "side": 1,
+      "message": "Also re my pseudocode above:\n\n\u003e `len(input_tars) !\u003d 1`\n\nThis will fail if there is a `base_kernel` for the `kernel_build`. The logic is here:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_build.bzl;l\u003d1136;drc\u003deff5e7b5db2eb0bd4d7d8c8b1e9b570f14dc87d6\n\nPerhaps you want to feed a `merged_kernel_uapi_headers` target to this `kernel_unarchive_uapi_headers` rule? Please use your own judgement; I don\u0027t know what your acutal use case is.",
+      "parentUuid": "94d7b3aa_c78219c4",
+      "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
