@@ -128,6 +128,30 @@
       "parentUuid": "1d2941ea_e9f7eefb",
       "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb46777a_b58b7ca5",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T21:13:46Z",
+      "side": 1,
+      "message": "If you are providing kernel_build instead, then please ignore this comment.",
+      "parentUuid": "a5a8af0c_4fad8410",
+      "range": {
+        "startLine": 38,
+        "startChar": 9,
+        "endLine": 38,
+        "endChar": 28
+      },
+      "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
