@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c342afe6_e839a5a4",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T20:59:15Z",
+      "side": 1,
+      "message": "Looks like you already did this, so feel free to resolve the comment and merge this.",
+      "parentUuid": "21647dda_9d239bfb",
+      "range": {
+        "startLine": 520,
+        "startChar": 4,
+        "endLine": 520,
+        "endChar": 34
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dbcdfcb0_5644db84",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 2
@@ -174,6 +198,30 @@
       "side": 1,
       "message": "According to the DAMP rules, these targets should be declared in BUILD explicitly.\n\nI know the kernel_build macro sets a bad example (because none of our team didn\u0027t know about the DAMP principle at that time), but let\u0027s not add more targets to the macro.",
       "parentUuid": "cd312b70_3dddba99",
+      "range": {
+        "startLine": 526,
+        "startChar": 0,
+        "endLine": 526,
+        "endChar": 22
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04ffda4d_7c9a5b7d",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T20:59:15Z",
+      "side": 1,
+      "message": "Looks like you already did this, so feel free to resolve the comment and merge this.",
+      "parentUuid": "8a501e37_3b7309b6",
       "range": {
         "startLine": 526,
         "startChar": 0,
