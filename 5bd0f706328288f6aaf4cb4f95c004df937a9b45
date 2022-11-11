@@ -136,6 +136,24 @@
       "message": "please export kernel_unarchived_uapi_headers here",
       "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d046acaa_24083217",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:02:02Z",
+      "side": 1,
+      "message": "(and below)",
+      "parentUuid": "f4e0f5b6_c7b21711",
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
