@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "634b22ae_67f43572",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-11T17:03:08Z",
+      "side": 0,
+      "message": "Just double checking: is this not used by anyone? i.e. is it safe to remove it?",
+      "range": {
+        "startLine": 119,
+        "startChar": 9,
+        "endLine": 119,
+        "endChar": 38
+      },
+      "revId": "eff5e7b5db2eb0bd4d7d8c8b1e9b570f14dc87d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

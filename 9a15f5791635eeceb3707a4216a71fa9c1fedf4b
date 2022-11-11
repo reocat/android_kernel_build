@@ -16,6 +16,52 @@
       "message": "Not fixing linter errors for unchanged lines.",
       "revId": "9a15f5791635eeceb3707a4216a71fa9c1fedf4b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88b16e4b_820c2576",
+        "filename": "kleaf/impl/abi/get_src_kmi_symbol_list.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-11T17:03:08Z",
+      "side": 1,
+      "message": "nit: I think this can go in one single line.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "9a15f5791635eeceb3707a4216a71fa9c1fedf4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faa1d55f_3f91d5d0",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-11T17:03:08Z",
+      "side": 1,
+      "message": "nit: Here and L223, IIUIC this is to have more clarity, but otherwise are we just duplicating information?",
+      "range": {
+        "startLine": 149,
+        "startChar": 8,
+        "endLine": 149,
+        "endChar": 20
+      },
+      "revId": "9a15f5791635eeceb3707a4216a71fa9c1fedf4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
