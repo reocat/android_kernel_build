@@ -162,6 +162,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a501e37_3b7309b6",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T20:55:54Z",
+      "side": 1,
+      "message": "According to the DAMP rules, these targets should be declared in BUILD explicitly.\n\nI know the kernel_build macro sets a bad example (because none of our team didn\u0027t know about the DAMP principle at that time), but let\u0027s not add more targets to the macro.",
+      "parentUuid": "cd312b70_3dddba99",
+      "range": {
+        "startLine": 526,
+        "startChar": 0,
+        "endLine": 526,
+        "endChar": 22
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00ecb407_5c38a4f0",
         "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
         "patchSetId": 2
