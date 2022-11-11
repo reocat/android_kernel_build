@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99eb1e1d_ef4fc6d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T17:51:50Z",
+      "side": 1,
+      "message": "For backwards compatibility, ...",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 9,
+        "endChar": 2
+      },
+      "revId": "20450134157d2050374e40f6c1ac506a01a021db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ac564c35_26fac8fe",
         "filename": "kleaf/impl/image/boot_images.bzl",
         "patchSetId": 7
