@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac564c35_26fac8fe",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T17:49:22Z",
+      "side": 1,
+      "message": "pretty sure you need `ctx.file.avb_boot_key.path` (or a modified version of it, check the requirement in build_utils.sh) here",
+      "range": {
+        "startLine": 137,
+        "startChar": 27,
+        "endLine": 137,
+        "endChar": 48
+      },
+      "revId": "20450134157d2050374e40f6c1ac506a01a021db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b631cc2b_29fdd0dd",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T17:49:22Z",
+      "side": 1,
+      "message": "nit: break into two lines?",
+      "range": {
+        "startLine": 209,
+        "startChar": 53,
+        "endLine": 209,
+        "endChar": 55
+      },
+      "revId": "20450134157d2050374e40f6c1ac506a01a021db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "627ee859_1f73a329",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T17:49:22Z",
+      "side": 1,
+      "message": "Check this in the rule implementation instead. Otherwise, if one of these values are a `select()`, it will evaluate to `False` during macro expansion. In the rule implementation, it is properly expanded (and can evaluate to `None`).\n\nThat is, the check can\u0027t detect the following currently:\n\n```\navb_sign_boot_img \u003d True,\navb_boot_partition_size \u003d select({\n  \"//condition:default\": None\n}),\n```\n\nhttps://bazel.build/docs/configurable-attributes#faq-select-macro\n\nChecking this in the rule implementation also means that you can do negative testing in analysis tests (but feel free to not do it later or not do it. I don\u0027t think it is very important in particular)",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 278,
+        "endChar": 76
+      },
+      "revId": "20450134157d2050374e40f6c1ac506a01a021db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0f031ff_97bb67ef",
+        "filename": "kleaf/tests/kernel_images_test/kernel_images_test.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T17:49:22Z",
+      "side": 1,
+      "message": "nit: two underscores?",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 6
+      },
+      "revId": "20450134157d2050374e40f6c1ac506a01a021db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55512f9c_7a42a032",
+        "filename": "kleaf/tests/kernel_images_test/kernel_images_test.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T17:49:22Z",
+      "side": 1,
+      "message": "nit:\n\n```\nfound_all \u003d all([env_val in script for env_val in ctx.attr.expected_env_values])\n```",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 51
+      },
+      "revId": "20450134157d2050374e40f6c1ac506a01a021db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
