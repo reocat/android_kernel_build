@@ -110,6 +110,24 @@
       "parentUuid": "94d7b3aa_c78219c4",
       "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae50e477_ddb0eb28",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T21:12:50Z",
+      "side": 1,
+      "message": "Or perhaps you will only extract kernel_uapi headers from GKI (or from kernel_build\u0027s that doesn\u0027t have base_kernel), in which case this check in my pseudocode is correct.",
+      "parentUuid": "1d2941ea_e9f7eefb",
+      "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
