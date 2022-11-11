@@ -1,0 +1,67 @@
+load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
+load("//build/kernel/kleaf/impl:common_providers.bzl", "KernelBuildUapiInfo")
+
+def _kernel_unarchived_uapi_headers_impl(ctx):
+    uapi_headers = ctx.attr.kernel_build[KernelBuildUapiInfo].kernel_uapi_headers.to_list()
+
+    if not uapi_headers:
+        fail("ERROR: no UAPI headers found in kernel_build")
+
+    # If using a mixed build, the main tree's UAPI header's will be last in the list. If
+    # not a mixed build, there will be only one element. Take the last one either way.
+    input_tar = uapi_headers[-1]
+    out_dir = ctx.actions.declare_directory(ctx.label.name)
+
+    inputs = [input_tar]
+    inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
+
+    command = ""
+    command += ctx.attr._hermetic_tools[HermeticToolsInfo].setup
+    command += """
+      # Create output dir
+      mkdir -p "{out_dir}"
+      # Unpack headers (stripping /usr/include)
+      tar --strip-components=2 -C "{out_dir}" -xzf "{tar_file}"
+    """.format(
+        tar_file = input_tar.path,
+        out_dir = out_dir.path,
+    )
+
+    ctx.actions.run_shell(
+        mnemonic = "KernelUnarchivedUapiHeaders",
+        inputs = inputs,
+        outputs = [out_dir],
+        progress_message = "Unpacking UAPI headers {}".format(ctx.label),
+        command = command,
+    )
+
+    return [
+        DefaultInfo(files = depset([out_dir])),
+    ]
+
+_kernel_unarchived_uapi_headers = rule(
+    implementation = _kernel_unarchived_uapi_headers_impl,
+    doc = """Unpack `kernel_build`'s `kernel-uapi-headers.tar.gz` (stripping usr/include)""",
+    attrs = {
+        "kernel_build": attr.label(
+            providers = [KernelBuildUapiInfo],
+            mandatory = True,
+            doc = "the `kernel_build` whose UAPI headers to unarchive",
+        ),
+        "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
+    },
+)
+
+def kernel_uapi_headers_cc_library(name, kernel_build):
+    unarchived_headers_rule = name + "_unarchived_uapi_headers"
+    _kernel_unarchived_uapi_headers(
+        name = unarchived_headers_rule,
+        kernel_build = kernel_build,
+    )
+
+    # Header-only library build will not invoke any toolchain
+    native.cc_library(
+        name = name,
+        hdrs = [":" + unarchived_headers_rule],
+        includes = [unarchived_headers_rule],
+    )
