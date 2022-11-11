@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f8628e1_dc8075f7",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T21:52:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "179c4cc9_11aedfdd",
+      "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5a8af0c_4fad8410",
@@ -150,6 +168,48 @@
         "endLine": 38,
         "endChar": 28
       },
+      "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f35b4d15_12996d02",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T21:52:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb46777a_b58b7ca5",
+      "range": {
+        "startLine": 38,
+        "startChar": 9,
+        "endLine": 38,
+        "endChar": 28
+      },
+      "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d666d15e_77fdc570",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T21:52:22Z",
+      "side": 1,
+      "message": "I think just using the last file in the uapi headers list works in either case. See impl and let me know what you think!",
+      "parentUuid": "ae50e477_ddb0eb28",
       "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
