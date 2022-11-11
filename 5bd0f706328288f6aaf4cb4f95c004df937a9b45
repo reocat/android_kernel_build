@@ -282,6 +282,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0046b6fa_b8d135c6",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-11T21:07:57Z",
+      "side": 1,
+      "message": "Yep, will do! I\u0027ll have another rev shortly. Thanks for the feedback.",
+      "parentUuid": "ad83b705_71786b72",
+      "range": {
+        "startLine": 526,
+        "startChar": 0,
+        "endLine": 526,
+        "endChar": 22
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00ecb407_5c38a4f0",
         "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
         "patchSetId": 2
