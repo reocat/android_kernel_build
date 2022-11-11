@@ -123,6 +123,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73bb3b4e_521e3319",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:06:34Z",
+      "side": 1,
+      "message": "Do you need a realpath though? Why not just $1?\n\nIf you do, once you\u0027ve set up hermetic tools, just use `$(realpath)`. Same below.\n\nnit: Also the convention for Kleaf (not for Bazel in general) is to actually embed them in the script, so something like:\n\n```\n\"\"\"\ntar_file\u003d{input_tar}\n\"\"\".format(input_tar \u003d input_tar.path)\n```\n\nIMO this is clearer than $1",
+      "range": {
+        "startLine": 13,
+        "startChar": 19,
+        "endLine": 13,
+        "endChar": 30
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ccd210d_dcfa6370",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:06:34Z",
+      "side": 1,
+      "message": "nit: Could you use `-C` in tar to avoid realpath?",
+      "range": {
+        "startLine": 16,
+        "startChar": 33,
+        "endLine": 16,
+        "endChar": 45
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83f41ff1_ed1ce79c",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:06:34Z",
+      "side": 1,
+      "message": "Please mention that usr/include is stripped",
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4e0f5b6_c7b21711",
         "filename": "kleaf/kernel.bzl",
         "patchSetId": 2
