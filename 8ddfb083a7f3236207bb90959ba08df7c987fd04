@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "179c4cc9_11aedfdd",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T21:04:30Z",
+      "side": 1,
+      "message": "Please add the new file here",
+      "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5a8af0c_4fad8410",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T21:04:30Z",
+      "side": 1,
+      "message": "also, maybe just name this `src` as a universally used name",
+      "range": {
+        "startLine": 38,
+        "startChar": 9,
+        "endLine": 38,
+        "endChar": 28
+      },
+      "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "639d1a2b_35cee991",
+        "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T21:04:30Z",
+      "side": 1,
+      "message": "Actually, can you please change this to the following, or add the following attribute:\n\n```\n\"kernel_build\": attr.label(\n  providers \u003d [KernelBuildUapiInfo],\n  ...\n)\n```\n\nthen in the rule implementation:\n\n```\ninput_tars \u003d ctx.attr.kernel_build[KernelBuildUapiInfo].kernel_uapi_headers.to_list()\nif len(input_tars) !\u003d 1:\n  fail(...)\ninput_tar \u003d input_tars[0]\n```\n\n(If you are adding the attribute, then assert that either kernel_uapi_headers or kernel_build exists)\n\nThis is good because in the BUILD.bazel you see:\n\n```\nkernel_build(name \u003d \"tuna\", ...)\n\nkernel_unarchived_uapi_headers(name \u003d \"tuna_unarchived_uapi_headers\", kernel_build \u003d \":tuna\")\n```\n\n... without assuming that the `kernel_build` macro is creating an extra `tuna_uapi_headers` target.\n\nI know this may seem pedantic but this will make the BUILD file more straightforward to read.",
+      "revId": "8ddfb083a7f3236207bb90959ba08df7c987fd04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
