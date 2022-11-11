@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "011e449f_a3594ed1",
+        "filename": "kleaf/impl/kernel_uapi_headers_cc_library.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T23:38:24Z",
+      "side": 1,
+      "message": "Add a module docstring before the first line. It should look like:\n\n```\n\"\"\"Something about this extension.\"\"\"\n\nload(...)\n```\n\nAlso please run `buildifier --lint\u003dwarn \u003cfile\u003e` on this file; or include `Include-Buildifier-Warnings: enabled` in the commit message (example: https://android-review.git.corp.google.com/c/kernel/build/+/2287967/18//COMMIT_MSG#28 ).\n\n`Include-Buildifier-Warnings: enabled` will include lint warnings but it will also warn on unchanged lines. I\u0027ll +2 override lint vote for the warnings on unchanged lines.",
+      "revId": "e429d7ba76c2c6f986619bdba91ffe188fe1e24d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a5878849_5c908040",
