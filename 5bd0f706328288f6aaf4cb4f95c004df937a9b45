@@ -258,6 +258,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad83b705_71786b72",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T21:06:40Z",
+      "side": 1,
+      "message": "yeah, adding a separate macro seems fine.\n\nIf you are adding that, maybe hide `kernel_unarchived_uapi_headers` and export the macro instead? But don\u0027t mention in the docstring that it is internally defining a separate target.",
+      "parentUuid": "b2d4ac9f_ddd1d301",
+      "range": {
+        "startLine": 526,
+        "startChar": 0,
+        "endLine": 526,
+        "endChar": 22
+      },
+      "revId": "5bd0f706328288f6aaf4cb4f95c004df937a9b45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00ecb407_5c38a4f0",
         "filename": "kleaf/impl/kernel_unarchived_uapi_headers.bzl",
         "patchSetId": 2
