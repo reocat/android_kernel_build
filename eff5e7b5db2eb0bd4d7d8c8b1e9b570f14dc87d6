@@ -22,6 +22,30 @@
       },
       "revId": "eff5e7b5db2eb0bd4d7d8c8b1e9b570f14dc87d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42f9f430_42121a44",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:15:35Z",
+      "side": 0,
+      "message": "yes. It is removed in CL:2288794.\n\nThe `kernel_build_abi` is the only public API here. `extracted_symbols` is not. Only things in kernel.bzl is public.",
+      "parentUuid": "634b22ae_67f43572",
+      "range": {
+        "startLine": 119,
+        "startChar": 9,
+        "endLine": 119,
+        "endChar": 38
+      },
+      "revId": "eff5e7b5db2eb0bd4d7d8c8b1e9b570f14dc87d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

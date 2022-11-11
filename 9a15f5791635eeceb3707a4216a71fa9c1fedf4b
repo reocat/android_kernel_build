@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a33124e3_35ccefb1",
+        "filename": "kleaf/impl/abi/get_src_kmi_symbol_list.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:15:35Z",
+      "side": 1,
+      "message": "I leave it like this so future changes can be an addition of a line, so the git history is clearer. common_providers has a lot of \"symbols\" to import.",
+      "parentUuid": "88b16e4b_820c2576",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "9a15f5791635eeceb3707a4216a71fa9c1fedf4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "faa1d55f_3f91d5d0",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-11-11T17:03:08Z",
       "side": 1,
       "message": "nit: Here and L223, IIUIC this is to have more clarity, but otherwise are we just duplicating information?",
+      "range": {
+        "startLine": 149,
+        "startChar": 8,
+        "endLine": 149,
+        "endChar": 20
+      },
+      "revId": "9a15f5791635eeceb3707a4216a71fa9c1fedf4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a2f2ecf_dc7c8ed3",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-11T18:15:35Z",
+      "side": 1,
+      "message": "no.\n\nIn the future, `name` and `kernel_build` will be different. The outer API would look like:\n\n```\nkernel_build(name \u003d \"tuna\", ...)\n\nkernel_abi(name \u003d \"tuna_abi\", kernel_build \u003d \"tuna\", ...)\n```\n\n`kernel_build_abi` will be kept for backwards compatibility:\n\n```\ndef kernel_build_abi(\n  name, ...\n):\n\n  kernel_build(name \u003d name , ...)\n  kernel_abi(name \u003d name + \"_abi\", kernel_build \u003d name, ...)\n```\n\nThis is to prepare for that change (name will turn into `X_abi`)",
+      "parentUuid": "faa1d55f_3f91d5d0",
       "range": {
         "startLine": 149,
         "startChar": 8,
