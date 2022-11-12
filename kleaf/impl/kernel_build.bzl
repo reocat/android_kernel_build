@@ -152,7 +152,9 @@ def kernel_build(
 
           Requires that `"vmlinux"` is in `outs`.
         deps: Additional dependencies to build this kernel.
-        module_outs: A list of in-tree drivers. Similar to `outs`, but for `*.ko` files.
+        module_outs: A list of in-tree drivers, or a list with a single item `["auto"]`.
+
+          Similar to `outs`, but for `*.ko` files.
 
           If a `*.ko` kernel module should not be copied to `${DIST_DIR}`, it must be
           included `implicit_outs` instead of `module_outs`. The list `implicit_outs + module_outs`
@@ -166,6 +168,11 @@ def kernel_build(
           copy_to_dist_dir(name = "kernel_dist", data = [":kernel"])
           ```
           `foo.ko` will be included in the distribution.
+
+          If the list contains a single item `["auto"]`, a
+          [declared directory](https://bazel.build/rules/lib/actions#declare_directory) contains
+          all of the modules. This may cause modules to be copied to a subdirectory in
+          `DIST_DIR`, even with `flat = True`.
 
           Like `outs`, this may be a `dict`. If so, it is wrapped in
           [`select()`](https://docs.bazel.build/versions/main/configurable-attributes.html). See
@@ -563,15 +570,21 @@ def _create_kbuild_mixed_tree(ctx):
         # only change when the dependent base_kernel_utils.get_base_kernel(ctx) changes.
         kbuild_mixed_tree = ctx.actions.declare_directory("{}_kbuild_mixed_tree".format(ctx.label.name))
         outputs = [kbuild_mixed_tree]
+
+        # base_kernel_files: Directories are "auto" directories for modules. Files are actual
+        # artifacts. In both cases, `find -L ${{base_kernel_file}} -type f` returns the correct
+        # list.
         base_kernel_files = base_kernel_utils.get_base_kernel(ctx)[KernelBuildMixedTreeInfo].files
         kbuild_mixed_tree_command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
           # Restore GKI artifacts for mixed build
             export KBUILD_MIXED_TREE=$(realpath {kbuild_mixed_tree})
             rm -rf ${{KBUILD_MIXED_TREE}}
             mkdir -p ${{KBUILD_MIXED_TREE}}
-            for base_kernel_file in {base_kernel_files}; do
-              ln -s $(readlink -m ${{base_kernel_file}}) ${{KBUILD_MIXED_TREE}}
-            done
+            (
+              for child_file in $(find -L {base_kernel_files} -type f); do
+                ln -s $(readlink -m ${{child_file}}) ${{KBUILD_MIXED_TREE}}
+              done
+            )
         """.format(
             base_kernel_files = " ".join([file.path for file in base_kernel_files.to_list()]),
             kbuild_mixed_tree = kbuild_mixed_tree.path,
@@ -622,6 +635,23 @@ def _get_out_attr_vals(ctx):
 
     return attr_vals
 
+def _is_auto_attr_list(ctx, attr, val):
+    """Returns true if `val` is `["auto"]` and can be, false otherwise, and fail for error conditions.
+
+    Operates on the raw attribute.
+    """
+
+    if attr not in _KERNEL_BUILD_MODULE_OUT_ATTRS:
+        return False
+
+    if "auto" not in val:
+        return False
+
+    if len(val) == 1:
+        return True
+
+    fail("{}: {} must be a list of in-tree drivers or a single item \"auto\".".format(ctx.label, attr))
+
 def _declare_all_output_files(ctx):
     """Declares output files based on `ctx.attr.*outs`."""
     attr_vals = _get_out_attr_vals(ctx)
@@ -632,27 +662,56 @@ def _declare_all_output_files(ctx):
     #    all_output_files = {"out": {"foo": File(...)}, "internal_outs": {"Module.symvers": File(...)}, ...}
     all_output_files = {}
     for attr, val in attr_vals.items():
-        all_output_files[attr] = {
-            name: ctx.actions.declare_file("{}/{}".format(ctx.label.name, name))
-            for name in val
-        }
+        if _is_auto_attr_list(ctx, attr, val):
+            all_output_files[attr] = {
+                "_auto_key": ctx.actions.declare_directory(
+                    "{}/{}_{}".format(ctx.label.name, ctx.label.name, attr),
+                ),
+            }
+        else:
+            all_output_files[attr] = {
+                name: ctx.actions.declare_file("{}/{}".format(ctx.label.name, name))
+                for name in val
+            }
 
     return all_output_files
 
 def _split_out_attrs(ctx):
-    """Partitions items in *outs into two lists: non-modules and modules."""
+    """Partitions items in *outs into two lists: non-modules and modules.
+
+    "auto" in list that accepts "auto" is skipped.
+    """
     non_modules = []
     modules = []
     attr_vals = _get_out_attr_vals(ctx)
     for attr, val in attr_vals.items():
         if attr in _KERNEL_BUILD_MODULE_OUT_ATTRS:
-            modules += val
+            if not _is_auto_attr_list(ctx, attr, val):
+                modules += val
         else:
             non_modules += val
     return struct(
         non_modules = non_modules,
         modules = modules,
     )
+
+def _is_declared_output(attr, name_to_file_mapping):
+    """Given a key value pair in `all_output_files`, returns true iff the output is declared in `kernel_build()`.
+
+    Returns false iff it refers to an auto modules list.
+
+    This is similar to `_is_auto_attr_list` but it operates on the constructed dictionary of
+    outputs, `all_output_files`.
+    """
+    return not _get_auto_module_output_dir(attr, name_to_file_mapping)
+
+def _get_auto_module_output_dir(attr, name_to_file_mapping):
+    """Given a key value pair in `all_output_files`, returns the declared directory iff it refers to an auto modules list."""
+    if attr not in _KERNEL_BUILD_MODULE_OUT_ATTRS:
+        return None
+    if list(name_to_file_mapping.keys()) != ["_auto_key"]:
+        return None
+    return name_to_file_mapping["_auto_key"]
 
 def _write_module_names_to_file(ctx, filename, names):
     """Adds an action that writes |names| to a file named |filename|. Each item occupies a line."""
@@ -734,7 +793,33 @@ def _get_cache_dir_step(ctx):
         )
     return struct(inputs = [], tools = [], cmd = cache_dir_cmd, outputs = [])
 
-def _get_grab_intree_modules_step(ctx, has_any_modules, modules_staging_dir, ruledir, all_module_names_file):
+def _get_copy_all_auto_modules_cmd(
+        src,
+        all_output_files,
+        dst = None):
+    """Returns a command that copies all "auto" modules.
+
+    If `dst` is `None`, copy to the declared directory. Otherwise copy to `dst`.
+    """
+    cmd = ""
+    for attr, d in all_output_files.items():
+        declared_dst_dir = _get_auto_module_output_dir(attr, d)
+        if declared_dst_dir:
+            cmd += """
+                find {src} -name '*.ko' -exec cp -t {dst_dir} {{}} \\+
+            """.format(
+                src = src,
+                dst_dir = (dst or declared_dst_dir).path,
+            )
+    return cmd
+
+def _get_grab_intree_modules_step(
+        ctx,
+        has_any_declared_modules,
+        all_output_files,
+        modules_staging_dir,
+        ruledir,
+        all_module_names_file):
     """Returns a step for grabbing the in-tree modules from `OUT_DIR`.
 
     Returns:
@@ -746,8 +831,12 @@ def _get_grab_intree_modules_step(ctx, has_any_modules, modules_staging_dir, rul
       * outputs
     """
     tools = []
-    grab_intree_modules_cmd = ""
-    if has_any_modules:
+    grab_intree_modules_cmd = _get_copy_all_auto_modules_cmd(
+        src = "{}/lib/modules/*/kernel".format(modules_staging_dir),
+        all_output_files = all_output_files,
+    )
+
+    if has_any_declared_modules:
         tools.append(ctx.file._search_and_cp_output)
         grab_intree_modules_cmd = """
             {search_and_cp_output} --srcdir {modules_staging_dir}/lib/modules/*/kernel --dstdir {ruledir} $(cat {all_module_names_file})
@@ -757,6 +846,7 @@ def _get_grab_intree_modules_step(ctx, has_any_modules, modules_staging_dir, rul
             ruledir = ruledir.path,
             all_module_names_file = all_module_names_file.path,
         )
+
     return struct(
         inputs = [],
         tools = tools,
@@ -764,7 +854,11 @@ def _get_grab_intree_modules_step(ctx, has_any_modules, modules_staging_dir, rul
         outputs = [],
     )
 
-def _get_grab_unstripped_modules_step(ctx, has_any_modules, all_module_basenames_file):
+def _get_grab_unstripped_modules_step(
+        ctx,
+        has_any_declared_modules,
+        all_output_files,
+        all_module_basenames_file):
     """Returns a step for grabbing the unstripped in-tree modules from `OUT_DIR`.
 
     Returns:
@@ -787,10 +881,16 @@ def _get_grab_unstripped_modules_step(ctx, has_any_modules, all_module_basenames
         unstripped_dir = ctx.actions.declare_directory("{name}/unstripped".format(name = ctx.label.name))
         outputs.append(unstripped_dir)
 
-        if has_any_modules:
+        grab_unstripped_intree_modules_cmd = _get_copy_all_auto_modules_cmd(
+            src = "${OUT_DIR}",
+            all_output_files = all_output_files,
+            dst = unstripped_dir,
+        )
+
+        if has_any_declared_modules:
             tools.append(ctx.file._search_and_cp_output)
             inputs.append(all_module_basenames_file)
-            grab_unstripped_intree_modules_cmd = """
+            grab_unstripped_intree_modules_cmd += """
                 mkdir -p {unstripped_dir}
                 {search_and_cp_output} --srcdir ${{OUT_DIR}} --dstdir {unstripped_dir} $(cat {all_module_basenames_file})
             """.format(
@@ -805,6 +905,61 @@ def _get_grab_unstripped_modules_step(ctx, has_any_modules, all_module_basenames
         cmd = grab_unstripped_intree_modules_cmd,
         outputs = outputs,
         unstripped_dir = unstripped_dir,
+    )
+
+def _get_check_remaining_modules_step(
+        ctx,
+        all_output_files,
+        all_module_names_file,
+        base_kernel_all_module_names_file,
+        modules_staging_dir):
+    """Returns a step for checking remaining '*.ko' files in `OUT_DIR`.
+
+    Returns:
+      A struct with these fields:
+
+      * cmd
+      * inputs
+      * tools
+      * outputs
+    """
+
+    skip_check = any([(not _is_declared_output(attr, d)) for attr, d in all_output_files.items()])
+
+    if skip_check:
+        return struct(cmd = "", inputs = [], tools = [], outputs = [])
+
+    cmd = """
+           remaining_ko_files=$({check_declared_output_list} \\
+                --declared $(cat {all_module_names_file} {base_kernel_all_module_names_file_path}) \\
+                --actual $(cd {modules_staging_dir}/lib/modules/*/kernel && find . -type f -name '*.ko' | sed 's:^[.]/::'))
+           if [[ ${{remaining_ko_files}} ]]; then
+             echo "ERROR: The following kernel modules are built but not copied. Add these lines to the module_outs attribute of {label}:" >&2
+             for ko in ${{remaining_ko_files}}; do
+               echo '    "'"${{ko}}"'",' >&2
+             done
+             echo "Alternatively, install buildozer and execute:" >&2
+             echo "  $ buildozer 'add module_outs ${{remaining_ko_files}}' {label}" >&2
+             echo "See https://github.com/bazelbuild/buildtools/blob/master/buildozer/README.md for reference" >&2
+             exit 1
+           fi
+    """.format(
+        check_declared_output_list = ctx.file._check_declared_output_list.path,
+        all_module_names_file = all_module_names_file.path,
+        base_kernel_all_module_names_file_path = _path_or_empty(base_kernel_all_module_names_file),
+        modules_staging_dir = modules_staging_dir,
+        label = ctx.label,
+    )
+    inputs = [all_module_names_file]
+    if base_kernel_all_module_names_file:
+        inputs.append(base_kernel_all_module_names_file)
+    tools = [ctx.file._check_declared_output_list]
+
+    return struct(
+        cmd = cmd,
+        inputs = inputs,
+        tools = tools,
+        outputs = [],
     )
 
 def _get_grab_symtypes_step(ctx):
@@ -909,23 +1064,33 @@ def _build_main_action(
     cache_dir_step = _get_cache_dir_step(ctx)
     grab_intree_modules_step = _get_grab_intree_modules_step(
         ctx = ctx,
-        has_any_modules = bool(all_output_names.modules),
+        has_any_declared_modules = bool(all_output_names.modules),
+        all_output_files = all_output_files,
         modules_staging_dir = modules_staging_dir,
         ruledir = ruledir,
         all_module_names_file = all_module_names_file,
     )
     grab_unstripped_modules_step = _get_grab_unstripped_modules_step(
         ctx = ctx,
-        has_any_modules = bool(all_output_names.modules),
+        has_any_declared_modules = bool(all_output_names.modules),
+        all_output_files = all_output_files,
         all_module_basenames_file = all_module_basenames_file,
     )
     grab_symtypes_step = _get_grab_symtypes_step(ctx)
     grab_cmd_step = get_grab_cmd_step(ctx, "${OUT_DIR}")
+    check_remaining_modules_step = _get_check_remaining_modules_step(
+        ctx = ctx,
+        all_output_files = all_output_files,
+        all_module_names_file = all_module_names_file,
+        base_kernel_all_module_names_file = base_kernel_all_module_names_file,
+        modules_staging_dir = modules_staging_dir,
+    )
     steps = (
         interceptor_step,
         cache_dir_step,
         grab_intree_modules_step,
         grab_unstripped_modules_step,
+        check_remaining_modules_step,
         grab_symtypes_step,
         grab_cmd_step,
     )
@@ -966,25 +1131,12 @@ def _build_main_action(
          # Grab unstripped in-tree modules
            {grab_unstripped_intree_modules_cmd}
          # Check if there are remaining *.ko files
-           remaining_ko_files=$({check_declared_output_list} \\
-                --declared $(cat {all_module_names_file} {base_kernel_all_module_names_file_path}) \\
-                --actual $(cd {modules_staging_dir}/lib/modules/*/kernel && find . -type f -name '*.ko' | sed 's:^[.]/::'))
-           if [[ ${{remaining_ko_files}} ]]; then
-             echo "ERROR: The following kernel modules are built but not copied. Add these lines to the module_outs attribute of {label}:" >&2
-             for ko in ${{remaining_ko_files}}; do
-               echo '    "'"${{ko}}"'",' >&2
-             done
-             echo "Alternatively, install buildozer and execute:" >&2
-             echo "  $ buildozer 'add module_outs ${{remaining_ko_files}}' {label}" >&2
-             echo "See https://github.com/bazelbuild/buildtools/blob/master/buildozer/README.md for reference" >&2
-             exit 1
-           fi
+           {check_remaining_modules_cmd}
          # Clean up staging directories
            rm -rf {modules_staging_dir}
          """.format(
         cache_dir_cmd = cache_dir_step.cmd,
         kbuild_mixed_tree_cmd = kbuild_mixed_tree_ret.cmd,
-        check_declared_output_list = ctx.file._check_declared_output_list.path,
         search_and_cp_output = ctx.file._search_and_cp_output.path,
         kbuild_mixed_tree_arg = kbuild_mixed_tree_ret.arg,
         dtstree_arg = "--srcdir ${OUT_DIR}/${dtstree}",
@@ -994,8 +1146,7 @@ def _build_main_action(
         grab_unstripped_intree_modules_cmd = grab_unstripped_modules_step.cmd,
         grab_symtypes_cmd = grab_symtypes_step.cmd,
         grab_cmd_cmd = grab_cmd_step.cmd,
-        all_module_names_file = all_module_names_file.path,
-        base_kernel_all_module_names_file_path = _path_or_empty(base_kernel_all_module_names_file),
+        check_remaining_modules_cmd = check_remaining_modules_step.cmd,
         modules_staging_dir = modules_staging_dir,
         modules_staging_archive_self = modules_staging_archive_self.path,
         module_strip_flag = module_strip_flag,
@@ -1007,12 +1158,7 @@ def _build_main_action(
     # all inputs that |command| needs
     transitive_inputs = [target.files for target in ctx.attr.srcs]
     transitive_inputs += [target.files for target in ctx.attr.deps]
-    inputs = [
-        all_module_names_file,
-    ]
-    if base_kernel_all_module_names_file:
-        inputs.append(base_kernel_all_module_names_file)
-    inputs += check_toolchain_outs
+    inputs = [] + check_toolchain_outs
     inputs += kbuild_mixed_tree_ret.outputs
     for step in steps:
         inputs += step.inputs
@@ -1020,7 +1166,6 @@ def _build_main_action(
     # All tools that |command| needs
     tools = [
         ctx.file._search_and_cp_output,
-        ctx.file._check_declared_output_list,
     ]
     tools += ctx.attr.config[KernelEnvInfo].dependencies
     for step in steps:
@@ -1150,8 +1295,9 @@ def _create_infos(
     images_info = KernelImagesInfo(base_kernel = base_kernel_utils.get_base_kernel(ctx))
 
     output_group_kwargs = {}
-    for d in all_output_files.values():
-        output_group_kwargs.update({name: depset([file]) for name, file in d.items()})
+    for attr, d in all_output_files.items():
+        if _is_declared_output(attr, d):
+            output_group_kwargs.update({name: depset([file]) for name, file in d.items()})
     output_group_kwargs["modules_staging_archive"] = depset([modules_staging_archive])
     output_group_kwargs[MODULE_OUTS_FILE_OUTPUT_GROUP] = depset([all_module_names_file])
     output_group_kwargs[TOOLCHAIN_VERSION_FILENAME] = depset([toolchain_version_out])
