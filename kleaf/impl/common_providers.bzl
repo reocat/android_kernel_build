@@ -110,7 +110,12 @@ KernelBuildMixedTreeInfo = provider(
 [`base_kernel`](#kernel_build-base_kernel) for constructing `KBUILD_MIXED_TREE`.""",
     fields = {
         "files": """A [depset](https://bazel.build/extending/depsets) containing the list of
-files required to build `KBUILD_MIXED_TREE` for the device kernel.""",
+[File](https://bazel.build/rules/lib/File)s required to build `KBUILD_MIXED_TREE` for the device
+kernel.
+
+Each item may be a regular file or a directory. If it is a directory, it is an "auto" directory
+of modules. The modules are copied to `KBUILD_MIXED_TREE` directly.
+""",
     },
 )
 
