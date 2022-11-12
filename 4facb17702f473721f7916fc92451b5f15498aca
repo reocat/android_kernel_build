@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfbb1201_5acfcfe1",
+        "filename": "kleaf/impl/kernel_uapi_headers_cc_library.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-12T00:40:15Z",
+      "side": 1,
+      "message": "nit: Is this doc to `kernel_build`? Could you please indent it to 12 spaces?",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 68
+      },
+      "revId": "4facb17702f473721f7916fc92451b5f15498aca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
