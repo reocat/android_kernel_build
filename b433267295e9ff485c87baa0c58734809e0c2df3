@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6644551_2290932f",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-14T21:50:01Z",
+      "side": 1,
+      "message": "nit: use `not X` to be more pythonic",
+      "range": {
+        "startLine": 129,
+        "startChar": 11,
+        "endLine": 131,
+        "endChar": 49
+      },
+      "revId": "b433267295e9ff485c87baa0c58734809e0c2df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f353664a_647d41bf",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-14T21:50:01Z",
+      "side": 1,
+      "message": "s/Path/Label\n\nor just `Key used for signing`",
+      "range": {
+        "startLine": 215,
+        "startChar": 21,
+        "endLine": 215,
+        "endChar": 26
+      },
+      "revId": "b433267295e9ff485c87baa0c58734809e0c2df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
