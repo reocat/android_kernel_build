@@ -3,6 +3,74 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "adaffbf5_23e093e6",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-14T22:01:18Z",
+      "side": 1,
+      "message": "nit: add makefile argument here",
+      "revId": "8b0ee1fa8214746a54d47651400afb07b9bab41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6abf2456_f70cf8b3",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-14T22:01:18Z",
+      "side": 1,
+      "message": "nit: add docs for makefile",
+      "revId": "8b0ee1fa8214746a54d47651400afb07b9bab41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d898f69e_07aacfe5",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-14T22:01:18Z",
+      "side": 1,
+      "message": "nit: If you are adding the makefile argument, add here too",
+      "revId": "8b0ee1fa8214746a54d47651400afb07b9bab41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b769f93_6ed0fc40",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-14T22:01:18Z",
+      "side": 1,
+      "message": "nit: just declare a new variable in L240 (possibly add a comment)",
+      "revId": "8b0ee1fa8214746a54d47651400afb07b9bab41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6755f428_e8023d78",
         "filename": "kleaf/impl/kernel_module.bzl",
         "patchSetId": 1
@@ -20,6 +88,47 @@
         "endLine": 577,
         "endChar": 54
       },
+      "revId": "8b0ee1fa8214746a54d47651400afb07b9bab41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcdb9911_02227f3c",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-14T22:01:18Z",
+      "side": 1,
+      "message": "\u003e Doesn\u0027t this mean that ctx.attr.makefile will always be valid?\n\nNo. `internal_ddk_makefiles_dir` is set by `ddk_module()`, which replaces `makefile`.",
+      "parentUuid": "6755f428_e8023d78",
+      "range": {
+        "startLine": 577,
+        "startChar": 0,
+        "endLine": 577,
+        "endChar": 54
+      },
+      "revId": "8b0ee1fa8214746a54d47651400afb07b9bab41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74f7c058_ae84655b",
+        "filename": "kleaf/impl/stamp.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-14T22:01:18Z",
+      "side": 1,
+      "message": "nit: just pass ext_mod as an argument",
       "revId": "8b0ee1fa8214746a54d47651400afb07b9bab41c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
