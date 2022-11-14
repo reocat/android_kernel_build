@@ -118,6 +118,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47c92245_351be51d",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-14T22:02:02Z",
+      "side": 1,
+      "message": "I mean, ctx.attr.makefile is not always valid.",
+      "parentUuid": "dcdb9911_02227f3c",
+      "range": {
+        "startLine": 577,
+        "startChar": 0,
+        "endLine": 577,
+        "endChar": 54
+      },
+      "revId": "8b0ee1fa8214746a54d47651400afb07b9bab41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74f7c058_ae84655b",
         "filename": "kleaf/impl/stamp.bzl",
         "patchSetId": 1
