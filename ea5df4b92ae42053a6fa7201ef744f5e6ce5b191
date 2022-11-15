@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebca3d2a_52b85de1",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-15T18:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24dae855_6938c70e",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 34
+      },
+      "revId": "ea5df4b92ae42053a6fa7201ef744f5e6ce5b191",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cbda0ed_6027cfea",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-15T18:15:29Z",
       "side": 1,
       "message": "I would just change this logic to:\n\n```\nkernel_build \u003d ctx.attr.kernel_build\nif not kernel_build and ctx.attr.kernel_modules:\n  kernel_build \u003d ctx.attr.kernel_modules[0][KernelModuleInfo].kernel_build\nif not kernel_build:\n  fail(\"No `kernel_build` or `kernel_modules` provided\")\n```\n\nThis logic is more lenient to the legacy behavior.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 62
+      },
+      "revId": "ea5df4b92ae42053a6fa7201ef744f5e6ce5b191",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "744064f0_2453d156",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-15T18:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cbda0ed_6027cfea",
       "range": {
         "startLine": 33,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fe2c025_1e5ba6d5",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-15T18:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91642ae9_777da382",
+      "range": {
+        "startLine": 213,
+        "startChar": 49,
+        "endLine": 213,
+        "endChar": 50
+      },
+      "revId": "ea5df4b92ae42053a6fa7201ef744f5e6ce5b191",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caa28fe2_57e629af",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-15T18:15:29Z",
       "side": 1,
       "message": "Sentence ends with colon.",
+      "range": {
+        "startLine": 70,
+        "startChar": 69,
+        "endLine": 70,
+        "endChar": 78
+      },
+      "revId": "ea5df4b92ae42053a6fa7201ef744f5e6ce5b191",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67697339_08546e87",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-15T18:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caa28fe2_57e629af",
       "range": {
         "startLine": 70,
         "startChar": 69,

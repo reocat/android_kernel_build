@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8186d022_a1584eea",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-15T18:38:08Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "91955671_e3245114",
+      "range": {
+        "startLine": 170,
+        "startChar": 13,
+        "endLine": 170,
+        "endChar": 79
+      },
+      "revId": "bd10596145412b6609c6eeaca807b2d62c68c6f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02bdc36e_01ad2a0c",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-15T18:15:29Z",
       "side": 0,
       "message": "I think it is still beneficial to keep this to illustrates what modules are included (L189~190)",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 1
+      },
+      "revId": "bd10596145412b6609c6eeaca807b2d62c68c6f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3397b98_8fc28cb3",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-15T18:38:08Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "02bdc36e_01ad2a0c",
       "range": {
         "startLine": 181,
         "startChar": 0,
