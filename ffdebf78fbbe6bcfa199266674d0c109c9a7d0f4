@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dfca8a9_3985d6e8",
+        "filename": "kleaf/impl/kernel_uapi_headers_cc_library.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-15T18:46:38Z",
+      "side": 1,
+      "message": "I think this needs to be in one line:\n\n```\n\"\"\"Defines a native cc_library based on a kernel\u0027s UAPI headers.\n```\n\nDid you try `bazel build //build/kernel/kleaf:docs`? If it passes, feel free to ignore this comment.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 65
+      },
+      "revId": "ffdebf78fbbe6bcfa199266674d0c109c9a7d0f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
