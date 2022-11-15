@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da878db4_dbb1d60b",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-15T18:22:15Z",
+      "side": 1,
+      "message": "```\nLabel to the `Makefile` for the module. By default, this is `Makefile` in the current package.\n\nThis file determines where `make modules` is executed.\n\nThis is useful when the Makefile is located in a different package or in a subdirectory.\n```",
+      "range": {
+        "startLine": 139,
+        "startChar": 30,
+        "endLine": 139,
+        "endChar": 39
+      },
+      "revId": "0b239256d08016b8c6d84dc5ef685dc718824c5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
