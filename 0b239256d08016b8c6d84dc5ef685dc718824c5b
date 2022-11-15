@@ -22,6 +22,30 @@
       },
       "revId": "0b239256d08016b8c6d84dc5ef685dc718824c5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcc60d5f_0c3a657b",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-15T18:22:59Z",
+      "side": 1,
+      "message": "s/Label to the `Makefile` for the module./`Makefile` for the module.",
+      "parentUuid": "da878db4_dbb1d60b",
+      "range": {
+        "startLine": 139,
+        "startChar": 30,
+        "endLine": 139,
+        "endChar": 39
+      },
+      "revId": "0b239256d08016b8c6d84dc5ef685dc718824c5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
