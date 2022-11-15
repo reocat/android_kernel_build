@@ -46,6 +46,30 @@
       },
       "revId": "4facb17702f473721f7916fc92451b5f15498aca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f55e3d7_b8340a05",
+        "filename": "kleaf/impl/kernel_uapi_headers_cc_library.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-15T17:41:02Z",
+      "side": 1,
+      "message": "No, I am saying that if this is documentation to the `kernel_build` argument, then this whole section should be indented at 12 spaces (i.e. each line should have 12 spaces at the start).\n\nOtherwise, please move the section to L75.\n\nThe presubmit error is caused by this; you can reproduce by running `bazel build //build/kernel/kleaf:docs`:\n\n```\nException in thread \"main\" com.google.devtools.build.skydoc.rendering.DocstringParseException: Unable to generate documentation for function kernel_uapi_headers_cc_library (defined at ./build/kernel/kleaf/impl/kernel_uapi_headers_cc_library.bzl:57:5) due to malformed docstring. Parse errors:\n  ./build/kernel/kleaf/impl/kernel_uapi_headers_cc_library.bzl:57:5 line 22: description body should go before the special sections\n[...]\n```",
+      "parentUuid": "a519cc67_d67dfff8",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 68
+      },
+      "revId": "4facb17702f473721f7916fc92451b5f15498aca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
