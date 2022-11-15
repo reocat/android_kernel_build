@@ -85,6 +85,22 @@ def _determine_raw_symbollist_path(ctx):
     )
     return abspath
 
+def _config_gcov(ctx):
+    """Return configs for GCOV.
+
+    Keys are configs names. Values are from `_config`, which is a format string that
+    can produce an option to `scripts/config`.
+    """
+    gcov = ctx.attr.gcov[BuildSettingInfo].value
+
+    if not gcov:
+        return struct(configs = {}, deps = [])
+    configs = dicts.add(
+        CONFIG_GCOV_KERNEL = _config.enable,
+        CONFIG_GCOV_PROFILE_ALL = _config.enable,
+    )
+    return struct(configs = configs, deps = [])
+
 def _config_lto(ctx):
     """Return configs for LTO.
 
@@ -178,6 +194,7 @@ def _reconfig(ctx):
         _config_lto,
         _config_trim,
         _config_kasan,
+        _config_gcov,
     ):
         pair = fn(ctx)
         configs.update(pair.configs)
