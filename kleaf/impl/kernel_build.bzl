@@ -65,7 +65,7 @@ load(":utils.bzl", "kernel_utils", "utils")
 
 # Outputs of a kernel_build rule needed to build kernel_* that depends on it
 _kernel_build_internal_outs = [
-    "Module.symvers",
+    # "Module.symvers",
     "include/config/kernel.release",
 ]
 
@@ -944,7 +944,7 @@ def _build_main_action(
          # Set variables and create dirs for modules
            mkdir -p {modules_staging_dir}
          # Install modules
-           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} {module_strip_flag} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) modules_install
+         #  make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} {module_strip_flag} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) modules_install
          # Archive headers in OUT_DIR
            find ${{OUT_DIR}} -name *.h -print0                          \
                | tar czf {out_dir_kernel_headers_tar}                   \
