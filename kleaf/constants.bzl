@@ -12,12 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""
+Utility public constants.
+"""
+
 load(
     "//build/kernel/kleaf/impl:constants.bzl",
     "AARCH64_IMAGES",
     "GKI_ARTIFACTS_AARCH64_OUTS",
     "MODULES_STAGING_ARCHIVE",
-    "MODULE_OUTS_FILE_OUTPUT_GROUP",
     "MODULE_OUTS_FILE_SUFFIX",
     "SYSTEM_DLKM_OUTS",
     "TOOLCHAIN_VERSION_FILENAME",
@@ -30,6 +33,9 @@ _common_outs = [
     "vmlinux",
     "vmlinux.symvers",
 ]
+
+# Base common output files for kernel builds.
+COMMON_OUTS = _common_outs
 
 # Common output files for aarch64 kernel builds.
 AARCH64_OUTS = _common_outs + AARCH64_IMAGES
