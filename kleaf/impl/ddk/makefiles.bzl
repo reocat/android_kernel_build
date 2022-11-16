@@ -21,6 +21,13 @@ load(
 )
 load(":ddk/ddk_headers.bzl", "DdkHeadersInfo", "get_include_depset")
 
+# Expected infos in deps
+_DEP_EXPECT_INFOS = [
+    DdkHeadersInfo,
+    ModuleSymversInfo,
+    DdkSubmoduleInfo,
+]
+
 def _handle_copt(ctx):
     # copt values contains prefixing "-", so we must use --copt=-x --copt=-y to avoid confusion.
     # We treat $(location) differently because paths must be relative to the Makefile
@@ -77,14 +84,17 @@ def _makefiles_impl(ctx):
     output_makefiles = ctx.actions.declare_directory("{}/makefiles".format(ctx.attr.name))
 
     kernel_module_deps = []
+    submodule_deps = []
     for dep in ctx.attr.module_deps:
         if ModuleSymversInfo in dep:
             kernel_module_deps.append(dep)
-            continue
-        if DdkHeadersInfo not in dep:
-            fail("{}: {} is not a valid item in deps. It does not provide ModuleSymversInfo or DdkHeadersInfo".format(
+        if DdkSubmoduleInfo in dep:
+            submodule_deps.append(dep)
+        if all([info not in dep for info in _DEP_EXPECT_INFOS]):
+            fail("{}: {} is not a valid item in deps. It does not provide any of {}".format(
                 module_label,
                 dep.label,
+                _DEP_EXPECT_INFOS,
             ))
 
     include_dirs = get_include_depset(
@@ -139,6 +149,9 @@ def _makefiles_impl(ctx):
     copt_file = _handle_copt(ctx)
     args.add("--copt-file", copt_file)
 
+    submodule_makefiles = depset(transitive = [dep.files for dep in submodule_deps])
+    args.add_all("--submodule-makefiles", submodule_makefiles, expand_directories = False)
+
     ctx.actions.run(
         mnemonic = "DdkMakefiles",
         inputs = [copt_file],
@@ -151,11 +164,12 @@ def _makefiles_impl(ctx):
     outs_depset_direct = []
     if ctx.attr.module_out:
         outs_depset_direct.append((ctx.attr.module_out, ctx.label))
+    outs_depset_transitive = [dep[DdkSubmoduleInfo].outs for dep in submodule_deps]
 
     return [
         DefaultInfo(files = depset([output_makefiles])),
         DdkSubmoduleInfo(
-            outs = depset(outs_depset_direct),
+            outs = depset(outs_depset_direct, transitive = outs_depset_transitive),
         ),
     ]
 

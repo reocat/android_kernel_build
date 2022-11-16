@@ -260,6 +260,9 @@ def _kernel_module_impl(ctx):
         if KernelEnvInfo in dep and KernelModuleInfo in dep:
             kernel_module_deps.append(dep)
             is_valid_dep = True
+        if DdkSubmoduleInfo in dep:
+            # Handled by makefiles
+            is_valid_dep = True
         if not is_valid_dep:
             fail("{}: {} is not a valid item in deps. Only kernel_module, ddk_module, ddk_headers are accepted.".format(ctx.label, dep.label))
 
