@@ -26,6 +26,7 @@ load(
 )
 load(
     ":common_providers.bzl",
+    "DdkSubmoduleInfo",
     "KernelBuildExtModuleInfo",
     "KernelCmdsInfo",
     "KernelEnvInfo",
@@ -225,6 +226,29 @@ def _check_module_symvers_restore_path(kernel_modules, this_label):
             conflicts = json.encode_indent(list(dups.values()), indent = "  "),
         ))
 
+def _get_implicit_outs(ctx):
+    """Gets the list of implicit output files from makefile targets."""
+    implicit_outs = ctx.attr.internal_ddk_makefiles_dir[DdkSubmoduleInfo].outs.to_list()
+
+    implicit_outs_to_srcs = {}
+    for out, src_label in implicit_outs:
+        if out not in implicit_outs_to_srcs:
+            implicit_outs_to_srcs[out] = []
+        implicit_outs_to_srcs[out].append(src_label)
+
+    duplicated_implicit_outs = {}
+    for out, srcs in implicit_outs_to_srcs.items():
+        if len(srcs) > 1:
+            duplicated_implicit_outs[out] = srcs
+
+    if duplicated_implicit_outs:
+        fail("{}: Multiple submodules define the same output file: {}".format(
+            ctx.label,
+            json.encode_indent(duplicated_implicit_outs, indent = "  "),
+        ))
+
+    return [out for out, src_label in implicit_outs]
+
 def _kernel_module_impl(ctx):
     kernel_module_deps = []
     hdr_deps = []
@@ -280,19 +304,24 @@ def _kernel_module_impl(ctx):
     if ctx.attr.kernel_build[KernelBuildExtModuleInfo].collect_unstripped_modules:
         unstripped_dir = ctx.actions.declare_directory("{name}/unstripped".format(name = ctx.label.name))
 
+    output_files = [] + ctx.outputs.outs
+    if ctx.attr.internal_ddk_makefiles_dir:
+        for out in _get_implicit_outs(ctx):
+            output_files.append(ctx.actions.declare_file("{}/{}".format(ctx.label.name, out)))
+
     # Original `outs` attribute of `kernel_module` macro.
     original_outs = []
 
     # apply basename to all of original_outs
     original_outs_base = []
 
-    for out in ctx.outputs.outs:
+    for out in output_files:
         # outdir includes target name at the end already. So short_name is the original
         # token in `outs` of `kernel_module` macro.
         # e.g. kernel_module(name = "foo", outs = ["bar"])
         #   => _kernel_module(name = "foo", outs = ["foo/bar"])
         #   => outdir = ".../foo"
-        #      ctx.outputs.outs = [File(".../foo/bar")]
+        #      output_files = [File(".../foo/bar")]
         #   => short_name = "bar"
         short_name = out.path[len(outdir) + 1:]
         original_outs.append(short_name)
@@ -446,14 +475,14 @@ def _kernel_module_impl(ctx):
     # Additional outputs because of the value in outs. This is
     # [basename(out) for out in outs] - outs
     additional_declared_outputs = []
-    for short_name, out in zip(original_outs, ctx.outputs.outs):
+    for short_name, out in zip(original_outs, output_files):
         if "/" in short_name:
             additional_declared_outputs.append(ctx.actions.declare_file("{name}/{basename}".format(
                 name = ctx.attr.name,
                 basename = out.basename,
             )))
         original_outs_base.append(out.basename)
-    cp_cmd_outputs = ctx.outputs.outs + additional_declared_outputs
+    cp_cmd_outputs = output_files + additional_declared_outputs
 
     if cp_cmd_outputs:
         command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
@@ -506,9 +535,9 @@ def _kernel_module_impl(ctx):
     return [
         # Sync list of infos with kernel_module_group.
         DefaultInfo(
-            files = depset(ctx.outputs.outs + [check_no_remaining]),
+            files = depset(output_files + [check_no_remaining]),
             # For kernel_module_test
-            runfiles = ctx.runfiles(files = ctx.outputs.outs),
+            runfiles = ctx.runfiles(files = output_files),
         ),
         KernelEnvInfo(
             dependencies = [module_symvers],
@@ -518,7 +547,7 @@ def _kernel_module_impl(ctx):
             kernel_build = ctx.attr.kernel_build,
             modules_staging_dws_depset = depset([modules_staging_dws]),
             kernel_uapi_headers_dws_depset = depset([kernel_uapi_headers_dws]),
-            files = depset(ctx.outputs.outs),
+            files = depset(output_files),
         ),
         KernelUnstrippedModulesInfo(
             directories = depset([unstripped_dir], order = "postorder"),
