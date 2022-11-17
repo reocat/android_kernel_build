@@ -147,6 +147,30 @@
       },
       "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60485fa1_cccc87c0",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2022-11-17T14:07:18Z",
+      "side": 1,
+      "message": "Sorry, missed this response.\n\nThere are many ways to check for CRLF.\n\nod -a\nemacs (M-x find-file-literally)\ndos2unix and cmp\ngrep \u0027^M\u0027 (quote ctrl-V ctrl-M quote at the console)\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/android/gki_system_dlkm_modules already has a spurious blank line at the end!\n\nI think you are better off talking to a Unix person in the same TZ if you are having odd issues.\n\nLastly, the simplest way to append a newline is: echo \u003e\u003e \"$file\".\n\nIf you need to keep doing this, use echo instead of sed.",
+      "parentUuid": "b4660457_11f2e173",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 40
+      },
+      "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
