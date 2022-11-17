@@ -76,6 +76,52 @@ def _check_no_ddk_headers_in_srcs(ctx, module_label):
                 target.label,
             ))
 
+def _check_empty_with_submodules(ctx, module_label, kernel_module_deps):
+    """Checks that, if the outer target contains submodules, it should be empty.
+
+    That is, the top level `ddk_module` should not declare any inputs, outputs or copts; they
+    should all be declared in individual `ddk_submodule`'s.
+    """
+
+    if kernel_module_deps:
+        fail("{}: with submodules, deps on other kernel modules should be specified in individual ddk_submodule: {}".format(
+            module_label,
+            [dep.label for dep in kernel_module_deps],
+        ))
+
+    if not ctx.attr.top_level_makefile:
+        fail("{}: with submodules, top_level_makefile must be set. " +
+             "(Did you specify another ddk_submodule in the deps?)")
+
+    for attr_name in (
+        "srcs",
+        "out",
+        "hdrs",
+        "includes",
+        "local_defines",
+        "copts",
+    ):
+        attr_val = getattr(ctx.attr, "module_" + attr_name)
+        if attr_val:
+            fail("{}: with submodules, {} should be specified in individual ddk_submodule: {}".format(
+                module_label,
+                attr_name,
+                attr_val,
+            ))
+
+def _check_non_empty_without_submodules(ctx, module_label):
+    """Checks that, if the outer target does not contain submodules, it should not be empty.
+
+    That is, a `ddk_module` without submodules, or a `ddk_submodule`, should declare outputs.
+    """
+
+    if not ctx.attr.module_out:
+        fail(("{}: out is not specified. Perhaps add\n" +
+              "    out = \"{}.ko\"").format(
+            module_label,
+            module_label.name,
+        ))
+
 def _makefiles_impl(ctx):
     module_label = Label(str(ctx.label).removesuffix("_makefiles"))
 
@@ -96,6 +142,11 @@ def _makefiles_impl(ctx):
                 dep.label,
                 _DEP_EXPECT_INFOS,
             ))
+
+    if submodule_deps:
+        _check_empty_with_submodules(ctx, module_label, kernel_module_deps)
+    else:
+        _check_non_empty_without_submodules(ctx, module_label)
 
     include_dirs = get_include_depset(
         module_label,
