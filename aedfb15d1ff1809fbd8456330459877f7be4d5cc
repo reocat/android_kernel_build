@@ -16,6 +16,24 @@
       "message": "FYI",
       "revId": "aedfb15d1ff1809fbd8456330459877f7be4d5cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49fd8a89_a1d49af8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-17T01:49:06Z",
+      "side": 1,
+      "message": "Curious - why is this necessary? Just more idiomatic to force the user to choose an output name?",
+      "parentUuid": "c0f41607_316492a0",
+      "revId": "aedfb15d1ff1809fbd8456330459877f7be4d5cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
