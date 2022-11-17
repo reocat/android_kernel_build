@@ -608,6 +608,7 @@ def makefiles_test_suite(name):
     # Test that to include hdrs before deps, one must duplicate the hdrs targets in deps
     _makefiles_test_make(
         name = name + "_include_hdrs_before_deps",
+        module_out = name + "_include_hdrs_before_deps.ko",
         module_deps = [
             # do not sort
             name + "_include_headers",
@@ -637,6 +638,7 @@ def makefiles_test_suite(name):
     )
     ddk_module(
         name = name + "_parent_include_hdrs_before_deps",
+        out = name + "_parent_include_hdrs_before_deps.ko",
         deps = [
             # do not sort
             name + "_include_headers",
@@ -654,6 +656,7 @@ def makefiles_test_suite(name):
     # Children of _include_hdrs_before_deps still gets
     _makefiles_test_make(
         name = name + "_child_include_hdrs_before_deps",
+        module_out = name + "_child_include_hdrs_before_deps.ko",
         module_deps = [
             name + "_parent_include_hdrs_before_deps",
         ],
