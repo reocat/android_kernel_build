@@ -81,9 +81,9 @@ def _makefiles_test_impl(ctx):
 
     asserts.equals(
         env,
-        ctx.attr.expected_module_out,
+        ctx.attr.expected_module_out or None,
         actual_module_out,
-        "--kernel-module-out mismatch",
+        "--kernel-module-out mismatch: {}".format(action.argv[1:]),
     )
 
     expected_module_symvers = []
