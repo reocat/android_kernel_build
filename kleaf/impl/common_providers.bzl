@@ -175,7 +175,7 @@ DdkSubmoduleInfo = provider(
             containing the label of the target declaring the output file.""",
         "srcs": "A [depset](https://bazel.build/extending/depsets) of source files to build the submodule.",
         # TODO(b/247622808): Clean up Target in providers
-        "deps": """A [depset](https://bazel.build/extending/depsets) of dependent
-            [Target](https://bazel.build/rules/lib/Target)s of this submodules""",
+        "kernel_module_deps": """A [depset](https://bazel.build/extending/depsets) of dependent
+            [Target](https://bazel.build/rules/lib/Target)s of this submodules that are kernel_module's.""",
     },
 )
