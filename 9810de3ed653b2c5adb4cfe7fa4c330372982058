@@ -22,6 +22,30 @@
       },
       "revId": "9810de3ed653b2c5adb4cfe7fa4c330372982058",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6d6618b_8fa84399",
+        "filename": "kleaf/impl/ddk/ddk_submodule.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2022-11-17T18:53:21Z",
+      "side": 1,
+      "message": "This looks great! I think this will address our use case perfectly. Thanks!",
+      "parentUuid": "24025231_29ef5937",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 5
+      },
+      "revId": "9810de3ed653b2c5adb4cfe7fa4c330372982058",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
