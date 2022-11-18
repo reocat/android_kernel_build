@@ -68,6 +68,30 @@
       },
       "revId": "e62fedf6428e5d11a20ca580cec2ede2dba389c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f3fa882_1b0b7d32",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-18T19:19:42Z",
+      "side": 1,
+      "message": "This is saying \"the transitive portion of srcs depset\".\n\nAny suggestions?",
+      "parentUuid": "5ab11bb0_c2e2f1ca",
+      "range": {
+        "startLine": 154,
+        "startChar": 9,
+        "endLine": 154,
+        "endChar": 15
+      },
+      "revId": "e62fedf6428e5d11a20ca580cec2ede2dba389c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
