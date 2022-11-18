@@ -43,6 +43,7 @@ def _kernel_build_config_settings_raw():
             "_preserve_cmd": "//build/kernel/kleaf/impl:preserve_cmd",
             "_use_kmi_symbol_list_strict_mode": "//build/kernel/kleaf:kmi_symbol_list_strict_mode",
             "_gcov": "//build/kernel/kleaf:gcov",
+            "_allow_undeclared_modules": "//build/kernel/kleaf:allow_undeclared_modules",
         },
     )
 
