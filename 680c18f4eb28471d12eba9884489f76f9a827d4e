@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d961304_e5a8cde3",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-18T01:46:12Z",
+      "side": 1,
+      "message": "There are no build.config.X that corresponds to COMMON_OUTS, so I am hesitant about exposing it.\n\nOr maybe `AARCH64_OUTS` and `AARCH64_NON_GKI_OUTS`, if that\u0027s easier (the name is awkward though)",
+      "parentUuid": "30651019_3f9de5cc",
+      "revId": "680c18f4eb28471d12eba9884489f76f9a827d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "89bf7853_c782113b",
