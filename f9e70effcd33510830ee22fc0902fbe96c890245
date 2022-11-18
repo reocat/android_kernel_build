@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ed25e6b_a5461dd8",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-18T14:46:41Z",
+      "side": 1,
+      "message": "Will the Error (`If the data being deserialized is not a valid JSON document, a JSONDecodeError will be raised.`) be visible if happened?",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 22
+      },
+      "revId": "f9e70effcd33510830ee22fc0902fbe96c890245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
