@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ce39d7f_bd1e59ca",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-18T15:44:40Z",
+      "side": 1,
+      "message": "typo: remove.",
+      "range": {
+        "startLine": 179,
+        "startChar": 77,
+        "endLine": 179,
+        "endChar": 78
+      },
+      "revId": "e62fedf6428e5d11a20ca580cec2ede2dba389c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b907fe59_6a508102",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-18T15:44:40Z",
+      "side": 1,
+      "message": "nit: sorry for not raising this before, but this suffix doesn\u0027t feel right, maybe we can modify it later, for something that doesn\u0027t suggest it is an implementation detail, maybe `_shared` or just `_common`.",
+      "range": {
+        "startLine": 25,
+        "startChar": 23,
+        "endLine": 25,
+        "endChar": 28
+      },
+      "revId": "e62fedf6428e5d11a20ca580cec2ede2dba389c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ab11bb0_c2e2f1ca",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-18T15:44:40Z",
+      "side": 1,
+      "message": "remove it as it\u0027s not technically a depset?",
+      "range": {
+        "startLine": 154,
+        "startChar": 9,
+        "endLine": 154,
+        "endChar": 15
+      },
+      "revId": "e62fedf6428e5d11a20ca580cec2ede2dba389c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
