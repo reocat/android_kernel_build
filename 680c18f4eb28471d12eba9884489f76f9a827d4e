@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "30651019_3f9de5cc",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-18T01:44:36Z",
+      "side": 1,
+      "message": "(This way you don\u0027t have to expose COMMON_OUTS)",
+      "parentUuid": "00561703_308fb5f3",
+      "revId": "680c18f4eb28471d12eba9884489f76f9a827d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "89bf7853_c782113b",
