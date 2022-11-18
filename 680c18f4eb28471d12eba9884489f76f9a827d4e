@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00561703_308fb5f3",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-18T01:44:17Z",
+      "side": 1,
+      "message": "nit: Unrelated to this CL, but maybe add \"sync with build.config.gki.aarch64\".\n\nI really want a `AARCH64_OUTS` and `AARCH64_GKI_OUTS` (the latter contains Image.lz4 and Image.gz) that corresponds to build.config.aarch64 and build.config.gki.aarch64, respectively. Since these upper case variables are introduced recently, I think nobody is using them, so it is safe to change?\n\nKeep the old `aarch64_outs` though; some device kernels may be relying on that",
+      "revId": "680c18f4eb28471d12eba9884489f76f9a827d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89bf7853_c782113b",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-18T01:44:17Z",
+      "side": 1,
+      "message": "Unrelated to this CL, but maybe add \"sync with build.config.x86_64\"",
+      "revId": "680c18f4eb28471d12eba9884489f76f9a827d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
