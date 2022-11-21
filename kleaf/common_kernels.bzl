@@ -105,6 +105,7 @@ _TARGET_CONFIG_VALID_KEYS = _KERNEL_BUILD_ABI_VALID_KEYS + [
 # Always collect_unstripped_modules for common kernels.
 _COLLECT_UNSTRIPPED_MODULES = True
 
+DEFINE_DB845C_ABI_TARGETS = True
 # glob() must be executed in a BUILD thread, so this cannot be a global
 # variable.
 def _default_target_configs():
@@ -921,19 +922,35 @@ def define_db845c(
     if dist_dir == None:
         dist_dir = "out/{branch}/dist".format(branch = BRANCH)
 
-    kernel_build(
+    _kernel_modules = []
+
+    kernel_build_abi(
         name = name,
         outs = outs,
         srcs = [":common_kernel_sources"],
         # List of in-tree kernel modules.
         module_outs = module_outs,
         build_config = build_config,
-        kmi_symbol_list = kmi_symbol_list,
+        #kmi_symbol_list = kmi_symbol_list,
         # Enable mixed build.
         base_kernel = ":kernel_aarch64",
-    )
 
-    _kernel_modules = []
+        # enable ABI Monitoring
+        # based on the instructions here:
+        # https://android.googlesource.com/kernel/build/+/refs/heads/master/kleaf/docs/abi_device.md
+        abi_definition = "//common:android/abi_gki_aarch64.xml" if DEFINE_DB845C_ABI_TARGETS else None,
+        additional_kmi_symbol_lists = ["//common:kernel_aarch64_all_kmi_symbol_lists"] if DEFINE_DB845C_ABI_TARGETS else None,
+        define_abi_targets = DEFINE_DB845C_ABI_TARGETS,
+        # Also refer to the list of ext modules for ABI monitoring targets
+        kernel_modules = _kernel_modules,
+        kmi_symbol_list = "//common:android/abi_gki_aarch64_db845c" if DEFINE_DB845C_ABI_TARGETS else None,
+        kmi_symbol_list_add_only = True if DEFINE_DB845C_ABI_TARGETS else None,
+        # Note: This is intentionally disabled here. We don't run build_abi.sh on
+        # build.config.slider so we don't care about disabling it there.
+        module_grouping = False if DEFINE_DB845C_ABI_TARGETS else None,
+        # Also refer to unstripped modules archive for abi.prop
+        #unstripped_modules_archive = ":slider_unstripped_modules_archive",
+    )
 
     kernel_modules_install(
         name = name + "_modules_install",
@@ -967,6 +984,15 @@ def define_db845c(
 
     copy_to_dist_dir(
         name = name + "_dist",
+        data = dist_targets + gki_modules_list,
+        dist_dir = dist_dir,
+        flat = True,
+        log = "info",
+    )
+
+    kernel_build_abi_dist(
+        name = name + "_abi_dist",
+        kernel_build_abi = ":db845c",
         data = dist_targets + gki_modules_list,
         dist_dir = dist_dir,
         flat = True,
