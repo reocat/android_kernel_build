@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdb59bb9_0d6e242d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-21T16:37:43Z",
+      "side": 1,
+      "message": "Thanks for working on this.",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d00c8bf6_6a315e03",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-21T16:37:43Z",
+      "side": 1,
+      "message": "This should depend on the args provided in `define_db845c` macro (as it is used by multiple branches); see the example at https://android.googlesource.com/kernel/build/+/da2d80fa79703850f554686ebcb80b06d44e8af6/kleaf/common_kernels.bzl#541",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6842af03_54039f56",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-21T16:37:43Z",
+      "side": 1,
+      "message": "This is defined below, so please remove this line.",
+      "range": {
+        "startLine": 936,
+        "startChar": 8,
+        "endLine": 936,
+        "endChar": 43
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3810aa5_2f3caf07",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-21T16:37:43Z",
+      "side": 1,
+      "message": "Let\u0027s add a new argument to define_db845c and pass it directly. @elsk@google.com wdyt?",
+      "range": {
+        "startLine": 943,
+        "startChar": 25,
+        "endLine": 943,
+        "endChar": 102
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3d6c65b_7b85523a",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 951,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-21T16:37:43Z",
+      "side": 1,
+      "message": "This comment is unrelated here. Please update it accordingly.",
+      "range": {
+        "startLine": 951,
+        "startChar": 10,
+        "endLine": 951,
+        "endChar": 29
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
