@@ -90,6 +90,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6133d192_dd7002d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:39:02Z",
+      "side": 1,
+      "message": "Hi Yongqin, thanks for updating this!\n\nWill has recently gone over the ABI monitoring process for devices, and we found a few flaws with the process. Please check the updated process in https://android-review.git.corp.google.com/c/kernel/build/+/2308912. Thanks!",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d00c8bf6_6a315e03",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 2
@@ -207,6 +224,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "998082b9_19a21257",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:39:02Z",
+      "side": 1,
+      "message": "This is no longer needed; see https://android-review.git.corp.google.com/c/kernel/build/+/2308912",
+      "parentUuid": "cf2c24cb_455b9b9f",
+      "range": {
+        "startLine": 943,
+        "startChar": 25,
+        "endLine": 943,
+        "endChar": 102
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfdc3866_582068e2",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 2
@@ -254,6 +295,81 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fea670d8_543917ae",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:39:02Z",
+      "side": 1,
+      "message": "This is no longer needed; see https://android-review.git.corp.google.com/c/kernel/build/+/2308912",
+      "parentUuid": "517d7eb5_14d24c8d",
+      "range": {
+        "startLine": 944,
+        "startChar": 8,
+        "endLine": 944,
+        "endChar": 35
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77ba71b3_e4e2729e",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:39:02Z",
+      "side": 1,
+      "message": "This should be an argument to `define_db845c`",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04705582_9145e5e8",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:39:02Z",
+      "side": 1,
+      "message": "This should be an argument to `define_db845c`",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2a28143_917accf9",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:39:02Z",
+      "side": 1,
+      "message": "This should be an argument to `define_db845c`",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3d6c65b_7b85523a",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 2
@@ -271,6 +387,23 @@
         "endLine": 951,
         "endChar": 29
       },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72fea719_624695c4",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:39:02Z",
+      "side": 1,
+      "message": "This should be an argument to `define_db845c`",
       "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
