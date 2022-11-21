@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76826ae9_c3b925fb",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:36:54Z",
+      "side": 0,
+      "message": "Is `ADDITIONAL_KMI_SYMBOL_LISTS` not needed any more? It used to be defined in build_abi.sh era\n\nWhat\u0027s the difference between defining and not defining it?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 53
+      },
+      "revId": "c2ac77ff5986441080737e66ca565e7615b31a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

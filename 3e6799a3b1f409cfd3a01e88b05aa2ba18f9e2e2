@@ -22,6 +22,30 @@
       },
       "revId": "3e6799a3b1f409cfd3a01e88b05aa2ba18f9e2e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3babbb91_a8894af5",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:36:54Z",
+      "side": 1,
+      "message": "Right, this is no longer needed.\n\nReason:\n\nThe device ABI target does NOT update the ABI definition (instead, it should be updated via the GKI\u0027s ABI definition update target, //common:kernel_aarch64_abi_update).\n\nSince the device ABI target does not know about `//common:android/abi_gki_aarch64.xml`, the `kernel_build_abi_dist` is useless (all it does is to do whatever copy_to_dist_dir does, then compare the source `//common:android/abi_gki_aarch64.xml` with the ABI of the kernel. However, it doesn\u0027t even know about `//common:android/abi_gki_aarch64.xml`.",
+      "parentUuid": "663d1bdd_20c44306",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "3e6799a3b1f409cfd3a01e88b05aa2ba18f9e2e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
