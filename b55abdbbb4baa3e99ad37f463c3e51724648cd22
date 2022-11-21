@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9615795b_3d0a1966",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-21T20:50:21Z",
+      "side": 1,
+      "message": "the check in L96 seems to also include headers and includes folders?",
+      "range": {
+        "startLine": 82,
+        "startChar": 87,
+        "endLine": 82,
+        "endChar": 88
+      },
+      "revId": "b55abdbbb4baa3e99ad37f463c3e51724648cd22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e8985f6_75366c9d",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-21T20:50:21Z",
+      "side": 1,
+      "message": "just to clarify: is this to have a better error message below?",
+      "range": {
+        "startLine": 104,
+        "startChar": 37,
+        "endLine": 104,
+        "endChar": 48
+      },
+      "revId": "b55abdbbb4baa3e99ad37f463c3e51724648cd22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
