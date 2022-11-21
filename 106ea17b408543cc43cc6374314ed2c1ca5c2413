@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbdc605c_01245b5c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-21T11:17:21Z",
+      "side": 1,
+      "message": "Not a CL blocker, but it might be worth adding a note in https://android.googlesource.com/kernel/build/+/c2ac77ff5986441080737e66ca565e7615b31a26/kleaf/docs/kleaf_development.md to avoid using `unittest.suite` in the future.",
+      "revId": "106ea17b408543cc43cc6374314ed2c1ca5c2413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
