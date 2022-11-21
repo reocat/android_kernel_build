@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "eabf903f_93d84b02",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:17:32Z",
+      "side": 1,
+      "message": "Please add this line to the commit message for internal tracking. Thanks!",
+      "parentUuid": "422b0f61_fb16cfd8",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "fdb59bb9_0d6e242d",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c97b7c6_fb52b103",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:17:32Z",
+      "side": 1,
+      "message": "Ah sorry I misunderstood the CL. I\u0027ll continue to park the bug under umendez.",
+      "parentUuid": "135e4336_3d9c42e1",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d00c8bf6_6a315e03",
@@ -65,6 +101,30 @@
       "writtenOn": "2022-11-21T16:37:43Z",
       "side": 1,
       "message": "This should depend on the args provided in `define_db845c` macro (as it is used by multiple branches); see the example at https://android.googlesource.com/kernel/build/+/da2d80fa79703850f554686ebcb80b06d44e8af6/kleaf/common_kernels.bzl#541",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb0fdd19_747a01c6",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:17:32Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "d00c8bf6_6a315e03",
       "range": {
         "startLine": 108,
         "startChar": 0,
@@ -123,6 +183,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf2c24cb_455b9b9f",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:17:32Z",
+      "side": 1,
+      "message": "+1, because build.config.db845c is under common/",
+      "parentUuid": "e3810aa5_2f3caf07",
+      "range": {
+        "startLine": 943,
+        "startChar": 25,
+        "endLine": 943,
+        "endChar": 102
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfdc3866_582068e2",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 2
@@ -134,6 +218,30 @@
       "writtenOn": "2022-11-21T21:21:00Z",
       "side": 1,
       "message": "By looking at https://android-review.git.corp.google.com/c/kernel/common/+/1896054 I think this should be a list for db845c on its own? cc: @elsk@google.com to confirm.",
+      "range": {
+        "startLine": 944,
+        "startChar": 8,
+        "endLine": 944,
+        "endChar": 35
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "517d7eb5_14d24c8d",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:17:32Z",
+      "side": 1,
+      "message": "Making this an argument SGTM.\n\nOn android14-5.15, this should be `\"//common:kernel_aarch64_all_kmi_symbol_lists\"` (so this is correct)",
+      "parentUuid": "bfdc3866_582068e2",
       "range": {
         "startLine": 944,
         "startChar": 8,
