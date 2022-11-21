@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "422b0f61_fb16cfd8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:12:13Z",
+      "side": 1,
+      "message": "Bug: 246861677",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "fdb59bb9_0d6e242d",
@@ -14,6 +31,23 @@
       "writtenOn": "2022-11-21T16:37:43Z",
       "side": 1,
       "message": "Thanks for working on this.",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "135e4336_3d9c42e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-21T22:12:13Z",
+      "side": 1,
+      "message": "Thanks for the work! I\u0027ll assign b/246861677 to you",
       "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
