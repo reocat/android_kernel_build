@@ -89,6 +89,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bfdc3866_582068e2",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-21T21:21:00Z",
+      "side": 1,
+      "message": "By looking at https://android-review.git.corp.google.com/c/kernel/common/+/1896054 I think this should be a list for db845c on its own? cc: @elsk@google.com to confirm.",
+      "range": {
+        "startLine": 944,
+        "startChar": 8,
+        "endLine": 944,
+        "endChar": 35
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3d6c65b_7b85523a",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 2
