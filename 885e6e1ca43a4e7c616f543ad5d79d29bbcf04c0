@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ef31bd4_bb824e9a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-22T16:38:52Z",
+      "side": 1,
+      "message": "sorry, let me confirm again, is \"Bug: 246861677\" the one that should be added to the commit message? I saw you said misunderstood in one comment.",
+      "parentUuid": "eabf903f_93d84b02",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "fdb59bb9_0d6e242d",
@@ -152,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07b550f4_d572f1b7",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-22T16:38:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb0fdd19_747a01c6",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 32
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6842af03_54039f56",
@@ -165,6 +207,30 @@
       "writtenOn": "2022-11-21T16:37:43Z",
       "side": 1,
       "message": "This is defined below, so please remove this line.",
+      "range": {
+        "startLine": 936,
+        "startChar": 8,
+        "endLine": 936,
+        "endChar": 43
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bdb1f85_1c747376",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-22T16:38:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6842af03_54039f56",
       "range": {
         "startLine": 936,
         "startChar": 8,
@@ -246,6 +312,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e523e3b_0f929c06",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-22T16:38:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "998082b9_19a21257",
+      "range": {
+        "startLine": 943,
+        "startChar": 25,
+        "endLine": 943,
+        "endChar": 102
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfdc3866_582068e2",
@@ -317,6 +407,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c38f7df8_57934949",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-22T16:38:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fea670d8_543917ae",
+      "range": {
+        "startLine": 944,
+        "startChar": 8,
+        "endLine": 944,
+        "endChar": 35
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77ba71b3_e4e2729e",
@@ -330,6 +444,24 @@
       "writtenOn": "2022-11-21T22:39:02Z",
       "side": 1,
       "message": "This should be an argument to `define_db845c`",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fd86b5d_6526cb0b",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-22T16:38:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77ba71b3_e4e2729e",
       "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -351,6 +483,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52df59cf_3f2b93c6",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-22T16:38:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04705582_9145e5e8",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2a28143_917accf9",
@@ -364,6 +514,24 @@
       "writtenOn": "2022-11-21T22:39:02Z",
       "side": 1,
       "message": "This should be an argument to `define_db845c`",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dea7332_5b4a65d9",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-22T16:38:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2a28143_917accf9",
       "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -391,6 +559,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d90d3e1_38cf1c5c",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 951,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-22T16:38:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3d6c65b_7b85523a",
+      "range": {
+        "startLine": 951,
+        "startChar": 10,
+        "endLine": 951,
+        "endChar": 29
+      },
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72fea719_624695c4",
@@ -404,6 +596,24 @@
       "writtenOn": "2022-11-21T22:39:02Z",
       "side": 1,
       "message": "This should be an argument to `define_db845c`",
+      "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed7720d1_197649d9",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-22T16:38:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72fea719_624695c4",
       "revId": "885e6e1ca43a4e7c616f543ad5d79d29bbcf04c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
