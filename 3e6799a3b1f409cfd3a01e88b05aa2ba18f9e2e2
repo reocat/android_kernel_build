@@ -70,6 +70,30 @@
       },
       "revId": "3e6799a3b1f409cfd3a01e88b05aa2ba18f9e2e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a306165_c59f6caa",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-22T21:51:08Z",
+      "side": 1,
+      "message": "There does seem to be a proper use case:\n\nhttps://android-review.git.corp.google.com/c/kernel/build/+/2310388\n\nThat is the target for building continuously on go/ab.\n\nOr maybe the command should just be replaced by running //common:kernel_aarch64_abi_dist ? What are we trying to achieve when building, e.g. the `slider_abi_dist` target on go/ab?",
+      "parentUuid": "09dac9ce_ce8b6cae",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "3e6799a3b1f409cfd3a01e88b05aa2ba18f9e2e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
