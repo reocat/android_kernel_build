@@ -22,6 +22,30 @@
       },
       "revId": "c2ac77ff5986441080737e66ca565e7615b31a26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b05350f_364fa0ab",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-22T03:51:02Z",
+      "side": 0,
+      "message": "I see your comment in the internal CL pa/2333806. I am fine with this. \n\n@gprocida@google.com Are you okay with not setting `ADDITIONAL_KMI_SYMBOL_LISTS` for device ABI monitoring? It looks like the only action we need for a device ABI monitoring process is to update the symbol list of that device, so letting it know about the symbol lists of other devices seems useless and inaccurate.",
+      "parentUuid": "76826ae9_c3b925fb",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 53
+      },
+      "revId": "c2ac77ff5986441080737e66ca565e7615b31a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
