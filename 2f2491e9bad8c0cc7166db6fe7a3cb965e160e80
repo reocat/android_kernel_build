@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d28e304_e6a46f29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-22T23:42:46Z",
+      "side": 1,
+      "message": "This is non-blocking, but Will PTAL at this",
+      "parentUuid": "589a2054_7f12c799",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 46
+      },
+      "revId": "2f2491e9bad8c0cc7166db6fe7a3cb965e160e80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a74207a9_1fafc840",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "IMO it is okay to leave it as an argument",
       "parentUuid": "a74207a9_1fafc840",
+      "range": {
+        "startLine": 955,
+        "startChar": 29,
+        "endLine": 955,
+        "endChar": 47
+      },
+      "revId": "2f2491e9bad8c0cc7166db6fe7a3cb965e160e80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc20aa51_1d00565b",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-22T23:42:46Z",
+      "side": 1,
+      "message": "Resolving since I don\u0027t think this is blocking",
+      "parentUuid": "bb8d9b3b_0abe4d7c",
       "range": {
         "startLine": 955,
         "startChar": 29,
