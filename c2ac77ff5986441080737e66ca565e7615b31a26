@@ -46,6 +46,30 @@
       },
       "revId": "c2ac77ff5986441080737e66ca565e7615b31a26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7aeb3a0c_4b50886c",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-11-22T10:46:52Z",
+      "side": 0,
+      "message": "You only need to include all of the symbol lists when you are generating/updating the ABI xml. With mixed building, the ABI xml management should all be done using the GKI kernel. So for device kernels, you only need to define the device\u0027s symbol list which is copied/outputted to the GKI kernel under the `android/` folder.",
+      "parentUuid": "5b05350f_364fa0ab",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 53
+      },
+      "revId": "c2ac77ff5986441080737e66ca565e7615b31a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
