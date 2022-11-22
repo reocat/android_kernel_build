@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "589a2054_7f12c799",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-22T21:08:49Z",
+      "side": 1,
+      "message": "@willmcvicker@google.com This appears to be a legit use case for `kernel_build_abi_dist`",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 46
+      },
+      "revId": "2f2491e9bad8c0cc7166db6fe7a3cb965e160e80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a74207a9_1fafc840",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 3
@@ -14,6 +37,30 @@
       "writtenOn": "2022-11-22T16:46:08Z",
       "side": 1,
       "message": "Sorry for the confusion, what I meant previously is that this should depend on whether a `kmi_symbol_list` was provided or not (as in the example).\n\nAs it is now, if this is not provided it\u0027ll default to `True`[0].\n\nBut maybe that\u0027s ok for now as if it\u0027s `True` there are values defined above (the only downside is that they are from a fixed package //common but that can be cleaned-up later if needed).\n\n[0] https://android.googlesource.com/kernel/build/+/refs/heads/master/kleaf/impl/abi/kernel_build_abi.bzl#91",
+      "range": {
+        "startLine": 955,
+        "startChar": 29,
+        "endLine": 955,
+        "endChar": 47
+      },
+      "revId": "2f2491e9bad8c0cc7166db6fe7a3cb965e160e80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb8d9b3b_0abe4d7c",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-22T21:08:49Z",
+      "side": 1,
+      "message": "IMO it is okay to leave it as an argument",
+      "parentUuid": "a74207a9_1fafc840",
       "range": {
         "startLine": 955,
         "startChar": 29,
