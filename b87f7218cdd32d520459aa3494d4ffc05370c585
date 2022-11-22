@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3bb4586_2d38a1b5",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-22T21:05:44Z",
+      "side": 1,
+      "message": "nit: Let\u0027s not expose these unless there\u0027s a need. The client may use `//common:common_kernel_sources` if they need to\n\n(That is, just delete it from the comment)",
+      "revId": "b87f7218cdd32d520459aa3494d4ffc05370c585",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0260fc2b_4ed4014e",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-22T21:05:44Z",
+      "side": 1,
+      "message": "nit: Same for these two",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 45
+      },
+      "revId": "b87f7218cdd32d520459aa3494d4ffc05370c585",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb365123_4f2b1947",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-22T21:05:44Z",
+      "side": 1,
+      "message": "Please split into two variables `AARCH64_GKI_OUTS` and `RISCV64_GKI_OUTS`\n\nThe AARCH64_GKI_OUTS could be used somewhere (kleaf/constants.bzl is a public API)",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 24
+      },
+      "revId": "b87f7218cdd32d520459aa3494d4ffc05370c585",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "217ddc22_d00daeb5",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-22T21:05:44Z",
+      "side": 1,
+      "message": "Just delete it 😊",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 39
+      },
+      "revId": "b87f7218cdd32d520459aa3494d4ffc05370c585",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
