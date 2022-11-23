@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7071faad_b4822afa",
+        "filename": "kleaf/docs/ddk/common_headers.md",
+        "patchSetId": 37
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T22:18:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f842f5a_3c4f2bae",
+      "range": {
+        "startLine": 89,
+        "startChar": 37,
+        "endLine": 89,
+        "endChar": 38
+      },
+      "revId": "da75e9f83ebebc90654adfe0b79f535f332782f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "412e4fc3_90c0be52",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-23T12:54:38Z",
       "side": 1,
       "message": "nit: `developing with DDK`",
+      "range": {
+        "startLine": 1,
+        "startChar": 26,
+        "endLine": 1,
+        "endChar": 37
+      },
+      "revId": "da75e9f83ebebc90654adfe0b79f535f332782f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38d6ab34_07331105",
+        "filename": "kleaf/docs/ddk/errors.md",
+        "patchSetId": 37
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T22:18:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "412e4fc3_90c0be52",
       "range": {
         "startLine": 1,
         "startChar": 26,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c700870_b597d378",
+        "filename": "kleaf/docs/ddk/errors.md",
+        "patchSetId": 37
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T22:18:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6075a2df_0ed40983",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 10
+      },
+      "revId": "da75e9f83ebebc90654adfe0b79f535f332782f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bd93b2b_cc007838",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-11-23T12:54:38Z",
       "side": 1,
       "message": "`and/or`?",
+      "range": {
+        "startLine": 124,
+        "startChar": 65,
+        "endLine": 124,
+        "endChar": 68
+      },
+      "revId": "da75e9f83ebebc90654adfe0b79f535f332782f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1103b0f3_df33fa09",
+        "filename": "kleaf/docs/ddk/errors.md",
+        "patchSetId": 37
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T22:18:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bd93b2b_cc007838",
       "range": {
         "startLine": 124,
         "startChar": 65,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edfcad98_7e7ba2cd",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 37
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T22:18:02Z",
+      "side": 1,
+      "message": "This is the correct tag.\n\nThe others are with underscores because the underscores are in the actual tag",
+      "parentUuid": "6166932c_f9b61a6f",
+      "range": {
+        "startLine": 7,
+        "startChar": 33,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "da75e9f83ebebc90654adfe0b79f535f332782f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f241a805_888a179d",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-11-23T12:54:38Z",
       "side": 1,
       "message": "For some reason this is shown in the final rendering[0], not sure if it\u0027s because it\u0027s preceded by a code block or if there is another bug.\n\n[0] https://android.googlesource.com/kernel/build/+/refs/changes/98/1921598/37/kleaf/docs/ddk/main.md#ddk_headers",
+      "range": {
+        "startLine": 35,
+        "startChar": 17,
+        "endLine": 35,
+        "endChar": 31
+      },
+      "revId": "da75e9f83ebebc90654adfe0b79f535f332782f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b44ce33c_12bab7b4",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 37
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T22:18:02Z",
+      "side": 1,
+      "message": "I worked around it now",
+      "parentUuid": "f241a805_888a179d",
       "range": {
         "startLine": 35,
         "startChar": 17,
