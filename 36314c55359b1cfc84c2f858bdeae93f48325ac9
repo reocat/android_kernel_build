@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8997edec_0a2d90b1",
+        "filename": "kleaf/docs/build_cleaner.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T20:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a43f5a60_889d01db",
+      "range": {
+        "startLine": 5,
+        "startChar": 27,
+        "endLine": 5,
+        "endChar": 32
+      },
+      "revId": "36314c55359b1cfc84c2f858bdeae93f48325ac9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf6b02b9_19192d96",
+        "filename": "kleaf/docs/build_cleaner.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T20:51:46Z",
+      "side": 1,
+      "message": "Not yet. But the official list of things it does is in `build_cleaner -h`, not this document. This document is just a pointer.",
+      "parentUuid": "f78d5955_c7d2c42f",
+      "range": {
+        "startLine": 5,
+        "startChar": 77,
+        "endLine": 5,
+        "endChar": 80
+      },
+      "revId": "36314c55359b1cfc84c2f858bdeae93f48325ac9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ed2a15b_6b7b3a3d",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-11-23T14:14:05Z",
       "side": 1,
       "message": "inspect",
+      "range": {
+        "startLine": 23,
+        "startChar": 3,
+        "endLine": 23,
+        "endChar": 7
+      },
+      "revId": "36314c55359b1cfc84c2f858bdeae93f48325ac9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6699bca8_15790019",
+        "filename": "kleaf/docs/build_cleaner.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T20:51:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ed2a15b_6b7b3a3d",
       "range": {
         "startLine": 23,
         "startChar": 3,
