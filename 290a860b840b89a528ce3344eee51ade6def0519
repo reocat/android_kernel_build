@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da9c5b97_210adf78",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T22:05:40Z",
+      "side": 1,
+      "message": "This is the correct variable. Global variables should be named with upper case.\n\nWe\u0027ll move aarch64_outs to AARCH64_GKI_OUTS, x86_64_outs to X86_64_OUTS in follow up CLs.",
+      "parentUuid": "d1d5aca6_12b50936",
+      "range": {
+        "startLine": 47,
+        "startChar": 5,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97eaeab9_279df218",
