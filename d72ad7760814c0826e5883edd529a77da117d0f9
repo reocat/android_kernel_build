@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c608533e_0511f7b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-23T14:25:33Z",
+      "side": 1,
+      "message": "Does TH include the `//build/kernel/kleaf:quick_tests` tests[0]?\n\nIn the past there were some issues passing other kwargs (other than tags), so just want to make sure we\u0027re not breaking existing tests. \n\n[0] https://android.googlesource.com/kernel/build/+/refs/heads/master/kleaf/BUILD.bazel#222",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 8
+      },
+      "revId": "d72ad7760814c0826e5883edd529a77da117d0f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
