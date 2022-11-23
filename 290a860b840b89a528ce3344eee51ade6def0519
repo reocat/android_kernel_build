@@ -94,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f190030b_5ac5eef8",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T22:07:10Z",
+      "side": 1,
+      "message": "Because they corresponds to different build configs. IMO it makes more sense to separate them.",
+      "parentUuid": "97eaeab9_279df218",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 56
+      },
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec3dd612_ed72b71d",
@@ -107,6 +131,24 @@
       "writtenOn": "2022-11-23T13:24:54Z",
       "side": 1,
       "message": "where is the risc mentioned here?",
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6993d1ce_ca9a51d1",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T22:07:10Z",
+      "side": 1,
+      "message": "It intentionally isn\u0027t mentioned. These are old and deprecated variables.",
+      "parentUuid": "ec3dd612_ed72b71d",
       "revId": "290a860b840b89a528ce3344eee51ade6def0519",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
