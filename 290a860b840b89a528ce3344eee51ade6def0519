@@ -120,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e6dfb4af_db206732",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T22:08:55Z",
+      "side": 1,
+      "message": "That being said, I do not object using DEFAULT_GKI_OUTS to group them. The two upper case variables are introduced recently, so I doubt anyone is actually using them. It should be fine to group them together.\n\n(Don\u0027t touch the aarch64_outs and x86_64_outs below, though, as they might be used by devices)",
+      "parentUuid": "f190030b_5ac5eef8",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 56
+      },
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ec3dd612_ed72b71d",
         "filename": "kleaf/constants.bzl",
         "patchSetId": 6
