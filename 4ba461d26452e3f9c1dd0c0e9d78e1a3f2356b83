@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d6f06e_9fdb4f5d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-23T14:35:35Z",
+      "side": 1,
+      "message": "nit: Maybe replace by something more generic, like :\u003cname\u003e and :\u003cname_abi\u003e as this is for all the targets using these rules.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 4
+      },
+      "revId": "4ba461d26452e3f9c1dd0c0e9d78e1a3f2356b83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
