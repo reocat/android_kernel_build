@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "139dd578_8e4ea520",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-23T13:34:59Z",
+      "side": 1,
+      "message": "this gets longer and longer, how about making this a little more readable\n\n```\nif any((\n   _args.update_gki,\n   _args.update_16k,\n   _args.update_u_boot,\n   _args.update_microdroid)):\n```",
+      "revId": "3dfc17db3cd1fc4ff3cedda83f656328cd30b83e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "175d53c3_0bec556d",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-23T13:34:59Z",
+      "side": 1,
+      "message": "`check_call` for proper error handling. In this particular case `shutil.rmtree` might be the better way of cleaning out a directory.\n\nhttps://docs.python.org/3.11/library/shutil.html#shutil.rmtree",
+      "range": {
+        "startLine": 338,
+        "startChar": 13,
+        "endLine": 338,
+        "endChar": 16
+      },
+      "revId": "3dfc17db3cd1fc4ff3cedda83f656328cd30b83e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cfd1176_f326fad6",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-23T13:34:59Z",
+      "side": 1,
+      "message": "does this work for all callers? such as for `x86_64_mods_dir` ?",
+      "range": {
+        "startLine": 341,
+        "startChar": 46,
+        "endLine": 341,
+        "endChar": 49
+      },
+      "revId": "3dfc17db3cd1fc4ff3cedda83f656328cd30b83e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a3da9ac_1d4e5046",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-23T13:34:59Z",
+      "side": 1,
+      "message": "```\nwith urllib.request.urlopen(url) as response:\n  data \u003d response.read().decode(\"utf-8\")\n```\n\nactually ...",
+      "range": {
+        "startLine": 506,
+        "startChar": 0,
+        "endLine": 507,
+        "endChar": 40
+      },
+      "revId": "3dfc17db3cd1fc4ff3cedda83f656328cd30b83e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
