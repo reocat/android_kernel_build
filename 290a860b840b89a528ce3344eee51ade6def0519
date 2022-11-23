@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2561580_4491ba52",
+        "filename": "build_utils.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-23T13:24:54Z",
+      "side": 1,
+      "message": "that is either of the variants:\n\n  1) if \"arm64\" or \"risc64\" then \"Image\" \n  2) if \"x86_64\" then prefix the image with \"bz\"",
+      "range": {
+        "startLine": 652,
+        "startChar": 1,
+        "endLine": 657,
+        "endChar": 47
+      },
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d5aca6_12b50936",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-23T13:24:54Z",
+      "side": 1,
+      "message": "this should be riscv64_outs or as suggested in constants.bzl: default_gki_outs",
+      "range": {
+        "startLine": 47,
+        "startChar": 5,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97eaeab9_279df218",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-23T13:24:54Z",
+      "side": 1,
+      "message": "those have exactly the same value. Why not call it DEFAULT_GKI_OUTS then?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 56
+      },
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec3dd612_ed72b71d",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-23T13:24:54Z",
+      "side": 1,
+      "message": "where is the risc mentioned here?",
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bde8b1d8_5b8f1380",
+        "filename": "kleaf/impl/constants.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-23T13:24:54Z",
+      "side": 1,
+      "message": "if x86 is the odd one out, then this should rather be \"DEFAULT_IMAGES\".",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 22
+      },
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
