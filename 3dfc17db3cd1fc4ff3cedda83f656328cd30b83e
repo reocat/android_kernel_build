@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85096033_52f32180",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2022-11-23T17:31:14Z",
+      "side": 1,
+      "message": "Actually, I deliberately changed it from check_call because the call can fail if the directory doesn\u0027t exist, such as the first time the artifacts are uploaded. I don\u0027t think it\u0027s valuable to overcomplicate this because this is a \"git\" rm -rf, so the \"-f\" bit doesn\u0027t behave like raw \"rm -f\".",
+      "parentUuid": "175d53c3_0bec556d",
+      "range": {
+        "startLine": 338,
+        "startChar": 13,
+        "endLine": 338,
+        "endChar": 16
+      },
+      "revId": "3dfc17db3cd1fc4ff3cedda83f656328cd30b83e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8cfd1176_f326fad6",
         "filename": "gki/download_from_ci",
         "patchSetId": 4
@@ -54,6 +78,30 @@
       "writtenOn": "2022-11-23T13:34:59Z",
       "side": 1,
       "message": "does this work for all callers? such as for `x86_64_mods_dir` ?",
+      "range": {
+        "startLine": 341,
+        "startChar": 46,
+        "endLine": 341,
+        "endChar": 49
+      },
+      "revId": "3dfc17db3cd1fc4ff3cedda83f656328cd30b83e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6578f3e5_60b4cded",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2022-11-23T17:31:14Z",
+      "side": 1,
+      "message": "Yes. If you check out something that doesn\u0027t exist in the history, nothing happens.",
+      "parentUuid": "8cfd1176_f326fad6",
       "range": {
         "startLine": 341,
         "startChar": 46,
@@ -77,6 +125,30 @@
       "writtenOn": "2022-11-23T13:34:59Z",
       "side": 1,
       "message": "```\nwith urllib.request.urlopen(url) as response:\n  data \u003d response.read().decode(\"utf-8\")\n```\n\nactually ...",
+      "range": {
+        "startLine": 506,
+        "startChar": 0,
+        "endLine": 507,
+        "endChar": 40
+      },
+      "revId": "3dfc17db3cd1fc4ff3cedda83f656328cd30b83e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e17dfe7_963e5b3c",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2022-11-23T17:31:14Z",
+      "side": 1,
+      "message": "This is just copy/pasted from elsewhere in the script, so I\u0027ll fix it in a follow-up, if you don\u0027t mind.",
+      "parentUuid": "0a3da9ac_1d4e5046",
       "range": {
         "startLine": 506,
         "startChar": 0,
