@@ -22,6 +22,30 @@
       },
       "revId": "0a8d82ceb6c02ec71626091bfd58a3d07a255115",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bffba77_560cdf0d",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-23T22:10:53Z",
+      "side": 1,
+      "message": "`module_symvers` is actually confusing IMO. In this case, these are \"targets carrying a Module.symvers\", not the Module.symvers themseves. That\u0027s why I put a \"_deps\" in the key.\n\nThe others are actual \"kernel_module\u0027s, targets carrying headers, and ddk_submodule\u0027s\"",
+      "parentUuid": "de95a849_b8d374b3",
+      "range": {
+        "startLine": 257,
+        "startChar": 22,
+        "endLine": 257,
+        "endChar": 27
+      },
+      "revId": "0a8d82ceb6c02ec71626091bfd58a3d07a255115",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
