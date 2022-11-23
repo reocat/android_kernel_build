@@ -16,6 +16,24 @@
       "message": "Do you still have a change to common/ to be uploaded?",
       "revId": "1eac99a951114324b9db78f21482be36a7ab75d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ecf96ae_e19956fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2022-11-23T01:04:53Z",
+      "side": 1,
+      "message": "No change to this kleaf/common_kernels.bzl file now, only the one on the kernel common repository here https://android-review.googlesource.com/c/kernel/common/+/2307805.\n\nI thought with the help of this change, the problem there could be resolved, but in fact it\u0027s not that simple:(\n\nMaybe there is something else that needs to be updated with this  kleaf/common_kernels.bzl file to resolve that problem, but we could submit in a separate CL I think.\n\nThanks for all help on this change!",
+      "parentUuid": "2e44b00f_fce8890d",
+      "revId": "1eac99a951114324b9db78f21482be36a7ab75d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
