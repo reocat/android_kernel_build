@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de95a849_b8d374b3",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-23T13:16:47Z",
+      "side": 1,
+      "message": "All the previous variables here don\u0027t include the suffix `_deps`, let\u0027s keep it consistent.",
+      "range": {
+        "startLine": 257,
+        "startChar": 22,
+        "endLine": 257,
+        "endChar": 27
+      },
+      "revId": "0a8d82ceb6c02ec71626091bfd58a3d07a255115",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
