@@ -28,7 +28,9 @@ load(":kernel_config_aspect.bzl", "KernelConfigAspectInfo", "kernel_config_aspec
 # Helper functions and rules.
 
 _KASAN_FLAG = "//build/kernel/kleaf:kasan"
+_KGDB_FLAG = "//build/kernel/kleaf:kgdb"
 _LTO_FLAG = "//build/kernel/kleaf:lto"
+_ARCHS = ("aarch64", "x86_64")
 
 def _symlink_config(ctx, kernel_build, filename):
     """Symlinks the `.config` file of the `kernel_build` to a file with file name `{filename}`.
@@ -79,7 +81,7 @@ def _get_transitioned_config_impl(ctx):
     ]
     return DefaultInfo(files = depset(files), runfiles = ctx.runfiles(files = files))
 
-def _transition_test(name, kernel_build, test_data_rule, expected):
+def _transition_test(name, kernel_build, test_data_rule, expected, **test_data_rule_kwargs):
     """Test the effect of a flag on `kernel_config`.
 
     Helper for testing a flag.
@@ -93,6 +95,7 @@ def _transition_test(name, kernel_build, test_data_rule, expected):
     test_data_rule(
         name = name + "_actual",
         kernel_build = kernel_build,
+        **test_data_rule_kwargs
     )
     native.filegroup(
         name = name + "_expected",
@@ -172,28 +175,69 @@ def _kasan_test(name, kernel_build):
         expected = ["data/{}_config".format(_kasan_str(kasan)) for kasan in (True, False)],
     )
 
+## Tests on --kgdb
+def _kgdb_str(kgdb, arch):
+    return ("kgdb" if kgdb else "nokgdb") + "_" + arch
+
+def _kgdb_transition_impl(settings, attr):
+    return {_kgdb_str(kgdb, attr.arch): {_KGDB_FLAG: kgdb} for kgdb in (True, False)}
+
+_kgdb_transition = transition(
+    implementation = _kgdb_transition_impl,
+    inputs = [],
+    outputs = [_KGDB_FLAG],
+)
+
+_kgdb_test_data = rule(
+    implementation = _get_transitioned_config_impl,
+    doc = "Get `.config` for a kernel with the LTO transition.",
+    attrs = dicts.add(_get_config_attrs_common(_kgdb_transition), {
+        "arch": attr.string(),
+    }),
+)
+
+def _kgdb_test(name, arch, kernel_build):
+    """Test the effect of a `--kgdb` on `kernel_config`."""
+
+    _transition_test(
+        name = name,
+        kernel_build = kernel_build,
+        test_data_rule = _kgdb_test_data,
+        expected = ["data/{}_config".format(_kgdb_str(kgdb, arch)) for kgdb in (True, False)],
+        arch = arch,
+    )
+
 ## Tests on `trim_nonlisted_kmi`
+
+def _trim_str(trim):
+    return "trim" if trim else "notrim"
 
 def _trim_test(name, kernels):
     """Test the effect of `trim_nonlisted_kmi` on `kernel_config`.
 
     Args:
         name: name of test
-        kernels: a dict, where key is whether trimming is enabled, and value is
+        kernels: a dict, where key is a struct, and value is
           the label to the target under test (`kernel_build`).
+
+          The key struct contains:
+          - trim: whether trimming is enabled
+          - arch: architecture
     """
     tests = []
-    for trim, prefix in {True: "trim", False: "notrim"}.items():
+    for key, kernel_build in kernels.items():
+        trim_str = _trim_str(key.trim)
+        prefix = key.arch + "_" + trim_str
         test_name = "{name}_{prefix}".format(name = name, prefix = prefix)
 
         _get_config(
             name = test_name + "_config",
-            prefix = prefix,
-            kernel_build = kernels[trim],
+            prefix = trim_str,
+            kernel_build = kernel_build,
         )
         contain_lines_test(
             name = test_name,
-            expected = "data/{}_config".format(prefix),
+            expected = "data/{}_config".format(trim_str),
             actual = test_name + "_config",
         )
         tests.append(test_name)
@@ -208,24 +252,28 @@ def _combined_transition_impl(settings, attr):
     ret = {}
     for lto in LTO_VALUES:
         for kasan in (True, False):
-            if kasan and lto not in ("default", "none"):
-                continue
+            for kgdb in (True, False):
+                if kasan and lto not in ("default", "none"):
+                    continue
 
-            key = {
-                "lto": lto,
-                "kasan": kasan,
-            }
-            key_str = json.encode(key)
-            ret[key_str] = {
-                _LTO_FLAG: lto,
-                _KASAN_FLAG: kasan,
-            }
+                key = {
+                    "lto": lto,
+                    "kasan": kasan,
+                    "kgdb": kgdb,
+                    "arch": attr.arch,
+                }
+                key_str = json.encode(key)
+                ret[key_str] = {
+                    _LTO_FLAG: lto,
+                    _KASAN_FLAG: kasan,
+                    _KGDB_FLAG: kgdb,
+                }
     return ret
 
 _combined_transition = transition(
     implementation = _combined_transition_impl,
     inputs = [],
-    outputs = [_KASAN_FLAG, _LTO_FLAG],
+    outputs = [_KASAN_FLAG, _KGDB_FLAG, _LTO_FLAG],
 )
 
 def _combined_test_actual_impl(ctx):
@@ -237,6 +285,7 @@ def _combined_test_actual_impl(ctx):
         flag_dir = paths.join(
             key["lto"],
             _kasan_str(key["kasan"]),
+            _kgdb_str(key["kgdb"], key["arch"]),
         )
 
         files += [
@@ -244,8 +293,10 @@ def _combined_test_actual_impl(ctx):
             _symlink_config(ctx, kernel_build, paths.join(flag_dir, key["lto"] + "_config")),
             # Test kasan setting
             _symlink_config(ctx, kernel_build, paths.join(flag_dir, _kasan_str(key["kasan"]) + "_config")),
+            # Test kgdb setting
+            _symlink_config(ctx, kernel_build, paths.join(flag_dir, _kgdb_str(key["kgdb"], key["arch"]) + "_config")),
             # Test trim setting
-            _symlink_config(ctx, kernel_build, paths.join(flag_dir, ctx.attr.prefix + "_config")),
+            _symlink_config(ctx, kernel_build, paths.join(flag_dir, ctx.attr.trim_str + "_config")),
         ]
 
     return DefaultInfo(files = depset(files), runfiles = ctx.runfiles(files = files))
@@ -254,7 +305,8 @@ _combined_test_actual = rule(
     implementation = _combined_test_actual_impl,
     doc = "Test on all combinations of flags and attributes on `kernel_config`",
     attrs = dicts.add(_get_config_attrs_common(_combined_transition), {
-        "prefix": attr.string(),
+        "trim_str": attr.string(),
+        "arch": attr.string(),
     }),
 )
 
@@ -263,23 +315,31 @@ def _combined_option_test(name, kernels):
 
     Args:
         name: name of test
-        kernels: a dict, where key is whether trimming is enabled, and value is
+        kernels: a dict, where key is a struct, and value is
           the label to the target under test (`kernel_build`).
+
+          The key struct contains:
+          - trim: whether trimming is enabled
+          - arch: architecture
     """
     tests = []
-    for trim, prefix in {True: "trim", False: "notrim"}.items():
+    for key, kernel_build in kernels.items():
+        trim_str = _trim_str(key.trim)
+        prefix = key.arch + "_" + trim_str
         test_name = "{name}_{prefix}".format(name = name, prefix = prefix)
 
         _combined_test_actual(
             name = test_name + "_actual",
-            prefix = prefix,
-            kernel_build = kernels[trim],
+            trim_str = trim_str,
+            arch = key.arch,
+            kernel_build = kernel_build,
         )
         native.filegroup(
             name = test_name + "_expected",
             srcs = ["data/{}_config".format(lto) for lto in LTO_VALUES] +
                    ["data/{}_config".format(_kasan_str(kasan)) for kasan in (True, False)] +
-                   ["data/{}_config".format(prefix)],
+                   ["data/{}_config".format(_kgdb_str(kgdb, key.arch)) for kgdb in (True, False)] +
+                   ["data/{}_config".format(trim_str)],
         )
         contain_lines_test(
             name = test_name,
@@ -296,47 +356,62 @@ def _combined_option_test(name, kernels):
 ## Exported test suite.
 
 def kernel_config_option_test_suite(name):
-    kwargs = dicts.add(
-        srcs = ["//common:kernel_aarch64_sources"],
-        outs = [],
-        build_config = "//common:build.config.gki.aarch64",
-        tags = ["manual"],
-    )
+    for arch in _ARCHS:
+        kernel_build(
+            name = name + "_kernel_{}".format(arch),
+            srcs = ["//common:kernel_{}_sources".format(arch)],
+            build_config = "//common:build.config.gki.{}".format(arch),
+            outs = [],
+            tags = ["manual"],
+        )
 
-    kernel_build(
-        name = name + "_kernel",
-        **kwargs
-    )
+        kernel_build(
+            name = name + "_kernel_{}_trim".format(arch),
+            srcs = ["//common:kernel_{}_sources".format(arch)],
+            build_config = "//common:build.config.gki.{}".format(arch),
+            trim_nonlisted_kmi = True,
+            kmi_symbol_list = "data/fake_kmi_symbol_list",
+            outs = [],
+            tags = ["manual"],
+        )
 
-    kernel_build(
-        name = name + "_kernel_trim",
-        trim_nonlisted_kmi = True,
-        kmi_symbol_list = "data/fake_kmi_symbol_list",
-        **kwargs
-    )
+        kernel_build(
+            name = name + "_kernel_{}_notrim".format(arch),
+            srcs = ["//common:kernel_{}_sources".format(arch)],
+            build_config = "//common:build.config.gki.{}".format(arch),
+            trim_nonlisted_kmi = False,
+            kmi_symbol_list = "data/fake_kmi_symbol_list",
+            outs = [],
+            tags = ["manual"],
+        )
 
-    kernel_build(
-        name = name + "_kernel_notrim",
-        trim_nonlisted_kmi = False,
-        kmi_symbol_list = "data/fake_kmi_symbol_list",
-        **kwargs
-    )
-
-    trim_kernels = {True: name + "_kernel_trim", False: name + "_kernel_notrim"}
+    trim_kernels = {}
+    for arch in _ARCHS:
+        for trim in (True, False):
+            trim_kernels[struct(trim = trim, arch = arch)] = \
+                name + "_kernel_{}_{}".format(arch, _trim_str(trim))
 
     tests = []
 
-    _lto_test(
-        name = name + "_lto_test",
-        kernel_build = name + "_kernel",
-    )
-    tests.append(name + "_lto_test")
+    for arch in _ARCHS:
+        _lto_test(
+            name = name + "_lto_{}_test".format(arch),
+            kernel_build = name + "_kernel_{}".format(arch),
+        )
+        tests.append(name + "_lto_{}_test".format(arch))
 
-    _kasan_test(
-        name = name + "_kasan_test",
-        kernel_build = name + "_kernel",
-    )
-    tests.append(name + "_kasan_test")
+        _kasan_test(
+            name = name + "_kasan_{}_test".format(arch),
+            kernel_build = name + "_kernel_{}".format(arch),
+        )
+        tests.append(name + "_kasan_{}_test".format(arch))
+
+        _kgdb_test(
+            name = name + "_kgdb_{}_test".format(arch),
+            kernel_build = name + "_kernel_{}".format(arch),
+            arch = arch,
+        )
+        tests.append(name + "_kgdb_{}_test".format(arch))
 
     _trim_test(
         name = name + "_trim_test",
