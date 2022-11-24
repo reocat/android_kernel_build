@@ -177,6 +177,47 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b875ac3_10bd5894",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-24T12:00:00Z",
+      "side": 1,
+      "message": "We should really just drop those. They do not follow naming convention for exported variables and the fix is easy enough if it breaks somebody.",
+      "parentUuid": "6993d1ce_ca9a51d1",
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97668edb_82a4357d",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-24T12:00:00Z",
+      "side": 1,
+      "message": "if this is deprecated, we should not use it.",
+      "range": {
+        "startLine": 116,
+        "startChar": 16,
+        "endLine": 116,
+        "endChar": 28
+      },
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bde8b1d8_5b8f1380",
