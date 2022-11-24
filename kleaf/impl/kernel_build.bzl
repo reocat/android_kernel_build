@@ -956,6 +956,40 @@ def get_grab_cmd_step(ctx, src_dir):
         cmd_dir = cmd_dir,
     )
 
+def _get_grab_gdb_scripts_step(ctx):
+    """Returns a step for grabbing gdb scripts.
+
+    Args:
+        ctx: ctx
+
+    Returns:
+        A struct with these fields:
+        * inputs
+        * tools
+        * outputs
+        * cmd
+    """
+
+    outputs = []
+    cmd = ""
+    if ctx.attr._kgdb[BuildSettingInfo].value:
+        kgdb = ctx.actions.declare_directory("{name}/gdb_scripts".format(name = ctx.label.name))
+        outputs.append(kgdb)
+        cmd = """
+            (
+                kgdb_real=$(realpath {kgdb})
+                cd ${{OUT_DIR}}
+                cp --parents -aL -t ${{kgdb_real}} vmlinux-gdb.py scripts/gdb/linux/*.py
+            )
+        """.format(kgdb = kgdb.path)
+
+    return struct(
+        inputs = [],
+        tools = [],
+        cmd = cmd,
+        outputs = outputs,
+    )
+
 def _build_main_action(
         ctx,
         kbuild_mixed_tree_ret,
@@ -1008,6 +1042,7 @@ def _build_main_action(
     grab_symtypes_step = _get_grab_symtypes_step(ctx)
     grab_gcno_step = _get_grab_gcno_step(ctx)
     grab_cmd_step = get_grab_cmd_step(ctx, "${OUT_DIR}")
+    grab_gdb_scripts_step = _get_grab_gdb_scripts_step(ctx)
     check_remaining_modules_step = _get_check_remaining_modules_step(
         ctx = ctx,
         all_module_names_file = all_module_names_file,
@@ -1022,6 +1057,7 @@ def _build_main_action(
         grab_symtypes_step,
         grab_gcno_step,
         grab_cmd_step,
+        grab_gdb_scripts_step,
         check_remaining_modules_step,
     )
 
@@ -1063,6 +1099,8 @@ def _build_main_action(
            {grab_gcno_step_cmd}
          # Grab *.cmd
            {grab_cmd_cmd}
+         # Grab GDB scripts
+           {grab_gdb_scripts_cmd}
          # Grab in-tree modules
            {grab_intree_modules_cmd}
          # Grab unstripped in-tree modules
@@ -1085,6 +1123,7 @@ def _build_main_action(
         grab_symtypes_cmd = grab_symtypes_step.cmd,
         grab_gcno_step_cmd = grab_gcno_step.cmd,
         grab_cmd_cmd = grab_cmd_step.cmd,
+        grab_gdb_scripts_cmd = grab_gdb_scripts_step.cmd,
         check_remaining_modules_cmd = check_remaining_modules_step.cmd,
         modules_staging_dir = modules_staging_dir,
         modules_staging_archive_self = modules_staging_archive_self.path,
