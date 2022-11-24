@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "165af1b3_34ec4b09",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-24T11:53:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "85096033_52f32180",
+      "range": {
+        "startLine": 338,
+        "startChar": 13,
+        "endLine": 338,
+        "endChar": 16
+      },
+      "revId": "3dfc17db3cd1fc4ff3cedda83f656328cd30b83e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cfd1176_f326fad6",
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "This is just copy/pasted from elsewhere in the script, so I\u0027ll fix it in a follow-up, if you don\u0027t mind.",
       "parentUuid": "0a3da9ac_1d4e5046",
+      "range": {
+        "startLine": 506,
+        "startChar": 0,
+        "endLine": 507,
+        "endChar": 40
+      },
+      "revId": "3dfc17db3cd1fc4ff3cedda83f656328cd30b83e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a14cb61_42685568",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 4
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-24T11:53:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2e17dfe7_963e5b3c",
       "range": {
         "startLine": 506,
         "startChar": 0,
