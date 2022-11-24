@@ -185,6 +185,20 @@ def _config_kasan(ctx):
     )
     return struct(configs = configs, deps = [])
 
+def _config_kgdb(ctx):
+    """Returns configs for --kgdb.
+
+    Key are configs names. Values are from `_config`, which is a format string that
+    can produce an option to `scripts/config`.
+    """
+    kgdb = ctx.attr._kgdb[BuildSettingInfo].value
+    if not kgdb:
+        return struct(configs = {}, deps = [])
+    configs = dict(
+        GDB_SCRIPTS = _config.enable,
+    )
+    return struct(configs = configs, deps = [])
+
 def _reconfig(ctx):
     """Return a command and extra inputs to re-configure `.config` file."""
     configs = {}
@@ -195,6 +209,7 @@ def _reconfig(ctx):
         _config_trim,
         _config_kasan,
         _config_gcov,
+        _config_kgdb,
     ):
         pair = fn(ctx)
         configs.update(pair.configs)
