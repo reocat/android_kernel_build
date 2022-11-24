@@ -47,3 +47,5 @@
 `--kasan`: [kasan](docs/kasan.md)
 
 `--gcov`: [Keep GCOV files](docs/gcov.md)
+
+`--kgdb`: [GDB scripts](docs/kgdb.md)
