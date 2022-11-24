@@ -28,6 +28,7 @@ load(":kernel_config_aspect.bzl", "KernelConfigAspectInfo", "kernel_config_aspec
 # Helper functions and rules.
 
 _KASAN_FLAG = "//build/kernel/kleaf:kasan"
+_KGDB_FLAG = "//build/kernel/kleaf:kgdb"
 _LTO_FLAG = "//build/kernel/kleaf:lto"
 
 def _symlink_config(ctx, kernel_build, filename):
@@ -172,6 +173,34 @@ def _kasan_test(name, kernel_build):
         expected = ["data/{}_config".format(_kasan_str(kasan)) for kasan in (True, False)],
     )
 
+## Tests on --kgdb
+def _kgdb_str(kgdb):
+    return "kgdb" if kgdb else "nokgdb"
+
+def _kgdb_transition_impl(settings, attr):
+    return {_kgdb_str(kgdb): {_KGDB_FLAG: kgdb} for kgdb in (True, False)}
+
+_kgdb_transition = transition(
+    implementation = _kgdb_transition_impl,
+    inputs = [],
+    outputs = [_KGDB_FLAG],
+)
+
+_kgdb_test_data = rule(
+    implementation = _get_transitioned_config_impl,
+    doc = "Get `.config` for a kernel with the LTO transition.",
+    attrs = _get_config_attrs_common(_kgdb_transition),
+)
+
+def _kgdb_test(name, kernel_build):
+    """Test the effect of a `--kgdb` on `kernel_config`."""
+    _transition_test(
+        name = name,
+        kernel_build = kernel_build,
+        test_data_rule = _kgdb_test_data,
+        expected = ["data/{}_config".format(_kgdb_str(kgdb)) for kgdb in (True, False)],
+    )
+
 ## Tests on `trim_nonlisted_kmi`
 
 def _trim_test(name, kernels):
@@ -208,24 +237,27 @@ def _combined_transition_impl(settings, attr):
     ret = {}
     for lto in LTO_VALUES:
         for kasan in (True, False):
-            if kasan and lto not in ("default", "none"):
-                continue
+            for kgdb in (True, False):
+                if kasan and lto not in ("default", "none"):
+                    continue
 
-            key = {
-                "lto": lto,
-                "kasan": kasan,
-            }
-            key_str = json.encode(key)
-            ret[key_str] = {
-                _LTO_FLAG: lto,
-                _KASAN_FLAG: kasan,
-            }
+                key = {
+                    "lto": lto,
+                    "kasan": kasan,
+                    "kgdb": kgdb,
+                }
+                key_str = json.encode(key)
+                ret[key_str] = {
+                    _LTO_FLAG: lto,
+                    _KASAN_FLAG: kasan,
+                    _KGDB_FLAG: kgdb,
+                }
     return ret
 
 _combined_transition = transition(
     implementation = _combined_transition_impl,
     inputs = [],
-    outputs = [_KASAN_FLAG, _LTO_FLAG],
+    outputs = [_KASAN_FLAG, _KGDB_FLAG, _LTO_FLAG],
 )
 
 def _combined_test_actual_impl(ctx):
@@ -237,6 +269,7 @@ def _combined_test_actual_impl(ctx):
         flag_dir = paths.join(
             key["lto"],
             _kasan_str(key["kasan"]),
+            _kgdb_str(key["kgdb"]),
         )
 
         files += [
@@ -244,6 +277,8 @@ def _combined_test_actual_impl(ctx):
             _symlink_config(ctx, kernel_build, paths.join(flag_dir, key["lto"] + "_config")),
             # Test kasan setting
             _symlink_config(ctx, kernel_build, paths.join(flag_dir, _kasan_str(key["kasan"]) + "_config")),
+            # Test kgdb setting
+            _symlink_config(ctx, kernel_build, paths.join(flag_dir, _kgdb_str(key["kgdb"]) + "_config")),
             # Test trim setting
             _symlink_config(ctx, kernel_build, paths.join(flag_dir, ctx.attr.prefix + "_config")),
         ]
@@ -279,6 +314,7 @@ def _combined_option_test(name, kernels):
             name = test_name + "_expected",
             srcs = ["data/{}_config".format(lto) for lto in LTO_VALUES] +
                    ["data/{}_config".format(_kasan_str(kasan)) for kasan in (True, False)] +
+                   ["data/{}_config".format(_kgdb_str(kgdb)) for kgdb in (True, False)] +
                    ["data/{}_config".format(prefix)],
         )
         contain_lines_test(
@@ -337,6 +373,12 @@ def kernel_config_option_test_suite(name):
         kernel_build = name + "_kernel",
     )
     tests.append(name + "_kasan_test")
+
+    _kgdb_test(
+        name = name + "_kgdb_test",
+        kernel_build = name + "_kernel",
+    )
+    tests.append(name + "_kgdb_test")
 
     _trim_test(
         name = name + "_trim_test",
