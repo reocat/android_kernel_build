@@ -197,6 +197,7 @@ def _reconfig(ctx):
         _config_trim,
         _config_kasan,
         _config_gcov,
+        _config_kgdb,
     ):
         pair = fn(ctx)
         configs += pair.configs
