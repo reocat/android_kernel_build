@@ -166,6 +166,7 @@ def dump_kernel_abi(linux_tree, dump_path, symbol_list, vmlinux_path=None):
 
         tidy_abi_command = ["abitidy",
                             "--all",
+                            "--locations", "file",
                             "--renumber-anonymous-types",
                             "--no-report-untyped",
                             "--input", temp_path,
