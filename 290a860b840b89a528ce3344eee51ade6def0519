@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e4d4eb_36283935",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2022-11-28T22:09:14Z",
+      "side": 1,
+      "message": "Thanks for the reviews!",
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2561580_4491ba52",
@@ -14,6 +31,30 @@
       "writtenOn": "2022-11-23T13:24:54Z",
       "side": 1,
       "message": "that is either of the variants:\n\n  1) if \"arm64\" or \"risc64\" then \"Image\" \n  2) if \"x86_64\" then prefix the image with \"bz\"",
+      "range": {
+        "startLine": 652,
+        "startChar": 1,
+        "endLine": 657,
+        "endChar": 47
+      },
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f550e537_eaf80fdd",
+        "filename": "build_utils.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2022-11-28T22:09:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2561580_4491ba52",
       "range": {
         "startLine": 652,
         "startChar": 1,
@@ -142,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1bece32_ac9c7169",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2022-11-28T22:09:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6dfb4af_db206732",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 56
+      },
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec3dd612_ed72b71d",
@@ -231,6 +296,30 @@
       "writtenOn": "2022-11-23T13:24:54Z",
       "side": 1,
       "message": "if x86 is the odd one out, then this should rather be \"DEFAULT_IMAGES\".",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 22
+      },
+      "revId": "290a860b840b89a528ce3344eee51ade6def0519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd99df5a_07e747a8",
+        "filename": "kleaf/impl/constants.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2022-11-28T22:09:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bde8b1d8_5b8f1380",
       "range": {
         "startLine": 26,
         "startChar": 0,
