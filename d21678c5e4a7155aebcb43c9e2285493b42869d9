@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cb0d80a_f25db013",
+        "filename": "kleaf/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-30T16:29:26Z",
+      "side": 1,
+      "message": "that could also benefit from some sorting/grouping",
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1240c58c_12dff48e",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-30T16:29:26Z",
+      "side": 1,
+      "message": "not exactly a --debug_* flag, it rather falls in the category of gcov and kasan (above)\n\n(this listing needs a cleanup generally to separate kbuild features from kleaf features)",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05003a12_2b818943",
+        "filename": "kleaf/docs/kgdb.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-30T16:29:26Z",
+      "side": 1,
+      "message": "use",
+      "range": {
+        "startLine": 3,
+        "startChar": 56,
+        "endLine": 3,
+        "endChar": 62
+      },
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6495ff0a_425a8eef",
+        "filename": "kleaf/docs/kgdb.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-30T16:29:26Z",
+      "side": 1,
+      "message": "Example change for virtual devices:",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 34
+      },
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "787829b4_87d89bc9",
+        "filename": "kleaf/docs/kgdb.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-30T16:29:26Z",
+      "side": 1,
+      "message": "https://android-review.googlesource.com/c/kernel/common-modules/virtual-device/+/2315864",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 99
+      },
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70d114bf_b9a3a86c",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-11-30T16:29:26Z",
+      "side": 1,
+      "message": "why the underscore?",
+      "range": {
+        "startLine": 64,
+        "startChar": 13,
+        "endLine": 64,
+        "endChar": 18
+      },
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
