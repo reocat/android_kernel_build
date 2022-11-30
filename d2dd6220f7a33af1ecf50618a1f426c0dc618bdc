@@ -171,6 +171,30 @@
       },
       "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2abc36d_b9551b4e",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-11-30T22:56:07Z",
+      "side": 1,
+      "message": "Thanks.\n\nBy the time, you get to it; I end up pushing the empty line with module conversion which I had to quicken my test in conversion process. 😊\n\nI did not have mix of LF and CRLF.\n\nI ended up adding an empty line in temp filter file using the echo; as a last resort.",
+      "parentUuid": "60485fa1_cccc87c0",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 168,
+        "endChar": 40
+      },
+      "revId": "d2dd6220f7a33af1ecf50618a1f426c0dc618bdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
