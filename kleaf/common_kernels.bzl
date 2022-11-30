@@ -789,6 +789,13 @@ def _define_prebuilts(**kwargs):
             tags = ["manual"],
         )
 
+        for filename in main_target_outs:
+            native.filegroup(
+                name = name + "_downloaded/" + filename,
+                srcs = ["@{}//{}".format(repo_name, filename)],
+                tags = ["manual"],
+            )
+
         native.filegroup(
             name = name + "_module_outs_file",
             srcs = [":" + name],
@@ -826,6 +833,16 @@ def _define_prebuilts(**kwargs):
             }),
             **kwargs
         )
+
+        for filename in main_target_outs:
+            native.filegroup(
+                name = name + "_download_or_build/" + filename,
+                srcs = select({
+                    ":use_prebuilt_gki_set": [":" + name + "_downloaded/" + filename],
+                    "//conditions:default": [":" + name + "/" + filename],
+                }),
+                tags = ["manual"],
+            )
 
         for config in GKI_DOWNLOAD_CONFIGS:
             target_suffix = config["target_suffix"]
