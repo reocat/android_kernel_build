@@ -78,6 +78,18 @@ def define_kleaf_workspace(common_kernel_package = None):
         target = "kernel_kleaf",
     )
 
+    download_artifacts_repo(
+        name = "aosp_arm64_prebuilts",
+        optional_files = ["ramdisk.img"],
+        target = "aosp_arm64-userdebug",
+    )
+
+    download_artifacts_repo(
+        name = "aosp_x86_64_prebuilts",
+        optional_files = ["ramdisk.img"],
+        target = "aosp_x86_64-userdebug",
+    )
+
     # Fake local_jdk to avoid fetching rules_java for any exec targets.
     # See build/kernel/kleaf/impl/fake_local_jdk/README.md.
     native.local_repository(

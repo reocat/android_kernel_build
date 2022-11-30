@@ -122,6 +122,7 @@ class BazelWrapper(object):
         # Arguments known by this bazel wrapper.
         parser = argparse.ArgumentParser(add_help=False)
         parser.add_argument("--use_prebuilt_gki")
+        parser.add_argument("--use_prebuilt_ramdisk")
         parser.add_argument("--experimental_strip_sandbox_path",
                             action='store_true')
         parser.add_argument("--strip_execroot", action='store_true')
@@ -151,10 +152,21 @@ class BazelWrapper(object):
             if sys.stdout.isatty() or sys.stderr.isatty():
                 self.transformed_command_args.append("--color=yes")
 
+        kleaf_download_build_number_map = {}
+
         if self.known_args.use_prebuilt_gki:
             self.transformed_command_args.append("--//common:use_prebuilt_gki")
-            self.env[
-                "KLEAF_DOWNLOAD_BUILD_NUMBER_MAP"] = f"gki_prebuilts={self.known_args.use_prebuilt_gki}"
+            kleaf_download_build_number_map["gki_prebuilts"] = self.known_args.use_prebuilt_gki
+
+        if self.known_args.use_prebuilt_ramdisk:
+            kleaf_download_build_number_map[
+                "aosp_arm64_prebuilts"] = self.known_args.use_prebuilt_ramdisk
+            kleaf_download_build_number_map[
+                "aosp_x86_64_prebuilts"] = self.known_args.use_prebuilt_ramdisk
+
+        if kleaf_download_build_number_map:
+            self.env["KLEAF_DOWNLOAD_BUILD_NUMBER_MAP"] = ",".join(
+                f"{k}={v}" for k, v in kleaf_download_build_number_map.items())
 
         if self.known_args.make_jobs is not None:
             self.env["KLEAF_MAKE_JOBS"] = str(self.known_args.make_jobs)
