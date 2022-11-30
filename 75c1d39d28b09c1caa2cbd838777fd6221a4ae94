@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ec45f67_03aa845a",
+        "filename": "kleaf/impl/image/boot_image_builder.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-11-30T01:59:49Z",
+      "side": 1,
+      "message": "We should support building without a ramdisk",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 10
+      },
+      "revId": "75c1d39d28b09c1caa2cbd838777fd6221a4ae94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
