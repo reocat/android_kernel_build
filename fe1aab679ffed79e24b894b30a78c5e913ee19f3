@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8769aba9_e054642d",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-11-30T18:19:31Z",
+      "side": 1,
+      "message": "this will leave a lot of trailing spaces, is that intended?\n\nnvm I think this will only leave one last line with this problem, which `buildifier` should fix without problems.",
+      "range": {
+        "startLine": 149,
+        "startChar": 15,
+        "endLine": 149,
+        "endChar": 19
+      },
+      "revId": "fe1aab679ffed79e24b894b30a78c5e913ee19f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8b57121_98679d02",
