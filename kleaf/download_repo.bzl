@@ -81,6 +81,25 @@ def _get_build_number(repository_ctx):
 def _handle_no_build_number(repository_ctx):
     """Handles the case where the build number cannot be found."""
 
+    if repository_ctx.attr.allow_fail:
+        build_file = """
+filegroup(
+    name = "file",
+    srcs = [],
+    visibility=["@{parent_repo}//{filename}:__pkg__"],
+)
+        """.format(
+            filename = repository_ctx.attr.filename,
+            parent_repo = repository_ctx.attr.parent_repo,
+        )
+        repository_ctx.file("file/BUILD.bazel", build_file, executable = False)
+
+    else:
+        _fail_hard_no_build_nubmer(repository_ctx)
+
+def _fail_hard_no_build_nubmer(repository_ctx):
+    """Fails hard on the case where the build number cannot be found."""
+
     SAMPLE_BUILD_NUMBER = "8077484"
     if repository_ctx.attr.parent_repo == "gki_prebuilts":
         msg = """
