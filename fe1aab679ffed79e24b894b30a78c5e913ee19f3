@@ -45,6 +45,30 @@
       },
       "revId": "fe1aab679ffed79e24b894b30a78c5e913ee19f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34e5ac84_03bb8b08",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-01T00:33:39Z",
+      "side": 1,
+      "message": "`expr for x in iter if condition` is not valid in starlark",
+      "parentUuid": "b8b57121_98679d02",
+      "range": {
+        "startLine": 145,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 41
+      },
+      "revId": "fe1aab679ffed79e24b894b30a78c5e913ee19f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
