@@ -118,6 +118,30 @@
       },
       "revId": "c2ac77ff5986441080737e66ca565e7615b31a26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "325e349c_fcd7bd00",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-01T23:41:52Z",
+      "side": 0,
+      "message": "Ack, that definitely needs to be documented separately. Filed b/261091787 to track this.",
+      "parentUuid": "66a2651c_0c0ba9e6",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 53
+      },
+      "revId": "c2ac77ff5986441080737e66ca565e7615b31a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
