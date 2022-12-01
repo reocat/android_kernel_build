@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Tests for `ddk_module`."""
+
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//lib:unittest.bzl", "analysistest", "asserts")
 load("//build/kernel/kleaf/impl:common_providers.bzl", "ModuleSymversInfo")
@@ -96,6 +98,10 @@ def _ddk_module_test_make(
     )
 
 def ddk_module_test_suite(name):
+    """Tests for `ddk_module`.
+
+    Args:
+        name: name of the test suite."""
     kernel_build(
         name = name + "_kernel_build",
         build_config = "build.config.fake",
