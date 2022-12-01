@@ -131,6 +131,30 @@
       },
       "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a48c50b7_017a0d51",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-01T00:39:33Z",
+      "side": 1,
+      "message": "The underscore should apply to other options too. These are NOT APIs that the `kernel_config` rule should expose\n\nkernel_config itself isn\u0027t a public API, but from its own point of view, it shouldn\u0027t expose these options. We can clean up the rest later.",
+      "parentUuid": "70d114bf_b9a3a86c",
+      "range": {
+        "startLine": 64,
+        "startChar": 13,
+        "endLine": 64,
+        "endChar": 18
+      },
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
