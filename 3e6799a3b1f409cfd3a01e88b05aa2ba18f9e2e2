@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31192afb_bf6afd01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-01T01:40:41Z",
+      "side": 1,
+      "message": "Matthias, PTAL at this as well. (I\u0027ll change kernel_build_abi to kernel_abi in follow up CLs, but the idea is there).",
+      "revId": "3e6799a3b1f409cfd3a01e88b05aa2ba18f9e2e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "663d1bdd_20c44306",
