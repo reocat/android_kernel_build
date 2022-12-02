@@ -729,9 +729,10 @@ def _get_cache_dir_step(ctx):
         config_tags_json = json.encode_indent(ctx.attr.config[KernelEnvAttrInfo].config_tags, indent = "  ")
 
         cache_dir_cmd = """
-              KLEAF_CACHED_OUT_DIR={cache_dir}/${{OUT_DIR_SUFFIX}}
+              KLEAF_CACHED_COMMON_OUT_DIR={cache_dir}/${{OUT_DIR_SUFFIX}}
+              KLEAF_CACHED_OUT_DIR=${{KLEAF_CACHED_COMMON_OUT_DIR}}/${{KERNEL_DIR}}
               mkdir -p "${{KLEAF_CACHED_OUT_DIR}}"
-              {lock_comp_write} "${{KLEAF_CACHED_OUT_DIR}}/kleaf_config_tags.json" <<EOF
+              {lock_comp_write} "${{KLEAF_CACHED_COMMON_OUT_DIR}}/kleaf_config_tags.json" <<EOF
 {config_tags_json}
 EOF
 
@@ -743,6 +744,7 @@ EOF
 
               export OUT_DIR=${{KLEAF_CACHED_OUT_DIR}}
               unset KLEAF_CACHED_OUT_DIR
+              unset KLEAF_CACHED_COMMON_OUT_DIR
         """.format(
             lock_comp_write = ctx.executable._lock_comp_write.path,
             cache_dir = ctx.attr._cache_dir[BuildSettingInfo].value,
