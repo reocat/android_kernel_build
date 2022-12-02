@@ -135,6 +135,30 @@
       },
       "revId": "3e6799a3b1f409cfd3a01e88b05aa2ba18f9e2e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc5e9e61_0eb0936b",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-02T02:13:39Z",
+      "side": 1,
+      "message": "Feel free to merge this CL and we can discuss about kernel_build_abi_dist later. This can unblock b/242072873 (switching to kernel_abi)",
+      "parentUuid": "ffba8da8_8f982f99",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "3e6799a3b1f409cfd3a01e88b05aa2ba18f9e2e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
