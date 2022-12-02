@@ -159,7 +159,7 @@ _download_artifact_repo = repository_rule(
         "build_number": attr.string(),
         "parent_repo": attr.string(doc = "Name of the parent `download_artifacts_repo`"),
         "filename": attr.string(),
-        "target": attr.string(doc = "Name of target on [ci.android.com](http://ci.android.com), e.g. `kernel_kleaf`"),
+        "target": attr.string(doc = "Name of target on [ci.android.com](http://ci.android.com), e.g. `kernel_aarch64`"),
         "sha256": attr.string(default = ""),
         "allow_fail": attr.bool(),
     },
@@ -199,7 +199,7 @@ def download_artifacts_repo(
     ```
     download_artifacts_repo(
         name = "gki_prebuilts",
-        target = "kernel_kleaf",
+        target = "kernel_aarch64",
         build_number = "8077484"
         files = ["vmlinux"],
         optional_files = ["abi_symbollist"],
