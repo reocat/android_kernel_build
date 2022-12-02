@@ -723,9 +723,15 @@ def _get_cache_dir_step(ctx):
     if ctx.attr._config_is_local[BuildSettingInfo].value:
         if not ctx.attr._cache_dir[BuildSettingInfo].value:
             fail("--config=local requires --cache_dir.")
+
+        config_tags_json = json.encode_indent(ctx.attr.config[KernelEnvAttrInfo].config_tags, indent = "  ")
+
         cache_dir_cmd = """
               KLEAF_CACHED_OUT_DIR={cache_dir}/${{OUT_DIR_SUFFIX}}
               mkdir -p "${{KLEAF_CACHED_OUT_DIR}}"
+              cat > "${{KLEAF_CACHED_OUT_DIR}}/kleaf_config_tags.json" <<EOF
+{config_tags_json}
+EOF
 
               # source/ and build/ are symlinks to the source tree and $OUT_DIR, respectively,
               rsync -aL --exclude=source --exclude=build \\
@@ -737,6 +743,7 @@ def _get_cache_dir_step(ctx):
               unset KLEAF_CACHED_OUT_DIR
         """.format(
             cache_dir = ctx.attr._cache_dir[BuildSettingInfo].value,
+            config_tags_json = config_tags_json,
         )
     return struct(inputs = [], tools = [], cmd = cache_dir_cmd, outputs = [])
 
