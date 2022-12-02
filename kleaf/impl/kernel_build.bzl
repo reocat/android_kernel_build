@@ -734,6 +734,7 @@ def _get_cache_dir_step(ctx):
                   "${{OUT_DIR}}/" "${{KLEAF_CACHED_OUT_DIR}}/"
 
               export OUT_DIR=${{KLEAF_CACHED_OUT_DIR}}
+              export KCPPFLAGS="${{KCPPFLAGS}} -ffile-prefix-map=${{KLEAF_CACHED_OUT_DIR}}/="
               unset KLEAF_CACHED_OUT_DIR
         """.format(
             cache_dir = ctx.attr._cache_dir[BuildSettingInfo].value,
