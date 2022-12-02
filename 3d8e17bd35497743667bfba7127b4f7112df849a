@@ -16,6 +16,24 @@
       "message": "Great improvement!\n\nDo we actually have to sync the sources at all? KBuild is perfectly fine with out_dir!\u003dsource_dir and that is why it puts the symlinks in the first place. I would have thought the just `mkdir $OUT_DIR` and setting it for the env so it ends up in `make O\u003d$OUT_DIR` is actually enough?",
       "revId": "3d8e17bd35497743667bfba7127b4f7112df849a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e74822_1540a42f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-02T19:07:42Z",
+      "side": 1,
+      "message": "I think this is syncing whatever in $OUT_DIR (artifacts from kernel_config rule) to our cache dir, maybe?\n\nPerhaps this calculation should be copied to kernel_config as well...",
+      "parentUuid": "1c456c74_592550bb",
+      "revId": "3d8e17bd35497743667bfba7127b4f7112df849a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
