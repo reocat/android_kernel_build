@@ -721,16 +721,18 @@ def _get_cache_dir_step(ctx):
     # target needs to be rebuilt, we are using $OUT_DIR from previous invocations. This
     # boosts --config=local builds. See (b/235632059).
     cache_dir_cmd = ""
+    tools = []
     if ctx.attr._config_is_local[BuildSettingInfo].value:
         if not ctx.attr._cache_dir[BuildSettingInfo].value:
             fail("--config=local requires --cache_dir.")
 
+        tools.append(ctx.executable._lock_comp_write)
         config_tags_json = json.encode_indent(ctx.attr.config[KernelEnvAttrInfo].config_tags, indent = "  ")
 
         cache_dir_cmd = """
               KLEAF_CACHED_OUT_DIR={cache_dir}/${{OUT_DIR_SUFFIX}}
               mkdir -p "${{KLEAF_CACHED_OUT_DIR}}"
-              cat > "${{KLEAF_CACHED_OUT_DIR}}/kleaf_config_tags.json" <<EOF
+              {lock_comp_write} "${{KLEAF_CACHED_OUT_DIR}}/kleaf_config_tags.json" <<EOF
 {config_tags_json}
 EOF
 
@@ -743,10 +745,11 @@ EOF
               export OUT_DIR=${{KLEAF_CACHED_OUT_DIR}}
               unset KLEAF_CACHED_OUT_DIR
         """.format(
+            lock_comp_write = ctx.executable._lock_comp_write.path,
             cache_dir = ctx.attr._cache_dir[BuildSettingInfo].value,
             config_tags_json = config_tags_json,
         )
-    return struct(inputs = [], tools = [], cmd = cache_dir_cmd, outputs = [])
+    return struct(inputs = [], tools = tools, cmd = cache_dir_cmd, outputs = [])
 
 def _get_grab_intree_modules_step(ctx, has_any_modules, modules_staging_dir, ruledir, all_module_names_file):
     """Returns a step for grabbing the in-tree modules from `OUT_DIR`.
@@ -1367,6 +1370,11 @@ _kernel_build = rule(
             allow_single_file = True,
             default = Label("//build/kernel/kleaf:search_and_cp_output.py"),
             doc = "label referring to the script to process outputs",
+        ),
+        "_lock_comp_write": attr.label(
+            default = Label("//build/kernel/kleaf/impl:lock_comp_write"),
+            executable = True,
+            cfg = "exec",
         ),
         "deps": attr.label_list(
             allow_files = True,
