@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fa503ac_c6a62c52",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 47
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-03T00:20:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebb08c3f_3b4d9982",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 17
+      },
+      "revId": "f9f37b1cfa48a6f553e505df4b7565119995fcf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9978625_53f73bfe",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-02T15:32:14Z",
       "side": 1,
       "message": "should this be `submodule`? if not I think this recommendation is the same as the one in `ddk_module` section.",
+      "range": {
+        "startLine": 109,
+        "startChar": 38,
+        "endLine": 109,
+        "endChar": 44
+      },
+      "revId": "f9f37b1cfa48a6f553e505df4b7565119995fcf9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36a6fba4_e5363544",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 47
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-03T00:20:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9978625_53f73bfe",
       "range": {
         "startLine": 109,
         "startChar": 38,
