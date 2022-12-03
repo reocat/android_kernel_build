@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24db527b_2d30ee89",
+        "filename": "kleaf/docs/download_prebuilt.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-03T00:01:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "050fd1ed_97e059d3",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "1f7293e13c2726274b52706e6e1c4c79c447b6f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "646ef962_d296a0ee",
@@ -58,6 +82,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7581f026_72cbffdf",
+        "filename": "kleaf/docs/download_prebuilt.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-03T00:01:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "646ef962_d296a0ee",
+      "revId": "1f7293e13c2726274b52706e6e1c4c79c447b6f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66c9b42b_f3067205",
@@ -71,6 +113,30 @@
       "writtenOn": "2022-12-02T12:00:49Z",
       "side": 1,
       "message": "update the build number for that example to work.",
+      "range": {
+        "startLine": 203,
+        "startChar": 24,
+        "endLine": 203,
+        "endChar": 31
+      },
+      "revId": "1f7293e13c2726274b52706e6e1c4c79c447b6f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e9c545a_b8b639c9",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-03T00:01:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66c9b42b_f3067205",
       "range": {
         "startLine": 203,
         "startChar": 24,
