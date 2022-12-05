@@ -16,6 +16,7 @@
 
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_setting")
+load(":cc_toolchain_config.bzl", "clang_config")
 
 bzl_library(
     name = "impl",
@@ -136,4 +137,149 @@ py_binary(
     deps = [
         "@io_abseil_py//absl/flags:argparse_flags",
     ],
+)
+
+# CC
+
+# Local build platforms
+platform(
+    name = "linux_x86_64",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+)
+
+platform(
+    name = "android_arm64",
+    constraint_values = [
+        "@platforms//os:android",
+        "@platforms//cpu:arm64",
+    ],
+)
+
+platform(
+    name = "android_x86_64",
+    constraint_values = [
+        "@platforms//os:android",
+        "@platforms//cpu:x86_64",
+    ],
+)
+
+# FIXME version
+filegroup(
+    name = "clang_files",
+    srcs = [
+        "cc_toolchain_redirect/cc_toolchain_redirect.sh",
+        "cc_toolchain_redirect/clang",
+        "//prebuilts/clang/host/linux-x86/clang-r475365:binaries",
+    ],
+)
+
+# CC: android arm64
+
+toolchain(
+    name = "android_arm64_clang_toolchain",
+    exec_compatible_with = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+    target_compatible_with = [
+        "@platforms//os:android",
+        "@platforms//cpu:arm64",
+    ],
+    toolchain = ":android_arm64_clang",
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+)
+
+cc_toolchain(
+    name = "android_arm64_clang",
+    all_files = ":clang_files",
+    # FIXME correct list of files
+    compiler_files = ":clang_files",
+    dwp_files = ":clang_files",
+    linker_files = ":clang_files",
+    objcopy_files = ":clang_files",
+    strip_files = ":clang_files",
+    supports_param_files = 0,
+    toolchain_config = ":android_arm64_toolchain_config",
+    toolchain_identifier = "android_arm64_clang_id",
+)
+
+clang_config(
+    name = "android_arm64_toolchain_config",
+    target_cpu = "arm64",
+    toolchain_identifier = "android_arm64_clang_id",
+)
+
+# CC: android x86_64
+
+toolchain(
+    name = "android_x86_64_clang_toolchain",
+    exec_compatible_with = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+    target_compatible_with = [
+        "@platforms//os:android",
+        "@platforms//cpu:x86_64",
+    ],
+    toolchain = ":android_x86_64_clang",
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+)
+
+cc_toolchain(
+    name = "android_x86_64_clang",
+    all_files = ":clang_files",
+    # FIXME correct list of files
+    compiler_files = ":clang_files",
+    dwp_files = ":clang_files",
+    linker_files = ":clang_files",
+    objcopy_files = ":clang_files",
+    strip_files = ":clang_files",
+    supports_param_files = 0,
+    toolchain_config = ":android_x86_64_toolchain_config",
+    toolchain_identifier = "android_x86_64_clang_id",
+)
+
+clang_config(
+    name = "android_x86_64_toolchain_config",
+    target_cpu = "x86_64",
+    toolchain_identifier = "android_x86_64_clang_id",
+)
+
+# CC: linux x86_64
+
+toolchain(
+    name = "linux_x86_64_clang_toolchain",
+    exec_compatible_with = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+    target_compatible_with = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+    toolchain = ":linux_x86_64_clang",
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+)
+
+cc_toolchain(
+    name = "linux_x86_64_clang",
+    all_files = ":clang_files",
+    # FIXME correct list of files
+    compiler_files = ":clang_files",
+    dwp_files = ":clang_files",
+    linker_files = ":clang_files",
+    objcopy_files = ":clang_files",
+    strip_files = ":clang_files",
+    supports_param_files = 0,
+    toolchain_config = ":linux_x86_64_toolchain_config",
+    toolchain_identifier = "linux_x86_64_clang_id",
+)
+
+clang_config(
+    name = "linux_x86_64_toolchain_config",
+    target_cpu = "x86_64",
+    toolchain_identifier = "linux_x86_64_clang_id",
 )
