@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ffa7e3c_eb469c99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-05T15:53:59Z",
+      "side": 1,
+      "message": "The error seems consistent between the failing targets:\n\n```\nERROR: /buildbot/src/android/common-android14-5.15/common/BUILD.bazel:22:22: Creating abi_symbollist and report @//common:kernel_aarch64_kmi_symbol_list failed:\n (Exit 1): bash failed: error executing command (from target //common:kernel_aarch64_kmi_symbol_list) \n```\n\nPTAL",
+      "revId": "df52198a87aebf8bbf109c55b38ee637ed548a68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
