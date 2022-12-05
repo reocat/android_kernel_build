@@ -27,6 +27,10 @@ import %workspace%/build/kernel/kleaf/bazelrc/rbe.bazelrc
 import %workspace%/build/kernel/kleaf/bazelrc/stamp.bazelrc
 import %workspace%/build/kernel/kleaf/bazelrc/release.bazelrc
 
+# Toolchains and platforms
+import %workspace%/build/kernel/kleaf/bazelrc/cc_toolchain.bazelrc
+import %workspace%/build/kernel/kleaf/bazelrc/platforms.bazelrc
+
 # flag aliases for build settings
 build --flag_alias=allow_ddk_unsafe_headers=//build/kernel/kleaf:allow_ddk_unsafe_headers
 build --flag_alias=allow_undeclared_modules=//build/kernel/kleaf:allow_undeclared_modules
