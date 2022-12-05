@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65d11e7c_ef7bd3f2",
+        "filename": "kleaf/impl/fake_rules_cc/cc/BUILD.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-05T23:22:15Z",
+      "side": 1,
+      "message": "`kleaf/impl/fake_rules_cc/cc/BUILD.bazel` seems redundant, why not `kleaf/impl/fake_rules/cc/BUILD.bazel` ?",
+      "revId": "e6da18952b4c226caee6dbe3cbe50877db044886",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2fd1237_edeebd09",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-05T23:22:15Z",
+      "side": 1,
+      "message": "add a comment as well here",
+      "revId": "e6da18952b4c226caee6dbe3cbe50877db044886",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
