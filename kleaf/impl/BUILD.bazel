@@ -16,6 +16,7 @@
 
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_setting")
+load(":cc_toolchain_config.bzl", "clang_config")
 
 bzl_library(
     name = "impl",
@@ -136,4 +137,95 @@ py_binary(
     deps = [
         "@io_abseil_py//absl/flags:argparse_flags",
     ],
+)
+
+# CC
+
+# Local build platforms
+platform(
+    name = "linux_x86_64",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+)
+
+platform(
+    name = "android_arm64",
+    constraint_values = [
+        "@platforms//os:android",
+        "@platforms//cpu:arm64",
+    ],
+)
+
+platform(
+    name = "android_x86_64",
+    constraint_values = [
+        "@platforms//os:android",
+        "@platforms//cpu:x86_64",
+    ],
+)
+
+# FIXME version
+filegroup(
+    name = "clang_files",
+    srcs = [
+        "cc_toolchain_redirect/cc_toolchain_redirect.sh",
+        "cc_toolchain_redirect/clang",
+        "//prebuilts/clang/host/linux-x86/clang-r475365:binaries",
+    ],
+)
+
+# CC: arm64
+
+cc_toolchain_suite(
+    name = "cc_toolchain_suite",
+    toolchains = {
+        "arm64": ":arm64_clang",
+        "x86_64": ":x86_64_clang",
+        # ??
+        "k8": ":x86_64_clang",
+    },
+)
+
+cc_toolchain(
+    name = "arm64_clang",
+    all_files = ":clang_files",
+    # FIXME correct list of files
+    compiler_files = ":clang_files",
+    dwp_files = ":clang_files",
+    linker_files = ":clang_files",
+    objcopy_files = ":clang_files",
+    strip_files = ":clang_files",
+    supports_param_files = 0,
+    toolchain_config = ":arm64_toolchain_config",
+    toolchain_identifier = "arm64_clang_id",
+)
+
+clang_config(
+    name = "arm64_toolchain_config",
+    target_cpu = "arm64",
+    toolchain_identifier = "arm64_clang_id",
+)
+
+# CC: x86_64
+
+cc_toolchain(
+    name = "x86_64_clang",
+    all_files = ":clang_files",
+    # FIXME correct list of files
+    compiler_files = ":clang_files",
+    dwp_files = ":clang_files",
+    linker_files = ":clang_files",
+    objcopy_files = ":clang_files",
+    strip_files = ":clang_files",
+    supports_param_files = 0,
+    toolchain_config = ":x86_64_toolchain_config",
+    toolchain_identifier = "x86_64_clang_id",
+)
+
+clang_config(
+    name = "x86_64_toolchain_config",
+    target_cpu = "x86_64",
+    toolchain_identifier = "x86_64_clang_id",
 )
