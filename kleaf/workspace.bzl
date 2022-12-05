@@ -94,3 +94,17 @@ def define_kleaf_workspace(common_kernel_package = None):
     native.register_toolchains(
         "//prebuilts/build-tools:py_toolchain",
     )
+
+    _register_cc_toolchain()
+
+def _register_cc_toolchain():
+    native.register_toolchains(
+        "//prebuilts/clang/host/linux-x86/kleaf:android_arm64_clang_toolchain",
+        "//prebuilts/clang/host/linux-x86/kleaf:android_x86_64_clang_toolchain",
+        "//prebuilts/clang/host/linux-x86/kleaf:linux_x86_64_clang_toolchain",
+    )
+
+def _register_execution_platforms():
+    native.register_execution_platforms(
+        "//build/kernel/kleaf/impl:linux_x86_64",
+    )
