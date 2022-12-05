@@ -17,6 +17,18 @@ load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
 
 package(default_visibility = ["//visibility:public"])
 
+filegroup(
+    name = "sysroot",
+    srcs = glob(
+        ["build-tools/sysroot/**"],
+        allow_empty = False,
+    ),
+    visibility = [
+        ":__subpackages__",
+        "//prebuilts/clang/host/linux-x86:__subpackages__",
+    ],
+)
+
 hermetic_tools(
     name = "hermetic-tools",
     srcs = glob(
@@ -35,10 +47,8 @@ hermetic_tools(
         "sh",
         "tar",
     ],
-    deps = glob(
-        ["build-tools/sysroot/**"],
-        allow_empty = False,
-    ) + [
+    deps = [
+        ":sysroot",
         "//prebuilts/build-tools:linux-x86",
         "//prebuilts/kernel-build-tools:linux-x86",
         "@prebuilt_ndk//:sysroot",
