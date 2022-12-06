@@ -51,6 +51,24 @@
       "message": "add a comment as well here",
       "revId": "e6da18952b4c226caee6dbe3cbe50877db044886",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9228a9c6_b4c58379",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-06T05:37:31Z",
+      "side": 1,
+      "message": "Is this sufficient?\n\nI didn\u0027t add a README.md like fake_local_jdk because the dependency seems to be from multiple places. Plus, the repository itself is just a wrapper over the native.cc_* functions.",
+      "parentUuid": "c2fd1237_edeebd09",
+      "revId": "e6da18952b4c226caee6dbe3cbe50877db044886",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
