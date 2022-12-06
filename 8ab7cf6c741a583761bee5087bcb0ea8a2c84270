@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47d9abe1_8668e02f",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-06T04:23:22Z",
+      "side": 1,
+      "message": "I\u0027ll send an email. From the research I understand, Bazel CANNOT build two things that belongs to two different \"platforms\" in one command:\n\nhttps://bazel.build/concepts/platforms",
+      "parentUuid": "2f5bb0e9_51eaf8f7",
+      "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d9afbc4_9935f2a4",
         "filename": "kleaf/impl/BUILD.bazel",
         "patchSetId": 5
