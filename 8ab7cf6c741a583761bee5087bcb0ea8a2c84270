@@ -198,6 +198,24 @@
       "message": "llvm-ar?",
       "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "848ad2f0_3a3e9d23",
+        "filename": "kleaf/impl/cc_toolchain_config.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-06T05:46:03Z",
+      "side": 1,
+      "message": "you mean L38? yes. I just need clang for this proof-of-concept,  and I\u0027ll resolve the other binaries in upcoming patchsets.",
+      "parentUuid": "a53b2e9c_d4247165",
+      "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
