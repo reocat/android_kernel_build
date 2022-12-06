@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "87b66ba9_3de391bb",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-06T05:32:57Z",
+      "side": 1,
+      "message": "See email.\n\nAs long as we aren\u0027t building multiple things for multiple platforms, it can build successfully (and I\u0027ve checked that it is selecting the correct toolchain). See build commands in the commit message.\n\nBut I haven\u0027t figure out how to build everything in `//build/kernel/kleaf/tests/cc_testing` simultaneously yet.",
+      "parentUuid": "47d9abe1_8668e02f",
+      "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d9afbc4_9935f2a4",
         "filename": "kleaf/impl/BUILD.bazel",
         "patchSetId": 5
@@ -96,6 +114,30 @@
       "writtenOn": "2022-12-05T23:29:26Z",
       "side": 1,
       "message": "get rid of _setup_env.sh completely and define those in bzl. :-)\n\nAlso, newer kernels (the ones that we care about in this code line), have a LLVM\u003d1 flag to define all this properly in the kernel.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 49
+      },
+      "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c1a98fe_2ebee234",
+        "filename": "kleaf/impl/cc_toolchain_config.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-06T05:32:57Z",
+      "side": 1,
+      "message": "See the CL above this. My other idea is to have bazel.py execute _setup_hermetic_toolchain.sh to generate these variables to a .bzl file, but yeah I agree that your option seems better (and I should have kernel_env depend on this).\n\nBut let me get this working then think of deduplication later.",
+      "parentUuid": "f3731d91_e000b57b",
       "range": {
         "startLine": 5,
         "startChar": 0,
