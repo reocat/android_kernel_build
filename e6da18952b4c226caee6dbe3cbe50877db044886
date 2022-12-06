@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10976fbb_6ab66a22",
+        "filename": "kleaf/impl/fake_rules_cc/cc/BUILD.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-06T05:34:29Z",
+      "side": 1,
+      "message": "Because `rules_cc` is a single word; it is from https://github.com/bazelbuild/rules_cc.\n\nAnd `cc` is a directory in that repository. See that link.",
+      "parentUuid": "65d11e7c_ef7bd3f2",
+      "revId": "e6da18952b4c226caee6dbe3cbe50877db044886",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2fd1237_edeebd09",
