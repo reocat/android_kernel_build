@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ddaaaf0_b806bbe2",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-06T04:22:19Z",
+      "side": 1,
+      "message": "Unfortunately, Roboleaf takes over `//prebuilts/clang/host/linux-x86/` and now the package requires `@soong_injection`, which is another topic to discuss.",
+      "parentUuid": "9d9afbc4_9935f2a4",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 66
+      },
+      "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f3731d91_e000b57b",
         "filename": "kleaf/impl/cc_toolchain_config.bzl",
         "patchSetId": 5
@@ -77,6 +101,24 @@
       "writtenOn": "2022-12-05T23:29:26Z",
       "side": 1,
       "message": "why not ld-lld as usual?",
+      "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b54f6d7f_b33fa704",
+        "filename": "kleaf/impl/cc_toolchain_config.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-06T04:22:19Z",
+      "side": 1,
+      "message": "These are fake values; I need to get clang working first, then think about linking etc.",
+      "parentUuid": "9b90222e_20e24525",
       "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
