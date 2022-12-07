@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "686b7f78_574e0aaa",
+        "filename": "kleaf/README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-07T22:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cb0d80a_f25db013",
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1240c58c_12dff48e",
@@ -65,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cc6dcbe_92e5f0f2",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-07T22:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36f5a29c_73b5a192",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05003a12_2b818943",
@@ -78,6 +120,30 @@
       "writtenOn": "2022-11-30T16:29:26Z",
       "side": 1,
       "message": "use",
+      "range": {
+        "startLine": 3,
+        "startChar": 56,
+        "endLine": 3,
+        "endChar": 62
+      },
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29691799_4bbfb85f",
+        "filename": "kleaf/docs/kgdb.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-07T22:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05003a12_2b818943",
       "range": {
         "startLine": 3,
         "startChar": 56,
@@ -111,6 +177,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbd5604e_d0a9f164",
+        "filename": "kleaf/docs/kgdb.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-07T22:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6495ff0a_425a8eef",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 34
+      },
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "787829b4_87d89bc9",
@@ -124,6 +214,30 @@
       "writtenOn": "2022-11-30T16:29:26Z",
       "side": 1,
       "message": "https://android-review.googlesource.com/c/kernel/common-modules/virtual-device/+/2315864",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 99
+      },
+      "revId": "d21678c5e4a7155aebcb43c9e2285493b42869d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a10a0b30_2042471a",
+        "filename": "kleaf/docs/kgdb.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-07T22:34:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "787829b4_87d89bc9",
       "range": {
         "startLine": 32,
         "startChar": 8,
