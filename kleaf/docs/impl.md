@@ -21,6 +21,7 @@ Make the following changes to the kernel manifest to support Bazel build.
 * Dependent repositories for Bazel, including:
     * [prebuilts/bazel/linux-x86\_64](https://android.googlesource.com/platform/prebuilts/bazel/linux-x86_64/)
     * [prebuilts/jdk/jdk11](https://android.googlesource.com/platform/prebuilts/jdk/jdk11/)
+    * [build/bazel](https://android.googlesource.com/platform/build/bazel/)
     * [build/bazel\_common\_rules](https://android.googlesource.com/platform/build/bazel_common_rules/)
     * [external/bazel-skylib](https://android.googlesource.com/platform/external/bazel-skylib/)
     * [external/stardoc](https://android.googlesource.com/platform/external/stardoc/)
