@@ -22,6 +22,30 @@
       },
       "revId": "6d2fc7337d558766c74adb2352da659bd12d6f45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "715762f1_afeb51db",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-07T21:28:09Z",
+      "side": 1,
+      "message": "Okay this does needs to be conditionally enabled: https://android.googlesource.com/kernel/common/+/b3a6fd241fc8/lib/Kconfig.kgdb#63",
+      "parentUuid": "ce1c5073_ce891eaa",
+      "range": {
+        "startLine": 208,
+        "startChar": 10,
+        "endLine": 208,
+        "endChar": 29
+      },
+      "revId": "6d2fc7337d558766c74adb2352da659bd12d6f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
