@@ -68,6 +68,9 @@ def _initramfs_impl(ctx):
     ).ramdisk_compress
 
     command = """
+               set -x
+               trap '>&2 /bin/date' DEBUG
+
                mkdir -p {initramfs_staging_dir}
              # Build initramfs
                create_modules_staging "${{MODULES_LIST}}" {modules_staging_dir} \
