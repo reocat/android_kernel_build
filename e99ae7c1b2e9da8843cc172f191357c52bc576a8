@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca964c33_727c5432",
+        "filename": "kleaf/impl/kgdb.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-07T23:35:17Z",
+      "side": 1,
+      "message": "From https://cs.android.com/android/kernel/superproject/+/common-android-mainline:common-modules/virtual-device/kgdb.fragment;l\u003d8 this should be `disable`",
+      "range": {
+        "startLine": 89,
+        "startChar": 20,
+        "endLine": 89,
+        "endChar": 26
+      },
+      "revId": "e99ae7c1b2e9da8843cc172f191357c52bc576a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
