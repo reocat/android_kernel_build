@@ -16,6 +16,29 @@
       "message": "Not fixing existing errors",
       "revId": "a58a78f5a8dc4a78262992a794c55ae10dfef762",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec48e82c_7804b8cd",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-07T23:58:10Z",
+      "side": 1,
+      "message": "Should this path exist?",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 64
+      },
+      "revId": "a58a78f5a8dc4a78262992a794c55ae10dfef762",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
