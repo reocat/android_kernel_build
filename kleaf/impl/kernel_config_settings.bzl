@@ -75,6 +75,7 @@ def _kernel_env_config_settings_raw():
         _kernel_config_config_settings_raw(),
         force_add_vmlinux_utils.config_settings_raw(),
         {
+            "_preserve_cmd": "//build/kernel/kleaf/impl:preserve_cmd",
             "_kbuild_symtypes_flag": "//build/kernel/kleaf:kbuild_symtypes",
         },
     )

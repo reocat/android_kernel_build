@@ -943,7 +943,13 @@ def get_grab_cmd_step(ctx, src_dir):
         cmd_dir = ctx.actions.declare_directory("{name}/cmds".format(name = ctx.label.name))
         outputs.append(cmd_dir)
         cmd = """
-            rsync -a --prune-empty-dirs --include '*/' --include '*.cmd' --exclude '*' {src_dir}/ {cmd_dir}/
+            rsync -a --prune-empty-dirs \
+                --include '*/' \
+                --include '*.cmd' \
+                --include '*.c' \
+                --include 'vmlinux.a' \
+                --include 'compile_commands.json' \
+                --exclude '*' {src_dir}/ {cmd_dir}/
         """.format(
             src_dir = src_dir,
             cmd_dir = cmd_dir.path,

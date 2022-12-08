@@ -134,6 +134,8 @@ def _kernel_env_impl(ctx):
     command += stamp.set_localversion_cmd(ctx)
 
     additional_make_goals = force_add_vmlinux_utils.additional_make_goals(ctx)
+    if ctx.attr._preserve_cmd[BuildSettingInfo].value:
+        additional_make_goals.append("compile_commands.json")
 
     command += """
         # create a build environment
