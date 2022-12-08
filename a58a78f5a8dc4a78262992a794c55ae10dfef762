@@ -87,6 +87,30 @@
       },
       "revId": "a58a78f5a8dc4a78262992a794c55ae10dfef762",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d52b2c0f_5cd060f0",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-08T00:20:21Z",
+      "side": 1,
+      "message": "Actually, I tested that the path is only needed when @remote_coverage_tools is requested. So I believe we just need to fix the GKI and internal targets that runs the tests. (and notify partners for the change, but if they aren\u0027t depending on `kernel_build_test`, this should be fine)",
+      "parentUuid": "e9796833_a5d40c46",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 64
+      },
+      "revId": "a58a78f5a8dc4a78262992a794c55ae10dfef762",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
