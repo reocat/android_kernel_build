@@ -39,6 +39,30 @@
       },
       "revId": "a58a78f5a8dc4a78262992a794c55ae10dfef762",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "505f1f30_3257d654",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-08T00:10:41Z",
+      "side": 1,
+      "message": "It already does.\n\nBut let me check if all manifests have them",
+      "parentUuid": "ec48e82c_7804b8cd",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 64
+      },
+      "revId": "a58a78f5a8dc4a78262992a794c55ae10dfef762",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
