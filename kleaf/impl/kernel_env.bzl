@@ -136,6 +136,8 @@ def _kernel_env_impl(ctx):
 
     additional_make_goals = force_add_vmlinux_utils.additional_make_goals(ctx)
     additional_make_goals += kgdb.additional_make_goals(ctx)
+    if ctx.attr._build_compile_commands[BuildSettingInfo].value:
+        additional_make_goals.append("compile_commands.json")
 
     command += """
         # create a build environment
