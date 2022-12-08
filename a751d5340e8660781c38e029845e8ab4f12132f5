@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e2c10c9_8642aaa0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-08T23:07:51Z",
+      "side": 1,
+      "message": "This change may break this logic:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/image/system_dlkm_image.bzl;l\u003d75;drc\u003de8a8dd2e7febffa10ef4329712e7add2a61e3f4a\n\nBasically, we don\u0027t want to strip the modules if they are already stripped and signed",
+      "revId": "a751d5340e8660781c38e029845e8ab4f12132f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
