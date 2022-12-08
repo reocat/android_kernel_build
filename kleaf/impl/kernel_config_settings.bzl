@@ -42,6 +42,7 @@ def _kernel_build_config_settings_raw():
         force_add_vmlinux_utils.config_settings_raw(),
         base_kernel_utils.config_settings_raw(),
         {
+            "_build_compile_commands": "//build/kernel/kleaf/impl:build_compile_commands",
             "_use_kmi_symbol_list_strict_mode": "//build/kernel/kleaf:kmi_symbol_list_strict_mode",
             "_gcov": "//build/kernel/kleaf:gcov",
         },
@@ -75,6 +76,7 @@ def _kernel_env_config_settings_raw():
         _kernel_config_config_settings_raw(),
         force_add_vmlinux_utils.config_settings_raw(),
         {
+            "_build_compile_commands": "//build/kernel/kleaf/impl:build_compile_commands",
             "_kbuild_symtypes_flag": "//build/kernel/kleaf:kbuild_symtypes",
         },
     )
