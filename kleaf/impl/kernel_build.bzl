@@ -983,7 +983,6 @@ def _get_compile_commands_step(ctx):
         cmd = """
             rsync -a --prune-empty-dirs \\
                 --include '*/' \\
-                --include '*.d' \\
                 --include '*.c' \\
                 --include '*.h' \\
                 --exclude '*' ${{OUT_DIR}}/ {out_dir}/
