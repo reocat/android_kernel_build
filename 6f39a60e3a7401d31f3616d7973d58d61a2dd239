@@ -34,6 +34,24 @@
       "parentUuid": "42446e4c_88eefb0f",
       "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8251e56d_760d357d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2022-12-08T08:22:01Z",
+      "side": 1,
+      "message": "Yes, but nevermind; I thought Roboleaf already does that, but they apparently don\u0027t and in that case, short-circuiting things this way is the best option.\n\nBtw, how does py_binary depend on rules_cc? I\u0027m only slightly surprised, but I am slightly surprised about this.",
+      "parentUuid": "d3447b11_8847b321",
+      "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
