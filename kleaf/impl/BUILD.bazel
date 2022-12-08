@@ -98,6 +98,14 @@ bool_setting(
     visibility = ["//visibility:public"],
 )
 
+# If true, also build compile_commands.json and required output files in $OUT_DIR as output.
+bool_setting(
+    name = "build_compile_commands",
+    build_setting_default = False,
+    # All kernel_* from different packages can see this
+    visibility = ["//visibility:public"],
+)
+
 # Whether trimming is actually enabled.
 bool_setting(
     name = "trim_nonlisted_kmi_setting",
