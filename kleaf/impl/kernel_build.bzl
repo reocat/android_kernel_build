@@ -921,7 +921,7 @@ def _get_grab_gcno_step(ctx):
         outputs = outputs,
     )
 
-def get_grab_cmd_step(ctx, src_dir):
+def get_grab_cmd_step(ctx, src_dir, build_compile_commands = None):
     """Returns a step for grabbing the `*.cmd` from `src_dir`.
 
     Args:
@@ -935,25 +935,50 @@ def get_grab_cmd_step(ctx, src_dir):
         * outputs
         * cmd
         * cmd_dir
+        * compile_commands_with_vars
     """
     cmd = ""
     cmd_dir = None
+    compile_commands_with_vars = None
     outputs = []
     if ctx.attr._preserve_cmd[BuildSettingInfo].value:
         cmd_dir = ctx.actions.declare_directory("{name}/cmds".format(name = ctx.label.name))
-        outputs.append(cmd_dir)
         cmd = """
-            rsync -a --prune-empty-dirs --include '*/' --include '*.cmd' --exclude '*' {src_dir}/ {cmd_dir}/
+            rsync -a --prune-empty-dirs \\
+                --include '*/' \\
+                --include '*.cmd' \\
+                --include '*.c' \\
+                --exclude '*' {src_dir}/ {cmd_dir}/
         """.format(
             src_dir = src_dir,
             cmd_dir = cmd_dir.path,
         )
+        outputs.append(cmd_dir)
+        if build_compile_commands:
+            compile_commands = ctx.actions.declare_file(
+                "{name}/compile_commands.json".format(name = ctx.label.name),
+            )
+            compile_commands_with_vars = ctx.actions.declare_file(
+                "{name}/compile_commands_with_vars.json".format(name = ctx.label.name),
+            )
+            outputs.append(compile_commands)
+            outputs.append(compile_commands_with_vars)
+            cmd += """
+                cp -pl {src_dir}/compile_commands.json {compile_commands}
+                sed -e "s:${{OUT_DIR}}:\\${{OUT_DIR}}:g;s:${{ROOT_DIR}}:\\${{ROOT_DIR}}:g" \\
+                    {src_dir}/compile_commands.json > {compile_commands_with_vars}
+            """.format(
+                src_dir = src_dir,
+                compile_commands = compile_commands.path,
+                compile_commands_with_vars = compile_commands_with_vars.path,
+            )
     return struct(
         inputs = [],
         tools = [],
         cmd = cmd,
         outputs = outputs,
         cmd_dir = cmd_dir,
+        compile_commands_with_vars = compile_commands_with_vars,
     )
 
 def _build_main_action(
@@ -1007,7 +1032,7 @@ def _build_main_action(
     )
     grab_symtypes_step = _get_grab_symtypes_step(ctx)
     grab_gcno_step = _get_grab_gcno_step(ctx)
-    grab_cmd_step = get_grab_cmd_step(ctx, "${OUT_DIR}")
+    grab_cmd_step = get_grab_cmd_step(ctx, "${OUT_DIR}", build_compile_commands = True)
     check_remaining_modules_step = _get_check_remaining_modules_step(
         ctx = ctx,
         all_module_names_file = all_module_names_file,
