@@ -17,31 +17,45 @@ load(
     "KernelBuildInfo",
     "KernelEnvInfo",
 )
+load(":kernel_compile_commands.bzl", "kernel_compile_commands_transition")
 load(":srcs_aspect.bzl", "SrcsInfo", "srcs_aspect")
 load(":utils.bzl", "utils")
 
 def _kernel_kythe_impl(ctx):
-    compile_commands = ctx.file.compile_commands
+    compile_commands_with_vars = ctx.attr.kernel_build[KernelBuildInfo].compile_commands_with_vars
+    compile_commands_out_dir = ctx.attr.kernel_build[KernelBuildInfo].compile_commands_out_dir
     all_kzip = ctx.actions.declare_file(ctx.attr.name + "/all.kzip")
     runextractor_error = ctx.actions.declare_file(ctx.attr.name + "/runextractor_error.log")
     intermediates_dir = utils.intermediates_dir(ctx)
     kzip_dir = intermediates_dir + "/kzip"
     extracted_kzip_dir = intermediates_dir + "/extracted"
     transitive_inputs = [src.files for src in ctx.attr.kernel_build[SrcsInfo].srcs]
-    inputs = [compile_commands]
+    inputs = [compile_commands_with_vars, compile_commands_out_dir]
+
     inputs += ctx.attr.kernel_build[KernelEnvInfo].dependencies
     command = ctx.attr.kernel_build[KernelEnvInfo].setup
+
+    # FIXME proper outdir
+    # FIMXE runextractor_error
     command += """
-             # Copy compile_commands.json to root
-               cp {compile_commands} ${{ROOT_DIR}}
-             # Prepare directories
+             # Copy compile_commands.json to root, resolving ${{ROOT_DIR}}
+               sed -e "s:\\${{ROOT_DIR}}/{compile_commands_out_dir}:${{ROOT_DIR}}/${{KERNEL_DIR}}:g;s:\\${{ROOT_DIR}}:${{ROOT_DIR}}:g" \\
+                    {compile_commands_with_vars} > ${{ROOT_DIR}}/compile_commands.json
+
+             # Prepare directories. Cramp everything from $OUT_DIR into $ROOT_DIR/$KERNEL_DIR
+             # so that we can analyze from $ROOT_DIR/$KERNEL_DIR with all the intermediate files
                mkdir -p {kzip_dir} {extracted_kzip_dir} ${{OUT_DIR}}
+               rsync -aL --chmod=D+w --chmod=F+w ${{OUT_DIR}}/ ${{ROOT_DIR}}/${{KERNEL_DIR}}/
+               rsync -aL --chmod=D+w --chmod=F+w {compile_commands_out_dir}/ ${{ROOT_DIR}}/${{KERNEL_DIR}}/
+
              # Define env variables
-               export KYTHE_ROOT_DIRECTORY=${{ROOT_DIR}}
+               export KYTHE_ROOT_DIRECTORY=${{ROOT_DIR}}/${{KERNEL_DIR}}
                export KYTHE_OUTPUT_DIRECTORY={kzip_dir}
                export KYTHE_CORPUS="{corpus}"
              # Generate kzips
-               runextractor compdb -extractor $(which cxx_extractor) 2> {runextractor_error} || true
+               runextractor compdb -extractor $(which cxx_extractor) 2> /tmp/runextractor_error.txt || true
+
+               touch {runextractor_error}
 
              # Package it all into a single .kzip, ignoring duplicates.
                for zip in $(find {kzip_dir} -name '*.kzip'); do
@@ -52,7 +66,8 @@ def _kernel_kythe_impl(ctx):
                rm -rf {kzip_dir}
                rm -rf {extracted_kzip_dir}
     """.format(
-        compile_commands = compile_commands.path,
+        compile_commands_with_vars = compile_commands_with_vars.path,
+        compile_commands_out_dir = compile_commands_out_dir.path,
         kzip_dir = kzip_dir,
         extracted_kzip_dir = extracted_kzip_dir,
         corpus = ctx.attr.corpus,
@@ -84,14 +99,15 @@ Extract Kythe source code index (kzip file) from a `kernel_build`.
             providers = [KernelEnvInfo, KernelBuildInfo],
             aspects = [srcs_aspect],
         ),
-        "compile_commands": attr.label(
-            mandatory = True,
-            allow_single_file = True,
-            doc = "The `compile_commands.json`, or a `kernel_compile_commands` target.",
-        ),
         "corpus": attr.string(
             default = "android.googlesource.com/kernel/superproject",
             doc = "The value of `KYTHE_CORPUS`. See [kythe.io/examples](https://kythe.io/examples).",
         ),
+        # Allow any package to use kernel_compile_commands because it is a public API.
+        # The ACK source tree may be checked out anywhere; it is not necessarily //common
+        "_allowlist_function_transition": attr.label(
+            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
+        ),
     },
+    cfg = kernel_compile_commands_transition,
 )

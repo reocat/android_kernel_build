@@ -982,7 +982,9 @@ def _get_compile_commands_step(ctx):
         cmd = """
             rsync -a --prune-empty-dirs \\
                 --include '*/' \\
+                --include '*.d' \\
                 --include '*.c' \\
+                --include '*.h' \\
                 --exclude '*' ${{OUT_DIR}}/ {out_dir}/
             sed -e "s:${{OUT_DIR}}:\\${{ROOT_DIR}}/{out_dir}:g;s:${{ROOT_DIR}}:\\${{ROOT_DIR}}:g" \\
                 ${{OUT_DIR}}/compile_commands.json > {compile_commands_with_vars}
@@ -1188,6 +1190,7 @@ def _build_main_action(
         ruledir = ruledir,
         cmd_dir = grab_cmd_step.cmd_dir,
         compile_commands_with_vars = compile_commands_step.compile_commands_with_vars,
+        compile_commands_out_dir = compile_commands_step.compile_commands_out_dir,
     )
 
 def _create_infos(
@@ -1235,6 +1238,7 @@ def _create_infos(
         base_kernel_files = kbuild_mixed_tree_ret.base_kernel_files,
         interceptor_output = main_action_ret.interceptor_output,
         compile_commands_with_vars = main_action_ret.compile_commands_with_vars,
+        compile_commands_out_dir = main_action_ret.compile_commands_out_dir,
         kernel_release = all_output_files["internal_outs"]["include/config/kernel.release"],
     )
 
