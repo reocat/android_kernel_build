@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3263a07a_0b34a5f8",
+        "filename": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+        "patchSetId": 17
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-08T00:43:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8d2e4d6_7a0085bb",
+      "range": {
+        "startLine": 165,
+        "startChar": 47,
+        "endLine": 165,
+        "endChar": 50
+      },
+      "revId": "cf8eeb3edec99316cf9e396f4513bbc36fbb0cf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71441347_c6f65db8",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-07T23:51:01Z",
       "side": 1,
       "message": "is this intended or should it be `kgdb`?",
+      "range": {
+        "startLine": 193,
+        "startChar": 47,
+        "endLine": 193,
+        "endChar": 50
+      },
+      "revId": "cf8eeb3edec99316cf9e396f4513bbc36fbb0cf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adee78b2_555ac06a",
+        "filename": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+        "patchSetId": 17
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-08T00:43:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71441347_c6f65db8",
       "range": {
         "startLine": 193,
         "startChar": 47,
