@@ -1187,6 +1187,7 @@ def _build_main_action(
         unstripped_dir = grab_unstripped_modules_step.unstripped_dir,
         ruledir = ruledir,
         cmd_dir = grab_cmd_step.cmd_dir,
+        compile_commands_with_vars = compile_commands_step.compile_commands_with_vars,
     )
 
 def _create_infos(
@@ -1233,6 +1234,7 @@ def _create_infos(
         outs = all_output_files["outs"].values(),
         base_kernel_files = kbuild_mixed_tree_ret.base_kernel_files,
         interceptor_output = main_action_ret.interceptor_output,
+        compile_commands_with_vars = main_action_ret.compile_commands_with_vars,
         kernel_release = all_output_files["internal_outs"]["include/config/kernel.release"],
     )
 
