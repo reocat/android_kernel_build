@@ -956,6 +956,49 @@ def get_grab_cmd_step(ctx, src_dir):
         cmd_dir = cmd_dir,
     )
 
+def _get_compile_commands_step(ctx):
+    """Returns a step for grabbing required files for `compile_commands.json`
+
+    Args:
+        ctx: Context from the rule.
+
+    Returns:
+        A struct with these fields:
+        * inputs
+        * tools
+        * outputs
+        * compile_commands_out_dir
+        * compile_commands_with_vars
+    """
+    cmd = ""
+    compile_commands_with_vars = None
+    outputs = []
+    if ctx.attr._build_compile_commands[BuildSettingInfo].value:
+        out_dir = ctx.actions.declare_directory("{name}/compile_commands_out_dir".format(name = ctx.label.name))
+        compile_commands_with_vars = ctx.actions.declare_file(
+            "{name}/compile_commands_with_vars.json".format(name = ctx.label.name),
+        )
+        outputs += [out_dir, compile_commands_with_vars]
+        cmd = """
+            rsync -a --prune-empty-dirs \\
+                --include '*/' \\
+                --include '*.c' \\
+                --exclude '*' ${{OUT_DIR}}/ {out_dir}/
+            sed -e "s:${{OUT_DIR}}:\\${{ROOT_DIR}}/{out_dir}:g;s:${{ROOT_DIR}}:\\${{ROOT_DIR}}:g" \\
+                ${{OUT_DIR}}/compile_commands.json > {compile_commands_with_vars}
+        """.format(
+            out_dir = out_dir.path,
+            compile_commands_with_vars = compile_commands_with_vars.path,
+        )
+    return struct(
+        inputs = [],
+        tools = [],
+        cmd = cmd,
+        outputs = outputs,
+        compile_commands_with_vars = compile_commands_with_vars,
+        compile_commands_out_dir = out_dir,
+    )
+
 def _build_main_action(
         ctx,
         kbuild_mixed_tree_ret,
@@ -1008,6 +1051,7 @@ def _build_main_action(
     grab_symtypes_step = _get_grab_symtypes_step(ctx)
     grab_gcno_step = _get_grab_gcno_step(ctx)
     grab_cmd_step = get_grab_cmd_step(ctx, "${OUT_DIR}")
+    compile_commands_step = _get_compile_commands_step(ctx)
     check_remaining_modules_step = _get_check_remaining_modules_step(
         ctx = ctx,
         all_module_names_file = all_module_names_file,
@@ -1022,6 +1066,7 @@ def _build_main_action(
         grab_symtypes_step,
         grab_gcno_step,
         grab_cmd_step,
+        compile_commands_step,
         check_remaining_modules_step,
     )
 
@@ -1063,6 +1108,8 @@ def _build_main_action(
            {grab_gcno_step_cmd}
          # Grab *.cmd
            {grab_cmd_cmd}
+         # Grab files for compile_commands.json
+           {compile_commands_step}
          # Grab in-tree modules
            {grab_intree_modules_cmd}
          # Grab unstripped in-tree modules
@@ -1085,6 +1132,7 @@ def _build_main_action(
         grab_symtypes_cmd = grab_symtypes_step.cmd,
         grab_gcno_step_cmd = grab_gcno_step.cmd,
         grab_cmd_cmd = grab_cmd_step.cmd,
+        compile_commands_step = compile_commands_step.cmd,
         check_remaining_modules_cmd = check_remaining_modules_step.cmd,
         modules_staging_dir = modules_staging_dir,
         modules_staging_archive_self = modules_staging_archive_self.path,
