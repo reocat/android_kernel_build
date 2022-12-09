@@ -312,9 +312,9 @@ def kernel_images(
                     ramdisk_compression,
                 ),
             )
-
         initramfs(
             name = "{}_initramfs".format(name),
+            kernel_build = kernel_build,
             kernel_modules_install = kernel_modules_install,
             deps = deps,
             vendor_boot_modules_load = vendor_boot_modules_load,
