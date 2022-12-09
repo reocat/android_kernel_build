@@ -142,6 +142,24 @@
       "parentUuid": "929aae1f_1e394fd2",
       "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6986e361_5e8f439b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T18:53:21Z",
+      "side": 1,
+      "message": "```\n$ bazel cquery \u0027somepath(//common:kernel_dist, @local_config_cc//...)\u0027\n[...]\n//common:kernel_dist (3fc9f8e)\n//common:kernel_aarch64_dist (e46739c)\n@bazel_tools//tools/launcher:launcher (52e56cd)\n@bazel_tools//src/tools/launcher:launcher (52e56cd)\n@bazel_tools//tools/cpp:current_cc_toolchain (52e56cd)\n@bazel_tools//tools/cpp:toolchain (52e56cd)\n@local_config_cc//:toolchain (52e56cd)\n@local_config_cc//:cc-compiler-armeabi-v7a (52e56cd)\n@local_config_cc//:stub_armeabi-v7a (52e56cd)\n```\n\nThis is on my machine",
+      "parentUuid": "df9a35cb_8eace4c2",
+      "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
