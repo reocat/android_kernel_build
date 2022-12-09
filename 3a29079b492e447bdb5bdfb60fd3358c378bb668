@@ -16,6 +16,24 @@
       "message": "I\u0027d suggest just adding a `STRIP_INSTALLED_MODULES` environment variable if we just need to configure this hack for system_dlkm",
       "revId": "3a29079b492e447bdb5bdfb60fd3358c378bb668",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e287213_c498cb0c",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-09T23:42:55Z",
+      "side": 1,
+      "message": "or to use the same approach as in `kleaf/impl/image/system_dlkm_image.bzl`, to be consistent (?)",
+      "parentUuid": "e0c1f474_ae885a81",
+      "revId": "3a29079b492e447bdb5bdfb60fd3358c378bb668",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
