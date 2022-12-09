@@ -15,6 +15,7 @@
 Build initramfs.
 """
 
+load(":common_providers.bzl", "KernelBuildExtModuleInfo")
 load(":image/image_utils.bzl", "image_utils")
 
 InitramfsInfo = provider(
@@ -67,7 +68,19 @@ def _initramfs_impl(ctx):
         ramdisk_compression_args = ctx.attr.ramdisk_compression_args,
     ).ramdisk_compress
 
-    command = """
+    command = ""
+    strip_modules_cmd = ""
+    if ctx.attr.kernel_build and ctx.attr.kernel_build[KernelBuildExtModuleInfo].strip_modules:
+        strip_modules_cmd += """
+            export DO_NOT_STRIP_MODULES=
+        """
+    else:
+        strip_modules_cmd += """
+            export DO_NOT_STRIP_MODULES=1
+        """
+    command += strip_modules_cmd
+
+    command += """
                mkdir -p {initramfs_staging_dir}
              # Build initramfs
                create_modules_staging "${{MODULES_LIST}}" {modules_staging_dir} \
@@ -129,6 +142,7 @@ corresponding files.
         "vendor_boot_modules_load": attr.output(
             doc = "`vendor_boot.modules.load` or `vendor_kernel_boot.modules.load`",
         ),
+        "kernel_build": attr.label(providers = [KernelBuildExtModuleInfo]),
         "modules_list": attr.label(allow_single_file = True),
         "modules_blocklist": attr.label(allow_single_file = True),
         "modules_options": attr.label(allow_single_file = True),
