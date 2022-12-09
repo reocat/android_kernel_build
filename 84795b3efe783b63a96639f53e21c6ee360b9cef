@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21a0355c_1ad76f2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T03:04:37Z",
+      "side": 1,
+      "message": "This change should also be moved to //prebuilts/clang once the soong_injection is decoupled properly.",
+      "revId": "84795b3efe783b63a96639f53e21c6ee360b9cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b9818481_dd12a4ec",
         "filename": "kleaf/bazelrc/cc_toolchain.bazelrc",
         "patchSetId": 10
