@@ -18,6 +18,7 @@ Common utilities for working with kernel images.
 load("//build/kernel/kleaf:directory_with_structure.bzl", dws = "directory_with_structure")
 load(
     ":common_providers.bzl",
+    "KernelBuildExtModuleInfo",
     "KernelBuildInfo",
     "KernelEnvInfo",
     "KernelModuleInfo",
@@ -174,6 +175,17 @@ def _build_modules_image_attrs_common(additional = None):
         ret.update(additional)
     return ret
 
+def _strip_modules(ctx):
+    """ Utility to infer the value of strip_modules from `kernel_build`.
+
+    Args:
+        ctx: ctx.
+    Returns:
+        strip_modules.
+    """
+    _kernel_build = ctx.attr.kernel_modules_install[KernelModuleInfo].kernel_build
+    return _kernel_build[KernelBuildExtModuleInfo].strip_modules
+
 def _ramdisk_options(ramdisk_compression, ramdisk_compression_args):
     """Options for how to treat ramdisk images.
 
@@ -215,4 +227,5 @@ image_utils = struct(
     build_modules_image_impl_common = _build_modules_image_impl_common,
     build_modules_image_attrs_common = _build_modules_image_attrs_common,
     ramdisk_options = _ramdisk_options,
+    strip_modules = _strip_modules,
 )

@@ -376,6 +376,7 @@ def kernel_build(
         srcs = srcs,
         toolchain_version = toolchain_version,
         kbuild_symtypes = kbuild_symtypes,
+        strip_modules = strip_modules,
         **internal_kwargs
     )
 
