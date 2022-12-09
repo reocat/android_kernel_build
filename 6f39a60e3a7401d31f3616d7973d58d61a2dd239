@@ -70,6 +70,24 @@
       "parentUuid": "8251e56d_760d357d",
       "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b26b61e2_3a69760c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T02:24:14Z",
+      "side": 1,
+      "message": "I think the dependency is from @local_config_cc. \n\npy_binary depends on local_config_cc as you mentioned here: \n\nhttps://b.corp.google.com/issues/228238975#comment3\n\nthen `@local_config_cc//BUILD` depends on rules_cc. It says:\n\n```\nload(\"@rules_cc//cc:defs.bzl\", \"cc_toolchain\", \"cc_toolchain_suite\")\n```\n\nI don\u0027t know how local_config_cc is generated tho.",
+      "parentUuid": "3c269945_d2644789",
+      "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
