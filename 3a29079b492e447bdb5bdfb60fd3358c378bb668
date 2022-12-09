@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0c1f474_ae885a81",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T23:40:04Z",
+      "side": 1,
+      "message": "I\u0027d suggest just adding a `STRIP_INSTALLED_MODULES` environment variable if we just need to configure this hack for system_dlkm",
+      "revId": "3a29079b492e447bdb5bdfb60fd3358c378bb668",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
