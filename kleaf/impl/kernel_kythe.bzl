@@ -71,7 +71,7 @@ def _kernel_kythe_impl(ctx):
                export KYTHE_OUTPUT_DIRECTORY={kzip_dir}
                export KYTHE_CORPUS={quoted_corpus}
              # Generate kzips
-               runextractor compdb -extractor $(which cxx_extractor)
+               runextractor compdb -extractor $(which cxx_extractor) 2> /tmp/runextractor_error.txt
 
              # Package it all into a single .kzip, ignoring duplicates.
                for zip in $(find {kzip_dir} -name '*.kzip'); do
