@@ -37,6 +37,8 @@ def _vendor_dlkm_image_impl(ctx):
         )
         additional_inputs.append(ctx.file.vendor_boot_modules_load)
 
+    command += image_utils.strip_modules_cmd(ctx)
+
     command += """
             # Build vendor_dlkm
               mkdir -p {vendor_dlkm_staging_dir}
