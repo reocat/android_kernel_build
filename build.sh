@@ -1013,7 +1013,7 @@ if [ -n "${MODULES}" ]; then
     echo " Creating initramfs"
     rm -rf ${INITRAMFS_STAGING_DIR}
     create_modules_staging "${MODULES_LIST}" ${MODULES_STAGING_DIR} \
-      ${INITRAMFS_STAGING_DIR} "${MODULES_BLOCKLIST}" "-e"
+      ${INITRAMFS_STAGING_DIR} "${MODULES_BLOCKLIST}" 1 "-e"
 
     MODULES_ROOT_DIR=$(echo ${INITRAMFS_STAGING_DIR}/lib/modules/*)
     cp ${MODULES_ROOT_DIR}/modules.load ${DIST_DIR}/modules.load

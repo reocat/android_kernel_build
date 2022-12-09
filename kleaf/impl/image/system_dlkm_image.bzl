@@ -71,8 +71,6 @@ def _system_dlkm_image_impl(ctx):
         )
 
         extra_flags_cmd = """
-                     # Trick create_modules_staging to not strip, because they are already stripped and signed
-                       DO_NOT_STRIP_MODULES=
                      # Trick create_modules_staging to not look at external modules. They aren't related.
                        EXT_MODULES=
                        EXT_MODULES_MAKEFILE=
