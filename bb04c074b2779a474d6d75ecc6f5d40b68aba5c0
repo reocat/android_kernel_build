@@ -88,6 +88,24 @@
       "parentUuid": "c4636b47_ccde0125",
       "revId": "bb04c074b2779a474d6d75ecc6f5d40b68aba5c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af886b3e_539c3e94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-09T22:32:50Z",
+      "side": 1,
+      "message": "Could you please share how can I work with the `.img` file? I\u0027ve tested it with the rockpi and db845c targets (to test it directly and with the mixed build), in the db845c case (in mainline):\n\n`with strip_modules \u003d False (default)`\n```\n$ file \u003cpath_omitted\u003e/cfg80211.ko\n\u003cpath_omitted\u003e/cfg80211.ko: ELF 64-bit LSB relocatable, ARM aarch64, version 1 (SYSV), BuildID[sha1]\u003d4ae7c12aec153e633b7a1d4491870f480fa20a45, with debug_info, not stripped\n\nls -lh \u003cpath_omitted\u003e/cfg80211.ko\n-r-xr-xr-x 1 umendez primarygroup 18M Dec  9 22:20 \u003cpath_omitted\u003e/cfg80211.ko\n```\n`with strip_modules \u003d True (default)`\n```\nfile \u003cpath_omitted\u003e/cfg80211.ko\n\u003cpath_omitted\u003e/cfg80211.ko: ELF 64-bit LSB relocatable, ARM aarch64, version 1 (SYSV), BuildID[sha1]\u003d4ae7c12aec153e633b7a1d4491870f480fa20a45, not stripped\n\nls -lh \u003cpath_omitted\u003e/cfg80211.ko\n-r-xr-xr-x 1 umendez primarygroup 2.0M Dec  9 22:24 \u003cpath_omitted\u003e/cfg80211.ko\n```\n\nNote that even when the `file` command shows `not stripped` there is a difference `with debug_info` which indicates (as well as the size change 18M vs 2M) that is working, but maybe there is still something wrong when packaging the initramfs.",
+      "parentUuid": "55cae234_fcbd850b",
+      "revId": "bb04c074b2779a474d6d75ecc6f5d40b68aba5c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
