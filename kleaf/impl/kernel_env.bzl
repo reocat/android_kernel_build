@@ -82,6 +82,17 @@ def _kernel_env_impl(ctx):
     if ctx.attr._debug_annotate_scripts[BuildSettingInfo].value:
         command += debug.trap()
 
+    strip_modules_cmd = ""
+    if ctx.attr.strip_modules:
+        strip_modules_cmd """
+            export DO_NOT_STRIP_MODULES=
+        """
+    else:
+        strip_modules_cmd """
+            export DO_NOT_STRIP_MODULES=1
+        """
+    command += strip_modules_cmd
+
     if kconfig_ext:
         command += """
               export KCONFIG_EXT={kconfig_ext}
@@ -323,6 +334,10 @@ kernel_env = rule(
             doc = "`KBUILD_SYMTYPES`",
             default = "auto",
             values = ["true", "false", "auto"],
+        ),
+        "strip_modules": attr.bool(
+            doc = "If set to `True`, debug information for distributed modules is stripped.",
+            default = False,
         ),
         "_tools": attr.label_list(default = _get_tools),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
