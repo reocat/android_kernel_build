@@ -70,6 +70,24 @@
       "parentUuid": "84ab0485_21231360",
       "revId": "bb04c074b2779a474d6d75ecc6f5d40b68aba5c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55cae234_fcbd850b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-12-09T22:19:20Z",
+      "side": 1,
+      "message": "No, this doesn\u0027t work for me. I\u0027m verifying by checking the size of the cfg80211.ko module. I\u0027m running this:\n\n```\nfind out/. -name cfg80211.ko | xargs -n1 ls -l | grep -v \"\\-\u003e\"\n```\n\nand then checking the size of the files. I\u0027m also checking the file size on the out/android14-5.15/dist/vendor_kernel_boot.img image.\n\nI\u0027ve tried with `bazel clean` as well as just blowing away the `out` directory.",
+      "parentUuid": "c4636b47_ccde0125",
+      "revId": "bb04c074b2779a474d6d75ecc6f5d40b68aba5c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
