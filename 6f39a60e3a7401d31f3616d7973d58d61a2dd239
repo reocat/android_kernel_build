@@ -124,6 +124,24 @@
       "parentUuid": "2e401724_74b6dc02",
       "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df9a35cb_8eace4c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2022-12-09T12:40:07Z",
+      "side": 1,
+      "message": "@Yifan: somepath won\u0027t detect dependencies on .bzl files (unfortunately), so I think your best bet is\n\n`bazel cquery \u0027somepath(//common:kernel_dist, @local_config_cc//...)`\n\nand trusting me that @local_config_cc depends on the @rules_cc (I don\u0027t think it should just like @rules_java should not be pulled in (see my thread with Ivo)\n\n`bazel query \u0027buildfiles(deps(//common:kernel_dist))` would tell which .bzl files are needed, but not the path through which they are needed so it\u0027s not a perfect solution./\n\n`BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN\u003d1` is actually a great idea if you can pull it off; it did occur to me, but fortunately Liz could recruit more brain cells to this particular problem :)",
+      "parentUuid": "929aae1f_1e394fd2",
+      "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
