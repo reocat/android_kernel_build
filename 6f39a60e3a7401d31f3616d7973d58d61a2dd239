@@ -88,6 +88,24 @@
       "parentUuid": "3c269945_d2644789",
       "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e401724_74b6dc02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T02:26:12Z",
+      "side": 1,
+      "message": "The other cc_* are needed by `@remote_java_tools` which I think is needed by py_test, but I haven\u0027t look into it with much detail.",
+      "parentUuid": "b26b61e2_3a69760c",
+      "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
