@@ -38,6 +38,10 @@ def _vendor_dlkm_image_impl(ctx):
         additional_inputs.append(ctx.file.vendor_boot_modules_load)
 
     command += """
+    unset DO_NOT_STRIP_MODULES
+    """
+
+    command += """
             # Build vendor_dlkm
               mkdir -p {vendor_dlkm_staging_dir}
               (
