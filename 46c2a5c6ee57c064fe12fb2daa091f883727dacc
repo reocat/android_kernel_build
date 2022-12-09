@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26451bb8_ba05c41d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 65
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T01:28:52Z",
+      "side": 1,
+      "message": "We should consider relying on compile_commands.json from CL:2336264, which is more reliable than me parsing .cmd manually.\n\nThen we can even retire the preserve_cmd flag.",
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d8f3b20_790389a5",
         "filename": "kleaf/impl/ddk/analyze_inputs.bzl",
         "patchSetId": 65
