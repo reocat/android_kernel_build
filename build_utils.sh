@@ -84,6 +84,7 @@ function run_depmod() {
 #                        expected, and it's corresponding modules.* files>
 # $4 MODULES_BLOCKLIST, <File contains the list of modules to prevent from loading>
 # $5 flags to pass to depmod
+# $6 strip kernel modules if set
 function create_modules_staging() {
   local modules_list_file=$1
   local src_dir=$(echo $2/lib/modules/*)
@@ -92,6 +93,7 @@ function create_modules_staging() {
   local dest_stage=$3
   local modules_blocklist_file=$4
   local depmod_flags=$5
+  local strip_modules=$6
 
   rm -rf ${dest_dir}
   mkdir -p ${dest_dir}/kernel
@@ -138,7 +140,7 @@ function create_modules_staging() {
     fi
   fi
 
-  if [ "${DO_NOT_STRIP_MODULES}" = "1" ]; then
+  if [ "${strip_modules}" = "1" ]; then
     # strip debug symbols off initramfs modules
     find ${dest_dir} -type f -name "*.ko" \
       -exec ${OBJCOPY:-${CROSS_COMPILE}objcopy} --strip-debug {} \;
@@ -217,7 +219,7 @@ function build_system_dlkm() {
 
   rm -rf ${SYSTEM_DLKM_STAGING_DIR}
   create_modules_staging "${SYSTEM_DLKM_MODULES_LIST:-${MODULES_LIST}}" "${MODULES_STAGING_DIR}" \
-    ${SYSTEM_DLKM_STAGING_DIR} "${SYSTEM_DLKM_MODULES_BLOCKLIST:-${MODULES_BLOCKLIST}}" "-e"
+    ${SYSTEM_DLKM_STAGING_DIR} "${SYSTEM_DLKM_MODULES_BLOCKLIST:-${MODULES_BLOCKLIST}}" "-e" 0
 
   local system_dlkm_root_dir=$(echo ${SYSTEM_DLKM_STAGING_DIR}/lib/modules/*)
   cp ${system_dlkm_root_dir}/modules.load ${DIST_DIR}/system_dlkm.modules.load
@@ -271,7 +273,7 @@ function build_vendor_dlkm() {
   echo " Creating vendor_dlkm image"
 
   create_modules_staging "${VENDOR_DLKM_MODULES_LIST}" "${MODULES_STAGING_DIR}" \
-    "${VENDOR_DLKM_STAGING_DIR}" "${VENDOR_DLKM_MODULES_BLOCKLIST}"
+    "${VENDOR_DLKM_STAGING_DIR}" "${VENDOR_DLKM_MODULES_BLOCKLIST}" 1
 
   local vendor_dlkm_modules_root_dir=$(echo ${VENDOR_DLKM_STAGING_DIR}/lib/modules/*)
   local vendor_dlkm_modules_load=${vendor_dlkm_modules_root_dir}/modules.load
