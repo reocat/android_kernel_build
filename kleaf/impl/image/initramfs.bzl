@@ -67,7 +67,8 @@ def _initramfs_impl(ctx):
         ramdisk_compression_args = ctx.attr.ramdisk_compression_args,
     ).ramdisk_compress
 
-    command = """
+    command = image_utils.strip_modules_cmd(ctx)
+    command += """
                mkdir -p {initramfs_staging_dir}
              # Build initramfs
                create_modules_staging "${{MODULES_LIST}}" {modules_staging_dir} \
