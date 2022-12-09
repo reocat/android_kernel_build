@@ -52,6 +52,24 @@
       "parentUuid": "d3447b11_8847b321",
       "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c269945_d2644789",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T02:16:18Z",
+      "side": 1,
+      "message": "How do I query dependencies on extensions (`@rules_cc//cc:defs.bzl` in this case)? I tried \n\n```\nbazel cquery --transitions\u003dlite \u0027somepath(//common:kernel_dist, @rules_cc//cc:defs.bzl)\u0027\n```\n\nbut it complains about \n\n```\ntarget \u0027defs.bzl\u0027 not declared in package \u0027cc\u0027\n```",
+      "parentUuid": "8251e56d_760d357d",
+      "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
