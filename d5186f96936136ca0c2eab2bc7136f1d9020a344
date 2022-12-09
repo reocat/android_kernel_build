@@ -1,0 +1,388 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "624c4431_14514d2f",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "Are you able to just put `[TOC]` here and let this generate automatically?",
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06cb6320_815a6ab9",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "It is suitable for ...",
+      "range": {
+        "startLine": 22,
+        "startChar": 28,
+        "endLine": 22,
+        "endChar": 34
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e099923_b94e9a2f",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "also add: DDK generates Makefiles that can be used during upstream contribution to the Linux project.",
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b8bc88a_fc1bab58",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "Virtual Device",
+      "range": {
+        "startLine": 37,
+        "startChar": 18,
+        "endLine": 37,
+        "endChar": 32
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26fcaee5_eee520dc",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "Rephrase as \"the virtual device serves as a reference implementation ...\"",
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2494f9e4_4413f6e8",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "this needs a little bit of an introduction, something to give an overview of the following macros to put them into perspective before going into detail. Perhaps among the lines of:\n\nddk_module() defines the kernel module build. in order to expose headers from the kernel or from a module to other modules, ddk_headers() is used. In certain circumstances the definition of ddk_submodules makes sense. Though discouraged they can help during the initial migration from traditional definition to DDK. ... \u003c\u003c that is really just a rough example of what I would think is a suitable introduction paragraph.",
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffe6e017_25d59ba7",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "corresponding to the `-I` option",
+      "range": {
+        "startLine": 49,
+        "startChar": 33,
+        "endLine": 49,
+        "endChar": 44
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e47b2cf_3d4d3e98",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "will add to their include lookup path (corresponding to the `-I` option)",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 25
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec54bfbc_d4a5f955",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "A `ddk_module` target is a rule that defines a kernel module build using the Kbuild mechanism. Necessary `Makefiles` etc. are generated automatically.",
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0035761e_9643baf1",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "do we need to document this implementation detail?",
+      "range": {
+        "startLine": 75,
+        "startChar": 45,
+        "endLine": 75,
+        "endChar": 58
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "966c4380_1b106377",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "set",
+      "range": {
+        "startLine": 78,
+        "startChar": 38,
+        "endLine": 78,
+        "endChar": 42
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f7ae1e9_94a2cdc6",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "targets",
+      "range": {
+        "startLine": 78,
+        "startChar": 60,
+        "endLine": 78,
+        "endChar": 66
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85324304_5ff67e47",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "targets export",
+      "range": {
+        "startLine": 79,
+        "startChar": 60,
+        "endLine": 79,
+        "endChar": 66
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b7fbd90_f813a89f",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "I know the examples are elsewhere, but perhaps add some here as this is the first thing people will look at and providing them a simple snippet here would be quite convenient.",
+      "range": {
+        "startLine": 87,
+        "startChar": 56,
+        "endLine": 87,
+        "endChar": 68
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b7aadad_fa7dfb03",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "definitions",
+      "range": {
+        "startLine": 93,
+        "startChar": 67,
+        "endLine": 93,
+        "endChar": 79
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffe40417_f4213a1e",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "without specifying complete kernel submodule dependencies amongst them the submodules defined within a ddk_module.",
+      "range": {
+        "startLine": 95,
+        "startChar": 52,
+        "endLine": 96,
+        "endChar": 12
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6ecc909_9f8f0d69",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "perhaps make a separate \"NOTE: \"",
+      "range": {
+        "startLine": 99,
+        "startChar": 25,
+        "endLine": 99,
+        "endChar": 36
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38c80d01_8e3a19c6",
+        "filename": "kleaf/docs/ddk/main.md",
+        "patchSetId": 48
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-09T17:30:54Z",
+      "side": 1,
+      "message": "don\u0027t blame Kbuild (it would do the build incremental) :-)\n\nrather say: the entire build rule is invalidated and all modules are build unconditionally.",
+      "range": {
+        "startLine": 108,
+        "startChar": 71,
+        "endLine": 108,
+        "endChar": 79
+      },
+      "revId": "d5186f96936136ca0c2eab2bc7136f1d9020a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
