@@ -135,6 +135,30 @@
       },
       "revId": "a58a78f5a8dc4a78262992a794c55ae10dfef762",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b43a46dd_17c3f7a7",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T19:56:50Z",
+      "side": 1,
+      "message": "Done, no more build/bazel",
+      "parentUuid": "efc6261a_8c4d44e8",
+      "range": {
+        "startLine": 97,
+        "startChar": 16,
+        "endLine": 97,
+        "endChar": 64
+      },
+      "revId": "a58a78f5a8dc4a78262992a794c55ae10dfef762",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
