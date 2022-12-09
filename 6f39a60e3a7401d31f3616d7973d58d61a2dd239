@@ -106,6 +106,24 @@
       "parentUuid": "b26b61e2_3a69760c",
       "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "929aae1f_1e394fd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T03:24:17Z",
+      "side": 1,
+      "message": "As Liz suggests, hopefully I can get rid of this fake_rules_cc repository once I setup the hermetic toolchain and disable host toolchain discovery via `BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN`",
+      "parentUuid": "2e401724_74b6dc02",
+      "revId": "6f39a60e3a7401d31f3616d7973d58d61a2dd239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
