@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e4646e1_ba4a2f60",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T19:54:35Z",
+      "side": 1,
+      "message": "You can let kernel_modules_install expose `strip_modules` from either its kernel_build or kernel_modules[0]\u0027s kernel_build (perhaps via KernelModuleInfo)\n\nOtherwise, with the current change, we\u0027ll need to require partner devices to also speicify kernel_build when build_initramfs, which may not be the case. (See L69)",
+      "range": {
+        "startLine": 318,
+        "startChar": 37,
+        "endLine": 318,
+        "endChar": 59
+      },
+      "revId": "5f7e74d05ef77730fa969c5167ddcd771d5a1759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
