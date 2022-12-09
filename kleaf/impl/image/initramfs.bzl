@@ -71,7 +71,7 @@ def _initramfs_impl(ctx):
                mkdir -p {initramfs_staging_dir}
              # Build initramfs
                create_modules_staging "${{MODULES_LIST}}" {modules_staging_dir} \
-                 {initramfs_staging_dir} "${{MODULES_BLOCKLIST}}" "-e"
+                 {initramfs_staging_dir} "${{MODULES_BLOCKLIST}}" 1 "-e"
                modules_root_dir=$(readlink -e {initramfs_staging_dir}/lib/modules/*) || exit 1
                cp ${{modules_root_dir}}/modules.load {modules_load}
                {cp_vendor_boot_modules_load_cmd}
