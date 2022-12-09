@@ -34,6 +34,41 @@
       "parentUuid": "6e2c10c9_8642aaa0",
       "revId": "a751d5340e8660781c38e029845e8ab4f12132f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c426acfe_67ee0f62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T02:40:12Z",
+      "side": 1,
+      "message": "S",
+      "revId": "a751d5340e8660781c38e029845e8ab4f12132f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eafc98fe_3ea88436",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-09T02:40:12Z",
+      "side": 1,
+      "message": "See bug; `DO_NOT_STRIP_MODULES` was not set properly when `strip_modules \u003d False`. That should be fixed instead of changing build_utils.sh. @umendez@google.com could you please handle this?",
+      "parentUuid": "5bfe9829_ae417a8c",
+      "revId": "a751d5340e8660781c38e029845e8ab4f12132f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
