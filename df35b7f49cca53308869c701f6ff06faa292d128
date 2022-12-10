@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c425779_4729ca74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-10T01:41:42Z",
+      "side": 1,
+      "message": "If we decided to go this way, `build/kernel/kleaf/impl/image/vendor_dlkm_image.bzl` would need some modifications as it calls `vendor_dlkm` which calls `create_modules_staging`.",
+      "revId": "df35b7f49cca53308869c701f6ff06faa292d128",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
