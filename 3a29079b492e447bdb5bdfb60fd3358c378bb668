@@ -34,6 +34,24 @@
       "parentUuid": "e0c1f474_ae885a81",
       "revId": "3a29079b492e447bdb5bdfb60fd3358c378bb668",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8cd67eb_aaff9226",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-12-10T00:01:22Z",
+      "side": 1,
+      "message": "I really don\u0027t like using environment variables because you have to make sure nobody is messing with that variable. It\u0027s also hard to debug when issues occur because it\u0027s not obvious where that variable is set. IMO, kleaf makes this issue even worse and harder to debug due to sandboxing which requires you to basically redefine the environment each time. By making this a parameter, it\u0027s super easy to debug because I just need to look at how the function is called.",
+      "parentUuid": "4e287213_c498cb0c",
+      "revId": "3a29079b492e447bdb5bdfb60fd3358c378bb668",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
