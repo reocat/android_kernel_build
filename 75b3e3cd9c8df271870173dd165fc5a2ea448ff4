@@ -34,6 +34,24 @@
       "parentUuid": "cf49f646_71eb03e7",
       "revId": "75b3e3cd9c8df271870173dd165fc5a2ea448ff4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee874a2f_4a3cfd01",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-12-12T19:37:42Z",
+      "side": 1,
+      "message": "I wanted to have this work standalone; so I first implemented this - tested it with all the cases manually and add `kleaf` support to use this later. So, Just in case if someone if future use it in some standalone way it still is self sufficient.",
+      "parentUuid": "0c129842_d3580493",
+      "revId": "75b3e3cd9c8df271870173dd165fc5a2ea448ff4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
