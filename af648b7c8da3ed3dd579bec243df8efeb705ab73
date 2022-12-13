@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50982e8c_7a7d13f1",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-13T02:24:24Z",
+      "side": 1,
+      "message": "Nit: I think it\u0027s ok to drop the `_util` suffix, as it\u0027s all about compile_commands.",
+      "range": {
+        "startLine": 36,
+        "startChar": 25,
+        "endLine": 36,
+        "endChar": 31
+      },
+      "revId": "af648b7c8da3ed3dd579bec243df8efeb705ab73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc3adc7_ba4f5835",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-13T02:24:24Z",
+      "side": 1,
+      "message": "nit: I understand this is correct because it is included in MAKE_GOALS, but I feel something like `include` or `generate` is more intuitive.",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 18
+      },
+      "revId": "af648b7c8da3ed3dd579bec243df8efeb705ab73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
