@@ -51,6 +51,46 @@
       "message": "git commit\nnawaf2296@gmail.com",
       "revId": "df52198a87aebf8bbf109c55b38ee637ed548a68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91296655_c1001979",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-13T15:56:18Z",
+      "side": 1,
+      "message": "For some reason it breaks `aosp_kernel-common-android14-5.15` only.",
+      "revId": "df52198a87aebf8bbf109c55b38ee637ed548a68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770affe8_f0a5fc1f",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-13T15:56:18Z",
+      "side": 1,
+      "message": "will `\"%08x\"` work?",
+      "range": {
+        "startLine": 156,
+        "startChar": 10,
+        "endLine": 158,
+        "endChar": 40
+      },
+      "revId": "df52198a87aebf8bbf109c55b38ee637ed548a68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
