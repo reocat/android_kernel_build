@@ -108,6 +108,30 @@
       },
       "revId": "df52198a87aebf8bbf109c55b38ee637ed548a68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "363ef370_f080aced",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-13T22:48:40Z",
+      "side": 1,
+      "message": "https://github.com/bazelbuild/starlark/blob/master/spec.md#string-interpolation\n\n\u003e Starlark does not support the flag, width, and padding specifiers supported by Python\u0027s % and other variants of C\u0027s printf.\n\n:(",
+      "parentUuid": "770affe8_f0a5fc1f",
+      "range": {
+        "startLine": 156,
+        "startChar": 10,
+        "endLine": 158,
+        "endChar": 40
+      },
+      "revId": "df52198a87aebf8bbf109c55b38ee637ed548a68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
