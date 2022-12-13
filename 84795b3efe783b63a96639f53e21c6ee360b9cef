@@ -33,6 +33,24 @@
       "message": "Also --action_env\u003dBAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN\u003d1 as Liz suggested. This ensures that we don\u0027t look up the host toolchain",
       "revId": "84795b3efe783b63a96639f53e21c6ee360b9cef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "028ef320_80304ca1",
+        "filename": "kleaf/bazelrc/cc_toolchain.bazelrc",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-13T22:04:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9818481_dd12a4ec",
+      "revId": "84795b3efe783b63a96639f53e21c6ee360b9cef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
