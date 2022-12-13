@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b11d828e_e2f24c51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-13T22:45:29Z",
+      "side": 1,
+      "message": "Can you discuss why we don\u0027t care about setting DO_NOT_STRIP_MODULES for other images (maybe in the commit message? Or in individual image building rules?)",
+      "revId": "00b0d5e6c491f71db78fe80abf6705f51b64759c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89a047c0_978776e5",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-13T22:45:29Z",
+      "side": 1,
+      "message": "A command?",
+      "range": {
+        "startLine": 181,
+        "startChar": 8,
+        "endLine": 181,
+        "endChar": 15
+      },
+      "revId": "00b0d5e6c491f71db78fe80abf6705f51b64759c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89ce2308_d61ec978",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-13T22:45:29Z",
+      "side": 1,
+      "message": "Extra space",
+      "range": {
+        "startLine": 181,
+        "startChar": 7,
+        "endLine": 181,
+        "endChar": 8
+      },
+      "revId": "00b0d5e6c491f71db78fe80abf6705f51b64759c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa5b42b2_7c7520f1",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-13T22:45:29Z",
+      "side": 1,
+      "message": "A command that ...",
+      "range": {
+        "startLine": 188,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 22
+      },
+      "revId": "00b0d5e6c491f71db78fe80abf6705f51b64759c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
