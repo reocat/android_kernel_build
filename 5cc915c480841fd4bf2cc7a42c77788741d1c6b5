@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b807f72e_39876b0d",
+        "filename": "kleaf/impl/kernel_kythe.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-13T03:07:25Z",
+      "side": 1,
+      "message": "TIL.",
+      "range": {
+        "startLine": 15,
+        "startChar": 27,
+        "endLine": 15,
+        "endChar": 44
+      },
+      "revId": "5cc915c480841fd4bf2cc7a42c77788741d1c6b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af339562_65d78ee7",
+        "filename": "kleaf/impl/kernel_kythe_reconstruct_out_dir.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-13T03:07:25Z",
+      "side": 1,
+      "message": "Why is this needed?",
+      "range": {
+        "startLine": 32,
+        "startChar": 52,
+        "endLine": 32,
+        "endChar": 53
+      },
+      "revId": "5cc915c480841fd4bf2cc7a42c77788741d1c6b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
