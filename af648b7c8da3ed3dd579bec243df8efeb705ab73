@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b479aac_f2c0c8a8",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-13T23:05:39Z",
+      "side": 1,
+      "message": "I name it so it looks less similar to kernel_compile_commands.bzl",
+      "parentUuid": "50982e8c_7a7d13f1",
+      "range": {
+        "startLine": 36,
+        "startChar": 25,
+        "endLine": 36,
+        "endChar": 31
+      },
+      "revId": "af648b7c8da3ed3dd579bec243df8efeb705ab73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fc3adc7_ba4f5835",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-12-13T02:24:24Z",
       "side": 1,
       "message": "nit: I understand this is correct because it is included in MAKE_GOALS, but I feel something like `include` or `generate` is more intuitive.",
+      "range": {
+        "startLine": 106,
+        "startChar": 12,
+        "endLine": 106,
+        "endChar": 18
+      },
+      "revId": "af648b7c8da3ed3dd579bec243df8efeb705ab73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edb06290_704bfa0d",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 8
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-13T23:05:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1fc3adc7_ba4f5835",
       "range": {
         "startLine": 106,
         "startChar": 12,
