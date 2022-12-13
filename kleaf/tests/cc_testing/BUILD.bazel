@@ -1,12 +1,19 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
 
+_LINUX_X86_64 = [
+    "@platforms//os:linux",
+    "@platforms//cpu:x86_64",
+]
+
+_ANDROID_ARM64 = [
+    "@platforms//os:android",
+    "@platforms//cpu:arm64",
+]
+
 cc_binary(
     name = "hello_world_linux_x86_64",
     srcs = ["hello_world.c"],
-    target_compatible_with = [
-        "@platforms//os:linux",
-        "@platforms//cpu:x86_64",
-    ],
+    target_compatible_with = _LINUX_X86_64,
 )
 
 cc_library(
@@ -15,10 +22,7 @@ cc_library(
         "lib.c",
         "lib.h",
     ],
-    target_compatible_with = [
-        "@platforms//os:linux",
-        "@platforms//cpu:x86_64",
-    ],
+    target_compatible_with = _LINUX_X86_64,
 )
 
 cc_binary(
@@ -29,10 +33,7 @@ cc_binary(
     ],
     features = ["full_static_link"],
     linkstatic = True,
-    target_compatible_with = [
-        "@platforms//os:linux",
-        "@platforms//cpu:x86_64",
-    ],
+    target_compatible_with = _LINUX_X86_64,
     deps = [":mylib_linux_x86_64"],
 )
 
@@ -43,10 +44,7 @@ cc_binary(
         "lib.h",
     ],
     linkstatic = True,
-    target_compatible_with = [
-        "@platforms//os:linux",
-        "@platforms//cpu:x86_64",
-    ],
+    target_compatible_with = _LINUX_X86_64,
     deps = [":mylib_linux_x86_64"],
 )
 
@@ -57,10 +55,7 @@ cc_binary(
         "lib.h",
     ],
     linkstatic = False,
-    target_compatible_with = [
-        "@platforms//os:linux",
-        "@platforms//cpu:x86_64",
-    ],
+    target_compatible_with = _LINUX_X86_64,
     deps = [":mylib_linux_x86_64"],
 )
 
@@ -69,10 +64,7 @@ cc_library(
     srcs = [
         "openssl_client.c",
     ],
-    target_compatible_with = [
-        "@platforms//os:linux",
-        "@platforms//cpu:x86_64",
-    ],
+    target_compatible_with = _LINUX_X86_64,
     deps = [
         "//prebuilts/kernel-build-tools:openssl_include",
     ],
@@ -88,5 +80,66 @@ build_test(
         ":mybin_full_static_linux_x86_64",
         ":mybin_static_linux_x86_64",
         ":openssl_client_linux_x86_64",
+    ],
+)
+
+cc_binary(
+    name = "hello_world_android_arm64",
+    srcs = ["hello_world.c"],
+    target_compatible_with = _ANDROID_ARM64,
+)
+
+cc_library(
+    name = "mylib_android_arm64",
+    srcs = [
+        "lib.c",
+        "lib.h",
+    ],
+    target_compatible_with = _ANDROID_ARM64,
+)
+
+cc_binary(
+    name = "mybin_full_static_android_arm64",
+    srcs = [
+        "bin.c",
+        "lib.h",
+    ],
+    features = ["full_static_link"],
+    linkstatic = True,
+    target_compatible_with = _ANDROID_ARM64,
+    deps = [":mylib_android_arm64"],
+)
+
+cc_binary(
+    name = "mybin_static_android_arm64",
+    srcs = [
+        "bin.c",
+        "lib.h",
+    ],
+    linkstatic = True,
+    target_compatible_with = _ANDROID_ARM64,
+    deps = [":mylib_android_arm64"],
+)
+
+cc_binary(
+    name = "mybin_dynamic_android_arm64",
+    srcs = [
+        "bin.c",
+        "lib.h",
+    ],
+    linkstatic = False,
+    target_compatible_with = _ANDROID_ARM64,
+    deps = [":mylib_android_arm64"],
+)
+
+# Build with --config=hermetic_cc --config=android_arm64
+build_test(
+    name = "android_arm64_tests",
+    targets = [
+        ":hello_world_android_arm64",
+        ":mylib_android_arm64",
+        ":mybin_dynamic_android_arm64",
+        ":mybin_full_static_android_arm64",
+        ":mybin_static_android_arm64",
     ],
 )
