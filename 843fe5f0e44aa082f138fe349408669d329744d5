@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c48f3ed_d6e9bd1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-14T22:03:17Z",
+      "side": 1,
+      "message": "nit: hidden",
+      "range": {
+        "startLine": 9,
+        "startChar": 17,
+        "endLine": 9,
+        "endChar": 22
+      },
+      "revId": "843fe5f0e44aa082f138fe349408669d329744d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80dda0fb_128a8d42",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 11
