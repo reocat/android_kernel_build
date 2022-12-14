@@ -75,8 +75,10 @@ def _kernel_kythe_impl(ctx):
                runextractor compdb -extractor $(which cxx_extractor)
 
              # Package it all into a single .kzip, ignoring duplicates.
+               echo '******* UNZIP = '$(which unzip)
+               echo 'LD_LIBRARY_PATH='${{LD_LIBRARY_PATH}}
                for zip in $(find {kzip_dir} -name '*.kzip'); do
-                   unzip -qn "${{zip}}" -d {extracted_kzip_dir}
+                   LD_DEBUG=symbols unzip -qn "${{zip}}" -d {extracted_kzip_dir} 2>&1 > /tmp/ld.txt
                done
                soong_zip -C {extracted_kzip_dir} -D {extracted_kzip_dir} -o {all_kzip}
              # Clean up directories
