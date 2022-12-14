@@ -22,6 +22,30 @@
       },
       "revId": "1e76d206bad8d1b4b971ab035bca08450d1387bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99094eb8_b69c5a5f",
+        "filename": "build_utils.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-14T20:54:48Z",
+      "side": 0,
+      "message": "ah I get it, if the modules were not stripped before, then the strip is forced here.",
+      "parentUuid": "31009011_98db1947",
+      "range": {
+        "startLine": 142,
+        "startChar": 7,
+        "endLine": 142,
+        "endChar": 38
+      },
+      "revId": "1e76d206bad8d1b4b971ab035bca08450d1387bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
