@@ -16,6 +16,23 @@
       "message": "Thank you for the review, PTAL. \n\nNote that I did drop the `kernel_env` change as It was not necessary.",
       "revId": "c64045c7235f41adb011c18ef4ebb7a10b2afa22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14eecca5_775c74e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-12-14T20:12:06Z",
+      "side": 1,
+      "message": "For kleaf I really don\u0027t think we should support this DO_NOT_STRIP_MODULES option. IMO, we should just use `strip_modules` to enable/disable stripping with the `INSTALL_MOD_STRIP` option. I believe this option was created for ABI monitoring which we now have a way to do this without the DO_NOT_STRIP_MODULES option.\n\nIf we can agree to that, then you should force unset `DO_NOT_STRIP_MODULES` regardless of what `strip_modules` is set. Then we can remove the option from build_utils.sh when build.sh is deleted.",
+      "revId": "c64045c7235f41adb011c18ef4ebb7a10b2afa22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
