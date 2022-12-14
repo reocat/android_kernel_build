@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcfe5e50_c6b00ed0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-14T03:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b11d828e_e2f24c51",
+      "revId": "00b0d5e6c491f71db78fe80abf6705f51b64759c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89a047c0_978776e5",
@@ -64,6 +82,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92112b1e_3a0361d1",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-14T03:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89ce2308_d61ec978",
+      "range": {
+        "startLine": 181,
+        "startChar": 7,
+        "endLine": 181,
+        "endChar": 8
+      },
+      "revId": "00b0d5e6c491f71db78fe80abf6705f51b64759c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9640f9f_94069062",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-14T03:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89a047c0_978776e5",
+      "range": {
+        "startLine": 181,
+        "startChar": 8,
+        "endLine": 181,
+        "endChar": 15
+      },
+      "revId": "00b0d5e6c491f71db78fe80abf6705f51b64759c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa5b42b2_7c7520f1",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-12-13T22:45:29Z",
       "side": 1,
       "message": "A command that ...",
+      "range": {
+        "startLine": 188,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 22
+      },
+      "revId": "00b0d5e6c491f71db78fe80abf6705f51b64759c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "332e4b1b_2eded45f",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-14T03:20:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa5b42b2_7c7520f1",
       "range": {
         "startLine": 188,
         "startChar": 8,
