@@ -33,6 +33,24 @@
       "message": "For kleaf I really don\u0027t think we should support this DO_NOT_STRIP_MODULES option. IMO, we should just use `strip_modules` to enable/disable stripping with the `INSTALL_MOD_STRIP` option. I believe this option was created for ABI monitoring which we now have a way to do this without the DO_NOT_STRIP_MODULES option.\n\nIf we can agree to that, then you should force unset `DO_NOT_STRIP_MODULES` regardless of what `strip_modules` is set. Then we can remove the option from build_utils.sh when build.sh is deleted.",
       "revId": "c64045c7235f41adb011c18ef4ebb7a10b2afa22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e465e537_e7c7dee7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-14T20:42:43Z",
+      "side": 1,
+      "message": "Reworked the CL PTAL, for kernel build[0] it was obvious to me how `INSTALL_MOD_STRIP` was used, but not sure in this case as it\u0027s using `objcopy`, please let me know if this is what you meant.\n\n[0] https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_build.bzl;l\u003d1065-1067",
+      "parentUuid": "14eecca5_775c74e8",
+      "revId": "c64045c7235f41adb011c18ef4ebb7a10b2afa22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
