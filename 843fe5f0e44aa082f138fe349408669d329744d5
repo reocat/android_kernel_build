@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80dda0fb_128a8d42",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-14T22:00:51Z",
+      "side": 1,
+      "message": "nit: out_dir? kernel_output?\n\n`get_kernel_output` is a verb",
+      "range": {
+        "startLine": 966,
+        "startChar": 69,
+        "endLine": 966,
+        "endChar": 86
+      },
+      "revId": "843fe5f0e44aa082f138fe349408669d329744d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
