@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a638d7af_ff3bdffb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-14T09:03:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06e27c96_9745943c",
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47486d89_8a674406",
@@ -65,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd98134e_ea9541eb",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-14T09:03:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36fa3317_55365353",
+      "range": {
+        "startLine": 69,
+        "startChar": 57,
+        "endLine": 69,
+        "endChar": 76
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfa746c6_bd37cdef",
@@ -88,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "994612a5_f08bd61e",
+        "filename": "kleaf/docs/get_kernel_output.mk",
+        "patchSetId": 10
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-14T09:03:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfa746c6_bd37cdef",
+      "range": {
+        "startLine": 8,
+        "startChar": 15,
+        "endLine": 8,
+        "endChar": 20
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6b164b1_d032c077",
@@ -101,6 +167,30 @@
       "writtenOn": "2022-12-14T02:21:11Z",
       "side": 1,
       "message": "Yeah. Preferrably this is\n\n```\nbazel run //something -- --some_arg\u003d/target/path\n```\n\n... just like how you run the dist target:\n\n```\nbazel run //common:kernel_aarch64 -- --dist_dir\u003d/my/dist/dir\n```",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 70
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69da09a0_90e18025",
+        "filename": "kleaf/docs/get_kernel_output.mk",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-14T09:03:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6b164b1_d032c077",
       "range": {
         "startLine": 22,
         "startChar": 0,
@@ -157,6 +247,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "569e7e4a_f0d96afa",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-14T09:03:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c84cb44b_2c0e770a",
+      "range": {
+        "startLine": 935,
+        "startChar": 64,
+        "endLine": 935,
+        "endChar": 81
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f102403_f0ad7bcc",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-14T09:03:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "572d8ef4_b19a77c4",
+      "range": {
+        "startLine": 935,
+        "startChar": 43,
+        "endLine": 935,
+        "endChar": 55
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "141866b4_bf4241e4",
@@ -170,6 +308,30 @@
       "writtenOn": "2022-12-14T02:21:11Z",
       "side": 1,
       "message": "Once you switch to a boolean flag:\n\n```\nrsync -a --prune-empty-dirs --include \u0027*/\u0027 ${{OUT_DIR}}/ {kernel_output_target}/\n```",
+      "range": {
+        "startLine": 938,
+        "startChar": 0,
+        "endLine": 939,
+        "endChar": 90
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f624655_50280427",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-14T09:03:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "141866b4_bf4241e4",
       "range": {
         "startLine": 938,
         "startChar": 0,
