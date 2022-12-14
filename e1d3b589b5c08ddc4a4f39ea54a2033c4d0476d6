@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36fa3317_55365353",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-14T08:38:18Z",
+      "side": 1,
+      "message": "Yes, we do want to copy to outside of sandbox, let me just follow your suggestion that adds something attr for outside location in following CL, and change to bool in this commit.",
+      "parentUuid": "47486d89_8a674406",
+      "range": {
+        "startLine": 69,
+        "startChar": 57,
+        "endLine": 69,
+        "endChar": 76
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfa746c6_bd37cdef",
         "filename": "kleaf/docs/get_kernel_output.mk",
         "patchSetId": 10
