@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06e27c96_9745943c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-14T02:21:11Z",
+      "side": 1,
+      "message": "LGTM in general, except that a boolean flag should be used instead",
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47486d89_8a674406",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-14T02:21:11Z",
+      "side": 1,
+      "message": "This should be a boolean to collect to a fixed location, see gcov for an example. The output is under `bazel-bin/`. Otherwise, this will be rebuilt every time the argument has changed (because it changes the build script).\n\nIf you want to copy (or symlink?) files to a location outside of the sandbox, consider using an executable like the `dist_dir` attribute of the `copy_to_dist_dir` rule. We can talk about it in more detail, and this can happen in a follow up CL. (I can also help out with that after this CL is merged)",
+      "range": {
+        "startLine": 69,
+        "startChar": 57,
+        "endLine": 69,
+        "endChar": 76
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfa746c6_bd37cdef",
         "filename": "kleaf/docs/get_kernel_output.mk",
         "patchSetId": 10
@@ -19,6 +59,98 @@
         "startChar": 15,
         "endLine": 8,
         "endChar": 20
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6b164b1_d032c077",
+        "filename": "kleaf/docs/get_kernel_output.mk",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-14T02:21:11Z",
+      "side": 1,
+      "message": "Yeah. Preferrably this is\n\n```\nbazel run //something -- --some_arg\u003d/target/path\n```\n\n... just like how you run the dist target:\n\n```\nbazel run //common:kernel_aarch64 -- --dist_dir\u003d/my/dist/dir\n```",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 70
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c84cb44b_2c0e770a",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-14T02:21:11Z",
+      "side": 1,
+      "message": "Once you switch to a boolean flag: just `out_dir`",
+      "range": {
+        "startLine": 935,
+        "startChar": 64,
+        "endLine": 935,
+        "endChar": 81
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "572d8ef4_b19a77c4",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-14T02:21:11Z",
+      "side": 1,
+      "message": "Once you switch to a boolean flag: `declare_directory`",
+      "range": {
+        "startLine": 935,
+        "startChar": 43,
+        "endLine": 935,
+        "endChar": 55
+      },
+      "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "141866b4_bf4241e4",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-14T02:21:11Z",
+      "side": 1,
+      "message": "Once you switch to a boolean flag:\n\n```\nrsync -a --prune-empty-dirs --include \u0027*/\u0027 ${{OUT_DIR}}/ {kernel_output_target}/\n```",
+      "range": {
+        "startLine": 938,
+        "startChar": 0,
+        "endLine": 939,
+        "endChar": 90
       },
       "revId": "e1d3b589b5c08ddc4a4f39ea54a2033c4d0476d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
