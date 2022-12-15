@@ -216,8 +216,8 @@ def _kernel_env_impl(ctx):
          # re-setup the PATH to also include the hermetic tools, because env completely overwrites
          # PATH with HERMETIC_TOOLCHAIN=1
            {hermetic_tools_additional_setup}
-         # setup LD_LIBRARY_PATH for prebuilts
-           export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${{ROOT_DIR}}/{linux_x86_libs_path}
+         # setup LD_LIBRARY_PATH for Kbuild invocations
+           export TOOL_ARGS="${{TOOL_ARGS}} LD_LIBRARY_PATH=${{LD_LIBRARY_PATH}}:${{ROOT_DIR}}/{linux_x86_libs_path}"
            {set_up_scmversion_cmd}
          # Set up KCONFIG_EXT
            if [ -n "${{KCONFIG_EXT}}" ]; then
