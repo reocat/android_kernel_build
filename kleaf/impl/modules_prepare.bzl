@@ -20,7 +20,14 @@ def _modules_prepare_impl(ctx):
          # Prepare for the module build
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules_prepare
          # Package files
-           tar czf {outdir_tar_gz} -C ${{OUT_DIR}} .
+           tar czf {outdir_tar_gz}  \\
+                -C ${{OUT_DIR}}     \\
+                --exclude 'Makefile'\\
+                --exclude 'source'  \\
+                --exclude '*.cmd'   \\
+                --exclude '*.d'     \\
+                --exclude '*.o'     \\
+                .
     """.format(outdir_tar_gz = ctx.outputs.outdir_tar_gz.path)
 
     debug.print_scripts(ctx, command)
