@@ -767,7 +767,8 @@ def define_common_kernels(
 
     kernel_kythe(
         name = "kernel_aarch64_kythe",
-        kernel_build = ":kernel_aarch64",
+        kernel_build = ":kernel_aarch64_interceptor",
+        compile_commands = ":kernel_aarch64_compile_commands",
     )
 
     copy_to_dist_dir(
