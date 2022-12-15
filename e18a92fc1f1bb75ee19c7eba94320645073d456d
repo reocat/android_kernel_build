@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09d55efb_d8459c62",
+        "filename": "kleaf/impl/modules_prepare.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2022-12-15T23:59:46Z",
+      "side": 1,
+      "message": "i think the @1234 style is probably safer, because you don\u0027t need to worry about timezones then?",
+      "range": {
+        "startLine": 26,
+        "startChar": 44,
+        "endLine": 26,
+        "endChar": 54
+      },
+      "revId": "e18a92fc1f1bb75ee19c7eba94320645073d456d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
