@@ -67,7 +67,7 @@ def _merged_kernel_uapi_headers_impl(ctx):
         )
 
     command += """
-        tar czf {out_file} -C {intermediates_dir} usr/
+        tar czf {out_file} --mtime '1970-01-01' -C {intermediates_dir} usr/
         rm -rf {intermediates_dir}
     """.format(
         out_file = out_file.path,
