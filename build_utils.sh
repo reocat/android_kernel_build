@@ -273,7 +273,7 @@ function build_system_dlkm() {
     --image "${DIST_DIR}/system_dlkm.img"
 
   # Archive system_dlkm_staging_dir
-  tar -czf "${DIST_DIR}/system_dlkm_staging_archive.tar.gz" -C "${SYSTEM_DLKM_STAGING_DIR}" .
+  tar -czf "${DIST_DIR}/system_dlkm_staging_archive.tar.gz" --mtime @0 -C "${SYSTEM_DLKM_STAGING_DIR}" .
 }
 
 function build_vendor_dlkm() {
@@ -665,7 +665,7 @@ function build_gki_boot_images() {
 
   GKI_BOOT_IMG_ARCHIVE="boot-img.tar.gz"
   echo "Creating ${GKI_BOOT_IMG_ARCHIVE} for" "${images_to_pack[@]}"
-  tar -czf "${DIST_DIR}/${GKI_BOOT_IMG_ARCHIVE}" -C "${DIST_DIR}" \
+  tar -czf "${DIST_DIR}/${GKI_BOOT_IMG_ARCHIVE}" --mtime @0 -C "${DIST_DIR}" \
     "${images_to_pack[@]}"
 }
 

@@ -35,7 +35,7 @@ def _out_headers_allowlist_archive_impl(ctx):
                 grep -E {subdirs_pattern} | \\
                 tar xf {out_dir_kernel_headers_tar} -C {out_dir} -T -
             # Create archive
-              tar czf {out_file} -C {out_dir} --transform 's:^./::' .
+              tar czf {out_file} --mtime @0 -C {out_dir} --transform 's:^./::' .
     """.format(
         out_dir = out_dir,
         out_file = out_file.path,

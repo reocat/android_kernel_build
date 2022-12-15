@@ -23,7 +23,7 @@ def _kernel_uapi_headers_impl(ctx):
          # Actual headers_install
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} INSTALL_HDR_PATH=$(realpath {kernel_uapi_headers_dir}/usr) headers_install
          # Create archive
-           tar czf {out_file} --directory={kernel_uapi_headers_dir} usr/
+           tar czf {out_file} --mtime @0 --directory={kernel_uapi_headers_dir} usr/
          # Delete kernel_uapi_headers_dir because it is not declared
            rm -rf {kernel_uapi_headers_dir}
     """.format(
