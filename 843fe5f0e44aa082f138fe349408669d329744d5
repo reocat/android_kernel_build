@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "176114b5_0a20fe9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-15T07:46:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c48f3ed_d6e9bd1c",
+      "range": {
+        "startLine": 9,
+        "startChar": 17,
+        "endLine": 9,
+        "endChar": 22
+      },
+      "revId": "843fe5f0e44aa082f138fe349408669d329744d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "daefd34b_b96ed458",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61be66ce_f2cdd8c8",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-15T07:46:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daefd34b_b96ed458",
+      "range": {
+        "startLine": 28,
+        "startChar": 32,
+        "endLine": 28,
+        "endChar": 49
+      },
+      "revId": "843fe5f0e44aa082f138fe349408669d329744d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80dda0fb_128a8d42",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-12-14T22:00:51Z",
       "side": 1,
       "message": "nit: out_dir? kernel_output?\n\n`get_kernel_output` is a verb",
+      "range": {
+        "startLine": 966,
+        "startChar": 69,
+        "endLine": 966,
+        "endChar": 86
+      },
+      "revId": "843fe5f0e44aa082f138fe349408669d329744d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d582b005_846fde47",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-15T07:46:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80dda0fb_128a8d42",
       "range": {
         "startLine": 966,
         "startChar": 69,
