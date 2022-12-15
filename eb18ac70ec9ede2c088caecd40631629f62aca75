@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "276861fa_3a4e4d79",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-12-15T00:21:16Z",
+      "side": 1,
+      "message": "For kleaf, I\u0027m proposing that we only support stripping via INSTALL_MOD_STRIP here: https://source.corp.google.com/android-common-kernel/build/kernel/kleaf/impl/kernel_build.bzl;l\u003d1065\n\nIf you don\u0027t set `strip_modules \u003d True`, then we don\u0027t need to do any stripping at all. To do that, you just need to unset `DO_NOT_STRIP_MODULES` before calling `create_modules_staging()`. You can do that here or at the call site for `create_modules_staging()`.",
+      "range": {
+        "startLine": 180,
+        "startChar": 4,
+        "endLine": 180,
+        "endChar": 22
+      },
+      "revId": "eb18ac70ec9ede2c088caecd40631629f62aca75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

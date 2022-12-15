@@ -46,6 +46,30 @@
       },
       "revId": "1e76d206bad8d1b4b971ab035bca08450d1387bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70d4eb9f_028526cd",
+        "filename": "build_utils.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2022-12-15T00:21:16Z",
+      "side": 0,
+      "message": "I think we should leave this alone for now since some partners may be relying on the `DO_NOT_STRIP_MODULES` option and I\u0027m not sure if INSTALL_MOD_STRIP is accessible from here. It should be enough for kleaf to just unset `DO_NOT_STRIP_MODULES` before calling `create_modules_staging()`.",
+      "parentUuid": "99094eb8_b69c5a5f",
+      "range": {
+        "startLine": 142,
+        "startChar": 7,
+        "endLine": 142,
+        "endChar": 38
+      },
+      "revId": "1e76d206bad8d1b4b971ab035bca08450d1387bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
