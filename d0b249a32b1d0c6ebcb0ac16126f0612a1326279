@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b13df5a_5329aabe",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-15T10:37:25Z",
+      "side": 1,
+      "message": "Thank you for your contribution, much appreciated! I like the feature, yet I am not yet convinced about the interface. It is not immediately obvious what \u0027output\u0027 refers to and how it could be \u0027get\u0027. What the feature in fact does is preserving the kbuild output directory. How about we name it accordingly (and in line with the upstream terminology)  `--preserve_kbuild_output` ?\n\nhttps://docs.kernel.org/kbuild/kbuild.html#kbuild-output",
+      "range": {
+        "startLine": 1,
+        "startChar": 3,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19aebee5_a00671b3",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-15T10:37:25Z",
+      "side": 1,
+      "message": "Grabbing \"everything unconditionally\" might serve the use case, but is perhaps quite wasteful in terms of disk space and runtime. Most tools are interested in a tiny bit of the output, e.g. only object files or only .cmd files. How about adding the ability to glob as a parameter, e.g. to preserve all object files:\n\n  --preserve_kbuild_output\u003d**/*.o\n  \nI am open about how to handle multiple expressions, but those are two options I could imagine:\n\n1) `--preserve_kbuild_output\u003d**/*.o,**/*.cmd`\n  \n  \n2) `--preserve_kbuild_output\u003d**/*.o --preserve_kbuild_output\u003d**/*.cmd`\n\n\nThe current use case would be supported via `--preserve_kbuild_output\u003d**/*`, which could also be a default argument if omitted.\n\nWhat do you think?",
+      "range": {
+        "startLine": 8,
+        "startChar": 52,
+        "endLine": 8,
+        "endChar": 82
+      },
+      "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d4897b8_72a9b62a",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-15T10:37:25Z",
+      "side": 1,
+      "message": "Can you explain why config\u003dlocal is not sufficient for your use case? It already preserves the output directory and is suitable to be used in CI.",
+      "range": {
+        "startLine": 11,
+        "startChar": 16,
+        "endLine": 11,
+        "endChar": 28
+      },
+      "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
