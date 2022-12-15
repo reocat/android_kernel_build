@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Runs `make modules_prepare` to prepare `$OUT_DIR` for modules."""
+
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":common_providers.bzl", "KernelEnvInfo")
 load(":debug.bzl", "debug")
 
@@ -23,6 +26,10 @@ def _modules_prepare_impl(ctx):
            tar czf {outdir_tar_gz} -C ${{OUT_DIR}} .
     """.format(outdir_tar_gz = ctx.outputs.outdir_tar_gz.path)
 
+    execution_requirements = None
+    if ctx.attr._config_is_local[BuildSettingInfo].value:
+        execution_requirements = {"local": "1"}
+
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
         mnemonic = "ModulesPrepare",
@@ -31,6 +38,7 @@ def _modules_prepare_impl(ctx):
         tools = ctx.attr.config[KernelEnvInfo].dependencies,
         progress_message = "Preparing for module build %s" % ctx.label,
         command = command,
+        execution_requirements = execution_requirements,
     )
 
     setup = """
@@ -59,5 +67,6 @@ modules_prepare = rule(
             doc = "the packaged ${OUT_DIR} files",
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
     },
 )
