@@ -79,7 +79,7 @@ def _initramfs_impl(ctx):
                mkbootfs "{initramfs_staging_dir}" >"{modules_staging_dir}/initramfs.cpio"
                {ramdisk_compress} "{modules_staging_dir}/initramfs.cpio" >"{initramfs_img}"
              # Archive initramfs_staging_dir
-               tar czf {initramfs_staging_archive} -C {initramfs_staging_dir} .
+               tar czf {initramfs_staging_archive} --mtime '1970-01-01' -C {initramfs_staging_dir} .
              # Remove staging directories
                rm -rf {initramfs_staging_dir}
     """.format(

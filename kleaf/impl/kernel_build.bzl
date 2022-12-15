@@ -1083,17 +1083,18 @@ def _build_main_action(
                touch {internal_outs_under_out_dir}
            fi
          # Archive headers in OUT_DIR
-           find ${{OUT_DIR}} -name *.h -print0                          \
-               | tar czf {out_dir_kernel_headers_tar}                   \
-                       --absolute-names                                 \
-                       --dereference                                    \
-                       --transform "s,.*$OUT_DIR,,"                     \
-                       --transform "s,^/,,"                             \
+           find ${{OUT_DIR}} -name *.h -print0                          \\
+               | tar czf {out_dir_kernel_headers_tar}                   \\
+                       --absolute-names                                 \\
+                       --dereference                                    \\
+                       --transform "s,.*$OUT_DIR,,"                     \\
+                       --transform "s,^/,,"                             \\
+                       --mtime '1970-01-01'                             \\
                        --null -T -
          # Grab outputs. If unable to find from OUT_DIR, look at KBUILD_MIXED_TREE as well.
            {search_and_cp_output} --srcdir ${{OUT_DIR}} {kbuild_mixed_tree_arg} {dtstree_arg} --dstdir {ruledir} {all_output_names_minus_modules}
          # Archive modules_staging_dir
-           tar czf {modules_staging_archive_self} -C {modules_staging_dir} .
+           tar czf {modules_staging_archive_self} --mtime '1970-01-01' -C {modules_staging_dir} .
          # Grab *.symtypes
            {grab_symtypes_cmd}
          # Grab *.gcno files
@@ -1633,7 +1634,7 @@ def _repack_modules_staging_archive(
         if [[ -n "${{base_modules}}" ]]; then
             tar xf {base_archive} -C {modules_staging_dir} ${{base_modules}}
         fi
-        tar czf {out_archive} -C  {modules_staging_dir} .
+        tar czf {out_archive} --mtime '1970-01-01' -C {modules_staging_dir} .
         rm -rf {modules_staging_dir}
     """.format(
         modules_staging_dir = modules_staging_dir,
