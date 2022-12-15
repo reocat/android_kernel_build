@@ -1,0 +1,20 @@
+load(":dir.bzl", "mydir", "myfile")
+
+genrule(
+    name = "dep",
+    outs = ["dep.txt"],
+    cmd = """
+        echo "Building foo"
+        echo "foobar" > $@
+    """,
+)
+
+mydir(
+    name = "long",
+    srcs = [":dep"],
+)
+
+myfile(
+    name = "downstream",
+    srcs = [":long"],
+)
