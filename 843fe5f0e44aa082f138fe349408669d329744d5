@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "daefd34b_b96ed458",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-15T04:31:28Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 28,
+        "startChar": 32,
+        "endLine": 28,
+        "endChar": 49
+      },
+      "revId": "843fe5f0e44aa082f138fe349408669d329744d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80dda0fb_128a8d42",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 11
