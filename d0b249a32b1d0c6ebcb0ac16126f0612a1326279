@@ -68,6 +68,30 @@
       },
       "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c498900_97f2a044",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-15T19:34:38Z",
+      "side": 1,
+      "message": "I suggested not using --config\u003dlocal because it is for development purposes only and it breaks hermeticity. It also relies on OUT_DIR_SUFFIX (though the `last` symlink would solve this). See bug.\n\n\u003e ready for CI\n\nIn fact, `--config\u003drelease` (which implies `--config\u003dstamp`) conflicts with `--config\u003dlocal`.",
+      "parentUuid": "8d4897b8_72a9b62a",
+      "range": {
+        "startLine": 11,
+        "startChar": 16,
+        "endLine": 11,
+        "endChar": 28
+      },
+      "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
