@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e30f3f60_4ef90f07",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-16T02:31:41Z",
+      "side": 1,
+      "message": "thanks for the suggestion, I\u0027ll change it and test soon",
+      "parentUuid": "8b13df5a_5329aabe",
+      "range": {
+        "startLine": 1,
+        "startChar": 3,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19aebee5_a00671b3",
         "filename": "kleaf/docs/get_kernel_output.md",
         "patchSetId": 14
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "FYI: For cmds you can rely on the `preserve_cmd` bool_setting. We can change it to a proper flag if there\u0027s a need.",
       "parentUuid": "19aebee5_a00671b3",
+      "range": {
+        "startLine": 8,
+        "startChar": 52,
+        "endLine": 8,
+        "endChar": 82
+      },
+      "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "925e95d4_6ba4fde6",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-16T02:31:41Z",
+      "side": 1,
+      "message": "Actually it\u0027s about the protocol how we provide kernel output things to other teams for their job. And we always just provide the whole kernel output and said \u0027that\u0027s all\u0027, so they can grab things and need without cross team communication which usually takes lots of time for same result.\n\n\n\u003e I am open about how to handle multiple expressions, but those are two options I could imagine:\nThanks, It\u0027s a good idea, so the internal implementation of `--gcov` and `--cmd` can also reuse this.\n\nWould we need to support in this CL or the following commit?",
+      "parentUuid": "d8060544_475765b1",
       "range": {
         "startLine": 8,
         "startChar": 52,
