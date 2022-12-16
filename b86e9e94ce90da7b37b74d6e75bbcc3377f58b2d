@@ -22,6 +22,30 @@
       },
       "revId": "b86e9e94ce90da7b37b74d6e75bbcc3377f58b2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f16381f_2c4a4b96",
+        "filename": "kleaf/impl/kernel_kythe.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-16T01:59:43Z",
+      "side": 1,
+      "message": "nevermind, it is different for soong_zip",
+      "parentUuid": "200b28c0_a316c8fd",
+      "range": {
+        "startLine": 81,
+        "startChar": 52,
+        "endLine": 81,
+        "endChar": 55
+      },
+      "revId": "b86e9e94ce90da7b37b74d6e75bbcc3377f58b2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
