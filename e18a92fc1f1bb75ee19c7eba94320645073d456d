@@ -22,6 +22,30 @@
       },
       "revId": "e18a92fc1f1bb75ee19c7eba94320645073d456d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37392733_82224ea5",
+        "filename": "kleaf/impl/modules_prepare.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-16T00:14:17Z",
+      "side": 1,
+      "message": "Sorry I never used --mtime before. The man page for GNU tar says\n\n\u003e               Set mtime for added files.  DATE-OR-FILE is either a\n              date/time in almost arbitrary format, or the name of an\n              existing file.  In the latter case the mtime of that file\n              will be used.\n\nso... does that mean I can set `--mtime @0`?",
+      "parentUuid": "09d55efb_d8459c62",
+      "range": {
+        "startLine": 26,
+        "startChar": 44,
+        "endLine": 26,
+        "endChar": 54
+      },
+      "revId": "e18a92fc1f1bb75ee19c7eba94320645073d456d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
