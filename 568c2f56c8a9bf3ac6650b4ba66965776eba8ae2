@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4a70234_e5c5d760",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-16T12:02:27Z",
+      "side": 1,
+      "message": "extract_symbols",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 14
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "020e39e5_5473e1fb",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-16T12:02:27Z",
+      "side": 1,
+      "message": "how about using/adjusting the above symbol_sort?",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 21
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e3feb2c_854e6f78",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-16T12:02:27Z",
+      "side": 1,
+      "message": "mode\u003d\u0027r\u0027 is default and can be omitted\n\nhttps://docs.python.org/3.11/library/functions.html#open",
+      "range": {
+        "startLine": 246,
+        "startChar": 39,
+        "endLine": 246,
+        "endChar": 43
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de2402b_867ae1a1",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-16T12:02:27Z",
+      "side": 1,
+      "message": "that is a bit an odd interface. we expect that there could be relative or absolute paths in the file, but then we ignore them and instead go and search ourselves for files with the same basename.\n\nIf I were to have the files:\n\n```\n  unstripped/mod.ko\n  stripped/mod.ko\n  unrelated/test/mod.ko\n```\n  \nand my protected list contains only\n\n```\n  unstripped/mod.ko\n```\n  \nthen I would expect that only that one is considered.",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 75
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2f49505_7abdb01c",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-16T12:02:27Z",
+      "side": 1,
+      "message": "why make this a list? I would expect the symbol sort to support iterators.",
+      "range": {
+        "startLine": 256,
+        "startChar": 26,
+        "endLine": 256,
+        "endChar": 31
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
