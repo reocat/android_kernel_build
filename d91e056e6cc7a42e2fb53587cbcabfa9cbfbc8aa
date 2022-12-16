@@ -16,6 +16,24 @@
       "message": "Given that there will be possibly more flags to be set for reproducibility, maybe we rather introduce a hermetic tool that encapsulates all that functionality.\nE.g. `hermetic_tar` or `deterministic_tar`\n\n```\n#!/bin/bash -e\n\ntar --mtime @0  $*\n```\n\nand then instead use this everywhere.",
       "revId": "d91e056e6cc7a42e2fb53587cbcabfa9cbfbc8aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10be23df_d3f038eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2022-12-16T16:12:40Z",
+      "side": 1,
+      "message": "yeah, that\u0027s what the toybox tests did, because it became unmanageable even there.\n\n(you might potentially even want to \"poison\" bare `tar` so that it can\u0027t be called by accident?)",
+      "parentUuid": "c81154d5_dc678ada",
+      "revId": "d91e056e6cc7a42e2fb53587cbcabfa9cbfbc8aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
