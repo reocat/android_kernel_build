@@ -58,14 +58,12 @@ def _kernel_kythe_impl(ctx):
     command += """
              # Copy compile_commands.json to root, resolving $ROOT_DIR to the real value,
              # and $OUT_DIR to $ROOT_DIR/$KERNEL_DIR.
-               sed -e "s:\\${{OUT_DIR}}:${{OUT_DIR}}:g;s:\\${{ROOT_DIR}}:${{ROOT_DIR}}:g" \\
+               sed -e "s:\\${{OUT_DIR}}:${{ROOT_DIR}}/${{KERNEL_DIR}}:g;s:\\${{ROOT_DIR}}:${{ROOT_DIR}}:g" \\
                     {compile_commands_with_vars} > ${{ROOT_DIR}}/compile_commands.json
 
-             # Prepare directories. Copy from compile_commands_out_dir to $OUT_DIR.
-               mkdir -p {kzip_dir} {extracted_kzip_dir} ${{OUT_DIR}}
-               rsync -aL --chmod=D+w --chmod=F+w {compile_commands_out_dir}/ ${{OUT_DIR}}/
-
-               {reconstruct_out_dir} ${{COMMON_OUT_DIR}} {compile_commands_with_vars}
+             # Prepare directories. Copy from compile_commands_out_dir to $ROOT_DIR/$KERNEL_DIR.
+               mkdir -p {kzip_dir} {extracted_kzip_dir} ${{ROOT_DIR}}/${{KERNEL_DIR}}
+               rsync -aL --chmod=D+w --chmod=F+w {compile_commands_out_dir}/ ${{ROOT_DIR}}/${{KERNEL_DIR}}/
 
              # Define env variables
                export KYTHE_ROOT_DIRECTORY=${{ROOT_DIR}}
