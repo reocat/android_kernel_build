@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1fcf840_6ca019a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-12-16T19:49:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4a70234_e5c5d760",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 14
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "020e39e5_5473e1fb",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6654b8f5_f1bd2970",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-12-16T19:49:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "020e39e5_5473e1fb",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 21
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e3feb2c_854e6f78",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-12-16T12:02:27Z",
       "side": 1,
       "message": "mode\u003d\u0027r\u0027 is default and can be omitted\n\nhttps://docs.python.org/3.11/library/functions.html#open",
+      "range": {
+        "startLine": 246,
+        "startChar": 39,
+        "endLine": 246,
+        "endChar": 43
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4000366d_510fd05d",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-12-16T19:49:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e3feb2c_854e6f78",
       "range": {
         "startLine": 246,
         "startChar": 39,
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5950677c_1cf085f8",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-12-16T19:49:40Z",
+      "side": 1,
+      "message": "I kept the list of protected GKI modules file list modules same as other module listing file. These paths are not absolute and may not be relative depending from where this script is getting executed. So, I am only comparing basename.\n\nI rely on the directory value to provide the correct folder where these modules should be searched.\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android14-5.15:common/android/gki_protected_modules",
+      "parentUuid": "0de2402b_867ae1a1",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 75
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2f49505_7abdb01c",
         "filename": "abi/extract_symbols",
         "patchSetId": 1
@@ -106,6 +202,30 @@
       "writtenOn": "2022-12-16T12:02:27Z",
       "side": 1,
       "message": "why make this a list? I would expect the symbol sort to support iterators.",
+      "range": {
+        "startLine": 256,
+        "startChar": 26,
+        "endLine": 256,
+        "endChar": 31
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c675b03b_d42949fa",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-12-16T19:49:40Z",
+      "side": 1,
+      "message": "It is a dictionary; and I am only interested in values. It was not working and keep giving me errors with list(), set(), or just .values() stating that it\u0027s not hashable type. So, I referenced the existing code here:\n\n```\n# Build the list of all exported symbols (generic and local)\n  all_exported \u003d list(\n      itertools.chain.from_iterable(local_exports.values()))\n  all_exported.extend(generic_exports)\n  all_exported \u003d set(all_exported)\n```",
+      "parentUuid": "d2f49505_7abdb01c",
       "range": {
         "startLine": 256,
         "startChar": 26,
