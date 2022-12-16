@@ -52,6 +52,24 @@
       "parentUuid": "10be23df_d3f038eb",
       "revId": "d91e056e6cc7a42e2fb53587cbcabfa9cbfbc8aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3718191_11f02ae7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2022-12-16T17:31:47Z",
+      "side": 1,
+      "message": "have your `hermetic_tar` be just called `tar` and earlier on the path?",
+      "parentUuid": "54b49d87_941c20f9",
+      "revId": "d91e056e6cc7a42e2fb53587cbcabfa9cbfbc8aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
