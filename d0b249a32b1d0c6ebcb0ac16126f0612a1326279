@@ -116,6 +116,30 @@
       },
       "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09450c3b_a9284089",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-16T00:12:06Z",
+      "side": 1,
+      "message": "Also, grabbing the outputs is the first step to bazel-lize the subsequent steps that the partner wants to do on the output files. I know they currently don\u0027t have plans to do that, but still -- let\u0027s try containing things inside the Bazel framework as much as possible.",
+      "parentUuid": "1c498900_97f2a044",
+      "range": {
+        "startLine": 11,
+        "startChar": 16,
+        "endLine": 11,
+        "endChar": 28
+      },
+      "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
