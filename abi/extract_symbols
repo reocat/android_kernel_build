@@ -58,6 +58,20 @@ def symbol_sort(symbols):
 
   return sorted(set(symbols), key=__key)
 
+def symbol_sort_ascii(symbols):
+  """Sorts the symbols based on ASCII values to use with C binary search"""
+
+  def compare_strings(s1, s2):
+    """Compare strings char by char until finds mismatch"""
+    for c1, c2 in zip(s1, s2):
+      if ord(c1) != ord(c2):
+        return ord(c1) - ord(c2)
+    return len(s1) - len(s2)
+
+  # Sorting key with comparator as compare_strings
+  __sorting_key = functools.cmp_to_key(compare_strings)
+
+  return sorted(symbols, key=__sorting_key)
 
 def find_binaries(directory):
   """Locates vmlinux and kernel modules (*.ko)."""
@@ -226,6 +240,25 @@ def is_signature_present(module):
                                 stderr=subprocess.STDOUT).decode("ascii")
   return out == "PKCS#7\n"
 
+def update_gki_protected_exports(directory, gki_protected_modules_list, symbol_list):
+  """Updates the symbol_list with exports from modules in gki_protected_modules_list"""
+
+  with open(gki_protected_modules_list, 'r') as f:
+    protected_module_names = [os.path.basename(line.strip()) for line in f]
+
+  protected_gki_modules = []
+  for root, dirs, files in os.walk(directory):
+    for filename in files:
+        if filename in protected_module_names:
+            protected_gki_modules.append(os.path.join(root, filename))
+
+  gki_protected_exports = extract_exported_in_modules(protected_gki_modules)
+  gki_protected_exports = list(
+      itertools.chain.from_iterable(gki_protected_exports.values()))
+
+  with open(symbol_list, "w") as wl:
+    wl.write("\n".join(symbol_sort_ascii(gki_protected_exports)))
+
 def main():
   """Extracts the required symbols for a directory full of kernel modules."""
   parser = argparse.ArgumentParser()
@@ -284,6 +317,15 @@ def main():
       help="Only process modules matching the filter. Can be passed multiple times."
   )
 
+  parser.add_argument(
+      "--update-gki-protected-exports",
+      action="store_true",
+      help="Read the existing symbol list and ensure no symbols get removed")
+
+  parser.add_argument(
+      "--gki-protected-modules-list",
+      help="List of GKI protected modules which must be provided with --update-gki-protected-exports")
+
   args = parser.parse_args()
 
   if not os.path.isdir(args.directory):
@@ -294,6 +336,18 @@ def main():
   if args.emit_module_symbol_lists and not args.symbol_list:
     print("Emitting module symbol lists requires the --symbol-list parameter.")
     return 1
+
+  if args.update_gki_protected_exports:
+    if args.gki_protected_modules_list is None:
+      print("Updating GKI protected exports requires the --gki-protected-modules-list parameter.")
+      return 1
+    if args.symbol_list is None:
+      print("Updating GKI protected exports requires the --symbol-list parameter.")
+      return 1
+
+    update_gki_protected_exports(args.directory, args.gki_protected_modules_list, args.symbol_list)
+
+    return 0
 
   if args.symbol_list is None:
     args.symbol_list = "/dev/stdout"
