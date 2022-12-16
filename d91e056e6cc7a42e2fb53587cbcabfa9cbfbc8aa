@@ -34,6 +34,24 @@
       "parentUuid": "c81154d5_dc678ada",
       "revId": "d91e056e6cc7a42e2fb53587cbcabfa9cbfbc8aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54b49d87_941c20f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-16T16:59:41Z",
+      "side": 1,
+      "message": "I don\u0027t think we can do that. There are enough occurrences in the kernel makefiles that we can only touch through upstream patching.",
+      "parentUuid": "10be23df_d3f038eb",
+      "revId": "d91e056e6cc7a42e2fb53587cbcabfa9cbfbc8aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
