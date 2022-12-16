@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0fcc6c30_cf4cf604",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2022-12-16T16:58:20Z",
+      "side": 1,
+      "message": "I think it is ok to support this in a later CL. Though in your own interest to reduce build times it would be good to have.",
+      "parentUuid": "925e95d4_6ba4fde6",
+      "range": {
+        "startLine": 8,
+        "startChar": 52,
+        "endLine": 8,
+        "endChar": 82
+      },
+      "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d4897b8_72a9b62a",
         "filename": "kleaf/docs/get_kernel_output.md",
         "patchSetId": 14
