@@ -191,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d25517c6_b0180bf9",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-12-18T00:12:36Z",
+      "side": 1,
+      "message": "out/\u003cANDROID\u003e/dist has all the signed modules; so passing that easy short without actually extracting the archive; so basename is required as of now. When we add the bazel command to integrate it; we may change this; and always use kleaf command. Currently, plan is to use the script manually as only Google needs to do it.",
+      "parentUuid": "5950677c_1cf085f8",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 75
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2f49505_7abdb01c",
         "filename": "abi/extract_symbols",
         "patchSetId": 1
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "It is a dictionary; and I am only interested in values. It was not working and keep giving me errors with list(), set(), or just .values() stating that it\u0027s not hashable type. So, I referenced the existing code here:\n\n```\n# Build the list of all exported symbols (generic and local)\n  all_exported \u003d list(\n      itertools.chain.from_iterable(local_exports.values()))\n  all_exported.extend(generic_exports)\n  all_exported \u003d set(all_exported)\n```",
       "parentUuid": "d2f49505_7abdb01c",
+      "range": {
+        "startLine": 256,
+        "startChar": 26,
+        "endLine": 256,
+        "endChar": 31
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b3e89eb_f6928bcc",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2022-12-18T00:12:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c675b03b_d42949fa",
       "range": {
         "startLine": 256,
         "startChar": 26,
