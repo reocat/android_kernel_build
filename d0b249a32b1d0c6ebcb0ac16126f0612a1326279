@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f96e8bbe_a218e855",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-19T10:39:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e30f3f60_4ef90f07",
+      "range": {
+        "startLine": 1,
+        "startChar": 3,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19aebee5_a00671b3",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "I think it is ok to support this in a later CL. Though in your own interest to reduce build times it would be good to have.",
       "parentUuid": "925e95d4_6ba4fde6",
+      "range": {
+        "startLine": 8,
+        "startChar": 52,
+        "endLine": 8,
+        "endChar": 82
+      },
+      "revId": "d0b249a32b1d0c6ebcb0ac16126f0612a1326279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ecef8fe_0d6e49c5",
+        "filename": "kleaf/docs/get_kernel_output.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1767641
+      },
+      "writtenOn": "2022-12-19T10:39:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fcc6c30_cf4cf604",
       "range": {
         "startLine": 8,
         "startChar": 52,
