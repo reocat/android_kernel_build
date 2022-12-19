@@ -70,6 +70,24 @@
       "parentUuid": "54b49d87_941c20f9",
       "revId": "d91e056e6cc7a42e2fb53587cbcabfa9cbfbc8aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db2365ea_52fed589",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-19T20:49:21Z",
+      "side": 1,
+      "message": "I think what Elliot means is to replace the `tar` binary in our hermetic toolchain to add these arguments, right?",
+      "parentUuid": "a3718191_11f02ae7",
+      "revId": "d91e056e6cc7a42e2fb53587cbcabfa9cbfbc8aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
