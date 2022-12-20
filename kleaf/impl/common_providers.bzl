@@ -68,10 +68,12 @@ KernelBuildExtModuleInfo = provider(
                                    "Does not contain the lib/modules/* suffix.",
         "module_hdrs": "A [depset](https://bazel.build/extending/depsets) containing headers for this `kernel_build` for building external modules",
         "module_scripts": "A [depset](https://bazel.build/extending/depsets) containing scripts for this `kernel_build` for building external modules",
-        "modules_prepare_setup": "A command that is equivalent to running `make modules_prepare`. Requires env setup.",
+        # TODO: Fold modules_prepare_setup, modules_prepare_deps and env_info
+        "modules_prepare_setup": "A command that is equivalent to running `make modules_prepare`. Requires `env_info.setup`.",
         "modules_prepare_deps": "A list of deps to run `modules_prepare_cmd`.",
         "collect_unstripped_modules": "Whether an external [`kernel_module`](#kernel_module) building against this [`kernel_build`](#kernel_build) should provide unstripped ones for debugging.",
         "strip_modules": "Whether debug information for distributed modules is stripped",
+        "env_info": "`KernelEnvInfo` specialized for external kernel modules.",
     },
 )
 
