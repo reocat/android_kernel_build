@@ -1278,6 +1278,26 @@ def _create_infos(
 
     module_srcs = kernel_utils.filter_module_srcs(ctx.files.srcs)
 
+    kernel_build_module_env_info_deps = list(ctx.attr.config[KernelEnvAttrInfo].env_info.dependencies)
+    kernel_build_module_env_info_deps += kbuild_mixed_tree_ret.outputs
+    kernel_build_module_env_info_setup = ctx.attr.config[KernelEnvAttrInfo].env_info.setup
+    kernel_build_module_env_info_setup += kbuild_mixed_tree_ret.cmd
+    kernel_build_module_env_info_setup += """
+         # Restore kernel build outputs necessary for building kernel modules
+    """
+    for internal_out in all_output_files["internal_outs"].values():
+        kernel_build_module_env_info_setup += """
+            mkdir -p $(dirname ${{OUT_DIR}}/{rel_file})
+            cp {file} ${{OUT_DIR}}/{rel_file}
+        """.format(
+            file = internal_out.path,
+            rel_file = paths.relativize(internal_out.path, main_action_ret.ruledir.path),
+        )
+        kernel_build_module_env_info_deps.append(internal_out)
+    kernel_build_module_env_info = KernelEnvInfo(
+        dependencies = kernel_build_module_env_info_deps,
+        setup = kernel_build_module_env_info_setup,
+    )
     kernel_build_module_info = KernelBuildExtModuleInfo(
         modules_staging_archive = modules_staging_archive,
         module_hdrs = module_srcs.module_hdrs,
@@ -1286,6 +1306,7 @@ def _create_infos(
         modules_prepare_deps = ctx.attr.modules_prepare[KernelEnvInfo].dependencies,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
         strip_modules = ctx.attr.strip_modules,
+        env_info = kernel_build_module_env_info,
     )
 
     kernel_uapi_depsets = []

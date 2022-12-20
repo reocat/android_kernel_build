@@ -29,6 +29,7 @@ load(
     "DdkSubmoduleInfo",
     "KernelBuildExtModuleInfo",
     "KernelCmdsInfo",
+    "KernelEnvAttrInfo",
     "KernelEnvInfo",
     "KernelModuleInfo",
     "KernelUnstrippedModulesInfo",
@@ -269,7 +270,7 @@ def _kernel_module_impl(ctx):
         fail("{}: must not define `makefile` for `ddk_module`")
 
     inputs = []
-    inputs += ctx.attr.kernel_build[KernelEnvInfo].dependencies
+    inputs += ctx.attr.kernel_build[KernelBuildExtModuleInfo].env_info.dependencies
     inputs += ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_prepare_deps
     inputs += ctx.files.makefile
     inputs += ctx.files.internal_ddk_makefiles_dir
@@ -338,7 +339,7 @@ def _kernel_module_impl(ctx):
         command_outputs.append(unstripped_dir)
 
     command = ""
-    command += ctx.attr.kernel_build[KernelEnvInfo].setup
+    command += ctx.attr.kernel_build[KernelBuildExtModuleInfo].env_info.setup
     command += ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_prepare_setup
     command += """
              # create dirs for modules
@@ -586,7 +587,7 @@ _kernel_module = rule(
         "internal_exclude_kernel_build_module_srcs": attr.bool(),
         "kernel_build": attr.label(
             mandatory = True,
-            providers = [KernelEnvInfo, KernelBuildExtModuleInfo],
+            providers = [KernelBuildExtModuleInfo],
         ),
         "deps": attr.label_list(),
         # Not output_list because it is not a list of labels. The list of
