@@ -58,6 +58,7 @@ def _kernel_filegroup_impl(ctx):
         module_hdrs = module_srcs.module_hdrs,
         module_scripts = module_srcs.module_scripts,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
+        # TODO(b/219112010): Add env_info so we can build modules against //common:kernel_aarch64_downloaded directly
     )
 
     kernel_uapi_depsets = []
