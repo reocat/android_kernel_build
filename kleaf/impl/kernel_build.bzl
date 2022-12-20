@@ -1227,6 +1227,51 @@ def _build_main_action(
         compile_commands_out_dir = compile_commands_step.compile_commands_out_dir,
     )
 
+def _copy_one_file_for_external_module(filename, file):
+    """Creates the KernelEnvInfo that copies one file to $OUT_DIR."""
+    setup = """
+        mkdir -p $(dirname ${{OUT_DIR}}/{filename})
+        cp {file} ${{OUT_DIR}}/{filename}
+    """.format(
+        file = file.path,
+        filename = filename,
+    )
+    deps = [file]
+    return KernelEnvInfo(
+        setup = setup,
+        dependencies = deps,
+    )
+
+def _create_kernel_build_module_env_info(ctx, kbuild_mixed_tree_ret, all_output_files, ruledir):
+    """Creates the KernelEnvInfo specialized for external kernel modules."""
+
+    env_infos = []
+
+    # For GKI, explicitly copy System.map from outs. For mixed device kernel_build, System.map
+    # is already provided in KBUILD_MIXED_TREE.
+    for attr in all_output_files:
+        if "System.map" in all_output_files[attr]:
+            env_infos.append(_copy_one_file_for_external_module("System.map", all_output_files[attr]["System.map"]))
+
+    for filename, internal_out in all_output_files["internal_outs"].items():
+        env_infos.append(_copy_one_file_for_external_module(filename, internal_out))
+
+    deps = list(ctx.attr.config[KernelEnvAttrInfo].env_info.dependencies)
+    deps += kbuild_mixed_tree_ret.outputs
+    deps += [dep for env_info in env_infos for dep in env_info.dependencies]
+
+    setup = ctx.attr.config[KernelEnvAttrInfo].env_info.setup
+    setup += kbuild_mixed_tree_ret.cmd
+    setup += """
+         # Restore kernel build outputs necessary for building kernel modules
+    """
+    setup += "\n".join([env_info.setup for env_info in env_infos])
+
+    return KernelEnvInfo(
+        dependencies = deps,
+        setup = setup,
+    )
+
 def _create_infos(
         ctx,
         kbuild_mixed_tree_ret,
@@ -1286,6 +1331,12 @@ def _create_infos(
         modules_prepare_deps = ctx.attr.modules_prepare[KernelEnvInfo].dependencies,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
         strip_modules = ctx.attr.strip_modules,
+        env_info = _create_kernel_build_module_env_info(
+            ctx = ctx,
+            kbuild_mixed_tree_ret = kbuild_mixed_tree_ret,
+            all_output_files = all_output_files,
+            ruledir = main_action_ret.ruledir,
+        ),
     )
 
     kernel_uapi_depsets = []
