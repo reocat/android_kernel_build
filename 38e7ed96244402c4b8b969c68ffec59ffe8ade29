@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ebbe428_40312cad",
+        "filename": "kleaf/impl/kernel_kythe.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1055203
+      },
+      "writtenOn": "2022-12-20T03:34:01Z",
+      "side": 1,
+      "message": "If the files are really required by the build (which it seems like they are) it may be preferable to leave them as absolute. I believe this is treated as a warning in our ingestion pipeline because some projects can\u0027t avoid it. \n\nLet\u0027s hold off on this change and try the kzip without it first and see if it works for you all.",
+      "range": {
+        "startLine": 45,
+        "startChar": 3,
+        "endLine": 52,
+        "endChar": 5
+      },
+      "revId": "38e7ed96244402c4b8b969c68ffec59ffe8ade29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
