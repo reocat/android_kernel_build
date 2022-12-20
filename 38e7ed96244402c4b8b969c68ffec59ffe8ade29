@@ -22,6 +22,30 @@
       },
       "revId": "38e7ed96244402c4b8b969c68ffec59ffe8ade29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea636af3_3daa732c",
+        "filename": "kleaf/impl/kernel_kythe.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-20T18:32:08Z",
+      "side": 1,
+      "message": "These includes, on my machine:\n\n/etc/os-release\n/etc/debian-release\n/etc/lb-release\n\n... which clearly shouldn\u0027t be part of the build. I just don\u0027t know why it is here.\n\nAlso, without this change, I still need to revert the `sed` line below. This is a better hack anyways.",
+      "parentUuid": "0ebbe428_40312cad",
+      "range": {
+        "startLine": 45,
+        "startChar": 3,
+        "endLine": 52,
+        "endChar": 5
+      },
+      "revId": "38e7ed96244402c4b8b969c68ffec59ffe8ade29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
