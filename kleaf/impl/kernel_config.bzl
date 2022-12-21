@@ -228,9 +228,8 @@ def _kernel_config_impl(ctx):
         ]])
     ]
 
-    config = ctx.outputs.config
-    include_dir = ctx.actions.declare_directory(ctx.attr.name + "_include")
-    outputs = [config, include_dir]
+    out_dir = ctx.actions.declare_directory(ctx.attr.name + "/out_dir")
+    outputs = [out_dir]
 
     scmversion_command = stamp.scmversion_config_cmd(ctx)
     reconfig = _reconfig(ctx)
@@ -262,14 +261,13 @@ def _kernel_config_impl(ctx):
         # HACK: run syncconfig to avoid re-triggerring kernel_build
           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} syncconfig
         # Grab outputs
-          rsync -aL ${{OUT_DIR}}/.config {config}
-          rsync -aL ${{OUT_DIR}}/include/ {include_dir}/
+        # "source" is symlink to the source tree
+          rsync -aL --exclude=source ${{OUT_DIR}}/ {out_dir}/
           {cache_dir_post_cmd}
         """.format(
         cache_dir_cmd = cache_dir_step.cmd,
         cache_dir_post_cmd = cache_dir_step.post_cmd,
-        config = config.path,
-        include_dir = include_dir.path,
+        out_dir = out_dir.path,
         scmversion_command = scmversion_command,
         reconfig_cmd = reconfig.cmd,
     )
@@ -288,15 +286,16 @@ def _kernel_config_impl(ctx):
         execution_requirements = kernel_utils.local_exec_requirements(ctx),
     )
 
-    setup_deps = [config, include_dir]
+    setup_deps = [out_dir]
     setup = """
            [ -z ${{OUT_DIR}} ] && echo "FATAL: configs post_env_info setup run without OUT_DIR set!" >&2 && exit 1
          # Restore kernel config inputs
-           mkdir -p ${{OUT_DIR}}/include/
-           rsync -aL {config} ${{OUT_DIR}}/.config
-           rsync -aL {include_dir}/ ${{OUT_DIR}}/include/
+           mkdir -p ${{OUT_DIR}}/
+           rsync -aL --chmod=D+w --chmod=F+w {out_dir}/ ${{OUT_DIR}}/
            find ${{OUT_DIR}}/include -type d -exec chmod +w {{}} \\;
-    """.format(config = config.path, include_dir = include_dir.path)
+    """.format(
+        out_dir = out_dir.path,
+    )
 
     if trim_nonlisted_kmi_utils.get_value(ctx):
         # Ensure the dependent action uses the up-to-date abi_symbollist.raw
@@ -318,7 +317,7 @@ def _kernel_config_impl(ctx):
         kernel_config_env_info,
         ctx.attr.env[KernelEnvAttrInfo],
         DefaultInfo(
-            files = depset([config, include_dir]),
+            files = depset([out_dir]),
             executable = config_script_ret.executable,
             runfiles = config_script_ret.runfiles,
         ),
@@ -392,7 +391,6 @@ kernel_config = rule(
             doc = "environment target that defines the kernel build environment",
         ),
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
-        "config": attr.output(mandatory = True, doc = "the .config file"),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
