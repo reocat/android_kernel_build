@@ -264,6 +264,9 @@ def _kernel_config_impl(ctx):
         # Grab outputs
           rsync -aL ${{OUT_DIR}}/.config {out_dir}/.config
           rsync -aL ${{OUT_DIR}}/include/ {out_dir}/include/
+        # TODO(b/263415662): Drop fixdep. This is a hack needed for --config=local builds.
+          mkdir -p {out_dir}/scripts/basic
+          rsync -aL ${{OUT_DIR}}/scripts/basic/fixdep {out_dir}/scripts/basic/fixdep
           {cache_dir_post_cmd}
         """.format(
         out_dir = out_dir.path,
@@ -293,6 +296,9 @@ def _kernel_config_impl(ctx):
          # Restore kernel config inputs
            rsync -aL --chmod=D+w {out_dir}/include/ ${{OUT_DIR}}/include/
            rsync -aL {out_dir}/.config ${{OUT_DIR}}/.config
+         # TODO(b/263415662): Drop fixdep. This is a hack needed for --config=local builds.
+           mkdir -p ${{OUT_DIR}}/scripts/basic
+           rsync -aL --chmod=D+w {out_dir}/scripts/basic/fixdep ${{OUT_DIR}}/scripts/basic/fixdep
     """.format(
         out_dir = out_dir.path,
     )
