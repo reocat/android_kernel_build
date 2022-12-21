@@ -14,23 +14,31 @@
 
 """Runs `make modules_prepare` to prepare `$OUT_DIR` for modules."""
 
-load(":common_providers.bzl", "KernelEnvInfo")
+load(":common_providers.bzl", "KernelConfigEnvInfo")
 load(":debug.bzl", "debug")
+load(":utils.bzl", "utils")
 
 def _modules_prepare_impl(ctx):
-    command = ctx.attr.config[KernelEnvInfo].setup + """
+    command = ctx.attr.config[KernelConfigEnvInfo].env_info.setup
+    command += utils.get_check_sandbox_cmd()
+    command += ctx.attr.config[KernelConfigEnvInfo].post_env_info.setup
+    command += """
          # Prepare for the module build
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules_prepare
          # Package files
            tar czf {outdir_tar_gz} -C ${{OUT_DIR}} .
     """.format(outdir_tar_gz = ctx.outputs.outdir_tar_gz.path)
 
+    tools = []
+    tools += ctx.attr.config[KernelConfigEnvInfo].env_info.dependencies
+    tools += ctx.attr.config[KernelConfigEnvInfo].post_env_info.dependencies
+
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
         mnemonic = "ModulesPrepare",
         inputs = depset(transitive = [target.files for target in ctx.attr.srcs]),
         outputs = [ctx.outputs.outdir_tar_gz],
-        tools = ctx.attr.config[KernelEnvInfo].dependencies,
+        tools = tools,
         progress_message = "Preparing for module build %s" % ctx.label,
         command = command,
     )
@@ -52,7 +60,7 @@ modules_prepare = rule(
     attrs = {
         "config": attr.label(
             mandatory = True,
-            providers = [KernelEnvInfo],
+            providers = [KernelConfigEnvInfo],
             doc = "the kernel_config target",
         ),
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),

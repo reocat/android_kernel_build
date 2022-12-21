@@ -39,6 +39,7 @@ load(
     "KernelBuildMixedTreeInfo",
     "KernelBuildUapiInfo",
     "KernelCmdsInfo",
+    "KernelConfigEnvInfo",
     "KernelEnvAttrInfo",
     "KernelEnvInfo",
     "KernelImagesInfo",
@@ -1026,9 +1027,10 @@ def _build_main_action(
         module_strip_flag += "1"
 
     # Build the command for the main action.
-    command = ctx.attr.config[KernelEnvInfo].setup
+    command = ctx.attr.config[KernelConfigEnvInfo].env_info.setup
+    command += cache_dir_step.cmd
+    command += ctx.attr.config[KernelConfigEnvInfo].post_env_info.setup
     command += """
-           {cache_dir_cmd}
            {kbuild_mixed_tree_cmd}
          # Actual kernel build
            {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
@@ -1076,7 +1078,6 @@ def _build_main_action(
          # Create last_build symlink in cache_dir
            {cache_dir_post_cmd}
          """.format(
-        cache_dir_cmd = cache_dir_step.cmd,
         cache_dir_post_cmd = cache_dir_step.post_cmd,
         kbuild_mixed_tree_cmd = kbuild_mixed_tree_ret.cmd,
         search_and_cp_output = ctx.file._search_and_cp_output.path,
@@ -1114,7 +1115,8 @@ def _build_main_action(
     tools = [
         ctx.file._search_and_cp_output,
     ]
-    tools += ctx.attr.config[KernelEnvInfo].dependencies
+    tools += ctx.attr.config[KernelConfigEnvInfo].env_info.dependencies
+    tools += ctx.attr.config[KernelConfigEnvInfo].post_env_info.dependencies
     for step in steps:
         tools += step.tools
 
@@ -1177,11 +1179,20 @@ def _create_infos(
     # Only outs and internal_outs are needed. But for simplicity, copy the full {ruledir}
     # which includes module_outs and implicit_outs too.
     env_info_dependencies = []
-    env_info_dependencies += ctx.attr.config[KernelEnvInfo].dependencies
+
+    # FIXME
+    env_info_dependencies += ctx.attr.config[KernelConfigEnvInfo].env_info.dependencies
+    env_info_dependencies += ctx.attr.config[KernelConfigEnvInfo].post_env_info.dependencies
     for d in all_output_files.values():
         env_info_dependencies += d.values()
     env_info_dependencies += kbuild_mixed_tree_ret.outputs
-    env_info_setup = ctx.attr.config[KernelEnvInfo].setup + """
+
+    # We don't have local actions that depends on this setup script yet. If
+    # we do in the future, this needs to be split into KernelConfigEnvInfo.
+    env_info_setup = ctx.attr.config[KernelConfigEnvInfo].env_info.setup
+    env_info_setup += utils.get_check_sandbox_cmd()
+    env_info_setup += ctx.attr.config[KernelConfigEnvInfo].post_env_info.setup
+    env_info_setup += """
          # Restore kernel build outputs
            cp -R {ruledir}/* ${{OUT_DIR}}
            """.format(ruledir = main_action_ret.ruledir.path)
@@ -1355,7 +1366,7 @@ _kernel_build = rule(
     attrs = {
         "config": attr.label(
             mandatory = True,
-            providers = [KernelEnvInfo, KernelEnvAttrInfo],
+            providers = [KernelConfigEnvInfo, KernelEnvAttrInfo],
             aspects = [kernel_toolchain_aspect],
             doc = "the kernel_config target",
         ),
@@ -1531,11 +1542,15 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
         ctx.file.raw_kmi_symbol_list,
         all_module_names_file,
     ]
-    inputs += ctx.attr.config[KernelEnvInfo].dependencies
+    inputs += ctx.attr.config[KernelConfigEnvInfo].env_info.dependencies
+    inputs += ctx.attr.config[KernelConfigEnvInfo].post_env_info.dependencies
     inputs += ctx.files._compare_to_symbol_list
 
     out = ctx.actions.declare_file("{}_kmi_strict_out/kmi_symbol_list_strict_mode_checked".format(ctx.attr.name))
-    command = ctx.attr.config[KernelEnvInfo].setup + """
+    command = ctx.attr.config[KernelConfigEnvInfo].setup
+    command += utils.get_check_sandbox_cmd()
+    command += ctx.attr.config[KernelConfigEnvInfo].post_setup
+    command += """
         KMI_STRICT_MODE_OBJECTS="{vmlinux_base} $(cat {all_module_names_file} | sed 's/\\.ko$//')" {compare_to_symbol_list} {module_symvers} {raw_kmi_symbol_list}
         touch {out}
     """.format(
