@@ -46,6 +46,30 @@
       },
       "revId": "38e7ed96244402c4b8b969c68ffec59ffe8ade29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e763025_4f9b721b",
+        "filename": "kleaf/impl/kernel_kythe.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1055203
+      },
+      "writtenOn": "2022-12-21T04:14:12Z",
+      "side": 1,
+      "message": "I won\u0027t hold back this review for this, but it does have one possibly significant drawback: You now can\u0027t have a checked-in directory in the root of your repository called fake_root.",
+      "parentUuid": "ea636af3_3daa732c",
+      "range": {
+        "startLine": 45,
+        "startChar": 3,
+        "endLine": 52,
+        "endChar": 5
+      },
+      "revId": "38e7ed96244402c4b8b969c68ffec59ffe8ade29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
