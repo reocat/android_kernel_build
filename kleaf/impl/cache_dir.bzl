@@ -17,12 +17,13 @@
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(":utils.bzl", "utils")
 
-def _get_step(ctx, common_config_tags):
+def _get_step(ctx, common_config_tags, symlink_name):
     """Returns a step for caching the output directory.
 
     Args:
         ctx: ctx
         common_config_tags: from `kernel_env[KernelEnvAttrInfo]`
+        symlink_name: name of the "last" symlink
 
     Returns:
       A struct with these fields:
@@ -75,10 +76,12 @@ def _get_step(ctx, common_config_tags):
                   fi
 
                   # source/ and build/ are symlinks to the source tree and $OUT_DIR, respectively,
-                  rsync -aL --exclude=source --exclude=build \\
-                      "${{OUT_DIR}}/" "${{KLEAF_CACHED_OUT_DIR}}/"
-                  rsync -al --include=source --include=build --exclude='*' \\
-                      "${{OUT_DIR}}/" "${{KLEAF_CACHED_OUT_DIR}}/"
+                  if [[ -d "${{OUT_DIR}}" ]]; then
+                      rsync -aL --exclude=source --exclude=build \\
+                          "${{OUT_DIR}}/" "${{KLEAF_CACHED_OUT_DIR}}/"
+                      rsync -al --include=source --include=build --exclude='*' \\
+                          "${{OUT_DIR}}/" "${{KLEAF_CACHED_OUT_DIR}}/"
+                  fi
               )
 
               export OUT_DIR=${{KLEAF_CACHED_OUT_DIR}}
@@ -91,9 +94,10 @@ def _get_step(ctx, common_config_tags):
         )
 
         post_cmd = """
-            ln -sfT ${{OUT_DIR_SUFFIX}} {cache_dir}/last_build
+            ln -sfT ${{OUT_DIR_SUFFIX}} {cache_dir}/last_{symlink_name}
         """.format(
             cache_dir = ctx.attr._cache_dir[BuildSettingInfo].value,
+            symlink_name = symlink_name,
         )
     return struct(
         inputs = inputs,
