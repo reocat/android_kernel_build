@@ -14,25 +14,53 @@
 
 """Runs `make modules_prepare` to prepare `$OUT_DIR` for modules."""
 
-load(":common_providers.bzl", "KernelEnvInfo")
+load(":cache_dir.bzl", "cache_dir")
+load(
+    ":common_providers.bzl",
+    "KernelEnvAttrInfo",
+    "KernelEnvInfo",
+)
 load(":debug.bzl", "debug")
+load(":utils.bzl", "kernel_utils")
 
 def _modules_prepare_impl(ctx):
+    inputs = []
+    transitive_inputs = [target.files for target in ctx.attr.srcs]
+
+    outputs = [ctx.outputs.outdir_tar_gz]
+    tools = [] + ctx.attr.config[KernelEnvInfo].dependencies
+
+    cache_dir_step = cache_dir.get_step(
+        ctx = ctx,
+        common_config_tags = ctx.attr.config[KernelEnvAttrInfo].common_config_tags,
+        symlink_name = "modules_prepare",
+    )
+    inputs += cache_dir_step.inputs
+    outputs += cache_dir_step.outputs
+    tools += cache_dir_step.tools
+
     command = ctx.attr.config[KernelEnvInfo].setup + """
+           {cache_dir_cmd}
          # Prepare for the module build
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules_prepare
          # Package files
            tar czf {outdir_tar_gz} -C ${{OUT_DIR}} .
-    """.format(outdir_tar_gz = ctx.outputs.outdir_tar_gz.path)
+           {cache_dir_post_cmd}
+    """.format(
+        outdir_tar_gz = ctx.outputs.outdir_tar_gz.path,
+        cache_dir_cmd = cache_dir_step.cmd,
+        cache_dir_post_cmd = cache_dir_step.post_cmd,
+    )
 
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
         mnemonic = "ModulesPrepare",
-        inputs = depset(transitive = [target.files for target in ctx.attr.srcs]),
-        outputs = [ctx.outputs.outdir_tar_gz],
-        tools = ctx.attr.config[KernelEnvInfo].dependencies,
+        inputs = depset(inputs, transitive = transitive_inputs),
+        outputs = outputs,
+        tools = tools,
         progress_message = "Preparing for module build %s" % ctx.label,
         command = command,
+        execution_requirements = kernel_utils.local_exec_requirements(ctx),
     )
 
     setup = """
@@ -52,7 +80,7 @@ modules_prepare = rule(
     attrs = {
         "config": attr.label(
             mandatory = True,
-            providers = [KernelEnvInfo],
+            providers = [KernelEnvInfo, KernelEnvAttrInfo],
             doc = "the kernel_config target",
         ),
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
@@ -60,6 +88,8 @@ modules_prepare = rule(
             mandatory = True,
             doc = "the packaged ${OUT_DIR} files",
         ),
+        "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
     },
 )
