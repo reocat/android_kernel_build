@@ -18,6 +18,7 @@ load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
+load(":cache_dir.bzl", "cache_dir")
 load(
     ":common_providers.bzl",
     "KernelConfigEnvInfo",
@@ -229,12 +230,25 @@ def _kernel_config_impl(ctx):
 
     out_dir = ctx.actions.declare_directory(ctx.attr.name + "/out_dir")
     outputs = [out_dir]
+    outputs = [config, include_dir]
 
     scmversion_command = stamp.scmversion_config_cmd(ctx)
     reconfig = _reconfig(ctx)
     inputs += reconfig.deps
 
+    tools = [] + ctx.attr.env[KernelEnvInfo].dependencies
+
+    cache_dir_step = cache_dir.get_step(
+        ctx = ctx,
+        common_config_tags = ctx.attr.env[KernelEnvAttrInfo].common_config_tags,
+        symlink_name = "config",
+    )
+    inputs += cache_dir_step.inputs
+    outputs += cache_dir_step.outputs
+    tools += cache_dir_step.tools
+
     command = ctx.attr.env[KernelEnvInfo].setup + """
+          {cache_dir_cmd}
         # Pre-defconfig commands
           eval ${{PRE_DEFCONFIG_CMDS}}
         # Actual defconfig
@@ -250,8 +264,11 @@ def _kernel_config_impl(ctx):
         # Grab outputs
           rsync -aL ${{OUT_DIR}}/.config {out_dir}/.config
           rsync -aL ${{OUT_DIR}}/include/ {out_dir}/include/
+          {cache_dir_post_cmd}
         """.format(
         out_dir = out_dir.path,
+        cache_dir_cmd = cache_dir_step.cmd,
+        cache_dir_post_cmd = cache_dir_step.post_cmd,
         scmversion_command = scmversion_command,
         reconfig_cmd = reconfig.cmd,
     )
@@ -260,8 +277,8 @@ def _kernel_config_impl(ctx):
     ctx.actions.run_shell(
         mnemonic = "KernelConfig",
         inputs = inputs,
-        outputs = [config, include_dir],
-        tools = ctx.attr.env[KernelEnvInfo].dependencies,
+        outputs = outputs,
+        tools = tools,
         progress_message = "Creating kernel config {}{}".format(
             ctx.attr.env[KernelEnvAttrInfo].progress_message_note,
             ctx.label,
@@ -379,6 +396,7 @@ kernel_config = rule(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
         ),
+        "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
