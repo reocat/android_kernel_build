@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d656b7a_71c0e780",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-21T01:33:30Z",
+      "side": 1,
+      "message": "This is bad because $OUT_DIR is not set properly if the rule redirects OUT_DIR to somewhere else.",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 68
+      },
+      "revId": "50f3be7a3f67029e7c82cd0ef26ce4dab119a1d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
