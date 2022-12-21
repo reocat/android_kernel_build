@@ -22,6 +22,30 @@
       },
       "revId": "50f3be7a3f67029e7c82cd0ef26ce4dab119a1d5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ea6bfac_84ecc05f",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-21T21:37:27Z",
+      "side": 1,
+      "message": "Fixed by CL:2367049",
+      "parentUuid": "6d656b7a_71c0e780",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 68
+      },
+      "revId": "50f3be7a3f67029e7c82cd0ef26ce4dab119a1d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
