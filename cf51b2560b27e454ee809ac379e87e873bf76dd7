@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18940c2c_cade2cff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-22T23:35:55Z",
+      "side": 1,
+      "message": "Also asking @maennich@google.com to approve this",
+      "revId": "cf51b2560b27e454ee809ac379e87e873bf76dd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17aee5bb_c0df3f00",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-22T23:35:55Z",
+      "side": 1,
+      "message": "nit: could you please move it to L17? This is where the experimental flags are.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 46
+      },
+      "revId": "cf51b2560b27e454ee809ac379e87e873bf76dd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
