@@ -22,6 +22,30 @@
       },
       "revId": "be1839ed948ab96206be5a1d460f394827db1a9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a05fd64_6a8b2097",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-22T01:05:36Z",
+      "side": 1,
+      "message": "fixed with https://android-review.git.corp.google.com/q/topic:%22kleaf-prevent-execroot-write%22",
+      "parentUuid": "e21d84de_443c89a0",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 296,
+        "endChar": 57
+      },
+      "revId": "be1839ed948ab96206be5a1d460f394827db1a9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
