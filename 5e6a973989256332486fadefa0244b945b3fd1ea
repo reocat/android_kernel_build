@@ -16,6 +16,24 @@
       "message": "For some reason fixdep is built later than gen-hyprel when `--config\u003dlocal`, but it is not the case in sandboxes. Without this change, in both sandbox and local builds, $OUT_DIR/scripts/basic/fixdep does not exist, but sandbox build can pass.",
       "revId": "5e6a973989256332486fadefa0244b945b3fd1ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af979350_8029876c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2022-12-22T00:58:12Z",
+      "side": 1,
+      "message": "I can\u0027t figure it out. So I am going to leave this hack in and keep b/263415662 open.",
+      "parentUuid": "7e1e5864_5fcf58bc",
+      "revId": "5e6a973989256332486fadefa0244b945b3fd1ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
