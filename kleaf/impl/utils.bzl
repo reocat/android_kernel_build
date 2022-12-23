@@ -138,7 +138,11 @@ def _compare_file_names(files, expected_file_names, what):
 def _sanitize_label_as_filename(label):
     """Sanitize a Bazel label so it is safe to be used as a filename."""
     label_text = str(label)
-    return "".join([c if c.isalnum() else "_" for c in label_text.elems()])
+    return _sanitize(label_text)
+
+def _sanitize(s):
+    """Returns a sanitized string by replacing non-letters / non-numbers as underscores."""
+    return "".join([c if c.isalnum() else "_" for c in s.elems()])
 
 def _kwargs_to_def(**kwargs):
     """Turns d into text that can be copied to BUILD files. May be inaccurate."""
@@ -180,6 +184,7 @@ utils = struct(
     find_files = find_files,
     compare_file_names = _compare_file_names,
     sanitize_label_as_filename = _sanitize_label_as_filename,
+    sanitize = _sanitize,
     kwargs_to_def = _kwargs_to_def,
     hash_hex = _hash_hex,
     get_check_sandbox_cmd = _get_check_sandbox_cmd,
