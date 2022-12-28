@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bef9b3e_c258c3cc",
+        "filename": "kleaf/impl/ddk/ddk_conditional_filegroup.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2022-12-28T17:54:55Z",
+      "side": 1,
+      "message": "just to confirm, tristate (`\u0027y\u0027, \u0027n\u0027, \u0027m\u0027`) won\u0027t be supported right?",
+      "range": {
+        "startLine": 70,
+        "startChar": 17,
+        "endLine": 70,
+        "endChar": 27
+      },
+      "revId": "ee844f1184780a3b49042b89120ef1ee64ad6e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
