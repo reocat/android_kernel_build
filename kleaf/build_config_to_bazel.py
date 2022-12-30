@@ -115,6 +115,7 @@ _IGNORED_BUILD_CONFIGS = dict.fromkeys(
         "RAMDISK_EXT",
         "READELF",
         "ROOT_DIR",
+        "RUSTC_VERSION",
         "SOURCE_DATE_EPOCH",
         "STRIP",
         "TOOL_ARGS",

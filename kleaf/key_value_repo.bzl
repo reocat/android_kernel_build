@@ -1,11 +1,14 @@
 def _impl(repository_ctx):
     repository_content = ""
-
+    Dict = {}
     for src in repository_ctx.attr.srcs:
         raw_content = repository_ctx.read(src)
         for line in raw_content.splitlines():
             key, value = line.split("=", 1)
             repository_content += '{} = "{}"\n'.format(key.strip(), value.strip())
+            Dict[key] = value
+    
+    repository_content += "VARS = " + str(Dict) + "\n"
 
     for key, value in repository_ctx.attr.additional_values.items():
         repository_content += '{} = "{}"\n'.format(key, value)

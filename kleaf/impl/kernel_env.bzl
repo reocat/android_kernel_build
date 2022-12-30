@@ -16,7 +16,7 @@
 
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
-load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
+load("@kernel_toolchain_info//:dict.bzl", "VARS")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(":abi/force_add_vmlinux_utils.bzl", "force_add_vmlinux_utils")
 load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
@@ -278,12 +278,18 @@ def _kernel_env_impl(ctx):
         DefaultInfo(files = depset([out_file])),
     ]
 
-def _get_tools(toolchain_version):
+def _get_tools(toolchain_version, rust_toolchain_version):
     if toolchain_version.startswith("//build/kernel/kleaf/tests/"):
         # Using a test toolchain
         clang_binaries = toolchain_version
     else:
         clang_binaries = "//prebuilts/clang/host/linux-x86/clang-%s:binaries" % toolchain_version
+
+    if rust_toolchain_version.startswith("//build/kernel/kleaf/tests/"):
+        # Using a test toolchain
+        rust_binaries = rust_toolchain_version
+    else:
+        rust_binaries = "//prebuilts/rust/linux-x86/%s:binaries" % rust_toolchain_version
 
     return [
         Label(e)
@@ -291,6 +297,7 @@ def _get_tools(toolchain_version):
             "//build/kernel:_setup_env",
             "//build/kernel:build_utils",
             clang_binaries,
+            rust_binaries,
         )
     ]
 
@@ -340,9 +347,13 @@ kernel_env = rule(
             cfg = "exec",
             executable = True,
         ),
+        "rust_toolchain_version": attr.string(
+            doc = "the version of the rust toolchain to use for this environment",
+            default = VARS.get("RUSTC_VERSION", ""),
+        ),
         "toolchain_version": attr.string(
             doc = "the toolchain to use for this environment",
-            default = CLANG_VERSION,
+            default = VARS["CLANG_VERSION"],
         ),
         "kconfig_ext": attr.label(
             allow_single_file = True,
