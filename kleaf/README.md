@@ -49,3 +49,19 @@
 `--kgdb`: [GDB scripts](docs/kgdb.md)
 
 `--lto`: [Configure LTO during development](docs/lto.md)
+
+### Debugging options
+
+The following flags are provided as a way to help debugging compilation issues,
+use them according to your needs.
+
+`--debug_annotate_scripts`: Runs all script invocations with `set -x` and a
+ trap that executes `date` after every command.
+
+`--debug_make_verbosity`: Controls verbosity of `make` executions `E (default)
+= Error, I = Info, D = Debug`
+
+`--debug_modpost_warn`: Sets [`KBUILD_MODPOST_WARN=1`](https://www.kernel.org/doc/html/latest/kbuild/kbuild.html#kbuild-modpost-warn).
+
+`--debug_print_scripts`: Prints the runtime scripts during rule execution.
+
