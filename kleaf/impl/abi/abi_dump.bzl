@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""Rules for ABI extraction."""
 
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(
@@ -28,8 +29,20 @@ def _abi_dump_impl(ctx):
 
     full_abi_out_file = _abi_dump_full(ctx)
     abi_out_file = _abi_dump_filtered(ctx, full_abi_out_file)
+
+    # Run in parallel until is fully addopted.
+    full_abi_out_file_stg = _abi_dump_full_stg(ctx)
+    # TODO(umendez): enable after implementing it.
+    # abi_out_file_stg = _abi_dump_filtered_stg(ctx, full_abi_out_file)
+
     return [
-        DefaultInfo(files = depset([full_abi_out_file, abi_out_file])),
+        DefaultInfo(files = depset([
+            full_abi_out_file,
+            abi_out_file,
+            full_abi_out_file_stg,
+            # TODO(umendez): Add after implementing it.
+            # abi_out_file_stg,
+        ])),
         OutputGroupInfo(abi_out_file = depset([abi_out_file])),
     ]
 
@@ -45,20 +58,25 @@ def _abi_dump_epilog_cmd(path, append_version):
 """.format(path = path)
     return ret
 
-def _abi_dump_full(ctx):
-    abi_linux_tree = utils.intermediates_dir(ctx) + "/abi_linux_tree"
-    full_abi_out_file = ctx.actions.declare_file("{}/abi-full-generated.xml".format(ctx.attr.name))
-    vmlinux = utils.find_file(name = "vmlinux", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name), required = True)
+def _unstripped_dirs(ctx):
+    unstripped_dirs = []
 
     unstripped_dir_provider_targets = [ctx.attr.kernel_build] + ctx.attr.kernel_modules
     unstripped_dir_providers = [target[KernelUnstrippedModulesInfo] for target in unstripped_dir_provider_targets]
-
-    unstripped_dirs = []
     for prov, target in zip(unstripped_dir_providers, unstripped_dir_provider_targets):
         dirs_for_target = prov.directories.to_list()
         if not dirs_for_target:
             fail("{}: Requires dep {} to set collect_unstripped_modules = True".format(ctx.label, target.label))
         unstripped_dirs += dirs_for_target
+
+    return unstripped_dirs
+
+def _abi_dump_full(ctx):
+    abi_linux_tree = utils.intermediates_dir(ctx) + "/abi_linux_tree"
+    full_abi_out_file = ctx.actions.declare_file("{}/abi-full-generated.xml".format(ctx.attr.name))
+    vmlinux = utils.find_file(name = "vmlinux", files = ctx.files.kernel_build, what = "{}: kernel_build".format(ctx.attr.name), required = True)
+
+    unstripped_dirs = _unstripped_dirs(ctx)
 
     inputs = [vmlinux, ctx.file._dump_abi]
     inputs += ctx.files._dump_abi_scripts
@@ -89,6 +107,51 @@ def _abi_dump_full(ctx):
         command = command,
         mnemonic = "AbiDumpFull",
         progress_message = "Extracting ABI {}".format(ctx.label),
+    )
+    return full_abi_out_file
+
+def _abi_dump_full_stg(ctx):
+    full_abi_out_file = ctx.actions.declare_file("{}/abi-full.stg".format(ctx.attr.name))
+    vmlinux = utils.find_file(
+        name = "vmlinux",
+        files = ctx.files.kernel_build,
+        what = "{}: kernel_build".format(ctx.attr.name),
+        required = True,
+    )
+
+    unstripped_dirs = _unstripped_dirs(ctx)
+
+    inputs = [vmlinux, ctx.file._stg]
+    inputs += unstripped_dirs
+
+    inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
+
+    # Collect all modules from all directories
+    # buildifier: disable=unused-variable
+    all_modules = ""
+    for unstripped_dir in unstripped_dirs:
+        all_modules += "{dir_path}/*.ko ".format(
+            dir_path = unstripped_dir.path,
+        )
+
+    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+        {stg} --output {full_abi_out_file} --elf {vmlinux} {all_modules}
+    """.format(
+        stg = ctx.file._stg.path,
+        vmlinux = vmlinux.path,
+        full_abi_out_file = full_abi_out_file.path,
+        # TODO(umendez): re-add after fixing errors.
+        # 1. "Unknown encoding 0x0 for DWARF entry <0x5e996>"; will be fixed after stg update.
+        # 2. "merge failed with duplicate symbol: __this_module"; pending.
+        all_modules = "",  # all_modules,
+    )
+    debug.print_scripts(ctx, command)
+    ctx.actions.run_shell(
+        inputs = inputs,
+        outputs = [full_abi_out_file],
+        command = command,
+        mnemonic = "AbiDumpFullSTG",
+        progress_message = "[stg] Extracting ABI {}".format(ctx.label),
     )
     return full_abi_out_file
 
@@ -145,6 +208,10 @@ abi_dump = rule(
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
+        ),
+        "_stg": attr.label(
+            default = "//prebuilts/kernel-build-tools:linux-x86/bin/stg",
+            allow_single_file = True,
         ),
     },
     cfg = with_vmlinux_transition,
