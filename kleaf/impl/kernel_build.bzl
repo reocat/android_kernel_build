@@ -697,6 +697,9 @@ def _kernel_build_impl(ctx):
             symtypes_dir = symtypes_dir.path,
         )
 
+    preserved_out_dir = ctx.actions.declare_directory("{name}/out_dir".format(name = ctx.label.name))
+    command_outputs.append(preserved_out_dir)
+
     command += """
          # Actual kernel build
            {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
@@ -717,6 +720,8 @@ def _kernel_build_impl(ctx):
                        --null -T -
          # Grab outputs. If unable to find from OUT_DIR, look at KBUILD_MIXED_TREE as well.
            {search_and_cp_output} --srcdir ${{OUT_DIR}} {kbuild_mixed_tree_arg} {dtstree_arg} --dstdir {ruledir} {all_output_names_minus_modules}
+         # Grab out_dir
+           rsync -al ${{OUT_DIR}}/ {preserved_out_dir}/
          # Archive modules_staging_dir
            tar czf {modules_staging_archive} -C {modules_staging_dir} .
          # Grab *.symtypes
@@ -758,6 +763,7 @@ def _kernel_build_impl(ctx):
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
         interceptor_command_prefix = interceptor_command_prefix,
         label = ctx.label,
+        preserved_out_dir = preserved_out_dir.path,
     )
 
     debug.print_scripts(ctx, command)
