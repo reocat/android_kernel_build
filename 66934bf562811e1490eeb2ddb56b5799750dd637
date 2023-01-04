@@ -16,6 +16,23 @@
       "message": "Oh Joe filed the bug. Feel free to submit then",
       "revId": "66934bf562811e1490eeb2ddb56b5799750dd637",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b16b8db3_7bb454d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-04T18:42:18Z",
+      "side": 1,
+      "message": "I\u0027m seeing some errors for `x86_64` kernel, will double check if it\u0027s due to this change or something else.",
+      "revId": "66934bf562811e1490eeb2ddb56b5799750dd637",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
