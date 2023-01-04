@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2de4384b_52d869f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-04T23:49:23Z",
+      "side": 1,
+      "message": "Technically this change does more than just setting --mtime",
+      "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eec1b6b6_51e2096f",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-04T23:49:23Z",
+      "side": 1,
+      "message": "makes me think of a generalization:\n\n```\nhermetic_genrule(\n   ...\n   cmd \u003d \"tar ...\",\n   tools \u003d [\n     \":hermetic-tools/tar\",\n   ] \n)\n```\n\nnot sure whether other starlark rules that set up hermetic environments can be consolidated as well. maybe it should be a starlark rule itself?",
+      "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "510f44cb_a09ed2c9",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-04T23:49:23Z",
+      "side": 1,
+      "message": "where is the gzip path? perhaps the second \u0027dirname\u0027 was supposed to be \u0027gzip\u0027 ?",
+      "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2a1d7c0_a4728260",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-04T23:49:23Z",
+      "side": 1,
+      "message": "that feels like a lot of boilerplate for this simple invocation.",
+      "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9acda24_e1735459",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-04T23:49:23Z",
+      "side": 1,
+      "message": "do we need to depend on the single tools if we already depend on the full list?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 35
+      },
+      "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
