@@ -16,6 +16,24 @@
       "message": "nit: the corpus/branch is for the superproject so the branches of submodules don\u0027t matter. We get the file path relative to the superproject root and the superproject branch as input to our xrefs RPC.",
       "revId": "f9aae1b796dd1029cb246384760de88fa8da083a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4450ed25_3a80ce55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-04T21:55:07Z",
+      "side": 1,
+      "message": "I understand. The corpus is set to the branch of `kernel/superproject` (`common-android-mainline`), not to the submodules (`kernel/common`, where branch is `android-mainline`)",
+      "parentUuid": "31cee6c2_4314f42f",
+      "revId": "f9aae1b796dd1029cb246384760de88fa8da083a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
