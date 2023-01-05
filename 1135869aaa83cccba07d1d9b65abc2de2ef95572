@@ -102,6 +102,30 @@
       },
       "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cae920a_c824b08a",
+        "filename": "kleaf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-05T01:09:56Z",
+      "side": 1,
+      "message": "Unrelated:\n\nWe also don\u0027t have some scripts printed (some of the run_shell aren\u0027t accompanied by debug.print_scripts). \n\nPerhaps we should eventually replace this with `bazel aquery --include_artifacts\u003dfalse ...`",
+      "parentUuid": "44e41816_d6aca2c2",
+      "range": {
+        "startLine": 66,
+        "startChar": 36,
+        "endLine": 66,
+        "endChar": 43
+      },
+      "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
