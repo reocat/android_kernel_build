@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6faffd7d_741282f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-05T00:02:40Z",
+      "side": 1,
+      "message": "we are currently trying to remove the `_setup_env.sh` dependency here. I will let @umendez@google.com decide whether we should take this patch here for the short term or whether he already solved the puzzle for how to remove the use of `_setup_env.sh`.",
+      "revId": "e242e6f7875b535ddd76397236d894c94720cfd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
