@@ -460,7 +460,8 @@ def update_androidx_cf(gitlog, output_dir, version):
   download_kernel("kernel_virt_i686", version, i686_cf_dir)
   download_kernel_modules("kernel_virt_i686", i686_cf_dir)
   download_kernel("kernel_rockpi4", version, rockpi_cf_dir)
-  download_kernel_modules("kernel_rockpi4", rockpi_cf_dir)
+  download_kernel_modules("kernel_rockpi4", rockpi_cf_dir,
+                          fetch_initramfs=True)
 
   commit_prebuilts(cf_dir, gitlog)
 
