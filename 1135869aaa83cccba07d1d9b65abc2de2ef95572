@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13a49fa1_79645f68",
+        "filename": "kleaf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-05T00:11:02Z",
+      "side": 1,
+      "message": "this side sentence does not add much value. perhaps we can drop it to make this section more brief?",
+      "range": {
+        "startLine": 55,
+        "startChar": 78,
+        "endLine": 56,
+        "endChar": 33
+      },
+      "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7679e3ab_d1847dd8",
+        "filename": "kleaf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-05T00:11:02Z",
+      "side": 1,
+      "message": "`--debug_annotate_scripts` and `--debug_print_scripts` are flags that control how kleaf is doing things, while the other two are flags that control how Kbuild is doing things. Perhaps group them together accordingly (separated by a section header maybe?).",
+      "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3021c16_65f6ba24",
+        "filename": "kleaf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-05T00:11:02Z",
+      "side": 1,
+      "message": "add a TLDR what this causes, just one sentence.",
+      "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44e41816_d6aca2c2",
+        "filename": "kleaf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-05T00:11:02Z",
+      "side": 1,
+      "message": "Prints the content of the (generated) command scripts during rule execution.",
+      "range": {
+        "startLine": 66,
+        "startChar": 36,
+        "endLine": 66,
+        "endChar": 43
+      },
+      "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
