@@ -568,8 +568,8 @@ if [ -n "${KCONFIG_EXT_PREFIX}" ]; then
   MAKE_ARGS+=("KCONFIG_EXT_PREFIX=${KCONFIG_EXT_PREFIX}")
 fi
 
-if [ -n "${DTS_EXT_DIR}" ]; then
-  if [[ "${MAKE_GOALS}" =~ dtbs|\.dtb|\.dtbo ]]; then
+if [[ "${MAKE_GOALS}" =~ dtbs|\.dtb|\.dtbo ]]; then
+  if [ -n "${DTS_EXT_DIR}" ]; then
     # DTS_EXT_DIR needs to be relative to KERNEL_DIR but we allow one to set
     # it relative to ROOT_DIR for ease of use. So figure out what was used.
     if [ -d "${ROOT_DIR}/${DTS_EXT_DIR}" ]; then
@@ -580,8 +580,13 @@ if [ -n "${DTS_EXT_DIR}" ]; then
       echo "Couldn't find the dtstree -- ${DTS_EXT_DIR}" >&2
       exit 1
     fi
+    DTS_OUT_DIR=${OUT_DIR}/${DTS_EXT_DIR}
     MAKE_ARGS+=("dtstree=${DTS_EXT_DIR}")
+  else
+    DTS_OUT_DIR=${OUT_DIR}/arch/${ARCH}/boot/dts
   fi
+  find ${DTS_OUT_DIR} -name '*.dtb' -o -name '*.dtbo' -o -name '*.dtb.S' -o -name '*.dt.yaml' \
+          -type f | xargs rm -f
 fi
 
 cd ${ROOT_DIR}
