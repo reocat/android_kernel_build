@@ -34,6 +34,24 @@
       "parentUuid": "6faffd7d_741282f2",
       "revId": "e242e6f7875b535ddd76397236d894c94720cfd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aecf483_66e4bf9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1150933
+      },
+      "writtenOn": "2023-01-06T19:14:03Z",
+      "side": 1,
+      "message": "The use of the shell function rel_path has been introduced by  I2442032d1dcf6179dbf665418f4c7613e882c867\n\nDo you allow the use of rel_path in build.config files? If yes, then I think we need to include build_utils.sh here. Until _setup_env.sh is removed, we should include build_utils.sh",
+      "parentUuid": "4237d5b1_472a0b7e",
+      "revId": "e242e6f7875b535ddd76397236d894c94720cfd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
