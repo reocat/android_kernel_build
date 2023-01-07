@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91a16a29_28bdd139",
+        "filename": "kleaf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-07T18:16:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19d55679_a4205295",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 21
+      },
+      "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13a49fa1_79645f68",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-05T00:11:02Z",
       "side": 1,
       "message": "this side sentence does not add much value. perhaps we can drop it to make this section more brief?",
+      "range": {
+        "startLine": 55,
+        "startChar": 78,
+        "endLine": 56,
+        "endChar": 33
+      },
+      "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb97bd22_96daac82",
+        "filename": "kleaf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-07T18:16:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13a49fa1_79645f68",
       "range": {
         "startLine": 55,
         "startChar": 78,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d9aae2d_897d0659",
+        "filename": "kleaf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-07T18:16:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7679e3ab_d1847dd8",
+      "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3021c16_65f6ba24",
@@ -77,6 +143,24 @@
       "writtenOn": "2023-01-05T00:11:02Z",
       "side": 1,
       "message": "add a TLDR what this causes, just one sentence.",
+      "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48a37d6e_34a94899",
+        "filename": "kleaf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-07T18:16:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3021c16_65f6ba24",
       "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -118,6 +202,30 @@
       "side": 1,
       "message": "Unrelated:\n\nWe also don\u0027t have some scripts printed (some of the run_shell aren\u0027t accompanied by debug.print_scripts). \n\nPerhaps we should eventually replace this with `bazel aquery --include_artifacts\u003dfalse ...`",
       "parentUuid": "44e41816_d6aca2c2",
+      "range": {
+        "startLine": 66,
+        "startChar": 36,
+        "endLine": 66,
+        "endChar": 43
+      },
+      "revId": "1135869aaa83cccba07d1d9b65abc2de2ef95572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "719a1ee7_36ebaddd",
+        "filename": "kleaf/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-07T18:16:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8cae920a_c824b08a",
       "range": {
         "startLine": 66,
         "startChar": 36,
