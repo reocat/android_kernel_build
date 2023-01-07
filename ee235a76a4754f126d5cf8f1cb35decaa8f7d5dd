@@ -16,6 +16,24 @@
       "message": "The test doesn\u0027t seem correct, the abi_definition has now two values?",
       "revId": "ee235a76a4754f126d5cf8f1cb35decaa8f7d5dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "534607f9_cdfd763f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-07T00:28:38Z",
+      "side": 1,
+      "message": "No -- it has a single value None. The value in the test are testing the comment.",
+      "parentUuid": "6c8c954e_342bd6ef",
+      "revId": "ee235a76a4754f126d5cf8f1cb35decaa8f7d5dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
