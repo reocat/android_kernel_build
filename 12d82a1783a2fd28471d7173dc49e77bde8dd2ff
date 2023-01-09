@@ -41,6 +41,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "630f727f_5894b18b",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-09T22:22:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b014f9a9_862769a4",
+      "range": {
+        "startLine": 154,
+        "startChar": 31,
+        "endLine": 154,
+        "endChar": 34
+      },
+      "revId": "12d82a1783a2fd28471d7173dc49e77bde8dd2ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f379489_911882ac",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-09T22:22:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b014f9a9_862769a4",
+      "range": {
+        "startLine": 154,
+        "startChar": 31,
+        "endLine": 154,
+        "endChar": 34
+      },
+      "revId": "12d82a1783a2fd28471d7173dc49e77bde8dd2ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b95ee169_08433c05",
@@ -54,6 +102,42 @@
       "writtenOn": "2023-01-09T21:46:28Z",
       "side": 1,
       "message": "nit: unrelated, but we should start adding \n\n```\ncfg \u003d \"exec\",\nexecutable \u003d True,\n```\n\n... for the host binaries. Then you can use `ctx.executable._stg` to refer to the file.\n\nThis is because the STG binary belongs to the \"execution\" platform, not the \"target\" platform. Read more about the two platforms here: https://bazel.build/extending/platforms\n\nFeel free to ignore this comment in this CL and file a separate bug (especially if it causes a build error; there might be some other issues to be fixed before we can use this). There are many other cases of this to be fixed.",
+      "revId": "12d82a1783a2fd28471d7173dc49e77bde8dd2ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a717c2c6_9e844a35",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-09T22:22:17Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "b95ee169_08433c05",
+      "revId": "12d82a1783a2fd28471d7173dc49e77bde8dd2ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bd393d6_1834c3f6",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-09T22:22:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b95ee169_08433c05",
       "revId": "12d82a1783a2fd28471d7173dc49e77bde8dd2ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
