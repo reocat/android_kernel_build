@@ -27,8 +27,8 @@ load(":abi/abi_transitions.bzl", "with_vmlinux_transition")
 def _abi_dump_impl(ctx):
     kernel_utils.check_kernel_build(ctx.attr.kernel_modules, ctx.attr.kernel_build, ctx.label)
 
-    full_abi_out_file = _abi_dump_full(ctx)
-    abi_out_file = _abi_dump_filtered(ctx, full_abi_out_file)
+    full_abi_out_file, full_abi_out_file_xml_stg = _abi_dump_full(ctx)
+    abi_out_file, abi_out_file_xml_stg = _abi_dump_filtered(ctx, full_abi_out_file)
 
     # Run both methods until STG is fully adopted.
     full_abi_out_file_stg = _abi_dump_full_stg(ctx)
@@ -37,7 +37,9 @@ def _abi_dump_impl(ctx):
     return [
         DefaultInfo(files = depset([
             full_abi_out_file,
+            full_abi_out_file_xml_stg,
             abi_out_file,
+            abi_out_file_xml_stg,
             full_abi_out_file_stg,
             abi_out_file_stg,
         ])),
@@ -83,6 +85,7 @@ def _find_vmlinux(ctx):
 def _abi_dump_full(ctx):
     abi_linux_tree = utils.intermediates_dir(ctx) + "/abi_linux_tree"
     full_abi_out_file = ctx.actions.declare_file("{}/abi-full-generated.xml".format(ctx.attr.name))
+    full_abi_out_file_stg = ctx.actions.declare_file("{}/abi-full-generated.xml.stg".format(ctx.attr.name))
     vmlinux = _find_vmlinux(ctx)
     unstripped_dirs = _unstripped_dirs(ctx)
 
@@ -99,6 +102,7 @@ def _abi_dump_full(ctx):
         cp -pl {vmlinux} {abi_linux_tree}
         {dump_abi} --linux-tree {abi_linux_tree} --out-file {full_abi_out_file}
         {epilog}
+        {stg} --abi {full_abi_out_file} -o {full_abi_out_file_stg}
         rm -rf {abi_linux_tree}
     """.format(
         abi_linux_tree = abi_linux_tree,
@@ -107,16 +111,18 @@ def _abi_dump_full(ctx):
         vmlinux = vmlinux.path,
         full_abi_out_file = full_abi_out_file.path,
         epilog = _abi_dump_epilog_cmd(full_abi_out_file.path, True),
+        full_abi_out_file_stg = full_abi_out_file_stg.path,
+        stg = ctx.file._stg.path,
     )
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
         inputs = inputs,
-        outputs = [full_abi_out_file],
+        outputs = [full_abi_out_file, full_abi_out_file_stg],
         command = command,
         mnemonic = "AbiDumpFull",
         progress_message = "Extracting ABI {}".format(ctx.label),
     )
-    return full_abi_out_file
+    return full_abi_out_file, full_abi_out_file_stg
 
 def _abi_dump_full_stg(ctx):
     full_abi_out_file = ctx.actions.declare_file("{}/abi-full.stg".format(ctx.attr.name))
@@ -158,6 +164,7 @@ def _abi_dump_full_stg(ctx):
 
 def _abi_dump_filtered(ctx, full_abi_out_file):
     abi_out_file = ctx.actions.declare_file("{}/abi-generated.xml".format(ctx.attr.name))
+    abi_out_file_stg = ctx.actions.declare_file("{}/abi-generated.xml.stg".format(ctx.attr.name))
     inputs = [full_abi_out_file]
 
     inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
@@ -172,29 +179,35 @@ def _abi_dump_filtered(ctx, full_abi_out_file):
         command += """
             {filter_abi} --in-file {full_abi_out_file} --out-file {abi_out_file} --kmi-symbol-list {abi_symbollist}
             {epilog}
+            {stg} --abi {abi_out_file} -o {abi_out_file_stg}
         """.format(
             abi_out_file = abi_out_file.path,
             full_abi_out_file = full_abi_out_file.path,
             filter_abi = ctx.file._filter_abi.path,
             abi_symbollist = combined_abi_symbollist.path,
             epilog = _abi_dump_epilog_cmd(abi_out_file.path, False),
+            abi_out_file_stg = abi_out_file_stg.path,
+            stg = ctx.file._stg.path,
         )
     else:
         command += """
             cp -p {full_abi_out_file} {abi_out_file}
+            {stg} --abi {abi_out_file} -o {abi_out_file_stg}
         """.format(
             abi_out_file = abi_out_file.path,
             full_abi_out_file = full_abi_out_file.path,
+            abi_out_file_stg = abi_out_file_stg.path,
+            stg = ctx.file._stg.path,
         )
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
         inputs = inputs,
-        outputs = [abi_out_file],
+        outputs = [abi_out_file, abi_out_file_stg],
         command = command,
         mnemonic = "AbiDumpFiltered",
         progress_message = "Filtering ABI dump {}".format(ctx.label),
     )
-    return abi_out_file
+    return abi_out_file, abi_out_file_stg
 
 def _abi_dump_filtered_stg(ctx, full_abi_out_file):
     abi_out_file = ctx.actions.declare_file("{}/abi.stg".format(ctx.attr.name))
