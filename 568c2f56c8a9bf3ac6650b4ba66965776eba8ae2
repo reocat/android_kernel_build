@@ -215,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94677b9a_51a91de8",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-12T11:16:52Z",
+      "side": 1,
+      "message": "I still think the interface is not very robust. The list should contain either only relative paths that resolve or it should only contain a list of basenames and based on the directory we can know where to search for them. The mix makes it error prone and I don\u0027t see how this concern that I raised in my first comment is actually addressed.",
+      "parentUuid": "d25517c6_b0180bf9",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 75
+      },
+      "revId": "568c2f56c8a9bf3ac6650b4ba66965776eba8ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2f49505_7abdb01c",
         "filename": "abi/extract_symbols",
         "patchSetId": 1

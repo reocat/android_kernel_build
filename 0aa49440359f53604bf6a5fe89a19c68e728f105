@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b02ded42_15118b1b",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-12T11:16:52Z",
+      "side": 1,
+      "message": "Ff the entire key functionality is replaced, then there is no value in actually using symbol sort as it is easier for the caller to just do `sorted(symbols, key\u003dkey)` themselves. The reason for this function is to provide a sorting that is imitating the behaviour of `sort`. If that is not needed, then using this function and replacing the key is not useful.",
+      "revId": "0aa49440359f53604bf6a5fe89a19c68e728f105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d76c0ccc_c122511f",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-12T11:16:52Z",
+      "side": 1,
+      "message": "if key is None:",
+      "range": {
+        "startLine": 59,
+        "startChar": 2,
+        "endLine": 59,
+        "endChar": 12
+      },
+      "revId": "0aa49440359f53604bf6a5fe89a19c68e728f105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2add8b6_7f487c79",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-12T11:16:52Z",
+      "side": 1,
+      "message": "what is so special about this sort? What is the difference between\n```\nsorted(the_list, key\u003dfunctools.cmp_to_key(compare_strings))\n```\nand just\n\n```\nsorted(the_list)\n```\n?",
+      "revId": "0aa49440359f53604bf6a5fe89a19c68e728f105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f61f695_b4dcf308",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-12T11:16:52Z",
+      "side": 1,
+      "message": "Isn\u0027t that just \n\n```\nwl.write(\"\\n\".join(sorted(set(gki_protected_exports)))\n```\n\nAnd then it would be in conflict with the sorting order of `sort` (due to the usual logic applied to sorting with underscores)?",
+      "range": {
+        "startLine": 255,
+        "startChar": 58,
+        "endLine": 255,
+        "endChar": 99
+      },
+      "revId": "0aa49440359f53604bf6a5fe89a19c68e728f105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
