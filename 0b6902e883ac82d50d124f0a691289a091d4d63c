@@ -16,6 +16,24 @@
       "message": "There is an opportunity to group them a little.",
       "revId": "0b6902e883ac82d50d124f0a691289a091d4d63c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe9e77b9_7c29fd1c",
+        "filename": "kleaf/bazelrc/flags.bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-12T19:36:18Z",
+      "side": 1,
+      "message": "seems to be grouped already -- the first section are regular flags and the second are debug flags",
+      "parentUuid": "9d57bc82_4bea4186",
+      "revId": "0b6902e883ac82d50d124f0a691289a091d4d63c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
