@@ -34,6 +34,29 @@
       "parentUuid": "9d57bc82_4bea4186",
       "revId": "0b6902e883ac82d50d124f0a691289a091d4d63c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "162bc3fe_217403de",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-12T19:38:50Z",
+      "side": 1,
+      "message": "be careful -- ordering may matter here. --config\u003drelease requires --config\u003dstamp, so I don\u0027t know if you need the `build:stamp` lines before `build:release` lines.\n\nDid you verify that re-ordering is okay? i.e. --config\u003drelease still correctly sets the git versions properly?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 59
+      },
+      "revId": "0b6902e883ac82d50d124f0a691289a091d4d63c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
