@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb536cc_0a316594",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-13T12:05:01Z",
+      "side": 1,
+      "message": "I think all the presubmit errors come from the parent CL, but please double check. Thank you.",
+      "revId": "95024f0b44ebf0d1a2457ea8296de7fc3468f00c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e16cb76d_94757266",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-13T12:05:01Z",
+      "side": 1,
+      "message": "just out of curiosity; why is this needed now?",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 26
+      },
+      "revId": "95024f0b44ebf0d1a2457ea8296de7fc3468f00c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
