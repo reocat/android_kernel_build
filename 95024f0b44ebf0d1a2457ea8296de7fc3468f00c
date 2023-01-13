@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2c1dd87_8315382e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-13T18:45:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9cb536cc_0a316594",
+      "revId": "95024f0b44ebf0d1a2457ea8296de7fc3468f00c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e16cb76d_94757266",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-01-13T12:05:01Z",
       "side": 1,
       "message": "just out of curiosity; why is this needed now?",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 26
+      },
+      "revId": "95024f0b44ebf0d1a2457ea8296de7fc3468f00c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4d0f376_903807ee",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-13T18:45:17Z",
+      "side": 1,
+      "message": "All tools from hermetic tools are included in a package. In the next CL, tar needs readlink, dirname in the PATH. However, this is an implementation detail of tar; at this level, we should just know that we need all hermetic tools in PATH (because it may depend on others)",
+      "parentUuid": "e16cb76d_94757266",
       "range": {
         "startLine": 106,
         "startChar": 8,
