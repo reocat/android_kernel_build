@@ -69,6 +69,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0eed596_ee7743bf",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-13T06:35:53Z",
+      "side": 1,
+      "message": "gzip is generalized within `\":hermetic-tools\"`",
+      "parentUuid": "510f44cb_a09ed2c9",
+      "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9acda24_e1735459",
@@ -82,6 +100,30 @@
       "writtenOn": "2023-01-04T23:49:23Z",
       "side": 1,
       "message": "do we need to depend on the single tools if we already depend on the full list?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 35
+      },
+      "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7cfb8fe_52e0f1dd",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-13T06:35:53Z",
+      "side": 1,
+      "message": "Yes. Otherwise I can\u0027t do the first line to ensure that we are not accessing anything outside of :hermetic-tools. This is a chicken-and-egg problem. The dirname/readlink is needed for bootstraping.",
+      "parentUuid": "a9acda24_e1735459",
       "range": {
         "startLine": 107,
         "startChar": 0,
