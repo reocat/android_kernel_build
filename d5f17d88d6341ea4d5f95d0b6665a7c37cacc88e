@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5920a66e_0629aaf0",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-13T06:43:53Z",
+      "side": 1,
+      "message": "Ah I do need this change because `tar` now requires readlink and dirname to be in PATH. With the old code where PATH is empty, the new `tar` script stops working.\n\nLet me put this into a separate change.",
+      "parentUuid": "d8e1483b_4fce2300",
+      "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "510f44cb_a09ed2c9",
         "filename": "BUILD.bazel",
         "patchSetId": 7
