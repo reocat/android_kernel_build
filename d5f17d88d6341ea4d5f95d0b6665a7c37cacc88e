@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a73c3bc6_8688d520",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-13T06:50:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2de4384b_52d869f8",
+      "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eec1b6b6_51e2096f",
@@ -71,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26901e23_d9ef8c7d",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-13T06:50:20Z",
+      "side": 1,
+      "message": "Done. I like the hermetic_genrule idea but let\u0027s do it later...",
+      "parentUuid": "5920a66e_0629aaf0",
+      "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "510f44cb_a09ed2c9",
@@ -119,6 +155,24 @@
       "side": 1,
       "message": "gzip is generalized within `\":hermetic-tools\"`",
       "parentUuid": "510f44cb_a09ed2c9",
+      "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92fda96a_a3e3440c",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-13T06:50:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f2a1d7c0_a4728260",
       "revId": "d5f17d88d6341ea4d5f95d0b6665a7c37cacc88e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
