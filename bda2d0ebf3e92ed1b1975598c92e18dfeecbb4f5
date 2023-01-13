@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b08080fb_944f1bdb",
+        "filename": "build-tools/path/linux-x86/tar",
+        "patchSetId": 13
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-13T06:48:35Z",
+      "side": 1,
+      "message": "@maennich@google.com what do you think about this?\n\n```\nfirst\u003d$1\nshift\n\nif [[ $first !\u003d -* ]]; then\n  first\u003d-$first\nfi\n\ntar --mtime\u003d@0 --owner\u003d0 --group\u003d0 --numeric-owner $first \"$@\"\n```\n\nThis way, if the user actually specifies `-mtime`, it is respected.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 53
+      },
+      "revId": "bda2d0ebf3e92ed1b1975598c92e18dfeecbb4f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
