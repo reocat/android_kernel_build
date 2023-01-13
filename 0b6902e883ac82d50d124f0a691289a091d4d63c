@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfa2da1d_4fac6b89",
+        "filename": "kleaf/bazelrc/flags.bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-13T09:31:01Z",
+      "side": 1,
+      "message": "This is still a mixed bag:\n\n```\n# flags that control kleaf integrity checking\nbuild --flag_alias\u003dallow_ddk_unsafe_headers\u003d//build/kernel/kleaf:allow_ddk_unsafe_headers\nbuild --flag_alias\u003dallow_undeclared_modules\u003d//build/kernel/kleaf:allow_undeclared_modules\nbuild --flag_alias\u003dnokmi_symbol_list_strict_mode\u003dno//build/kernel/kleaf:kmi_symbol_list_strict_mode\n\n\n# flags that control binary features\nbuild --flag_alias\u003dgcov\u003d//build/kernel/kleaf:gcov\nbuild --flag_alias\u003dkasan\u003d//build/kernel/kleaf:kasan\nbuild --flag_alias\u003dlto\u003d//build/kernel/kleaf:lto\n\n# flags that control the distribution\nbuild --flag_alias\u003dkbuild_symtypes\u003d//build/kernel/kleaf:kbuild_symtypes\nbuild --flag_alias\u003dkgdb\u003d//build/kernel/kleaf:kgdb\nbuild --flag_alias\u003dpreserve_kbuild_output\u003d//build/kernel/kleaf:preserve_kbuild_output\n```",
+      "parentUuid": "fe9e77b9_7c29fd1c",
+      "revId": "0b6902e883ac82d50d124f0a691289a091d4d63c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "162bc3fe_217403de",
         "filename": "kleaf/common.bazelrc",
         "patchSetId": 1
