@@ -22,6 +22,30 @@
       },
       "revId": "bda2d0ebf3e92ed1b1975598c92e18dfeecbb4f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a240d88_a4644fbc",
+        "filename": "build-tools/path/linux-x86/tar",
+        "patchSetId": 13
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-13T09:23:25Z",
+      "side": 1,
+      "message": "I think if the user specifies it, we have the same problem again. Do we need to support this? Do we want to? Is it breaking if we don\u0027t?",
+      "parentUuid": "b08080fb_944f1bdb",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 53
+      },
+      "revId": "bda2d0ebf3e92ed1b1975598c92e18dfeecbb4f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
