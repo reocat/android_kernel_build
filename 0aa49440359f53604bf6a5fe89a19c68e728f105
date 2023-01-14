@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "202af3bb_61100828",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-14T01:11:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b02ded42_15118b1b",
+      "revId": "0aa49440359f53604bf6a5fe89a19c68e728f105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d76c0ccc_c122511f",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-01-12T11:16:52Z",
       "side": 1,
       "message": "if key is None:",
+      "range": {
+        "startLine": 59,
+        "startChar": 2,
+        "endLine": 59,
+        "endChar": 12
+      },
+      "revId": "0aa49440359f53604bf6a5fe89a19c68e728f105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "970e20cf_cc6429ab",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-14T01:11:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d76c0ccc_c122511f",
       "range": {
         "startLine": 59,
         "startChar": 2,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25d8c850_4b5d4fb9",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-14T01:11:07Z",
+      "side": 1,
+      "message": "I don\u0027t remember why I invented that key but it wasn\u0027t giving me the correct sorting order required for binary search; but trying it now `sorted` without key is actually giving me the same and correct result. May be I was testing with the `symbol_sort` and not `sorted` which do put name with _ and without it together where as for binary search I need based on the ASCII value and looks like default for the `sorted` is ASCII.\n\n```\nlist_of_srings\u003d[\"abc\", \"hci_cmd_sync\", \"_hci_cmd_sync\", \"__hci_cmd_sync\", \"_HCI_cmd_sync\", \"HCI_cmd_sync\"]\nprint(sorted(list_of_srings, key\u003dfunctools.cmp_to_key(compare_strings)))\nprint(sorted(list_of_srings))\n```\n\nO/P:\n\n```\n[\u0027HCI_cmd_sync\u0027, \u0027_HCI_cmd_sync\u0027, \u0027__hci_cmd_sync\u0027, \u0027_hci_cmd_sync\u0027, \u0027abc\u0027, \u0027hci_cmd_sync\u0027]\n[\u0027HCI_cmd_sync\u0027, \u0027_HCI_cmd_sync\u0027, \u0027__hci_cmd_sync\u0027, \u0027_hci_cmd_sync\u0027, \u0027abc\u0027, \u0027hci_cmd_sync\u0027]\n```",
+      "parentUuid": "d2add8b6_7f487c79",
+      "revId": "0aa49440359f53604bf6a5fe89a19c68e728f105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f61f695_b4dcf308",
@@ -71,6 +131,30 @@
       "writtenOn": "2023-01-12T11:16:52Z",
       "side": 1,
       "message": "Isn\u0027t that just \n\n```\nwl.write(\"\\n\".join(sorted(set(gki_protected_exports)))\n```\n\nAnd then it would be in conflict with the sorting order of `sort` (due to the usual logic applied to sorting with underscores)?",
+      "range": {
+        "startLine": 255,
+        "startChar": 58,
+        "endLine": 255,
+        "endChar": 99
+      },
+      "revId": "0aa49440359f53604bf6a5fe89a19c68e728f105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfdc4074_7feed30f",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 4
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-14T01:11:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f61f695_b4dcf308",
       "range": {
         "startLine": 255,
         "startChar": 58,
