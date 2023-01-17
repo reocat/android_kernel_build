@@ -303,14 +303,14 @@ def _kernel_config_impl(ctx):
          # TODO(b/263415662): Drop it
            mkdir -p ${{OUT_DIR}}/scripts/basic
            rsync -aL --chmod=D+w {out_dir}/scripts/basic/fixdep ${{OUT_DIR}}/scripts/basic/fixdep
+         # HACK: also keep raw_kmi_symbol_list
+           cp {raw_kmi_symbol_list} ${{OUT_DIR}}
     """.format(
         out_dir = out_dir.path,
+        raw_kmi_symbol_list = ctx.file.raw_kmi_symbol_list.path,
     )
 
-    if trim_nonlisted_kmi_utils.get_value(ctx):
-        # Ensure the dependent action uses the up-to-date abi_symbollist.raw
-        # at the absolute path specified in abi_symbollist.raw.abspath
-        setup_deps.append(ctx.file.raw_kmi_symbol_list)
+    setup_deps.append(ctx.file.raw_kmi_symbol_list)
 
     post_env_info = KernelEnvInfo(
         dependencies = setup_deps,
