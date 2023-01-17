@@ -49,7 +49,7 @@ def _kernel_unstripped_modules_archive_impl(ctx):
         )
 
     command += """
-        tar -czhf {out_file} -C $(dirname {unstripped_dir}) $(basename {unstripped_dir})
+        tar -ch -C $(dirname {unstripped_dir}) $(basename {unstripped_dir}) | gzip - > {out_file}
     """.format(
         out_file = out_file.path,
         unstripped_dir = unstripped_dir,
