@@ -16,6 +16,23 @@
       "message": "It seems there are pre-submit issues that need to be resolved.",
       "revId": "71c3d0f9845aae83912ef1525e74004200b31f27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c0936b8_083ed9e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-17T23:17:49Z",
+      "side": 1,
+      "message": "+2 but please fix the presubmit issues",
+      "revId": "71c3d0f9845aae83912ef1525e74004200b31f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
