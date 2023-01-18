@@ -16,6 +16,29 @@
       "message": "This looks like two features implemented here. The ddk_conditional_filegroup and the conditional_srcs. This should rather go into separate changes.",
       "revId": "142086e786338445c416b3f3bacc0b90b337b8e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f412c868_39b8c60c",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-01-18T20:00:06Z",
+      "side": 1,
+      "message": "Would it be possible to supported nested CONFIG_* options? There are at least two ways I could imagine it being done.\n\n(1) Allowing boolean operators in the key:\n```bazel\nconditional_srcs \u003d {\n    \"CONFIG_FOO|CONFIG_BAR\": {\n        True: [\"either.c\"],\n        False: [\"neither.c\"],\n    },\n    \"CONFIG_FOO\u0026CONFIG_BAR\": {\n        True: [\"both.c\"],\n        False: [\"notboth.c\"],\n    },\n```\n\n(2) Adding a `deps` parameter to `ddk_conditional_filegroup` such that all deps must be satisfied for it to return the srcs:\n```bazel\nddk_conditional_filegroup(\n    name \u003d \"srcs_when_bar_is_set\",\n    config \u003d \"CONFIG_BAR\",\n    value \u003d \"y\",\n    srcs \u003d [],\n)\n\nddk_conditional_filegroup(\n    name \u003d \"srcs_when_foo_and_bar_are_set\",\n    config \u003d \"CONFIG_FOO\",\n    deps \u003d [\":srcs_when_bar_is_set\"],\n    value \u003d \"y\",\n    srcs \u003d [\"both.c\"]\n)\n```",
+      "range": {
+        "startLine": 224,
+        "startChar": 10,
+        "endLine": 229,
+        "endChar": 11
+      },
+      "revId": "142086e786338445c416b3f3bacc0b90b337b8e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
