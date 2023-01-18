@@ -53,6 +53,53 @@
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2389700?revision\u003d1",
       "fixSuggestions": [
         {
+          "fixId": "2c75772b_9384992e",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "BUILD.bazel",
+              "range": {
+                "startLine": 38,
+                "startChar": 0,
+                "endLine": 38,
+                "endChar": 0
+              },
+              "replacement": "    tar_args \u003d [\n        \"--mtime\u003d@0\",\n        \"--owner\u003d0\",\n        \"--group\u003d0\",\n        \"--numeric-owner\",\n    ],\n"
+            },
+            {
+              "path": "BUILD.bazel",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 51,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "ad8561ef_6bc12216",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-01-18T00:38:14Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "35cd72fd309c985fea97205fe49c129ab508682c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000036273594",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2389700?revision\u003d1",
+      "fixSuggestions": [
+        {
           "fixId": "da0beaa3_d9309cfd",
           "description": "Buildifier Suggestion",
           "replacements": [
@@ -89,6 +136,53 @@
         "id": 1757831
       },
       "writtenOn": "2023-01-18T00:38:09Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/hermetic_tools.bzl` to format the file, or apply the suggested fix.",
+      "revId": "35cd72fd309c985fea97205fe49c129ab508682c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000036273594",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2389700?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "35c4f1ea_ce024c65",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/hermetic_tools.bzl",
+              "range": {
+                "startLine": 82,
+                "startChar": 0,
+                "endLine": 83,
+                "endChar": 0
+              },
+              "replacement": "            tar_args \u003d \" \".join([shell.quote(arg) for arg in ctx.attr.tar_args]),\n"
+            },
+            {
+              "path": "kleaf/hermetic_tools.bzl",
+              "range": {
+                "startLine": 142,
+                "startChar": 0,
+                "endLine": 144,
+                "endChar": 0
+              },
+              "replacement": "        tar_args \u003d None):\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "10ae0af0_191cc4de",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-01-18T00:38:14Z",
       "side": 1,
       "message": "File is not formatted. Run `buildifier kleaf/hermetic_tools.bzl` to format the file, or apply the suggested fix.",
       "revId": "35cd72fd309c985fea97205fe49c129ab508682c",
