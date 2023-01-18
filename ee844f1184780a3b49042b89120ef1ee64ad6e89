@@ -63,6 +63,30 @@
       },
       "revId": "ee844f1184780a3b49042b89120ef1ee64ad6e89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28641d10_ff6cd9dd",
+        "filename": "kleaf/impl/ddk/ddk_conditional_filegroup.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-18T02:36:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b5775f8_61b1ca9a",
+      "range": {
+        "startLine": 70,
+        "startChar": 17,
+        "endLine": 70,
+        "endChar": 27
+      },
+      "revId": "ee844f1184780a3b49042b89120ef1ee64ad6e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
