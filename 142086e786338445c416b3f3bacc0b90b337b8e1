@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c3ea81c_25b72e06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-18T15:12:43Z",
+      "side": 1,
+      "message": "This looks like two features implemented here. The ddk_conditional_filegroup and the conditional_srcs. This should rather go into separate changes.",
+      "revId": "142086e786338445c416b3f3bacc0b90b337b8e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
