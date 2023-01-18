@@ -1,0 +1,88 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000036284273",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2366976?revision\u003d7",
+      "fixSuggestions": [
+        {
+          "fixId": "bd92210e_2fb02ac3",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/ddk/ddk_module.bzl",
+              "range": {
+                "startLine": 367,
+                "startChar": 0,
+                "endLine": 368,
+                "endChar": 0
+              },
+              "replacement": "                        value_type \u003d type(config_value),\n"
+            },
+            {
+              "path": "kleaf/impl/ddk/ddk_module.bzl",
+              "range": {
+                "startLine": 371,
+                "startChar": 0,
+                "endLine": 375,
+                "endChar": 0
+              },
+              "replacement": "                    name \u003d name,\n                    config \u003d config,\n                    value \u003d config_value,\n                )\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "b9f80d1f_02025265",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-01-18T02:38:42Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/ddk/ddk_module.bzl` to format the file, or apply the suggested fix.",
+      "revId": "82c79d3d1e543c32c3cde3c98b81fa590f3e14a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000036284273",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2366976?revision\u003d7",
+      "fixSuggestions": [
+        {
+          "fixId": "e985dc7d_3554e3b7",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/ddk_test/ddk_module_test.bzl",
+              "range": {
+                "startLine": 105,
+                "startChar": 0,
+                "endLine": 107,
+                "endChar": 0
+              },
+              "replacement": "        kernel_build):\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "eca14622_122a8cd3",
+        "filename": "kleaf/tests/ddk_test/ddk_module_test.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-01-18T02:38:42Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/ddk_test/ddk_module_test.bzl` to format the file, or apply the suggested fix.",
+      "revId": "82c79d3d1e543c32c3cde3c98b81fa590f3e14a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
