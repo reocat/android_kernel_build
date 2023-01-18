@@ -33,6 +33,24 @@
       "message": "+2 but please fix the presubmit issues",
       "revId": "71c3d0f9845aae83912ef1525e74004200b31f27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ad9d4ce_41aa1ab1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-18T23:07:34Z",
+      "side": 1,
+      "message": "They should be fixed after CL:2393373",
+      "parentUuid": "965ccc46_b2a3be3b",
+      "revId": "71c3d0f9845aae83912ef1525e74004200b31f27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
