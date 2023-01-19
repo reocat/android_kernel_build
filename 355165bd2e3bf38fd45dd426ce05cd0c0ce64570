@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "458d2bf7_726de624",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-19T19:31:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bd2df25_4257a3ea",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 0
+      },
+      "revId": "355165bd2e3bf38fd45dd426ce05cd0c0ce64570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dceee74_56bfff74",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-19T10:26:21Z",
       "side": 1,
       "message": "If those parameters are always needed, mark them as `required\u003dTrue` or (my preference) make them positional. That way the parser enforces their existence.",
+      "range": {
+        "startLine": 87,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 12
+      },
+      "revId": "355165bd2e3bf38fd45dd426ce05cd0c0ce64570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e521353_7bcfc868",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-19T19:31:51Z",
+      "side": 1,
+      "message": "Gone with the required\u003dTrue as it seems more readable and less user error prone.",
+      "parentUuid": "2dceee74_56bfff74",
       "range": {
         "startLine": 87,
         "startChar": 2,
