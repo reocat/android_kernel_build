@@ -107,30 +107,15 @@ function create_modules_staging() {
     cp -r ${src_dir}/extra/* ${dest_dir}/extra/
 
     # Check if we have modules.order files for external modules. This is
-    # supported in android-mainline since 5.16 and androidX-5.15
-    FIND_OUT=$(find ${dest_dir}/extra -name modules.order.* -print -quit)
-    if [[ -n "${EXT_MODULES}" ]] && [[ "${FIND_OUT}" =~ modules.order ]]; then
-      # If EXT_MODULES is defined and we have modules.order.* files for
-      # external modules, then we should follow this module load order:
-      #   1) Load modules in order defined by EXT_MODULES.
-      #   2) Within a given external module, load in order defined by
-      #      modules.order.
-      for EXT_MOD in ${EXT_MODULES}; do
-        # Since we set INSTALL_MOD_DIR=extra/${EXTMOD}, we can directly use the
-        # modules.order.* file at that path instead of tring to figure out the
-        # full name of the modules.order file. This is complicated because we
-        # set M=... to a relative path which can't easily be calculated here
-        # when using kleaf due to sandboxing.
-        modules_order_file=$(ls ${dest_dir}/extra/${EXT_MOD}/modules.order.*)
-        if [[ -f "${modules_order_file}" ]]; then
-          cat ${modules_order_file} >> ${dest_dir}/modules.order
-        else
-          # We need to fail here; otherwise, you risk the module(s) not getting
-          # included in modules.load.
-          echo "Failed to find ${modules_order_file}" >&2
-          exit 1
-        fi
-      done
+    # supported in android-mainline since 5.16 and androidX-5.15.
+    modules_order_file=$(find ${dest_dir}/extra -name modules.order.* -print)
+    if [[ "${modules_order_file}" =~ modules.order ]]; then
+      # Since we set INSTALL_MOD_DIR=extra/${EXTMOD}, we can directly use the
+      # modules.order.* file at that path instead of tring to figure out the
+      # full name of the modules.order file. This is complicated because we
+      # set M=... to a relative path which can't easily be calculated here
+      # when using kleaf due to sandboxing.
+      cat ${modules_order_file} >> ${dest_dir}/modules.order
     else
       # TODO: can we retain modules.order when using EXT_MODULES_MAKEFILE? For
       # now leave this alone since EXT_MODULES_MAKEFILE isn't support in v5.13+.
