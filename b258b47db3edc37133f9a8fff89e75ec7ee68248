@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fba4aa6_548fc736",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-19T23:58:42Z",
+      "side": 1,
+      "message": "nit: add an empty line before to separate from the standard lib imports:\n\nhttps://google.github.io/styleguide/pyguide.html#313-imports-formatting",
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "705ec3a2_c5e0714f",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-19T23:58:42Z",
+      "side": 1,
+      "message": "note, this could also go into the library",
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e144c3ea_a37f14b8",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-19T23:58:42Z",
+      "side": 1,
+      "message": "can\u0027t we actually now only sort once?\n\n```\n  symbols \u003d symbol_extraction.extract_exported_symbols(vmlinux)\n  for module in modules:\n    symbols.extend(symbol_extraction.extract_exported_symbols(module))\n  return symbol_sort(symbols)\n```",
+      "range": {
+        "startLine": 97,
+        "startChar": 1,
+        "endLine": 100,
+        "endChar": 16
+      },
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "338b92b1_c6655294",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-19T23:58:42Z",
+      "side": 1,
+      "message": "break the line\n\nhttps://google.github.io/styleguide/pyguide.html#32-line-length",
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "425d5286_421d4d7d",
+        "filename": "abi/symbol_extraction.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-19T23:58:42Z",
+      "side": 1,
+      "message": "unused import",
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ac3ca4_afde9ae7",
+        "filename": "abi/symbol_extraction.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-19T23:58:42Z",
+      "side": 1,
+      "message": "unused import",
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
