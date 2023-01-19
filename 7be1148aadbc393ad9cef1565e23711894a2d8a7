@@ -22,6 +22,30 @@
       },
       "revId": "7be1148aadbc393ad9cef1565e23711894a2d8a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2070825_967acbfb",
+        "filename": "abi/symbol_extraction.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-19T23:06:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27024e20_5eed07af",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "7be1148aadbc393ad9cef1565e23711894a2d8a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
