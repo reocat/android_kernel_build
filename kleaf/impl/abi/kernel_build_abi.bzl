@@ -169,6 +169,7 @@ def kernel_abi(
         kmi_enforced = None,
         unstripped_modules_archive = None,
         kmi_symbol_list_add_only = None,
+        kernel_build_add_vmlinux = None,
         **kwargs):
     """Declare multiple targets to support ABI monitoring.
 
