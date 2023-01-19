@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "075a620e_3dc4b3dc",
+        "filename": "kleaf/bazelrc/flags.bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-19T16:19:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfa2da1d_4fac6b89",
+      "revId": "0b6902e883ac82d50d124f0a691289a091d4d63c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "162bc3fe_217403de",
@@ -67,6 +85,30 @@
       "writtenOn": "2023-01-12T19:38:50Z",
       "side": 1,
       "message": "be careful -- ordering may matter here. --config\u003drelease requires --config\u003dstamp, so I don\u0027t know if you need the `build:stamp` lines before `build:release` lines.\n\nDid you verify that re-ordering is okay? i.e. --config\u003drelease still correctly sets the git versions properly?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 59
+      },
+      "revId": "0b6902e883ac82d50d124f0a691289a091d4d63c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e6c1b21_5eaedfd1",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-19T16:19:28Z",
+      "side": 1,
+      "message": "I only tested with `--lto\u003dthin`, `--config\u003dfast` so reverting it now + adding a comment for future references.",
+      "parentUuid": "162bc3fe_217403de",
       "range": {
         "startLine": 31,
         "startChar": 0,
