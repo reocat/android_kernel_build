@@ -16,6 +16,24 @@
       "message": "add # TODO(b/243737262)",
       "revId": "ce80e97f94e076f889ee76c1edba43bace0ebd4f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1ad5842_6be1030f",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-19T01:57:51Z",
+      "side": 1,
+      "message": "Actually no -- even after b/243737262 is fixed, this snippet still needs to be kept for reproducibility ( b/254357038 and b/262795391)\n\nThat is, this change is now orthogonal to hermetic tar.",
+      "parentUuid": "3572f657_53bff456",
+      "revId": "ce80e97f94e076f889ee76c1edba43bace0ebd4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
