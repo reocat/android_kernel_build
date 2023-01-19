@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc2893ab_4eaba2b3",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-19T00:30:53Z",
+      "side": 1,
+      "message": "Under which circumstances is it ok that the file does not exist? Is it ok to ignore? Consider emitting a warning if that looks like a flaw in the input.",
+      "revId": "9c95133826415710f76a1a139f7ae4dbccc5a065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a55b8cd4_5052d684",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 5
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-19T00:30:53Z",
+      "side": 1,
+      "message": "The help text needs to be adjusted. It does not reflect the meaning of the flag.",
+      "revId": "9c95133826415710f76a1a139f7ae4dbccc5a065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "799df004_cbefa137",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 5
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-19T00:30:53Z",
+      "side": 1,
+      "message": "Perhaps clarify that this is a file containing a list.",
+      "range": {
+        "startLine": 312,
+        "startChar": 12,
+        "endLine": 312,
+        "endChar": 41
+      },
+      "revId": "9c95133826415710f76a1a139f7ae4dbccc5a065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9521f701_6158a20b",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 5
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-19T00:30:53Z",
+      "side": 1,
+      "message": "Is it ok to skip the entire remaining functionality of the script?\nShould this not actually be functionality that runs in addition?",
+      "revId": "9c95133826415710f76a1a139f7ae4dbccc5a065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
