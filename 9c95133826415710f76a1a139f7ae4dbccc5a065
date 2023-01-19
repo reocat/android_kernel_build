@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fabca98_9705a83c",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-19T02:47:00Z",
+      "side": 1,
+      "message": "Good catch. If it\u0027s not found then its exports will not be protected which is not desirable. I\u0027ll add the warning.",
+      "parentUuid": "fc2893ab_4eaba2b3",
+      "revId": "9c95133826415710f76a1a139f7ae4dbccc5a065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a55b8cd4_5052d684",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-19T00:30:53Z",
       "side": 1,
       "message": "The help text needs to be adjusted. It does not reflect the meaning of the flag.",
+      "revId": "9c95133826415710f76a1a139f7ae4dbccc5a065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9239f86_e550f6da",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 5
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-19T02:47:00Z",
+      "side": 1,
+      "message": "Should be dropped altogether since moving functionality to a separate script.",
+      "parentUuid": "a55b8cd4_5052d684",
       "revId": "9c95133826415710f76a1a139f7ae4dbccc5a065",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b929d43_6cc37ec7",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 5
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-19T02:47:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "799df004_cbefa137",
+      "range": {
+        "startLine": 312,
+        "startChar": 12,
+        "endLine": 312,
+        "endChar": 41
+      },
+      "revId": "9c95133826415710f76a1a139f7ae4dbccc5a065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9521f701_6158a20b",
@@ -71,6 +131,24 @@
       "writtenOn": "2023-01-19T00:30:53Z",
       "side": 1,
       "message": "Is it ok to skip the entire remaining functionality of the script?\nShould this not actually be functionality that runs in addition?",
+      "revId": "9c95133826415710f76a1a139f7ae4dbccc5a065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c9a2823_d9b63c5a",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 5
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-19T02:47:00Z",
+      "side": 1,
+      "message": "This should only run when we convert a protected to unprotected module; and we don\u0027t want it to run everytime extract_symbol i.e. symbol update runs for KMI symbols. Should only be run by Google as we should only converting modules.\n\nAnyway, putting the entire functionality in a separate script as discussed over chat.",
+      "parentUuid": "9521f701_6158a20b",
       "revId": "9c95133826415710f76a1a139f7ae4dbccc5a065",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
