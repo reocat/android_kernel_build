@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f770640_a18a46f7",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-19T19:32:35Z",
+      "side": 1,
+      "message": "http://aosp/2394717",
+      "parentUuid": "458d2bf7_726de624",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 0
+      },
+      "revId": "355165bd2e3bf38fd45dd426ce05cd0c0ce64570",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dceee74_56bfff74",
