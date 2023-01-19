@@ -19,19 +19,7 @@ import argparse
 import os
 import subprocess
 import sys
-
-
-def extract_exported_symbols(module):
-  """Extracts the ksymtab exported symbols from a GKI protected modules."""
-  symbols = []
-  out = subprocess.check_output(["llvm-nm", "--defined-only", module],
-                                stderr=subprocess.DEVNULL).decode("ascii")
-  for line in out.splitlines():
-    pos = line.find(" __ksymtab_")
-    if pos != -1:
-      symbols.append(line[pos + len(" __ksymtab_"):])
-
-  return symbols
+import extract_symbols_apis
 
 
 def update_gki_protected_exports(directory, gki_protected_modules_list,
@@ -52,7 +40,7 @@ def update_gki_protected_exports(directory, gki_protected_modules_list,
 
   gki_protected_exports = []
   for module in protected_gki_modules:
-    gki_protected_exports.extend(extract_exported_symbols(module))
+    gki_protected_exports.extend(extract_symbols_apis.extract_exported_symbols(module))
 
   with open(protected_exports_list, "w") as wl:
     wl.write("\n".join(sorted(set(gki_protected_exports))))
