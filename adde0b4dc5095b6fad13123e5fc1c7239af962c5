@@ -1,0 +1,152 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa6ecac6_187efd57",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-20T00:17:51Z",
+      "side": 1,
+      "message": "unused import",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea970ad7_6c1474f3",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-20T00:17:51Z",
+      "side": 1,
+      "message": "group away from standard imports",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a644ed0_48ce6073",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-20T00:17:51Z",
+      "side": 1,
+      "message": "Commonly, code like this can be written more readable without the else clause but with an early exit/continue (also taking other comments into account) to clearly state the preconditions and the intent:\n\n```\nfor protected_module in protected_module_names:\n  full_path \u003d os.path.join(directory, protected_module) \n  if not os.path.isfile(full_path):\n    print(f\"Warning: Couldn\u0027t find module {full_path}\")\n    continue\n    \n  protected_gki_modules.append(full_path)\n  \n```",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56ae4a9b_467a1512",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-20T00:17:51Z",
+      "side": 1,
+      "message": "isfile() returns True if path is an existing regular file.\nhttps://docs.python.org/3.11/library/os.path.html#os.path.isfile\n\nHence, the warning is currently unreachable code. Just `isfile()` should satisfy the check.",
+      "range": {
+        "startLine": 35,
+        "startChar": 15,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c13c603_6212d62a",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-20T00:17:51Z",
+      "side": 1,
+      "message": "Use f-strings:\n\n```\nprint(f\"Warning: Couldn\u0027t find module {full_path}\")\n```\n\nhttps://docs.python.org/3/reference/lexical_analysis.html#f-strings",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7e87fc0_0938da58",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-20T00:17:51Z",
+      "side": 1,
+      "message": "the name `wl` seems to originate from the abbreviation of `whitelist` where this was probably copied from. Consider using a more descriptive name. In particular, avoid abbreviations. `wl` by itself is an exception to avoid non-inclusive terminology.\n\nhttps://google.github.io/styleguide/pyguide.html#316-naming",
+      "range": {
+        "startLine": 46,
+        "startChar": 44,
+        "endLine": 46,
+        "endChar": 46
+      },
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14b8c94a_90fd8c41",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-20T00:17:51Z",
+      "side": 1,
+      "message": "this is now required and can be removed.",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33dce97d_8ccde2e8",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-20T00:17:51Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
