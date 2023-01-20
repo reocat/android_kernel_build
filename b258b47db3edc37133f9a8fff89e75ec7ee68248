@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7598fb1_e3cefe90",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T06:15:18Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "82eb69a2_ea4664e3",
+      "range": {
+        "startLine": 97,
+        "startChar": 1,
+        "endLine": 100,
+        "endChar": 16
+      },
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "338b92b1_c6655294",
