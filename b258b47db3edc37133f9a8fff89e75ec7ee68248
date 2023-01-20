@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58a38035_d5730dea",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:16:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fba4aa6_548fc736",
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "705ec3a2_c5e0714f",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-01-19T23:58:42Z",
       "side": 1,
       "message": "note, this could also go into the library",
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9e3d084_1c628370",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:16:18Z",
+      "side": 1,
+      "message": "It could be; so as many other function in this file but they are not being shared at this point of time. I would do it when they are being shared.",
+      "parentUuid": "705ec3a2_c5e0714f",
       "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82eb69a2_ea4664e3",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:16:18Z",
+      "side": 1,
+      "message": "This is the existing logic which I don\u0027t want to change as `symbol_sort` was being called everytime API was returning; so I would keep it that way as it warrants for testing this in more detail.",
+      "parentUuid": "e144c3ea_a37f14b8",
+      "range": {
+        "startLine": 97,
+        "startChar": 1,
+        "endLine": 100,
+        "endChar": 16
+      },
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "338b92b1_c6655294",
@@ -71,6 +131,24 @@
       "writtenOn": "2023-01-19T23:58:42Z",
       "side": 1,
       "message": "break the line\n\nhttps://google.github.io/styleguide/pyguide.html#32-line-length",
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "788a430c_570f3bee",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:16:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "338b92b1_c6655294",
       "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +170,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e93065b0_67329bf1",
+        "filename": "abi/symbol_extraction.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:16:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "425d5286_421d4d7d",
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13ac3ca4_afde9ae7",
@@ -105,6 +201,24 @@
       "writtenOn": "2023-01-19T23:58:42Z",
       "side": 1,
       "message": "unused import",
+      "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b2a5cd4_8a412367",
+        "filename": "abi/symbol_extraction.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:16:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13ac3ca4_afde9ae7",
       "revId": "b258b47db3edc37133f9a8fff89e75ec7ee68248",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
