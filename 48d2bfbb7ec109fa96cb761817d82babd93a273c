@@ -22,6 +22,30 @@
       },
       "revId": "48d2bfbb7ec109fa96cb761817d82babd93a273c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acdcffdc_c1314764",
+        "filename": "abi/symbol_extraction.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T19:11:03Z",
+      "side": 1,
+      "message": "It was 2023. But Matthias pointed out that code it was copied from was written in 2019; so should be 2019. He usually knows better for this kind of stuff 😊",
+      "parentUuid": "1ab6f6e7_ac256ad3",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "48d2bfbb7ec109fa96cb761817d82babd93a273c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
