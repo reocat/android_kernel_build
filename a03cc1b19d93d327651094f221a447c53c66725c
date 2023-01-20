@@ -116,6 +116,30 @@
       },
       "revId": "a03cc1b19d93d327651094f221a447c53c66725c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63829b83_ffa7b6ee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-20T20:01:00Z",
+      "side": 1,
+      "message": "\"Fixes\" only works on certain components (not the Kleaf component). I used to use it for some platform bugs but I forgot that it won\u0027t work for kernel CLs... Anyways, I\u0027ll keep it as it is now.",
+      "parentUuid": "151a3a94_75d771c7",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 16
+      },
+      "revId": "a03cc1b19d93d327651094f221a447c53c66725c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
