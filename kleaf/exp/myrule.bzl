@@ -1,34 +1,33 @@
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 
 def _transition_impl(settings, attr):
-    force_disable = settings["//build/kernel/kleaf/exp:force_disable_trim"]
+    prevalue = settings["//build/kernel/kleaf/exp:trim_real_value"]
     rule_value = attr.trim
 
     trim_real_value = None
-    if force_disable:
-        trim_real_value = False
+    if prevalue == "unset":
+        trim_real_value = "true" if rule_value else "false"
     else:
-        trim_real_value = rule_value
+        trim_real_value = prevalue
 
     return {
-        "//build/kernel/kleaf/exp:force_disable_trim": False,
         "//build/kernel/kleaf/exp:trim_real_value": trim_real_value,
     }
 
 _myrule_transition = transition(
     implementation = _transition_impl,
     inputs = [
-        "//build/kernel/kleaf/exp:force_disable_trim",
+        "//build/kernel/kleaf/exp:trim_real_value",
     ],
     outputs = [
-        "//build/kernel/kleaf/exp:force_disable_trim",
         "//build/kernel/kleaf/exp:trim_real_value",
     ],
 )
 
 def _myrule_impl(ctx):
-    is_forcifully_disabled = ctx.attr._is_forcifully_disabled[BuildSettingInfo].value
     actual_trim = ctx.attr._actual_trim[BuildSettingInfo].value
+    if actual_trim == "unset":
+        fail("I don't know whether to trim or not")
     f = ctx.actions.declare_file(ctx.attr.name)
     ctx.actions.run_shell(
         inputs = [],
@@ -40,9 +39,8 @@ def _myrule_impl(ctx):
             out = f.path,
             trim = actual_trim,
         ),
-        progress_message = "myrule (trim = {trim}, force_disable={force_disable}): {label}".format(
+        progress_message = "myrule (trim = {trim}): {label}".format(
             trim = actual_trim,
-            force_disable = is_forcifully_disabled,
             label = ctx.label,
         ),
     )
@@ -56,7 +54,6 @@ myrule = rule(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
         "trim": attr.bool(),
-        "_is_forcifully_disabled": attr.label(default = "//build/kernel/kleaf/exp:force_disable_trim"),
         "_actual_trim": attr.label(default = "//build/kernel/kleaf/exp:trim_real_value"),
     },
 )
@@ -72,13 +69,13 @@ myparent_default = rule(
 )
 
 def _myparent_notrim_transition_impl(settings, attr):
-    return {"//build/kernel/kleaf/exp:force_disable_trim": True}
+    return {"//build/kernel/kleaf/exp:trim_real_value": "false"}
 
 _myparent_notrim_transition = transition(
     implementation = _myparent_notrim_transition_impl,
     inputs = [],
     outputs = [
-        "//build/kernel/kleaf/exp:force_disable_trim",
+        "//build/kernel/kleaf/exp:trim_real_value",
     ],
 )
 

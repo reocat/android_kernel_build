@@ -1,14 +1,14 @@
-load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
+load("@bazel_skylib//rules:common_settings.bzl", "string_flag")
 load(":myrule.bzl", "my_outer_macro", "myrule")
 
-bool_flag(
-    name = "force_disable_trim",
-    build_setting_default = False,
-)
-
-bool_flag(
+string_flag(
     name = "trim_real_value",
-    build_setting_default = False,
+    build_setting_default = "unset",
+    values = [
+        "true",
+        "false",
+        "unset",
+    ],
 )
 
 myrule(
