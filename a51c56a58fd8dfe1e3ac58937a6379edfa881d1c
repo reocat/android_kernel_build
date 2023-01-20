@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d85e6ccb_7760bcdb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-20T09:18:36Z",
+      "side": 1,
+      "message": "There is likely a follow-up task to integrate the additional dependency (symbol_extraction.py) into bazel. That should be straight forward, but needs to be done soon after this change to make symbol extraction work properly for android14 and mainline.",
+      "revId": "a51c56a58fd8dfe1e3ac58937a6379edfa881d1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
