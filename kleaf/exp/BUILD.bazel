@@ -1,0 +1,22 @@
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
+load(":myrule.bzl", "my_outer_macro", "myrule")
+
+bool_flag(
+    name = "force_disable_trim",
+    build_setting_default = False,
+)
+
+bool_flag(
+    name = "trim_real_value",
+    build_setting_default = False,
+)
+
+myrule(
+    name = "internal_target",
+    trim = False,
+)
+
+my_outer_macro(
+    name = "outer",
+    internal_rule = ":internal_target",
+)
