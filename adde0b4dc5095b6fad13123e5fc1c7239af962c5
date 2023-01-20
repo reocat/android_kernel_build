@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6a8a2b6_2cb05082",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:18:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa6ecac6_187efd57",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea970ad7_6c1474f3",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02d6b003_bde3f625",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:18:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea970ad7_6c1474f3",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a644ed0_48ce6073",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-01-20T00:17:51Z",
       "side": 1,
       "message": "Commonly, code like this can be written more readable without the else clause but with an early exit/continue (also taking other comments into account) to clearly state the preconditions and the intent:\n\n```\nfor protected_module in protected_module_names:\n  full_path \u003d os.path.join(directory, protected_module) \n  if not os.path.isfile(full_path):\n    print(f\"Warning: Couldn\u0027t find module {full_path}\")\n    continue\n    \n  protected_gki_modules.append(full_path)\n  \n```",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "182bc68e_a8ad8b50",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:18:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a644ed0_48ce6073",
       "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +129,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a35e2c23_7c81e9d5",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:18:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56ae4a9b_467a1512",
+      "range": {
+        "startLine": 35,
+        "startChar": 15,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c13c603_6212d62a",
@@ -88,6 +166,24 @@
       "writtenOn": "2023-01-20T00:17:51Z",
       "side": 1,
       "message": "Use f-strings:\n\n```\nprint(f\"Warning: Couldn\u0027t find module {full_path}\")\n```\n\nhttps://docs.python.org/3/reference/lexical_analysis.html#f-strings",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f533d97_4b3afcf5",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:18:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c13c603_6212d62a",
       "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -115,6 +211,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfd56dfb_9505c49d",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:18:41Z",
+      "side": 1,
+      "message": "Correct; it was copied from extract_symbol; I try to do the stuff as it has been already done in the other files in the same project to avoid preference comments; but I guess many of the guidelines were not there when old code is written.\n\nFixed it.",
+      "parentUuid": "d7e87fc0_0938da58",
+      "range": {
+        "startLine": 46,
+        "startChar": 44,
+        "endLine": 46,
+        "endChar": 46
+      },
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14b8c94a_90fd8c41",
@@ -132,6 +252,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9a1938f_480f8d3f",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:18:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14b8c94a_90fd8c41",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33dce97d_8ccde2e8",
@@ -145,6 +283,24 @@
       "writtenOn": "2023-01-20T00:17:51Z",
       "side": 1,
       "message": "ditto",
+      "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75e96137_44a54898",
+        "filename": "abi/extract_gki_protected_exports",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-20T01:18:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33dce97d_8ccde2e8",
       "revId": "adde0b4dc5095b6fad13123e5fc1c7239af962c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
