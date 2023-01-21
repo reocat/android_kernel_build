@@ -1240,11 +1240,10 @@ def _create_infos(
 
     # We don't have local actions that depends on this setup script yet. If
     # we do in the future, this needs to be split into KernelEnvAndOutputsInfo.
-    ext_mod_setup = ctx.attr.config[KernelEnvAndOutputsInfo].get_setup_script(
-        data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
+    ext_mod_setup = ctx.attr.modules_prepare[KernelEnvAndOutputsInfo].get_setup_script(
+        data = ctx.attr.modules_prepare[KernelEnvAndOutputsInfo].data,
         restore_out_dir_cmd = utils.get_check_sandbox_cmd(),
     )
-    ext_mod_setup += ctx.attr.modules_prepare[KernelEnvInfo].setup
     ext_mod_setup += env_and_outputs_info_setup_restore_outputs
     ext_mod_deps = []
 
@@ -1252,12 +1251,11 @@ def _create_infos(
     ext_mod_deps += depset(
         env_and_outputs_info_dependencies,
         transitive = [
-            ctx.attr.config[KernelEnvAndOutputsInfo].inputs,
-            ctx.attr.config[KernelEnvAndOutputsInfo].tools,
+            ctx.attr.modules_prepare[KernelEnvAndOutputsInfo].inputs,
+            ctx.attr.modules_prepare[KernelEnvAndOutputsInfo].tools,
         ],
     ).to_list()
 
-    ext_mod_deps += ctx.attr.modules_prepare[KernelEnvInfo].dependencies
     ext_mod_env_info = KernelEnvInfo(
         setup = ext_mod_setup,
         dependencies = ext_mod_deps,
@@ -1455,7 +1453,7 @@ _kernel_build = rule(
         # dependencies so KernelBuildExtModuleInfo and KernelBuildUapiInfo works.
         # There are no real dependencies. Bazel does not build these targets before building the
         # `_kernel_build` target.
-        "modules_prepare": attr.label(),
+        "modules_prepare": attr.label(providers = [KernelEnvAndOutputsInfo]),
         "kernel_uapi_headers": attr.label(),
         "combined_abi_symbollist": attr.label(allow_single_file = True, doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`."),
         "strip_modules": attr.bool(default = False, doc = "if set, debug information won't be kept for distributed modules.  Note, modules will still be stripped when copied into the ramdisk."),
