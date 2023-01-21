@@ -12,10 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Build dtbo."""
-
+<<<<<<< HEAD
 load(":common_providers.bzl", "KernelBuildInfo", "KernelEnvInfo")
 load(":debug.bzl", "debug")
+load(":image/image_utils.bzl", "image_utils")
+=======
+"""Build dtbo."""
+
+load(":common_providers.bzl", "KernelBuildInfo", "KernelEnvAndOutputsInfo")
+load(":debug.bzl", "debug")
+load(":utils.bzl", "utils")
+>>>>>>> 255e90b (kleaf: Fix buildifier lint warnings on dtbo.bzl.)
 
 def _dtbo_impl(ctx):
     output = ctx.actions.declare_file("{}/dtbo.img".format(ctx.label.name))
