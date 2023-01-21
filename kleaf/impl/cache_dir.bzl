@@ -59,6 +59,8 @@ def _get_step(ctx, common_config_tags, symlink_name):
               KLEAF_CACHED_COMMON_OUT_DIR={cache_dir}/${{OUT_DIR_SUFFIX}}
               KLEAF_CACHED_OUT_DIR=${{KLEAF_CACHED_COMMON_OUT_DIR}}/${{KERNEL_DIR}}
               (
+                  mkdir -p {cache_dir}
+                  mkdir -p {cache_dir}/${{OUT_DIR_SUFFIX}}
                   mkdir -p "${{KLEAF_CACHED_OUT_DIR}}"
                   KLEAF_CONIFG_TAGS="${{KLEAF_CACHED_COMMON_OUT_DIR}}/kleaf_config_tags.json"
 
