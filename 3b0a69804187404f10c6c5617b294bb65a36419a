@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05d01324_5265b3cf",
+        "filename": "abi/extract_symbols",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-23T12:49:24Z",
+      "side": 1,
+      "message": "By appending `_modules` this does not really gain a better name. We can stick to the old name? In particular, there is nothing specific about this that makes it only applicable for modules. Instead the only difference is that this supports multiple binaries.\n\nPerhaps a better option is to move this entire function to `symbol_extraction` and only provide one interface:\n\n```\ndef extract_undefined_symbols(binaries: list[pathlib.Path]) -\u003e dict[str,list[str]]\n```\n\nOr perhaps multiple, but module agnostic:\n```\ndef extract_undefined_symbols_multiple(binaries: list[pathlib.Path]) -\u003e dict[str,list[str]]\n\ndef extract_undefined_symbols(binary: pathlib.Path) -\u003e list[str]\n```\n\nand callers would just adjust to that consolidated interface.",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 37
+      },
+      "revId": "3b0a69804187404f10c6c5617b294bb65a36419a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb16be91_225b29d0",
+        "filename": "abi/symbol_extraction.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-23T12:49:24Z",
+      "side": 1,
+      "message": "this gives opportunity to gives this a better name: binary_path, perhaps?",
+      "range": {
+        "startLine": 34,
+        "startChar": 30,
+        "endLine": 34,
+        "endChar": 36
+      },
+      "revId": "3b0a69804187404f10c6c5617b294bb65a36419a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
