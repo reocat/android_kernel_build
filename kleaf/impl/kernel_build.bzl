@@ -1231,7 +1231,7 @@ def _create_infos(
 
     env_and_outputs_info_setup_restore_outputs = """
          # Restore kernel build outputs
-           cp -R {ruledir}/* ${{OUT_DIR}}
+           rsync -aL --chmod=D+w {ruledir}/* ${{OUT_DIR}}/
            """.format(ruledir = main_action_ret.ruledir.path)
     env_and_outputs_info_setup_restore_outputs += kbuild_mixed_tree_ret.cmd
 
