@@ -1223,16 +1223,22 @@ def _create_infos(
 
     # Only outs and internal_outs are needed. But for simplicity, copy the full {ruledir}
     # which includes module_outs and implicit_outs too.
-    env_and_outputs_info_dependencies = []
+    ext_mod_info_deps = []
     for d in all_output_files.values():
-        env_and_outputs_info_dependencies += d.values()
-    env_and_outputs_info_dependencies += kbuild_mixed_tree_ret.outputs
+        ext_mod_info_deps += d.values()
+    env_and_outputs_info_dependencies = ext_mod_info_deps + kbuild_mixed_tree_ret.outputs
 
-    env_and_outputs_info_setup_restore_outputs = """
+    ext_mod_info_restore_outputs = """
          # Restore kernel build outputs
            rsync -aL --chmod=D+w {ruledir}/* ${{OUT_DIR}}/
            """.format(ruledir = main_action_ret.ruledir.path)
-    env_and_outputs_info_setup_restore_outputs += kbuild_mixed_tree_ret.cmd
+    env_and_outputs_info_setup_restore_outputs = ext_mod_info_restore_outputs + kbuild_mixed_tree_ret.cmd
+
+    # Fake a System.map to suppress warnings in depmod.sh. We aren't actually
+    # running depmod when building kernel_module().
+    ext_mod_info_restore_outputs += """
+          touch ${OUT_DIR}/System.map
+    """
 
     env_and_outputs_info = _create_env_and_outputs_info(
         pre_info = ctx.attr.config[KernelEnvAndOutputsInfo],
@@ -1256,8 +1262,8 @@ def _create_infos(
 
     ext_mod_env_and_outputs_info = _create_env_and_outputs_info(
         pre_info = ctx.attr.modules_prepare[KernelEnvAndOutputsInfo],
-        restore_outputs_cmd_deps = env_and_outputs_info_dependencies,
-        restore_outputs_cmd = env_and_outputs_info_setup_restore_outputs,
+        restore_outputs_cmd_deps = ext_mod_info_deps,
+        restore_outputs_cmd = ext_mod_info_restore_outputs,
     )
 
     kernel_build_module_info = KernelBuildExtModuleInfo(
