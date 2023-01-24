@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "469b2427_55856ee0",
+        "filename": "kleaf/analysis/inputs.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-24T23:49:54Z",
+      "side": 1,
+      "message": "Depends on whether the user wants to use this config or not. This is an example to tell the user that they may define configs and flags like this.",
+      "parentUuid": "8817c712_cbf77732",
+      "range": {
+        "startLine": 25,
+        "startChar": 38,
+        "endLine": 25,
+        "endChar": 51
+      },
+      "revId": "a33e13b6fde81fa17d5851bc5c386fdcbb3b2154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d8bdbda_e79664b4",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-24T23:47:49Z",
       "side": 1,
       "message": "I guess no, but could this end in an infinite cycle?",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 35
+      },
+      "revId": "a33e13b6fde81fa17d5851bc5c386fdcbb3b2154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16ff7875_2b14d38c",
+        "filename": "kleaf/analysis/inputs.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-24T23:49:54Z",
+      "side": 1,
+      "message": "Assuming that `bazel aquery` returns good data, no. But yeah this code does NOT guard against this.\n\nThis script is just a nice debugging tool. Let me update documentation in kleaf/docs as well",
+      "parentUuid": "2d8bdbda_e79664b4",
       "range": {
         "startLine": 119,
         "startChar": 0,
