@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7c9f520_5ebbcd39",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 1571,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-24T19:06:09Z",
+      "side": 1,
+      "message": "nit: maybe this can go directly to L1594 as it\u0027s not used anywhere else?",
+      "range": {
+        "startLine": 1571,
+        "startChar": 12,
+        "endLine": 1571,
+        "endChar": 58
+      },
+      "revId": "16b363281349efbcebe19c40fd981ff592808981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "822e7da9_5bb2e1e6",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-24T19:06:09Z",
+      "side": 1,
+      "message": "Not a blocker, but please consider adding a short documentation here, or pointer to the one in kleaf/impl/common_providers.bzl.",
+      "range": {
+        "startLine": 342,
+        "startChar": 4,
+        "endLine": 342,
+        "endChar": 37
+      },
+      "revId": "16b363281349efbcebe19c40fd981ff592808981",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
