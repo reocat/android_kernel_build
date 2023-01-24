@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8817c712_cbf77732",
+        "filename": "kleaf/analysis/inputs.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-24T23:47:49Z",
+      "side": 1,
+      "message": "q: do you need to build with the same config?",
+      "range": {
+        "startLine": 25,
+        "startChar": 38,
+        "endLine": 25,
+        "endChar": 51
+      },
+      "revId": "a33e13b6fde81fa17d5851bc5c386fdcbb3b2154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d8bdbda_e79664b4",
+        "filename": "kleaf/analysis/inputs.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-24T23:47:49Z",
+      "side": 1,
+      "message": "I guess no, but could this end in an infinite cycle?",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 35
+      },
+      "revId": "a33e13b6fde81fa17d5851bc5c386fdcbb3b2154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
