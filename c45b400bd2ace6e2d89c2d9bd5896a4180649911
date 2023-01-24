@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22d1d53b_cf3f292f",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-01-24T03:49:17Z",
+      "side": 0,
+      "message": "It is still used in L319 (of the new file), hence the presubmit errors.",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 24,
+        "endChar": 24
+      },
+      "revId": "c45b400bd2ace6e2d89c2d9bd5896a4180649911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
