@@ -159,6 +159,7 @@ def kernel_abi_dist(
         data = [
             name + "_copy_to_dist_dir",
             kernel_abi + "_diff_executable",
+            kernel_abi + "_diff_executable_stg",
         ],
         script = """
           # Copy to dist dir
