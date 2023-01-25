@@ -141,6 +141,30 @@
       },
       "revId": "a33e13b6fde81fa17d5851bc5c386fdcbb3b2154",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2322635_024ded87",
+        "filename": "kleaf/analysis/inputs.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-25T00:09:31Z",
+      "side": 1,
+      "message": "docs in CL:2399101",
+      "parentUuid": "301ba6e6_3ce21cd6",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 35
+      },
+      "revId": "a33e13b6fde81fa17d5851bc5c386fdcbb3b2154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
