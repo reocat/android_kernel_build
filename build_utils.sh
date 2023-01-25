@@ -78,12 +78,49 @@ function run_depmod() {
   )
 }
 
+# $1 MODULES_LIST <File that contains the list of modules that need to be
+#                   loaded during first-stage init.>
+# $2 MODULES_RECOVERY_LIST <File that contains the list of additional modules
+#                           that need to be loaded from the initramfs for
+#                           recovery.>
+# $3 MODULES_ORDER <File that contains the list of modules in the order in which
+#                   they appear in Makefiles.>
+# $4 IMAGE_STAGING_DIR <The destination directory in which MODULES_LIST is
+#                       expected and it's corresponding modules.* files.>
+function create_recovery_modules_order() {
+  local modules_list_file=$1
+  local modules_recoverylist_file=$2
+  local modules_order_file=$3
+  local dest_dir=$4
+
+  if [[ -f "${ROOT_DIR}/${modules_recoverylist_file}" ]]; then
+    modules_recoverylist_file="${ROOT_DIR}/${modules_recoverylist_file}"
+  elif [[ "${modules_recoverylist_file}" != /* ]]; then
+    echo "modules recovery list must be an absolute path or relative to ${ROOT_DIR}: ${modules_recoverylist_file}" >&2
+    exit 1
+  elif [[ ! -f "${modules_recoverylist_file}" ]]; then
+    echo "Failed to find modules list: ${modules_recoverylist_file}" >&2
+    exit 1
+  fi
+
+  # Append recovery modules to the first stage init modules
+  grep -v "^\#" ${modules_recoverylist_file} >> ${modules_list_file}
+  grep -w -f ${modules_list_file} ${modules_order_file} > ${dest_dir}/modules.order.recovery
+}
+
 # $1 MODULES_LIST, <File contains the list of modules that should go in the ramdisk>
 # $2 MODULES_STAGING_DIR    <The directory to look for all the compiled modules>
 # $3 IMAGE_STAGING_DIR  <The destination directory in which MODULES_LIST is
 #                        expected, and it's corresponding modules.* files>
 # $4 MODULES_BLOCKLIST, <File contains the list of modules to prevent from loading>
-# $5 flags to pass to depmod
+# $5 MODULES_RECOVERY_LIST <File contains the list of modules that should go in
+#                           the ramdisk but should only be loaded when booting
+#                           into recovery.
+#
+#                           This parameter is optional, and if not used, should
+#                           be passed as an empty string to ensure that the depmod
+#                           flags are assigned correctly.>
+# $6 flags to pass to depmod
 function create_modules_staging() {
   local modules_list_file=$1
   local src_dir=$(echo $2/lib/modules/*)
@@ -91,7 +128,8 @@ function create_modules_staging() {
   local dest_dir=$3/lib/modules/${version}
   local dest_stage=$3
   local modules_blocklist_file=$4
-  local depmod_flags=$5
+  local modules_recoverylist_file=$5
+  local depmod_flags=$6
 
   rm -rf ${dest_dir}
   mkdir -p ${dest_dir}/kernel
@@ -166,6 +204,10 @@ function create_modules_staging() {
     # grep the modules.order for any KOs in the modules list
     cp ${dest_dir}/modules.order ${old_modules_list}
     ! grep -w -f ${modules_list_filter} ${old_modules_list} > ${dest_dir}/modules.order
+    if [[ -n "${modules_recoverylist_file}" ]]; then
+      create_recovery_modules_order "${modules_list_filter}" "${modules_recoverylist_file}" \
+        "${old_modules_list}" "${dest_dir}"
+    fi
     rm -f ${modules_list_filter} ${old_modules_list}
   fi
 
@@ -196,7 +238,11 @@ function create_modules_staging() {
     # Trim modules from tree that aren't mentioned in modules.order
     (
       cd ${dest_dir}
-      find * -type f -name "*.ko" | (grep -v -w -f modules.order -f $used_blocklist_modules - || true) | xargs -r rm
+      local grep_flags="-v -w -f modules.order -f ${used_blocklist_modules}"
+      if [[ -f modules.order.recovery ]]; then
+        grep_flags="${grep_flags} -f modules.order.recovery"
+      fi
+      find * -type f -name "*.ko" | (grep ${grep_flags} - || true) | xargs -r rm
     )
     rm $used_blocklist_modules
   fi
@@ -205,6 +251,9 @@ function create_modules_staging() {
   # modules. Then, create modules.order based on all the modules compiled.
   run_depmod ${dest_stage} "${depmod_flags}" "${version}"
   cp ${dest_dir}/modules.order ${dest_dir}/modules.load
+  if [[ -f ${dest_dir}/modules.order.recovery ]]; then
+    cp ${dest_dir}/modules.order.recovery ${dest_dir}/modules.load.recovery
+  fi
 }
 
 function build_system_dlkm() {
@@ -213,7 +262,7 @@ function build_system_dlkm() {
 
   rm -rf ${SYSTEM_DLKM_STAGING_DIR}
   create_modules_staging "${SYSTEM_DLKM_MODULES_LIST:-${MODULES_LIST}}" "${MODULES_STAGING_DIR}" \
-    ${SYSTEM_DLKM_STAGING_DIR} "${SYSTEM_DLKM_MODULES_BLOCKLIST:-${MODULES_BLOCKLIST}}" "-e"
+    ${SYSTEM_DLKM_STAGING_DIR} "${SYSTEM_DLKM_MODULES_BLOCKLIST:-${MODULES_BLOCKLIST}}" "" "-e"
 
   local system_dlkm_root_dir=$(echo ${SYSTEM_DLKM_STAGING_DIR}/lib/modules/*)
   cp ${system_dlkm_root_dir}/modules.load ${DIST_DIR}/system_dlkm.modules.load
