@@ -36,3 +36,63 @@ bzl_library(
         "@bazel_skylib//rules:write_file",
     ],
 )
+<<<<<<< HEAD   (a7e3f6 build_utils.sh: update the SPL for development)
+=======
+
+py_binary(
+    name = "kernel_module_test",
+    srcs = ["kernel_module_test.py"],
+    python_version = "PY3",
+    # All packages that uses kernel_module must be able to see this.
+    visibility = ["//visibility:public"],
+    deps = [
+        "@io_abseil_py//absl/testing:absltest",
+    ],
+)
+
+py_binary(
+    name = "kernel_build_test",
+    srcs = ["kernel_build_test.py"],
+    python_version = "PY3",
+    # All packages that uses kernel_module must be able to see this.
+    visibility = ["//visibility:public"],
+    deps = [
+        "@io_abseil_py//absl/testing:absltest",
+        "@io_abseil_py//absl/testing:parameterized",
+    ],
+)
+
+py_binary(
+    name = "initramfs_modules_options_test",
+    srcs = ["initramfs_modules_options_test.py"],
+    python_version = "PY3",
+    # All packages that uses kernel_module must be able to see this.
+    visibility = ["//visibility:public"],
+    deps = [
+        "@io_abseil_py//absl/testing:absltest",
+    ],
+)
+
+py_binary(
+    name = "check_module_signature",
+    srcs = ["check_module_signature.py"],
+    python_version = "PY3",
+    # All packages that uses kernel_module must be able to see this.
+    visibility = ["//visibility:public"],
+    deps = [
+        "@io_abseil_py//absl/flags",
+        "@io_abseil_py//absl/testing:absltest",
+    ],
+)
+
+py_binary(
+    name = "initramfs_modules_lists_test",
+    srcs = ["initramfs_modules_lists_test.py"],
+    python_version = "PY3",
+    # All packages that use kenrel_module must be able to see this.
+    visibility = ["//visibility:public"],
+    deps = [
+        "@io_abseil_py//absl/testing:absltest",
+    ],
+)
+>>>>>>> CHANGE (d08605 kleaf: Add support for specifying modules for recovery/charg)
