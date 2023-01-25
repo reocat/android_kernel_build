@@ -17,6 +17,7 @@
 load("//build/bazel_common_rules/exec:exec.bzl", "exec")
 load("//build/kernel/kleaf:update_source_file.bzl", "update_source_file")
 load(":abi/abi_diff.bzl", "abi_diff")
+load(":abi/abi_stgdiff.bzl", "stgdiff")
 load(":abi/abi_dump.bzl", "abi_dump")
 load(":abi/abi_prop.bzl", "abi_prop")
 load(":abi/extracted_symbols.bzl", "extracted_symbols")
@@ -32,6 +33,7 @@ def kernel_build_abi(
         kernel_modules = None,
         module_grouping = None,
         abi_definition = None,
+        abi_stg_definition = None,
         kmi_enforced = None,
         unstripped_modules_archive = None,
         kmi_symbol_list_add_only = None,
@@ -75,6 +77,7 @@ def kernel_build_abi(
       kernel_modules: See [`kernel_abi.kernel_modules`](#kernel_abi-kernel_modules)
       module_grouping: See [`kernel_abi.module_grouping`](#kernel_abi-module_grouping)
       abi_definition: See [`kernel_abi.abi_definition`](#kernel_abi-abi_definition)
+      abi_stg_definition: See [`kernel_abi.abi_stg_definition`](#kernel_abi-abi_stg_definition)
       kmi_enforced: See [`kernel_abi.kmi_enforced`](#kernel_abi-kmi_enforced)
       unstripped_modules_archive: See [`kernel_abi.unstripped_modules_archive`](#kernel_abi-unstripped_modules_archive)
       kmi_symbol_list_add_only: See [`kernel_abi.kmi_symbol_list_add_only`](#kernel_abi-kmi_symbol_list_add_only)
@@ -166,6 +169,7 @@ def kernel_abi(
         kernel_modules = None,
         module_grouping = None,
         abi_definition = None,
+        abi_stg_definition = None,
         kmi_enforced = None,
         unstripped_modules_archive = None,
         kmi_symbol_list_add_only = None,
@@ -239,6 +243,7 @@ def kernel_abi(
         list will simply be a sorted list of symbols used by all the kernel
         modules.
       abi_definition: Location of the ABI definition.
+      abi_stg_definition: Location of the ABI definition in STG format.
       kmi_enforced: This is an indicative option to signal that KMI is enforced.
         If set to `True`, KMI checking tools respects it and
         reacts to it by failing if KMI differences are detected.
@@ -426,6 +431,13 @@ def _define_abi_definition_targets(
         **kwargs
     )
 
+    native.filegroup(
+        name = name + "_stg_out_file",
+        srcs = [name + "_dump"],
+        output_group = "stg_abi_out_file",
+        **kwargs
+    )
+
     abi_diff(
         name = name + "_diff",
         baseline = abi_definition,
@@ -434,6 +446,13 @@ def _define_abi_definition_targets(
         **kwargs
     )
     default_outputs.append(name + "_diff")
+
+    stgdiff(
+        name = name + "_stg_diff",
+        baseline = abi_definition,
+        new = name + "_stg_out_file",
+        kmi_enforced = kmi_enforced,
+    )
 
     # The default outputs of _diff does not contain the executable,
     # but the reports. Use this filegroup to select the executable
