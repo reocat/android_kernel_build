@@ -1,4 +1,4 @@
-# Copyright (C) 2022 The Android Open Source Project
+# Copyright (C) 2023 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,22 +13,23 @@
 # limitations under the License.
 
 """
-Run `diff_abi` tool.
+Similar to `abi_diff`, but running `stgdiff` tool directly.
 """
 
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(":debug.bzl", "debug")
 
-def _abi_diff_impl(ctx):
+STGDIFF_FORMATS = ["plain", "flat", "small", "short", "viz"]
+
+def _stgdiff_impl(ctx):
     inputs = [
-        ctx.file._diff_abi,
+        ctx.file._stgdiff,
         ctx.file.baseline,
         ctx.file.new,
     ]
     inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
-    inputs += ctx.files._diff_abi_scripts
 
-    output_dir = ctx.actions.declare_directory("{}/abi_diff".format(ctx.attr.name))
+    output_dir = ctx.actions.declare_directory("{}/abi_stgdiff".format(ctx.attr.name))
     error_msg_file = ctx.actions.declare_file("{}/error_msg_file".format(ctx.attr.name))
     exit_code_file = ctx.actions.declare_file("{}/exit_code_file".format(ctx.attr.name))
     git_msg_file = ctx.actions.declare_file("{}/git_message.txt".format(ctx.attr.name))
@@ -40,11 +41,17 @@ def _abi_diff_impl(ctx):
         git_msg_file,
     ]
 
+    basename = "{output_dir}.abi.report".format(output_dir = output_dir.path)
+    outputs = " ".join(["--format {ext} --output {basename}.{ext}".format(
+        basename = basename,
+        ext = ext,
+    ) for ext in STGDIFF_FORMATS])
+
     command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
         set +e
-        {diff_abi} --baseline {baseline}                \\
-                   --new      {new}                     \\
-                   --report   {output_dir}/abi.report   \\
+        {stgdiff}  --stg {new} {baseline}               \\
+                   --compare-options --all              \\
+                   {outputs}                            \\
                    --abi-tool delegated > {error_msg_file} 2>&1
         rc=$?
         set -e
@@ -71,13 +78,14 @@ EOF
             echo "INFO: exit code is not checked. 'tools/bazel run {label}' to check the exit code." >&2
         fi
     """.format(
-        diff_abi = ctx.file._diff_abi.path,
+        stgdiff = ctx.file._stgdiff.path,
         baseline = ctx.file.baseline.path,
         new = ctx.file.new.path,
         output_dir = output_dir.path,
         exit_code_file = exit_code_file.path,
         error_msg_file = error_msg_file.path,
         git_msg_file = git_msg_file.path,
+        outputs = outputs,
         label = ctx.label,
     )
 
@@ -86,8 +94,8 @@ EOF
         inputs = inputs,
         outputs = command_outputs,
         command = command,
-        mnemonic = "KernelDiffAbi",
-        progress_message = "Comparing ABI {}".format(ctx.label),
+        mnemonic = "KernelDiffAbiStg",
+        progress_message = "[stg] Comparing ABI {}".format(ctx.label),
     )
 
     script = ctx.actions.declare_file("{}/print_results.sh".format(ctx.attr.name))
@@ -120,16 +128,23 @@ EOF
         ),
     ]
 
-abi_diff = rule(
-    implementation = _abi_diff_impl,
-    doc = "Run `diff_abi`",
+stgdiff = rule(
+    implementation = _stgdiff_impl,
+    doc = "Run `stgdiff`",
     attrs = {
         "baseline": attr.label(allow_single_file = True),
         "new": attr.label(allow_single_file = True),
         "kmi_enforced": attr.bool(),
-        "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
-        "_diff_abi_scripts": attr.label(default = "//build/kernel:diff-abi-scripts"),
-        "_diff_abi": attr.label(default = "//build/kernel:abi/diff_abi", allow_single_file = True),
+        "_hermetic_tools": attr.label(
+            default = "//build/kernel:hermetic-tools",
+            providers = [HermeticToolsInfo],
+        ),
+        "_stgdiff": attr.label(
+            default = "//prebuilts/kernel-build-tools:linux-x86/bin/stgdiff",
+            allow_single_file = True,
+            cfg = "exec",
+            executable = True,
+        ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
     executable = True,
