@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b87371da_c26b668b",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-01-27T00:02:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8916368_a3a82863",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 99,
+        "endChar": 8
+      },
+      "revId": "e222da8010fa7a7a941d4466b59fe4765a634772",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a15b39b1_c7d93e7f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-26T18:20:18Z",
       "side": 1,
       "message": "same here",
+      "range": {
+        "startLine": 102,
+        "startChar": 4,
+        "endLine": 102,
+        "endChar": 8
+      },
+      "revId": "e222da8010fa7a7a941d4466b59fe4765a634772",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "205fd336_c265193d",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-01-27T00:02:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a15b39b1_c7d93e7f",
       "range": {
         "startLine": 102,
         "startChar": 4,
@@ -95,6 +143,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "358f3d4d_542be143",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-01-27T00:02:24Z",
+      "side": 1,
+      "message": "Having modules_recoverylist_file as a required arg makes sense to me. I\u0027ve implemented it as such and added more documentation.",
+      "parentUuid": "f250fcb8_e4c5c671",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 79
+      },
+      "revId": "e222da8010fa7a7a941d4466b59fe4765a634772",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "97ddcf34_84af1ee6",
         "filename": "build_utils.sh",
         "patchSetId": 3
@@ -106,6 +178,30 @@
       "writtenOn": "2023-01-26T18:20:18Z",
       "side": 1,
       "message": "Note: we aren\u0027t running depmod on the `modules.order.recovery`. So it\u0027s possible that the list may not be complete and it wouldn\u0027t be detected until runtime. You don\u0027t have to add that support in this patch if you don\u0027t want to, but could you file a bug for this so that we can track it at least.",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 57
+      },
+      "revId": "e222da8010fa7a7a941d4466b59fe4765a634772",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdafe9ca_e102b423",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-01-27T00:02:24Z",
+      "side": 1,
+      "message": "When depmod runs, it does seem to consider the modules in modules.order.recovery as well; I think it considers all modules in the directory. I do see the recovery modules dependencies being recorded in modules.dep as well.",
+      "parentUuid": "97ddcf34_84af1ee6",
       "range": {
         "startLine": 248,
         "startChar": 0,
