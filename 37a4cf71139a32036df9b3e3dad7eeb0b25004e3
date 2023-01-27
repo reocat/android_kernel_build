@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccdc92f4_2566b444",
+        "filename": "build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 1020,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-01-27T19:34:40Z",
+      "side": 1,
+      "message": "Good point; thanks for catching that.",
+      "parentUuid": "9b8f7822_c89640ae",
+      "range": {
+        "startLine": 1020,
+        "startChar": 57,
+        "endLine": 1020,
+        "endChar": 78
+      },
+      "revId": "37a4cf71139a32036df9b3e3dad7eeb0b25004e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad34350a_f5f57e4d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-27T18:05:05Z",
       "side": 1,
       "message": "Can you make it more clear that the parameter is required if depmod flags are passed in, but the file is not? Something like:\n\n```\nIf not used, then pass in an empty string to ensure depmod flags are assigned correctly.\n```",
+      "range": {
+        "startLine": 118,
+        "startChar": 43,
+        "endLine": 118,
+        "endChar": 69
+      },
+      "revId": "37a4cf71139a32036df9b3e3dad7eeb0b25004e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06269f28_f0b334b9",
+        "filename": "build_utils.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-01-27T19:34:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad34350a_f5f57e4d",
       "range": {
         "startLine": 118,
         "startChar": 43,
