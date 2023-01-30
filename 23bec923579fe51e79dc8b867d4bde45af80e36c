@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a549b77d_e9189e1d",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-01-30T09:37:36Z",
+      "side": 1,
+      "message": "It will make things easier for this script and possibly for Kleaf if you accept an explicit list of file names. Kleaf has to enumerate the .ko anyway and this may save copying to a new directory.\n\nSpeak to eslk or umendez to confirm the latter.",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff55b2ab_55a8feaa",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-01-30T09:37:36Z",
+      "side": 1,
+      "message": "This and a few other lines are too long and wrap in Gerrit. Please fit to 80 columns.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 109
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5c4bf4f_13e4b2ff",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-01-30T09:37:36Z",
+      "side": 1,
+      "message": "Call this symbol?",
+      "range": {
+        "startLine": 81,
+        "startChar": 6,
+        "endLine": 81,
+        "endChar": 12
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f526d105_1ce44d87",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-01-30T09:37:36Z",
+      "side": 1,
+      "message": "Same here?",
+      "range": {
+        "startLine": 87,
+        "startChar": 6,
+        "endLine": 87,
+        "endChar": 12
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40d6e344_090690f6",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-01-30T09:37:36Z",
+      "side": 1,
+      "message": "Is this needed? Rather, it would be best to sort them for output, but that can be done later.\n\nfor x in sorted(y):\n  print ... x ... \\n",
+      "range": {
+        "startLine": 95,
+        "startChar": 20,
+        "endLine": 95,
+        "endChar": 24
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00764194_cf86b179",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-01-30T09:37:36Z",
+      "side": 1,
+      "message": "the symbol list (or you could even emit the file name; though that may not look pretty under Kleaf)",
+      "range": {
+        "startLine": 100,
+        "startChar": 40,
+        "endLine": 100,
+        "endChar": 53
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cd32ff6_6f2dfb4b",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-01-30T09:37:36Z",
+      "side": 1,
+      "message": "are not",
+      "range": {
+        "startLine": 100,
+        "startChar": 58,
+        "endLine": 100,
+        "endChar": 61
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49d70c50_069a4069",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-01-30T09:37:36Z",
+      "side": 1,
+      "message": "Please use \"\\n\" consistently as a line terminator, not separator or prefix.\n\nThe easiest thing to do is just replace the joins with loops that print directly.",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 10
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
