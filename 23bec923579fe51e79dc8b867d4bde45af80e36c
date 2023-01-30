@@ -49,6 +49,115 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9db101b2_90e34849",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-30T12:58:55Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 41,
+        "startChar": 39,
+        "endLine": 41,
+        "endChar": 46
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5987ebdf_697be952",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-30T12:58:55Z",
+      "side": 1,
+      "message": "Perhaps rather describe the mechanism than the goal:\n\n```\nEnsure undefined symbols in unsigned modules are accounted for.\n\nFor a given directory and a given symbol list, locate all unsigned modules\nand ensure for each of them that all symbols they require (undefined) are\n\n - either listed in the symbol list (GKI public interface)\n - or exported by another module in the lookup (vendor interface)\n```",
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "348aafc7_62524994",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-30T12:58:55Z",
+      "side": 1,
+      "message": "Use f-strings:\n\n```\nprint(f\"Expected a directory to search for unsigned modules, but got {args.directory}\")\n```",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 25
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f75bbe75_177cce03",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-30T12:58:55Z",
+      "side": 1,
+      "message": "suggestion to use pathlib:\n\nimport pathlib\n\nmodules \u003d pathlib.Path(args.directory).glob(\"**/*.ko\")",
+      "range": {
+        "startLine": 69,
+        "startChar": 2,
+        "endLine": 73,
+        "endChar": 0
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b3afe22_2c624ea6",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-30T12:58:55Z",
+      "side": 1,
+      "message": "unsigned_modules \u003d [mod for mod in modules if not symbol_extraction.is_signature_present(mod)]",
+      "range": {
+        "startLine": 75,
+        "startChar": 2,
+        "endLine": 77,
+        "endChar": 22
+      },
+      "revId": "23bec923579fe51e79dc8b867d4bde45af80e36c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5c4bf4f_13e4b2ff",
         "filename": "abi/check_buildtime_symbol_protection",
         "patchSetId": 1
