@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5f5b41e_fcd5aacd",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-30T23:21:32Z",
+      "side": 1,
+      "message": "Perhaps itertools makes the intent a little more clear without having to reason about it too much:\n\n```\nimport itertools\n\nitertools.chain(\n   symbol_extraction.extract_undefined_symbols(mod) for mod in unsigned_modules\n)\n\n```",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 3
+      },
+      "revId": "0b24528674fcab487c4c12c7aea14e23e3e68903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "415345ea_e9aa203d",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-30T23:21:32Z",
+      "side": 1,
+      "message": "```\nitertools.chain(\n   symbol_extraction.extract_exported_symbols(mod) for mod in unsigned_modules\n)\n```",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 3
+      },
+      "revId": "0b24528674fcab487c4c12c7aea14e23e3e68903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
