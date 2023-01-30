@@ -277,7 +277,8 @@ def _get_tools(toolchain_version):
     return [
         Label(e)
         for e in (
-            "//build/kernel:kernel-build-scripts",
+            "//build/kernel:_setup_env",
+            "//build/kernel:build_utils",
             clang_binaries,
         )
     ]
@@ -317,8 +318,9 @@ kernel_env = rule(
         ),
         "setup_env": attr.label(
             allow_single_file = True,
-            default = Label("//build/kernel:_setup_env.sh"),
+            default = Label("//build/kernel:_setup_env"),
             doc = "label referring to _setup_env.sh",
+            cfg = "exec",
         ),
         "preserve_env": attr.label(
             allow_single_file = True,
@@ -346,7 +348,8 @@ kernel_env = rule(
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_build_utils_sh": attr.label(
             allow_single_file = True,
-            default = Label("//build/kernel:build_utils.sh"),
+            default = Label("//build/kernel:build_utils"),
+            cfg = "exec",
         ),
         "_debug_annotate_scripts": attr.label(
             default = "//build/kernel/kleaf:debug_annotate_scripts",
