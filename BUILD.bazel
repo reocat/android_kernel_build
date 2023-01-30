@@ -106,6 +106,14 @@ py_binary(
     main = "abi/flatten_symbol_list.py",
 )
 
+py_library(
+    name = "abitool",
+    srcs = ["abitool.py"],
+    visibility = [
+        "//visibility:private",
+    ],
+)
+
 filegroup(
     name = "kernel-abi-scripts",
     srcs = [
