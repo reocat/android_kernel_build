@@ -126,10 +126,16 @@ def _default_target_configs():
     aarch64_kmi_symbol_list = aarch64_kmi_symbol_list[0] if aarch64_kmi_symbol_list else None
     aarch64_additional_kmi_symbol_lists = native.glob(
         ["android/abi_gki_aarch64*"],
-        exclude = ["**/*.xml", "android/abi_gki_aarch64"],
+        exclude = ["**/*.xml", "**/*.stg", "android/abi_gki_aarch64"],
     )
     aarch64_trim_and_check = bool(aarch64_kmi_symbol_list) or len(aarch64_additional_kmi_symbol_lists) > 0
-    aarch64_abi_definition = native.glob(["android/abi_gki_aarch64.xml"])
+
+    # TODO(b/261722616): For now this accepts any abi definition (xml o stg)
+    # giving priority to the .stg one (as glob sorts the paths).
+    aarch64_abi_definition = native.glob([
+        "android/abi_gki_aarch64.stg",
+        "android/abi_gki_aarch64.xml",
+    ])
     aarch64_abi_definition = aarch64_abi_definition[0] if aarch64_abi_definition else None
 
     # Common configs for aarch64 and aarch64_debug
