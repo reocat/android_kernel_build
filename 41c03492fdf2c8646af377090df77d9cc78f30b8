@@ -112,6 +112,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16c79fe2_e3c0ae66",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:07:33Z",
+      "side": 1,
+      "message": "nit: `Checks XXX at build time`",
+      "range": {
+        "startLine": 1635,
+        "startChar": 7,
+        "endLine": 1635,
+        "endChar": 23
+      },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "32653891_73aa41ae",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 1
