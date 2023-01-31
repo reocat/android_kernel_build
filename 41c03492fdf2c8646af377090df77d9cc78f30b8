@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0b3b5d0_8f0bf580",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:04:36Z",
+      "side": 1,
+      "message": "Add `kmi_symbol_list_violations_checked_out` to `default_info_files`",
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "438ef5b4_f91e9aff",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1398,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:04:36Z",
+      "side": 1,
+      "message": "```\nkmi_symbol_list_violations_checked_out \u003d ...\n```",
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd5028da_430d117b",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:04:36Z",
+      "side": 1,
+      "message": "```\nkmi_symbol_list_violations_checked_out \u003d ...\n```",
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "02f37e60_8eba9a7c",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 1
@@ -20,6 +71,40 @@
         "endLine": 1455,
         "endChar": 137
       },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1be5bc2_1290b273",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:04:36Z",
+      "side": 1,
+      "message": "nit: Add Args and Returns section please",
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32653891_73aa41ae",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1637,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:04:36Z",
+      "side": 1,
+      "message": "Is this always checked? Even on mainline? If not, perhaps `return None` for mainline, like how we handle `kmi_strict_mode_out` ?",
       "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -90,6 +175,23 @@
         "endLine": 1674,
         "endChar": 22
       },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f56c1c3e_c26547ed",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1679,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:04:36Z",
+      "side": 1,
+      "message": "```\nreturn out;\n```",
       "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
