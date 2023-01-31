@@ -690,7 +690,7 @@ def define_common_kernels(
                 name + "_headers",
                 name + "_images",
                 name + "_kmi_symbol_list",
-                name + "_gki_artifacts",
+                # name + "_gki_artifacts",
             ],
         )
 
