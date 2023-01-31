@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37132ae1_7550ade1",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:01:21Z",
+      "side": 1,
+      "message": "(Same below; refer to the executable via `ctx.executable._check_symbol_protection`)",
+      "parentUuid": "33d1faaf_c531348f",
+      "range": {
+        "startLine": 1644,
+        "startChar": 0,
+        "endLine": 1644,
+        "endChar": 48
+      },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e462c8e_44f08d4d",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 1
