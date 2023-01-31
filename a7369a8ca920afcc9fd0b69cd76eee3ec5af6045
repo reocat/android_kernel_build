@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c10780f1_125ab585",
+        "filename": "BUILD.bazel",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-31T15:32:26Z",
+      "side": 1,
+      "message": "should we take the opportunity and move this one package down?\n\n//build/kernel/abi:compare_to_symbol_list",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 38
+      },
+      "revId": "a7369a8ca920afcc9fd0b69cd76eee3ec5af6045",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
