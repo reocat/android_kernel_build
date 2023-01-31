@@ -63,6 +63,7 @@ filegroup(
 filegroup(
     name = "kernel-abi-scripts",
     srcs = [
+        "abi/check_buildtime_symbol_protection",
         "abi/compare_to_symbol_list",
         "abi/flatten_symbol_list",
         "abi/process_symbols",

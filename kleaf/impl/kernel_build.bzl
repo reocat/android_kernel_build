@@ -1395,6 +1395,8 @@ def _kernel_build_impl(ctx):
         all_module_names_file,
     )
 
+    _kmi_symbol_list_violations_check(ctx, modules_staging_archive)
+
     infos = _create_infos(
         ctx = ctx,
         kbuild_mixed_tree_ret = kbuild_mixed_tree_ret,
@@ -1450,6 +1452,7 @@ _kernel_build = rule(
         "collect_unstripped_modules": attr.bool(),
         "enable_interceptor": attr.bool(),
         "_compare_to_symbol_list": attr.label(default = "//build/kernel:abi/compare_to_symbol_list", allow_single_file = True),
+        "_check_symbol_protection": attr.label(default = "//build/kernel:abi/check_buildtime_symbol_protection", allow_single_file = True),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
@@ -1627,6 +1630,52 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
         progress_message = "Checking for kmi_symbol_list_strict_mode {}".format(_progress_message_suffix(ctx)),
     )
     return out
+
+def _kmi_symbol_list_violations_check(ctx, modules_staging_archive):
+    """Build time check for GKI modules' symbol violations.
+    """
+
+    print("_kmi_symbol_list_violations_check")
+
+    inputs = [
+        ctx.file.raw_kmi_symbol_list,
+        modules_staging_archive,
+    ]
+    inputs += ctx.files._check_symbol_protection
+    transitive_inputs = [ctx.attr.config[KernelEnvAndOutputsInfo].inputs]
+    tools = ctx.attr.config[KernelEnvAndOutputsInfo].tools
+
+    out = ctx.actions.declare_file("{}_kmi_symbol_list_violations/kmi_symbol_list_violations_checked".format(ctx.attr.name))
+    intermediates_dir = utils.intermediates_dir(ctx)
+
+    print(intermediates_dir)
+
+    command = ctx.attr.config[KernelEnvAndOutputsInfo].get_setup_script(
+        data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
+        restore_out_dir_cmd = utils.get_check_sandbox_cmd(),
+    )
+    command += """
+    	mkdir -p {intermediates_dir}
+    	tar xf {modules_staging_archive} -C {intermediates_dir}
+    	{check_symbol_protection} --abi-symbol-list {raw_kmi_symbol_list} {intermediates_dir} --print-unsigned-modules
+    	#rm -rf {intermediates_dir}
+    	touch {out}
+    """.format(
+        check_symbol_protection = ctx.file._check_symbol_protection.path,
+        intermediates_dir = intermediates_dir,
+        modules_staging_archive = modules_staging_archive.path,
+        out = out.path,
+        raw_kmi_symbol_list = ctx.file.raw_kmi_symbol_list.path,
+    )
+    debug.print_scripts(ctx, command, what = "kmi_symbol_list_violations_check")
+    ctx.actions.run_shell(
+        mnemonic = "KernelBuildKmiSymbolListStrictMode",
+        inputs = depset(inputs, transitive = transitive_inputs),
+        tools = tools,
+        outputs = [out],
+        command = command,
+        progress_message = "Checking for kmi_symbol_list_violations {}".format(_progress_message_suffix(ctx)),
+    )
 
 def _repack_modules_staging_archive(
         ctx,
