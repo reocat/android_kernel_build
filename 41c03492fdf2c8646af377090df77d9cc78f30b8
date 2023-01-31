@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a118651a_500e23a7",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:06:51Z",
+      "side": 1,
+      "message": "Do `None` check if it is possible to be `None` on mainline for example. If it is never None, just add it directly",
+      "parentUuid": "d0b3b5d0_8f0bf580",
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "438ef5b4_f91e9aff",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 1
