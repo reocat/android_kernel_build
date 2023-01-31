@@ -147,9 +147,15 @@ def kernel_abi_dist(
 
     # Use explicit + to prevent modifying the original list.
     kwargs["data"] = kwargs["data"] + [kernel_abi]
+    dist_dir = kwargs["dist_dir"]
+    abi_diff_outs = dist_dir + "/abi_diff/**"
 
     copy_to_dist_dir(
         name = name + "_copy_to_dist_dir",
+        mode_overrides = {
+            # do not sort
+            abi_diff_outs: 664
+        },
         **kwargs
     )
 
