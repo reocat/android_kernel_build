@@ -117,6 +117,10 @@ _COLLECT_UNSTRIPPED_MODULES = True
 # Always strip modules for common kernels.
 _STRIP_MODULES = True
 
+# Never check symbol violations for common kernels
+# All modules in common kernels are signed GKI modules
+_CHECK_KMI_SYMBOL_VIOLATIONS = False
+
 # glob() must be executed in a BUILD thread, so this cannot be a global
 # variable.
 def _default_target_configs():
@@ -584,6 +588,7 @@ def define_common_kernels(
             enable_interceptor = arch_config.get("enable_interceptor"),
             visibility = visibility,
             collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
+            check_kmi_symbol_violations = _CHECK_KMI_SYMBOL_VIOLATIONS,
             strip_modules = _STRIP_MODULES,
             toolchain_version = toolchain_version,
             **kernel_build_kwargs
