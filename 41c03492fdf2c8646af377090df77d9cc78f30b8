@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02f37e60_8eba9a7c",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1455,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:00:55Z",
+      "side": 1,
+      "message": "See new change; this needs to be `cfg \u003d \"exec\", executable \u003d True`",
+      "range": {
+        "startLine": 1455,
+        "startChar": 113,
+        "endLine": 1455,
+        "endChar": 137
+      },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33d1faaf_c531348f",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:00:55Z",
+      "side": 1,
+      "message": "This and L1646 needs to be \n\n```\ntools \u003d [ctx.executable._check_symbol_protection]\ntransitive_tools \u003d [ctx.attr.config[KernelEnvAndOutputsInfo].tools]\n```",
+      "range": {
+        "startLine": 1644,
+        "startChar": 0,
+        "endLine": 1644,
+        "endChar": 48
+      },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e462c8e_44f08d4d",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1674,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T19:00:55Z",
+      "side": 1,
+      "message": "```\ntools \u003d depset(tools, transitive \u003d [transitive_tools])\n```",
+      "range": {
+        "startLine": 1674,
+        "startChar": 0,
+        "endLine": 1674,
+        "endChar": 22
+      },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
