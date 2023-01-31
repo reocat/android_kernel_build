@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "642f21ed_8e837ff5",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-31T02:14:24Z",
+      "side": 1,
+      "message": "Done. (Not exactly though)\n\nWas getting the error: `TypeError: unhashable type: \u0027list\u0027` and wrapping with `list()` was getting `\u003citertools.chain object at 0x7f0f40ecb3a0\u003e`.",
+      "parentUuid": "f5f5b41e_fcd5aacd",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 3
+      },
+      "revId": "0b24528674fcab487c4c12c7aea14e23e3e68903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "415345ea_e9aa203d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-01-30T23:21:32Z",
       "side": 1,
       "message": "```\nitertools.chain(\n   symbol_extraction.extract_exported_symbols(mod) for mod in unsigned_modules\n)\n```",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 3
+      },
+      "revId": "0b24528674fcab487c4c12c7aea14e23e3e68903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf6671cb_edd497bc",
+        "filename": "abi/check_buildtime_symbol_protection",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-01-31T02:14:24Z",
+      "side": 1,
+      "message": "Same as #92.",
+      "parentUuid": "415345ea_e9aa203d",
       "range": {
         "startLine": 95,
         "startChar": 0,
