@@ -98,6 +98,7 @@ def kernel_build(
         kbuild_symtypes = None,
         toolchain_version = None,
         strip_modules = None,
+        check_kmi_symbol_violations = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
 
@@ -337,6 +338,8 @@ def kernel_build(
           If set to `True`, debug information for distributed modules is stripped.
 
           This corresponds to negated value of `DO_NOT_STRIP_MODULES` in `build.config`.
+        check_kmi_symbol_violations: If `None` or not specified, defawult is `True`.
+          If set to `False`, build time GKI protected symbol violation check will be disabled.
         dtstree: Device tree support.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
@@ -365,6 +368,9 @@ def kernel_build(
 
     if strip_modules == None:
         strip_modules = False
+
+    if check_kmi_symbol_violations == None:
+        check_kmi_symbol_violations = True
 
     internal_kwargs = dict(kwargs)
     internal_kwargs.pop("visibility", None)
@@ -447,6 +453,7 @@ def kernel_build(
         combined_abi_symbollist = abi_symbollist_target_name if all_kmi_symbol_lists else None,
         enable_interceptor = enable_interceptor,
         strip_modules = strip_modules,
+        check_kmi_symbol_violations = check_kmi_symbol_violations,
         src_kmi_symbol_list = kmi_symbol_list,
         trim_nonlisted_kmi = trim_nonlisted_kmi,
         **kwargs
@@ -1214,7 +1221,8 @@ def _create_infos(
         main_action_ret,
         modules_staging_archive,
         toolchain_version_out,
-        kmi_strict_mode_out):
+        kmi_strict_mode_out,
+        kmi_symbol_list_violations_check_out):
     """Creates and returns a list of provided infos that the `kernel_build` target should return.
 
     Args:
@@ -1225,6 +1233,7 @@ def _create_infos(
         modules_staging_archive: from `_repack_modules_staging_archive`
         toolchain_version_out: from `_kernel_build_dump_toolchain_version`
         kmi_strict_mode_out: from `_kmi_symbol_list_strict_mode`
+        kmi_symbol_list_violations_check_out: from `_kmi_symbol_list_violations_check`
     """
 
     all_output_files = main_action_ret.all_output_files
@@ -1360,6 +1369,8 @@ def _create_infos(
     default_info_files.append(all_module_names_file)
     if kmi_strict_mode_out:
         default_info_files.append(kmi_strict_mode_out)
+    if kmi_symbol_list_violations_check_out:
+        default_info_files.append(kmi_symbol_list_violations_check_out)
     default_info = DefaultInfo(
         files = depset(default_info_files),
         # For kernel_build_test
@@ -1426,6 +1437,8 @@ def _kernel_build_impl(ctx):
         all_module_names_file,
     )
 
+    kmi_symbol_list_violations_check_out = _kmi_symbol_list_violations_check(ctx, modules_staging_archive)
+
     infos = _create_infos(
         ctx = ctx,
         kbuild_mixed_tree_ret = kbuild_mixed_tree_ret,
@@ -1434,6 +1447,7 @@ def _kernel_build_impl(ctx):
         modules_staging_archive = modules_staging_archive,
         toolchain_version_out = toolchain_version_out,
         kmi_strict_mode_out = kmi_strict_mode_out,
+        kmi_symbol_list_violations_check_out = kmi_symbol_list_violations_check_out,
     )
 
     return infos
@@ -1487,6 +1501,11 @@ _kernel_build = rule(
             executable = True,
             cfg = "exec",
         ),
+        "_check_symbol_protection": attr.label(
+            default = "//build/kernel:check_buildtime_symbol_protection",
+            executable = True,
+            cfg = "exec",
+        ),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
@@ -1501,6 +1520,7 @@ _kernel_build = rule(
         "kernel_uapi_headers": attr.label(),
         "combined_abi_symbollist": attr.label(allow_single_file = True, doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`."),
         "strip_modules": attr.bool(default = False, doc = "if set, debug information won't be kept for distributed modules.  Note, modules will still be stripped when copied into the ramdisk."),
+        "check_kmi_symbol_violations": attr.bool(default = True, doc = "if set, build time GKI protected symbol violations check will be disabled. Always False for common kernels and should never be False for device kernels."),
         "src_kmi_symbol_list": attr.label(allow_single_file = True),
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
@@ -1663,6 +1683,64 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
         command = command,
         progress_message = "Checking for kmi_symbol_list_strict_mode {}".format(_progress_message_suffix(ctx)),
     )
+    return out
+
+def _kmi_symbol_list_violations_check(ctx, modules_staging_archive):
+    """Checks GKI modules' symbol violations at build time.
+
+    Args:
+        ctx: ctx
+        modules_staging_archive: The `modules_staging_archive` from `make`
+            in `_build_main_action`.
+
+    Returns:
+        Marker file `kmi_symbol_list_violations_checked` indicating the check
+        has been performed.
+    """
+
+    if not ctx.attr.check_kmi_symbol_violations:
+        return None
+
+    inputs = [
+        ctx.file.raw_kmi_symbol_list,
+        modules_staging_archive,
+    ]
+    transitive_inputs = [ctx.attr.config[KernelEnvAndOutputsInfo].inputs]
+    tools = [ctx.executable._check_symbol_protection]
+    transitive_tools = [ctx.attr.config[KernelEnvAndOutputsInfo].tools]
+
+    out = ctx.actions.declare_file("{}_kmi_symbol_list_violations/kmi_symbol_list_violations_checked".format(ctx.attr.name))
+    intermediates_dir = utils.intermediates_dir(ctx)
+
+    command = ctx.attr.config[KernelEnvAndOutputsInfo].get_setup_script(
+        data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
+        restore_out_dir_cmd = utils.get_check_sandbox_cmd(),
+    )
+    command += """
+        mkdir -p {intermediates_dir}
+        tar xf {modules_staging_archive} -C {intermediates_dir}
+        {check_symbol_protection} --abi-symbol-list {raw_kmi_symbol_list} {intermediates_dir} --print-unsigned-modules
+        rm -rf {intermediates_dir}
+        touch {out}
+    """.format(
+        check_symbol_protection = ctx.executable._check_symbol_protection.path,
+        intermediates_dir = intermediates_dir,
+        modules_staging_archive = modules_staging_archive.path,
+        out = out.path,
+        raw_kmi_symbol_list = ctx.file.raw_kmi_symbol_list.path,
+    )
+
+    debug.print_scripts(ctx, command, what = "kmi_symbol_list_violations_check")
+
+    ctx.actions.run_shell(
+        mnemonic = "KernelBuildCheckSymbolViolations",
+        inputs = depset(inputs, transitive = transitive_inputs),
+        tools = depset(tools, transitive = transitive_tools),
+        outputs = [out],
+        command = command,
+        progress_message = "Checking for kmi_symbol_list_violations {}".format(_progress_message_suffix(ctx)),
+    )
+
     return out
 
 def _repack_modules_staging_archive(
