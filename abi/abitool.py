@@ -177,7 +177,7 @@ def dump_kernel_abi(linux_tree, dump_path, symbol_list, vmlinux_path=None):
 class AbiTool(object):
     """Base class for different kinds of abi analysis tools"""
     def diff_abi(self, old_dump, new_dump, diff_report, short_report,
-                 symbol_list, full_report):
+                 symbol_list, full_report, input_format):
         raise NotImplementedError()
 
 
@@ -231,7 +231,7 @@ STGDIFF_COMPARE_OPTIONS = [
 ]
 
 
-def _run_stgdiff(old_dump, new_dump, basename, symbol_list=None):
+def _run_stgdiff(old_dump, new_dump, basename, input_format = "xml", symbol_list=None):
     dumps = [old_dump, new_dump]
 
     # if a symbol list has been specified, we need some scratch space
@@ -250,7 +250,8 @@ def _run_stgdiff(old_dump, new_dump, basename, symbol_list=None):
                     ["abitidy", "-S", symbol_list, "-i", raw, "-o", cooked])
                 dumps[ix] = cooked
 
-        command = ["stgdiff", "--abi", dumps[0], dumps[1]]
+        input_format = "--abi" if input_format == "xml" else "--{}".format(input_format)
+        command = ["stgdiff", input_format, dumps[0], dumps[1]]
         for c in STGDIFF_COMPARE_OPTIONS:
             command.extend(["--compare-option", c])
         for f in STGDIFF_FORMATS:
@@ -272,7 +273,7 @@ def _run_stgdiff(old_dump, new_dump, basename, symbol_list=None):
 class Libabigail(AbiTool):
     """Concrete AbiTool implementation for libabigail"""
     def diff_abi(self, old_dump, new_dump, diff_report, short_report,
-                 symbol_list, full_report):
+                 symbol_list, full_report, input_format):
         abi_changed = _run_abidiff(
             old_dump, new_dump, diff_report, symbol_list, full_report)
         if short_report is not None:
@@ -289,7 +290,7 @@ def _line_count(path):
 class Delegated(AbiTool):
     """" Concrete AbiTool implementation"""
     def diff_abi(self, old_dump, new_dump, diff_report, short_report=None,
-                 symbol_list=None, full_report=None):
+                 symbol_list=None, full_report=None, input_format = None):
         # shoehorn the interface
         stg_basename = diff_report
         stg_short = stg_basename + ".short"
@@ -297,7 +298,7 @@ class Delegated(AbiTool):
             stg_basename: stg_short,
         }
 
-        changed = _run_stgdiff(old_dump, new_dump, stg_basename, symbol_list)
+        changed = _run_stgdiff(old_dump, new_dump, stg_basename, input_format, symbol_list)
 
         print("ABI diff reports have been created")
         paths = [*(f"{stg_basename}.{format}" for format in STGDIFF_FORMATS)]
