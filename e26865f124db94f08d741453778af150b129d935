@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8dff2ea_9dbb3ac0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-31T12:26:59Z",
+      "side": 1,
+      "message": "Going forward, we should probably deprecate all the non-.py usages (including documentation) and only keep the .py ones around to avoid confusion.\n\nFrom a dependency perspective, every rule that uses abi/diff_abi would need to also depend on abi/diff_abi.py now. So, we should use .py directly from everywhere.",
+      "revId": "e26865f124db94f08d741453778af150b129d935",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
