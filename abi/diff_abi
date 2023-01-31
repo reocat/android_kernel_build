@@ -16,6 +16,7 @@
 #
 
 import argparse
+import pathlib
 import os
 import sys
 
@@ -24,8 +25,10 @@ from abitool import get_abi_tool
 def diff_abi(abitool, baseline, new, report, short_report, symbol_list,
              full_report):
     tool = get_abi_tool(abitool)
+    # Infere the abi format based on the file extension.
+    input_format = pathlib.Path(baseline).suffix.replace('.', '')
     return tool.diff_abi(baseline, new, report, short_report, symbol_list,
-                         full_report)
+                         full_report, input_format)
 
 def main():
     parser = argparse.ArgumentParser()

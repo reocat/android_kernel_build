@@ -419,10 +419,14 @@ def _define_abi_definition_targets(
 
     default_outputs = []
 
+    output_group = "abi_out_file"
+    if abi_definition.endswith(".stg"):
+        output_group = "stg_abi_out_file"
+
     native.filegroup(
         name = name + "_out_file",
         srcs = [name + "_dump"],
-        output_group = "abi_out_file",
+        output_group = output_group,
         **kwargs
     )
 
