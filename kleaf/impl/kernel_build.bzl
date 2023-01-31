@@ -875,17 +875,25 @@ def _get_grab_gcno_step(ctx):
     """
     grab_gcno_cmd = ""
     outputs = []
+    tools = []
     if ctx.attr._gcov[BuildSettingInfo].value:
         gcno_dir = ctx.actions.declare_directory("{name}/gcno".format(name = ctx.label.name))
         outputs.append(gcno_dir)
+        tools.append(ctx.executable._print_gcno_mapping)
+
+        # Note: Emitting ${OUT_DIR} is one source of ir-reproducible output for sandbox actions.
+        # However, note that these paths are already
+        # embedded in vmlinux. This file just makes such ir-reproducibility more explicit.
         grab_gcno_cmd = """
             rsync -a --prune-empty-dirs --include '*/' --include '*.gcno' --exclude '*' ${{OUT_DIR}}/ {gcno_dir}/
+            {print_gcno_mapping} ${{COMMON_OUT_DIR}}:. > {gcno_dir}/mapping.json
         """.format(
             gcno_dir = gcno_dir.path,
+            print_gcno_mapping = ctx.executable._print_gcno_mapping.path,
         )
     return struct(
         inputs = [],
-        tools = [],
+        tools = tools,
         cmd = grab_gcno_cmd,
         outputs = outputs,
     )
@@ -1471,6 +1479,11 @@ _kernel_build = rule(
             cfg = "exec",
             executable = True,
             doc = "label referring to the script to process outputs",
+        ),
+        "_print_gcno_mapping": attr.label(
+            default = Label("//build/kernel/kleaf/impl:print_gcno_mapping"),
+            cfg = "exec",
+            executable = True,
         ),
         "deps": attr.label_list(
             allow_files = True,
