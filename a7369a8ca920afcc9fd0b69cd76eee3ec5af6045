@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db7fae45_3c045b2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-31T15:35:50Z",
+      "side": 1,
+      "message": "the comments here actually apply to all newly wrapped binaries",
+      "revId": "a7369a8ca920afcc9fd0b69cd76eee3ec5af6045",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c10780f1_125ab585",
         "filename": "BUILD.bazel",
         "patchSetId": 9
@@ -20,6 +37,23 @@
         "endLine": 73,
         "endChar": 38
       },
+      "revId": "a7369a8ca920afcc9fd0b69cd76eee3ec5af6045",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c765853_4f1cbcda",
+        "filename": "BUILD.bazel",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-01-31T15:35:50Z",
+      "side": 1,
+      "message": "visibility perhaps should be \"//build/kernel/:__subpackages__\"",
       "revId": "a7369a8ca920afcc9fd0b69cd76eee3ec5af6045",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
