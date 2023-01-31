@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b191c05_65c23d96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T23:33:02Z",
+      "side": 1,
+      "message": "For parity with vendor_dlkm, I think this is okay. @ramjiyani@google.com could you PTAL?",
+      "revId": "04b04c767e40e43197209c8f8197557302e9c1e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f8209dc_b0828f7c",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-01-31T23:33:02Z",
+      "side": 1,
+      "message": "nit: extra space",
+      "range": {
+        "startLine": 227,
+        "startChar": 9,
+        "endLine": 227,
+        "endChar": 11
+      },
+      "revId": "04b04c767e40e43197209c8f8197557302e9c1e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
