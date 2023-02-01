@@ -23,7 +23,7 @@ Example:
 
 bazel build //common-modules/virtual-device:x86_64/goldfish_drivers/goldfish_pipe
 build/kernel/kleaf/analysis/inputs.py -- --config=fast \\
-    'mnemonic(KernelModule, //common-modules/virtual-device:x86_64/goldfish_drivers/goldfish_pipe)'
+    'mnemonic("KernelModule.*", //common-modules/virtual-device:x86_64/goldfish_drivers/goldfish_pipe)'
 # do some change to the code base that you don't expect it will affect this target
 # then re-execute these two commands, and look for differences.
 """
@@ -66,9 +66,10 @@ def analyze_inputs(aquery_args):
     # https://github.com/bazelbuild/bazel/blob/master/src/main/protobuf/analysis_v2.proto
 
     actions = json_result["actions"]
-    artifacts = id_object_list_to_dict(json_result["artifacts"])
-    dep_set_of_files = id_object_list_to_dict(json_result["depSetOfFiles"])
-    path_fragments = id_object_list_to_dict(json_result["pathFragments"])
+    targets = id_object_list_to_dict(json_result.get("targets", []))
+    artifacts = id_object_list_to_dict(json_result.get("artifacts", []))
+    dep_set_of_files = id_object_list_to_dict(json_result.get("depSetOfFiles", []))
+    path_fragments = id_object_list_to_dict(json_result.get("pathFragments", []))
 
     inputs: set[ArtifactPath] = set()
     for action in actions:
@@ -77,7 +78,9 @@ def analyze_inputs(aquery_args):
                               artifacts=artifacts,
                               path_fragments=path_fragments)
 
-    inputs = resolve_inputs(inputs)
+    inputs = resolve_inputs(inputs,
+                            actions=actions,
+                            targets=targets)
 
     return hash_all(inputs)
 
@@ -135,7 +138,7 @@ def dep_set_to_artifact_ids(
     ret = set()
     for dep_set_id in dep_set_ids:
         dep_set = dep_set_of_files[dep_set_id]
-        ret |= set(dep_set["directArtifactIds"])
+        ret |= set(dep_set.get("directArtifactIds", []))
         if dep_set.get("transitiveDepSetIds"):
             ret |= dep_set_to_artifact_ids(
                 dep_set_ids=dep_set["transitiveDepSetIds"],
@@ -216,7 +219,7 @@ def hash_all(paths: set[ArtifactPath]) -> dict[str, str]:
     exists, missing = split_existing_files(files)
 
     return hash_all_files(list(exists)) | {
-        file: None for file in missing
+        str(file): None for file in missing
     }
 
 
@@ -277,7 +280,9 @@ def walk_files(path: pathlib.Path):
     return ret
 
 
-def resolve_inputs(inputs: set[ArtifactPath]) -> set[ArtifactPath]:
+def resolve_inputs(inputs: set[ArtifactPath],
+                   actions: list[dict[str, Any]],
+                   targets:  dict[int, dict[str, Any]]) -> set[ArtifactPath]:
     """Resolves paths returned by bazel aquery.
 
     For input files from sub-workspaces, `bazel aquery` returns the following:
@@ -289,41 +294,42 @@ def resolve_inputs(inputs: set[ArtifactPath]) -> set[ArtifactPath]:
 
     Args:
         inputs: set of inputs returned by `bazel aquery`
+        actions: list of actions
+        targets: global dict of targets
 
     Returns:
         set of resolved inputs
     """
     resolved_inputs: set[ArtifactPath] = set()
-    execroot = get_execroot()
+    output_base = get_output_base()
     for input in inputs:
         if input.path.is_relative_to("external"):
-            if (execroot / input.path).exists() and \
-                    (execroot / input.path).is_dir() == input.is_tree_artifact:
+            if (output_base / input.path).exists() and \
+                    (output_base / input.path).is_dir() == input.is_tree_artifact:
                 resolved_inputs.add(ArtifactPath(
-                    path=execroot / input.path,
+                    path=output_base / input.path,
                     is_tree_artifact=input.is_tree_artifact,
                 ))
             elif input.path.exists() and \
                     input.path.is_dir() == input.is_tree_artifact:
                 resolved_inputs.add(input)
             else:
-                raise FileNotFoundError(input.path)
+                raise FileNotFoundError(f"{input.path} ({output_base / input.path})")
         else:
             resolved_inputs.add(input)
 
     return resolved_inputs
 
 
-def get_execroot():
-    """Returns the execroot.
-
-    This only works after `bazel build`-ing something.
+def get_output_base() -> pathlib.Path:
+    """Returns the output base.
 
     Returns:
         path to execroot relative to the current working directory (which should be the
         root of the repository).
     """
-    return pathlib.Path("bazel-out").resolve().parent.relative_to(pathlib.Path(".").resolve())
+    return pathlib.Path(
+        subprocess.check_output(["tools/bazel", "info", "output_base"], text=True).strip())
 
 
 def split_existing_files(files: set[pathlib.Path]):
