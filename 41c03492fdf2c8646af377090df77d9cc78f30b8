@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e87f2e4_090ec5b1",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-01T02:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06757b23_20c55b4a",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 48
+      },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0b3b5d0_8f0bf580",
@@ -59,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ef34a1a_d7b6adc6",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-01T02:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a118651a_500e23a7",
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "438ef5b4_f91e9aff",
@@ -72,6 +114,24 @@
       "writtenOn": "2023-01-31T19:04:36Z",
       "side": 1,
       "message": "```\nkmi_symbol_list_violations_checked_out \u003d ...\n```",
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d5329e4_fb930c18",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1398,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-01T02:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "438ef5b4_f91e9aff",
       "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -93,6 +153,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91034757_50ce7911",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1407,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-01T02:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd5028da_430d117b",
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02f37e60_8eba9a7c",
@@ -106,6 +184,30 @@
       "writtenOn": "2023-01-31T19:00:55Z",
       "side": 1,
       "message": "See new change; this needs to be `cfg \u003d \"exec\", executable \u003d True`",
+      "range": {
+        "startLine": 1455,
+        "startChar": 113,
+        "endLine": 1455,
+        "endChar": 137
+      },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12a33cdd_2eee1640",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1455,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-01T02:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02f37e60_8eba9a7c",
       "range": {
         "startLine": 1455,
         "startChar": 113,
@@ -152,6 +254,48 @@
         "endLine": 1635,
         "endChar": 23
       },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f18dcdc5_f18d21b7",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-01T02:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16c79fe2_e3c0ae66",
+      "range": {
+        "startLine": 1635,
+        "startChar": 7,
+        "endLine": 1635,
+        "endChar": 23
+      },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a285c6f_18710181",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1635,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-01T02:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1be5bc2_1290b273",
       "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -220,6 +364,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f266d42_365608b8",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-01T02:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37132ae1_7550ade1",
+      "range": {
+        "startLine": 1644,
+        "startChar": 0,
+        "endLine": 1644,
+        "endChar": 48
+      },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e462c8e_44f08d4d",
@@ -243,6 +411,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "611798e5_87967cf7",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1674,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-01T02:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e462c8e_44f08d4d",
+      "range": {
+        "startLine": 1674,
+        "startChar": 0,
+        "endLine": 1674,
+        "endChar": 22
+      },
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f56c1c3e_c26547ed",
@@ -256,6 +448,24 @@
       "writtenOn": "2023-01-31T19:04:36Z",
       "side": 1,
       "message": "```\nreturn out;\n```",
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fa03d55_f31251a1",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1679,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-01T02:39:36Z",
+      "side": 1,
+      "message": "Done. (Assumed \u0027;\u0027 is a typo)",
+      "parentUuid": "f56c1c3e_c26547ed",
       "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
