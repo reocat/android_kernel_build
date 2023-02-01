@@ -45,6 +45,30 @@
       },
       "revId": "1547cd717d2666a4df301fbbd04fcbcb06190f43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c791812_a0107a5d",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-01T20:18:40Z",
+      "side": 1,
+      "message": "The doc: https://bazel.build/reference/be/functions#glob",
+      "parentUuid": "a40833b3_527a2ff0",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 6
+      },
+      "revId": "1547cd717d2666a4df301fbbd04fcbcb06190f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
