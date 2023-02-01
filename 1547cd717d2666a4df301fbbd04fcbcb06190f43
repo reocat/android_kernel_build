@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9967347a_740cf25d",
+        "filename": "abi/diff_abi.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-01T21:54:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "484d5182_941eaaa1",
+      "range": {
+        "startLine": 29,
+        "startChar": 49,
+        "endLine": 29,
+        "endChar": 56
+      },
+      "revId": "1547cd717d2666a4df301fbbd04fcbcb06190f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a40833b3_527a2ff0",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I forgot the `[0]` part but you get the idea",
       "parentUuid": "3c791812_a0107a5d",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 6
+      },
+      "revId": "1547cd717d2666a4df301fbbd04fcbcb06190f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83ac6756_8d50296b",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-01T21:54:18Z",
+      "side": 1,
+      "message": "Added a comment clarifying this. PTAL",
+      "parentUuid": "23fedb88_be0c0d4a",
       "range": {
         "startLine": 132,
         "startChar": 0,
