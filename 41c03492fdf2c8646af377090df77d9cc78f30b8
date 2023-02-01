@@ -317,6 +317,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b08cea96_c452030c",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1637,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-01T22:14:42Z",
+      "side": 1,
+      "message": "Handled little bit differently. It should run as long as there is a symbol list irrespective of the strict mode as runtime protection will be enforced as long as there is a symbol list irrespective of the strict mode or not.",
+      "parentUuid": "32653891_73aa41ae",
+      "revId": "41c03492fdf2c8646af377090df77d9cc78f30b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33d1faaf_c531348f",
