@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ce92ac_f1161aa4",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 1716,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-02T23:35:46Z",
+      "side": 1,
+      "message": "nit: `\\\\` so a single `\\` shows in the final shell script",
+      "range": {
+        "startLine": 1716,
+        "startChar": 34,
+        "endLine": 1716,
+        "endChar": 35
+      },
+      "revId": "c38fe2a3a9ae521e772da40d3003ed9d05e04b10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
