@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f33d25c5_396c5ca9",
+        "filename": "kleaf/tests/integration_test/BUILD",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-02T00:56:25Z",
+      "side": 1,
+      "message": "No action needed, and maybe not relevant, but just out of curiosity: Is there any criteria to create `BUILD` vs `BUILD.bazel` files?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51356213_b6af6b1c",
+        "filename": "kleaf/tests/integration_test/BUILD",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-02T00:56:25Z",
+      "side": 1,
+      "message": "should `integration_test.py` be listed as data here?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 9
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a11cc64_1c11bfc4",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-02T00:56:25Z",
+      "side": 1,
+      "message": "so does it work in both ways; this and with `tools/bazel run` (from BUILD)?\n\nAh nvm! I see it\u0027s invoked from the script (integration_test.sh) now.",
+      "range": {
+        "startLine": 17,
+        "startChar": 38,
+        "endLine": 17,
+        "endChar": 43
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0151973_28912b18",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-02T00:56:25Z",
+      "side": 1,
+      "message": "_COMMON",
+      "range": {
+        "startLine": 112,
+        "startChar": 15,
+        "endLine": 112,
+        "endChar": 23
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b54c7371_492b3159",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-02T00:56:25Z",
+      "side": 1,
+      "message": "isn\u0027t this redundant with L124?",
+      "range": {
+        "startLine": 133,
+        "startChar": 32,
+        "endLine": 133,
+        "endChar": 46
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770aa971_f04eafbe",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-02T00:56:25Z",
+      "side": 1,
+      "message": "I thought that compiling with different LTOs caused issues in the past.\n\nWill this test be branch dependent?",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 167,
+        "endChar": 42
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21477f59_16d5eb47",
+        "filename": "kleaf/tests/integration_test/reporter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-02T00:56:25Z",
+      "side": 1,
+      "message": "is this used or could it be removed?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 70
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b87e3e83_2cfc14b0",
+        "filename": "kleaf/tests/utils/write_flag.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-02T00:56:25Z",
+      "side": 1,
+      "message": "2023",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
