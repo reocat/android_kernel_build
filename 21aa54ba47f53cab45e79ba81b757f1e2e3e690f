@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a2e2b55_0caa930c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-02T05:55:27Z",
+      "side": 1,
+      "message": "This works now but I think I need to decouple integration_test and reporter so it can be integrated to Android CI better.",
+      "revId": "21aa54ba47f53cab45e79ba81b757f1e2e3e690f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
