@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "181784ec_eed41349",
+        "filename": "abi/abitool.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-02T15:46:26Z",
+      "side": 1,
+      "message": "`input_format` shadows the parameter passed. But furthermore, `input_format` is only ever used here, hence we can actually drop the mapping by defaulting the parameter to \"abi\" and by using it directly:\n\n```\ndef _run_stgdiff(old_dump, new_dump, basename, input_format \u003d \"abi\", symbol_list\u003dNone):\n  ...\n  command \u003d [\"stgdiff\", f\"--{input_format}\", dumps[0], dumps[1]]\n  ...  \n```",
+      "revId": "b754ef7eb4baf20fa5eee6cb173185c8647db8a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46508f58_d3c12230",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 6
