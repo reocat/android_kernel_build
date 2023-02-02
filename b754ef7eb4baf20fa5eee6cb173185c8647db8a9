@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4af00ec8_5bfff6bf",
+        "filename": "abi/abitool.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-02-02T16:50:30Z",
+      "side": 1,
+      "message": "With reference to the current master branch of build/kernel.\n\nDo we need this fallback?\n\nIf not...\n\nThere is no point touching diff_abi and abitool.py.\nJust invoke stgdiff directly from Kleaf. Always specify input format using --stg.\nThere is no need to support .xml diff and update at all in Kleaf. This code is not being used at present.\n\n.xml generation and copy to dist is still required for the time being, for cross-checking purposes only.\n\nMatthias, have I missed something?",
+      "parentUuid": "1d552759_a9f647d3",
+      "revId": "b754ef7eb4baf20fa5eee6cb173185c8647db8a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46508f58_d3c12230",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 6
