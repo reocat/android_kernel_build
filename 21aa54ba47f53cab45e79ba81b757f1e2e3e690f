@@ -16,6 +16,24 @@
       "message": "This works now but I think I need to decouple integration_test and reporter so it can be integrated to Android CI better.",
       "revId": "21aa54ba47f53cab45e79ba81b757f1e2e3e690f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02f6c6d6_348f711e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-02T06:16:33Z",
+      "side": 1,
+      "message": "Done. This also makes integration_test much cleaner with a one-time hassle on the build bot config files.\n\nThe problem was that `--config\u003dandroid_ci` can\u0027t be specified for `integration_test`, but it should be specified for `reporter`.",
+      "parentUuid": "3a2e2b55_0caa930c",
+      "revId": "21aa54ba47f53cab45e79ba81b757f1e2e3e690f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
