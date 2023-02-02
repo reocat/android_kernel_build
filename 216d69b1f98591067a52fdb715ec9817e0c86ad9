@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e87d1e0_ece90547",
+        "filename": "kleaf/tests/integration_test/BUILD",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-02T05:48:24Z",
+      "side": 1,
+      "message": "No. Kleaf uses BUILD.bazel by convention, though. Some external projects uses BUILD. I think Roboleaf uses BUILD.bazel everywhere too.\n\nBTW I switched back to BUILD.bazel.",
+      "parentUuid": "f33d25c5_396c5ca9",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51356213_b6af6b1c",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-02-02T00:56:25Z",
       "side": 1,
       "message": "should `integration_test.py` be listed as data here?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 9
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b57e4922_1fd966e0",
+        "filename": "kleaf/tests/integration_test/BUILD",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-02T05:48:24Z",
+      "side": 1,
+      "message": "No longer applies; I merged the wrapper script with the test itself.",
+      "parentUuid": "51356213_b6af6b1c",
       "range": {
         "startLine": 36,
         "startChar": 0,
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8a45cbf_eeba4f14",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-02T05:48:24Z",
+      "side": 1,
+      "message": "I deleted the constant",
+      "parentUuid": "e0151973_28912b18",
+      "range": {
+        "startLine": 112,
+        "startChar": 15,
+        "endLine": 112,
+        "endChar": 23
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b54c7371_492b3159",
@@ -106,6 +178,30 @@
       "writtenOn": "2023-02-02T00:56:25Z",
       "side": 1,
       "message": "isn\u0027t this redundant with L124?",
+      "range": {
+        "startLine": 133,
+        "startChar": 32,
+        "endLine": 133,
+        "endChar": 46
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ddc981b_835d3db2",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-02T05:48:24Z",
+      "side": 1,
+      "message": "Changed in the other place. I preserved the file for debugging.",
+      "parentUuid": "b54c7371_492b3159",
       "range": {
         "startLine": 133,
         "startChar": 32,
@@ -139,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94568cd6_e1dd961e",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-02T05:48:24Z",
+      "side": 1,
+      "message": "No. It should not cause issues any more, and this test ensures this. I\u0027ll also run this test on both mainline and android14-5.15.\n\nI\u0027ve also tagged the bug number so we can look up.",
+      "parentUuid": "770aa971_f04eafbe",
+      "range": {
+        "startLine": 167,
+        "startChar": 8,
+        "endLine": 167,
+        "endChar": 42
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21477f59_16d5eb47",
@@ -162,6 +282,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3e8eac2_28dfed1d",
+        "filename": "kleaf/tests/integration_test/reporter.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-02T05:48:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21477f59_16d5eb47",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 70
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b87e3e83_2cfc14b0",
@@ -175,6 +319,30 @@
       "writtenOn": "2023-02-02T00:56:25Z",
       "side": 1,
       "message": "2023",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "216d69b1f98591067a52fdb715ec9817e0c86ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0342386f_7a6c2ca4",
+        "filename": "kleaf/tests/utils/write_flag.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-02T05:48:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b87e3e83_2cfc14b0",
       "range": {
         "startLine": 1,
         "startChar": 16,
