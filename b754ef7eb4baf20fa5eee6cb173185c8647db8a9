@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d552759_a9f647d3",
+        "filename": "abi/abitool.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-02T16:33:26Z",
+      "side": 1,
+      "message": "At some point the translation `xml` -\u003e `abi` needs to happen, I can move it to diff_abi.py and apply the suggestion here, wdyt?",
+      "parentUuid": "181784ec_eed41349",
+      "revId": "b754ef7eb4baf20fa5eee6cb173185c8647db8a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46508f58_d3c12230",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 6
