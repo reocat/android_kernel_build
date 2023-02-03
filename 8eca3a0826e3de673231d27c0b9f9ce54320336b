@@ -22,6 +22,54 @@
       },
       "revId": "8eca3a0826e3de673231d27c0b9f9ce54320336b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6701a469_f79b8e45",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-03T01:10:11Z",
+      "side": 1,
+      "message": "I intend to say `\u003e\u003e`; thanks for catching.",
+      "parentUuid": "1f567ca5_68f6e2af",
+      "range": {
+        "startLine": 272,
+        "startChar": 49,
+        "endLine": 272,
+        "endChar": 50
+      },
+      "revId": "8eca3a0826e3de673231d27c0b9f9ce54320336b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36f79643_c8908984",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-03T01:10:11Z",
+      "side": 1,
+      "message": "Thanks for catching, fixed",
+      "parentUuid": "1f567ca5_68f6e2af",
+      "range": {
+        "startLine": 272,
+        "startChar": 49,
+        "endLine": 272,
+        "endChar": 50
+      },
+      "revId": "8eca3a0826e3de673231d27c0b9f9ce54320336b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
