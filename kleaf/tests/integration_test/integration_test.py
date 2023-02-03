@@ -33,6 +33,7 @@ Example:
 """
 
 import argparse
+import functools
 import hashlib
 import os
 import shlex
@@ -257,15 +258,40 @@ class KleafIntegrationTest(unittest.TestCase):
 
         See b/267580482."""
         default_java_tmp = pathlib.Path("out/bazel/javatmp")
+        new_java_tmp = pathlib.Path("/tmp/bazel/javatmp")
+        self.addCleanup(functools.partial(shutil.rmtree, new_java_tmp, ignore_errors=True))
         try:
             shutil.rmtree(default_java_tmp)
         except FileNotFoundError:
             pass
         self._check_call(
-            startup_options=[f"--host_jvm_args=-Djava.io.tmpdir=/tmp/bazel/javatmp"],
+            startup_options=[f"--host_jvm_args=-Djava.io.tmpdir={new_java_tmp}"],
             command="build",
             command_args=["//build/kernel/kleaf:empty_test"] + _FASTEST)
         self.assertFalse(default_java_tmp.exists())
+
+    def test_override_absolute_out_dir(self):
+        """Tests that out/ can be overridden.
+
+        See b/267580482."""
+        default_out = pathlib.Path("out")
+        new_out = pathlib.Path("/tmp/out")
+        self.addCleanup(functools.partial(shutil.rmtree, new_out, ignore_errors=True))
+        try:
+            shutil.rmtree(default_out)
+        except FileNotFoundError:
+            pass
+        self._check_call(
+            command="build",
+            command_args=["//build/kernel/kleaf:empty_test"] + _FASTEST)
+        self.assertTrue(default_out.exists())
+        shutil.rmtree(default_out)
+        self._check_call(
+            startup_options=[f"--output_root=/tmp/out"],
+            command="build",
+            command_args=["//build/kernel/kleaf:empty_test"] + _FASTEST)
+        self.assertFalse(default_out.exists())
+
 
 if __name__ == "__main__":
     arguments, unknown = load_arguments()
