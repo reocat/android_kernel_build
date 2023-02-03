@@ -175,9 +175,10 @@ class BazelWrapper(object):
         # bazel [startup_options] [additional_startup_options] command [transformed_command_args] -- [target_patterns]
 
         bazel_jdk_path = f"{self.root_dir}/{_BAZEL_JDK_REL_PATH}"
-        final_args = [self.bazel_path] + self.transformed_startup_options + [
-            f"--server_javabase={bazel_jdk_path}",
+        final_args = [self.bazel_path] + [
             f"--host_jvm_args=-Djava.io.tmpdir={self.absolute_out_dir}/bazel/javatmp",
+        ] + self.transformed_startup_options + [
+            f"--server_javabase={bazel_jdk_path}",
             f"--bazelrc={self.root_dir}/{_BAZEL_RC_NAME}",
         ]
         if self.command is not None:
