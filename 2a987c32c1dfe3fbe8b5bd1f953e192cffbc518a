@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3233270c_864079fd",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-06T18:28:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74eabd93_381f81b2",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 1
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c291fe8_d0df43a3",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-02-06T15:05:48Z",
       "side": 1,
       "message": "we need them _all_? Perhaps in a later change we should reduce the amount of hermetic tools we use.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 62
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12b58f89_df4eb879",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-06T18:28:07Z",
+      "side": 1,
+      "message": "http://b/268036498 to track it separately.",
+      "parentUuid": "2c291fe8_d0df43a3",
       "range": {
         "startLine": 33,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "843de2a1_a76428de",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-06T18:28:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c20e8010_5bac1859",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 5
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29948e96_37786188",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-02-06T15:54:08Z",
       "side": 1,
       "message": "Just 2\u003e{error_msg_file} should suffice.",
+      "range": {
+        "startLine": 57,
+        "startChar": 29,
+        "endLine": 57,
+        "endChar": 52
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "719eda22_7c7367b6",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-06T18:28:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29948e96_37786188",
       "range": {
         "startLine": 57,
         "startChar": 29,
@@ -157,6 +253,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d0cf09e_74c19dc9",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-06T18:28:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db0333e4_2d4de97b",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f91d9e84_f7811757",
@@ -204,6 +324,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fb21a13_b352eb45",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-06T18:28:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6c1ec4e9_aafe01f4",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 10
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54405a85_f5e23e22",
@@ -227,6 +371,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fddb988_aff9255f",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-06T18:28:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54405a85_f5e23e22",
+      "range": {
+        "startLine": 88,
+        "startChar": 44,
+        "endLine": 88,
+        "endChar": 47
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20049dea_146d32eb",
@@ -240,6 +408,24 @@
       "writtenOn": "2023-02-06T15:05:48Z",
       "side": 1,
       "message": "At least the runnable script needs to emit the abi difference or point to the report file.",
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc42aba2_eff941b6",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-06T18:28:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20049dea_146d32eb",
       "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
