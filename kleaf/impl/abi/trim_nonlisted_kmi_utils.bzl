@@ -14,8 +14,6 @@
 
 """Utilities for configuring trim_nonlisted_kmi."""
 
-load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
-
 FORCE_DISABLE_TRIM = "//build/kernel/kleaf/impl:force_disable_trim"
 _FORCE_DISABLE_TRIM_IS_TRUE = "//build/kernel/kleaf/impl:force_disable_trim_is_true"
 _KASAN_IS_TRUE = "//build/kernel/kleaf/impl:kasan_is_true"
@@ -25,6 +23,7 @@ def _selected_attr(attr_val):
     return select({
         _FORCE_DISABLE_TRIM_IS_TRUE: False,
         _KASAN_IS_TRUE: False,
+        _KCSAN_IS_TRUE: False,
         "//conditions:default": attr_val,
     })
 
