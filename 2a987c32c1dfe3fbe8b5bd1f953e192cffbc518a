@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c291fe8_d0df43a3",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-06T15:05:48Z",
+      "side": 1,
+      "message": "we need them _all_? Perhaps in a later change we should reduce the amount of hermetic tools we use.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 62
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44cbe7e8_4ded1043",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-06T15:05:48Z",
+      "side": 1,
+      "message": "should this not print the {outputs}?",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54405a85_f5e23e22",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-06T15:05:48Z",
+      "side": 1,
+      "message": "Kernel ABI",
+      "range": {
+        "startLine": 88,
+        "startChar": 44,
+        "endLine": 88,
+        "endChar": 47
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20049dea_146d32eb",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-06T15:05:48Z",
+      "side": 1,
+      "message": "At least the runnable script needs to emit the abi difference or point to the report file.",
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
