@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3de3b0ae_553b15e7",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-06T15:23:54Z",
+      "side": 1,
+      "message": "This collides if tests run in parallel or drops somebody\u0027s `/tmp/out` rather unexpectedly.\n\nBetter use the builtin functionality of the absltest.TestCase: \n\n`self.create_tempdir()`\n\nSimilarly for `default_out`, rather create a temp dir and cwd to it than expecting that $PWD/out is ok to `rmtree`.",
+      "range": {
+        "startLine": 278,
+        "startChar": 31,
+        "endLine": 278,
+        "endChar": 41
+      },
+      "revId": "026f9fa42a4e04cc6f29de35b066727703ef1a54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
