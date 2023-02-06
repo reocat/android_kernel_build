@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b984775c_b6b6c723",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-02-06T15:54:08Z",
+      "side": 1,
+      "message": "Not really a .bzl review. I\u0027ve commented a bit on the stgdiff invocation.",
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74eabd93_381f81b2",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-02-06T15:54:08Z",
+      "side": 1,
+      "message": "We don\u0027t need to pass these for STG-STG comparisons.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 1
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c291fe8_d0df43a3",
@@ -26,6 +66,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c20e8010_5bac1859",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-02-06T15:54:08Z",
+      "side": 1,
+      "message": "Not needed.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 5
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29948e96_37786188",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-02-06T15:54:08Z",
+      "side": 1,
+      "message": "Just 2\u003e{error_msg_file} should suffice.",
+      "range": {
+        "startLine": 57,
+        "startChar": 29,
+        "endLine": 57,
+        "endChar": 52
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44cbe7e8_4ded1043",
         "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
         "patchSetId": 10
@@ -42,6 +128,53 @@
         "startChar": 0,
         "endLine": 65,
         "endChar": 48
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db0333e4_2d4de97b",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-02-06T15:54:08Z",
+      "side": 1,
+      "message": "It should print the short report.",
+      "parentUuid": "44cbe7e8_4ded1043",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f91d9e84_f7811757",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-02-06T15:54:08Z",
+      "side": 1,
+      "message": "Why not just let stgdiff\u0027s stderr go undirected and simplify the code here.\n\nAlso, the message about exit code is a bit odd. Is this a standard Bazel thing?",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 10
       },
       "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
