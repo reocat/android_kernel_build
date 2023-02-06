@@ -1893,6 +1893,13 @@ def _kmi_symbol_list_violations_check(ctx, modules_staging_archive):
     if ctx.attr._kasan[BuildSettingInfo].value:
         return None
 
+    # Skip for --kcsan build as they are not valid GKI releasae configurations.
+    # Downstreams are expect to build kernel+modules+vendor modules locally
+    # and can disable the runtime symbol protection with CONFIG_SIG_PROTECT=n
+    # if required.
+    if ctx.attr._kcsan[BuildSettingInfo].value:
+        return None
+
     # Skip for the --kgdb targets as they are not valid GKI release targets
     if ctx.attr._kgdb[BuildSettingInfo].value:
         # buildifier: disable=print
