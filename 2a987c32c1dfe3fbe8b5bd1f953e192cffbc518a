@@ -182,6 +182,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c1ec4e9_aafe01f4",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-06T17:19:39Z",
+      "side": 1,
+      "message": "This is what you get with `bazel build ..._abi`, ie. the build will succeed as long as the diff generation succeeds. If you want to fail on actual ABI changes you need to `bazel run`.",
+      "parentUuid": "f91d9e84_f7811757",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 10
+      },
+      "revId": "2a987c32c1dfe3fbe8b5bd1f953e192cffbc518a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "54405a85_f5e23e22",
         "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
         "patchSetId": 10
