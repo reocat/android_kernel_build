@@ -23,6 +23,7 @@ def _selected_attr(attr_val):
     return select({
         _FORCE_DISABLE_TRIM_IS_TRUE: False,
         _KASAN_IS_TRUE: False,
+        _KCSAN_IS_TRUE: False,
         "//conditions:default": attr_val,
     })
 
