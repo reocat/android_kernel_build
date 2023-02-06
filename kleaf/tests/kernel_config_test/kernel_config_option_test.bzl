@@ -28,6 +28,7 @@ load(":kernel_config_aspect.bzl", "KernelConfigAspectInfo", "kernel_config_aspec
 # Helper functions and rules.
 
 _KASAN_FLAG = "//build/kernel/kleaf:kasan"
+_KCSAN_FLAG = "//build/kernel/kleaf:kcsan"
 _KGDB_FLAG = "//build/kernel/kleaf:kgdb"
 _LTO_FLAG = "//build/kernel/kleaf:lto"
 _ARCHS = ("aarch64", "x86_64")
@@ -204,6 +205,34 @@ def _kasan_test(name, kernel_build):
         expected = ["data/{}_config".format(_kasan_str(kasan)) for kasan in (True, False)],
     )
 
+## Tests on --kcsan
+def _kcsan_str(kcsan):
+    return "kcsan" if kcsan else "nokcsan"
+
+def _kcsan_transition_impl(_settings, _attr):
+    return {_kcsan_str(kcsan): {_KCSAN_FLAG: kcsan} for kcsan in (True, False)}
+
+_kcsan_transition = transition(
+    implementation = _kcsan_transition_impl,
+    inputs = [],
+    outputs = [_KCSAN_FLAG],
+)
+
+_kcsan_test_data = rule(
+    implementation = _get_transitioned_config_impl,
+    doc = "Get `.config` for a kernel with the KCSAN transition.",
+    attrs = _get_config_attrs_common(_kcsan_transition),
+)
+
+def _kcsan_test(name, kernel_build):
+    """Test the effect of a `--kcsan` on `kernel_config`."""
+    _transition_test(
+        name = name,
+        kernel_build = kernel_build,
+        test_data_rule = _kcsan_test_data,
+        expected = ["data/{}_config".format(_kcsan_str(kcsan)) for kcsan in (True, False)],
+    )
+
 ## Tests on --kgdb
 def _kgdb_str(kgdb, arch):
     return ("kgdb" if kgdb else "nokgdb") + "_" + arch
@@ -281,23 +310,27 @@ def _combined_test_combinations(key):
     ret = {}
     for lto in LTO_VALUES:
         for kasan in (True, False):
-            for kgdb in (True, False):
-                if kasan and lto not in ("default", "none"):
-                    continue
+            for kcsan in (True, False):
+                for kgdb in (True, False):
+                    if kasan and lto not in ("default", "none"):
+                        continue
+                    if kcsan and lto not in ("default", "none"):
+                        continue
 
-                test_name = "_".join([
-                    key.arch,
-                    _trim_str(key.trim),
-                    lto,
-                    _kasan_str(kasan),
-                    _kgdb_str(kgdb, key.arch),
-                ])
-                ret_key = {
-                    "lto": lto,
-                    "kasan": kasan,
-                    "kgdb": kgdb,
-                }
-                ret[test_name] = ret_key
+                    test_name = "_".join([
+                        key.arch,
+                        _trim_str(key.trim),
+                        lto,
+                        _kasan_str(kasan),
+                        _kgdb_str(kgdb, key.arch),
+                    ])
+                    ret_key = {
+                        "lto": lto,
+                        "kasan": kasan,
+                        "kcsan": kcsan,
+                        "kgdb": kgdb,
+                    }
+                    ret[test_name] = ret_key
     return ret
 
 def _combined_test_expected_impl(ctx):
@@ -366,7 +399,7 @@ def _combined_test_actual_transition_impl(_settings, attr):
 _combined_test_actual_transition = transition(
     implementation = _combined_test_actual_transition_impl,
     inputs = [],
-    outputs = [_KASAN_FLAG, _KGDB_FLAG, _LTO_FLAG],
+    outputs = [_KASAN_FLAG, _KCSAN_FLAG, _KGDB_FLAG, _LTO_FLAG],
 )
 
 def _combined_test_actual_impl(ctx):
@@ -409,6 +442,8 @@ def _combined_option_test(name, kernels):
             expected_trim = key.trim
             if combination["kasan"]:
                 expected_trim = False
+            if combination["kcsan"]:
+                expected_trim = False
             if combination["kgdb"]:
                 expected_trim = False
 
@@ -417,6 +452,7 @@ def _combined_option_test(name, kernels):
                 out = out_prefix + "_config",
                 srcs = ["data/{}_config".format(lto) for lto in LTO_VALUES] +
                        ["data/{}_config".format(_kasan_str(kasan)) for kasan in (True, False)] +
+                       ["data/{}_config".format(_kcsan_str(kcsan)) for kcsan in (True, False)] +
                        ["data/{}_config".format(_kgdb_str(kgdb, key.arch)) for kgdb in (True, False)] +
                        ["data/{}_config".format(_trim_str(trim)) for trim in (True, False)],
                 arch = key.arch,
@@ -500,6 +536,11 @@ def kernel_config_option_test_suite(name):
             kernel_build = name + "_kernel_{}".format(arch),
         )
         tests.append(name + "_kasan_{}_test".format(arch))
+        _kcsan_test(
+            name = name + "_kcsan_{}_test".format(arch),
+            kernel_build = name + "_kernel_{}".format(arch),
+        )
+        tests.append(name + "_kcsan_{}_test".format(arch))
 
         _kgdb_test(
             name = name + "_kgdb_{}_test".format(arch),
