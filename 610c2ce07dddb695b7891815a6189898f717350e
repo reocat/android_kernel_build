@@ -22,6 +22,30 @@
       },
       "revId": "610c2ce07dddb695b7891815a6189898f717350e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bc0026f_56c182fd",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-07T18:51:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d03960de_e3131f85",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 14
+      },
+      "revId": "610c2ce07dddb695b7891815a6189898f717350e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
