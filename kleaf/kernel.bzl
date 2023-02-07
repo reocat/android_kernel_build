@@ -28,6 +28,7 @@ load("//build/kernel/kleaf/impl:abi/kernel_build_abi_dist.bzl", _kernel_abi_dist
 load("//build/kernel/kleaf/impl:ddk/ddk_headers.bzl", _ddk_headers = "ddk_headers")
 load("//build/kernel/kleaf/impl:ddk/ddk_module.bzl", _ddk_module = "ddk_module")
 load("//build/kernel/kleaf/impl:ddk/ddk_submodule.bzl", _ddk_submodule = "ddk_submodule")
+load("//build/kernel/kleaf/impl:ddk/kbuild_options.bzl", _kbuild_options = "kbuild_options")
 load("//build/kernel/kleaf/impl:image/kernel_images.bzl", _kernel_images = "kernel_images")
 load("//build/kernel/kleaf/impl:kernel_build.bzl", _kernel_build_macro = "kernel_build")
 load("//build/kernel/kleaf/impl:kernel_build_config.bzl", _kernel_build_config = "kernel_build_config")
@@ -46,6 +47,7 @@ load("//build/kernel/kleaf/impl:merged_kernel_uapi_headers.bzl", _merged_kernel_
 ddk_headers = _ddk_headers
 ddk_module = _ddk_module
 ddk_submodule = _ddk_submodule
+kbuild_options = _kbuild_options
 kernel_abi = _kernel_abi
 kernel_abi_dist = _kernel_abi_dist
 kernel_build = _kernel_build_macro
