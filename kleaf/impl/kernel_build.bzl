@@ -99,6 +99,7 @@ def kernel_build(
         kbuild_symtypes = None,
         toolchain_version = None,
         strip_modules = None,
+        make_goals = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
 
@@ -338,6 +339,8 @@ def kernel_build(
           If set to `True`, debug information for distributed modules is stripped.
 
           This corresponds to negated value of `DO_NOT_STRIP_MODULES` in `build.config`.
+        make_goals: A list of strings targets for the kernel build.
+          This overrides `MAKE_GOALS` from build config when provided.
         dtstree: Device tree support.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
@@ -381,6 +384,7 @@ def kernel_build(
         srcs = srcs,
         toolchain_version = toolchain_version,
         kbuild_symtypes = kbuild_symtypes,
+        make_goals = make_goals,
         **internal_kwargs
     )
 
