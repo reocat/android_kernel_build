@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "164fc7e3_27224048",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-07T18:24:24Z",
+      "side": 1,
+      "message": "Can we instead relax the boot image size (for that case)? We do not have LTO on android14* or android-mainline and we do not have a decision yet whether we actually enable it. LTO was a prerequisite for CFI, but this prerequisite is obsolete with kCFI. Hence, we should be able to produce boot images in any configuration. Also, downstream developers should be able to use it regardless of whether the test lab we test with can fit the boot image.",
+      "revId": "2163466cccbc43f28f74004ace72c03d5ddc12e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d6cc6db_7951c150",
         "filename": "kleaf/impl/gki_artifacts.bzl",
         "patchSetId": 3
