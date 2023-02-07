@@ -24,6 +24,7 @@ load("//build/kernel/kleaf/impl:ddk/makefiles.bzl", "makefiles")
 load("//build/kernel/kleaf/impl:ddk/ddk_conditional_filegroup.bzl", "ddk_conditional_filegroup")
 load("//build/kernel/kleaf/impl:ddk/ddk_headers.bzl", "ddk_headers")
 load("//build/kernel/kleaf/impl:ddk/ddk_module.bzl", "ddk_module")
+load("//build/kernel/kleaf/impl:ddk/kbuild_options.bzl", "kbuild_options")
 load("//build/kernel/kleaf/impl:common_providers.bzl", "ModuleSymversInfo")
 load("//build/kernel/kleaf/impl:kernel_build.bzl", "kernel_build")
 load("//build/kernel/kleaf/tests:failure_test.bzl", "failure_test")
@@ -800,6 +801,38 @@ def _makefiles_cond_srcs_test(name):
         tests = tests,
     )
 
+def _makefiles_kbuild_options_test(name):
+    tests = []
+    kbuild_options(
+        name = name + "_simple_options",
+        values = [
+            # do not sort
+            "CONFIG_BOOL=y",
+            "CONFIG_UNSET=",
+            "CONFIG_STRING=a string with spaces",
+        ],
+    )
+    _create_makefiles_artifact_test(
+        name = name + "_simple",
+        srcs = ["foo.c"],
+        out = "foo.ko",
+        deps = [
+            name + "_simple_options",
+        ],
+        expected_lines = [
+            # keep sorted
+            "CONFIG_BOOL=y",
+            "CONFIG_STRING=a string with spaces",
+            "CONFIG_UNSET=",
+        ],
+    )
+    tests.append(name + "_simple")
+
+    native.test_suite(
+        name = name,
+        tests = tests,
+    )
+
 def makefiles_test_suite(name):
     """Defines tests for `makefiles`.
 
@@ -1047,6 +1080,11 @@ def makefiles_test_suite(name):
         name = name + "_cond_srcs_test",
     )
     tests.append(name + "_cond_srcs_test")
+
+    _makefiles_kbuild_options_test(
+        name = name + "_kbuild_options_test",
+    )
+    tests.append(name + "_kbuild_options_test")
 
     native.test_suite(
         name = name,
