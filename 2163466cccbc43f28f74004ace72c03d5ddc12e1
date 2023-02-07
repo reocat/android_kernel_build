@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a2ce2b6_97e6efe5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-07T18:27:52Z",
+      "side": 1,
+      "message": "Then we\u0027ll need a separate set of numbers for none LTO / thin LTO boot images. Building boot images requires knowing the size of the boot image before-hand, because the AVB signature is **appended** at the end of the boot image.\n\nI could estimate a factor, e.g. in the none LTO / thin LTO case, if the original boot image size fails, use 2x boot image size + produce a warning message. Does that sound better?",
+      "parentUuid": "164fc7e3_27224048",
+      "revId": "2163466cccbc43f28f74004ace72c03d5ddc12e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8d6cc6db_7951c150",
         "filename": "kleaf/impl/gki_artifacts.bzl",
         "patchSetId": 3
