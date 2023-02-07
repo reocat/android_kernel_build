@@ -211,7 +211,8 @@ def ddk_module(
 
             - [`kernel_module`](#kernel_module)
             - [`ddk_module`](#ddk_module)
-            - [`ddk_headers`](#ddk_headers).
+            - [`ddk_headers`](#ddk_headers)
+            - [`kbuild_options`](#kbuild_options)
         hdrs: See [`ddk_headers.hdrs`](#ddk_headers-hdrs)
         includes: See [`ddk_headers.includes`](#ddk_headers-includes)
         linux_includes: See [`ddk_headers.linux_includes`](#ddk_headers-linux_includes)
