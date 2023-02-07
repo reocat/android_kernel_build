@@ -27,6 +27,7 @@ load(
     "get_headers_depset",
     "get_include_depset",
 )
+load(":ddk/kbuild_options.bzl", "KbuildOptionsInfo")
 load(":utils.bzl", "kernel_utils")
 
 def _handle_copt(ctx):
@@ -170,6 +171,13 @@ def _handle_module_srcs(ctx):
 
     return srcs_json
 
+def _kbuild_option_dep_to_arg(dep):
+    """Turns `kbuild_options` target to an argument to gen_makefiles.py."""
+    return [
+        "{}={}".format(kbuild_option.key, kbuild_option.value)
+        for kbuild_option in dep[KbuildOptionsInfo].kbuild_options
+    ]
+
 def _makefiles_impl(ctx):
     module_label = Label(str(ctx.label).removesuffix("_makefiles"))
 
@@ -182,6 +190,7 @@ def _makefiles_impl(ctx):
     submodule_deps = split_deps.submodules
     hdr_deps = split_deps.hdrs
     module_symvers_deps = split_deps.module_symvers_deps
+    kbuild_options_deps = split_deps.kbuild_options
 
     if submodule_deps:
         _check_empty_with_submodules(ctx, module_label, kernel_module_deps)
@@ -244,6 +253,12 @@ def _makefiles_impl(ctx):
 
     copt_file = _handle_copt(ctx)
     args.add("--copt-file", copt_file)
+
+    args.add_all(
+        "--kbuild-options",
+        kbuild_options_deps,
+        map_each = _kbuild_option_dep_to_arg,
+    )
 
     submodule_makefiles = depset(transitive = [dep.files for dep in submodule_deps])
     args.add_all("--submodule-makefiles", submodule_makefiles, expand_directories = False)
