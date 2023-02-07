@@ -153,17 +153,21 @@ def _kernel_env_impl(ctx):
 
     command += stamp.set_localversion_cmd(ctx)
 
-    additional_make_goals = force_add_vmlinux_utils.additional_make_goals(ctx)
-    additional_make_goals += kgdb.additional_make_goals(ctx)
-    additional_make_goals += compile_commands_utils.additional_make_goals(ctx)
+    # Fallback to goals from build.config
+    make_goals = ["${MAKE_GOALS}"]
+    if ctx.attr.make_goals:
+        make_goals = ctx.attr.make_goals
+    make_goals += force_add_vmlinux_utils.additional_make_goals(ctx)
+    make_goals += kgdb.additional_make_goals(ctx)
+    make_goals += compile_commands_utils.additional_make_goals(ctx)
 
     command += """
         # create a build environment
           source {build_utils_sh}
           export BUILD_CONFIG={build_config}
           source {setup_env}
-        # Add to MAKE_GOALS if necessary
-          export MAKE_GOALS="${{MAKE_GOALS}} {additional_make_goals}"
+        # Expose MAKE_GOALS
+          export MAKE_GOALS="{make_goals}"
         # Add a comment with config_tags for debugging
           cp -p {config_tags_comment_file} {out}
           chmod +w {out}
@@ -173,7 +177,7 @@ def _kernel_env_impl(ctx):
         build_utils_sh = ctx.file._build_utils_sh.path,
         build_config = build_config.path,
         setup_env = setup_env.path,
-        additional_make_goals = " ".join(additional_make_goals),
+        make_goals = " ".join(make_goals),
         preserve_env = preserve_env.path,
         out = out_file.path,
         config_tags_comment_file = config_tags_comment_file.path,
@@ -353,6 +357,10 @@ kernel_env = rule(
             doc = "`KBUILD_SYMTYPES`",
             default = "auto",
             values = ["true", "false", "auto"],
+        ),
+        "make_goals": attr.string_list(
+            doc = "`MAKE_GOALS`",
+            default = [],
         ),
         "_tools": attr.label_list(default = _get_tools),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
