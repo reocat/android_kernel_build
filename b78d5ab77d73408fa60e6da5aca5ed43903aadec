@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4c4ecee_7627ec1d",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-07T01:41:02Z",
+      "side": 1,
+      "message": "nit: please align",
+      "range": {
+        "startLine": 588,
+        "startChar": 16,
+        "endLine": 588,
+        "endChar": 20
+      },
+      "revId": "b78d5ab77d73408fa60e6da5aca5ed43903aadec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c114b8_f3d81dcf",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-07T01:41:02Z",
+      "side": 1,
+      "message": "Is this just \n\n```\n$(rootpath {diff})\n```",
+      "range": {
+        "startLine": 616,
+        "startChar": 0,
+        "endLine": 620,
+        "endChar": 28
+      },
+      "revId": "b78d5ab77d73408fa60e6da5aca5ed43903aadec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
