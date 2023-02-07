@@ -12,14 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Build GKI artifacts (including GKI boot images that are ready to be signed)."""
+
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(":common_providers.bzl", "KernelBuildInfo")
 load(":constants.bzl", "GKI_ARTIFACTS_AARCH64_OUTS")
 load(":utils.bzl", "utils")
 
 def _gki_artifacts_impl(ctx):
+    if ctx.attr._lto[BuildSettingInfo].value not in ("default", "full"):
+        # Without LTO, Image{,.*} may be too big to fit into boot images that
+        # are constrained by boot_img_sizes.
+        # We release GKI artifacts without LTO, so we skip building them at all.
+        return DefaultInfo(files = depset())
+
     inputs = [
         ctx.file.mkbootimg,
         ctx.file._testkey,
@@ -147,5 +156,6 @@ For example:
             cfg = "exec",
         ),
         "_testkey": attr.label(default = "//tools/mkbootimg:gki/testdata/testkey_rsa4096.pem", allow_single_file = True),
+        "_lto": attr.label(default = "//build/kernel/kleaf:lto"),
     },
 )
