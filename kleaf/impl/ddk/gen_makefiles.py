@@ -157,6 +157,7 @@ def _gen_ddk_makefile_for_module(
         linux_include_dirs: list[pathlib.Path],
         local_defines: list[str],
         copt_file: Optional[TextIO],
+        kbuild_options: list[str],
         **unused_kwargs
 ):
     kernel_module_srcs_json_content = json.load(kernel_module_srcs_json)
@@ -202,6 +203,7 @@ def _gen_ddk_makefile_for_module(
         rel_root = pathlib.Path(*([".."] * len(rel_root_reversed.parts)))
 
         _handle_linux_includes(out_file, linux_include_dirs, rel_root)
+        _handle_kbuild_options(out_file, kbuild_options)
 
         for src_item in rel_srcs:
             config = src_item.get("config")
@@ -342,6 +344,13 @@ def _handle_copts(out_file: TextIO,
         _write_ccflag(out_file, object_file, expanded)
 
 
+def _handle_kbuild_options(out_file: TextIO,
+                           kbuild_options: list[str]) -> None:
+    for kbuild_options_item in kbuild_options:
+        key, value = kbuild_options_item.split("=", maxsplit=2)
+        out_file.write(f"{key}={value}\n")
+
+
 if __name__ == "__main__":
     # argparse_flags.ArgumentParser only accepts --flagfile if there
     # are some DEFINE'd flags
@@ -360,6 +369,7 @@ if __name__ == "__main__":
     parser.add_argument("--module-symvers-list", type=pathlib.Path, nargs="*", default=[])
     parser.add_argument("--local-defines", nargs="*", default=[])
     parser.add_argument("--copt-file", type=argparse.FileType("r"))
+    parser.add_argument("--kbuild-options", nargs="*", default = [])
     parser.add_argument("--produce-top-level-makefile", action="store_true")
     parser.add_argument("--submodule-makefiles", type=pathlib.Path, nargs="*", default=[])
     parser.add_argument("--internal-target-fail-message", default=None)
