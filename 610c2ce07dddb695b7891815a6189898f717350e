@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d03960de_e3131f85",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-07T16:40:14Z",
+      "side": 1,
+      "message": "I think in the long run we should get away from this. If an ABI is checked in _and_ somebody `bazel run`s this target, it should fail if the diff is violated. The `KMI_ENFORCED` is a relict from build.sh glueing ABI analysis into the build process. Perhaps we can now decouple this and do not run `_abi` targets if they should not be enforced.",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 14
+      },
+      "revId": "610c2ce07dddb695b7891815a6189898f717350e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
