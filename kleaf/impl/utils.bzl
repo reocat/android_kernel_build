@@ -27,6 +27,7 @@ load(
     "ModuleSymversInfo",
 )
 load(":ddk/ddk_headers.bzl", "DdkHeadersInfo")
+load(":ddk/kbuild_options.bzl", "KbuildOptionsInfo")
 
 def _reverse_dict(d):
     """Reverse a dictionary of {key: [value, ...]}
@@ -275,6 +276,7 @@ def _split_kernel_module_deps(deps, this_label):
     hdr_deps = []
     submodule_deps = []
     module_symvers_deps = []
+    kbuild_options_deps = []
     for dep in deps:
         is_valid_dep = False
         if DdkHeadersInfo in dep:
@@ -289,6 +291,9 @@ def _split_kernel_module_deps(deps, this_label):
         if ModuleSymversInfo in dep:
             module_symvers_deps.append(dep)
             is_valid_dep = True
+        if KbuildOptionsInfo in dep:
+            kbuild_options_deps.append(dep)
+            is_valid_dep = True
         if not is_valid_dep:
             fail("{}: {} is not a valid item in deps. Only kernel_module, ddk_module, ddk_headers, ddk_submodule are accepted.".format(this_label, dep.label))
     return struct(
@@ -296,6 +301,7 @@ def _split_kernel_module_deps(deps, this_label):
         hdrs = hdr_deps,
         submodules = submodule_deps,
         module_symvers_deps = module_symvers_deps,
+        kbuild_options = kbuild_options_deps,
     )
 
 kernel_utils = struct(
