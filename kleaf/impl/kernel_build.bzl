@@ -43,6 +43,7 @@ load(
     "KernelCmdsInfo",
     "KernelEnvAndOutputsInfo",
     "KernelEnvAttrInfo",
+    "KernelEnvMakeGoalsInfo",
     "KernelImagesInfo",
     "KernelUnstrippedModulesInfo",
 )
@@ -100,6 +101,7 @@ def kernel_build(
         strip_modules = None,
         module_signing_key = None,
         system_trusted_key = None,
+        make_goals = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
 
@@ -345,6 +347,8 @@ def kernel_build(
         system_trusted_key: A label referring to a trusted system key.
 
           This is to allow for dynamic setting of `CONFIG_SYSTEM_TRUSTED_KEY` from Bazel.
+        make_goals: A list of strings defining targets for the kernel build.
+          This overrides `MAKE_GOALS` from build config when provided.
         dtstree: Device tree support.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
@@ -390,7 +394,7 @@ def kernel_build(
         srcs = srcs,
         toolchain_version = toolchain_version,
         kbuild_symtypes = kbuild_symtypes,
-        trim_nonlisted_kmi = trim_nonlisted_kmi,
+        make_goals = make_goals,
         **internal_kwargs
     )
 
@@ -1069,10 +1073,11 @@ def _build_main_action(
         data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
         restore_out_dir_cmd = cache_dir_step.cmd,
     )
+    make_goals = ctx.attr.config[KernelEnvMakeGoalsInfo].make_goals
     command += """
            {kbuild_mixed_tree_cmd}
          # Actual kernel build
-           {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
+           {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} {make_goals}
          # Set variables and create dirs for modules
            mkdir -p {modules_staging_dir}
          # Install modules
@@ -1140,6 +1145,7 @@ def _build_main_action(
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
         interceptor_command_prefix = interceptor_step.command_prefix,
         label = ctx.label,
+        make_goals = " ".join(make_goals),
     )
 
     # all inputs that |command| needs
@@ -1498,7 +1504,7 @@ _kernel_build = rule(
     attrs = {
         "config": attr.label(
             mandatory = True,
-            providers = [KernelEnvAndOutputsInfo, KernelEnvAttrInfo],
+            providers = [KernelEnvAndOutputsInfo, KernelEnvAttrInfo, KernelEnvMakeGoalsInfo],
             aspects = [kernel_toolchain_aspect],
             doc = "the kernel_config target",
         ),
