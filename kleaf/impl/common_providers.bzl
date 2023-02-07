@@ -35,6 +35,13 @@ is in its own extension instead of `kernel_env.bzl`.
     },
 )
 
+KernelEnvMakeGoalsInfo = provider(
+    doc = "Describe the targets for the current build.",
+    fields = {
+        "make_goals": "A list of strings defining targets for the kernel build.",
+    },
+)
+
 KernelEnvAndOutputsInfo = provider(
     doc = """Like `KernelEnvInfo` but also restores artifacts.
 

@@ -23,6 +23,7 @@ load(
     ":common_providers.bzl",
     "KernelEnvAttrInfo",
     "KernelEnvInfo",
+    "KernelEnvMakeGoalsInfo",
 )
 load(":compile_commands_utils.bzl", "compile_commands_utils")
 load(":debug.bzl", "debug")
@@ -153,17 +154,35 @@ def _kernel_env_impl(ctx):
 
     command += stamp.set_localversion_cmd(ctx)
 
-    additional_make_goals = force_add_vmlinux_utils.additional_make_goals(ctx)
-    additional_make_goals += kgdb.additional_make_goals(ctx)
-    additional_make_goals += compile_commands_utils.additional_make_goals(ctx)
+    # Fallback to goals from build.config
+    make_goals = ["${MAKE_GOALS}"]
+    if ctx.attr.make_goals:
+        make_goals = list(ctx.attr.make_goals)
+    make_goals += force_add_vmlinux_utils.additional_make_goals(ctx)
+    make_goals += kgdb.additional_make_goals(ctx)
+    make_goals += compile_commands_utils.additional_make_goals(ctx)
 
     command += """
         # create a build environment
           source {build_utils_sh}
           export BUILD_CONFIG={build_config}
           source {setup_env}
-        # Add to MAKE_GOALS if necessary
-          export MAKE_GOALS="${{MAKE_GOALS}} {additional_make_goals}"
+        # TODO(b/236012223) Remove the warning after deprecation.
+        # Warning about MAKE_GOALS deprecation.
+          if [[ -n ${{MAKE_GOALS}} ]] ; then
+            KLEAF_MAKE_TARGETS=$(echo "    ${{MAKE_GOALS% }}" | sed '/^$/d' | sed 's/[^ ][^ ]*/"&",/g')
+            echo "WARNING: MAKE_GOALS is being deprecated, use make_goals in kernel_build" >&2
+            echo "Consider adding:\n\nmake_goals = [${{KLEAF_MAKE_TARGETS}}" >&2
+            echo "],\n\nto your kernel_build rule." >&2
+            # TODO(Print the buildozer equivalent command)
+            # echo "Alternatively, install buildozer and execute:" >&2
+            # TODO(Use the right label i.e. kernel_build not kernel_env)
+            # echo "  $ buildozer 'add make_goals ${{KLEAF_MAKE_TARGETS}}' {label}" >&2
+            # echo "See https://github.com/bazelbuild/buildtools/blob/master/buildozer/README.md for reference" >&2
+            unset KLEAF_MAKE_TARGETS
+          fi
+        # Expose MAKE_GOALS
+          export MAKE_GOALS="{make_goals}"
         # Add a comment with config_tags for debugging
           cp -p {config_tags_comment_file} {out}
           chmod +w {out}
@@ -173,7 +192,8 @@ def _kernel_env_impl(ctx):
         build_utils_sh = ctx.file._build_utils_sh.path,
         build_config = build_config.path,
         setup_env = setup_env.path,
-        additional_make_goals = " ".join(additional_make_goals),
+        make_goals = " ".join(make_goals),
+        label = ctx.label,
         preserve_env = preserve_env.path,
         out = out_file.path,
         config_tags_comment_file = config_tags_comment_file.path,
@@ -273,6 +293,9 @@ def _kernel_env_impl(ctx):
             progress_message_note = progress_message_note,
             common_config_tags = common_config_tags,
         ),
+        KernelEnvMakeGoalsInfo(
+            make_goals = make_goals,
+        ),
         DefaultInfo(files = depset([out_file])),
     ]
 
@@ -354,6 +377,7 @@ kernel_env = rule(
             default = "auto",
             values = ["true", "false", "auto"],
         ),
+        "make_goals": attr.string_list(doc = "`MAKE_GOALS`"),
         "_tools": attr.label_list(default = _get_tools),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_build_utils_sh": attr.label(
