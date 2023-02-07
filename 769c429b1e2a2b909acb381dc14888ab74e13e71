@@ -144,6 +144,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5eb8a29c_e12e3cf8",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-07T01:39:44Z",
+      "side": 1,
+      "message": "Nevermind, it is used in CL:2422871",
+      "parentUuid": "4b100014_c0331038",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 10
+      },
+      "revId": "769c429b1e2a2b909acb381dc14888ab74e13e71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbf2bb47_2e591427",
