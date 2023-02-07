@@ -16,6 +16,155 @@
       "message": "Thank you for the review, PTAL.",
       "revId": "769c429b1e2a2b909acb381dc14888ab74e13e71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "372c054d_89d2b4b7",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-07T01:38:59Z",
+      "side": 1,
+      "message": "nit: empty line (I didn\u0027t know that buildifier doesn\u0027t enforce this empty line!)",
+      "revId": "769c429b1e2a2b909acb381dc14888ab74e13e71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33172bfc_771a3cbc",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-07T01:38:59Z",
+      "side": 1,
+      "message": "nit: error_msg.txt\n\nsame for exit_code.txt",
+      "range": {
+        "startLine": 32,
+        "startChar": 50,
+        "endLine": 32,
+        "endChar": 64
+      },
+      "revId": "769c429b1e2a2b909acb381dc14888ab74e13e71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2a1b254_f0e51e61",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-07T01:38:59Z",
+      "side": 1,
+      "message": "I was going to suggest that a subshell is recommended so you don\u0027t affect the `set +/-e` of the parent shell, but it looks like you need to rely on $rc below, so maybe that\u0027s fine...",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "769c429b1e2a2b909acb381dc14888ab74e13e71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8515c660_8488d87e",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-07T01:38:59Z",
+      "side": 1,
+      "message": "nit: could you please move this magic number to a constant at the top of the file?",
+      "range": {
+        "startLine": 55,
+        "startChar": 23,
+        "endLine": 55,
+        "endChar": 24
+      },
+      "revId": "769c429b1e2a2b909acb381dc14888ab74e13e71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6738ae25_886e1fc2",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-07T01:38:59Z",
+      "side": 1,
+      "message": "nit:\n\n```\nelse:\n  script_content +\u003d \"\"\"\n     if [[ $rc !\u003d 0 ]]; then\n       echo \"KMI is not enforced, return code of stgdiff is not checked\" \u003e\u00262\n     fi\n  \"\"\"\n```\n\nor just a comment in the script",
+      "revId": "769c429b1e2a2b909acb381dc14888ab74e13e71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b100014_c0331038",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-07T01:38:59Z",
+      "side": 1,
+      "message": "Where do you rely on this output group?\n\nFor `abi_diff` this is for creating the `_diff_executable` filegroup, but I don\u0027t see that you are creating the same thing for stg in the `kernel_abi.bzl` file.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 10
+      },
+      "revId": "769c429b1e2a2b909acb381dc14888ab74e13e71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbf2bb47_2e591427",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-07T01:38:59Z",
+      "side": 1,
+      "message": "nit: you may move this to a function to minimize the diff \u0026 make this function shorter.",
+      "range": {
+        "startLine": 437,
+        "startChar": 0,
+        "endLine": 438,
+        "endChar": 25
+      },
+      "revId": "769c429b1e2a2b909acb381dc14888ab74e13e71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
