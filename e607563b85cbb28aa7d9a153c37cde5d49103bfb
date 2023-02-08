@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e8b2863_4308608b",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-08T13:24:53Z",
+      "side": 1,
+      "message": "A list of strings defining targets for ...",
+      "range": {
+        "startLine": 41,
+        "startChar": 23,
+        "endLine": 41,
+        "endChar": 69
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6b26477_b1683e2b",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-08T13:24:53Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 343,
+        "startChar": 38,
+        "endLine": 343,
+        "endChar": 45
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111a8b79_c8be2a09",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1490,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-08T13:24:53Z",
+      "side": 1,
+      "message": "Will this break users of kernel_build? If so, we should announce this change or make this provider optional.",
+      "range": {
+        "startLine": 1490,
+        "startChar": 69,
+        "endLine": 1490,
+        "endChar": 91
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
