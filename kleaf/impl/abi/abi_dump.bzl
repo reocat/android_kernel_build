@@ -26,29 +26,29 @@ load(":abi/abi_transitions.bzl", "with_vmlinux_transition")
 def _abi_dump_impl(ctx):
     kernel_utils.check_kernel_build(ctx.attr.kernel_modules, ctx.attr.kernel_build, ctx.label)
 
-    full_abi_out_file = _abi_dump_full(ctx)
-    abi_out_file = _abi_dump_filtered(ctx, full_abi_out_file)
+    full_abi_out_file_xml = _abi_dump_full(ctx)
+    abi_out_file_xml = _abi_dump_filtered(ctx, full_abi_out_file_xml)
 
     # Run both methods until STG is fully adopted.
-    full_abi_out_file_stg = _abi_dump_full_stg(ctx)
-    abi_out_file_stg = _abi_dump_filtered_stg(ctx, full_abi_out_file_stg)
+    full_abi_out_file = _abi_dump_full_stg(ctx)
+    abi_out_file = _abi_dump_filtered_stg(ctx, full_abi_out_file)
 
     # Create an STG file for each XML generated
-    full_stg_from_xml_file = _abi_create_stg_from_xml(ctx, full_abi_out_file)
-    stg_from_xml_file = _abi_create_stg_from_xml(ctx, abi_out_file)
+    full_stg_from_xml_file = _abi_create_stg_from_xml(ctx, full_abi_out_file_xml)
+    stg_from_xml_file = _abi_create_stg_from_xml(ctx, abi_out_file_xml)
 
     return [
         DefaultInfo(files = depset([
+            full_abi_out_file_xml,
+            abi_out_file_xml,
             full_abi_out_file,
             abi_out_file,
-            full_abi_out_file_stg,
-            abi_out_file_stg,
             full_stg_from_xml_file,
             stg_from_xml_file,
         ])),
         OutputGroupInfo(
+            abi_out_file_xml = depset([abi_out_file_xml]),
             abi_out_file = depset([abi_out_file]),
-            abi_out_file_stg = depset([abi_out_file_stg]),
         ),
     ]
 
