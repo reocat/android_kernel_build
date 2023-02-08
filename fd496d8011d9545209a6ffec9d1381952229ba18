@@ -16,6 +16,23 @@
       "message": "Let me double check that this doesn\u0027t break internal branches",
       "revId": "fd496d8011d9545209a6ffec9d1381952229ba18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed58778e_e898487f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-08T23:53:21Z",
+      "side": 1,
+      "message": "Waiting for prebuilts to include CL:2423367 -- see b/231473697",
+      "revId": "fd496d8011d9545209a6ffec9d1381952229ba18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
