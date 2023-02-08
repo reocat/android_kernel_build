@@ -85,6 +85,122 @@
       },
       "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f4bc502_bf9f5f9a",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1490,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-08T18:41:19Z",
+      "side": 1,
+      "message": "No. This is an expectation on kernel_config rule.\n\nWe also never make any providers public (see kernel.bzl for the list we make publicly)",
+      "parentUuid": "111a8b79_c8be2a09",
+      "range": {
+        "startLine": 1490,
+        "startChar": 69,
+        "endLine": 1490,
+        "endChar": 91
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71c30eca_689263a4",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-08T18:41:19Z",
+      "side": 1,
+      "message": "I think this is fine -- putting MAKE_GOALS in kernel_aarch64_env.sh for example can help us debug if something goes wrong here. But I do not object passing make_goals to kernel_build either 😊",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 93
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29b63eb_e5b0f7fb",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-08T18:41:19Z",
+      "side": 1,
+      "message": "Also suggest buildozer command like kernel_module",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 12
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58c97560_a30cab49",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-08T18:41:19Z",
+      "side": 1,
+      "message": "I think we need to check that items of make_goals doesn\u0027t contain spaces or quotes.\n\nAlso, this is probably better to be `quoted_make_goals \u003d shell.quote(\" \".join(make_goals))` and L180 becomes `export MAKE_GOALS\u003d{quoted_make_goals}` to ensure proper quoting",
+      "range": {
+        "startLine": 190,
+        "startChar": 21,
+        "endLine": 190,
+        "endChar": 42
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c3ea58d_bdd6c9ae",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-08T18:41:19Z",
+      "side": 1,
+      "message": "This is the default, so there\u0027s no need to specify it",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 376,
+        "endChar": 25
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
