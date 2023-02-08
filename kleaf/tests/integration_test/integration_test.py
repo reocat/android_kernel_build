@@ -296,6 +296,8 @@ class KleafIntegrationTest(unittest.TestCase):
             command_args=["//build/kernel/kleaf:empty_test"] + _FASTEST)
         self.assertFalse(default_out.exists())
 
+    def test_breaks(self):
+        self.fail("Integration test breaks")
 
 if __name__ == "__main__":
     arguments, unknown = load_arguments()
