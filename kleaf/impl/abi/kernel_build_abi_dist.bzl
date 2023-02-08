@@ -158,7 +158,7 @@ def kernel_abi_dist(
         name = name,
         data = [
             name + "_copy_to_dist_dir",
-            kernel_abi + "_diff_executable",
+            kernel_abi + "_diff_executable_xml",
         ],
         script = """
           # Copy to dist dir
@@ -167,6 +167,6 @@ def kernel_abi_dist(
             $(rootpath {diff})
         """.format(
             copy_to_dist_dir = name + "_copy_to_dist_dir",
-            diff = kernel_abi + "_diff_executable",
+            diff = kernel_abi + "_diff_executable_xml",
         ),
     )
