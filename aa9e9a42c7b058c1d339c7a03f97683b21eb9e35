@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a0c3b15_54a0943f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-09T02:46:59Z",
+      "side": 1,
+      "message": "This seems to be breaking the build because soong_zip does not exist:\n\nhttps://android-build.googleplex.com/builds/branches/aosp_kernel-q-common-android-4.9/grid?head\u003d9574628\u0026tail\u003d9465537",
+      "revId": "aa9e9a42c7b058c1d339c7a03f97683b21eb9e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
