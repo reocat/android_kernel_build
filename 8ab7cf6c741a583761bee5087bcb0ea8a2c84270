@@ -101,6 +101,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db489f2e_9e21bb27",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-10T21:11:22Z",
+      "side": 1,
+      "message": "Discussed offline in the internal doc titled \"Kleaf Hermetic CC toolchain\" -- we simply can\u0027t do this without conflicts with Roboleaf\u0027s definition.",
+      "parentUuid": "4ddaaaf0_b806bbe2",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 66
+      },
+      "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3731d91_e000b57b",
