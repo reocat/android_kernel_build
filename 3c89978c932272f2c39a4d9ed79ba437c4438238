@@ -33,6 +33,121 @@
       "message": "Perhaps we can have the same Work in Progress change for docs/abi.md with replacing xml to stg.",
       "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9f695f9_293458c0",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-10T02:57:45Z",
+      "side": 1,
+      "message": "I would suggest changing this to abi_definition_stg for clarity.\n\nOr alternatively:\n\nIf abi_definition and abi_definition_xml are exclusive, perhaps there should only be one abi_definition attribute in the macro, and we check the file suffix in analysis phase (in rule implementations). \n\nOr, if they are not exclusive, perhaps this should be `abi_definitions` instead, and we check suffixes of files in the analysis phase (in rule implementations).",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 30
+      },
+      "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d788302_342e4667",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-10T02:57:45Z",
+      "side": 1,
+      "message": "You could ignore adding new features to kernel_build_abi, as it is going away.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 34
+      },
+      "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "671f7b44_ec236b28",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-10T02:57:45Z",
+      "side": 1,
+      "message": "If we are going this path, this change is worth a changelog somewhere; the meaning of the attribute changes from XML in android13 (master-kernel-build-2022) to STG in android14 (master, later master-kernel-build-2023)",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 30
+      },
+      "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "780d06e6_75b704c2",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-10T02:57:45Z",
+      "side": 1,
+      "message": "Could we just drop XML completely? @maennich@google.com",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 34
+      },
+      "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36ef66fb_405a29d6",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-10T02:57:45Z",
+      "side": 1,
+      "message": "This is worth a changelog somewhere; the meaning of the attribute changes from XML in android13 (master-kernel-build-2022) to STG in android14 (master, later master-kernel-build-2023)",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 67
+      },
+      "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
