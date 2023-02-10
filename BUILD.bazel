@@ -34,10 +34,12 @@ hermetic_tools(
         "tar",
     ],
     tar_args = [
+        "--help",
         "--mtime=@0",
         "--owner=0",
         "--group=0",
         "--numeric-owner",
+        "--sort=name",
     ],
     visibility = ["//visibility:public"],
     deps = glob(
