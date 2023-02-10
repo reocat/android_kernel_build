@@ -103,6 +103,24 @@
       "message": "Nice cleanup, there is one broken build left though.",
       "revId": "fd496d8011d9545209a6ffec9d1381952229ba18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90d6de9c_7d00c97b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-10T19:04:40Z",
+      "side": 1,
+      "message": "That build is broken before this change, so bypassing.",
+      "parentUuid": "330ecf8c_634a8201",
+      "revId": "fd496d8011d9545209a6ffec9d1381952229ba18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
