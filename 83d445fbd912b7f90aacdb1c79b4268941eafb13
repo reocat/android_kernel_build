@@ -16,6 +16,24 @@
       "message": "Thank you for preparing this, I did not initially add it because if both files were present but one failed the other one might not be executed, but since we control which files (either one definition) go in I think it\u0027s safe to add it.",
       "revId": "83d445fbd912b7f90aacdb1c79b4268941eafb13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb22d023_5b9d7935",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-02-10T19:32:59Z",
+      "side": 1,
+      "message": "If I understand correctly, _diff_executable is not doing real diff, but reuses \"exit_code_file\", \"error_msg_file\" and so on from real diff execution, which happens during build time. So we have both diff executed and produced artefacts even before _diff_executable invoked. The only job of this script is re-emit exit code and print error, if we use \"bazel run\" instead of \"bazel build\".\n\nSo even if someone commits XML **and** STG, we will emit any error from both of those ABI representation.",
+      "parentUuid": "edb66e2f_09ad834f",
+      "revId": "83d445fbd912b7f90aacdb1c79b4268941eafb13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
