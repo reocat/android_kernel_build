@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7abc7772_2b31e80a",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-10T03:00:49Z",
+      "side": 1,
+      "message": "The caveat here is that you\u0027ll only be able to check file suffixes in the analysis phase in rule implementations (with the `File` objects). You could do it in the loading phase but that won\u0027t work universally with label_flags, so it is not 100% tech-debt free (but perhaps we don\u0027t care 😊)\n\nAnd, if you branch STG/XML in the analysis phase, then you might need to merge the rule implementations for XML and STG -- which will require some refactoring work.",
+      "parentUuid": "f9f695f9_293458c0",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 30
+      },
+      "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d788302_342e4667",
         "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
         "patchSetId": 1
