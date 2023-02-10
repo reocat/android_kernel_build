@@ -38,6 +38,7 @@ hermetic_tools(
         "--owner=0",
         "--group=0",
         "--numeric-owner",
+        "-s name",
     ],
     visibility = ["//visibility:public"],
     deps = glob(
