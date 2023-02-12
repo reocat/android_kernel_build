@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96b871bf_dbd3b511",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-12T22:39:38Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "4e39c676_d543ef85",
+      "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9f695f9_293458c0",
@@ -82,6 +100,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7285948e_022d493b",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-12T22:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7abc7772_2b31e80a",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 30
+      },
+      "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d788302_342e4667",
@@ -105,6 +147,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b49b4eb4_2f474b07",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-12T22:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d788302_342e4667",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 34
+      },
+      "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "671f7b44_ec236b28",
@@ -118,6 +184,30 @@
       "writtenOn": "2023-02-10T02:57:45Z",
       "side": 1,
       "message": "If we are going this path, this change is worth a changelog somewhere; the meaning of the attribute changes from XML in android13 (master-kernel-build-2022) to STG in android14 (master, later master-kernel-build-2023)",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 30
+      },
+      "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fcd8884_085a252d",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-12T22:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "671f7b44_ec236b28",
       "range": {
         "startLine": 173,
         "startChar": 0,
@@ -164,6 +254,30 @@
       "writtenOn": "2023-02-10T02:57:45Z",
       "side": 1,
       "message": "This is worth a changelog somewhere; the meaning of the attribute changes from XML in android13 (master-kernel-build-2022) to STG in android14 (master, later master-kernel-build-2023)",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 67
+      },
+      "revId": "3c89978c932272f2c39a4d9ed79ba437c4438238",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3c9ad52_82ef850b",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-12T22:39:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36ef66fb_405a29d6",
       "range": {
         "startLine": 247,
         "startChar": 0,
