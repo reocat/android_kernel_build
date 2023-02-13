@@ -16,6 +16,7 @@
 
 load("//build/bazel_common_rules/exec:exec.bzl", "exec")
 load("//build/kernel/kleaf:update_source_file.bzl", "update_source_file")
+load("//build/kernel/kleaf:fail.bzl", "fail_rule")
 load(":abi/abi_diff.bzl", "abi_diff")
 load(":abi/abi_stgdiff.bzl", "stgdiff")
 load(":abi/abi_dump.bzl", "abi_dump")
@@ -172,6 +173,7 @@ def kernel_abi(
         module_grouping = None,
         abi_definition = None,
         abi_definition_stg = None,
+        abi_definition_expected_path = None,
         kmi_enforced = None,
         unstripped_modules_archive = None,
         kmi_symbol_list_add_only = None,
@@ -246,6 +248,7 @@ def kernel_abi(
         modules.
       abi_definition: Location of the ABI definition.
       abi_definition_stg: Location of the ABI definition in STG format.
+      abi_definition_expected_path: Expected location of the ABI definition in STG format.
       kmi_enforced: This is an indicative option to signal that KMI is enforced.
         If set to `True`, KMI checking tools respects it and
         reacts to it by failing if KMI differences are detected.
@@ -294,6 +297,7 @@ def kernel_abi(
             kmi_symbol_list_add_only = kmi_symbol_list_add_only,
             abi_definition = abi_definition,
             abi_definition_stg = abi_definition_stg,
+            abi_definition_expected_path = abi_definition_expected_path,
             kmi_enforced = kmi_enforced,
             unstripped_modules_archive = unstripped_modules_archive,
             abi_dump_target = name + "_dump",
@@ -336,6 +340,15 @@ def _not_define_abi_targets(
         **private_kwargs
     )
 
+    # Write a comprehensive error for when the abi targets are not defined.
+    fail_rule(
+        name = name + "_update",  # kernel_aarch64_abi_update
+        message = "{} and other ABI targets do not exist.\n".format(
+                      name + "_update",
+                  ) +
+                  "See kleaf/docs/abi.md for more information.",
+    )
+
 def _define_abi_targets(
         name,
         kernel_build,
@@ -344,6 +357,7 @@ def _define_abi_targets(
         kmi_symbol_list_add_only,
         abi_definition,
         abi_definition_stg,
+        abi_definition_expected_path,
         kmi_enforced,
         unstripped_modules_archive,
         abi_dump_target,
@@ -389,6 +403,7 @@ def _define_abi_targets(
         name = name,
         abi_definition = abi_definition,
         abi_definition_stg = abi_definition_stg,
+        abi_definition_expected_path = abi_definition_expected_path,
         kmi_enforced = kmi_enforced,
         kmi_symbol_list = name + "_src_kmi_symbol_list",
         **private_kwargs
@@ -414,6 +429,7 @@ def _define_abi_definition_targets(
         name,
         abi_definition,
         abi_definition_stg,
+        abi_definition_expected_path,
         kmi_enforced,
         kmi_symbol_list,
         **kwargs):
@@ -546,6 +562,16 @@ def _define_abi_definition_targets(
             **kwargs
         )
         default_outputs.append(name + "_diff_executable_stg")
+
+        if abi_definition_expected_path:
+            fail_rule(
+                name = name + "_update",
+                message = "{} does not exist. Create the file and run {}.\n".format(
+                              abi_definition_expected_path,
+                              name + "_nodiff_update",
+                          ) +
+                          "See kleaf/docs/abi.md for more information.",
+            )
     else:
         native.filegroup(
             name = name + "_out_file_stg",
