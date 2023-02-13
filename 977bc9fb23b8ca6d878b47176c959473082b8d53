@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e9e5e03_eb2d0256",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-13T23:04:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4055266f_9e4684de",
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dac1202c_19913d45",
@@ -138,6 +156,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "903c9e4e_9aafb28e",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-13T23:04:24Z",
+      "side": 1,
+      "message": "Acknowledged; The intention here is to make mark the old targets with `_xml` suffix, then in a follow-up CL I\u0027ll delete those targets.",
+      "parentUuid": "e987b418_188fee0d",
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8802bb61_aaa87622",
@@ -155,6 +191,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d17ccdc4_92648e46",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-13T23:04:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8802bb61_aaa87622",
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b595257_8872ac35",
@@ -168,6 +222,24 @@
       "writtenOn": "2023-02-13T21:48:33Z",
       "side": 1,
       "message": "Inconsistency with comments. Please retain _stg and add _xml prefixes.",
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "963afcbb_120b2ada",
+        "filename": "kleaf/impl/abi/kernel_build_abi_dist.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-13T23:04:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b595257_8872ac35",
       "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
