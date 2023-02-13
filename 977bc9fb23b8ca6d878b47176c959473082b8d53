@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4055266f_9e4684de",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-02-13T21:48:33Z",
+      "side": 1,
+      "message": "Could you use `tools/bazel` instead of plain `bazel` here?",
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e987b418_188fee0d",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-02-13T21:48:33Z",
+      "side": 1,
+      "message": "Maybe rename this also to `_diff_executable_stg` to prevent forgetting to replace `_diff_executable` somewhere?",
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8802bb61_aaa87622",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-02-13T21:48:33Z",
+      "side": 1,
+      "message": "`name + \"_out_file\" if (abi_definition_stg or abi_definition_xml) else None`",
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b595257_8872ac35",
+        "filename": "kleaf/impl/abi/kernel_build_abi_dist.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-02-13T21:48:33Z",
+      "side": 1,
+      "message": "Inconsistency with comments. Please retain _stg and add _xml prefixes.",
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
