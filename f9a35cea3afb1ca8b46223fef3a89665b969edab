@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "030c0259_0b29c850",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-13T22:59:12Z",
+      "side": 1,
+      "message": "nit: This message is meaningful to us (Kleaf team), but for other developers that tries out targets on GKI, we should prompt them to `touch` necessary files.\n\nThis error message might need to be set on the common_kernels.bzl, though...\n\nEDIT: Or, just like the error message below, tell them to read `abi.md` for further instructions.",
+      "range": {
+        "startLine": 349,
+        "startChar": 18,
+        "endLine": 349,
+        "endChar": 88
+      },
+      "revId": "f9a35cea3afb1ca8b46223fef3a89665b969edab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
