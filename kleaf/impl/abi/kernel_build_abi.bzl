@@ -16,6 +16,7 @@
 
 load("//build/bazel_common_rules/exec:exec.bzl", "exec")
 load("//build/kernel/kleaf:update_source_file.bzl", "update_source_file")
+load("//build/kernel/kleaf:fail.bzl", "fail_rule")
 load(":abi/abi_diff.bzl", "abi_diff")
 load(":abi/abi_stgdiff.bzl", "stgdiff")
 load(":abi/abi_dump.bzl", "abi_dump")
@@ -336,6 +337,14 @@ def _not_define_abi_targets(
         **private_kwargs
     )
 
+    fail_rule(
+        name = name + "_update",
+        message = "{} and other ABI targets do not exist.\n".format(
+                      name + "_update",
+                  ) +
+                  "See kleaf/docs/abi.md for more information.",
+    )
+
 def _define_abi_targets(
         name,
         kernel_build,
@@ -546,6 +555,14 @@ def _define_abi_definition_targets(
             **kwargs
         )
         default_outputs.append(name + "_diff_executable_stg")
+
+        fail_rule(
+            name = name + "_update",
+            message = "{} target does not exist.\n".format(
+                          name + "_update",
+                      ) +
+                      "See kleaf/docs/abi.md for more information.",
+        )
     else:
         native.filegroup(
             name = name + "_out_file_stg",
