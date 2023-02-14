@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "852612a2_90909aff",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-14T08:37:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87b66ba9_3de391bb",
+      "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d9afbc4_9935f2a4",
@@ -207,6 +225,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f34aa21f_30d3b97d",
+        "filename": "kleaf/impl/cc_toolchain_config.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-14T08:37:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b54f6d7f_b33fa704",
+      "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a53b2e9c_d4247165",
@@ -238,6 +274,24 @@
       "side": 1,
       "message": "you mean L38? yes. I just need clang for this proof-of-concept,  and I\u0027ll resolve the other binaries in upcoming patchsets.",
       "parentUuid": "a53b2e9c_d4247165",
+      "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0390f5b_2da4ea1c",
+        "filename": "kleaf/impl/cc_toolchain_config.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-14T08:37:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "848ad2f0_3a3e9d23",
       "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
