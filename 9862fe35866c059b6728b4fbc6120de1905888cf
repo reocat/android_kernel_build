@@ -1,0 +1,88 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000038200457",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2328876?revision\u003d22",
+      "fixSuggestions": [
+        {
+          "fixId": "2bdbb933_8bb7a524",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/fake_rules_cc/cc/action_names.bzl",
+              "range": {
+                "startLine": 19,
+                "startChar": 0,
+                "endLine": 19,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "7636623a_201cd054",
+        "filename": "kleaf/impl/fake_rules_cc/cc/action_names.bzl",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-02-14T07:04:32Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/fake_rules_cc/cc/action_names.bzl` to format the file, or apply the suggested fix.",
+      "revId": "9862fe35866c059b6728b4fbc6120de1905888cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000038200457",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2328876?revision\u003d22",
+      "fixSuggestions": [
+        {
+          "fixId": "400deb98_97cbeb29",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/cc_testing/BUILD.bazel",
+              "range": {
+                "startLine": 72,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/tests/cc_testing/BUILD.bazel",
+              "range": {
+                "startLine": 78,
+                "startChar": 0,
+                "endLine": 78,
+                "endChar": 0
+              },
+              "replacement": "    ],\n    deps \u003d [\n        \"//prebuilts/kernel-build-tools:openssl_include\",\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "3051cd6c_31c89c03",
+        "filename": "kleaf/tests/cc_testing/BUILD.bazel",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-02-14T07:04:32Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/cc_testing/BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "9862fe35866c059b6728b4fbc6120de1905888cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
