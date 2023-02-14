@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fd4adf7_96f086c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-14T12:30:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f63228c6_87092dfc",
+      "revId": "49d86e59a48c06c6cfdac0a11b223d845a984681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed2cfd7d_3f528dbf",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-02-14T12:00:05Z",
       "side": 1,
       "message": "That always reminds me that this should rather go into the skylib:\n\nhttps://github.com/bazelbuild/bazel-skylib/tree/main/rules",
+      "revId": "49d86e59a48c06c6cfdac0a11b223d845a984681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e0612fe_a73a929f",
+        "filename": "kleaf/fail.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-14T12:30:00Z",
+      "side": 1,
+      "message": "Added to the list of pending rules to be upstreamed (http://b/247159475#comment3).",
+      "parentUuid": "ed2cfd7d_3f528dbf",
       "revId": "49d86e59a48c06c6cfdac0a11b223d845a984681",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
