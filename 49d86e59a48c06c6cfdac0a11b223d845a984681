@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f63228c6_87092dfc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-14T12:00:05Z",
+      "side": 1,
+      "message": "Before going too much into detail: Adding an ABI representation is done once a year for 2 branches (mostly at the same time) and by people that are familiar with the ABI monitoring. I wonder whether it is worth adding as much complexity for this case? Perhaps a minimal version would do? i.e. just spilling an error that the definition does not exist without making it a particularly nice error message? WDYT?",
+      "revId": "49d86e59a48c06c6cfdac0a11b223d845a984681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed2cfd7d_3f528dbf",
+        "filename": "kleaf/fail.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-14T12:00:05Z",
+      "side": 1,
+      "message": "That always reminds me that this should rather go into the skylib:\n\nhttps://github.com/bazelbuild/bazel-skylib/tree/main/rules",
+      "revId": "49d86e59a48c06c6cfdac0a11b223d845a984681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
