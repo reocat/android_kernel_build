@@ -16,6 +16,23 @@
       "message": "Rebased on top of master as http://aosp/2434273 produced a conflict. PTAL",
       "revId": "221682e0c215d93b2361fded56db31d6785fb7ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7f2e255_1c81d731",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-02-14T16:55:57Z",
+      "side": 1,
+      "message": "What happens to abi_definition_stg, why it is removed from this function, because kernel_build_abi is deprecated?",
+      "revId": "221682e0c215d93b2361fded56db31d6785fb7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
