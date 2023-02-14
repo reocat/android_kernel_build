@@ -18,6 +18,46 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d16961b4_6ee9cc18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-14T18:03:05Z",
+      "side": 1,
+      "message": "just nits, feel free to follow up later",
+      "revId": "221682e0c215d93b2361fded56db31d6785fb7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fb1ce67_d46a18a4",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-14T18:03:05Z",
+      "side": 1,
+      "message": "nit: abi_definition_stg?",
+      "range": {
+        "startLine": 11,
+        "startChar": 32,
+        "endLine": 11,
+        "endChar": 46
+      },
+      "revId": "221682e0c215d93b2361fded56db31d6785fb7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7f2e255_1c81d731",
@@ -49,6 +89,29 @@
       "side": 1,
       "message": "Yes, that\u0027s exactly why it was removed.",
       "parentUuid": "f7f2e255_1c81d731",
+      "revId": "221682e0c215d93b2361fded56db31d6785fb7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54b5f3be_7f8e62e8",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-14T18:03:05Z",
+      "side": 1,
+      "message": "nit: this should be `abi_definition_xml \u003d abi_definition` as well (This is just for printing error messages so nbd)",
+      "range": {
+        "startLine": 125,
+        "startChar": 12,
+        "endLine": 125,
+        "endChar": 43
+      },
       "revId": "221682e0c215d93b2361fded56db31d6785fb7ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
