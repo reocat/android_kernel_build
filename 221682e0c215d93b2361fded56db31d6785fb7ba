@@ -33,6 +33,24 @@
       "message": "What happens to abi_definition_stg, why it is removed from this function, because kernel_build_abi is deprecated?",
       "revId": "221682e0c215d93b2361fded56db31d6785fb7ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64fdfa2a_afeade2a",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-14T16:57:41Z",
+      "side": 1,
+      "message": "Yes, that\u0027s exactly why it was removed.",
+      "parentUuid": "f7f2e255_1c81d731",
+      "revId": "221682e0c215d93b2361fded56db31d6785fb7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
