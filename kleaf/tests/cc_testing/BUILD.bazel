@@ -1,4 +1,5 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
+load("//build/kernel/kleaf/impl:android_filegroup.bzl", "android_filegroup")
 
 _LINUX_X86_64 = [
     "@platforms//os:linux",
@@ -145,7 +146,8 @@ cc_binary(
     deps = [":mylib_android"],
 )
 
-filegroup(
+# Build with --config=hermetic_cc
+android_filegroup(
     name = "android_tests_internal",
     srcs = [
         ":hello_world_android",
@@ -156,7 +158,7 @@ filegroup(
     ],
 )
 
-# Build with one of --config=android_*
+# Build with --config=hermetic_cc
 build_test(
     name = "android_tests",
     targets = [
@@ -164,7 +166,7 @@ build_test(
     ],
 )
 
-# Build with one of --config=android_*
+# Build with --config=hermetic_cc
 build_test(
     name = "cc_testing",
     targets = [
