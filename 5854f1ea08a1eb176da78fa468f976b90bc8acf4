@@ -22,6 +22,30 @@
       },
       "revId": "5854f1ea08a1eb176da78fa468f976b90bc8acf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1160b4c_a82cdfd8",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-14T19:16:33Z",
+      "side": 1,
+      "message": "Right, I should have worked it in chain with http://aosp/2428072, hmm lets merge that first then I\u0027ll rebase this with the appropriate change.",
+      "parentUuid": "8f58fc9c_b282b890",
+      "range": {
+        "startLine": 340,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 5
+      },
+      "revId": "5854f1ea08a1eb176da78fa468f976b90bc8acf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
