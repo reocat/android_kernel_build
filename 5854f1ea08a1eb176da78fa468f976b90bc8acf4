@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f58fc9c_b282b890",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-14T17:56:09Z",
+      "side": 1,
+      "message": "These should go to L445 (the `not abi_definition\u003c_xml\u003e` branch), right? Otherwise there will be two of these targets defined if `define_abi_targets and not abi_definition_stg`, right?",
+      "range": {
+        "startLine": 340,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 5
+      },
+      "revId": "5854f1ea08a1eb176da78fa468f976b90bc8acf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
