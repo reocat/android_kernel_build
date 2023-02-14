@@ -76,6 +76,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c5c2aad_0569aa6e",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-14T00:16:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dac1202c_19913d45",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 21
+      },
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef163b1a_075b64d9",
@@ -89,6 +113,30 @@
       "writtenOn": "2023-02-13T22:52:07Z",
       "side": 1,
       "message": "This needs to be changed to:\n\n```\nabi_definition_xml \u003d abi_definition\n```",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 44
+      },
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a2063c1_21ada8b7",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-14T00:16:59Z",
+      "side": 1,
+      "message": "I think the one below does need the update (as it is expected now by `kernel_abi`) but this one no.",
+      "parentUuid": "ef163b1a_075b64d9",
       "range": {
         "startLine": 125,
         "startChar": 0,
@@ -122,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0195405_a1d40a20",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-14T00:16:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c144677_48bf6038",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 40
+      },
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c569b5c9_630a09a9",
@@ -135,6 +207,24 @@
       "writtenOn": "2023-02-13T22:52:07Z",
       "side": 1,
       "message": "Please send an newsletter for this change in case partners are doing out-of-tree ABI monitoring.",
+      "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81777ef1_c7ab8285",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-14T00:16:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c569b5c9_630a09a9",
       "revId": "977bc9fb23b8ca6d878b47176c959473082b8d53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
