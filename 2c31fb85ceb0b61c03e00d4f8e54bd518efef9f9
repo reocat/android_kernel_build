@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1188f199_ebe78644",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-14T17:05:59Z",
+      "side": 1,
+      "message": "Right approach for these kind of failures is to update the symbol list of the broken target and not reverting the check. As even build will pass but there will be runtime module loading error when symbol is being referenced.\n\n```\nThese symbols are missing from the symbol list and are not available at runtime for unsigned modules:\n  __sanitizer_cov_trace_pc\n```",
+      "revId": "2c31fb85ceb0b61c03e00d4f8e54bd518efef9f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
