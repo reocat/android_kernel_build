@@ -138,6 +138,7 @@ bool_flag(
 _config_values = (
     "local",
     "fast",
+    "hermetic_cc",
     "stamp",
     "release",
     "remote",
