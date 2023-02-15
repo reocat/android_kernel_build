@@ -46,6 +46,30 @@
       },
       "revId": "5854f1ea08a1eb176da78fa468f976b90bc8acf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f960e5e9_81578e8b",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-15T16:11:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1160b4c_a82cdfd8",
+      "range": {
+        "startLine": 340,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 5
+      },
+      "revId": "5854f1ea08a1eb176da78fa468f976b90bc8acf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
