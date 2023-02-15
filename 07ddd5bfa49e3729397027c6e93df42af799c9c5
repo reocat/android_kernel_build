@@ -16,6 +16,23 @@
       "message": "I think this will break when we are running the host tools from a different path. Is that the case, @ndesaulniers@google.com?",
       "revId": "07ddd5bfa49e3729397027c6e93df42af799c9c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f8e07d5_fdb8be85",
+        "filename": "_setup_env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2023-02-15T23:04:58Z",
+      "side": 1,
+      "message": "perhaps worth adding a comment why we intentionally omit ROOT_DIR for ldflags but not cflags or sysroot_flags?\n\nI don\u0027t feel strongly whether we use ROOT_DIR or not, but the inconsistency being introduced here is somewhat curious.",
+      "revId": "07ddd5bfa49e3729397027c6e93df42af799c9c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
