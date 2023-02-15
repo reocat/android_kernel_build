@@ -16,6 +16,24 @@
       "message": "just removing the error message does not actually make the fail go away in case there is a delta. This will still `exit 1`. what am I missing? How was this tested?",
       "revId": "82edeb8582ac0c28a863ac5ae4a61ad9de9117e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21b3acfb_3c6569e2",
+        "filename": "abi/compare_to_symbol_list",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-15T09:46:51Z",
+      "side": 0,
+      "message": "Note, `Test: TH` is not sufficient here unless there is a change in the same topic that enables the strict mode checking, as for example aosp/2426276.",
+      "parentUuid": "bd8cca74_4fab325c",
+      "revId": "82edeb8582ac0c28a863ac5ae4a61ad9de9117e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
