@@ -46,7 +46,5 @@ if [ -n "$delta" ]; then
 	echo "ERROR: Differences between ksymtab and symbol list detected!" >&2
 	echo "Symbols missing from ksymtab:" >&2
 	echo "$delta" | sed -n -e 's/^+/ - /p' >&2
-	echo "Symbols missing from symbol list:" >&2
-	echo "$delta" | sed -n -e 's/^-/ - /p' >&2
 	exit 1
 fi
