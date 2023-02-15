@@ -34,6 +34,24 @@
       "parentUuid": "bd8cca74_4fab325c",
       "revId": "82edeb8582ac0c28a863ac5ae4a61ad9de9117e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8ed568d_5cca6a83",
+        "filename": "abi/compare_to_symbol_list",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-15T19:09:58Z",
+      "side": 0,
+      "message": "Yes, you are right - there will always be a delta.\n\nI did not test this as it was just removal of the check and check here being the print messages; I have tested the replacement check.\n\nSo, what do you propose on how we handle this?\n\nFor the topic part, can 2 different owner put their CLs in the single topic?",
+      "parentUuid": "21b3acfb_3c6569e2",
+      "revId": "82edeb8582ac0c28a863ac5ae4a61ad9de9117e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
