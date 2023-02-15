@@ -192,6 +192,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bba646f6_8a01ea19",
+        "filename": "kleaf/impl/cc_toolchain_config.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-15T04:36:36Z",
+      "side": 1,
+      "message": "The \"get rid of _setup_env.sh\" part will need to be handled later. Put it more properly, I am going to make `kernel_build` (internally, `kernel_env`) to look up registered CC toolchains, and infer flags / binaries from the toolchains. Then, I can get rid of the logic in _setup_env.sh.\n\nFor now, unfortunately we\u0027ll just have to maintain two copies of these flags -- these (`prebuilts/clang/host/linux-x86/kleaf`) for `cc_binary` / `cc_library`s, and `_setup_env.sh` for `kernel_build` and hostprogs defined in `Kbuild`.\n\nBug 269380545 will track this work.",
+      "parentUuid": "0c1a98fe_2ebee234",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 49
+      },
+      "revId": "8ab7cf6c741a583761bee5087bcb0ea8a2c84270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b90222e_20e24525",
         "filename": "kleaf/impl/cc_toolchain_config.bzl",
         "patchSetId": 5
