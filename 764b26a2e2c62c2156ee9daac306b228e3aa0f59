@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c0e901b7_06e3289c",
+        "filename": "kleaf/tests/cc_testing/BUILD.bazel",
+        "patchSetId": 34
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-16T20:45:46Z",
+      "side": 1,
+      "message": "It is but I also want to explicitly \"build test\" for it",
+      "parentUuid": "0f6f4211_a6e87756",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 30
+      },
+      "revId": "764b26a2e2c62c2156ee9daac306b228e3aa0f59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "780d6780_fab26e26",
         "filename": "kleaf/tests/cc_testing/bin.c",
         "patchSetId": 34
