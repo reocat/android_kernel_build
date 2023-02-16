@@ -22,10 +22,39 @@ import os
 import sys
 
 
+_TRACE_POINT = '__tracepoint_'
+_TRACE_ITER = '__traceiter_'
+
+
 class Status(enum.Enum):
   UNKNOWN = 0
   ALLOWED = 1
   FORBIDDEN = 2
+
+
+def _validate_symbols(symbol_list, symbols):
+  """Validates Tracepoints consistenty in a given symbol list."""
+  missing_symbols = []
+  for symbol in symbols:
+    if not (symbol.startswith(_TRACE_POINT) or symbol.startswith(_TRACE_ITER)):
+      continue
+    if symbol.startswith(_TRACE_POINT):
+      other = symbol.replace(_TRACE_POINT, _TRACE_ITER)
+      if other not in symbols:
+        missing_symbols.append(other)
+    if symbol.startswith(_TRACE_ITER):
+      other = symbol.replace(_TRACE_ITER, _TRACE_POINT)
+      if other not in symbols:
+        missing_symbols.append(other)
+  if missing_symbols:
+    print(
+        'ERROR: Missing symbols: ',
+        missing_symbols,
+        'in list ',
+        os.path.basename(symbol_list),
+        file=sys.stderr,
+    )
+    sys.exit(1)
 
 
 def _read_config(allow_file, deny_file):
@@ -45,7 +74,7 @@ def _read_config(allow_file, deny_file):
         if len(fields) > 1:
           reason = fields[1]
         if symbol in config:
-          print(f'symbol \'{symbol}\' duplicate configuration', file=sys.stderr)
+          print(f"symbol '{symbol}' duplicate configuration", file=sys.stderr)
           continue
         config[symbol] = (status, reason)
 
@@ -57,13 +86,15 @@ def _read_config(allow_file, deny_file):
 
 def _read_symbol_lists(symbol_lists):
   """Reads libabigail symbol list files as a list of lines."""
-  lines = []
+  all_lines = []
   for symbol_list in symbol_lists:
     with open(symbol_list) as sl:
-      for line in sl:
-        lines.append(line)
+      lines = sl.readlines()
+    # validate symbols by file
+    _validate_symbols(symbol_list, _get_symbols(lines))
+    all_lines.extend(lines)
     # Separate files or at least protect against missing final newlines.
-    lines.append('\n')
+    all_lines.append('\n')
   return lines
 
 
@@ -95,18 +126,30 @@ def main():
   deny_file = os.path.join(dir, 'symbols.deny')
 
   parser = argparse.ArgumentParser()
-  parser.add_argument('symbol_lists', metavar='FILE', type=str, nargs='+',
-                      help='a symbol list file')
-  parser.add_argument('--in-dir', required=True,
-                      help='where to find the symbol list files')
-  parser.add_argument('--out-dir', required=True,
-                      help='where to put the combined symbol list and report')
-  parser.add_argument('--out-file', required=True,
-                      help='combined symbol list file name')
-  parser.add_argument('--report-file', required=True,
-                      help='symbol list report file name')
-  parser.add_argument('--verbose', action='store_true',
-                      help='increase verbosity of the output')
+  parser.add_argument(
+      'symbol_lists',
+      metavar='FILE',
+      type=str,
+      nargs='+',
+      help='a symbol list file',
+  )
+  parser.add_argument(
+      '--in-dir', required=True, help='where to find the symbol list files'
+  )
+  parser.add_argument(
+      '--out-dir',
+      required=True,
+      help='where to put the combined symbol list and report',
+  )
+  parser.add_argument(
+      '--out-file', required=True, help='combined symbol list file name'
+  )
+  parser.add_argument(
+      '--report-file', required=True, help='symbol list report file name'
+  )
+  parser.add_argument(
+      '--verbose', action='store_true', help='increase verbosity of the output'
+  )
 
   args = parser.parse_args()
 
@@ -119,6 +162,7 @@ def main():
   config = _read_config(allow_file, deny_file)
   lines = _read_symbol_lists(symbol_lists)
   symbols = _get_symbols(lines)
+
   report = _check_symbols(config, symbols)
 
   if args.verbose:
@@ -134,10 +178,11 @@ def main():
     for symbol, status, reason in report:
       rf.write(f'{symbol}\t{status.name}\t{reason}\n')
       if status == Status.FORBIDDEN:
-        print(f'symbol \'{symbol}\' is not allowed: {reason}', file=sys.stderr)
+        print(f"symbol '{symbol}' is not allowed: {reason}", file=sys.stderr)
         exit_status = 1
 
   return exit_status
+
 
 if __name__ == '__main__':
   sys.exit(main())
