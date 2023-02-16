@@ -70,6 +70,24 @@
       "parentUuid": "a8ed568d_5cca6a83",
       "revId": "82edeb8582ac0c28a863ac5ae4a61ad9de9117e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7d908f2_fe2a9827",
+        "filename": "abi/compare_to_symbol_list",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-16T18:12:12Z",
+      "side": 0,
+      "message": "This file will be removed and will be replaced by a python script to just verify the ksymtab.\n\nhttp://b/269346251#comment9",
+      "parentUuid": "59f0bfd3_571a6eb3",
+      "revId": "82edeb8582ac0c28a863ac5ae4a61ad9de9117e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
