@@ -91,6 +91,8 @@ def kernel_build(
         kconfig_ext = None,
         dtstree = None,
         kmi_symbol_list = None,
+        module_sig_key = None,
+        system_trusted_key = None,
         additional_kmi_symbol_lists = None,
         trim_nonlisted_kmi = None,
         kmi_symbol_list_strict_mode = None,
@@ -271,6 +273,12 @@ def kernel_build(
         kmi_symbol_list: A label referring to the main KMI symbol list file. See `additional_kmi_symbol_lists`.
 
           This is the Bazel equivalent of `ADDTIONAL_KMI_SYMBOL_LISTS`.
+        module_sig_key: A label referring to a module signing key.
+
+          This is to allow for dynamic setting of `CONFIG_MODULE_SIG_KEY` from Bazel.
+        system_trusted_key: A label referring to a trusted system key.
+
+          This is to allow for dynamic setting of `CONFIG_SYSTEM_TRUSTED_KEY` from Bazel.
         additional_kmi_symbol_lists: A list of labels referring to additional KMI symbol list files.
 
           This is the Bazel equivalent of `ADDTIONAL_KMI_SYMBOL_LISTS`.
@@ -417,6 +425,8 @@ def kernel_build(
         srcs = srcs,
         trim_nonlisted_kmi = trim_nonlisted_kmi,
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if all_kmi_symbol_lists else None,
+        module_sig_key = module_sig_key,
+        system_trusted_key = system_trusted_key,
         **internal_kwargs
     )
 
@@ -1512,6 +1522,14 @@ _kernel_build = rule(
         "kmi_symbol_list_strict_mode": attr.bool(),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
+            allow_single_file = True,
+        ),
+        "module_sig_key": attr.label(
+            doc = "Label to module signing key (signing_key.pem).",
+            allow_single_file = True,
+        ),
+        "system_trusted_key": attr.label(
+            doc = "Label to trusted system key (verity_key.pem)",
             allow_single_file = True,
         ),
         "collect_unstripped_modules": attr.bool(),
