@@ -76,6 +76,58 @@ def _determine_raw_symbollist_path(ctx):
     )
     return abspath
 
+def _determine_module_sig_key_path(ctx):
+    """A local action that stores the path to `signing_key.pem` to a file object."""
+
+    if not ctx.file.module_sig_key:
+        return None
+
+    abspath = ctx.actions.declare_file("{}/signing_key.pem".format(ctx.attr.name))
+    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+      # Record the absolute path so we can use in .config
+        readlink -e {signing_key} > {abspath}
+    """.format(
+        abspath = abspath.path,
+        signing_key = ctx.file.module_sig_key.path,
+    )
+    ctx.actions.run_shell(
+        command = command,
+        inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [ctx.file.module_sig_key],
+        outputs = [abspath],
+        mnemonic = "KernelConfigLocalSigningKey",
+        progress_message = "Determining signing key path for trimming {}".format(ctx.label),
+        execution_requirements = {
+            "local": "1",
+        },
+    )
+    return abspath
+
+def _determine_system_trusted_key_path(ctx):
+    """A local action that stores the path to `trusted_key.pem` to a file object."""
+
+    if not ctx.file.system_trusted_key:
+        return None
+
+    abspath = ctx.actions.declare_file("{}/trusted_key.pem".format(ctx.attr.name))
+    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+      # Record the absolute path so we can use in .config
+        readlink -e {trusted_key} > {abspath}
+    """.format(
+        abspath = abspath.path,
+        trusted_key = ctx.file.system_trusted_key.path,
+    )
+    ctx.actions.run_shell(
+        command = command,
+        inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [ctx.file.system_trusted_key],
+        outputs = [abspath],
+        mnemonic = "KernelConfigLocalTrustedKey",
+        progress_message = "Determining trusted key path for trimming {}".format(ctx.label),
+        execution_requirements = {
+            "local": "1",
+        },
+    )
+    return abspath
+
 def _config_gcov(ctx):
     """Return configs for GCOV.
 
@@ -163,6 +215,27 @@ def _config_trim(ctx):
     ]
     return struct(configs = configs, deps = [raw_symbol_list_path_file])
 
+def _config_keys(ctx):
+    module_sig_key_file = _determine_module_sig_key_path(ctx)
+    system_trusted_key_file = _determine_system_trusted_key_path(ctx)
+    configs = []
+    deps = []
+    if module_sig_key_file:
+        configs.append(_config.set_str(
+            "MODULE_SIG_KEY",
+            "$(cat {})".format(module_sig_key_file.path),
+        ))
+        deps.append(module_sig_key_file)
+
+    if system_trusted_key_file:
+        configs.append(_config.set_str(
+            "SYSTEM_TRUSTED_KEYS",
+            "$(cat {})".format(system_trusted_key_file.path),
+        ))
+        deps.append(system_trusted_key_file)
+
+    return struct(configs = configs, deps = deps)
+
 def _config_kasan(ctx):
     """Return configs for --kasan.
 
@@ -203,6 +276,7 @@ def _reconfig(ctx):
         _config_trim,
         _config_kasan,
         _config_gcov,
+        _config_keys,
         kgdb.get_scripts_config_args,
     ):
         pair = fn(ctx)
@@ -430,6 +504,14 @@ kernel_config = rule(
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
+            allow_single_file = True,
+        ),
+        "module_sig_key": attr.label(
+            doc = "Label to module signing key.",
+            allow_single_file = True,
+        ),
+        "system_trusted_key": attr.label(
+            doc = "Label to trusted system key.",
             allow_single_file = True,
         ),
         "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
