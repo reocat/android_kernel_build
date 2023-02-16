@@ -52,6 +52,24 @@
       "parentUuid": "21b3acfb_3c6569e2",
       "revId": "82edeb8582ac0c28a863ac5ae4a61ad9de9117e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f0bfd3_571a6eb3",
+        "filename": "abi/compare_to_symbol_list",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1959117
+      },
+      "writtenOn": "2023-02-16T01:18:48Z",
+      "side": 0,
+      "message": "Would moving the inverse of \"| sed -n -e \u0027s/^-/ - /p\u0027 \" to be part of line 43 work, to remove the \"missing\" symbols from $delta all together? The error moessage on line 46 would then be updated too, \"ERROR: Symbols missing from ksymtab detected!\" or something",
+      "parentUuid": "a8ed568d_5cca6a83",
+      "revId": "82edeb8582ac0c28a863ac5ae4a61ad9de9117e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
