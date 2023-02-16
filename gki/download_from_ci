@@ -50,6 +50,8 @@ ARM64_TARGETS = ["kernel_aarch64",
                  "u-boot_gem5_aarch64",
                  "u-boot_qemu_aarch64",
                  "u-boot_rockpi4"]
+RISCV64_TARGETS = ["kernel_riscv64",
+                   "u-boot_qemu_riscv64"]
 X86_64_TARGETS = ["kernel_x86_64",
                   "kernel_debug_x86_64",
                   "kernel_microdroid_x86_64",
@@ -236,10 +238,13 @@ def write_prebuilt_info(output_dir):
     json.dump({"kernel-build-id": _args.build_id}, prebuilt_info, indent=4)
     prebuilt_info.write("\n")
 
-def repackage_kernels(build_is_arm64, output_dir, version, suffix = ""):
+def repackage_kernels(build_is_x86_64, output_dir, version, suffix = ""):
   uncompressed_kernel = os.path.join(output_dir, "kernel-" + version + suffix)
   lz4_kernel = os.path.join(output_dir, "kernel-" + version + "-lz4" + suffix)
-  if build_is_arm64:
+  if build_is_x86_64:
+    shutil.move(os.path.join(output_dir, "bzImage"),
+              os.path.join(output_dir, "kernel-" + version + suffix))
+  else:
     shutil.move(os.path.join(output_dir, "Image"), uncompressed_kernel)
     # older platform versions did not need compressed kernels
     if not version in ["4.14"]:
@@ -249,10 +254,6 @@ def repackage_kernels(build_is_arm64, output_dir, version, suffix = ""):
                             shell=True)
       subprocess.check_call(["lz4", "-f", "-l", "-12", "--favor-decSpeed",
                             uncompressed_kernel, lz4_kernel])
-  else:
-    shutil.move(os.path.join(output_dir, "bzImage"),
-              os.path.join(output_dir, "kernel-" + version + suffix))
-
 
 def get_or_update_abi_definition(target, output_dir):
   url_base = BASE_URL.format(build_id=_args.build_id, target=target)
@@ -298,8 +299,8 @@ def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
   if not os.path.isdir(output_dir):
     os.mkdir(output_dir)
 
-  build_is_arm64 = target in ARM64_TARGETS
-  files = ["Image"] if build_is_arm64 else ["bzImage"]
+  build_is_x86_64 = target in X86_64_TARGETS
+  files = ["bzImage"] if build_is_x86_64 else ["Image"]
   files.append("System.map")
 
   if fetch_system_dlkm:
@@ -316,7 +317,7 @@ def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
               os.path.join(output_dir, "System.map" + suffix))
   else:
     suffix = ""
-  repackage_kernels(build_is_arm64, output_dir, version, suffix)
+  repackage_kernels(build_is_x86_64, output_dir, version, suffix)
 
   if fetch_system_dlkm:
     # Extract the tarball for system_dlkm image content
@@ -494,6 +495,16 @@ def update_androidx(output_dir, version):
   update_androidx_virtual_device_modules(gitlog, output_dir, version)
   update_androidx_cf(gitlog, output_dir, version)
 
+def update_android_mainline_cf(gitlog, output_dir):
+  cf_dir = os.path.join(output_dir, "device", "google", "cuttlefish_prebuilts",
+                        "kernel")
+  riscv64_cf_dir = os.path.join(cf_dir, "mainline-riscv64")
+  subprocess.check_call(["git", "rm", "-rf", riscv64_cf_dir], cwd=cf_dir)
+  download_kernel("kernel_virt_riscv64", "mainline", riscv64_cf_dir)
+  download_kernel_modules("kernel_virt_riscv64", riscv64_cf_dir)
+
+  commit_prebuilts(cf_dir, gitlog)
+
 def update_android_mainline(output_dir):
   arm64_dir = os.path.join(output_dir, "kernel", "prebuilts", "mainline",
                            "arm64")
@@ -510,6 +521,8 @@ def update_android_mainline(output_dir):
 
   gitlog = get_git_log(old_sha, new_sha)
   commit_prebuilts(arm64_dir, gitlog)
+
+  update_android_mainline_cf(gitlog, output_dir)
 
 def update_16k():
   url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_aarch64")
@@ -570,7 +583,7 @@ def download_u_boot(target, output_dir):
     extension = "elf"
   elif target == "u-boot_rockpi4":
     extension = "itb"
-  elif target in ARM_TARGETS + ARM64_TARGETS:
+  elif target in ARM_TARGETS + ARM64_TARGETS + RISCV64_TARGETS:
     extension = "bin"
   files = [f"u-boot.{extension}"]
   files.append("System.map")
@@ -604,6 +617,7 @@ def update_u_boot_mainline(output_dir):
   gem5_aarch64_dir = os.path.join(bootloader_dir, "gem5_aarch64")
   qemu_aarch64_dir = os.path.join(bootloader_dir, "qemu_aarch64")
   qemu_arm_dir = os.path.join(bootloader_dir, "qemu_arm")
+  qemu_riscv64_dir = os.path.join(bootloader_dir, "qemu_riscv64")
   qemu_x86_64_dir = os.path.join(bootloader_dir, "qemu_x86_64")
   rockpi_aarch64_dir = os.path.join(bootloader_dir, "rockpi_aarch64")
 
@@ -632,6 +646,9 @@ def update_u_boot_mainline(output_dir):
   if os.path.exists(qemu_arm_dir):
     subprocess.check_call(["git", "rm", "-rf", "*"], cwd=qemu_arm_dir)
     download_u_boot("u-boot_qemu_arm", qemu_arm_dir)
+  if os.path.exists(qemu_riscv64_dir):
+    subprocess.check_call(["git", "rm", "-rf", "*"], cwd=qemu_riscv64_dir)
+    download_u_boot("u-boot_qemu_riscv64", qemu_riscv64_dir)
   if os.path.exists(qemu_x86_64_dir):
     subprocess.check_call(["git", "rm", "-rf", "*"], cwd=qemu_x86_64_dir)
     download_u_boot("u-boot_qemu_x86_64", qemu_x86_64_dir)
