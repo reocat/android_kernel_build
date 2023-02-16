@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f6f4211_a6e87756",
+        "filename": "kleaf/tests/cc_testing/BUILD.bazel",
+        "patchSetId": 34
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-16T20:27:34Z",
+      "side": 1,
+      "message": "isn\u0027t this transitively added as a dependency?",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 30
+      },
+      "revId": "764b26a2e2c62c2156ee9daac306b228e3aa0f59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "780d6780_fab26e26",
+        "filename": "kleaf/tests/cc_testing/bin.c",
+        "patchSetId": 34
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-16T20:27:34Z",
+      "side": 1,
+      "message": "nit: missing return?",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 1
+      },
+      "revId": "764b26a2e2c62c2156ee9daac306b228e3aa0f59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c1dbc08_2593617a",
+        "filename": "kleaf/tests/cc_testing/openssl_client.c",
+        "patchSetId": 34
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-16T20:27:34Z",
+      "side": 1,
+      "message": "nit: missing return?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 1
+      },
+      "revId": "764b26a2e2c62c2156ee9daac306b228e3aa0f59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
