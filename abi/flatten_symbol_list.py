@@ -18,10 +18,15 @@
 import configparser
 import sys
 
+
+TRACE_POINT = '__tracepoint_'
+TRACE_ITER = '__traceiter_'
+
+
 def main():
     """Convert a KMI symbol list in libabigail format to a raw list."""
     if sys.stdin.isatty():
-        print("ERROR: missing KMI symbol list on the standard input")
+        print('ERROR: missing KMI symbol list on the standard input')
         return 1
 
     sl = configparser.ConfigParser(allow_no_value=True, strict=False)
@@ -32,7 +37,24 @@ def main():
     for section in (s for s in sl.sections() if s.endswith(('whitelist',
                                                             'symbol_list'))):
         ksyms.update(sl[section])
+
+    # Check for consistency
+    for symbol in ksyms:
+        if not symbol.startswith(TRACE_POINT) and not symbol.startswith(TRACE_ITER):
+            continue
+        if symbol.startswith(TRACE_POINT):
+            other = symbol.replace(TRACE_POINT, TRACE_ITER)
+            if other not in ksyms:
+                print('ERROR: Missing symbol: ', other, file=sys.stderr)
+                return 1
+        if symbol.startswith(TRACE_ITER):
+            other = symbol.replace(TRACE_ITER, TRACE_POINT)
+            if other not in ksyms:
+                print('ERROR: Missing symbol: ', other, file=sys.stderr)
+                return 1
+
     print('\n'.join(sorted(ksyms)))
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     sys.exit(main())
