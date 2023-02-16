@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2385085f_66d29fae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-16T20:26:40Z",
+      "side": 1,
+      "message": "This will break the build for sure:\n\n```\nUse --sandbox_debug to see verbose messages from the sandbox and retain the sandbox build root for debugging\nld.lld: error: unable to find library -lcrypto\nclang-16: error: linker command failed with exit code 1 (use -v to see invocation)\nmake[2]: *** [/\u003crepo\u003e/out/bazel/output_user_root/1b6b21355d7d8de5177bf0bcb725bd7f/sandbox/linux-sandbox/10/execroot/__main__/common/scripts/Makefile.host:111: scripts/sign-file] Error 1\n```",
+      "revId": "07ddd5bfa49e3729397027c6e93df42af799c9c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f8e07d5_fdb8be85",
