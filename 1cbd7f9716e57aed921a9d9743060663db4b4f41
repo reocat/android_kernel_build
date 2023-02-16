@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb16e826_4b09504f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-16T21:34:40Z",
+      "side": 1,
+      "message": "Hi John:\n\nThanks for the patch.\n\nThe reason we don\u0027t have this infrastructure as we don\u0027t support signing the vendor modules[1][2]. Can you explain why do you need this?\n\nWe need to make sure this doesn\u0027t pave a way for the vendor to bypass GKI modules feature as signed modules which can be verified using the kernel\u0027s key ring will have the unrestricted access to runtime.\n\nCR-1 until we know more.\n\n[1]: https://source.android.com/docs/core/architecture/kernel/loadable-kernel-modules#module-signing\n[2]: https://docs.partner.android.com/partners/guides/gki/whatsnew#2022-jan-21\n\nThanks,\nRamji",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
