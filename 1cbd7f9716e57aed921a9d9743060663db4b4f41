@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a62527b3_56ab71e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-02-17T22:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac9daf53_2979b802",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 14
+      },
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb16e826_4b09504f",
@@ -226,6 +250,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c62c05c_f3b8022a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-02-17T22:43:12Z",
+      "side": 1,
+      "message": "Thanks for the clarification. I\u0027ve updated the patch with code review suggestions but have not included any check for KMI/GKI per the discussion above.",
+      "parentUuid": "aaa9f31d_e36c67f5",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d696ae2_93ce703d",
@@ -243,6 +285,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa2d96fa_91ea7bf4",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-02-17T22:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d696ae2_93ce703d",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6de737e1_115511c7",
@@ -256,6 +316,30 @@
       "writtenOn": "2023-02-17T12:39:03Z",
       "side": 1,
       "message": "`module_sign_key` or `module_signing_key` would be my preferred choice as it more accurately describes what it is used for.",
+      "range": {
+        "startLine": 428,
+        "startChar": 8,
+        "endLine": 428,
+        "endChar": 22
+      },
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a172634_5523c499",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-02-17T22:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6de737e1_115511c7",
       "range": {
         "startLine": 428,
         "startChar": 8,
@@ -313,6 +397,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c31b86de_bf640971",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-02-17T22:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b5b051d_867f80b2",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 34
+      },
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4c82e3f_c298553e",
@@ -326,6 +434,24 @@
       "writtenOn": "2023-02-17T12:39:03Z",
       "side": 1,
       "message": "Can we de-duplicate this code by using a common helper function?",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f87381b7_80981d21",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-02-17T22:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4c82e3f_c298553e",
       "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -361,6 +487,24 @@
       "side": 1,
       "message": "yeah this is a KI that we don\u0027t have a path forward yet, so I would accept absolute paths for now.",
       "parentUuid": "ffe41362_71426e78",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec1a2ffa_c4ad25df",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-02-17T22:43:12Z",
+      "side": 1,
+      "message": "Added a note about this to the the function doc.",
+      "parentUuid": "f50e242c_c9de50f0",
       "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
