@@ -16,6 +16,24 @@
       "message": "Please reword this. I don\u0027t actually understand the second sentence. Also \"enforce\" has a typo.\n\nIt removes the check for the missing symbol from the\nsymbol list. Since this check is required to perform\nas long as there is a symbol list to enfoce correctness\nof the symbol list irrespective of the KMI strict mode.\nIt is performed by check_buildtime_symbol_protection.py",
       "revId": "3b777033dcfaf5745a6a7d2691f7d88782da21f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7ed2ee6_9fb8f8c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-17T19:23:04Z",
+      "side": 1,
+      "message": "Thanks. Updated Commit description (actually rewrote) to make it more clear to understand (or atleast I think so).\n\nChecked for typo in the google doc, hopefully there is none now.\n\nPTAL.",
+      "parentUuid": "bb3586d9_5241dff3",
+      "revId": "3b777033dcfaf5745a6a7d2691f7d88782da21f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
