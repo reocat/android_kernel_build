@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb3586d9_5241dff3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-02-17T09:35:18Z",
+      "side": 1,
+      "message": "Please reword this. I don\u0027t actually understand the second sentence. Also \"enforce\" has a typo.\n\nIt removes the check for the missing symbol from the\nsymbol list. Since this check is required to perform\nas long as there is a symbol list to enfoce correctness\nof the symbol list irrespective of the KMI strict mode.\nIt is performed by check_buildtime_symbol_protection.py",
+      "revId": "3b777033dcfaf5745a6a7d2691f7d88782da21f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
