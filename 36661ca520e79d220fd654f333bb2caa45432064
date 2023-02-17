@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ebdaaa1_52fe714a",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-17T23:32:51Z",
+      "side": 1,
+      "message": "_TRACE_POINT\n\nhttps://google.github.io/styleguide/pyguide.html#3164-guidelines-derived-from-guidos-recommendations",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 11
+      },
+      "revId": "36661ca520e79d220fd654f333bb2caa45432064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d41c7e5_9f355b6f",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-17T23:32:51Z",
+      "side": 1,
+      "message": "rather make this a docstring and add more details about the check?",
+      "revId": "36661ca520e79d220fd654f333bb2caa45432064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "960572c1_21fbe833",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-17T23:32:51Z",
+      "side": 1,
+      "message": "failing fast might not be the best strategy for actionable feedback to the user. Consider batching up all the missing symbols and report them together if any. That way the user can fix this problem entirely based on the first error message.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 19
+      },
+      "revId": "36661ca520e79d220fd654f333bb2caa45432064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23e6924a_a11d7387",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-17T23:32:51Z",
+      "side": 1,
+      "message": "the trailing underscore to disambiguate a second use case is a little hard to read.\n\nConsider\n\n```\n  all_lines \u003d []\n  for symbol_list in symbol_lists:\n    with open(symbol_list) as sl:\n      lines \u003d sl.readlines() \n    \n    # validate symbols by file\n    symbols \u003d _get_symbols(lines)\n    _validate_symbols(symbol_list, symbols)\n    \n    all_lines.extend(lines)\n    \n  # Separate files or at least protect against missing final newlines.\n  all_lines.append(\u0027\\n\u0027)\n```",
+      "range": {
+        "startLine": 95,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 10
+      },
+      "revId": "36661ca520e79d220fd654f333bb2caa45432064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81e4a642_d1b15177",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-17T23:32:51Z",
+      "side": 1,
+      "message": "generally I would prefer cleanups in separate changes. That reduces the cognitive load during review.",
+      "revId": "36661ca520e79d220fd654f333bb2caa45432064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
