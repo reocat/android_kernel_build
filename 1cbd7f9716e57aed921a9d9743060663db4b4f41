@@ -156,6 +156,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd303fba_e913c891",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-17T01:34:50Z",
+      "side": 1,
+      "message": "When you say \"non-GKI\", do you mean devices that doesn\u0027t use GKI, or device targets that uses GKI but not the GKI targets themselves? There are several types of \"targets\":\n\n- GKI: e.g. `//common:kernel_aarch64`\n- Devices using GKI, e.g. `//common-modules/virtual-device:virtual_device_aarch64`\n- Some targets that doesn\u0027t have a base kernel, e.g. `//common:fips140`\n- Some targets that does have a base kernel, but it is not GKI; e.g. a work-in-progress device that uses a staging kernel with some custom patches.",
+      "parentUuid": "be2ac3d7_a84aedcc",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd218ad9_c9cfe200",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 2
