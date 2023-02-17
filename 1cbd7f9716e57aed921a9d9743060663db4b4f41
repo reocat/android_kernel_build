@@ -345,6 +345,24 @@
       "message": "Note that by embedding the absolute (system) path into the binary, the resulting build becomes indeterministic and the path leaks into the binary. It can be discovered with `strings` or even by inspecting the kernel config from the binary.\n\nWe have a similar issue with `CONFIG_UNUSED_KSYMS_WHITELIST` where we leak an absolute path into the binary. That we need to address as well.",
       "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f50e242c_c9de50f0",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-17T19:04:00Z",
+      "side": 1,
+      "message": "yeah this is a KI that we don\u0027t have a path forward yet, so I would accept absolute paths for now.",
+      "parentUuid": "ffe41362_71426e78",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
