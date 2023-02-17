@@ -57,7 +57,7 @@ def _determine_raw_symbollist_path(ctx):
     # NOTE: This may hurt remote caching for developer builds. We may want to
     # re-visit this when we implement remote caching for developers.
     abspath = ctx.actions.declare_file("{}/abi_symbollist.raw.abspath".format(ctx.attr.name))
-    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+    command = ctx.attr._hermetic_tools[0][HermeticToolsInfo].setup + """
       # Record the absolute path so we can use in .config
         readlink -e {raw_kmi_symbol_list} > {abspath}
     """.format(
@@ -66,7 +66,7 @@ def _determine_raw_symbollist_path(ctx):
     )
     ctx.actions.run_shell(
         command = command,
-        inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [ctx.file.raw_kmi_symbol_list],
+        inputs = ctx.attr._hermetic_tools[0][HermeticToolsInfo].deps + [ctx.file.raw_kmi_symbol_list],
         outputs = [abspath],
         mnemonic = "KernelConfigLocalRawSymbolList",
         progress_message = "Determining raw symbol list path for trimming {}".format(ctx.label),
@@ -238,18 +238,18 @@ def _kernel_config_impl(ctx):
     reconfig = _reconfig(ctx)
     inputs += reconfig.deps
 
-    tools = [] + ctx.attr.env[KernelEnvInfo].dependencies
+    tools = [] + ctx.attr.env[0][KernelEnvInfo].dependencies
 
     cache_dir_step = cache_dir.get_step(
         ctx = ctx,
-        common_config_tags = ctx.attr.env[KernelEnvAttrInfo].common_config_tags,
+        common_config_tags = ctx.attr.env[0][KernelEnvAttrInfo].common_config_tags,
         symlink_name = "config",
     )
     inputs += cache_dir_step.inputs
     outputs += cache_dir_step.outputs
     tools += cache_dir_step.tools
 
-    command = ctx.attr.env[KernelEnvInfo].setup + """
+    command = ctx.attr.env[0][KernelEnvInfo].setup + """
           {cache_dir_cmd}
         # Pre-defconfig commands
           eval ${{PRE_DEFCONFIG_CMDS}}
@@ -290,7 +290,7 @@ def _kernel_config_impl(ctx):
         outputs = outputs,
         tools = tools,
         progress_message = "Creating kernel config {}{}".format(
-            ctx.attr.env[KernelEnvAttrInfo].progress_message_note,
+            ctx.attr.env[0][KernelEnvAttrInfo].progress_message_note,
             ctx.label,
         ),
         command = command,
@@ -320,9 +320,9 @@ def _kernel_config_impl(ctx):
         get_setup_script = _env_and_outputs_get_setup_script,
         # TODO(b/263385781): Split KernelEnvInfo.dependencies
         tools = depset(),
-        inputs = depset(ctx.attr.env[KernelEnvInfo].dependencies + post_setup_deps),
+        inputs = depset(ctx.attr.env[0][KernelEnvInfo].dependencies + post_setup_deps),
         data = struct(
-            pre_setup = ctx.attr.env[KernelEnvInfo].setup,
+            pre_setup = ctx.attr.env[0][KernelEnvInfo].setup,
             post_setup = post_setup,
         ),
     )
@@ -331,9 +331,9 @@ def _kernel_config_impl(ctx):
 
     return [
         env_and_outputs_info,
-        ctx.attr.env[KernelEnvAttrInfo],
+        ctx.attr.env[0][KernelEnvAttrInfo],
         KernelBuildOriginalEnvInfo(
-            env_info = ctx.attr.env[KernelEnvInfo],
+            env_info = ctx.attr.env[0][KernelEnvInfo],
         ),
         DefaultInfo(
             files = depset([out_dir]),
@@ -367,7 +367,7 @@ def _get_config_script(ctx):
     script = """
           cd ${BUILD_WORKSPACE_DIRECTORY}
     """
-    script += ctx.attr.env[KernelEnvInfo].setup
+    script += ctx.attr.env[0][KernelEnvInfo].setup
 
     # TODO(b/254348147): Support ncurses for hermetic tools
     script += """
@@ -400,7 +400,7 @@ def _get_config_script(ctx):
         is_executable = True,
     )
 
-    runfiles = ctx.runfiles(ctx.attr.env[KernelEnvInfo].dependencies)
+    runfiles = ctx.runfiles(ctx.attr.env[0][KernelEnvInfo].dependencies)
 
     return struct(
         executable = executable,
@@ -426,14 +426,29 @@ kernel_config = rule(
             mandatory = True,
             providers = [KernelEnvInfo, KernelEnvAttrInfo],
             doc = "environment target that defines the kernel build environment",
+            # All deps of kernel_config unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
-        "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
+        "srcs": attr.label_list(
+            mandatory = True,
+            doc = "kernel sources",
+            allow_files = True,
+            # All deps of kernel_config unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
+            # All deps of kernel_config unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
         "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
-        "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
+        "_hermetic_tools": attr.label(
+            default = "//build/kernel:hermetic-tools",
+            providers = [HermeticToolsInfo],
+            # All deps of kernel_config unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
