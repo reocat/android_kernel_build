@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7069fc3_ee61e232",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-17T00:25:47Z",
+      "side": 1,
+      "message": "Implementation is okay from Kleaf\u0027s perspective. Policy-wise, Ramji has the authority here. I\u0027ll leave this to Ramji.",
+      "parentUuid": "a6816cc7_30542519",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd218ad9_c9cfe200",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 2
