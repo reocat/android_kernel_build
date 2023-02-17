@@ -15,6 +15,7 @@
 """Utilities for determining the value of base_kernel."""
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
 load(
     ":common_providers.bzl",
     "GcovInfo",
@@ -42,6 +43,7 @@ def _base_kernel_non_config_attrs():
                 KernelBuildAbiInfo,
                 GcovInfo,
             ],
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
     }
 
