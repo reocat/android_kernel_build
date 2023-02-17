@@ -36,20 +36,20 @@ def _modules_prepare_impl(ctx):
 
     outputs = [ctx.outputs.outdir_tar_gz]
 
-    transitive_tools.append(ctx.attr.config[KernelEnvAndOutputsInfo].tools)
-    transitive_inputs.append(ctx.attr.config[KernelEnvAndOutputsInfo].inputs)
+    transitive_tools.append(ctx.attr.config[0][KernelEnvAndOutputsInfo].tools)
+    transitive_inputs.append(ctx.attr.config[0][KernelEnvAndOutputsInfo].inputs)
 
     cache_dir_step = cache_dir.get_step(
         ctx = ctx,
-        common_config_tags = ctx.attr.config[KernelEnvAttrInfo].common_config_tags,
+        common_config_tags = ctx.attr.config[0][KernelEnvAttrInfo].common_config_tags,
         symlink_name = "modules_prepare",
     )
     inputs += cache_dir_step.inputs
     outputs += cache_dir_step.outputs
     tools += cache_dir_step.tools
 
-    command = ctx.attr.config[KernelEnvAndOutputsInfo].get_setup_script(
-        data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
+    command = ctx.attr.config[0][KernelEnvAndOutputsInfo].get_setup_script(
+        data = ctx.attr.config[0][KernelEnvAndOutputsInfo].data,
         restore_out_dir_cmd = cache_dir_step.cmd,
     )
     command += """
@@ -72,7 +72,7 @@ def _modules_prepare_impl(ctx):
         outputs = outputs,
         tools = depset(tools, transitive = transitive_tools),
         progress_message = "Preparing for module build {}{}".format(
-            ctx.attr.config[KernelEnvAttrInfo].progress_message_note,
+            ctx.attr.config[0][KernelEnvAttrInfo].progress_message_note,
             ctx.label,
         ),
         command = command,
@@ -91,11 +91,11 @@ def _modules_prepare_impl(ctx):
             get_setup_script = _env_and_outputs_info_get_setup_script,
             inputs = depset(
                 [ctx.outputs.outdir_tar_gz],
-                transitive = [ctx.attr.config[KernelEnvAndOutputsInfo].inputs],
+                transitive = [ctx.attr.config[0][KernelEnvAndOutputsInfo].inputs],
             ),
-            tools = ctx.attr.config[KernelEnvAndOutputsInfo].tools,
+            tools = ctx.attr.config[0][KernelEnvAndOutputsInfo].tools,
             data = struct(
-                config_env_and_outputs_info = ctx.attr.config[KernelEnvAndOutputsInfo],
+                config_env_and_outputs_info = ctx.attr.config[0][KernelEnvAndOutputsInfo],
                 restore_outputs_cmd = restore_outputs_cmd,
             ),
         ),
@@ -124,8 +124,17 @@ modules_prepare = rule(
             mandatory = True,
             providers = [KernelEnvAttrInfo, KernelEnvAndOutputsInfo],
             doc = "the kernel_config target",
+            # All deps of modules_prepare unsets trim_nonlisted_kmi_setting.
+            # kernel_config calculates trim_nonlisted_kmi_setting on its own.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
-        "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
+        "srcs": attr.label_list(
+            mandatory = True,
+            doc = "kernel sources",
+            allow_files = True,
+            # All deps of modules_prepare unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
         "outdir_tar_gz": attr.output(
             mandatory = True,
             doc = "the packaged ${OUT_DIR} files",
