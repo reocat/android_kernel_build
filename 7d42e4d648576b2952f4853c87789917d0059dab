@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b803a8b5_73ad02a8",
+        "filename": "build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-02-17T22:42:29Z",
+      "side": 1,
+      "message": "There is one risk here which is the GKI artifacts could get modified during the device kernel build pass. Would it be worth copying over the core kernel artifacts  again at the end of this script? Or maybe using GKI_DIST_DIR when packaging the boot.img?",
+      "range": {
+        "startLine": 547,
+        "startChar": 0,
+        "endLine": 547,
+        "endChar": 65
+      },
+      "revId": "7d42e4d648576b2952f4853c87789917d0059dab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
