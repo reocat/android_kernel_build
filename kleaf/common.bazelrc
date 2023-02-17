@@ -18,6 +18,9 @@ build --experimental_strict_action_env
 # By default, output all the logs to stdout/stderr by disabling the console limit
 build --experimental_ui_max_stdouterr_bytes=-1
 
+# Add flag to make the Linux sandbox work under /tmp
+build --incompatible_sandbox_hermetic_tmp
+
 # Show the full set of flags for observability and debuggability.
 # common --announce_rc
 
