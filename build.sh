@@ -540,6 +540,13 @@ if [ -n "${GKI_BUILD_CONFIG}" ]; then
 
   # Dist dir must have vmlinux.symvers, modules.builtin.modinfo, modules.builtin
   MAKE_ARGS+=("KBUILD_MIXED_TREE=$(readlink -m ${GKI_DIST_DIR})")
+
+  if [ -d "${GKI_DIST_DIR}" ]; then
+    echo "========================================================"
+    echo " Copying files from GKI kernel"
+    mkdir -p ${DIST_DIR} && cp -rv ${GKI_DIST_DIR}/* ${DIST_DIR}/
+    GKI_DIST_DIR=
+  fi
 else
   rm -f ${OLD_ENVIRONMENT}
 fi
@@ -977,12 +984,6 @@ if [ "${GENERATE_VMLINUX_BTF}" = "1" ]; then
     llvm-strip --strip-debug vmlinux.btf
   )
 
-fi
-
-if [ -n "${GKI_DIST_DIR}" ]; then
-  echo "========================================================"
-  echo " Copying files from GKI kernel"
-  cp -rv ${GKI_DIST_DIR}/* ${DIST_DIR}/
 fi
 
 if [ -n "${DIST_CMDS}" ]; then
