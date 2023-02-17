@@ -16,6 +16,24 @@
       "message": "I wonder whether build/kernel/abi/process_symbols.py is actually a better place to do this. There are already checks in place.\n\nMost importantly build/kernel/abi/process_symbols.py looks at symbol lists individually. Hence it can detect if a symbol list is not self-consistent. The traceiter/tracepoint pairs need to be added per symbol list.",
       "revId": "a7c953bb9934bf4772775462e777e9656f926358",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "998fd41b_f4944406",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-17T18:08:29Z",
+      "side": 1,
+      "message": "Done, you are right, checking the sum of all lists might hide individual inconsistencies. Thank you for spotting it.",
+      "parentUuid": "9c96d6ce_4ec3ffc1",
+      "revId": "a7c953bb9934bf4772775462e777e9656f926358",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
