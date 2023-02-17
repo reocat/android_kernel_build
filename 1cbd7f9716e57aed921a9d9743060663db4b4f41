@@ -52,6 +52,46 @@
       "parentUuid": "3379088c_3a8da91c",
       "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f123bed_11d76532",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-17T00:23:20Z",
+      "side": 1,
+      "message": "LGTM implementation-wise. Ramji / John, please discuss in the bug to seek agreement in this issue.",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd218ad9_c9cfe200",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-17T00:23:20Z",
+      "side": 1,
+      "message": "nit: could you please refactor the code to deduplicate the logic with _determine_raw_symbollist_path? This helps not duplicating the chunk L40~L58.",
+      "range": {
+        "startLine": 79,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 34
+      },
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
