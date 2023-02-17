@@ -552,7 +552,7 @@ def _path_or_empty(file):
 def _progress_message_suffix(ctx):
     """Returns suffix for all progress messages for kernel_build."""
     return "{}{}".format(
-        ctx.attr.config[KernelEnvAttrInfo].progress_message_note,
+        ctx.attr.config[0][KernelEnvAttrInfo].progress_message_note,
         ctx.label,
     )
 
@@ -570,7 +570,7 @@ def _create_kbuild_mixed_tree(ctx):
         kbuild_mixed_tree = ctx.actions.declare_directory("{}_kbuild_mixed_tree".format(ctx.label.name))
         outputs = [kbuild_mixed_tree]
         base_kernel_files = base_kernel_utils.get_base_kernel(ctx)[KernelBuildMixedTreeInfo].files
-        kbuild_mixed_tree_command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+        kbuild_mixed_tree_command = ctx.attr._hermetic_tools[0][HermeticToolsInfo].setup + """
           # Restore GKI artifacts for mixed build
             export KBUILD_MIXED_TREE=$(realpath {kbuild_mixed_tree})
             rm -rf ${{KBUILD_MIXED_TREE}}
@@ -585,7 +585,7 @@ def _create_kbuild_mixed_tree(ctx):
         debug.print_scripts(ctx, kbuild_mixed_tree_command, what = "kbuild_mixed_tree")
         ctx.actions.run_shell(
             mnemonic = "KernelBuildKbuildMixedTree",
-            inputs = depset(ctx.attr._hermetic_tools[HermeticToolsInfo].deps, transitive = [base_kernel_files]),
+            inputs = depset(ctx.attr._hermetic_tools[0][HermeticToolsInfo].deps, transitive = [base_kernel_files]),
             outputs = [kbuild_mixed_tree],
             progress_message = "Creating KBUILD_MIXED_TREE {}".format(_progress_message_suffix(ctx)),
             command = kbuild_mixed_tree_command,
@@ -853,7 +853,7 @@ def _get_grab_symtypes_step(ctx):
     """
     grab_symtypes_cmd = ""
     outputs = []
-    if ctx.attr.config[KernelEnvAttrInfo].kbuild_symtypes:
+    if ctx.attr.config[0][KernelEnvAttrInfo].kbuild_symtypes:
         symtypes_dir = ctx.actions.declare_directory("{name}/symtypes".format(name = ctx.label.name))
         outputs.append(symtypes_dir)
         grab_symtypes_cmd = """
@@ -1007,7 +1007,7 @@ def _build_main_action(
     interceptor_step = _get_interceptor_step(ctx)
     cache_dir_step = cache_dir.get_step(
         ctx = ctx,
-        common_config_tags = ctx.attr.config[KernelEnvAttrInfo].common_config_tags,
+        common_config_tags = ctx.attr.config[0][KernelEnvAttrInfo].common_config_tags,
         symlink_name = "build",
     )
     grab_intree_modules_step = _get_grab_intree_modules_step(
@@ -1053,8 +1053,8 @@ def _build_main_action(
         module_strip_flag += "1"
 
     # Build the command for the main action.
-    command = ctx.attr.config[KernelEnvAndOutputsInfo].get_setup_script(
-        data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
+    command = ctx.attr.config[0][KernelEnvAndOutputsInfo].get_setup_script(
+        data = ctx.attr.config[0][KernelEnvAndOutputsInfo].data,
         restore_out_dir_cmd = cache_dir_step.cmd,
     )
     command += """
@@ -1134,7 +1134,7 @@ def _build_main_action(
     transitive_inputs = [target.files for target in ctx.attr.srcs]
     transitive_inputs += [target.files for target in ctx.attr.deps]
     transitive_inputs.append(
-        ctx.attr.config[KernelEnvAndOutputsInfo].inputs,
+        ctx.attr.config[0][KernelEnvAndOutputsInfo].inputs,
     )
     inputs = [] + check_toolchain_outs
     inputs += kbuild_mixed_tree_ret.outputs
@@ -1146,7 +1146,7 @@ def _build_main_action(
         ctx.executable._search_and_cp_output,
     ]
     transitive_tools = [
-        ctx.attr.config[KernelEnvAndOutputsInfo].tools,
+        ctx.attr.config[0][KernelEnvAndOutputsInfo].tools,
     ]
     for step in steps:
         tools += step.tools
@@ -1266,12 +1266,12 @@ def _create_infos(
     env_and_outputs_info_setup_restore_outputs += kbuild_mixed_tree_ret.cmd
 
     env_and_outputs_info = _create_env_and_outputs_info(
-        pre_info = ctx.attr.config[KernelEnvAndOutputsInfo],
+        pre_info = ctx.attr.config[0][KernelEnvAndOutputsInfo],
         restore_outputs_cmd_deps = env_and_outputs_info_dependencies,
         restore_outputs_cmd = env_and_outputs_info_setup_restore_outputs,
     )
 
-    orig_env_info = ctx.attr.config[KernelBuildOriginalEnvInfo]
+    orig_env_info = ctx.attr.config[0][KernelBuildOriginalEnvInfo]
 
     kernel_build_info = KernelBuildInfo(
         out_dir_kernel_headers_tar = main_action_ret.out_dir_kernel_headers_tar,
@@ -1309,14 +1309,14 @@ def _create_infos(
 
     # For kernel_module()
     ext_mod_env_and_outputs_info = _create_env_and_outputs_info(
-        pre_info = ctx.attr.modules_prepare[KernelEnvAndOutputsInfo],
+        pre_info = ctx.attr.modules_prepare[0][KernelEnvAndOutputsInfo],
         restore_outputs_cmd_deps = ext_mod_env_and_outputs_info_deps,
         restore_outputs_cmd = ext_mod_env_and_outputs_info_setup_restore_outputs,
     )
 
     # For kernel_modules_install()
     ext_modinst_env_and_outputs_info = _create_env_and_outputs_info(
-        pre_info = ctx.attr.modules_prepare[KernelEnvAndOutputsInfo],
+        pre_info = ctx.attr.modules_prepare[0][KernelEnvAndOutputsInfo],
         restore_outputs_cmd_deps = env_and_outputs_info_dependencies,
         restore_outputs_cmd = env_and_outputs_info_setup_restore_outputs,
     )
@@ -1334,7 +1334,7 @@ def _create_infos(
     kernel_uapi_depsets = []
     if base_kernel_utils.get_base_kernel(ctx):
         kernel_uapi_depsets.append(base_kernel_utils.get_base_kernel(ctx)[KernelBuildUapiInfo].kernel_uapi_headers)
-    kernel_uapi_depsets.append(ctx.attr.kernel_uapi_headers.files)
+    kernel_uapi_depsets.extend([target.files for target in ctx.attr.kernel_uapi_headers])
     kernel_build_uapi_info = KernelBuildUapiInfo(
         kernel_uapi_headers = depset(transitive = kernel_uapi_depsets, order = "postorder"),
     )
@@ -1407,7 +1407,7 @@ def _create_infos(
         in_tree_modules_info,
         images_info,
         gcov_info,
-        ctx.attr.config[KernelEnvAttrInfo],
+        ctx.attr.config[0][KernelEnvAttrInfo],
         output_group_info,
         default_info,
     ]
@@ -1483,8 +1483,17 @@ _kernel_build = rule(
             providers = [KernelEnvAndOutputsInfo, KernelEnvAttrInfo],
             aspects = [kernel_toolchain_aspect],
             doc = "the kernel_config target",
+            # All deps of kernel_build unsets trim_nonlisted_kmi_setting.
+            # kernel_config calculates trim_nonlisted_kmi_setting on its own.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
-        "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
+        "srcs": attr.label_list(
+            mandatory = True,
+            doc = "kernel sources",
+            allow_files = True,
+            # All deps of kernel_build unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
         "outs": attr.string_list(),
         "module_outs": attr.string_list(doc = "output *.ko files"),
         "internal_outs": attr.string_list(doc = "Like `outs`, but not in dist"),
@@ -1508,11 +1517,15 @@ _kernel_build = rule(
         ),
         "deps": attr.label_list(
             allow_files = True,
+            # All deps of kernel_build unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
         "kmi_symbol_list_strict_mode": attr.bool(),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
+            # All deps of kernel_build unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
         "collect_unstripped_modules": attr.bool(),
         "enable_interceptor": attr.bool(),
@@ -1521,7 +1534,12 @@ _kernel_build = rule(
             executable = True,
             cfg = "exec",
         ),
-        "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
+        "_hermetic_tools": attr.label(
+            default = "//build/kernel:hermetic-tools",
+            providers = [HermeticToolsInfo],
+            # All deps of kernel_build unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
         "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
@@ -1531,11 +1549,28 @@ _kernel_build = rule(
         # dependencies so KernelBuildExtModuleInfo and KernelBuildUapiInfo works.
         # There are no real dependencies. Bazel does not build these targets before building the
         # `_kernel_build` target.
-        "modules_prepare": attr.label(providers = [KernelEnvAndOutputsInfo]),
-        "kernel_uapi_headers": attr.label(),
-        "combined_abi_symbollist": attr.label(allow_single_file = True, doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`."),
+        "modules_prepare": attr.label(
+            providers = [KernelEnvAndOutputsInfo],
+            # All deps of kernel_build unsets trim_nonlisted_kmi_setting.
+            # modules_prepare calculates trim_nonlisted_kmi_setting on its own.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
+        "kernel_uapi_headers": attr.label(
+            # All deps of kernel_build unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
+        "combined_abi_symbollist": attr.label(
+            allow_single_file = True,
+            doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`.",
+            # All deps of kernel_build unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
         "strip_modules": attr.bool(default = False, doc = "if set, debug information won't be kept for distributed modules.  Note, modules will still be stripped when copied into the ramdisk."),
-        "src_kmi_symbol_list": attr.label(allow_single_file = True),
+        "src_kmi_symbol_list": attr.label(
+            allow_single_file = True,
+            # All deps of kernel_build unsets trim_nonlisted_kmi_setting.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
@@ -1556,7 +1591,7 @@ def _kernel_build_check_toolchain(ctx):
     if not base_kernel:
         return []
 
-    this_toolchain = ctx.attr.config[KernelToolchainInfo].toolchain_version
+    this_toolchain = ctx.attr.config[0][KernelToolchainInfo].toolchain_version
     base_toolchain = utils.getoptattr(base_kernel[KernelToolchainInfo], "toolchain_version")
     base_toolchain_file = utils.getoptattr(base_kernel[KernelToolchainInfo], "toolchain_version_file")
 
@@ -1605,7 +1640,7 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
             base_kernel = base_kernel.label,
             base_toolchain = base_toolchain,
         )
-        command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+        command = ctx.attr._hermetic_tools[0][HermeticToolsInfo].setup + """
                 # Check toolchain_version against base kernel
                   if ! diff <(cat {base_toolchain_file}) <(echo "{this_toolchain}") > /dev/null; then
                     echo "{msg}" >&2
@@ -1622,7 +1657,7 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
         debug.print_scripts(ctx, command, what = "check_toolchain")
         ctx.actions.run_shell(
             mnemonic = "KernelBuildCheckToolchain",
-            inputs = [base_toolchain_file] + ctx.attr._hermetic_tools[HermeticToolsInfo].deps,
+            inputs = [base_toolchain_file] + ctx.attr._hermetic_tools[0][HermeticToolsInfo].deps,
             outputs = [out],
             command = command,
             progress_message = "Checking toolchain version against base kernel {}".format(_progress_message_suffix(ctx)),
@@ -1631,7 +1666,7 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
     return []
 
 def _kernel_build_dump_toolchain_version(ctx):
-    this_toolchain = ctx.attr.config[KernelToolchainInfo].toolchain_version
+    this_toolchain = ctx.attr.config[0][KernelToolchainInfo].toolchain_version
     out = ctx.actions.declare_file("{}_toolchain_version/{}".format(ctx.attr.name, TOOLCHAIN_VERSION_FILENAME))
     ctx.actions.write(
         output = out,
@@ -1667,14 +1702,14 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
         ctx.file.raw_kmi_symbol_list,
         all_module_names_file,
     ]
-    transitive_inputs = [ctx.attr.config[KernelEnvAndOutputsInfo].inputs]
+    transitive_inputs = [ctx.attr.config[0][KernelEnvAndOutputsInfo].inputs]
     tools = [ctx.executable._compare_to_symbol_list]
-    transitive_tools = [ctx.attr.config[KernelEnvAndOutputsInfo].tools]
+    transitive_tools = [ctx.attr.config[0][KernelEnvAndOutputsInfo].tools]
 
     out = ctx.actions.declare_file("{}_kmi_strict_out/kmi_symbol_list_strict_mode_checked".format(ctx.attr.name))
 
-    command = ctx.attr.config[KernelEnvAndOutputsInfo].get_setup_script(
-        data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
+    command = ctx.attr.config[0][KernelEnvAndOutputsInfo].get_setup_script(
+        data = ctx.attr.config[0][KernelEnvAndOutputsInfo].data,
         restore_out_dir_cmd = utils.get_check_sandbox_cmd(),
     )
     command += """
@@ -1728,7 +1763,7 @@ def _repack_modules_staging_archive(
     # Re-package module_staging_dir to also include the one from base_kernel.
     # Pick ko files only from base_kernel, while keeping all depmod files from self.
     modules_staging_dir = modules_staging_archive.dirname + "/staging"
-    cmd = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+    cmd = ctx.attr._hermetic_tools[0][HermeticToolsInfo].setup + """
         mkdir -p {modules_staging_dir}
         tar xf {self_archive} -C {modules_staging_dir}
 
@@ -1759,7 +1794,7 @@ def _repack_modules_staging_archive(
             all_module_basenames_file,
         ],
         outputs = [modules_staging_archive],
-        tools = ctx.attr._hermetic_tools[HermeticToolsInfo].deps,
+        tools = ctx.attr._hermetic_tools[0][HermeticToolsInfo].deps,
         progress_message = "Repackaging module_staging_archive {}".format(_progress_message_suffix(ctx)),
         command = cmd,
     )
