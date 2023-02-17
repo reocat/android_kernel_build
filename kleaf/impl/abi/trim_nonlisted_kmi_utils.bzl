@@ -31,7 +31,7 @@ def _trim_nonlisted_kmi_transition_impl(settings, attr):
     attr_val = attr.trim_nonlisted_kmi
 
     if setting == TRIM_NONLISTED_KMI_SETTING_VALUES.unknown:
-        if attr_val:
+        if attr_val == TRIM_NONLISTED_KMI_SETTING_VALUES.enabled:
             setting = TRIM_NONLISTED_KMI_SETTING_VALUES.enabled
         else:
             setting = TRIM_NONLISTED_KMI_SETTING_VALUES.disabled
@@ -58,7 +58,11 @@ def _trim_nonlisted_kmi_config_settings_raw():
 def _trim_nonlisted_kmi_non_config_attrs():
     """Attributes of rules that supports configuring `trim_nonlisted_kmi`."""
     return {
-        "trim_nonlisted_kmi": attr.bool(),
+        "trim_nonlisted_kmi": attr.string(values = [
+            TRIM_NONLISTED_KMI_SETTING_VALUES.enabled,
+            TRIM_NONLISTED_KMI_SETTING_VALUES.disabled,
+            TRIM_NONLISTED_KMI_SETTING_VALUES.unknown,
+        ]),
     }
 
 def _trim_nonlisted_kmi_get_value(ctx):
@@ -71,6 +75,14 @@ def _trim_nonlisted_kmi_get_value(ctx):
         ))
     return setting == TRIM_NONLISTED_KMI_SETTING_VALUES.enabled
 
+def _from_optional_bool(val):
+    """Translates an Optional[bool] value from macros (e.g. `kernel_build`) to values known by rules (e.g. `_kernel_build`)."""
+    if val == None:
+        return TRIM_NONLISTED_KMI_SETTING_VALUES.unknown
+    if val:
+        return TRIM_NONLISTED_KMI_SETTING_VALUES.enabled
+    return TRIM_NONLISTED_KMI_SETTING_VALUES.disabled
+
 trim_nonlisted_kmi_utils = struct(
     transition_impl = _trim_nonlisted_kmi_transition_impl,
     transition_inputs = _trim_nonlisted_kmi_transition_inputs,
@@ -78,4 +90,5 @@ trim_nonlisted_kmi_utils = struct(
     config_settings_raw = _trim_nonlisted_kmi_config_settings_raw,
     non_config_attrs = _trim_nonlisted_kmi_non_config_attrs,
     get_value = _trim_nonlisted_kmi_get_value,
+    from_optional_bool = _from_optional_bool,
 )

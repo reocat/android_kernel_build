@@ -415,7 +415,7 @@ def kernel_build(
         name = config_target_name,
         env = env_target_name,
         srcs = srcs,
-        trim_nonlisted_kmi = trim_nonlisted_kmi,
+        trim_nonlisted_kmi = trim_nonlisted_kmi_utils.from_optional_bool(trim_nonlisted_kmi),
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if all_kmi_symbol_lists else None,
         **internal_kwargs
     )
@@ -425,7 +425,7 @@ def kernel_build(
         config = config_target_name,
         srcs = srcs,
         outdir_tar_gz = modules_prepare_target_name + "/modules_prepare_outdir.tar.gz",
-        trim_nonlisted_kmi = trim_nonlisted_kmi,
+        trim_nonlisted_kmi = trim_nonlisted_kmi_utils.from_optional_bool(trim_nonlisted_kmi),
         **internal_kwargs
     )
 
@@ -449,7 +449,7 @@ def kernel_build(
         enable_interceptor = enable_interceptor,
         strip_modules = strip_modules,
         src_kmi_symbol_list = kmi_symbol_list,
-        trim_nonlisted_kmi = trim_nonlisted_kmi,
+        trim_nonlisted_kmi = trim_nonlisted_kmi_utils.from_optional_bool(trim_nonlisted_kmi),
         **kwargs
     )
 
