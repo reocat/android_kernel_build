@@ -138,6 +138,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be2ac3d7_a84aedcc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-17T01:23:59Z",
+      "side": 1,
+      "message": "Thanks John: `kleaf` is Android Kernel specific framework; but yes not only GKI specific. So, if you are using it for non-GKI targets with Android Kernel; we need to accommodate this.\n\n@elsk@google.com: Is it possible to have this option only available for non-GKI targets? May be based on whether `base_kernel` is set or not?",
+      "parentUuid": "c7069fc3_ee61e232",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd218ad9_c9cfe200",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 2
