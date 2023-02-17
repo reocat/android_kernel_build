@@ -192,6 +192,64 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b13dde09_1a7bbd35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-17T12:39:03Z",
+      "side": 1,
+      "message": "(I like the thought of considering Kleaf GKI agnostic if not even Android agnostic. It sure isn\u0027t fully right now though. Thanks for the input that Kleaf is used beyond what we had in scope 😊)\n\nWe do not have a notion of what exactly is a GKI kernel in the build. Rather the other way around: we declare the result of `//common:kernel_aarch64` the GKI kernel. I don\u0027t think we need to restrict this feature based on some assumptions like the presence of symbol lists. This just adds complexity and hidden magic. Further it unnecessarily restricts the use of Kleaf in GKI-like use cases. Incompatibilities of generic technical features (symbol lists + mod sign key) should be driven by technical need, not by policy.\n\nI also do not see the risk of accidentally passing a custom signing key to GKI kernels that we would later release. We would simply not define this for `//common:kernel_aarch64`.",
+      "parentUuid": "c5c4f308_2ef18fd5",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d696ae2_93ce703d",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-17T12:39:03Z",
+      "side": 1,
+      "message": "please move the arguments further down. Currently they are inserted between other arguments that belong together (`kmi_symbol_list` and `additional_kmi_symbol_lists`).",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6de737e1_115511c7",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-17T12:39:03Z",
+      "side": 1,
+      "message": "`module_sign_key` or `module_signing_key` would be my preferred choice as it more accurately describes what it is used for.",
+      "range": {
+        "startLine": 428,
+        "startChar": 8,
+        "endLine": 428,
+        "endChar": 22
+      },
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cd218ad9_c9cfe200",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 2
@@ -233,6 +291,40 @@
         "endLine": 79,
         "endChar": 34
       },
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4c82e3f_c298553e",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-17T12:39:03Z",
+      "side": 1,
+      "message": "Can we de-duplicate this code by using a common helper function?",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffe41362_71426e78",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-17T12:39:03Z",
+      "side": 1,
+      "message": "Note that by embedding the absolute (system) path into the binary, the resulting build becomes indeterministic and the path leaks into the binary. It can be discovered with `strings` or even by inspecting the kernel config from the binary.\n\nWe have a similar issue with `CONFIG_UNUSED_KSYMS_WHITELIST` where we leak an absolute path into the binary. That we need to address as well.",
       "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
