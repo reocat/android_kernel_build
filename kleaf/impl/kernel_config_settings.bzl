@@ -53,7 +53,12 @@ def _kernel_build_config_settings_raw():
 
 def _kernel_build_config_settings():
     return {
-        attr_name: attr.label(default = label)
+        attr_name: attr.label(
+            default = label,
+            # All deps of kernel_build should unset trim_nonlisted_kmi_setting.
+            # However, we only have config values, not actual target dependencies,
+            # so unsetting trim_nonlisted_kmi_setting has no effect.
+        )
         for attr_name, label in _kernel_build_config_settings_raw().items()
     }
 
@@ -70,7 +75,12 @@ def _kernel_config_config_settings_raw():
 
 def _kernel_config_config_settings():
     return {
-        attr_name: attr.label(default = label)
+        attr_name: attr.label(
+            default = label,
+            # All deps of kernel_config should unset trim_nonlisted_kmi_setting.
+            # However, we only have config values, not actual target dependencies,
+            # so unsetting trim_nonlisted_kmi_setting has no effect.
+        )
         for attr_name, label in _kernel_config_config_settings_raw().items()
     }
 
