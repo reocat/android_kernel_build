@@ -27,9 +27,9 @@ KernelToolchainInfo = provider(
 
 def _kernel_toolchain_aspect_impl(_target, ctx):
     if ctx.rule.kind == "_kernel_build":
-        return ctx.rule.attr.config[KernelToolchainInfo]
+        return ctx.rule.attr.config[0][KernelToolchainInfo]
     if ctx.rule.kind == "kernel_config":
-        return ctx.rule.attr.env[KernelToolchainInfo]
+        return ctx.rule.attr.env[0][KernelToolchainInfo]
     if ctx.rule.kind == "kernel_env":
         return KernelToolchainInfo(toolchain_version = ctx.rule.attr.toolchain_version)
 
