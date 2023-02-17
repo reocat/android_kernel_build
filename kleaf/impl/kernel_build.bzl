@@ -1483,8 +1483,17 @@ _kernel_build = rule(
             providers = [KernelEnvAndOutputsInfo, KernelEnvAttrInfo],
             aspects = [kernel_toolchain_aspect],
             doc = "the kernel_config target",
+            # kernel_config calculates trim_nonlisted_kmi_utils on its own.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
-        "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
+        "srcs": attr.label_list(
+            mandatory = True,
+            doc = "kernel sources",
+            allow_files = True,
+            # trim_nonlisted_kmi of a kernel build should not affect the value of
+            # trim_nonlisted_kmi for dependencies.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
         "outs": attr.string_list(),
         "module_outs": attr.string_list(doc = "output *.ko files"),
         "internal_outs": attr.string_list(doc = "Like `outs`, but not in dist"),
@@ -1508,11 +1517,16 @@ _kernel_build = rule(
         ),
         "deps": attr.label_list(
             allow_files = True,
+            # trim_nonlisted_kmi of a kernel build should not affect the value of
+            # trim_nonlisted_kmi for dependencies.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
         "kmi_symbol_list_strict_mode": attr.bool(),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
+            # raw_kmi_symbol_list does not need trim_nonlisted_kmi.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
         "collect_unstripped_modules": attr.bool(),
         "enable_interceptor": attr.bool(),
@@ -1531,11 +1545,28 @@ _kernel_build = rule(
         # dependencies so KernelBuildExtModuleInfo and KernelBuildUapiInfo works.
         # There are no real dependencies. Bazel does not build these targets before building the
         # `_kernel_build` target.
-        "modules_prepare": attr.label(providers = [KernelEnvAndOutputsInfo]),
-        "kernel_uapi_headers": attr.label(),
-        "combined_abi_symbollist": attr.label(allow_single_file = True, doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`."),
+        "modules_prepare": attr.label(
+            providers = [KernelEnvAndOutputsInfo],
+            # modules_prepare calculates trim_nonlisted_kmi_utils on its own.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
+        "kernel_uapi_headers": attr.label(
+            # kernel_uapi_headers does not need trim_nonlisted_kmi.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
+        "combined_abi_symbollist": attr.label(
+            allow_single_file = True,
+            doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`.",
+            # _kmi_symbol_list does not need trim_nonlisted_kmi.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
         "strip_modules": attr.bool(default = False, doc = "if set, debug information won't be kept for distributed modules.  Note, modules will still be stripped when copied into the ramdisk."),
-        "src_kmi_symbol_list": attr.label(allow_single_file = True),
+        "src_kmi_symbol_list": attr.label(
+            allow_single_file = True,
+            # trim_nonlisted_kmi of a kernel build should not affect the value of
+            # trim_nonlisted_kmi for dependencies.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),

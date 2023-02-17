@@ -426,11 +426,22 @@ kernel_config = rule(
             mandatory = True,
             providers = [KernelEnvInfo, KernelEnvAttrInfo],
             doc = "environment target that defines the kernel build environment",
+            # kernel_env does not need trim_nonlisted_kmi.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
-        "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
+        "srcs": attr.label_list(
+            mandatory = True,
+            doc = "kernel sources",
+            allow_files = True,
+            # trim_nonlisted_kmi of a kernel build should not affect the value of
+            # trim_nonlisted_kmi for dependencies.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
+        ),
         "raw_kmi_symbol_list": attr.label(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
+            # raw_kmi_symbol_list does not need trim_nonlisted_kmi.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
         "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),

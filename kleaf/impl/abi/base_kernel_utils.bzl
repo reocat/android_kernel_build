@@ -15,6 +15,7 @@
 """Utilities for determining the value of base_kernel."""
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
 load(
     ":common_providers.bzl",
     "GcovInfo",
@@ -42,26 +43,33 @@ def _base_kernel_non_config_attrs():
                 KernelBuildAbiInfo,
                 GcovInfo,
             ],
+            # trim_nonlisted_kmi of a device kernel build should not affect the value of
+            # trim_nonlisted_kmi for base_kernel.
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
     }
+
+# https://bazel.build/extending/config#outgoing-edge-transitions
+# ctx.attr.base_kernel becomes a list with an outgoing edge transaction, even
+# if it only has one item.
 
 def _get_base_kernel(ctx):
     """Returns base_kernel."""
     if ctx.attr._force_ignore_base_kernel[BuildSettingInfo].value:
         return None
-    return ctx.attr.base_kernel
+    return (ctx.attr.base_kernel or [None])[0]
 
 def _get_base_kernel_for_module_outs(ctx):
     """Returns base_kernel for getting the list of module_outs in the base kernel (GKI modules)."""
 
     # base_kernel_for_module_outs ignores _force_ignore_base_kernel
-    return ctx.attr.base_kernel
+    return (ctx.attr.base_kernel or [None])[0]
 
 def _get_base_modules_staging_archive(ctx):
     # ignores _force_ignore_base_kernel, because this is for ABI purposes.
     if not ctx.attr.base_kernel:
         return None
-    return ctx.attr.base_kernel[KernelBuildAbiInfo].modules_staging_archive
+    return ctx.attr.base_kernel[0][KernelBuildAbiInfo].modules_staging_archive
 
 base_kernel_utils = struct(
     config_settings_raw = _base_kernel_config_settings_raw,
