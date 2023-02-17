@@ -42,6 +42,7 @@ def _base_kernel_non_config_attrs():
                 KernelBuildAbiInfo,
                 GcovInfo,
             ],
+            cfg = trim_nonlisted_kmi_utils.unset_transition,
         ),
     }
 

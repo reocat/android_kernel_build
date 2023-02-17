@@ -71,6 +71,15 @@ def _trim_nonlisted_kmi_get_value(ctx):
         ))
     return setting == TRIM_NONLISTED_KMI_SETTING_VALUES.enabled
 
+def _unset_trim_nonlisted_kmi_transition_impl(settings, attr):
+    return {TRIM_NONLISTED_KMI_SETTING: TRIM_NONLISTED_KMI_SETTING_VALUES.unknown}
+
+_unset_trim_nonlisted_kmi_transition = transition(
+    implementation = _unset_trim_nonlisted_kmi_transition_impl,
+    inputs = [],
+    outputs = [TRIM_NONLISTED_KMI_SETTING],
+)
+
 trim_nonlisted_kmi_utils = struct(
     transition_impl = _trim_nonlisted_kmi_transition_impl,
     transition_inputs = _trim_nonlisted_kmi_transition_inputs,
@@ -78,4 +87,5 @@ trim_nonlisted_kmi_utils = struct(
     config_settings_raw = _trim_nonlisted_kmi_config_settings_raw,
     non_config_attrs = _trim_nonlisted_kmi_non_config_attrs,
     get_value = _trim_nonlisted_kmi_get_value,
+    unset_transition = _unset_trim_nonlisted_kmi_transition,
 )
