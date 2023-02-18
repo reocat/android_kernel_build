@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b380c9b0_55861392",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-18T00:03:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ebdaaa1_52fe714a",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 11
+      },
+      "revId": "36661ca520e79d220fd654f333bb2caa45432064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d41c7e5_9f355b6f",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37d9c5d9_75b8409f",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-18T00:03:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d41c7e5_9f355b6f",
+      "revId": "36661ca520e79d220fd654f333bb2caa45432064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "960572c1_21fbe833",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-02-17T23:32:51Z",
       "side": 1,
       "message": "failing fast might not be the best strategy for actionable feedback to the user. Consider batching up all the missing symbols and report them together if any. That way the user can fix this problem entirely based on the first error message.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 19
+      },
+      "revId": "36661ca520e79d220fd654f333bb2caa45432064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b421bb6c_7a99b0c9",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-18T00:03:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "960572c1_21fbe833",
       "range": {
         "startLine": 50,
         "startChar": 0,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f24c3d69_72424b01",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-18T00:03:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23e6924a_a11d7387",
+      "range": {
+        "startLine": 95,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 10
+      },
+      "revId": "36661ca520e79d220fd654f333bb2caa45432064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81e4a642_d1b15177",
@@ -100,6 +190,24 @@
       "writtenOn": "2023-02-17T23:32:51Z",
       "side": 1,
       "message": "generally I would prefer cleanups in separate changes. That reduces the cognitive load during review.",
+      "revId": "36661ca520e79d220fd654f333bb2caa45432064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4669595a_c64df661",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-18T00:03:27Z",
+      "side": 1,
+      "message": "CL:2444679",
+      "parentUuid": "81e4a642_d1b15177",
       "revId": "36661ca520e79d220fd654f333bb2caa45432064",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
