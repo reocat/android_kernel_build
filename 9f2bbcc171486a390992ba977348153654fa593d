@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b58173fa_695489f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-20T18:28:33Z",
+      "side": 1,
+      "message": "Created a revert of the revert and using that link aosp/2447222 as that should re-land once the broken targets caught by the check are fixed.",
+      "parentUuid": "7058fe46_60c4aa45",
+      "revId": "9f2bbcc171486a390992ba977348153654fa593d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0f7c516_15718f17",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-02-20T09:44:23Z",
       "side": 1,
       "message": "I would just say \"symbol list\". There are many choices for naming this argument (GKI symbols, KMI symbol list, ABI symbol list). I would use whatever most closely matches the intent of the script.\n\nDon\u0027t say \"allow\" as there is actually a symbol allow list elsewhere with a different function.",
+      "range": {
+        "startLine": 35,
+        "startChar": 12,
+        "endLine": 35,
+        "endChar": 63
+      },
+      "revId": "9f2bbcc171486a390992ba977348153654fa593d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c44ec200_24580133",
+        "filename": "abi/verify_ksymtab.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-20T18:28:33Z",
+      "side": 1,
+      "message": "\u003e I would just say \"symbol list\"\n\nI like \"help\" to be more descriptive; but I also like to get done with this as soon as possible and do not go too many iterations. So, \"symbol list\" it is.\n\nGoing with `raw_kmi_symbol_list` as `kleaf` argument being passed is called `raw_kmi_symbol_list` and deeply being pass around in the `kleaf` across targets. So, it\u0027s 1-to-1 match.",
+      "parentUuid": "d0f7c516_15718f17",
       "range": {
         "startLine": 35,
         "startChar": 12,
@@ -87,6 +129,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "050a8fa0_3dea97f2",
+        "filename": "abi/verify_ksymtab.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-20T18:28:33Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "d12c4d72_3ed7bafd",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 48
+      },
+      "revId": "9f2bbcc171486a390992ba977348153654fa593d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52e1f306_422381a0",
@@ -123,6 +189,30 @@
       "writtenOn": "2023-02-20T17:49:25Z",
       "side": 1,
       "message": "KMI_STRICT_MODE_OBJECTS is passed as part of the command line. Can we instead use the change to make this a program argument (with `[\u0027vmlinux\u0027,]` being the default) instead of an environment variable? This used to be overridable through the environment, but this is no longer the case.",
+      "revId": "9f2bbcc171486a390992ba977348153654fa593d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aeb5d3e_b4c366b6",
+        "filename": "abi/verify_ksymtab.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-20T18:28:33Z",
+      "side": 1,
+      "message": "This is being implemented as drop-in replacement for the outgoing bash script. So, by and large logic is not touched.\n\nAdded documentation in the Usage at the top as well as one liner just before fetching it.",
+      "parentUuid": "52e1f306_422381a0",
+      "range": {
+        "startLine": 47,
+        "startChar": 28,
+        "endLine": 47,
+        "endChar": 52
+      },
       "revId": "9f2bbcc171486a390992ba977348153654fa593d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -213,6 +303,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f84053e3_bef505f7",
+        "filename": "abi/verify_ksymtab.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-20T18:28:33Z",
+      "side": 1,
+      "message": "I do not know about `.ini` file but the one being passed is called `raw_kmi_symbols` both in older `build.sh` and `kleaf`. And symbols are required to strip from this file as there is \u0027\\n\u0027 at the end.\n\nRenamed - `abi_symbols` -\u003e `kmi_symbols` to be in-sync with change of symbol list argument name. Also added a comment.",
+      "parentUuid": "f22130d2_3405f46a",
+      "range": {
+        "startLine": 59,
+        "startChar": 1,
+        "endLine": 59,
+        "endChar": 18
+      },
+      "revId": "9f2bbcc171486a390992ba977348153654fa593d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a41fbe2f_eedad22d",
@@ -249,6 +363,30 @@
       "writtenOn": "2023-02-20T09:44:23Z",
       "side": 1,
       "message": "I don\u0027t think this newline is needed.",
+      "range": {
+        "startLine": 68,
+        "startChar": 11,
+        "endLine": 68,
+        "endChar": 13
+      },
+      "revId": "9f2bbcc171486a390992ba977348153654fa593d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3943dc09_5c15d299",
+        "filename": "abi/verify_ksymtab.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-20T18:28:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f113c9f1_8e50b478",
       "range": {
         "startLine": 68,
         "startChar": 11,
