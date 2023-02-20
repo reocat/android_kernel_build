@@ -23,3 +23,5 @@ build:fast --lto=thin
 
 # Inherit from local: reduce sandboxes.
 build:fast --config=local
+
+build:fast --disable_btf_info

@@ -85,6 +85,12 @@ bool_flag(
     build_setting_default = True,
 )
 
+# If true, there will be no BTF debug type information generated
+bool_flag(
+    name = "disable_btf_info",
+    build_setting_default = False,
+)
+
 # Debug options
 
 bool_flag(
