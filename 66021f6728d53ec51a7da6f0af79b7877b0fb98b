@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68cdd6bb_e15cbcfe",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-20T18:17:34Z",
+      "side": 1,
+      "message": "Done\n\n`With optional start, test string beginning at that position.` 😐",
+      "parentUuid": "c136e9a0_9f567837",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "66021f6728d53ec51a7da6f0af79b7877b0fb98b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4bc45af9_d6d45784",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-02-20T15:53:25Z",
       "side": 1,
       "message": "I see the build failing, perhaps because of the slightly different semantics around trailing newlines. Perhaps `sl.read().splitlines()` here and `all_lines.append(\u0027\u0027)` further down addresses that (just guessing I did not test or debug).",
+      "revId": "66021f6728d53ec51a7da6f0af79b7877b0fb98b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8e4ac49_04d33344",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-20T18:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bc45af9_d6d45784",
       "revId": "66021f6728d53ec51a7da6f0af79b7877b0fb98b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
