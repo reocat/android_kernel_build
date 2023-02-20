@@ -403,6 +403,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39218f9f_24901fa4",
+        "filename": "abi/verify_ksymtab.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-20T21:33:59Z",
+      "side": 1,
+      "message": "\u003e Any tricks I can use?\n\n```\n_, symbol, object, export_type \u003d line.strip().split(\"\\t\", maxsplit\u003d3)\n```\n\nhttps://docs.python.org/3.11/library/stdtypes.html#str.split",
+      "parentUuid": "2a1f9793_3133082f",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
+        "endLine": 57,
+        "endChar": 37
+      },
+      "revId": "9f2bbcc171486a390992ba977348153654fa593d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f22130d2_3405f46a",
         "filename": "abi/verify_ksymtab.py",
         "patchSetId": 2
