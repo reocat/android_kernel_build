@@ -23,6 +23,7 @@ This config implies:
 
 - `--lto=thin`. See [LTO](#lto).
 - `--config=local`. See [sandbox.md](sandbox.md).
+- `--disable_btf_info`. See [BTF debug information](#btf-debug-information).
 
 ## LTO
 
@@ -59,3 +60,14 @@ You may build the following to confirm the value of LTO setting:
 ```shell
 $ tools/bazel build [flags] //build/kernel/kleaf:print_flags
 ```
+
+## BTF debug information
+
+Option `--disable_btf_info` **disables** generation of BTF debug information.
+
+This information is useful in release binaries to allow debugging BPF programs.
+But it requires a lot of time to be generated.
+
+If you need fast build *and* BTF debug information, you can replace
+`--config=fast` with separate options like `--lto=thin --config=local` without
+including `--disable_btf_info`.
