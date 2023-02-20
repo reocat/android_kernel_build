@@ -241,6 +241,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d50043a9_24ed93dd",
+        "filename": "abi/verify_ksymtab.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-20T20:34:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "166ef1e5_d4796051",
+      "revId": "9f2bbcc171486a390992ba977348153654fa593d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72e5ce5e_23f962a1",
@@ -328,6 +346,30 @@
       "range": {
         "startLine": 55,
         "startChar": 0,
+        "endLine": 57,
+        "endChar": 37
+      },
+      "revId": "9f2bbcc171486a390992ba977348153654fa593d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa1845c3_f2e0c735",
+        "filename": "abi/verify_ksymtab.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-20T20:34:05Z",
+      "side": 1,
+      "message": "Reference: [modules.rst - Android Code Search](https://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/Documentation/kbuild/modules.rst;l\u003d480?q\u003dsymvers\u0026ss\u003dandroid%2Fkernel%2Fsuperproject:common%2FDocumentation%2F)",
+      "parentUuid": "34720293_7129c24b",
+      "range": {
+        "startLine": 54,
+        "startChar": 1,
         "endLine": 57,
         "endChar": 37
       },
