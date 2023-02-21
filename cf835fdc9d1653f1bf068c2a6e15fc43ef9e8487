@@ -22,6 +22,30 @@
       },
       "revId": "cf835fdc9d1653f1bf068c2a6e15fc43ef9e8487",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc72743d_9729b65c",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-21T14:26:14Z",
+      "side": 1,
+      "message": "Acknowledged. I think however being explicit here is a good thing, to prevent any future mistakes.",
+      "parentUuid": "c20d1a47_50e323cd",
+      "range": {
+        "startLine": 92,
+        "startChar": 14,
+        "endLine": 92,
+        "endChar": 49
+      },
+      "revId": "cf835fdc9d1653f1bf068c2a6e15fc43ef9e8487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
