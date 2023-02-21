@@ -1748,6 +1748,11 @@ def _kmi_symbol_list_violations_check(ctx, modules_staging_archive):
     if not ctx.file.raw_kmi_symbol_list:
         return None
 
+    # Skip for --kasan build (http://b/269488249#comment4)
+    kasan = ctx.attr._kasan[BuildSettingInfo].value
+    if kasan:
+        return None
+
     inputs = [
         ctx.file.raw_kmi_symbol_list,
         modules_staging_archive,
