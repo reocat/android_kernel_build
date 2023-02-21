@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c5d3890_87ad8b1f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-21T23:35:14Z",
+      "side": 1,
+      "message": "Nice test!",
+      "revId": "830d4db6f4d8e14d45ebfe4f3ec12bd1eaf42b60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbee5aa6_10fd824c",
+        "filename": "kleaf/tests/kernel_build_test/kernel_build_make_goals_test.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-21T23:35:14Z",
+      "side": 1,
+      "message": "nit: space",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 1
+      },
+      "revId": "830d4db6f4d8e14d45ebfe4f3ec12bd1eaf42b60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e0dc7a2_5c81f9aa",
+        "filename": "kleaf/tests/kernel_build_test/kernel_build_make_goals_test.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-21T23:35:14Z",
+      "side": 1,
+      "message": "What does this comment mean? Are you planning to add tests for KernelEnv later?",
+      "revId": "830d4db6f4d8e14d45ebfe4f3ec12bd1eaf42b60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

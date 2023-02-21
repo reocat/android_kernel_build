@@ -320,6 +320,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80f872b8_42494673",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-21T23:35:14Z",
+      "side": 1,
+      "message": "I mean if the developer (probably incorrectly) declares:\n\n```\nkernel_build(make_goals \u003d \u0027\"; rm -rf /;\u0027)\n```\n(This won\u0027t actually cause issues by default because kernel_env is in a sandbox, but you could combine it with `--spawn_strategy\u003dlocal` too)\n\nThat\u0027s why I suggest\n\n```\n\"\"\"\nexport MAKE_GOALS\u003d{quoted_make_goals}\n\"\"\".format(quoted_make_goals \u003d shell.quote(...))\n```\n\n... instead of quoting yourself.",
+      "parentUuid": "83845067_514e6565",
+      "range": {
+        "startLine": 190,
+        "startChar": 21,
+        "endLine": 190,
+        "endChar": 42
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c3ea58d_bdd6c9ae",
         "filename": "kleaf/impl/kernel_env.bzl",
         "patchSetId": 5
