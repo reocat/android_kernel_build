@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "437977b5_984839ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-21T17:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "992fe7dc_34c136c9",
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e8b2863_4308608b",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3938dcf8_e4b0c911",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-21T17:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e8b2863_4308608b",
+      "range": {
+        "startLine": 41,
+        "startChar": 23,
+        "endLine": 41,
+        "endChar": 69
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6b26477_b1683e2b",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-02-08T13:24:53Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 343,
+        "startChar": 38,
+        "endLine": 343,
+        "endChar": 45
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5e125cf_1499a4b0",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-21T17:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6b26477_b1683e2b",
       "range": {
         "startLine": 343,
         "startChar": 38,
@@ -134,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7e6bc11_a38eb43c",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-21T17:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71c30eca_689263a4",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 93
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c29b63eb_e5b0f7fb",
@@ -147,6 +237,30 @@
       "writtenOn": "2023-02-08T18:41:19Z",
       "side": 1,
       "message": "Also suggest buildozer command like kernel_module",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 12
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c41d117_c1c26ef8",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-21T17:40:04Z",
+      "side": 1,
+      "message": "Partially Done, as it seems buildozer is not able to find the target when it comes from `common_kernels.bzl`.",
+      "parentUuid": "c29b63eb_e5b0f7fb",
       "range": {
         "startLine": 177,
         "startChar": 0,
@@ -182,6 +296,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83845067_514e6565",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-21T17:40:04Z",
+      "side": 1,
+      "message": "I\u0027ve tried forcing the `--kasan` and `--force_add_vmlinux` which are the cases where additional `make_goals` are added. I\u0027ll keep testing with this, but feel free to suggest other scenarios.",
+      "parentUuid": "58c97560_a30cab49",
+      "range": {
+        "startLine": 190,
+        "startChar": 21,
+        "endLine": 190,
+        "endChar": 42
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6c3ea58d_bdd6c9ae",
         "filename": "kleaf/impl/kernel_env.bzl",
         "patchSetId": 5
@@ -193,6 +331,30 @@
       "writtenOn": "2023-02-08T18:41:19Z",
       "side": 1,
       "message": "This is the default, so there\u0027s no need to specify it",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 376,
+        "endChar": 25
+      },
+      "revId": "e607563b85cbb28aa7d9a153c37cde5d49103bfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3a5aa40_52c801c1",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-21T17:40:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c3ea58d_bdd6c9ae",
       "range": {
         "startLine": 376,
         "startChar": 0,
