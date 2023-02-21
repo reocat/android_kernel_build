@@ -26,6 +26,7 @@ load(
 )
 load(":compile_commands_utils.bzl", "compile_commands_utils")
 load(":debug.bzl", "debug")
+load(":kernel_env_transition.bzl", "kernel_env_transition")
 load(":kernel_config_settings.bzl", "kernel_config_settings")
 load(":kernel_dtstree.bzl", "DtstreeInfo")
 load(":kgdb.bzl", "kgdb")
@@ -299,6 +300,7 @@ def _kernel_env_additional_attrs():
 
 kernel_env = rule(
     implementation = _kernel_env_impl,
+    cfg = kernel_env_transition,
     doc = """Generates a rule that generates a source-able build environment.
 
           A build environment is defined by a single entry build config file
