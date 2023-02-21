@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c20d1a47_50e323cd",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-21T14:20:18Z",
+      "side": 1,
+      "message": "nit: I think I confused you earlier. If you want to keep the ends (which I thought caused a bug), then `sl.readlines()` is the more brief option.",
+      "range": {
+        "startLine": 92,
+        "startChar": 14,
+        "endLine": 92,
+        "endChar": 49
+      },
+      "revId": "cf835fdc9d1653f1bf068c2a6e15fc43ef9e8487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
