@@ -16,6 +16,24 @@
       "message": "weren\u0027t those just recently added as part of CL:2439255?",
       "revId": "6d91b6210b82f58a819ae167621f0448510c3c29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbfca62d_44cc4d03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-21T21:31:22Z",
+      "side": 1,
+      "message": "nvm they are used by the macro, not the rule impl.",
+      "parentUuid": "4be6f955_36872f73",
+      "revId": "6d91b6210b82f58a819ae167621f0448510c3c29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
