@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21d5eefd_2c622ff2",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1757,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-21T23:07:14Z",
+      "side": 1,
+      "message": "if ctx.attr._kasan[BuildSettingInfo].value:\n        return None",
+      "range": {
+        "startLine": 1755,
+        "startChar": 0,
+        "endLine": 1757,
+        "endChar": 19
+      },
+      "revId": "364ff62e470f60ce7146744b17b2862db310af13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
