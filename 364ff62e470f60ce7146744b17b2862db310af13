@@ -22,6 +22,30 @@
       },
       "revId": "364ff62e470f60ce7146744b17b2862db310af13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c450bc2a_bdd90ee6",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1757,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-02-21T23:15:41Z",
+      "side": 1,
+      "message": "It took me a few minutes to understand why this comment looking at the change log and then thought of looking at the code. I would have bet all my money on this one. 😄",
+      "parentUuid": "21d5eefd_2c622ff2",
+      "range": {
+        "startLine": 1755,
+        "startChar": 0,
+        "endLine": 1757,
+        "endChar": 19
+      },
+      "revId": "364ff62e470f60ce7146744b17b2862db310af13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
