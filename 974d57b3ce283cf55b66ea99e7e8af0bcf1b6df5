@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3643845_343bcc2b",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-21T13:57:49Z",
+      "side": 1,
+      "message": "is this needed only for debugging purposes? if so we might want to add its default to `True` and rename it to `debug_enable_btf_info`?\n\nIs this needed for ABI monitoring purposes? if so, we should make a warning somewhere when anyone is using working with an ABI target but using this option.",
+      "range": {
+        "startLine": 88,
+        "startChar": 32,
+        "endLine": 88,
+        "endChar": 37
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d088833_adc9c4b0",
+        "filename": "kleaf/bazelrc/fast.bazelrc",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-21T13:57:49Z",
+      "side": 1,
+      "message": "To keep consistency here please add a brief comment with the rationale for this.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 1
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
