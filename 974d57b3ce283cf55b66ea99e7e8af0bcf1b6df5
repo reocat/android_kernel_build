@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9eca424_81ea6707",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-22T19:31:14Z",
+      "side": 1,
+      "message": "+1 to enable + default to True.\n\nI am neutral on adding the `debug` prefix.",
+      "parentUuid": "f3643845_343bcc2b",
+      "range": {
+        "startLine": 88,
+        "startChar": 32,
+        "endLine": 88,
+        "endChar": 37
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d088833_adc9c4b0",
         "filename": "kleaf/bazelrc/fast.bazelrc",
         "patchSetId": 3
@@ -65,6 +89,75 @@
         "startChar": 13,
         "endLine": 27,
         "endChar": 29
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d255579_daf5700c",
+        "filename": "kleaf/docs/fast.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-22T19:31:14Z",
+      "side": 1,
+      "message": "nit: Please put this in a new page and just link to the new page on L26.\n\nLTO also belongs to its own page but we can do it later.",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 31
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1509ac0_4b33603c",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-22T19:31:14Z",
+      "side": 1,
+      "message": "nit: this line is useless",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 264,
+        "endChar": 16
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2891fc63_fc78a050",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-22T19:31:14Z",
+      "side": 1,
+      "message": "nit: if it is just one option, just put them in one line\n\n```\nreturn struct(configs \u003d [_config.disable(\"DEBUG_INFO_BTF\")], deps \u003d [])\n```",
+      "range": {
+        "startLine": 271,
+        "startChar": 28,
+        "endLine": 271,
+        "endChar": 35
       },
       "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
