@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00ef819d_97d6dd90",
+        "filename": "kleaf/bazelrc/fast.bazelrc",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-22T19:22:17Z",
+      "side": 0,
+      "message": "I would suggest adding a `--lto\u003dfast` that `--config\u003dfast` implies. This is so that you can use `--lto\u003dfast` without `--config\u003dlocal`; they are two isolated things.\n\n--lto\u003dfast will select the fastest LTO available.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 21
+      },
+      "revId": "c97318b92de9fbb3fb5519e3d4336baf6ec232f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
