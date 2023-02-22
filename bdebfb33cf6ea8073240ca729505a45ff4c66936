@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de51cb71_c6ba23ff",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-22T15:29:35Z",
+      "side": 1,
+      "message": "that makes we wonder whether we should use `_config.*able_if` also for the ones above. that way we can filter out noops. Though if likely needs to be `_config.*able_if_not`.",
+      "revId": "bdebfb33cf6ea8073240ca729505a45ff4c66936",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
