@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "049c7606_0d847166",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-22T16:52:49Z",
+      "side": 1,
+      "message": "Ah I also need to fix the information during build time, as it still says `lto\u003ddefault`.",
+      "revId": "92e955a2b934bfd587ce38a9013845cfc6a6abfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
