@@ -23,7 +23,6 @@ load(
 )
 load(":cache_dir.bzl", "cache_dir")
 load(":debug.bzl", "debug")
-load(":modules_prepare_transition.bzl", "modules_prepare_transition")
 load(":utils.bzl", "kernel_utils")
 
 def _modules_prepare_impl(ctx):
@@ -146,5 +145,4 @@ modules_prepare = rule(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
     } | _modules_prepare_additional_attrs(),
-    cfg = modules_prepare_transition,
 )

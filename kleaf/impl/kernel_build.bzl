@@ -55,7 +55,6 @@ load(
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
-load(":kernel_build_transition.bzl", "kernel_build_transition")
 load(":kernel_config.bzl", "kernel_config")
 load(":kernel_config_settings.bzl", "kernel_config_settings")
 load(":kernel_env.bzl", "kernel_env")
@@ -374,6 +373,8 @@ def kernel_build(
 
     if strip_modules == None:
         strip_modules = False
+
+    trim_nonlisted_kmi = trim_nonlisted_kmi_utils.selected_attr(trim_nonlisted_kmi)
 
     internal_kwargs = dict(kwargs)
     internal_kwargs.pop("visibility", None)
@@ -1598,7 +1599,6 @@ _kernel_build = rule(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
     } | _kernel_build_additional_attrs(),
-    cfg = kernel_build_transition,
 )
 
 def _kernel_build_check_toolchain(ctx):
