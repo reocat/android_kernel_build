@@ -66,6 +66,7 @@ def _kernel_config_config_settings_raw():
             "kasan": "//build/kernel/kleaf:kasan",
             "lto": "//build/kernel/kleaf:lto",
             "gcov": "//build/kernel/kleaf:gcov",
+            "_config_fast": "//build/kernel/kleaf:config_fast",
         },
     )
 
@@ -144,6 +145,8 @@ def _get_progress_message_note(ctx):
         elif attr_val == False:
             ret.append("no{}".format(print_attr_label_name))
         else:
+            if (attr_name, attr_val) == ("lto", "default") and ctx.attr._config_fast[BuildSettingInfo].value:
+                attr_val = "fast"
             ret.append("{}={}".format(print_attr_label_name, attr_val))
     ret = sorted(sets.to_list(sets.make(ret)))
     ret = ";".join(ret)
