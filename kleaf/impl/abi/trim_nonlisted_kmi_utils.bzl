@@ -16,6 +16,8 @@
 
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 
+# TODO(b/269674780): Delete unused code
+
 TRIM_NONLISTED_KMI_SETTING_VALUES = struct(
     enabled = "enabled",
     disabled = "disabled",
@@ -61,15 +63,19 @@ def _trim_nonlisted_kmi_non_config_attrs():
         "trim_nonlisted_kmi": attr.bool(),
     }
 
+FORCE_DISABLE_TRIM = "//build/kernel/kleaf/impl:force_disable_trim"
+_FORCE_DISABLE_TRIM_IS_TRUE = "//build/kernel/kleaf/impl:force_disable_trim_is_true"
+TRIM_NONLISTED_KMI_ATTR_NAME = "trim_nonlisted_kmi"
+
+def _selected_attr(attr_val):
+    return select({
+        _FORCE_DISABLE_TRIM_IS_TRUE: False,
+        "//conditions:default": attr_val,
+    })
+
 def _trim_nonlisted_kmi_get_value(ctx):
     """Returns the value of the real `trim_nonlisted_kmi` configuration."""
-    setting = ctx.attr._trim_nonlisted_kmi_setting[BuildSettingInfo].value
-    if setting == "unknown":
-        fail("\nFATAL: {label}: did not set {setting_label} properly! Please report a bug.".format(
-            label = ctx.label,
-            setting_label = ctx.attr._trim_nonlisted_kmi_setting.label,
-        ))
-    return setting == TRIM_NONLISTED_KMI_SETTING_VALUES.enabled
+    return getattr(ctx.attr, TRIM_NONLISTED_KMI_ATTR_NAME)
 
 trim_nonlisted_kmi_utils = struct(
     transition_impl = _trim_nonlisted_kmi_transition_impl,
@@ -78,4 +84,5 @@ trim_nonlisted_kmi_utils = struct(
     config_settings_raw = _trim_nonlisted_kmi_config_settings_raw,
     non_config_attrs = _trim_nonlisted_kmi_non_config_attrs,
     get_value = _trim_nonlisted_kmi_get_value,
+    selected_attr = _selected_attr,
 )
