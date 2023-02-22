@@ -156,6 +156,18 @@ def _config_lto(ctx):
             _config.enable("LTO_CLANG_FULL"),
             _config.disable("THINLTO"),
         ]
+        # Try optimizing iff there was no value provided.
+
+    elif lto_config_flag == "default":
+        # Set lto=thin only if LTO is a thing.
+        if ctx.attr._config_is_fast[BuildSettingInfo].value:
+            lto_configs += [
+                _config.enable_if("LTO_CLANG_FULL", "LTO_CLANG"),
+                _config.disable_if("LTO_CLANG_FULL", "LTO_NONE"),
+                _config.enable_if("LTO_CLANG_FULL", "LTO_CLANG_THIN"),
+                _config.enable_if("LTO_CLANG_FULL", "THINLTO"),
+                _config.disable_if("LTO_CLANG_FULL", "LTO_CLANG_FULL"),
+            ]
 
     return struct(configs = lto_configs, deps = [])
 
@@ -501,6 +513,7 @@ kernel_config = rule(
         "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
+        "_config_is_fast": attr.label(default = "//build/kernel/kleaf:config_fast"),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_allowlist_function_transition": attr.label(
