@@ -268,6 +268,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "963b02df_0578c12e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-22T19:32:18Z",
+      "side": 1,
+      "message": "\u003e We do not have a notion of what exactly is a GKI kernel in the build.\n\n+1 to that. That\u0027s why all the variable names, attribute names are \"base_kernel\", not \"GKI kernel\". Some comments do refer to \"GKI kernel\" not \"base kernel\", but they are comments and they are indeed GKI specific, so I am okay with those comments.",
+      "parentUuid": "aaa9f31d_e36c67f5",
+      "revId": "1cbd7f9716e57aed921a9d9743060663db4b4f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d696ae2_93ce703d",
