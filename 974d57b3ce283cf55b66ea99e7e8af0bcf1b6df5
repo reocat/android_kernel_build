@@ -45,6 +45,29 @@
       },
       "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce5b2c0e_42f19509",
+        "filename": "kleaf/bazelrc/fast.bazelrc",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-22T16:09:46Z",
+      "side": 1,
+      "message": "to make this a little more expressive, can we call it `btf_debug_info` throughout ?\n\nThen it is much more clear that this is supplemental information used for debugging.\n\nWe also need to clarify whether btf debug info should actually be moved to a debug configuration (that we have already, but we the only difference is trimming unconditionally disabled). And then this would be `--enable_btf_debug_info` as part of `--config\u003ddebug`, perhaps?",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 29
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
