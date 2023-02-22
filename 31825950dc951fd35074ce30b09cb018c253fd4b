@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "524e51dd_cc1803cb",
+        "filename": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-22T19:54:01Z",
+      "side": 1,
+      "message": "This should be `\"default\"`.\n\nThe rule implementation should handle the automatic transition from default to none. That is, we need to test that `build --kasan` works, not `build --lto\u003dnone --kasan`. The latter test also has some value, but it belongs to a different test.\n\nYou may also consider changing this to a 1:2 transition:\n\n```\nreturn [\n  {_LTO_FLAG: \"default\"},\n  {_LTO_FLAG: \"none\"}\n]\n```",
+      "range": {
+        "startLine": 184,
+        "startChar": 24,
+        "endLine": 184,
+        "endChar": 28
+      },
+      "revId": "31825950dc951fd35074ce30b09cb018c253fd4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
