@@ -63,6 +63,11 @@ def main():
   if setlocalversion and has_kernel_dir:
     stable_scmversion_obj = call_setlocalversion(setlocalversion, kernel_dir)
 
+  print("kernel_dir=", kernel_dir)
+  print("has_kernel_dir=", has_kernel_dir)
+  print("setlocalversion=", setlocalversion)
+  print("stable_scmversion_obj=", stable_scmversion_obj)
+
   ext_modules = []
   stable_scmversion_extmod_objs = []
   if setlocalversion:
