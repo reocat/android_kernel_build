@@ -17,6 +17,7 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_setting", "string_setting")
 load(":abi/trim_nonlisted_kmi_utils.bzl", "TRIM_NONLISTED_KMI_SETTING_VALUES")
+load(":mybuild.bzl", "mybuild", "mybuild_abi")
 
 bzl_library(
     name = "impl",
@@ -167,4 +168,38 @@ py_binary(
     name = "print_gcno_mapping",
     srcs = ["print_gcno_mapping.py"],
     visibility = ["//visibility:public"],
+)
+
+####################
+
+bool_setting(
+    name = "force_disable_trim",
+    build_setting_default = False,
+)
+
+config_setting(
+    name = "force_disable_trim_is_true",
+    flag_values = {
+        ":force_disable_trim": "1",
+    },
+)
+
+genrule(
+    name = "slow",
+    outs = ["slow.txt"],
+    cmd = """
+        sleep 3
+        touch $@
+    """,
+)
+
+mybuild(
+    name = "kbuild",
+    srcs = [":slow"],
+    trim = True,
+)
+
+mybuild_abi(
+    name = "kbuild_abi",
+    build = ":kbuild",
 )
