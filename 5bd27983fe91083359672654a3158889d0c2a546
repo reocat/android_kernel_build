@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "789e0226_2f258169",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-23T22:48:47Z",
+      "side": 1,
+      "message": "`--no-perms --chmod\u003dF-w` is probably less intrusive.\n\nAre timestamps preserved without `-a`? I think `-a` is `-rlptgoD`, so we probably want `-aL --no-owners --no-group` to ensure other things are preserved (since it is chown / chgrp getting into your way in this case)",
+      "range": {
+        "startLine": 363,
+        "startChar": 17,
+        "endLine": 363,
+        "endChar": 27
+      },
+      "revId": "5bd27983fe91083359672654a3158889d0c2a546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
