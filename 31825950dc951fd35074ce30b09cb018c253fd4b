@@ -22,6 +22,30 @@
       },
       "revId": "31825950dc951fd35074ce30b09cb018c253fd4b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "563b213c_388955b2",
+        "filename": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-23T09:53:48Z",
+      "side": 1,
+      "message": "Done. Note that all other scenarios for kasan testing are implemented in kleaf/tests/kernel_config_test/kasan_test.bzl",
+      "parentUuid": "524e51dd_cc1803cb",
+      "range": {
+        "startLine": 184,
+        "startChar": 24,
+        "endLine": 184,
+        "endChar": 28
+      },
+      "revId": "31825950dc951fd35074ce30b09cb018c253fd4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
