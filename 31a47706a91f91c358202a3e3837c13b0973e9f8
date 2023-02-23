@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47f7198b_8bb2c3af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-23T10:46:33Z",
+      "side": 1,
+      "message": "Implementation LGTM, just a naming nit.",
+      "revId": "31a47706a91f91c358202a3e3837c13b0973e9f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a45f87_b8ba0e3b",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-23T10:46:33Z",
+      "side": 1,
+      "message": "I am not convinced about the name \"fast\" as it does different things based on what the default is.",
+      "range": {
+        "startLine": 159,
+        "startChar": 29,
+        "endLine": 159,
+        "endChar": 33
+      },
+      "revId": "31a47706a91f91c358202a3e3837c13b0973e9f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
