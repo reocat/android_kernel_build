@@ -39,6 +39,30 @@
       },
       "revId": "31a47706a91f91c358202a3e3837c13b0973e9f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a01be390_2b290d4b",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-23T20:49:48Z",
+      "side": 1,
+      "message": "But it is always the \"fastest LTO available\", right? Hence the name.",
+      "parentUuid": "66a45f87_b8ba0e3b",
+      "range": {
+        "startLine": 159,
+        "startChar": 29,
+        "endLine": 159,
+        "endChar": 33
+      },
+      "revId": "31a47706a91f91c358202a3e3837c13b0973e9f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
