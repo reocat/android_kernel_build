@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27d41583_693a96b1",
+        "filename": "kleaf/tests/trim_test/BUILD.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-02-24T13:19:05Z",
+      "side": 1,
+      "message": "nit: `tests \u003d None,  # All tests in this package` is used in the other suites within `build/kernel`.",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 6
+      },
+      "revId": "e7ffd3fb5ddcf4b7aa03098c98c3782f90ca06f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
