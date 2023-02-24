@@ -45,6 +45,16 @@ This command checks:
 - actual/1/foo.txt against expected/2/foo.txt
 - actual/2/foo.txt against expected/1/foo.txt
 - actual/2/foo.txt against expected/2/foo.txt
+
+If --allow-missing-actual is set, it is accepted to have an expected file
+without an actual file with the same name.
+
+Example:
+  contain_lines_test \
+    --allow-missing-actual \
+    --actual actual/foo.txt \
+    --expected expected/foo.txt expected/bar.txt
+expected/bar.txt is ignored. Without --allow-missing-actual, an error is raised.
 """
 
 import argparse
@@ -61,6 +71,7 @@ def load_arguments():
     parser.add_argument("--actual", nargs="+", type=pathlib.Path, help="actual files")
     parser.add_argument("--expected", nargs="+", type=pathlib.Path, help="expected files")
     parser.add_argument("--order", action="store_true")
+    parser.add_argument("--allow-missing-actual", action="store_true")
     return parser.parse_known_args()
 
 
@@ -89,7 +100,8 @@ class CompareTest(unittest.TestCase):
             actual_with_basename = actual[basename]
             expected_with_basename = expected[basename]
 
-            self.assertTrue(actual_with_basename, f"missing actual file for {basename}")
+            if not arguments.allow_missing_actual:
+                self.assertTrue(actual_with_basename, f"missing actual file for {basename}")
             self.assertTrue(expected_with_basename, f"missing expected file for {basename}")
 
             for actual_file in actual_with_basename:

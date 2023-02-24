@@ -14,7 +14,12 @@
 
 """Tests for contents of a given file."""
 
-def contain_lines_test(name, expected, actual, order = None):
+def contain_lines_test(
+        name,
+        expected,
+        actual,
+        order = None,
+        allow_missing_actual = None):
     """See `contain_lines_test.py` for explanation.
 
     Args:
@@ -22,6 +27,8 @@ def contain_lines_test(name, expected, actual, order = None):
         expected: A label expanding into the expected files.
         actual: A label expanding into the actual files.
         order: If True, also assert ordering.
+        allow_missing_actual: If True, it is okay to have an expected file without
+          a matching actual file.
     """
 
     args = [
@@ -32,6 +39,8 @@ def contain_lines_test(name, expected, actual, order = None):
     ]
     if order:
         args.append("--order")
+    if allow_missing_actual:
+        args.append("--allow-missing-actual")
 
     native.py_test(
         name = name,

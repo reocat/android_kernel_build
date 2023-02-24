@@ -325,9 +325,13 @@ def _combined_test_actual_impl(ctx):
             _get_config_file(ctx, kernel_build, paths.join(flag_dir, _kasan_str(key["kasan"]) + "_config")),
             # Test kgdb setting
             _get_config_file(ctx, kernel_build, paths.join(flag_dir, _kgdb_str(key["kgdb"], key["arch"]) + "_config")),
-            # Test trim setting
-            _get_config_file(ctx, kernel_build, paths.join(flag_dir, ctx.attr.trim_str + "_config")),
         ]
+
+        # Test trim setting
+        trim = ctx.attr.trim
+        if key["kasan"]:
+            trim = False
+        files.append(_get_config_file(ctx, kernel_build, paths.join(flag_dir, _trim_str(trim) + "_config")))
 
     return DefaultInfo(files = depset(files), runfiles = ctx.runfiles(files = files))
 
@@ -335,11 +339,12 @@ _combined_test_actual = rule(
     implementation = _combined_test_actual_impl,
     doc = "Test on all combinations of flags and attributes on `kernel_config`",
     attrs = dicts.add(_get_config_attrs_common(_combined_transition), {
-        "trim_str": attr.string(),
+        "trim": attr.bool(),
         "arch": attr.string(),
     }),
 )
 
+# Enable when expectations are fixed.
 def _combined_option_test(name, kernels):
     """Test the effect of all possible combinations of flags on `kernel_config`:
 
@@ -360,7 +365,7 @@ def _combined_option_test(name, kernels):
 
         _combined_test_actual(
             name = test_name + "_actual",
-            trim_str = trim_str,
+            trim = key.trim,
             arch = key.arch,
             kernel_build = kernel_build,
         )
@@ -369,12 +374,13 @@ def _combined_option_test(name, kernels):
             srcs = ["data/{}_config".format(lto) for lto in LTO_VALUES] +
                    ["data/{}_config".format(_kasan_str(kasan)) for kasan in (True, False)] +
                    ["data/{}_config".format(_kgdb_str(kgdb, key.arch)) for kgdb in (True, False)] +
-                   ["data/{}_config".format(trim_str)],
+                   ["data/{}_config".format(_trim_str(trim)) for trim in (True, False)],
         )
         contain_lines_test(
             name = test_name,
             actual = test_name + "_actual",
             expected = test_name + "_expected",
+            allow_missing_actual = True,
         )
         tests.append(test_name)
 
