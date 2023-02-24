@@ -17,21 +17,31 @@ If --kasan and --lto=default, --lto becomes none.
 See https://bazel.build/rules/config#incoming-edge-transitions
 """
 
+load(
+    ":abi/trim_nonlisted_kmi_utils.bzl",
+    "FORCE_DISABLE_TRIM",
+)
+
 _LTO_FLAG = "//build/kernel/kleaf:lto"
 _KASAN_FLAG = "//build/kernel/kleaf:kasan"
 
 def _lto(settings, _attr):
     if settings[_KASAN_FLAG] and settings[_LTO_FLAG] == "default":
         return {_LTO_FLAG: "none"}
-
     return {_LTO_FLAG: settings[_LTO_FLAG]}
+
+def _kasan(settings, _attr):
+    if settings[_KASAN_FLAG]:
+        return {FORCE_DISABLE_TRIM: True}
+    return {FORCE_DISABLE_TRIM: False}
 
 def _impl(settings, attr):
     ret = _lto(settings, attr)
+    ret |= _kasan(settings, attr)
     return ret
 
 kernel_config_transition = transition(
     implementation = _impl,
     inputs = [_KASAN_FLAG, _LTO_FLAG],
-    outputs = [_LTO_FLAG],
+    outputs = [_LTO_FLAG] + [FORCE_DISABLE_TRIM],
 )
