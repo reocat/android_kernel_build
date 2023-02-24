@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6191d69_19aa8f4e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-24T05:52:11Z",
+      "side": 1,
+      "message": "Do we have a standard command to format py files? Could you please share it (so I can steal it 😊)\n\nIt would be even better there really needs to be a preupload hook or ayeaye checker for py formats",
+      "revId": "252292671a20be72749f7769570c6566456c0f46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
