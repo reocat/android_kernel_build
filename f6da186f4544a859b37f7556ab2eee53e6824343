@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44a71d5b_6d4e60c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-24T23:32:27Z",
+      "side": 1,
+      "message": "Actually, this change is problematic because this only changes kernel_config, but not modules_prepare and kernel_build. Let me think of a better solution.",
+      "revId": "f6da186f4544a859b37f7556ab2eee53e6824343",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
