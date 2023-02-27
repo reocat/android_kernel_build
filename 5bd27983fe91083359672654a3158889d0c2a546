@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c9c8ee7_503cfcd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-02-27T20:48:27Z",
+      "side": 1,
+      "message": "@maennich@google.com Looking at the bug, it looks like this is indeed a filesystem issue associated with non-ext4 filesystems.\n\nDo you think it is useful to update the errors.md and sandbox.md to say that \"you need an ext4 filesystem to build with `--config\u003dlocal`; other filesystems are not tested and you may hit permission issues\"?",
+      "parentUuid": "31cac8fc_d51aaac5",
+      "revId": "5bd27983fe91083359672654a3158889d0c2a546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "789e0226_2f258169",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 2
