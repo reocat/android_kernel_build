@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "31cac8fc_d51aaac5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-27T10:40:26Z",
+      "side": 1,
+      "message": "The discussion in the bug appears to point to an underlying issue of how the filesystem is implemented (internal details). Perhaps this change is obsolete then or might be reduced to just checking for this category of issues to diagnose. Hence, downvoting for now.",
+      "revId": "5bd27983fe91083359672654a3158889d0c2a546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "789e0226_2f258169",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 2
