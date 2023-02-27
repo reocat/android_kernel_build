@@ -16,6 +16,23 @@
       "message": "Still a work in progress.",
       "revId": "9441520c9810ae8506e5a9462f6668bd7ebffda0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b9c476b_b8bb61d9",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-27T09:59:50Z",
+      "side": 1,
+      "message": "perhaps add a new set of tools \"hermetic-rust-tools\", that makes the availability optional and pulls in the dependency only if needed.",
+      "revId": "9441520c9810ae8506e5a9462f6668bd7ebffda0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
