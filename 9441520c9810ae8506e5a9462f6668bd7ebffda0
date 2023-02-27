@@ -33,6 +33,23 @@
       "message": "perhaps add a new set of tools \"hermetic-rust-tools\", that makes the availability optional and pulls in the dependency only if needed.",
       "revId": "9441520c9810ae8506e5a9462f6668bd7ebffda0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b715c130_c241170c",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-02-27T11:02:25Z",
+      "side": 1,
+      "message": "lberki@ suggested, we could get a map from `@kernel_toolchain_info`. That way we can make the value optional and only define the rust toolchain if the value is set:\n\ni.e. \n```\nload(\"@kernel_toolchain_info//:dict.bzl\", \"VERSIONS\")\n```\nthen instead of if `RUSTC_VERSION \u003e 1` you\u0027d say `if VERSIONS[\"rustc\"] \u003e 1`",
+      "revId": "9441520c9810ae8506e5a9462f6668bd7ebffda0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
