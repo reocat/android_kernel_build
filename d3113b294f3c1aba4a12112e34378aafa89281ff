@@ -16,6 +16,24 @@
       "message": "@jstultz@google.com Hey John, do you know how I can cc this change to yongqin.liu@linaro.org ? Gerrit doesn\u0027t seem to allow me to add them to the CC list. Maybe I should send them an email directly instead?",
       "revId": "d3113b294f3c1aba4a12112e34378aafa89281ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5609ad03_e45257c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1945845
+      },
+      "writtenOn": "2023-02-27T22:38:01Z",
+      "side": 1,
+      "message": "Yeah. Yongqin\u0027s account in Gerrit got into a funny state so Gerrit makes it hard to add them. (See b/254824035 for details).",
+      "parentUuid": "9c9ddfc7_622ef3dd",
+      "revId": "d3113b294f3c1aba4a12112e34378aafa89281ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
