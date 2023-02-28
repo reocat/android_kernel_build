@@ -21,40 +21,59 @@ import sys
 
 from abitool import get_abi_tool
 
-def diff_abi(abitool, baseline, new, report, short_report, symbol_list,
-             full_report):
-    tool = get_abi_tool(abitool)
-    return tool.diff_abi(baseline, new, report, short_report, symbol_list,
-                         full_report)
+
+def diff_abi(
+    abitool, baseline, new, report, short_report, symbol_list, full_report
+):
+  tool = get_abi_tool(abitool)
+  return tool.diff_abi(
+      baseline, new, report, short_report, symbol_list, full_report
+  )
+
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--baseline", help="baseline dump to compare to",
-                        required=True)
-    parser.add_argument("--new", help="new dump to compare to baseline",
-                        required=True)
-    parser.add_argument("--abi-tool", default="libabigail",
-                        help="abi tool to be used to monitor abi")
-    parser.add_argument("--report", help="where to write the report to",
-                        required=True)
-    parser.add_argument("--short-report", help="where to write a short report to",
-                        default=None)
-    parser.add_argument("--kmi-symbol-list", "--kmi-whitelist", default=None,
-                        help="KMI symbol list to filter for")
-    parser.add_argument("--full-report", action="store_true",
-                        help="Emit a detailed ABI report")
+  parser = argparse.ArgumentParser()
+  parser.add_argument(
+      "--baseline", help="baseline dump to compare to", required=True
+  )
+  parser.add_argument(
+      "--new", help="new dump to compare to baseline", required=True
+  )
+  parser.add_argument(
+      "--abi-tool",
+      default="libabigail",
+      help="abi tool to be used to monitor abi",
+  )
+  parser.add_argument(
+      "--report", help="where to write the report to", required=True
+  )
+  parser.add_argument(
+      "--short-report", help="where to write a short report to", default=None
+  )
+  parser.add_argument(
+      "--kmi-symbol-list",
+      "--kmi-whitelist",
+      default=None,
+      help="KMI symbol list to filter for",
+  )
+  parser.add_argument(
+      "--full-report", action="store_true", help="Emit a detailed ABI report"
+  )
 
-    args = parser.parse_args()
+  args = parser.parse_args()
 
-    abi_changed = diff_abi(args.abi_tool,
-                           args.baseline,
-                           args.new,
-                           args.report,
-                           args.short_report,
-                           args.kmi_symbol_list,
-                           args.full_report)
-    if abi_changed:
-        return 8
+  abi_changed = diff_abi(
+      args.abi_tool,
+      args.baseline,
+      args.new,
+      args.report,
+      args.short_report,
+      args.kmi_symbol_list,
+      args.full_report,
+  )
+  if abi_changed:
+    return 8
+
 
 if __name__ == "__main__":
-    sys.exit(main())
+  sys.exit(main())
