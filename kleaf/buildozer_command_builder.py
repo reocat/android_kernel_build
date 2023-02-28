@@ -42,8 +42,10 @@ def ensure_build_file(package: str, cwd: pathlib.Path):
     if os.path.isabs(package):
         die("%s is not a relative path.", package)
     abs_package = cwd / package
-    if not (abs_package / "BUILD.bazel").is_file() and \
-            not (abs_package / "BUILD").is_file():
+    if (
+        not (abs_package / "BUILD.bazel").is_file()
+        and not (abs_package / "BUILD").is_file()
+    ):
         build_file = abs_package / "BUILD.bazel"
         logging.info(f"Creating {build_file}")
         with open(build_file, "w"):
@@ -108,15 +110,20 @@ class TargetValue(InfoValue):
 
 
 class BuildozerCommandBuilder(object):
-    def __init__(self, args: argparse.Namespace, stdout: Optional[TextIO] = None,
-                 stderr: Optional[TextIO] = None,
-                 environ: Mapping[str, str] = None):
-        """
-        Args:
-             args: Namespace containing command-line arguments
-             stdout: Override stdout stream for subprocesses
-             stderr: Override stderr stream for subprocesses
-             environ: Override environment variables for subprocesses
+
+    def __init__(
+        self,
+        args: argparse.Namespace,
+        stdout: Optional[TextIO] = None,
+        stderr: Optional[TextIO] = None,
+        environ: Mapping[str, str] = None,
+    ):
+        """Args:
+
+        args: Namespace containing command-line arguments
+        stdout: Override stdout stream for subprocesses
+        stderr: Override stderr stream for subprocesses
+        environ: Override environment variables for subprocesses
         """
 
         self.stdout = stdout or sys.stdout
@@ -148,15 +155,21 @@ class BuildozerCommandBuilder(object):
         if buildozer:
             return buildozer
 
-        gopath = self.environ.get("GOPATH", os.path.join(self.environ["HOME"], "go"))
+        gopath = self.environ.get(
+            "GOPATH", os.path.join(self.environ["HOME"], "go")
+        )
         buildozer = os.path.join(gopath, "bin", "buildozer")
         if os.path.isfile(buildozer):
             return buildozer
 
-        die("Can't find buildozer. Install with instructions at "
-            "https://github.com/bazelbuild/buildtools/blob/master/buildozer/README.md")
+        die(
+            "Can't find buildozer. Install with instructions at "
+            "https://github.com/bazelbuild/buildtools/blob/master/buildozer/README.md"
+        )
 
-    def _get_all_info(self, keys: Iterable[InfoKey]) -> dict[InfoKey, InfoValue]:
+    def _get_all_info(
+        self, keys: Iterable[InfoKey]
+    ) -> dict[InfoKey, InfoValue]:
         """Gets all interesting information of existing BUILD files.
 
         Args:
@@ -172,16 +185,20 @@ class BuildozerCommandBuilder(object):
             ret[tup[0]] = tup[1]
         return ret
 
-    def _buildozer_print(self, target, print_command, attribute,
-                         parse_list=False) -> Optional[str | list[str]]:
+    def _buildozer_print(
+        self, target, print_command, attribute, parse_list=False
+    ) -> Optional[str | list[str]]:
         """Executes a buildozer print command."""
         value = InfoValue.MISSING
 
         try:
             value = subprocess.check_output(
                 [self.buildozer, f"{print_command} {attribute}", target],
-                text=True, stderr=subprocess.PIPE, env=self.environ,
-                cwd=self._workspace_root()).strip()
+                text=True,
+                stderr=subprocess.PIPE,
+                env=self.environ,
+                cwd=self._workspace_root(),
+            ).strip()
         except subprocess.CalledProcessError:
             pass
 
@@ -216,16 +233,27 @@ class BuildozerCommandBuilder(object):
         Args:
             key: the InfoKey.
         """
-        value = self._buildozer_print(key.target, "print", key.attribute, parse_list=True)
-        comment = self._buildozer_print(key.target, "print_comment", key.attribute)
+        value = self._buildozer_print(
+            key.target, "print", key.attribute, parse_list=True
+        )
+        comment = self._buildozer_print(
+            key.target, "print_comment", key.attribute
+        )
         return key, AttributeValue(value=value, comment=comment)
 
     @staticmethod
     def _is_bash_func(build_config: str) -> bool:
-        return build_config.startswith("BASH_FUNC_") and build_config.endswith("%%")
+        return build_config.startswith("BASH_FUNC_") and build_config.endswith(
+            "%%"
+        )
 
-    def _new(self, kind: str, name: str, package: str, load_from="//build/kernel/kleaf:kernel.bzl") \
-            -> str:
+    def _new(
+        self,
+        kind: str,
+        name: str,
+        package: str,
+        load_from="//build/kernel/kleaf:kernel.bzl",
+    ) -> str:
         """Writes a buildozer command that creates a target.
 
         Returns:
@@ -240,22 +268,31 @@ class BuildozerCommandBuilder(object):
 
         existing_kind = InfoValue.MISSING
         if key in self.existing:
-            existing_kind = isinstance_or_die(self.existing[key], TargetValue).kind
+            existing_kind = isinstance_or_die(
+                self.existing[key], TargetValue
+            ).kind
 
         if existing_kind is InfoValue.MISSING:
-            self.out_file.write(f"""
+            self.out_file.write(
+                f"""
                 fix movePackageToTop|{new_target_pkg}
                 new_load {load_from} {kind}|{new_target_pkg}
                 new {kind} {name}|{new_target_pkg}
-            """)
+            """
+            )
             self.existing[key] = TargetValue(kind=kind)
         elif existing_kind != kind:
-            logging.warning(f"Forcefully setting {new_target} from {existing_kind} to {kind}")
-            self.out_file.write(f"""
+            logging.warning(
+                f"Forcefully setting {new_target} from {existing_kind} to"
+                f" {kind}"
+            )
+            self.out_file.write(
+                f"""
                 fix movePackageToTop|{new_target_pkg}
                 new_load {load_from} {kind}|{new_target_pkg}
                 set kind {kind}|{new_target}
-            """)
+            """
+            )
             self.existing[key] = TargetValue(kind=kind)
 
         if self._add_package_comment_for_test:
@@ -268,8 +305,15 @@ class BuildozerCommandBuilder(object):
         self.out_file.write(f"""set kind {kind}|{target}\n""")
         self.existing[TargetKey(target)] = TargetValue(kind=kind)
 
-    def _add_comment(self, target: str, attribute: str, expected_comment: str,
-                     should_set_comment_pred: Callable[[AttributeValue], bool] = lambda e: True):
+    def _add_comment(
+        self,
+        target: str,
+        attribute: str,
+        expected_comment: str,
+        should_set_comment_pred: Callable[
+            [AttributeValue], bool
+        ] = lambda e: True,
+    ):
         """Adds comment to attribute of the given target.
 
         If the attribute does not exist (assuming that it is queried
@@ -277,15 +321,21 @@ class BuildozerCommandBuilder(object):
         """
         # comments can only be set to existing attributes. Set it to None if the
         # attribute does not already exist.
-        self._set_attr(target, attribute, InfoValue.NONE, command="set_if_absent")
+        self._set_attr(
+            target, attribute, InfoValue.NONE, command="set_if_absent"
+        )
 
         attr_val = self._lookup_existing_attribute(target, attribute)
         if should_set_comment_pred(attr_val):
             logging.info(f"pred passes: {attr_val.comment}")
-            if attr_val.comment is InfoValue.MISSING or \
-                    expected_comment not in attr_val.comment:
+            if (
+                attr_val.comment is InfoValue.MISSING
+                or expected_comment not in attr_val.comment
+            ):
                 esc_comment = expected_comment.replace(" ", "\\ ")
-                self.out_file.write(f"""comment {attribute} {esc_comment}|{target}\n""")
+                self.out_file.write(
+                    f"""comment {attribute} {esc_comment}|{target}\n"""
+                )
                 attr_val.comment = expected_comment
 
     def _add_target_comment(self, target: str, comment_lines: Iterable[str]):
@@ -298,30 +348,43 @@ class BuildozerCommandBuilder(object):
         if content:
             self.out_file.write(f"""comment {content}|{target}\n""")
 
-    def _set_attr(self, target: str, attribute: str, value: Optional[bool | str],
-                  quote: bool = False,
-                  command: str = "set"):
+    def _set_attr(
+        self,
+        target: str,
+        attribute: str,
+        value: Optional[bool | str],
+        quote: bool = False,
+        command: str = "set",
+    ):
         """Writes a buildozer command that sets an attribute.
 
         Args:
             target: full label of target
             attribute: attribute name
             value: value of attribute
-            quote: whether value should be quoted in the buildozer command. By default, False.
-            command: buildozer command. Either "set" or "set_if_absent". By default, "set".
+            quote: whether value should be quoted in the buildozer command. By
+              default, False.
+            command: buildozer command. Either "set" or "set_if_absent". By
+              default, "set".
         """
         if command not in ("set", "set_if_absent"):
             die(f"Unknown command {command} for _set_attr")
 
         command_value = f'"{value}"' if quote else str(value)
-        self.out_file.write(f"""{command} {attribute} {command_value}|{target}\n""")
+        self.out_file.write(
+            f"""{command} {attribute} {command_value}|{target}\n"""
+        )
 
         # set value in self.existing
         key = AttributeKey(target, attribute)
         if key not in self.existing:
             self.existing[key] = AttributeValue()
-        attr_val: AttributeValue = isinstance_or_die(self.existing[key], AttributeValue)
-        if command == "set" or (command == "set_if_absent" and attr_val.value is InfoValue.MISSING):
+        attr_val: AttributeValue = isinstance_or_die(
+            self.existing[key], AttributeValue
+        )
+        if command == "set" or (
+            command == "set_if_absent" and attr_val.value is InfoValue.MISSING
+        ):
             attr_val.value = str(value)
 
     def _add_attr(self, target: str, attribute: str, value: str, quote=False):
@@ -340,7 +403,9 @@ class BuildozerCommandBuilder(object):
         key = AttributeKey(target, attribute)
         if key not in self.existing:
             self.existing[key] = AttributeValue()
-        attr_val: AttributeValue = isinstance_or_die(self.existing[key], AttributeValue)
+        attr_val: AttributeValue = isinstance_or_die(
+            self.existing[key], AttributeValue
+        )
         if attr_val.value is InfoValue.MISSING:
             attr_val.value = [command_value]
         else:
@@ -383,7 +448,10 @@ class BuildozerCommandBuilder(object):
 
     def _run_buildozer(self) -> None:
         self.out_file.seek(0)
-        logging.info("Executing buildozer with the following commands:\n%s", self.out_file.read())
+        logging.info(
+            "Executing buildozer with the following commands:\n%s",
+            self.out_file.read(),
+        )
 
         buildozer_args = [
             self.buildozer,
@@ -396,8 +464,13 @@ class BuildozerCommandBuilder(object):
         if self.args.stdout:
             buildozer_args.append("-stdout")
         try:
-            subprocess.check_call(buildozer_args, stdout=self.stdout, stderr=self.stderr,
-                                  env=self.environ, cwd=self._workspace_root())
+            subprocess.check_call(
+                buildozer_args,
+                stdout=self.stdout,
+                stderr=self.stderr,
+                env=self.environ,
+                cwd=self._workspace_root(),
+            )
         except subprocess.CalledProcessError as e:
             if e.returncode == _BUILDOZER_RETURN_CODE_NO_CHANGES_MADE:
                 logging.info("No files were changed.")
@@ -407,8 +480,12 @@ class BuildozerCommandBuilder(object):
     def _lookup_existing_target(self, target: str) -> TargetValue:
         return isinstance_or_die(self.existing[TargetKey(target)], TargetValue)
 
-    def _lookup_existing_attribute(self, target: str, attribute: str) -> AttributeValue:
-        return isinstance_or_die(self.existing[AttributeKey(target, attribute)], AttributeValue)
+    def _lookup_existing_attribute(
+        self, target: str, attribute: str
+    ) -> AttributeValue:
+        return isinstance_or_die(
+            self.existing[AttributeKey(target, attribute)], AttributeValue
+        )
 
     def run(self):
         # Dry run to see what attributes / targets will be added
@@ -431,4 +508,6 @@ class BuildozerCommandBuilder(object):
         raise AttributeError
 
     def _workspace_root(self) -> pathlib.Path:
-        return pathlib.Path(self.environ.get("BUILD_WORKSPACE_DIRECTORY", os.getcwd()))
+        return pathlib.Path(
+            self.environ.get("BUILD_WORKSPACE_DIRECTORY", os.getcwd())
+        )

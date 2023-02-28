@@ -64,13 +64,25 @@ _FASTEST = _LOCAL + _LTO_NONE
 
 _INTEGRATION_TEST_BAZEL_RC = "out/bazel/integration_test.bazelrc"
 
+
 def load_arguments():
-    parser = argparse.ArgumentParser(description=__doc__,
-                                     formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument("--bazel-arg", action="append", dest="bazel_args", default=[],
-                        help="arg to bazel build calls")
-    parser.add_argument("--bazel-wrapper-arg", action="append", dest="bazel_wrapper_args",
-                        default=[], help="arg to bazel.py wrapper")
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawTextHelpFormatter
+    )
+    parser.add_argument(
+        "--bazel-arg",
+        action="append",
+        dest="bazel_args",
+        default=[],
+        help="arg to bazel build calls",
+    )
+    parser.add_argument(
+        "--bazel-wrapper-arg",
+        action="append",
+        dest="bazel_wrapper_args",
+        default=[],
+        help="arg to bazel.py wrapper",
+    )
     return parser.parse_known_args()
 
 
@@ -78,6 +90,7 @@ arguments = None
 
 
 class Exec(object):
+
     @staticmethod
     def check_call(args: list[str], **kwargs) -> None:
         """Executes a shell command."""
@@ -94,36 +107,56 @@ class Exec(object):
 
 
 class KleafIntegrationTest(unittest.TestCase):
-    def _check_call(self, command: str, command_args: list[str],
-                    startup_options = (),
-                    **kwargs) -> None:
+
+    def _check_call(
+        self,
+        command: str,
+        command_args: list[str],
+        startup_options=(),
+        **kwargs,
+    ) -> None:
         """Executes a bazel command."""
         startup_options = list(startup_options)
         startup_options.append(f"--bazelrc={self._bazel_rc.name}")
         command_args = list(command_args)
         command_args.extend(arguments.bazel_wrapper_args)
-        Exec.check_call([str(_BAZEL)] + startup_options + [
-                         command,
-                        ] + command_args, **kwargs)
-
+        Exec.check_call(
+            [str(_BAZEL)]
+            + startup_options
+            + [
+                command,
+            ]
+            + command_args,
+            **kwargs,
+        )
 
     def _build(self, command_args: list[str], **kwargs) -> None:
         """Executes a bazel build command."""
         self._check_call("build", command_args, **kwargs)
 
-
-    def _check_output(self, command: str, command_args: list[str], **kwargs) -> str:
+    def _check_output(
+        self, command: str, command_args: list[str], **kwargs
+    ) -> str:
         """Returns output of a bazel command."""
-        return Exec.check_output([str(_BAZEL),
-                         f"--bazelrc={self._bazel_rc.name}",
-                         command,
-                        ] + command_args, **kwargs)
+        return Exec.check_output(
+            [
+                str(_BAZEL),
+                f"--bazelrc={self._bazel_rc.name}",
+                command,
+            ]
+            + command_args,
+            **kwargs,
+        )
 
     def setUp(self) -> None:
-        self.assertTrue(os.environ.get("BUILD_WORKSPACE_DIRECTORY"),
-            "BUILD_WORKSPACE_DIRECTORY is not set")
+        self.assertTrue(
+            os.environ.get("BUILD_WORKSPACE_DIRECTORY"),
+            "BUILD_WORKSPACE_DIRECTORY is not set",
+        )
         os.chdir(os.environ["BUILD_WORKSPACE_DIRECTORY"])
-        sys.stderr.write(f"BUILD_WORKSPACE_DIRECTORY={os.environ['BUILD_WORKSPACE_DIRECTORY']}\n")
+        sys.stderr.write(
+            f"BUILD_WORKSPACE_DIRECTORY={os.environ['BUILD_WORKSPACE_DIRECTORY']}\n"
+        )
 
         self.assertTrue(_BAZEL.is_file())
 
@@ -141,7 +174,7 @@ class KleafIntegrationTest(unittest.TestCase):
         hash = hashlib.sha256()
         with open(path, "rb") as file:
             chunk = None
-            while chunk != b'':
+            while chunk != b"":
                 chunk = file.read(4096)
                 hash.update(chunk)
         return hash.hexdigest()
@@ -170,7 +203,9 @@ class KleafIntegrationTest(unittest.TestCase):
 
     def test_simple_modules_prepare_local(self):
         """Tests that fixdep is not needed."""
-        self._build([f"//{self._common()}:kernel_aarch64_modules_prepare"] + _FASTEST)
+        self._build(
+            [f"//{self._common()}:kernel_aarch64_modules_prepare"] + _FASTEST
+        )
 
     def test_simple_incremental(self):
         self._build([f"//{self._common()}:kernel_dist"] + _FASTEST)
@@ -187,9 +222,10 @@ class KleafIntegrationTest(unittest.TestCase):
 
         See b/254357038, b/267385639, b/263415662.
         """
-        modules_prepare_archive = \
-            f"bazel-bin/{self._common()}/kernel_aarch64_modules_prepare/modules_prepare_outdir.tar.gz"
-        self._build([f"//{self._common()}:kernel_aarch64_modules_prepare"] + _FASTEST)
+        modules_prepare_archive = f"bazel-bin/{self._common()}/kernel_aarch64_modules_prepare/modules_prepare_outdir.tar.gz"
+        self._build(
+            [f"//{self._common()}:kernel_aarch64_modules_prepare"] + _FASTEST
+        )
         first_hash = self._sha256(modules_prepare_archive)
 
         old_modules_archive = tempfile.NamedTemporaryFile()
@@ -197,37 +233,63 @@ class KleafIntegrationTest(unittest.TestCase):
 
         self._touch_core_kernel_file()
 
-        self._build([f"//{self._common()}:kernel_aarch64_modules_prepare"] + _FASTEST)
+        self._build(
+            [f"//{self._common()}:kernel_aarch64_modules_prepare"] + _FASTEST
+        )
         second_hash = self._sha256(modules_prepare_archive)
 
         if first_hash != second_hash:
             old_modules_archive.delete = False
 
-        self.assertEqual(first_hash, second_hash,
-                         textwrap.dedent(f"""\
+        self.assertEqual(
+            first_hash,
+            second_hash,
+            textwrap.dedent(
+                f"""\
                              Check their content here:
                              old: {old_modules_archive.name}
-                             new: {modules_prepare_archive}"""))
+                             new: {modules_prepare_archive}"""
+            ),
+        )
 
     def test_module_does_not_depend_on_vmlinux(self):
         """Tests that, the inputs for building a module does not include vmlinux and System.map.
 
-        See b/254357038."""
-        vd_modules = self._check_output("query", [
-            'kind("^_kernel_module rule$", //common-modules/virtual-device/...)'
-        ]).splitlines()
+        See b/254357038.
+        """
+        vd_modules = self._check_output(
+            "query",
+            [
+                'kind("^_kernel_module rule$",'
+                " //common-modules/virtual-device/...)"
+            ],
+        ).splitlines()
         self.assertTrue(vd_modules)
 
-        print(f"+ build/kernel/kleaf/analysis/inputs.py 'mnemonic(\"KernelModule.*\", {vd_modules[0]})'")
-        input_to_module = analyze_inputs(aquery_args=[
-                                                         f'mnemonic("KernelModule.*", {vd_modules[0]})'
-                                                     ] + _FASTEST).keys()
+        print(
+            "+ build/kernel/kleaf/analysis/inputs.py"
+            f" 'mnemonic(\"KernelModule.*\", {vd_modules[0]})'"
+        )
+        input_to_module = analyze_inputs(
+            aquery_args=[f'mnemonic("KernelModule.*", {vd_modules[0]})']
+            + _FASTEST
+        ).keys()
         self.assertFalse(
-            [path for path in input_to_module if pathlib.Path(path).name == "vmlinux"],
-            "An external module must not depend on vmlinux")
+            [
+                path
+                for path in input_to_module
+                if pathlib.Path(path).name == "vmlinux"
+            ],
+            "An external module must not depend on vmlinux",
+        )
         self.assertFalse(
-            [path for path in input_to_module if pathlib.Path(path).name == "System.map"],
-            "An external module must not depend on System.map")
+            [
+                path
+                for path in input_to_module
+                if pathlib.Path(path).name == "System.map"
+            ],
+            "An external module must not depend on System.map",
+        )
 
     def test_incremental_switch_to_local(self):
         """Tests that switching from non-local to local works."""
@@ -242,25 +304,31 @@ class KleafIntegrationTest(unittest.TestCase):
     def test_change_lto_to_thin_when_local(self):
         """Tests that, with --config=local, changing from --lto=none to --lto=thin works.
 
-        See b/257288175."""
+        See b/257288175.
+        """
         self._build([f"//{self._common()}:kernel_dist"] + _LOCAL + _LTO_NONE)
-        self._build([f"//{self._common()}:kernel_dist"] + _LOCAL + [
-            "--lto=thin"
-        ])
+        self._build(
+            [f"//{self._common()}:kernel_dist"] + _LOCAL + ["--lto=thin"]
+        )
 
     def test_change_lto_to_none_when_local(self):
         """Tests that, with --config=local, changing from --lto=thin to --lto=local works.
 
-        See b/257288175."""
-        self._check_call("build", [f"//{self._common()}:kernel_dist"] + _LOCAL + [
-            "--lto=thin"
-        ])
-        self._check_call("build", [f"//{self._common()}:kernel_dist"] + _LOCAL + _LTO_NONE)
+        See b/257288175.
+        """
+        self._check_call(
+            "build",
+            [f"//{self._common()}:kernel_dist"] + _LOCAL + ["--lto=thin"],
+        )
+        self._check_call(
+            "build", [f"//{self._common()}:kernel_dist"] + _LOCAL + _LTO_NONE
+        )
 
     def test_override_javatmp(self):
         """Tests that out/bazel/javatmp can be overridden.
 
-        See b/267580482."""
+        See b/267580482.
+        """
         default_java_tmp = pathlib.Path("out/bazel/javatmp")
         new_java_tmp = tempfile.TemporaryDirectory()
         self.addCleanup(new_java_tmp.cleanup)
@@ -269,15 +337,19 @@ class KleafIntegrationTest(unittest.TestCase):
         except FileNotFoundError:
             pass
         self._check_call(
-            startup_options=[f"--host_jvm_args=-Djava.io.tmpdir={new_java_tmp.name}"],
+            startup_options=[
+                f"--host_jvm_args=-Djava.io.tmpdir={new_java_tmp.name}"
+            ],
             command="build",
-            command_args=["//build/kernel/kleaf:empty_test"] + _FASTEST)
+            command_args=["//build/kernel/kleaf:empty_test"] + _FASTEST,
+        )
         self.assertFalse(default_java_tmp.exists())
 
     def test_override_absolute_out_dir(self):
         """Tests that out/ can be overridden.
 
-        See b/267580482."""
+        See b/267580482.
+        """
         default_out = pathlib.Path("out")
         new_out = tempfile.TemporaryDirectory()
         self.addCleanup(new_out.cleanup)
@@ -287,13 +359,15 @@ class KleafIntegrationTest(unittest.TestCase):
             pass
         self._check_call(
             command="build",
-            command_args=["//build/kernel/kleaf:empty_test"] + _FASTEST)
+            command_args=["//build/kernel/kleaf:empty_test"] + _FASTEST,
+        )
         self.assertTrue(default_out.exists())
         shutil.rmtree(default_out)
         self._check_call(
             startup_options=[f"--output_root={new_out.name}"],
             command="build",
-            command_args=["//build/kernel/kleaf:empty_test"] + _FASTEST)
+            command_args=["//build/kernel/kleaf:empty_test"] + _FASTEST,
+        )
         self.assertFalse(default_out.exists())
 
 

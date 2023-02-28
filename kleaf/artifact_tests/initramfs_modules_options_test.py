@@ -38,19 +38,29 @@ arguments = None
 
 
 class InitramfsModulesOptions(unittest.TestCase):
+
     def test_diff(self):
-        initramfs_list = [f for f in arguments.files if os.path.basename(f) == "initramfs.img"]
+        initramfs_list = [
+            f for f in arguments.files if os.path.basename(f) == "initramfs.img"
+        ]
         self.assertEqual(1, len(initramfs_list))
         initramfs = initramfs_list[0]
 
         with open(arguments.expected) as expected:
             with tempfile.TemporaryDirectory() as temp_dir:
                 with open(initramfs) as initramfs_file:
-                    with subprocess.Popen([os.path.abspath(arguments.cpio), "-i"], cwd=temp_dir,
-                                          stdin=subprocess.PIPE, stdout=subprocess.PIPE) as cpio_sp:
+                    with subprocess.Popen(
+                        [os.path.abspath(arguments.cpio), "-i"],
+                        cwd=temp_dir,
+                        stdin=subprocess.PIPE,
+                        stdout=subprocess.PIPE,
+                    ) as cpio_sp:
                         # Assume LZ4_RAMDISK is not set for this target.
-                        with subprocess.Popen([arguments.gzip, "-c", "-d"], stdin=initramfs_file,
-                                              stdout=cpio_sp.stdin) as gzip_sp:
+                        with subprocess.Popen(
+                            [arguments.gzip, "-c", "-d"],
+                            stdin=initramfs_file,
+                            stdout=cpio_sp.stdin,
+                        ) as gzip_sp:
                             gzip_sp.communicate()
                             self.assertEqual(0, gzip_sp.returncode)
 
@@ -59,15 +69,22 @@ class InitramfsModulesOptions(unittest.TestCase):
 
                 kernel_versions = os.listdir(lib_modules)
                 for v in kernel_versions:
-                    modules_options = os.path.join(lib_modules, v, "modules.options")
-                    self.assertTrue(os.path.isfile(modules_options), f"Can't find {modules_options}")
+                    modules_options = os.path.join(
+                        lib_modules, v, "modules.options"
+                    )
+                    self.assertTrue(
+                        os.path.isfile(modules_options),
+                        f"Can't find {modules_options}",
+                    )
 
                     with open(modules_options) as modules_options_file:
                         expected.seek(0)
-                        self.assertEqual(modules_options_file.read(), expected.read())
+                        self.assertEqual(
+                            modules_options_file.read(), expected.read()
+                        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     arguments, unknown = load_arguments()
     sys.argv[1:] = unknown
     absltest.main()

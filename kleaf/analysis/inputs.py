@@ -41,6 +41,7 @@ from typing import Any
 @dataclasses.dataclass(frozen=True, order=True)
 class ArtifactPath(object):
     """Represents the path information of an artifact."""
+
     path: pathlib.Path
     is_tree_artifact: bool
 
@@ -50,15 +51,12 @@ def analyze_inputs(aquery_args):
 
     Args:
         aquery_args: arguments to `bazel aquery`
+
     Returns:
         A dictionary, where keys are file paths, and values are hashes.
     """
     text_result = subprocess.check_output(
-        [
-            "tools/bazel",
-            "aquery",
-            "--output=jsonproto"
-        ] + aquery_args,
+        ["tools/bazel", "aquery", "--output=jsonproto"] + aquery_args,
         text=True,
     )
     json_result = json.loads(text_result)
@@ -67,22 +65,30 @@ def analyze_inputs(aquery_args):
 
     actions = json_result["actions"]
     artifacts = id_object_list_to_dict(json_result.get("artifacts", []))
-    dep_set_of_files = id_object_list_to_dict(json_result.get("depSetOfFiles", []))
-    path_fragments = id_object_list_to_dict(json_result.get("pathFragments", []))
+    dep_set_of_files = id_object_list_to_dict(
+        json_result.get("depSetOfFiles", [])
+    )
+    path_fragments = id_object_list_to_dict(
+        json_result.get("pathFragments", [])
+    )
 
     inputs: set[ArtifactPath] = set()
     for action in actions:
-        inputs |= load_inputs(action,
-                              dep_set_of_files=dep_set_of_files,
-                              artifacts=artifacts,
-                              path_fragments=path_fragments)
+        inputs |= load_inputs(
+            action,
+            dep_set_of_files=dep_set_of_files,
+            artifacts=artifacts,
+            path_fragments=path_fragments,
+        )
 
     inputs = resolve_inputs(inputs)
 
     return hash_all(inputs)
 
 
-def id_object_list_to_dict(l: list[dict[str, Any]]) -> dict[int, dict[str, Any]]:
+def id_object_list_to_dict(
+    l: list[dict[str, Any]]
+) -> dict[int, dict[str, Any]]:
     """Turns a list of objects to a dictionary from IDs to these objects."""
     ret = {}
     for elem in l:
@@ -90,11 +96,12 @@ def id_object_list_to_dict(l: list[dict[str, Any]]) -> dict[int, dict[str, Any]]
     return ret
 
 
-def load_inputs(action: dict[str, Any],
-                dep_set_of_files: dict[int, dict[str, Any]],
-                artifacts: dict[int, dict[str, Any]],
-                path_fragments: dict[int, dict[str, Any]],
-                ) -> set[ArtifactPath]:
+def load_inputs(
+    action: dict[str, Any],
+    dep_set_of_files: dict[int, dict[str, Any]],
+    artifacts: dict[int, dict[str, Any]],
+    path_fragments: dict[int, dict[str, Any]],
+) -> set[ArtifactPath]:
     """Returns the list of input paths to an action.
 
     Args:
@@ -120,8 +127,7 @@ def load_inputs(action: dict[str, Any],
 
 # TODO(b/250646733): Ignore visited
 def dep_set_to_artifact_ids(
-        dep_set_ids: list[int],
-        dep_set_of_files: dict[int, dict[str, Any]]
+    dep_set_ids: list[int], dep_set_of_files: dict[int, dict[str, Any]]
 ) -> set[int]:
     """Flattens the list of depsets.
 
@@ -139,14 +145,17 @@ def dep_set_to_artifact_ids(
         if dep_set.get("transitiveDepSetIds"):
             ret |= dep_set_to_artifact_ids(
                 dep_set_ids=dep_set["transitiveDepSetIds"],
-                dep_set_of_files=dep_set_of_files)
+                dep_set_of_files=dep_set_of_files,
+            )
     return ret
 
 
 # TODO(b/250646733): cache
-def artifacts_to_paths(artifact_ids: set[int],
-                       artifacts: dict[int, dict[str, Any]],
-                       path_fragments: dict[int, dict[str, Any]]) -> set[ArtifactPath]:
+def artifacts_to_paths(
+    artifact_ids: set[int],
+    artifacts: dict[int, dict[str, Any]],
+    path_fragments: dict[int, dict[str, Any]],
+) -> set[ArtifactPath]:
     """Maps lists of artifacts to their paths.
 
     Args:
@@ -161,18 +170,20 @@ def artifacts_to_paths(artifact_ids: set[int],
     for artifact_id in artifact_ids:
         artifact = artifacts[artifact_id]
         path = ArtifactPath(
-            path=pathlib.Path(*get_path(
-                path_fragment_id=artifact["pathFragmentId"],
-                path_fragments=path_fragments,
-            )),
-            is_tree_artifact=bool(artifact.get("isTreeArtifact")))
+            path=pathlib.Path(
+                *get_path(
+                    path_fragment_id=artifact["pathFragmentId"],
+                    path_fragments=path_fragments,
+                )
+            ),
+            is_tree_artifact=bool(artifact.get("isTreeArtifact")),
+        )
         ret.add(path)
     return ret
 
 
 def get_path(
-        path_fragment_id: int,
-        path_fragments: dict[int, dict[str, Any]]
+    path_fragment_id: int, path_fragments: dict[int, dict[str, Any]]
 ) -> list[str]:
     """Returns the full path that the given path fragment ID represents.
 
@@ -187,7 +198,8 @@ def get_path(
     if path_fragment.get("parentId"):
         ret = get_path(
             path_fragment_id=path_fragment["parentId"],
-            path_fragments=path_fragments)
+            path_fragments=path_fragments,
+        )
     else:
         ret = []
     ret.append(path_fragment["label"])
@@ -203,8 +215,10 @@ def hash_all(paths: set[ArtifactPath]) -> dict[str, str]:
 
     Args:
         paths: a set of paths to look at.
+
     Returns:
-        a dictionary, where the keys are paths to files, and values are the hashes.
+        a dictionary, where the keys are paths to files, and values are the
+        hashes.
     """
     files: set[pathlib.Path] = set()
     for path in paths:
@@ -215,9 +229,7 @@ def hash_all(paths: set[ArtifactPath]) -> dict[str, str]:
 
     exists, missing = split_existing_files(files)
 
-    return hash_all_files(list(exists)) | {
-        str(file): None for file in missing
-    }
+    return hash_all_files(list(exists)) | {str(file): None for file in missing}
 
 
 def hash_all_files(files: list[pathlib.Path]) -> dict[str, str]:
@@ -228,18 +240,19 @@ def hash_all_files(files: list[pathlib.Path]) -> dict[str, str]:
 
     Args:
         files: a set of paths to look at. They are expected to point to a file.
+
     Returns:
-        a dictionary, where the keys are paths to files, and values are the hashes.
+        a dictionary, where the keys are paths to files, and values are the
+        hashes.
     """
 
     if not files:
         return {}
 
     try:
-        output = subprocess.check_output([
-                                             "sha1sum"
-                                         ] + list(str(path) for path in files),
-                                         text=True).splitlines()
+        output = subprocess.check_output(
+            ["sha1sum"] + list(str(path) for path in files), text=True
+        ).splitlines()
         ret = dict()
         for line in output:
             sha1sum, path = line.split(maxsplit=2)
@@ -268,6 +281,7 @@ def walk_files(path: pathlib.Path):
 
     Args:
         path: the directory
+
     Returns:
         the list of files under the given directory.
     """
@@ -299,17 +313,24 @@ def resolve_inputs(inputs: set[ArtifactPath]) -> set[ArtifactPath]:
     output_base = get_output_base()
     for input in inputs:
         if input.path.is_relative_to("external"):
-            if (output_base / input.path).exists() and \
-                    (output_base / input.path).is_dir() == input.is_tree_artifact:
-                resolved_inputs.add(ArtifactPath(
-                    path=output_base / input.path,
-                    is_tree_artifact=input.is_tree_artifact,
-                ))
-            elif input.path.exists() and \
-                    input.path.is_dir() == input.is_tree_artifact:
+            if (output_base / input.path).exists() and (
+                output_base / input.path
+            ).is_dir() == input.is_tree_artifact:
+                resolved_inputs.add(
+                    ArtifactPath(
+                        path=output_base / input.path,
+                        is_tree_artifact=input.is_tree_artifact,
+                    )
+                )
+            elif (
+                input.path.exists()
+                and input.path.is_dir() == input.is_tree_artifact
+            ):
                 resolved_inputs.add(input)
             else:
-                raise FileNotFoundError(f"{input.path} ({output_base / input.path})")
+                raise FileNotFoundError(
+                    f"{input.path} ({output_base / input.path})"
+                )
         else:
             resolved_inputs.add(input)
 
@@ -320,11 +341,15 @@ def get_output_base() -> pathlib.Path:
     """Returns the output base.
 
     Returns:
-        path to execroot relative to the current working directory (which should be the
+        path to execroot relative to the current working directory (which should
+        be the
         root of the repository).
     """
     return pathlib.Path(
-        subprocess.check_output(["tools/bazel", "info", "output_base"], text=True).strip())
+        subprocess.check_output(
+            ["tools/bazel", "info", "output_base"], text=True
+        ).strip()
+    )
 
 
 def split_existing_files(files: set[pathlib.Path]):
@@ -332,6 +357,7 @@ def split_existing_files(files: set[pathlib.Path]):
 
     Args:
         files: list of paths to look at
+
     Returns:
         A tuple, where the first element is the set of paths that exists,
         and the second is the set of paths that doesn't exist.
@@ -348,10 +374,12 @@ def split_existing_files(files: set[pathlib.Path]):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description=__doc__,
-                                     formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument("aquery_args", nargs="+",
-                        help="Args to `bazel aquery`.")
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawTextHelpFormatter
+    )
+    parser.add_argument(
+        "aquery_args", nargs="+", help="Args to `bazel aquery`."
+    )
     args = parser.parse_args()
 
     results = analyze_inputs(**vars(args))

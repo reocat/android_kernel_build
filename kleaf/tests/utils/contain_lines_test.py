@@ -58,8 +58,12 @@ from absl.testing import absltest
 
 def load_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--actual", nargs="+", type=pathlib.Path, help="actual files")
-    parser.add_argument("--expected", nargs="+", type=pathlib.Path, help="expected files")
+    parser.add_argument(
+        "--actual", nargs="+", type=pathlib.Path, help="actual files"
+    )
+    parser.add_argument(
+        "--expected", nargs="+", type=pathlib.Path, help="expected files"
+    )
     parser.add_argument("--order", action="store_true")
     return parser.parse_known_args()
 
@@ -73,6 +77,7 @@ def _read_non_empty_lines(path: pathlib.Path) -> list[str]:
 
 
 class CompareTest(unittest.TestCase):
+
     def test_all(self):
         # Turn lists into a dictionary from basename to a list of values with that basename.
         actual = collections.defaultdict(list)
@@ -89,31 +94,53 @@ class CompareTest(unittest.TestCase):
             actual_with_basename = actual[basename]
             expected_with_basename = expected[basename]
 
-            self.assertTrue(actual_with_basename, f"missing actual file for {basename}")
-            self.assertTrue(expected_with_basename, f"missing expected file for {basename}")
+            self.assertTrue(
+                actual_with_basename, f"missing actual file for {basename}"
+            )
+            self.assertTrue(
+                expected_with_basename, f"missing expected file for {basename}"
+            )
 
             for actual_file in actual_with_basename:
                 for expected_file in expected_with_basename:
-                    with self.subTest(actual=actual_file, expected=expected_file):
-                        self._assert_contain_lines(actual=actual_file, expected=expected_file)
+                    with self.subTest(
+                        actual=actual_file, expected=expected_file
+                    ):
+                        self._assert_contain_lines(
+                            actual=actual_file, expected=expected_file
+                        )
 
-    def _assert_contain_lines(self, actual: pathlib.Path, expected: pathlib.Path):
+    def _assert_contain_lines(
+        self, actual: pathlib.Path, expected: pathlib.Path
+    ):
         actual_lines = _read_non_empty_lines(actual)
         expected_lines = _read_non_empty_lines(expected)
 
         if not arguments.order:
-            diff = collections.Counter(expected_lines) - collections.Counter(actual_lines)
-            self.assertFalse(diff,
-                             f"{actual} does not contain all lines from {expected}, missing\n" +
-                             ("\n".join(diff.elements())))
+            diff = collections.Counter(expected_lines) - collections.Counter(
+                actual_lines
+            )
+            self.assertFalse(
+                diff,
+                f"{actual} does not contain all lines from {expected},"
+                " missing\n"
+                + "\n".join(diff.elements()),
+            )
         else:
-            expected_index = self._check_sublist_with_order(actual_lines, expected_lines)
-            self.assertGreaterEqual(expected_index, len(expected_lines),
-                                    f"{actual} does not contain all lines from {expected} in " +
-                                    f"the given order. Mismatch starting at line " +
-                                    f"{expected_index} of {expected}.")
+            expected_index = self._check_sublist_with_order(
+                actual_lines, expected_lines
+            )
+            self.assertGreaterEqual(
+                expected_index,
+                len(expected_lines),
+                f"{actual} does not contain all lines from {expected} in "
+                + f"the given order. Mismatch starting at line "
+                + f"{expected_index} of {expected}.",
+            )
 
-    def _check_sublist_with_order(self, actual_lines: list[str], expected_lines: list[str]) -> int:
+    def _check_sublist_with_order(
+        self, actual_lines: list[str], expected_lines: list[str]
+    ) -> int:
         expected_index = 0
         for actual_line in actual_lines:
             if expected_index >= len(expected_lines):
@@ -123,7 +150,8 @@ class CompareTest(unittest.TestCase):
 
         return expected_index
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     arguments, unknown = load_arguments()
     sys.argv[1:] = unknown
     absltest.main()

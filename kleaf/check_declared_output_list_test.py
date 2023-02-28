@@ -19,33 +19,38 @@ from check_declared_output_list import check
 
 
 class MyTestCase(unittest.TestCase):
-  def test_empty(self):
-    self.assertFalse(check([], []))
 
-  def test_simple(self):
-    self.assertFalse(check(["foo"], ["foo"]))
+    def test_empty(self):
+        self.assertFalse(check([], []))
 
-  def test_simple_remain(self):
-    self.assertEqual(check(declared=[], actual=["foo"]), ["foo"])
+    def test_simple(self):
+        self.assertFalse(check(["foo"], ["foo"]))
 
-  def test_path_remain(self):
-    self.assertEqual(check(declared=[], actual=["foo/bar"]), ["foo/bar"])
+    def test_simple_remain(self):
+        self.assertEqual(check(declared=[], actual=["foo"]), ["foo"])
 
-  def test_path_simple(self):
-    self.assertFalse(check(["some/path/for/foo"], ["some/path/for/foo"]))
+    def test_path_remain(self):
+        self.assertEqual(check(declared=[], actual=["foo/bar"]), ["foo/bar"])
 
-  def test_path_ok(self):
-    self.assertFalse(check(declared=["foo"], actual=["some/path/for/foo"]))
+    def test_path_simple(self):
+        self.assertFalse(check(["some/path/for/foo"], ["some/path/for/foo"]))
 
-  def test_non_matching_path(self):
-    self.assertEqual(
-        check(declared=["some/path/for/foo"], actual=["foo"]), ["foo"])
+    def test_path_ok(self):
+        self.assertFalse(check(declared=["foo"], actual=["some/path/for/foo"]))
 
-  def test_non_matching_path2(self):
-    self.assertEqual(
-        check(declared=["some/path/for/foo"], actual=["other/path/for/foo"]),
-        ["other/path/for/foo"])
+    def test_non_matching_path(self):
+        self.assertEqual(
+            check(declared=["some/path/for/foo"], actual=["foo"]), ["foo"]
+        )
+
+    def test_non_matching_path2(self):
+        self.assertEqual(
+            check(
+                declared=["some/path/for/foo"], actual=["other/path/for/foo"]
+            ),
+            ["other/path/for/foo"],
+        )
 
 
-if __name__ == '__main__':
-  absltest.main()
+if __name__ == "__main__":
+    absltest.main()

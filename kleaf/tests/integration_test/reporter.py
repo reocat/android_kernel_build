@@ -26,7 +26,9 @@ with open(raw_test_result_dir / "stderr.txt") as f:
     shutil.copyfileobj(f, sys.stderr)
 with open(raw_test_result_dir / "exitcode.txt") as f:
     exit_code = int(f.read().strip())
-shutil.copyfile(raw_test_result_dir / "output.xml", os.environ["XML_OUTPUT_FILE"])
+shutil.copyfile(
+    raw_test_result_dir / "output.xml", os.environ["XML_OUTPUT_FILE"]
+)
 
 print(f"XML_OUTPUT_FILE={os.environ['XML_OUTPUT_FILE']}")
 

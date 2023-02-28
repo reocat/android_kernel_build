@@ -33,8 +33,10 @@ arguments = None
 
 
 class ScmVersionTestCase(unittest.TestCase):
+
     @unittest.skip(
-        "b/236871190: Re-enable once CONFIG_MODULE_SCMVERSION is re-enabled.")
+        "b/236871190: Re-enable once CONFIG_MODULE_SCMVERSION is re-enabled."
+    )
     def test_contains_scmversion(self):
         """Test that all ko files have scmversion."""
         for module in arguments.modules:
@@ -52,17 +54,20 @@ class ScmVersionTestCase(unittest.TestCase):
         try:
             scmversion = subprocess.check_output(
                 [arguments.modinfo, module, "-F", "scmversion"],
-                text=True, stderr=subprocess.PIPE).strip()
+                text=True,
+                stderr=subprocess.PIPE,
+            ).strip()
         except subprocess.CalledProcessError as e:
             self.fail("modinfo returns {}: {}".format(e.returncode, e.stderr))
         mo = ScmVersionTestCase._scmversion_pattern.match(scmversion)
 
         if basename not in ScmVersionTestCase._modinfo_exempt_list:
-            self.assertTrue(mo, "no matching scmversion, found {}".format(
-                scmversion))
+            self.assertTrue(
+                mo, "no matching scmversion, found {}".format(scmversion)
+            )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     arguments, unknown = load_arguments()
     sys.argv[1:] = unknown
     absltest.main()

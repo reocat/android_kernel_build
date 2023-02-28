@@ -34,9 +34,9 @@ def main(base: Optional[TextIO], mappings: list[str]):
 
     print(json.dumps(result, sort_keys=True, indent=2))
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", type=argparse.FileType())
     parser.add_argument("mappings", nargs="*", metavar="FROM:TO")
     main(**vars(parser.parse_args()))
-

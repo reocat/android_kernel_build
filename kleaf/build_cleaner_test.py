@@ -30,10 +30,11 @@ import unittest
 
 import build_cleaner
 
-_TEST_DATA = "build/kernel/kleaf/tests/build_cleaner_test_data"
+_TEST_DATA = 'build/kernel/kleaf/tests/build_cleaner_test_data'
 
 
 class BuildCleanerTest(unittest.TestCase):
+
     def setUp(self) -> None:
         self.environ = os.environ.copy()
 
@@ -44,13 +45,13 @@ class BuildCleanerTest(unittest.TestCase):
         self.addCleanup(self.stderr.close)
 
     def _run_cleaner(self, argv):
-        argv = ["--stdout"] + argv
+        argv = ['--stdout'] + argv
         args = build_cleaner.parse_args(argv)
         cleaner = build_cleaner.BuildCleaner(
             args=args,
             stdout=self.stdout,
             stderr=self.stderr,
-            environ=self.environ
+            environ=self.environ,
         )
         cleaner.run()
 
@@ -60,20 +61,27 @@ class BuildCleanerTest(unittest.TestCase):
 
 
 class DdkModuleDepTest(BuildCleanerTest):
+
     def test_ddk_module_dep_good(self):
-        self._run_cleaner([
-            f"//{_TEST_DATA}/ddk_module_dep/good:modules_install"
-        ])
+        self._run_cleaner(
+            [f'//{_TEST_DATA}/ddk_module_dep/good:modules_install']
+        )
         self.assertIn('deps = [":parent"],', self._read_stdout())
 
     def test_ddk_module_dep_unresolved(self):
         with self.assertRaises(build_cleaner.BuildCleanerError) as cm:
-            self._run_cleaner([f"//{_TEST_DATA}/ddk_module_dep/unresolved:child"])
+            self._run_cleaner(
+                [f'//{_TEST_DATA}/ddk_module_dep/unresolved:child']
+            )
 
         self.assertEquals(
-            f'//{_TEST_DATA}/ddk_module_dep/unresolved:child: "parent_func" '
-            f'[../{_TEST_DATA}/ddk_module_dep/unresolved/child.ko] undefined!',
-            str(cm.exception))
+            (
+                f'//{_TEST_DATA}/ddk_module_dep/unresolved:child: "parent_func"'
+                f' [../{_TEST_DATA}/ddk_module_dep/unresolved/child.ko]'
+                ' undefined!'
+            ),
+            str(cm.exception),
+        )
 
 
 if __name__ == '__main__':

@@ -60,8 +60,12 @@ import sys
 import pathlib
 from typing import Sequence
 
-_MODULE_SYMBOL_PATTERN = r'^0x[0-9a-f]+\s+([_a-zA-Z][_a-zA-Z0-9]*)\s+(\S+)\s+EXPORT_SYMBOL\s*$'
-_MODPOST_ERROR_PATTERN = r'modpost: "([_a-zA-Z][_a-zA-Z0-9]*)" \[(\S*)] undefined!'
+_MODULE_SYMBOL_PATTERN = (
+    r"^0x[0-9a-f]+\s+([_a-zA-Z][_a-zA-Z0-9]*)\s+(\S+)\s+EXPORT_SYMBOL\s*$"
+)
+_MODPOST_ERROR_PATTERN = (
+    r'modpost: "([_a-zA-Z][_a-zA-Z0-9]*)" \[(\S*)] undefined!'
+)
 
 
 class BuildCleanerError(Exception):
@@ -69,11 +73,14 @@ class BuildCleanerError(Exception):
 
 
 class Label(object):
+
     def __init__(self, s: str):
         # We don't support subworkspaces yet.
         mo = re.match(r"@?//([^:]*):(.*)", s)
         if not mo:
-            raise ValueError("{} is not a label known to build_cleaner".format(s))
+            raise ValueError(
+                "{} is not a label known to build_cleaner".format(s)
+            )
         self.package = mo.group(1)
         self.name = mo.group(2)
 
@@ -90,7 +97,8 @@ class Label(object):
     def module_symvers_path(self) -> pathlib.Path:
         """Hack to get Module.symvers for a target.
 
-        Refer to `ddk_module.bzl` and `kernel_module.bzl`, internal_module_symvers_name
+        Refer to `ddk_module.bzl` and `kernel_module.bzl`,
+        internal_module_symvers_name
         """
         path = self.bazel_bin_path() / "Module.symvers"
         if path.is_file():
@@ -114,20 +122,22 @@ class SymbolLocation(object):
     module_file: str
 
     def __str__(self):
-        return '{} [{}]'.format(self.target, self.module_file)
+        return "{} [{}]".format(self.target, self.module_file)
 
 
 class SingleCleaner(object):
+
     def __init__(self, cleaner: "BuildCleaner"):
         self._workspace_root = cleaner.workspace_root()
         self.stderr = cleaner.stderr
         self.stdout = cleaner.stdout
         self.environ = cleaner.environ
         self._args = cleaner.args
-        self._color = (cleaner.stdout.isatty() or cleaner.stderr.isatty())
+        self._color = cleaner.stdout.isatty() or cleaner.stderr.isatty()
 
 
 class DdkCleaner(SingleCleaner):
+
     def __init__(self, cleaner: "BuildCleaner"):
         super().__init__(cleaner)
 
@@ -144,34 +154,45 @@ class DdkCleaner(SingleCleaner):
         query_args = [
             self._bazel(),
             "query",
-            'kind("kernel_module rule", deps({}))'.format(" union ".join(self._args.targets))
+            'kind("kernel_module rule", deps({}))'.format(
+                " union ".join(self._args.targets)
+            ),
         ]
         if self._color:
             query_args.append("--color=yes")
         try:
-            query_out: str = subprocess.check_output(query_args,
-                                                     text=True,
-                                                     stderr=self.stderr,
-                                                     env=self.environ)
+            query_out: str = subprocess.check_output(
+                query_args, text=True, stderr=self.stderr, env=self.environ
+            )
         except subprocess.CalledProcessError:
-            raise BuildCleanerError("Unable to query kernel_module deps for %s" % self._args.targets)
+            raise BuildCleanerError(
+                "Unable to query kernel_module deps for %s" % self._args.targets
+            )
 
         kernel_module_target_strs = query_out.splitlines()
 
         # Build all these kernel_module's with --debug_modpost_warn
         try:
-            subprocess.check_call([
-                                      self._bazel(),
-                                      "build",
-                                      "--debug_modpost_warn",
-                                  ] + kernel_module_target_strs,
-                                  stderr=self.stderr, env=self.environ,
-                                  stdout=self.stdout)
+            subprocess.check_call(
+                [
+                    self._bazel(),
+                    "build",
+                    "--debug_modpost_warn",
+                ]
+                + kernel_module_target_strs,
+                stderr=self.stderr,
+                env=self.environ,
+                stdout=self.stdout,
+            )
         except subprocess.CalledProcessError:
-            raise BuildCleanerError("Unable to build the following with --debug_modpost_warn: %s" %
-                                    kernel_module_target_strs)
+            raise BuildCleanerError(
+                "Unable to build the following with --debug_modpost_warn: %s"
+                % kernel_module_target_strs
+            )
 
-        kernel_module_targets = [Label(target) for target in kernel_module_target_strs]
+        kernel_module_targets = [
+            Label(target) for target in kernel_module_target_strs
+        ]
 
         symbols: dict[str, list[SymbolLocation]] = collections.defaultdict(list)
 
@@ -180,10 +201,12 @@ class DdkCleaner(SingleCleaner):
             with open(target.module_symvers_path()) as f:
                 for mo in re.finditer(_MODULE_SYMBOL_PATTERN, f.read()):
                     symbol = mo.group(1)
-                    symbols[symbol].append(SymbolLocation(
-                        target=target,
-                        module_file=mo.group(2),
-                    ))
+                    symbols[symbol].append(
+                        SymbolLocation(
+                            target=target,
+                            module_file=mo.group(2),
+                        )
+                    )
 
         errors = []
 
@@ -196,14 +219,24 @@ class DdkCleaner(SingleCleaner):
 
                     if symbol not in symbols:
                         errors.append(
-                            '{}: "{}" [{}] undefined!'.format(target, symbol, module_file))
+                            '{}: "{}" [{}] undefined!'.format(
+                                target, symbol, module_file
+                            )
+                        )
                         continue
 
                     if len(symbols[symbol]) > 1:
-                        errors.append('{}: "{}" [{}] found in multiple locations:\n  {}'.format(
-                            target, symbol, module_file,
-                            "\n  ".join(str(loc) for loc in symbols[symbol])
-                        ))
+                        errors.append(
+                            '{}: "{}" [{}] found in multiple locations:\n  {}'
+                            .format(
+                                target,
+                                symbol,
+                                module_file,
+                                "\n  ".join(
+                                    str(loc) for loc in symbols[symbol]
+                                ),
+                            )
+                        )
 
                     self.deps[target] += [loc.target for loc in symbols[symbol]]
 
@@ -216,6 +249,7 @@ class DdkCleaner(SingleCleaner):
 
 
 class BuildCleaner(buildozer_command_builder.BuildozerCommandBuilder):
+
     def __init__(self, *init_args, **init_kwargs):
         super().__init__(*init_args, **init_kwargs)
         self._ddk_cleaner = DdkCleaner(self)
@@ -233,19 +267,34 @@ class BuildCleaner(buildozer_command_builder.BuildozerCommandBuilder):
 
 
 def parse_args(argv: Sequence[str]) -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description=__doc__,
-                                     formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument("-v", "--verbose", help="verbose mode", action="store_true")
-    parser.add_argument("-k", "--keep-going",
-                        help="Keeps going on errors. Use when targets are already "
-                             "defined. There may be duplicated FIXME comments.",
-                        action="store_true")
-    parser.add_argument("--stdout",
-                        help="buildozer writes changed BUILD file to stdout (dry run)",
-                        action="store_true")
-    parser.add_argument("targets", nargs="+",
-                        help="List of target patterns, of which rules for all"
-                             "dependencies are fixed.")
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawTextHelpFormatter
+    )
+    parser.add_argument(
+        "-v", "--verbose", help="verbose mode", action="store_true"
+    )
+    parser.add_argument(
+        "-k",
+        "--keep-going",
+        help=(
+            "Keeps going on errors. Use when targets are already "
+            "defined. There may be duplicated FIXME comments."
+        ),
+        action="store_true",
+    )
+    parser.add_argument(
+        "--stdout",
+        help="buildozer writes changed BUILD file to stdout (dry run)",
+        action="store_true",
+    )
+    parser.add_argument(
+        "targets",
+        nargs="+",
+        help=(
+            "List of target patterns, of which rules for all"
+            "dependencies are fixed."
+        ),
+    )
 
     return parser.parse_args(argv)
 

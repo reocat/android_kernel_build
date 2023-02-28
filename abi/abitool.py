@@ -30,13 +30,16 @@ def _collapse_abidiff_impacted_interfaces(text):
         r"^( *)([^ ]* impacted interfaces?):\n(?:^\1 .*\n)*",
         r"\1\2\n",
         text,
-        flags=re.MULTILINE)
+        flags=re.MULTILINE,
+    )
 
 
 def _collapse_abidiff_offset_changes(text):
     """Replaces "offset changed" lines with a one-line summary."""
     regex = re.compile(
-        r"^( *)('.*') offset changed from .* to .* \(in bits\) (\(by .* bits\))$")
+        r"^( *)('.*') offset changed from .* to .* \(in bits\) (\(by .*"
+        r" bits\))$"
+    )
     items = []
     indent = ""
     offset = ""
@@ -53,7 +56,8 @@ def _collapse_abidiff_offset_changes(text):
             first = items[0]
             last = items[-1]
             line = "{}{} ({} .. {}) offsets changed {}\n".format(
-                indent, count, first, last, offset)
+                indent, count, first, last, offset
+            )
         del items[:]
         new_text.append(line)
 
@@ -106,12 +110,15 @@ def _collapse_abidiff_CRC_changes(text, limit):
     def emit_pending():
         if not pending:
             return
-        for (symbol_details, crc_details) in pending[0:limit]:
+        for symbol_details, crc_details in pending[0:limit]:
             new_lines.extend([symbol_details, crc_details, "\n"])
         count = len(pending)
         if count > limit:
-            new_lines.append("  ... {} omitted; {} symbols have only CRC changes\n\n"
-                             .format(count - limit, count))
+            new_lines.append(
+                "  ... {} omitted; {} symbols have only CRC changes\n\n".format(
+                    count - limit, count
+                )
+            )
         pending.clear()
 
     lines = text.splitlines(keepends=True)
@@ -120,11 +127,15 @@ def _collapse_abidiff_CRC_changes(text, limit):
         line = lines[index]
         if section_regex.search(line):
             emit_pending()
-        if (index + 2 < len(lines) and change_regex.search(line) and
-            crc_regex.search(lines[index+1]) and blank_regex.search(lines[index+2])):
-                pending.append((line, lines[index+1]))
-                index += 3
-                continue
+        if (
+            index + 2 < len(lines)
+            and change_regex.search(line)
+            and crc_regex.search(lines[index + 1])
+            and blank_regex.search(lines[index + 2])
+        ):
+            pending.append((line, lines[index + 1]))
+            index += 3
+            continue
         new_lines.append(line)
         index += 1
 
@@ -150,10 +161,13 @@ def dump_kernel_abi(linux_tree, dump_path, symbol_list, vmlinux_path=None):
             "--no-corpus-path",
             "--no-comp-dir-path",
             # use (more) stable type ids
-            "--type-id-style", "hash",
+            "--type-id-style",
+            "hash",
             # the path containing vmlinux and *.ko
-            "--linux-tree", linux_tree,
-            "--out-file", temp_path
+            "--linux-tree",
+            linux_tree,
+            "--out-file",
+            temp_path,
         ]
 
         if vmlinux_path is not None:
@@ -164,27 +178,41 @@ def dump_kernel_abi(linux_tree, dump_path, symbol_list, vmlinux_path=None):
 
         subprocess.check_call(dump_abi_cmd)
 
-        tidy_abi_command = ["abitidy",
-                            "--all",
-                            "--renumber-anonymous-types",
-                            "--no-report-untyped",
-                            "--locations", "file",
-                            "--input", temp_path,
-                            "--output", dump_path]
+        tidy_abi_command = [
+            "abitidy",
+            "--all",
+            "--renumber-anonymous-types",
+            "--no-report-untyped",
+            "--locations",
+            "file",
+            "--input",
+            temp_path,
+            "--output",
+            dump_path,
+        ]
 
         subprocess.check_call(tidy_abi_command)
 
+
 class AbiTool(object):
     """Base class for different kinds of abi analysis tools"""
-    def diff_abi(self, old_dump, new_dump, diff_report, short_report,
-                 symbol_list, full_report):
+
+    def diff_abi(
+        self,
+        old_dump,
+        new_dump,
+        diff_report,
+        short_report,
+        symbol_list,
+        full_report,
+    ):
         raise NotImplementedError()
 
 
-ABIDIFF_ERROR                   = (1<<0)
-ABIDIFF_USAGE_ERROR             = (1<<1)
-ABIDIFF_ABI_CHANGE              = (1<<2)
-ABIDIFF_ABI_INCOMPATIBLE_CHANGE = (1<<3)
+ABIDIFF_ERROR = 1 << 0
+ABIDIFF_USAGE_ERROR = 1 << 1
+ABIDIFF_ABI_CHANGE = 1 << 2
+ABIDIFF_ABI_INCOMPATIBLE_CHANGE = 1 << 3
 
 
 def _run_abidiff(old_dump, new_dump, diff_report, symbol_list, full_report):
@@ -222,9 +250,9 @@ def _shorten_abidiff(diff_report, short_report):
             output.write(text)
 
 
-STGDIFF_ERROR      = (1<<0)
-STGDIFF_ABI_CHANGE = (1<<1)
-STGDIFF_FORMATS    = ["plain", "flat", "small", "short", "viz"]
+STGDIFF_ERROR = 1 << 0
+STGDIFF_ABI_CHANGE = 1 << 1
+STGDIFF_FORMATS = ["plain", "flat", "small", "short", "viz"]
 STGDIFF_IGNORE_OPTIONS = [
     "symbol_type_presence",
     "type_declaration_status",
@@ -247,7 +275,8 @@ def _run_stgdiff(old_dump, new_dump, basename, symbol_list=None):
                 raw = dumps[ix]
                 cooked = os.path.join(temp, f"dump{ix}")
                 subprocess.check_call(
-                    ["abitidy", "-S", symbol_list, "-i", raw, "-o", cooked])
+                    ["abitidy", "-S", symbol_list, "-i", raw, "-o", cooked]
+                )
                 dumps[ix] = cooked
 
         command = ["stgdiff", "--abi", dumps[0], dumps[1]]
@@ -271,10 +300,19 @@ def _run_stgdiff(old_dump, new_dump, basename, symbol_list=None):
 
 class Libabigail(AbiTool):
     """Concrete AbiTool implementation for libabigail"""
-    def diff_abi(self, old_dump, new_dump, diff_report, short_report,
-                 symbol_list, full_report):
+
+    def diff_abi(
+        self,
+        old_dump,
+        new_dump,
+        diff_report,
+        short_report,
+        symbol_list,
+        full_report,
+    ):
         abi_changed = _run_abidiff(
-            old_dump, new_dump, diff_report, symbol_list, full_report)
+            old_dump, new_dump, diff_report, symbol_list, full_report
+        )
         if short_report is not None:
             _shorten_abidiff(diff_report, short_report)
         return abi_changed
@@ -287,9 +325,17 @@ def _line_count(path):
 
 
 class Delegated(AbiTool):
-    """" Concrete AbiTool implementation"""
-    def diff_abi(self, old_dump, new_dump, diff_report, short_report=None,
-                 symbol_list=None, full_report=None):
+    """ " Concrete AbiTool implementation"""
+
+    def diff_abi(
+        self,
+        old_dump,
+        new_dump,
+        diff_report,
+        short_report=None,
+        symbol_list=None,
+        full_report=None,
+    ):
         # shoehorn the interface
         stg_basename = diff_report
         stg_short = stg_basename + ".short"
@@ -317,7 +363,7 @@ class Delegated(AbiTool):
         return changed
 
 
-def get_abi_tool(abi_tool = "libabigail"):
+def get_abi_tool(abi_tool="libabigail"):
     if abi_tool == "libabigail":
         return Libabigail()
     if abi_tool == "delegated":
