@@ -35,50 +35,57 @@ import sys
 
 
 def main():
-  parser = argparse.ArgumentParser()
-  parser.add_argument(
-      "--raw-kmi-symbol-list",
-      required=True,
-      help="KMI symbol list",
-  )
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--raw-kmi-symbol-list",
+        required=True,
+        help="KMI symbol list",
+    )
 
-  parser.add_argument(
-      "--symvers-file",
-      required=True,
-      help="symvers file to extract ksymtab information (e.g. Module.symvers)",
-  )
+    parser.add_argument(
+        "--symvers-file",
+        required=True,
+        help=(
+            "symvers file to extract ksymtab information (e.g. Module.symvers)"
+        ),
+    )
 
-  parser.add_argument(
-      "--objects",
-      nargs="*",
-      default=["vmlinux"],
-      help="Kernel binaries to consider for ksymtab verification",
-  )
+    parser.add_argument(
+        "--objects",
+        nargs="*",
+        default=["vmlinux"],
+        help="Kernel binaries to consider for ksymtab verification",
+    )
 
-  args = parser.parse_args()
+    args = parser.parse_args()
 
-  # Parse Module.symvers, and ignore non-exported and vendor-specific symbols
-  ksymtab_symbols = []
-  with open(args.symvers_file) as symvers_file:
-    for line in symvers_file:
-      _, symbol, object, export_type = line.strip().split("\t", maxsplit=3)
-      if export_type.startswith("EXPORT_SYMBOL") and object in args.objects:
-        ksymtab_symbols.append(symbol)
+    # Parse Module.symvers, and ignore non-exported and vendor-specific symbols
+    ksymtab_symbols = []
+    with open(args.symvers_file) as symvers_file:
+        for line in symvers_file:
+            _, symbol, object, export_type = line.strip().split(
+                "\t", maxsplit=3
+            )
+            if (
+                export_type.startswith("EXPORT_SYMBOL")
+                and object in args.objects
+            ):
+                ksymtab_symbols.append(symbol)
 
-  # List of symbols defined in the raw_kmi_symbol_list
-  with open(args.raw_kmi_symbol_list) as raw_kmi_symbol_list_file:
-    kmi_symbols = raw_kmi_symbol_list_file.read().splitlines()
+    # List of symbols defined in the raw_kmi_symbol_list
+    with open(args.raw_kmi_symbol_list) as raw_kmi_symbol_list_file:
+        kmi_symbols = raw_kmi_symbol_list_file.read().splitlines()
 
-  # Set difference to get elements in symbol list but not in ksymtab
-  missing_ksymtab_symbols = set(kmi_symbols) - set(ksymtab_symbols)
-  if missing_ksymtab_symbols:
-    print("Symbols missing from the ksymtab:")
-    for symbol in sorted(missing_ksymtab_symbols):
-      print(f"  {symbol}")
-    return 1
+    # Set difference to get elements in symbol list but not in ksymtab
+    missing_ksymtab_symbols = set(kmi_symbols) - set(ksymtab_symbols)
+    if missing_ksymtab_symbols:
+        print("Symbols missing from the ksymtab:")
+        for symbol in sorted(missing_ksymtab_symbols):
+            print(f"  {symbol}")
+        return 1
 
-  return 0
+    return 0
 
 
 if __name__ == "__main__":
-  sys.exit(main())
+    sys.exit(main())

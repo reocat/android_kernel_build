@@ -30,42 +30,45 @@ import subprocess
 
 
 def extract_exported_symbols(binary):
-  """Extracts the ksymtab exported symbols from an ELF binary."""
-  symbols = []
-  out = subprocess.check_output(["llvm-nm", "--defined-only", binary],
-                                stderr=subprocess.DEVNULL).decode("ascii")
-  for line in out.splitlines():
-    pos = line.find(" __ksymtab_")
-    if pos != -1:
-      symbols.append(line[pos + len(" __ksymtab_"):])
+    """Extracts the ksymtab exported symbols from an ELF binary."""
+    symbols = []
+    out = subprocess.check_output(
+        ["llvm-nm", "--defined-only", binary], stderr=subprocess.DEVNULL
+    ).decode("ascii")
+    for line in out.splitlines():
+        pos = line.find(" __ksymtab_")
+        if pos != -1:
+            symbols.append(line[pos + len(" __ksymtab_") :])
 
-  return symbols
+    return symbols
 
 
 def extract_undefined_symbols(binary_path):
-  """Extracts the undefined symbols from an ELF file at  binary_path."""
-  symbols = []
-  out = subprocess.check_output(["llvm-nm", "--undefined-only", binary_path],
-                                stderr=subprocess.DEVNULL).decode("ascii")
-  for line in out.splitlines():
-    symbols.append(line.strip().split()[1])
+    """Extracts the undefined symbols from an ELF file at  binary_path."""
+    symbols = []
+    out = subprocess.check_output(
+        ["llvm-nm", "--undefined-only", binary_path], stderr=subprocess.DEVNULL
+    ).decode("ascii")
+    for line in out.splitlines():
+        symbols.append(line.strip().split()[1])
 
-  return symbols
+    return symbols
 
 
 def is_signature_present(module):
-  """Checks whether module has a signature appended (GKI) or not (vendor)"""
-  out = subprocess.check_output(["modinfo", "-F", "sig_id", module],
-                                stderr=subprocess.STDOUT).decode("ascii")
-  return out == "PKCS#7\n"
+    """Checks whether module has a signature appended (GKI) or not (vendor)"""
+    out = subprocess.check_output(
+        ["modinfo", "-F", "sig_id", module], stderr=subprocess.STDOUT
+    ).decode("ascii")
+    return out == "PKCS#7\n"
 
 
 def read_symbol_list(symbol_list):
-  """Reads a previously created libabigail symbol symbol list."""
-  symbols = []
-  with open(symbol_list) as symbol_list_file:
-    for line in [l.strip() for l in symbol_list_file]:
-      if not line or line.startswith("#") or line.startswith("["):
-        continue
-      symbols.append(line)
-  return symbols
+    """Reads a previously created libabigail symbol symbol list."""
+    symbols = []
+    with open(symbol_list) as symbol_list_file:
+        for line in [l.strip() for l in symbol_list_file]:
+            if not line or line.startswith("#") or line.startswith("["):
+                continue
+            symbols.append(line)
+    return symbols

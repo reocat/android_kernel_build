@@ -30,51 +30,55 @@ import unittest
 
 import build_cleaner
 
-_TEST_DATA = "build/kernel/kleaf/tests/build_cleaner_test_data"
+_TEST_DATA = 'build/kernel/kleaf/tests/build_cleaner_test_data'
 
 
 class BuildCleanerTest(unittest.TestCase):
-    def setUp(self) -> None:
-        self.environ = os.environ.copy()
 
-        self.stdout = tempfile.TemporaryFile('w+')
-        self.addCleanup(self.stdout.close)
+  def setUp(self) -> None:
+    self.environ = os.environ.copy()
 
-        self.stderr = tempfile.TemporaryFile('w+')
-        self.addCleanup(self.stderr.close)
+    self.stdout = tempfile.TemporaryFile('w+')
+    self.addCleanup(self.stdout.close)
 
-    def _run_cleaner(self, argv):
-        argv = ["--stdout"] + argv
-        args = build_cleaner.parse_args(argv)
-        cleaner = build_cleaner.BuildCleaner(
-            args=args,
-            stdout=self.stdout,
-            stderr=self.stderr,
-            environ=self.environ
-        )
-        cleaner.run()
+    self.stderr = tempfile.TemporaryFile('w+')
+    self.addCleanup(self.stderr.close)
 
-    def _read_stdout(self):
-        self.stdout.seek(0)
-        return self.stdout.read()
+  def _run_cleaner(self, argv):
+    argv = ['--stdout'] + argv
+    args = build_cleaner.parse_args(argv)
+    cleaner = build_cleaner.BuildCleaner(
+        args=args,
+        stdout=self.stdout,
+        stderr=self.stderr,
+        environ=self.environ,
+    )
+    cleaner.run()
+
+  def _read_stdout(self):
+    self.stdout.seek(0)
+    return self.stdout.read()
 
 
 class DdkModuleDepTest(BuildCleanerTest):
-    def test_ddk_module_dep_good(self):
-        self._run_cleaner([
-            f"//{_TEST_DATA}/ddk_module_dep/good:modules_install"
-        ])
-        self.assertIn('deps = [":parent"],', self._read_stdout())
 
-    def test_ddk_module_dep_unresolved(self):
-        with self.assertRaises(build_cleaner.BuildCleanerError) as cm:
-            self._run_cleaner([f"//{_TEST_DATA}/ddk_module_dep/unresolved:child"])
+  def test_ddk_module_dep_good(self):
+    self._run_cleaner([f'//{_TEST_DATA}/ddk_module_dep/good:modules_install'])
+    self.assertIn('deps = [":parent"],', self._read_stdout())
 
-        self.assertEquals(
-            f'//{_TEST_DATA}/ddk_module_dep/unresolved:child: "parent_func" '
-            f'[../{_TEST_DATA}/ddk_module_dep/unresolved/child.ko] undefined!',
-            str(cm.exception))
+  def test_ddk_module_dep_unresolved(self):
+    with self.assertRaises(build_cleaner.BuildCleanerError) as cm:
+      self._run_cleaner([f'//{_TEST_DATA}/ddk_module_dep/unresolved:child'])
+
+    self.assertEquals(
+        (
+            f'//{_TEST_DATA}/ddk_module_dep/unresolved:child: "parent_func"'
+            f' [../{_TEST_DATA}/ddk_module_dep/unresolved/child.ko]'
+            ' undefined!'
+        ),
+        str(cm.exception),
+    )
 
 
 if __name__ == '__main__':
-    unittest.main(verbosity=2)
+  unittest.main(verbosity=2)

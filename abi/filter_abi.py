@@ -19,19 +19,27 @@ import argparse
 import subprocess
 import sys
 
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--symbol-list', '--kmi-symbol-list', required=True,
-                        help='KMI symbol list to filter for')
-    parser.add_argument('--in-file', default=None,
-                        help='where to read the ABI dump from')
-    parser.add_argument('--out-file', default=None,
-                        help='where to write the ABI dump to')
+    parser.add_argument(
+        "--symbol-list",
+        "--kmi-symbol-list",
+        required=True,
+        help="KMI symbol list to filter for",
+    )
+    parser.add_argument(
+        "--in-file", default=None, help="where to read the ABI dump from"
+    )
+    parser.add_argument(
+        "--out-file", default=None, help="where to write the ABI dump to"
+    )
     args = parser.parse_args()
     command = [
         "abitidy",
         # remove unlisted symbols
-        "--symbols", args.symbol_list,
+        "--symbols",
+        args.symbol_list,
         # prune XML elements now unreachable from symbols
         "--prune-unreachable",
         # inhibit warnings about symbols without types
@@ -44,6 +52,7 @@ def main():
     if args.out_file is not None:
         command.extend(["--output", args.out_file])
     subprocess.check_call(command)
+
 
 if __name__ == "__main__":
     sys.exit(main())

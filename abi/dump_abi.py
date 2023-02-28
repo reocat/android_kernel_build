@@ -21,32 +21,48 @@ import sys
 
 from abitool import dump_kernel_abi
 
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--linux-tree",
-                        help="Path to kernel tree containing "
-                             "vmlinux and modules",
-                        required=True)
-    parser.add_argument("--vmlinux",
-                        help="Path to the vmlinux binary to consider to "
-                             "emit the ABI of the union of vmlinux and its "
-                             "modules", default=None)
-    parser.add_argument("--abi-tool", default=None,
-                        help="deprecated and ignored")
-    parser.add_argument("--out-file", default=None,
-                        help="where to write the abi dump to")
-    parser.add_argument("--kmi-symbol-list", "--kmi-whitelist", default=None,
-                        help="KMI symbol list to filter for")
+    parser.add_argument(
+        "--linux-tree",
+        help="Path to kernel tree containing vmlinux and modules",
+        required=True,
+    )
+    parser.add_argument(
+        "--vmlinux",
+        help=(
+            "Path to the vmlinux binary to consider to "
+            "emit the ABI of the union of vmlinux and its "
+            "modules"
+        ),
+        default=None,
+    )
+    parser.add_argument(
+        "--abi-tool", default=None, help="deprecated and ignored"
+    )
+    parser.add_argument(
+        "--out-file", default=None, help="where to write the abi dump to"
+    )
+    parser.add_argument(
+        "--kmi-symbol-list",
+        "--kmi-whitelist",
+        default=None,
+        help="KMI symbol list to filter for",
+    )
 
     args = parser.parse_args()
 
     if args.abi_tool:
         print("warning: --abi-tool is deprecated and ignored", file=sys.stderr)
 
-    dump_kernel_abi(args.linux_tree,
-                    args.out_file or os.path.join(args.linux_tree, "abi.xml"),
-                    args.kmi_symbol_list,
-                    args.vmlinux)
+    dump_kernel_abi(
+        args.linux_tree,
+        args.out_file or os.path.join(args.linux_tree, "abi.xml"),
+        args.kmi_symbol_list,
+        args.vmlinux,
+    )
+
 
 if __name__ == "__main__":
     sys.exit(main())

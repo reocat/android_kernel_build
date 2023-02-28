@@ -85,6 +85,7 @@ def dump(this) -> None:
     part of the final code, or if it is, it will be significantly enhanced
     or replaced by some other introspection mechanism to serialize data.
     """
+
     def dump_this(this, name: str, depth: int) -> None:
         """Dump the data in this."""
         if name:
@@ -121,8 +122,12 @@ def dump(this) -> None:
     def dump_object(this, name: str, depth: int) -> None:
         """Dump the data in this."""
         indent = " " * (depth * INDENT)
-        print(indent + name +
-              re.sub(r"(^<class '__main__\.|'>$)", "", str(type(this))) + " {")
+        print(
+            indent
+            + name
+            + re.sub(r"(^<class '__main__\.|'>$)", "", str(type(this)))
+            + " {"
+        )
         for key, val in this.__dict__.items():
             dump_this(val, key, depth + 1)
         print(indent + "}")
@@ -136,8 +141,12 @@ def readfile(name: str) -> str:
         with open(name) as file:
             return file.read()
     except OSError as os_error:
-        raise StopError("readfile() failed for: " + name + "\n"
-                        "original OSError: " + str(os_error.args))
+        raise StopError(
+            "readfile() failed for: "
+            + name
+            + "\noriginal OSError: "
+            + str(os_error.args)
+        )
 
 
 def file_must_exist(file: str) -> None:
@@ -171,8 +180,9 @@ def makefile_assignment_split(assignment: str) -> Tuple[str, str]:
     result = re.split(r"\s*:=\s*", assignment, maxsplit=1)
     if len(result) != 2:
         raise StopError(
-            "expected: 'left<optional_spaces>:=<optional_spaces>right' in: " +
-            assignment)
+            "expected: 'left<optional_spaces>:=<optional_spaces>right' in: "
+            + assignment
+        )
     return result[0], result[1]  # left, right
 
 
@@ -185,8 +195,9 @@ def get_src_ccline_deps(obj: str) -> Optional[Tuple[str, str, List[str]]]:
     Otherwise it returns a triplet with the C source file name, its cc_line,
     the remaining dependencies.
     """
-    o_cmd = os.path.join(os.path.dirname(obj),
-                         "." + os.path.basename(obj) + ".cmd")
+    o_cmd = os.path.join(
+        os.path.dirname(obj), "." + os.path.basename(obj) + ".cmd"
+    )
 
     contents = readfile(o_cmd)
     contents = re.sub(r"\$\(wildcard[^)]*\)", " ", contents)
@@ -244,8 +255,9 @@ def shell_line_to_o_files_list(line: str) -> List[str]:
     return [entry for entry in line.split() if entry.endswith(".o")]
 
 
-def run(args: List[str],
-        raise_on_failure: bool = True) -> subprocess.CompletedProcess:
+def run(
+    args: List[str], raise_on_failure: bool = True
+) -> subprocess.CompletedProcess:
     """Run the program specified in args[0] with the arguments in args[1:]."""
     try:
         #   This argument does not always work for subprocess.run() below:
@@ -260,12 +272,17 @@ def run(args: List[str],
             raise StopError("execution failed for: " + " ".join(args))
         return completion
     except OSError as os_error:
-        raise StopError("failure executing: " + " ".join(args) + "\n"
-                        "original OSError: " + str(os_error.args))
+        raise StopError(
+            "failure executing: "
+            + " ".join(args)
+            + "\noriginal OSError: "
+            + str(os_error.args)
+        )
 
 
 class KernelModule:
     """A kernel module, i.e. a *.ko file."""
+
     def __init__(self, kofile: str) -> None:
         """Construct a KernelModule object."""
         #   An example argument is used below, assuming kofile is:
@@ -279,8 +296,9 @@ class KernelModule:
         self._file = os.path.realpath(kofile)  # /abs/dirs/modname.ko
         self._base = os.path.basename(self._file)  # modname.ko
         self._directory = os.path.dirname(self._file)  # /abs/dirs
-        self._cmd_file = os.path.join(self._directory,
-                                      "." + self._base + ".cmd")
+        self._cmd_file = os.path.join(
+            self._directory, "." + self._base + ".cmd"
+        )
         self._cmd_text = readfile(self._cmd_file)
 
         #   Some builds append a '; true' to the .modname.ko.cmd, remove it
@@ -299,13 +317,15 @@ class KernelModule:
         left, _ = makefile_assignment_split(self._cmd_text)
         self._rel_file = re.sub(r"^cmd_", "", left)
         if self._rel_file == left:
-            raise StopError("expected: 'cmd_' at start of content of: " +
-                            self._cmd_file)
+            raise StopError(
+                "expected: 'cmd_' at start of content of: " + self._cmd_file
+            )
 
         base = os.path.basename(self._rel_file)
         if base != self._base:
-            raise StopError("module name mismatch: " + base + " vs " +
-                            self._base)
+            raise StopError(
+                "module name mismatch: " + base + " vs " + self._base
+            )
 
         self._rel_dir = os.path.dirname(self._rel_file)
 
@@ -326,7 +346,7 @@ class KernelModule:
         objs.sort()
         expected = [  # sorted, i.e.: .mod.o < .o
             os.path.join(self._rel_dir, kofile_name + ".mod.o"),
-            os.path.join(self._rel_dir, kofile_name + ".o")
+            os.path.join(self._rel_dir, kofile_name + ".o"),
         ]
         if objs != expected:
             raise StopError("unexpected .o files in: " + self._cmd_file)
@@ -348,8 +368,12 @@ class KernelModule:
         below, if the exception is not raised, then index is >= 0.
         """
         if not self._file.endswith(self._rel_file):
-            raise StopError("could not find: " + self._rel_file +
-                            " at end of: " + self._file)
+            raise StopError(
+                "could not find: "
+                + self._rel_file
+                + " at end of: "
+                + self._file
+            )
         index = len(self._file) - len(self._rel_file)
         if index > 0 and self._file[index - 1] == os.sep:
             index -= 1
@@ -368,8 +392,9 @@ class KernelModule:
         """
 
         kofile_name, _ = os.path.splitext(self._base)
-        ocmd_file = os.path.join(build_dir, self._rel_dir,
-                                 "." + kofile_name + ".o.cmd")
+        ocmd_file = os.path.join(
+            build_dir, self._rel_dir, "." + kofile_name + ".o.cmd"
+        )
         ocmd_content = readfile(ocmd_file)
 
         olines = lines_to_list(ocmd_content)
@@ -387,6 +412,7 @@ class KernelModule:
 
 class Kernel:
     """The Linux kernel component itself, i.e. vmlinux.o."""
+
     def __init__(self, kernel: str) -> None:
         """Construct a Kernel object."""
         self._kernel = os.path.realpath(kernel)
@@ -399,9 +425,14 @@ class Kernel:
         archives_and_objects = contents.split()
         contents = readfile(objs)
         archives_and_objects += contents.split()
-        self._archives_and_objects = [(os.path.join(self._build_dir, file)
-                                       if not os.path.isabs(file) else file)
-                                      for file in archives_and_objects]
+        self._archives_and_objects = [
+            (
+                os.path.join(self._build_dir, file)
+                if not os.path.isabs(file)
+                else file
+            )
+            for file in archives_and_objects
+        ]
 
     def get_build_dir(self) -> str:
         """Return the top level build directory.
@@ -457,8 +488,9 @@ class Target:  # pylint: disable=too-few-public-methods
     OBJ_INDEX = -2
     SRC_INDEX = -1
 
-    def __init__(self, obj: str, src: str, cc_line: str,
-                 deps: List[str]) -> None:
+    def __init__(
+        self, obj: str, src: str, cc_line: str, deps: List[str]
+    ) -> None:
         self._obj = obj
         self._src = src
         self._deps = deps
@@ -499,7 +531,9 @@ class Target:  # pylint: disable=too-few-public-methods
 
         cc_cmd = re.sub(
             r"""-D(KBUILD_BASENAME|KBUILD_MODNAME)='("[a-zA-Z0-9_.:]*")'""",
-            r"-D\1=\2", cc_line)
+            r"-D\1=\2",
+            cc_line,
+        )
         cc_list = cc_cmd.split()
 
         #   TODO(pantin): the handling of -D... arguments above is done better
@@ -516,12 +550,18 @@ class Target:  # pylint: disable=too-few-public-methods
         #   single argument with the object file name (as in: -ofile.o) which
         #   could also be detected in code at a later time.
 
-        if (len(cc_list) < Target.MIN_CC_LIST_LEN
-                or not cc_list[Target.WP_MD_FLAG_INDEX].startswith("-Wp,-MD,")
-                or cc_list[Target.C_FLAG_INDEX] != "-c"
-                or cc_list[Target.O_FLAG_INDEX] != "-o"):
-            raise StopError("unexpected or missing arguments for: " + obj +
-                            " cc_line: " + cc_line)
+        if (
+            len(cc_list) < Target.MIN_CC_LIST_LEN
+            or not cc_list[Target.WP_MD_FLAG_INDEX].startswith("-Wp,-MD,")
+            or cc_list[Target.C_FLAG_INDEX] != "-c"
+            or cc_list[Target.O_FLAG_INDEX] != "-o"
+        ):
+            raise StopError(
+                "unexpected or missing arguments for: "
+                + obj
+                + " cc_line: "
+                + cc_line
+            )
 
         #   Instead of blindly normalizing the source and object arguments,
         #   they are only normalized if that allows the expected invariants
@@ -529,15 +569,22 @@ class Target:  # pylint: disable=too-few-public-methods
         #   os.path.normpath() does not turn relative paths into absolute
         #   paths, it just removes up-down walks (e.g. a/b/../c -> a/c).
 
-        def verify_file(file: str, index: int, kind: str, cc_list: List[str],
-                        target_file: str) -> None:
+        def verify_file(
+            file: str,
+            index: int,
+            kind: str,
+            cc_list: List[str],
+            target_file: str,
+        ) -> None:
             file_in_cc_list = cc_list[index]
             if not file.endswith(file_in_cc_list):
                 file_normalized = os.path.normpath(file_in_cc_list)
                 if not file.endswith(file_normalized):
-                    raise StopError(f"unexpected {kind} argument for: "
-                                    f"{target_file} value was: "
-                                    f"{file_in_cc_list}")
+                    raise StopError(
+                        f"unexpected {kind} argument for: "
+                        f"{target_file} value was: "
+                        f"{file_in_cc_list}"
+                    )
                 cc_list[index] = file_normalized
 
         verify_file(obj, Target.OBJ_INDEX, "object", cc_list, obj)
@@ -554,6 +601,7 @@ class KernelComponentBase:  # pylint: disable=too-few-public-methods
     the risk of invoking member functions at run-time on objects that do not
     provide them.  Having this class makes the code more reliable.
     """
+
     def get_error(self) -> Optional[str]:  # pylint: disable=no-self-use
         """Return None for the error, means there was no error."""
         return None
@@ -574,6 +622,7 @@ class KernelComponentCreationError(KernelComponentBase):  # pylint: disable=too-
     Kernel or KernelModule creation fails, a KernelComponentCreationError
     object is created to store the information relevant to the failure.
     """
+
     def __init__(self, filename: str, error: str) -> None:
         """Construct a KernelComponentCreationError object."""
         self._error = error
@@ -591,6 +640,7 @@ class KernelComponent(KernelComponentBase):
     determine what was used to build it: object filess, source files, header
     files, and other information that is produced as a by-product of its build.
     """
+
     def __init__(self, filename: str) -> None:
         """Construct a KernelComponent object."""
         if filename.endswith("vmlinux.o"):
@@ -662,12 +712,14 @@ def kernel_component_factory(filename: str) -> KernelComponentBase:
     try:
         return KernelComponent(filename)
     except StopError as stop_error:
-        return KernelComponentCreationError(filename,
-                                            " ".join([*stop_error.args]))
+        return KernelComponentCreationError(
+            filename, " ".join([*stop_error.args])
+        )
 
 
 class KernelComponentProcess(multiprocessing.Process):
     """Process to make the KernelComponent concurrently."""
+
     def __init__(self) -> None:
         multiprocessing.Process.__init__(self)
         self._queue = multiprocessing.Queue()
@@ -743,30 +795,37 @@ def work_on_whole_build(options) -> int:
 
 def main() -> int:
     """Extract #define compile time constants from a Linux build."""
+
     def existing_file(file):
         if not os.path.isfile(file):
             raise argparse.ArgumentTypeError(
-                "{0} is not a valid file".format(file))
+                "{0} is not a valid file".format(file)
+            )
         return file
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-d",
-                        "--dump",
-                        action="store_true",
-                        help="dump internal state")
-    parser.add_argument("-s",
-                        "--sequential",
-                        action="store_true",
-                        help="execute without concurrency")
+    parser.add_argument(
+        "-d", "--dump", action="store_true", help="dump internal state"
+    )
+    parser.add_argument(
+        "-s",
+        "--sequential",
+        action="store_true",
+        help="execute without concurrency",
+    )
     group = parser.add_mutually_exclusive_group()
-    group.add_argument("-i",
-                       "--includes",
-                       action="store_true",
-                       help="show relevant include files")
-    group.add_argument("-c",
-                       "--component",
-                       type=existing_file,
-                       help="show information for a component")
+    group.add_argument(
+        "-i",
+        "--includes",
+        action="store_true",
+        help="show relevant include files",
+    )
+    group.add_argument(
+        "-c",
+        "--component",
+        type=existing_file,
+        help="show information for a component",
+    )
     options = parser.parse_args()
 
     if not options.component:

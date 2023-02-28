@@ -18,10 +18,11 @@
 import configparser
 import sys
 
+
 def main():
     """Convert a KMI symbol list in libabigail format to a raw list."""
     if sys.stdin.isatty():
-        print("ERROR: missing KMI symbol list on the standard input")
+        print('ERROR: missing KMI symbol list on the standard input')
         return 1
 
     sl = configparser.ConfigParser(allow_no_value=True, strict=False)
@@ -29,10 +30,12 @@ def main():
     sl.read_file(sys.stdin)
 
     ksyms = set()
-    for section in (s for s in sl.sections() if s.endswith(('whitelist',
-                                                            'symbol_list'))):
+    for section in (
+        s for s in sl.sections() if s.endswith(('whitelist', 'symbol_list'))
+    ):
         ksyms.update(sl[section])
     print('\n'.join(sorted(ksyms)))
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     sys.exit(main())
