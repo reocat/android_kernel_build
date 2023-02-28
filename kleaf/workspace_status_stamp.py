@@ -25,14 +25,16 @@ def call_setlocalversion(bin, srctree, *args):
     bin: path to setlocalversion, or None if it does not exist.
     srctree: The argument to setlocalversion.
     args: additional arguments
-  Return:
-    A subprocess.Popen object, or None if bin or srctree does not exist.
+  Return: A subprocess.Popen object, or None if bin or srctree does not exist.
   """
   working_dir = "build/kernel/kleaf/workspace_status_dir"
   if bin and os.path.isdir(srctree):
-    return subprocess.Popen([bin, srctree] + list(args),
-                            text=True, stdout=subprocess.PIPE,
-                            cwd=working_dir)
+    return subprocess.Popen(
+        [bin, srctree] + list(args),
+        text=True,
+        stdout=subprocess.PIPE,
+        cwd=working_dir,
+    )
   return None
 
 
@@ -68,25 +70,38 @@ def main():
   if setlocalversion:
     ext_modules = []
     try:
-      ext_modules = subprocess.check_output("""
+      ext_modules = subprocess.check_output(
+          """
         source build/build_utils.sh
         source build/_setup_env.sh
         echo $EXT_MODULES
-        """, shell=True, text=True, stderr=subprocess.PIPE, executable="/bin/bash").split()
+        """,
+          shell=True,
+          text=True,
+          stderr=subprocess.PIPE,
+          executable="/bin/bash",
+      ).split()
     except subprocess.CalledProcessError as e:
-      msg = "WARNING: Unable to determine EXT_MODULES; scmversion for external modules may be incorrect. code={}, stderr={}\n".format(
-          e.returncode, e.stderr.strip())
+      msg = (
+          "WARNING: Unable to determine EXT_MODULES; scmversion for"
+          " external modules may be incorrect. code={}, stderr={}\n".format(
+              e.returncode, e.stderr.strip()
+          )
+      )
       sys.stderr.write(msg)
     stable_scmversion_extmod_objs = [
         call_setlocalversion(setlocalversion, os.path.realpath(ext_mod))
-        for ext_mod in ext_modules]
+        for ext_mod in ext_modules
+    ]
 
   stable_source_date_epoch = os.environ.get("SOURCE_DATE_EPOCH")
   stable_source_date_epoch_obj = None
   if not stable_source_date_epoch and has_kernel_dir and shutil.which("git"):
     stable_source_date_epoch_obj = subprocess.Popen(
-        ["git", "-C", kernel_dir, "log", "-1", "--pretty=%ct"], text=True,
-        stdout=subprocess.PIPE)
+        ["git", "-C", kernel_dir, "log", "-1", "--pretty=%ct"],
+        text=True,
+        stdout=subprocess.PIPE,
+    )
   else:
     stable_source_date_epoch = 0
 
@@ -101,14 +116,19 @@ def main():
 
   # If the list is empty, this prints "STABLE_SCMVERSION_EXT_MOD", and is
   # filtered by Bazel.
-  print("STABLE_SCMVERSION_EXT_MOD", " ".join(
-      "{}:{}".format(ext_mod, result) for ext_mod, result in zip(ext_modules,
-                                                                 [collect(obj)
-                                                                  for obj in
-                                                                  stable_scmversion_extmod_objs])))
+  print(
+      "STABLE_SCMVERSION_EXT_MOD",
+      " ".join(
+          "{}:{}".format(ext_mod, result)
+          for ext_mod, result in zip(
+              ext_modules,
+              [collect(obj) for obj in stable_scmversion_extmod_objs],
+          )
+      ),
+  )
 
   return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
   sys.exit(main())

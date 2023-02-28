@@ -74,7 +74,10 @@ def _read_config(allow_file, deny_file):
         if len(fields) > 1:
           reason = fields[1]
         if symbol in config:
-          print(f"symbol '{symbol}' duplicate configuration", file=sys.stderr)
+          print(
+              f"symbol '{symbol}' duplicate configuration",
+              file=sys.stderr,
+          )
           continue
         config[symbol] = (status, reason)
 
@@ -148,7 +151,9 @@ def main():
       '--report-file', required=True, help='symbol list report file name'
   )
   parser.add_argument(
-      '--verbose', action='store_true', help='increase verbosity of the output'
+      '--verbose',
+      action='store_true',
+      help='increase verbosity of the output',
   )
 
   args = parser.parse_args()
@@ -177,7 +182,10 @@ def main():
     for symbol, status, reason in report:
       rf.write(f'{symbol}\t{status.name}\t{reason}\n')
       if status == Status.FORBIDDEN:
-        print(f"symbol '{symbol}' is not allowed: {reason}", file=sys.stderr)
+        print(
+            f"symbol '{symbol}' is not allowed: {reason}",
+            file=sys.stderr,
+        )
         exit_status = 1
 
   return exit_status

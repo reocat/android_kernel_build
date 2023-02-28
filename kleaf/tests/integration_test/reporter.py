@@ -18,15 +18,17 @@ import sys
 import pathlib
 
 with open(pathlib.Path(__file__).parent / "raw_test_result_dir_value") as f:
-    raw_test_result_dir = pathlib.Path(f.read().strip())
+  raw_test_result_dir = pathlib.Path(f.read().strip())
 
 with open(raw_test_result_dir / "stdout.txt") as f:
-    shutil.copyfileobj(f, sys.stdout)
+  shutil.copyfileobj(f, sys.stdout)
 with open(raw_test_result_dir / "stderr.txt") as f:
-    shutil.copyfileobj(f, sys.stderr)
+  shutil.copyfileobj(f, sys.stderr)
 with open(raw_test_result_dir / "exitcode.txt") as f:
-    exit_code = int(f.read().strip())
-shutil.copyfile(raw_test_result_dir / "output.xml", os.environ["XML_OUTPUT_FILE"])
+  exit_code = int(f.read().strip())
+shutil.copyfile(
+    raw_test_result_dir / "output.xml", os.environ["XML_OUTPUT_FILE"]
+)
 
 print(f"XML_OUTPUT_FILE={os.environ['XML_OUTPUT_FILE']}")
 

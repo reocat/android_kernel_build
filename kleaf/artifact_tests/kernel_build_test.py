@@ -38,7 +38,8 @@ _VERSION_SUFFIX = r"(-[0-9]+)?(-g[0-9a-f]{12,40})?(-ab[A-Z]?\d+)?"
 
 class ScmVersionTestCase(parameterized.TestCase):
   _scmversion_patterns = [
-      re.compile(_VERSION_PREFIX + r) for r in [
+      re.compile(_VERSION_PREFIX + r)
+      for r in [
           r"-android[0-9]+-[0-9]+" + _VERSION_SUFFIX,
           r"-mainline" + _VERSION_SUFFIX,
           r"-maybe-dirty",
@@ -48,7 +49,8 @@ class ScmVersionTestCase(parameterized.TestCase):
   def matches_any_pattern(self, input):
     return any(
         pattern.search(input) is not None
-        for pattern in self._scmversion_patterns)
+        for pattern in self._scmversion_patterns
+    )
 
   @parameterized.parameters(
       [
@@ -57,7 +59,8 @@ class ScmVersionTestCase(parameterized.TestCase):
           "Linux version 5.18.0-rc3-mainline-19648-g9d2f688e65db",
           "Linux version 6.2.0-rc7-mainline-abP49455452",
           "Linux version 6.1.10-maybe-dirty",
-      ],)
+      ],
+  )
   def test_versions(self, input):
     self.assertTrue(self.matches_any_pattern(input))
 
@@ -66,11 +69,15 @@ class ScmVersionTestCase(parameterized.TestCase):
     for artifact in arguments.artifacts:
       if os.path.basename(artifact) != "vmlinux":
         continue
-      strings = subprocess.check_output([arguments.strings, artifact],
-                                        text=True).strip().splitlines()
+      strings = (
+          subprocess.check_output([arguments.strings, artifact], text=True)
+          .strip()
+          .splitlines()
+      )
       matches = any(self.matches_any_pattern(s) for s in strings)
       msg = "scmversion not found for vmlinux, found {}".format(
-          [s for s in strings if "Linux version" in s])
+          [s for s in strings if "Linux version" in s]
+      )
       self.assertTrue(matches, msg)
 
 
