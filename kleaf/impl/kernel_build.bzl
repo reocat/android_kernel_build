@@ -90,6 +90,8 @@ def kernel_build(
         kconfig_ext = None,
         dtstree = None,
         kmi_symbol_list = None,
+        protected_exports_list = None,
+        protected_modules_list = None,
         additional_kmi_symbol_lists = None,
         trim_nonlisted_kmi = None,
         kmi_symbol_list_strict_mode = None,
@@ -462,6 +464,8 @@ def kernel_build(
         strip_modules = strip_modules,
         src_kmi_symbol_list = kmi_symbol_list,
         trim_nonlisted_kmi = trim_nonlisted_kmi,
+        src_protected_exports_list = protected_exports_list,
+        src_protected_modules_list = protected_modules_list,
         **kwargs
     )
 
@@ -1360,6 +1364,8 @@ def _create_infos(
         modules_staging_archive = modules_staging_archive,
         base_modules_staging_archive = base_kernel_utils.get_base_modules_staging_archive(ctx),
         src_kmi_symbol_list = ctx.file.src_kmi_symbol_list,
+        src_protected_exports_list = ctx.file.src_protected_exports_list,
+        src_protected_modules_list = ctx.file.src_protected_modules_list,
     )
 
     # Device modules takes precedence over base_kernel (GKI) modules.
@@ -1559,6 +1565,8 @@ _kernel_build = rule(
         "combined_abi_symbollist": attr.label(allow_single_file = True, doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`."),
         "strip_modules": attr.bool(default = False, doc = "if set, debug information won't be kept for distributed modules.  Note, modules will still be stripped when copied into the ramdisk."),
         "src_kmi_symbol_list": attr.label(allow_single_file = True),
+        "src_protected_exports_list": attr.label(allow_single_file = True),
+        "src_protected_modules_list": attr.label(allow_single_file = True),
     } | _kernel_build_additional_attrs(),
 )
 
