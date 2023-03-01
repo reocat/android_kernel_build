@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "186fdfa7_02acb36a",
+        "filename": "kleaf/tests/kernel_build_test/kernel_build_make_goals_test.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-01T16:57:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbee5aa6_10fd824c",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 1
+      },
+      "revId": "830d4db6f4d8e14d45ebfe4f3ec12bd1eaf42b60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e0dc7a2_5c81f9aa",
@@ -54,6 +78,24 @@
       "writtenOn": "2023-02-21T23:35:14Z",
       "side": 1,
       "message": "What does this comment mean? Are you planning to add tests for KernelEnv later?",
+      "revId": "830d4db6f4d8e14d45ebfe4f3ec12bd1eaf42b60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c99b3482_b26c5f1c",
+        "filename": "kleaf/tests/kernel_build_test/kernel_build_make_goals_test.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-01T16:57:18Z",
+      "side": 1,
+      "message": "Oops it was a debugging note I forgot to delete.\nDone",
+      "parentUuid": "1e0dc7a2_5c81f9aa",
       "revId": "830d4db6f4d8e14d45ebfe4f3ec12bd1eaf42b60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
