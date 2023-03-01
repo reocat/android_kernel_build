@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df461bb0_f7486d00",
+        "filename": "kleaf/impl/abi/protected_exports.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T23:22:45Z",
+      "side": 1,
+      "message": "nit: technically this should be `does not produce any files` because a `genrule` would have also worked.",
+      "range": {
+        "startLine": 35,
+        "startChar": 21,
+        "endLine": 35,
+        "endChar": 34
+      },
+      "revId": "1d2708e8e34819b29d9d8fdb428480e89461077c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
