@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5855bf34_456cb74b",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T02:37:57Z",
+      "side": 1,
+      "message": "nit: a recent trick I found:\n\n```\naarch64_protected_exports_list \u003d (native.glob([\"android/abi_gki_protected_exports\"]) or [None])[0]\n```",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 114
+      },
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e41a22f6_4beac32a",
+        "filename": "kleaf/impl/abi/get_src_protected_exports_files.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T02:37:57Z",
+      "side": 1,
+      "message": "nit: These two and `get_src_kmi_symbol_list` could be just one rule (remember to add docs)\n\n```\ndef _impl(ctx)\n  return DefaultInfo(files \u003d depset([\n        getattr(ctx.attr.kernel_build[KernelBuildAbiInfo], attr_name),\n    ]))\n\nget_src_attr \u003d rule(\n    implementation \u003d _impl,\n    attrs \u003d {\n        \"kernel_build\": attr.label(providers \u003d [KernelBuildAbiInfo]),\n        \"attr_name\": attr.string(values \u003d [\"src_protected_modules_list\", ...], mandatory \u003d True, doc \u003d \"field in KernelAbiInfo\")\n    },\n)\n```\n\n... but I am also fine with this duplication, since they are different things. Feel free to ignore this comment if you also like the duplication.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 1
+      },
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57fa4985_2a89a576",
+        "filename": "kleaf/impl/abi/protected_exports.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T02:37:57Z",
+      "side": 1,
+      "message": "If you want to check if the caller sets this attribute, this is fine. (Alternatively you could also set `mandatory\u003dTrue` on L97, but that might make `bazel build //common:all` fail -- though I think it already fails)\n\nIf you want to check whether the target has files or not, then you should check `if not ctx.file.protected_modules_list` instead (not `ctx.attr`) (and update the error message below).",
+      "range": {
+        "startLine": 34,
+        "startChar": 20,
+        "endLine": 34,
+        "endChar": 42
+      },
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b2ca883_33c5d171",
+        "filename": "kleaf/impl/abi/protected_exports.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T02:37:57Z",
+      "side": 1,
+      "message": "nit: just `kernel_build`; I was going to rename the one for `extracted_symbols` as well but I never get to do it.\n\nThis is because L108 already sets notrim for everything in this rule.",
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd69aa4c_0f9116b7",
+        "filename": "kleaf/impl/abi/protected_exports.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T02:37:57Z",
+      "side": 1,
+      "message": "nit: just `src`? the name `protected_modules_list` seem to suggest that this is a list of labels, but it is just a label referring to a file which contains a list. NBD though",
+      "range": {
+        "startLine": 97,
+        "startChar": 9,
+        "endLine": 97,
+        "endChar": 31
+      },
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "748fcc32_042d1e0c",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T02:37:57Z",
+      "side": 1,
+      "message": "nit: move to above L466",
+      "range": {
+        "startLine": 467,
+        "startChar": 0,
+        "endLine": 468,
+        "endChar": 60
+      },
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
