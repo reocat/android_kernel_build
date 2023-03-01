@@ -308,6 +308,15 @@ function build_vendor_dlkm() {
       exit 1
     fi
   fi
+
+  # Copy insmod cfg to ${DIST_DIR} and ${VENDOR_DLKM_STAGING_DIR}
+  local insmod_cfg_dst_folder="${VENDOR_DLKM_STAGING_DIR}/etc"
+  if [[ -n "${VENDOR_DLKM_INSMOD_CFG}" ]] && [[ -d "${VENDOR_DLKM_INSMOD_CFG}" ]]; then
+    mkdir -p "${insmod_cfg_dst_folder}"
+    cp "${VENDOR_DLKM_INSMOD_CFG}"/* "${insmod_cfg_dst_folder}"
+    cp "${VENDOR_DLKM_INSMOD_CFG}"/* "${DIST_DIR}"
+  fi
+
   build_image "${VENDOR_DLKM_STAGING_DIR}" "${vendor_dlkm_props_file}" \
     "${DIST_DIR}/vendor_dlkm.img" /dev/null
 }
