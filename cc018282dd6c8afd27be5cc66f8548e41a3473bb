@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e9a8389_010f1439",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-03-01T04:05:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5855bf34_456cb74b",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 114
+      },
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e41a22f6_4beac32a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-01T02:37:57Z",
       "side": 1,
       "message": "nit: These two and `get_src_kmi_symbol_list` could be just one rule (remember to add docs)\n\n```\ndef _impl(ctx)\n  return DefaultInfo(files \u003d depset([\n        getattr(ctx.attr.kernel_build[KernelBuildAbiInfo], attr_name),\n    ]))\n\nget_src_attr \u003d rule(\n    implementation \u003d _impl,\n    attrs \u003d {\n        \"kernel_build\": attr.label(providers \u003d [KernelBuildAbiInfo]),\n        \"attr_name\": attr.string(values \u003d [\"src_protected_modules_list\", ...], mandatory \u003d True, doc \u003d \"field in KernelAbiInfo\")\n    },\n)\n```\n\n... but I am also fine with this duplication, since they are different things. Feel free to ignore this comment if you also like the duplication.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 1
+      },
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b3dbd1e_767a6a67",
+        "filename": "kleaf/impl/abi/get_src_protected_exports_files.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-03-01T04:05:06Z",
+      "side": 1,
+      "message": "Keeping separate as it\u0027s more readable this way; but thanks good to know.",
+      "parentUuid": "e41a22f6_4beac32a",
       "range": {
         "startLine": 24,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1868b893_c8dca826",
+        "filename": "kleaf/impl/abi/protected_exports.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-03-01T04:05:06Z",
+      "side": 1,
+      "message": "Ah! I should check for file. Because I was seeing failures earlier when I did not added the `ctx.file.protected_modules_list` in the inputs but `ctx.attr.protected_modules_list` was set to `common/android/gki_protected_modules`.",
+      "parentUuid": "57fa4985_2a89a576",
+      "range": {
+        "startLine": 34,
+        "startChar": 20,
+        "endLine": 34,
+        "endChar": 42
+      },
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b2ca883_33c5d171",
@@ -83,6 +155,24 @@
       "writtenOn": "2023-03-01T02:37:57Z",
       "side": 1,
       "message": "nit: just `kernel_build`; I was going to rename the one for `extracted_symbols` as well but I never get to do it.\n\nThis is because L108 already sets notrim for everything in this rule.",
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13db0d4c_9c00157c",
+        "filename": "kleaf/impl/abi/protected_exports.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-03-01T04:05:06Z",
+      "side": 1,
+      "message": "Done. I\u0027ll probably take care of it later if you don\u0027t get to it. So, keep it low on your priority.",
+      "parentUuid": "7b2ca883_33c5d171",
       "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4abac67_e7338c9d",
+        "filename": "kleaf/impl/abi/protected_exports.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-03-01T04:05:06Z",
+      "side": 1,
+      "message": "`protected_modules_list` to `protected_modules_list_file` to indicate it\u0027s a file. Just `src` is confusing it took me a lot a lot wrap my head around some of these concepts; so going by that experience.",
+      "parentUuid": "bd69aa4c_0f9116b7",
+      "range": {
+        "startLine": 97,
+        "startChar": 9,
+        "endLine": 97,
+        "endChar": 31
+      },
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "748fcc32_042d1e0c",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-03-01T02:37:57Z",
       "side": 1,
       "message": "nit: move to above L466",
+      "range": {
+        "startLine": 467,
+        "startChar": 0,
+        "endLine": 468,
+        "endChar": 60
+      },
+      "revId": "cc018282dd6c8afd27be5cc66f8548e41a3473bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad92f62b_b6258e3d",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-03-01T04:05:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "748fcc32_042d1e0c",
       "range": {
         "startLine": 467,
         "startChar": 0,
