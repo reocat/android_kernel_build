@@ -16,6 +16,24 @@
       "message": "nit: Please consider adding a line in `kleaf/docs/debugging.md`",
       "revId": "0cf766bd3b9385ee5ad441bd8b0d4327a5702b63",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "503327e8_5e4f9446",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T23:50:56Z",
+      "side": 1,
+      "message": "This is \"flags that control kleaf integrity checking\" and none of these flags seem to be in debugging.md. I\u0027ll put up something that includes the other flags in a follow up CL.",
+      "parentUuid": "fe3d2dab_cb81d7e4",
+      "revId": "0cf766bd3b9385ee5ad441bd8b0d4327a5702b63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
