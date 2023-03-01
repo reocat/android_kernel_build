@@ -16,6 +16,23 @@
       "message": "The change looks good to me, however I\u0027ll defer the `+2` to @elsk@google.com in case there was another reason for this naming, other than making it explicit that this was a untrimmed kernel.",
       "revId": "37fe7cb8ffa1943f120d4b4922b7cfa02e60aefb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fada4b9_9512d62b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-01T16:57:39Z",
+      "side": 1,
+      "message": "Can you please add to the commit message _why_ the change is made?\n\nIn my understanding, symbol extraction requires an untrimmed kernel to function.",
+      "revId": "37fe7cb8ffa1943f120d4b4922b7cfa02e60aefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
