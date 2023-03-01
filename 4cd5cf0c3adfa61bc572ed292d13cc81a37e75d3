@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9212fbcf_cdd9c412",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2023-03-01T17:38:20Z",
+      "side": 1,
+      "message": "Thanks for the patches!",
+      "revId": "4cd5cf0c3adfa61bc572ed292d13cc81a37e75d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17b0d439_39863f91",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1114194
+      },
+      "writtenOn": "2023-03-01T17:38:20Z",
+      "side": 1,
+      "message": "If we want to be pedantic:\n\nUSERCFLAGS needs to set --sysroot and --target properly, and USERLDFLAGS needs to set --sysroot.",
+      "revId": "4cd5cf0c3adfa61bc572ed292d13cc81a37e75d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
