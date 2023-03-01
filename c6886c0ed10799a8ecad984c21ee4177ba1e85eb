@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0aa7c187_026224c4",
+        "filename": "BUILD.bazel",
+        "patchSetId": 35
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T23:42:31Z",
+      "side": 1,
+      "message": "will split",
+      "parentUuid": "7b16407e_6f754993",
+      "revId": "c6886c0ed10799a8ecad984c21ee4177ba1e85eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4909bbdf_73e33e49",
         "filename": "BUILD.bazel",
         "patchSetId": 35
@@ -31,6 +49,24 @@
       "writtenOn": "2023-03-01T16:35:45Z",
       "side": 1,
       "message": "by making this visible to the prebuilts package, it feels like we are creating a circular dependency?",
+      "revId": "c6886c0ed10799a8ecad984c21ee4177ba1e85eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e77d8f0_1a903580",
+        "filename": "BUILD.bazel",
+        "patchSetId": 35
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T23:42:31Z",
+      "side": 1,
+      "message": "not really; I think you can have `//A:a -\u003e //B:b -\u003e //A:c` without any trouble. This is just making things visible; nothing is actually being depended on.",
+      "parentUuid": "4909bbdf_73e33e49",
       "revId": "c6886c0ed10799a8ecad984c21ee4177ba1e85eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
