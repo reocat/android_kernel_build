@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4d71129_6d49ec98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-01T16:26:41Z",
+      "side": 1,
+      "message": "No, I don\u0027t think that is a fair restriction. The features used here are very common to file systems and only bad actors like anti-virus scans are usually breaking those.",
+      "parentUuid": "7c9c8ee7_503cfcd7",
+      "revId": "5bd27983fe91083359672654a3158889d0c2a546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "789e0226_2f258169",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 2
