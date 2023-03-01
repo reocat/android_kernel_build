@@ -15,6 +15,7 @@
 Build vendor_dlkm.img for vendor modules.
 """
 
+load("@bazel_skylib//lib:shell.bzl", "shell")
 load(":image/image_utils.bzl", "image_utils")
 
 def _vendor_dlkm_image_impl(ctx):
@@ -41,7 +42,8 @@ def _vendor_dlkm_image_impl(ctx):
             # Use `strip_modules` intead of relying on this.
                unset DO_NOT_STRIP_MODULES
             # Build vendor_dlkm
-              mkdir -p {vendor_dlkm_staging_dir}
+              mkdir -p {vendor_dlkm_staging_dir}/etc
+              cp {vendor_dlkm_insmod_cfgs} -t {vendor_dlkm_staging_dir}/etc
               (
                 MODULES_STAGING_DIR={modules_staging_dir}
                 VENDOR_DLKM_FS_TYPE={vendor_dlkm_fs_type}
@@ -61,13 +63,14 @@ def _vendor_dlkm_image_impl(ctx):
     """.format(
         modules_staging_dir = modules_staging_dir,
         vendor_dlkm_fs_type = vendor_dlkm_fs_type,
+        vendor_dlkm_insmod_cfgs = " ".join([f.path for f in ctx.files.vendor_dlkm_insmod_cfgs]),
         vendor_dlkm_staging_dir = vendor_dlkm_staging_dir,
         vendor_dlkm_img = vendor_dlkm_img.path,
         vendor_dlkm_modules_load = vendor_dlkm_modules_load.path,
         vendor_dlkm_modules_blocklist = vendor_dlkm_modules_blocklist.path,
     )
 
-    return image_utils.build_modules_image_impl_common(
+    image_default_info = image_utils.build_modules_image_impl_common(
         ctx = ctx,
         what = "vendor_dlkm",
         outputs = [vendor_dlkm_img, vendor_dlkm_modules_load, vendor_dlkm_modules_blocklist],
@@ -76,6 +79,7 @@ def _vendor_dlkm_image_impl(ctx):
         additional_inputs = additional_inputs,
         mnemonic = "VendorDlkmImage",
     )
+    return DefaultInfo(files = depset(ctx.files.vendor_dlkm_insmod_cfgs, transitive = [image_default_info.files]))
 
 vendor_dlkm_image = rule(
     implementation = _vendor_dlkm_image_impl,
@@ -94,6 +98,7 @@ Modules listed in this file is stripped away from the `vendor_dlkm` image.""",
         ),
         "vendor_dlkm_fs_type": attr.string(doc = """vendor_dlkm.img fs type""", values = ["ext4", "erofs"]),
         "vendor_dlkm_modules_list": attr.label(allow_single_file = True),
+        "vendor_dlkm_insmod_cfgs": attr.label_list(allow_files = True),
         "vendor_dlkm_modules_blocklist": attr.label(allow_single_file = True),
         "vendor_dlkm_props": attr.label(allow_single_file = True),
     }),
