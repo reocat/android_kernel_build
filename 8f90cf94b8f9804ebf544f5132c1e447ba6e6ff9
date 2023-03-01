@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6081dca7_8a69a602",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T20:45:59Z",
+      "side": 1,
+      "message": "is it ready yet?",
+      "revId": "8f90cf94b8f9804ebf544f5132c1e447ba6e6ff9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca0dd049_7ad89cc9",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-01T20:45:59Z",
+      "side": 1,
+      "message": "nit: The Bazel style is \n\n```\nkernel_build(\n  make_goals \u003d ...\n)\n```\n\nThere are spaces around equal.\n\nSo though we are using `python` style here for syntax highlighting, we still need to manually add the spaces around the equal sign. I know...",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 16
+      },
+      "revId": "8f90cf94b8f9804ebf544f5132c1e447ba6e6ff9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
