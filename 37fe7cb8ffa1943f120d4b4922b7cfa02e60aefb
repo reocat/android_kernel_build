@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6205d0b_d2ced805",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-01T16:48:35Z",
+      "side": 1,
+      "message": "The change looks good to me, however I\u0027ll defer the `+2` to @elsk@google.com in case there was another reason for this naming, other than making it explicit that this was a untrimmed kernel.",
+      "revId": "37fe7cb8ffa1943f120d4b4922b7cfa02e60aefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
