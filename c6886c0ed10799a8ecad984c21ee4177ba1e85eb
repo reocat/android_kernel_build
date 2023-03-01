@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b16407e_6f754993",
+        "filename": "BUILD.bazel",
+        "patchSetId": 35
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-01T16:35:45Z",
+      "side": 1,
+      "message": "this looks like a separate change. But more importantly, what exactly is the dependency on the sysroot here? \"hermetic-tools\" does not contain any compiler/linker? Perhaps it is time to chunk up the tools. E.g. all the toybox tools are much simpler to set up (single binary, bunch of symlinks, hardly any PATH problems).",
+      "revId": "c6886c0ed10799a8ecad984c21ee4177ba1e85eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4909bbdf_73e33e49",
+        "filename": "BUILD.bazel",
+        "patchSetId": 35
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-01T16:35:45Z",
+      "side": 1,
+      "message": "by making this visible to the prebuilts package, it feels like we are creating a circular dependency?",
+      "revId": "c6886c0ed10799a8ecad984c21ee4177ba1e85eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f530bf5_5ce69a6b",
+        "filename": "kleaf/bazelrc/hermetic_cc.bazelrc",
+        "patchSetId": 35
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-01T16:35:45Z",
+      "side": 1,
+      "message": "add a more detailed comment what this is used for?",
+      "range": {
+        "startLine": 16,
+        "startChar": 20,
+        "endLine": 16,
+        "endChar": 63
+      },
+      "revId": "c6886c0ed10799a8ecad984c21ee4177ba1e85eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
