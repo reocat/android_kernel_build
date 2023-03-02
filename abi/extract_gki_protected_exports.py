@@ -33,7 +33,9 @@ def update_gki_protected_exports(directory, gki_protected_modules_list,
   for protected_module in protected_module_names:
     full_path = os.path.join(directory, protected_module)
     if not os.path.isfile(full_path):
-      print(f"Warning: Couldn't find module {full_path}")
+      # Warn only for missing kernel objects i.e. modules
+      if os.path.splitext(full_path)[1] == ".ko":
+        print(f"Warning: Couldn't find module {full_path}")
       continue
 
     protected_gki_modules.append(full_path)
