@@ -107,6 +107,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9daa5ade_4e1c5e7e",
+        "filename": "BUILD.bazel",
+        "patchSetId": 35
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T18:28:51Z",
+      "side": 1,
+      "message": "On the package level, there\u0027s a circular dependency. Perhaps I should move sysroot to under //prebuilts/clang/host/linux-x86/kleaf?",
+      "parentUuid": "8e77d8f0_1a903580",
+      "revId": "c6886c0ed10799a8ecad984c21ee4177ba1e85eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f530bf5_5ce69a6b",
