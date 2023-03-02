@@ -52,6 +52,24 @@
       "parentUuid": "d1776219_74581aa4",
       "revId": "fbe669e3596aa1ed036c008ad448e1c1ad8777e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8cad390_07eddf2c",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-03-02T18:55:18Z",
+      "side": 0,
+      "message": "Sounds good. that was not an intentional.\n\n@umendez@google.com Can you point me the lint errors, I don\u0027t think I noticed any. I haven\u0027t done any lint bypass as far as I remember.",
+      "parentUuid": "707c7aa1_a8eef82e",
+      "revId": "fbe669e3596aa1ed036c008ad448e1c1ad8777e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
