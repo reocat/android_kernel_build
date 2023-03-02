@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dc98f636_f6a405d8",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T23:18:44Z",
+      "side": 1,
+      "message": "Shouldn\u0027t need this any more",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 0
+      },
+      "revId": "68c1e4b79a6ca480dfacc6dbe0002e4be7cd1468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cbaea8a_c737a534",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T23:18:44Z",
+      "side": 1,
+      "message": "nit: shouldn\u0027t need this any more. We don\u0027t want to introduce more variables to build.sh.\n\n(But if you are introducing one, then keep it)",
+      "range": {
+        "startLine": 379,
+        "startChar": 0,
+        "endLine": 379,
+        "endChar": 49
+      },
+      "revId": "68c1e4b79a6ca480dfacc6dbe0002e4be7cd1468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f6e42b24_bb3f5601",
         "filename": "kleaf/impl/image/kernel_images.bzl",
         "patchSetId": 3
@@ -42,6 +88,29 @@
         "startChar": 0,
         "endLine": 50,
         "endChar": 71
+      },
+      "revId": "68c1e4b79a6ca480dfacc6dbe0002e4be7cd1468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fdbc23d_fa016231",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T23:18:44Z",
+      "side": 1,
+      "message": "Add the files to DefaultInfo here to be included in DIST_DIR; see my comment in bug.\n\n(Do you really need these files in DIST_DIR though?)",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 10
       },
       "revId": "68c1e4b79a6ca480dfacc6dbe0002e4be7cd1468",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
