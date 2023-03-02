@@ -16,6 +16,24 @@
       "message": "Why this is being removed? http://aosp/2464796",
       "revId": "fbe669e3596aa1ed036c008ad448e1c1ad8777e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1776219_74581aa4",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-02T18:47:29Z",
+      "side": 0,
+      "message": "This is a cleanup change, due to an issue with AyeAye (http://b/271395818), changes with linter errors were submitted, in this case `protected_exports_list` is not used within `_define_abi_definition_targets` after removing it there this also has to go as there won\u0027t be any `protected_exports_list` attribute in the macro.",
+      "parentUuid": "646d85fe_561f7865",
+      "revId": "fbe669e3596aa1ed036c008ad448e1c1ad8777e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
