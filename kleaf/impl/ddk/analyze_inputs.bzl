@@ -19,6 +19,7 @@ def _analyze_inputs_transition_impl(settings, attr):
         # buildifier: disable=print
         print("\nWARNING: for {}, ignoring --config=local and enabling sandbox to analyze inputs.".format(attr.name))
     return {
+        "//build/kernel/kleaf/impl:build_compile_commands": True,
         "//build/kernel/kleaf/impl:preserve_cmd": True,
         # Require sandbox to avoid grabbing unrelated .cmd files
         "//build/kernel/kleaf:config_local": False,
@@ -30,6 +31,7 @@ _analyze_inputs_transition = transition(
         "//build/kernel/kleaf:config_local",
     ],
     outputs = [
+        "//build/kernel/kleaf/impl:build_compile_commands",
         "//build/kernel/kleaf/impl:preserve_cmd",
         "//build/kernel/kleaf:config_local",
     ],

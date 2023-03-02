@@ -18,6 +18,7 @@ Makefile and Kbuild files are required.
 """
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//lib:shell.bzl", "shell")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("//build/kernel/kleaf:directory_with_structure.bzl", dws = "directory_with_structure")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
@@ -37,6 +38,7 @@ load(
     "KernelUnstrippedModulesInfo",
     "ModuleSymversInfo",
 )
+load(":compile_commands_utils.bzl", "compile_commands_utils")
 load(":ddk/ddk_headers.bzl", "DdkHeadersInfo")
 load(":debug.bzl", "debug")
 load(":kernel_build.bzl", "get_grab_cmd_step")
@@ -345,6 +347,13 @@ def _kernel_module_impl(ctx):
     command_outputs += cache_dir_step.outputs
     tools += cache_dir_step.tools
 
+    # FIXME rename
+    compile_commands_step = compile_commands_utils.kernel_build_step(ctx)
+    inputs += compile_commands_step.inputs
+    command_outputs += compile_commands_step.outputs
+    tools += compile_commands_step.tools
+    additional_make_goals = compile_commands_utils.additional_make_goals(ctx)
+
     command = ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_env_and_outputs_info.get_setup_script(
         data = ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_env_and_outputs_info.data,
         restore_out_dir_cmd = cache_dir_step.cmd,
@@ -410,7 +419,7 @@ def _kernel_module_impl(ctx):
                ext_mod_rel=$(realpath ${{ROOT_DIR}}/{ext_mod} --relative-to ${{KERNEL_DIR}})
 
              # Actual kernel module build
-               make -C {ext_mod} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules {make_redirect}
+               make -C {ext_mod} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules {additional_make_goals} {make_redirect}
              # Install into staging directory
                make -C {ext_mod} ${{TOOL_ARGS}} DEPMOD=true M=${{ext_mod_rel}} \
                    O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}}     \
@@ -440,6 +449,8 @@ def _kernel_module_impl(ctx):
                {grab_unstripped_cmd}
              # Grab *.cmd
                {grab_cmd_cmd}
+             # Grab files for compile_commands.json
+               {compile_commands_cmd}
              # Move Module.symvers
                rsync -aL ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers {module_symvers}
 
@@ -447,6 +458,7 @@ def _kernel_module_impl(ctx):
                """.format(
         label = ctx.label,
         ext_mod = ext_mod,
+        additional_make_goals = " ".join([shell.quote(item) for item in additional_make_goals]),
         make_redirect = modpost_warn.make_redirect,
         module_symvers = module_symvers.path,
         modules_staging_dir = modules_staging_dws.directory.path,
@@ -459,6 +471,7 @@ def _kernel_module_impl(ctx):
         check_no_remaining = check_no_remaining.path,
         drop_modules_order_cmd = drop_modules_order_cmd,
         grab_cmd_cmd = grab_cmd_step.cmd,
+        compile_commands_cmd = compile_commands_step.cmd,
     )
 
     command += dws.record(modules_staging_dws)
@@ -639,6 +652,9 @@ _kernel_module = rule(
         "_preserve_cmd": attr.label(default = "//build/kernel/kleaf/impl:preserve_cmd"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_debug_modpost_warn": attr.label(default = "//build/kernel/kleaf:debug_modpost_warn"),
+    } | {
+        attr_name: attr.label(default = label)
+        for attr_name, label in compile_commands_utils.config_settings_raw().items()
     },
 )
 
