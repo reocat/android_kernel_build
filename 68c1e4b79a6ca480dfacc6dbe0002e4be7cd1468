@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6fbbd896_a730a1e5",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T23:25:34Z",
+      "side": 1,
+      "message": "(unless you want build.sh to work)",
+      "parentUuid": "dc98f636_f6a405d8",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 0
+      },
+      "revId": "68c1e4b79a6ca480dfacc6dbe0002e4be7cd1468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8cbaea8a_c737a534",
         "filename": "kleaf/build_config_to_bazel.py",
         "patchSetId": 3
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e808fbba_4cc6bfa6",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T23:25:34Z",
+      "side": 1,
+      "message": "nit: Also since this is a collection of files that are just copied to /etc, I\u0027d suggest renaming the attribute to `vendor_dlkm_etc_files` for example, so it is applicable to other files that needs to be copied under `etc/`. \n\nIf you are going this route, I\u0027d suggest not to change `DefaultInfo` below, and just add the files to the Pixel\u0027s `copy_to_dist_dir` rules instead. It just seems weird to me that we are copying everything under vendor_dlkm/etc to DIST_DIR without knowing what\u0027s in it, from the point of view of the rule.",
+      "parentUuid": "f6e42b24_bb3f5601",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "68c1e4b79a6ca480dfacc6dbe0002e4be7cd1468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "859f319c_61466695",
         "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
         "patchSetId": 3
@@ -106,6 +154,30 @@
       "writtenOn": "2023-03-02T23:18:44Z",
       "side": 1,
       "message": "Add the files to DefaultInfo here to be included in DIST_DIR; see my comment in bug.\n\n(Do you really need these files in DIST_DIR though?)",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 10
+      },
+      "revId": "68c1e4b79a6ca480dfacc6dbe0002e4be7cd1468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24719802_ec81dd8f",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T23:25:34Z",
+      "side": 1,
+      "message": "See other comment",
+      "parentUuid": "3fdbc23d_fa016231",
       "range": {
         "startLine": 74,
         "startChar": 4,
