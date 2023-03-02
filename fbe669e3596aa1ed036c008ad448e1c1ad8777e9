@@ -70,6 +70,24 @@
       "parentUuid": "707c7aa1_a8eef82e",
       "revId": "fbe669e3596aa1ed036c008ad448e1c1ad8777e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bed94f22_ee269838",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T18:57:10Z",
+      "side": 0,
+      "message": "The bug that Ulises mentioned above is that the linter is disabled (not by you, but by someone else) accidentally.",
+      "parentUuid": "f8cad390_07eddf2c",
+      "revId": "fbe669e3596aa1ed036c008ad448e1c1ad8777e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
