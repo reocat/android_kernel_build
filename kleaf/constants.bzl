@@ -12,10 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-Utility public constants.
-"""
-
 load(
     "//build/kernel/kleaf/impl:constants.bzl",
     "DEFAULT_IMAGES",
@@ -53,13 +49,11 @@ GKI_DOWNLOAD_CONFIGS = [
     {
         "target_suffix": "uapi_headers",
         "outs": [
-            "kernel-uapi-headers.tar.gz",
-        ],
+            "kernel-uapi-headers.tar.gz",],
     },
     {
         "target_suffix": "unstripped_modules_archive",
-        "outs": [
-            "unstripped_modules.tar.gz",
+        "outs": [ "unstripped_modules.tar.gz",
         ],
     },
     {
