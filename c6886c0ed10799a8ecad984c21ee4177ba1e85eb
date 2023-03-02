@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "788251f6_036b7e38",
+        "filename": "BUILD.bazel",
+        "patchSetId": 35
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T00:18:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0aa7c187_026224c4",
+      "revId": "c6886c0ed10799a8ecad984c21ee4177ba1e85eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4909bbdf_73e33e49",
@@ -84,6 +102,30 @@
       "writtenOn": "2023-03-01T16:35:45Z",
       "side": 1,
       "message": "add a more detailed comment what this is used for?",
+      "range": {
+        "startLine": 16,
+        "startChar": 20,
+        "endLine": 16,
+        "endChar": 63
+      },
+      "revId": "c6886c0ed10799a8ecad984c21ee4177ba1e85eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5552b13_e7ab98d8",
+        "filename": "kleaf/bazelrc/hermetic_cc.bazelrc",
+        "patchSetId": 35
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T00:18:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f530bf5_5ce69a6b",
       "range": {
         "startLine": 16,
         "startChar": 20,
