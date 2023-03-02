@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "daeeb89d_88b5b625",
+        "filename": "BUILD.bazel",
+        "patchSetId": 35
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T18:27:18Z",
+      "side": 1,
+      "message": "hermetic-tools includes sysroot and does contain compilers / linkers, but as regular files, not a Bazel toolchain. The new clang toolchain itself should only rely on sysroot, not the other binaries in hermetic tools.",
+      "parentUuid": "788251f6_036b7e38",
+      "revId": "c6886c0ed10799a8ecad984c21ee4177ba1e85eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4909bbdf_73e33e49",
