@@ -106,6 +106,24 @@
       "parentUuid": "bed94f22_ee269838",
       "revId": "fbe669e3596aa1ed036c008ad448e1c1ad8777e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74dd3873_bceae32c",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-02T19:11:25Z",
+      "side": 0,
+      "message": "Yes similarly to L27, this still doesn\u0027t show any error, but from a local run of the linter I can see it.\n\n`kleaf/impl/abi/kernel_build_abi.bzl:28: same-origin-load: There is already a load from \":abi/get_src_protected_exports_files.bzl\" on line 27. Please merge all loads from the same origin into a single one. (https://github.com/bazelbuild/buildtools/blob/master/WARNINGS.md#same-origin-load)`\n\nthere is a fix rolling out, but has not reached all prod yet.",
+      "parentUuid": "5fc41b03_2266a594",
+      "revId": "fbe669e3596aa1ed036c008ad448e1c1ad8777e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
