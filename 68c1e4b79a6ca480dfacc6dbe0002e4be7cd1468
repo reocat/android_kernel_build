@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6e42b24_bb3f5601",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T23:16:17Z",
+      "side": 1,
+      "message": "Bazel does not recognize directories (usually). I think you need to specify a list of files here; so just `vendor_dlkm_insmod_cfg` or `vendor_dlkm_insmod_cfg_srcs` etc.",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "68c1e4b79a6ca480dfacc6dbe0002e4be7cd1468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "859f319c_61466695",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T23:16:17Z",
+      "side": 1,
+      "message": "Instead of doing this + build_utils change + adding a key in kernel_images, just\n\n```\ncp {vendor_dlkm_insmod_cfg_files} -t {modules_staging_dir}/etc\n```\n\nand at L67\n\n```\n.format(\n  vendor_dlkm_insmod_cfg_files \u003d [shell.quote(f.path) for f in ctx.files.vendor_dlkm_insmod_cfg]\n```\n\nYou also need to load `shell` extension: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_kythe.bzl;l\u003d17;drc\u003d820616e407a5d727cba655973dfbbe7d5f3c97af",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 71
+      },
+      "revId": "68c1e4b79a6ca480dfacc6dbe0002e4be7cd1468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "522c80a2_b4222a4d",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T23:16:17Z",
+      "side": 1,
+      "message": "label_list(allow_files \u003d True)\n\nsince you need multiple files",
+      "range": {
+        "startLine": 101,
+        "startChar": 43,
+        "endLine": 101,
+        "endChar": 48
+      },
+      "revId": "68c1e4b79a6ca480dfacc6dbe0002e4be7cd1468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
