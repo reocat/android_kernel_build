@@ -34,6 +34,24 @@
       "parentUuid": "646d85fe_561f7865",
       "revId": "fbe669e3596aa1ed036c008ad448e1c1ad8777e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "707c7aa1_a8eef82e",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-02T18:50:27Z",
+      "side": 0,
+      "message": "@ramjiyani@google.com If you need to introduce a variable that aren\u0027t used in the macro, and use it in the future, you can add a `_` before it, e.g.  `_protected_exports_list`.\n\nMarking unresolved since this change will break aosp/2464796. Let\u0027s merge aosp/2464796 and don\u0027t delete the lines here.",
+      "parentUuid": "d1776219_74581aa4",
+      "revId": "fbe669e3596aa1ed036c008ad448e1c1ad8777e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
