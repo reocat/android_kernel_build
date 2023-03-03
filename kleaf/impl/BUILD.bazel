@@ -114,7 +114,7 @@ bool_setting(
 )
 
 # Helper setting to forcefully disable trimming.
-bool_setting(
+bool_flag(
     name = "force_disable_trim",
     build_setting_default = False,
     # All kernel_* from different packages can see this
