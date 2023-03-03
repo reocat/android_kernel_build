@@ -53,23 +53,27 @@ def main():
       "directory",
       nargs="?",
       default=os.getcwd(),
-      help="the directory to search for unsigned modules")
+      help="the directory to search for unsigned modules",
+  )
 
   parser.add_argument(
       "--abi-symbol-list",
       required=True,
-      help="ABI symbol list with symbols which are allow listed.")
+      help="ABI symbol list with symbols which are allow listed.",
+  )
 
   parser.add_argument(
       "--print-unsigned-modules",
       action="store_true",
-      help="Emit the names of the processed unsigned modules")
+      help="Emit the names of the processed unsigned modules",
+  )
 
   args = parser.parse_args()
 
   if not os.path.isdir(args.directory):
     print(
-        f"Expected a directory to search for unsigned modules, but got {args.directory}"
+        "Expected a directory to search for unsigned modules, but got"
+        f" {args.directory}"
     )
     return 1
 
@@ -77,36 +81,42 @@ def main():
 
   # Find unsigned modules
   unsigned_modules = [
-      module for module in modules
+      module
+      for module in modules
       if not symbol_extraction.is_signature_present(module)
   ]
 
   if args.print_unsigned_modules:
     print(
-        "These modules have been checked for GKI protected symbol violations:")
+        "These modules have been checked for GKI protected symbol violations:"
+    )
     for module in sorted(unsigned_modules):
       print(f" {os.path.basename(module)}")
 
   # Find all undefined symbols from unsigned modules
   undefined_symbols = itertools.chain.from_iterable(
       symbol_extraction.extract_undefined_symbols(module)
-      for module in unsigned_modules)
+      for module in unsigned_modules
+  )
 
   # Find all defined symbols from unsigned modules
   defined_symbols = itertools.chain.from_iterable(
       symbol_extraction.extract_exported_symbols(module)
-      for module in unsigned_modules)
+      for module in unsigned_modules
+  )
 
   # Read ABI symbols in a list
   abi_symbols = symbol_extraction.read_symbol_list(args.abi_symbol_list)
 
   # Set difference to get elements in undefined but not in defined or symbollist
-  missing_symbols = set(undefined_symbols) - set(defined_symbols) - set(
-      abi_symbols)
+  missing_symbols = (
+      set(undefined_symbols) - set(defined_symbols) - set(abi_symbols)
+  )
 
   if missing_symbols:
     print(
-        "\nThese symbols are missing from the symbol list and are not available at runtime for unsigned modules:"
+        "\nThese symbols are missing from the symbol list and are not available"
+        " at runtime for unsigned modules:"
     )
     for symbol in sorted(missing_symbols):
       print(f"  {symbol}")

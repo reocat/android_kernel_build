@@ -57,73 +57,96 @@ from absl.testing import absltest
 
 
 def load_arguments():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--actual", nargs="+", type=pathlib.Path, help="actual files")
-    parser.add_argument("--expected", nargs="+", type=pathlib.Path, help="expected files")
-    parser.add_argument("--order", action="store_true")
-    return parser.parse_known_args()
+  parser = argparse.ArgumentParser()
+  parser.add_argument(
+      "--actual", nargs="+", type=pathlib.Path, help="actual files"
+  )
+  parser.add_argument(
+      "--expected", nargs="+", type=pathlib.Path, help="expected files"
+  )
+  parser.add_argument("--order", action="store_true")
+  return parser.parse_known_args()
 
 
 arguments = None
 
 
 def _read_non_empty_lines(path: pathlib.Path) -> list[str]:
-    with path.open() as f:
-        return [line.strip() for line in f.readlines() if line.strip()]
+  with path.open() as f:
+    return [line.strip() for line in f.readlines() if line.strip()]
 
 
 class CompareTest(unittest.TestCase):
-    def test_all(self):
-        # Turn lists into a dictionary from basename to a list of values with that basename.
-        actual = collections.defaultdict(list)
-        for path in arguments.actual:
-            actual[path.name].append(path)
 
-        expected = collections.defaultdict(list)
-        for path in arguments.expected:
-            expected[path.name].append(path)
+  def test_all(self):
+    # Turn lists into a dictionary from basename to a list of values with that basename.
+    actual = collections.defaultdict(list)
+    for path in arguments.actual:
+      actual[path.name].append(path)
 
-        basenames = set() | actual.keys() | expected.keys()
+    expected = collections.defaultdict(list)
+    for path in arguments.expected:
+      expected[path.name].append(path)
 
-        for basename in basenames:
-            actual_with_basename = actual[basename]
-            expected_with_basename = expected[basename]
+    basenames = set() | actual.keys() | expected.keys()
 
-            self.assertTrue(actual_with_basename, f"missing actual file for {basename}")
-            self.assertTrue(expected_with_basename, f"missing expected file for {basename}")
+    for basename in basenames:
+      actual_with_basename = actual[basename]
+      expected_with_basename = expected[basename]
 
-            for actual_file in actual_with_basename:
-                for expected_file in expected_with_basename:
-                    with self.subTest(actual=actual_file, expected=expected_file):
-                        self._assert_contain_lines(actual=actual_file, expected=expected_file)
+      self.assertTrue(
+          actual_with_basename, f"missing actual file for {basename}"
+      )
+      self.assertTrue(
+          expected_with_basename, f"missing expected file for {basename}"
+      )
 
-    def _assert_contain_lines(self, actual: pathlib.Path, expected: pathlib.Path):
-        actual_lines = _read_non_empty_lines(actual)
-        expected_lines = _read_non_empty_lines(expected)
+      for actual_file in actual_with_basename:
+        for expected_file in expected_with_basename:
+          with self.subTest(actual=actual_file, expected=expected_file):
+            self._assert_contain_lines(
+                actual=actual_file, expected=expected_file
+            )
 
-        if not arguments.order:
-            diff = collections.Counter(expected_lines) - collections.Counter(actual_lines)
-            self.assertFalse(diff,
-                             f"{actual} does not contain all lines from {expected}, missing\n" +
-                             ("\n".join(diff.elements())))
-        else:
-            expected_index = self._check_sublist_with_order(actual_lines, expected_lines)
-            self.assertGreaterEqual(expected_index, len(expected_lines),
-                                    f"{actual} does not contain all lines from {expected} in " +
-                                    f"the given order. Mismatch starting at line " +
-                                    f"{expected_index} of {expected}.")
+  def _assert_contain_lines(self, actual: pathlib.Path, expected: pathlib.Path):
+    actual_lines = _read_non_empty_lines(actual)
+    expected_lines = _read_non_empty_lines(expected)
 
-    def _check_sublist_with_order(self, actual_lines: list[str], expected_lines: list[str]) -> int:
-        expected_index = 0
-        for actual_line in actual_lines:
-            if expected_index >= len(expected_lines):
-                break
-            if expected_lines[expected_index] == actual_line:
-                expected_index += 1
+    if not arguments.order:
+      diff = collections.Counter(expected_lines) - collections.Counter(
+          actual_lines
+      )
+      self.assertFalse(
+          diff,
+          f"{actual} does not contain all lines from {expected}, missing\n"
+          + "\n".join(diff.elements()),
+      )
+    else:
+      expected_index = self._check_sublist_with_order(
+          actual_lines, expected_lines
+      )
+      self.assertGreaterEqual(
+          expected_index,
+          len(expected_lines),
+          f"{actual} does not contain all lines from {expected} in "
+          + f"the given order. Mismatch starting at line "
+          + f"{expected_index} of {expected}.",
+      )
 
-        return expected_index
+  def _check_sublist_with_order(
+      self, actual_lines: list[str], expected_lines: list[str]
+  ) -> int:
+    expected_index = 0
+    for actual_line in actual_lines:
+      if expected_index >= len(expected_lines):
+        break
+      if expected_lines[expected_index] == actual_line:
+        expected_index += 1
 
-if __name__ == '__main__':
-    arguments, unknown = load_arguments()
-    sys.argv[1:] = unknown
-    absltest.main()
+    return expected_index
+
+
+if __name__ == "__main__":
+  arguments, unknown = load_arguments()
+  sys.argv[1:] = unknown
+  absltest.main()

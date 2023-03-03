@@ -29,7 +29,8 @@ def main(**kwargs):
   """Work together with search_and_cp_output.py.
 
   Check that search_and_cp_output.py would copy all interesting output files to
-  the destination directory."""
+  the destination directory.
+  """
 
   remaining = check(**kwargs)
   for path in remaining:
@@ -39,9 +40,16 @@ def main(**kwargs):
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description=main.__doc__)
 
-  parser.add_argument("--declared", nargs="*",
-                      help="Declared output list that would be passed as positional arguments to search_and_cp_output.py")
-  parser.add_argument("--actual", nargs="*",
-                      help="Actual list of interesting outputs.")
+  parser.add_argument(
+      "--declared",
+      nargs="*",
+      help=(
+          "Declared output list that would be passed as positional arguments to"
+          " search_and_cp_output.py"
+      ),
+  )
+  parser.add_argument(
+      "--actual", nargs="*", help="Actual list of interesting outputs."
+  )
   args = parser.parse_args()
   main(**vars(args))

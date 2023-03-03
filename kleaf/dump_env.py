@@ -14,8 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-Similar to env(1) but dump in JSON format, so the output can be
+"""Similar to env(1) but dump in JSON format, so the output can be
+
 parsed by other programs.
 """
 

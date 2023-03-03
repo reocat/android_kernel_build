@@ -19,8 +19,9 @@ def handle_outputs_with_slash(srcdir, dstdir, outputs):
         break
     if not found:
       errors.append(
-        f"Unable to find {out} in any of the following directories:\n  " + (
-          "\n  ".join(srcdir)))
+          f"Unable to find {out} in any of the following directories:\n  "
+          + "\n  ".join(srcdir)
+      )
 
   return errors
 
@@ -42,13 +43,16 @@ def handle_outputs_without_slash(srcdir, dstdir, outputs):
         if len(matches) > 1:
           found = True
           errors.append(
-            f"In {sdir}, multiple files match '{out}', expected at most 1:\n  " + (
-              "\n  ".join(matches)))
+              f"In {sdir}, multiple files match '{out}', expected at most"
+              " 1:\n  "
+              + "\n  ".join(matches)
+          )
           break
     if not found:
       errors.append(
-        f"Unable to find {out} in any of the following directories:\n  " + (
-          "\n  ".join(srcdir)))
+          f"Unable to find {out} in any of the following directories:\n  "
+          + "\n  ".join(srcdir)
+      )
 
   return errors
 
@@ -106,21 +110,26 @@ def main(srcdir, dstdir, outputs):
   errors += handle_outputs_without_slash(srcdir, dstdir, without_slash)
 
   if errors:
-    sys.exit("ERROR: " + ("\n".join(errors)))
+    sys.exit("ERROR: " + "\n".join(errors))
 
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description=main.__doc__)
-  parser.add_argument("--srcdir", action="append", required=True,
-                      help="""Source directory to search from.
+  parser.add_argument(
+      "--srcdir",
+      action="append",
+      required=True,
+      help="""Source directory to search from.
 
 You may specify multiple source directories with `--srcdir <SRCDIR> --srcdir <SRCDIR>`.
-Early ones in the list takes higher priority.""")
+Early ones in the list takes higher priority.""",
+  )
   parser.add_argument("--dstdir", required=True, help="destination directory")
   parser.add_argument(
       "outputs",
       nargs="+",
       metavar="output_file_name",
-      help="A list of output file names. Must not contain slashes.")
+      help="A list of output file names. Must not contain slashes.",
+  )
   args = parser.parse_args()
   main(**vars(args))
