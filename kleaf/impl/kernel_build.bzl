@@ -298,6 +298,11 @@ def kernel_build(
           kmi_symbol_list = "android/abi_gki_aarch64",
           additional_kmi_symbol_lists = glob(["android/abi_gki_aarch64*"], exclude = ["android/abi_gki_aarch64"]),
           ```
+
+        protected_exports_list: A file containing list of protected exports.
+
+        protected_modules_list: A file containing list of protected modules,
+
         trim_nonlisted_kmi: If `True`, trim symbols not listed in
           `kmi_symbol_list` and `additional_kmi_symbol_lists`.
           This is the Bazel equivalent of `TRIM_NONLISTED_KMI`.
