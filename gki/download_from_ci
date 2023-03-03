@@ -278,11 +278,11 @@ def get_or_update_abi_definition(target, output_dir):
 
     # If there is an existing XML representation, we do not generate one, so
     # let's try that
-    abi_xml = props.get("KMI_DEFINITION", None)
-    if abi_xml is not None:
+    abi_definition = props.get("KMI_DEFINITION", None)
+    if abi_definition is not None:
       download(url_base, tmp, abi_xml)
     else:
-      abi_xml = "abi.xml"
+      abi_definition = "abi.stg"
       # So there was none, let's download the binaries then
       abi_files = [x for x in files if re.search(".+\.ko$|^abi", x)
                   ] + ["vmlinux"]
@@ -292,7 +292,7 @@ def get_or_update_abi_definition(target, output_dir):
       dump_kernel_abi(tmp, tmp / abi_xml,
                       tmp / symbol_list if symbol_list else None)
 
-    shutil.copyfile(tmp / abi_xml, output_dir / "abi.xml")
+    shutil.copyfile(tmp / abi_definition, output_dir / abi_definition)
 
 def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
   if not os.path.isdir(output_dir):
