@@ -454,6 +454,30 @@
       },
       "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a35c4446_0271316d",
+        "filename": "kleaf/impl/ddk/analyze_inputs.py",
+        "patchSetId": 65
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T03:44:26Z",
+      "side": 1,
+      "message": "Done, but leaving this comment open because the argument name is not very descriptive. It should be `generated_files_archives` or something",
+      "parentUuid": "cd094071_d5029bae",
+      "range": {
+        "startLine": 184,
+        "startChar": 4,
+        "endLine": 184,
+        "endChar": 10
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
