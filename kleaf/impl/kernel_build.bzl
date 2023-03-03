@@ -298,6 +298,11 @@ def kernel_build(
           kmi_symbol_list = "android/abi_gki_aarch64",
           additional_kmi_symbol_lists = glob(["android/abi_gki_aarch64*"], exclude = ["android/abi_gki_aarch64"]),
           ```
+
+        protected_exports_list: A label referrring to the file which contains list of symbols protected from being exported by unsigned modules. If `None`, `common/android/abi_gki_protected_exports` will be used during the ABI update.
+
+        protected_modules_list: A label referrring to the file which contains list of modules protected from being overridden by unsigned modules. If `None`, `common/android/gki_protected_modules` will be used during the ABI update.
+
         trim_nonlisted_kmi: If `True`, trim symbols not listed in
           `kmi_symbol_list` and `additional_kmi_symbol_lists`.
           This is the Bazel equivalent of `TRIM_NONLISTED_KMI`.
@@ -462,8 +467,8 @@ def kernel_build(
         combined_abi_symbollist = abi_symbollist_target_name if all_kmi_symbol_lists else None,
         enable_interceptor = enable_interceptor,
         strip_modules = strip_modules,
-        src_protected_exports_list = protected_exports_list,
-        src_protected_modules_list = protected_modules_list,
+        src_protected_exports_list = protected_exports_list if protected_exports_list else "//common/android/abi_gki_protected_exports",
+        src_protected_modules_list = protected_modules_list if protected_modules_list else "//common/android/gki_protected_modules",
         src_kmi_symbol_list = kmi_symbol_list,
         trim_nonlisted_kmi = trim_nonlisted_kmi,
         **kwargs
