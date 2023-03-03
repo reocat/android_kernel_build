@@ -14,6 +14,10 @@
 
 """Source-able build environment for kernel build."""
 
+load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "CPP_TOOLCHAIN_TYPE", "find_cpp_toolchain", "use_cpp_toolchain")
+
+# or our fake rules_cc
+load("@bazel_tools//tools/build_defs/cc:action_names.bzl", "C_COMPILE_ACTION_NAME")
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
@@ -46,6 +50,27 @@ def _get_kbuild_symtypes(ctx):
     fail("{}: kernel_env has unknown value for kbuild_symtypes: {}".format(ctx.attr.label, ctx.attr.kbuild_symtypes))
 
 def _kernel_env_impl(ctx):
+    cc_toolchain = find_cpp_toolchain(ctx)
+    feature_configuration = cc_common.configure_features(
+        ctx = ctx,
+        cc_toolchain = cc_toolchain,
+        requested_features = ctx.features,
+    )
+
+    print(feature_configuration)
+    compile_variables = cc_common.create_compile_variables(
+        feature_configuration = feature_configuration,
+        cc_toolchain = cc_toolchain,
+        user_compile_flags = [],  #copts
+    )
+    print(compile_variables)
+    compile_command_line = cc_common.get_memory_inefficient_command_line(
+        feature_configuration = feature_configuration,
+        action_name = C_COMPILE_ACTION_NAME,
+        variables = compile_variables,
+    )
+    print(compile_command_line)
+
     if ctx.attr._config_is_local[BuildSettingInfo].value and ctx.attr._config_is_stamp[BuildSettingInfo].value:
         fail("--config=local cannot be set with --config=stamp. " +
              "SCM version cannot be embedded without sandboxing. " +
@@ -416,4 +441,6 @@ kernel_env = rule(
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_linux_x86_libs": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
     } | _kernel_env_additional_attrs(),
+    toolchains = use_cpp_toolchain(mandatory = True),
+    fragments = ["cpp"],
 )
