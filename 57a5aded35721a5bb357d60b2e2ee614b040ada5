@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e42f01d1_2be3558c",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T22:46:04Z",
+      "side": 1,
+      "message": "the kernel/build project should never refer to //common, except in very rare cases (which I am also trying to clean up. I think the clang toolchain version is the only one left). This is because:\n\n- partners are likely to check out //common in various different directories. They might forgot that they need to customize these two attributes. Hence, rather we should have a loud failure to force people to specify it.\n\n- We need to cut the dependencies from //build/kernel to //common; //build/kernel needs to be standalone because in the case of DDK, or building modules without sources, there\u0027s no //common at all. Think //build/kernel as a toolchain package; the toolchain package should not depend on sources. It is the other way around.",
+      "range": {
+        "startLine": 470,
+        "startChar": 92,
+        "endLine": 470,
+        "endChar": 100
+      },
+      "revId": "57a5aded35721a5bb357d60b2e2ee614b040ada5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
