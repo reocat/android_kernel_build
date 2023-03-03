@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53509360_233a635d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T22:29:41Z",
+      "side": 1,
+      "message": "LGTM. Thanks for your contribution!",
+      "revId": "dddf900cc6024df98973b41e49ed24e259058b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3317c13_a0fc091a",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T22:29:41Z",
+      "side": 1,
+      "message": "nit: Just\n\n```\nvendor_dlkm_etc_files \u003d \" \".join([f.path for f in ctx.files.vendor_dlkm_etc_files])\n```\n\nIf there\u0027s nothing provided, the list is empty.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 34
+      },
+      "revId": "dddf900cc6024df98973b41e49ed24e259058b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6ac3ed0_f81742d4",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T22:29:41Z",
+      "side": 1,
+      "message": "nit:\n```\nVENDOR_DLKM_ETC_FILES\u003d{quoted_vendor_dlkm_etc_files}\n```",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 63
+      },
+      "revId": "dddf900cc6024df98973b41e49ed24e259058b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7ee7711_150bb67c",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T22:29:41Z",
+      "side": 1,
+      "message": "nit:\n\n```\nquoted_vendor_dlkm_etc_files \u003d shell.quote(vendor_dlkm_etc_files)\n```\n\nDon\u0027t quote it yourself.",
+      "revId": "dddf900cc6024df98973b41e49ed24e259058b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64689c0b_440c8b2e",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T22:29:41Z",
+      "side": 1,
+      "message": "Same here. There\u0027s no need to check; just add directly. It is okay to add an empty list.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 60
+      },
+      "revId": "dddf900cc6024df98973b41e49ed24e259058b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
