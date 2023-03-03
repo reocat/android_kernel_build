@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e785d0dc_7f9c8cf5",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1994660
+      },
+      "writtenOn": "2023-03-03T23:30:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3317c13_a0fc091a",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 34
+      },
+      "revId": "dddf900cc6024df98973b41e49ed24e259058b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6ac3ed0_f81742d4",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-03-03T22:29:41Z",
       "side": 1,
       "message": "nit:\n```\nVENDOR_DLKM_ETC_FILES\u003d{quoted_vendor_dlkm_etc_files}\n```",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 63
+      },
+      "revId": "dddf900cc6024df98973b41e49ed24e259058b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbebdaf4_63f70df9",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1994660
+      },
+      "writtenOn": "2023-03-03T23:30:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6ac3ed0_f81742d4",
       "range": {
         "startLine": 51,
         "startChar": 16,
@@ -81,6 +129,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f79f582_00991e2e",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1994660
+      },
+      "writtenOn": "2023-03-03T23:30:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7ee7711_150bb67c",
+      "revId": "dddf900cc6024df98973b41e49ed24e259058b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64689c0b_440c8b2e",
@@ -94,6 +160,30 @@
       "writtenOn": "2023-03-03T22:29:41Z",
       "side": 1,
       "message": "Same here. There\u0027s no need to check; just add directly. It is okay to add an empty list.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 60
+      },
+      "revId": "dddf900cc6024df98973b41e49ed24e259058b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ac30b60_2d012b8f",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1994660
+      },
+      "writtenOn": "2023-03-03T23:30:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64689c0b_440c8b2e",
       "range": {
         "startLine": 75,
         "startChar": 0,
