@@ -36,7 +36,6 @@ import urllib.request
 from pathlib import Path
 
 sys.path.append(str(Path(os.path.dirname(__file__)) / ".." / "abi"))
-from abitool import dump_kernel_abi
 
 BASE_URL = "https://ci.android.com/builds/submitted/{build_id}/{target}/latest/raw"
 ARM_TARGETS = ["u-boot_qemu_arm"]
@@ -259,40 +258,11 @@ def get_or_update_abi_definition(target, output_dir):
   files = list_artifacts(url_base)
 
   output_dir = Path(output_dir)
-  abi_prop = "abi.prop"
+  abi_definition = "abi.stg"
   with tempfile.TemporaryDirectory() as tmp:
     tmp = Path(tmp)
-
-    props = {}
-    if abi_prop in files:
-      # First, download the abi.prop to see if we can reuse something
-      download(url_base, tmp, abi_prop)
-      with open(tmp / abi_prop) as prop:
-        props.update(line.split("=", 1) for line in prop.read().splitlines())
-
-    # Now see whether there is a symbol list to consider
-    symbol_list = props.get("KMI_SYMBOL_LIST", None)
-    if symbol_list is not None:
-      download(url_base, tmp, symbol_list)
-      shutil.copyfile(tmp / symbol_list, output_dir / "abi_symbol_list")
-
-    # If there is an existing XML representation, we do not generate one, so
-    # let's try that
-    abi_xml = props.get("KMI_DEFINITION", None)
-    if abi_xml is not None:
-      download(url_base, tmp, abi_xml)
-    else:
-      abi_xml = "abi.xml"
-      # So there was none, let's download the binaries then
-      abi_files = [x for x in files if re.search(".+\.ko$|^abi", x)
-                  ] + ["vmlinux"]
-      func = functools.partial(download, url_base, tmp)
-      _pool.map(func, abi_files)
-
-      dump_kernel_abi(tmp, tmp / abi_xml,
-                      tmp / symbol_list if symbol_list else None)
-
-    shutil.copyfile(tmp / abi_xml, output_dir / "abi.xml")
+    download(url_base, tmp, abi_definition)
+    shutil.copyfile(tmp / abi_definition, output_dir / abi_definition)
 
 def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
   if not os.path.isdir(output_dir):
