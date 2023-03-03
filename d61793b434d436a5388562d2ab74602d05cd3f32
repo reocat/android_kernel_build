@@ -16,6 +16,24 @@
       "message": "The file can easily cause name clashes when multiple kernel_build is in the same filegroup, especially when you put a device kernel build and a GKI in the same dist target. That\u0027s why it is intentionally hidden under \"internal_outs\":\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_build.bzl;l\u003d73;drc\u003d716fde9447f9e938b02efb733df7353c3ceb017f",
       "revId": "d61793b434d436a5388562d2ab74602d05cd3f32",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4bc0ae8_aae48619",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-03T23:47:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1378d51f_7647c16a",
+      "revId": "d61793b434d436a5388562d2ab74602d05cd3f32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
