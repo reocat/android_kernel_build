@@ -106,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c713621_d8aae646",
+        "filename": "kleaf/impl/ddk/analyze_inputs.bzl",
+        "patchSetId": 65
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T05:09:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d8f3b20_790389a5",
+      "range": {
+        "startLine": 13,
+        "startChar": 31,
+        "endLine": 13,
+        "endChar": 32
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bad32d62_7e901ef6",
@@ -366,6 +390,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d49696d2_8bbf8182",
+        "filename": "kleaf/impl/ddk/analyze_inputs.py",
+        "patchSetId": 65
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T05:09:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4b23d3e_f2aa03d7",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 3
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "35056300_15b338bc",
         "filename": "kleaf/impl/ddk/analyze_inputs.py",
         "patchSetId": 65
@@ -410,6 +458,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca245cdc_6352f62c",
+        "filename": "kleaf/impl/ddk/analyze_inputs.py",
+        "patchSetId": 65
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T05:09:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94f58bd8_50e91c7b",
+      "range": {
+        "startLine": 56,
+        "startChar": 21,
+        "endLine": 57,
+        "endChar": 66
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcc5506f_f5c47f95",
@@ -423,6 +495,30 @@
       "writtenOn": "2022-10-31T12:50:28Z",
       "side": 1,
       "message": "nit: Maybe a naive question but can\u0027t this be used directly in the `split()` function as a separator?",
+      "range": {
+        "startLine": 116,
+        "startChar": 45,
+        "endLine": 116,
+        "endChar": 49
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b51376c7_6729862f",
+        "filename": "kleaf/impl/ddk/analyze_inputs.py",
+        "patchSetId": 65
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T05:09:33Z",
+      "side": 1,
+      "message": "A typical file looks like this:\n\n```\ncmd_scripts/basic/fixdep :\u003d clang ... scripts/basic/fixdep.c   \n\nsource_scripts/basic/fixdep :\u003d .../common/scripts/basic/fixdep.c\n\ndeps_scripts/basic/fixdep :\u003d \\\n    $(wildcard include/config/FOO) \\\n    something.h\n\nscripts/basic/fixdep: $(deps_scripts/basic/fixdep)\n\n$(deps_scripts/basic/fixdep):\n\n```\n\nThiis is just to handle the logic in the `deps_` section where there are `\\\\\\n`\u0027s and should be treated as spaces. However, it is technically also correct if the file were:\n\n```\ndeps_scripts/basic/fixdep :\u003d $(wildcard include/config/FOO) something.h\n```\n\nSo, splitting directly on `\\\\\\n` doesn\u0027t handle this hypothetical case.",
+      "parentUuid": "bcc5506f_f5c47f95",
       "range": {
         "startLine": 116,
         "startChar": 45,
