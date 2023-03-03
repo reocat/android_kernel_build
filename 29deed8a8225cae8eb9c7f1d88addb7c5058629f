@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000039715361",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2466931?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "f53049f8_4f0437f7",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/image/vendor_dlkm_image.bzl",
+              "range": {
+                "startLine": 30,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": "        vendor_dlkm_insmod_cfgs \u003d \"\"\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "c8d7e35d_0f30b5f0",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-03T19:22:58Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/image/vendor_dlkm_image.bzl` to format the file, or apply the suggested fix.",
+      "revId": "29deed8a8225cae8eb9c7f1d88addb7c5058629f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
