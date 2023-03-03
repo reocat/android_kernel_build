@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3fcaefe_05d28317",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 65
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T01:25:41Z",
+      "side": 1,
+      "message": "This is still true. The target can run on either kernel_build or kernel_modules_install, depending on the input.",
+      "parentUuid": "f46afffd_81c31619",
+      "range": {
+        "startLine": 7,
+        "startChar": 39,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26451bb8_ba05c41d",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-12-09T01:28:52Z",
       "side": 1,
       "message": "We should consider relying on compile_commands.json from CL:2336264, which is more reliable than me parsing .cmd manually.\n\nThen we can even retire the preserve_cmd flag.",
+      "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43394c23_e9a87937",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 65
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-03T01:25:41Z",
+      "side": 1,
+      "message": "can\u0027t do because compile_commands.json doesn\u0027t specify header dependencies. I\u0027ll stick with the existing script.",
+      "parentUuid": "26451bb8_ba05c41d",
       "revId": "46c2a5c6ee57c064fe12fb2daa091f883727dacc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
