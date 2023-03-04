@@ -70,6 +70,30 @@
       },
       "revId": "57a5aded35721a5bb357d60b2e2ee614b040ada5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58f78c4b_f659ab0d",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-03-04T04:14:33Z",
+      "side": 1,
+      "message": "Thanks Yifan; Yes, it makes sense. Converting this CL into Arg documentation I missed earlier; will do another CL for the forcing the value next week.",
+      "parentUuid": "f5e810b1_bebb2cab",
+      "range": {
+        "startLine": 470,
+        "startChar": 92,
+        "endLine": 470,
+        "endChar": 100
+      },
+      "revId": "57a5aded35721a5bb357d60b2e2ee614b040ada5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
