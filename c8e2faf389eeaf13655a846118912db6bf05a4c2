@@ -16,6 +16,52 @@
       "message": "I\u0027ve rewritten most of the CL to include only addition of the flag. PTAL.",
       "revId": "c8e2faf389eeaf13655a846118912db6bf05a4c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3e34e67_0e35d80d",
+        "filename": "kleaf/docs/btf.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-06T21:35:20Z",
+      "side": 1,
+      "message": "I think all of `--btf_debug_info`, `--lto`, and the attribute `kbuild_symtypes` suffer from a problem of a `default` value that says \"look up the flag somewhere else\". This makes the flag to be controlled by multiple places, so I think this needs some clean up.\n\nFor now, let\u0027s keep this for now. I\u0027ll start a separate doc on the ways to clean up.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 64
+      },
+      "revId": "c8e2faf389eeaf13655a846118912db6bf05a4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cd34d72_53cd23ac",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-06T21:35:20Z",
+      "side": 1,
+      "message": "nit: put `\"{ctx.label}:\"` before the commit message (there\u0027s no format strings in Starlark FYI)",
+      "range": {
+        "startLine": 274,
+        "startChar": 14,
+        "endLine": 274,
+        "endChar": 15
+      },
+      "revId": "c8e2faf389eeaf13655a846118912db6bf05a4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
