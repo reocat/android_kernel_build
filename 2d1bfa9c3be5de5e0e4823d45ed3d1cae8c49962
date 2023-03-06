@@ -56,6 +56,63 @@
       "message": "File is not formatted. Run `buildifier kleaf/artifact_tests/device_modules_test.bzl` to format the file, or apply the suggested fix.",
       "revId": "2d1bfa9c3be5de5e0e4823d45ed3d1cae8c49962",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000039847942",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2473044?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "1948a6f2_d80ff473",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/artifact_tests/device_modules_test.bzl",
+              "range": {
+                "startLine": 103,
+                "startChar": 0,
+                "endLine": 104,
+                "endChar": 0
+              },
+              "replacement": "        arch \u003d \"arm64\"\n"
+            },
+            {
+              "path": "kleaf/artifact_tests/device_modules_test.bzl",
+              "range": {
+                "startLine": 105,
+                "startChar": 0,
+                "endLine": 106,
+                "endChar": 0
+              },
+              "replacement": "        linux_arch_dir \u003d \"x86\"\n"
+            },
+            {
+              "path": "kleaf/artifact_tests/device_modules_test.bzl",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "        linux_arch_dir \u003d \"riscv\"\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "bc8d4eb1_64e29714",
+        "filename": "kleaf/artifact_tests/device_modules_test.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-06T22:14:00Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/artifact_tests/device_modules_test.bzl` to format the file, or apply the suggested fix.",
+      "revId": "2d1bfa9c3be5de5e0e4823d45ed3d1cae8c49962",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
