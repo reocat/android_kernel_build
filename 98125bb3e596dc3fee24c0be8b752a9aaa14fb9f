@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f0273f2_c7afb3b3",
+        "filename": "BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-06T19:13:05Z",
+      "side": 1,
+      "message": "```\n[\n        \"//prebuilts/clang/host/linux-x86/clang-{}:bin/llvm-strings\".format(VARS[\"CLANG_VERSION\"]),\n        \"//prebuilts/rust/linux-x86/{}:bin/rustc\".format(VARS.get(\"RUSTC_VERSION\", \"\")),\n        \"//prebuilts/clang-tools:linux-x86/bin/bindgen\",\n    ] + (\n      [\n        \"//prebuilts/rust/linux-x86/{}:bin/cargo\".format(VARS.get(\"RUSTC_VERSION\"))\n      ] if \"RUSTC_VERSION\" in VARS else []\n    ),\n```",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 6
+      },
+      "revId": "98125bb3e596dc3fee24c0be8b752a9aaa14fb9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b8ea6c8_0957b295",
         "filename": "kleaf/impl/kernel_env.bzl",
         "patchSetId": 2
