@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69b0bb04_24ce908d",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-03-06T20:37:53Z",
+      "side": 1,
+      "message": "Made it tristate",
+      "parentUuid": "f9eca424_81ea6707",
+      "range": {
+        "startLine": 88,
+        "startChar": 32,
+        "endLine": 88,
+        "endChar": 37
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d088833_adc9c4b0",
@@ -96,6 +120,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a7f8519_312733e3",
+        "filename": "kleaf/bazelrc/fast.bazelrc",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-03-06T20:37:53Z",
+      "side": 1,
+      "message": "Done. About `--config\u003ddebug`, I\u0027m not sure if it exists:\n```\n# The values of --config, as passed by command line and bazelrc files.\n_config_values \u003d (\n    \"local\",\n    \"fast\",\n    \"stamp\",\n    \"release\",\n    \"remote\",\n)\n```",
+      "parentUuid": "ce5b2c0e_42f19509",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 29
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80876682_332232df",
+        "filename": "kleaf/bazelrc/fast.bazelrc",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-03-06T20:37:53Z",
+      "side": 1,
+      "message": "Removed this part for now.",
+      "parentUuid": "3d088833_adc9c4b0",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 1
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d255579_daf5700c",
         "filename": "kleaf/docs/fast.md",
         "patchSetId": 3
@@ -107,6 +179,30 @@
       "writtenOn": "2023-02-22T19:31:14Z",
       "side": 1,
       "message": "nit: Please put this in a new page and just link to the new page on L26.\n\nLTO also belongs to its own page but we can do it later.",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 31
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac5a395e_f3735922",
+        "filename": "kleaf/docs/fast.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-03-06T20:37:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d255579_daf5700c",
       "range": {
         "startLine": 63,
         "startChar": 0,
@@ -142,6 +238,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cba2a7e9_3b80adeb",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-03-06T20:37:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1509ac0_4b33603c",
+      "range": {
+        "startLine": 264,
+        "startChar": 0,
+        "endLine": 264,
+        "endChar": 16
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2891fc63_fc78a050",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 3
@@ -153,6 +273,30 @@
       "writtenOn": "2023-02-22T19:31:14Z",
       "side": 1,
       "message": "nit: if it is just one option, just put them in one line\n\n```\nreturn struct(configs \u003d [_config.disable(\"DEBUG_INFO_BTF\")], deps \u003d [])\n```",
+      "range": {
+        "startLine": 271,
+        "startChar": 28,
+        "endLine": 271,
+        "endChar": 35
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6a181dd_8e1c40c4",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-03-06T20:37:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2891fc63_fc78a050",
       "range": {
         "startLine": 271,
         "startChar": 28,
