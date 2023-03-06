@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74636d0f_4d079dec",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-06T18:57:13Z",
+      "side": 1,
+      "message": "```\n    ret \u003d [\n            \"//build/kernel:_setup_env\",\n            \"//build/kernel:build_utils\",\n            clang_binaries,\n        ]\n    if rust_toolchain_version:\n       ret.append(rust_binaries)\n    return [\n        Label(e)\n        for e in ret\n    ]\n```",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 5
+      },
+      "revId": "98125bb3e596dc3fee24c0be8b752a9aaa14fb9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
