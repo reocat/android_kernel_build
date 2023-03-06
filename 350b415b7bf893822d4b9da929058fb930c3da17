@@ -1,0 +1,71 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000039847941",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2473045?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "7859ffa6_935680a6",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/artifact_tests/device_modules_test.bzl",
+              "range": {
+                "startLine": 105,
+                "startChar": 0,
+                "endLine": 106,
+                "endChar": 0
+              },
+              "replacement": "        arch \u003d \"arm64\"\n"
+            },
+            {
+              "path": "kleaf/artifact_tests/device_modules_test.bzl",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "        linux_arch_dir \u003d \"x86\"\n"
+            },
+            {
+              "path": "kleaf/artifact_tests/device_modules_test.bzl",
+              "range": {
+                "startLine": 109,
+                "startChar": 0,
+                "endLine": 111,
+                "endChar": 0
+              },
+              "replacement": "        fragments +\u003d [\"64-bit.config\", \"gki.config\"]\n        linux_arch_dir \u003d \"riscv\"\n"
+            },
+            {
+              "path": "kleaf/artifact_tests/device_modules_test.bzl",
+              "range": {
+                "startLine": 127,
+                "startChar": 0,
+                "endLine": 128,
+                "endChar": 0
+              },
+              "replacement": "        fragments \u003d \"{\" + \",\".join(fragments) + \"}\",\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "5eb76ee7_28a7ba29",
+        "filename": "kleaf/artifact_tests/device_modules_test.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-06T22:14:00Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/artifact_tests/device_modules_test.bzl` to format the file, or apply the suggested fix.",
+      "revId": "350b415b7bf893822d4b9da929058fb930c3da17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
