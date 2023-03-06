@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4fbd6700_350129e6",
+        "filename": "kleaf/docs/btf.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-06T22:22:54Z",
+      "side": 1,
+      "message": "See internal doc \"How to configure Kleaf flags\". Feel free to suggest there!",
+      "parentUuid": "a3e34e67_0e35d80d",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 64
+      },
+      "revId": "c8e2faf389eeaf13655a846118912db6bf05a4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6cd34d72_53cd23ac",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 4

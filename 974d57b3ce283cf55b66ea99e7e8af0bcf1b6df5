@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "05bc91ea_c5946fb3",
+        "filename": "kleaf/bazelrc/fast.bazelrc",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-06T22:22:54Z",
+      "side": 1,
+      "message": "There\u0027s no `--config\u003ddebug` now.",
+      "parentUuid": "7a7f8519_312733e3",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 29
+      },
+      "revId": "974d57b3ce283cf55b66ea99e7e8af0bcf1b6df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d255579_daf5700c",
         "filename": "kleaf/docs/fast.md",
         "patchSetId": 3
