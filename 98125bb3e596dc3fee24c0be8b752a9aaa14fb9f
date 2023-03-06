@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b8ea6c8_0957b295",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-06T18:58:10Z",
+      "side": 1,
+      "message": "```\n  if rust_toolchain_version:\n    if rust_toolchain_version.startswith(\"//build/kernel/kleaf/tests/\"):\n        # Using a test toolchain\n        rust_binaries \u003d rust_toolchain_version\n    else:\n        rust_binaries \u003d \"//prebuilts/rust/linux-x86/%s:binaries\" % rust_toolchain_version\n```\n\nYou don\u0027t have to calculate rust_binaries if not rust_toolchain_version",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 0
+      },
+      "revId": "98125bb3e596dc3fee24c0be8b752a9aaa14fb9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "74636d0f_4d079dec",
         "filename": "kleaf/impl/kernel_env.bzl",
         "patchSetId": 2
