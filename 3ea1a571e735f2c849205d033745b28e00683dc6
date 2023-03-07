@@ -16,6 +16,29 @@
       "message": "lint error is fixed by another CL",
       "revId": "3ea1a571e735f2c849205d033745b28e00683dc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8724900f_be9d3bb8",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1751,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-07T10:49:40Z",
+      "side": 1,
+      "message": "nit: Print a warning error about this being forcefully disabled.",
+      "range": {
+        "startLine": 1751,
+        "startChar": 8,
+        "endLine": 1751,
+        "endChar": 19
+      },
+      "revId": "3ea1a571e735f2c849205d033745b28e00683dc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
