@@ -161,15 +161,28 @@ def _gen_ddk_makefile_for_module(
 ):
     kernel_module_srcs_json_content = json.load(kernel_module_srcs_json)
     rel_srcs = []
+    rel_srcs_flat = []
     for kernel_module_srcs_json_item in kernel_module_srcs_json_content:
         rel_item = dict(kernel_module_srcs_json_item)
-        rel_item["files"] = [pathlib.Path(src).relative_to(package)
-                             for src in rel_item["files"]
-                             if pathlib.Path(src).is_relative_to(package)]
+        new_files = []
+        for src in rel_item["files"]:
+            if pathlib.Path(src).is_relative_to(package):
+                new_files.append(pathlib.Path(src).relative_to(package))
+        rel_item["files"] = new_files
+        rel_srcs_flat.extend(new_files)
         rel_srcs.append(rel_item)
 
     if kernel_module_out.suffix != ".ko":
         die("Invalid output: %s; must end with .ko", kernel_module_out)
+
+    source_files_with_name_of_kernel_module = \
+        [src for src in rel_srcs_flat if src.with_suffix(".ko") == kernel_module_out]
+    if source_files_with_name_of_kernel_module and len(rel_srcs_flat) > 1:
+        die("Source files %s are not allowed to build %s when multiple source files exist. "
+            "Please change the name of the output file.",
+            [str(e) for e in source_files_with_name_of_kernel_module],
+            kernel_module_out)
+
 
     kbuild = output_makefiles / kernel_module_out.parent / "Kbuild"
     os.makedirs(kbuild.parent, exist_ok=True)
