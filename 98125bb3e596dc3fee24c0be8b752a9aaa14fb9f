@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3dc5e1e0_b131a705",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-07T22:44:38Z",
+      "side": 1,
+      "message": "BTW I am splitting the CL at https://android-review.git.corp.google.com/c/kernel/build/+/2475550. Feel free to rebase on top of it.",
+      "revId": "98125bb3e596dc3fee24c0be8b752a9aaa14fb9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f0273f2_c7afb3b3",
