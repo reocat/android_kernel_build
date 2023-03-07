@@ -1,0 +1,11 @@
+config FEATURE_X
+	bool "FEATURE_X"
+
+config DRIVER_NAME
+	string "DRIVER_NAME"
+
+config MAX
+	int "MAX"
+
+config MIN
+	int "MIN"
