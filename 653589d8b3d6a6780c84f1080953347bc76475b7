@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89c0a410_84fa82c1",
+        "filename": "kleaf/artifact_tests/device_modules_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-07T23:09:15Z",
+      "side": 1,
+      "message": "nit: I would prefer\n\n```\n    if arch \u003d\u003d \"arm64\":\n        linux_arch_dir \u003d \"arm64\"\n        arch \u003d \"aarch64\"\n```\n\nhere",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 24
+      },
+      "revId": "653589d8b3d6a6780c84f1080953347bc76475b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
