@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f0be45f_89aec83d",
+        "filename": "kleaf/docs/btf.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-07T15:43:19Z",
+      "side": 1,
+      "message": "the generation",
+      "range": {
+        "startLine": 3,
+        "startChar": 48,
+        "endLine": 3,
+        "endChar": 58
+      },
+      "revId": "a311862b828b5626b722e85f93d9336af3266870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0550bbc_789ff5d0",
+        "filename": "kleaf/docs/btf.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-07T15:43:19Z",
+      "side": 1,
+      "message": "significant",
+      "range": {
+        "startLine": 11,
+        "startChar": 9,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "a311862b828b5626b722e85f93d9336af3266870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eae1d0a2_67a3d90b",
+        "filename": "kleaf/docs/btf.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-07T15:43:19Z",
+      "side": 1,
+      "message": "dependency",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 12
+      },
+      "revId": "a311862b828b5626b722e85f93d9336af3266870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0edc165_16fb57b9",
+        "filename": "kleaf/docs/btf.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-07T15:43:19Z",
+      "side": 1,
+      "message": "guarantee",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 10
+      },
+      "revId": "a311862b828b5626b722e85f93d9336af3266870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a31745d4_96aa836e",
+        "filename": "kleaf/docs/btf.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-07T15:43:19Z",
+      "side": 1,
+      "message": "this is not so much about booting, but rather about whether BPF programs can be loaded.",
+      "range": {
+        "startLine": 14,
+        "startChar": 31,
+        "endLine": 14,
+        "endChar": 40
+      },
+      "revId": "a311862b828b5626b722e85f93d9336af3266870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "352fb4da_b8f7fe6d",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-07T15:43:19Z",
+      "side": 1,
+      "message": "```\n    if btf_debug_info \u003d\u003d \"default\":\n        configs \u003d []\n    elif btf_debug_info \u003d\u003d \"enable\":\n        configs \u003d [_config.enable(\"DEBUG_INFO_BTF\")]\n    elif btf_debug_info \u003d\u003d \"disable\":\n        configs \u003d [_config.disable(\"DEBUG_INFO_BTF\")]\n    else:\n        fail(\"{}: unexpected value for --btf_debug_info: {}\".format(ctx.label, btf_debug_info))\n        \n    return struct(configs \u003d configs, deps \u003d [])\n```",
+      "range": {
+        "startLine": 267,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 95
+      },
+      "revId": "a311862b828b5626b722e85f93d9336af3266870",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
