@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000039930375",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2473845?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "d2b86f34_d8434d6b",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/ddk_test/my_driver/BUILD.bazel",
+              "range": {
+                "startLine": 17,
+                "startChar": 0,
+                "endLine": 17,
+                "endChar": 0
+              },
+              "replacement": "        \"include/my_private_header.h\",\n"
+            },
+            {
+              "path": "kleaf/tests/ddk_test/my_driver/BUILD.bazel",
+              "range": {
+                "startLine": 18,
+                "startChar": 0,
+                "endLine": 19,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/tests/ddk_test/my_driver/BUILD.bazel",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 20,
+                "endChar": 0
+              },
+              "replacement": "    out \u003d \"my_driver.ko\",\n    hdrs \u003d [\"include/my_public_header.h\"],\n"
+            },
+            {
+              "path": "kleaf/tests/ddk_test/my_driver/BUILD.bazel",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 30,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/tests/ddk_test/my_driver/BUILD.bazel",
+              "range": {
+                "startLine": 31,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/tests/ddk_test/my_driver/BUILD.bazel",
+              "range": {
+                "startLine": 33,
+                "startChar": 0,
+                "endLine": 33,
+                "endChar": 0
+              },
+              "replacement": "    deps \u003d [\n        \":my_driver_options\",\n        \"//common:all_headers\",\n    ],\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "73ce18a1_68dd4810",
+        "filename": "kleaf/tests/ddk_test/my_driver/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-07T20:12:25Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/ddk_test/my_driver/BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "600a4084d251dcc309c3f72e92b63d449cd3d6e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
