@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7af71420_dec76a0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-07T22:56:57Z",
+      "side": 1,
+      "message": "Please double check that the internal targets aren\u0027t broken with --lto\u003dfast / --lto\u003dnone.",
+      "revId": "aa958a09e0fe7290a2daafbbce8fc51b7ac00425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
