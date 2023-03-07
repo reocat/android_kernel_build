@@ -25,7 +25,7 @@ import pathlib
 import shlex
 import sys
 import textwrap
-from typing import Optional, TextIO
+from typing import Optional, TextIO, Any
 
 _SOURCE_SUFFIXES = (
     ".c",
@@ -159,17 +159,22 @@ def _gen_ddk_makefile_for_module(
         copt_file: Optional[TextIO],
         **unused_kwargs
 ):
-    kernel_module_srcs_json_content = json.load(kernel_module_srcs_json)
-    rel_srcs = []
-    for kernel_module_srcs_json_item in kernel_module_srcs_json_content:
-        rel_item = dict(kernel_module_srcs_json_item)
-        rel_item["files"] = [pathlib.Path(src).relative_to(package)
-                             for src in rel_item["files"]
-                             if pathlib.Path(src).is_relative_to(package)]
-        rel_srcs.append(rel_item)
-
     if kernel_module_out.suffix != ".ko":
         die("Invalid output: %s; must end with .ko", kernel_module_out)
+
+    kernel_module_srcs_json_content = json.load(kernel_module_srcs_json)
+    # List of JSON objects (dictionaries) with keys like "file", "config", "value", etc.
+    rel_srcs: list[dict[str, Any]] = []
+    for kernel_module_srcs_json_item in kernel_module_srcs_json_content:
+        rel_item = dict(kernel_module_srcs_json_item)
+        new_files = []
+        for src in rel_item["files"]:
+            if pathlib.Path(src).is_relative_to(package):
+                new_files.append(pathlib.Path(src).relative_to(package))
+        rel_item["files"] = new_files
+        rel_srcs.append(rel_item)
+
+    _check_srcs_valid(rel_srcs, kernel_module_out)
 
     kbuild = output_makefiles / kernel_module_out.parent / "Kbuild"
     os.makedirs(kbuild.parent, exist_ok=True)
@@ -223,6 +228,31 @@ def _gen_ddk_makefile_for_module(
                 # Build {package / kernel_module_out}
                 obj-y += {kernel_module_out.parent}/
                 """))
+
+
+def _check_srcs_valid(rel_srcs: list[dict[str, Any]],
+                      kernel_module_out: pathlib.Path):
+    """Checks that the list of srcs is valid.
+
+    Args:
+        rel_srcs: Like content in kernel_module_srcs_json, but only includes files
+          relative to the current package.
+        kernel_module_out: The `out` attribute.
+    """
+    # List of paths of source files (minus headers)
+    rel_srcs_flat: list[pathlib.Path] = []
+    for rel_item in rel_srcs:
+        files = rel_item["files"]
+        rel_srcs_flat.extend(file for file in files if file.suffix.lower() in _SOURCE_SUFFIXES)
+
+    source_files_with_name_of_kernel_module = \
+        [src for src in rel_srcs_flat if src.with_suffix(".ko") == kernel_module_out]
+
+    if source_files_with_name_of_kernel_module and len(rel_srcs_flat) > 1:
+        die("Source files %s are not allowed to build %s when multiple source files exist. "
+            "Please change the name of the output file.",
+            [str(e) for e in source_files_with_name_of_kernel_module],
+            kernel_module_out)
 
 
 def _handle_src(
