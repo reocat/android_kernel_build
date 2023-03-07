@@ -1,0 +1,33 @@
+load("//build/kernel/kleaf:kernel.bzl", "ddk_module", "kbuild_options")
+load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
+
+kbuild_options(
+    name = "my_driver_options",
+    values = [
+        "CONFIG_FEATURE_X=y",
+        "CONFIG_DRIVER_NAME=foo",
+        "CONFIG_MAX=10",
+        "CONFIG_MIN=5",
+    ],
+)
+
+ddk_module(
+    name = "my_driver",
+    srcs = [
+        "my_driver.c",
+        "include/my_private_header.h",
+    ],
+    conditional_srcs = {
+        "CONFIG_DEBUGFS": {
+            True: ["my_debugfs_code.c"],
+        },
+        "CONFIG_FEATURE_X": {
+            True: ["my_feature_x_code.c"],
+        },
+    },
+    out = "my_driver.ko",
+    hdrs = ["include/my_public_header.h"],
+    includes = ["include"],
+    deps = ["//common:all_headers", ":my_driver_options"],
+    kernel_build = "//common:kernel_aarch64",
+)
