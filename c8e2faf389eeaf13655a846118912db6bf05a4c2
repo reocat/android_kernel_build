@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7161c040_057226a7",
+        "filename": "kleaf/docs/btf.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-03-07T12:01:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4fbd6700_350129e6",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 64
+      },
+      "revId": "c8e2faf389eeaf13655a846118912db6bf05a4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6cd34d72_53cd23ac",
@@ -78,6 +102,30 @@
       "writtenOn": "2023-03-06T21:35:20Z",
       "side": 1,
       "message": "nit: put `\"{ctx.label}:\"` before the commit message (there\u0027s no format strings in Starlark FYI)",
+      "range": {
+        "startLine": 274,
+        "startChar": 14,
+        "endLine": 274,
+        "endChar": 15
+      },
+      "revId": "c8e2faf389eeaf13655a846118912db6bf05a4c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9abeed24_204b54d2",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-03-07T12:01:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6cd34d72_53cd23ac",
       "range": {
         "startLine": 274,
         "startChar": 14,
