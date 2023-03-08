@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cd77cf1_df10001b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-08T13:47:38Z",
+      "side": 1,
+      "message": "Is that really the solution? I wonder why there is no such case documented in https://docs.kernel.org/kbuild/modules.html#creating-a-kbuild-file-for-an-external-module where multiple source files are mentioned. I looked it up because I would actually prefer to point to kernel documentation for the error (and for the commit message itself).",
+      "revId": "4d7794a810c04a190de7f8f1e6d0d38ab5d7abe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
