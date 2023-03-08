@@ -16,6 +16,29 @@
       "message": "Unrelated TH error fixed by CL:2475425",
       "revId": "afb1e69ef4b73f5fb29087d5007a232434f8f54f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faa39717_5e07201d",
+        "filename": "kleaf/key_value_repo.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-08T12:00:40Z",
+      "side": 1,
+      "message": "There\u0027s something about this naming that feels to generic, but idk if TOOLCHAIN_INFO would be a better naming. Not a blocker though since it can be aliased when loaded everywhere else (e.g. in the other CL in this chain).",
+      "range": {
+        "startLine": 17,
+        "startChar": 8,
+        "endLine": 17,
+        "endChar": 12
+      },
+      "revId": "afb1e69ef4b73f5fb29087d5007a232434f8f54f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
