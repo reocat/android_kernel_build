@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e9f8f54_51f2c0bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-08T13:19:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7af71420_dec76a0a",
+      "revId": "aa958a09e0fe7290a2daafbbce8fc51b7ac00425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0ffcbd7_e725d2a7",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-03-07T22:57:59Z",
       "side": 1,
       "message": "I think we should just skip calling scripts/config if the list is empty.",
+      "range": {
+        "startLine": 167,
+        "startChar": 43,
+        "endLine": 168,
+        "endChar": 30
+      },
+      "revId": "aa958a09e0fe7290a2daafbbce8fc51b7ac00425",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c597d3ff_b4d400f7",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-08T13:19:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0ffcbd7_e725d2a7",
       "range": {
         "startLine": 167,
         "startChar": 43,
