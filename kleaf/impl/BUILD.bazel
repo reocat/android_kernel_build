@@ -16,6 +16,7 @@
 
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "bool_setting")
+load(":kernel_env_toolchain_helper.bzl", "kernel_env_toolchain_helper")
 
 bzl_library(
     name = "impl",
@@ -208,4 +209,10 @@ platform(
         "@platforms//os:android",
         "@platforms//cpu:riscv64",
     ],
+)
+
+kernel_env_toolchain_helper(
+    name = "kernel_env_toolchain_helper",
+    # All kernel_* from different packages can see this
+    visibility = ["//visibility:public"],
 )

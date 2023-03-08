@@ -24,6 +24,7 @@ load(
     ":common_providers.bzl",
     "KernelEnvAttrInfo",
     "KernelEnvInfo",
+    "KernelEnvToolchainInfo",
 )
 load(":compile_commands_utils.bzl", "compile_commands_utils")
 load(":debug.bzl", "debug")
@@ -46,6 +47,11 @@ def _get_kbuild_symtypes(ctx):
     fail("{}: kernel_env has unknown value for kbuild_symtypes: {}".format(ctx.attr.label, ctx.attr.kbuild_symtypes))
 
 def _kernel_env_impl(ctx):
+    if KernelEnvToolchainInfo in ctx.attr._host_toolchain:
+        print("{}: host toolchain: {}".format(ctx.label, ctx.attr._host_toolchain[KernelEnvToolchainInfo].toolchain_id))
+    if KernelEnvToolchainInfo in ctx.attr._target_toolchain:
+        print("{}: target toolchain: {}".format(ctx.label, ctx.attr._target_toolchain[KernelEnvToolchainInfo].toolchain_id))
+
     if ctx.attr._config_is_local[BuildSettingInfo].value and ctx.attr._config_is_stamp[BuildSettingInfo].value:
         fail("--config=local cannot be set with --config=stamp. " +
              "SCM version cannot be embedded without sandboxing. " +
@@ -406,6 +412,14 @@ kernel_env = rule(
             allow_single_file = True,
             default = Label("//build/kernel:build_utils"),
             cfg = "exec",
+        ),
+        # Tools from Bazel toolchain resolution.
+        "_host_toolchain": attr.label(
+            default = "//build/kernel/kleaf/impl:kernel_env_toolchain_helper",
+            cfg = "exec",
+        ),
+        "_target_toolchain": attr.label(
+            default = "//build/kernel/kleaf/impl:kernel_env_toolchain_helper",
         ),
         "_debug_annotate_scripts": attr.label(
             default = "//build/kernel/kleaf:debug_annotate_scripts",

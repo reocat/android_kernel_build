@@ -41,6 +41,15 @@ without actually modifying any variables suitable for a proper kernel build.
     },
 )
 
+KernelEnvToolchainInfo = provider(
+    doc = """Provides the toolchain for `kernel_env`.""",
+    fields = {
+        "toolchain_id": "A string representing toolchain ID for debugging purposes",
+        "all_files": "A [depset](https://bazel.build/extending/depsets) of all files of the toolchain",
+        "cflags": "flags for C compilation",
+    },
+)
+
 KernelEnvAndOutputsInfo = provider(
     doc = """Like `KernelEnvInfo` but also restores artifacts.
 
