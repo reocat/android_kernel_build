@@ -27,4 +27,6 @@ sed=/bin/sed
   # Remove the reference to PWD itself
   $sed '/^declare -x PWD=/d' | \
   # Now ensure, new new PWD gets expanded
-  $sed "s|${PWD}|\$PWD|g"
+  $sed "s:${PWD}:\$PWD:g;" | \
+  # FIXME better hack?
+  $sed 's:\\\$PWD:\$PWD:g'
