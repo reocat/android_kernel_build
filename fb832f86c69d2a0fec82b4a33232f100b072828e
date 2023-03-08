@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb4925d0_378017c5",
+        "filename": "kleaf/artifact_tests/device_modules_test.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-08T03:34:28Z",
+      "side": 1,
+      "message": "I think you just need to put a \"linux_arch_dir\u003dNone\" here to suppress the warning.",
+      "revId": "fb832f86c69d2a0fec82b4a33232f100b072828e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a2fc976_a2e1ec5a",
+        "filename": "kleaf/artifact_tests/device_modules_test.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-08T03:34:28Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Buildifier: Variable \"linux_arch_dir\" may not have been initialized. http://go/buildifier-warnings#uninitialized\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nVariable \"linux_arch_dir\" may not have been initialized. http://go/buildifier-warnings#uninitialized",
+      "range": {
+        "startLine": 124,
+        "startChar": 25,
+        "endLine": 124,
+        "endChar": 39
+      },
+      "revId": "fb832f86c69d2a0fec82b4a33232f100b072828e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
