@@ -1,0 +1,51 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000040019061",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2473045?revision\u003d10",
+      "fixSuggestions": [
+        {
+          "fixId": "dbb54bcf_50541d8e",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/artifact_tests/device_modules_test.bzl",
+              "range": {
+                "startLine": 126,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": "        fragments[0] if len(fragments \u003d\u003d 1) else \"{\" + \",\".join(fragments) + \"}\",\n"
+            },
+            {
+              "path": "kleaf/artifact_tests/device_modules_test.bzl",
+              "range": {
+                "startLine": 128,
+                "startChar": 0,
+                "endLine": 129,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "d6a3a1ea_d3728647",
+        "filename": "kleaf/artifact_tests/device_modules_test.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-08T19:15:51Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/artifact_tests/device_modules_test.bzl` to format the file, or apply the suggested fix.",
+      "revId": "3e0d1834bf88e7c3ad122e0b3f19a299c9f4a3b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
