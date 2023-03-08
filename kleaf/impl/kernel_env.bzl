@@ -15,6 +15,7 @@
 """Source-able build environment for kernel build."""
 
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
+load("@bazel_skylib//lib:shell.bzl", "shell")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
@@ -24,6 +25,7 @@ load(
     ":common_providers.bzl",
     "KernelEnvAttrInfo",
     "KernelEnvInfo",
+    "KernelEnvToolchainInfo",
 )
 load(":compile_commands_utils.bzl", "compile_commands_utils")
 load(":debug.bzl", "debug")
@@ -44,6 +46,13 @@ def _get_kbuild_symtypes(ctx):
 
     # Should not reach
     fail("{}: kernel_env has unknown value for kbuild_symtypes: {}".format(ctx.attr.label, ctx.attr.kbuild_symtypes))
+
+def _get_resolved_toolchain_step(ctx):
+    multi_toolchain = ctx.attr._multi_toolchain[KernelEnvToolchainInfo]
+    cmd = ""
+    for key, value in multi_toolchain.env.items():
+        cmd += "export {}={}\n".format(key, shell.quote(value))
+    return struct(cmd = cmd)
 
 def _kernel_env_impl(ctx):
     if ctx.attr._config_is_local[BuildSettingInfo].value and ctx.attr._config_is_stamp[BuildSettingInfo].value:
@@ -79,6 +88,8 @@ def _kernel_env_impl(ctx):
         ctx.file._build_utils_sh,
         preserve_env,
     ]
+
+    resolved_toolchain_step = _get_resolved_toolchain_step(ctx)
 
     command = ""
     command += ctx.attr._hermetic_tools[HermeticToolsInfo].setup
@@ -136,6 +147,8 @@ def _kernel_env_impl(ctx):
           source {build_utils_sh}
           export BUILD_CONFIG={build_config}
           source {setup_env}
+        # Variables from resolved toolchain
+          {resolved_toolchain_cmd}
         # Add to MAKE_GOALS if necessary
           export MAKE_GOALS="${{MAKE_GOALS}} {additional_make_goals}"
         # Add a comment with config_tags for debugging
@@ -147,6 +160,7 @@ def _kernel_env_impl(ctx):
         build_utils_sh = ctx.file._build_utils_sh.path,
         build_config = build_config.path,
         setup_env = setup_env.path,
+        resolved_toolchain_cmd = resolved_toolchain_step.cmd,
         additional_make_goals = " ".join(additional_make_goals),
         preserve_env = preserve_env.path,
         out = out_file.path,
@@ -226,7 +240,11 @@ def _kernel_env_impl(ctx):
         set_up_jobs_cmd = set_up_jobs_cmd,
     )
 
+    # FIXME _tools should be in kernel_multi_toolchain
     dependencies += ctx.files._tools + ctx.attr._hermetic_tools[HermeticToolsInfo].deps
+
+    # FIXME avoid to_list
+    dependencies += ctx.attr._multi_toolchain[KernelEnvToolchainInfo].all_files.to_list()
     dependencies += [
         out_file,
         ctx.file._build_utils_sh,
@@ -313,10 +331,16 @@ def _get_run_env(ctx, srcs):
         build_config = ctx.file.build_config.short_path,
         setup_env = ctx.file.setup_env.short_path,
     )
+
+    # FIXME _tools should be in kernel_multi_toolchain
     dependencies = srcs + ctx.files._tools + ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [
         ctx.file._build_utils_sh,
         ctx.file.build_config,
     ]
+
+    # FIXME avoid to_list
+    dependencies += ctx.attr._multi_toolchain[KernelEnvToolchainInfo].all_files.to_list()
+
     return KernelEnvInfo(
         setup = setup,
         dependencies = dependencies,
@@ -399,6 +423,10 @@ kernel_env = rule(
             allow_single_file = True,
             default = Label("//build/kernel:build_utils"),
             cfg = "exec",
+        ),
+        "_multi_toolchain": attr.label(
+            default = "//build/kernel/kleaf/impl:kernel_multi_toolchain",
+            providers = [KernelEnvToolchainInfo],
         ),
         "_debug_annotate_scripts": attr.label(
             default = "//build/kernel/kleaf:debug_annotate_scripts",
