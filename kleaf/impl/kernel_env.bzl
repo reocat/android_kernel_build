@@ -329,14 +329,7 @@ def _get_tools(toolchain_version):
     else:
         clang_binaries = "//prebuilts/clang/host/linux-x86/clang-%s:binaries" % toolchain_version
 
-    return [
-        Label(e)
-        for e in (
-            "//build/kernel:_setup_env",
-            "//build/kernel:build_utils",
-            clang_binaries,
-        )
-    ]
+    return [Label(clang_binaries)]
 
 def _kernel_env_additional_attrs():
     return dicts.add(
