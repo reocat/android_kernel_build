@@ -22,6 +22,30 @@
       },
       "revId": "5a4f67514dfe959580cf2fb07851ad62e073d5ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e146cda0_7eda583f",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-09T22:29:20Z",
+      "side": 1,
+      "message": "No, because it is not the standard `tearDown` function for python unit test.\n\nThis is to record the content of the file so it can be restored when the test is at the teardown step. It is not the tear down step itself.",
+      "parentUuid": "ee19d629_40301be9",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "5a4f67514dfe959580cf2fb07851ad62e073d5ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
