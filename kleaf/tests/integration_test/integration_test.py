@@ -64,6 +64,7 @@ _FASTEST = _LOCAL + _LTO_NONE
 
 _INTEGRATION_TEST_BAZEL_RC = "out/bazel/integration_test.bazelrc"
 
+
 def load_arguments():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawTextHelpFormatter)
@@ -95,7 +96,7 @@ class Exec(object):
 
 class KleafIntegrationTest(unittest.TestCase):
     def _check_call(self, command: str, command_args: list[str],
-                    startup_options = (),
+                    startup_options=(),
                     **kwargs) -> None:
         """Executes a bazel command."""
         startup_options = list(startup_options)
@@ -103,25 +104,23 @@ class KleafIntegrationTest(unittest.TestCase):
         command_args = list(command_args)
         command_args.extend(arguments.bazel_wrapper_args)
         Exec.check_call([str(_BAZEL)] + startup_options + [
-                         command,
-                        ] + command_args, **kwargs)
-
+            command,
+        ] + command_args, **kwargs)
 
     def _build(self, command_args: list[str], **kwargs) -> None:
         """Executes a bazel build command."""
         self._check_call("build", command_args, **kwargs)
 
-
     def _check_output(self, command: str, command_args: list[str], **kwargs) -> str:
         """Returns output of a bazel command."""
         return Exec.check_output([str(_BAZEL),
-                         f"--bazelrc={self._bazel_rc.name}",
-                         command,
-                        ] + command_args, **kwargs)
+                                  f"--bazelrc={self._bazel_rc.name}",
+                                  command,
+                                  ] + command_args, **kwargs)
 
     def setUp(self) -> None:
         self.assertTrue(os.environ.get("BUILD_WORKSPACE_DIRECTORY"),
-            "BUILD_WORKSPACE_DIRECTORY is not set")
+                        "BUILD_WORKSPACE_DIRECTORY is not set")
         os.chdir(os.environ["BUILD_WORKSPACE_DIRECTORY"])
         sys.stderr.write(f"BUILD_WORKSPACE_DIRECTORY={os.environ['BUILD_WORKSPACE_DIRECTORY']}\n")
 
@@ -136,6 +135,16 @@ class KleafIntegrationTest(unittest.TestCase):
 
         self._check_call("clean", [])
 
+    def restore_file_after_test(self, path: pathlib.Path | str):
+        with open(path) as file:
+            old_content = file.read()
+
+        def cleanup():
+            with open(path, "w") as new_file:
+                new_file.write(old_content)
+
+        self.addCleanup(cleanup)
+
     def _sha256(self, path: pathlib.Path | str) -> str:
         """Gets the hash for a file."""
         hash = hashlib.sha256()
@@ -148,14 +157,7 @@ class KleafIntegrationTest(unittest.TestCase):
 
     def _touch(self, path: pathlib.Path | str, append_text="\n") -> None:
         """Modifies a file so it (may) trigger a rebuild for certain targets."""
-        with open(path) as file:
-            old_content = file.read()
-
-        def cleanup():
-            with open(path, "w") as new_file:
-                new_file.write(old_content)
-
-        self.addCleanup(cleanup)
+        self.restore_file_after_test(path)
 
         with open(path, "a") as file:
             file.write(append_text)
@@ -305,12 +307,7 @@ class KleafIntegrationTest(unittest.TestCase):
         See b/270996321 and b/190019968."""
 
         gki_defconfig = f"{self._common()}/arch/arm64/configs/gki_defconfig"
-        with open(gki_defconfig) as f:
-            old_gki_defconfig_content = f.read()
-        def cleanup():
-            with open(gki_defconfig, "w") as new_file:
-                new_file.write(old_gki_defconfig_content)
-        self.addCleanup(cleanup)
+        self.restore_file_after_test(gki_defconfig)
 
         self._check_call("run",
                          [f"//{self._common()}:kernel_aarch64_config", "--", "olddefconfig"]
@@ -328,6 +325,7 @@ class KleafIntegrationTest(unittest.TestCase):
         self._check_call("run",
                          [f"//{self._common()}:kernel_aarch64_config", "--", "olddefconfig"]
                          + _FASTEST)
+
 
 if __name__ == "__main__":
     arguments, unknown = load_arguments()
