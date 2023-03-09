@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "338b1d14_e5ba636b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-09T07:44:28Z",
+      "side": 1,
+      "message": "HOLD: This should be merged after --config\u003dhermetic_cc is the default. Otherwise, --config\u003dhermetic_cc is enabled on build bots (CL:2436596) but not locally, which may cause confusion in behavior.",
+      "revId": "80062b33fd575a2197543122e6c79a58ecdf5cbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
