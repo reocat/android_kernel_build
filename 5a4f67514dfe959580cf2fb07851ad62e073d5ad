@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee19d629_40301be9",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-09T17:15:19Z",
+      "side": 1,
+      "message": "should this be `TearDown()` instead? or something similar that is called automatically after each test, Similar to `SetUp()`?",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "5a4f67514dfe959580cf2fb07851ad62e073d5ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
