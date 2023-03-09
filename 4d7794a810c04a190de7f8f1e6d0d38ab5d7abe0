@@ -52,6 +52,24 @@
       "parentUuid": "5827054a_cf21ed13",
       "revId": "4d7794a810c04a190de7f8f1e6d0d38ab5d7abe0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "820b563a_17f156ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-09T22:31:29Z",
+      "side": 1,
+      "message": "you mean, to build foo.ko with foo.c and bar.c, we need:\n\n```\nobj-y +\u003d foo.o\nfoo-y +\u003d foo.o bar.o\n```\n\n? I can try it. Right now our script just produces\n\n```\nobj-y +\u003d foo.o\nfoo-y +\u003d bar.o\n```\n\nand foo.c is ignored",
+      "parentUuid": "97ed854d_8f04332f",
+      "revId": "4d7794a810c04a190de7f8f1e6d0d38ab5d7abe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
