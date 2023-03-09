@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84311440_058c13b0",
+        "filename": "kleaf/artifact_tests/device_modules_test.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-09T04:43:31Z",
+      "side": 1,
+      "message": "```\nfragments \u003d fragments[0] if len(fragments) \u003d\u003d 1 else \"{\" + \",\".join(fragments) + \"}\",\n```",
+      "revId": "0ac2f670fcdbf58b8838b4f47f5ee936cfb88f58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
