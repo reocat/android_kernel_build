@@ -34,6 +34,24 @@
       "parentUuid": "8cd77cf1_df10001b",
       "revId": "4d7794a810c04a190de7f8f1e6d0d38ab5d7abe0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97ed854d_8f04332f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-09T15:36:01Z",
+      "side": 1,
+      "message": "The kernel documentation appears to suggest that this should actually work. Just the additional source files need to be on a separate line. Perhaps the way we generate the Makefile is not supporting this properly? How does the kbuild file look like for the failing case?",
+      "parentUuid": "5827054a_cf21ed13",
+      "revId": "4d7794a810c04a190de7f8f1e6d0d38ab5d7abe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
