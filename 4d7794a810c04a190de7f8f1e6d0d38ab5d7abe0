@@ -16,6 +16,24 @@
       "message": "Is that really the solution? I wonder why there is no such case documented in https://docs.kernel.org/kbuild/modules.html#creating-a-kbuild-file-for-an-external-module where multiple source files are mentioned. I looked it up because I would actually prefer to point to kernel documentation for the error (and for the commit message itself).",
       "revId": "4d7794a810c04a190de7f8f1e6d0d38ab5d7abe0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5827054a_cf21ed13",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-09T06:52:07Z",
+      "side": 1,
+      "message": "This is not an actual solution; this is to emit a loud error and to ask the developer to pick a different name either for the source file or for the kernel module, instead of skipping the source file and leaving the developer to wonder why a symbol is missing like in the bug.\n\nThe kernel documentation did not mention this case indeed.\n\nDo you want me to actually try this case out to confirm the source file is not used?",
+      "parentUuid": "8cd77cf1_df10001b",
+      "revId": "4d7794a810c04a190de7f8f1e6d0d38ab5d7abe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
