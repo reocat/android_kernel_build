@@ -70,6 +70,24 @@
       "parentUuid": "97ed854d_8f04332f",
       "revId": "4d7794a810c04a190de7f8f1e6d0d38ab5d7abe0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e83b745_936cd147",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966817
+      },
+      "writtenOn": "2023-03-09T22:54:26Z",
+      "side": 1,
+      "message": "I don\u0027t think you can do this:\n```\nobj-y +\u003d foo.o\nfoo-y +\u003d foo.o bar.o\n```\n\nI had tried it while debugging and got this:\n```\nmake[3]: Circular ../my_driver/my_driver.o \u003c- ../my_driver/my_driver.o dependency dropped.\n```",
+      "parentUuid": "820b563a_17f156ba",
+      "revId": "4d7794a810c04a190de7f8f1e6d0d38ab5d7abe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
