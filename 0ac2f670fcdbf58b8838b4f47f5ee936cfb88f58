@@ -16,6 +16,24 @@
       "message": "```\nfragments \u003d fragments[0] if len(fragments) \u003d\u003d 1 else \"{\" + \",\".join(fragments) + \"}\",\n```",
       "revId": "0ac2f670fcdbf58b8838b4f47f5ee936cfb88f58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2535d690_ef5f74a2",
+        "filename": "kleaf/artifact_tests/device_modules_test.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-09T04:45:00Z",
+      "side": 1,
+      "message": "BTW you can quickly validate the Bazel part of the code with\n\n```\nbazel build //common:kernel_aarch64_tests --nobuild\n```\n\nThis will only execute Starlark but not build anything (i.e. it doesn\u0027t run these shell scripts)",
+      "parentUuid": "84311440_058c13b0",
+      "revId": "0ac2f670fcdbf58b8838b4f47f5ee936cfb88f58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
