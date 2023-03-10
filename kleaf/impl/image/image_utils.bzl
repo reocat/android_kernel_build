@@ -15,6 +15,7 @@
 Common utilities for working with kernel images.
 """
 
+load("@bazel_skylib//lib:shell.bzl", "shell")
 load("//build/kernel/kleaf:directory_with_structure.bzl", dws = "directory_with_structure")
 load(
     ":common_providers.bzl",
@@ -32,6 +33,7 @@ def _build_modules_image_impl_common(
         build_command,
         modules_staging_dir,
         restore_modules_install = None,
+        set_ext_modules = None,
         implicit_outputs = None,
         additional_inputs = None,
         mnemonic = None):
@@ -45,6 +47,8 @@ def _build_modules_image_impl_common(
         modules_staging_dir: a staging directory for module installation.
         restore_modules_install: If `True`, restore `ctx.attr.kernel_modules_install`.
          Default is `True`.
+        set_ext_modules: If `True`, set variable `EXT_MODULES` before invoking script
+          in `build_utils.sh`
         implicit_outputs: like `outputs`, but not installed to `DIST_DIR` (not
          returned in `DefaultInfo`).
         additional_inputs: Additional files to be included.
@@ -138,6 +142,12 @@ def _build_modules_image_impl_common(
             modules_install_staging_dws,
             dst = modules_staging_dir,
             options = "-al --chmod=F+w --include=source --include=build --exclude='*'",
+        )
+
+    if set_ext_modules:
+        ext_modules = ctx.attr.kernel_modules_install[KernelModuleInfo].packages.to_list()
+        command += """EXT_MODULES={quoted_ext_modules}""".format(
+            quoted_ext_modules = shell.quote(" ".join(ext_modules)),
         )
 
     command += """
