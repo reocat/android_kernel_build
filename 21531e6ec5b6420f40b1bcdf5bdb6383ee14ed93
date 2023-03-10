@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8b73911_b8a5e5ba",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-10T19:20:08Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Buildifier: Variable \"rust_binaries\" may not have been initialized. http://go/buildifier-warnings#uninitialized\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nVariable \"rust_binaries\" may not have been initialized. http://go/buildifier-warnings#uninitialized\n\n----\n\nThe analyzer isn\u0027t smart enough to handle this situation. Just add `rust_binaries \u003d None` at L331 to suppress this.",
+      "range": {
+        "startLine": 341,
+        "startChar": 19,
+        "endLine": 341,
+        "endChar": 32
+      },
+      "revId": "21531e6ec5b6420f40b1bcdf5bdb6383ee14ed93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
