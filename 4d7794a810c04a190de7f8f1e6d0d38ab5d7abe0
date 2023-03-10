@@ -88,6 +88,24 @@
       "parentUuid": "820b563a_17f156ba",
       "revId": "4d7794a810c04a190de7f8f1e6d0d38ab5d7abe0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbf01cbb_0105221c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-10T14:01:08Z",
+      "side": 1,
+      "message": "```\nobj-y +\u003d foo.o\nfoo-y +\u003d bar.o\n```\nshould actually be\n```\nobj-m +\u003d foo.o\nfoo-y +\u003d bar.o\n```\nright? Are we generating it wrong or was this just a typo?",
+      "parentUuid": "9e83b745_936cd147",
+      "revId": "4d7794a810c04a190de7f8f1e6d0d38ab5d7abe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
