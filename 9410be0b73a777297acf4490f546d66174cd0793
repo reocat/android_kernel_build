@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000040187751",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2455073?revision\u003d4",
+      "fixSuggestions": [
+        {
+          "fixId": "6398a5b3_fb20dab5",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "BUILD.bazel",
+              "range": {
+                "startLine": 40,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": "        [\n            \"//prebuilts/rust/linux-x86/{}:bin/rustc\".format(VARS.get(\"RUSTC_VERSION\", \"\")),\n            \"//prebuilts/clang-tools:linux-x86/bin/bindgen\",\n            \"//prebuilts/rust/linux-x86/{}:bin/cargo\".format(VARS.get(\"RUSTC_VERSION\", \"\")),\n        ] if \"RUSTC_VERSION\" in VARS else []\n    ),\n    host_tools \u003d [\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "926c1e84_96146ff7",
+        "filename": "BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-10T14:09:39Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "9410be0b73a777297acf4490f546d66174cd0793",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000040187751",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2455073?revision\u003d4",
+      "fixSuggestions": [
+        {
+          "fixId": "7a78d91f_261bf940",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_env.bzl",
+              "range": {
+                "startLine": 341,
+                "startChar": 0,
+                "endLine": 342,
+                "endChar": 0
+              },
+              "replacement": "        ret.append(rust_binaries)\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "78de1078_2cf8f45f",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-10T14:09:39Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_env.bzl` to format the file, or apply the suggested fix.",
+      "revId": "9410be0b73a777297acf4490f546d66174cd0793",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
