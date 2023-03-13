@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90289f5e_cea87486",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-13T10:46:42Z",
+      "side": 1,
+      "message": "I could not find where, but this changes the order in the version string and making the tests[0] unhappy.\n\nA couple of failing tests samples:\n* `\u0027-mainline-maybe-dirty\u0027 !\u003d \u0027-maybe-dirty-mainline\u0027`\n* `Regex didn\u0027t match: \u0027-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?\u0027 not found in \u0027-00439-g882f50b889ac-dirty-abP52109865-mainline\u0027`\n\n[0] https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/tests/integration_test/integration_test.py;l\u003d316-426",
+      "revId": "3ad8b68a75550ed633b3f428ecb2f6296fefab10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
