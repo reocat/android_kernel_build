@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b900ff3_f1a7e1c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-13T16:44:55Z",
+      "side": 1,
+      "message": "Not a CL blocker, the build targets at https://android.googlesource.com/kernel/build/+/refs/heads/master/BUILD.bazel would need to be updated too.",
+      "revId": "d41d67365e50f63f3d7386508a1bf94bb954ac07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
