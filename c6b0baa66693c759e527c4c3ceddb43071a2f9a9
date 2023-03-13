@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0db67ece_43fe2a45",
+        "filename": "kleaf/impl/abi/get_src_protected_exports_files.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-13T09:52:31Z",
+      "side": 1,
+      "message": "Done. Thank you, I tried originally with name[0] and it failed. Now I see what I was missing, this is now `@//common:kernel_aarch64`.\n\n[0] https://bazel.build/rules/lib/Label#name",
+      "parentUuid": "e82106f3_da9a8a6b",
+      "range": {
+        "startLine": 28,
+        "startChar": 12,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "c6b0baa66693c759e527c4c3ceddb43071a2f9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "438f7765_8127281d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-13T09:35:06Z",
       "side": 1,
       "message": "macro",
+      "range": {
+        "startLine": 181,
+        "startChar": 4,
+        "endLine": 181,
+        "endChar": 9
+      },
+      "revId": "c6b0baa66693c759e527c4c3ceddb43071a2f9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fdc5671_c0cf3f21",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-13T09:52:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "438f7765_8127281d",
       "range": {
         "startLine": 181,
         "startChar": 4,
