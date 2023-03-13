@@ -33,6 +33,24 @@
       "message": "why bother writing an abi-corpus if you do not add elf-symbols as well?",
       "revId": "3eaed6d57fe9d382cb590a0f48c5324a3429a28d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "277e69e7_836523f3",
+        "filename": "abi/dump_abi.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-03-13T16:17:37Z",
+      "side": 1,
+      "message": "It has to be valid XML. I need some empty root element that the tools will accept. It looks like I missed filter_abi. Oops.",
+      "parentUuid": "721d9819_3dc501ce",
+      "revId": "3eaed6d57fe9d382cb590a0f48c5324a3429a28d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
