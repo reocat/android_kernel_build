@@ -16,6 +16,24 @@
       "message": "I could not find where, but this changes the order in the version string and making the tests[0] unhappy.\n\nA couple of failing tests samples:\n* `\u0027-mainline-maybe-dirty\u0027 !\u003d \u0027-maybe-dirty-mainline\u0027`\n* `Regex didn\u0027t match: \u0027-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?\u0027 not found in \u0027-00439-g882f50b889ac-dirty-abP52109865-mainline\u0027`\n\n[0] https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/tests/integration_test/integration_test.py;l\u003d316-426",
       "revId": "3ad8b68a75550ed633b3f428ecb2f6296fefab10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38919302_c88bb813",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-14T22:15:25Z",
+      "side": 1,
+      "message": "ah this was because setlocalversion does:\n\n```\nres\u003d\"${res}${config_localversion}${LOCALVERSION}\"\n```\n\nwhere `res` is the value of `scm_version()`, which is a single `-maybe-dirty` string. `CONFIG_LOCALVERSION\u003dmainline` on the mainline branch.\n\nI\u0027ll reorder things a bit.",
+      "parentUuid": "90289f5e_cea87486",
+      "revId": "3ad8b68a75550ed633b3f428ecb2f6296fefab10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
