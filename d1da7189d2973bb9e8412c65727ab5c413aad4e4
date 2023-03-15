@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571f4f31_781b794d",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-15T17:18:27Z",
+      "side": 1,
+      "message": "This should be `ctx.attr.rust_toolchain_version` but I don\u0027t think this method is aware of ctx.",
+      "range": {
+        "startLine": 333,
+        "startChar": 7,
+        "endLine": 333,
+        "endChar": 29
+      },
+      "revId": "d1da7189d2973bb9e8412c65727ab5c413aad4e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
