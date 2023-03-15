@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0c3d025_acd36d5f",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-15T11:30:03Z",
+      "side": 1,
+      "message": "*Patch-set 5",
+      "parentUuid": "85176a2c_a19bfd13",
+      "range": {
+        "startLine": 42,
+        "startChar": 18,
+        "endLine": 42,
+        "endChar": 32
+      },
+      "revId": "3e0021900851b42bb247a796c7e0a591d7f36c8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e003154_603b7e16",
