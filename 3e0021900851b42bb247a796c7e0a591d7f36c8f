@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85176a2c_a19bfd13",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-15T11:28:59Z",
+      "side": 1,
+      "message": "I replaced the usage only in the code that seemed appropriate (IMO) in Patch-set 1 L434, but adding it in a couple of more places now. PTAL",
+      "parentUuid": "01f8b7e3_1d6de104",
+      "range": {
+        "startLine": 42,
+        "startChar": 18,
+        "endLine": 42,
+        "endChar": 32
+      },
+      "revId": "3e0021900851b42bb247a796c7e0a591d7f36c8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e003154_603b7e16",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-14T22:06:24Z",
       "side": 1,
       "message": "What about kernel_kleaf_abi_aarch64 in Android 13?",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 39
+      },
+      "revId": "3e0021900851b42bb247a796c7e0a591d7f36c8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eabad742_174a1232",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-15T11:28:59Z",
+      "side": 1,
+      "message": "I can add it, however since `kernel/build` project is frozen (at `master-kernel-build-2022`) for android13 branches, it won\u0027t receive this change. Let me know if I should add it just for visibility.\n\nNote: Even if the target is not listed here it can be downloaded as described in http://b/271531828#comment4",
+      "parentUuid": "2e003154_603b7e16",
       "range": {
         "startLine": 42,
         "startChar": 0,
