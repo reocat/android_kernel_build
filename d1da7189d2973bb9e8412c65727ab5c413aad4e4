@@ -22,6 +22,30 @@
       },
       "revId": "d1da7189d2973bb9e8412c65727ab5c413aad4e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76385be6_bc5faf2b",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-15T17:42:19Z",
+      "side": 1,
+      "message": "So maybe use `VARS.get(\"RUSTC_VERSION\", \"\")` directly here and remove the attribute below (L393)? @elsk@google.com wdyt?",
+      "parentUuid": "571f4f31_781b794d",
+      "range": {
+        "startLine": 333,
+        "startChar": 7,
+        "endLine": 333,
+        "endChar": 29
+      },
+      "revId": "d1da7189d2973bb9e8412c65727ab5c413aad4e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
