@@ -26,14 +26,16 @@ load(
 
 def _vendor_dlkm_image_impl(ctx):
     vendor_dlkm_img = ctx.actions.declare_file("{}/vendor_dlkm.img".format(ctx.label.name))
+    vendor_dlkm_staging_archive = ctx.actions.declare_file("{}/vendor_dlkm_staging_archive.tar.gz".format(ctx.label.name))
     vendor_dlkm_modules_load = ctx.actions.declare_file("{}/vendor_dlkm.modules.load".format(ctx.label.name))
     vendor_dlkm_modules_blocklist = ctx.actions.declare_file("{}/vendor_dlkm.modules.blocklist".format(ctx.label.name))
+    vendor_dlkm_modules_dep = ctx.actions.declare_file("{}/vendor_dlkm.modules.dep".format(ctx.label.name))
     modules_staging_dir = vendor_dlkm_img.dirname + "/staging"
     vendor_dlkm_staging_dir = modules_staging_dir + "/vendor_dlkm_staging"
     vendor_dlkm_fs_type = ctx.attr.vendor_dlkm_fs_type
     vendor_dlkm_etc_files = " ".join([f.path for f in ctx.files.vendor_dlkm_etc_files])
 
-    command = ""
+    command = "set -x"
     additional_inputs = []
     if ctx.file.vendor_boot_modules_load:
         command += """
@@ -67,13 +69,17 @@ def _vendor_dlkm_image_impl(ctx):
             # Move output files into place
               mv "${{DIST_DIR}}/vendor_dlkm.img" {vendor_dlkm_img}
               mv "${{DIST_DIR}}/vendor_dlkm.modules.load" {vendor_dlkm_modules_load}
+
+              vendor_dlkm_modules_root_dir=$(echo {vendor_dlkm_staging_dir}/lib/modules/*)
+              mv ${{vendor_dlkm_modules_root_dir}}/modules.dep {vendor_dlkm_modules_dep}
+
               if [[ -f "${{DIST_DIR}}/vendor_dlkm.modules.blocklist" ]]; then
                 mv "${{DIST_DIR}}/vendor_dlkm.modules.blocklist" {vendor_dlkm_modules_blocklist}
               else
                 : > {vendor_dlkm_modules_blocklist}
               fi
-            # Remove staging directories
-              rm -rf {vendor_dlkm_staging_dir}
+            # Archive
+              tar czf {vendor_dlkm_staging_archive} -C {vendor_dlkm_staging_dir} .
     """.format(
         modules_staging_dir = modules_staging_dir,
         quoted_vendor_dlkm_etc_files = shell.quote(vendor_dlkm_etc_files),
@@ -82,6 +88,8 @@ def _vendor_dlkm_image_impl(ctx):
         vendor_dlkm_img = vendor_dlkm_img.path,
         vendor_dlkm_modules_load = vendor_dlkm_modules_load.path,
         vendor_dlkm_modules_blocklist = vendor_dlkm_modules_blocklist.path,
+        vendor_dlkm_modules_dep = vendor_dlkm_modules_dep.path,
+        vendor_dlkm_staging_archive = vendor_dlkm_staging_archive.path,
     )
 
     additional_inputs += ctx.files.vendor_dlkm_etc_files
@@ -89,7 +97,13 @@ def _vendor_dlkm_image_impl(ctx):
     return image_utils.build_modules_image_impl_common(
         ctx = ctx,
         what = "vendor_dlkm",
-        outputs = [vendor_dlkm_img, vendor_dlkm_modules_load, vendor_dlkm_modules_blocklist],
+        outputs = [
+            vendor_dlkm_img,
+            vendor_dlkm_modules_load,
+            vendor_dlkm_modules_blocklist,
+            vendor_dlkm_modules_dep,
+            vendor_dlkm_staging_archive,
+        ],
         build_command = command,
         modules_staging_dir = modules_staging_dir,
         set_ext_modules = True,
