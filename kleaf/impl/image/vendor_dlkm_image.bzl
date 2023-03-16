@@ -22,6 +22,7 @@ def _vendor_dlkm_image_impl(ctx):
     vendor_dlkm_img = ctx.actions.declare_file("{}/vendor_dlkm.img".format(ctx.label.name))
     vendor_dlkm_modules_load = ctx.actions.declare_file("{}/vendor_dlkm.modules.load".format(ctx.label.name))
     vendor_dlkm_modules_blocklist = ctx.actions.declare_file("{}/vendor_dlkm.modules.blocklist".format(ctx.label.name))
+    vendor_dlkm_modules_dep = ctx.actions.declare_file("{}/vendor_dlkm.modules.dep".format(ctx.label.name))
     modules_staging_dir = vendor_dlkm_img.dirname + "/staging"
     vendor_dlkm_staging_dir = modules_staging_dir + "/vendor_dlkm_staging"
     vendor_dlkm_fs_type = ctx.attr.vendor_dlkm_fs_type
@@ -54,6 +55,7 @@ def _vendor_dlkm_image_impl(ctx):
             # Move output files into place
               mv "${{DIST_DIR}}/vendor_dlkm.img" {vendor_dlkm_img}
               mv "${{DIST_DIR}}/vendor_dlkm.modules.load" {vendor_dlkm_modules_load}
+              mv {vendor_dlkm_staging_dir}/modules.dep {vendor_dlkm_modules_dep}
               if [[ -f "${{DIST_DIR}}/vendor_dlkm.modules.blocklist" ]]; then
                 mv "${{DIST_DIR}}/vendor_dlkm.modules.blocklist" {vendor_dlkm_modules_blocklist}
               else
@@ -69,6 +71,7 @@ def _vendor_dlkm_image_impl(ctx):
         vendor_dlkm_img = vendor_dlkm_img.path,
         vendor_dlkm_modules_load = vendor_dlkm_modules_load.path,
         vendor_dlkm_modules_blocklist = vendor_dlkm_modules_blocklist.path,
+        vendor_dlkm_modules_dep = vendor_dlkm_modules_dep.path,
     )
 
     additional_inputs += ctx.files.vendor_dlkm_etc_files
