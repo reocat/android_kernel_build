@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8af54bdc_39554abc",
+        "filename": "BUILD.bazel",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-16T14:54:46Z",
+      "side": 1,
+      "message": "This needs to be made conditional as it is only needed for kernels that have rust support. the clang-tools repo is introduced here as a new requirement and breaks downstream users.\n\nWhat actually needs to be done is separating rust tools out of \"hermetic-tools\". The reason that CLANG_VERSION is used here is just that it is used for one hermetic tool, llvm-strings. But compilers etc. are defined elsewhere. In particular, when we set up kernel_env in https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_env.bzl, we directly consume from the definitions using only CLANG_VERSION.\n\n```\n        clang_binaries \u003d \"//prebuilts/clang/host/linux-x86/clang-%s:binaries\" % toolchain_version\n```\n\nSo, perhaps the version can be defined as is in the parent change, but all the filegroups etc. need to be defined in //prebuilts/rust. //prebuilts/rust can even explicitly state dependencies to bindgen and cargo. And in that case we would not have to worry at all about setting those up here.\n\nSorry that this thought is coming so late, but I think defining it here - after giving it a little more thought - is not sustainable.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 60
+      },
+      "revId": "d1da7189d2973bb9e8412c65727ab5c413aad4e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "571f4f31_781b794d",
         "filename": "kleaf/impl/kernel_env.bzl",
         "patchSetId": 6
