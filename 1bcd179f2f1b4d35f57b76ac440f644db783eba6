@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08b3df56_dd82bb19",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 6
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-16T13:21:35Z",
+      "side": 0,
+      "message": "download_kernel() does not download the ABI representation. As such this change completely drops downloading or generating ABI representations, right?",
+      "revId": "1bcd179f2f1b4d35f57b76ac440f644db783eba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
