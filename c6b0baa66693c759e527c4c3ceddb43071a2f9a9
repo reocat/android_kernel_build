@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a36465f3_047d8b34",
+        "filename": "kleaf/impl/abi/get_src_protected_exports_files.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-16T20:06:29Z",
+      "side": 1,
+      "message": "ctx.attr.kernel_build was a Target:\n\nhttps://bazel.build/rules/lib/Target\n\nMore specifically it is a MergedTarget (an implementation detail of Bazel). So you need to look at the APIs for Target, not label.",
+      "parentUuid": "0db67ece_43fe2a45",
+      "range": {
+        "startLine": 28,
+        "startChar": 12,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "c6b0baa66693c759e527c4c3ceddb43071a2f9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "438f7765_8127281d",
