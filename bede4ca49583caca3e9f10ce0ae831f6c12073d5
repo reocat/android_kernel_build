@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb63d6ff_bf33326a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-17T23:35:30Z",
+      "side": 1,
+      "message": "Replaced by CL:2495339. Let\u0027s just disable mixed build when building compile_commands.json.\n\nBuilding compile_commands.json just for modules might need some work on Kbuild.",
+      "revId": "bede4ca49583caca3e9f10ce0ae831f6c12073d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
