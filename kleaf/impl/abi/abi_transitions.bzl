@@ -21,31 +21,31 @@ load(
 
 _FORCE_ADD_VMLINUX_SETTING = "//build/kernel/kleaf/impl:force_add_vmlinux"
 _KBUILD_SYMTYPES_SETTING = "//build/kernel/kleaf:kbuild_symtypes"
-_FORCE_IGNORE_BASE_KERNEL_SETTING = "//build/kernel/kleaf/impl:force_ignore_base_kernel"
+FORCE_IGNORE_BASE_KERNEL_SETTING = "//build/kernel/kleaf/impl:force_ignore_base_kernel"
 
 _WITH_VMLINUX_TRANSITION_OUTPUT_SETTINGS = [
     _FORCE_ADD_VMLINUX_SETTING,
     _KBUILD_SYMTYPES_SETTING,
-    _FORCE_IGNORE_BASE_KERNEL_SETTING,
+    FORCE_IGNORE_BASE_KERNEL_SETTING,
 ]
 
-def _with_vmlinx_transition_impl(_settings, _attr):
+def with_vmlinx_transition_impl(_settings, _attr):
     """with_vmlinux: outs += [vmlinux]; base_kernel = None; kbuild_symtypes = True"""
     return {
         _FORCE_ADD_VMLINUX_SETTING: True,
-        _FORCE_IGNORE_BASE_KERNEL_SETTING: True,
+        FORCE_IGNORE_BASE_KERNEL_SETTING: True,
         _KBUILD_SYMTYPES_SETTING: True,
     }
 
 with_vmlinux_transition = transition(
-    implementation = _with_vmlinx_transition_impl,
+    implementation = with_vmlinx_transition_impl,
     inputs = [],
     outputs = _WITH_VMLINUX_TRANSITION_OUTPUT_SETTINGS,
 )
 
 def _notrim_transition_impl(settings, attr):
     """notrim: like _with_vmlinux, but trim_nonlisted_kmi = False"""
-    return _with_vmlinx_transition_impl(settings, attr) | {
+    return with_vmlinx_transition_impl(settings, attr) | {
         FORCE_DISABLE_TRIM: True,
     }
 
