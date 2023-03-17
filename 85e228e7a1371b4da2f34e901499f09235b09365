@@ -102,6 +102,52 @@
       "message": "I\u0027m actually have issues with this. Let\u0027s hold off until I can investigate further.",
       "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9945f08_35d4fc0a",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-17T11:01:41Z",
+      "side": 1,
+      "message": "nit: This format for constants is not Bazel\u0027s conventional way to share variables (https://bazel.build/build/share-variables).",
+      "range": {
+        "startLine": 244,
+        "startChar": 39,
+        "endLine": 244,
+        "endChar": 40
+      },
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abe292b2_6eba1fe0",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-17T11:01:41Z",
+      "side": 1,
+      "message": "```\nelif ctx.files.base_kernel_images:\n    system_dlkm_files \u003d ctx.files.base_kernel_images\n    src_attr \u003d \"base_kernel_images\"\nelse:\n    fail(\"dedup_dlkm_modules is set but neither system_dlkm_image nor base_kernel_images were provided.\")\n```",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 8
+      },
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
