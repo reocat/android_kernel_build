@@ -22,6 +22,30 @@
       },
       "revId": "68fb0a602bfc9c666d80c64e6d3e9a6cd9d8164a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94c4143e_c9a3df05",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-17T20:57:38Z",
+      "side": 1,
+      "message": "Done -- I forgot that the toybox tar has already supported --wildcards b/243570975",
+      "parentUuid": "e84e81b8_718fe9c9",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 94
+      },
+      "revId": "68fb0a602bfc9c666d80c64e6d3e9a6cd9d8164a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
