@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e84e81b8_718fe9c9",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-03-17T20:50:07Z",
+      "side": 1,
+      "message": "Could you use `--wildcards \u0027*.ko\u0027` with tar so that you only need to call it once?",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 94
+      },
+      "revId": "68fb0a602bfc9c666d80c64e6d3e9a6cd9d8164a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
