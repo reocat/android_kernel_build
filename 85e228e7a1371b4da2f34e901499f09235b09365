@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71acca14_27d7bb43",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-17T20:54:11Z",
+      "side": 1,
+      "message": "What do you mean? The `system_dlkm.modules.load` is concatenated to `$DIST_DIR/modules.load`. The `$DIST_DIR/modules.load` is originally from initramfs.",
+      "parentUuid": "6902b937_4e66315c",
+      "range": {
+        "startLine": 15,
+        "startChar": 46,
+        "endLine": 15,
+        "endChar": 68
+      },
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12342482_8c845606",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-17T02:21:50Z",
       "side": 1,
       "message": "I think this file is a pixel specific file. You can just say \"userspace needs to load...\"",
+      "range": {
+        "startLine": 23,
+        "startChar": 32,
+        "endLine": 23,
+        "endChar": 48
+      },
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6837bf7a_69d2dc35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-17T20:54:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12342482_8c845606",
       "range": {
         "startLine": 23,
         "startChar": 32,
@@ -60,6 +108,30 @@
       "writtenOn": "2023-03-17T02:21:50Z",
       "side": 1,
       "message": "This is only the case when vendors specify `.*` in their VENDOR_DLKM_MODULES_LIST file. If that file contains a list of modules, then the vendor_dlkm image should only contain those listed.",
+      "range": {
+        "startLine": 27,
+        "startChar": 48,
+        "endLine": 28,
+        "endChar": 55
+      },
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53630fe0_b4f67c77",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-17T20:54:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95922193_751ff973",
       "range": {
         "startLine": 27,
         "startChar": 48,
@@ -104,6 +176,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e56fa446_7a63bb4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-17T20:54:11Z",
+      "side": 1,
+      "message": "resolved offline",
+      "parentUuid": "269c99ef_02ae2a1d",
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a680c43c_0fc0fdac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-17T20:54:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "859be870_ddb60dbe",
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9945f08_35d4fc0a",
@@ -127,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61d02e49_17b6f12f",
+        "filename": "kleaf/impl/image/image_utils.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-17T20:54:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9945f08_35d4fc0a",
+      "range": {
+        "startLine": 244,
+        "startChar": 39,
+        "endLine": 244,
+        "endChar": 40
+      },
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abe292b2_6eba1fe0",
@@ -140,6 +272,30 @@
       "writtenOn": "2023-03-17T11:01:41Z",
       "side": 1,
       "message": "```\nelif ctx.files.base_kernel_images:\n    system_dlkm_files \u003d ctx.files.base_kernel_images\n    src_attr \u003d \"base_kernel_images\"\nelse:\n    fail(\"dedup_dlkm_modules is set but neither system_dlkm_image nor base_kernel_images were provided.\")\n```",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 8
+      },
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06e39151_47598368",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-17T20:54:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abe292b2_6eba1fe0",
       "range": {
         "startLine": 104,
         "startChar": 4,
