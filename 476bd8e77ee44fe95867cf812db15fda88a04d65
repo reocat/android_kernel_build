@@ -16,6 +16,23 @@
       "message": "I verified this is WAI",
       "revId": "476bd8e77ee44fe95867cf812db15fda88a04d65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e47cba26_d4efd19e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-03-17T21:45:22Z",
+      "side": 1,
+      "message": "fyi, we can bypass the 6.1 boot failure. It\u0027s being tracked in b/273988514. I\u0027ve since suspended the test. Presubmit has tested this patch on Pixel 6 with android-mainline",
+      "revId": "476bd8e77ee44fe95867cf812db15fda88a04d65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
