@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6902b937_4e66315c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-03-17T02:21:50Z",
+      "side": 1,
+      "message": "Should this be the system_dlkm.modules.load file?",
+      "range": {
+        "startLine": 15,
+        "startChar": 46,
+        "endLine": 15,
+        "endChar": 68
+      },
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12342482_8c845606",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-03-17T02:21:50Z",
+      "side": 1,
+      "message": "I think this file is a pixel specific file. You can just say \"userspace needs to load...\"",
+      "range": {
+        "startLine": 23,
+        "startChar": 32,
+        "endLine": 23,
+        "endChar": 48
+      },
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95922193_751ff973",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-03-17T02:21:50Z",
+      "side": 1,
+      "message": "This is only the case when vendors specify `.*` in their VENDOR_DLKM_MODULES_LIST file. If that file contains a list of modules, then the vendor_dlkm image should only contain those listed.",
+      "range": {
+        "startLine": 27,
+        "startChar": 48,
+        "endLine": 28,
+        "endChar": 55
+      },
+      "revId": "85e228e7a1371b4da2f34e901499f09235b09365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
