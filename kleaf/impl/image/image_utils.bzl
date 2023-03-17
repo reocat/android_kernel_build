@@ -241,4 +241,6 @@ image_utils = struct(
     build_modules_image_impl_common = _build_modules_image_impl_common,
     build_modules_image_attrs_common = _build_modules_image_attrs_common,
     ramdisk_options = _ramdisk_options,
+    system_dlkm_staging_archive_name = "system_dlkm_staging_archive.tar.gz",
+    system_dlkm_modules_load_name = "system_dlkm.modules.load",
 )

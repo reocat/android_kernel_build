@@ -24,12 +24,10 @@ load(
     "KernelModuleInfo",
 )
 
-_STAGING_ARCHIVE_NAME = "system_dlkm_staging_archive.tar.gz"
-
 def _system_dlkm_image_impl(ctx):
     system_dlkm_img = ctx.actions.declare_file("{}/system_dlkm.img".format(ctx.label.name))
-    system_dlkm_modules_load = ctx.actions.declare_file("{}/system_dlkm.modules.load".format(ctx.label.name))
-    system_dlkm_staging_archive = ctx.actions.declare_file("{}/{}".format(ctx.label.name, _STAGING_ARCHIVE_NAME))
+    system_dlkm_modules_load = ctx.actions.declare_file("{}/{}".format(ctx.label.name, image_utils.system_dlkm_modules_load_name))
+    system_dlkm_staging_archive = ctx.actions.declare_file("{}/{}".format(ctx.label.name, image_utils.system_dlkm_staging_archive_name))
     system_dlkm_modules_blocklist = ctx.actions.declare_file("{}/system_dlkm.modules.blocklist".format(ctx.label.name))
 
     modules_staging_dir = system_dlkm_img.dirname + "/staging"
@@ -57,7 +55,7 @@ def _system_dlkm_image_impl(ctx):
         # the device build.
         restore_modules_install = False
         base_kernel_system_dlkm_staging_archive = utils.find_file(
-            name = _STAGING_ARCHIVE_NAME,
+            name = image_utils.system_dlkm_staging_archive_name,
             files = ctx.files.base_kernel_images,
             what = "{} (images for {})".format(ctx.attr.base_kernel_images.label, ctx.label),
             required = True,
