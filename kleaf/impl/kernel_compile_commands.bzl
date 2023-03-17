@@ -17,24 +17,23 @@
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(
     ":abi/abi_transitions.bzl",
-    "FORCE_IGNORE_BASE_KERNEL_SETTING",
+    "WITH_VMLINUX_TRANSITION_OUTPUT_SETTINGS",
+    "with_vmlinx_transition_impl",
 )
 load(
     ":common_providers.bzl",
     "KernelBuildInfo",
 )
 
-def _kernel_compile_commands_transition_impl(_settings, _attr):
-    return {
-        FORCE_IGNORE_BASE_KERNEL_SETTING: True,
+def _kernel_compile_commands_transition_impl(settings, attr):
+    return with_vmlinx_transition_impl(settings, attr) | {
         "//build/kernel/kleaf/impl:build_compile_commands": True,
     }
 
 _kernel_compile_commands_transition = transition(
     implementation = _kernel_compile_commands_transition_impl,
     inputs = [],
-    outputs = [
-        FORCE_IGNORE_BASE_KERNEL_SETTING,
+    outputs = WITH_VMLINUX_TRANSITION_OUTPUT_SETTINGS + [
         "//build/kernel/kleaf/impl:build_compile_commands",
     ],
 )
