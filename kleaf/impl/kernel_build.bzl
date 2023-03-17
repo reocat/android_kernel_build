@@ -1091,6 +1091,7 @@ def _build_main_action(
         restore_out_dir_cmd = cache_dir_step.cmd,
     )
     command += """
+           {compile_commands_prolog}
            {kbuild_mixed_tree_cmd}
          # Actual kernel build
            {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
@@ -1138,6 +1139,7 @@ def _build_main_action(
          # Create last_build symlink in cache_dir
            {cache_dir_post_cmd}
          """.format(
+        compile_commands_prolog = compile_commands_step.prolog,
         cache_dir_post_cmd = cache_dir_step.post_cmd,
         kbuild_mixed_tree_cmd = kbuild_mixed_tree_ret.cmd,
         search_and_cp_output = ctx.executable._search_and_cp_output.path,
