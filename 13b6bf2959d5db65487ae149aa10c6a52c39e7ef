@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f95bf3b6_a9bffd30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-18T00:35:20Z",
+      "side": 1,
+      "message": "I am not sure if this is the correct fix. Without this change, the cuttlefish build can still pass; CL:2495087 still builds successfully.\n\nBut for some reason the internal Pixel build doesn\u0027t, and the object mentioned in the commit message (init/built-in.a) is required in the build.",
+      "revId": "13b6bf2959d5db65487ae149aa10c6a52c39e7ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
