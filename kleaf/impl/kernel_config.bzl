@@ -21,6 +21,7 @@ load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
 load(":cache_dir.bzl", "cache_dir")
 load(
     ":common_providers.bzl",
+    "KernelBuildExtModuleInfo",
     "KernelBuildOriginalEnvInfo",
     "KernelEnvAndOutputsInfo",
     "KernelEnvAttrInfo",
@@ -328,7 +329,8 @@ def _kernel_config_impl(ctx):
     ]
 
     out_dir = ctx.actions.declare_directory(ctx.attr.name + "/out_dir")
-    outputs = [out_dir]
+    conf = ctx.actions.declare_file(ctx.attr.name + "/conf")
+    outputs = [out_dir, conf]
     localversion_file_path = out_dir.path + "/localversion"
 
     write_localversion_step = stamp.write_localversion_step(ctx, localversion_file_path)
@@ -362,6 +364,7 @@ def _kernel_config_impl(ctx):
         # Grab outputs
           rsync -aL ${{OUT_DIR}}/.config {out_dir}/.config
           rsync -aL ${{OUT_DIR}}/include/ {out_dir}/include/
+          rsync -aL ${{OUT_DIR}}/scripts/kconfig/conf {conf}
 
         # Ensure reproducibility. The value of the real $ROOT_DIR is replaced in the setup script.
           sed -i'' -e 's:'"${{ROOT_DIR}}"':${{ROOT_DIR}}:g' {out_dir}/include/config/auto.conf.cmd
@@ -380,6 +383,7 @@ def _kernel_config_impl(ctx):
         cache_dir_post_cmd = cache_dir_step.post_cmd,
         reconfig_cmd = reconfig.cmd,
         write_localversion_cmd = write_localversion_step.cmd,
+        conf = conf.path,
     )
 
     debug.print_scripts(ctx, command)
@@ -434,6 +438,9 @@ def _kernel_config_impl(ctx):
         ctx.attr.env[KernelEnvAttrInfo],
         KernelBuildOriginalEnvInfo(
             env_info = ctx.attr.env[KernelEnvInfo],
+        ),
+        KernelBuildExtModuleInfo(
+            conf = conf,
         ),
         DefaultInfo(
             files = depset([out_dir]),

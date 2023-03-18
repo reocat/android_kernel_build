@@ -119,6 +119,7 @@ KernelBuildExtModuleInfo = provider(
                                    "Does not contain the lib/modules/* suffix.",
         "module_hdrs": "A [depset](https://bazel.build/extending/depsets) containing headers for this `kernel_build` for building external modules",
         "module_scripts": "A [depset](https://bazel.build/extending/depsets) containing scripts for this `kernel_build` for building external modules",
+        "conf": "The `conf` binary",
         "modules_env_and_outputs_info": "`KernelEnvAndOutputsInfo` for building external modules.",
         "modules_install_env_and_outputs_info": "`KernelEnvAndOutputsInfo` for running modules_install.",
         "collect_unstripped_modules": "Whether an external [`kernel_module`](#kernel_module) building against this [`kernel_build`](#kernel_build) should provide unstripped ones for debugging.",
