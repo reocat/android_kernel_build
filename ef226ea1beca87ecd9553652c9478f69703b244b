@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3651d9f9_e16dc4c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-03-20T12:20:04Z",
+      "side": 1,
+      "message": "There are quite a few typos in the commit message. Please read through it carefully.\n\nOverall, this looks like a good update. Is the intention to suggest that SoC vendors also follow this device page? That may work for some, but not all of them.",
+      "revId": "ef226ea1beca87ecd9553652c9478f69703b244b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad152917_4eb09a88",
+        "filename": "kleaf/docs/abi_device.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-03-20T12:20:04Z",
+      "side": 1,
+      "message": "set up",
+      "range": {
+        "startLine": 10,
+        "startChar": 3,
+        "endLine": 10,
+        "endChar": 8
+      },
+      "revId": "ef226ea1beca87ecd9553652c9478f69703b244b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
