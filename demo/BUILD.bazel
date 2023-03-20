@@ -1,0 +1,12 @@
+load("//build/kernel/kleaf/impl:abi/stg_monitoring.bzl", "stg_monitoring")
+
+stg_monitoring(
+    name = "abi",
+    srcs = [
+        "vmlinux",
+    ] + glob(
+        ["unstripped/*.ko"],
+        exclude = ["unstripped/slhc.ko"],
+    ),
+    abi_reference = "abi_reference.stg",
+)
