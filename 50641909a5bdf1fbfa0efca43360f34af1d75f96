@@ -33,6 +33,24 @@
       "message": "Perhaps it would be better to fully replace script with \"echo \"Big warning message, please use Kleaf, here is a link\"; exit 1\", instead of deleting it. Deletion of file may bring more confusion, because it is impossible to use \"git log\" to track, why the file was deleted.",
       "revId": "50641909a5bdf1fbfa0efca43360f34af1d75f96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "953a0055_41be97a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-20T13:58:44Z",
+      "side": 1,
+      "message": "Note, that this script prints a deprecation WARNING now for a long time (a year?) and we are announcing that we will remove it soon since November :-)\n\nLet it just go away, finally and forever ;-)\n\n(For the record, `git log -- build.sh` should still work.)",
+      "parentUuid": "f299d753_33dd1af8",
+      "revId": "50641909a5bdf1fbfa0efca43360f34af1d75f96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
