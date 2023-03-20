@@ -51,6 +51,24 @@
       "parentUuid": "f299d753_33dd1af8",
       "revId": "50641909a5bdf1fbfa0efca43360f34af1d75f96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00730e21_1cdf4ca9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-03-20T15:21:43Z",
+      "side": 1,
+      "message": "It is ok to delete its content and all dependencies finally and forever, I just propose leaving printing error message in entry point. Compare these two errors `build.sh is not found` and `build.sh is replaced by kleaf, here is documentation: link`. Latter is less confusing.",
+      "parentUuid": "953a0055_41be97a5",
+      "revId": "50641909a5bdf1fbfa0efca43360f34af1d75f96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
