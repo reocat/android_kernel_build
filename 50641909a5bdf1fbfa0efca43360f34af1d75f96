@@ -69,6 +69,24 @@
       "parentUuid": "953a0055_41be97a5",
       "revId": "50641909a5bdf1fbfa0efca43360f34af1d75f96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c65a2151_f842af5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-20T15:24:24Z",
+      "side": 1,
+      "message": "I know what you propose; it is effectively a transitional warning for deprecation. But since we did this now for a long time already, let\u0027s just move on. :-)",
+      "parentUuid": "00730e21_1cdf4ca9",
+      "revId": "50641909a5bdf1fbfa0efca43360f34af1d75f96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
