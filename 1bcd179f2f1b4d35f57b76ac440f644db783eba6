@@ -16,6 +16,24 @@
       "message": "download_kernel() does not download the ABI representation. As such this change completely drops downloading or generating ABI representations, right?",
       "revId": "1bcd179f2f1b4d35f57b76ac440f644db783eba6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cfe0342_5bd23052",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 6
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-20T13:26:37Z",
+      "side": 0,
+      "message": "Done. Added support to download the relevant files using the right (ATM) target.",
+      "parentUuid": "08b3df56_dd82bb19",
+      "revId": "1bcd179f2f1b4d35f57b76ac440f644db783eba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

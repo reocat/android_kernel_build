@@ -141,6 +141,30 @@
       },
       "revId": "3e0021900851b42bb247a796c7e0a591d7f36c8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26783fd8_7a3c15fd",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-20T13:26:37Z",
+      "side": 1,
+      "message": "Acknowledged. At the end I think YAGNI applies here, if we end needing this target an special case should be added to `update_gki` method for example.",
+      "parentUuid": "dd5d1e52_e453ede2",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 39
+      },
+      "revId": "3e0021900851b42bb247a796c7e0a591d7f36c8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

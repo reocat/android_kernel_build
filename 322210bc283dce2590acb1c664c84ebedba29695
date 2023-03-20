@@ -16,6 +16,24 @@
       "message": "This is somewhat unrelated, but related 😊 : \n\nNow that generating an ABI representation is fairly cheap, we should consider retiring the `_abi_` targets altogether and instead make `kernel_aarch64` and friends contain ABI artifacts. That would allow to get rid of a lot of logic. Like this change would not need to deal with with kernel_abi_* targets anymore altogether ....",
       "revId": "322210bc283dce2590acb1c664c84ebedba29695",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "491f8419_1c0a3b63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-20T13:26:37Z",
+      "side": 1,
+      "message": "Acknowledged. Created an internal ticket to track that effort separately.",
+      "parentUuid": "eb48dfff_b63a26eb",
+      "revId": "322210bc283dce2590acb1c664c84ebedba29695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
