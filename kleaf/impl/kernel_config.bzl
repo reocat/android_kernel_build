@@ -330,7 +330,8 @@ def _kernel_config_impl(ctx):
 
     out_dir = ctx.actions.declare_directory(ctx.attr.name + "/out_dir")
     conf = ctx.actions.declare_file(ctx.attr.name + "/conf")
-    outputs = [out_dir, conf]
+    dot_config = ctx.actions.declare_file(ctx.attr.name + "/out_dir/.config")
+    outputs = [out_dir, conf, dot_config]
     localversion_file_path = out_dir.path + "/localversion"
 
     write_localversion_step = stamp.write_localversion_step(ctx, localversion_file_path)
