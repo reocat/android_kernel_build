@@ -87,6 +87,24 @@
       "parentUuid": "00730e21_1cdf4ca9",
       "revId": "50641909a5bdf1fbfa0efca43360f34af1d75f96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "731b5f6c_16219af1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1293738
+      },
+      "writtenOn": "2023-03-20T19:31:18Z",
+      "side": 1,
+      "message": "Thanks for checking. I added some detail to b/259292099. I would kindly request we do NOT remove this script until we have a plan to solve the issue explained there. \n\nU-Boot\u0027s integration had a lot of hacks, but these are to work around problems with the prebuilt toolchains in AOSP (specifically, python) so they are not really my fault. Kleaf presently does not provide a way to do the same (b/253562056 and then some, probably). I think this should be addressed before we are pinned to a deprecated version of a removed script that can never be touched, for an actively developed and critical piece of infrastructure for Cuttlefish (x86+ U-Boot).",
+      "parentUuid": "3071e017_5bf18678",
+      "revId": "50641909a5bdf1fbfa0efca43360f34af1d75f96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
