@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d48af15_fc222ed3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-21T11:00:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f8cb0de_01c41985",
+      "revId": "ccf2a2ec8904095ae6288ba1eb72fad5bd92ff74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3830a790_09af1372",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20d80e3f_8b6eab7d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-21T11:00:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3830a790_09af1372",
+      "range": {
+        "startLine": 10,
+        "startChar": 28,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "ccf2a2ec8904095ae6288ba1eb72fad5bd92ff74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c870c789_ae9a083d",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-03-20T16:30:11Z",
       "side": 1,
       "message": "WARNING\n\n`... is DEPRECATED and will be REMOVED in the future,`",
+      "range": {
+        "startLine": 273,
+        "startChar": 15,
+        "endLine": 273,
+        "endChar": 19
+      },
+      "revId": "ccf2a2ec8904095ae6288ba1eb72fad5bd92ff74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "005ecab7_4396c3ee",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-21T11:00:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c870c789_ae9a083d",
       "range": {
         "startLine": 273,
         "startChar": 15,
