@@ -125,7 +125,7 @@ def _create_env_and_outputs_info(ctx, out_dir):
         rsync -aL {out_dir}/.config ${{OUT_DIR}}/.config
         rsync -aL --chmod=D+w {out_dir}/include/ ${{OUT_DIR}}/include/
     """.format(
-        out_dir = out_dir,
+        out_dir = out_dir.path,
     )
     return KernelEnvAndOutputsInfo(
         get_setup_script = _env_and_outputs_info_get_setup_script,

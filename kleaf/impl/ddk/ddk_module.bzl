@@ -31,6 +31,7 @@ def ddk_module(
         out = None,
         local_defines = None,
         copts = None,
+        config = None,
         **kwargs):
     """
     Defines a DDK (Driver Development Kit) module.
@@ -332,6 +333,8 @@ def ddk_module(
           `package/Makefile`, and `make` is executed under `package/`. In order
           to find `other/header.h`, its path relative to `package/` is given.
 
+        config: A [`ddk_config`](#ddk_config) target that provides additional configuration
+          to this module.
         **kwargs: Additional attributes to the internal rule.
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
@@ -349,6 +352,7 @@ def ddk_module(
         internal_module_symvers_name = "{name}_Module.symvers".format(name = name),
         internal_drop_modules_order = True,
         internal_exclude_kernel_build_module_srcs = True,
+        internal_ddk_config = config,
         **kwargs
     )
 
