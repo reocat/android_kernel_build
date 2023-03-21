@@ -257,3 +257,13 @@ DdkSubmoduleInfo = provider(
             kernel_module's.""",
     },
 )
+
+DdkConfigInfo = provider(
+    doc = "A provider that describes information of a `_ddk_config` target to dependent `_ddk_config` targets.",
+    fields = {
+        "kconfig": """A [depset](https://bazel.build/extending/depsets) containing the Kconfig file
+            of this and its dependencies. Uses `postorder` ordering (dependencies first).""",
+        "defconfig": """A [depset](https://bazel.build/extending/depsets) containing the Kconfig file
+            of this and its dependencies. Uses `postorder` ordering (dependencies first).""",
+    },
+)
