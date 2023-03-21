@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbe9b062_8697a2ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-21T10:33:23Z",
+      "side": 1,
+      "message": "I think in terms of Kleaf documentation, there is only one distinction, ABI monitoring for GKI (`abi.md`) and ABI monitoring for kernels on top of GKI (`abi_device.md`). I\u0027m happy to change the naming here if there are suggestions.\n\nNote: These are linked in the home page for documentation https://android.googlesource.com/kernel/build/+/refs/heads/master/kleaf/README.md",
+      "parentUuid": "b495a418_ce691102",
+      "revId": "ef226ea1beca87ecd9553652c9478f69703b244b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad152917_4eb09a88",
