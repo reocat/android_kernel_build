@@ -28,3 +28,7 @@ build:hermetic_cc --extra_toolchains=//prebuilts/clang/host/linux-x86/kleaf:andr
 build:hermetic_cc --extra_toolchains=//prebuilts/clang/host/linux-x86/kleaf:linux_x86_64_clang_toolchain
 
 build:hermetic_cc --//build/kernel/kleaf:config_hermetic_cc
+
+# By default, always use the hermetic CC toolchain for CC rules.
+# TODO(b/253562056): Allow to use host toolchain under certain flags.
+build --config=hermetic_cc
