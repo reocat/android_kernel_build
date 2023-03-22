@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "850017f3_a691276d",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1862,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2023-03-22T23:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f1696cd_f8b05213",
+      "range": {
+        "startLine": 1862,
+        "startChar": 4,
+        "endLine": 1862,
+        "endChar": 16
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "641d256b_2fbb8ef8",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-03-22T23:13:09Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Buildifier: Prefer using \".append()\" to adding a single element list. http://go/buildifier-warnings#list-append\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nPrefer using \".append()\" to adding a single element list. http://go/buildifier-warnings#list-append",
+      "range": {
+        "startLine": 1866,
+        "startChar": 8,
+        "endLine": 1866,
+        "endChar": 52
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91e549fa_cfd207d0",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1866,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2023-03-22T23:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "641d256b_2fbb8ef8",
       "range": {
         "startLine": 1866,
         "startChar": 8,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f39ee2df_81c16be2",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1867,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2023-03-22T23:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56dba75d_2e868441",
+      "range": {
+        "startLine": 1867,
+        "startChar": 8,
+        "endLine": 1867,
+        "endChar": 30
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53ad33d8_96157ced",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-03-22T23:13:09Z",
       "side": 1,
       "message": "nit: please make this two lines",
+      "range": {
+        "startLine": 1878,
+        "startChar": 84,
+        "endLine": 1878,
+        "endChar": 85
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "100f0498_94baa2e6",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1878,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2023-03-22T23:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53ad33d8_96157ced",
       "range": {
         "startLine": 1878,
         "startChar": 84,
@@ -170,6 +266,54 @@
       "side": 1,
       "message": "also `.` will match any character so technically `foo.bar.ko` will match `fooabar.ko` -- but maybe we don\u0027t care about these edge cases",
       "parentUuid": "dabd98ea_f6e50590",
+      "range": {
+        "startLine": 1881,
+        "startChar": 60,
+        "endLine": 1881,
+        "endChar": 61
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b56bff80_24886c7f",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2023-03-22T23:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "555a0b29_0420bf0b",
+      "range": {
+        "startLine": 1881,
+        "startChar": 0,
+        "endLine": 1881,
+        "endChar": 108
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d958572_555d8bf5",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2023-03-22T23:38:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11ccee63_d20e8212",
       "range": {
         "startLine": 1881,
         "startChar": 60,
