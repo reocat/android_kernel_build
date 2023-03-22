@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5509e6a6_ddb954f8",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-22T11:46:05Z",
+      "side": 1,
+      "message": "nit: prepend `--` to keep the docs consistent for all flags.",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 3
+      },
+      "revId": "67158d6ae1c20a3e4ad37386ff8e4e18ff1e7330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed7595bb_fcd188c1",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-22T11:46:05Z",
+      "side": 1,
+      "message": "It seems this was recently fixed http://b/257288175#comment3",
+      "range": {
+        "startLine": 32,
+        "startChar": 18,
+        "endLine": 32,
+        "endChar": 29
+      },
+      "revId": "67158d6ae1c20a3e4ad37386ff8e4e18ff1e7330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
