@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "159685dc_aa91ef2f",
+        "filename": "kleaf/bazelrc/hermetic_cc.bazelrc",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-22T10:29:12Z",
+      "side": 1,
+      "message": "is this a circular dependency?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "1408b74baa6bfc37142ff6164d695f519bd2ef59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
