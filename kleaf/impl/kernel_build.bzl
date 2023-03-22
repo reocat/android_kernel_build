@@ -1859,6 +1859,15 @@ def _repack_modules_staging_archive(
         "{}_module_staging_archive/{}".format(ctx.label.name, MODULES_STAGING_ARCHIVE),
     )
 
+    extra_inputs = []
+
+    src_protected_modules_list = base_kernel_utils.get_base_kernel(ctx)[KernelBuildAbiInfo].src_protected_modules_list
+    if src_protected_modules_list:
+        extra_inputs += [src_protected_modules_list]
+        protected_modules_list = src_protected_modules_list.path
+    else:
+        protected_modules_list = ""
+
     # Re-package module_staging_dir to also include the one from base_kernel.
     # Pick ko files only from base_kernel, while keeping all depmod files from self.
     modules_staging_dir = modules_staging_archive.dirname + "/staging"
@@ -1866,10 +1875,12 @@ def _repack_modules_staging_archive(
         mkdir -p {modules_staging_dir}
         tar xf {self_archive} -C {modules_staging_dir}
 
-        # Filter out device-customized modules that has the same name as GKI modules
+        # Filter out device-customized modules that has the same name as GKI modules unless the GKI module is protected
         base_modules=$(tar tf {base_archive} | grep '[.]ko$' || true)
         for module in $(cat {all_module_basenames_file}); do
-          base_modules=$(echo "${{base_modules}}" | grep -v "${{module}}"'$' || true)
+          if [ -z "{protected_modules_list}" ] || ! grep -q "${{module}}"'$' {protected_modules_list} ; then
+            base_modules=$(echo "${{base_modules}}" | grep -v "${{module}}"'$' || true)
+          fi
         done
 
         if [[ -n "${{base_modules}}" ]]; then
@@ -1883,6 +1894,7 @@ def _repack_modules_staging_archive(
         base_archive = base_kernel_utils.get_base_kernel(ctx)[KernelBuildExtModuleInfo].modules_staging_archive.path,
         out_archive = modules_staging_archive.path,
         all_module_basenames_file = all_module_basenames_file.path,
+        protected_modules_list = protected_modules_list,
     )
     debug.print_scripts(ctx, cmd, what = "repackage_module_staging_archive")
     ctx.actions.run_shell(
@@ -1891,7 +1903,7 @@ def _repack_modules_staging_archive(
             modules_staging_archive_self,
             base_kernel_utils.get_base_kernel(ctx)[KernelBuildExtModuleInfo].modules_staging_archive,
             all_module_basenames_file,
-        ],
+        ] + extra_inputs,
         outputs = [modules_staging_archive],
         tools = ctx.attr._hermetic_tools[HermeticToolsInfo].deps,
         progress_message = "Repackaging module_staging_archive {}".format(_progress_message_suffix(ctx)),
