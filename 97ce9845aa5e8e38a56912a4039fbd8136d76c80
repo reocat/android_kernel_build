@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d45885f_71790a86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-22T23:13:09Z",
+      "side": 1,
+      "message": "I only have aesthetic comments. @ramjiyani@google.com, please check the correctness of this change.",
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f1696cd_f8b05213",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1862,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-22T23:13:09Z",
+      "side": 1,
+      "message": "nit: Instead of defining extra_inputs, please just define \n\n```\ninputs \u003d [\n            modules_staging_archive_self,\n            base_kernel_utils.get_base_kernel(ctx)[KernelBuildExtModuleInfo].modules_staging_archive,\n            all_module_basenames_file,\n        ]\n```\n\nhere and append the list below.",
+      "range": {
+        "startLine": 1862,
+        "startChar": 4,
+        "endLine": 1862,
+        "endChar": 16
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "641d256b_2fbb8ef8",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1866,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-22T23:13:09Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Buildifier: Prefer using \".append()\" to adding a single element list. http://go/buildifier-warnings#list-append\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nPrefer using \".append()\" to adding a single element list. http://go/buildifier-warnings#list-append",
+      "range": {
+        "startLine": 1866,
+        "startChar": 8,
+        "endLine": 1866,
+        "endChar": 52
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56dba75d_2e868441",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1867,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-22T23:13:09Z",
+      "side": 1,
+      "message": "nit: `protected_modules_list_path` to indicate that this is a string (otherwise it is easily confused with `src_protected_modules_list`)",
+      "range": {
+        "startLine": 1867,
+        "startChar": 8,
+        "endLine": 1867,
+        "endChar": 30
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53ad33d8_96157ced",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1878,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-22T23:13:09Z",
+      "side": 1,
+      "message": "nit: please make this two lines",
+      "range": {
+        "startLine": 1878,
+        "startChar": 84,
+        "endLine": 1878,
+        "endChar": 85
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "555a0b29_0420bf0b",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-22T23:13:09Z",
+      "side": 1,
+      "message": "nit: Instead of checking if `protected_modules_list` is empty in the script, I would suggest not to add the script in the first place. For example:\n\n```\nif src_protected_modules_list:\n  inputs.append(src_protected_modules_list)\n  command +\u003d \"\"\"\n    for module in $(cat {all_module_basenames_file}); do\n      if ! grep -q \"${{module}}\"\u0027$\u0027 {src_protected_modules_list} ; then\n        base_modules\u003d$(echo \"${{base_modules}}\" | grep -v \"${{module}}\"\u0027$\u0027 || true)\n      fi\n    done\n  \"\"\".format(src_protected_modules_list \u003d src_protected_modules_list.path, ...)\nelse:\n  command +\u003d \"\"\"\n    for module in $(cat {all_module_basenames_file}); do\n      base_modules\u003d$(echo \"${{base_modules}}\" | grep -v \"${{module}}\"\u0027$\u0027 || true)\n    done\n  \"\"\".format(...)\n```",
+      "range": {
+        "startLine": 1881,
+        "startChar": 0,
+        "endLine": 1881,
+        "endChar": 108
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
