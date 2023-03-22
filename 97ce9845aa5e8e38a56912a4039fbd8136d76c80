@@ -154,6 +154,30 @@
       },
       "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11ccee63_d20e8212",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1881,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-22T23:16:29Z",
+      "side": 1,
+      "message": "also `.` will match any character so technically `foo.bar.ko` will match `fooabar.ko` -- but maybe we don\u0027t care about these edge cases",
+      "parentUuid": "dabd98ea_f6e50590",
+      "range": {
+        "startLine": 1881,
+        "startChar": 60,
+        "endLine": 1881,
+        "endChar": 61
+      },
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
