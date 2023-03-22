@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "629795bf_144d63b7",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-22T22:47:46Z",
+      "side": 1,
+      "message": "lto here refers to the attribute kernel_build.lto not the --lto flag.\n\nThe kernel_build.lto attribute is affected by the --lto flag, but this is not known by kernel_config_settings.bzl. This extension only cares about a single source of truth for LTO setting of a kernel_build -- the kernel_build.lto attribute.",
+      "parentUuid": "5509e6a6_ddb954f8",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 3
+      },
+      "revId": "67158d6ae1c20a3e4ad37386ff8e4e18ff1e7330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed7595bb_fcd188c1",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-22T11:46:05Z",
       "side": 1,
       "message": "It seems this was recently fixed http://b/257288175#comment3",
+      "range": {
+        "startLine": 32,
+        "startChar": 18,
+        "endLine": 32,
+        "endChar": 29
+      },
+      "revId": "67158d6ae1c20a3e4ad37386ff8e4e18ff1e7330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47ed42a0_ac744133",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-22T22:47:46Z",
+      "side": 1,
+      "message": "It was fixed because LTO is in these lists. If we drop LTO from these lists, it may start to break.",
+      "parentUuid": "ed7595bb_fcd188c1",
       "range": {
         "startLine": 32,
         "startChar": 18,
