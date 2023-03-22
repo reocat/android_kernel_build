@@ -39,6 +39,23 @@
       },
       "revId": "80062b33fd575a2197543122e6c79a58ecdf5cbc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4faefed9_183b7809",
+        "filename": "kleaf/preserve_env.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-22T13:29:02Z",
+      "side": 1,
+      "message": "can we maybe remove the toolchain specific parts from _setup_env.sh such that we do not have to preserve them? Instead we can run _setup_env.sh for the remaining settings and append toolchain env vars to it. That would also show a migration path out of _setup_env.sh altogether.",
+      "revId": "80062b33fd575a2197543122e6c79a58ecdf5cbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
