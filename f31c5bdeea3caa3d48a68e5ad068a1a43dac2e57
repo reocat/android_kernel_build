@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04303b82_f0500be9",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1884,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-23T23:51:05Z",
+      "side": 1,
+      "message": "The Pixel error is intentional to catch the incompatibility between kernel_filegroup and kernel_build.\n\nLet me take a closer look at this error and come back to this CL.",
+      "parentUuid": "97b071e6_7ac8cb36",
+      "range": {
+        "startLine": 1884,
+        "startChar": 0,
+        "endLine": 1884,
+        "endChar": 118
+      },
+      "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa51a931_06403a3d",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 4
