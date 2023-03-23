@@ -16,6 +16,24 @@
       "message": "Did you confirm that partners aren\u0027t using XML monitoring any more?",
       "revId": "ed3fdeedcfe5eb34cd5adbb2cec8de52c3077ac7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f615729_c4da1cae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-03-23T08:58:40Z",
+      "side": 1,
+      "message": "There have been multiple announcements.\n\nXML monitoring is currently a no-op. aosp/2484855\n\nWe are almost certainly not going back.",
+      "parentUuid": "0fcfb529_b7454ec6",
+      "revId": "ed3fdeedcfe5eb34cd5adbb2cec8de52c3077ac7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
