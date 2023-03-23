@@ -107,6 +107,11 @@ def _create_one_device_modules_test(
     elif arch == "riscv64":
         fragments += ["64-bit.config", "gki.config"]
 
+    # There is nothing to test when no modules are built.
+    if not module_outs:
+        empty_test(name = name)
+        return
+
     # A minimal device's kernel_build build_config.
     build_config_content = """
                 KERNEL_DIR="{common_package}"
