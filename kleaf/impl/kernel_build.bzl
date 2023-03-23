@@ -1101,6 +1101,29 @@ def _build_main_action(
         data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
         restore_out_dir_cmd = cache_dir_step.cmd,
     )
+
+    # Do not run modules_install unless modules are part of the outputs
+    #  and the build kernel does have support for them.
+    internal_outs_under_out_dir = " ".join(["${{OUT_DIR}}/{}".format(item) for item in _kernel_build_internal_outs])
+    modules_install_cmd = """
+           touch {internal_outs_under_out_dir}
+        """.format(
+        internal_outs_under_out_dir = internal_outs_under_out_dir,
+    )
+    if all_output_names.modules:
+        modules_install_cmd = """
+           if grep -q "CONFIG_MODULES=y" ${{OUT_DIR}}/.config ; then
+               make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} {module_strip_flag} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) modules_install
+           else
+               # Workaround as this file is required, hence just produce a placeholder.
+               touch {internal_outs_under_out_dir}
+           fi
+        """.format(
+            internal_outs_under_out_dir = internal_outs_under_out_dir,
+            module_strip_flag = module_strip_flag,
+            modules_staging_dir = modules_staging_dir,
+        )
+
     command += """
            {kbuild_mixed_tree_cmd}
          # Actual kernel build
@@ -1108,12 +1131,7 @@ def _build_main_action(
          # Set variables and create dirs for modules
            mkdir -p {modules_staging_dir}
          # Install modules
-           if grep -q "CONFIG_MODULES=y" ${{OUT_DIR}}/.config ; then
-               make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} {module_strip_flag} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) modules_install
-           else
-               # Workaround as this file is required, hence just produce a placeholder.
-               touch {internal_outs_under_out_dir}
-           fi
+           {modules_install_cmd}
          # Archive headers in OUT_DIR
            find ${{OUT_DIR}} -name *.h -print0                          \
                | tar czf {out_dir_kernel_headers_tar}                   \
@@ -1155,7 +1173,6 @@ def _build_main_action(
         kbuild_mixed_tree_arg = kbuild_mixed_tree_ret.arg,
         dtstree_arg = "--srcdir ${OUT_DIR}/${dtstree}",
         ruledir = ruledir.path,
-        internal_outs_under_out_dir = " ".join(["${{OUT_DIR}}/{}".format(item) for item in _kernel_build_internal_outs]),
         all_output_names_minus_modules = " ".join(all_output_names.non_modules),
         grab_intree_modules_cmd = grab_intree_modules_step.cmd,
         grab_unstripped_intree_modules_cmd = grab_unstripped_modules_step.cmd,
@@ -1168,10 +1185,10 @@ def _build_main_action(
         check_remaining_modules_cmd = check_remaining_modules_step.cmd,
         modules_staging_dir = modules_staging_dir,
         modules_staging_archive_self = modules_staging_archive_self.path,
-        module_strip_flag = module_strip_flag,
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
         interceptor_command_prefix = interceptor_step.command_prefix,
         label = ctx.label,
+        modules_install_cmd = modules_install_cmd,
     )
 
     # all inputs that |command| needs

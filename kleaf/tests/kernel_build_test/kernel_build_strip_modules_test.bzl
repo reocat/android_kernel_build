@@ -75,6 +75,7 @@ def kernel_build_strip_modules_test(name):
             name = name_prefix + "_build",
             build_config = "build.config.fake",
             outs = [],
+            module_outs = ["fake_module.ko"],
             strip_modules = strip_modules,
             tags = ["manual"],
         )
