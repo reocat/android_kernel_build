@@ -46,6 +46,29 @@
       },
       "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa51a931_06403a3d",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1893,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-03-23T22:07:58Z",
+      "side": 1,
+      "message": "I think you can just do this:\n\n```\nbase_modules\u003d$(grep -v -w -F -f {protected_modules_list_path} {all_module_basenames_file})\n```\n\nHowever, I think that it\u0027s possible that the modules in `all_module_basenames_file` could just be the basename and not include the path. In that case, neither of these solutions would work. So you probably need to run $(basename ${{module}})",
+      "range": {
+        "startLine": 1888,
+        "startChar": 0,
+        "endLine": 1893,
+        "endChar": 0
+      },
+      "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
