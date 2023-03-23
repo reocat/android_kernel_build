@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7fa59fc_8120ad51",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-23T20:52:08Z",
+      "side": 1,
+      "message": "nit: this can be its own variable",
+      "range": {
+        "startLine": 1110,
+        "startChar": 8,
+        "endLine": 1110,
+        "endChar": 35
+      },
+      "revId": "f76a1294ade44b32b0a48d2c8c93ac2595abdd3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e09e5ef7_5b5bfbf7",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-23T20:52:08Z",
+      "side": 1,
+      "message": "If a device does not have any module_outs and module_implicit_outs, but has `modules` in `${MAKE_GOALS}`, does `make modules_install` pass?\n\nIf so, I think we might want to detect whether `modules` is in `${MAKE_GOALS}` instead.\n\nAnother reason I think detecting `modules` in `${MAKE_GOALS}` is better is that, for builds with `--allow_undeclared_modules` (e.g. the `allmodconfig` build), the list of module_outs is empty, but we do want to build the modules (and, arguably, also run make modules_install). We just don\u0027t care about putting them in `DefaultInfo`.",
+      "range": {
+        "startLine": 1111,
+        "startChar": 5,
+        "endLine": 1112,
+        "endChar": 32
+      },
+      "revId": "f76a1294ade44b32b0a48d2c8c93ac2595abdd3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
