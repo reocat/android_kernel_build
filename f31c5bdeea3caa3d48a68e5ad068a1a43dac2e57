@@ -22,6 +22,30 @@
       },
       "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b2199e0_a33be15a",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1884,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2023-03-23T21:51:32Z",
+      "side": 1,
+      "message": "Hmm, it\u0027s been building for me in our tree. Any way I could repro the issue?\n\n@elsk@google.com, I could do this, does it seem also correct?\n\n```\nif base_kernel_utils.get_base_kernel(ctx)[KernelBuildAbiInfo] \u0026\u0026 base_kernel_utils.get_base_kernel(ctx)[KernelBuildAbiInfo].src_protected_modules_list:\n    ...\n```",
+      "parentUuid": "89f5b9d4_bd47ddc9",
+      "range": {
+        "startLine": 1884,
+        "startChar": 0,
+        "endLine": 1884,
+        "endChar": 118
+      },
+      "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
