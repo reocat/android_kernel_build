@@ -93,6 +93,30 @@
       },
       "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ec93d78_3adf8fd4",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1893,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2023-03-23T22:15:11Z",
+      "side": 1,
+      "message": "- base_modules is list of \"complete\" path to module (i.e. drivers/virt/gunyah/gunyah_irqfd.ko)\n - all_module_basenames_file contains only \"gunyah_irqfd.ko\"\n - protected_modules_list_path contains \"complete\" path to module (drivers/virt/gunyah/gunyah_irqfd.ko)\n \nMy proposed solution works because it is searching if \"gunyah_irqfd.ko\" is part of protected_modules_list_path (fixed string, word match) which has \"drivers/virt/gunyah/gunyah_irqfd.ko\".\n\nI think your optimization will not work because it would look for \"drivers/virt/gunyah/gunyah_irqfd.ko\" inside file with only \"gunyah_irqfd.ko\")",
+      "parentUuid": "fa51a931_06403a3d",
+      "range": {
+        "startLine": 1888,
+        "startChar": 0,
+        "endLine": 1893,
+        "endChar": 0
+      },
+      "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
