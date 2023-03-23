@@ -16,6 +16,29 @@
       "message": "+1 from the logic of it. Will would you also take a look of whether doing this is correct?",
       "revId": "dfef4e1d15a6057b2b130ef1396dcc3fe525fc59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d98e6cd5_88d49ee0",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1868,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-23T10:32:21Z",
+      "side": 1,
+      "message": "this seems to be a duplicated line (L1886), is it intended or can it be deleted?",
+      "range": {
+        "startLine": 1868,
+        "startChar": 4,
+        "endLine": 1868,
+        "endChar": 118
+      },
+      "revId": "dfef4e1d15a6057b2b130ef1396dcc3fe525fc59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
