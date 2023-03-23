@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89f5b9d4_bd47ddc9",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1884,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-03-23T21:47:13Z",
+      "side": 1,
+      "message": "This doesn\u0027t build for me:\n```\nError: \u0027KernelBuildAbiInfo\u0027 value has no field or method \u0027src_protected_modules_list\u0027\n```",
+      "range": {
+        "startLine": 1884,
+        "startChar": 0,
+        "endLine": 1884,
+        "endChar": 118
+      },
+      "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
