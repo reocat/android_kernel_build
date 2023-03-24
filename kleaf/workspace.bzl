@@ -21,7 +21,9 @@ load(
 load("//build/kernel/kleaf:download_repo.bzl", "download_artifacts_repo")
 load("//build/kernel/kleaf:key_value_repo.bzl", "key_value_repo")
 
-def define_kleaf_workspace(common_kernel_package = None):
+def define_kleaf_workspace(
+        common_kernel_package = None,
+        py_toolchain = None):
     """Common macro for defining repositories in a Kleaf workspace.
 
     **This macro must only be called from `WORKSPACE` or `WORKSPACE.bazel`
@@ -35,9 +37,14 @@ def define_kleaf_workspace(common_kernel_package = None):
         default, it is `"common"`.
 
         Do not provide the trailing `/`.
+      py_toolchain: If provided, use a different Python toolchain for kernel
+        building. Default is `"//prebuilts/build-tools:py_toolchain"`.
     """
     if common_kernel_package == None:
         common_kernel_package = "common"
+
+    if py_toolchain == None:
+        py_toolchain = "//prebuilts/build-tools:py_toolchain"
 
     import_external_repositories(
         # keep sorted
@@ -98,5 +105,5 @@ def define_kleaf_workspace(common_kernel_package = None):
     )
 
     native.register_toolchains(
-        "//prebuilts/build-tools:py_toolchain",
+        py_toolchain,
     )
