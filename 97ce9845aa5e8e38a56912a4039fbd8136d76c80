@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f3175c48_4b17b1e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-24T00:14:16Z",
+      "side": 1,
+      "message": "see the other comment Will has; kernel_filegroup needs to work when it is used as a base_kernel of a kernel_build. The Pixel build is intentionally set up against kernel_filegroup to catch bugs like this.",
+      "parentUuid": "03504d9f_d8672f62",
+      "revId": "97ce9845aa5e8e38a56912a4039fbd8136d76c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f1696cd_f8b05213",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 1
