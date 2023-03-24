@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a02bb821_2e83cce5",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-24T09:25:04Z",
+      "side": 1,
+      "message": "I am not convinced that the individual python distributions should be handled within hermetic_tools. I think hermetic_tools should just have a \u0027deps\u0027 on a python distribution, similarly to how it depends on sysroot.\n\nIs there something wrong with users even particularly requesting python as deps in addition to the hermetic tools? I am asking because I would rather split hermetic_tools than maintaining it as such a large input. The reason is that if any of the hermetic tools changes, the entire build downstream is invalidated.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "e4ca4dfa6688e1dbaf2488849dcc96830f5d1e8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e69e1b87_c931ea20",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-24T09:25:04Z",
+      "side": 1,
+      "message": "It might be tedious and not suitable for this change, but ideally this glob is expanded and then cleaned up. There likely tools that we do not use (anymore).",
+      "revId": "e4ca4dfa6688e1dbaf2488849dcc96830f5d1e8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "122182cf_73cc8764",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-24T09:25:04Z",
+      "side": 1,
+      "message": "do we really want to support python2? And if we drop python2, does it make things simpler?",
+      "revId": "e4ca4dfa6688e1dbaf2488849dcc96830f5d1e8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3a28336_872197b7",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-24T09:25:04Z",
+      "side": 1,
+      "message": "if py2_outs is None: py2_outs \u003d []\nif py3_outs is None: py3_outs \u003d []\n\nouts \u003d [\"{}/{}\".format(name, paths.basename(src)) for src in srcs + py2_outs + py3_outs]\n\n\nalso, srcs is a mandatory argument, hence the \"if srcs\" is technically not necessary.",
+      "range": {
+        "startLine": 217,
+        "startChar": 3,
+        "endLine": 224,
+        "endChar": 92
+      },
+      "revId": "e4ca4dfa6688e1dbaf2488849dcc96830f5d1e8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
