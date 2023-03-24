@@ -146,6 +146,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed9ca7b9_0ed7fbf8",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1884,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-24T00:13:03Z",
+      "side": 1,
+      "message": "I am going to leave a pretty long pedantic comment below. Please assign the bug to me or @umendez@google.com if you are not sure how to handle this.\n\n-----\n\nAccording to the doc of KernelBuildAbiInfo: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/common_providers.bzl;l\u003d141;drc\u003d47401de338a7cc4fffbfb171ffebef986b53fc15\n```\n   doc \u003d \"A provider that specifies the expectations of a [`kernel_abi`](#kernel_abi) on a `kernel_build`.\",\n```\n\nYou should not assume that base_kernel contains `KernelBuildAbiInfo` with full information. And in this case, `kernel_filegroup` returns an incomplete `KernelBuildAbiInfo`. This is intentional because `kernel_filegroup` does not have other information, like `src_protected_modules_list`.\n\nSo in order to solve this, you\u0027ll need to either let base_kernel exposes `src_protected_modules_list` through some other provider, or re-purpose `KernelBuildAbiInfo` for this.\n\n---------\n\nThis is what I suggest to do in the short term:\n\n\n- Add `protected_modules_list` to kenrel_filegroup calls in `common_kernels.bzl`\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/common_kernels.bzl;l\u003d852;drc\u003d714118718ac3e8feea9b1516235517921fca36b5\n\n```\nprotected_modules_list \u003d target_configs[name].get(\"protected_modules_list\")\n```\n\nwhere `target_configs` is defined in the `define_common_kernels()` macro:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/common_kernels.bzl;l\u003d534;drc\u003d714118718ac3e8feea9b1516235517921fca36b5\n\nso you need to send it to `_define_prebuilts()` macro via an argument.\n\n- Add `protected_modules_list` attribute to kernel_filegroup\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_filegroup.bzl;l\u003d166;drc\u003d011874cf1a23af73c204c1abde45c75b7c6662dd\n\n```\n\"protected_modules_list\": attr.label(allow_single_file \u003d True),  \n```\n\n- Change `KernelBuildAbiInfo` doc so it is more generic, e.g.\n\n```\nA provider that specifies ABI-related information of a `kernel_build`.\n```\n\n- Add `src_protected_modules_list` to the `KernelBuildAbiInfo` returned by `kernel_filegroup`.\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_filegroup.bzl;l\u003d119;drc\u003d011874cf1a23af73c204c1abde45c75b7c6662dd\n\n```\nKernelBuildAbiInfo(\n  src_protected_modules_list \u003d ctx.file.protected_modules_list,\n  ...\n)\n```",
+      "parentUuid": "04303b82_f0500be9",
+      "range": {
+        "startLine": 1884,
+        "startChar": 0,
+        "endLine": 1884,
+        "endChar": 118
+      },
+      "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa51a931_06403a3d",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 4
