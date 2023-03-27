@@ -1107,8 +1107,11 @@ def _build_main_action(
            {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
          # Set variables and create dirs for modules
            mkdir -p {modules_staging_dir}
+         # Follow-up actions will be performed based on wheter "modules"
+         # was a make target.
+           make_modules=$(echo ${{MAKE_GOALS}} | grep "\\s*modules\\s*")
          # Install modules
-           if grep -q "CONFIG_MODULES=y" ${{OUT_DIR}}/.config ; then
+           if [ "${{make_modules}}" ] ; then
                make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} {module_strip_flag} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) modules_install
            else
                # Workaround as this file is required, hence just produce a placeholder.
@@ -1138,12 +1141,16 @@ def _build_main_action(
            {grab_gdb_scripts_cmd}
          # Grab * files
            {grab_kbuild_output_step_cmd}
-         # Grab in-tree modules
-           {grab_intree_modules_cmd}
+           if [ "${{make_modules}}" ] ; then
+             # Grab in-tree modules
+               {grab_intree_modules_cmd}
+           fi
          # Grab unstripped in-tree modules
            {grab_unstripped_intree_modules_cmd}
-         # Check if there are remaining *.ko files
-           {check_remaining_modules_cmd}
+           if [ "${{make_modules}}" ] ; then
+             # Check if there are remaining *.ko files
+               {check_remaining_modules_cmd}
+           fi
          # Clean up staging directories
            rm -rf {modules_staging_dir}
          # Create last_build symlink in cache_dir
