@@ -45,6 +45,30 @@
       },
       "revId": "f76a1294ade44b32b0a48d2c8c93ac2595abdd3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b30ab2f7_e7dfb9ea",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-27T11:30:14Z",
+      "side": 1,
+      "message": "Yes, it does, but the build will fail unless `--allow_undeclared_modules` is provided, as it\u0027s the case with the `allmodconfig` target.",
+      "parentUuid": "e09e5ef7_5b5bfbf7",
+      "range": {
+        "startLine": 1111,
+        "startChar": 5,
+        "endLine": 1112,
+        "endChar": 32
+      },
+      "revId": "f76a1294ade44b32b0a48d2c8c93ac2595abdd3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
