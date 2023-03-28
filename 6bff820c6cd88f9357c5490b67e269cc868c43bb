@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d86f947_c80fcfc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-03-28T08:27:00Z",
+      "side": 1,
+      "message": "build.sh and build_abi.sh are deprecated on this branch. Please use Kleaf for a kernel building with these tools. Anything else cannot be supported and is likely broken/wrong.\n\nbut regardless, `build_abi.sh` is a wrapper around `build.sh` with just ABI monitoring added. As such, reverting to `build.sh` (as long as it exists) is the way forward here to help transitioning.",
+      "revId": "6bff820c6cd88f9357c5490b67e269cc868c43bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
