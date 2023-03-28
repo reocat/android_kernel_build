@@ -525,7 +525,7 @@ def define_common_kernels(
         print(("\nWARNING: {package}: define_common_kernels() no longer uses the branch " +
                "attribute. Default value of --dist_dir has been changed to out/{{name}}/dist. " +
                "Please remove the branch attribute from define_common_kernels().").format(
-            package = native.package(),
+            package = common_kernel_package,
         ))
 
     if visibility == None:
@@ -813,9 +813,9 @@ def define_common_kernels(
         flat = True,
     )
 
-    _define_prebuilts(visibility = visibility)
+    _define_prebuilts(target_configs = target_configs, visibility = visibility)
 
-def _define_prebuilts(**kwargs):
+def _define_prebuilts(target_configs = None, **kwargs):
     # Build number for GKI prebuilts
     bool_flag(
         name = "use_prebuilt_gki",
@@ -875,6 +875,7 @@ def _define_prebuilts(**kwargs):
                 ":use_prebuilt_gki_set": "@{}//{}{}".format(repo_name, name, MODULE_OUTS_FILE_SUFFIX),
                 "//conditions:default": ":" + name + "_module_outs_file",
             }),
+            protected_modules_list = target_configs[name].get("protected_modules_list"),
             **kwargs
         )
 
