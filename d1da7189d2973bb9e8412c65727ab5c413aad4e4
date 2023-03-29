@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9f77f8d_8a059365",
+        "filename": "BUILD.bazel",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1054468
+      },
+      "writtenOn": "2023-03-29T14:17:48Z",
+      "side": 1,
+      "message": "The intent is that it is conditioned on RUSTC_VERSION being defined (line 44). If that\u0027s not the case, I could use some help on getting it to be.",
+      "parentUuid": "8af54bdc_39554abc",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 60
+      },
+      "revId": "d1da7189d2973bb9e8412c65727ab5c413aad4e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "571f4f31_781b794d",
