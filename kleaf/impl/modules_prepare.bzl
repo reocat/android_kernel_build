@@ -54,6 +54,9 @@ def _modules_prepare_impl(ctx):
     command += """
          # Prepare for the module build
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules_prepare
+         # Workaround to force the creation of these missing files.
+           mkdir -p ${{OUT_DIR}}/security/selinux/
+           ${{OUT_DIR}}/scripts/selinux/genheaders/genheaders ${{OUT_DIR}}/security/selinux/flask.h ${{OUT_DIR}}/security/selinux/av_permissions.h
          # Package files
          # TODO(b/243737262): Use tar czf
            mkdir -p $(dirname {outdir_tar_gz})
