@@ -43,22 +43,25 @@ def _kernel_module_group_impl(ctx):
     )
 
     kernel_utils.check_kernel_build(targets, None, ctx.label)
-    kernel_module_info = KernelModuleInfo(
-        kernel_build = targets[0][KernelModuleInfo].kernel_build,
-        modules_staging_dws_depset = depset(transitive = [
-            target[KernelModuleInfo].modules_staging_dws_depset
-            for target in targets
-        ]),
-        kernel_uapi_headers_dws_depset = depset(transitive = [
-            target[KernelModuleInfo].kernel_uapi_headers_dws_depset
-            for target in targets
-        ]),
-        files = depset(transitive = [
-            target[KernelModuleInfo].files
-            for target in targets
-        ]),
-        packages = depset(transitive = [target[KernelModuleInfo].packages for target in targets]),
-    )
+    if targets != []:
+      kernel_module_info = KernelModuleInfo(
+          kernel_build = targets[0][KernelModuleInfo].kernel_build,
+          modules_staging_dws_depset = depset(transitive = [
+              target[KernelModuleInfo].modules_staging_dws_depset
+              for target in targets
+          ]),
+          kernel_uapi_headers_dws_depset = depset(transitive = [
+              target[KernelModuleInfo].kernel_uapi_headers_dws_depset
+              for target in targets
+          ]),
+          files = depset(transitive = [
+              target[KernelModuleInfo].files
+              for target in targets
+          ]),
+          packages = depset(transitive = [target[KernelModuleInfo].packages for target in targets]),
+      )
+    else:
+      kernel_module_info = KernelModuleInfo()
 
     unstripped_modules_info = KernelUnstrippedModulesInfo(
         directories = depset(transitive = [
