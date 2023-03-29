@@ -167,6 +167,7 @@ def kernel_abi(
         kernel_modules = None,
         module_grouping = None,
         abi_definition_stg = None,
+        abi_definition_xml = None,
         kmi_enforced = None,
         unstripped_modules_archive = None,
         kmi_symbol_list_add_only = None,
@@ -242,6 +243,7 @@ def kernel_abi(
         list will simply be a sorted list of symbols used by all the kernel
         modules.
       abi_definition_stg: Location of the ABI definition in STG format.
+      abi_definition_xml: Location of the ABI definition in XML format.
       kmi_enforced: This is an indicative option to signal that KMI is enforced.
         If set to `True`, KMI checking tools respects it and
         reacts to it by failing if KMI differences are detected.
