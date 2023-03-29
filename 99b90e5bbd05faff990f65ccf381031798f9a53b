@@ -46,6 +46,53 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_module_group.bzl` to format the file, or apply the suggested fix.",
       "revId": "99b90e5bbd05faff990f65ccf381031798f9a53b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000041519705",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2512519?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "a1084c16_99c4a2c3",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_module_group.bzl",
+              "range": {
+                "startLine": 47,
+                "startChar": 0,
+                "endLine": 63,
+                "endChar": 0
+              },
+              "replacement": "        kernel_module_info \u003d KernelModuleInfo(\n            kernel_build \u003d targets[0][KernelModuleInfo].kernel_build,\n            modules_staging_dws_depset \u003d depset(transitive \u003d [\n                target[KernelModuleInfo].modules_staging_dws_depset\n                for target in targets\n            ]),\n            kernel_uapi_headers_dws_depset \u003d depset(transitive \u003d [\n                target[KernelModuleInfo].kernel_uapi_headers_dws_depset\n                for target in targets\n            ]),\n            files \u003d depset(transitive \u003d [\n                target[KernelModuleInfo].files\n                for target in targets\n            ]),\n            packages \u003d depset(transitive \u003d [target[KernelModuleInfo].packages for target in targets]),\n        )\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_module_group.bzl",
+              "range": {
+                "startLine": 64,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": "        kernel_module_info \u003d KernelModuleInfo()\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "9eeef1b2_8a8d1381",
+        "filename": "kleaf/impl/kernel_module_group.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-29T06:03:06Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_module_group.bzl` to format the file, or apply the suggested fix.",
+      "revId": "99b90e5bbd05faff990f65ccf381031798f9a53b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
