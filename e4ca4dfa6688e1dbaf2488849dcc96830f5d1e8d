@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5e1d385_90ac0d3b",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T21:54:24Z",
+      "side": 1,
+      "message": "\u003e I think hermetic_tools should just have a \u0027deps\u0027 on a python distribution\n\nThe dependency on python distribution is implicit, under the `toolchain` argument in `rule()`.\n\nI need some handling of Python distributions just to create symlinks (so that, if you have a shell script that sets PATH to the hermetic toolchain one, then `python` points to Python 3, etc. -- as defined by py2_outs and py3_outs)",
+      "parentUuid": "a02bb821_2e83cce5",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "e4ca4dfa6688e1dbaf2488849dcc96830f5d1e8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e69e1b87_c931ea20",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-03-24T09:25:04Z",
       "side": 1,
       "message": "It might be tedious and not suitable for this change, but ideally this glob is expanded and then cleaned up. There likely tools that we do not use (anymore).",
+      "revId": "e4ca4dfa6688e1dbaf2488849dcc96830f5d1e8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c61f19e6_b51e9a25",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T21:54:24Z",
+      "side": 1,
+      "message": "+1, we can clean up later.",
+      "parentUuid": "e69e1b87_c931ea20",
       "revId": "e4ca4dfa6688e1dbaf2488849dcc96830f5d1e8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79146990_f87949a2",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T21:54:24Z",
+      "side": 1,
+      "message": "A little bit simpler, yeah. But the disablement of python2 should probably be handled separately, not in this CL.",
+      "parentUuid": "122182cf_73cc8764",
+      "revId": "e4ca4dfa6688e1dbaf2488849dcc96830f5d1e8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3a28336_872197b7",
@@ -71,6 +131,30 @@
       "writtenOn": "2023-03-24T09:25:04Z",
       "side": 1,
       "message": "if py2_outs is None: py2_outs \u003d []\nif py3_outs is None: py3_outs \u003d []\n\nouts \u003d [\"{}/{}\".format(name, paths.basename(src)) for src in srcs + py2_outs + py3_outs]\n\n\nalso, srcs is a mandatory argument, hence the \"if srcs\" is technically not necessary.",
+      "range": {
+        "startLine": 217,
+        "startChar": 3,
+        "endLine": 224,
+        "endChar": 92
+      },
+      "revId": "e4ca4dfa6688e1dbaf2488849dcc96830f5d1e8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b56a346_2f2f1771",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T21:54:24Z",
+      "side": 1,
+      "message": "py2_outs and py3_outs have special handling, so they can\u0027t be merged into outs.\n\nagreed on the srcs part but it is not related to CL. I can clean it up later.",
+      "parentUuid": "e3a28336_872197b7",
       "range": {
         "startLine": 217,
         "startChar": 3,
