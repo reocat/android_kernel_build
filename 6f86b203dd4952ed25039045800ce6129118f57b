@@ -20,6 +20,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "78747e0b_838af14b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T22:18:14Z",
+      "side": 1,
+      "message": "The problem is that KernelModuleInfo is expected to have kernel_build set. Without any srcs, kernel_build cannot be inferred.\n\nhttps://cs.android.com/search?q\u003dKernelModuleInfo%5C%5D.kernel_build\n\nYou may add a new kernel_build attribute to kernel_module_group just like kernel_modules_install:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_modules_install.bzl;l\u003d227;drc\u003d47401de338a7cc4fffbfb171ffebef986b53fc15",
+      "revId": "6f86b203dd4952ed25039045800ce6129118f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa18ae1a_b8f9c1a6",
+        "filename": "kleaf/impl/kernel_module_group.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T22:18:14Z",
+      "side": 1,
+      "message": "This is not valid because places that use KernelModuleInfo expects `kernel_build` to be set. Without any srcs, `kernel_build` cannot be inferred. See how kernel_modules_install does this.\n\nThe other fields may be set to an empty depset.",
+      "range": {
+        "startLine": 64,
+        "startChar": 29,
+        "endLine": 64,
+        "endChar": 47
+      },
+      "revId": "6f86b203dd4952ed25039045800ce6129118f57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b1c9f90_bed7981e",
         "filename": "kleaf/impl/kernel_module_group.bzl",
         "patchSetId": 2
