@@ -176,8 +176,19 @@ def _default_target_configs():
         },
     }
 
+    x86_64_kmi_symbol_list = native.glob(["android/abi_gki_x86_64"])
+    x86_64_kmi_symbol_list = x86_64_kmi_symbol_list[0] if x86_64_kmi_symbol_list else None
+    x86_64_additional_kmi_symbol_lists = native.glob(
+        ["android/abi_gki_x86_64*"],
+        exclude = ["**/*.xml", "**/*.stg", "android/abi_gki_x86_64"],
+    )
+
     # Common configs for x86_64 and x86_64_debug
     x86_64_common = {
+        # Assume the value for KMI_SYMBOL_LIST, ADDITIONAL_KMI_SYMBOL_LISTS,
+        # for build.config.gki.x86_64
+        "kmi_symbol_list": x86_64_kmi_symbol_list,
+        "additional_kmi_symbol_lists": x86_64_additional_kmi_symbol_lists,
         # Assume BUILD_GKI_ARTIFACTS=1
         "build_gki_artifacts": True,
         "gki_boot_img_sizes": {
