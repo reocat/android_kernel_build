@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c6bdad7_c4230ea2",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1111,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T23:45:28Z",
+      "side": 1,
+      "message": "consider using \\b (word boundary)\n\nsame everywhere\n\n(I don\u0027t know if you need extended regexp `-E` or not, so please check)",
+      "range": {
+        "startLine": 1111,
+        "startChar": 20,
+        "endLine": 1111,
+        "endChar": 24
+      },
+      "revId": "d40a005874f570377e77f523d59e4e037c7ad63c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "084b67bd_54a5a56b",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T23:45:28Z",
+      "side": 1,
+      "message": "Why is this needed? Does check_remaining_modules_cmd not handle the empty case?",
+      "range": {
+        "startLine": 1145,
+        "startChar": 11,
+        "endLine": 1145,
+        "endChar": 63
+      },
+      "revId": "d40a005874f570377e77f523d59e4e037c7ad63c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
