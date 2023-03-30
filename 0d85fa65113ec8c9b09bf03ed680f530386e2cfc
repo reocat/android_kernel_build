@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59611ed2_38165040",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T23:40:41Z",
+      "side": 1,
+      "message": "This should be `native.package()` because `native.package()` is where `define_common_kernels` is called.\n\nThe load statement can go away.",
+      "range": {
+        "startLine": 528,
+        "startChar": 12,
+        "endLine": 528,
+        "endChar": 44
+      },
+      "revId": "0d85fa65113ec8c9b09bf03ed680f530386e2cfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c13ef90_c234c16b",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T23:40:41Z",
+      "side": 1,
+      "message": "unnecessary",
+      "range": {
+        "startLine": 818,
+        "startChar": 37,
+        "endLine": 818,
+        "endChar": 43
+      },
+      "revId": "0d85fa65113ec8c9b09bf03ed680f530386e2cfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
