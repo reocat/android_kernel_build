@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "489ea8df_e6ad7179",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T22:25:54Z",
+      "side": 1,
+      "message": "nit: how about\n\nforce_generate_headers\n\nforce_gen_headers\n\n?",
+      "range": {
+        "startLine": 105,
+        "startChar": 24,
+        "endLine": 105,
+        "endChar": 48
+      },
+      "revId": "eb8d0f49cde69b5aa24919a5efcefcb6b53e13b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec228ea0_4b883670",
+        "filename": "kleaf/impl/modules_prepare.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T22:25:54Z",
+      "side": 1,
+      "message": "Consider asking the caller to provide the list of headers to forcifully generate (e.g. instead of `force_headers_generation \u003d True`, use `force_generate_headers \u003d [\"security/selinux/flask.h\"]`",
+      "range": {
+        "startLine": 60,
+        "startChar": 71,
+        "endLine": 60,
+        "endChar": 95
+      },
+      "revId": "eb8d0f49cde69b5aa24919a5efcefcb6b53e13b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
