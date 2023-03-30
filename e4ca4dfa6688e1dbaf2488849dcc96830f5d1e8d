@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d0420a4_9565e3c7",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-30T21:55:21Z",
+      "side": 1,
+      "message": "That is, the hermetic toolchain itself does not resolve the Python toolchain. It uses the registered and resolved Python toolchain as said in the commit message.",
+      "parentUuid": "e5e1d385_90ac0d3b",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "e4ca4dfa6688e1dbaf2488849dcc96830f5d1e8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e69e1b87_c931ea20",
