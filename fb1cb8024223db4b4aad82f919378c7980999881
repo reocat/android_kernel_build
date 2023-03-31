@@ -32,6 +32,32 @@
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2517556?revision\u003d2",
       "fixSuggestions": [],
       "key": {
+        "uuid": "f083ecfe_c1febbca",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-31T19:19:09Z",
+      "side": 1,
+      "message": "syntax error near def",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 4
+      },
+      "revId": "fb1cb8024223db4b4aad82f919378c7980999881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000041799584",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2517556?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
         "uuid": "635a5297_6d8030d3",
         "filename": "kleaf/impl/abi/kernel_build_abi_dist.bzl",
         "patchSetId": 2
@@ -41,6 +67,32 @@
         "id": 1757831
       },
       "writtenOn": "2023-03-31T19:19:03Z",
+      "side": 1,
+      "message": "syntax error near _kernel_abi_dist_exec",
+      "range": {
+        "startLine": 41,
+        "startChar": 22,
+        "endLine": 41,
+        "endChar": 22
+      },
+      "revId": "fb1cb8024223db4b4aad82f919378c7980999881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000041799584",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2517556?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e37dba57_886240e0",
+        "filename": "kleaf/impl/abi/kernel_build_abi_dist.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-31T19:19:09Z",
       "side": 1,
       "message": "syntax error near _kernel_abi_dist_exec",
       "range": {
