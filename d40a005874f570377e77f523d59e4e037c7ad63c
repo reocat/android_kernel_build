@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be431f1c_53b348e8",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1111,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-31T12:49:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c6bdad7_c4230ea2",
+      "range": {
+        "startLine": 1111,
+        "startChar": 20,
+        "endLine": 1111,
+        "endChar": 24
+      },
+      "revId": "d40a005874f570377e77f523d59e4e037c7ad63c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "084b67bd_54a5a56b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-30T23:45:28Z",
       "side": 1,
       "message": "Why is this needed? Does check_remaining_modules_cmd not handle the empty case?",
+      "range": {
+        "startLine": 1145,
+        "startChar": 11,
+        "endLine": 1145,
+        "endChar": 63
+      },
+      "revId": "d40a005874f570377e77f523d59e4e037c7ad63c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83f44a02_2721090a",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-31T12:49:15Z",
+      "side": 1,
+      "message": "1. Otherwise the `{modules_staging_dir}/lib/modules/*/kernel` is missing and the build fails. \n \n2. No, I only see the check in `grab_intree_modules_step` which uses the length  of the modules array.",
+      "parentUuid": "084b67bd_54a5a56b",
       "range": {
         "startLine": 1145,
         "startChar": 11,
