@@ -46,6 +46,53 @@
       "message": "File is not formatted. Run `buildifier foo.bzl` to format the file, or apply the suggested fix.",
       "revId": "9ddc09cc1190cceb2874358837dcf497024ad2a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000041811334",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2518015?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "32cb9c7a_c314dcc1",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "foo.bzl",
+              "range": {
+                "startLine": 2,
+                "startChar": 0,
+                "endLine": 4,
+                "endChar": 0
+              },
+              "replacement": "    d \u003d ctx.actions.declare_directory(ctx.attr.name)\n    ctx.actions.run_shell(outputs \u003d [d], command \u003d \"\"\"\n"
+            },
+            {
+              "path": "foo.bzl",
+              "range": {
+                "startLine": 6,
+                "startChar": 0,
+                "endLine": 7,
+                "endChar": 0
+              },
+              "replacement": "    return DefaultInfo(files \u003d depset([d]))\n\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "cfd064c9_f5e57c13",
+        "filename": "foo.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-31T21:55:20Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier foo.bzl` to format the file, or apply the suggested fix.",
+      "revId": "9ddc09cc1190cceb2874358837dcf497024ad2a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
