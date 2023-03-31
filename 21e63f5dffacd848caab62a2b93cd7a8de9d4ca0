@@ -22,6 +22,30 @@
       },
       "revId": "21e63f5dffacd848caab62a2b93cd7a8de9d4ca0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fca2197_aea94e6e",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-03-31T22:20:22Z",
+      "side": 0,
+      "message": "CL:2516268",
+      "parentUuid": "9cccfa99_cc38ed45",
+      "range": {
+        "startLine": 528,
+        "startChar": 11,
+        "endLine": 528,
+        "endChar": 39
+      },
+      "revId": "21e63f5dffacd848caab62a2b93cd7a8de9d4ca0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
