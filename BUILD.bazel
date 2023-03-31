@@ -14,6 +14,7 @@
 
 load("//build/kernel/kleaf:hermetic_tools.bzl", "hermetic_tools")
 load("@kernel_toolchain_info//:dict.bzl", "CLANG_VERSION")
+load(":foo.bzl", "foo")
 
 filegroup(
     name = "sysroot",
@@ -173,3 +174,5 @@ genrule(
     ],
     visibility = ["//visibility:public"],
 )
+
+foo(name = "foo")
