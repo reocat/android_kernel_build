@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000041798358",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2517556?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "01863e8e_3f1c5006",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-31T19:04:29Z",
+      "side": 1,
+      "message": "syntax error near def",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 4
+      },
+      "revId": "cfb315af38a1e71b84e685f4cb5be44faf7c3bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000041798358",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2517556?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "655c03b5_36ac7907",
+        "filename": "kleaf/impl/abi/kernel_build_abi_dist.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-03-31T19:04:29Z",
+      "side": 1,
+      "message": "syntax error near _kernel_abi_dist_exec",
+      "range": {
+        "startLine": 41,
+        "startChar": 22,
+        "endLine": 41,
+        "endChar": 22
+      },
+      "revId": "cfb315af38a1e71b84e685f4cb5be44faf7c3bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
