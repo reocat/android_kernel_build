@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66d71c02_421ace77",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-31T10:40:31Z",
+      "side": 1,
+      "message": "I solved this in CL:2513821, note from its description that it failed to build when the message was supposed to be printed.",
+      "parentUuid": "59611ed2_38165040",
+      "range": {
+        "startLine": 528,
+        "startChar": 12,
+        "endLine": 528,
+        "endChar": 44
+      },
+      "revId": "0d85fa65113ec8c9b09bf03ed680f530386e2cfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c13ef90_c234c16b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-03-30T23:40:41Z",
       "side": 1,
       "message": "unnecessary",
+      "range": {
+        "startLine": 818,
+        "startChar": 37,
+        "endLine": 818,
+        "endChar": 43
+      },
+      "revId": "0d85fa65113ec8c9b09bf03ed680f530386e2cfc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52a9ab0b_f6b9cc6c",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-03-31T10:40:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c13ef90_c234c16b",
       "range": {
         "startLine": 818,
         "startChar": 37,
