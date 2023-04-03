@@ -605,6 +605,7 @@ def define_common_kernels(
             collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
             strip_modules = _STRIP_MODULES,
             toolchain_version = toolchain_version,
+            modules_prepare_force_generate_headers = True,
             **kernel_build_kwargs
         )
 
