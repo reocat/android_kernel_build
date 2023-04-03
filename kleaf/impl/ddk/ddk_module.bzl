@@ -367,11 +367,10 @@ def ddk_module(
                         config = config,
                         value_type = type(config_value),
                     ))
-                config_value = "y" if config_value else ""
                 fg_name = "{name}_{config}_{value}_srcs".format(
                     name = name,
                     config = config,
-                    value = utils.normalize(config_value),
+                    value = utils.normalize(str(config_value)),
                 )
                 ddk_conditional_filegroup(
                     name = fg_name,
