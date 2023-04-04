@@ -26,43 +26,19 @@ load(":abi/abi_transitions.bzl", "with_vmlinux_transition")
 def _abi_dump_impl(ctx):
     kernel_utils.check_kernel_build(ctx.attr.kernel_modules, ctx.attr.kernel_build, ctx.label)
 
-    full_abi_out_file = _abi_dump_full(ctx)
-    abi_out_file = _abi_dump_filtered(ctx, full_abi_out_file)
-
     # Run both methods until STG is fully adopted.
     full_abi_out_file_stg = _abi_dump_full_stg(ctx)
     abi_out_file_stg = _abi_dump_filtered_stg(ctx, full_abi_out_file_stg)
 
-    # Create an STG file for each XML generated
-    full_stg_from_xml_file = _abi_create_stg_from_xml(ctx, full_abi_out_file)
-    stg_from_xml_file = _abi_create_stg_from_xml(ctx, abi_out_file)
-
     return [
         DefaultInfo(files = depset([
-            full_abi_out_file,
-            abi_out_file,
             full_abi_out_file_stg,
             abi_out_file_stg,
-            full_stg_from_xml_file,
-            stg_from_xml_file,
         ])),
         OutputGroupInfo(
-            abi_out_file = depset([abi_out_file]),
-            stg_abi_out_file = depset([full_abi_out_file_stg]),
+            abi_out_file = depset([abi_out_file_stg]),
         ),
     ]
-
-def _abi_dump_epilog_cmd(path, append_version):
-    ret = ""
-    if append_version:
-        ret += """
-             # Append debug information to abi file
-               echo "
-<!--
-     libabigail: $(abidw --version)
--->" >> {path}
-""".format(path = path)
-    return ret
 
 def _unstripped_dirs(ctx):
     unstripped_dirs = []
@@ -87,66 +63,6 @@ def _find_vmlinux(ctx):
         what = "{}: kernel_build".format(ctx.attr.name),
         required = True,
     )
-
-def _abi_create_stg_from_xml(ctx, xml_file):
-    from_xml_stg_file = ctx.actions.declare_file("{}/{}.stg".format(ctx.attr.name, xml_file.basename))
-
-    inputs = [xml_file, ctx.file._stg]
-    inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
-    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
-            {stg} --abi {xml_file} -o {from_xml_stg_file}
-    """.format(
-        stg = ctx.file._stg.path,
-        xml_file = xml_file.path,
-        from_xml_stg_file = from_xml_stg_file.path,
-    )
-    debug.print_scripts(ctx, command)
-    ctx.actions.run_shell(
-        inputs = inputs,
-        outputs = [from_xml_stg_file],
-        command = command,
-        mnemonic = "AbiConvertXmlToStg",
-        progress_message = "Converting .xml to .stg {}".format(ctx.label),
-    )
-    return from_xml_stg_file
-
-def _abi_dump_full(ctx):
-    abi_linux_tree = utils.intermediates_dir(ctx) + "/abi_linux_tree"
-    full_abi_out_file = ctx.actions.declare_file("{}/abi-full-generated.xml".format(ctx.attr.name))
-    vmlinux = _find_vmlinux(ctx)
-    unstripped_dirs = _unstripped_dirs(ctx)
-
-    inputs = [vmlinux, ctx.file._dump_abi]
-    inputs += ctx.files._dump_abi_scripts
-    inputs += unstripped_dirs
-
-    inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
-
-    # Directories could be empty, so use a find + cp
-    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
-        mkdir -p {abi_linux_tree}
-        find {unstripped_dirs} -name '*.ko' -exec cp -pl -t {abi_linux_tree} {{}} +
-        cp -pl {vmlinux} {abi_linux_tree}
-        {dump_abi} --linux-tree {abi_linux_tree} --out-file {full_abi_out_file}
-        {epilog}
-        rm -rf {abi_linux_tree}
-    """.format(
-        abi_linux_tree = abi_linux_tree,
-        unstripped_dirs = " ".join([unstripped_dir.path for unstripped_dir in unstripped_dirs]),
-        dump_abi = ctx.file._dump_abi.path,
-        vmlinux = vmlinux.path,
-        full_abi_out_file = full_abi_out_file.path,
-        epilog = _abi_dump_epilog_cmd(full_abi_out_file.path, True),
-    )
-    debug.print_scripts(ctx, command)
-    ctx.actions.run_shell(
-        inputs = inputs,
-        outputs = [full_abi_out_file],
-        command = command,
-        mnemonic = "AbiDumpFull",
-        progress_message = "Extracting ABI {}".format(ctx.label),
-    )
-    return full_abi_out_file
 
 def _abi_dump_full_stg(ctx):
     full_abi_out_file = ctx.actions.declare_file("{}/abi-full.stg".format(ctx.attr.name))
@@ -181,46 +97,6 @@ def _abi_dump_full_stg(ctx):
         progress_message = "[stg] Extracting ABI {}".format(ctx.label),
     )
     return full_abi_out_file
-
-def _abi_dump_filtered(ctx, full_abi_out_file):
-    abi_out_file = ctx.actions.declare_file("{}/abi-generated.xml".format(ctx.attr.name))
-    inputs = [full_abi_out_file]
-
-    inputs += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
-    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup
-    combined_abi_symbollist = ctx.attr.kernel_build[KernelBuildAbiInfo].combined_abi_symbollist
-    if combined_abi_symbollist:
-        inputs += [
-            ctx.file._filter_abi,
-            combined_abi_symbollist,
-        ]
-
-        command += """
-            {filter_abi} --in-file {full_abi_out_file} --out-file {abi_out_file} --kmi-symbol-list {abi_symbollist}
-            {epilog}
-        """.format(
-            abi_out_file = abi_out_file.path,
-            full_abi_out_file = full_abi_out_file.path,
-            filter_abi = ctx.file._filter_abi.path,
-            abi_symbollist = combined_abi_symbollist.path,
-            epilog = _abi_dump_epilog_cmd(abi_out_file.path, False),
-        )
-    else:
-        command += """
-            cp -p {full_abi_out_file} {abi_out_file}
-        """.format(
-            abi_out_file = abi_out_file.path,
-            full_abi_out_file = full_abi_out_file.path,
-        )
-    debug.print_scripts(ctx, command)
-    ctx.actions.run_shell(
-        inputs = inputs,
-        outputs = [abi_out_file],
-        command = command,
-        mnemonic = "AbiDumpFiltered",
-        progress_message = "Filtering ABI dump {}".format(ctx.label),
-    )
-    return abi_out_file
 
 def _abi_dump_filtered_stg(ctx, full_abi_out_file):
     abi_out_file = ctx.actions.declare_file("{}/abi.stg".format(ctx.attr.name))
@@ -266,9 +142,6 @@ abi_dump = rule(
     attrs = {
         "kernel_build": attr.label(providers = [KernelBuildAbiInfo, KernelUnstrippedModulesInfo]),
         "kernel_modules": attr.label_list(providers = [KernelUnstrippedModulesInfo]),
-        "_dump_abi_scripts": attr.label(default = "//build/kernel:dump-abi-scripts"),
-        "_dump_abi": attr.label(default = "//build/kernel:abi/dump_abi", allow_single_file = True),
-        "_filter_abi": attr.label(default = "//build/kernel:abi/filter_abi", allow_single_file = True),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_allowlist_function_transition": attr.label(

@@ -191,7 +191,7 @@ class BuildConfigToBazel(buildozer_command_builder.BuildozerCommandBuilder):
 
         self.new_env = order_dict_by_key(json.loads(subprocess.check_output(
             "source build/kernel/_setup_env.sh > /dev/null && build/kernel/kleaf/dump_env.py",
-            shell=True, stderr=self.stderr, env=self.environ)))
+            shell=True, stderr=self.stderr, env=self.environ, executable="/bin/bash")))
         logging.info("Captured env: %s", json.dumps(self.new_env, indent=2))
 
         build_config = find_build_config(self.new_env)
@@ -375,6 +375,7 @@ class BuildConfigToBazel(buildozer_command_builder.BuildozerCommandBuilder):
                     "SYSTEM_DLKM_MODULES_LIST",
                     "SYSTEM_DLKM_MODULES_BLOCKLIST",
                     "SYSTEM_DLKM_PROPS",
+                    "VENDOR_DLKM_ETC_FILES",
                     "VENDOR_DLKM_FS_TYPE",
                     "VENDOR_DLKM_MODULES_LIST",
                     "VENDOR_DLKM_MODULES_BLOCKLIST",

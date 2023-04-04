@@ -28,21 +28,20 @@ load(
 )
 load(":debug.bzl", "debug")
 load(":kernel_config_settings.bzl", "kernel_config_settings")
-load(":kernel_config_transition.bzl", "kernel_config_transition")
 load(":kgdb.bzl", "kgdb")
 load(":scripts_config_arg_builder.bzl", _config = "scripts_config_arg_builder")
 load(":stamp.bzl", "stamp")
 load(":utils.bzl", "kernel_utils")
 
-def _determine_raw_symbollist_path(ctx):
-    """A local action that stores the path to `abi_symbollist.raw` to a file object."""
+def _determine_local_path(ctx, file_name, file_attr):
+    """A local action that stores the path to sandboxed file to a file object"""
 
     # Use a local action so we get an absolute path in the execroot that
     # does not tear down as sandboxes. Then write the absolute path into the
-    # abi_symbollist.raw.abspath.
+    # abspath.
     #
     # In practice, the absolute path looks something like:
-    #    /<workspace_root>/out/bazel/output_user_root/<hash>/execroot/__main__/bazel-out/k8-fastbuild/bin/common/kernel_aarch64_raw_kmi_symbol_list/abi_symbollist.raw
+    #    /<workspace_root>/out/bazel/output_user_root/<hash>/execroot/__main__/bazel-out/k8-fastbuild/<file>
     #
     # Alternatively, we could use a relative path. However, gen_autoksyms.sh
     # interprets relative paths as paths relative to $abs_srctree, which
@@ -51,30 +50,52 @@ def _determine_raw_symbollist_path(ctx):
     # - /<workspace_root>/$KERNEL_DIR for local actions
     # Whether KernelConfig is executed in a sandbox may not be consistent with
     # whether a dependant action is executed in a sandbox. This causes the
-    # interpretation of CONFIG_UNUSED_KSYMS_WHITELIST inconsistent in the
-    # two actions. Hence, we stick with absolute paths.
+    # interpretation of CONFIG_* to be inconsistent in the two actions. Hence,
+    # we stick with absolute paths.
     #
     # NOTE: This may hurt remote caching for developer builds. We may want to
     # re-visit this when we implement remote caching for developers.
-    abspath = ctx.actions.declare_file("{}/abi_symbollist.raw.abspath".format(ctx.attr.name))
+
+    abspath = ctx.actions.declare_file("{}/{}.abspath".format(ctx.attr.name, file_name))
     command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
       # Record the absolute path so we can use in .config
-        readlink -e {raw_kmi_symbol_list} > {abspath}
+        readlink -e {file_attr_path} > {abspath}
     """.format(
         abspath = abspath.path,
-        raw_kmi_symbol_list = ctx.file.raw_kmi_symbol_list.path,
+        file_attr_path = file_attr.path,
     )
     ctx.actions.run_shell(
         command = command,
-        inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [ctx.file.raw_kmi_symbol_list],
+        inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [file_attr],
         outputs = [abspath],
-        mnemonic = "KernelConfigLocalRawSymbolList",
-        progress_message = "Determining raw symbol list path for trimming {}".format(ctx.label),
+        mnemonic = "KernelConfigLocalPath",
+        progress_message = "Storing sandboxed path for {}".format(file_name),
         execution_requirements = {
             "local": "1",
         },
     )
     return abspath
+
+def _determine_raw_symbollist_path(ctx):
+    """A local action that stores the path to `abi_symbollist.raw` to a file object."""
+
+    return _determine_local_path(ctx, "abi_symbollist.raw", ctx.file.raw_kmi_symbol_list)
+
+def _determine_module_signing_key_path(ctx):
+    """A local action that stores the path to `signing_key.pem` to a file object."""
+
+    if not ctx.file.module_signing_key:
+        return None
+
+    return _determine_local_path(ctx, "signing_key.pem", ctx.file.module_signing_key)
+
+def _determine_system_trusted_key_path(ctx):
+    """A local action that stores the path to `trusted_key.pem` to a file object."""
+
+    if not ctx.file.system_trusted_key:
+        return None
+
+    return _determine_local_path(ctx, "trusted_key.pem", ctx.file.system_trusted_key)
 
 def _config_gcov(ctx):
     """Return configs for GCOV.
@@ -106,7 +127,7 @@ def _config_lto(ctx):
         A struct, where `configs` is a list of arguments to `scripts/config`,
         and `deps` is a list of input files.
     """
-    lto_config_flag = ctx.attr.lto[BuildSettingInfo].value
+    lto_config_flag = ctx.attr.lto
 
     lto_configs = []
     if lto_config_flag == "none":
@@ -133,6 +154,15 @@ def _config_lto(ctx):
             _config.disable("LTO_CLANG_THIN"),
             _config.enable("LTO_CLANG_FULL"),
             _config.disable("THINLTO"),
+        ]
+    elif lto_config_flag == "fast":
+        # Set lto=thin only if LTO full is enabled.
+        lto_configs += [
+            _config.enable_if(condition = "LTO_CLANG_FULL", config = "LTO_CLANG"),
+            _config.disable_if(condition = "LTO_CLANG_FULL", config = "LTO_NONE"),
+            _config.enable_if(condition = "LTO_CLANG_FULL", config = "LTO_CLANG_THIN"),
+            _config.enable_if(condition = "LTO_CLANG_FULL", config = "THINLTO"),
+            _config.disable_if(condition = "LTO_CLANG_FULL", config = "LTO_CLANG_FULL"),
         ]
 
     return struct(configs = lto_configs, deps = [])
@@ -163,6 +193,41 @@ def _config_trim(ctx):
     ]
     return struct(configs = configs, deps = [raw_symbol_list_path_file])
 
+def _config_keys(ctx):
+    """Return configs for module signing keys and system trusted keys.
+
+    Note: by embedding the system path into the binary, the resulting build
+    becomes non-deterministic and the path leaks into the binary. It can be
+    discovered with `strings` or even by inspecting the kernel config from the
+    binary.
+
+    Args:
+        ctx: ctx
+    Returns:
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
+    """
+
+    module_signing_key_file = _determine_module_signing_key_path(ctx)
+    system_trusted_key_file = _determine_system_trusted_key_path(ctx)
+    configs = []
+    deps = []
+    if module_signing_key_file:
+        configs.append(_config.set_str(
+            "MODULE_SIG_KEY",
+            "$(cat {})".format(module_signing_key_file.path),
+        ))
+        deps.append(module_signing_key_file)
+
+    if system_trusted_key_file:
+        configs.append(_config.set_str(
+            "SYSTEM_TRUSTED_KEYS",
+            "$(cat {})".format(system_trusted_key_file.path),
+        ))
+        deps.append(system_trusted_key_file)
+
+    return struct(configs = configs, deps = deps)
+
 def _config_kasan(ctx):
     """Return configs for --kasan.
 
@@ -172,7 +237,7 @@ def _config_kasan(ctx):
         A struct, where `configs` is a list of arguments to `scripts/config`,
         and `deps` is a list of input files.
     """
-    lto = ctx.attr.lto[BuildSettingInfo].value
+    lto = ctx.attr.lto
     kasan = ctx.attr.kasan[BuildSettingInfo].value
 
     if not kasan:
@@ -180,6 +245,9 @@ def _config_kasan(ctx):
 
     if lto != "none":
         fail("{}: --kasan requires --lto=none, but --lto is {}".format(ctx.label, lto))
+
+    if trim_nonlisted_kmi_utils.get_value(ctx):
+        fail("{}: --kasan requires trimming to be disabled".format(ctx.label))
 
     configs = [
         _config.enable("KASAN"),
@@ -193,6 +261,28 @@ def _config_kasan(ctx):
     ]
     return struct(configs = configs, deps = [])
 
+def _config_btf_debug_info(ctx):
+    """Return configs for DEBUG_INFO_BTF.
+
+    Args:
+        ctx: ctx
+    Returns:
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
+    """
+    btf_debug_info = ctx.attr.btf_debug_info[BuildSettingInfo].value
+
+    if btf_debug_info == "default":
+        configs = []
+    elif btf_debug_info == "enable":
+        configs = [_config.enable("DEBUG_INFO_BTF")]
+    elif btf_debug_info == "disable":
+        configs = [_config.disable("DEBUG_INFO_BTF")]
+    else:
+        fail("{}: unexpected value for --btf_debug_info: {}".format(ctx.label, btf_debug_info))
+
+    return struct(configs = configs, deps = [])
+
 def _reconfig(ctx):
     """Return a command and extra inputs to re-configure `.config` file."""
     configs = []
@@ -203,18 +293,23 @@ def _reconfig(ctx):
         _config_trim,
         _config_kasan,
         _config_gcov,
+        _config_keys,
+        _config_btf_debug_info,
         kgdb.get_scripts_config_args,
     ):
         pair = fn(ctx)
         configs += pair.configs
         deps += pair.deps
 
-    if not configs:
-        return struct(cmd = "", deps = deps)
-
     return struct(cmd = """
-        ${{KERNEL_DIR}}/scripts/config --file ${{OUT_DIR}}/.config {configs}
-        make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} olddefconfig
+        configs_to_apply=$(echo {configs})
+        # There could be reconfigurations based on configs which can lead to
+        #  an empty `configs_to_apply` even when `configs` is not empty,
+        #  for that reason it is better to check it is not empty before using it.
+        if [ -n "${{configs_to_apply}}" ]; then
+            ${{KERNEL_DIR}}/scripts/config --file ${{OUT_DIR}}/.config ${{configs_to_apply}}
+            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} olddefconfig
+        fi
     """.format(configs = " ".join(configs)), deps = deps)
 
 def _kernel_config_impl(ctx):
@@ -233,8 +328,10 @@ def _kernel_config_impl(ctx):
 
     out_dir = ctx.actions.declare_directory(ctx.attr.name + "/out_dir")
     outputs = [out_dir]
+    localversion_file_path = out_dir.path + "/localversion"
 
-    scmversion_command = stamp.scmversion_config_cmd(ctx)
+    write_localversion_step = stamp.write_localversion_step(ctx, localversion_file_path)
+    inputs += write_localversion_step.deps
     reconfig = _reconfig(ctx)
     inputs += reconfig.deps
 
@@ -257,8 +354,6 @@ def _kernel_config_impl(ctx):
           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{DEFCONFIG}}
         # Post-defconfig commands
           eval ${{POST_DEFCONFIG_CMDS}}
-        # SCM version configuration
-          {scmversion_command}
         # Re-config
           {reconfig_cmd}
         # HACK: run syncconfig to avoid re-triggerring kernel_build
@@ -266,17 +361,24 @@ def _kernel_config_impl(ctx):
         # Grab outputs
           rsync -aL ${{OUT_DIR}}/.config {out_dir}/.config
           rsync -aL ${{OUT_DIR}}/include/ {out_dir}/include/
-        # HACK: also keep fixdep for --config=local builds.
-        # TODO(b/263415662): Drop it
-          mkdir -p {out_dir}/scripts/basic
-          rsync -aL ${{OUT_DIR}}/scripts/basic/fixdep {out_dir}/scripts/basic/fixdep
+
+        # Ensure reproducibility. The value of the real $ROOT_DIR is replaced in the setup script.
+          sed -i'' -e 's:'"${{ROOT_DIR}}"':${{ROOT_DIR}}:g' {out_dir}/include/config/auto.conf.cmd
+
+        # HACK: Ensure we always SYNC auto.conf. This ensures binaries like fixdep are always
+        # re-built. See b/263415662
+          echo "include/config/auto.conf: FORCE" >> {out_dir}/include/config/auto.conf.cmd
+
+        # Infer localversion.
+          {write_localversion_cmd}
+
           {cache_dir_post_cmd}
         """.format(
         out_dir = out_dir.path,
         cache_dir_cmd = cache_dir_step.cmd,
         cache_dir_post_cmd = cache_dir_step.post_cmd,
-        scmversion_command = scmversion_command,
         reconfig_cmd = reconfig.cmd,
+        write_localversion_cmd = write_localversion_step.cmd,
     )
 
     debug.print_scripts(ctx, command)
@@ -300,10 +402,10 @@ def _kernel_config_impl(ctx):
            mkdir -p ${{OUT_DIR}}/include/
            rsync -aL {out_dir}/.config ${{OUT_DIR}}/.config
            rsync -aL --chmod=D+w {out_dir}/include/ ${{OUT_DIR}}/include/
-         # HACK: also keep fixdep for --config=local builds.
-         # TODO(b/263415662): Drop it
-           mkdir -p ${{OUT_DIR}}/scripts/basic
-           rsync -aL --chmod=D+w {out_dir}/scripts/basic/fixdep ${{OUT_DIR}}/scripts/basic/fixdep
+           rsync -aL --chmod=F+w {out_dir}/localversion ${{OUT_DIR}}/localversion
+
+         # Restore real value of $ROOT_DIR in auto.conf.cmd
+           sed -i'' -e 's:${{ROOT_DIR}}:'"${{ROOT_DIR}}"':g' ${{OUT_DIR}}/include/config/auto.conf.cmd
     """.format(
         out_dir = out_dir.path,
     )
@@ -324,7 +426,7 @@ def _kernel_config_impl(ctx):
         ),
     )
 
-    config_script_ret = _get_config_script(ctx)
+    config_script_ret = _get_config_script(ctx, inputs)
 
     return [
         env_and_outputs_info,
@@ -357,20 +459,19 @@ def _env_and_outputs_get_setup_script(data, restore_out_dir_cmd):
         post_setup = data.post_setup,
     )
 
-def _get_config_script(ctx):
+def _get_config_script(ctx, inputs):
     """Handles config.sh."""
     executable = ctx.actions.declare_file("{}/config.sh".format(ctx.attr.name))
 
-    script = """
-          cd ${BUILD_WORKSPACE_DIRECTORY}
-    """
-    script += ctx.attr.env[KernelEnvInfo].setup
+    script = ctx.attr.env[KernelEnvInfo].run_env.setup
 
     # TODO(b/254348147): Support ncurses for hermetic tools
     script += """
           export HOSTCFLAGS="${HOSTCFLAGS} --sysroot="
           export HOSTLDFLAGS="${HOSTLDFLAGS} --sysroot="
     """
+
+    script += kernel_utils.set_src_arch_cmd()
 
     script += """
           menucommand="${1:-savedefconfig}"
@@ -379,16 +480,31 @@ def _get_config_script(ctx):
             exit 1
           fi
 
-          # Pre-defconfig commands
-            eval ${PRE_DEFCONFIG_CMDS}
-          # Actual defconfig
-            make -C ${KERNEL_DIR} ${TOOL_ARGS} O=${OUT_DIR} ${DEFCONFIG}
+          # The script is executed under <execroot>/, where defconfig is a
+          # symlink to the source file. However, `make savedefconfig` overwrites the
+          # symlink with the new defconfig. Restore the symlink on exit so that
+          # the next `bazel run X_config` can infer the source file properly.
 
-          # Show UI
-            menuconfig ${menucommand}
+          DEFCONFIG_SYMLINK=${ROOT_DIR}/${KERNEL_DIR}/arch/${SRCARCH}/configs/${DEFCONFIG}
+          DEFCONFIG_REAL=$(readlink -e ${DEFCONFIG_SYMLINK})
+          trap "ln -sf ${DEFCONFIG_REAL} ${DEFCONFIG_SYMLINK}" EXIT
 
-          # Post-defconfig commands
-            eval ${POST_DEFCONFIG_CMDS}
+          # This needs to be in a sub-shell, otherwise trap doesn't work.
+          (
+              # Pre-defconfig commands
+                eval ${PRE_DEFCONFIG_CMDS}
+              # Actual defconfig
+                make -C ${KERNEL_DIR} ${TOOL_ARGS} O=${OUT_DIR} ${DEFCONFIG}
+
+              # Show UI
+                menuconfig ${menucommand}
+
+              # Post-defconfig commands
+                eval ${POST_DEFCONFIG_CMDS}
+
+              mv ${DEFCONFIG_SYMLINK} ${DEFCONFIG_REAL}
+              echo "Updated ${DEFCONFIG_REAL}"
+          )
     """
 
     ctx.actions.write(
@@ -397,7 +513,7 @@ def _get_config_script(ctx):
         is_executable = True,
     )
 
-    runfiles = ctx.runfiles(ctx.attr.env[KernelEnvInfo].dependencies)
+    runfiles = ctx.runfiles(ctx.attr.env[KernelEnvInfo].run_env.dependencies + inputs)
 
     return struct(
         executable = executable,
@@ -407,7 +523,6 @@ def _get_config_script(ctx):
 def _kernel_config_additional_attrs():
     return dicts.add(
         kernel_config_settings.of_kernel_config(),
-        trim_nonlisted_kmi_utils.non_config_attrs(),
     )
 
 kernel_config = rule(
@@ -417,7 +532,6 @@ kernel_config = rule(
 - When `bazel build <target>`, this target runs `make defconfig` etc. during the build.
 - When `bazel run <target> -- Xconfig`, this target runs `make Xconfig`.
 """,
-    cfg = kernel_config_transition,
     attrs = {
         "env": attr.label(
             mandatory = True,
@@ -429,15 +543,19 @@ kernel_config = rule(
             doc = "Label to abi_symbollist.raw.",
             allow_single_file = True,
         ),
+        "module_signing_key": attr.label(
+            doc = "Label to module signing key.",
+            allow_single_file = True,
+        ),
+        "system_trusted_key": attr.label(
+            doc = "Label to trusted system key.",
+            allow_single_file = True,
+        ),
         "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
-        "_allowlist_function_transition": attr.label(
-            # Allow everything because kernel_config is indirectly called in device packages.
-            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
-        ),
     } | _kernel_config_additional_attrs(),
     executable = True,
 )

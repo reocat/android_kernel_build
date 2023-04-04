@@ -18,6 +18,7 @@ load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(
     ":common_providers.bzl",
+    "GcovInfo",
     "KernelBuildAbiInfo",
     "KernelBuildExtModuleInfo",
     "KernelBuildInTreeModulesInfo",
@@ -52,6 +53,11 @@ def _ext_mod_env_and_outputs_info_get_setup_script(data, restore_out_dir_cmd):
         restore_out_dir_cmd = restore_out_dir_cmd,
     )
     return script
+
+def _get_mixed_tree_files(target):
+    if KernelBuildMixedTreeInfo in target:
+        return target[KernelBuildMixedTreeInfo].files
+    return target.files
 
 def _kernel_filegroup_impl(ctx):
     all_deps = ctx.files.srcs + ctx.files.deps
@@ -117,6 +123,7 @@ def _kernel_filegroup_impl(ctx):
     in_tree_modules_info = KernelBuildInTreeModulesInfo(module_outs_file = ctx.file.module_outs_file)
 
     images_info = KernelImagesInfo(base_kernel = None)
+    gcov_info = GcovInfo(gcno_mapping = None)
 
     common_config_tags = kernel_config_settings.kernel_env_get_config_tags(ctx)
     progress_message_note = kernel_config_settings.get_progress_message_note(ctx)
@@ -126,10 +133,11 @@ def _kernel_filegroup_impl(ctx):
     )
 
     srcs_depset = depset(transitive = [target.files for target in ctx.attr.srcs])
+    mixed_tree_files = depset(transitive = [_get_mixed_tree_files(target) for target in ctx.attr.srcs])
 
     return [
         DefaultInfo(files = srcs_depset),
-        KernelBuildMixedTreeInfo(files = srcs_depset),
+        KernelBuildMixedTreeInfo(files = mixed_tree_files),
         kernel_module_dev_info,
         # TODO(b/219112010): implement KernelEnvAndOutputsInfo properly for kernel_filegroup
         uapi_info,
@@ -138,6 +146,7 @@ def _kernel_filegroup_impl(ctx):
         in_tree_modules_info,
         images_info,
         kernel_env_attr_info,
+        gcov_info,
     ]
 
 def _kernel_filegroup_additional_attrs():

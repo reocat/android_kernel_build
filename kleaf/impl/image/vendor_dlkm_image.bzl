@@ -15,7 +15,14 @@
 Build vendor_dlkm.img for vendor modules.
 """
 
-load(":image/image_utils.bzl", "image_utils")
+load("@bazel_skylib//lib:shell.bzl", "shell")
+load(":utils.bzl", "utils")
+load(
+    ":image/image_utils.bzl",
+    "SYSTEM_DLKM_MODULES_LOAD_NAME",
+    "SYSTEM_DLKM_STAGING_ARCHIVE_NAME",
+    "image_utils",
+)
 
 def _vendor_dlkm_image_impl(ctx):
     vendor_dlkm_img = ctx.actions.declare_file("{}/vendor_dlkm.img".format(ctx.label.name))
@@ -24,6 +31,7 @@ def _vendor_dlkm_image_impl(ctx):
     modules_staging_dir = vendor_dlkm_img.dirname + "/staging"
     vendor_dlkm_staging_dir = modules_staging_dir + "/vendor_dlkm_staging"
     vendor_dlkm_fs_type = ctx.attr.vendor_dlkm_fs_type
+    vendor_dlkm_etc_files = " ".join([f.path for f in ctx.files.vendor_dlkm_etc_files])
 
     command = ""
     additional_inputs = []
@@ -31,11 +39,18 @@ def _vendor_dlkm_image_impl(ctx):
         command += """
                 # Restore vendor_boot.modules.load or vendor_kernel_boot.modules.load
                 # to modules.load, where build_utils.sh build_vendor_dlkm uses
-                  cp {vendor_boot_modules_load} ${{DIST_DIR}}/modules.load
+                  cat {vendor_boot_modules_load} >> ${{DIST_DIR}}/modules.load
         """.format(
             vendor_boot_modules_load = ctx.file.vendor_boot_modules_load.path,
         )
         additional_inputs.append(ctx.file.vendor_boot_modules_load)
+
+    exclude_system_dlkm_step = _exclude_system_dlkm(
+        ctx,
+        modules_staging_dir = modules_staging_dir,
+    )
+    command += exclude_system_dlkm_step.cmd
+    additional_inputs += exclude_system_dlkm_step.inputs
 
     command += """
             # Use `strip_modules` intead of relying on this.
@@ -44,6 +59,7 @@ def _vendor_dlkm_image_impl(ctx):
               mkdir -p {vendor_dlkm_staging_dir}
               (
                 MODULES_STAGING_DIR={modules_staging_dir}
+                VENDOR_DLKM_ETC_FILES={quoted_vendor_dlkm_etc_files}
                 VENDOR_DLKM_FS_TYPE={vendor_dlkm_fs_type}
                 VENDOR_DLKM_STAGING_DIR={vendor_dlkm_staging_dir}
                 build_vendor_dlkm
@@ -60,6 +76,7 @@ def _vendor_dlkm_image_impl(ctx):
               rm -rf {vendor_dlkm_staging_dir}
     """.format(
         modules_staging_dir = modules_staging_dir,
+        quoted_vendor_dlkm_etc_files = shell.quote(vendor_dlkm_etc_files),
         vendor_dlkm_fs_type = vendor_dlkm_fs_type,
         vendor_dlkm_staging_dir = vendor_dlkm_staging_dir,
         vendor_dlkm_img = vendor_dlkm_img.path,
@@ -67,15 +84,63 @@ def _vendor_dlkm_image_impl(ctx):
         vendor_dlkm_modules_blocklist = vendor_dlkm_modules_blocklist.path,
     )
 
+    additional_inputs += ctx.files.vendor_dlkm_etc_files
+
     return image_utils.build_modules_image_impl_common(
         ctx = ctx,
         what = "vendor_dlkm",
         outputs = [vendor_dlkm_img, vendor_dlkm_modules_load, vendor_dlkm_modules_blocklist],
         build_command = command,
         modules_staging_dir = modules_staging_dir,
+        set_ext_modules = True,
         additional_inputs = additional_inputs,
         mnemonic = "VendorDlkmImage",
     )
+
+def _exclude_system_dlkm(ctx, modules_staging_dir):
+    if not ctx.attr.dedup_dlkm_modules:
+        return struct(cmd = "", inputs = [])
+
+    inputs = []
+
+    if ctx.attr.system_dlkm_image:
+        system_dlkm_files = ctx.files.system_dlkm_image
+        src_attr = "system_dlkm_image"
+    elif ctx.attr.base_kernel_images:
+        system_dlkm_files = ctx.files.base_kernel_images
+        src_attr = "base_kernel_images"
+    else:
+        fail("{}: With dedup_dlkm_modules, either build_system_dlkm or base_kernel_images must be set".format(
+            ctx.label,
+        ))
+
+    system_dlkm_staging_archive = utils.find_file(
+        name = SYSTEM_DLKM_STAGING_ARCHIVE_NAME,
+        files = system_dlkm_files,
+        what = "{} ({} for {})".format(ctx.attr.base_kernel_images.label, src_attr, ctx.label),
+        required = True,
+    )
+    system_dlkm_modules_load = utils.find_file(
+        name = SYSTEM_DLKM_MODULES_LOAD_NAME,
+        files = system_dlkm_files,
+        what = "{} ({} for {})".format(ctx.attr.base_kernel_images.label, src_attr, ctx.label),
+        required = True,
+    )
+    inputs += [system_dlkm_staging_archive, system_dlkm_modules_load]
+
+    cmd = """
+            # Extract modules from system_dlkm staging archive for depmod
+              mkdir -p {modules_staging_dir}
+              tar xf {system_dlkm_staging_archive} --wildcards -C {modules_staging_dir} '*.ko'
+            # Ensure system_dlkm modules aren't loaded
+              cat {system_dlkm_modules_load} >> ${{DIST_DIR}}/modules.load
+    """.format(
+        system_dlkm_staging_archive = system_dlkm_staging_archive.path,
+        modules_staging_dir = modules_staging_dir,
+        system_dlkm_modules_load = system_dlkm_modules_load.path,
+    )
+
+    return struct(cmd = cmd, inputs = inputs)
 
 vendor_dlkm_image = rule(
     implementation = _vendor_dlkm_image_impl,
@@ -94,7 +159,11 @@ Modules listed in this file is stripped away from the `vendor_dlkm` image.""",
         ),
         "vendor_dlkm_fs_type": attr.string(doc = """vendor_dlkm.img fs type""", values = ["ext4", "erofs"]),
         "vendor_dlkm_modules_list": attr.label(allow_single_file = True),
+        "vendor_dlkm_etc_files": attr.label_list(allow_files = True),
         "vendor_dlkm_modules_blocklist": attr.label(allow_single_file = True),
         "vendor_dlkm_props": attr.label(allow_single_file = True),
+        "dedup_dlkm_modules": attr.bool(doc = "Whether to exclude `system_dlkm` modules"),
+        "system_dlkm_image": attr.label(),
+        "base_kernel_images": attr.label(allow_files = True),
     }),
 )

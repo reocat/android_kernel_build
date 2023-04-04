@@ -51,11 +51,9 @@ def _kernel_modules_install_impl(ctx):
     modules_staging_dws_list = modules_staging_dws_depset.to_list()
 
     inputs = []
-    inputs += [
-        ctx.file._search_and_cp_output,
-        ctx.file._check_duplicated_files_in_archives,
+    inputs.append(
         kernel_build[KernelBuildExtModuleInfo].modules_staging_archive,
-    ]
+    )
 
     for input_modules_staging_dws in modules_staging_dws_list:
         inputs += dws.files(input_modules_staging_dws)
@@ -73,7 +71,11 @@ def _kernel_modules_install_impl(ctx):
         kernel_build[KernelBuildExtModuleInfo].modules_install_env_and_outputs_info.inputs,
     ]
 
-    tools = kernel_build[KernelBuildExtModuleInfo].modules_install_env_and_outputs_info.tools
+    tools = [
+        ctx.executable._check_duplicated_files_in_archives,
+        ctx.executable._search_and_cp_output,
+    ]
+    transitive_tools = [kernel_build[KernelBuildExtModuleInfo].modules_install_env_and_outputs_info.tools]
 
     modules_staging_dws = dws.make(ctx, "{}/staging".format(ctx.label.name))
 
@@ -135,7 +137,7 @@ def _kernel_modules_install_impl(ctx):
             [input_modules_staging_dws.directory.path for input_modules_staging_dws in modules_staging_dws_list],
         ),
         modules_staging_dir = modules_staging_dws.directory.path,
-        check_duplicated_files_in_archives = ctx.file._check_duplicated_files_in_archives.path,
+        check_duplicated_files_in_archives = ctx.executable._check_duplicated_files_in_archives.path,
     )
 
     if external_modules:
@@ -147,7 +149,7 @@ def _kernel_modules_install_impl(ctx):
             modules_staging_dir = modules_staging_dws.directory.path,
             outdir = external_module_dir,
             filenames = " ".join([declared_file.basename for declared_file in external_modules]),
-            search_and_cp_output = ctx.file._search_and_cp_output.path,
+            search_and_cp_output = ctx.executable._search_and_cp_output.path,
         )
 
     command += dws.record(modules_staging_dws)
@@ -156,16 +158,20 @@ def _kernel_modules_install_impl(ctx):
     ctx.actions.run_shell(
         mnemonic = "KernelModulesInstall",
         inputs = depset(inputs, transitive = transitive_inputs),
-        tools = tools,
+        tools = depset(tools, transitive = transitive_tools),
         outputs = external_modules + dws.files(modules_staging_dws),
         command = command,
         progress_message = "Running depmod {}".format(ctx.label),
     )
 
-    cmds_info_targets = [kernel_build] + ctx.attr.kernel_modules
-    cmds_info_transitive = [target[KernelCmdsInfo].directories for target in cmds_info_targets]
+    # Only analyze headers on external modules.
+    # To analyze headers on in-tree modules, just run analyze_inputs on the kernel_build directly.
+    cmds_info_targets = ctx.attr.kernel_modules
+    cmds_info_srcs = [target[KernelCmdsInfo].srcs for target in cmds_info_targets]
+    cmds_info_directories = [target[KernelCmdsInfo].directories for target in cmds_info_targets]
     cmds_info = KernelCmdsInfo(
-        directories = depset(transitive = cmds_info_transitive),
+        srcs = depset(transitive = cmds_info_srcs),
+        directories = depset(transitive = cmds_info_directories),
     )
 
     return [
@@ -173,6 +179,10 @@ def _kernel_modules_install_impl(ctx):
         KernelModuleInfo(
             kernel_build = kernel_build,
             modules_staging_dws_depset = depset([modules_staging_dws]),
+            packages = depset(transitive = [
+                target[KernelModuleInfo].packages
+                for target in ctx.attr.kernel_modules
+            ]),
         ),
         cmds_info,
     ]
@@ -226,13 +236,15 @@ In `foo_dist`, specifying `foo_modules_install` in `data` won't include
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_check_duplicated_files_in_archives": attr.label(
-            allow_single_file = True,
-            default = Label("//build/kernel/kleaf:check_duplicated_files_in_archives.py"),
+            default = Label("//build/kernel/kleaf:check_duplicated_files_in_archives"),
             doc = "Label referring to the script to process outputs",
+            cfg = "exec",
+            executable = True,
         ),
         "_search_and_cp_output": attr.label(
-            allow_single_file = True,
-            default = Label("//build/kernel/kleaf:search_and_cp_output.py"),
+            default = Label("//build/kernel/kleaf:search_and_cp_output"),
+            cfg = "exec",
+            executable = True,
             doc = "Label referring to the script to process outputs",
         ),
     },

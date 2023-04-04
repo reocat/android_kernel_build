@@ -17,6 +17,7 @@
 KernelCmdsInfo = provider(
     doc = """Provides a directory of `.cmd` files.""",
     fields = {
+        "srcs": """sources to build the original target.""",
         "directories": """A [depset](https://bazel.build/extending/depsets) of directories
                           containing the `.cmd` files""",
     },
@@ -32,6 +33,12 @@ is in its own extension instead of `kernel_env.bzl`.
     fields = {
         "dependencies": "dependencies required to use this environment setup",
         "setup": "setup script to initialize the environment",
+        "run_env": """Optional `KernelEnvInfo` to initialize the environment in
+[execution phase](https://docs.bazel.build/versions/main/skylark/concepts.html#evaluation-model).
+
+For `kernel_env`, the script only provides a bare-minimum environment after `source build.config`,
+without actually modifying any variables suitable for a proper kernel build.
+""",
     },
 )
 
@@ -141,6 +148,8 @@ KernelBuildAbiInfo = provider(
         "base_modules_staging_archive": "Archive containing staging kernel modules of the base kernel",
         "src_kmi_symbol_list": """Source file for `kmi_symbol_list` that points to the symbol list
                                   to be updated by `--update_symbol_list`""",
+        "src_protected_exports_list": """Source file for protected symbols which are restricted from being exported by unsigned modules to be updated by `--update_protected_exports`""",
+        "src_protected_modules_list": """Source file with list of protected modules whose exports are being protected and needs to be updated by `--update_protected_exports`""",
     },
 )
 
@@ -158,6 +167,13 @@ KernelBuildMixedTreeInfo = provider(
     fields = {
         "files": """A [depset](https://bazel.build/extending/depsets) containing the list of
 files required to build `KBUILD_MIXED_TREE` for the device kernel.""",
+    },
+)
+
+GcovInfo = provider(
+    doc = """A provider providing information about --gcov.""",
+    fields = {
+        "gcno_mapping": "`gcno_mapping.json`",
     },
 )
 
@@ -195,6 +211,13 @@ KernelModuleInfo = provider(
         "kernel_uapi_headers_dws_depset": """A [depset](https://bazel.build/extending/depsets) of
             `directory_with_structure` containing UAPI headers to use the module.""",
         "files": "A [depset](https://bazel.build/extending/depsets) of output `*.ko` files.",
+        "packages": """For `kernel_module` / `ddk_module`s, a
+            [depset](https://bazel.build/extending/depsets) containing package name of
+            the target. This corresponds to `EXT_MOD` in `build.sh`.
+
+            For other rules that contains multiple `kernel_module`s, a [depset] containing package
+            names of all external modules in an unspecified order. This corresponds to `EXT_MODULES`
+            in `build.sh`.""",
     },
 )
 

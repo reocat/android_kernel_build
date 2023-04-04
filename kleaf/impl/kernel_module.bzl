@@ -269,23 +269,25 @@ def _kernel_module_impl(ctx):
     inputs = []
     inputs += ctx.files.makefile
     inputs += ctx.files.internal_ddk_makefiles_dir
-    inputs += [
-        ctx.file._search_and_cp_output,
-        ctx.file._check_declared_output_list,
-    ]
     for kernel_module_dep in kernel_module_deps:
         inputs += kernel_module_dep[KernelEnvInfo].dependencies
 
-    transitive_inputs = [target.files for target in ctx.attr.srcs]
+    module_srcs = [target.files for target in ctx.attr.srcs]
+    if not ctx.attr.internal_exclude_kernel_build_module_srcs:
+        module_srcs.append(ctx.attr.kernel_build[KernelBuildExtModuleInfo].module_hdrs)
+    module_srcs = depset(transitive = module_srcs)
+
+    transitive_inputs = [module_srcs]
     transitive_inputs.append(ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_env_and_outputs_info.inputs)
     transitive_inputs.append(ctx.attr.kernel_build[KernelBuildExtModuleInfo].module_scripts)
-    if not ctx.attr.internal_exclude_kernel_build_module_srcs:
-        transitive_inputs.append(ctx.attr.kernel_build[KernelBuildExtModuleInfo].module_hdrs)
 
     if ctx.attr.internal_ddk_makefiles_dir:
         transitive_inputs.append(ctx.attr.internal_ddk_makefiles_dir[DdkSubmoduleInfo].srcs)
 
-    tools = []
+    tools = [
+        ctx.executable._check_declared_output_list,
+        ctx.executable._search_and_cp_output,
+    ]
     transitive_tools = [ctx.attr.kernel_build[KernelBuildExtModuleInfo].modules_env_and_outputs_info.tools]
 
     modules_staging_dws = dws.make(ctx, "{}/staging".format(ctx.attr.name))
@@ -365,7 +367,7 @@ def _kernel_module_impl(ctx):
             mkdir -p {unstripped_dir}
             {search_and_cp_output} --srcdir ${{OUT_DIR}}/${{ext_mod_rel}} --dstdir {unstripped_dir} {outs}
         """.format(
-            search_and_cp_output = ctx.file._search_and_cp_output.path,
+            search_and_cp_output = ctx.executable._search_and_cp_output.path,
             unstripped_dir = unstripped_dir.path,
             # Use basenames to flatten the unstripped directory, even though outs may contain items with slash.
             outs = " ".join(original_outs_base),
@@ -408,7 +410,7 @@ def _kernel_module_impl(ctx):
 
     command += """
              # Set variables
-               ext_mod_rel=$(rel_path ${{ROOT_DIR}}/{ext_mod} ${{KERNEL_DIR}})
+               ext_mod_rel=$(realpath ${{ROOT_DIR}}/{ext_mod} --relative-to ${{KERNEL_DIR}})
 
              # Actual kernel module build
                make -C {ext_mod} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} {make_redirect}
@@ -454,7 +456,7 @@ def _kernel_module_impl(ctx):
         outdir = outdir,
         kernel_uapi_headers_dir = kernel_uapi_headers_dws.directory.path,
         module_strip_flag = module_strip_flag,
-        check_declared_output_list = ctx.file._check_declared_output_list.path,
+        check_declared_output_list = ctx.executable._check_declared_output_list.path,
         all_module_names_file = all_module_names_file.path,
         grab_unstripped_cmd = grab_unstripped_cmd,
         check_no_remaining = check_no_remaining.path,
@@ -509,7 +511,7 @@ def _kernel_module_impl(ctx):
              # Copy files into place
                {search_and_cp_output} --srcdir {modules_staging_dir}/lib/modules/*/extra/{ext_mod}/ --dstdir {outdir} {outs}
         """.format(
-            search_and_cp_output = ctx.file._search_and_cp_output.path,
+            search_and_cp_output = ctx.executable._search_and_cp_output.path,
             modules_staging_dir = modules_staging_dws.directory.path,
             ext_mod = ext_mod,
             outdir = outdir,
@@ -521,7 +523,9 @@ def _kernel_module_impl(ctx):
             inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [
                 # We don't need structure_file here because we only care about files in the directory.
                 modules_staging_dws.directory,
-                ctx.file._search_and_cp_output,
+            ],
+            tools = [
+                ctx.executable._search_and_cp_output,
             ],
             outputs = cp_cmd_outputs,
             command = command,
@@ -532,10 +536,10 @@ def _kernel_module_impl(ctx):
              # Use a new shell to avoid polluting variables
                (
              # Set variables
-               # rel_path requires the existence of ${{ROOT_DIR}}/{ext_mod}, which may not be the case for
+               # realpath requires the existence of ${{ROOT_DIR}}/{ext_mod}, which may not be the case for
                # _kernel_modules_install. Make that.
                mkdir -p ${{ROOT_DIR}}/{ext_mod}
-               ext_mod_rel=$(rel_path ${{ROOT_DIR}}/{ext_mod} ${{KERNEL_DIR}})
+               ext_mod_rel=$(realpath ${{ROOT_DIR}}/{ext_mod} --relative-to ${{KERNEL_DIR}})
              # Restore Modules.symvers
                mkdir -p $(dirname ${{OUT_DIR}}/${{ext_mod_rel}}/{internal_module_symvers_name})
                rsync -aL {module_symvers} ${{OUT_DIR}}/${{ext_mod_rel}}/{internal_module_symvers_name}
@@ -577,6 +581,7 @@ def _kernel_module_impl(ctx):
             modules_staging_dws_depset = depset([modules_staging_dws]),
             kernel_uapi_headers_dws_depset = depset([kernel_uapi_headers_dws]),
             files = depset(output_files),
+            packages = depset([ext_mod]),
         ),
         KernelUnstrippedModulesInfo(
             directories = depset([unstripped_dir], order = "postorder"),
@@ -589,7 +594,10 @@ def _kernel_module_impl(ctx):
             restore_paths = depset([paths.join(ctx.label.package, ctx.attr.internal_module_symvers_name)]),
         ),
         ddk_headers_info,
-        KernelCmdsInfo(directories = depset([grab_cmd_step.cmd_dir])),
+        KernelCmdsInfo(
+            srcs = module_srcs,
+            directories = depset([grab_cmd_step.cmd_dir]),
+        ),
     ]
 
 _kernel_module = rule(
@@ -623,13 +631,15 @@ _kernel_module = rule(
         "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_search_and_cp_output": attr.label(
-            allow_single_file = True,
-            default = Label("//build/kernel/kleaf:search_and_cp_output.py"),
+            default = Label("//build/kernel/kleaf:search_and_cp_output"),
+            cfg = "exec",
+            executable = True,
             doc = "Label referring to the script to process outputs",
         ),
         "_check_declared_output_list": attr.label(
-            allow_single_file = True,
-            default = Label("//build/kernel/kleaf:check_declared_output_list.py"),
+            default = Label("//build/kernel/kleaf:check_declared_output_list"),
+            cfg = "exec",
+            executable = True,
         ),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),

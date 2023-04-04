@@ -164,9 +164,9 @@ def kernel_abi_dist(
           # Copy to dist dir
             $(rootpath {copy_to_dist_dir}) $@
           # Check return code of diff_abi and kmi_enforced
-            $(rootpath {diff})
+            $(rootpath {diff_stg})
         """.format(
             copy_to_dist_dir = name + "_copy_to_dist_dir",
-            diff = kernel_abi + "_diff_executable",
+            diff_stg = kernel_abi + "_diff_executable",
         ),
     )
