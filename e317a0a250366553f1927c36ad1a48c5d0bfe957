@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000041945738",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2521117?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "bfc6a9ee_3dd91ae0",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/ddk/ddk_conditional_filegroup.bzl",
+              "range": {
+                "startLine": 128,
+                "startChar": 0,
+                "endLine": 134,
+                "endChar": 0
+              },
+              "replacement": "        name,\n        config,\n        value,\n        srcs \u003d None,\n        **kwargs):\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "f996db95_ba402164",
+        "filename": "kleaf/impl/ddk/ddk_conditional_filegroup.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-04T01:01:58Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/ddk/ddk_conditional_filegroup.bzl` to format the file, or apply the suggested fix.",
+      "revId": "e317a0a250366553f1927c36ad1a48c5d0bfe957",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
