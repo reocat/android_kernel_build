@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f192b8e3_c63c60b8",
+        "filename": "kleaf/impl/ddk/ddk_conditional_filegroup.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-04T10:24:33Z",
+      "side": 1,
+      "message": "was this intended here or above i.e. `value \u003d None`?",
+      "range": {
+        "startLine": 131,
+        "startChar": 12,
+        "endLine": 131,
+        "endChar": 19
+      },
+      "revId": "e1bc5042f27cd9da66421b6e43f6ddecbe8e323d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ab0c566_36638a54",
+        "filename": "kleaf/impl/ddk/ddk_conditional_filegroup.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-04T10:24:33Z",
+      "side": 1,
+      "message": "should this be a string i.e. `\"True\"`?",
+      "range": {
+        "startLine": 149,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 20
+      },
+      "revId": "e1bc5042f27cd9da66421b6e43f6ddecbe8e323d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
