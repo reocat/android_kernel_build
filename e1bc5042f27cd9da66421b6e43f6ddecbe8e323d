@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e8aa656_50dc7640",
+        "filename": "kleaf/impl/ddk/ddk_conditional_filegroup.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-04T18:33:07Z",
+      "side": 1,
+      "message": "here.\n\nThis is to be consistent with the old `rule()` because `config` and `value` is set to `mandatory`, but `srcs` is not mandatory.\n\nIn practice, though, ddk_module always sets srcs, so technically this `\u003dNone` can go away",
+      "parentUuid": "f192b8e3_c63c60b8",
+      "range": {
+        "startLine": 131,
+        "startChar": 12,
+        "endLine": 131,
+        "endChar": 19
+      },
+      "revId": "e1bc5042f27cd9da66421b6e43f6ddecbe8e323d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ab0c566_36638a54",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-04-04T10:24:33Z",
       "side": 1,
       "message": "should this be a string i.e. `\"True\"`?",
+      "range": {
+        "startLine": 149,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 20
+      },
+      "revId": "e1bc5042f27cd9da66421b6e43f6ddecbe8e323d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "218ba3a4_41a11971",
+        "filename": "kleaf/impl/ddk/ddk_conditional_filegroup.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-04T18:33:07Z",
+      "side": 1,
+      "message": "No.\n\nThere is some nuance here: value can accept a boolean `True`, a boolean `False`, or a string.\n\nFor boolean `True`, this is interpreted as \"y or m\", and the expression in Kbuild becomes `obj-$(CONFIG_FOO)`.\n\nFor boolean false, it means \"not set\", which maps to an empty string -- which becomes `ifeq ($(CONFIG_FOO),)`\n\nFor strings, it is a regular `ifeq ($(CONFIG_FOO),the_expected_value)` expression.\n\nThen within ddk_conditional_filegroup, I use the DDK_CONDITIONAL_TRUE to communicate the boolean `True` value, because the rule attribute only accepts string values. (A better option would be to use a separate attribute, but I think the hack is fine 😊)",
+      "parentUuid": "6ab0c566_36638a54",
       "range": {
         "startLine": 149,
         "startChar": 16,
