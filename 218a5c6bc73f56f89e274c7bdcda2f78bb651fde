@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea06e508_1bceda36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-05T20:18:17Z",
+      "side": 1,
+      "message": "This is also going to cause incremental build errors when developers use --config\u003dlocal because the $OUT_DIR contains invalid symlinks, e.g.:\n\n```\ntar: \u0027./source\u0027 /mnt/sdc/android/android14-6.1/common not under \u0027/mnt/sdc/android/android14-6.1/out/cache/3cd8ab55/common\u0027\ntar: had errors\nTarget //common-modules/virtual-device:virtual_device_aarch64_dist failed to build\n```",
+      "revId": "218a5c6bc73f56f89e274c7bdcda2f78bb651fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "573f559a_44044540",
         "filename": "_setup_env.sh",
         "patchSetId": 2
