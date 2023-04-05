@@ -50,9 +50,7 @@ def _modules_prepare_impl(ctx):
          # Prepare for the module build
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules_prepare
          # Package files
-         # TODO(b/243737262): Use tar czf
-           mkdir -p $(dirname {outdir_tar_gz})
-           tar c -C ${{OUT_DIR}} . | gzip - > {outdir_tar_gz}
+           tar czf {outdir_tar_gz} -C ${{OUT_DIR}} .
            {cache_dir_post_cmd}
     """.format(
         outdir_tar_gz = ctx.outputs.outdir_tar_gz.path,
