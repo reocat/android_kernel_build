@@ -16,6 +16,23 @@
       "message": "I manually confirm that the following works:\n\n```\nbazel clean\nbazel build --lto\u003dnone //common:kernel_aarch64 //common:kernel_aarch64_modules_prepare\ngzip -l bazel-out/k8-fastbuild/bin/common/kernel_aarch64_modules_prepare/modules_prepare_outdir.tar.gz\n```",
       "revId": "218a5c6bc73f56f89e274c7bdcda2f78bb651fde",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "573f559a_44044540",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2023-04-05T17:12:00Z",
+      "side": 1,
+      "message": "out of interest, what\u0027s the problem with toybox install? can you file a bug?",
+      "revId": "218a5c6bc73f56f89e274c7bdcda2f78bb651fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
