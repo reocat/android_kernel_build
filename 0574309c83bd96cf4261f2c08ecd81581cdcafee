@@ -36,6 +36,43 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/utils.bzl` to format the file, or apply the suggested fix.",
       "revId": "0574309c83bd96cf4261f2c08ecd81581cdcafee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000042066280",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2495342?revision\u003d16",
+      "fixSuggestions": [
+        {
+          "fixId": "d8bcb10a_bd9bf354",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/utils.bzl",
+              "range": {
+                "startLine": 188,
+                "startChar": 0,
+                "endLine": 189,
+                "endChar": 0
+              },
+              "replacement": "        progress_message \u003d \"Dumping depset to {}: {}\".format(out, ctx.label),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "cf13dad9_fd9cbd56",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-05T01:59:55Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/utils.bzl` to format the file, or apply the suggested fix.",
+      "revId": "0574309c83bd96cf4261f2c08ecd81581cdcafee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
