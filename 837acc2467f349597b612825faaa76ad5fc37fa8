@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf5f683e_10aca599",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-05T18:22:43Z",
+      "side": 1,
+      "message": "Yes. ddk_config becomes an internal implementation detail that is called by ddk_module.\n\nThis is similar to how kernel_build calls kernel_config.\n\nThis change is because ddk_config shares some necessary attributes from ddk_module, e.g. kernel_build and deps. The later could be a long list, so duplicating seems to be a headache for users.\n\nThe downside for this approach (like kernel_config) is that the `foo_config` target is no longer visible in BUILD files, yet people may want to run `bazel run foo_config` to adjust the defconfig file.",
+      "parentUuid": "88c00ef7_c216e183",
+      "revId": "837acc2467f349597b612825faaa76ad5fc37fa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6977e2f_9d3fb382",
@@ -64,6 +82,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1326cc00_a27471c4",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 22
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-05T18:22:43Z",
+      "side": 1,
+      "message": "this is expected; this is a target that configures a module.",
+      "parentUuid": "d071ebf8_c552e767",
+      "range": {
+        "startLine": 241,
+        "startChar": 44,
+        "endLine": 241,
+        "endChar": 50
+      },
+      "revId": "837acc2467f349597b612825faaa76ad5fc37fa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "449afc79_554095df",
@@ -77,6 +119,30 @@
       "writtenOn": "2023-04-05T12:46:57Z",
       "side": 1,
       "message": "Given this is linking to the external documentation why this name?",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 255,
+        "endChar": 43
+      },
+      "revId": "837acc2467f349597b612825faaa76ad5fc37fa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da72d0b6_d1da913d",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 22
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-05T18:22:43Z",
+      "side": 1,
+      "message": "I intentionally use this name because the file can also be found under `common/`. For offline kernel developers, this is where they find the documentation.\n\nI can\u0027t refer to `common/` because kernel source tree can be checked out somewhere else.",
+      "parentUuid": "449afc79_554095df",
       "range": {
         "startLine": 255,
         "startChar": 2,
