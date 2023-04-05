@@ -39,6 +39,12 @@ import sys
 import symbol_extraction
 
 
+def error(message):
+  sys.stderr.write("ERROR: ")
+  sys.stderr.write(message)
+  sys.stderr.write("\n")
+
+
 def main():
   """Ensure undefined symbols in unsigned modules are accounted for.
 
@@ -68,7 +74,7 @@ def main():
   args = parser.parse_args()
 
   if not os.path.isdir(args.directory):
-    print(
+    error(
         f"Expected a directory to search for unsigned modules, but got {args.directory}"
     )
     return 1
@@ -105,11 +111,11 @@ def main():
       abi_symbols)
 
   if missing_symbols:
-    print(
+    error(
         "\nThese symbols are missing from the symbol list and are not available at runtime for unsigned modules:"
     )
     for symbol in sorted(missing_symbols):
-      print(f"  {symbol}")
+      error(f"  {symbol}")
     return 1
 
   return 0
