@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b70c1a54_651d1bad",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1514900
+      },
+      "writtenOn": "2023-04-05T03:24:22Z",
+      "side": 1,
+      "message": "Is this different from ctx.bin_dir.path?\n\nhttps://github.com/bazelbuild/bazel/issues/6761 \n\nI think genfiles is intended to be merged into bin dir.",
+      "range": {
+        "startLine": 1044,
+        "startChar": 12,
+        "endLine": 1044,
+        "endChar": 24
+      },
+      "revId": "63bc28c1470b71873bb08b4e5b712bc240649ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
