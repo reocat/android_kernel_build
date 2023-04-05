@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88c00ef7_c216e183",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-05T12:46:57Z",
+      "side": 1,
+      "message": "From PS12 to PS13 the change in `kleaf/kernel.bzl` (re-exporting the rule) was dropped, was it expected?",
+      "revId": "837acc2467f349597b612825faaa76ad5fc37fa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6977e2f_9d3fb382",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 22
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-05T12:46:57Z",
+      "side": 1,
+      "message": "nit: line length?",
+      "range": {
+        "startLine": 266,
+        "startChar": 100,
+        "endLine": 266,
+        "endChar": 101
+      },
+      "revId": "837acc2467f349597b612825faaa76ad5fc37fa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d071ebf8_c552e767",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 22
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-05T12:46:57Z",
+      "side": 1,
+      "message": "`config`?",
+      "range": {
+        "startLine": 241,
+        "startChar": 44,
+        "endLine": 241,
+        "endChar": 50
+      },
+      "revId": "837acc2467f349597b612825faaa76ad5fc37fa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "449afc79_554095df",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 22
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-05T12:46:57Z",
+      "side": 1,
+      "message": "Given this is linking to the external documentation why this name?",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 255,
+        "endChar": 43
+      },
+      "revId": "837acc2467f349597b612825faaa76ad5fc37fa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
