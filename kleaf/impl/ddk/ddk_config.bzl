@@ -16,6 +16,7 @@
 
 load(
     ":common_providers.bzl",
+    "DdkConfigInfo",
     "KernelBuildExtModuleInfo",
     "KernelEnvAndOutputsInfo",
 )
@@ -23,11 +24,16 @@ load(":debug.bzl", "debug")
 load(":utils.bzl", "kernel_utils", "utils")
 
 def _ddk_config_impl(ctx):
+    module_label = Label(str(ctx.label).removesuffix("_config"))
+    split_deps = kernel_utils.split_kernel_module_deps(ctx.attr.module_deps, module_label)
+    ddk_config_deps = split_deps.ddk_configs
+
     out_dir = ctx.actions.declare_directory(ctx.attr.name + "/out_dir")
 
     _create_main_action(
         ctx = ctx,
         out_dir = out_dir,
+        ddk_config_deps = ddk_config_deps,
     )
 
     env_and_outputs_info = _create_env_and_outputs_info(
@@ -35,12 +41,18 @@ def _ddk_config_impl(ctx):
         out_dir = out_dir,
     )
 
+    ddk_config_info = _create_ddk_config_info(
+        ctx = ctx,
+        ddk_config_deps = ddk_config_deps,
+    )
+
     return [
         DefaultInfo(files = depset([out_dir])),
         env_and_outputs_info,
+        ddk_config_info,
     ]
 
-def _create_merge_dot_config_step(ctx):
+def _create_merge_dot_config_step(ctx, ddk_config_deps):
     cmd = ""
     inputs = []
     need_oldconfig = bool(ctx.file.defconfig)
@@ -65,7 +77,7 @@ def _create_merge_dot_config_step(ctx):
         need_oldconfig = need_oldconfig,
     )
 
-def _create_kconfig_ext_step(ctx):
+def _create_kconfig_ext_step(ctx, _ddk_config_deps):
     inputs = []
     intermediates_dir = utils.intermediates_dir(ctx)
     need_oldconfig = ctx.file.kconfig
@@ -120,7 +132,7 @@ def _create_oldconfig_step(need_oldconfig):
         cmd = cmd,
     )
 
-def _create_main_action(ctx, out_dir):
+def _create_main_action(ctx, out_dir, ddk_config_deps):
     """Registers the main action that creates the output files."""
     config_env_and_outputs_info = ctx.attr.kernel_build[KernelBuildExtModuleInfo].config_env_and_outputs_info
 
@@ -140,8 +152,8 @@ def _create_main_action(ctx, out_dir):
     )
     command += kernel_utils.set_src_arch_cmd()
 
-    merge_dot_config_step = _create_merge_dot_config_step(ctx)
-    kconfig_ext_step = _create_kconfig_ext_step(ctx)
+    merge_dot_config_step = _create_merge_dot_config_step(ctx, ddk_config_deps)
+    kconfig_ext_step = _create_kconfig_ext_step(ctx, ddk_config_deps)
 
     need_oldconfig = merge_dot_config_step.need_oldconfig or kconfig_ext_step.need_oldconfig
     oldconfig_step = _create_oldconfig_step(need_oldconfig)
@@ -214,6 +226,20 @@ def _env_and_outputs_info_get_setup_script(data, restore_out_dir_cmd):
 
     return script
 
+def _create_ddk_config_info(ctx, ddk_config_deps):
+    return DdkConfigInfo(
+        kconfig = depset(
+            ctx.files.kconfig,
+            transitive = [dep[DdkConfigInfo].kconfig for dep in ddk_config_deps],
+            order = "postorder",
+        ),
+        defconfig = depset(
+            ctx.files.defconfig,
+            transitive = [dep[DdkConfigInfo].defconfig for dep in ddk_config_deps],
+            order = "postorder",
+        ),
+    )
+
 ddk_config = rule(
     implementation = _ddk_config_impl,
     doc = "A target that configures a [`ddk_module`](#ddk_module).",
@@ -238,6 +264,7 @@ for its format.
             allow_single_file = True,
             doc = "The `defconfig` file.",
         ),
+        "module_deps": attr.label_list(),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
 )

@@ -28,6 +28,7 @@ load(
 load(":cache_dir.bzl", "cache_dir")
 load(
     ":common_providers.bzl",
+    "DdkConfigInfo",
     "DdkSubmoduleInfo",
     "KernelBuildExtModuleInfo",
     "KernelCmdsInfo",
@@ -573,7 +574,7 @@ def _kernel_module_impl(ctx):
     # Also add check_no_remaining in the list of default outputs so that, when
     # outs is empty, the KernelModule action is still executed, and so
     # is check_declared_output_list.
-    return [
+    infos = [
         # Sync list of infos with kernel_module_group.
         DefaultInfo(
             files = depset(output_files + [check_no_remaining]),
@@ -607,6 +608,9 @@ def _kernel_module_impl(ctx):
             directories = depset([grab_cmd_step.cmd_dir]),
         ),
     ]
+    if ctx.attr.internal_ddk_config:
+        infos.append(ctx.attr.internal_ddk_config[DdkConfigInfo])
+    return infos
 
 _kernel_module = rule(
     implementation = _kernel_module_impl,
