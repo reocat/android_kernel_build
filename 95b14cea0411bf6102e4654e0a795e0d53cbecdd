@@ -16,6 +16,29 @@
       "message": "Verified. (I can\u0027t +2 here)",
       "revId": "95b14cea0411bf6102e4654e0a795e0d53cbecdd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3070de82_d597c103",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-06T11:30:33Z",
+      "side": 1,
+      "message": "(Here and below) Are those intentionally left?",
+      "range": {
+        "startLine": 499,
+        "startChar": 16,
+        "endLine": 499,
+        "endChar": 22
+      },
+      "revId": "95b14cea0411bf6102e4654e0a795e0d53cbecdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
