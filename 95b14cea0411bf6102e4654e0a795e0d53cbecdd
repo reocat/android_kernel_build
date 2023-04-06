@@ -39,6 +39,30 @@
       },
       "revId": "95b14cea0411bf6102e4654e0a795e0d53cbecdd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c58e8f9_96a07e27",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-06T18:37:20Z",
+      "side": 1,
+      "message": "Yes. These are to mimic the behavior of `build.sh`.\n\nWe didn\u0027t do this for the regular builds (L356) to favor less build logs, but these commands are easily broken without any error messages. Hence, leaving some trace here helps debugging (and help people file bugs).\n\nThis is not in the usual path for building stuff, only for configuring stuff, so I\u0027d like to add these.\n\nWe can delete these when we confirm that these things are more stable.",
+      "parentUuid": "3070de82_d597c103",
+      "range": {
+        "startLine": 499,
+        "startChar": 16,
+        "endLine": 499,
+        "endChar": 22
+      },
+      "revId": "95b14cea0411bf6102e4654e0a795e0d53cbecdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
