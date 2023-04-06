@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000042177382",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2526561?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "dbdfc675_ab3b8ef9",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/hermetic_tools.bzl",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": "        progress_message \u003d \"Creating wrapper for tar: {}\".format(ctx.label),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "ca94b8cb_b63aa542",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-06T00:48:27Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/hermetic_tools.bzl` to format the file, or apply the suggested fix.",
+      "revId": "aa89d7aac7560a0d9b4f0136a1445493970ebcc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
