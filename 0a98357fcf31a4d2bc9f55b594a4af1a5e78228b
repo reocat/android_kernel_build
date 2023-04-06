@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "304e5c46_104bb3c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-06T12:39:14Z",
+      "side": 1,
+      "message": "Oh no!\n\n```\ngzip: gzclose: Inappropriate ioctl for device\ntar: tar: EOF: Illegal seek\n```\n\nFrom one of the failing targets 😞",
+      "revId": "0a98357fcf31a4d2bc9f55b594a4af1a5e78228b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
