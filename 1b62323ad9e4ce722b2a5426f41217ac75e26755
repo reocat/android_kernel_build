@@ -22,6 +22,30 @@
       },
       "revId": "1b62323ad9e4ce722b2a5426f41217ac75e26755",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1fc047a_d8668c85",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-06T01:16:58Z",
+      "side": 1,
+      "message": "This is not a public API, so I\u0027m going to leave it for later",
+      "parentUuid": "ad3df7d6_8f0f19f1",
+      "range": {
+        "startLine": 279,
+        "startChar": 39,
+        "endLine": 279,
+        "endChar": 40
+      },
+      "revId": "1b62323ad9e4ce722b2a5426f41217ac75e26755",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
