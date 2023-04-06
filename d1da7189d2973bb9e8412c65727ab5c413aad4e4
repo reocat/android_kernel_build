@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c631dacb_f1336ec5",
+        "filename": "BUILD.bazel",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-06T01:53:15Z",
+      "side": 1,
+      "message": "I\u0027ll upload a separate patch that resolve this properly.",
+      "parentUuid": "c9f77f8d_8a059365",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 60
+      },
+      "revId": "d1da7189d2973bb9e8412c65727ab5c413aad4e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "571f4f31_781b794d",
         "filename": "kleaf/impl/kernel_env.bzl",
         "patchSetId": 6
