@@ -16,6 +16,24 @@
       "message": "Oh no!\n\n```\ngzip: gzclose: Inappropriate ioctl for device\ntar: tar: EOF: Illegal seek\n```\n\nFrom one of the failing targets 😞",
       "revId": "0a98357fcf31a4d2bc9f55b594a4af1a5e78228b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f730a448_c5528dd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-06T21:43:58Z",
+      "side": 1,
+      "message": "Pretty sure it is b/243737262 coming back to us since I reverted some hacks in aosp/2525840 and aosp/2525543. I\u0027ll get to the bottom of this.",
+      "parentUuid": "304e5c46_104bb3c8",
+      "revId": "0a98357fcf31a4d2bc9f55b594a4af1a5e78228b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
