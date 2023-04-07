@@ -12,12 +12,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import dataclasses
 import logging
 import os
 import shutil
 import subprocess
 import sys
 from typing import Optional
+
+
+@dataclasses.dataclass
+class PathCollectible(object):
+    path: str
+
+    def collect(self):
+        return NotImplementedError
+
+
+@dataclasses.dataclass
+class PathPopen(PathCollectible):
+    popen: subprocess.Popen
+
+    def collect(self):
+        return collect(self.popen)
 
 
 def call_setlocalversion(bin, srctree, *args) \
@@ -64,22 +81,21 @@ class Stamp(object):
         self.kernel_dir = os.path.realpath(".source_date_epoch_dir")
         if not os.path.isdir(self.kernel_dir):
             self.kernel_dir = None
+        if self.kernel_dir:
+            self.kernel_rel = os.path.relpath(self.kernel_dir)
 
         self.find_setlocalversion()
 
     def main(self) -> int:
-        kernel_dir_scmversion_obj = self.call_setlocalversion_kernel_dir()
-        ext_modules = self.get_ext_modules()
-        ext_mod_scmversion_objs = self.call_setlocalversion_ext_modules(
-            ext_modules)
+        scmversion_map = self.call_setlocalversion_all()
 
         source_date_epoch, source_date_epoch_obj = \
             self.async_get_source_date_epoch_kernel_dir()
 
+        scmversion_result_map = self.collect_map(scmversion_map)
+
         self.print_result(
-            kernel_dir_scmversion_obj=kernel_dir_scmversion_obj,
-            ext_modules=ext_modules,
-            ext_mod_scmversion_objs=ext_mod_scmversion_objs,
+            scmversion_result_map=scmversion_result_map,
             source_date_epoch=source_date_epoch,
             source_date_epoch_obj=source_date_epoch_obj,
         )
@@ -94,13 +110,30 @@ class Stamp(object):
         if not os.access(self.setlocalversion, os.X_OK):
             self.setlocalversion = None
 
-    def call_setlocalversion_kernel_dir(self):
+    def call_setlocalversion_all(self) -> dict[str, PathCollectible]:
+        kernel_dir_scmversion_obj = self.call_setlocalversion_kernel_dir()
+
+        ext_modules = self.get_ext_modules()
+        ext_mod_scmversion_objs = self.call_setlocalversion_ext_modules(
+            ext_modules)
+
+        scmversion_objs = list(ext_mod_scmversion_objs)
+        if kernel_dir_scmversion_obj:
+            scmversion_objs.append(kernel_dir_scmversion_obj)
+
+        scmversion_map = {obj.path: obj for obj in scmversion_objs}
+
+        return scmversion_map
+
+    def call_setlocalversion_kernel_dir(self) -> Optional[PathCollectible]:
         if not self.setlocalversion or not self.kernel_dir:
             return None
 
-        return call_setlocalversion(self.setlocalversion, self.kernel_dir)
+        return PathPopen(
+            self.kernel_rel,
+            call_setlocalversion(self.setlocalversion, self.kernel_dir))
 
-    def get_ext_modules(self):
+    def get_ext_modules(self) -> list[str]:
         if not self.setlocalversion:
             return []
         try:
@@ -121,7 +154,8 @@ class Stamp(object):
                 "code=%d, stderr=%s", e.returncode, e.stderr.strip())
         return []
 
-    def call_setlocalversion_ext_modules(self, ext_modules):
+    def call_setlocalversion_ext_modules(self, ext_modules) \
+            -> list[PathCollectible]:
         if not self.setlocalversion:
             return []
 
@@ -129,7 +163,7 @@ class Stamp(object):
         for ext_mod in ext_modules:
             popen = call_setlocalversion(self.setlocalversion,
                                          os.path.realpath(ext_mod))
-            ret.append(popen)
+            ret.append(PathPopen(ext_mod, popen))
         return ret
 
     def async_get_source_date_epoch_kernel_dir(self):
@@ -145,28 +179,31 @@ class Stamp(object):
             stable_source_date_epoch = 0
         return stable_source_date_epoch, stable_source_date_epoch_obj
 
+    def collect_map(
+        self,
+        legacy_map: dict[str, PathCollectible],
+    ) -> dict[str, str]:
+        return {
+            path: path_popen.collect()
+            for path, path_popen in legacy_map.items()
+        }
+
     def print_result(
         self,
-        kernel_dir_scmversion_obj,
-        ext_modules,
-        ext_mod_scmversion_objs,
+        scmversion_result_map,
         source_date_epoch,
         source_date_epoch_obj,
     ) -> None:
-        if kernel_dir_scmversion_obj:
-            print("STABLE_SCMVERSION", collect(kernel_dir_scmversion_obj))
-
         if source_date_epoch_obj:
             source_date_epoch = collect(source_date_epoch_obj)
         print("STABLE_SOURCE_DATE_EPOCH", source_date_epoch)
 
-        # If the list is empty, this prints "STABLE_SCMVERSION_EXT_MOD", and is
+        # If the list is empty, this prints "STABLE_SCMVERSIONS", and is
         # filtered by Bazel.
-        print(
-            "STABLE_SCMVERSION_EXT_MOD",
-            " ".join("{}:{}".format(ext_mod, result) for ext_mod, result in
-                     zip(ext_modules,
-                         [collect(obj) for obj in ext_mod_scmversion_objs])))
+        stable_scmversions = " ".join(
+            "{}:{}".format(path, result)
+            for path, result in scmversion_result_map.items())
+        print("STABLE_SCMVERSIONS", stable_scmversions)
 
 
 if __name__ == '__main__':
