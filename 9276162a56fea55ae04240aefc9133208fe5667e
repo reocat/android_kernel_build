@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b39c398b_cbbd5c99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 69
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-07T21:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "617b4640_f3287c66",
+      "range": {
+        "startLine": 15,
+        "startChar": 14,
+        "endLine": 15,
+        "endChar": 20
+      },
+      "revId": "9276162a56fea55ae04240aefc9133208fe5667e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dedb03d2_32a3fd10",
@@ -77,6 +101,30 @@
       "writtenOn": "2023-03-08T17:17:51Z",
       "side": 1,
       "message": "isn\u0027t this always true?",
+      "range": {
+        "startLine": 245,
+        "startChar": 11,
+        "endLine": 245,
+        "endChar": 20
+      },
+      "revId": "9276162a56fea55ae04240aefc9133208fe5667e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37157006_22f85069",
+        "filename": "kleaf/buildozer_command_builder.py",
+        "patchSetId": 69
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-07T21:20:43Z",
+      "side": 1,
+      "message": "gen_ddk_headers.py change this to None because nothing needs to be loaded from.",
+      "parentUuid": "01892327_bc08d0d5",
       "range": {
         "startLine": 245,
         "startChar": 11,
@@ -147,6 +195,30 @@
       "writtenOn": "2023-03-08T17:17:51Z",
       "side": 1,
       "message": "is this the prefix that is not suffix of?",
+      "range": {
+        "startLine": 81,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 10
+      },
+      "revId": "9276162a56fea55ae04240aefc9133208fe5667e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43034226_9d486ba1",
+        "filename": "kleaf/impl/ddk/gen_ddk_headers.py",
+        "patchSetId": 69
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-07T21:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "889a680b_8d65d16e",
       "range": {
         "startLine": 81,
         "startChar": 4,
