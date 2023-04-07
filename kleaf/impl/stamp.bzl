@@ -116,8 +116,8 @@ def _set_source_date_epoch(ctx):
     """
     if ctx.attr._config_is_stamp[BuildSettingInfo].value:
         return struct(deps = [ctx.info_file], cmd = """
-              export SOURCE_DATE_EPOCH=$({source_date_epoch_cmd})
-        """.format(source_date_epoch_cmd = status.get_stable_status_cmd(ctx, "STABLE_SOURCE_DATE_EPOCH")))
+              export KLEAF_SOURCE_DATE_EPOCHS=$({source_date_epoch_cmd})
+        """.format(source_date_epoch_cmd = status.get_stable_status_cmd(ctx, "STABLE_SOURCE_DATE_EPOCHS")))
     else:
         return struct(deps = [], cmd = """
               export SOURCE_DATE_EPOCH=0
