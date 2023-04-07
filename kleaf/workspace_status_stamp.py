@@ -92,20 +92,20 @@ def main():
 
   # Wait for subprocesses to finish, and print result.
 
-  if stable_scmversion_obj:
-    print("STABLE_SCMVERSION", collect(stable_scmversion_obj))
-
   if stable_source_date_epoch_obj:
     stable_source_date_epoch = collect(stable_source_date_epoch_obj)
   print("STABLE_SOURCE_DATE_EPOCH", stable_source_date_epoch)
 
-  # If the list is empty, this prints "STABLE_SCMVERSION_EXT_MOD", and is
+  # If the list is empty, this prints "STABLE_SCMVERSIONS", and is
   # filtered by Bazel.
-  print("STABLE_SCMVERSION_EXT_MOD", " ".join(
-      "{}:{}".format(ext_mod, result) for ext_mod, result in zip(ext_modules,
-                                                                 [collect(obj)
-                                                                  for obj in
-                                                                  stable_scmversion_extmod_objs])))
+  scmversion_paths = list(ext_modules)
+  scmversion_objs = list(stable_scmversion_extmod_objs)
+  if stable_scmversion_obj:
+      scmversion_paths.append(kernel_dir)
+      scmversion_objs.append(stable_scmversion_obj)
+  scmversion_paths_and_objs = zip(scmversion_paths, scmversion_objs)
+  print("STABLE_SCMVERSIONS", " ".join(
+      "{}:{}".format(ext_mod, collect(obj)) for ext_mod, obj in scmversion_paths_and_objs))
 
   return 0
 
