@@ -110,6 +110,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "603420f6_0a54004e",
+        "filename": "kleaf/impl/ddk/analyze_inputs.bzl",
+        "patchSetId": 69
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-07T21:16:35Z",
+      "side": 1,
+      "message": "This is correct. ctx.label needs to be at the very end because the former is the description.\n\nOur metrics dashboards also rely on this.",
+      "parentUuid": "617263cf_4d7dec5a",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 22
+      },
+      "revId": "9276162a56fea55ae04240aefc9133208fe5667e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "889a680b_8d65d16e",
