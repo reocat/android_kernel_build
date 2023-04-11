@@ -22,6 +22,30 @@
       },
       "revId": "a6353608831e1714136ce793a81030c08840fe19",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26badd31_699ed995",
+        "filename": "kleaf/impl/ddk/analyze_inputs.bzl",
+        "patchSetId": 78
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-11T18:33:27Z",
+      "side": 1,
+      "message": "I don\u0027t expect there to be more than one target, so for simplicity I\u0027ll just print the list directly.\n\nThis should give something like `[\"//foo\", \"//bar\"]`",
+      "parentUuid": "d2ee7a4a_268832f5",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 65,
+        "endChar": 54
+      },
+      "revId": "a6353608831e1714136ce793a81030c08840fe19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
