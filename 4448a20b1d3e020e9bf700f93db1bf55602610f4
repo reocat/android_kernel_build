@@ -22,6 +22,30 @@
       },
       "revId": "4448a20b1d3e020e9bf700f93db1bf55602610f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d13bcd3e_e43844a2",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-12T17:04:52Z",
+      "side": 1,
+      "message": "This is going to be modified immediately in https://android-review.git.corp.google.com/c/kernel/build/+/2529321/7/kleaf/workspace_status_stamp.py so I am going to leave it here.\n\nAlso, self.setlocalversion will soon be not depending on self.kernel_dir: see CL:2531031. So I\u0027ll keep this logic for now.",
+      "parentUuid": "17f1a5fd_268e994e",
+      "range": {
+        "startLine": 97,
+        "startChar": 36,
+        "endLine": 97,
+        "endChar": 58
+      },
+      "revId": "4448a20b1d3e020e9bf700f93db1bf55602610f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
