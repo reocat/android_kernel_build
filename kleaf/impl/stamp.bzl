@@ -20,14 +20,11 @@ load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 
 def _get_status_at_path(ctx, status_name, quoted_src_path):
     # {path}:{scmversion} {path}:{scmversion} ...
-    cmd = status.get_stable_status_cmd(ctx, status_name)
-    cmd += """ | sed -n 's|.*\\<'{quoted_src_path}':\\(\\S\\+\\).*|\\1|p'""".format(
+
+    cmd = "$(extract_git_metadata $({stable_status_cmd}) {quoted_src_path})".format(
+        stable_status_cmd = status.get_stable_status_cmd(ctx, status_name),
         quoted_src_path = quoted_src_path,
     )
-
-    # we may have a missing item if setlocalversion should not run in
-    # a certain directory. Hence, be lenient about failures.
-    cmd += " || true"
     return cmd
 
 def _write_localversion_step(ctx, out_path):

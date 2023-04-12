@@ -79,9 +79,36 @@ export MODULES_ARCHIVE=modules.tar.gz
 
 export TZ=UTC
 export LC_ALL=C
+
+# $1: A mapping of the form path:value [path:value [...]]
+# $2: A path. This may be a subpath of an item in the mapping
+# $3: What is being determined (for error messages)
+# Returns the corresponding value of path.
+# Example:
+#   extract_git_metadata "foo:123 bar:456" foo/baz
+#   -> 123
+function extract_git_metadata() {
+  local map=$1
+  local git_project_candidate=$2
+  local what=$3
+  while [[ "${git_project_candidate}" != "." ]]; do
+    value_candidate=$(echo "${map}" | sed -n 's|.*\<'"${git_project_candidate}"':\(\S\+\).*|\1|p' || true)
+    if [[ -n "${value_candidate}" ]]; then
+        break
+    fi
+    git_project_candidate=$(dirname ${git_project_candidate})
+  done
+  if [[ -n ${value_candidate} ]]; then
+    echo "${value_candidate}"
+  else
+    echo "WARNING: Can't determine $what for $2" >&2
+  fi
+}
+export -f extract_git_metadata
+
 if [ -z "${SOURCE_DATE_EPOCH}" ]; then
   if [[ -n "${KLEAF_SOURCE_DATE_EPOCHS}" ]]; then
-    export SOURCE_DATE_EPOCH=$(echo "${KLEAF_SOURCE_DATE_EPOCHS}" | sed -n 's|.*\<'"${KERNEL_DIR}"':\(\S\+\).*|\1|p')
+    export SOURCE_DATE_EPOCH=$(extract_git_metadata "${KLEAF_SOURCE_DATE_EPOCHS}" "${KERNEL_DIR}" SOURCE_DATE_EPOCH)
     # Unset KLEAF_SOURCE_DATE_EPOCHS to avoid polluting {kernel_build}_env.sh
     # with unnecessary information (git metadata of unrelated projects)
     unset KLEAF_SOURCE_DATE_EPOCHS
