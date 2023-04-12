@@ -22,6 +22,30 @@
       },
       "revId": "367994268726b2cd2828a10f1c461f5bddb9e655",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2e349a8_b0e9888a",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-12T17:01:22Z",
+      "side": 1,
+      "message": "This string is based on the format of the logging library, and we pretty much expect a consistent format (it is unlikely to change). So I think we should just duplicate it.\n\nThey are the same in various scripts in Kleaf.",
+      "parentUuid": "0243c35d_e94ed509",
+      "range": {
+        "startLine": 174,
+        "startChar": 24,
+        "endLine": 174,
+        "endChar": 59
+      },
+      "revId": "367994268726b2cd2828a10f1c461f5bddb9e655",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
