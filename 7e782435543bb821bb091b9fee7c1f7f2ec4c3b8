@@ -46,6 +46,30 @@
       },
       "revId": "7e782435543bb821bb091b9fee7c1f7f2ec4c3b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbb65280_04a804fe",
+        "filename": "kleaf/impl/stamp.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-12T18:44:56Z",
+      "side": 1,
+      "message": "Moved to a function with proper docs",
+      "parentUuid": "fa7011b9_709cb2bf",
+      "range": {
+        "startLine": 24,
+        "startChar": 14,
+        "endLine": 24,
+        "endChar": 72
+      },
+      "revId": "7e782435543bb821bb091b9fee7c1f7f2ec4c3b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
