@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f5ade92_b89a4cb1",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-12T22:04:07Z",
+      "side": 1,
+      "message": "Why is this called twice? (L166)",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 46
+      },
+      "revId": "b4a896a4f752164af5e82141013442aa119e3808",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3336d338_2402f8ff",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-12T22:04:07Z",
+      "side": 1,
+      "message": "nit: consider moving to a new function\n\n(and L142~157 below)",
+      "revId": "b4a896a4f752164af5e82141013442aa119e3808",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae26489b_cf328893",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-12T22:04:07Z",
+      "side": 1,
+      "message": "nit: are these \\w or \\S?",
+      "range": {
+        "startLine": 145,
+        "startChar": 85,
+        "endLine": 145,
+        "endChar": 93
+      },
+      "revId": "b4a896a4f752164af5e82141013442aa119e3808",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d49eb4e_a1de9ce5",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-12T22:04:07Z",
+      "side": 1,
+      "message": "It\u0027s okay to not print the buildozer command. We don\u0027t have to be providing a very smart error message since this is likely a one-time thing (unlike module_outs, which can go outdated frequently when people changes the defconfig)",
+      "range": {
+        "startLine": 149,
+        "startChar": 18,
+        "endLine": 149,
+        "endChar": 58
+      },
+      "revId": "b4a896a4f752164af5e82141013442aa119e3808",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
