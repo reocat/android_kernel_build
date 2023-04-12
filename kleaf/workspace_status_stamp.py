@@ -18,6 +18,8 @@ import os
 import shutil
 import subprocess
 import sys
+import xml.dom.minidom
+import xml.parsers.expat
 from typing import Optional
 
 
@@ -65,6 +67,27 @@ def call_setlocalversion(bin, srctree, *args) \
     return None
 
 
+def list_projects():
+    """Call `repo manifest -r` and returns a mapping from projects to revisions.
+    """
+    try:
+        manifest = subprocess.check_output(["repo", "manifest", "-r"],
+                                           text=True)
+    except subprocess.SubprocessError as e:
+        logging.error("Unable to execute repo manifest -r: %s", e)
+        return {}
+    try:
+        dom = xml.dom.minidom.parseString(manifest)
+    except xml.parsers.expat.ExpatError as e:
+        logging.error("Unable to parse repo manifest: %s", e)
+        return {}
+    projects = dom.documentElement.getElementsByTagName("project")
+    return {
+        proj.getAttribute("path"): proj.getAttribute("revision")
+        for proj in projects
+    }
+
+
 def collect(popen_obj: subprocess.Popen) -> str:
     """Collect the result of a Popen object.
 
@@ -84,6 +107,7 @@ class Stamp(object):
 
     def __init__(self):
         self.init_for_dot_source_date_epoch_dir()
+        self.projects = list_projects()
 
     def init_for_dot_source_date_epoch_dir(self) -> None:
         self.kernel_dir = os.path.realpath(".source_date_epoch_dir")
@@ -96,10 +120,15 @@ class Stamp(object):
 
     def main(self) -> int:
         scmversion_map = self.call_setlocalversion_all()
+        scmversion_new_map = self.get_scmversion_from_repo_manifest()
 
         source_date_epoch_map = self.async_get_source_date_epoch_kernel_dir()
 
-        scmversion_result_map = self.collect_map(scmversion_map)
+        scmversion_result_map = self.collect_map(
+            legacy_map=scmversion_map,
+            new_map=scmversion_new_map,
+            legacy_method="setlocalversion",
+            new_method="repo manifest")
 
         source_date_epoch_result_map = self.collect_map(source_date_epoch_map)
 
@@ -174,6 +203,15 @@ class Stamp(object):
             ret.append(PathPopen(ext_mod, popen))
         return ret
 
+    def get_scmversion_from_repo_manifest(self):
+        # FIXME prefix patch numbers
+        # FIXME suffix -dirty
+        # FIXME BUILD_NUMBER
+        return {
+            proj: PresetResult(proj, "-g{}".format(revision[:12]))
+            for proj, revision in self.projects.items()
+        }
+
     def async_get_source_date_epoch_kernel_dir(self) \
             -> dict[str, PathCollectible]:
         env_val = os.environ.get("SOURCE_DATE_EPOCH")
@@ -190,11 +228,37 @@ class Stamp(object):
     def collect_map(
         self,
         legacy_map: dict[str, PathCollectible],
+        new_map: Optional[dict[str, PathCollectible]] = None,
+        legacy_method: Optional[str] = None,
+        new_method: Optional[str] = None,
     ) -> dict[str, str]:
-        return {
+        legacy_results = {
             path: path_popen.collect()
             for path, path_popen in legacy_map.items()
         }
+
+        if not new_map:
+            return legacy_results
+
+        new_results = {
+            path: path_popen.collect()
+            for path, path_popen in new_map.items()
+        }
+        all_results = dict(legacy_results)
+
+        for path, new_result in new_results.items():
+            if path in legacy_results and legacy_results[path] != new_result:
+                logging.warning(
+                    "For project %s, %s gives %s, but "
+                    "%s gives %s. "
+                    "This will be a problem when you delete the "
+                    "top-level build.config or "
+                    ".source_date_epoch_dir", path, legacy_method,
+                    legacy_results[path], new_method, new_result)
+                continue
+            all_results[path] = new_result
+
+        return all_results
 
     def print_result(
         self,
