@@ -68,6 +68,20 @@ def call_setlocalversion(bin, srctree, *args) \
     return None
 
 
+def list_projects():
+    """Call `repo list -p`
+
+    Returns:
+        a list of projects in the repository."""
+    try:
+        output = subprocess.check_output(["repo", "list", "-p"], text=True)
+    except subprocess.SubprocessError as e:
+        logging.error("Unable to execute repo manifest: %s", e)
+        return []
+    lines = output.splitlines()
+    return [e for e in lines if e]
+
+
 def collect(popen_obj: subprocess.Popen) -> str:
     """Collect the result of a Popen object.
 
@@ -86,6 +100,7 @@ def collect(popen_obj: subprocess.Popen) -> str:
 class Stamp(object):
 
     def __init__(self):
+        self.projects = list_projects()
         self.init_for_dot_source_date_epoch_dir()
 
     def init_for_dot_source_date_epoch_dir(self) -> None:
@@ -128,6 +143,7 @@ class Stamp(object):
         if self.kernel_dir:
             all_projects.add(self.kernel_rel)
         all_projects |= set(self.get_ext_modules())
+        all_projects |= set(self.projects)
 
         scmversion_map = {}
         for project in all_projects:
