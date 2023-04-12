@@ -118,6 +118,10 @@ def _set_source_date_epoch(ctx):
         # _setup_env.sh is set. Hence, set a separate variable
         # KLEAF_SOURCE_DATE_EPOCHS so _setup_env.sh can use it to determine
         # SOURCE_DATE_EPOCH.
+        # We can't put the reading of ctx.info_file in a separate action because
+        # KERNEL_DIR is not known without source _setup_env.sh. This is okay
+        # because kernel_env executes relatively quickly, and only the final
+        # result (SOURCE_DATE_EPOCH) is emitted in *_env.sh.
         return struct(deps = [ctx.info_file], cmd = """
               export KLEAF_SOURCE_DATE_EPOCHS=$({source_date_epoch_cmd})
         """.format(source_date_epoch_cmd = status.get_stable_status_cmd(ctx, "STABLE_SOURCE_DATE_EPOCHS")))
