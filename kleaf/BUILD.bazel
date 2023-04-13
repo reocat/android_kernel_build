@@ -404,3 +404,16 @@ test_suite(
         "//prebuilts/build-tools/tests",
     ],
 )
+
+genrule(
+    name = "tar_test",
+    outs = ["tar_test.tar.gz"],
+    tools = [
+        "//prebuilts/build-tools:path/linux-x86/tar",
+    ],
+    cmd = """
+        /bin/dd if=/dev/urandom of=file bs=4k count=10k
+        $(location //prebuilts/build-tools:path/linux-x86/tar) czf $(location tar_test.tar.gz) file
+        # sleep 1
+    """
+)
