@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6449788_70c35662",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-13T17:00:23Z",
+      "side": 1,
+      "message": "Looks like `repo` is not accessible on build bots. I may need to find another solution.",
+      "revId": "9dafd07e71ac6a16d346a767808d96e958446c70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c024c4ea_081a9592",
         "filename": "kleaf/workspace_status_stamp.py",
         "patchSetId": 12
