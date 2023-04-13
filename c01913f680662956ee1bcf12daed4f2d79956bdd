@@ -22,6 +22,30 @@
       },
       "revId": "c01913f680662956ee1bcf12daed4f2d79956bdd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d20bfada_32cd63c5",
+        "filename": "kleaf/impl/stamp.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-13T19:17:32Z",
+      "side": 1,
+      "message": "\u003e but if all actions depend on this they will still get evaluated when the ctx.info_file changes right? \n\nCorrect.\n\n\u003e But only the one from the module that actually changes will cause a rebuild right?\n\nCorrect.\n\nNote that bazel uses content-based caching, not timestamp based. So even if ctx.info_file changes, as long as localversion_file does not change, subsequent actions are not re-executed.\n\nThe point is that localversion_file contains only the information for this git project, but not other git projects -- where \"this git project\" means KERNEL_DIR for kernel_build and ext_mod for kernel_module.",
+      "parentUuid": "e2c96155_f02525d9",
+      "range": {
+        "startLine": 133,
+        "startChar": 17,
+        "endLine": 133,
+        "endChar": 32
+      },
+      "revId": "c01913f680662956ee1bcf12daed4f2d79956bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
