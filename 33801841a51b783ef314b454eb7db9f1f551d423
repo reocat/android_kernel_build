@@ -22,6 +22,30 @@
       },
       "revId": "33801841a51b783ef314b454eb7db9f1f551d423",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69835e8b_c8a4c0db",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-13T19:05:41Z",
+      "side": 1,
+      "message": "I would say it\u0027s okay to use any.\n\nThere may be multiple (e.g. in the Pixel tree, where there\u0027s a ToT kernel and a staging kernel during development).\n\nBut they should have a similar API.",
+      "parentUuid": "30c6186e_e78c017c",
+      "range": {
+        "startLine": 143,
+        "startChar": 16,
+        "endLine": 143,
+        "endChar": 22
+      },
+      "revId": "33801841a51b783ef314b454eb7db9f1f551d423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
