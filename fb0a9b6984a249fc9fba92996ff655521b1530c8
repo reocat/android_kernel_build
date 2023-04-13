@@ -22,6 +22,30 @@
       },
       "revId": "fb0a9b6984a249fc9fba92996ff655521b1530c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89d213a0_d27bdce3",
+        "filename": "build_utils.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 746,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-13T19:07:14Z",
+      "side": 1,
+      "message": "I think we want less INFO level logs b/234125794",
+      "parentUuid": "a51f093e_8d259d42",
+      "range": {
+        "startLine": 746,
+        "startChar": 4,
+        "endLine": 746,
+        "endChar": 8
+      },
+      "revId": "fb0a9b6984a249fc9fba92996ff655521b1530c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
