@@ -46,6 +46,53 @@
       "message": "File is not formatted. Run `buildifier kleaf/BUILD.bazel` to format the file, or apply the suggested fix.",
       "revId": "1acc3d8ad43eaed6e0a31ccc8ebca6f714117f37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000042744401",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2536710?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "ba6e4adb_c67148d0",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/BUILD.bazel",
+              "range": {
+                "startLine": 411,
+                "startChar": 0,
+                "endLine": 414,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/BUILD.bazel",
+              "range": {
+                "startLine": 417,
+                "startChar": 0,
+                "endLine": 419,
+                "endChar": 0
+              },
+              "replacement": "    \"\"\",\n    tools \u003d [\n        \"//prebuilts/build-tools:path/linux-x86/tar\",\n    ],\n)\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a8a72955_5dffa010",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-13T20:28:07Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "1acc3d8ad43eaed6e0a31ccc8ebca6f714117f37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
