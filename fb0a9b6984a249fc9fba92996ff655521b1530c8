@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a51f093e_8d259d42",
+        "filename": "build_utils.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 746,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-13T11:48:39Z",
+      "side": 1,
+      "message": "will it be helpful to log the transformation if any? or is that an implementation detail that might not be relevant?",
+      "range": {
+        "startLine": 746,
+        "startChar": 4,
+        "endLine": 746,
+        "endChar": 8
+      },
+      "revId": "fb0a9b6984a249fc9fba92996ff655521b1530c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
