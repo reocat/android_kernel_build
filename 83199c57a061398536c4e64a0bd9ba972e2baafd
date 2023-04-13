@@ -16,6 +16,24 @@
       "message": "I was thinking whether the presence of that file does actually do some harm?",
       "revId": "83199c57a061398536c4e64a0bd9ba972e2baafd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ed83587_b35d618c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-13T16:57:57Z",
+      "side": 1,
+      "message": "It doesn\u0027t do any harm, but you get a stamped build without --config\u003dstamp, which may cause confusion.",
+      "parentUuid": "fbd33397_9dad33fc",
+      "revId": "83199c57a061398536c4e64a0bd9ba972e2baafd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
