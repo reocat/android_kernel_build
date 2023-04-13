@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2c96155_f02525d9",
+        "filename": "kleaf/impl/stamp.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-13T12:13:57Z",
+      "side": 1,
+      "message": "I get that this is needed by `_get_stable_status_cmd` and that is not a direct dependency after this change, but if all actions depend on this they will still get evaluated when the ctx.info_file changes right? But only the one from the module that actually changes will cause a rebuild right?",
+      "range": {
+        "startLine": 133,
+        "startChar": 17,
+        "endLine": 133,
+        "endChar": 32
+      },
+      "revId": "c01913f680662956ee1bcf12daed4f2d79956bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
