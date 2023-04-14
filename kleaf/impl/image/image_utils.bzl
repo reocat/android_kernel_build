@@ -63,7 +63,15 @@ def _build_modules_image_impl_common(
         restore_modules_install = True
 
     kernel_build = ctx.attr.kernel_modules_install[KernelModuleInfo].kernel_build
-    kernel_build_outs = kernel_build[KernelBuildInfo].outs + kernel_build[KernelBuildInfo].base_kernel_files.to_list()
+    kernel_build_outs = depset(
+        kernel_build[KernelBuildInfo].outs,
+        transitive = [kernel_build[KernelBuildInfo].base_kernel_files],
+        # Prefer device kernel_build, then base kernel_build
+        order = "preorder",
+    )
+    # depset.to_list() required for find_file.
+    # TODO(b/256688440): providers should provide System.map directly
+    kernel_build_outs = kernel_build_outs.to_list()
     system_map = utils.find_file(
         name = "System.map",
         files = kernel_build_outs,
