@@ -1429,7 +1429,7 @@ def _create_infos(
         module_outs_file = all_module_names_file,
     )
 
-    images_info = KernelImagesInfo(base_kernel = base_kernel_utils.get_base_kernel(ctx))
+    images_info = KernelImagesInfo(base_kernel_label = base_kernel_utils.get_base_kernel(ctx).label)
 
     gcov_info = GcovInfo(
         gcno_mapping = main_action_ret.gcno_mapping,
