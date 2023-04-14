@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000042838665",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2538337?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "8990d153_c2584034",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_modules_install.bzl",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": "    \"KernelBuildInfo\",\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_modules_install.bzl",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "    \"KernelImagesInfo\",\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_modules_install.bzl",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "1748a547_519396dc",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-14T18:57:55Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_modules_install.bzl` to format the file, or apply the suggested fix.",
+      "revId": "4f9738919df53874923d483120901fe72bd04ece",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
