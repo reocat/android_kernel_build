@@ -18,13 +18,18 @@ load(
     ":common_providers.bzl",
     "KernelBuildAbiInfo",
     "KernelUnstrippedModulesInfo",
+    "KernelModuleInfo",
 )
 load(":debug.bzl", "debug")
 load(":utils.bzl", "kernel_utils", "utils")
 load(":abi/abi_transitions.bzl", "with_vmlinux_transition")
 
 def _abi_dump_impl(ctx):
-    kernel_utils.check_kernel_build(ctx.attr.kernel_modules, ctx.attr.kernel_build, ctx.label)
+    kernel_utils.check_kernel_build(
+        [target[KernelModuleInfo] for target in ctx.attr.kernel_modules],
+        ctx.attr.kernel_build.label,
+        ctx.label,
+    )
 
     # Run both methods until STG is fully adopted.
     full_abi_out_file_stg = _abi_dump_full_stg(ctx)
