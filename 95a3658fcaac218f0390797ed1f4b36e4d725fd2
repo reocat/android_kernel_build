@@ -43,6 +43,43 @@
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2536517?revision\u003d2",
       "fixSuggestions": [
         {
+          "fixId": "97832b55_e95407e2",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/btf.bzl",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 26,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "7aeab671_a0e89dc9",
+        "filename": "kleaf/impl/btf.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-14T06:26:04Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/btf.bzl` to format the file, or apply the suggested fix.",
+      "revId": "95a3658fcaac218f0390797ed1f4b36e4d725fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000042792998",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2536517?revision\u003d2",
+      "fixSuggestions": [
+        {
           "fixId": "469b0c20_e6c39f5d",
           "description": "Buildifier Suggestion",
           "replacements": [
@@ -79,6 +116,53 @@
         "id": 1757831
       },
       "writtenOn": "2023-04-14T06:26:01Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/kernel_module_group_test/kernel_module_group_test.bzl` to format the file, or apply the suggested fix.",
+      "revId": "95a3658fcaac218f0390797ed1f4b36e4d725fd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000042792998",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2536517?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "96288885_1ecd48e2",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/kernel_module_group_test/kernel_module_group_test.bzl",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 21,
+                "endChar": 0
+              },
+              "replacement": "    \"KernelModuleInfo\",\n"
+            },
+            {
+              "path": "kleaf/tests/kernel_module_group_test/kernel_module_group_test.bzl",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "93b88160_ff8a36c2",
+        "filename": "kleaf/tests/kernel_module_group_test/kernel_module_group_test.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-14T06:26:04Z",
       "side": 1,
       "message": "File is not formatted. Run `buildifier kleaf/tests/kernel_module_group_test/kernel_module_group_test.bzl` to format the file, or apply the suggested fix.",
       "revId": "95a3658fcaac218f0390797ed1f4b36e4d725fd2",
