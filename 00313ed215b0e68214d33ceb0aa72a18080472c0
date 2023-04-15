@@ -46,6 +46,53 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/abi/abi_dump.bzl` to format the file, or apply the suggested fix.",
       "revId": "00313ed215b0e68214d33ceb0aa72a18080472c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000042877260",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2538336?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "1e0da456_4cc3e97d",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/abi/abi_dump.bzl",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 20,
+                "endChar": 0
+              },
+              "replacement": "    \"KernelModuleInfo\",\n"
+            },
+            {
+              "path": "kleaf/impl/abi/abi_dump.bzl",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "11612fce_c8ccc756",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-15T06:30:34Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/abi/abi_dump.bzl` to format the file, or apply the suggested fix.",
+      "revId": "00313ed215b0e68214d33ceb0aa72a18080472c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
