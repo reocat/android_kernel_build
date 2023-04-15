@@ -56,6 +56,63 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_modules_install.bzl` to format the file, or apply the suggested fix.",
       "revId": "d37c5a7b172f77e5ac98daa5a2f971fae9ecc8fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000042877313",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2538337?revision\u003d4",
+      "fixSuggestions": [
+        {
+          "fixId": "a03a3f2d_8fcc5635",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_modules_install.bzl",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": "    \"KernelBuildInfo\",\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_modules_install.bzl",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "    \"KernelImagesInfo\",\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_modules_install.bzl",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a1634c0e_4419e5e9",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-15T06:31:02Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_modules_install.bzl` to format the file, or apply the suggested fix.",
+      "revId": "d37c5a7b172f77e5ac98daa5a2f971fae9ecc8fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
