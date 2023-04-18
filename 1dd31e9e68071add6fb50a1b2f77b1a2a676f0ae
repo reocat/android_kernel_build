@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b90a91c0_bf88090c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-18T14:01:53Z",
+      "side": 1,
+      "message": "Had to submit a new version due to a duplicated `vmlinux` when building `//common:kernel_aarch64_abi`, in the new version, the new make_goals is not re-exported to avoid polluting the env space, instead rely solely in the info from providers.",
+      "revId": "1dd31e9e68071add6fb50a1b2f77b1a2a676f0ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
