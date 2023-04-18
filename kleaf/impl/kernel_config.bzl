@@ -485,9 +485,11 @@ def _get_config_script(ctx, inputs):
 
           DEFCONFIG_SYMLINK=${ROOT_DIR}/${KERNEL_DIR}/arch/${SRCARCH}/configs/${DEFCONFIG}
           DEFCONFIG_REAL=$(readlink -e ${DEFCONFIG_SYMLINK} || true)
-          if [[ -n ${DEFCONFIG_REAL} ]]; then
-              trap "ln -sf ${DEFCONFIG_REAL} ${DEFCONFIG_SYMLINK}" EXIT
+          if [[ -n ${DEFCONFIG_REAL} ]] && [[ ${DEFCONFIG_REAL} != ${DEFCONFIG_SYMLINK} ]]; then
+              # Destination is a symlink (it is a source file); ensure that we restore it.
+              trap "rm ${DEFCONFIG_SYMLINK} && ln -sf ${DEFCONFIG_REAL} ${DEFCONFIG_SYMLINK}" EXIT
           else
+              # Destination does not exist or is not a symlink.
               DEFCONFIG_REAL=${DEFCONFIG_SYMLINK}
           fi
 
