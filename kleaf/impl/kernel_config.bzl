@@ -484,11 +484,13 @@ def _get_config_script(ctx, inputs):
           # the next `bazel run X_config` can infer the source file properly.
 
           DEFCONFIG_SYMLINK=${ROOT_DIR}/${KERNEL_DIR}/arch/${SRCARCH}/configs/${DEFCONFIG}
-          DEFCONFIG_REAL=$(readlink -e ${DEFCONFIG_SYMLINK} || true)
-          if [[ -n ${DEFCONFIG_REAL} ]]; then
-              trap "ln -sf ${DEFCONFIG_REAL} ${DEFCONFIG_SYMLINK}" EXIT
+          DEFCONFIG_REAL=$(readlink -e "${DEFCONFIG_SYMLINK}" || true)
+          if [[ -n "${DEFCONFIG_REAL}" ]] && [[ "${DEFCONFIG_REAL}" != "${DEFCONFIG_SYMLINK}" ]]; then
+              # Destination is a symlink (it is a source file); ensure that we restore it.
+              trap "rm ${DEFCONFIG_SYMLINK} && ln -sf ${DEFCONFIG_REAL} ${DEFCONFIG_SYMLINK}" EXIT
           else
-              DEFCONFIG_REAL=${DEFCONFIG_SYMLINK}
+              # Destination does not exist or is not a symlink.
+              DEFCONFIG_REAL="${DEFCONFIG_SYMLINK}"
           fi
 
           # This needs to be in a sub-shell, otherwise trap doesn't work.
