@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aa68f22_9f34beb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-04-18T17:01:29Z",
+      "side": 1,
+      "message": "This is needed if we want to keep `utf8_data_table` in the `abi_gki_aarch64` symbol list. Without this patch, running the command `bazel run //common:kernel_aarch64_abi_update` removes it from `abi_gki_aarch64` since no GKI modules use the symbol. Adding it to a vendor symbol list also works, but since this symbol is not used by vendor kernel modules either the tooling doesn\u0027t automatically add it to the vendor symbol lists. So I would rather just include it in `abi_gki_aarch64` to keep f2fs case folding functional for future GKI branches as well without having to debug this issue every year.",
+      "parentUuid": "98daed52_888d241e",
+      "revId": "2adf48ec464278816b6c349310cf3b39e680f259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e4e1df7_43841c44",
