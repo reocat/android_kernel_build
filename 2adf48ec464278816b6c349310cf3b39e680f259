@@ -16,6 +16,29 @@
       "message": "Isn\u0027t it enough that it is in a symbol list due to the parent patch? Why are these 2 changes needed? (feel free to point me to documentation if this is explained somewhere)",
       "revId": "2adf48ec464278816b6c349310cf3b39e680f259",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e4e1df7_43841c44",
+        "filename": "abi/extract_symbols.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2023-04-18T14:11:03Z",
+      "side": 1,
+      "message": "why isn\u0027t this just reading from the file?  You already list these symbols, ideally the list should only be in one place, right?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 16
+      },
+      "revId": "2adf48ec464278816b6c349310cf3b39e680f259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
