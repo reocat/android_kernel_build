@@ -165,6 +165,13 @@ def kernel_abi(
         **private_kwargs
     )
 
+    native.filegroup(
+        name = name + "_check",
+        srcs = [kernel_build],
+        output_group = "kmi_strict_mode_out",
+        **private_kwargs
+    )
+
     if not define_abi_targets:
         _not_define_abi_targets(
             name = name,
@@ -181,6 +188,7 @@ def kernel_abi(
             abi_definition_stg = abi_definition_stg,
             kmi_enforced = kmi_enforced,
             abi_dump_target = name + "_dump",
+            symbols_check = name + "_check",
             **kwargs
         )
 
@@ -237,6 +245,7 @@ def _define_abi_targets(
         abi_definition_stg,
         kmi_enforced,
         abi_dump_target,
+        symbols_check,
         **kwargs):
     """Helper to `_define_other_targets` when `define_abi_targets = True.`
 
@@ -306,6 +315,7 @@ def _define_abi_targets(
         kmi_enforced = kmi_enforced,
         kmi_symbol_list = name + "_src_kmi_symbol_list",
         protected_exports_list = name + "_src_protected_exports_list",
+        symbols_check = symbols_check,
         **private_kwargs
     )
 
@@ -321,6 +331,7 @@ def _define_abi_definition_targets(
         kmi_enforced,
         kmi_symbol_list,
         protected_exports_list,
+        symbols_check,
         **kwargs):
     """Helper to `_define_abi_targets`.
 
@@ -392,6 +403,7 @@ def _define_abi_definition_targets(
                 name + "_update_definition",
                 kmi_symbol_list,
                 protected_exports_list,
+                symbols_check,
             ],
             script = """
                 # Ensure that symbol list is updated

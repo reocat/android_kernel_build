@@ -1439,6 +1439,8 @@ def _create_infos(
     output_group_kwargs["modules_staging_archive"] = depset([modules_staging_archive])
     output_group_kwargs[MODULE_OUTS_FILE_OUTPUT_GROUP] = depset([all_module_names_file])
     output_group_kwargs[TOOLCHAIN_VERSION_FILENAME] = depset([toolchain_version_out])
+    if kmi_strict_mode_out:
+        output_group_kwargs["kmi_strict_mode_out"] = depset([kmi_strict_mode_out])
     output_group_info = OutputGroupInfo(**output_group_kwargs)
 
     kbuild_mixed_tree_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
