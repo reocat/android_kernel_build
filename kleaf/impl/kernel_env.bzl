@@ -25,6 +25,7 @@ load(
     "KernelEnvAttrInfo",
     "KernelEnvInfo",
     "KernelEnvMakeGoalsInfo",
+    "KernelEnvToolchainInfo",
 )
 load(":compile_commands_utils.bzl", "compile_commands_utils")
 load(":debug.bzl", "debug")
@@ -34,6 +35,29 @@ load(":kgdb.bzl", "kgdb")
 load(":stamp.bzl", "stamp")
 load(":status.bzl", "status")
 load(":utils.bzl", "utils")
+
+def _toolchains_transition_impl(_settings, attr):
+    # FIXME what about toolchain_version.startswith("//build/kernel/kleaf/tests/")
+    target = "//prebuilts/clang/host/linux-x86/kleaf:{}_android_{}".format(
+        attr.toolchain_version,
+        attr.arch,
+    )
+    host = "//prebuilts/clang/host/linux-x86/kleaf:{}_linux_x86_64".format(
+        attr.toolchain_version,
+    )
+    return {
+        "//command_line_option:platforms": target,
+        "//command_line_option:host_platform": host,
+    }
+
+_toolchains_transition = transition(
+    implementation = _toolchains_transition_impl,
+    inputs = [],
+    outputs = [
+        "//command_line_option:platforms",
+        "//command_line_option:host_platform",
+    ],
+)
 
 def _get_kbuild_symtypes(ctx):
     if ctx.attr.kbuild_symtypes == "auto":
@@ -51,17 +75,46 @@ def _get_check_arch_cmd(ctx):
     if expected_arch == "riscv64":
         expected_arch = "riscv"
 
-    # TODO(b/272164611): Turn this into an error.
     level = "WARNING"
+    exit_cmd = ""
+    if ctx.attr._kernel_use_resolved_toolchains[BuildSettingInfo].value:
+        level = "ERROR"
+        exit_cmd = "exit 1"
+
     return """
         if [[ "$ARCH" != "{expected_arch}" ]]; then
             echo '{level}: {label} must specify arch = "{expected_arch}".' >&2
+            {exit_cmd}
         fi
     """.format(
         level = level,
         label = ctx.label,
         expected_arch = expected_arch,
+        exit_cmd = exit_cmd,
     )
+
+def _get_toolchains(ctx):
+    return ctx.attr._toolchains[0][KernelEnvToolchainInfo]
+
+def _get_resolved_toolchain_step(ctx):
+    toolchains = _get_toolchains(ctx)
+    if toolchains.exec_compiler_version != ctx.attr.toolchain_version:
+        fail("{}: Resolved to incorrect toolchain for exec platform. Expected: {}, actual: {}".format(
+            ctx.label,
+            ctx.attr.toolchain_version,
+            toolchains.exec_compiler_version,
+        ))
+    if toolchains.target_compiler_version != ctx.attr.toolchain_version:
+        fail("{}: Resolved to incorrect toolchain for target platform. Expected: {}, actual: {}".format(
+            ctx.label,
+            ctx.attr.toolchain_version,
+            toolchains.target_compiler_version,
+        ))
+
+    cmd = ""
+    for key, value in toolchains.env.items():
+        cmd += "export {}={}\n".format(key, shell.quote(value))
+    return struct(cmd = cmd)
 
 def _get_make_goals(ctx):
     # Fallback to goals from build.config
@@ -121,6 +174,9 @@ def _kernel_env_impl(ctx):
         ctx.file._build_utils_sh,
         preserve_env,
     ]
+
+    resolved_toolchain_step = _get_resolved_toolchain_step(ctx)
+    toolchains = _get_toolchains(ctx)
 
     command = ""
     command += ctx.attr._hermetic_tools[HermeticToolsInfo].setup
@@ -188,6 +244,8 @@ def _kernel_env_impl(ctx):
           {set_localversion_cmd}
           source {setup_env}
           {check_arch_cmd}
+        # Variables from resolved toolchain
+          {resolved_toolchain_cmd}
         # TODO(b/236012223) Remove the warning after deprecation.
           {make_goals_deprecation_warning}
         # Add a comment with config_tags for debugging
@@ -201,6 +259,7 @@ def _kernel_env_impl(ctx):
         set_localversion_cmd = stamp.set_localversion_cmd(ctx),
         setup_env = setup_env.path,
         check_arch_cmd = _get_check_arch_cmd(ctx),
+        resolved_toolchain_cmd = resolved_toolchain_step.cmd,
         make_goals_deprecation_warning = make_goals_deprecation_warning,
         preserve_env = preserve_env.path,
         out = out_file.path,
@@ -277,9 +336,9 @@ def _kernel_env_impl(ctx):
     setup_tools = [
         ctx.file._build_utils_sh,
     ]
-    setup_tools += ctx.files._tools
     setup_tools += ctx.files._rust_tools
     setup_tools += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
+    setup_transitive_tools = [toolchains.all_files]
 
     setup_inputs = [
         out_file,
@@ -293,7 +352,7 @@ def _kernel_env_impl(ctx):
 
     env_info = KernelEnvInfo(
         inputs = depset(setup_inputs),
-        tools = depset(setup_tools),
+        tools = depset(setup_tools, transitive = setup_transitive_tools),
         setup = setup,
         run_env = run_env,
     )
@@ -352,6 +411,8 @@ def _get_run_env(ctx, srcs):
     - It doesn't set `KCONFIG_EXT_PREFIX` or `dtstree`
     - It doesn't set `SOURCE_DATE_EPOCH` or scmversion properly
     """
+
+    toolchains = _get_toolchains(ctx)
     setup = ctx.attr._hermetic_tools[HermeticToolsInfo].run_setup
     if ctx.attr._debug_annotate_scripts[BuildSettingInfo].value:
         setup += debug.trap()
@@ -375,26 +436,18 @@ def _get_run_env(ctx, srcs):
         ctx.file.setup_env,
         ctx.file._build_utils_sh,
     ]
-    tools += ctx.files._tools
     tools += ctx.files._rust_tools
     tools += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
+    transitive_tools = [toolchains.all_files]
     inputs = srcs + [
         ctx.file.build_config,
     ]
+
     return KernelEnvInfo(
         setup = setup,
         inputs = depset(inputs),
-        tools = depset(tools),
+        tools = depset(tools, transitive = transitive_tools),
     )
-
-def _get_tools(toolchain_version):
-    if toolchain_version.startswith("//build/kernel/kleaf/tests/"):
-        # Using a test toolchain
-        clang_binaries = toolchain_version
-    else:
-        clang_binaries = "//prebuilts/clang/host/linux-x86/clang-%s:binaries" % toolchain_version
-
-    return [Label(clang_binaries)]
 
 def _get_rust_tools(rust_toolchain_version):
     if not rust_toolchain_version:
@@ -481,13 +534,17 @@ kernel_env = rule(
             values = ["true", "false", "auto"],
         ),
         "make_goals": attr.string_list(doc = "`MAKE_GOALS`"),
-        "_tools": attr.label_list(default = _get_tools),
         "_rust_tools": attr.label_list(default = _get_rust_tools, allow_files = True),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_build_utils_sh": attr.label(
             allow_single_file = True,
             default = Label("//build/kernel:build_utils"),
             cfg = "exec",
+        ),
+        "_toolchains": attr.label(
+            default = "//build/kernel/kleaf/impl:kernel_toolchains",
+            providers = [KernelEnvToolchainInfo],
+            cfg = _toolchains_transition,
         ),
         "_debug_annotate_scripts": attr.label(
             default = "//build/kernel/kleaf:debug_annotate_scripts",
@@ -497,5 +554,11 @@ kernel_env = rule(
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_linux_x86_libs": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
+        "_kernel_use_resolved_toolchains": attr.label(
+            default = "//build/kernel/kleaf:experimental_kernel_use_resolved_toolchains",
+        ),
+        "_allowlist_function_transition": attr.label(
+            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
+        ),
     } | _kernel_env_additional_attrs(),
 )
