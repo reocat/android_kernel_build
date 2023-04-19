@@ -488,7 +488,13 @@ def _get_config_script(ctx, inputs):
           if [[ -n ${DEFCONFIG_REAL} ]]; then
               trap "ln -sf ${DEFCONFIG_REAL} ${DEFCONFIG_SYMLINK}" EXIT
           else
-              DEFCONFIG_REAL=${DEFCONFIG_SYMLINK}
+              DEFCONFIG_SYMLINK=${OUT_DIR}/arch/${SRCARCH}/configs/${DEFCONFIG}
+              DEFCONFIG_REAL=$(readlink -e ${DEFCONFIG_SYMLINK} || true)
+              if [[ -n ${DEFCONFIG_REAL} ]]; then
+                  trap "ln -sf ${DEFCONFIG_REAL} ${DEFCONFIG_SYMLINK}" EXIT
+              else
+                  DEFCONFIG_REAL=${DEFCONFIG_SYMLINK}
+              fi
           fi
 
           # This needs to be in a sub-shell, otherwise trap doesn't work.
