@@ -40,6 +40,26 @@ without actually modifying any variables suitable for a proper kernel build.
     },
 )
 
+KernelResolvedToolchainInfo = provider(
+    doc = """Provides the toolchain from toolchain resolution.""",
+    fields = {
+        "compiler_version": "A string representing compiler version",
+        "toolchain_id": "A string representing toolchain ID for debugging purposes",
+        "all_files": "A [depset](https://bazel.build/extending/depsets) of all files of the toolchain",
+        "cflags": "flags for C compilation",
+    },
+)
+
+KernelEnvToolchainInfo = provider(
+    doc = """Provides overriding flags from the resolved toolchains to `kernel_env`.""",
+    fields = {
+        "env": "A dictionary where keys are environment variable names and values are variable values.",
+        "all_files": "A [depset](https://bazel.build/extending/depsets) of all files of all toolchains",
+        "exec_compiler_version": "A string representing compiler version for execution platform",
+        "target_compiler_version": "A string representing compiler version for target platform",
+    },
+)
+
 KernelEnvAndOutputsInfo = provider(
     doc = """Like `KernelEnvInfo` but also restores artifacts.
 
