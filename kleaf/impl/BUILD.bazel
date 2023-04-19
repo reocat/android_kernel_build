@@ -17,6 +17,8 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//lib:selects.bzl", "selects")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "bool_setting")
+load(":kernel_toolchain.bzl", "kernel_toolchain")
+load(":kernel_multi_toolchain.bzl", "kernel_multi_toolchain")
 
 bzl_library(
     name = "impl",
@@ -67,6 +69,8 @@ bzl_library(
         "kernel_module.bzl",
         "kernel_module_group.bzl",
         "kernel_modules_install.bzl",
+        "kernel_multi_toolchain.bzl",
+        "kernel_toolchain.bzl",
         "kernel_toolchain_aspect.bzl",
         "kernel_uapi_headers.bzl",
         "kernel_uapi_headers_cc_library.bzl",
@@ -215,4 +219,23 @@ py_binary(
     ],
 )
 
+)
+
+kernel_toolchain(
+    name = "kernel_toolchain_target",
+)
+
+kernel_toolchain(
+    name = "kernel_toolchain_exec",
+    deps = [
+        "//prebuilts/kernel-build-tools:linux_x86_imported_libs",
+    ],
+)
+
+kernel_multi_toolchain(
+    name = "kernel_multi_toolchain",
+    exec_toolchain = ":kernel_toolchain_exec",
+    target_toolchain = "kernel_toolchain_target",
+    # All kernel_* from different packages can see this
+    visibility = ["//visibility:public"],
 )

@@ -24,6 +24,7 @@ load(
     ":common_providers.bzl",
     "KernelEnvAttrInfo",
     "KernelEnvInfo",
+    "KernelEnvToolchainInfo",
 )
 load(":compile_commands_utils.bzl", "compile_commands_utils")
 load(":debug.bzl", "debug")
@@ -33,6 +34,22 @@ load(":kgdb.bzl", "kgdb")
 load(":stamp.bzl", "stamp")
 load(":status.bzl", "status")
 load(":utils.bzl", "utils")
+
+def _multi_toolchain_transition_impl(_settings, attr):
+    return {
+        # FIXME x86 arch?!
+        "//command_line_option:platforms": "//prebuilts/clang/host/linux-x86/kleaf:{}_android_arm64".format(attr.toolchain_version),
+        "//command_line_option:host_platform": "//prebuilts/clang/host/linux-x86/kleaf:{}_linux_x86_64".format(attr.toolchain_version),
+    }
+
+_multi_toolchain_transition = transition(
+    implementation = _multi_toolchain_transition_impl,
+    inputs = [],
+    outputs = [
+        "//command_line_option:platforms",
+        "//command_line_option:host_platform",
+    ],
+)
 
 def _get_kbuild_symtypes(ctx):
     if ctx.attr.kbuild_symtypes == "auto":
@@ -44,6 +61,13 @@ def _get_kbuild_symtypes(ctx):
 
     # Should not reach
     fail("{}: kernel_env has unknown value for kbuild_symtypes: {}".format(ctx.attr.label, ctx.attr.kbuild_symtypes))
+
+def _get_resolved_toolchain_step(ctx):
+    multi_toolchain = ctx.attr._multi_toolchain[KernelEnvToolchainInfo]
+    cmd = ""
+    for key, value in multi_toolchain.env.items():
+        cmd += "export {}={}\n".format(key, shell.quote(value))
+    return struct(cmd = cmd)
 
 def _kernel_env_impl(ctx):
     srcs = [
@@ -74,6 +98,8 @@ def _kernel_env_impl(ctx):
         ctx.file._build_utils_sh,
         preserve_env,
     ]
+
+    resolved_toolchain_step = _get_resolved_toolchain_step(ctx)
 
     command = ""
     command += ctx.attr._hermetic_tools[HermeticToolsInfo].setup
@@ -141,6 +167,8 @@ def _kernel_env_impl(ctx):
           export BUILD_CONFIG={build_config}
           {set_localversion_cmd}
           source {setup_env}
+        # Variables from resolved toolchain
+          {resolved_toolchain_cmd}
         # Add to MAKE_GOALS if necessary
           export MAKE_GOALS="${{MAKE_GOALS}} {additional_make_goals}"
         # Add a comment with config_tags for debugging
@@ -153,6 +181,7 @@ def _kernel_env_impl(ctx):
         build_config = build_config.path,
         set_localversion_cmd = stamp.set_localversion_cmd(ctx),
         setup_env = setup_env.path,
+        resolved_toolchain_cmd = resolved_toolchain_step.cmd,
         additional_make_goals = " ".join(additional_make_goals),
         preserve_env = preserve_env.path,
         out = out_file.path,
@@ -229,9 +258,12 @@ def _kernel_env_impl(ctx):
     setup_tools = [
         ctx.file._build_utils_sh,
     ]
+
+    # FIXME _tools should be in kernel_multi_toolchain
     setup_tools += ctx.files._tools
     setup_tools += ctx.files._rust_tools
     setup_tools += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
+    setup_transitive_tools = [ctx.attr._multi_toolchain[KernelEnvToolchainInfo].all_files]
 
     setup_inputs = [
         out_file,
@@ -245,7 +277,7 @@ def _kernel_env_impl(ctx):
 
     env_info = KernelEnvInfo(
         inputs = depset(setup_inputs),
-        tools = depset(setup_tools),
+        tools = depset(setup_tools, transitive = setup_transitive_tools),
         setup = setup,
         run_env = run_env,
     )
@@ -326,13 +358,15 @@ def _get_run_env(ctx, srcs):
     tools += ctx.files._tools
     tools += ctx.files._rust_tools
     tools += ctx.attr._hermetic_tools[HermeticToolsInfo].deps
+    transitive_tools = [ctx.attr._multi_toolchain[KernelEnvToolchainInfo].all_files]
     inputs = srcs + [
         ctx.file.build_config,
     ]
+
     return KernelEnvInfo(
         setup = setup,
         inputs = depset(inputs),
-        tools = depset(tools),
+        tools = depset(tools, transitive = transitive_tools),
     )
 
 def _get_tools(toolchain_version):
@@ -432,6 +466,11 @@ kernel_env = rule(
             default = Label("//build/kernel:build_utils"),
             cfg = "exec",
         ),
+        "_multi_toolchain": attr.label(
+            default = "//build/kernel/kleaf/impl:kernel_multi_toolchain",
+            providers = [KernelEnvToolchainInfo],
+            cfg = _multi_toolchain_transition,
+        ),
         "_debug_annotate_scripts": attr.label(
             default = "//build/kernel/kleaf:debug_annotate_scripts",
         ),
@@ -440,5 +479,8 @@ kernel_env = rule(
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_linux_x86_libs": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
+        "_allowlist_function_transition": attr.label(
+            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
+        ),
     } | _kernel_env_additional_attrs(),
 )
