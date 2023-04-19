@@ -27,6 +27,7 @@ bzl_library(
         "abi/base_kernel_utils.bzl",
         "abi/extracted_symbols.bzl",
         "abi/force_add_vmlinux_utils.bzl",
+        "abi/get_kmi_symbol_checks.bzl",
         "abi/get_src_kmi_symbol_list.bzl",
         "abi/get_src_protected_exports_files.bzl",
         "abi/kernel_build_abi.bzl",
