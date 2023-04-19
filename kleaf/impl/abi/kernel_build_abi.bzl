@@ -20,6 +20,7 @@ load("//build/kernel/kleaf:fail.bzl", "fail_rule")
 load(":abi/abi_stgdiff.bzl", "stgdiff")
 load(":abi/abi_dump.bzl", "abi_dump")
 load(":abi/extracted_symbols.bzl", "extracted_symbols")
+load(":abi/get_kmi_symbol_checks.bzl", "get_kmi_symbol_checks")
 load(":abi/get_src_kmi_symbol_list.bzl", "get_src_kmi_symbol_list")
 load(":abi/protected_exports.bzl", "protected_exports")
 load(":abi/get_src_protected_exports_files.bzl", "get_src_protected_exports_list", "get_src_protected_modules_list")
@@ -259,6 +260,12 @@ def _define_abi_targets(
         **private_kwargs
     )
 
+    get_kmi_symbol_checks(
+        name = name + "_kmi_symbol_checks",
+        kernel_build = kernel_build,
+        **private_kwargs
+    )
+
     # extract_symbols ...
     extracted_symbols(
         name = name + "_extracted_symbols",
@@ -306,6 +313,7 @@ def _define_abi_targets(
         kmi_enforced = kmi_enforced,
         kmi_symbol_list = name + "_src_kmi_symbol_list",
         protected_exports_list = name + "_src_protected_exports_list",
+        kmi_symbol_checks = name + "_kmi_symbol_checks",
         **private_kwargs
     )
 
@@ -321,6 +329,7 @@ def _define_abi_definition_targets(
         kmi_enforced,
         kmi_symbol_list,
         protected_exports_list,
+        kmi_symbol_checks,
         **kwargs):
     """Helper to `_define_abi_targets`.
 
@@ -392,6 +401,7 @@ def _define_abi_definition_targets(
                 name + "_update_definition",
                 kmi_symbol_list,
                 protected_exports_list,
+                kmi_symbol_checks,
             ],
             script = """
                 # Ensure that symbol list is updated
