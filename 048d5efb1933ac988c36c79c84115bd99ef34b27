@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd76ceb1_927a060f",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-19T09:49:15Z",
+      "side": 1,
+      "message": "Do you need to add a formatter for this to not be ignored? I only see `%d` for the returncode.",
+      "range": {
+        "startLine": 114,
+        "startChar": 63,
+        "endLine": 114,
+        "endChar": 79
+      },
+      "revId": "048d5efb1933ac988c36c79c84115bd99ef34b27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
