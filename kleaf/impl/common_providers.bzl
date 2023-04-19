@@ -47,6 +47,25 @@ KernelEnvMakeGoalsInfo = provider(
     },
 )
 
+KernelPlatformToolchainInfo = provider(
+    doc = """Provides toolchain information of a single platform (target or execution).""",
+    fields = {
+        "compiler_version": "A string representing compiler version",
+        "toolchain_id": "A string representing toolchain ID for debugging purposes",
+        "all_files": "A [depset](https://bazel.build/extending/depsets) of all files of the toolchain",
+        "bin_path": "`PATH` relative to execroot.",
+    },
+)
+
+KernelEnvToolchainsInfo = provider(
+    doc = """Provides resolved toolchains information to `kernel_env`.""",
+    fields = {
+        "all_files": "A [depset](https://bazel.build/extending/depsets) of all files of all toolchains",
+        "target_arch": "arch of target platform",
+        "setup_env_var_cmd": "A command to set up environment variables",
+    },
+)
+
 KernelEnvAndOutputsInfo = provider(
     doc = """Like `KernelEnvInfo` but also restores artifacts.
 
