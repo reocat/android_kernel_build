@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc2fc80c_1fdf9988",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-19T22:39:09Z",
+      "side": 1,
+      "message": "(no actions needed)\n\nFor regular `kernel_module` this is a simple `Module.symvers`. So if the file is added to the DefaultInfo, then all dist targets directly containing the kernel_module directly will get conflicts on this file.\n\nBut on the other hand, if this actually happens, the build will fail automatically, so let\u0027s see what happens. At least the kleaf documentation doesn\u0027t say anything about putting kernel_module in dist targets (only kernel_module_install).",
+      "range": {
+        "startLine": 332,
+        "startChar": 76,
+        "endLine": 332,
+        "endChar": 113
+      },
+      "revId": "a44958af46950150cc7d4c23f6b8ef43535341a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
