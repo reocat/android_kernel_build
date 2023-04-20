@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ef8fd5a_c1248c45",
+        "filename": "kleaf/impl/abi/kernel_build_abi.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-20T23:19:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0661ba89_26935ae2",
+      "revId": "a80f74bf72208ff2d2ec29a106c9333db3a2cec3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5272dfcd_ccf89ba1",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-04-20T18:05:08Z",
       "side": 1,
       "message": "optional? or just `File`?",
+      "range": {
+        "startLine": 153,
+        "startChar": 34,
+        "endLine": 153,
+        "endChar": 45
+      },
+      "revId": "a80f74bf72208ff2d2ec29a106c9333db3a2cec3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1056f04_e6468b5a",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-20T23:19:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5272dfcd_ccf89ba1",
       "range": {
         "startLine": 153,
         "startChar": 34,
