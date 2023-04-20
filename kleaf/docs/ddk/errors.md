@@ -216,6 +216,44 @@ details.
 See [link](../errors.md#modpost-symbol-undefined) for help on resolving this
 error for external modules in general.
 
+## Error: kernel\_module() got multiple values for parameter 'outs'
+
+You might be using `outs` instead of `out`. For example:
+
+```python
+# Correct
+ddk_module(
+  name = "foo",
+  out = "foo.ko",
+)
+
+# Incorrect:
+ddk_module(
+  name = "foo",
+  outs = ["foo.ko"], # WRONG! DO NOT USE
+)
+```
+
+## Missing absl-py
+
+If you encounter the following error:
+
+```
+ERROR: /path/to/WORKSPACE:17:23: fetching local_repository rule //external:io_abseil_py: java.io.IOException: The repository's path is "external/python/absl-py" (absolute: ...) but it does not exist or is not a directory.
+```
+
+It is because you did not check out the abseil project in your repo manifest.
+The Python script that generates `Makefile` / `Kbuild` relies on abseil. Check
+it out by adding an entry in your repo manifest, e.g.
+
+```xml
+<project path="external/python/absl-py" name="platform/external/python/absl-py" />
+```
+
+Then running `repo sync`.
+
+See [change 2127786](http://r.android.com/2127786) for an example.
+
 ## Appendix
 
 ### Query appropriate `ddk_headers` targets to use {#query-ddk-headers}
