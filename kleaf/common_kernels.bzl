@@ -676,6 +676,16 @@ def define_common_kernels(
                 boot_img_sizes = target_config.get("gki_boot_img_sizes", {}),
                 arch = arch_config["arch"],
             )
+            native.filegroup(
+                name = name + "_boot_lz4",
+                srcs = [name + "_gki_artifacts"],
+                output_group = "boot_lz4",
+            )
+            native.filegroup(
+                name = name + "_boot_gz",
+                srcs = [name + "_gki_artifacts"],
+                output_group = "boot_gz",
+            )
         else:
             native.filegroup(
                 name = name + "_gki_artifacts",
