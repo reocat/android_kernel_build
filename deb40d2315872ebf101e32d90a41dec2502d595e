@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd5ba3aa_fe04fbac",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-20T21:37:34Z",
+      "side": 1,
+      "message": "Just leave it to the users (in this case Pixel).\n\nif you are declaring the filegroup here, please also declare the ones for `_download_or_build` -- but then it would be even messier",
+      "range": {
+        "startLine": 679,
+        "startChar": 0,
+        "endLine": 683,
+        "endChar": 13
+      },
+      "revId": "deb40d2315872ebf101e32d90a41dec2502d595e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d51b73d_767b86a0",
+        "filename": "kleaf/impl/gki_artifacts.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-20T21:37:34Z",
+      "side": 1,
+      "message": "None",
+      "range": {
+        "startLine": 36,
+        "startChar": 15,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "deb40d2315872ebf101e32d90a41dec2502d595e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d38fcdd_78b2a333",
+        "filename": "kleaf/impl/gki_artifacts.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-20T21:37:34Z",
+      "side": 1,
+      "message": "depset([boot_lz4] if boot_lz4 else [])",
+      "range": {
+        "startLine": 123,
+        "startChar": 23,
+        "endLine": 123,
+        "endChar": 41
+      },
+      "revId": "deb40d2315872ebf101e32d90a41dec2502d595e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
