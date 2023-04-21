@@ -20,6 +20,7 @@ load("@bazel_tools//tools/build_defs/cc:action_names.bzl", "C_COMPILE_ACTION_NAM
 load(":common_providers.bzl", "KernelResolvedToolchainInfo")
 
 def _kernel_toolchain_impl(ctx):
+
     cc_info = cc_common.merge_cc_infos(
         cc_infos = [src[CcInfo] for src in ctx.attr.deps],
     )
@@ -60,6 +61,8 @@ def _kernel_toolchain_impl(ctx):
         cc_info.compilation_context.headers,
         cc_toolchain.all_files,
     ])
+
+    print("{}: resolved to {}".format(ctx.label, cc_toolchain.toolchain_id))
 
     return KernelResolvedToolchainInfo(
         toolchain_id = cc_toolchain.toolchain_id,

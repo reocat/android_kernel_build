@@ -35,6 +35,22 @@ load(":stamp.bzl", "stamp")
 load(":status.bzl", "status")
 load(":utils.bzl", "utils")
 
+def _multi_toolchain_transition_impl(_settings, attr):
+    return {
+        # FIXME x86 arch?!
+        "//command_line_option:platforms": "//prebuilts/clang/host/linux-x86/kleaf:{}_android_arm64".format(attr.toolchain_version),
+        "//command_line_option:host_platform": "//prebuilts/clang/host/linux-x86/kleaf:{}_linux_x86_64".format(attr.toolchain_version),
+    }
+
+_multi_toolchain_transition = transition(
+    implementation = _multi_toolchain_transition_impl,
+    inputs = [],
+    outputs = [
+        "//command_line_option:platforms",
+        "//command_line_option:host_platform",
+    ],
+)
+
 def _get_kbuild_symtypes(ctx):
     if ctx.attr.kbuild_symtypes == "auto":
         return ctx.attr._kbuild_symtypes_flag[BuildSettingInfo].value
@@ -242,6 +258,7 @@ def _kernel_env_impl(ctx):
     setup_tools = [
         ctx.file._build_utils_sh,
     ]
+
     # FIXME _tools should be in kernel_multi_toolchain
     setup_tools += ctx.files._tools
     setup_tools += ctx.files._rust_tools
@@ -452,6 +469,7 @@ kernel_env = rule(
         "_multi_toolchain": attr.label(
             default = "//build/kernel/kleaf/impl:kernel_multi_toolchain",
             providers = [KernelEnvToolchainInfo],
+            cfg = _multi_toolchain_transition,
         ),
         "_debug_annotate_scripts": attr.label(
             default = "//build/kernel/kleaf:debug_annotate_scripts",
@@ -461,5 +479,8 @@ kernel_env = rule(
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_linux_x86_libs": attr.label(default = "//prebuilts/kernel-build-tools:linux-x86-libs"),
+        "_allowlist_function_transition": attr.label(
+            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
+        ),
     } | _kernel_env_additional_attrs(),
 )

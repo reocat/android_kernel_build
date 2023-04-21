@@ -219,39 +219,6 @@ py_binary(
     ],
 )
 
-# Local build platforms
-platform(
-    name = "linux_x86_64",
-    constraint_values = [
-        "@platforms//os:linux",
-        "@platforms//cpu:x86_64",
-    ],
-)
-
-platform(
-    name = "android_arm64",
-    constraint_values = [
-        "@platforms//os:android",
-        "@platforms//cpu:arm64",
-    ],
-)
-
-platform(
-    name = "android_x86_64",
-    constraint_values = [
-        "@platforms//os:android",
-        "@platforms//cpu:x86_64",
-    ],
-)
-
-platform(
-    name = "android_riscv64",
-    constraint_values = [
-        "@platforms//os:android",
-        "@platforms//cpu:riscv64",
-    ],
-)
-
 kernel_toolchain(
     name = "kernel_toolchain_target",
 )
