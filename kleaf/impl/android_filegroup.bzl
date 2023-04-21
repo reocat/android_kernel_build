@@ -18,7 +18,7 @@ load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 
 def _android_filegroup_transition_impl(_settings, attr):
     return {
-        "//command_line_option:platforms": "//build/kernel/kleaf/impl:android_{}".format(attr.cpu),
+        "//command_line_option:platforms": "//prebuilts/clang/host/linux-x86/kleaf:android_{}".format(attr.cpu),
     }
 
 _android_filegroup_transition = transition(
