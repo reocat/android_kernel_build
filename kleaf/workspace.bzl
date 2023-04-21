@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Helper macros to be used in `WORKSPACE`."""
+
 load("//build/bazel_common_rules/workspace:external.bzl", "import_external_repositories")
 load(
     "//build/kernel/kleaf:constants.bzl",
@@ -20,7 +22,9 @@ load(
 )
 load("//build/kernel/kleaf:download_repo.bzl", "download_artifacts_repo")
 load("//build/kernel/kleaf:key_value_repo.bzl", "key_value_repo")
+load("//prebuilts/clang/host/linux-x86/kleaf:register.bzl", "register_clang_toolchains")
 
+# buildifier: disable=unnamed-macro
 def define_kleaf_workspace(common_kernel_package = None):
     """Common macro for defining repositories in a Kleaf workspace.
 
@@ -100,3 +104,5 @@ def define_kleaf_workspace(common_kernel_package = None):
     native.register_toolchains(
         "//prebuilts/build-tools:py_toolchain",
     )
+
+    register_clang_toolchains()
