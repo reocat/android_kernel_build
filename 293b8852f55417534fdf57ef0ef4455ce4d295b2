@@ -30,6 +30,32 @@
       "robotId": "ayeaye",
       "robotRunId": "AR00000000000043352259",
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2476244?revision\u003d11",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7ec1f3a6_cfda13f2",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 11
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-21T23:22:39Z",
+      "side": 1,
+      "message": "syntax error near )",
+      "range": {
+        "startLine": 222,
+        "startChar": 2,
+        "endLine": 222,
+        "endChar": 2
+      },
+      "revId": "293b8852f55417534fdf57ef0ef4455ce4d295b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000043352259",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2476244?revision\u003d11",
       "fixSuggestions": [
         {
           "fixId": "02cc4076_73d54148",
@@ -58,6 +84,43 @@
         "id": 1757831
       },
       "writtenOn": "2023-04-21T23:22:35Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_toolchain.bzl` to format the file, or apply the suggested fix.",
+      "revId": "293b8852f55417534fdf57ef0ef4455ce4d295b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000043352259",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2476244?revision\u003d11",
+      "fixSuggestions": [
+        {
+          "fixId": "d596184b_2be1d8cf",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_toolchain.bzl",
+              "range": {
+                "startLine": 23,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "29467d8e_e6e7b3ed",
+        "filename": "kleaf/impl/kernel_toolchain.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-21T23:22:39Z",
       "side": 1,
       "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_toolchain.bzl` to format the file, or apply the suggested fix.",
       "revId": "293b8852f55417534fdf57ef0ef4455ce4d295b2",
