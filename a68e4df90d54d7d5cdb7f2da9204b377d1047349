@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa944080_a7354828",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-24T10:50:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "492546b4_849a27e5",
+      "revId": "a68e4df90d54d7d5cdb7f2da9204b377d1047349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "675e6698_45d9acb8",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea579170_7ce5210c",
+        "filename": "kleaf/impl/abi/get_kmi_symbol_checks.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-24T10:50:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "675e6698_45d9acb8",
+      "revId": "a68e4df90d54d7d5cdb7f2da9204b377d1047349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "716944f7_514cb1ab",
@@ -65,6 +101,30 @@
       "writtenOn": "2023-04-24T10:04:35Z",
       "side": 1,
       "message": "This is a rule, should it not be something like \"kmi_symbol_check\" or similar? The \"get_\" prefix confuses me. Or should it rather be \"add_\" ?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "a68e4df90d54d7d5cdb7f2da9204b377d1047349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b4ba57b_9f1b1d58",
+        "filename": "kleaf/impl/abi/get_kmi_symbol_checks.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-24T10:50:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "716944f7_514cb1ab",
       "range": {
         "startLine": 27,
         "startChar": 0,
