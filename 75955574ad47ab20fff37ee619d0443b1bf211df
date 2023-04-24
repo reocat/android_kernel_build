@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29c9ac8_8c8e5aa4",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-24T18:42:59Z",
+      "side": 1,
+      "message": "nit: make_goals (I know this is singular...)\n\nperhaps `a valid item of make_goals`?",
+      "range": {
+        "startLine": 56,
+        "startChar": 42,
+        "endLine": 56,
+        "endChar": 51
+      },
+      "revId": "75955574ad47ab20fff37ee619d0443b1bf211df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
