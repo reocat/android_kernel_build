@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffa16b9a_260d6c5c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-04-24T10:11:48Z",
+      "side": 1,
+      "message": "Perhaps add an example to illustrate the use case.",
+      "revId": "1dd31e9e68071add6fb50a1b2f77b1a2a676f0ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f9cf0da_6d09818b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-04-24T10:11:48Z",
+      "side": 1,
+      "message": "value",
+      "range": {
+        "startLine": 9,
+        "startChar": 36,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "1dd31e9e68071add6fb50a1b2f77b1a2a676f0ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b90a91c0_bf88090c",
@@ -14,6 +54,63 @@
       "writtenOn": "2023-04-18T14:01:53Z",
       "side": 1,
       "message": "Had to submit a new version due to a duplicated `vmlinux` when building `//common:kernel_aarch64_abi`, in the new version, the new make_goals is not re-exported to avoid polluting the env space, instead rely solely in the info from providers.",
+      "revId": "1dd31e9e68071add6fb50a1b2f77b1a2a676f0ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00a23fe8_b5399eac",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-04-24T10:11:48Z",
+      "side": 1,
+      "message": "perhaps should rather be somewhere here?",
+      "revId": "1dd31e9e68071add6fb50a1b2f77b1a2a676f0ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d8bac7c_9d7428a3",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-04-24T10:11:48Z",
+      "side": 1,
+      "message": "This list of parameters is somewhat oddly sorted :-) I get that inserting here correctly is impossible :-)",
+      "revId": "1dd31e9e68071add6fb50a1b2f77b1a2a676f0ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d15e14af_513771e9",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-04-24T10:11:48Z",
+      "side": 1,
+      "message": "if",
+      "range": {
+        "startLine": 367,
+        "startChar": 56,
+        "endLine": 367,
+        "endChar": 60
+      },
       "revId": "1dd31e9e68071add6fb50a1b2f77b1a2a676f0ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
