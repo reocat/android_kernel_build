@@ -16,6 +16,63 @@
       "message": "ping",
       "revId": "a68e4df90d54d7d5cdb7f2da9204b377d1047349",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "492546b4_849a27e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-04-24T10:04:35Z",
+      "side": 1,
+      "message": "Implementation looks good to me, naming feels like there could be something improved. I realize there is some consistency with \"get_src_kmi_symbol_list\", but perhaps that also needs to be reconsidered.",
+      "revId": "a68e4df90d54d7d5cdb7f2da9204b377d1047349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "675e6698_45d9acb8",
+        "filename": "kleaf/impl/abi/get_kmi_symbol_checks.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-04-24T10:04:35Z",
+      "side": 1,
+      "message": "Not sure we need an own file for that, but if we do, I would omit the \"get_\" prefix from it.",
+      "revId": "a68e4df90d54d7d5cdb7f2da9204b377d1047349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "716944f7_514cb1ab",
+        "filename": "kleaf/impl/abi/get_kmi_symbol_checks.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-04-24T10:04:35Z",
+      "side": 1,
+      "message": "This is a rule, should it not be something like \"kmi_symbol_check\" or similar? The \"get_\" prefix confuses me. Or should it rather be \"add_\" ?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "a68e4df90d54d7d5cdb7f2da9204b377d1047349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
