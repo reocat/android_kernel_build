@@ -17,6 +17,7 @@
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     "@bazel_tools//tools/build_defs/cc:action_names.bzl",
+    "CPP_LINK_EXECUTABLE_ACTION_NAME",
     "C_COMPILE_ACTION_NAME",
 )
 load("@bazel_tools//tools/cpp:toolchain_utils.bzl", "find_cpp_toolchain", "use_cpp_toolchain")
@@ -58,6 +59,17 @@ def _kernel_platform_toolchain_impl(ctx):
         action_name = C_COMPILE_ACTION_NAME,
         variables = compile_variables,
     )
+    link_variables = cc_common.create_link_variables(
+        feature_configuration = feature_configuration,
+        cc_toolchain = cc_toolchain,
+        user_link_flags = [],  # additional link flags
+    )
+    link_command_line = cc_common.get_memory_inefficient_command_line(
+        feature_configuration = feature_configuration,
+        # Use CPP_LINK_EXECUTABLE_ACTION_NAME to get rid of "-shared"
+        action_name = CPP_LINK_EXECUTABLE_ACTION_NAME,
+        variables = link_variables,
+    )
 
     all_files = depset(cc_info.compilation_context.direct_headers, transitive = [
         cc_info.compilation_context.headers,
@@ -69,6 +81,7 @@ def _kernel_platform_toolchain_impl(ctx):
         toolchain_id = cc_toolchain.toolchain_id,
         all_files = all_files,
         cflags = compile_command_line,
+        ldflags = link_command_line,
         # All executables are in the same place, so just use the compiler executable
         # to locate PATH.
         bin_path = paths.dirname(cc_toolchain.compiler_executable),

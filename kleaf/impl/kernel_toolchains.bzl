@@ -108,13 +108,18 @@ def _kernel_toolchains_impl(ctx):
     """.format(
         quoted_bin_paths = ":".join(quoted_bin_paths)
     )
+
     if ctx.attr._kernel_use_resolved_toolchains[BuildSettingInfo].value:
         setup_env_var_cmd += """
             export HOSTCFLAGS={quoted_hostcflags}
             export USERCFLAGS={quoted_usercflags}
+            export HOSTLDFLAGS={quoted_hostldflags}
+            export USERLDFLAGS={quoted_userldflags}
         """.format(
             quoted_hostcflags = _quote_sanitize_flags(exec.cflags),
             quoted_usercflags = _quote_sanitize_flags(target.cflags),
+            quoted_hostldflags = _quote_sanitize_flags(exec.ldflags),
+            quoted_userldflags = _quote_sanitize_flags(target.ldflags),
         )
 
     # Kleaf clang bins are under kleaf/parent, so CLANG_PREBUILT_BIN in
