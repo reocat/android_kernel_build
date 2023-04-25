@@ -47,6 +47,7 @@ KernelResolvedToolchainInfo = provider(
         "toolchain_id": "A string representing toolchain ID for debugging purposes",
         "all_files": "A [depset](https://bazel.build/extending/depsets) of all files of the toolchain",
         "cflags": "flags for C compilation",
+        "bin_path": "`PATH`",
     },
 )
 
@@ -57,6 +58,7 @@ KernelEnvToolchainInfo = provider(
         "all_files": "A [depset](https://bazel.build/extending/depsets) of all files of all toolchains",
         "exec_compiler_version": "A string representing compiler version for execution platform",
         "target_compiler_version": "A string representing compiler version for target platform",
+        "bin_paths": "list of `PATH`",
     },
 )
 

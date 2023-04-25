@@ -21,19 +21,66 @@ load(
     "KernelResolvedToolchainInfo",
 )
 
+def _prepend_pwd(value):
+    if not value.startswith("/"):
+        value = "$PWD/" + value
+    return value
+
+def _sanitize_flags(flags):
+    """Turns paths into ones relative to $PWD for each flag.
+
+    Kbuild executes the compiler in subdirectories, hence an absolute path is needed."""
+
+    result_flags = []
+
+    prev = None
+    for _index, flag in enumerate(flags):
+        if prev in ("--sysroot", "-I", "-iquote", "-isystem"):
+            result_flags.append(_prepend_pwd(flag))
+        elif flag.startswith("--sysroot="):
+            key, value = flag.split("=", 2)
+            result_flags.append("{}={}".format(key, _prepend_pwd(value)))
+        elif flag.startswith("-I"):
+            key, value = flag[:2], flag[2:]
+            result_flags.append("{}{}".format(key, _prepend_pwd(value)))
+        else:
+            result_flags.append(flag)
+        prev = flag
+
+    return result_flags
+
 def _kernel_toolchains_impl(ctx):
     # FIXME what about toolchain_version.startswith("//build/kernel/kleaf/tests/")
     exec = ctx.attr.exec_toolchain[KernelResolvedToolchainInfo]
     target = ctx.attr.target_toolchain[KernelResolvedToolchainInfo]
     all_files = depset(transitive = [exec.all_files, target.all_files])
+    bin_paths = [
+        _prepend_pwd(exec.bin_path),
+        _prepend_pwd(target.bin_path),
+    ]
+
+    if not ctx.attr._kernel_use_resolved_toolchains[BuildSettingInfo].value:
+        return KernelEnvToolchainInfo(
+            all_files = all_files,
+            env = {},
+            exec_compiler_version = exec.compiler_version,
+            target_compiler_version = target.compiler_version,
+            bin_paths = bin_paths,
+        )
 
     env = {}
+    env["HOSTCFLAGS"] = " ".join(_sanitize_flags(exec.cflags))
+    env["USERCFLAGS"] = " ".join(_sanitize_flags(target.cflags))
+
+    # Kleaf clang bins are under kleaf/parent, so CLANG_PREBUILT_BIN in
+    # build.config.common is incorrect. Manually set additional PATH's.
 
     return KernelEnvToolchainInfo(
         env = env,
         all_files = all_files,
         exec_compiler_version = exec.compiler_version,
         target_compiler_version = target.compiler_version,
+        bin_paths = bin_paths,
     )
 
 kernel_toolchains = rule(
@@ -46,6 +93,9 @@ kernel_toolchains = rule(
         ),
         "target_toolchain": attr.label(
             providers = [KernelResolvedToolchainInfo],
+        ),
+        "_kernel_use_resolved_toolchains": attr.label(
+            default = "//build/kernel/kleaf:experimental_kernel_use_resolved_toolchains",
         ),
     },
 )
