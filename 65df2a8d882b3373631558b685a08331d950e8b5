@@ -22,6 +22,30 @@
       },
       "revId": "65df2a8d882b3373631558b685a08331d950e8b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7d9ce12_a6334cbe",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-25T17:33:47Z",
+      "side": 1,
+      "message": "This is different. That function translates ARCH into SRCARCH. This translates kernel_build.arch (which uses names from @platforms repository) to ARCH.\n\nIn particular, we use riscv64 to be consistent with arm64 / x86_64 to indicate the bitness. But ARCH is riscv without the 64.",
+      "parentUuid": "e26ffdf9_2738e466",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 31
+      },
+      "revId": "65df2a8d882b3373631558b685a08331d950e8b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
