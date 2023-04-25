@@ -21,6 +21,34 @@ load(
     "KernelResolvedToolchainInfo",
 )
 
+def _prepend_pwd(value):
+    if not value.startswith("/"):
+        value = "$PWD/" + value
+    return value
+
+def _sanitize_flags(flags):
+    """Turns paths into ones relative to $PWD for each flag.
+
+    Kbuild executes the compiler in subdirectories, hence an absolute path is needed."""
+
+    result_flags = []
+
+    prev = None
+    for _index, flag in enumerate(flags):
+        if prev in ("--sysroot", "-I", "-iquote", "-isystem"):
+            result_flags.append(_prepend_pwd(flag))
+        elif flag.startswith("--sysroot="):
+            key, value = flag.split("=", 2)
+            result_flags.append("{}={}".format(key, _prepend_pwd(value)))
+        elif flag.startswith("-I"):
+            key, value = flag[:2], flag[2:]
+            result_flags.append("{}{}".format(key, _prepend_pwd(value)))
+        else:
+            result_flags.append(flag)
+        prev = flag
+
+    return result_flags
+
 def _kernel_toolchains_impl(ctx):
     # FIXME what about toolchain_version.startswith("//build/kernel/kleaf/tests/")
     exec = ctx.attr.exec_toolchain[KernelResolvedToolchainInfo]
@@ -28,6 +56,9 @@ def _kernel_toolchains_impl(ctx):
     all_files = depset(transitive = [exec.all_files, target.all_files])
 
     env = {}
+    if ctx.attr._kernel_use_resolved_toolchains[BuildSettingInfo].value:
+        env["HOSTCFLAGS"] = " ".join(_sanitize_flags(exec.cflags))
+        env["USERCFLAGS"] = " ".join(_sanitize_flags(target.cflags))
 
     return KernelEnvToolchainInfo(
         env = env,
@@ -46,6 +77,9 @@ kernel_toolchains = rule(
         ),
         "target_toolchain": attr.label(
             providers = [KernelResolvedToolchainInfo],
+        ),
+        "_kernel_use_resolved_toolchains": attr.label(
+            default = "//build/kernel/kleaf:experimental_kernel_use_resolved_toolchains",
         ),
     },
 )
