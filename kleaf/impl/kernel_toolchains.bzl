@@ -15,6 +15,7 @@
 """Helper for `kernel_env` to get toolchains for different platforms."""
 
 load("@bazel_skylib//lib:shell.bzl", "shell")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(
     ":common_providers.bzl",
     "KernelEnvToolchainsInfo",
@@ -58,6 +59,33 @@ def _get_target_arch(ctx):
         return ctx.attr._platform_cpu_riscv64.label.name
     fail("{}: Cannot determine target platform.".format(ctx.label))
 
+def _quote_sanitize_flags(flags):
+    """Turns paths into ones relative to $PWD for each flag.
+
+    Kbuild executes the compiler in subdirectories, hence an absolute path is needed.
+
+    Returns:
+        quoted shell value
+    """
+
+    result_quoted_flags = []
+
+    prev = None
+    for _index, flag in enumerate(flags):
+        if prev in ("--sysroot", "-I", "-iquote", "-isystem"):
+            result_quoted_flags.append(_quote_prepend_cwd(flag))
+        elif flag.startswith("--sysroot="):
+            key, value = flag.split("=", 2)
+            result_quoted_flags.append("{}={}".format(key, _quote_prepend_cwd(value)))
+        elif flag.startswith("-I"):
+            key, value = flag[:2], flag[2:]
+            result_quoted_flags.append("{}{}".format(key, _quote_prepend_cwd(value)))
+        else:
+            result_quoted_flags.append(shell.quote(flag))
+        prev = flag
+
+    return "' '".join(result_quoted_flags)
+
 def _kernel_toolchains_impl(ctx):
     # FIXME what about toolchain_version.startswith("//build/kernel/kleaf/tests/")
     exec = ctx.attr.exec_toolchain[KernelPlatformToolchainInfo]
@@ -80,6 +108,17 @@ def _kernel_toolchains_impl(ctx):
     """.format(
         quoted_bin_paths = ":".join(quoted_bin_paths)
     )
+    if ctx.attr._kernel_use_resolved_toolchains[BuildSettingInfo].value:
+        setup_env_var_cmd += """
+            export HOSTCFLAGS={quoted_hostcflags}
+            export USERCFLAGS={quoted_usercflags}
+        """.format(
+            quoted_hostcflags = _quote_sanitize_flags(exec.cflags),
+            quoted_usercflags = _quote_sanitize_flags(target.cflags),
+        )
+
+    # Kleaf clang bins are under kleaf/parent, so CLANG_PREBUILT_BIN in
+    # build.config.common is incorrect. Manually set additional PATH's.
 
     return KernelEnvToolchainsInfo(
         all_files = all_files,
@@ -97,6 +136,9 @@ kernel_toolchains = rule(
         ),
         "target_toolchain": attr.label(
             providers = [KernelPlatformToolchainInfo],
+        ),
+        "_kernel_use_resolved_toolchains": attr.label(
+            default = "//build/kernel/kleaf:experimental_kernel_use_resolved_toolchains",
         ),
         "_platform_cpu_arm64": attr.label(default = "@platforms//cpu:arm64"),
         "_platform_cpu_x86_64": attr.label(default = "@platforms//cpu:x86_64"),
