@@ -114,6 +114,12 @@ def _get_resolved_toolchain_step(ctx):
     cmd = ""
     for key, value in toolchains.env.items():
         cmd += "export {}={}\n".format(key, shell.quote(value))
+
+    if toolchains.bin_paths:
+        cmd += "export PATH={}:$PATH\n".format(
+            ":".join([shell.quote(bin_path) for bin_path in toolchains.bin_paths])
+        )
+
     return struct(cmd = cmd)
 
 def _get_make_goals(ctx):
