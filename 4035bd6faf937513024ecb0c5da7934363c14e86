@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000043565236",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2476244?revision\u003d22",
+      "fixSuggestions": [
+        {
+          "fixId": "dbad3ccf_c4e9220e",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_toolchains.bzl",
+              "range": {
+                "startLine": 109,
+                "startChar": 0,
+                "endLine": 110,
+                "endChar": 0
+              },
+              "replacement": "        quoted_bin_paths \u003d \":\".join(quoted_bin_paths),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "4b446a76_fa548b0a",
+        "filename": "kleaf/impl/kernel_toolchains.bzl",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-25T19:52:35Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_toolchains.bzl` to format the file, or apply the suggested fix.",
+      "revId": "4035bd6faf937513024ecb0c5da7934363c14e86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
