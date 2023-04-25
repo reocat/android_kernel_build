@@ -22,6 +22,30 @@
       },
       "revId": "2f921590c9e7c2691de2b242128f43bb9bbfb8a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "224336a8_4348ad7b",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2023-04-25T12:15:47Z",
+      "side": 1,
+      "message": "Maybe? Things like `@bazel_tools//tools/jdk:jre` reference this, but I don\u0027t know by heart what references that in turn.\n\nIt\u0027s safer to leave this be because it makes it very obvious that you don\u0027t pull in the local JDK in any way.",
+      "parentUuid": "cddf5872_a17ed00e",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 5
+      },
+      "revId": "2f921590c9e7c2691de2b242128f43bb9bbfb8a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
