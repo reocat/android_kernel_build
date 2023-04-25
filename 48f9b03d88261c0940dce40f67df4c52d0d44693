@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a17979cd_c717d3b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-25T06:42:18Z",
+      "side": 1,
+      "message": "I need to think about this. Once rust also uses toolchain resolution, there\u0027ll be O(m * n) platforms exists (m is the number of clang toolchains and n is the number of rust toolchains). So maybe this belongs to kernel_build() instead.",
+      "revId": "48f9b03d88261c0940dce40f67df4c52d0d44693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
