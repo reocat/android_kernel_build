@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ffae0c9d_c2ced54c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1869780
+      },
+      "writtenOn": "2023-04-25T22:48:21Z",
+      "side": 1,
+      "message": "Not yet, and it may take a while until I have the time to gather these statistics.",
+      "parentUuid": "2b9af3af_6e2b3d89",
+      "revId": "6c69bc21431d526e702fb3919694cd5f4912b544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36068ed6_e3b0ee37",
         "filename": "kleaf/impl/status.bzl",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2023-04-25T21:35:20Z",
       "side": 1,
       "message": "if name is not {var}, then this command will fail. Because this is executed under `set -e`, I think the whole command will fail. Right?\n\nPerhaps you want to add a `||true` here? Or turn this into an if statement?",
+      "range": {
+        "startLine": 19,
+        "startChar": 83,
+        "endLine": 19,
+        "endChar": 84
+      },
+      "revId": "6c69bc21431d526e702fb3919694cd5f4912b544",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc5438ba_fe7278ae",
+        "filename": "kleaf/impl/status.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1869780
+      },
+      "writtenOn": "2023-04-25T22:48:21Z",
+      "side": 1,
+      "message": "Thanks for the feedback. I have changed `\u0026\u0026` into an if-statement.",
+      "parentUuid": "36068ed6_e3b0ee37",
       "range": {
         "startLine": 19,
         "startChar": 83,
