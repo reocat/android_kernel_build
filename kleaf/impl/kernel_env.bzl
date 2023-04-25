@@ -45,6 +45,23 @@ def _get_kbuild_symtypes(ctx):
     # Should not reach
     fail("{}: kernel_env has unknown value for kbuild_symtypes: {}".format(ctx.attr.label, ctx.attr.kbuild_symtypes))
 
+def _get_check_arch_cmd(ctx):
+    expected_arch = ctx.attr.arch
+    if expected_arch == "riscv64":
+        expected_arch = "riscv"
+
+    # TODO(b/272164611): Turn this into an error.
+    level = "WARNING"
+    return """
+        if [[ "$ARCH" != "{expected_arch}" ]]; then
+            echo '{level}: {label} must specify arch = "{expected_arch}".' >&2
+        fi
+    """.format(
+        level = level,
+        label = ctx.label,
+        expected_arch = expected_arch,
+    )
+
 def _kernel_env_impl(ctx):
     srcs = [
         s
@@ -141,6 +158,7 @@ def _kernel_env_impl(ctx):
           export BUILD_CONFIG={build_config}
           {set_localversion_cmd}
           source {setup_env}
+          {check_arch_cmd}
         # Add to MAKE_GOALS if necessary
           export MAKE_GOALS="${{MAKE_GOALS}} {additional_make_goals}"
         # Add a comment with config_tags for debugging
@@ -153,6 +171,7 @@ def _kernel_env_impl(ctx):
         build_config = build_config.path,
         set_localversion_cmd = stamp.set_localversion_cmd(ctx),
         setup_env = setup_env.path,
+        check_arch_cmd = _get_check_arch_cmd(ctx),
         additional_make_goals = " ".join(additional_make_goals),
         preserve_env = preserve_env.path,
         out = out_file.path,
@@ -380,6 +399,10 @@ kernel_env = rule(
           ```
           """,
     attrs = {
+        "arch": attr.string(
+            default = "arm64",
+            values = ["arm64", "x86_64", "riscv64"],
+        ),
         "build_config": attr.label(
             mandatory = True,
             allow_single_file = True,
