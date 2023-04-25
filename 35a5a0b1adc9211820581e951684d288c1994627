@@ -22,6 +22,30 @@
       },
       "revId": "35a5a0b1adc9211820581e951684d288c1994627",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ccb4db9_9aa4ee62",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-25T17:36:28Z",
+      "side": 1,
+      "message": "No; this is meant to be a literal \u0027*\u0027",
+      "parentUuid": "0c813a5d_d17ed308",
+      "range": {
+        "startLine": 477,
+        "startChar": 60,
+        "endLine": 477,
+        "endChar": 61
+      },
+      "revId": "35a5a0b1adc9211820581e951684d288c1994627",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
