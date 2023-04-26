@@ -432,6 +432,7 @@ def _kernel_config_impl(ctx):
         env_and_outputs_info,
         ctx.attr.env[KernelEnvAttrInfo],
         ctx.attr.env[KernelEnvMakeGoalsInfo],
+        ctx.attr.env[KernelToolchainInfo],
         KernelBuildOriginalEnvInfo(
             env_info = ctx.attr.env[KernelEnvInfo],
         ),
@@ -531,7 +532,12 @@ kernel_config = rule(
     attrs = {
         "env": attr.label(
             mandatory = True,
-            providers = [KernelEnvInfo, KernelEnvAttrInfo, KernelEnvMakeGoalsInfo],
+            providers = [
+                KernelEnvInfo,
+                KernelEnvAttrInfo,
+                KernelEnvMakeGoalsInfo,
+                KernelToolchainInfo,
+            ],
             doc = "environment target that defines the kernel build environment",
         ),
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
