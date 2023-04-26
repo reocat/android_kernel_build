@@ -56,6 +56,63 @@
       "message": "File is not formatted. Run `buildifier kleaf/tests/kernel_build_test/kernel_toolchain_aspect_test.bzl` to format the file, or apply the suggested fix.",
       "revId": "6871f2bc20429d6579d7420a75cba727c3958cb9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000043595363",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2564032?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "be393301_4d4005d0",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/kernel_build_test/kernel_toolchain_aspect_test.bzl",
+              "range": {
+                "startLine": 34,
+                "startChar": 0,
+                "endLine": 35,
+                "endChar": 0
+              },
+              "replacement": "        asserts.true(\n            env,\n            ctx.files.toolchain_version_file[0] in check_action.inputs.to_list(),\n"
+            },
+            {
+              "path": "kleaf/tests/kernel_build_test/kernel_toolchain_aspect_test.bzl",
+              "range": {
+                "startLine": 38,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "            ),\n"
+            },
+            {
+              "path": "kleaf/tests/kernel_build_test/kernel_toolchain_aspect_test.bzl",
+              "range": {
+                "startLine": 136,
+                "startChar": 0,
+                "endLine": 137,
+                "endChar": 0
+              },
+              "replacement": "                        toolchain_version_file \u003d base_kernel + \"_toolchain_version\",\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "ad207368_c31cccf3",
+        "filename": "kleaf/tests/kernel_build_test/kernel_toolchain_aspect_test.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-04-26T01:14:06Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/kernel_build_test/kernel_toolchain_aspect_test.bzl` to format the file, or apply the suggested fix.",
+      "revId": "6871f2bc20429d6579d7420a75cba727c3958cb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
