@@ -27,6 +27,7 @@ load(
     "KernelEnvAndOutputsInfo",
     "KernelEnvAttrInfo",
     "KernelImagesInfo",
+    "KernelToolchainInfo",
     "KernelUnstrippedModulesInfo",
 )
 load(
