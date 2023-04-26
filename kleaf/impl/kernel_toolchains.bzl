@@ -42,6 +42,11 @@ def _get_declared_toolchain_version(ctx):
     return declared_toolchain_version
 
 def _check_toolchain_version(ctx, resolved_toolchain_info, declared_toolchain_version, platform_name):
+    if declared_toolchain_version == None:
+        # kernel_build does not declare toolchain_version. Use default CLANG_VERSION from toolchain
+        # resolution.
+        return
+
     if resolved_toolchain_info.compiler_version != declared_toolchain_version:
         fail("{}: Resolved to incorrect toolchain for {} platform. Expected: {}, actual: {}".format(
             ctx.label,
@@ -106,6 +111,14 @@ def _kernel_toolchains_impl(ctx):
     _check_toolchain_version(ctx, exec, declared_toolchain_version, "exec")
     _check_toolchain_version(ctx, target, declared_toolchain_version, "target")
 
+    if target.compiler_version != exec.compiler_version:
+        fail("{}: Target platform has compiler version {} but exec platform has {}".format(
+            ctx.label,
+            target.compiler_version,
+            exec.compiler_version,
+        ))
+    actual_toolchain_version = target.compiler_version
+
     all_files = depset(transitive = [exec.all_files, target.all_files])
     target_arch = _get_target_arch(ctx)
 
@@ -140,7 +153,7 @@ def _kernel_toolchains_impl(ctx):
         all_files = all_files,
         target_arch = target_arch,
         setup_env_var_cmd = setup_env_var_cmd,
-        compiler_version = declared_toolchain_version,
+        compiler_version = actual_toolchain_version,
     )
 
 kernel_toolchains = rule(
