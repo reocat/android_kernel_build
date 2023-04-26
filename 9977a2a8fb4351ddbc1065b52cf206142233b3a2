@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ea20464_f57e809f",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 1034,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-04-26T15:33:30Z",
+      "side": 1,
+      "message": "Can you re-work this to be a bit cleaner and de-dup the code like this?\n\n```\nif [ -n \"${BUILD_VENDOR_BOOT_IMG}\" ]; then\n  VENDOR_BOOT_NAME\u003d\"vendor_boot\"\nelif [ -n \"${BUILD_VENDOR_KERNEL}\" ]; then\n  VENDOR_BOOT_NAME\u003d\"vendor_kernel_boot\"\nfi\ncp ${MODULES_ROOT_DIR}/modules.load ${DIST_DIR}/${VENDOR_BOOT_NAME}.modules.load\n[ -n \"${MODULES_RECOVERY_LIST}\" ] \u0026\u0026 \\\n  cp ${MODULES_ROOT_DIR}/modules.load.recovery ${DIST_DIR}/${VENDOR_BOOT_NAME}.modules.load.recovery\n[ -n \"${MODULES_CHARGERS_LIST}\" ] \u0026\u0026 \\\n  cp ${MODULES_ROOT_DIR}/modules.load.charger ${DIST_DIR}/${VENDOR_BOOT_NAME}.modules.load.charger\n```",
+      "range": {
+        "startLine": 1034,
+        "startChar": 0,
+        "endLine": 1034,
+        "endChar": 46
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b03c121_1d158c6a",
+        "filename": "build_utils.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-04-26T15:33:30Z",
+      "side": 1,
+      "message": "Let\u0027s drop the leading tab.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 1
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dbc08a1_b7a69741",
+        "filename": "build_utils.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-04-26T15:33:30Z",
+      "side": 1,
+      "message": "Does this factor in the subdirectory you get between in-tree vs OOT modules? For example, in tree modules I believe are under the `kernel` directory and OOT modules are under the `extra` directory.",
+      "range": {
+        "startLine": 71,
+        "startChar": 56,
+        "endLine": 71,
+        "endChar": 60
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a970bc4_61532015",
+        "filename": "build_utils.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-04-26T15:33:30Z",
+      "side": 1,
+      "message": "Would a copy be more efficient here?\n```\ncp ${modules_list_file} ${tmp_all_modules_list_file}\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 2,
+        "endLine": 120,
+        "endChar": 28
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a33d5d9_6b369a09",
+        "filename": "build_utils.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-04-26T15:33:30Z",
+      "side": 1,
+      "message": "Should we use -F as well for fixed strings?",
+      "range": {
+        "startLine": 123,
+        "startChar": 7,
+        "endLine": 123,
+        "endChar": 10
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46b9bcc5_a723a5eb",
+        "filename": "kleaf/impl/image/initramfs.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-04-26T15:33:30Z",
+      "side": 1,
+      "message": "Do we need defaults here too in case these new variables aren\u0027t defined?",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
