@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85ccfca2_db935b4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-04-27T19:13:05Z",
+      "side": 1,
+      "message": "The build bots are using %bid% now and this still passes, so I am fairly certain that this won\u0027t break things.\n\nhttps://android-build.googleplex.com/builds/pending/P55375330/kernel_aarch64/latest/view/logs/build.log",
+      "revId": "5e0aed7e942a21158bc17a99e12ac54b365ef706",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
