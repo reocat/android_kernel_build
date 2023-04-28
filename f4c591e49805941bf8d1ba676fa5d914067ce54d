@@ -16,6 +16,24 @@
       "message": "@lberki@google.com My understanding is that https://bazel.build/reference/command-line-reference#flag--incompatible_python_disallow_native_rules is not needed as it is `false` by default?",
       "revId": "f4c591e49805941bf8d1ba676fa5d914067ce54d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8c9488d_c862ab07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2023-04-28T12:37:04Z",
+      "side": 1,
+      "message": "Correct. Also, some of the rules in regular `@rules_python` are just aliases to the built-in ones so if this was broken by default, `@rules_python` would be broken, too.",
+      "parentUuid": "8b1b69ea_4a8c18f6",
+      "revId": "f4c591e49805941bf8d1ba676fa5d914067ce54d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
