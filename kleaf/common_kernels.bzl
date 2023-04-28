@@ -21,6 +21,7 @@ load(
     "kernel_abi",
     "kernel_abi_dist",
     "kernel_build",
+    "kernel_build_config",
     "kernel_compile_commands",
     "kernel_filegroup",
     "kernel_images",
@@ -587,6 +588,15 @@ def define_common_kernels(
             allow_unknown_keys = True,
         )
 
+        kernel_build_config(
+            name = name + "_build_config",
+            srcs = [
+                # do not sort
+                arch_config["build_config"],
+                "//build/kernel/kleaf:gki_build_config_fragment",
+            ],
+        )
+
         kernel_build(
             name = name,
             srcs = [name + "_sources"],
@@ -599,7 +609,7 @@ def define_common_kernels(
                 "certs/signing_key.pem",
                 "certs/signing_key.x509",
             ],
-            build_config = arch_config["build_config"],
+            build_config = name + "_build_config",
             enable_interceptor = arch_config.get("enable_interceptor"),
             visibility = visibility,
             collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
