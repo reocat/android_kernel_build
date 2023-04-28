@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bcb0233_1dc9eb22",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-04-28T22:12:43Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Buildifier: Loaded symbol \"KernelToolchainInfo\" is unused. Please remove it.\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nLoaded symbol \"KernelToolchainInfo\" is unused. Please remove it.\nTo disable the warning, add \u0027@unused\u0027 in a comment.\nIf you want to re-export a symbol, use the following pattern:\n\n    load(..., _KernelToolchainInfo \u003d \"KernelToolchainInfo\", ...)\n    KernelToolchainInfo \u003d _KernelToolchainInfo\n http://go/buildifier-warnings#load",
+      "range": {
+        "startLine": 30,
+        "startChar": 5,
+        "endLine": 30,
+        "endChar": 24
+      },
+      "revId": "fa7aafdd0171b2ae1d2da7a31660be6bed8468a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
