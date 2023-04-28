@@ -21,6 +21,7 @@ load(
     "kernel_abi",
     "kernel_abi_dist",
     "kernel_build",
+    "kernel_build_config",
     "kernel_compile_commands",
     "kernel_filegroup",
     "kernel_images",
@@ -585,6 +586,15 @@ def define_common_kernels(
             target_config,
             valid_keys = _KERNEL_BUILD_VALID_KEYS,
             allow_unknown_keys = True,
+        )
+
+        kernel_build_config(
+            name = name + "_build_config",
+            srcs = [
+                # do not sort
+                arch_config["build_config"],
+                ":gki_build_config_fragment",
+            ],
         )
 
         kernel_build(
