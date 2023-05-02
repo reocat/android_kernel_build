@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26c74ca1_98e7918d",
+        "filename": "build.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 1034,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-05-02T01:14:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ea20464_f57e809f",
+      "range": {
+        "startLine": 1034,
+        "startChar": 0,
+        "endLine": 1034,
+        "endChar": 46
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b03c121_1d158c6a",
@@ -70,6 +94,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "267ed261_f351a7c7",
+        "filename": "build_utils.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-05-02T01:14:46Z",
+      "side": 1,
+      "message": "Yes, since each line is obtained by concatenating the `modules.order` from the in-tree modules, along with the `modules.order` from each OOT repo, which already includes `extra/*`.",
+      "parentUuid": "0dbc08a1_b7a69741",
+      "range": {
+        "startLine": 71,
+        "startChar": 56,
+        "endLine": 71,
+        "endChar": 60
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83d9412b_01272c24",
+        "filename": "build_utils.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-05-02T01:14:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b03c121_1d158c6a",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 1
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a970bc4_61532015",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-04-26T15:33:30Z",
       "side": 1,
       "message": "Would a copy be more efficient here?\n```\ncp ${modules_list_file} ${tmp_all_modules_list_file}\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 2,
+        "endLine": 120,
+        "endChar": 28
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7cbd849_ddc233c6",
+        "filename": "build_utils.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-05-02T01:14:46Z",
+      "side": 1,
+      "message": "Yep!",
+      "parentUuid": "0a970bc4_61532015",
       "range": {
         "startLine": 120,
         "startChar": 2,
@@ -118,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1885daf_1b18e0a7",
+        "filename": "build_utils.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-05-02T01:14:46Z",
+      "side": 1,
+      "message": "I tried this out, and interestingly enough, it works well with the `grep` tool installed on my machine, but not the `grep` tool in the prebuilts. I wonder if in the prebuilts, -w and -F are mutually exclusive? From the usage page I see this all under match type:\n\n```\n-F  fixed (literal match)\n-E extended regex syntax\n-w whole word (implies -E)\n```\n\nWouldn\u0027t using `-w -F` mean the syntax of the patterns are both extended regex syntax patterns and fixed strings?",
+      "parentUuid": "2a33d5d9_6b369a09",
+      "range": {
+        "startLine": 123,
+        "startChar": 7,
+        "endLine": 123,
+        "endChar": 10
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46b9bcc5_a723a5eb",
         "filename": "kleaf/impl/image/initramfs.bzl",
         "patchSetId": 11
@@ -129,6 +249,30 @@
       "writtenOn": "2023-04-26T15:33:30Z",
       "side": 1,
       "message": "Do we need defaults here too in case these new variables aren\u0027t defined?",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 48
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6662b7ef_482f1fc9",
+        "filename": "kleaf/impl/image/initramfs.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-05-02T01:14:46Z",
+      "side": 1,
+      "message": "Ah, yes. Thanks.",
+      "parentUuid": "46b9bcc5_a723a5eb",
       "range": {
         "startLine": 65,
         "startChar": 27,
