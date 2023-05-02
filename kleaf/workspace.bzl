@@ -60,6 +60,11 @@ def define_kleaf_workspace(common_kernel_package = None):
         build_file = "build/kernel/kleaf/ndk.BUILD",
     )
 
+    native.local_repository(
+        name = "experiment",
+        path = "build/kernel/kleaf/experiment",
+    )
+
     key_value_repo(
         name = "kernel_toolchain_info",
         srcs = ["//{}:build.config.constants".format(common_kernel_package)],
