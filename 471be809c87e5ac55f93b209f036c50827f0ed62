@@ -1,0 +1,88 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000044075676",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2577170?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "74b03914_ccf9ea2a",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/BUILD.bazel",
+              "range": {
+                "startLine": 23,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": "load(\"@experiment//:foo.bzl\", \"mymacro\", \"myrule\")\n"
+            },
+            {
+              "path": "kleaf/BUILD.bazel",
+              "range": {
+                "startLine": 29,
+                "startChar": 0,
+                "endLine": 29,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e6f7d699_3fa37869",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-05-02T23:09:11Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "471be809c87e5ac55f93b209f036c50827f0ed62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000044075676",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2577170?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "eca8b827_a7044103",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/experiment/BUILD",
+              "range": {
+                "startLine": 1,
+                "startChar": 0,
+                "endLine": 2,
+                "endChar": 0
+              },
+              "replacement": "load(\"//:foo.bzl\", \"mymacro\", \"myrule\")\n\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "84fda5ed_221b5fc4",
+        "filename": "kleaf/experiment/BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-05-02T23:09:11Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/experiment/BUILD` to format the file, or apply the suggested fix.",
+      "revId": "471be809c87e5ac55f93b209f036c50827f0ed62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
