@@ -236,6 +236,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84fbac42_42b74431",
+        "filename": "build_utils.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-05-02T19:39:52Z",
+      "side": 1,
+      "message": "If the prebuilts doesn\u0027t have it, then I guess we can\u0027t use it. I wouldn\u0027t think that -w implies a literal match but just enforces a word boundary for the regex. For example, if you have `module.a.ko`, would the `.` be interpreted as any character or as the literal period? In any case, I see other lines that are only using the `-w` argument. So it\u0027s fine for you to keep it as is for this patch.",
+      "parentUuid": "c1885daf_1b18e0a7",
+      "range": {
+        "startLine": 123,
+        "startChar": 7,
+        "endLine": 123,
+        "endChar": 10
+      },
+      "revId": "9977a2a8fb4351ddbc1065b52cf206142233b3a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46b9bcc5_a723a5eb",
