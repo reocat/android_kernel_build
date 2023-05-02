@@ -21,7 +21,12 @@ load("//build/kernel/kleaf/impl:ddk/gen_ddk_headers.bzl", "gen_ddk_headers")
 load(":constants.bzl", "LTO_VALUES")
 load(":print_flags.bzl", "print_flags")
 
+load("@experiment//:foo.bzl", "myrule", "mymacro")
+
 package(default_visibility = ["//visibility:public"])
+
+myrule(name = "myrule")
+mymacro(name = "mymacro")
 
 # Build flags
 
