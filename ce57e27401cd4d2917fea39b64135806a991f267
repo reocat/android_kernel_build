@@ -52,6 +52,24 @@
       "parentUuid": "e7996c18_9c6950e6",
       "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79f27d86_3feba8a7",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-02T17:09:16Z",
+      "side": 1,
+      "message": "Perhaps `make` is a valid invocation without specific `make $MAKE_GOALS`? That\u0027s probably what rockpi is relying on.",
+      "parentUuid": "45f94c2e_3193d015",
+      "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
