@@ -16,6 +16,24 @@
       "message": "Why would it be empty? Is that a valid case?",
       "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7996c18_9c6950e6",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-02T16:23:24Z",
+      "side": 1,
+      "message": "(Not sure if valid or not) I think the target reported in the bug comes from https://android.git.corp.google.com/platform/external/u-boot/+/refs/heads/master/build.config.rockpi4#21 which sets an empty `MAKE_GOALS`",
+      "parentUuid": "dd68615c_2aaa1b04",
+      "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
