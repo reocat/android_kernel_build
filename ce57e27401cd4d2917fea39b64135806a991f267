@@ -34,6 +34,24 @@
       "parentUuid": "dd68615c_2aaa1b04",
       "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45f94c2e_3193d015",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-02T16:43:01Z",
+      "side": 1,
+      "message": "Can we instead remove that empty definition? It feels wrong. But it might just be ok for mixed builds ...",
+      "parentUuid": "e7996c18_9c6950e6",
+      "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
