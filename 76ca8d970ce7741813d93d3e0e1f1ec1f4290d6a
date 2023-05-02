@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f3e16ce_6a87d856",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-05-02T18:06:09Z",
+      "side": 1,
+      "message": "I backported this from https://android-review.googlesource.com/c/kernel/build/+/2260852 to fix the Lint warnings that were blocking my patch.",
+      "revId": "76ca8d970ce7741813d93d3e0e1f1ec1f4290d6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
