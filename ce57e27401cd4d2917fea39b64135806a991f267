@@ -70,6 +70,24 @@
       "parentUuid": "45f94c2e_3193d015",
       "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5e4636c_c4a5e837",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-03T10:36:08Z",
+      "side": 1,
+      "message": "That feels like an unnecessary evasion of explicitly expressing what should be built. I would opt to error out on an empty definition and warn for a definition set as otherwise done here.",
+      "parentUuid": "79f27d86_3feba8a7",
+      "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
