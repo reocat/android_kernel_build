@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000044156714",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2577576?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "04f1c628_52471cac",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/integration_test/ddk_negative_test/BUILD.bazel",
+              "range": {
+                "startLine": 19,
+                "startChar": 0,
+                "endLine": 19,
+                "endChar": 0
+              },
+              "replacement": "    srcs \u003d [\"mymodule.c\"],\n"
+            },
+            {
+              "path": "kleaf/tests/integration_test/ddk_negative_test/BUILD.bazel",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/tests/integration_test/ddk_negative_test/BUILD.bazel",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "    kernel_build \u003d \"//common:kernel_aarch64\",\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "77f4d533_752b51cf",
+        "filename": "kleaf/tests/integration_test/ddk_negative_test/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-05-03T19:29:35Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/integration_test/ddk_negative_test/BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "810005cd3a7bf2fee96f131c25d2a4feab37f134",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
