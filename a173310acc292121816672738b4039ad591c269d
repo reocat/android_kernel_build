@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54f9e6ae_c7bfa1cd",
+        "filename": "kleaf/docs/ddk/includes.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-03T17:22:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d5929ffe_53c0a19e",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 47
+      },
+      "revId": "a173310acc292121816672738b4039ad591c269d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a87ee3c_9a437ec9",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-03T10:51:03Z",
       "side": 1,
       "message": "Order",
+      "range": {
+        "startLine": 38,
+        "startChar": 10,
+        "endLine": 38,
+        "endChar": 18
+      },
+      "revId": "a173310acc292121816672738b4039ad591c269d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "174587fe_06e355d1",
+        "filename": "kleaf/docs/ddk/includes.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-03T17:22:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a87ee3c_9a437ec9",
       "range": {
         "startLine": 38,
         "startChar": 10,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c61b295_cd13de0c",
+        "filename": "kleaf/docs/ddk/includes.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-03T17:22:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61d277d0_eb0753b3",
+      "revId": "a173310acc292121816672738b4039ad591c269d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80474dd8_a65ca48c",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-05-03T10:51:03Z",
       "side": 1,
       "message": "are for target use only and not re-exported to dependent targets.",
+      "range": {
+        "startLine": 50,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 21
+      },
+      "revId": "a173310acc292121816672738b4039ad591c269d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b42da28_b0c52d80",
+        "filename": "kleaf/docs/ddk/includes.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-03T17:22:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80474dd8_a65ca48c",
       "range": {
         "startLine": 50,
         "startChar": 2,
@@ -112,6 +202,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c8b43d2_6d5102b5",
+        "filename": "kleaf/docs/ddk/includes.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-03T17:22:46Z",
+      "side": 1,
+      "message": "Do you mean we should rename linux_includes to `linuxinclude`?",
+      "parentUuid": "5818be6f_4562374a",
+      "range": {
+        "startLine": 137,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 14
+      },
+      "revId": "a173310acc292121816672738b4039ad591c269d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "636bad11_3a8f3a79",
         "filename": "kleaf/docs/ddk/includes.md",
         "patchSetId": 3
@@ -123,6 +237,30 @@
       "writtenOn": "2023-05-03T10:51:03Z",
       "side": 1,
       "message": "you could add a comment that this is necessary as the include path for `-include` is not relative to the source file, but relative to the preprocessor\u0027s working directory.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 59
+      },
+      "revId": "a173310acc292121816672738b4039ad591c269d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55a39d1d_e9d04946",
+        "filename": "kleaf/docs/ddk/includes.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-03T17:22:46Z",
+      "side": 1,
+      "message": "what is necessary? $(location)?",
+      "parentUuid": "636bad11_3a8f3a79",
       "range": {
         "startLine": 183,
         "startChar": 0,
