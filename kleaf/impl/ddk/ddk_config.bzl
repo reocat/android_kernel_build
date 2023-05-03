@@ -93,7 +93,8 @@ def _create_kconfig_ext_step(ctx, kconfig_depset_file):
         cmd = cmd,
     )
 
-def _create_oldconfig_step(ddk_config_info, defconfig_depset_file, kconfig_depset_file):
+def _create_oldconfig_step(ctx, ddk_config_info, defconfig_depset_file, kconfig_depset_file):
+    module_label = Label(str(ctx.label).removesuffix("_config"))
     cmd = """
         if [[ -s {defconfig_depset_file} ]] || [[ -s {kconfig_depset_file} ]]; then
             # Regenerate include/.
@@ -107,7 +108,24 @@ def _create_oldconfig_step(ddk_config_info, defconfig_depset_file, kconfig_depse
                 KCONFIG_EXT_PREFIX=${{KCONFIG_EXT_PREFIX}} \\
                 olddefconfig
         fi
+
+        if [[ -s {defconfig_depset_file} ]]; then
+            (
+                # Check that configs in fragments are still there
+                config_set="s/^(CONFIG_\\w*)=.*/\\1/p"
+                config_not_set="s/^# (CONFIG_\\w*) is not set$/\\1/p"
+                for config in $(sed -n -E "$config_set" -E "$config_not_set" {defconfig_depset_file}); do
+                    defconfig_value=$(grep -w -e "$config" {defconfig_depset_file})
+                    actual_value=$(grep -w -e "$config" .config || true)
+                    if [[ "${{defconfig_value}}" != "${{actual_value}}" ]] ; then
+                        echo "{module_label}: ${{actual_value}}, but expected ${{defconfig_value}}. Is it declared in Kconfig?" >&2
+                        exit 1
+                    fi
+                done
+            )
+        fi
     """.format(
+        module_label = module_label,
         defconfig_depset_file = defconfig_depset_file.path,
         kconfig_depset_file = kconfig_depset_file.path,
     )
@@ -146,6 +164,7 @@ def _create_main_action(
         kconfig_depset_file = kconfig_depset_file,
     )
     oldconfig_step = _create_oldconfig_step(
+        ctx = ctx,
         ddk_config_info = ddk_config_info,
         defconfig_depset_file = defconfig_depset_file,
         kconfig_depset_file = kconfig_depset_file,
