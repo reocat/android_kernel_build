@@ -56,6 +56,63 @@
       "message": "File is not formatted. Run `buildifier kleaf/tests/integration_test/ddk_negative_test/BUILD.bazel` to format the file, or apply the suggested fix.",
       "revId": "86fb06ea690f5b37f4725819ec1080fa5ec4df56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000044156662",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2577576?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "31726c2e_ad752345",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/integration_test/ddk_negative_test/BUILD.bazel",
+              "range": {
+                "startLine": 19,
+                "startChar": 0,
+                "endLine": 19,
+                "endChar": 0
+              },
+              "replacement": "    srcs \u003d [\"mymodule.c\"],\n"
+            },
+            {
+              "path": "kleaf/tests/integration_test/ddk_negative_test/BUILD.bazel",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/tests/integration_test/ddk_negative_test/BUILD.bazel",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "    kernel_build \u003d \"//common:kernel_aarch64\",\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "8b7773f6_369dcc40",
+        "filename": "kleaf/tests/integration_test/ddk_negative_test/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-05-03T19:28:59Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/integration_test/ddk_negative_test/BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "86fb06ea690f5b37f4725819ec1080fa5ec4df56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
