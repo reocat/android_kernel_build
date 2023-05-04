@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d579ae06_e630cdf5",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-04T09:33:14Z",
+      "side": 1,
+      "message": "nit: This naming is confusing, please `s/kernel_modules/kernel_module_deps`",
+      "range": {
+        "startLine": 187,
+        "startChar": 39,
+        "endLine": 187,
+        "endChar": 53
+      },
+      "revId": "da817a6e32285a68e77b2c3b914353a9150b88bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
