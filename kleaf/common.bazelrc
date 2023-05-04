@@ -50,3 +50,6 @@ try-import %workspace%/device.bazelrc
 
 # Support a local user-specific bazelrc file.
 try-import %workspace%/user.bazelrc
+
+# Explicitly disable downloading rules from the network.
+build --experimental_repository_disable_download
