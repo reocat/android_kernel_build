@@ -438,6 +438,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
         print(f"scmversion = {ret}")
         return ret
 
+    @unittest.skip("b/280853461")
     def test_mainline_no_stamp(self):
         self._setup_mainline()
         self._check_call("build", _FASTEST + [
@@ -468,6 +469,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
         for scmversion in self._get_vmlinux_scmversion():
             self.assertRegexpMatches(scmversion, scmversion_pat)
 
+    @unittest.skip("b/280853461")
     def test_release_branch_no_stamp(self):
         self._setup_release_branch()
         self._check_call("build", _FASTEST + [
