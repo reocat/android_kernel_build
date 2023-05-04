@@ -50,3 +50,7 @@ try-import %workspace%/device.bazelrc
 
 # Support a local user-specific bazelrc file.
 try-import %workspace%/user.bazelrc
+
+# DDK modules must be executed in the 'process-wrapper' sandbox.
+# See kernel_module() for more details.
+build --strategy=DdkConfig=processwrapper-sandbox
