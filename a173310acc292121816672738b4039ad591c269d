@@ -250,6 +250,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cc8ac20f_511820c0",
+        "filename": "kleaf/docs/ddk/includes.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-04T20:00:38Z",
+      "side": 1,
+      "message": "We didn\u0027t decide together; I picked \"linux_includes\" so it is closer to \"includes\"",
+      "parentUuid": "6e3e561c_d64fdedf",
+      "range": {
+        "startLine": 137,
+        "startChar": 1,
+        "endLine": 137,
+        "endChar": 14
+      },
+      "revId": "a173310acc292121816672738b4039ad591c269d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "636bad11_3a8f3a79",
         "filename": "kleaf/docs/ddk/includes.md",
         "patchSetId": 3
@@ -309,6 +333,30 @@
       "side": 1,
       "message": "Yeah, the $(location) resolution I was referring to.",
       "parentUuid": "55a39d1d_e9d04946",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 59
+      },
+      "revId": "a173310acc292121816672738b4039ad591c269d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "885eb8cb_d3f5dbfd",
+        "filename": "kleaf/docs/ddk/includes.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-04T20:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "490119ed_f65bc744",
       "range": {
         "startLine": 183,
         "startChar": 0,
