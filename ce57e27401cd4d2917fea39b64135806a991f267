@@ -106,6 +106,24 @@
       "parentUuid": "f5e4636c_c4a5e837",
       "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17798b48_e8496d58",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-04T21:40:16Z",
+      "side": 1,
+      "message": "I agree with the goal of `expressing what should be built.` however as a migration step I think it\u0027s Ok to not error out on empty `MAKE_GOALS` just yet (i.e. keeping the status quo). I\u0027m preparing the changes to set the examples on how to use this new attribute (to publicize it in the newsletter), then we can start to warning if the end `make_goals` in kernel_build.main_action is empty, wdyt?",
+      "parentUuid": "009faacb_79f8086a",
+      "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
