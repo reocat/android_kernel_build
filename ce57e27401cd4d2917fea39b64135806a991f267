@@ -124,6 +124,24 @@
       "parentUuid": "009faacb_79f8086a",
       "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bc68bf7_fd53fe76",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-05T09:48:12Z",
+      "side": 1,
+      "message": "Updated to warn when empty var is detected, PTAL.",
+      "parentUuid": "17798b48_e8496d58",
+      "revId": "ce57e27401cd4d2917fea39b64135806a991f267",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
