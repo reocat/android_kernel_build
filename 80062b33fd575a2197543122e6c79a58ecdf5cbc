@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d96c9b21_a1bd6423",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-05T18:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "338b1d14_e5ba636b",
+      "revId": "80062b33fd575a2197543122e6c79a58ecdf5cbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc60e7ae_f178e422",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "322de1f9_8c942327",
+        "filename": "kleaf/impl/kernel_multi_toolchain.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-05T18:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc60e7ae_f178e422",
+      "range": {
+        "startLine": 81,
+        "startChar": 10,
+        "endLine": 82,
+        "endChar": 98
+      },
+      "revId": "80062b33fd575a2197543122e6c79a58ecdf5cbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4faefed9_183b7809",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-03-22T13:29:02Z",
       "side": 1,
       "message": "can we maybe remove the toolchain specific parts from _setup_env.sh such that we do not have to preserve them? Instead we can run _setup_env.sh for the remaining settings and append toolchain env vars to it. That would also show a migration path out of _setup_env.sh altogether.",
+      "revId": "80062b33fd575a2197543122e6c79a58ecdf5cbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9592f9c8_17c63fe0",
+        "filename": "kleaf/preserve_env.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-05T18:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4faefed9_183b7809",
       "revId": "80062b33fd575a2197543122e6c79a58ecdf5cbc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
