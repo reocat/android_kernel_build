@@ -22,6 +22,30 @@
       },
       "revId": "da817a6e32285a68e77b2c3b914353a9150b88bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a05e545_bcf544ce",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-05T00:42:49Z",
+      "side": 1,
+      "message": "This technically expects a list of (informtation about) `_kernel_module()`, which may or may not be `deps` of something. The function itself does not expect any dependency relationships; it merely checks a property of the list of `_kernel_module()`\u0027s.",
+      "parentUuid": "d579ae06_e630cdf5",
+      "range": {
+        "startLine": 187,
+        "startChar": 39,
+        "endLine": 187,
+        "endChar": 53
+      },
+      "revId": "da817a6e32285a68e77b2c3b914353a9150b88bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
