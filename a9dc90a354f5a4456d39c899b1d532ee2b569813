@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31e6df16_68d08af5",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-09T14:51:22Z",
+      "side": 1,
+      "message": "nit: `${{configs}}` to keep it consistent with the rest of kleaf?\n\nsame for `${{config}}` below?",
+      "range": {
+        "startLine": 126,
+        "startChar": 30,
+        "endLine": 126,
+        "endChar": 38
+      },
+      "revId": "a9dc90a354f5a4456d39c899b1d532ee2b569813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
