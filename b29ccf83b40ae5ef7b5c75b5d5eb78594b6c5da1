@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f9a299d_e25ef648",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-09T18:43:51Z",
+      "side": 1,
+      "message": "Note: @platform//cpu has the following definitions for arm:\n\nhttps://github.com/bazelbuild/platforms/blob/main/cpu/BUILD#L41\n\nThere\u0027s a TODO for the arm target, though the bug is closed.\n\nShould we change this to arm64_32?\n\nDo we even care about this architecture?",
+      "revId": "b29ccf83b40ae5ef7b5c75b5d5eb78594b6c5da1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
