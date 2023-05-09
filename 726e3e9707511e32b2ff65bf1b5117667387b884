@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9ae97ac_6faba351",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-05-09T21:36:20Z",
+      "side": 1,
+      "message": "I get `TypeError: \u0027\u003c\u0027 not supported between instances of \u0027str\u0027 and \u0027PosixPath\u0027` during sort later.\n\nChanging this to:\n```python\npaths.append(str(proj.relative_to(workspace)))\n```\n...appears to fix the issue.",
+      "range": {
+        "startLine": 129,
+        "startChar": 30,
+        "endLine": 129,
+        "endChar": 41
+      },
+      "revId": "726e3e9707511e32b2ff65bf1b5117667387b884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
