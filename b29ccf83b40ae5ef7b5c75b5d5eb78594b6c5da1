@@ -16,6 +16,24 @@
       "message": "Note: @platform//cpu has the following definitions for arm:\n\nhttps://github.com/bazelbuild/platforms/blob/main/cpu/BUILD#L41\n\nThere\u0027s a TODO for the arm target, though the bug is closed.\n\nShould we change this to arm64_32?\n\nDo we even care about this architecture?",
       "revId": "b29ccf83b40ae5ef7b5c75b5d5eb78594b6c5da1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72be6576_4a22f31f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-09T18:44:40Z",
+      "side": 1,
+      "message": "I notice that we need this when I am looking at\n\nhttps://android-review.git.corp.google.com/c/kernel/common-modules/virtual-device/+/2583535/3/BUILD.bazel#630\n\nhttps://android-review.git.corp.google.com/c/platform/external/u-boot/+/2583356/1/BUILD.bazel#180",
+      "parentUuid": "6f9a299d_e25ef648",
+      "revId": "b29ccf83b40ae5ef7b5c75b5d5eb78594b6c5da1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
