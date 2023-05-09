@@ -15,6 +15,7 @@
 import dataclasses
 import logging
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -105,10 +106,24 @@ def parse_repo_manifest(manifest: str) -> list[str]:
         return []
     projects = dom.documentElement.getElementsByTagName("project")
     # https://gerrit.googlesource.com/git-repo/+/master/docs/manifest-format.md#element-project
-    return [
-        proj.getAttribute("path") or proj.getAttribute("name")
-        for proj in projects
-    ]
+
+    # If any projects contain "kernel_platform" in their path, then assume the manifest
+    # is checking out the main KP tree to a subdirectory. Filter to only those projects
+    # and strip the leading path.
+    if any("kernel_platform/" in proj.getAttribute("path") for proj in projects):
+        ret = []
+        for proj in projects:
+            loc = proj.getAttribute("path") or proj.getAttribute("name")
+            if "kernel_platform/" in loc:
+                loc = re.sub(r"^.*kernel_platform/", "", loc)
+                logging.error(loc)
+                ret.append(loc)
+    else:
+        ret = [
+            proj.getAttribute("path") or proj.getAttribute("name")
+            for proj in projects
+        ]
+    return ret
 
 
 def collect(popen_obj: subprocess.Popen) -> str:
