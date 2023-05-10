@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef04ec7c_d89e29ed",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T02:50:06Z",
+      "side": 1,
+      "message": "nit: explicit visibility please\n\nnit: put it under kleaf/impl",
+      "revId": "10ac155303ee6621a427cb1962f328361112a690",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99d5a24f_4b499859",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T02:50:06Z",
+      "side": 1,
+      "message": "nit: it is just one line 😊",
+      "range": {
+        "startLine": 539,
+        "startChar": 38,
+        "endLine": 539,
+        "endChar": 50
+      },
+      "revId": "10ac155303ee6621a427cb1962f328361112a690",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bd377c9_c1d75c09",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T02:50:06Z",
+      "side": 1,
+      "message": "visibility",
+      "revId": "10ac155303ee6621a427cb1962f328361112a690",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1097261_575dc8d5",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T02:50:06Z",
+      "side": 1,
+      "message": "nit: `:kernel_dir_build_config`",
+      "range": {
+        "startLine": 607,
+        "startChar": 17,
+        "endLine": 607,
+        "endChar": 18
+      },
+      "revId": "10ac155303ee6621a427cb1962f328361112a690",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74970068_aa69b958",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T02:50:06Z",
+      "side": 1,
+      "message": "string labels in macros should specify repository name with the Label constructor\n\n```\nLabel(\"//build/kernel/kleaf:gki_build_config_fragment\")\n```",
+      "range": {
+        "startLine": 609,
+        "startChar": 16,
+        "endLine": 609,
+        "endChar": 17
+      },
+      "revId": "10ac155303ee6621a427cb1962f328361112a690",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
