@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57676cb9_58b4cc73",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T01:17:44Z",
+      "side": 1,
+      "message": "I forgot if I mentioned this before, and this is unrelated to the CL, but do we need a `^` or `/` here? (Same at L1961)",
+      "range": {
+        "startLine": 1951,
+        "startChar": 70,
+        "endLine": 1951,
+        "endChar": 71
+      },
+      "revId": "471600172e6744b6307dc44f3d84c09747bc1b3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
