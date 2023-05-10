@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e39895f0_f3190c1d",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T02:51:47Z",
+      "side": 1,
+      "message": "also, if you want a good file, ensure there\u0027s an empty string at the end of the list. Otherwise write_file doesn\u0027t end the file with new line.",
+      "parentUuid": "99d5a24f_4b499859",
+      "range": {
+        "startLine": 539,
+        "startChar": 38,
+        "endLine": 539,
+        "endChar": 50
+      },
+      "revId": "10ac155303ee6621a427cb1962f328361112a690",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1bd377c9_c1d75c09",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 4
