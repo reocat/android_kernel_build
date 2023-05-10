@@ -30,7 +30,6 @@ load(
     "kernel_kythe",
     "kernel_modules_install",
     "kernel_unstripped_modules_archive",
-    "merged_kernel_uapi_headers",
 )
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load("//build/kernel/kleaf/artifact_tests:kernel_test.bzl", "initramfs_modules_options_test")
@@ -1067,6 +1066,11 @@ def _define_common_kernels_additional_tests(
 
 def define_db845c(
         name,
+<<<<<<< PATCH SET (58be17 kleaf: Deprecate define_db845c macro)
+        # buildifier: disable=unused-variable
+        **kwargs):
+    """**Deprecated**. Use [`kernel_build`](#kernel_build) directly.
+=======
         outs,
         build_config = None,
         module_outs = None,
@@ -1083,8 +1087,15 @@ def define_db845c(
     Note: This is a mixed build.
 
     Requires [`define_common_kernels`](#define_common_kernels) to be called in the same package.
+>>>>>>> BASE      (8310c0 kleaf: Enable support for KASAN SW tags)
 
     Args:
+<<<<<<< PATCH SET (58be17 kleaf: Deprecate define_db845c macro)
+      name: name
+      **kwargs: kwargs
+    Deprecated:
+      Use [`kernel_build`](#kernel_build) directly.
+=======
         name: name of target. Usually `"db845c"`.
         build_config: See [kernel_build.build_config](#kernel_build-build_config). If `None`,
           default to `"build.config.db845c"`.
@@ -1101,11 +1112,16 @@ def define_db845c(
         gki_modules_list: List of gki modules to be copied to the dist directory.
           If `None`, all gki kernel modules will be copied.
         dist_dir: Argument to `copy_to_dist_dir`. If `None`, default is `"out/{name}/dist"`.
+>>>>>>> BASE      (8310c0 kleaf: Enable support for KASAN SW tags)
     """
 
-    if build_config == None:
-        build_config = "build.config.db845c"
+    # buildifier: disable=print
+    print("""{}//{}:{}: define_db845c is deprecated.
 
+<<<<<<< PATCH SET (58be17 kleaf: Deprecate define_db845c macro)
+See build/kernel/kleaf/docs/api_reference.md for details.
+""".format(native.repository_name(), native.package_name(), name))
+=======
     if kmi_symbol_list == None:
         kmi_symbol_list = ":android/abi_gki_aarch64_db845c" if define_abi_targets else None
 
@@ -1187,3 +1203,4 @@ def define_db845c(
         flat = True,
         log = "info",
     )
+>>>>>>> BASE      (8310c0 kleaf: Enable support for KASAN SW tags)
