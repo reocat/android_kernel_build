@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04324c1e_45a63e85",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T18:55:19Z",
+      "side": 1,
+      "message": "nit: `\"\"`\n\nhttps://github.com/bazelbuild/bazel-skylib/blob/main/rules/private/write_file_private.bzl#L32",
+      "range": {
+        "startLine": 539,
+        "startChar": 39,
+        "endLine": 539,
+        "endChar": 43
+      },
+      "revId": "dfa78656eacadde34ed2b0ec2f12f29a90909fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fa8dcee_f041d7bd",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T18:55:19Z",
+      "side": 1,
+      "message": "why not `visibility \u003d visbility`? Do you use it elsewhere?",
+      "range": {
+        "startLine": 541,
+        "startChar": 8,
+        "endLine": 541,
+        "endChar": 45
+      },
+      "revId": "dfa78656eacadde34ed2b0ec2f12f29a90909fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56d82d61_3896fda4",
+        "filename": "kleaf/docs/gki_build_config_fragment.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T18:55:19Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 14,
+        "startChar": 52,
+        "endLine": 14,
+        "endChar": 55
+      },
+      "revId": "dfa78656eacadde34ed2b0ec2f12f29a90909fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e1dd9a6_9eb15f92",
+        "filename": "kleaf/docs/gki_build_config_fragment.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T18:55:19Z",
+      "side": 1,
+      "message": "may be\ncan be",
+      "range": {
+        "startLine": 16,
+        "startChar": 64,
+        "endLine": 16,
+        "endChar": 72
+      },
+      "revId": "dfa78656eacadde34ed2b0ec2f12f29a90909fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79b6b121_2c250748",
+        "filename": "kleaf/docs/gki_build_config_fragment.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-10T18:55:19Z",
+      "side": 1,
+      "message": "is this needed? or do we only need `//common:__pkg__` (or whatever core kernel src tree is checked out at) here?",
+      "range": {
+        "startLine": 24,
+        "startChar": 18,
+        "endLine": 24,
+        "endChar": 39
+      },
+      "revId": "dfa78656eacadde34ed2b0ec2f12f29a90909fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
