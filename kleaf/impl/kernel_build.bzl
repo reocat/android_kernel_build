@@ -1948,7 +1948,7 @@ def _repack_modules_staging_archive(
         cmd += """
             for module in $(cat {all_module_basenames_file}); do
                 if ! grep -F -q -w "${{module}}" {protected_modules_list_path} ; then
-                    base_modules=$(echo "${{base_modules}}" | grep -v "${{module}}"'$' || true)
+                    base_modules=$(echo "${{base_modules}}" | grep -v '/'"${{module}}"'$' || true)
                 fi
             done
         """.format(
@@ -1958,7 +1958,7 @@ def _repack_modules_staging_archive(
     else:
         cmd += """
             for module in $(cat {all_module_basenames_file}); do
-                base_modules=$(echo "${{base_modules}}" | grep -v "${{module}}"'$' || true)
+                base_modules=$(echo "${{base_modules}}" | grep -v '/'"${{module}}"'$' || true)
             done
         """.format(
             all_module_basenames_file = all_module_basenames_file.path,
