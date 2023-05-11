@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffcb50cf_731ffab1",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-11T15:13:06Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e0988706_2dcddad3",
+      "revId": "4c8da0901f82c0c2870547b6ba6ae80cac597382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ea81a29_2fe31df9",
@@ -120,6 +138,30 @@
       "side": 1,
       "message": "Other than showing that the full target path is needed no. Please let me know if we should remove it instead.",
       "parentUuid": "53c0325f_e0825a63",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 0
+      },
+      "revId": "4c8da0901f82c0c2870547b6ba6ae80cac597382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b67387bd_c0ee46b7",
+        "filename": "kleaf/docs/gki_build_config_fragment.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-11T15:13:06Z",
+      "side": 1,
+      "message": "I would remove this and perhaps add another example where the snippet is _not_ defined within `//common`?",
+      "parentUuid": "5a34e48b_9d5ec55f",
       "range": {
         "startLine": 17,
         "startChar": 0,
