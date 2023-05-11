@@ -46,6 +46,30 @@
       },
       "revId": "471600172e6744b6307dc44f3d84c09747bc1b3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00670a7d_14221a52",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2023-05-11T21:04:33Z",
+      "side": 1,
+      "message": "Done in aosp/2585107",
+      "parentUuid": "303acaa8_26d16ceb",
+      "range": {
+        "startLine": 1951,
+        "startChar": 70,
+        "endLine": 1951,
+        "endChar": 71
+      },
+      "revId": "471600172e6744b6307dc44f3d84c09747bc1b3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
