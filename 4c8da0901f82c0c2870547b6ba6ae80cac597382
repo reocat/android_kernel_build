@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0988706_2dcddad3",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-11T14:54:25Z",
+      "side": 1,
+      "message": "From the docs: `Path of the output file, relative to this package.`",
+      "parentUuid": "13e66320_e8f39d6c",
+      "revId": "4c8da0901f82c0c2870547b6ba6ae80cac597382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ea81a29_2fe31df9",
         "filename": "kleaf/docs/gki_build_config_fragment.md",
         "patchSetId": 8
@@ -31,6 +49,30 @@
       "writtenOn": "2023-05-11T14:06:16Z",
       "side": 1,
       "message": "to",
+      "range": {
+        "startLine": 9,
+        "startChar": 55,
+        "endLine": 9,
+        "endChar": 57
+      },
+      "revId": "4c8da0901f82c0c2870547b6ba6ae80cac597382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ce55c24_eb5a2e10",
+        "filename": "kleaf/docs/gki_build_config_fragment.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-11T14:54:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ea81a29_2fe31df9",
       "range": {
         "startLine": 9,
         "startChar": 55,
@@ -54,6 +96,30 @@
       "writtenOn": "2023-05-11T14:06:16Z",
       "side": 1,
       "message": "not sure we need the noop example? Is there value in using it like this?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 0
+      },
+      "revId": "4c8da0901f82c0c2870547b6ba6ae80cac597382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a34e48b_9d5ec55f",
+        "filename": "kleaf/docs/gki_build_config_fragment.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-11T14:54:25Z",
+      "side": 1,
+      "message": "Other than showing that the full target path is needed no. Please let me know if we should remove it instead.",
+      "parentUuid": "53c0325f_e0825a63",
       "range": {
         "startLine": 17,
         "startChar": 0,
