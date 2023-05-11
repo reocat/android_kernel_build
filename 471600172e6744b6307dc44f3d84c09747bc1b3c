@@ -22,6 +22,30 @@
       },
       "revId": "471600172e6744b6307dc44f3d84c09747bc1b3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "303acaa8_26d16ceb",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2023-05-11T14:14:46Z",
+      "side": 1,
+      "message": "It\u0027s right to add `/` over `^` as `base_modules` is in the form of `lib/modules/$VERSION/path/to/my.ko` and `module` is in form of `my.ko`.\n\nI think the specific scenario would have to be that GKI kernel compiles `foo.ko` and `a_foo.ko`. Device kernel overrides only `foo.ko`. Expected behavior is `foo.ko` from device kernel and `a_foo.ko` from base (GKI) kernel. Without `/` would have `a_foo.ko` not being copied from the base (GKI) kernel.",
+      "parentUuid": "57676cb9_58b4cc73",
+      "range": {
+        "startLine": 1951,
+        "startChar": 70,
+        "endLine": 1951,
+        "endChar": 71
+      },
+      "revId": "471600172e6744b6307dc44f3d84c09747bc1b3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
