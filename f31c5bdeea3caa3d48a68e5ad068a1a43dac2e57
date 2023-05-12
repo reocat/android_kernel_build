@@ -218,6 +218,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a62bfc2_1af56800",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1884,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-12T20:19:25Z",
+      "side": 1,
+      "message": "@willmcvicker@google.com PTAL at Elliot\u0027s comment",
+      "parentUuid": "d105564e_f6015d87",
+      "range": {
+        "startLine": 1884,
+        "startChar": 0,
+        "endLine": 1884,
+        "endChar": 118
+      },
+      "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa51a931_06403a3d",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 4
