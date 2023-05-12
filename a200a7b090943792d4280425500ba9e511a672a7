@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d620b5b6_34acedd2",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-12T12:07:30Z",
+      "side": 1,
+      "message": "is the leading `/` guaranteed to be always present? \n\nIn any case this is a good use case for `grep`\u0027s `--word-regexp | -w` option as this example shows:\n\n```\n$ cat test\nasdf/a_foo.ko\ncommon/foo.ko\nsomething/else.ko\n\n$ cat test | grep -v foo.ko    # matches too much\nsomething/else.ko\n\n$ cat test | grep -w -v foo.ko  # matches with word boundaries as desired\nasdf/a_foo.ko\nsomething/else.ko\n```\n\nAnd due diligence ... does it work with the toybox `grep`? It does:\n```\n$ cat common/test | ./prebuilts/build-tools/path/linux-x86/grep -w -v foo.ko\nasdf/a_foo.ko\nsomething/else.ko\n```\n\nWhat that work instead for your use case?",
+      "range": {
+        "startLine": 1951,
+        "startChar": 71,
+        "endLine": 1951,
+        "endChar": 72
+      },
+      "revId": "a200a7b090943792d4280425500ba9e511a672a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
