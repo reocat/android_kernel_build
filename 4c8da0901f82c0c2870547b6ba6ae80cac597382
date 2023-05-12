@@ -170,6 +170,30 @@
       },
       "revId": "4c8da0901f82c0c2870547b6ba6ae80cac597382",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6a5716b_e4cc1994",
+        "filename": "kleaf/docs/gki_build_config_fragment.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-12T20:23:16Z",
+      "side": 1,
+      "message": "plus, the example refers to `kleaf/impl`, which is not good 😊\n\nI think we should just delete L15~19. The example below is good enough (and yeah, maybe change common to something else)",
+      "parentUuid": "b67387bd_c0ee46b7",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 0
+      },
+      "revId": "4c8da0901f82c0c2870547b6ba6ae80cac597382",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
