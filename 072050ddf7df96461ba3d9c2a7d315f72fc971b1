@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a0e1bad_b67e037a",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-15T12:19:29Z",
+      "side": 1,
+      "message": "Use union types in new code: `str | None` (new in Python 3.10)\n\nhttps://docs.python.org/3/library/stdtypes.html#union-type",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 25
+      },
+      "revId": "072050ddf7df96461ba3d9c2a7d315f72fc971b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
