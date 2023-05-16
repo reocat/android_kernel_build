@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc44f4f6_fca2fdb7",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1247518
+      },
+      "writtenOn": "2023-05-16T18:16:14Z",
+      "side": 1,
+      "message": "baed on line 215, it seems like this isn\u0027t necessarily generated during the build?\nif it is it\u0027s in an mktemp dir?\nmaybe that branch needs to set a flag for mktemp removal?",
+      "range": {
+        "startLine": 252,
+        "startChar": 2,
+        "endLine": 252,
+        "endChar": 32
+      },
+      "revId": "a550ee50f3f6ffc86864358e72031927a2063b83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
