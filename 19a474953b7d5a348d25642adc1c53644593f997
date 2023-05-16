@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "779f475d_759b2201",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-16T18:31:34Z",
+      "side": 1,
+      "message": "Please also add a\n\n```\nTODO(b/281706135): rsync source files cannot chgrp in sandbox\n```\n(or some text that explains why --no-perms or --no-group is needed)",
+      "revId": "19a474953b7d5a348d25642adc1c53644593f997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f0619c50_7171546b",
         "filename": "kleaf/impl/ddk/ddk_config.bzl",
         "patchSetId": 1
