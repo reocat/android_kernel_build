@@ -22,6 +22,30 @@
       },
       "revId": "a550ee50f3f6ffc86864358e72031927a2063b83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46b11d25_bcd8c437",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1021676
+      },
+      "writtenOn": "2023-05-16T18:23:27Z",
+      "side": 1,
+      "message": "All other instances of `mktemp` are cleaned up.\n\nI was going to set a flag in the 216 block but as `SYSTEM_DLKM_PROPS` is not reset I used that instead of creating yet another variable.  I\u0027m fine either way though, or really all of these mktemps should be in a dir that is removed with a trap.",
+      "parentUuid": "fc44f4f6_fca2fdb7",
+      "range": {
+        "startLine": 252,
+        "startChar": 2,
+        "endLine": 252,
+        "endChar": 32
+      },
+      "revId": "a550ee50f3f6ffc86864358e72031927a2063b83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
