@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba840627_01d8adb5",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-16T21:03:16Z",
+      "side": 1,
+      "message": "Unrelated to this change: consider using `utils.write_depset` to avoid expanding depset here.\n\nThe list of files can be retrieved in the shell script by `cat`-ing the written file.",
+      "range": {
+        "startLine": 50,
+        "startChar": 58,
+        "endLine": 50,
+        "endChar": 65
+      },
+      "revId": "b586fe465064b4077fb82f8d7da3d4b4baabbc8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
