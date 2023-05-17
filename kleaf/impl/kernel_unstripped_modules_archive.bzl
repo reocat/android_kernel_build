@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Compress the unstripped modules into a tarball."""
+
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(
     ":common_providers.bzl",
@@ -42,7 +44,7 @@ def _kernel_unstripped_modules_archive_impl(ctx):
     for src in reversed(srcs):
         # src could be empty, so use find + cp
         command += """
-            find {src} -name '*.ko' -exec cp -f -l -t {unstripped_dir} {{}} +
+            find {src} -name '*.ko' -exec cp -f -L -t {unstripped_dir} {{}} +
         """.format(
             src = src.path,
             unstripped_dir = unstripped_dir,
