@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2005dc11_18345e79",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-18T22:36:50Z",
+      "side": 1,
+      "message": "Acknowledged. This is a mechanical change so I\u0027ll just keep it this way. It also makes the list more extensible later.",
+      "parentUuid": "d5a09748_04c749aa",
+      "range": {
+        "startLine": 317,
+        "startChar": 4,
+        "endLine": 317,
+        "endChar": 26
+      },
+      "revId": "f6e25dc07c4205b7fbe3f214e3dd4459b06b8c3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b94d945f_484d810d",
@@ -72,6 +96,30 @@
       "writtenOn": "2023-05-18T20:54:45Z",
       "side": 1,
       "message": "nit: Add docs for these new attributes and maybe L513.",
+      "range": {
+        "startLine": 504,
+        "startChar": 8,
+        "endLine": 505,
+        "endChar": 54
+      },
+      "revId": "f6e25dc07c4205b7fbe3f214e3dd4459b06b8c3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3304ac6_b80a05c8",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-18T22:36:50Z",
+      "side": 1,
+      "message": "will do in follow up patches.",
+      "parentUuid": "b94d945f_484d810d",
       "range": {
         "startLine": 504,
         "startChar": 8,
