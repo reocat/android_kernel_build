@@ -34,6 +34,52 @@
       "parentUuid": "895527b5_4d4d357f",
       "revId": "f6e25dc07c4205b7fbe3f214e3dd4459b06b8c3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5a09748_04c749aa",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-18T20:54:45Z",
+      "side": 1,
+      "message": "nit: Use it directly at L331?",
+      "range": {
+        "startLine": 317,
+        "startChar": 4,
+        "endLine": 317,
+        "endChar": 26
+      },
+      "revId": "f6e25dc07c4205b7fbe3f214e3dd4459b06b8c3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b94d945f_484d810d",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 18
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-18T20:54:45Z",
+      "side": 1,
+      "message": "nit: Add docs for these new attributes and maybe L513.",
+      "range": {
+        "startLine": 504,
+        "startChar": 8,
+        "endLine": 505,
+        "endChar": 54
+      },
+      "revId": "f6e25dc07c4205b7fbe3f214e3dd4459b06b8c3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
