@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c3640c5_d94e3ffa",
+        "filename": "kleaf/impl/file.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-19T11:43:38Z",
+      "side": 1,
+      "message": "is this because it can be `0` or `1` too? or should it be `allow_single_file`?",
+      "range": {
+        "startLine": 26,
+        "startChar": 26,
+        "endLine": 26,
+        "endChar": 37
+      },
+      "revId": "4a2d1f3003634ccc2a33ec46d27af905443709de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
