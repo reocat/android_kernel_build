@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "956ca6a2_e3b8c602",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1843,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-19T11:41:11Z",
+      "side": 1,
+      "message": "will this work with `0` `raw_kmi_symbol_list`?",
+      "range": {
+        "startLine": 1843,
+        "startChar": 59,
+        "endLine": 1843,
+        "endChar": 62
+      },
+      "revId": "f8d254f4e6042e8621f65f4f93c387018448403c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab0e54fb_4d6f0710",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1925,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-19T11:41:11Z",
+      "side": 1,
+      "message": "ditto.",
+      "range": {
+        "startLine": 1925,
+        "startChar": 59,
+        "endLine": 1925,
+        "endChar": 62
+      },
+      "revId": "f8d254f4e6042e8621f65f4f93c387018448403c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
