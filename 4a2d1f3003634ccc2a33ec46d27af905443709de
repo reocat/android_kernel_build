@@ -22,6 +22,30 @@
       },
       "revId": "4a2d1f3003634ccc2a33ec46d27af905443709de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d6f4cc7_a10fbdfb",
+        "filename": "kleaf/impl/file.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-19T20:46:44Z",
+      "side": 1,
+      "message": "If you have\n\n```\nfilegroup(name \u003d \"foo\", srcs \u003d [])\nfile(name \u003d \"bar\", src \u003d \":foo\")\n```\n\nIf src is `allow_single_file\u003dTrue`, because `src` is set to a target, allow_single_file will require `:foo` to provide exactly one file. But in fact `:foo` has no files. In this case, we do not care about how many files `:foo` has. It can have 0, 1 or many. Hence we need to set `allow_files` instead.\n\nallow_single_file attributes can only contain 0 files when the attribute itself is None, e.g.\n\n```\nfile(name \u003d \"bar\", src \u003d None)\n```\n\nIn this case, allow_single_file is okay.\n\nWe can\u0027t use a filegroup instead of file because\n\n```\nfilegroup(name \u003d \"foo\", srcs \u003d [select(...)])\n```\n\nis not valid (you can\u0027t have select in lists for some reason). On the other hand, \n\n```\nfile(name \u003d \"foo\", srcs \u003d select(...))\n```\n\nis valid.",
+      "parentUuid": "8c3640c5_d94e3ffa",
+      "range": {
+        "startLine": 26,
+        "startChar": 26,
+        "endLine": 26,
+        "endChar": 37
+      },
+      "revId": "4a2d1f3003634ccc2a33ec46d27af905443709de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
