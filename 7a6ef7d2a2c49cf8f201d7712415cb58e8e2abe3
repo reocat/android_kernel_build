@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20720e60_e0f7bf94",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 36
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-19T11:58:09Z",
+      "side": 1,
+      "message": "is it ok to prefix it with `kleaf-`?",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 18
+      },
+      "revId": "7a6ef7d2a2c49cf8f201d7712415cb58e8e2abe3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
