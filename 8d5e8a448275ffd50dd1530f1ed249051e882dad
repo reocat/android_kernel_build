@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50f34b62_5626e7d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-19T01:08:51Z",
+      "side": 1,
+      "message": "uboot failing due to b/283041566 (ab/10164047 is not a green build).\n\nRetrying...",
+      "revId": "8d5e8a448275ffd50dd1530f1ed249051e882dad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
