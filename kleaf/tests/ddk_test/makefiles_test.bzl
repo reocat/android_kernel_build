@@ -270,6 +270,9 @@ def _makefiles_subdir_test(name):
     _makefile_subdir_module_uses_top_source_test(name = name + "_subdir_module_uses_top_source")
     tests.append(name + "_subdir_module_uses_top_source")
 
+    _makefile_source_as_module_name_and_other_sources_test(name = name + "_source_as_module_name_and_other_sources_test")
+    tests.append(name + "_source_as_module_name_and_other_sources_test")
+
     native.test_suite(
         name = name,
         tests = tests,
@@ -416,6 +419,27 @@ def _makefile_subdir_module_uses_top_source_test(name):
         targets = [name + "_module_makefiles"],
     )
 
+def _makefile_source_as_module_name_and_other_sources_test(name):
+    """Tests that, to build foo.ko, if foo.c exists, it must be the only source file.
+
+    Args:
+        name: name of the test
+    """
+
+    makefiles(
+        name = name + "_module_makefiles",
+        module_out = "foo.ko",
+        module_srcs = ["foo.c", "bar.c"],
+        internal_target_fail_message =
+            "Source files ['foo.c'] are not allowed to build foo.ko when multiple " +
+            "source files exist. Please change the name of the output file.",
+        tags = ["manual"],
+    )
+    build_test(
+        name = name,
+        targets = [name + "_module_makefiles"],
+    )
+
 def _makefiles_local_defines_test(name):
     """Defines all tests on `makefiles.local_defines`."""
 
@@ -532,8 +556,7 @@ def _makefiles_copts_test(name):
         expected_lines = [
             # do not sort
             "CFLAGS_base.o += -include",
-            "CFLAGS_base.o += {}/{}/self.h".format(
-                paths.join(*([".."] * len(native.package_name().split("/")))),
+            "CFLAGS_base.o += '$(ROOT_DIR)/{}/self.h'".format(
                 native.package_name(),
             ),
         ],
@@ -549,8 +572,7 @@ def _makefiles_copts_test(name):
 def _makefiles_includes_test(name):
     tests = []
 
-    prefix = "$(srctree)/$(src)/{}/{}".format(
-        paths.join(*([".."] * len(native.package_name().split("/")))),
+    prefix = "$(ROOT_DIR)/{}".format(
         native.package_name(),
     )
     _create_makefiles_artifact_test(
@@ -622,8 +644,7 @@ def _makefiles_include_ordering_artifacts_test(name):
         tags = ["manual"],
     )
 
-    prefix = "$(srctree)/$(src)/{}/{}".format(
-        paths.join(*([".."] * len(native.package_name().split("/")))),
+    prefix = "$(ROOT_DIR)/{}".format(
         native.package_name(),
     )
 
@@ -728,8 +749,7 @@ def _makefiles_submodule_symvers_test(
         deps = [name + "_B"],
         top_level_makefile = True,
         expected_makefile_lines = [
-            "EXTRA_SYMBOLS += $(OUT_DIR)/$(M)/{}/{}/{}_C_Module.symvers".format(
-                paths.join(*([".."] * len(native.package_name().split("/")))),
+            "EXTRA_SYMBOLS += $(COMMON_OUT_DIR)/{}/{}_C_Module.symvers".format(
                 native.package_name(),
                 name,
             ),

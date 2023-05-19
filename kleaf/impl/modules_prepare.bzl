@@ -65,10 +65,11 @@ def _modules_prepare_impl(ctx):
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules_prepare
          # Additional steps
            {force_gen_headers_cmd}
+         # b/279211056: Exclude the top-level source symlink. It is not useful and points outside
+         # of the directory, making tar unhappy.
+           rm -f ${{OUT_DIR}}/source
          # Package files
-         # TODO(b/243737262): Use tar czf
-           mkdir -p $(dirname {outdir_tar_gz})
-           tar c -C ${{OUT_DIR}} . | gzip - > {outdir_tar_gz}
+           tar czf {outdir_tar_gz} -C ${{OUT_DIR}} .
            {cache_dir_post_cmd}
     """.format(
         force_gen_headers_cmd = force_gen_headers_cmd,

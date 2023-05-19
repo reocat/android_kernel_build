@@ -48,7 +48,6 @@ load(
     "X86_64_OUTS",
 )
 load(":print_debug.bzl", "print_debug")
-load("@kernel_toolchain_info//:dict.bzl", "common_kernel_package")
 
 _ARCH_CONFIGS = {
     "kernel_aarch64": {
@@ -98,6 +97,7 @@ _KERNEL_BUILD_VALID_KEYS = [
     "module_implicit_outs",
     "protected_exports_list",
     "protected_modules_list",
+    "make_goals",
 ]
 
 # Subset of _TARGET_CONFIG_VALID_KEYS for kernel_abi.
@@ -521,7 +521,7 @@ def define_common_kernels(
         print(("\nWARNING: {package}: define_common_kernels() no longer uses the branch " +
                "attribute. Default value of --dist_dir has been changed to out/{{name}}/dist. " +
                "Please remove the branch attribute from define_common_kernels().").format(
-            package = common_kernel_package,
+            package = native.package_name(),
         ))
 
     if visibility == None:
@@ -635,6 +635,17 @@ def define_common_kernels(
             subdirs = ["scripts"],
         )
 
+        native.filegroup(
+            name = name + "_ddk_allowlist_headers",
+            srcs = [
+                name + "_script_headers",
+                name + "_uapi_headers",
+            ],
+            visibility = [
+                Label("//build/kernel/kleaf:__pkg__"),
+            ],
+        )
+
         kernel_modules_install(
             name = name + "_modules_install",
             # The GKI target does not have external modules. GKI modules goes
@@ -735,7 +746,7 @@ def define_common_kernels(
             name + "_modules_install",
             name + "_" + TOOLCHAIN_VERSION_FILENAME,
             # BUILD_GKI_CERTIFICATION_TOOLS=1 for all kernel_build defined here.
-            "//build/kernel:gki_certification_tools",
+            Label("//build/kernel:gki_certification_tools"),
         ]
 
         copy_to_dist_dir(
@@ -809,9 +820,9 @@ def define_common_kernels(
         flat = True,
     )
 
-    _define_prebuilts(visibility = visibility)
+    _define_prebuilts(target_configs = target_configs, visibility = visibility)
 
-def _define_prebuilts(**kwargs):
+def _define_prebuilts(target_configs, **kwargs):
     # Build number for GKI prebuilts
     bool_flag(
         name = "use_prebuilt_gki",
@@ -871,6 +882,7 @@ def _define_prebuilts(**kwargs):
                 ":use_prebuilt_gki_set": "@{}//{}{}".format(repo_name, name, MODULE_OUTS_FILE_SUFFIX),
                 "//conditions:default": ":" + name + "_module_outs_file",
             }),
+            protected_modules_list = target_configs[name].get("protected_modules_list"),
             **kwargs
         )
 
@@ -919,7 +931,7 @@ def _define_common_kernels_additional_tests(
         kernel_modules_install,
         modules,
         arch):
-    fake_modules_options = "//build/kernel/kleaf/artifact_tests:fake_modules_options.txt"
+    fake_modules_options = Label("//build/kernel/kleaf/artifact_tests:fake_modules_options.txt")
 
     kernel_images(
         name = name + "_fake_images",
@@ -955,7 +967,7 @@ def _define_common_kernels_additional_tests(
 
     device_modules_test(
         name = name + "_device_modules_test",
-        base_kernel_label = Label("//{}:{}".format(native.package_name(), kernel_build_name)),
+        base_kernel_label = Label("{}//{}:{}".format(native.repository_name(), native.package_name(), kernel_build_name)),
         base_kernel_module = min(modules) if modules else None,
         arch = arch,
     )
@@ -974,6 +986,7 @@ def define_db845c(
         outs,
         build_config = None,
         module_outs = None,
+        make_goals = None,
         define_abi_targets = None,
         kmi_symbol_list = None,
         kmi_symbol_list_add_only = None,
@@ -994,6 +1007,8 @@ def define_db845c(
         outs: See [kernel_build.outs](#kernel_build-outs).
         module_outs: See [kernel_build.module_outs](#kernel_build-module_outs). The list of
           in-tree kernel modules.
+        make_goals: See [kernel_build.make_goals](#kernel_build-make_goals).  A list of strings
+          defining targets for the kernel build.
         define_abi_targets: See [kernel_abi.define_abi_targets](#kernel_abi-define_abi_targets).
         kmi_symbol_list: See [kernel_build.kmi_symbol_list](#kernel_build-kmi_symbol_list).
         kmi_symbol_list_add_only: See [kernel_abi.kmi_symbol_list_add_only](#kernel_abi-kmi_symbol_list_add_only).
@@ -1008,7 +1023,7 @@ def define_db845c(
         build_config = "build.config.db845c"
 
     if kmi_symbol_list == None:
-        kmi_symbol_list = "//common:android/abi_gki_aarch64_db845c" if define_abi_targets else None
+        kmi_symbol_list = ":android/abi_gki_aarch64_db845c" if define_abi_targets else None
 
     if kmi_symbol_list_add_only == None:
         kmi_symbol_list_add_only = True if define_abi_targets else None
@@ -1034,6 +1049,7 @@ def define_db845c(
         kmi_symbol_list = kmi_symbol_list,
         collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
         strip_modules = True,
+        make_goals = make_goals,
     )
 
     # enable ABI Monitoring

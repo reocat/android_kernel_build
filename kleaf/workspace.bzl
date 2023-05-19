@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""
+Defines repositories in a Kleaf workspace.
+"""
+
 load("//build/bazel_common_rules/workspace:external.bzl", "import_external_repositories")
 load(
     "//build/kernel/kleaf:constants.bzl",
@@ -20,7 +24,9 @@ load(
 )
 load("//build/kernel/kleaf:download_repo.bzl", "download_artifacts_repo")
 load("//build/kernel/kleaf:key_value_repo.bzl", "key_value_repo")
+load("//prebuilts/clang/host/linux-x86/kleaf:register.bzl", "register_clang_toolchains")
 
+# buildifier: disable=unnamed-macro
 def define_kleaf_workspace(common_kernel_package = None):
     """Common macro for defining repositories in a Kleaf workspace.
 
@@ -31,13 +37,25 @@ def define_kleaf_workspace(common_kernel_package = None):
     called, it must be called after `define_kleaf_workspace` is called.
 
     Args:
-      common_kernel_package: The path to the common kernel source tree. By
-        default, it is `"common"`.
+      common_kernel_package: Default is `"@//common"`. The package to the common
+        kernel source tree.
+
+        As a legacy behavior, if the provided string does not start with
+        `@` or `//`, it is prepended with `@//`.
 
         Do not provide the trailing `/`.
     """
     if common_kernel_package == None:
-        common_kernel_package = "common"
+        common_kernel_package = "@//common"
+    if not common_kernel_package.startswith("@") and not common_kernel_package.startswith("//"):
+        common_kernel_package = "@//" + common_kernel_package
+
+        # buildifier: disable=print
+        print("""
+WARNING: define_kleaf_workspace() should be called with common_kernel_package={}.
+    This will become an error in the future.""".format(
+            repr(common_kernel_package),
+        ))
 
     import_external_repositories(
         # keep sorted
@@ -56,7 +74,7 @@ def define_kleaf_workspace(common_kernel_package = None):
 
     key_value_repo(
         name = "kernel_toolchain_info",
-        srcs = ["//{}:build.config.constants".format(common_kernel_package)],
+        srcs = ["{}:build.config.constants".format(common_kernel_package)],
         additional_values = {
             "common_kernel_package": common_kernel_package,
         },
@@ -78,6 +96,12 @@ def define_kleaf_workspace(common_kernel_package = None):
         target = "kernel_aarch64",
     )
 
+    # TODO(b/200202912): Re-route this when rules_python is pulled into AOSP.
+    native.local_repository(
+        name = "rules_python",
+        path = "build/bazel_common_rules/rules/python/stubs",
+    )
+
     # Fake local_jdk to avoid fetching rules_java for any exec targets.
     # See build/kernel/kleaf/impl/fake_local_jdk/README.md.
     native.local_repository(
@@ -97,6 +121,14 @@ def define_kleaf_workspace(common_kernel_package = None):
         path = "build/bazel_common_rules/rules/coverage/remote_coverage_tools",
     )
 
+    # Stub out @rules_java required for stardoc.
+    native.local_repository(
+        name = "rules_java",
+        path = "build/bazel_common_rules/rules/java/rules_java",
+    )
+
     native.register_toolchains(
         "//prebuilts/build-tools:py_toolchain",
     )
+
+    register_clang_toolchains()

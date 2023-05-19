@@ -25,7 +25,7 @@ import pathlib
 import shlex
 import sys
 import textwrap
-from typing import Optional, TextIO
+from typing import Optional, TextIO, Any
 
 _SOURCE_SUFFIXES = (
     ".c",
@@ -66,20 +66,15 @@ def die(*args, **kwargs):
 
 
 def _gen_makefile(
-        package: pathlib.Path,
         module_symvers_list: list[pathlib.Path],
         output_makefile: pathlib.Path,
 ):
-    # kernel_module always executes in a sandbox. So ../ only traverses within
-    # the sandbox.
-    rel_root = os.path.join(*([".."] * len(package.parts)))
-
     content = ""
 
     for module_symvers in module_symvers_list:
         content += textwrap.dedent(f"""\
             # Include symbol: {module_symvers}
-            EXTRA_SYMBOLS += $(OUT_DIR)/$(M)/{rel_root}/{module_symvers}
+            EXTRA_SYMBOLS += $(COMMON_OUT_DIR)/{module_symvers}
             """)
 
     content += textwrap.dedent("""\
@@ -131,7 +126,6 @@ def gen_ddk_makefile(
 ):
     if produce_top_level_makefile:
         _gen_makefile(
-            package=package,
             module_symvers_list=module_symvers_list,
             output_makefile=output_makefiles / "Makefile",
         )
@@ -160,6 +154,7 @@ def _gen_ddk_makefile_for_module(
         **unused_kwargs
 ):
     kernel_module_srcs_json_content = json.load(kernel_module_srcs_json)
+    # List of JSON objects (dictionaries) with keys like "file", "config", "value", etc.
     rel_srcs = []
     for kernel_module_srcs_json_item in kernel_module_srcs_json_content:
         rel_item = dict(kernel_module_srcs_json_item)
@@ -170,6 +165,8 @@ def _gen_ddk_makefile_for_module(
 
     if kernel_module_out.suffix != ".ko":
         die("Invalid output: %s; must end with .ko", kernel_module_out)
+
+    _check_srcs_valid(rel_srcs, kernel_module_out)
 
     kbuild = output_makefiles / kernel_module_out.parent / "Kbuild"
     os.makedirs(kbuild.parent, exist_ok=True)
@@ -183,20 +180,20 @@ def _gen_ddk_makefile_for_module(
             """))
         out_file.write("\n")
 
-        #    //path/to/package:target/name/foo.ko
-        # =>   path/to/package/target/name
-        rel_root_reversed = pathlib.Path(package) / kernel_module_out.parent
-        rel_root = pathlib.Path(*([".."] * len(rel_root_reversed.parts)))
-
-        _handle_linux_includes(out_file, linux_include_dirs, rel_root)
+        _handle_linux_includes(out_file, linux_include_dirs)
 
         for src_item in rel_srcs:
             config = src_item.get("config")
             value = src_item.get("value")
+            obj_suffix = "y"
 
             if config is not None:
-                conditional = f"ifeq ($({config}),{value})"
-                out_file.write(f"{conditional}\n")
+                if value == True:
+                    # The special value True means y or m.
+                    obj_suffix = f"$({config})"
+                else:
+                    conditional = f"ifeq ($({config}),{value})"
+                    out_file.write(f"{conditional}\n")
 
             for src in src_item["files"]:
                 _handle_src(
@@ -206,11 +203,11 @@ def _gen_ddk_makefile_for_module(
                     package=package,
                     local_defines=local_defines,
                     include_dirs=include_dirs,
-                    rel_root=rel_root,
                     copts=copts,
+                    obj_suffix = obj_suffix,
                 )
 
-            if config is not None:
+            if config is not None and value != True:
                 out_file.write(textwrap.dedent(f"""\
                     endif # {conditional}
                 """))
@@ -225,6 +222,31 @@ def _gen_ddk_makefile_for_module(
                 """))
 
 
+def _check_srcs_valid(rel_srcs: list[dict[str, Any]],
+                      kernel_module_out: pathlib.Path):
+    """Checks that the list of srcs is valid.
+
+    Args:
+        rel_srcs: Like content in kernel_module_srcs_json, but only includes files
+          relative to the current package.
+        kernel_module_out: The `out` attribute.
+    """
+    # List of paths of source files (minus headers)
+    rel_srcs_flat: list[pathlib.Path] = []
+    for rel_item in rel_srcs:
+        files = rel_item["files"]
+        rel_srcs_flat.extend(file for file in files if file.suffix.lower() in _SOURCE_SUFFIXES)
+
+    source_files_with_name_of_kernel_module = \
+        [src for src in rel_srcs_flat if src.with_suffix(".ko") == kernel_module_out]
+
+    if source_files_with_name_of_kernel_module and len(rel_srcs_flat) > 1:
+        die("Source files %s are not allowed to build %s when multiple source files exist. "
+            "Please change the name of the output file.",
+            [str(e) for e in source_files_with_name_of_kernel_module],
+            kernel_module_out)
+
+
 def _handle_src(
         src: pathlib.Path,
         out_file: TextIO,
@@ -232,8 +254,8 @@ def _handle_src(
         package: pathlib.Path,
         local_defines: list[str],
         include_dirs: list[pathlib.Path],
-        rel_root: pathlib.Path,
         copts: Optional[list[dict[str, str | bool]]],
+        obj_suffix: str,
 ):
     # Ignore non-exported headers specified in srcs
     if src.suffix.lower() in (".h",):
@@ -253,7 +275,7 @@ def _handle_src(
     else:
         out_file.write(textwrap.dedent(f"""\
                         # Source: {package / src}
-                        {kernel_module_out.with_suffix('').name}-y += {out}
+                        {kernel_module_out.with_suffix('').name}-{obj_suffix} += {out}
                     """))
 
         out_file.write("\n")
@@ -261,15 +283,14 @@ def _handle_src(
     # At this time of writing (2022-11-01), this is the order how cc_library
     # constructs arguments to the compiler.
     _handle_defines(out_file, out, local_defines)
-    _handle_includes(out_file, out, include_dirs, rel_root)
-    _handle_copts(out_file, out, copts, rel_root)
+    _handle_includes(out_file, out, include_dirs)
+    _handle_copts(out_file, out, copts)
 
     out_file.write("\n")
 
 
 def _handle_linux_includes(out_file: TextIO,
-                           linux_include_dirs: list[pathlib.Path],
-                           rel_root: pathlib.Path):
+                           linux_include_dirs: list[pathlib.Path]):
     if not linux_include_dirs:
         return
     out_file.write("\n")
@@ -277,7 +298,7 @@ def _handle_linux_includes(out_file: TextIO,
         LINUXINCLUDE := \\
     """))
     for linux_include_dir in linux_include_dirs:
-        out_file.write(f"  -I$(srctree)/$(src)/{rel_root}/{linux_include_dir} \\")
+        out_file.write(f"  -I$(ROOT_DIR)/{linux_include_dir} \\")
         out_file.write("\n")
     out_file.write("  $(LINUXINCLUDE)")
     out_file.write("\n\n")
@@ -298,19 +319,17 @@ def _handle_defines(out_file: TextIO,
 
 def _handle_includes(out_file: TextIO,
                      object_file: pathlib.Path,
-                     include_dirs: list[pathlib.Path],
-                     rel_root: pathlib.Path):
+                     include_dirs: list[pathlib.Path]):
     for include_dir in include_dirs:
         out_file.write(textwrap.dedent(f"""\
             # Include {include_dir}
             """))
-        _write_ccflag(out_file, object_file, f"-I$(srctree)/$(src)/{rel_root}/{include_dir}")
+        _write_ccflag(out_file, object_file, f"-I$(ROOT_DIR)/{include_dir}")
 
 
 def _handle_copts(out_file: TextIO,
                   object_file: pathlib.Path,
-                  copts: Optional[list[dict[str, str | bool]]],
-                  rel_root: pathlib.Path):
+                  copts: Optional[list[dict[str, str | bool]]]):
     if not copts:
         return
 
@@ -324,7 +343,7 @@ def _handle_copts(out_file: TextIO,
         is_path: bool = d["is_path"]
 
         if is_path:
-            expanded = str(rel_root / expanded)
+            expanded = f"$(ROOT_DIR)/{expanded}"
 
         _write_ccflag(out_file, object_file, expanded)
 

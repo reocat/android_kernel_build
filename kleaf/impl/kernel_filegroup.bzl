@@ -27,11 +27,13 @@ load(
     "KernelEnvAndOutputsInfo",
     "KernelEnvAttrInfo",
     "KernelImagesInfo",
+    "KernelToolchainInfo",
     "KernelUnstrippedModulesInfo",
 )
 load(
     ":constants.bzl",
     "MODULES_STAGING_ARCHIVE",
+    "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
 load(":kernel_config_settings.bzl", "kernel_config_settings")
@@ -58,6 +60,13 @@ def _get_mixed_tree_files(target):
     if KernelBuildMixedTreeInfo in target:
         return target[KernelBuildMixedTreeInfo].files
     return target.files
+
+def _get_toolchain_version_info(ctx, all_deps):
+    # Traverse all dependencies and look for a file named "toolchain_version".
+    # If no file matches, leave it as None so that _kernel_build_check_toolchain prints a
+    # warning.
+    toolchain_version_file = utils.find_file(name = TOOLCHAIN_VERSION_FILENAME, files = all_deps, what = ctx.label)
+    return KernelToolchainInfo(toolchain_version_file = toolchain_version_file)
 
 def _kernel_filegroup_impl(ctx):
     all_deps = ctx.files.srcs + ctx.files.deps
@@ -117,12 +126,13 @@ def _kernel_filegroup_impl(ctx):
         )
 
     abi_info = KernelBuildAbiInfo(
+        src_protected_modules_list = ctx.file.protected_modules_list,
         module_outs_file = ctx.file.module_outs_file,
         modules_staging_archive = utils.find_file(MODULES_STAGING_ARCHIVE, all_deps, what = ctx.label),
     )
     in_tree_modules_info = KernelBuildInTreeModulesInfo(module_outs_file = ctx.file.module_outs_file)
 
-    images_info = KernelImagesInfo(base_kernel = None)
+    images_info = KernelImagesInfo(base_kernel_label = None)
     gcov_info = GcovInfo(gcno_mapping = None)
 
     common_config_tags = kernel_config_settings.kernel_env_get_config_tags(ctx)
@@ -147,6 +157,7 @@ def _kernel_filegroup_impl(ctx):
         images_info,
         kernel_env_attr_info,
         gcov_info,
+        _get_toolchain_version_info(ctx, all_deps),
     ]
 
 def _kernel_filegroup_additional_attrs():
@@ -243,6 +254,7 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
             allow_files = True,
             doc = """A label providing files similar to a [`kernel_images`](#kernel_images) target.""",
         ),
+        "protected_modules_list": attr.label(allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
     } | _kernel_filegroup_additional_attrs(),

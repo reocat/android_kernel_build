@@ -21,9 +21,16 @@ load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(
     ":common_providers.bzl",
+    "DdkConfigInfo",
     "DdkSubmoduleInfo",
-    "KernelEnvInfo",
+    "KernelBuildExtModuleInfo",
+    "KernelBuildInfo",
+    "KernelEnvAndOutputsInfo",
+    "KernelImagesInfo",
+    "KernelModuleDepInfo",
     "KernelModuleInfo",
+    "KernelModuleKernelBuildInfo",
+    "KernelModuleSetupInfo",
     "ModuleSymversInfo",
 )
 load(":ddk/ddk_headers.bzl", "DdkHeadersInfo")
@@ -109,7 +116,7 @@ def _intermediates_dir(ctx):
     a previous build may remain and affect a later build. Use with caution.
     """
     return paths.join(
-        ctx.genfiles_dir.path,
+        ctx.bin_dir.path,
         paths.dirname(ctx.build_file_path),
         ctx.attr.name + "_intermediates",
     )
@@ -144,17 +151,6 @@ def _normalize(s):
     """Returns a normalized string by replacing non-letters / non-numbers as underscores."""
     return "".join([c if c.isalnum() else "_" for c in s.elems()])
 
-def _kwargs_to_def(**kwargs):
-    """Turns d into text that can be copied to BUILD files. May be inaccurate."""
-    for key, value in list(kwargs.items()):
-        if value == None:
-            kwargs.pop(key)
-
-    return ",\n    ".join(sorted(["{key} = {value_repr}".format(
-        key = key,
-        value_repr = repr(value),
-    ) for key, value in kwargs.items()]))
-
 def _hash_hex(x):
     """Returns `hash(x)` in hex format."""
     ret = "%x" % hash(x)
@@ -174,6 +170,32 @@ def _get_check_sandbox_cmd():
            fi
     """
 
+def _write_depset(ctx, d, out):
+    """Writes a depset to a file.
+
+    Requires `_write_depset` in attrs.
+
+    Args:
+        ctx: ctx
+        d: the depset
+        out: name of the output file
+    Returns:
+        the declared output file.
+    """
+    out_file = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, out))
+
+    args = ctx.actions.args()
+    args.add(out_file)
+    args.add_all(d)
+    ctx.actions.run(
+        executable = ctx.executable._write_depset,
+        arguments = [args],
+        outputs = [out_file],
+        mnemonic = "WriteDepset",
+        progress_message = "Dumping depset to {}: {}".format(out, ctx.label),
+    )
+    return out_file
+
 # Utilities that applies to all Bazel stuff in general. These functions are
 # not Kleaf specific.
 utils = struct(
@@ -185,25 +207,28 @@ utils = struct(
     compare_file_names = _compare_file_names,
     sanitize_label_as_filename = _sanitize_label_as_filename,
     normalize = _normalize,
-    kwargs_to_def = _kwargs_to_def,
     hash_hex = _hash_hex,
     get_check_sandbox_cmd = _get_check_sandbox_cmd,
+    write_depset = _write_depset,
 )
 
 def _filter_module_srcs(files):
     """Filters and categorizes sources for building `kernel_module`."""
     hdrs = []
     scripts = []
+    kconfig = []
     for file in files:
         if file.path.endswith(".h"):
             hdrs.append(file)
-        elif "Makefile" in file.path or "scripts/" in file.path:
+        if ("Makefile" in file.path or "scripts/" in file.path or
+            file.basename == "module.lds.S"):
             scripts.append(file)
-        elif file.basename == "module.lds.S":
-            scripts.append(file)
+        if "Kconfig" in file.basename:
+            kconfig.append(file)
     return struct(
         module_scripts = depset(scripts),
         module_hdrs = depset(hdrs),
+        module_kconfig = depset(kconfig),
     )
 
 def _transform_kernel_build_outs(name, what, outs):
@@ -224,34 +249,48 @@ def _transform_kernel_build_outs(name, what, outs):
     else:
         fail("{}: Invalid type for {}: {}".format(name, what, type(outs)))
 
-def _check_kernel_build(kernel_modules, kernel_build, this_label):
+def _check_kernel_build(kernel_module_infos, kernel_build_label, this_label):
     """Check that kernel_modules have the same kernel_build as the given one.
 
     Args:
-        kernel_modules: the attribute of kernel_module dependencies. Should be
-          an attribute of a list of labels.
-        kernel_build: the attribute of kernel_build. Should be an attribute of
-          a label.
+        kernel_module_infos: list of KernelModuleInfo of kernel module dependencies.
+        kernel_build_label: the label of kernel_build.
         this_label: label of the module being checked.
     """
 
-    for kernel_module in kernel_modules:
-        if kernel_build == None:
-            kernel_build = kernel_module[KernelModuleInfo].kernel_build
+    for kernel_module_info in kernel_module_infos:
+        if kernel_build_label == None:
+            kernel_build_label = kernel_module_info.kernel_build_infos.label
             continue
 
-        if kernel_module[KernelModuleInfo].kernel_build.label != \
-           kernel_build.label:
+        if kernel_module_info.kernel_build_infos.label != \
+           kernel_build_label:
             fail((
                 "{this_label} refers to kernel_build {kernel_build}, but " +
                 "depended kernel_module {dep} refers to kernel_build " +
                 "{dep_kernel_build}. They must refer to the same kernel_build."
             ).format(
                 this_label = this_label,
-                kernel_build = kernel_build.label,
-                dep = kernel_module.label,
-                dep_kernel_build = kernel_module[KernelModuleInfo].kernel_build.label,
+                kernel_build = kernel_build_label,
+                dep = kernel_module_info.label,
+                dep_kernel_build = kernel_module_info.kernel_build_infos.label,
             ))
+
+def _create_kernel_module_kernel_build_info(kernel_build):
+    """Creates KernelModuleKernelBuildInfo.
+
+    This info represents information on a kernel_module.kernel_build.
+
+    Args:
+        kernel_build: the `kernel_build` Target.
+    """
+    return KernelModuleKernelBuildInfo(
+        label = kernel_build.label,
+        ext_module_info = kernel_build[KernelBuildExtModuleInfo],
+        env_and_outputs_info = kernel_build[KernelEnvAndOutputsInfo],
+        kernel_build_info = kernel_build[KernelBuildInfo],
+        images_info = kernel_build[KernelImagesInfo],
+    )
 
 def _local_exec_requirements(ctx):
     """Returns the execution requirement for `--config=local`.
@@ -275,12 +314,13 @@ def _split_kernel_module_deps(deps, this_label):
     hdr_deps = []
     submodule_deps = []
     module_symvers_deps = []
+    ddk_config_deps = []
     for dep in deps:
         is_valid_dep = False
         if DdkHeadersInfo in dep:
             hdr_deps.append(dep)
             is_valid_dep = True
-        if all([info in dep for info in [KernelEnvInfo, KernelModuleInfo, ModuleSymversInfo]]):
+        if all([info in dep for info in [KernelModuleSetupInfo, KernelModuleInfo, ModuleSymversInfo]]):
             kernel_module_deps.append(dep)
             is_valid_dep = True
         if all([info in dep for info in [DdkHeadersInfo, DdkSubmoduleInfo]]):
@@ -289,6 +329,9 @@ def _split_kernel_module_deps(deps, this_label):
         if ModuleSymversInfo in dep:
             module_symvers_deps.append(dep)
             is_valid_dep = True
+        if DdkConfigInfo in dep:
+            ddk_config_deps.append(dep)
+            is_valid_dep = True
         if not is_valid_dep:
             fail("{}: {} is not a valid item in deps. Only kernel_module, ddk_module, ddk_headers, ddk_submodule are accepted.".format(this_label, dep.label))
     return struct(
@@ -296,6 +339,21 @@ def _split_kernel_module_deps(deps, this_label):
         hdrs = hdr_deps,
         submodules = submodule_deps,
         module_symvers_deps = module_symvers_deps,
+        ddk_configs = ddk_config_deps,
+    )
+
+def _create_kernel_module_dep_info(kernel_module):
+    """Creates KernelModuleDepInfo.
+
+    Args:
+        kernel_module: A `kernel_module` Target.
+    """
+
+    return KernelModuleDepInfo(
+        label = kernel_module.label,
+        kernel_module_setup_info = kernel_module[KernelModuleSetupInfo],
+        kernel_module_info = kernel_module[KernelModuleInfo],
+        module_symvers_info = kernel_module[ModuleSymversInfo],
     )
 
 # Cross compiler name is not always the same as the linux arch
@@ -337,4 +395,6 @@ kernel_utils = struct(
     local_exec_requirements = _local_exec_requirements,
     split_kernel_module_deps = _split_kernel_module_deps,
     set_src_arch_cmd = _set_src_arch_cmd,
+    create_kernel_module_kernel_build_info = _create_kernel_module_kernel_build_info,
+    create_kernel_module_dep_info = _create_kernel_module_dep_info,
 )

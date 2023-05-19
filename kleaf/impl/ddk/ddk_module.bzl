@@ -17,6 +17,7 @@
 load(":kernel_module.bzl", "kernel_module")
 load(":ddk/makefiles.bzl", "makefiles")
 load(":ddk/ddk_conditional_filegroup.bzl", "ddk_conditional_filegroup")
+load(":ddk/ddk_config.bzl", "ddk_config")
 load(":utils.bzl", "utils")
 
 def ddk_module(
@@ -31,6 +32,8 @@ def ddk_module(
         out = None,
         local_defines = None,
         copts = None,
+        kconfig = None,
+        defconfig = None,
         **kwargs):
     """
     Defines a DDK (Driver Development Kit) module.
@@ -229,7 +232,7 @@ def ddk_module(
           }
           ```
 
-          In the above example, if `CONFIG_FOO` is `y`, `foo.c` is compiled.
+          In the above example, if `CONFIG_FOO` is `y` or `m`, `foo.c` is compiled.
           Otherwise, `notfoo.c` is compiled instead.
 
         out: The output module file. This should usually be `"{name}.ko"`.
@@ -332,10 +335,37 @@ def ddk_module(
           `package/Makefile`, and `make` is executed under `package/`. In order
           to find `other/header.h`, its path relative to `package/` is given.
 
+        kconfig: The Kconfig file for this external module.
+
+          See
+          [`Documentation/kbuild/kconfig-language.rst`](https://www.kernel.org/doc/html/latest/kbuild/kconfig.html)
+          for its format.
+
+          Kconfig is optional for a `ddk_module`. The final Kconfig known by
+          this module consists of the following:
+
+          - Kconfig from `kernel_build`
+          - Kconfig from dependent modules, if any
+          - Kconfig of this module, if any
+        defconfig: The `defconfig` file.
+
+          Items must already be declared in `kconfig`. An item not declared
+          in Kconfig and inherited Kconfig files is silently dropped.
+
+          An item declared in `kconfig` without a specific value in `defconfig`
+          uses default value specified in `kconfig`.
         **kwargs: Additional attributes to the internal rule.
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
     """
+
+    ddk_config(
+        name = name + "_config",
+        defconfig = defconfig,
+        kconfig = kconfig,
+        kernel_build = kernel_build,
+        module_deps = deps,
+    )
 
     kernel_module(
         name = name,
@@ -349,6 +379,7 @@ def ddk_module(
         internal_module_symvers_name = "{name}_Module.symvers".format(name = name),
         internal_drop_modules_order = True,
         internal_exclude_kernel_build_module_srcs = True,
+        internal_ddk_config = name + "_config",
         **kwargs
     )
 
@@ -360,18 +391,18 @@ def ddk_module(
         for config, config_srcs_dict in conditional_srcs.items():
             for config_value, config_srcs in config_srcs_dict.items():
                 if type(config_value) != "bool":
-                    fail("//{package}:{name}: expected value of config {config} must be a bool, but got {config_value} of type {value_type}".format(
+                    fail("{workspace}//{package}:{name}: expected value of config {config} must be a bool, but got {config_value} of type {value_type}".format(
+                        workspace = native.repository_name(),
                         package = native.package_name(),
                         name = name,
                         config_value = config_value,
                         config = config,
                         value_type = type(config_value),
                     ))
-                config_value = "y" if config_value else ""
                 fg_name = "{name}_{config}_{value}_srcs".format(
                     name = name,
                     config = config,
-                    value = utils.normalize(config_value),
+                    value = utils.normalize(str(config_value)),
                 )
                 ddk_conditional_filegroup(
                     name = fg_name,
