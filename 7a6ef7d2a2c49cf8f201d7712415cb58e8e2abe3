@@ -22,6 +22,30 @@
       },
       "revId": "7a6ef7d2a2c49cf8f201d7712415cb58e8e2abe3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff8b9af5_de4bed26",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 36
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-19T21:04:53Z",
+      "side": 1,
+      "message": "This is to disable https://cs.android.com/android/kernel/superproject/+/common-android-mainline:prebuilts/clang/host/linux-x86/kleaf/common.bzl;l\u003d112;drc\u003d7568603057593f9d2e3655ffb23fb297d051ff56\n\nIt is our code",
+      "parentUuid": "20720e60_e0f7bf94",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 18
+      },
+      "revId": "7a6ef7d2a2c49cf8f201d7712415cb58e8e2abe3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
