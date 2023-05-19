@@ -63,6 +63,30 @@
       },
       "revId": "4656a514b21f5b0ea257185f220abd0433523246",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f3ea89f_878f4301",
+        "filename": "kleaf/impl/kernel_unstripped_modules_archive.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-19T00:03:40Z",
+      "side": 1,
+      "message": "Thanks! Let\u0027s merge this change with a TODO tag linking to the issue you filed.",
+      "parentUuid": "f22ea53e_ec18ae8a",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "4656a514b21f5b0ea257185f220abd0433523246",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
