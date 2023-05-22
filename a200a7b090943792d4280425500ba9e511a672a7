@@ -46,6 +46,30 @@
       },
       "revId": "a200a7b090943792d4280425500ba9e511a672a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27a439b6_39d1a427",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1858345
+      },
+      "writtenOn": "2023-05-22T23:16:41Z",
+      "side": 1,
+      "message": "I think some modules could have a hyphen in them which would count as a word boundary:\n\n```\n ❯ echo \"\"\"\nfoo\na-foo\na_foo\n\"\"\" | grep -F -w foo\nfoo\na-foo\n```\n\nI think the \"/\" is best approach.",
+      "parentUuid": "374e82e2_29dbe969",
+      "range": {
+        "startLine": 1951,
+        "startChar": 71,
+        "endLine": 1951,
+        "endChar": 72
+      },
+      "revId": "a200a7b090943792d4280425500ba9e511a672a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
