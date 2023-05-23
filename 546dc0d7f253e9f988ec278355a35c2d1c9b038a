@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000045407703",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2600565?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "abfcffee_98905a4f",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/jdk11.BUILD",
+              "range": {
+                "startLine": 37,
+                "startChar": 0,
+                "endLine": 38,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "65f723f2_086ded8a",
+        "filename": "kleaf/jdk11.BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-05-23T14:23:54Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/jdk11.BUILD` to format the file, or apply the suggested fix.",
+      "revId": "546dc0d7f253e9f988ec278355a35c2d1c9b038a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
