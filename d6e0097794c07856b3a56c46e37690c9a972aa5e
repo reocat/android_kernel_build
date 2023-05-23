@@ -16,6 +16,24 @@
       "message": "please explicitly add\n\n```\nvisibility\u003d[\"//visibility:public\"]\n```\n\nThis is needed after CL:2593345",
       "revId": "d6e0097794c07856b3a56c46e37690c9a972aa5e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f060e963_f41e18fd",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-05-23T23:52:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2f236db_8c6f972d",
+      "revId": "d6e0097794c07856b3a56c46e37690c9a972aa5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
