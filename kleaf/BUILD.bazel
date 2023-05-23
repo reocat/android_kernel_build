@@ -142,6 +142,12 @@ bool_flag(
     build_setting_default = True,
 )
 
+# Additional symbol lists to add to GKI kernel build
+label_flag(
+    name = "gki_aarch64_additional_symbol_lists",
+    build_setting_default = "//build/kernel/kleaf/impl:empty_filegroup",
+)
+
 # Flag to enable/disable BTF debug information
 string_flag(
     name = "btf_debug_info",
