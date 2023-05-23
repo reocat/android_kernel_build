@@ -106,6 +106,31 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         path = "build/bazel_common_rules/rules/python/stubs",
     )
 
+    # Fake rules_cc to avoid fetching it for any py_binary targets.
+    native.local_repository(
+        name = "rules_cc",
+        path = "build/kernel/kleaf/impl/fake_rules_cc",
+    )
+
+    # Stub out @remote_coverage_tools required for testing.
+    native.local_repository(
+        name = "remote_coverage_tools",
+        path = "build/bazel_common_rules/rules/coverage/remote_coverage_tools",
+    )
+
+    # Use checked in JDK from prebuilts
+    native.new_local_repository(
+        name = "local_jdk",
+        path = "prebuilts/jdk/jdk11/linux-x86",
+        build_file = "build/kernel/kleaf/jdk11.BUILD",
+    )
+
+    # Stub out @rules_java required for stardoc.
+    native.local_repository(
+        name = "rules_java",
+        path = "build/bazel_common_rules/rules/java/rules_java",
+    )
+
     # The following 2 repositories contain prebuilts that are necessary to the Java Rules.
     # They are vendored locally to avoid the need for CI bots to download them.
     if include_remote_java_tools_repo:
@@ -119,33 +144,9 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
             path = "prebuilts/bazel/linux-x86_64/remote_java_tools_linux",
         )
 
-    # Fake local_jdk to avoid fetching rules_java for any exec targets.
-    # See build/kernel/kleaf/impl/fake_local_jdk/README.md.
-    native.local_repository(
-        name = "local_jdk",
-        path = "build/kernel/kleaf/impl/fake_local_jdk",
-    )
-
-    # Fake rules_cc to avoid fetching it for any py_binary targets.
-    native.local_repository(
-        name = "rules_cc",
-        path = "build/kernel/kleaf/impl/fake_rules_cc",
-    )
-
-    # Stub out @remote_coverage_tools required for testing.
-    native.local_repository(
-        name = "remote_coverage_tools",
-        path = "build/bazel_common_rules/rules/coverage/remote_coverage_tools",
-    )
-
-    # Stub out @rules_java required for stardoc.
-    native.local_repository(
-        name = "rules_java",
-        path = "build/bazel_common_rules/rules/java/rules_java",
-    )
-
     native.register_toolchains(
         "//prebuilts/build-tools:py_toolchain",
+        "@local_jdk//:all",
     )
 
     register_clang_toolchains()
