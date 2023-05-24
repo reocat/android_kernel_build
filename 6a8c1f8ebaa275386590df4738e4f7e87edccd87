@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe1a126a_445752f5",
+        "filename": "kleaf/docs/api_reference.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-24T13:38:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7056602e_834682f7",
+      "revId": "6a8c1f8ebaa275386590df4738e4f7e87edccd87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91bab6ce_4c654ee7",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "This code is already part of the initial checkout, so I think there is no harm in registering it. But @lberki@google.com can confirm.",
       "parentUuid": "91bab6ce_4c654ee7",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 5
+      },
+      "revId": "6a8c1f8ebaa275386590df4738e4f7e87edccd87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c182bd21_5b9c9910",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-24T13:38:23Z",
+      "side": 1,
+      "message": "I mean if this is only needed for stardoc, do we need it at all, but I see the point of just registering it because we anyway have it. Could we drop the JDK actually and run bazel through JRE only? (forgive me if this is dump, my java is very old).",
+      "parentUuid": "f44cf626_50388d95",
       "range": {
         "startLine": 122,
         "startChar": 0,
