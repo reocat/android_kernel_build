@@ -31,6 +31,7 @@ _common_outs = [
     "modules.builtin.modinfo",
     "vmlinux",
     "vmlinux.symvers",
+    "Module.symvers",
 ]
 
 # Common output files for aarch64 kernel builds.
