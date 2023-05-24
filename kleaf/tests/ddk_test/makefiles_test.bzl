@@ -449,7 +449,10 @@ def _makefiles_local_defines_test(name):
         name = name + "_number",
         srcs = ["base.c"],
         out = name + "_base.ko",
-        expected_lines = ["CFLAGS_base.o += -DNUMBER=123"],
+        expected_lines = [
+            "_cflags_{}_base.o += -DNUMBER=123".format(name),
+            "CFLAGS_base.o += $(_cflags_{}_base.o)".format(name),
+        ],
         local_defines = ["NUMBER=123"],
     )
     tests.append(name + "_number")
@@ -458,7 +461,10 @@ def _makefiles_local_defines_test(name):
         name = name + "_source_file_name_is_module_name",
         srcs = [name + "_source_file_name_is_module_name.c"],
         out = name + "_source_file_name_is_module_name.ko",
-        expected_lines = ["CFLAGS_{}_source_file_name_is_module_name.o += -DNUMBER=123".format(name)],
+        expected_lines = [
+            "_cflags_{}_source_file_name_is_module_name.o += -DNUMBER=123".format(name),
+            "CFLAGS_{}_source_file_name_is_module_name.o += $(_cflags_{}_source_file_name_is_module_name.o)".format(name, name),
+        ],
         local_defines = ["NUMBER=123"],
     )
     tests.append(name + "_source_file_name_is_module_name")
@@ -467,7 +473,10 @@ def _makefiles_local_defines_test(name):
         name = name + "_bool",
         srcs = ["base.c"],
         out = name + "_base.ko",
-        expected_lines = ["CFLAGS_base.o += -DBOOL"],
+        expected_lines = [
+            "_cflags_{}_base.o += -DBOOL".format(name),
+            "CFLAGS_base.o += $(_cflags_{}_base.o)".format(name),
+        ],
         local_defines = ["BOOL"],
     )
     tests.append(name + "_bool")
@@ -476,7 +485,10 @@ def _makefiles_local_defines_test(name):
         name = name + "_str",
         srcs = ["base.c"],
         out = name + "_base.ko",
-        expected_lines = ["CFLAGS_base.o += -DSTR=string"],
+        expected_lines = [
+            "_cflags_{}_base.o += -DSTR=string".format(name),
+            "CFLAGS_base.o += $(_cflags_{}_base.o)".format(name),
+        ],
         local_defines = ["STR=string"],
     )
     tests.append(name + "_str")
@@ -485,7 +497,10 @@ def _makefiles_local_defines_test(name):
         name = name + "_spaces",
         srcs = ["base.c"],
         out = name + "_base.ko",
-        expected_lines = ["CFLAGS_base.o += '-DSTR=this is quoted'"],
+        expected_lines = [
+            "_cflags_{}_base.o += '-DSTR=this is quoted'".format(name),
+            "CFLAGS_base.o += $(_cflags_{}_base.o)".format(name),
+        ],
         local_defines = ["STR=this is quoted"],
     )
     tests.append(name + "_spaces")
@@ -496,8 +511,9 @@ def _makefiles_local_defines_test(name):
         out = name + "_base.ko",
         expected_lines = [
             # do not sort
-            "CFLAGS_base.o += -DFOO",
-            "CFLAGS_base.o += -DBAR",
+            "_cflags_{}_base.o += -DFOO".format(name),
+            "_cflags_{}_base.o += -DBAR".format(name),
+            "CFLAGS_base.o += $(_cflags_{}_base.o)".format(name),
         ],
         local_defines = [
             "FOO",
@@ -519,7 +535,10 @@ def _makefiles_copts_test(name):
         name = name + "_simple_copt",
         srcs = ["base.c"],
         out = name + "_base.ko",
-        expected_lines = ["CFLAGS_base.o += -Wno-foo"],
+        expected_lines = [
+            "_cflags_{}_base.o += -Wno-foo".format(name),
+            "CFLAGS_base.o += $(_cflags_{}_base.o)".format(name),
+        ],
         copts = ["-Wno-foo"],
     )
     tests.append(name + "_simple_copt")
@@ -528,7 +547,10 @@ def _makefiles_copts_test(name):
         name = name + "_source_file_name_is_module_name",
         srcs = [name + "_source_file_name_is_module_name.c"],
         out = name + "_source_file_name_is_module_name.ko",
-        expected_lines = ["CFLAGS_{}_source_file_name_is_module_name.o += -Wno-foo".format(name)],
+        expected_lines = [
+            "_cflags_{}_source_file_name_is_module_name.o += -Wno-foo".format(name),
+            "CFLAGS_{}_source_file_name_is_module_name.o += $(_cflags_{}_source_file_name_is_module_name.o)".format(name, name),
+        ],
         copts = ["-Wno-foo"],
     )
     tests.append(name + "_source_file_name_is_module_name")
@@ -539,8 +561,9 @@ def _makefiles_copts_test(name):
         out = name + "_base.ko",
         expected_lines = [
             # do not sort
-            "CFLAGS_base.o += -Wno-foo",
-            "CFLAGS_base.o += -Wno-bar",
+            "_cflags_{}_base.o += -Wno-foo".format(name),
+            "_cflags_{}_base.o += -Wno-bar".format(name),
+            "CFLAGS_base.o += $(_cflags_{}_base.o)".format(name),
         ],
         copts = [
             "-Wno-foo",
@@ -555,10 +578,12 @@ def _makefiles_copts_test(name):
         out = name + "_base.ko",
         expected_lines = [
             # do not sort
-            "CFLAGS_base.o += -include",
-            "CFLAGS_base.o += '$(ROOT_DIR)/{}/self.h'".format(
+            "_cflags_{}_base.o += -include".format(name),
+            "_cflags_{}_base.o += $(ROOT_DIR)/{}/self.h".format(
+                name,
                 native.package_name(),
             ),
+            "CFLAGS_base.o += $(_cflags_{}_base.o)".format(name),
         ],
         copts = ["-include", "$(location self.h)"],
     )
@@ -580,7 +605,8 @@ def _makefiles_includes_test(name):
         srcs = [name + "_source_file_name_is_module_name.c"],
         out = name + "_source_file_name_is_module_name.ko",
         expected_lines = [
-            "CFLAGS_{}_source_file_name_is_module_name.o += '-I{}/local_include'".format(name, prefix),
+            "_cflags_{}_source_file_name_is_module_name.o += -I{}/local_include".format(name, prefix),
+            "CFLAGS_{}_source_file_name_is_module_name.o += $(_cflags_{}_source_file_name_is_module_name.o)".format(name, name),
         ],
         includes = ["local_include"],
     )
@@ -696,19 +722,20 @@ def _makefiles_include_ordering_artifacts_test(name):
             # linux_include/hdrs_a is already specified, so dropping
             "$(LINUXINCLUDE)",
             # local "includes"
-            "CFLAGS_base.o += '-I{}/local_include/B'".format(prefix),
-            "CFLAGS_base.o += '-I{}/local_include/A'".format(prefix),
-            "CFLAGS_base.o += '-I{}/local_include/C'".format(prefix),
+            "_cflags_{}_base.o += -I{}/local_include/B".format(name, prefix),
+            "_cflags_{}_base.o += -I{}/local_include/A".format(name, prefix),
+            "_cflags_{}_base.o += -I{}/local_include/C".format(name, prefix),
             # deps, recursively
-            "CFLAGS_base.o += '-I{}/include/dep_c'".format(prefix),
-            "CFLAGS_base.o += '-I{}/include/dep_a'".format(prefix),  # c includes a
-            "CFLAGS_base.o += '-I{}/include/dep_b'".format(prefix),
+            "_cflags_{}_base.o += -I{}/include/dep_c".format(name, prefix),
+            "_cflags_{}_base.o += -I{}/include/dep_a".format(name, prefix),  # c includes a
+            "_cflags_{}_base.o += -I{}/include/dep_b".format(name, prefix),
             # dep_a is already specified, so dropping
             # hdrs, recursively
-            "CFLAGS_base.o += '-I{}/include/hdrs_c'".format(prefix),
-            "CFLAGS_base.o += '-I{}/include/hdrs_a'".format(prefix),  # c includes a
-            "CFLAGS_base.o += '-I{}/include/hdrs_b'".format(prefix),
+            "_cflags_{}_base.o += -I{}/include/hdrs_c".format(name, prefix),
+            "_cflags_{}_base.o += -I{}/include/hdrs_a".format(name, prefix),  # c includes a
+            "_cflags_{}_base.o += -I{}/include/hdrs_b".format(name, prefix),
             # hdrs_a is already specified, so dropping
+            "CFLAGS_base.o += $(_cflags_{}_base.o)".format(name),
         ],
     )
     tests.append(name + "_include_ordering")
