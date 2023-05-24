@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7056602e_834682f7",
+        "filename": "kleaf/docs/api_reference.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-24T09:06:31Z",
+      "side": 1,
+      "message": "I added these notesto provide more context, other than the bolding and capitalization of `NOTE` the rest are just comments. Next edits will be in the rendered text so there is no much value on adding them in a subsequent CL, but happy to remove it if needed.",
+      "parentUuid": "85fc1739_674ad03f",
+      "revId": "6a8c1f8ebaa275386590df4738e4f7e87edccd87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "91bab6ce_4c654ee7",
         "filename": "kleaf/workspace.bzl",
         "patchSetId": 4
@@ -43,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f44cf626_50388d95",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-24T09:06:31Z",
+      "side": 1,
+      "message": "This code is already part of the initial checkout, so I think there is no harm in registering it. But @lberki@google.com can confirm.",
+      "parentUuid": "91bab6ce_4c654ee7",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 5
+      },
+      "revId": "6a8c1f8ebaa275386590df4738e4f7e87edccd87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f02c0a7_82f0bf63",
         "filename": "kleaf/workspace.bzl",
         "patchSetId": 4
@@ -54,6 +96,24 @@
       "writtenOn": "2023-05-24T08:59:11Z",
       "side": 1,
       "message": "as above",
+      "revId": "6a8c1f8ebaa275386590df4738e4f7e87edccd87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ce2652c_bad7eb92",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-24T09:06:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5f02c0a7_82f0bf63",
       "revId": "6a8c1f8ebaa275386590df4738e4f7e87edccd87",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
