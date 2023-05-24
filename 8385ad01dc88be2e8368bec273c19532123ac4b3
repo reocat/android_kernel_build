@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37ea1e75_2aade770",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-24T09:12:31Z",
+      "side": 1,
+      "message": "This change alone does not seem enough to actually pass this information to kernel_build. So, an additional change is needed. But before you do this. We have already a debug option that should work very well: `--notrim`. I am hesitant to take yet another one.",
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "181452f0_78e0ff0b",
+        "filename": "kleaf/bazelrc/flags.bazelrc",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-24T09:12:31Z",
+      "side": 1,
+      "message": "I suppose those lists are on top of the existing \"additional\" lists. As such they should have another name. Further, the correct terminology would be `kmi_symbol_list`. How about `user_kmi_symbol_lists` ?",
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
