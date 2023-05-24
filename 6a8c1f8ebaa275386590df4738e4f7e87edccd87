@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85fc1739_674ad03f",
+        "filename": "kleaf/docs/api_reference.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-24T08:59:11Z",
+      "side": 1,
+      "message": "Should this go into a separate change?",
+      "revId": "6a8c1f8ebaa275386590df4738e4f7e87edccd87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91bab6ce_4c654ee7",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-24T08:59:11Z",
+      "side": 1,
+      "message": "should this be conditional on `include_remote_java_tools_repo` ?",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 5
+      },
+      "revId": "6a8c1f8ebaa275386590df4738e4f7e87edccd87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f02c0a7_82f0bf63",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-05-24T08:59:11Z",
+      "side": 1,
+      "message": "as above",
+      "revId": "6a8c1f8ebaa275386590df4738e4f7e87edccd87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
