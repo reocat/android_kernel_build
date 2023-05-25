@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8f2b5ef_f9967c00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-25T11:40:11Z",
+      "side": 1,
+      "message": "The failures seem related to CL:2595061 but I see prebuilts/clang/host/linux-x86/kleaf/versions.bzl up to date, so maybe just retry?",
+      "revId": "60af43bde375eefe08b810399b553a630eddcfc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
