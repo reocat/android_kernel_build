@@ -125,6 +125,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aa45b7b_5a62148e",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2023-05-25T11:34:47Z",
+      "side": 1,
+      "message": "Nope, there isn\u0027t a lot of harm in adding a `new_local_repository` if it\u0027s not used. \n\nIf no one depends on the targets in it, it won\u0027t even be fetched, which means that the only downside is a bit of RAM in the memory footprint of the Bazel server.\n\nI could argue, dunno, that it\u0027s complexity in this file, but that\u0027s really grasping for straws.",
+      "parentUuid": "c182bd21_5b9c9910",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 5
+      },
+      "revId": "6a8c1f8ebaa275386590df4738e4f7e87edccd87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f02c0a7_82f0bf63",
