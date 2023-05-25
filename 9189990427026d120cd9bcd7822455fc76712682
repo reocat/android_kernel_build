@@ -16,6 +16,24 @@
       "message": "This was previously reverted: [Revert \"kleaf: Include Module.symvers as default output\" (2459192) · Gerrit Code Review](http://aosp/2459192)",
       "revId": "9189990427026d120cd9bcd7822455fc76712682",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0faa08a4_1b27b39b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1139803
+      },
+      "writtenOn": "2023-05-25T14:45:43Z",
+      "side": 1,
+      "message": "I only need Module.symvers for kernel_aarch64 for reason described in b/284090157. So what should I do to release it for that target without \"name clashes\" mentioned in b/265923948#comment5? A name change like prefixing with the target name is acceptable, BTW.",
+      "parentUuid": "91f6dd34_aa98cfd3",
+      "revId": "9189990427026d120cd9bcd7822455fc76712682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
