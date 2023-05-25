@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6612b2c4_4cba2d95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-25T14:11:11Z",
+      "side": 1,
+      "message": "Just FYI there are some DDK tests under `build/kernel/kleaf/tests/ddk_test/BUILD.bazel` feel free to add more if you find it appropriate.",
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7a346de_6aaa7adb",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-25T14:11:11Z",
+      "side": 1,
+      "message": "nit: Add `doc` attribute.",
+      "range": {
+        "startLine": 314,
+        "startChar": 33,
+        "endLine": 314,
+        "endChar": 34
+      },
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d7ab494_1795ed58",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-25T14:11:11Z",
+      "side": 1,
+      "message": "nit: Add it defaults to `False`.\n\nUPD: Here and in `kernel_module.bzl`",
+      "range": {
+        "startLine": 359,
+        "startChar": 20,
+        "endLine": 359,
+        "endChar": 21
+      },
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50529d1e_8c69ea05",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-25T14:11:11Z",
+      "side": 1,
+      "message": "nit: and there is also a size penalty right?\n\nUPD: Here and in `kernel_module.bzl`",
+      "range": {
+        "startLine": 365,
+        "startChar": 44,
+        "endLine": 365,
+        "endChar": 45
+      },
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "175a9445_67fbc4b8",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-25T14:11:11Z",
+      "side": 1,
+      "message": "Does this mean it\u0027s always possible to have btf info from a `kernel_filegroup` or the opposite?\n\nUPD: I think it dependes on the outputs provided, so maybe just add a note here that it\u0027s intended both are the same.\n\nUPD2: Marking as non-actionable.",
+      "range": {
+        "startLine": 87,
+        "startChar": 47,
+        "endLine": 87,
+        "endChar": 48
+      },
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
