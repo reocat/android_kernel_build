@@ -166,10 +166,11 @@ def _gen_ddk_makefile_for_module(
 
     kbuild = output_makefiles / kernel_module_out.parent / "Kbuild"
     os.makedirs(kbuild.parent, exist_ok=True)
+    out_cflags = output_makefiles / kernel_module_out.with_suffix(".cflags")
 
     copts = json.load(copt_file) if copt_file else None
 
-    with open(kbuild, "w") as out_file:
+    with open(kbuild, "w") as out_file, open(out_cflags, "w") as out_cflags:
         out_file.write(textwrap.dedent(f"""\
             # Build {package / kernel_module_out}
             obj-m += {kernel_module_out.with_suffix('.o').name}
@@ -203,15 +204,13 @@ def _gen_ddk_makefile_for_module(
                     endif # {conditional}
                 """))
 
-        module_cflags_var_name = f"_cflags_{kernel_module_out.with_suffix('.o').name}"
         out_file.write(f"\n# Common flags for {kernel_module_out.with_suffix('.o').name}\n")
         _handle_linux_includes(out_file, linux_include_dirs)
         # At this time of writing (2022-11-01), this is the order how cc_library
         # constructs arguments to the compiler.
-        _handle_defines(out_file, module_cflags_var_name, local_defines)
-        _handle_includes(out_file, module_cflags_var_name, include_dirs)
-        _handle_copts(out_file, module_cflags_var_name, copts)
-        out_file.write("\n")
+        _handle_defines(out_cflags, local_defines)
+        _handle_includes(out_cflags, include_dirs)
+        _handle_copts(out_cflags, copts)
 
         for src_item in rel_srcs:
             config = src_item.get("config")
@@ -227,7 +226,7 @@ def _gen_ddk_makefile_for_module(
                     kernel_module_out.parent)
 
                 out_file.write(textwrap.dedent(f"""\
-                    CFLAGS_{out} += $({module_cflags_var_name})
+                    CFLAGS_{out} += @{out_cflags.relative_to(output_makefiles)}
                     """))
 
             if config is not None and value != True:
