@@ -116,12 +116,6 @@ function create_modules_staging() {
     fi
   fi
 
-  if [ "${DO_NOT_STRIP_MODULES}" = "1" ]; then
-    # strip debug symbols off initramfs modules
-    find ${dest_dir} -type f -name "*.ko" \
-      -exec ${OBJCOPY:-${CROSS_COMPILE}objcopy} --strip-debug {} \;
-  fi
-
   if [ -n "${modules_list_file}" ]; then
     # Need to make sure we can find modules_list_file from the staging dir
     if [[ -f "${ROOT_DIR}/${modules_list_file}" ]]; then
