@@ -34,6 +34,7 @@ def ddk_module(
         copts = None,
         kconfig = None,
         defconfig = None,
+        generate_btf = None,
         **kwargs):
     """
     Defines a DDK (Driver Development Kit) module.
@@ -354,6 +355,14 @@ def ddk_module(
 
           An item declared in `kconfig` without a specific value in `defconfig`
           uses default value specified in `kconfig`.
+        generate_btf: Allows generation of BTF type information for the module.
+          If enabled, passes vmlinux image to module build, which is required
+          by BTF generator makefile scripts.
+
+          Requires CONFIG_DEBUG_INFO_BTF enabled in base kernel.
+
+          Requires rebuild of module if vmlinux changed, which may lead to an
+          increase of incremental build time.
         **kwargs: Additional attributes to the internal rule.
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
@@ -365,6 +374,7 @@ def ddk_module(
         kconfig = kconfig,
         kernel_build = kernel_build,
         module_deps = deps,
+        generate_btf = generate_btf,
     )
 
     kernel_module(
