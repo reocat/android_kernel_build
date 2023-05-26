@@ -51,6 +51,24 @@
       "message": "Module.symvers cannot be part of the output without some renaming because both kernel_build and kernel_module has the potential to claim it as part of the output. When one see the Module.symvers file in the dist directory, it does not know whether it belongs to the kernel_build or kernel_module\u0027s.",
       "revId": "9189990427026d120cd9bcd7822455fc76712682",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9fc98a3_274924b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1139803
+      },
+      "writtenOn": "2023-05-26T01:28:41Z",
+      "side": 1,
+      "message": "I only need it for kernel_aarch64 for now, so it\u0027s fine if it\u0027s renamed to something like kernel_aarch64-Module.symvers. How should I rename it?",
+      "parentUuid": "cbb98f75_dcf366eb",
+      "revId": "9189990427026d120cd9bcd7822455fc76712682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
