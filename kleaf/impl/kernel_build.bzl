@@ -83,6 +83,7 @@ def kernel_build(
         name,
         build_config,
         outs,
+        keep_module_symvers = True,
         srcs = None,
         module_outs = None,
         implicit_outs = None,
@@ -128,6 +129,8 @@ def kernel_build(
         name: The final kernel target name, e.g. `"kernel_aarch64"`.
         build_config: Label of the build.config file, e.g. `"build.config.gki.aarch64"`.
         kconfig_ext: Label of an external Kconfig.ext file sourced by the GKI kernel.
+        keep_module_symvers: If true a copy of `Module.symvers` is kept, with the name `$(name)_Module.symvers`
+          Default is false.
         srcs: The kernel sources (a `glob()`). If unspecified or `None`, it is the following:
           ```
           glob(
@@ -525,6 +528,7 @@ def kernel_build(
     _kernel_build(
         name = name,
         config = config_target_name,
+        keep_module_symvers = keep_module_symvers,
         srcs = srcs,
         outs = kernel_utils.transform_kernel_build_outs(name, "outs", outs),
         module_outs = kernel_utils.transform_kernel_build_outs(name, "module_outs", module_outs),
@@ -1075,6 +1079,34 @@ def get_grab_cmd_step(ctx, src_dir):
         cmd_dir = cmd_dir,
     )
 
+def _get_copy_module_symvers_step(ctx):
+    """Returns a step for keeping a copy of Module.symvers from `OUT_DIR`.
+
+    Returns:
+      A struct with fields (inputs, tools, outputs, cmd)
+    """
+    copy_module_symvers_cmd = ""
+    outputs = []
+
+    if ctx.attr.keep_module_symvers:
+        module_symvers_copy = ctx.actions.declare_file("{}/{}_Module.symvers".format(
+            ctx.label.name,
+            ctx.label.name,
+        ))
+        outputs.append(module_symvers_copy)
+        copy_module_symvers_cmd = """
+           cp -f ${{OUT_DIR}}/Module.symvers {module_symvers_copy}
+        """.format(
+            module_symvers_copy = module_symvers_copy.path,
+        )
+
+    return struct(
+        inputs = [],
+        tools = [],
+        cmd = copy_module_symvers_cmd,
+        outputs = outputs,
+    )
+
 def _build_main_action(
         ctx,
         kbuild_mixed_tree_ret,
@@ -1139,6 +1171,7 @@ def _build_main_action(
     compile_commands_step = compile_commands_utils.kernel_build_step(ctx)
     grab_gdb_scripts_step = kgdb.get_grab_gdb_scripts_step(ctx)
     grab_kbuild_output_step = _get_grab_kbuild_output_step(ctx)
+    copy_module_symvers_step = _get_copy_module_symvers_step(ctx)
     check_remaining_modules_step = _get_check_remaining_modules_step(
         ctx = ctx,
         all_module_names_file = all_module_names_file,
@@ -1156,6 +1189,7 @@ def _build_main_action(
         compile_commands_step,
         grab_gdb_scripts_step,
         grab_kbuild_output_step,
+        copy_module_symvers_step,
         check_remaining_modules_step,
     )
 
@@ -1168,6 +1202,7 @@ def _build_main_action(
         data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
         restore_out_dir_cmd = cache_dir_step.cmd,
     )
+
     make_goals = ctx.attr.config[KernelEnvMakeGoalsInfo].make_goals
     command += """
            {kbuild_mixed_tree_cmd}
@@ -1218,6 +1253,8 @@ def _build_main_action(
            rm -rf {modules_staging_dir}
          # Create last_build symlink in cache_dir
            {cache_dir_post_cmd}
+         # Make a copy of Module.symvers
+           {copy_module_symvers_cmd}
          """.format(
         cache_dir_post_cmd = cache_dir_step.post_cmd,
         kbuild_mixed_tree_cmd = kbuild_mixed_tree_ret.cmd,
@@ -1243,6 +1280,7 @@ def _build_main_action(
         interceptor_command_prefix = interceptor_step.command_prefix,
         label = ctx.label,
         make_goals = " ".join(make_goals),
+        copy_module_symvers_cmd = copy_module_symvers_step.cmd,
     )
 
     # all inputs that |command| needs
@@ -1625,6 +1663,9 @@ _kernel_build = rule(
                 KernelToolchainInfo,
             ],
             doc = "the kernel_config target",
+        ),
+        "keep_module_symvers": attr.bool(
+            doc = "If true, a copy of `Module.symvers` is kept, with the name `{name}_Module.symvers`",
         ),
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
         "outs": attr.string_list(),
