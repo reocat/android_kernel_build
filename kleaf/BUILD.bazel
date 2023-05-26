@@ -368,9 +368,8 @@ bzl_library(
     deps = [":hermetic_tools_def"],
 )
 
-# Docs. To view them:
-#   bazel run //build/kernel/kleaf:docs_server
-
+# Kleaf API Docs. To view them:
+#   Refer to kleaf/docs/api_reference.md
 docs(
     name = "docs",
     srcs = [
