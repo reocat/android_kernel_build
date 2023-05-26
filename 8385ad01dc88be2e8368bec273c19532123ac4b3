@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4528707_1eef63b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-26T10:17:49Z",
+      "side": 1,
+      "message": "My 2c: If this is for development/debugging purposes there are [options](https://android.googlesource.com/kernel/build/+/refs/heads/master/kleaf/docs/debugging.md#disabling-checks) to bypass these checks if `--notrim` alone is not enough.",
+      "parentUuid": "064b1823_fff2cfe8",
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "181452f0_78e0ff0b",
         "filename": "kleaf/bazelrc/flags.bazelrc",
         "patchSetId": 3
