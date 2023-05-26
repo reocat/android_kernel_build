@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e24ba1a_8e21177e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "elsk@google.com",
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6bd8699_351a1201",
@@ -55,6 +72,30 @@
       "side": 1,
       "message": "Actually, please keep this one and delete //build/kernel/kleaf/impl:kcsan_is_true instead. See CL:2605638.\n\nYou may rebase on top of CL:2605638 to avoid merge conflicts.",
       "parentUuid": "d6bd8699_351a1201",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 0
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93e4500a_7371d165",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a1f49d0_cc45bd3c",
       "range": {
         "startLine": 113,
         "startChar": 0,
@@ -112,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b9f2b4b_6304c315",
+        "filename": "kleaf/impl/abi/trim_nonlisted_kmi_utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c24083d_ef6ba288",
+      "range": {
+        "startLine": 17,
+        "startChar": 50,
+        "endLine": 17,
+        "endChar": 66
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbc96a38_154a65d4",
@@ -125,6 +190,30 @@
       "writtenOn": "2023-05-26T01:37:24Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Buildifier: Variable \"_KCSAN_IS_TRUE\" is unused. Please remove it. http://go/buildifier-warnings#unused-variable\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nVariable \"_KCSAN_IS_TRUE\" is unused. Please remove it. http://go/buildifier-warnings#unused-variable",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 14
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d1a78b2_89b855e0",
+        "filename": "kleaf/impl/abi/trim_nonlisted_kmi_utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbc96a38_154a65d4",
       "range": {
         "startLine": 22,
         "startChar": 0,
@@ -152,6 +241,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38af286b_dca57c5f",
+        "filename": "kleaf/impl/abi/trim_nonlisted_kmi_utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "862b07b9_3e099e97",
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5b070ad_2bef4fb8",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "\u003e File is not formatted. Run `buildifier kleaf/impl/kernel_config.bzl` to format the file, or apply the suggested fix.\n\nPlease fix.",
+      "parentUuid": "b7203ad2_e952de50",
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b09f648_64d75026",
@@ -165,6 +290,30 @@
       "writtenOn": "2023-05-26T01:37:24Z",
       "side": 1,
       "message": "please change this to spaces",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 299,
+        "endChar": 1
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f54470a_7abbc149",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b09f648_64d75026",
       "range": {
         "startLine": 299,
         "startChar": 0,
@@ -193,6 +342,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53c18152_a2720ebd",
+        "filename": "kleaf/tests/kernel_config_test/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "\u003e File is not formatted. Run `buildifier kleaf/tests/kernel_config_test/BUILD.bazel` to format the file, or apply the suggested fix.\n\nPlease fix.",
+      "parentUuid": "37fd7a20_c85eae67",
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee64d08c_37dea8bc",
+        "filename": "kleaf/tests/kernel_config_test/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73dcda15_65a72de0",
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "730fc3d1_309c4a60",
@@ -206,6 +391,30 @@
       "writtenOn": "2023-05-26T01:37:24Z",
       "side": 1,
       "message": "Please change L15 to a proper docstring with triple quotes.\n\n----\n\nPlease fix this WARNING reported by Buildifier: The file has no module docstring.\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nThe file has no module docstring.\nA module docstring is a string literal (not a comment) which should be the first statement of a file (it may follow comment lines). http://go/buildifier-warnings#module-docstring",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 1
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40547fd4_064f31f8",
+        "filename": "kleaf/tests/kernel_config_test/kcsan_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "730fc3d1_309c4a60",
       "range": {
         "startLine": 17,
         "startChar": 0,
@@ -239,6 +448,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f9c64f4_b7b002cb",
+        "filename": "kleaf/tests/kernel_config_test/kcsan_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76055c50_ea68daee",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 24
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e150a48_c7f4bd47",
@@ -262,6 +495,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dd5fd87_f9d08f64",
+        "filename": "kleaf/tests/kernel_config_test/kcsan_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e150a48_c7f4bd47",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 7
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55f93ad9_74b5a015",
+        "filename": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "\u003e File is not formatted. Run `buildifier kleaf/tests/kernel_config_test/kernel_config_option_test.bzl` to format the file, or apply the suggested fix.\n\nPlease fix.",
+      "parentUuid": "f51c9c93_c2c09ad5",
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78c2bd39_5561d414",
@@ -275,6 +550,30 @@
       "writtenOn": "2023-05-26T01:37:24Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 4
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c790da4_447becf8",
+        "filename": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T02:01:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78c2bd39_5561d414",
       "range": {
         "startLine": 320,
         "startChar": 0,
