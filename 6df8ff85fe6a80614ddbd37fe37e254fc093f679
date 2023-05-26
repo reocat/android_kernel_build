@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c24083d_ef6ba288",
+        "filename": "kleaf/impl/abi/trim_nonlisted_kmi_utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:44:47Z",
+      "side": 1,
+      "message": "Note: I deleted this line in CL:2605638, so if you rebase on top of that CL, you can ignore this warning.",
+      "parentUuid": "f585da97_27110cf8",
+      "range": {
+        "startLine": 17,
+        "startChar": 50,
+        "endLine": 17,
+        "endChar": 66
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbc96a38_154a65d4",
         "filename": "kleaf/impl/abi/trim_nonlisted_kmi_utils.bzl",
         "patchSetId": 3
