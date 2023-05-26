@@ -1168,6 +1168,17 @@ def _build_main_action(
         data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
         restore_out_dir_cmd = cache_dir_step.cmd,
     )
+
+    # If requested create a copy of Module.symvers
+    module_symvers_copy = ctx.actions.declare_file("{}/{}_Module.symvers".format(
+        ctx.label.name,
+        ctx.label.name,
+    ))
+
+    copy_module_symvers_cmd = """
+        cp -f ${{OUT_DIR}}/Module.symvers {tgt}
+    """.format(tgt = module_symvers_copy.path)
+
     make_goals = ctx.attr.config[KernelEnvMakeGoalsInfo].make_goals
     command += """
            {kbuild_mixed_tree_cmd}
@@ -1218,6 +1229,8 @@ def _build_main_action(
            rm -rf {modules_staging_dir}
          # Create last_build symlink in cache_dir
            {cache_dir_post_cmd}
+         # Make a copy of Module.symvers
+           {copy_module_symvers_cmd}
          """.format(
         cache_dir_post_cmd = cache_dir_step.post_cmd,
         kbuild_mixed_tree_cmd = kbuild_mixed_tree_ret.cmd,
@@ -1243,6 +1256,7 @@ def _build_main_action(
         interceptor_command_prefix = interceptor_step.command_prefix,
         label = ctx.label,
         make_goals = " ".join(make_goals),
+        copy_module_symvers_cmd = copy_module_symvers_cmd,
     )
 
     # all inputs that |command| needs
@@ -1280,7 +1294,7 @@ def _build_main_action(
     ctx.actions.run_shell(
         mnemonic = "KernelBuild",
         inputs = depset(_uniq(inputs), transitive = transitive_inputs),
-        outputs = command_outputs,
+        outputs = command_outputs + [module_symvers_copy],
         tools = depset(_uniq(tools), transitive = transitive_tools),
         progress_message = "Building kernel {}".format(_progress_message_suffix(ctx)),
         command = command,
