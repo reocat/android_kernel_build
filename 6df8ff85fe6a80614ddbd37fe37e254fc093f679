@@ -1,0 +1,240 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "539cf5c9_1ecb3acd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:37:24Z",
+      "side": 1,
+      "message": "Thanks for your contribution!",
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6bd8699_351a1201",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:37:24Z",
+      "side": 1,
+      "message": "This is unused; please delete\n\n(Same as L100~104; I can delete that in a separate CL)",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 0
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f585da97_27110cf8",
+        "filename": "kleaf/impl/abi/trim_nonlisted_kmi_utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:37:24Z",
+      "side": 1,
+      "message": "Unrelated to your change, but please delete this line to fix the warning if you wish.\n\n-----\n\nPlease fix this WARNING reported by Buildifier: Loaded symbol \"BuildSettingInfo\" is unused. Please remove it.\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nLoaded symbol \"BuildSettingInfo\" is unused. Please remove it.\nTo disable the warning, add \u0027@unused\u0027 in a comment.\nIf you want to re-export a symbol, use the following pattern:\n\n    load(..., _BuildSettingInfo \u003d \"BuildSettingInfo\", ...)\n    BuildSettingInfo \u003d _BuildSettingInfo\n http://go/buildifier-warnings#load",
+      "range": {
+        "startLine": 17,
+        "startChar": 50,
+        "endLine": 17,
+        "endChar": 66
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbc96a38_154a65d4",
+        "filename": "kleaf/impl/abi/trim_nonlisted_kmi_utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:37:24Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Buildifier: Variable \"_KCSAN_IS_TRUE\" is unused. Please remove it. http://go/buildifier-warnings#unused-variable\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nVariable \"_KCSAN_IS_TRUE\" is unused. Please remove it. http://go/buildifier-warnings#unused-variable",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 14
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "862b07b9_3e099e97",
+        "filename": "kleaf/impl/abi/trim_nonlisted_kmi_utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:37:24Z",
+      "side": 1,
+      "message": "Do you want to disable trimming when kcsan is true? If so please add it here.",
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b09f648_64d75026",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:37:24Z",
+      "side": 1,
+      "message": "please change this to spaces",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 299,
+        "endChar": 1
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73dcda15_65a72de0",
+        "filename": "kleaf/tests/kernel_config_test/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:37:24Z",
+      "side": 1,
+      "message": "\u003e File is not formatted. Run `buildifier kleaf/tests/kernel_config_test/BUILD.bazel` to format the file, or apply the suggested fix.\n\nPlease fix.",
+      "parentUuid": "1cd226f9_3307d315",
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "730fc3d1_309c4a60",
+        "filename": "kleaf/tests/kernel_config_test/kcsan_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:37:24Z",
+      "side": 1,
+      "message": "Please change L15 to a proper docstring with triple quotes.\n\n----\n\nPlease fix this WARNING reported by Buildifier: The file has no module docstring.\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nThe file has no module docstring.\nA module docstring is a string literal (not a comment) which should be the first statement of a file (it may follow comment lines). http://go/buildifier-warnings#module-docstring",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 1
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76055c50_ea68daee",
+        "filename": "kleaf/tests/kernel_config_test/kcsan_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:37:24Z",
+      "side": 1,
+      "message": "Please add `# @unused` to suppress this warning.\n\n----\n\nPlease fix this WARNING reported by Buildifier: Variable \"_kcsan_true_default_test\" is unused. Please remove it. http://go/buildifier-warnings#unused-variable\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nVariable \"_kcsan_true_default_test\" is unused. Please remove it. http://go/buildifier-warnings#unused-variable",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 24
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e150a48_c7f4bd47",
+        "filename": "kleaf/tests/kernel_config_test/kcsan_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:37:24Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Buildifier: Argument \"name\" is not documented.\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nArgument \"name\" is not documented.\n\nIf the documentation for the argument exists but is not recognized by Buildifier\nmake sure it follows the line \"Args:\" which has the same indentation as the opening \"\"\",\nand the argument description starts with \"\u003cargument_name\u003e:\" and indented with at least\none (preferably two) space more than \"Args:\", for example:\n\n    def kcsan_test(name):\n        \"\"\"Function description.\n\n        Args:\n          name: argument description, can be\n            multiline with additional indentation.\n        \"\"\" http://go/buildifier-warnings#function-docstring-args",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 7
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78c2bd39_5561d414",
+        "filename": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T01:37:24Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 4
+      },
+      "revId": "6df8ff85fe6a80614ddbd37fe37e254fc093f679",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
