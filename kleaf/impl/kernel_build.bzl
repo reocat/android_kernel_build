@@ -19,6 +19,7 @@ load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:sets.bzl", "sets")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("@kernel_toolchain_info//:dict.bzl", "VARS")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(
     "//build/kernel/kleaf/artifact_tests:kernel_test.bzl",
@@ -57,6 +58,7 @@ load(
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
+load(":file.bzl", "file")
 load(":kernel_config.bzl", "kernel_config")
 load(":kernel_config_settings.bzl", "kernel_config_settings")
 load(":kernel_env.bzl", "kernel_env")
@@ -138,7 +140,8 @@ def kernel_build(
               ],
           )
           ```
-        arch: Target architecture. Default is `arm64`.
+        arch: [Nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
+          Target architecture. Default is `arm64`.
 
           Value should be one of `arm64`, `x86_64` or `riscv64`.
 
@@ -362,7 +365,8 @@ def kernel_build(
 
           If the value is `"false"`; or the value is `"auto"` and
           `--kbuild_symtypes` is not specified, then `KBUILD_SYMTYPES=`.
-        toolchain_version: The toolchain version to depend on.
+        toolchain_version: [Nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
+          The toolchain version to depend on.
         strip_modules: If `None` or not specified, default is `False`.
           If set to `True`, debug information for distributed modules is stripped.
 
@@ -386,6 +390,7 @@ def kernel_build(
     modules_prepare_target_name = name + "_modules_prepare"
     uapi_headers_target_name = name + "_uapi_headers"
     headers_target_name = name + "_headers"
+    src_kmi_symbol_list_target_name = name + "_src_kmi_symbol_list"
     kmi_symbol_list_target_name = name + "_kmi_symbol_list"
     abi_symbollist_target_name = name + "_kmi_symbol_list_abi_symbollist"
     raw_kmi_symbol_list_target_name = name + "_raw_kmi_symbol_list"
@@ -404,6 +409,12 @@ def kernel_build(
     if strip_modules == None:
         strip_modules = False
 
+    if arch == None:
+        arch = "arm64"
+
+    if toolchain_version == None:
+        toolchain_version = VARS["CLANG_VERSION"]
+
     trim_nonlisted_kmi = trim_nonlisted_kmi_utils.selected_attr(trim_nonlisted_kmi)
 
     internal_kwargs = dict(kwargs)
@@ -421,24 +432,50 @@ def kernel_build(
         "//conditions:default": "default",
     })
 
+    native.platform(
+        name = name + "_platform_target",
+        constraint_values = [
+            "@platforms//os:android",
+            "@platforms//cpu:{}".format(arch),
+            Label("//prebuilts/clang/host/linux-x86/kleaf:{}".format(toolchain_version)),
+        ],
+        **internal_kwargs
+    )
+
+    native.platform(
+        name = name + "_platform_exec",
+        constraint_values = [
+            "@platforms//os:linux",
+            "@platforms//cpu:x86_64",
+            Label("//prebuilts/clang/host/linux-x86/kleaf:{}".format(toolchain_version)),
+        ],
+        **internal_kwargs
+    )
+
     kernel_env(
         name = env_target_name,
         build_config = build_config,
         kconfig_ext = kconfig_ext,
         dtstree = dtstree,
         srcs = srcs,
-        toolchain_version = toolchain_version,
         kbuild_symtypes = kbuild_symtypes,
         trim_nonlisted_kmi = trim_nonlisted_kmi,
         lto = lto,
         make_goals = make_goals,
-        arch = arch,
+        target_platform = name + "_platform_target",
+        exec_platform = name + "_platform_exec",
         **internal_kwargs
     )
 
-    all_kmi_symbol_lists = []
-    if kmi_symbol_list:
-        all_kmi_symbol_lists.append(kmi_symbol_list)
+    # Wrap in a target so kmi_symbol_list is configurable. A select() value cannot be
+    # embedded in the all_kmi_symbol_lists below.
+    file(
+        name = src_kmi_symbol_list_target_name,
+        src = kmi_symbol_list,
+        **internal_kwargs
+    )
+
+    all_kmi_symbol_lists = [src_kmi_symbol_list_target_name]
     if additional_kmi_symbol_lists:
         all_kmi_symbol_lists += additional_kmi_symbol_lists
 
@@ -459,7 +496,7 @@ def kernel_build(
     raw_kmi_symbol_list(
         name = raw_kmi_symbol_list_target_name,
         env = env_target_name,
-        src = abi_symbollist_target_name if all_kmi_symbol_lists else None,
+        src = abi_symbollist_target_name,
         **internal_kwargs
     )
 
@@ -468,7 +505,7 @@ def kernel_build(
         env = env_target_name,
         srcs = srcs,
         trim_nonlisted_kmi = trim_nonlisted_kmi,
-        raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if all_kmi_symbol_lists else None,
+        raw_kmi_symbol_list = raw_kmi_symbol_list_target_name,
         module_signing_key = module_signing_key,
         system_trusted_key = system_trusted_key,
         lto = lto,
@@ -498,10 +535,10 @@ def kernel_build(
         base_kernel = base_kernel,
         modules_prepare = modules_prepare_target_name,
         kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
-        raw_kmi_symbol_list = raw_kmi_symbol_list_target_name if all_kmi_symbol_lists else None,
+        raw_kmi_symbol_list = raw_kmi_symbol_list_target_name,
         kernel_uapi_headers = uapi_headers_target_name,
         collect_unstripped_modules = collect_unstripped_modules,
-        combined_abi_symbollist = abi_symbollist_target_name if all_kmi_symbol_lists else None,
+        combined_abi_symbollist = abi_symbollist_target_name,
         enable_interceptor = enable_interceptor,
         strip_modules = strip_modules,
         src_protected_exports_list = protected_exports_list,
@@ -1422,9 +1459,16 @@ def _create_infos(
         kernel_uapi_headers = depset(transitive = kernel_uapi_depsets, order = "postorder"),
     )
 
+    if ctx.files.combined_abi_symbollist:
+        if len(ctx.files.combined_abi_symbollist) > 1:
+            fail("{}: combined_abi_symbollist must only provide at most one file".format(ctx.label))
+        combined_abi_symbollist = ctx.files.combined_abi_symbollist[0]
+    else:
+        combined_abi_symbollist = None
+
     kernel_build_abi_info = KernelBuildAbiInfo(
         trim_nonlisted_kmi = trim_nonlisted_kmi_utils.get_value(ctx),
-        combined_abi_symbollist = ctx.file.combined_abi_symbollist,
+        combined_abi_symbollist = combined_abi_symbollist,
         module_outs_file = all_module_names_file,
         modules_staging_archive = modules_staging_archive,
         base_modules_staging_archive = base_kernel_utils.get_base_modules_staging_archive(ctx),
@@ -1609,8 +1653,8 @@ _kernel_build = rule(
         ),
         "kmi_symbol_list_strict_mode": attr.bool(),
         "raw_kmi_symbol_list": attr.label(
-            doc = "Label to abi_symbollist.raw.",
-            allow_single_file = True,
+            doc = "Label to abi_symbollist.raw. Must be 0 or 1 file.",
+            allow_files = True,
         ),
         "collect_unstripped_modules": attr.bool(),
         "enable_interceptor": attr.bool(),
@@ -1638,7 +1682,11 @@ _kernel_build = rule(
         # `_kernel_build` target.
         "modules_prepare": attr.label(providers = [KernelEnvAndOutputsInfo]),
         "kernel_uapi_headers": attr.label(),
-        "combined_abi_symbollist": attr.label(allow_single_file = True, doc = "The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and `additional_kmi_symbol_lists`."),
+        "combined_abi_symbollist": attr.label(
+            doc = """The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and
+                `additional_kmi_symbol_lists`. Must be 0 or 1 file.""",
+            allow_files = True,
+        ),
         "strip_modules": attr.bool(default = False, doc = "if set, debug information won't be kept for distributed modules.  Note, modules will still be stripped when copied into the ramdisk."),
         "src_protected_exports_list": attr.label(allow_single_file = True),
         "src_protected_modules_list": attr.label(allow_single_file = True),
@@ -1762,8 +1810,10 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
 
     if not ctx.attr.kmi_symbol_list_strict_mode:
         return None
-    if not ctx.file.raw_kmi_symbol_list:
+    if not ctx.files.raw_kmi_symbol_list:
         fail("{}: kmi_symbol_list_strict_mode requires kmi_symbol_list or additional_kmi_symbol_lists.")
+    if len(ctx.files.raw_kmi_symbol_list) > 1:
+        fail("{}: raw_kmi_symbol_list must only provide at most one file".format(ctx.label))
 
     vmlinux = all_output_files["outs"].get("vmlinux")
     if not vmlinux:
@@ -1774,9 +1824,9 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
 
     inputs = [
         module_symvers,
-        ctx.file.raw_kmi_symbol_list,
         all_module_names_file,
     ]
+    inputs += ctx.files.raw_kmi_symbol_list  # This is 0 or 1 file
     transitive_inputs = [ctx.attr.config[KernelEnvAndOutputsInfo].inputs]
     tools = [ctx.executable._verify_ksymtab]
     transitive_tools = [ctx.attr.config[KernelEnvAndOutputsInfo].tools]
@@ -1798,7 +1848,7 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
         all_module_names_file = all_module_names_file.path,
         verify_ksymtab = ctx.executable._verify_ksymtab.path,
         module_symvers = module_symvers.path,
-        raw_kmi_symbol_list = ctx.file.raw_kmi_symbol_list.path,
+        raw_kmi_symbol_list = ctx.files.raw_kmi_symbol_list[0].path,
         out = out.path,
     )
     debug.print_scripts(ctx, command, what = "kmi_symbol_list_strict_mode")
@@ -1828,8 +1878,10 @@ def _kmi_symbol_list_violations_check(ctx, modules_staging_archive):
     if not ctx.attr._kmi_symbol_list_violations_check[BuildSettingInfo].value:
         return None
 
-    if not ctx.file.raw_kmi_symbol_list:
+    if not ctx.files.raw_kmi_symbol_list:
         return None
+    if len(ctx.files.raw_kmi_symbol_list) > 1:
+        fail("{}: raw_kmi_symbol_list must only provide at most one file".format(ctx.label))
 
     # Skip for --kasan build as they are not valid GKI releasae configurations.
     # Downstreams are expect to build kernel+modules+vendor modules locally
@@ -1846,9 +1898,9 @@ def _kmi_symbol_list_violations_check(ctx, modules_staging_archive):
         return None
 
     inputs = [
-        ctx.file.raw_kmi_symbol_list,
         modules_staging_archive,
     ]
+    inputs += ctx.files.raw_kmi_symbol_list  # This is 0 or 1 file
     tools = [ctx.executable._check_symbol_protection]
 
     # llvm-nm is needed to extract symbols.
@@ -1878,7 +1930,7 @@ def _kmi_symbol_list_violations_check(ctx, modules_staging_archive):
         intermediates_dir = intermediates_dir,
         modules_staging_archive = modules_staging_archive.path,
         out = out.path,
-        raw_kmi_symbol_list = ctx.file.raw_kmi_symbol_list.path,
+        raw_kmi_symbol_list = ctx.files.raw_kmi_symbol_list[0].path,
     )
 
     debug.print_scripts(ctx, command, what = "kmi_symbol_list_violations_check")

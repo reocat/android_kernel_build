@@ -153,6 +153,13 @@ string_flag(
     ],
 )
 
+# Use the resolved toolchains for building kernel_* rules.
+# See https://bazel.build/extending/toolchains for how toolchains are resolved.
+bool_flag(
+    name = "experimental_kernel_use_resolved_toolchains",
+    build_setting_default = False,
+)
+
 # Debug options
 
 bool_flag(
@@ -186,6 +193,13 @@ string_flag(
         "E",
         "I",
     ],
+)
+
+# Debug option to modify GKI build config via build config fragments.
+# By default it points to an empty filegroup.
+label_flag(
+    name = "gki_build_config_fragment",
+    build_setting_default = "//build/kernel/kleaf/impl:empty_filegroup",
 )
 
 # If true, enable CONFIG_GDB_SCRIPTS and collect gdb scripts.
