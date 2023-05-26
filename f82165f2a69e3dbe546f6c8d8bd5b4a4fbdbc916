@@ -16,6 +16,24 @@
       "message": "Since you are now using it on L26, you\u0027ll need to define \n\n```\n_KCSAN_IS_TRUE \u003d \"//build/kernel/kleaf:kcsan_is_true\"\n```\n\nnow",
       "revId": "f82165f2a69e3dbe546f6c8d8bd5b4a4fbdbc916",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1ea1eeb_8759b7db",
+        "filename": "kleaf/impl/abi/trim_nonlisted_kmi_utils.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-26T08:56:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e3f576c_bb12b145",
+      "revId": "f82165f2a69e3dbe546f6c8d8bd5b4a4fbdbc916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
