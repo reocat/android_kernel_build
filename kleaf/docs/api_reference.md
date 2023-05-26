@@ -5,10 +5,7 @@
 You may view the documentation for the aforementioned Bazel rules and macros on
 Android Continuous Integration:
 
-<!-- Internal link: b/280083894 -->
-<!-- Update to use kleaf-docs repo instead -->
-
-[https://ci.android.com/builds/latest/branches/aosp\_kernel-common-android-mainline/targets/kleaf\_docs/view/index.html](https://ci.android.com/builds/latest/branches/aosp_kernel-common-android-mainline/targets/kleaf_docs/view/index.html)
+[https://ci.android.com/builds/latest/branches/aosp\_kernel-kleaf-docs/targets/kleaf\_docs/view/index.html](https://ci.android.com/builds/latest/branches/aosp_kernel-kleaf-docs/targets/kleaf_docs/view/index.html)
 
 The link redirects to the latest documentation in the android-mainline branch.
 
@@ -21,16 +18,18 @@ the documentation and view it locally:
 $ tools/bazel run //build/kernel/kleaf:docs_server
 ```
 
-<!-- Internal link: b/280083894 -->
+**Note**: For this, two repositories need to be *vendored* in the same way they
+are done for
+[`kleaf-docs` branch](https://android.git.corp.google.com/kernel/manifest/+/refs/heads/kleaf-docs):
 
-<!-- This won't work after blocking downloads so this will need rewording. We
-need to point to the method used for kleaf-docs repo. i.e. vendoring the extra
-repositories needed but with the warning about the size increase. -->
-
-**NOTE**: Running this for the first time, or after `tools/bazel clean
---expunge`, requires Internet. This is a known issue.
-
-<!-- Internal link: b/245624185 -->
+1.  Include them in your manifest (Note: this is about ~110Mb disk space):
+    *   `<project path="prebuilts/bazel/common"
+        name="platform/prebuilts/bazel/common" clone-depth="1" />`
+1.  Register them as part of the WORKSPACE setup:
+    *   `define_kleaf_workspace(include_remote_java_tools_repo = True)`
+    *   See
+        [kleaf/bazel.kleaf-docs.WORKSPACE](https://android.git.corp.google.com/kernel/build/+/refs/heads/master/kleaf/bazel.kleaf-docs.WORKSPACE)
+        for reference.
 
 Sample output:
 
@@ -40,5 +39,5 @@ Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8080/) ...
 
 Then visit `http://0.0.0.0:8080/` in your browser.
 
-Alternatively, you may refer to the documentation in the source code of the
+**Alternatively**, you may refer to the documentation in the source code of the
 Bazel rules in `build/kernel/kleaf/*.bzl`.
