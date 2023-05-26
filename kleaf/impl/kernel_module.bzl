@@ -573,14 +573,46 @@ def _kernel_module_impl(ctx):
         ),
         KernelModuleInfo(
             kernel_build_infos = kernel_utils.create_kernel_module_kernel_build_info(ctx.attr.kernel_build),
-            modules_staging_dws_depset = depset([modules_staging_dws]),
-            kernel_uapi_headers_dws_depset = depset([kernel_uapi_headers_dws]),
-            files = depset(output_files),
-            packages = depset([ext_mod]),
+            modules_staging_dws_depset = depset(
+                [modules_staging_dws],
+                transitive = [
+                    target[KernelModuleInfo].modules_staging_dws_depset
+                    for target in kernel_module_deps
+                ],
+            ),
+            kernel_uapi_headers_dws_depset = depset(
+                [kernel_uapi_headers_dws],
+                transitive = [
+                    target[KernelModuleInfo].kernel_uapi_headers_dws
+                    for target in kernel_module_deps
+                ],
+            ),
+            files = depset(
+                output_files,
+                transitive = [
+                    target[KernelModuleInfo].files
+                    for target in kernel_module_deps
+                ],
+            ),
+            packages = depset(
+                [ext_mod],
+                transitive = [
+                    target[KernelModuleInfo].packages
+                    for target in kernel_module_deps
+                ],
+            ),
             label = ctx.label,
         ),
         KernelUnstrippedModulesInfo(
-            directories = depset([unstripped_dir], order = "postorder"),
+            directories = depset(
+                [unstripped_dir],
+                transitive = [
+                    target[KernelUnstrippedModulesInfo].packages
+                    for target in ctx.attr.deps
+                    if KernelUnstrippedModulesInfo in target
+                ],
+                order = "postorder",
+            ),
         ),
         ModuleSymversInfo(
             # path/to/package/target_name/Module.symvers -> path/to/package/Module.symvers;
