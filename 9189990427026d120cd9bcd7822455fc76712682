@@ -69,6 +69,24 @@
       "parentUuid": "cbb98f75_dcf366eb",
       "revId": "9189990427026d120cd9bcd7822455fc76712682",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24788f77_e436fe91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-26T02:49:42Z",
+      "side": 1,
+      "message": "I don\u0027t have a concrete solution yet (b/284090157 is on Ulises right now), but IMO you\u0027ll need:\n\n- Revert this change;\n- Add a new attribute to `kernel_build()` that, when it is set to `True`, adds `{name}_Module.symvers` to the output list (to `DefaultInfo`, maybe to the list of implicit outputs)\n- Set this attribute for common kernels\n\n... but Ulises may have a better idea / solution for moving this forward.",
+      "parentUuid": "d9fc98a3_274924b4",
+      "revId": "9189990427026d120cd9bcd7822455fc76712682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
