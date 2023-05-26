@@ -61,6 +61,7 @@ def kernel_build(
         name,
         build_config,
         outs,
+        keep_module_symvers = None,
         srcs = None,
         module_outs = None,
         implicit_outs = None,
@@ -100,6 +101,10 @@ def kernel_build(
         name: The final kernel target name, e.g. `"kernel_aarch64"`.
         build_config: Label of the build.config file, e.g. `"build.config.gki.aarch64"`.
         kconfig_ext: Label of an external Kconfig.ext file sourced by the GKI kernel.
+        keep_module_symvers: If set to True, a copy of the default output `Module.symvers` is kept.
+          * To avoid collisions in mixed build distribution packages, the file is renamed
+            as `$(name)_Module.symvers`.
+          * Default is False.
         srcs: The kernel sources (a `glob()`). If unspecified or `None`, it is the following:
           ```
           glob(
@@ -414,6 +419,7 @@ def kernel_build(
     _kernel_build(
         name = name,
         config = config_target_name,
+        keep_module_symvers = keep_module_symvers,
         srcs = srcs,
         outs = kernel_utils.transform_kernel_build_outs(name, "outs", outs),
         module_outs = kernel_utils.transform_kernel_build_outs(name, "module_outs", module_outs),
@@ -697,6 +703,236 @@ def _kernel_build_impl(ctx):
             symtypes_dir = symtypes_dir.path,
         )
 
+<<<<<<< HEAD   (871684 Fix Buildifier findings)
+=======
+def _get_grab_gcno_step(ctx):
+    """Returns a step for grabbing the `*.gcno`files from `OUT_DIR`.
+
+    Returns:
+      A struct with fields (inputs, tools, outputs, cmd, gcno_mapping)
+    """
+    grab_gcno_cmd = ""
+    inputs = []
+    outputs = []
+    tools = []
+    gcno_mapping = None
+    if ctx.attr._gcov[BuildSettingInfo].value:
+        gcno_dir = ctx.actions.declare_directory("{name}/{name}_gcno".format(name = ctx.label.name))
+        gcno_mapping = ctx.actions.declare_file("{name}/gcno_mapping.{name}.json".format(name = ctx.label.name))
+        outputs += [gcno_dir, gcno_mapping]
+        tools.append(ctx.executable._print_gcno_mapping)
+
+        extra_args = ""
+        base_kernel = base_kernel_utils.get_base_kernel(ctx)
+        if base_kernel and base_kernel[GcovInfo].gcno_mapping:
+            extra_args = "--base {}".format(base_kernel[GcovInfo].gcno_mapping.path)
+            inputs.append(base_kernel[GcovInfo].gcno_mapping)
+
+        # Note: Emitting ${OUT_DIR} is one source of ir-reproducible output for sandbox actions.
+        # However, note that these ir-reproducibility are tied to vmlinux, because these paths are already
+        # embedded in vmlinux. This file just makes such ir-reproducibility more explicit.
+        grab_gcno_cmd = """
+            rsync -a --prune-empty-dirs --include '*/' --include '*.gcno' --exclude '*' ${{OUT_DIR}}/ {gcno_dir}/
+            {print_gcno_mapping} {extra_args} ${{OUT_DIR}}:{gcno_dir} > {gcno_mapping}
+        """.format(
+            gcno_dir = gcno_dir.path,
+            gcno_mapping = gcno_mapping.path,
+            print_gcno_mapping = ctx.executable._print_gcno_mapping.path,
+            extra_args = extra_args,
+        )
+    return struct(
+        inputs = inputs,
+        tools = tools,
+        cmd = grab_gcno_cmd,
+        outputs = outputs,
+        gcno_mapping = gcno_mapping,
+    )
+
+def _get_grab_kbuild_output_step(ctx):
+    """Returns a step for grabbing the `*`files from `OUT_DIR`.
+
+    Returns:
+      A struct with fields (inputs, tools, outputs, cmd)
+    """
+    grab_kbuild_output_cmd = ""
+    outputs = []
+    if ctx.attr._preserve_kbuild_output[BuildSettingInfo].value:
+        kbuild_output_target = ctx.actions.declare_directory("{name}/kbuild_output".format(name = ctx.label.name))
+        outputs.append(kbuild_output_target)
+        grab_kbuild_output_cmd = """
+            rsync -a --prune-empty-dirs --include '*/' ${{OUT_DIR}}/ {kbuild_output_target}/
+        """.format(
+            kbuild_output_target = kbuild_output_target.path,
+        )
+    return struct(
+        inputs = [],
+        tools = [],
+        cmd = grab_kbuild_output_cmd,
+        outputs = outputs,
+    )
+
+def get_grab_cmd_step(ctx, src_dir):
+    """Returns a step for grabbing the `*.cmd` from `src_dir`.
+
+    Args:
+        ctx: Context from the rule.
+        src_dir: Source directory.
+
+    Returns:
+        A struct with these fields:
+        * inputs
+        * tools
+        * outputs
+        * cmd
+        * cmd_dir
+    """
+    cmd = ""
+    cmd_dir = None
+    outputs = []
+    if ctx.attr._preserve_cmd[BuildSettingInfo].value:
+        cmd_dir = ctx.actions.declare_directory("{name}/cmds".format(name = ctx.label.name))
+        outputs.append(cmd_dir)
+        cmd = """
+            rsync -a --chmod=F+w --prune-empty-dirs --include '*/' --include '*.cmd' --exclude '*' {src_dir}/ {cmd_dir}/
+            find {cmd_dir}/ -name '*.cmd' -exec sed -i'' -e 's:'"${{ROOT_DIR}}"':${{ROOT_DIR}}:g' {{}} \\+
+        """.format(
+            src_dir = src_dir,
+            cmd_dir = cmd_dir.path,
+        )
+    return struct(
+        inputs = [],
+        tools = [],
+        cmd = cmd,
+        outputs = outputs,
+        cmd_dir = cmd_dir,
+    )
+
+def _get_copy_module_symvers_step(ctx):
+    """Returns a step for keeping a copy of Module.symvers from `OUT_DIR`.
+
+    Returns:
+      A struct with fields (inputs, tools, outputs, cmd)
+    """
+    copy_module_symvers_cmd = ""
+    outputs = []
+
+    if ctx.attr.keep_module_symvers:
+        module_symvers_copy = ctx.actions.declare_file("{}/{}_Module.symvers".format(
+            ctx.label.name,
+            ctx.label.name,
+        ))
+        outputs.append(module_symvers_copy)
+        copy_module_symvers_cmd = """
+           cp -f ${{OUT_DIR}}/Module.symvers {module_symvers_copy}
+        """.format(
+            module_symvers_copy = module_symvers_copy.path,
+        )
+
+    return struct(
+        inputs = [],
+        tools = [],
+        cmd = copy_module_symvers_cmd,
+        outputs = outputs,
+    )
+
+def _build_main_action(
+        ctx,
+        kbuild_mixed_tree_ret,
+        all_output_names,
+        all_module_names_file,
+        all_module_basenames_file,
+        check_toolchain_outs):
+    """Adds the main action for the `kernel_build`."""
+    base_kernel_all_module_names_file = _get_base_kernel_all_module_names_file(ctx)
+
+    # Declare outputs.
+    ## Declare outputs based on the *outs attributes
+    all_output_files = _declare_all_output_files(ctx)
+
+    ## Declare implicit outputs of the command
+    ## This is like ctx.actions.declare_directory(ctx.label.name) without actually declaring it.
+    ruledir = paths.join(
+        ctx.bin_dir.path,
+        paths.dirname(ctx.build_file_path),
+        ctx.label.name,
+    )
+
+    if base_kernel_utils.get_base_kernel(ctx):
+        # We will re-package MODULES_STAGING_ARCHIVE in _repack_module_staging_archive,
+        # so use a different name.
+        modules_staging_archive_self = ctx.actions.declare_file(
+            "{}/modules_staging_dir_self.tar.gz".format(ctx.label.name),
+        )
+    else:
+        modules_staging_archive_self = ctx.actions.declare_file(
+            "{}/{}".format(ctx.label.name, MODULES_STAGING_ARCHIVE),
+        )
+
+    out_dir_kernel_headers_tar = ctx.actions.declare_file(
+        "{name}/out-dir-kernel-headers.tar.gz".format(name = ctx.label.name),
+    )
+
+    modules_staging_dir = modules_staging_archive_self.dirname + "/staging"
+
+    # Individual steps of the final command.
+    interceptor_step = _get_interceptor_step(ctx)
+    cache_dir_step = cache_dir.get_step(
+        ctx = ctx,
+        common_config_tags = ctx.attr.config[KernelEnvAttrInfo].common_config_tags,
+        symlink_name = "build",
+    )
+    grab_intree_modules_step = _get_grab_intree_modules_step(
+        ctx = ctx,
+        has_any_modules = bool(all_output_names.modules),
+        modules_staging_dir = modules_staging_dir,
+        ruledir = ruledir,
+        all_module_names_file = all_module_names_file,
+    )
+    grab_unstripped_modules_step = _get_grab_unstripped_modules_step(
+        ctx = ctx,
+        has_any_modules = bool(all_output_names.modules),
+        all_module_basenames_file = all_module_basenames_file,
+    )
+    grab_symtypes_step = _get_grab_symtypes_step(ctx)
+    grab_gcno_step = _get_grab_gcno_step(ctx)
+    grab_cmd_step = get_grab_cmd_step(ctx, "${OUT_DIR}")
+    compile_commands_step = compile_commands_utils.kernel_build_step(ctx)
+    grab_gdb_scripts_step = kgdb.get_grab_gdb_scripts_step(ctx)
+    grab_kbuild_output_step = _get_grab_kbuild_output_step(ctx)
+    copy_module_symvers_step = _get_copy_module_symvers_step(ctx)
+    check_remaining_modules_step = _get_check_remaining_modules_step(
+        ctx = ctx,
+        all_module_names_file = all_module_names_file,
+        base_kernel_all_module_names_file = base_kernel_all_module_names_file,
+        modules_staging_dir = modules_staging_dir,
+    )
+    steps = (
+        interceptor_step,
+        cache_dir_step,
+        grab_intree_modules_step,
+        grab_unstripped_modules_step,
+        grab_symtypes_step,
+        grab_gcno_step,
+        grab_cmd_step,
+        compile_commands_step,
+        grab_gdb_scripts_step,
+        grab_kbuild_output_step,
+        copy_module_symvers_step,
+        check_remaining_modules_step,
+    )
+
+    module_strip_flag = "INSTALL_MOD_STRIP="
+    if ctx.attr.strip_modules:
+        module_strip_flag += "1"
+
+    # Build the command for the main action.
+    command = ctx.attr.config[KernelEnvAndOutputsInfo].get_setup_script(
+        data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
+        restore_out_dir_cmd = cache_dir_step.cmd,
+    )
+
+    make_goals = ctx.attr.config[KernelEnvMakeGoalsInfo].make_goals
+>>>>>>> CHANGE (89625d kleaf: Support to keep a copy of Module.symvers)
     command += """
          # Actual kernel build
            {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
@@ -725,6 +961,7 @@ def _kernel_build_impl(ctx):
            {grab_intree_modules_cmd}
          # Grab unstripped in-tree modules
            {grab_unstripped_intree_modules_cmd}
+<<<<<<< HEAD   (871684 Fix Buildifier findings)
          # Check if there are remaining *.ko files
            remaining_ko_files=$({check_declared_output_list} \\
                 --declared $(cat {all_module_names_file} {base_kernel_all_module_names_file_path}) \\
@@ -738,6 +975,13 @@ def _kernel_build_impl(ctx):
              echo "  $ buildozer 'add module_outs ${{remaining_ko_files}}' {label}" >&2
              echo "See https://github.com/bazelbuild/buildtools/blob/master/buildozer/README.md for reference" >&2
              exit 1
+=======
+         # Make a copy of Module.symvers
+           {copy_module_symvers_cmd}
+           if grep -q "\\bmodules\\b" <<< "{make_goals}"; then
+             # Check if there are remaining *.ko files
+               {check_remaining_modules_cmd}
+>>>>>>> CHANGE (89625d kleaf: Support to keep a copy of Module.symvers)
            fi
          # Clean up staging directories
            rm -rf {modules_staging_dir}
@@ -758,6 +1002,11 @@ def _kernel_build_impl(ctx):
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
         interceptor_command_prefix = interceptor_command_prefix,
         label = ctx.label,
+<<<<<<< HEAD   (871684 Fix Buildifier findings)
+=======
+        make_goals = " ".join(make_goals),
+        copy_module_symvers_cmd = copy_module_symvers_step.cmd,
+>>>>>>> CHANGE (89625d kleaf: Support to keep a copy of Module.symvers)
     )
 
     debug.print_scripts(ctx, command)
@@ -770,8 +1019,94 @@ def _kernel_build_impl(ctx):
         command = command,
     )
 
+<<<<<<< HEAD   (871684 Fix Buildifier findings)
     toolchain_version_out = _kernel_build_dump_toolchain_version(ctx)
     kmi_strict_mode_out = _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file)
+=======
+    return struct(
+        all_output_files = all_output_files,
+        out_dir_kernel_headers_tar = out_dir_kernel_headers_tar,
+        interceptor_output = interceptor_step.output_file,
+        modules_staging_archive_self = modules_staging_archive_self,
+        unstripped_dir = grab_unstripped_modules_step.unstripped_dir,
+        ruledir = ruledir,
+        cmd_dir = grab_cmd_step.cmd_dir,
+        compile_commands_with_vars = compile_commands_step.compile_commands_with_vars,
+        compile_commands_out_dir = compile_commands_step.compile_commands_out_dir,
+        gcno_outputs = grab_gcno_step.outputs,
+        gcno_mapping = grab_gcno_step.gcno_mapping,
+        module_symvers_outputs = copy_module_symvers_step.outputs,
+    )
+
+def _env_and_outputs_info_get_setup_script(data, restore_out_dir_cmd):
+    """Setup script generator for `KernelEnvAndOutputsInfo`.
+
+    Args:
+        data: `data` from `KernelEnvAndOutputsInfo`
+        restore_out_dir_cmd: See `KernelEnvAndOutputsInfo`. Provided by user of the info.
+    Returns:
+        The setup script."""
+    pre_info = data.pre_info
+    restore_outputs_cmd = data.restore_outputs_cmd
+
+    script = pre_info.get_setup_script(
+        data = pre_info.data,
+        restore_out_dir_cmd = restore_out_dir_cmd,
+    )
+    script += restore_outputs_cmd
+
+    return script
+
+def _create_env_and_outputs_info(pre_info, restore_outputs_cmd_deps, restore_outputs_cmd):
+    """Creates an KernelEnvAndOutputsInfo.
+
+    Args:
+        pre_info: pre setup script and dependencies
+        restore_outputs_cmd_deps: list of outputs to restore
+        restore_outputs_cmd: command to restore these outputs
+
+    Returns:
+        A KernelEnvAndOutputsInfo that runs pre_info, then restore outputs given the list of
+        outputs and cmd."""
+    return KernelEnvAndOutputsInfo(
+        get_setup_script = _env_and_outputs_info_get_setup_script,
+        inputs = depset(
+            restore_outputs_cmd_deps,
+            transitive = [pre_info.inputs],
+        ),
+        tools = pre_info.tools,
+        data = struct(
+            pre_info = pre_info,
+            restore_outputs_cmd = restore_outputs_cmd,
+        ),
+    )
+
+def _create_infos(
+        ctx,
+        kbuild_mixed_tree_ret,
+        all_module_names_file,
+        main_action_ret,
+        modules_staging_archive,
+        toolchain_version_out,
+        kmi_strict_mode_out,
+        kmi_symbol_list_violations_check_out):
+    """Creates and returns a list of provided infos that the `kernel_build` target should return.
+
+    Args:
+        ctx: ctx
+        kbuild_mixed_tree_ret: from `_create_kbuild_mixed_tree`
+        all_module_names_file: A file containing all module names
+        main_action_ret: from `_build_main_action`
+        modules_staging_archive: from `_repack_modules_staging_archive`
+        toolchain_version_out: from `_kernel_build_dump_toolchain_version`
+        kmi_strict_mode_out: from `_kmi_symbol_list_strict_mode`
+        kmi_symbol_list_violations_check_out: from `_kmi_symbol_list_violations_check`
+    """
+
+    base_kernel = base_kernel_utils.get_base_kernel(ctx)
+
+    all_output_files = main_action_ret.all_output_files
+>>>>>>> CHANGE (89625d kleaf: Support to keep a copy of Module.symvers)
 
     # Only outs and internal_outs are needed. But for simplicity, copy the full {ruledir}
     # which includes module_outs and implicit_outs too.
@@ -851,6 +1186,13 @@ def _kernel_build_impl(ctx):
     default_info_files.append(all_module_names_file)
     if kmi_strict_mode_out:
         default_info_files.append(kmi_strict_mode_out)
+<<<<<<< HEAD   (871684 Fix Buildifier findings)
+=======
+    default_info_files.extend(main_action_ret.module_symvers_outputs)
+    default_info_files.extend(main_action_ret.gcno_outputs)
+    if kmi_symbol_list_violations_check_out:
+        default_info_files.append(kmi_symbol_list_violations_check_out)
+>>>>>>> CHANGE (89625d kleaf: Support to keep a copy of Module.symvers)
     default_info = DefaultInfo(
         files = depset(default_info_files),
         # For kernel_build_test
@@ -879,6 +1221,9 @@ _kernel_build = rule(
             providers = [KernelEnvInfo, KernelEnvAttrInfo],
             aspects = [kernel_toolchain_aspect],
             doc = "the kernel_config target",
+        ),
+        "keep_module_symvers": attr.bool(
+            doc = "If true, a copy of `Module.symvers` is kept, with the name `{name}_Module.symvers`",
         ),
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
         "outs": attr.string_list(),
