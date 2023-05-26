@@ -61,6 +61,7 @@ def kernel_build(
         name,
         build_config,
         outs,
+        keep_module_symvers = None,
         srcs = None,
         module_outs = None,
         implicit_outs = None,
@@ -100,6 +101,10 @@ def kernel_build(
         name: The final kernel target name, e.g. `"kernel_aarch64"`.
         build_config: Label of the build.config file, e.g. `"build.config.gki.aarch64"`.
         kconfig_ext: Label of an external Kconfig.ext file sourced by the GKI kernel.
+        keep_module_symvers: If set to True, a copy of the default output `Module.symvers` is kept.
+          * To avoid collisions in mixed build distribution packages, the file is renamed
+            as `$(name)_Module.symvers`.
+          * Default is False.
         srcs: The kernel sources (a `glob()`). If unspecified or `None`, it is the following:
           ```
           glob(
@@ -414,6 +419,7 @@ def kernel_build(
     _kernel_build(
         name = name,
         config = config_target_name,
+        keep_module_symvers = keep_module_symvers,
         srcs = srcs,
         outs = kernel_utils.transform_kernel_build_outs(name, "outs", outs),
         module_outs = kernel_utils.transform_kernel_build_outs(name, "module_outs", module_outs),
@@ -697,6 +703,34 @@ def _kernel_build_impl(ctx):
             symtypes_dir = symtypes_dir.path,
         )
 
+def _get_copy_module_symvers_step(ctx):
+    """Returns a step for keeping a copy of Module.symvers from `OUT_DIR`.
+
+    Returns:
+      A struct with fields (inputs, tools, outputs, cmd)
+    """
+    copy_module_symvers_cmd = ""
+    outputs = []
+
+    if ctx.attr.keep_module_symvers:
+        module_symvers_copy = ctx.actions.declare_file("{}/{}_Module.symvers".format(
+            ctx.label.name,
+            ctx.label.name,
+        ))
+        outputs.append(module_symvers_copy)
+        copy_module_symvers_cmd = """
+           cp -f ${{OUT_DIR}}/Module.symvers {module_symvers_copy}
+        """.format(
+            module_symvers_copy = module_symvers_copy.path,
+        )
+
+    return struct(
+        inputs = [],
+        tools = [],
+        cmd = copy_module_symvers_cmd,
+        outputs = outputs,
+    )
+
     command += """
          # Actual kernel build
            {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} ${{MAKE_GOALS}}
@@ -738,6 +772,11 @@ def _kernel_build_impl(ctx):
              echo "  $ buildozer 'add module_outs ${{remaining_ko_files}}' {label}" >&2
              echo "See https://github.com/bazelbuild/buildtools/blob/master/buildozer/README.md for reference" >&2
              exit 1
+         # Make a copy of Module.symvers
+           {copy_module_symvers_cmd}
+           if grep -q "\\bmodules\\b" <<< "{make_goals}"; then
+             # Check if there are remaining *.ko files
+               {check_remaining_modules_cmd}
            fi
          # Clean up staging directories
            rm -rf {modules_staging_dir}
@@ -758,6 +797,8 @@ def _kernel_build_impl(ctx):
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
         interceptor_command_prefix = interceptor_command_prefix,
         label = ctx.label,
+        make_goals = " ".join(make_goals),
+        copy_module_symvers_cmd = copy_module_symvers_step.cmd,
     )
 
     debug.print_scripts(ctx, command)
@@ -879,6 +920,9 @@ _kernel_build = rule(
             providers = [KernelEnvInfo, KernelEnvAttrInfo],
             aspects = [kernel_toolchain_aspect],
             doc = "the kernel_config target",
+        ),
+        "keep_module_symvers": attr.bool(
+            doc = "If true, a copy of `Module.symvers` is kept, with the name `{name}_Module.symvers`",
         ),
         "srcs": attr.label_list(mandatory = True, doc = "kernel sources", allow_files = True),
         "outs": attr.string_list(),
