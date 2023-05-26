@@ -1,0 +1,125 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000045624809",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2606525?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "bde03d79_95094b88",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_config.bzl",
+              "range": {
+                "startLine": 299,
+                "startChar": 0,
+                "endLine": 300,
+                "endChar": 0
+              },
+              "replacement": "        _config.enable(\"PROVE_LOCKING\"),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "fed63e86_31bf0df5",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-05-26T01:26:39Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_config.bzl` to format the file, or apply the suggested fix.",
+      "revId": "a6d7b0afe6e35d83531e8e734e25f2e75e31fc95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000045624809",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2606525?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "0268d386_cefedb65",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/kernel_config_test/BUILD.bazel",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "af533053_179d10b2",
+        "filename": "kleaf/tests/kernel_config_test/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-05-26T01:26:39Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/kernel_config_test/BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "a6d7b0afe6e35d83531e8e734e25f2e75e31fc95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000045624809",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2606525?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "4bdafc96_60a930db",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+              "range": {
+                "startLine": 236,
+                "startChar": 0,
+                "endLine": 237,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+              "range": {
+                "startLine": 320,
+                "startChar": 0,
+                "endLine": 321,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "4acffe2d_5840d46b",
+        "filename": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-05-26T01:26:39Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/kernel_config_test/kernel_config_option_test.bzl` to format the file, or apply the suggested fix.",
+      "revId": "a6d7b0afe6e35d83531e8e734e25f2e75e31fc95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
