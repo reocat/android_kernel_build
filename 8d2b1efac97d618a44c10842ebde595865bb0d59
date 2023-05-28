@@ -16,6 +16,24 @@
       "message": "You\u0027ll need \n\n```\n    visibility \u003d [\"//visibility:public\"],\n```\n\nhere to avoid the build error. Please do a quick build test with `tools/bazel run //common:kernel_aarch64_dist`",
       "revId": "8d2b1efac97d618a44c10842ebde595865bb0d59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4e97cc5_cfcbf92d",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 8
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-28T00:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "651c64d6_a0ab4ef8",
+      "revId": "8d2b1efac97d618a44c10842ebde595865bb0d59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
