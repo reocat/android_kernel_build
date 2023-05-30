@@ -1584,6 +1584,7 @@ def _kernel_build_impl(ctx):
         ctx = ctx,
         modules_staging_archive_self = main_action_ret.modules_staging_archive_self,
         all_module_basenames_file = all_module_basenames_file,
+        kernel_release_file = main_action_ret.all_output_files["internal_outs"]["include/config/kernel.release"],
     )
 
     toolchain_version_out = _kernel_build_dump_toolchain_version(ctx)
@@ -1952,7 +1953,8 @@ def _kmi_symbol_list_violations_check(ctx, modules_staging_archive):
 def _repack_modules_staging_archive(
         ctx,
         modules_staging_archive_self,
-        all_module_basenames_file):
+        all_module_basenames_file,
+        kernel_release_file):
     """Repackages `modules_staging_archive` to contain kernel modules from `base_kernel` as well.
 
     Args:
@@ -1960,6 +1962,7 @@ def _repack_modules_staging_archive(
         modules_staging_archive_self: The `modules_staging_archive` from `make`
             in `_build_main_action`.
         all_module_basenames_file: Complete list of base names.
+        kernel_release_file: `kernel.release`
     """
     if not base_kernel_utils.get_base_kernel(ctx):
         # No need to repack.
@@ -1978,20 +1981,44 @@ def _repack_modules_staging_archive(
     # Re-package module_staging_dir to also include the one from base_kernel.
     # Pick ko files only from base_kernel, while keeping all depmod files from self.
     modules_staging_dir = modules_staging_archive.dirname + "/staging"
+
+    # base_kernel (GKI) modules: module_outs / module_implicit_outs of base_kernel
+    # overridden unprotected modules: module_outs / module_implicit_outs of current target
+    # selected base_kernel (GKI) modules: base_kernel (GKI) modules - overridden unprotected modules
+    #
+    # Pack the following:
+    # - modules from device build's staging dir, minus selected base_kernel (GKI) modules
+    # - selected base_kernel (GKI) modules from base_kernel's staging dir
     cmd = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
         mkdir -p {modules_staging_dir}
-        tar xf {self_archive} -C {modules_staging_dir}
 
-        # Filter out device-customized modules that has the same name as GKI modules
-        base_modules=$(tar tf {base_archive} | grep '[.]ko$' || true)
-        for module in $(cat {all_module_basenames_file}); do
-          base_modules=$(echo "${{base_modules}}" | grep -v "${{module}}"'$' || true)
-        done
+        # All names of base_kernel (GKI) modules
+        base_module_paths=$(tar tf {base_archive} | grep '[.]ko$' || true)
+        base_module_names=$(mktemp)
+        echo "${{base_module_paths}}" | xargs -r -n 1 basename | sort > ${{base_module_names}}
 
-        if [[ -n "${{base_modules}}" ]]; then
-            tar xf {base_archive} -C {modules_staging_dir} ${{base_modules}}
+        # All names of base_kernel (GKI) modules, minus overriden unprotected modules
+        selected_base_modules=$(mktemp)
+        ( grep -v -f {all_module_basenames_file} ${{base_module_names}} || true ) > ${{selected_base_modules}}
+
+        # Extract base_kernel (GKI) modules, excluding unprotected modules overridden by the device
+        tar xf {base_archive} -X {all_module_basenames_file} -C {modules_staging_dir} ${{base_module_paths}}
+
+        # Move base_kernel (GKI) modules to the directory of device modules
+        base_kernel_release=$(basename {modules_staging_dir}/lib/modules/*)
+        device_kernel_release=$(cat {kernel_release_file})
+        if [[ ${{base_kernel_release}} != ${{device_kernel_release}} ]]; then
+            mv {modules_staging_dir}/lib/modules/"${{base_kernel_release}}" {modules_staging_dir}/lib/modules/"${{device_kernel_release}}"
         fi
-        tar czf {out_archive} -C  {modules_staging_dir} .
+
+        # Extract device modules, excluding all modules matching the name of a GKI module,
+        # but including unprotected modules overriden by the device
+        tar xf {self_archive} -X ${{selected_base_modules}} -C {modules_staging_dir}
+
+        tar czf {out_archive} -C {modules_staging_dir} .
+
+        rm -f ${{selected_base_modules}}
+        rm -f ${{base_module_names}}
         rm -rf {modules_staging_dir}
     """.format(
         modules_staging_dir = modules_staging_dir,
@@ -1999,6 +2026,7 @@ def _repack_modules_staging_archive(
         base_archive = base_kernel_utils.get_base_kernel(ctx)[KernelBuildExtModuleInfo].modules_staging_archive.path,
         out_archive = modules_staging_archive.path,
         all_module_basenames_file = all_module_basenames_file.path,
+        kernel_release_file = kernel_release_file.path,
     )
     debug.print_scripts(ctx, cmd, what = "repackage_module_staging_archive")
     ctx.actions.run_shell(
@@ -2007,6 +2035,7 @@ def _repack_modules_staging_archive(
             modules_staging_archive_self,
             base_kernel_utils.get_base_kernel(ctx)[KernelBuildExtModuleInfo].modules_staging_archive,
             all_module_basenames_file,
+            kernel_release_file,
         ],
         outputs = [modules_staging_archive],
         tools = ctx.attr._hermetic_tools[HermeticToolsInfo].deps,
