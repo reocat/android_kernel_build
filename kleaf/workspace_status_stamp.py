@@ -220,6 +220,9 @@ class Stamp(object):
         all_projects.extend(self.projects)
 
         for proj in all_projects:
+            if not os.path.isdir(proj):
+                continue
+
             candidate = os.path.join(proj, "scripts/setlocalversion")
             if os.access(candidate, os.X_OK):
                 self.setlocalversion = os.path.realpath(candidate)
@@ -234,6 +237,12 @@ class Stamp(object):
 
         scmversion_map = {}
         for project in all_projects:
+            if not os.path.isdir(project):
+                logging.warning(
+                    "Project %s in repo manifest does not exist on disk.",
+                    project)
+                continue
+
             path_popen = get_localversion(self.setlocalversion, project)
             if path_popen:
                 scmversion_map[project] = path_popen
@@ -271,7 +280,7 @@ class Stamp(object):
 
         return {
             proj: self.async_get_source_date_epoch(proj)
-            for proj in all_projects
+            for proj in filter(os.path.isdir, all_projects)
         }
 
     def async_get_source_date_epoch(self, rel_path) -> PathCollectible:
