@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b10ddc95_02445156",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-30T22:09:10Z",
+      "side": 1,
+      "message": "see bug; since the end goal is to remove such projects in the repo manifest, I think we should at least print a warning here (if not an error)",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 24
+      },
+      "revId": "1d0711fea6711a98387a34eadec7593114860e94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
