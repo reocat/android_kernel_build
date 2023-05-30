@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "982c9f21_56ff4ecb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-05-30T22:02:17Z",
+      "side": 1,
+      "message": "Moved discussion to bug.",
+      "parentUuid": "130a36bb_c567ff21",
+      "revId": "503ea8c63275035da4a92c837c7b4837beb27614",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f7f2ef8_eaca3b8c",
         "filename": "kleaf/workspace_status_stamp.py",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2023-05-30T21:46:56Z",
       "side": 1,
       "message": "```\nif not os.path.isdir(proj):\n  continue\n```",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 36
+      },
+      "revId": "503ea8c63275035da4a92c837c7b4837beb27614",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fb1360c_044640d5",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-05-30T22:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f7f2ef8_eaca3b8c",
       "range": {
         "startLine": 223,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d1f8f7c_6ccdcca7",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-05-30T22:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0985c412_060ef5a1",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 39
+      },
+      "revId": "503ea8c63275035da4a92c837c7b4837beb27614",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61caa446_b14fef18",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-05-30T21:46:56Z",
       "side": 1,
       "message": "`.isdir`\n\nhttps://docs.python.org/3.11/library/os.path.html#os.path.isdir",
+      "range": {
+        "startLine": 276,
+        "startChar": 39,
+        "endLine": 276,
+        "endChar": 45
+      },
+      "revId": "503ea8c63275035da4a92c837c7b4837beb27614",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c14385e_0726218a",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-05-30T22:02:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61caa446_b14fef18",
       "range": {
         "startLine": 276,
         "startChar": 39,
