@@ -96,6 +96,15 @@ _TARGET_CONFIG_VALID_KEYS = _KERNEL_BUILD_ABI_VALID_KEYS + [
 # Always collect_unstripped_modules for common kernels.
 _COLLECT_UNSTRIPPED_MODULES = True
 
+<<<<<<< HEAD   (871684 Fix Buildifier findings)
+=======
+# Always strip modules for common kernels.
+_STRIP_MODULES = True
+
+# Always keep a copy of Module.symvers for common kernels.
+_KEEP_MODULE_SYMVERS = True
+
+>>>>>>> CHANGE (b51b75 kleaf: Keep a copy of Module.symvers for GKI)
 # glob() must be executed in a BUILD thread, so this cannot be a global
 # variable.
 def _default_target_configs():
@@ -505,6 +514,26 @@ def define_common_kernels(
             build_config = arch_config["build_config"],
             enable_interceptor = arch_config.get("enable_interceptor"),
             visibility = visibility,
+<<<<<<< HEAD   (871684 Fix Buildifier findings)
+=======
+            collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
+            strip_modules = _STRIP_MODULES,
+            toolchain_version = toolchain_version,
+            keep_module_symvers = _KEEP_MODULE_SYMVERS,
+            **kernel_build_kwargs
+        )
+
+        kernel_abi_kwargs = _filter_keys(
+            target_config,
+            valid_keys = _KERNEL_ABI_VALID_KEYS,
+            allow_unknown_keys = True,
+        )
+
+        kernel_abi(
+            name = name + "_abi",
+            kernel_build = name,
+            visibility = visibility,
+>>>>>>> CHANGE (b51b75 kleaf: Keep a copy of Module.symvers for GKI)
             define_abi_targets = bool(target_config.get("kmi_symbol_list")),
             # Sync with KMI_SYMBOL_LIST_MODULE_GROUPING
             module_grouping = None,
