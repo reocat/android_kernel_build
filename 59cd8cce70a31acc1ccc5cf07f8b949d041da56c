@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a2a28e9_976d1e1b",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-30T17:57:23Z",
+      "side": 1,
+      "message": "nit: This is the default, so there\u0027s no need to specify it technically.",
+      "range": {
+        "startLine": 315,
+        "startChar": 12,
+        "endLine": 315,
+        "endChar": 28
+      },
+      "revId": "59cd8cce70a31acc1ccc5cf07f8b949d041da56c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
