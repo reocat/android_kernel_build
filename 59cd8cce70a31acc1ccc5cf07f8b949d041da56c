@@ -22,6 +22,30 @@
       },
       "revId": "59cd8cce70a31acc1ccc5cf07f8b949d041da56c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39cda9e9_76c5c507",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-05-30T18:03:48Z",
+      "side": 1,
+      "message": "I would like to specify it explicitly, because:\n1. You don\u0027t need to look to documentation to find default.\n2. Defaults _sometime_ change, specifying expected default protects from this.",
+      "parentUuid": "4a2a28e9_976d1e1b",
+      "range": {
+        "startLine": 315,
+        "startChar": 12,
+        "endLine": 315,
+        "endChar": 28
+      },
+      "revId": "59cd8cce70a31acc1ccc5cf07f8b949d041da56c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
