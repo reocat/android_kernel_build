@@ -29,6 +29,7 @@ def _vendor_dlkm_image_impl(ctx):
     vendor_dlkm_modules_load = ctx.actions.declare_file("{}/vendor_dlkm.modules.load".format(ctx.label.name))
     vendor_dlkm_modules_blocklist = ctx.actions.declare_file("{}/vendor_dlkm.modules.blocklist".format(ctx.label.name))
     modules_staging_dir = vendor_dlkm_img.dirname + "/staging"
+    system_dlkm_staging_dir = modules_staging_dir + "/system_dlkm_staging"
     vendor_dlkm_staging_dir = modules_staging_dir + "/vendor_dlkm_staging"
     vendor_dlkm_fs_type = ctx.attr.vendor_dlkm_fs_type
     vendor_dlkm_etc_files = " ".join([f.path for f in ctx.files.vendor_dlkm_etc_files])
@@ -47,6 +48,7 @@ def _vendor_dlkm_image_impl(ctx):
 
     exclude_system_dlkm_step = _exclude_system_dlkm(
         ctx,
+        system_dlkm_staging_dir = system_dlkm_staging_dir,
         modules_staging_dir = modules_staging_dir,
     )
     command += exclude_system_dlkm_step.cmd
@@ -97,7 +99,7 @@ def _vendor_dlkm_image_impl(ctx):
         mnemonic = "VendorDlkmImage",
     )
 
-def _exclude_system_dlkm(ctx, modules_staging_dir):
+def _exclude_system_dlkm(ctx, system_dlkm_staging_dir, modules_staging_dir):
     if not ctx.attr.dedup_dlkm_modules:
         return struct(cmd = "", inputs = [])
 
@@ -130,12 +132,15 @@ def _exclude_system_dlkm(ctx, modules_staging_dir):
 
     cmd = """
             # Extract modules from system_dlkm staging archive for depmod
-              mkdir -p {modules_staging_dir}
-              tar xf {system_dlkm_staging_archive} --wildcards -C {modules_staging_dir} '*.ko'
+              mkdir -p {system_dlkm_staging_dir} {modules_staging_dir}
+              tar xf {system_dlkm_staging_archive} --wildcards -C {system_dlkm_staging_dir} '*.ko'
+            # Copy system_dlkm modules to the directory of device modules
+              rsync -al {system_dlkm_staging_dir}/lib/modules/*/ {modules_staging_dir}/lib/modules/*/
             # Ensure system_dlkm modules aren't loaded
               cat {system_dlkm_modules_load} >> ${{DIST_DIR}}/modules.load
     """.format(
         system_dlkm_staging_archive = system_dlkm_staging_archive.path,
+        system_dlkm_staging_dir = system_dlkm_staging_dir,
         modules_staging_dir = modules_staging_dir,
         system_dlkm_modules_load = system_dlkm_modules_load.path,
     )
