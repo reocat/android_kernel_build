@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e53486d4_0379bfe6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-30T18:16:58Z",
+      "side": 1,
+      "message": "There appear to be a few other places:\n\nhttps://cs.android.com/search?q\u003dDO_NOT_STRIP_MODULES\u0026ss\u003dandroid%2Fkernel%2Fsuperproject\u0026ct\u003dos\u0026sq\u003dUSE_DEFAULT_STORED_QUERY\n\nHow would those be cleaned up?",
+      "revId": "76ddf6236cf99db5de735b885f4dd4e9f747453b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
