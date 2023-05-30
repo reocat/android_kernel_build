@@ -121,6 +121,9 @@ _COLLECT_UNSTRIPPED_MODULES = True
 # Always strip modules for common kernels.
 _STRIP_MODULES = True
 
+# Always keep a copy of Module.symvers for common kernels.
+_KEEP_MODULE_SYMVERS = True
+
 # glob() must be executed in a BUILD thread, so this cannot be a global
 # variable.
 def _default_target_configs():
@@ -629,6 +632,7 @@ def define_common_kernels(
             collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
             strip_modules = _STRIP_MODULES,
             toolchain_version = toolchain_version,
+            keep_module_symvers = _KEEP_MODULE_SYMVERS,
             **kernel_build_kwargs
         )
 
@@ -1074,6 +1078,7 @@ def define_db845c(
         collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
         strip_modules = True,
         make_goals = make_goals,
+        keep_module_symvers = _KEEP_MODULE_SYMVERS,
     )
 
     # enable ABI Monitoring
