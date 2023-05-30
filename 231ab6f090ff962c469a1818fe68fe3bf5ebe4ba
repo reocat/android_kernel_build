@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "dede2e19_0b9aefea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-05-30T16:40:47Z",
+      "side": 1,
+      "message": "Tests are added.",
+      "parentUuid": "6612b2c4_4cba2d95",
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c7a346de_6aaa7adb",
         "filename": "kleaf/impl/ddk/ddk_config.bzl",
         "patchSetId": 1
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "nit because ddk_config is not a public interface. But it still nice for developers to read.",
       "parentUuid": "c7a346de_6aaa7adb",
+      "range": {
+        "startLine": 314,
+        "startChar": 33,
+        "endLine": 314,
+        "endChar": 34
+      },
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c02f7e1a_04c67ee3",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-05-30T16:40:47Z",
+      "side": 1,
+      "message": "Added doc attribute, that links to kernel_module.generate_btf.",
+      "parentUuid": "17206f7f_a43d19aa",
       "range": {
         "startLine": 314,
         "startChar": 33,
@@ -112,6 +154,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64482cc2_24e839ad",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-05-30T16:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a51d181a_13512364",
+      "range": {
+        "startLine": 359,
+        "startChar": 20,
+        "endLine": 359,
+        "endChar": 21
+      },
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa511734_f79a8898",
@@ -125,6 +191,30 @@
       "writtenOn": "2023-05-26T01:22:04Z",
       "side": 1,
       "message": "This needs to be quoted with backquotes, otherwise the generated docs will treat underscores as italics.",
+      "range": {
+        "startLine": 362,
+        "startChar": 19,
+        "endLine": 362,
+        "endChar": 40
+      },
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68647843_b9d9e345",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-05-30T16:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa511734_f79a8898",
       "range": {
         "startLine": 362,
         "startChar": 19,
@@ -158,6 +248,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "346ffe85_a9729e54",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-05-30T16:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a8408f2_636219d5",
+      "range": {
+        "startLine": 364,
+        "startChar": 40,
+        "endLine": 364,
+        "endChar": 47
+      },
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50529d1e_8c69ea05",
@@ -171,6 +285,30 @@
       "writtenOn": "2023-05-25T14:11:11Z",
       "side": 1,
       "message": "nit: and there is also a size penalty right?\n\nUPD: Here and in `kernel_module.bzl`",
+      "range": {
+        "startLine": 365,
+        "startChar": 44,
+        "endLine": 365,
+        "endChar": 45
+      },
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05334cb9_750a7193",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-05-30T16:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50529d1e_8c69ea05",
       "range": {
         "startLine": 365,
         "startChar": 44,
@@ -241,6 +379,30 @@
       "writtenOn": "2023-05-26T01:22:04Z",
       "side": 1,
       "message": "backquotes",
+      "range": {
+        "startLine": 157,
+        "startChar": 19,
+        "endLine": 157,
+        "endChar": 40
+      },
+      "revId": "231ab6f090ff962c469a1818fe68fe3bf5ebe4ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7aeef2f0_f78f8d7b",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-05-30T16:40:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25fa81c9_67c04832",
       "range": {
         "startLine": 157,
         "startChar": 19,
