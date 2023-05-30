@@ -1978,20 +1978,36 @@ def _repack_modules_staging_archive(
     # Re-package module_staging_dir to also include the one from base_kernel.
     # Pick ko files only from base_kernel, while keeping all depmod files from self.
     modules_staging_dir = modules_staging_archive.dirname + "/staging"
+
+    # base_kernel (GKI) modules: module_outs / module_implicit_outs of base_kernel
+    # overridden unprotected modules: module_outs / module_implicit_outs of current target
+    # selected base_kernel (GKI) modules: base_kernel (GKI) modules - overridden unprotected modules
+    #
+    # Pack the following:
+    # - modules from device build's staging dir, minus selected base_kernel (GKI) modules
+    # - selected base_kernel (GKI) modules from base_kernel's staging dir
     cmd = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
         mkdir -p {modules_staging_dir}
-        tar xf {self_archive} -C {modules_staging_dir}
 
-        # Filter out device-customized modules that has the same name as GKI modules
-        base_modules=$(tar tf {base_archive} | grep '[.]ko$' || true)
-        for module in $(cat {all_module_basenames_file}); do
-          base_modules=$(echo "${{base_modules}}" | grep -v "${{module}}"'$' || true)
-        done
+        # All names of base_kernel (GKI) modules
+        base_module_names=$(mktemp)
+        ( tar tf {base_archive} | grep '[.]ko$' || true ) | xargs -r -n 1 basename | sort > ${{base_module_names}}
 
-        if [[ -n "${{base_modules}}" ]]; then
-            tar xf {base_archive} -C {modules_staging_dir} ${{base_modules}}
-        fi
-        tar czf {out_archive} -C  {modules_staging_dir} .
+        # All names of base_kernel (GKI) modules, minus overriden unprotected modules
+        selected_base_modules=$(mktemp)
+        ( grep -v -f {all_module_basenames_file} ${{base_module_names}} || true ) > ${{selected_base_modules}}
+
+        # Extract device modules, excluding all modules matching the name of a GKI module,
+        # but including unprotected modules overriden by the device
+        tar xf {self_archive} -X ${{selected_base_modules}} -C {modules_staging_dir} >&2
+
+        # Extract GKI modules, excluding unprotected modules overridden by the device
+        tar xf {base_archive} -X {all_module_basenames_file} -C {modules_staging_dir} ${{base_modules}} >&2
+
+        tar czf {out_archive} -C {modules_staging_dir} .
+
+        rm -f ${{selected_base_modules}}
+        rm -f ${{base_module_names}}
         rm -rf {modules_staging_dir}
     """.format(
         modules_staging_dir = modules_staging_dir,
