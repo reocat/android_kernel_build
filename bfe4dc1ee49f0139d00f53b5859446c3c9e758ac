@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "132c25a8_33f51cda",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-30T18:21:05Z",
+      "side": 0,
+      "message": "Also, it seems that only vendor_dlkm_image.bzl unsets `DO_NOT_STRIP_MODULES`. The other images leaves",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 67
+      },
+      "revId": "bfe4dc1ee49f0139d00f53b5859446c3c9e758ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

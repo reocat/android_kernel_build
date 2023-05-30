@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5619be83_b2a2adae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-05-30T18:21:05Z",
+      "side": 1,
+      "message": "technically kernel_build.strip_modules controls INSTALL_MOD_STRIP in the make command, but not this code branch.\n\nI think the following is more accurate:\n\nAll call sites of create_module_staging (initramfs, system_dlkm, vendor_dlkm) has DO_NOT_STRIP_MODULES unset before calling create_module_staging, leaving this conditional branch useless. Hence, this conditional branch is deleted.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "76ddf6236cf99db5de735b885f4dd4e9f747453b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e53486d4_0379bfe6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
