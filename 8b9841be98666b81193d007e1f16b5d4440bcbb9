@@ -70,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1cad669_1e85e291",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-31T01:35:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a553cf1c_f66dd5a3",
+      "revId": "8b9841be98666b81193d007e1f16b5d4440bcbb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c88c6b69_8b9e9029",
@@ -83,6 +101,30 @@
       "writtenOn": "2023-05-30T22:04:15Z",
       "side": 1,
       "message": "why is KASAN disabled? that would only be needed for `--kasan --kcsan`, which is contradictory ...",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 301,
+        "endChar": 39
+      },
+      "revId": "8b9841be98666b81193d007e1f16b5d4440bcbb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be5d7a59_5294f46a",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-31T01:35:56Z",
+      "side": 1,
+      "message": "See here https://partnerissuetracker.corp.google.com/issues/182965087#comment5, also tried my local that if enabling KCSAN without disabling KASAN, KCSAN will be disabled finally.",
+      "parentUuid": "c88c6b69_8b9e9029",
       "range": {
         "startLine": 300,
         "startChar": 0,
@@ -116,6 +158,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9b332e5_1eb8d0ec",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-31T01:35:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ad9e0d3_671cec87",
+      "range": {
+        "startLine": 313,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 44
+      },
+      "revId": "8b9841be98666b81193d007e1f16b5d4440bcbb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ad416d1_72cfe310",
@@ -129,6 +195,24 @@
       "writtenOn": "2023-05-30T19:19:52Z",
       "side": 1,
       "message": "You need kcsan here.\n\nPlease check if the kleaf tests pass by `tools/bazel test //build/kernel/kleaf:quick_tests`.",
+      "revId": "8b9841be98666b81193d007e1f16b5d4440bcbb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c7e0fe0_1bb5177f",
+        "filename": "kleaf/tests/kernel_config_test/kernel_config_option_test.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-05-31T01:35:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ad416d1_72cfe310",
       "revId": "8b9841be98666b81193d007e1f16b5d4440bcbb9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
