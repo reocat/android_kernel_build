@@ -46,6 +46,29 @@
       },
       "revId": "59cd8cce70a31acc1ccc5cf07f8b949d041da56c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "913abcfc_17f0af18",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-31T16:08:55Z",
+      "side": 1,
+      "message": "I thought this meant they were incompatible, but I can see now that it\u0027s already handled in `ddk_config.bzl`.",
+      "range": {
+        "startLine": 348,
+        "startChar": 7,
+        "endLine": 348,
+        "endChar": 35
+      },
+      "revId": "59cd8cce70a31acc1ccc5cf07f8b949d041da56c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
