@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "512dec63_5d33de2f",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-31T09:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c6d422a_b6f115ce",
+      "range": {
+        "startLine": 132,
+        "startChar": 67,
+        "endLine": 132,
+        "endChar": 71
+      },
+      "revId": "bb624cd1e87cd8ebf6385144516dcb28525442bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b263a92b_726f9d0a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-30T18:52:21Z",
       "side": 1,
       "message": "nit: put in L1252 since there\u0027s where we \"grab outputs\"",
+      "range": {
+        "startLine": 1256,
+        "startChar": 11,
+        "endLine": 1256,
+        "endChar": 40
+      },
+      "revId": "bb624cd1e87cd8ebf6385144516dcb28525442bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41c9cd72_742b1e9a",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-31T09:53:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b263a92b_726f9d0a",
       "range": {
         "startLine": 1256,
         "startChar": 11,
