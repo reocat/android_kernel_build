@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7decdc85_bc9bd481",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-31T10:14:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d4af870_15a65e11",
+      "range": {
+        "startLine": 371,
+        "startChar": 0,
+        "endLine": 373,
+        "endChar": 0
+      },
+      "revId": "881ae384df33198de61ab8cfa057613d712f626b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e719451_f23a2be0",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-05-30T17:34:01Z",
       "side": 1,
       "message": "Please update this link too (to api_reference.md)",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 179
+      },
+      "revId": "881ae384df33198de61ab8cfa057613d712f626b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ff3b409_b9700b3b",
+        "filename": "kleaf/README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-05-31T10:14:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e719451_f23a2be0",
       "range": {
         "startLine": 70,
         "startChar": 0,
