@@ -205,6 +205,7 @@ KernelBuildMixedTreeInfo = provider(
     fields = {
         "files": """A [depset](https://bazel.build/extending/depsets) containing the list of
 files required to build `KBUILD_MIXED_TREE` for the device kernel.""",
+        "kernel_release": "The file `kernel.release`.",
     },
 )
 

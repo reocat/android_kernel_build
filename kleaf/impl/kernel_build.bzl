@@ -1512,6 +1512,7 @@ def _create_infos(
     kbuild_mixed_tree_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
     kbuild_mixed_tree_info = KernelBuildMixedTreeInfo(
         files = depset(kbuild_mixed_tree_files),
+        kernel_release = all_output_files["internal_outs"]["include/config/kernel.release"],
     )
 
     cmds_info = KernelCmdsInfo(
