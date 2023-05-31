@@ -92,6 +92,30 @@
       },
       "revId": "59cd8cce70a31acc1ccc5cf07f8b949d041da56c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddca67e9_d6cdfc8f",
+        "filename": "kleaf/tests/ddk_test/ddk_module_test.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-05-31T21:33:23Z",
+      "side": 1,
+      "message": "Because I removed GENERATE_BTF option to make for now, until it is not merged to the kernel. I don\u0027t want to leave unused parameters in tests.",
+      "parentUuid": "cf77d011_e1929bb2",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 21
+      },
+      "revId": "59cd8cce70a31acc1ccc5cf07f8b949d041da56c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
