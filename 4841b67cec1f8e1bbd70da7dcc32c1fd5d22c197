@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e790b4d6_28d5e4d9",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-01T13:38:52Z",
+      "side": 1,
+      "message": "nit: s/make_filter/make_filter_cmd",
+      "range": {
+        "startLine": 420,
+        "startChar": 4,
+        "endLine": 420,
+        "endChar": 15
+      },
+      "revId": "4841b67cec1f8e1bbd70da7dcc32c1fd5d22c197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
