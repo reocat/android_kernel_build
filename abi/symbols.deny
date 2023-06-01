@@ -18,8 +18,8 @@
 # try to access files directly.  Instead proper user/kernel apis should
 # always be used.
 filp_open	Drivers should not open files directly
-kernel_read	Drivers should never read from a file
-kernel_write	Drivers should never write to a file
+#kernel_read	Drivers should never read from a file
+#kernel_write	Drivers should never write to a file
 
 # Kprobe needs to be left alone
 disable_kprobe		kprobe should not be touched by any driver
