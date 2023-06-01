@@ -1166,6 +1166,17 @@ def _build_main_action(
     if ctx.attr.strip_modules:
         module_strip_flag += "1"
 
+    base_kernel = base_kernel_utils.get_base_kernel(ctx)
+    pre_modinst_cmd = ""
+    # FIXME its own step
+    inputs = []
+    if base_kernel:
+        pre_modinst_cmd = """
+            # Fix up kernel.release before installing modules
+            cp -L {kernel_release} ${{OUT_DIR}}/include/config/kernel.release
+        """.format(kernel_release = base_kernel[KernelBuildMixedTreeInfo].kernel_release.path)
+        inputs.append(base_kernel[KernelBuildMixedTreeInfo].kernel_release)
+
     # Build the command for the main action.
     command = ctx.attr.config[KernelEnvAndOutputsInfo].get_setup_script(
         data = ctx.attr.config[KernelEnvAndOutputsInfo].data,
@@ -1178,6 +1189,9 @@ def _build_main_action(
            {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} {make_goals}
          # Set variables and create dirs for modules
            mkdir -p {modules_staging_dir}
+
+           {pre_modinst_cmd}
+
          # Install modules
            if grep -q "\\bmodules\\b" <<< "{make_goals}" ; then
                make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} DEPMOD=true O=${{OUT_DIR}} {module_strip_flag} INSTALL_MOD_PATH=$(realpath {modules_staging_dir}) modules_install
@@ -1185,6 +1199,9 @@ def _build_main_action(
                # Workaround as this file is required, hence just produce a placeholder.
                touch {internal_outs_under_out_dir}
            fi
+
+        echo "AFTER MODULES_INSTALL: $(cat ${{OUT_DIR}}/include/config/kernel.release)" >&2
+
          # Archive headers in OUT_DIR
            find ${{OUT_DIR}} -name *.h -print0                          \
                | tar czf {out_dir_kernel_headers_tar}                   \
@@ -1224,6 +1241,7 @@ def _build_main_action(
          """.format(
         cache_dir_post_cmd = cache_dir_step.post_cmd,
         kbuild_mixed_tree_cmd = kbuild_mixed_tree_ret.cmd,
+        pre_modinst_cmd = pre_modinst_cmd,
         search_and_cp_output = ctx.executable._search_and_cp_output.path,
         kbuild_mixed_tree_arg = kbuild_mixed_tree_ret.arg,
         dtstree_arg = "--srcdir ${OUT_DIR}/${dtstree}",
@@ -1254,7 +1272,7 @@ def _build_main_action(
     transitive_inputs.append(
         ctx.attr.config[KernelEnvAndOutputsInfo].inputs,
     )
-    inputs = [] + check_toolchain_outs
+    inputs += check_toolchain_outs
     inputs += kbuild_mixed_tree_ret.outputs
     for step in steps:
         inputs += step.inputs
