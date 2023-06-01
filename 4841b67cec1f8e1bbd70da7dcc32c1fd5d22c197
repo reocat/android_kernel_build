@@ -46,6 +46,30 @@
       },
       "revId": "4841b67cec1f8e1bbd70da7dcc32c1fd5d22c197",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1682de73_466e0bcd",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-01T17:55:14Z",
+      "side": 1,
+      "message": "Would this conflict with make_redirect?\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/debug.bzl;l\u003d55;drc\u003d44146f8f6e13221c5b95091697116d9125766c1e\n\nWhat happens if generate_btf\u003dTrue and --debug_modpost_warn?",
+      "parentUuid": "af983879_ebcef056",
+      "range": {
+        "startLine": 420,
+        "startChar": 4,
+        "endLine": 420,
+        "endChar": 15
+      },
+      "revId": "4841b67cec1f8e1bbd70da7dcc32c1fd5d22c197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
