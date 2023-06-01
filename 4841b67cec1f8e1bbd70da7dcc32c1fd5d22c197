@@ -70,6 +70,30 @@
       },
       "revId": "4841b67cec1f8e1bbd70da7dcc32c1fd5d22c197",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6baee647_8e6892ad",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-06-01T18:19:32Z",
+      "side": 1,
+      "message": "I have tested, it works ok. Even better, `make_filter` doesn\u0027t apply to `make_redirect` and `make_stderr.txt` contains \"Skipping BTF generation...\" warning.\n\nI also tested this behavior with simple binary that prints to stderr:\n```\necho -e \u0027#include \u003cstdio.h\u003e\\nint main() { fprintf(stderr, \"Hello, stderr!\\\\n\"); return 0; }\u0027 \u003e stderr_print.c\ngcc stderr_print.c -o stderr_print\n./stderr_print 2\u003e \u003e(sed \u0027s/stderr/foo/\u0027 \u003e\u00262) 2\u003e \u003e(tee log.txt \u003e\u00262)\n```\n\nHere it works the same: redirections work in parallel.",
+      "parentUuid": "1682de73_466e0bcd",
+      "range": {
+        "startLine": 420,
+        "startChar": 4,
+        "endLine": 420,
+        "endChar": 15
+      },
+      "revId": "4841b67cec1f8e1bbd70da7dcc32c1fd5d22c197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
