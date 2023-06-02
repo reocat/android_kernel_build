@@ -42,6 +42,17 @@ import %workspace%/build/kernel/kleaf/bazelrc/platforms.bazelrc
 # build --java_runtime_version=local_jdk
 build --tool_java_runtime_version=local_jdk
 
+# Block external downloads
+# NOTE: To ensure a strict no access policy, the following three flags
+#   need to be set/unset, see https://github.com/bazelbuild/bazel/discussions/18281
+#   for more details about this.
+# An empty string as argument requests the cache to be disabled.
+build --repository_cache=
+# Additional places to search for archives before accessing the network to download them.
+build --distdir=
+# If set, downloading using ctx.download{,_and_extract} is not allowed during repository fetching.
+build --experimental_repository_disable_download
+
 # By default, do not embed scmversion.
 build --workspace_status_command=build/kernel/kleaf/workspace_status_common.sh
 
