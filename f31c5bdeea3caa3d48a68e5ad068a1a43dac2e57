@@ -290,6 +290,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d5900c6_490dfc87",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1884,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-02T17:52:10Z",
+      "side": 1,
+      "message": "Here\u0027s my suggestion:\n\n- Turn this into a hard failure instead of silently filtering protected modules out;\n- On our end, the Kleaf team will work on uploading the list of protected GKI modules to ci.android.com, and making sure that `//common:kernel_aarch64_downloaded` has protected_modules_list set. (Internal Bug 285599560 to track this)",
+      "parentUuid": "faf133f5_ada1368e",
+      "range": {
+        "startLine": 1884,
+        "startChar": 0,
+        "endLine": 1884,
+        "endChar": 118
+      },
+      "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa51a931_06403a3d",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 4
