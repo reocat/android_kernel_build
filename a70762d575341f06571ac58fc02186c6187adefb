@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e263f0da_d51bf136",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1937,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-02T16:25:27Z",
+      "side": 1,
+      "message": "I think about this change again -- should we throw an error instead if the device kernel_build\u0027s module_outs has a protected GKI module specified?\n\nHere\u0027s what I think the correct set up should be:\n\n1. GKI\u0027s kernel_build\u0027s module_implicit_outs: list of all GKI modules (protected or unprotected)\n2. GKI\u0027s protected_modules_list: protected GKI modules\n3. device kernel_build\u0027s module_outs: list of overridden unprotected GKI modules. It must not contain #2, otherwise build error.\n4. device system_dlkm_module_list: list of protected or non-overridden unprotected GKI modules that the device actually needs (they would be in the system_dlkm image)\n\n@willmcvicker@google.com WDYT?",
+      "range": {
+        "startLine": 1937,
+        "startChar": 11,
+        "endLine": 1937,
+        "endChar": 44
+      },
+      "revId": "a70762d575341f06571ac58fc02186c6187adefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
