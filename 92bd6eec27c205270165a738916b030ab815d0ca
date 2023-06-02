@@ -68,6 +68,24 @@
       "parentUuid": "c19aaba8_12fc6ceb",
       "revId": "92bd6eec27c205270165a738916b030ab815d0ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc32811a_82f119b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-02T17:15:47Z",
+      "side": 1,
+      "message": "Looks like it is supported since 5.8. But for some reason, the test thinks that kcsan cannot be enabled on that branch with --kcsan.\n\nLet me know if you need my help on debugging this.",
+      "parentUuid": "aba8c051_c9f0e2a5",
+      "revId": "92bd6eec27c205270165a738916b030ab815d0ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
