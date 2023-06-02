@@ -46,6 +46,23 @@
       },
       "revId": "a70762d575341f06571ac58fc02186c6187adefb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "116670d1_dd2c39d8",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 1950,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-02T17:28:18Z",
+      "side": 1,
+      "message": "Elliot, please consider making this an error when an item in `all_module_basenames_file` is in `protected_modules_list` (that is, turn this in to a check instead of silently dropping protected GKI modules). Thanks!",
+      "revId": "a70762d575341f06571ac58fc02186c6187adefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

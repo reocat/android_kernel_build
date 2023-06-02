@@ -266,6 +266,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "faf133f5_ada1368e",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1884,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-02T17:28:18Z",
+      "side": 1,
+      "message": "Note: CL:2511076 does not set protected_modules_list for //common:kernel_aarch64_downloaded. I think we need to put this file in DefaultInfo so it shows up on build bots as well. This\u0027ll belong to a separate change.\n\n(That is, the change right now won\u0027t work with `//common:kernel_aarch64_downloaded` for now)",
+      "parentUuid": "929a842c_37921912",
+      "range": {
+        "startLine": 1884,
+        "startChar": 0,
+        "endLine": 1884,
+        "endChar": 118
+      },
+      "revId": "f31c5bdeea3caa3d48a68e5ad068a1a43dac2e57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa51a931_06403a3d",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 4
