@@ -50,6 +50,24 @@
       "message": "Is there a way to see what the error log is? As I can\u0027t open the link.",
       "revId": "92bd6eec27c205270165a738916b030ab815d0ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aba8c051_c9f0e2a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-02T17:13:42Z",
+      "side": 1,
+      "message": "Did you run `bazel test //build/kernel/kleaf:quick_tests` locally on android14-5.15 branch? It is failing on that branch.\n\nThe test that fails is\n\n```\n__main__.CompareTest#test_all (actual\u003dPosixPath(\u0027build/kernel/kleaf/tests/kernel_config_test/kernel_config_option_test_suite_kcsan_aarch64_test_actual/kcsan_config\u0027), expected\u003dPosixPath(\u0027build/kernel/kleaf/tests/kernel_config_test/data/kcsan_config\u0027))\n```\n\nThe error message is\n\n```\nCounter({\u0027CONFIG_KCSAN\u003dy\u0027: 1}) is not false : build/kernel/kleaf/tests/kernel_config_test/kernel_config_option_test_suite_kcsan_aarch64_test_actual/kcsan_config does not contain all lines from build/kernel/kleaf/tests/kernel_config_test/data/kcsan_config, missing\nCONFIG_KCSAN\u003dy\nTraceback (most recent call last):\n  File \"/buildbot/src/android/common-android14-5.15/out/bazel/output_user_root/aeb46c275a0698cff4a6f516b8783221/sandbox/linux-sandbox/716/execroot/__main__/bazel-out/k8-fastbuild/bin/build/kernel/kleaf/tests/kernel_config_test/kernel_config_option_test_suite_kcsan_aarch64_test.runfiles/__main__/build/kernel/kleaf/tests/utils/contain_lines_test.py\", line 98, in test_all\n    self._assert_contain_lines(actual\u003dactual_file, expected\u003dexpected_file)\n  File \"/buildbot/src/android/common-android14-5.15/out/bazel/output_user_root/aeb46c275a0698cff4a6f516b8783221/sandbox/linux-sandbox/716/execroot/__main__/bazel-out/k8-fastbuild/bin/build/kernel/kleaf/tests/kernel_config_test/kernel_config_option_test_suite_kcsan_aarch64_test.runfiles/__main__/build/kernel/kleaf/tests/utils/contain_lines_test.py\", line 106, in _assert_contain_lines\n    self.assertFalse(diff,\nAssertionError: Counter({\u0027CONFIG_KCSAN\u003dy\u0027: 1}) is not false : build/kernel/kleaf/tests/kernel_config_test/kernel_config_option_test_suite_kcsan_aarch64_test_actual/kcsan_config does not contain all lines from build/kernel/kleaf/tests/kernel_config_test/data/kcsan_config, missing\nCONFIG_KCSAN\u003dy\n```\n\nIs KCSAN supported on android14-5.15?",
+      "parentUuid": "c19aaba8_12fc6ceb",
+      "revId": "92bd6eec27c205270165a738916b030ab815d0ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
