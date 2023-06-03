@@ -15,7 +15,6 @@
 """A target that mimics [`kernel_build`](#kernel_build) from a list of prebuilt files."""
 
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
-load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(
     ":common_providers.bzl",
     "GcovInfo",
@@ -36,6 +35,7 @@ load(
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
+load(":hermetic_toolchain_utils.bzl", "hermetic_toolchain_utils")
 load(":kernel_config_settings.bzl", "kernel_config_settings")
 load(
     ":utils.bzl",
@@ -69,6 +69,8 @@ def _get_toolchain_version_info(ctx, all_deps):
     return KernelToolchainInfo(toolchain_version_file = toolchain_version_file)
 
 def _kernel_filegroup_impl(ctx):
+    hermetic_tools = hermetic_toolchain_utils.get(ctx)
+
     all_deps = ctx.files.srcs + ctx.files.deps
 
     modules_prepare_out_dir_tar_gz = utils.find_file("modules_prepare_outdir.tar.gz", all_deps, what = ctx.label)
@@ -108,7 +110,7 @@ def _kernel_filegroup_impl(ctx):
         # Reverse of kernel_unstripped_modules_archive
         unstripped_modules_archive = utils.find_file("unstripped_modules.tar.gz", all_deps, what = ctx.label, required = True)
         unstripped_dir = ctx.actions.declare_directory("{}/unstripped".format(ctx.label.name))
-        command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+        command = hermetic_tools.setup + """
             tar xf {unstripped_modules_archive} -C $(dirname {unstripped_dir}) $(basename {unstripped_dir})
         """.format(
             unstripped_modules_archive = unstripped_modules_archive.path,
@@ -117,10 +119,11 @@ def _kernel_filegroup_impl(ctx):
         debug.print_scripts(ctx, command, what = "unstripped_modules_archive")
         ctx.actions.run_shell(
             command = command,
-            inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + [
+            inputs = [
                 unstripped_modules_archive,
             ],
             outputs = [unstripped_dir],
+            tools = hermetic_tools.deps,
             progress_message = "Extracting unstripped_modules_archive {}".format(ctx.label),
             mnemonic = "KernelFilegroupUnstrippedModulesArchive",
         )
@@ -259,6 +262,6 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
         ),
         "protected_modules_list": attr.label(allow_single_file = True),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
-        "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
     } | _kernel_filegroup_additional_attrs(),
+    toolchains = [hermetic_toolchain_utils.toolchain_type],
 )
