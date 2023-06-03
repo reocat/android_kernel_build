@@ -12,9 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""An archive of headers in certain subdirectories under `OUT_DIR`."""
+
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
-load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
+load(":hermetic_toolchain_utils.bzl", "hermetic_toolchain_utils")
 load(
     ":common_providers.bzl",
     "KernelBuildInfo",
@@ -28,7 +30,9 @@ def _out_headers_allowlist_archive_impl(ctx):
 
     subdirs_pattern = "^" + ("|".join([subdir + "/" for subdir in ctx.attr.subdirs]))
 
-    command = ctx.attr._hermetic_tools[HermeticToolsInfo].setup + """
+    hermetic_tools = hermetic_toolchain_utils.get(ctx)
+
+    command = hermetic_tools.setup + """
             # Restore headers in OUT_DIR
               mkdir -p {out_dir}
               tar tf {out_dir_kernel_headers_tar} | \\
@@ -48,7 +52,7 @@ def _out_headers_allowlist_archive_impl(ctx):
         mnemonic = "OutHeadersAllowlistArchive",
         inputs = [ctx.attr.kernel_build[KernelBuildInfo].out_dir_kernel_headers_tar],
         outputs = [out_file],
-        tools = ctx.attr._hermetic_tools[HermeticToolsInfo].deps,
+        tools = hermetic_tools.deps,
         progress_message = "Creating headers archive {}".format(ctx.label),
         command = command,
     )
@@ -70,6 +74,6 @@ out_headers_allowlist_archive = rule(
             mandatory = True,
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
-        "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
     },
+    toolchains = [hermetic_toolchain_utils.toolchain_type],
 )
