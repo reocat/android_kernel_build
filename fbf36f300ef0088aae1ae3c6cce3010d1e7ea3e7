@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e59439e0_6ea3afbb",
+        "filename": "kleaf/impl/hermetic_toolchain_utils.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-05T18:14:04Z",
+      "side": 1,
+      "message": "nit: `get` seems a bit generic, maybe `getInfo`?",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 7
+      },
+      "revId": "fbf36f300ef0088aae1ae3c6cce3010d1e7ea3e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
