@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48726cba_00997220",
+        "filename": "kleaf/impl/get_kmi_string.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-05T14:40:09Z",
+      "side": 1,
+      "message": "why not `6.1-mainline` ?",
+      "range": {
+        "startLine": 24,
+        "startChar": 9,
+        "endLine": 24,
+        "endChar": 16
+      },
+      "revId": "9a8a695ef8357b6de1f27cde10728a741fa56376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4030130c_e86e3f06",
+        "filename": "kleaf/impl/get_kmi_string.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-05T14:40:09Z",
+      "side": 1,
+      "message": "is this rather `not \"android\" in kernel_release`",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 47
+      },
+      "revId": "9a8a695ef8357b6de1f27cde10728a741fa56376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84aa3a87_f341fd5b",
+        "filename": "kleaf/impl/get_kmi_string.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-05T14:40:09Z",
+      "side": 1,
+      "message": "what about `...android14-6-some-thing` ? just not supported? (that would be ok)",
+      "range": {
+        "startLine": 54,
+        "startChar": 63,
+        "endLine": 54,
+        "endChar": 66
+      },
+      "revId": "9a8a695ef8357b6de1f27cde10728a741fa56376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5de411f7_db94dd75",
+        "filename": "kleaf/impl/get_kmi_string.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-05T14:40:09Z",
+      "side": 1,
+      "message": "`[.]` \u003d\u003d `\\.` ?",
+      "range": {
+        "startLine": 54,
+        "startChar": 28,
+        "endLine": 54,
+        "endChar": 31
+      },
+      "revId": "9a8a695ef8357b6de1f27cde10728a741fa56376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e16aae9b_649b1ec1",
+        "filename": "kleaf/impl/get_kmi_string.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-05T14:40:09Z",
+      "side": 1,
+      "message": "use named groups to make this more readable and the evaluation a little more solid:\n\n```\nr\"^(?P\u003cversion\u003e\\d+[.]\\d+)[.](?P\u003csublevel\u003e\\d+)-(?P\u003cbranch\u003eandroid\\d+)-(?P\u003ckmi\u003e\\d+)(?:-.*)?$\"\n```",
+      "revId": "9a8a695ef8357b6de1f27cde10728a741fa56376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7682aaa6_35ba9ce4",
+        "filename": "kleaf/impl/get_kmi_string_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-05T14:40:09Z",
+      "side": 1,
+      "message": "One valid use case for doctests. Have not seen one in a long time 😊.",
+      "range": {
+        "startLine": 21,
+        "startChar": 27,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "9a8a695ef8357b6de1f27cde10728a741fa56376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
