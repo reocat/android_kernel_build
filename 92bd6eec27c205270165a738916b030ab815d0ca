@@ -86,6 +86,24 @@
       "parentUuid": "aba8c051_c9f0e2a5",
       "revId": "92bd6eec27c205270165a738916b030ab815d0ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c906fe7a_07714d12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-06-05T12:52:51Z",
+      "side": 1,
+      "message": "Tried local now on 5.15, I can see the same error.\nBut I\u0027m not sure how to fix it, is there any condition checker in kleaf?\n\n\nI guess in \"kleaf/tests/kernel_config_test/kernel_config_option_test.bzl\" it needs to get kernel version and if \u003e 5.15, then enable _kcsan_test. But how to get kernel version in that file then?\n\nAny suggestion is preferred.",
+      "parentUuid": "cc32811a_82f119b7",
+      "revId": "92bd6eec27c205270165a738916b030ab815d0ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
