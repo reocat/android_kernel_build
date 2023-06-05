@@ -906,7 +906,10 @@ def _define_prebuilts(target_configs, **kwargs):
                 ":use_prebuilt_gki_set": "@{}//{}{}".format(repo_name, name, MODULE_OUTS_FILE_SUFFIX),
                 "//conditions:default": ":" + name + "_module_outs_file",
             }),
-            protected_modules_list = target_configs[name].get("protected_modules_list"),
+            protected_modules_list = select({
+                ":use_prebuilt_gki_set": Label(name + "_protected_modules_list"),
+                "//conditions:default": target_configs[name].get("protected_modules_list"),
+            }),
             **kwargs
         )
 
@@ -937,6 +940,7 @@ def _define_prebuilts(target_configs, **kwargs):
             name + "_images",
             name + "_kmi_symbol_list",
             name + "_gki_artifacts",
+            name + "_protected_modules_list",
         ]
 
         native.filegroup(
