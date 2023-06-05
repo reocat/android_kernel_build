@@ -74,6 +74,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df402ae1_1fd5b63b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-05T12:48:14Z",
+      "side": 1,
+      "message": "Awaiting outcome of discussion in bug.",
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3da028c3_82f79403",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-05T12:48:14Z",
+      "side": 1,
+      "message": "nit: that might be nitpicking, but how does the interface look then? In particular I want to make sure we get the plural correct:\n\n`--gki_aarch64_additional_symbol_lists\u003dpath/to/list`, how are multiple lists specified?",
+      "range": {
+        "startLine": 147,
+        "startChar": 12,
+        "endLine": 147,
+        "endChar": 47
+      },
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "181452f0_78e0ff0b",
         "filename": "kleaf/bazelrc/flags.bazelrc",
         "patchSetId": 3
