@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b27d7573_f9f0de7d",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-05T14:23:18Z",
+      "side": 1,
+      "message": "some commentary would be helpful to distinguish the individual effects of those flags, in particular `--distdir\u003d` is unclear to me.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "2c7597e415acf879531b4bb076de1a316d600c22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
