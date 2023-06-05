@@ -122,6 +122,24 @@
       "parentUuid": "c906fe7a_07714d12",
       "revId": "92bd6eec27c205270165a738916b030ab815d0ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a5ea7ad_32dffe66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-05T15:07:35Z",
+      "side": 1,
+      "message": "If the feature is supported with with 5.8, then this should work on 5.15, right? So, please do not drop the test as it indicates that the set of config options enabled/disabled are not sufficient on 5.15 to enable KCSAN.",
+      "parentUuid": "95eebc07_5ff03396",
+      "revId": "92bd6eec27c205270165a738916b030ab815d0ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
