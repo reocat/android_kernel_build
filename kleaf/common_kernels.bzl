@@ -868,10 +868,14 @@ def _define_prebuilts(target_configs, **kwargs):
     for name, value in CI_TARGET_MAPPING.items():
         repo_name = value["repo_name"]
         main_target_outs = value["outs"]  # outs of target named {name}
+        downloaded_srcs = ["@{}//{}".format(repo_name, filename) for filename in main_target_outs]
+        protected_modules_list = target_configs[name].get("protected_modules_list")
+        if protected_modules_list:
+            downloaded_srcs.append(protected_modules_list)
 
         native.filegroup(
             name = name + "_downloaded",
-            srcs = ["@{}//{}".format(repo_name, filename) for filename in main_target_outs],
+            srcs = downloaded_srcs,
             tags = ["manual"],
         )
 
@@ -910,7 +914,7 @@ def _define_prebuilts(target_configs, **kwargs):
                 ":use_prebuilt_gki_set": "@{}//{}{}".format(repo_name, name, MODULE_OUTS_FILE_SUFFIX),
                 "//conditions:default": ":" + name + "_module_outs_file",
             }),
-            protected_modules_list = target_configs[name].get("protected_modules_list"),
+            protected_modules_list = protected_modules_list,
             **kwargs
         )
 

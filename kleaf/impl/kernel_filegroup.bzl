@@ -146,7 +146,11 @@ def _kernel_filegroup_impl(ctx):
         progress_message_note = progress_message_note,
     )
 
-    srcs_depset = depset(transitive = [target.files for target in ctx.attr.srcs])
+    non_transitive_files = []
+    if ctx.file.protected_modules_list:
+        non_transitive_files.append(ctx.file.protected_modules_list)
+
+    srcs_depset = depset(non_transitive_files, transitive = [target.files for target in ctx.attr.srcs])
     mixed_tree_files = depset(transitive = [_get_mixed_tree_files(target) for target in ctx.attr.srcs])
 
     return [
