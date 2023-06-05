@@ -937,6 +937,7 @@ def _define_prebuilts(target_configs, **kwargs):
             name + "_images",
             name + "_kmi_symbol_list",
             name + "_gki_artifacts",
+            name + "_protected_modules_list",
         ]
 
         native.filegroup(

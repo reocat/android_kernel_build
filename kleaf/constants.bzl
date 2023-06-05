@@ -101,6 +101,13 @@ GKI_DOWNLOAD_CONFIGS = [
             "abi_symbollist.report",
         ],
     },
+    {
+        "target_suffix": "protected_modules_list",
+        "mandatory": False,
+        "outs": [
+            "gki_aarch64_protected_modules",
+        ],
+    },
 ]
 
 # Key: Bazel target name in common_kernels.bzl
