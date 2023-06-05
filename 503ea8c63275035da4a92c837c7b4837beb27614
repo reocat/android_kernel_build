@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95b72c97_d303af2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-05T12:44:07Z",
+      "side": 1,
+      "message": "Awaiting resolution in the referenced bug.",
+      "parentUuid": "982c9f21_56ff4ecb",
+      "revId": "503ea8c63275035da4a92c837c7b4837beb27614",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f7f2ef8_eaca3b8c",
         "filename": "kleaf/workspace_status_stamp.py",
         "patchSetId": 1
