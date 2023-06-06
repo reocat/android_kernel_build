@@ -140,6 +140,24 @@
       "parentUuid": "95eebc07_5ff03396",
       "revId": "92bd6eec27c205270165a738916b030ab815d0ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bd3a165_06696de9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-06T14:15:48Z",
+      "side": 1,
+      "message": "IIUIC it\u0027s supported in `android14-5.15`, I noticed that in the generated configs, one of the diffs is `CONFIG_HAVE_ARCH_KCSAN\u003dy` \n\n* For `android14-6.1` is [enabled](https://android.git.corp.google.com/kernel/common/+/refs/heads/android14-6.1/arch/arm64/Kconfig#164).\n* For [`android14-5.15`](https://android.git.corp.google.com/kernel/common/+/refs/heads/android14-5.15/arch/arm64/Kconfig) is not.\n\nIt seems that [this is the patch](https://lore.kernel.org/all/20211129145732.27000-1-wangkefeng.wang@huawei.com/) where it was added.",
+      "parentUuid": "6a5ea7ad_32dffe66",
+      "revId": "92bd6eec27c205270165a738916b030ab815d0ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

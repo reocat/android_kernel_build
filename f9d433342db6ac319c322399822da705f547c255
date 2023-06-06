@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "677f781e_5b678984",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 1861,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-06T14:15:48Z",
+      "side": 1,
+      "message": "does `_kcsan` need to be included here as well?",
+      "range": {
+        "startLine": 1861,
+        "startChar": 46,
+        "endLine": 1861,
+        "endChar": 47
+      },
+      "revId": "f9d433342db6ac319c322399822da705f547c255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "717e65b8_3e8de77b",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-06T14:15:48Z",
+      "side": 1,
+      "message": "Just FYI; It seems that in `android14-5.15` `KCSAN` and `KCOV` [don\u0027t interact well](https://android.git.corp.google.com/kernel/common/+/refs/heads/android14-5.15/lib/Kconfig.kcsan#27) so please take it in count.",
+      "range": {
+        "startLine": 302,
+        "startChar": 8,
+        "endLine": 303,
+        "endChar": 50
+      },
+      "revId": "f9d433342db6ac319c322399822da705f547c255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f780928_e46725d2",
+        "filename": "kleaf/tests/kernel_config_test/data/kcsan_config",
+        "patchSetId": 12
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-06T14:15:48Z",
+      "side": 1,
+      "message": "nit: Remove empty line at the end.",
+      "revId": "f9d433342db6ac319c322399822da705f547c255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e9f4d12_bbfd8cc0",
+        "filename": "kleaf/tests/kernel_config_test/kcsan_test.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-06T14:15:48Z",
+      "side": 1,
+      "message": "2023",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "f9d433342db6ac319c322399822da705f547c255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
