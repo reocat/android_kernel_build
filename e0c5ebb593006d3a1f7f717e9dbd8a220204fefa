@@ -70,6 +70,24 @@
       "parentUuid": "ebdacd24_af56f04d",
       "revId": "e0c5ebb593006d3a1f7f717e9dbd8a220204fefa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f21ff293_45678961",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-06T17:15:17Z",
+      "side": 1,
+      "message": "The issue is that the original link\n\nhttps://ci.android.com/builds/latest/branches/aosp_kernel/targets/kleaf_docs/view/index.html\n\nwould stick like that always because we are going to disable the build on aosp_kernel. We just need one more build to show this redirection page, then we can disable the target on ci.android.com and delete this Bazel target.",
+      "parentUuid": "0867117d_b75c6bfc",
+      "revId": "e0c5ebb593006d3a1f7f717e9dbd8a220204fefa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
