@@ -15,7 +15,8 @@
 """Dist rules for devices with ABI monitoring enabled."""
 
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
-load("//build/bazel_common_rules/exec:exec.bzl", "exec", "exec_rule")
+load("//build/bazel_common_rules/exec:exec.bzl", "exec_rule")
+load(":hermetic_exec.bzl", "hermetic_exec")
 load(":abi/abi_transitions.bzl", "with_vmlinux_transition")
 
 _kernel_abi_dist_exec = exec_rule(
@@ -101,7 +102,7 @@ def kernel_abi_dist(
         **kwargs
     )
 
-    exec_macro = _kernel_abi_dist_exec if kernel_build_add_vmlinux else exec
+    exec_macro = _kernel_abi_dist_exec if kernel_build_add_vmlinux else hermetic_exec
     exec_macro(
         name = name,
         data = [
@@ -109,6 +110,9 @@ def kernel_abi_dist(
             kernel_abi + "_diff_executable",
         ],
         script = """
+          # Prevent use of host tools; kernel_build_add_vmlinux does not
+          # guarantee hermeticity.
+            PATH=
           # Copy to dist dir
             $(rootpath {copy_to_dist_dir}) $@
           # Check return code of diff_abi and kmi_enforced
