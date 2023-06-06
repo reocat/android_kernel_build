@@ -341,6 +341,30 @@
       },
       "revId": "9a8a695ef8357b6de1f27cde10728a741fa56376",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a9f126f_a1ecac2d",
+        "filename": "kleaf/impl/get_kmi_string_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-06T19:58:47Z",
+      "side": 1,
+      "message": "These are really simple tests so I\u0027d rather not write a fully-fledged unit test for it.\n\nHowever, bazel does not support running doc tests natively, only unit tests. So I have to add this shim.",
+      "parentUuid": "7682aaa6_35ba9ce4",
+      "range": {
+        "startLine": 21,
+        "startChar": 27,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "9a8a695ef8357b6de1f27cde10728a741fa56376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
