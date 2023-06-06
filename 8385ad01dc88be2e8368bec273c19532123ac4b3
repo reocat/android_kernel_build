@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d37aad96_06bdb6f9",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-06T20:24:21Z",
+      "side": 1,
+      "message": "`--gki_aarch64_additional_symbol_lists\u003d//path/to:a_label`. The label needs to be an exports_files(), a filegroup, etc.\n\nIf multiple files are needed, a filegroup is needed.",
+      "parentUuid": "3da028c3_82f79403",
+      "range": {
+        "startLine": 147,
+        "startChar": 12,
+        "endLine": 147,
+        "endChar": 47
+      },
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "181452f0_78e0ff0b",
         "filename": "kleaf/bazelrc/flags.bazelrc",
         "patchSetId": 3
