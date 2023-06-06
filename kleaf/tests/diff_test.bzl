@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("//build/bazel_common_rules/exec:exec.bzl", "exec_test")
+load("//build/kernel/kleaf/impl:hermetic_exec.bzl", "hermetic_exec_test")
 
 def diff_test(
         name,
@@ -20,19 +20,13 @@ def diff_test(
         actual):
     """Define a test that diff two files."""
 
-    exec_test(
+    hermetic_exec_test(
         name = name,
         data = [
             expected,
             actual,
-            "//build/kernel:hermetic-tools",
-            "//build/kernel:hermetic-tools/dirname",
-            "//build/kernel:hermetic-tools/realpath",
         ],
         script = """
-realpath=$(rootpath //build/kernel:hermetic-tools/realpath)
-dirname=$(rootpath //build/kernel:hermetic-tools/dirname)
-export PATH=$($realpath $($dirname $dirname))
 expected=$(rootpath {expected})
 actual=$(rootpath {actual})
 if ! diff -q $actual $expected; then
