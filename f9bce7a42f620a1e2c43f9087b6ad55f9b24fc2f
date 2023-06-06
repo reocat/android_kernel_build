@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfa5519c_e083d309",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-06T20:09:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "596e15fe_6aa2d6f1",
+      "range": {
+        "startLine": 9,
+        "startChar": 33,
+        "endLine": 9,
+        "endChar": 41
+      },
+      "revId": "f9bce7a42f620a1e2c43f9087b6ad55f9b24fc2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f8882ca_257dc069",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-06-06T15:39:14Z",
       "side": 1,
       "message": "should this `exit 1` too?",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 6
+      },
+      "revId": "f9bce7a42f620a1e2c43f9087b6ad55f9b24fc2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1b593f1_7fe0dc23",
+        "filename": "kleaf/tests/hermetic_test/BUILD.bazel",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-06T20:09:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f8882ca_257dc069",
       "range": {
         "startLine": 31,
         "startChar": 4,
