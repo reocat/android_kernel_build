@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "865add9e_f16e2a2c",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 872,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-06T23:27:23Z",
+      "side": 1,
+      "message": "This requires ACK tree to exist. The file should be downloaded along with other artifacts IMO; otherwise we can\u0027t ensure consistency between downloaded vmlinux and this file.",
+      "range": {
+        "startLine": 872,
+        "startChar": 33,
+        "endLine": 872,
+        "endChar": 83
+      },
+      "revId": "9a7aeda7ff22de82db1f2b3fb9fa933c3a9a6802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
