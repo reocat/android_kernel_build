@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "efa13b40_49538436",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-06T14:24:36Z",
+      "side": 1,
+      "message": "Fixing links:\n* [depends on !KCSAN_KCOV_BROKEN](https://android.googlesource.com/kernel/common/+/refs/heads/android14-5.15/lib/Kconfig.kcsan#27)",
+      "parentUuid": "717e65b8_3e8de77b",
+      "range": {
+        "startLine": 302,
+        "startChar": 8,
+        "endLine": 303,
+        "endChar": 50
+      },
+      "revId": "f9d433342db6ac319c322399822da705f547c255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f780928_e46725d2",
         "filename": "kleaf/tests/kernel_config_test/data/kcsan_config",
         "patchSetId": 12
