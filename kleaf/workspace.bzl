@@ -162,4 +162,7 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         "//build/kernel:hermetic_tools_toolchain",
     )
 
-    register_clang_toolchains()
+    # Sync with common.bazelrc
+    register_clang_toolchains(
+        user_clang_toolchain_local_symlink = "@kleaf_user_clang_toolchain//clang_user",
+    )
