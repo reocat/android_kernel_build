@@ -50,6 +50,11 @@ build --workspace_status_command=build/kernel/kleaf/workspace_status_common.sh
 # Always dump full test results
 test --test_output=errors --test_summary=terse
 
+# If the user provided clang toolchain has a BUILD file in it, ignore that
+# package. This is needed for @kleaf_user_clang_toolchain to work.
+# Sync with workspace.bzl.
+build --deleted_packages=@kleaf_user_clang_toolchain//clang_user
+
 # Support a device-specific bazelrc file
 try-import %workspace%/device.bazelrc
 
