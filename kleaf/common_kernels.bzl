@@ -910,7 +910,10 @@ def _define_prebuilts(target_configs, **kwargs):
                 ":use_prebuilt_gki_set": "@{}//{}{}".format(repo_name, name, MODULE_OUTS_FILE_SUFFIX),
                 "//conditions:default": ":" + name + "_module_outs_file",
             }),
-            protected_modules_list = target_configs[name].get("protected_modules_list"),
+            protected_modules_list = select({
+                ":use_prebuilt_gki_set": "@{}//gki_aarch64_protected_modules".format(repo_name),
+                "//conditions:default": target_configs[name].get("protected_modules_list"),
+            }),
             **kwargs
         )
 
