@@ -25,6 +25,7 @@ load(
 load("//build/kernel/kleaf:download_repo.bzl", "download_artifacts_repo")
 load("//build/kernel/kleaf:key_value_repo.bzl", "key_value_repo")
 load("//prebuilts/clang/host/linux-x86/kleaf:register.bzl", "register_clang_toolchains")
+load("//prebuilts/clang/host/linux-x86/kleaf:user_clang_toolchain_repository.bzl", "user_clang_toolchain_repository")
 
 # buildifier: disable=unnamed-macro
 def define_kleaf_workspace(common_kernel_package = None, include_remote_java_tools_repo = False):
@@ -161,5 +162,7 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         "//prebuilts/build-tools:py_toolchain",
         "//build/kernel:hermetic_tools_toolchain",
     )
+
+    user_clang_toolchain_repository()
 
     register_clang_toolchains()
