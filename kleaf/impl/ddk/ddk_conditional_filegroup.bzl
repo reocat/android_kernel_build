@@ -124,7 +124,7 @@ This should be set to `_DDK_CONDITIONAL_TRUE` when `True` is in
     },
 )
 
-def ddk_conditional_filegroup(
+def _ddk_conditional_filegroup_macro(
         name,
         config,
         value,
@@ -158,3 +158,48 @@ def ddk_conditional_filegroup(
         srcs = srcs,
         **kwargs
     )
+
+# buildifier: disable=unnamed-macro
+def flatten_conditional_srcs(
+        module_name,
+        conditional_srcs,
+        **kwargs):
+    """Helper to flatten `conditional_srcs`.
+
+    Args:
+        module_name: name of `ddk_module` or `ddk_submodule`
+        conditional_srcs: conditional sources
+        **kwargs: additional kwargs to internal rules
+
+    Returns:
+        A list of targets to be palced in srcs
+    """
+
+    if not conditional_srcs:
+        return []
+    flattened_conditional_srcs = []
+    for config, config_srcs_dict in conditional_srcs.items():
+        for config_value, config_srcs in config_srcs_dict.items():
+            if type(config_value) != "bool":
+                fail("{workspace}//{package}:{name}: expected value of config {config} must be a bool, but got {config_value} of type {value_type}".format(
+                    workspace = native.repository_name(),
+                    package = native.package_name(),
+                    name = module_name,
+                    config_value = config_value,
+                    config = config,
+                    value_type = type(config_value),
+                ))
+            fg_name = "{name}_{config}_{value}_srcs".format(
+                name = module_name,
+                config = config,
+                value = utils.normalize(str(config_value)),
+            )
+            _ddk_conditional_filegroup_macro(
+                name = fg_name,
+                config = config,
+                value = config_value,
+                srcs = config_srcs,
+                **kwargs
+            )
+            flattened_conditional_srcs.append(fg_name)
+    return flattened_conditional_srcs
