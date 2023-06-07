@@ -144,6 +144,11 @@ class BazelWrapper(object):
                  """`repo manifest -r`.""",
             type=_require_absolute_path,
         )
+        parser.add_argument(
+            "--custom_clang",
+            help="Absolute path to a custom clang toolchain",
+            type=_require_absolute_path,
+        )
 
         # known_args: List of arguments known by this bazel wrapper. These
         #   are stripped from the final bazel invocation.
@@ -176,6 +181,10 @@ class BazelWrapper(object):
 
         if self.known_args.repo_manifest is not None:
             self.env["KLEAF_REPO_MANIFEST"] = self.known_args.repo_manifest
+
+        if self.known_args.custom_clang is not None:
+            self.env["KLEAF_CUSTOM_CLANG_PATH"] = self.known_args.custom_clang
+            self.transformed_command_args.append("--config=custom_clang")
 
         cache_dir_bazel_rc = f"{self.absolute_out_dir}/bazel/cache_dir.bazelrc"
         os.makedirs(os.path.dirname(cache_dir_bazel_rc), exist_ok=True)
