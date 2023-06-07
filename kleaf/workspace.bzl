@@ -25,6 +25,7 @@ load(
 load("//build/kernel/kleaf:download_repo.bzl", "download_artifacts_repo")
 load("//build/kernel/kleaf:key_value_repo.bzl", "key_value_repo")
 load("//prebuilts/clang/host/linux-x86/kleaf:register.bzl", "register_clang_toolchains")
+load("//prebuilts/clang/host/linux-x86/kleaf:custom_clang_repository.bzl", "custom_clang_repository")
 
 # buildifier: disable=unnamed-macro
 def define_kleaf_workspace(common_kernel_package = None, include_remote_java_tools_repo = False):
@@ -153,6 +154,8 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
     native.register_toolchains(
         "@local_jdk//:all",
     )
+
+    custom_clang_repository()
 
     native.register_toolchains(
         "//prebuilts/build-tools:py_toolchain",
