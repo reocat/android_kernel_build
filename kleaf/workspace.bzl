@@ -87,6 +87,7 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
     gki_prebuilts_files = []
     gki_prebuilts_optional_files = []
     gki_prebuilts_files += CI_TARGET_MAPPING["kernel_aarch64"]["outs"]
+    gki_prebuilts_optional_files += CI_TARGET_MAPPING["kernel_aarch64"]["optional_outs"]
     for config in GKI_DOWNLOAD_CONFIGS:
         if config.get("mandatory", True):
             gki_prebuilts_files += config["outs"]
