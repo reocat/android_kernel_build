@@ -72,12 +72,13 @@ def kernel_module(
         outs = ["nfc.ko"],
         kernel_build = "//common:kernel_aarch64",
     )
-    ```
+    ``
 
     Args:
-        name: Name of this kernel module.
+        name:
+          Name of this kernel module.
         srcs: Source files to build this kernel module. If unspecified or value
-          is `None`, it is by default the list in the above example:
+          is `None, it is by default the list in the above example:
           ```
           glob([
             "**/*.c",
