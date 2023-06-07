@@ -12,14 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
+"""Compress the unstripped modules into a tarball."""
+
 load(
     ":common_providers.bzl",
     "KernelUnstrippedModulesInfo",
 )
 load(":debug.bzl", "debug")
+load(":hermetic_toolchain.bzl", "hermetic_toolchain")
 
 def _kernel_unstripped_modules_archive_impl(ctx):
+    hermetic_tools = hermetic_toolchain.get(ctx)
+
     # Early elements = higher priority. In-tree modules from base_kernel has highest priority,
     # then in-tree modules of the device kernel_build, then external modules (in an undetermined
     # order).
@@ -27,13 +31,10 @@ def _kernel_unstripped_modules_archive_impl(ctx):
     directories_depsets += [kernel_module[KernelUnstrippedModulesInfo].directories for kernel_module in ctx.attr.kernel_modules]
     srcs = depset(transitive = directories_depsets, order = "postorder").to_list()
 
-    inputs = ctx.attr._hermetic_tools[HermeticToolsInfo].deps + srcs
-
     out_file = ctx.actions.declare_file("{}/unstripped_modules.tar.gz".format(ctx.attr.name))
     unstripped_dir = ctx.genfiles_dir.path + "/unstripped"
 
-    command = ""
-    command += ctx.attr._hermetic_tools[HermeticToolsInfo].setup
+    command = hermetic_tools.setup
     command += """
         mkdir -p {unstripped_dir}
     """.format(unstripped_dir = unstripped_dir)
@@ -57,8 +58,9 @@ def _kernel_unstripped_modules_archive_impl(ctx):
 
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
-        inputs = inputs,
+        inputs = srcs,
         outputs = [out_file],
+        tools = hermetic_tools.deps,
         progress_message = "Compressing unstripped modules {}".format(ctx.label),
         command = command,
         mnemonic = "KernelUnstrippedModulesArchive",
@@ -91,7 +93,7 @@ It requires that the base `kernel_build` has `collect_unstripped_modules = True`
 """,
             providers = [KernelUnstrippedModulesInfo],
         ),
-        "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
+    toolchains = [hermetic_toolchain.type],
 )
