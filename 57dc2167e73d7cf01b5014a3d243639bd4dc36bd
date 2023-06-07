@@ -33,6 +33,29 @@
       "message": "http://b/285599560#comment9 needs to be resolved before proceeding with this.\nMarking WIP",
       "revId": "57dc2167e73d7cf01b5014a3d243639bd4dc36bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e06d88b_661e3d0d",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-07T18:02:42Z",
+      "side": 1,
+      "message": "wouldn\u0027t this prevent //common:kernel_aarch64_downloaded from working? AFAIK Pixel is going to depend on this some time later.",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 48
+      },
+      "revId": "57dc2167e73d7cf01b5014a3d243639bd4dc36bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
