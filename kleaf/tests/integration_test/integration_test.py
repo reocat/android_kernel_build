@@ -485,6 +485,24 @@ class KleafIntegrationTest(KleafIntegrationTestBase):
         self.assertNotIn("DECLARED_SET", stderr)
         self.assertNotIn("DECLARED_UNSET", stderr)
 
+    def test_custom_clang(self):
+        """Test --custom_clang option."""
+
+        clang_version = None
+        build_config_constants = f"{self._common()}/build.config.constants"
+        with open(build_config_constants) as f:
+            for line in f.read().splitlines():
+                if line.startswith("CLANG_VERSION="):
+                    clang_version = line.strip().split("=", 2)[1]
+        self.assertIsNotNone(clang_version)
+        clang_dir = f"prebuilts/clang/host/linux-x86/clang-{clang_version}"
+        clang_dir = os.path.realpath(clang_dir)
+
+        args = [
+            f"--custom_clang={clang_dir}",
+            f"//{self._common()}:kernel_dist",
+        ] + _FASTEST
+        self._build(args)
 
 class ScmversionIntegrationTest(KleafIntegrationTestBase):
 
