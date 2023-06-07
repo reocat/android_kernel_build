@@ -12,8 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Build GKI artifacts, including GKI boot images."""
+
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
 load(":common_providers.bzl", "KernelBuildInfo")
 load(":constants.bzl", "GKI_ARTIFACTS_AARCH64_OUTS")
@@ -69,6 +72,13 @@ def _gki_artifacts_impl(ctx):
         size_cmd += """
             export BUILD_GKI_BOOT_IMG{var_name}_SIZE={size}
         """.format(var_name = var_name, size = size)
+
+    # b/283225390: boot images with --gcov may overflow the boot image size
+    #   check when adding AVB hash footer.
+    if ctx.attr._gcov[BuildSettingInfo].value:
+        size_cmd += """
+            export BUILD_GKI_BOOT_SKIP_AVB=1
+        """
 
     inputs += images
 
@@ -159,6 +169,7 @@ For example:
             default = Label("//build/kernel:build_utils"),
             cfg = "exec",
         ),
+        "_gcov": attr.label(default = "//build/kernel/kleaf:gcov"),
         "_testkey": attr.label(default = "//tools/mkbootimg:gki/testdata/testkey_rsa4096.pem", allow_single_file = True),
     },
 )
