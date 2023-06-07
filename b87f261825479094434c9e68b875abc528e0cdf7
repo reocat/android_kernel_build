@@ -33,6 +33,41 @@
       "message": "For debugging only, not a normal GKI build?",
       "revId": "b87f261825479094434c9e68b875abc528e0cdf7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3da1a97f_27bf60bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-06-07T13:44:54Z",
+      "side": 1,
+      "message": "What\u0027s the build error here? can\u0027t see it.",
+      "revId": "b87f261825479094434c9e68b875abc528e0cdf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc762309_f9384b4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-06-07T13:44:54Z",
+      "side": 1,
+      "message": "This can only be enabled when --kcsan is passed to bazel build, it\u0027s the same as --kasan. It won\u0027t enable on normal GKI build, but only enable if developer wants to build separately.",
+      "parentUuid": "f2d82d29_19480a95",
+      "revId": "b87f261825479094434c9e68b875abc528e0cdf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
