@@ -154,6 +154,30 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         "@local_jdk//:all",
     )
 
+    native.new_local_repository(
+        name = "kleaf_custom_clang",
+        path = "prebuilts/clang/host/linux-x86/clang-mine",
+        build_file_content = """
+
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "binaries",
+    srcs = glob([
+        "bin/*",
+        "lib/*",
+    ]),
+)
+
+filegroup(
+    name = "includes",
+    srcs = glob([
+        "lib/clang/*/include/**",
+    ]),
+)
+"""
+    )
+
     native.register_toolchains(
         "//prebuilts/build-tools:py_toolchain",
         "//build/kernel:hermetic_tools_toolchain",
