@@ -17,6 +17,7 @@
 # rel_path <to> <from>
 # Generate relative directory path to reach directory <to> from <from>
 function rel_path() {
+  echo "WARNING: rel_path is deprecated. For Kleaf builds, use 'realpath $1 --relative-to $2' instead." >&2
   ${ROOT_DIR}/build/kernel/build-tools/path/linux-x86/realpath "$1" --relative-to="$2"
 }
 
@@ -24,7 +25,8 @@ function rel_path() {
 # rel_path2 <to> <from>
 # Generate relative directory path to reach directory <to> from <from>
 function rel_path2() {
-  rel_path "$@"
+  echo "ERROR: rel_path2 is deprecated. For Kleaf builds, use 'realpath $1 --relative-to $2' instead." >&2
+  exit 1
 }
 
 # $1 directory of kernel modules ($1/lib/modules/x.y)
@@ -270,7 +272,10 @@ function build_system_dlkm() {
   tar -czf "${DIST_DIR}/system_dlkm_staging_archive.tar.gz" -C "${SYSTEM_DLKM_STAGING_DIR}" .
 }
 
+# $1 if set, generate the vendor_dlkm_staging_archive.tar.gz archive
 function build_vendor_dlkm() {
+  local vendor_dlkm_archive=$1
+
   echo "========================================================"
   echo " Creating vendor_dlkm image"
 
@@ -333,6 +338,11 @@ function build_vendor_dlkm() {
 
   build_image "${VENDOR_DLKM_STAGING_DIR}" "${vendor_dlkm_props_file}" \
     "${DIST_DIR}/vendor_dlkm.img" /dev/null
+
+  if [ -n "${vendor_dlkm_archive}" ]; then
+    # Archive vendor_dlkm_staging_dir
+    tar -czf "${DIST_DIR}/vendor_dlkm_staging_archive.tar.gz" -C "${VENDOR_DLKM_STAGING_DIR}" .
+  fi
 }
 
 function check_mkbootimg_path() {
@@ -614,6 +624,8 @@ function build_gki_artifacts_info() {
   artifacts_info="${artifacts_info} --prop KERNEL_RELEASE:${KERNEL_RELEASE}"
 
   echo "${artifacts_info}" > "$1"
+
+  echo "kernel_release=${KERNEL_RELEASE}" >> "$1"
 }
 
 # build_gki_boot_images <uncompressed kernel path>.
