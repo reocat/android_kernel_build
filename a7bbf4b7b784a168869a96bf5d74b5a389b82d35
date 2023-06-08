@@ -16,6 +16,24 @@
       "message": "The build errors seem legit. PTAL",
       "revId": "a7bbf4b7b784a168869a96bf5d74b5a389b82d35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53db1195_c6d32db8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-08T17:00:27Z",
+      "side": 1,
+      "message": "the build errors are due to KMI breakages in Pixel, unrelated to this change.",
+      "parentUuid": "1d992718_f527a32e",
+      "revId": "a7bbf4b7b784a168869a96bf5d74b5a389b82d35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
