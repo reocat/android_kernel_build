@@ -89,6 +89,41 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e490bbb_cc073ce8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-08T09:31:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df402ae1_1fd5b63b",
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea208389_dbba1432",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-08T09:31:42Z",
+      "side": 1,
+      "message": "The only thing that bothers me with the change is that we need to have a change in the common kernels (adding the filegroup to the symbol list list). Is there a chance that we can handle this within Kleaf only? E.g. by actually defining an implicit input in kernel_build? After all, if this is a flag it should apply to all builds and not just the ones that happen to have the filegroup defined.",
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3da028c3_82f79403",
@@ -126,6 +161,30 @@
       "side": 1,
       "message": "`--gki_aarch64_additional_symbol_lists\u003d//path/to:a_label`. The label needs to be an exports_files(), a filegroup, etc.\n\nIf multiple files are needed, a filegroup is needed.",
       "parentUuid": "3da028c3_82f79403",
+      "range": {
+        "startLine": 147,
+        "startChar": 12,
+        "endLine": 147,
+        "endChar": 47
+      },
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2595287c_f69bd763",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-08T09:31:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d37aad96_06bdb6f9",
       "range": {
         "startLine": 147,
         "startChar": 12,
