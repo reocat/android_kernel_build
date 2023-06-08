@@ -144,6 +144,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be8b42d9_ce985a21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-08T19:03:13Z",
+      "side": 1,
+      "message": "What you said is doable by using it in the define_common_kernels() macro implementation.\n\n---\n\nHere\u0027s the counter argument for this: By wrapping the implementation detail in macros (define_common_kernels), it is less DAMP, and unclear which targets this flag affects. \n\nIn fact, the more DAMP and Bazellic representation would be to unroll the macro in define_common_kernels to call the kernel_build() directly. (We have an internal bug 256196368 that tracks the unrolling of define_common_kernels, but we never got time to clean it up.)\n\n---\n\nThat being said, I agree that the flag should stay in define_common_kernels() and avoid the common/ changes to avoid the usage of the flag to be spread across multiple projects. This way, if the implementation of the flag needs to change, it\u0027ll be contained in the build/kernel project.",
+      "parentUuid": "ea208389_dbba1432",
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3da028c3_82f79403",
         "filename": "kleaf/BUILD.bazel",
         "patchSetId": 3
