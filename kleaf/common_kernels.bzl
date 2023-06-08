@@ -824,6 +824,11 @@ def define_common_kernels(
         kernel_build = ":kernel_aarch64",
     )
 
+    kernel_compile_commands(
+        name = "kernel_x86_64_compile_commands",
+        kernel_build = ":kernel_x86_64",
+    )
+
     string_flag(
         name = "kernel_kythe_corpus",
         # TODO(b/201801372): Remove the default value once build bots are configured properly.
