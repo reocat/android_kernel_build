@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23162080_2c7d0f59",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-09T18:55:07Z",
+      "side": 1,
+      "message": "Sorry I didn\u0027t catch this before.\n\nThe file name is aarch64 specific.\n\nThis file name should be part of CI_TARGET_MAPPING\u0027s configuration; I think we are going to allow downloading riscv GKI in the future once riscv catches momentum.",
+      "range": {
+        "startLine": 913,
+        "startChar": 47,
+        "endLine": 913,
+        "endChar": 76
+      },
+      "revId": "013b5477a2ad637dc5bce11fe1ab74f6997eabeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
