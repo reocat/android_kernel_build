@@ -24,6 +24,9 @@ load("//build/bazel_common_rules/workspace:external.bzl", "import_external_repos
 import_external_repositories(
     rules_rust = True,
 )
-load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
+load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies")
 rules_rust_dependencies()
-rust_register_toolchains()
+register_toolchains(
+    "//prebuilts/rust/linux-x86/1.68.0:rust_linux_x86_64",
+    "//prebuilts/rust/linux-x86/1.68.0:rust_android_arm64",
+)
