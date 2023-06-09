@@ -21,12 +21,11 @@ def _get(ctx):
 
     Args:
         ctx: ctx. The rule must contain
-
-        ```
-        toolchains = [
-            hermetic_toolchain.type,
-        ]
-        ```
+            ```
+            toolchains = [
+                hermetic_toolchain.type,
+            ]
+            ```
     Returns:
         _HermeticToolchainInfo (see hermetic_tools.bzl)."""
     return ctx.toolchains[_TOOLCHAIN_TYPE].hermetic_toolchain_info
