@@ -162,6 +162,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "448f8590_261a7e17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-09T08:45:43Z",
+      "side": 1,
+      "message": "My main concern is that we offer a general flag similar to `--lto`, but it requires additional work per target, unlike `--lto`. So, I anticipate that we see a bug in the future asking why this features is not working despite having specified the flag correctly.\n\nAs such, I think this should propagate automatically without having to specify it in the kernel trees. It is a tradeoff I guess.",
+      "parentUuid": "be8b42d9_ce985a21",
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3da028c3_82f79403",
         "filename": "kleaf/BUILD.bazel",
         "patchSetId": 3
