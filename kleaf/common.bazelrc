@@ -38,6 +38,9 @@ import %workspace%/build/kernel/kleaf/bazelrc/flags.bazelrc
 import %workspace%/build/kernel/kleaf/bazelrc/hermetic_cc.bazelrc
 import %workspace%/build/kernel/kleaf/bazelrc/platforms.bazelrc
 
+# Use cflags / ldflags from toolchains
+build --experimental_kernel_use_resolved_toolchains
+
 # Ensure to always use @local_jdk; the checked-in JDK.
 # build --java_runtime_version=local_jdk
 build --tool_java_runtime_version=local_jdk
