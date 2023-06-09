@@ -32,6 +32,32 @@
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2615849?revision\u003d10",
       "fixSuggestions": [],
       "key": {
+        "uuid": "6b2ed518_45804e9b",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-06-09T11:00:18Z",
+      "side": 1,
+      "message": "syntax error near \u003c\u003c",
+      "range": {
+        "startLine": 912,
+        "startChar": 3,
+        "endLine": 912,
+        "endChar": 3
+      },
+      "revId": "e60029d3323a1d78d8a83e6ea6eee44504670f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000046510828",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2615849?revision\u003d10",
+      "fixSuggestions": [],
+      "key": {
         "uuid": "05f9dde2_7013532a",
         "filename": "kleaf/impl/kernel_filegroup.bzl",
         "patchSetId": 10
@@ -41,6 +67,32 @@
         "id": 1757831
       },
       "writtenOn": "2023-06-09T11:00:14Z",
+      "side": 1,
+      "message": "syntax error near \u003c\u003c",
+      "range": {
+        "startLine": 306,
+        "startChar": 3,
+        "endLine": 306,
+        "endChar": 3
+      },
+      "revId": "e60029d3323a1d78d8a83e6ea6eee44504670f8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000046510828",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2615849?revision\u003d10",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e3b19684_f3c28725",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-06-09T11:00:18Z",
       "side": 1,
       "message": "syntax error near \u003c\u003c",
       "range": {
