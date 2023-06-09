@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55311019_778d8913",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-09T18:45:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99237df7_31bb12a9",
+      "revId": "57dc2167e73d7cf01b5014a3d243639bd4dc36bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "631d532c_53e42500",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e28f6ac6_ab8bb937",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-09T18:45:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "631d532c_53e42500",
+      "revId": "57dc2167e73d7cf01b5014a3d243639bd4dc36bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e06d88b_661e3d0d",
@@ -48,6 +84,30 @@
       "writtenOn": "2023-06-07T18:02:42Z",
       "side": 1,
       "message": "wouldn\u0027t this prevent //common:kernel_aarch64_downloaded from working? AFAIK Pixel is going to depend on this some time later.",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 48
+      },
+      "revId": "57dc2167e73d7cf01b5014a3d243639bd4dc36bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e93c8dc9_78afdf22",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-09T18:45:38Z",
+      "side": 1,
+      "message": "Added an option to re-enable access if needed.",
+      "parentUuid": "4e06d88b_661e3d0d",
       "range": {
         "startLine": 54,
         "startChar": 8,
