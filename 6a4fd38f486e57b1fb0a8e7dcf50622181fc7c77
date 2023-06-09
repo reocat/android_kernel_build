@@ -76,6 +76,83 @@
       "message": "File is not formatted. Run `buildifier kleaf/bazel.rust.WORKSPACE` to format the file, or apply the suggested fix.",
       "revId": "6a4fd38f486e57b1fb0a8e7dcf50622181fc7c77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000046559684",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2617700?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "dab4bbc7_2f8a70b3",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.rust.WORKSPACE",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 21,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/bazel.rust.WORKSPACE",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/bazel.rust.WORKSPACE",
+              "range": {
+                "startLine": 27,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/bazel.rust.WORKSPACE",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 28,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/bazel.rust.WORKSPACE",
+              "range": {
+                "startLine": 29,
+                "startChar": 0,
+                "endLine": 29,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "80e10c04_69328bb8",
+        "filename": "kleaf/bazel.rust.WORKSPACE",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-06-09T22:28:59Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/bazel.rust.WORKSPACE` to format the file, or apply the suggested fix.",
+      "revId": "6a4fd38f486e57b1fb0a8e7dcf50622181fc7c77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
