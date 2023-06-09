@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6a2c2f0_41142c28",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-09T18:50:57Z",
+      "side": 1,
+      "message": "Consider adding `--config\u003dinternet` here",
+      "revId": "87d7fd2499b8ad4349785d311f80ccab076e1a4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8dc7c8a_ae1f368d",
+        "filename": "kleaf/bazelrc/network.bazelrc",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-09T18:50:57Z",
+      "side": 1,
+      "message": "Do you have to set --repository_cache and --distdir when we allow internet?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 14
+      },
+      "revId": "87d7fd2499b8ad4349785d311f80ccab076e1a4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
