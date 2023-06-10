@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000046568925",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2621314?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "e13d96c9_35342b05",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/cc_testing/BUILD.bazel",
+              "range": {
+                "startLine": 4,
+                "startChar": 0,
+                "endLine": 5,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/tests/cc_testing/BUILD.bazel",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 21,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/tests/cc_testing/BUILD.bazel",
+              "range": {
+                "startLine": 23,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": "    tools \u003d [\":rustlib_host\"],\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "977f70d9_33f7e816",
+        "filename": "kleaf/tests/cc_testing/BUILD.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-06-10T00:09:03Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/cc_testing/BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "3514d9b9638cf8eb2e346c49975d57e7670a785b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
