@@ -39,6 +39,29 @@
       },
       "revId": "87d7fd2499b8ad4349785d311f80ccab076e1a4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a14dede_5dadb177",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-10T00:10:39Z",
+      "side": 1,
+      "message": "Also, I think this should be moved to network.bazelrc and separated to a different CL. We should inform partners about this before actually flipping this on, and tell them the workaround is to use --config\u003dno_internet",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 26
+      },
+      "revId": "87d7fd2499b8ad4349785d311f80ccab076e1a4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
