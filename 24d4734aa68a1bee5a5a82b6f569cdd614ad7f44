@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "976a5a5e_89127b29",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-12T22:55:26Z",
+      "side": 1,
+      "message": "\u003e File is not formatted. Run `buildifier kleaf/BUILD.bazel` to format the file, or apply the suggested fix.\n\nPlease fix.",
+      "parentUuid": "8578a181_c307e63f",
+      "revId": "24d4734aa68a1bee5a5a82b6f569cdd614ad7f44",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
