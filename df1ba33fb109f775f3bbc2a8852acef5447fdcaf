@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f251337_c6812600",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-14T16:17:38Z",
+      "side": 1,
+      "message": "this will introduce a hard dependency between `kernel/build` project and `\tplatform/prebuilts/clang/host/linux-x86` can we make it try-import instead?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 74
+      },
+      "revId": "df1ba33fb109f775f3bbc2a8852acef5447fdcaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
