@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "35115cd6_0b727bb5",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-14T16:15:06Z",
+      "side": 1,
+      "message": "does this show up as performance issue? if so, directly probing for known paths (like `bin/clang`) could shortcut the lookup",
+      "revId": "afc2a908d2e839806a5495bff6f319dd237c7c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b581cfdf_57c0ca8b",
         "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
         "patchSetId": 3
@@ -20,6 +37,23 @@
         "endLine": 104,
         "endChar": 12
       },
+      "revId": "afc2a908d2e839806a5495bff6f319dd237c7c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41590f90_7bb0dd97",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-14T16:15:06Z",
+      "side": 1,
+      "message": "what if the detection fails (i.e. compiler_executable is still None). Is that just a fatal exception?",
       "revId": "afc2a908d2e839806a5495bff6f319dd237c7c30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
