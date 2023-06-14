@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83fd0523_05c308aa",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-14T18:28:06Z",
+      "side": 1,
+      "message": "I changed it to cc_common.get_tool_for_action and it appears to work. There shouldn\u0027t be any performance impact now.",
+      "parentUuid": "f458dd28_e78399fe",
+      "revId": "afc2a908d2e839806a5495bff6f319dd237c7c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b581cfdf_57c0ca8b",
