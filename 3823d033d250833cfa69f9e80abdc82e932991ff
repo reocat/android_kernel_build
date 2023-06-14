@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000046847663",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2626132?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "64214652_ac2da119",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "BUILD.bazel",
+              "range": {
+                "startLine": 15,
+                "startChar": 0,
+                "endLine": 16,
+                "endChar": 0
+              },
+              "replacement": "load(\"//build/kernel/kleaf:hermetic_tools.bzl\", \"hermetic_genrule\", \"hermetic_tools\")\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "0f3e2fa2_182e53c9",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-06-14T17:25:10Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "3823d033d250833cfa69f9e80abdc82e932991ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
