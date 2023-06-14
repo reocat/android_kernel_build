@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f458dd28_e78399fe",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-14T17:52:58Z",
+      "side": 1,
+      "message": "Yes. That\u0027s why there\u0027s a TODO tag here\n\n\nHowever, we do not have any known paths because it is a full path (prebuilts/clang/host/linux-x86/clang-r?????/bin/clang).",
+      "parentUuid": "35115cd6_0b727bb5",
+      "revId": "afc2a908d2e839806a5495bff6f319dd237c7c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b581cfdf_57c0ca8b",
@@ -54,6 +72,42 @@
       "writtenOn": "2023-06-14T16:15:06Z",
       "side": 1,
       "message": "what if the detection fails (i.e. compiler_executable is still None). Is that just a fatal exception?",
+      "revId": "afc2a908d2e839806a5495bff6f319dd237c7c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4420534_49c19d6e",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-14T17:52:58Z",
+      "side": 1,
+      "message": "Yes. I\u0027ll make this fail earlier though.",
+      "parentUuid": "41590f90_7bb0dd97",
+      "revId": "afc2a908d2e839806a5495bff6f319dd237c7c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f612697_b5917b8e",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-14T17:52:58Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "41590f90_7bb0dd97",
       "revId": "afc2a908d2e839806a5495bff6f319dd237c7c30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
