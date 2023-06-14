@@ -14,7 +14,6 @@
 
 """Helper to resolve toolchain for a single platform."""
 
-load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     "@bazel_tools//tools/build_defs/cc:action_names.bzl",
     "CPP_LINK_EXECUTABLE_ACTION_NAME",
@@ -92,15 +91,25 @@ def _kernel_platform_toolchain_impl(ctx):
         depset(additional_libs),
     ])
 
+    # TODO(b/287143650): cc_toolchain.compiler_executable does not work, so
+    # look it up.
+    compiler_executable = None
+    for file in cc_toolchain.all_files.to_list():
+        if file.basename == "clang":
+            compiler_executable = file
+            break
+
+    # All executables are in the same place, so just use the compiler executable
+    # to locate PATH.
+    bin_path = compiler_executable.dirname
+
     return KernelPlatformToolchainInfo(
         compiler_version = cc_toolchain.compiler,
         toolchain_id = cc_toolchain.toolchain_id,
         all_files = all_files,
         cflags = compile_command_line,
         ldflags = link_command_line,
-        # All executables are in the same place, so just use the compiler executable
-        # to locate PATH.
-        bin_path = paths.dirname(cc_toolchain.compiler_executable),
+        bin_path = bin_path,
     )
 
 kernel_platform_toolchain = rule(
