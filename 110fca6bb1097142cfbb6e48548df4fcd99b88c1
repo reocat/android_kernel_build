@@ -34,6 +34,24 @@
       "parentUuid": "1bcc49c6_d478b94a",
       "revId": "110fca6bb1097142cfbb6e48548df4fcd99b88c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "179db112_6490c378",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-14T17:29:29Z",
+      "side": 1,
+      "message": "The original change does not have a detailed commit message, but I put some blurb in the commit message.\n\nAlso, this is not a clean revert of the revert, so I changed the title.",
+      "parentUuid": "e5398cc3_e81418e2",
+      "revId": "110fca6bb1097142cfbb6e48548df4fcd99b88c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
