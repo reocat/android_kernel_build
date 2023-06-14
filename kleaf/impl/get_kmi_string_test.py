@@ -12,11 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Define various platforms
+"""Tests for get_kmi_string."""
 
-build:android_arm --platforms=//build/kernel/kleaf/impl:android_arm
-build:android_arm64 --platforms=//build/kernel/kleaf/impl:android_arm64
-build:android_x86_64 --platforms=//build/kernel/kleaf/impl:android_x86_64
-build:android_riscv64 --platforms=//build/kernel/kleaf/impl:android_riscv64
+import doctest
+from absl.testing import absltest
 
-# --config=hermetic_cc is already the default.
+def load_tests(_loader, tests, _ignore):
+    tests.addTests(doctest.DocTestSuite("get_kmi_string"))
+    return tests
+
+if __name__ == "__main__":
+    absltest.main()

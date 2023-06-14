@@ -12,10 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Build GKI artifacts, including GKI boot images."""
+
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
+load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "HermeticToolsInfo")
-load(":common_providers.bzl", "KernelBuildInfo")
+load(":common_providers.bzl", "KernelBuildUnameInfo")
 load(":constants.bzl", "GKI_ARTIFACTS_AARCH64_OUTS")
 load(":utils.bzl", "utils")
 
@@ -29,7 +32,7 @@ def _gki_artifacts_impl(ctx):
         ctx.file._build_utils_sh,
     ]
 
-    kernel_release = ctx.attr.kernel_build[KernelBuildInfo].kernel_release
+    kernel_release = ctx.attr.kernel_build[KernelBuildUnameInfo].kernel_release
     inputs.append(kernel_release)
 
     outs = []
@@ -70,6 +73,14 @@ def _gki_artifacts_impl(ctx):
             export BUILD_GKI_BOOT_IMG{var_name}_SIZE={size}
         """.format(var_name = var_name, size = size)
 
+    # b/283225390: boot images with --gcov may overflow the boot image size
+    #   check when adding AVB hash footer.
+    skip_avb_cmd = ""
+    if ctx.attr._gcov[BuildSettingInfo].value:
+        skip_avb_cmd = """
+            export BUILD_GKI_BOOT_SKIP_AVB=1
+        """
+
     inputs += images
 
     # All declare_file's above are "<name>/<filename>" without subdirectories,
@@ -88,6 +99,7 @@ def _gki_artifacts_impl(ctx):
         export OUT_DIR=$(readlink -e {out_dir})
         export MKBOOTIMG_PATH={mkbootimg}
         {size_cmd}
+        {skip_avb_cmd}
         build_gki_artifacts
     """.format(
         build_utils_sh = ctx.file._build_utils_sh.path,
@@ -99,6 +111,7 @@ def _gki_artifacts_impl(ctx):
         quoted_arch = shell.quote(ctx.attr.arch),
         mkbootimg = ctx.file.mkbootimg.path,
         size_cmd = size_cmd,
+        skip_avb_cmd = skip_avb_cmd,
     )
 
     if ctx.attr.arch == "arm64":
@@ -130,7 +143,7 @@ gki_artifacts = rule(
     doc = "`BUILD_GKI_ARTIFACTS`. Build boot images and optionally `boot-img.tar.gz` as default outputs.",
     attrs = {
         "kernel_build": attr.label(
-            providers = [KernelBuildInfo],
+            providers = [KernelBuildUnameInfo],
             doc = "The [`kernel_build`](#kernel_build) that provides all `Image` and `Image.*`.",
         ),
         "mkbootimg": attr.label(
@@ -152,13 +165,23 @@ For example:
 """,
         ),
         "gki_kernel_cmdline": attr.string(doc = "`GKI_KERNEL_CMDLINE`."),
-        "arch": attr.string(doc = "`ARCH`.", values = ["arm64", "riscv64", "x86_64"], mandatory = True),
+        "arch": attr.string(
+            doc = "`ARCH`.",
+            values = [
+                "arm64",
+                "riscv64",
+                "x86_64",
+                # We don't have arm 32-bit GKI
+            ],
+            mandatory = True,
+        ),
         "_hermetic_tools": attr.label(default = "//build/kernel:hermetic-tools", providers = [HermeticToolsInfo]),
         "_build_utils_sh": attr.label(
             allow_single_file = True,
             default = Label("//build/kernel:build_utils"),
             cfg = "exec",
         ),
+        "_gcov": attr.label(default = "//build/kernel/kleaf:gcov"),
         "_testkey": attr.label(default = "//tools/mkbootimg:gki/testdata/testkey_rsa4096.pem", allow_single_file = True),
     },
 )

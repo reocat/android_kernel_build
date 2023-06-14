@@ -15,28 +15,9 @@
 """Dist rules for devices with ABI monitoring enabled."""
 
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
-load("//build/bazel_common_rules/exec:exec.bzl", "exec", "exec_rule")
+load("//build/bazel_common_rules/exec:exec.bzl", "exec_rule")
+load(":hermetic_exec.bzl", "hermetic_exec", "hermetic_exec_target")
 load(":abi/abi_transitions.bzl", "with_vmlinux_transition")
-
-# TODO(b/242072873): Delete once all use cases migrate to kernel_abi_dist.
-def kernel_build_abi_dist(
-        name,
-        # buildifier: disable=unused-variable
-        **kwargs):
-    """**Deprecated**. Use [`kernel_abi_dist`](#kernel_abi_dist) instead.
-
-    Args:
-      name: name
-      **kwargs: kwargs
-
-    Deprecated:
-      Use [`kernel_abi_dist`](#kernel_abi_dist) instead.
-    """
-
-    fail("""{}//{}:{}: kernel_build_abi_dist is deprecated. Use kernel_abi_dist instead.
-
-See build/kernel/kleaf/docs/abi_device.md for details.
-""".format(native.repository_name(), native.package_name(), name))
 
 _kernel_abi_dist_exec = exec_rule(
     cfg = with_vmlinux_transition,
@@ -46,6 +27,12 @@ _kernel_abi_dist_exec = exec_rule(
         ),
     },
 )
+
+def _hermetic_kernel_abi_dist_exec(**kwargs):
+    return hermetic_exec_target(
+        rule = _kernel_abi_dist_exec,
+        **kwargs
+    )
 
 def kernel_abi_dist(
         name,
@@ -121,7 +108,11 @@ def kernel_abi_dist(
         **kwargs
     )
 
-    exec_macro = _kernel_abi_dist_exec if kernel_build_add_vmlinux else exec
+    if kernel_build_add_vmlinux:
+        exec_macro = _hermetic_kernel_abi_dist_exec
+    else:
+        exec_macro = hermetic_exec
+
     exec_macro(
         name = name,
         data = [

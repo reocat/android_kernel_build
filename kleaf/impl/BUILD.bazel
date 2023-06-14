@@ -50,6 +50,9 @@ bzl_library(
         "debug.bzl",
         "file.bzl",
         "gki_artifacts.bzl",
+        "hermetic_exec.bzl",
+        "hermetic_genrule.bzl",
+        "hermetic_toolchain.bzl",
         "image/boot_images.bzl",
         "image/dtbo.bzl",
         "image/image_utils.bzl",
@@ -174,6 +177,16 @@ filegroup(
     visibility = ["//visibility:public"],
 )
 
+selects.config_setting_group(
+    name = "lto_is_default_and_kcsan_is_true",
+    match_all = [
+        "//build/kernel/kleaf:lto_is_default",
+        "//build/kernel/kleaf:kcsan_is_true",
+    ],
+    # All kernel_* from different packages can see this
+    visibility = ["//visibility:public"],
+)
+
 py_binary(
     name = "ddk/gen_makefiles",
     srcs = ["ddk/gen_makefiles.py"],
@@ -181,6 +194,13 @@ py_binary(
     deps = [
         "@io_abseil_py//absl/flags:argparse_flags",
     ],
+)
+
+py_binary(
+    name = "get_kmi_string",
+    srcs = ["get_kmi_string.py"],
+    # All kernel_* / ddk_* from different packages can see this
+    visibility = ["//visibility:public"],
 )
 
 py_binary(
@@ -217,6 +237,17 @@ py_binary(
     ],
 )
 
+py_test(
+    name = "get_kmi_string_test",
+    timeout = "short",
+    srcs = ["get_kmi_string_test.py"],
+    main = "get_kmi_string_test.py",
+    deps = [
+        ":get_kmi_string",
+        "@io_abseil_py//absl/testing:absltest",
+    ],
+)
+
 kernel_platform_toolchain(
     name = "kernel_toolchain_target",
 )
@@ -242,6 +273,15 @@ platform(
     constraint_values = [
         "@platforms//os:linux",
         "@platforms//cpu:x86_64",
+    ],
+)
+
+# 32-bit
+platform(
+    name = "android_arm",
+    constraint_values = [
+        "@platforms//os:android",
+        "@platforms//cpu:arm",
     ],
 )
 
