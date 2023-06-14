@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b581cfdf_57c0ca8b",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-14T16:10:36Z",
+      "side": 1,
+      "message": "should this error out if no `clang` file is found? i.e. if a wrong custom path is provided?",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 12
+      },
+      "revId": "afc2a908d2e839806a5495bff6f319dd237c7c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
