@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d69c181_789bd857",
+        "filename": "kleaf/docs/hermetic.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-14T15:50:46Z",
+      "side": 1,
+      "message": "hermeticity.md ?",
+      "revId": "de69fb1c7b1e603d385065700db501df2746b06e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5d26e1a_2b2157b5",
+        "filename": "kleaf/docs/hermetic.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-14T15:50:46Z",
+      "side": 1,
+      "message": "you want to also document the way of overriding?\n\nthat must be something like\n```\nload(\"//build/kernel:hermetic_tools.bzl\", genrule \u003d \"hermetic_genrule\")\n```",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 61
+      },
+      "revId": "de69fb1c7b1e603d385065700db501df2746b06e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0a1dc25f_e386d052",
         "filename": "kleaf/docs/hermetic.md",
         "patchSetId": 4
