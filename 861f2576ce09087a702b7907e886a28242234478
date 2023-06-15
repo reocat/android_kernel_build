@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7df5031e_778b9b8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-15T15:28:18Z",
+      "side": 1,
+      "message": "I think the naming should consistently contain the \"toolchain\" element to disambiguate from only the clang compiler. The toolchain also comes with llvm-ar, llvm-nm, the headers, runtime libs, etc.",
+      "revId": "861f2576ce09087a702b7907e886a28242234478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddca51db_5fc47eb3",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-15T15:28:18Z",
+      "side": 1,
+      "message": "`--custom_clang_toolchain`",
+      "range": {
+        "startLine": 148,
+        "startChar": 15,
+        "endLine": 148,
+        "endChar": 27
+      },
+      "revId": "861f2576ce09087a702b7907e886a28242234478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "687003d4_c1fe6dfd",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-15T15:28:18Z",
+      "side": 1,
+      "message": "`KLEAF_CUSTOM_CLANG_TOOLCHAIN_PATH`",
+      "range": {
+        "startLine": 186,
+        "startChar": 22,
+        "endLine": 186,
+        "endChar": 45
+      },
+      "revId": "861f2576ce09087a702b7907e886a28242234478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
