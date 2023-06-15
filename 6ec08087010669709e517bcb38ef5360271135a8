@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "222fc7e3_adfe4cbd",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-15T08:42:07Z",
+      "side": 1,
+      "message": "nit: is this really improving the previous version? IMO it was cleaner before, but I\u0027m OK with this if the use of `native.package_name()` is discouraged.",
+      "range": {
+        "startLine": 529,
+        "startChar": 12,
+        "endLine": 529,
+        "endChar": 82
+      },
+      "revId": "6ec08087010669709e517bcb38ef5360271135a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
