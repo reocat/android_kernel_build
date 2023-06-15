@@ -36,6 +36,43 @@
       "message": "File is not formatted. Run `buildifier kleaf/hermetic_tools.bzl` to format the file, or apply the suggested fix.",
       "revId": "637df9c7323d2406e01d8d67abd25e5520b8c8ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000046909149",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2627415?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "46c6f328_c40a5985",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/hermetic_tools.bzl",
+              "range": {
+                "startLine": 252,
+                "startChar": 0,
+                "endLine": 253,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "f2bb30ce_cc01c153",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-06-15T06:22:28Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/hermetic_tools.bzl` to format the file, or apply the suggested fix.",
+      "revId": "637df9c7323d2406e01d8d67abd25e5520b8c8ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
