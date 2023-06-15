@@ -22,6 +22,30 @@
       },
       "revId": "6ec08087010669709e517bcb38ef5360271135a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77d9b914_341a1d67",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-15T21:20:10Z",
+      "side": 1,
+      "message": "\u003e native.package_name() is discouraged.\n\nThis is not the reason I switch to package_relative_label. package_relative_label contains native.repository_name() as well, which is more accurate when the GKI source tree is not in the main repository.\n\nYou can see that there are still a few package_name() usages in tests that I didn\u0027t touch, because those are the places where we do need the package name, not the resolved label.",
+      "parentUuid": "222fc7e3_adfe4cbd",
+      "range": {
+        "startLine": 529,
+        "startChar": 12,
+        "endLine": 529,
+        "endChar": 82
+      },
+      "revId": "6ec08087010669709e517bcb38ef5360271135a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
