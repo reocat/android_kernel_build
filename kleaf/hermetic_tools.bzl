@@ -33,8 +33,13 @@ hermetic_toolchain = _hermetic_toolchain
 
 _PY_TOOLCHAIN_TYPE = "@bazel_tools//tools/python:toolchain_type"
 
+# Deprecated.
 HermeticToolsInfo = provider(
-    doc = "Legacy information provided by [hermetic_tools](#hermetic_tools).",
+    doc = """Legacy information provided by [hermetic_tools](#hermetic_tools).
+
+Deprecated:
+    Use `hermetic_toolchain` instead. See `build/kernel/kleaf/docs/hermeticity.md`.
+""",
     fields = {
         "deps": "A list containing the hermetic tools",
         "setup": "setup script to initialize the environment to only use the hermetic tools",
