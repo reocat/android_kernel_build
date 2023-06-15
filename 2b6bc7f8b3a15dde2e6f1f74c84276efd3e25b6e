@@ -22,6 +22,30 @@
       },
       "revId": "2b6bc7f8b3a15dde2e6f1f74c84276efd3e25b6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45339fa4_c9cd7c99",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-15T20:41:13Z",
+      "side": 1,
+      "message": "Not really; this seem to be a right approach to get a tool for the compiler. I would imagine that Bazel is only setting cc_toolchain.compiler_executable with tool_paths, so it becomes a legacy interface along with the tool_paths. It is a small bug on Bazel, but I don\u0027t think this code is doing an incorrect job or inefficient in any way.",
+      "parentUuid": "66c219bb_e9042cf8",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 21
+      },
+      "revId": "2b6bc7f8b3a15dde2e6f1f74c84276efd3e25b6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
