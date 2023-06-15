@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66c219bb_e9042cf8",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-15T15:22:53Z",
+      "side": 1,
+      "message": "still keep the `TODO(b/287143650)` ? To my understanding that should still be working and _this_ is just a workaround.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 21
+      },
+      "revId": "2b6bc7f8b3a15dde2e6f1f74c84276efd3e25b6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
