@@ -54,6 +54,7 @@ def kernel_abi(
         kmi_enforced = None,
         unstripped_modules_archive = None,
         kmi_symbol_list_add_only = None,
+        kernel_modules_exclude_list = None,
         **kwargs):
     """Declare multiple targets to support ABI monitoring.
 
@@ -131,6 +132,7 @@ def kernel_abi(
         reacts to it by failing if KMI differences are detected.
       unstripped_modules_archive: A [`kernel_unstripped_modules_archive`](#kernel_unstripped_modules_archive)
         which name is specified in `abi.prop`. DEPRECATED.
+      kernel_modules_exclude_list: Base name list of kernel modules to exclude.
       kmi_symbol_list_add_only: If unspecified or `None`, it is `False` by
         default. If `True`,
         then any symbols in the symbol list that would have been
@@ -181,6 +183,7 @@ def kernel_abi(
             abi_definition_stg = abi_definition_stg,
             kmi_enforced = kmi_enforced,
             abi_dump_target = name + "_dump",
+            kernel_modules_exclude_list = kernel_modules_exclude_list,
             **kwargs
         )
 
@@ -237,6 +240,7 @@ def _define_abi_targets(
         abi_definition_stg,
         kmi_enforced,
         abi_dump_target,
+        kernel_modules_exclude_list,
         **kwargs):
     """Helper to `_define_other_targets` when `define_abi_targets = True.`
 
@@ -273,6 +277,7 @@ def _define_abi_targets(
         module_grouping = module_grouping,
         src = name + "_src_kmi_symbol_list",
         kmi_symbol_list_add_only = kmi_symbol_list_add_only,
+        kernel_modules_exclude_list = kernel_modules_exclude_list,
         **private_kwargs
     )
     update_source_file(

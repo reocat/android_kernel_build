@@ -51,6 +51,9 @@ load(
 )
 load(":print_debug.bzl", "print_debug")
 
+# Remove
+load("//common:modules.bzl", "COMMON_GKI_MODULES_LIST")
+
 _ARCH_CONFIGS = {
     "kernel_aarch64": {
         "arch": "arm64",
@@ -1087,6 +1090,10 @@ def define_db845c(
         collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
         strip_modules = True,
         make_goals = make_goals,
+        additional_kmi_symbol_lists = [":kernel_aarch64_all_kmi_symbol_lists"],
+        protected_exports_list = "android/abi_gki_protected_exports_aarch64" if define_abi_targets else None,
+        protected_modules_list = "android/gki_aarch64_protected_modules" if define_abi_targets else None,
+        module_implicit_outs = COMMON_GKI_MODULES_LIST,
     )
 
     # enable ABI Monitoring
@@ -1101,6 +1108,11 @@ def define_db845c(
         kmi_symbol_list_add_only = kmi_symbol_list_add_only,
         module_grouping = module_grouping,
         unstripped_modules_archive = unstripped_modules_archive,
+        abi_definition_stg = ":android/abi_gki_aarch64.stg",
+        kernel_modules_exclude_list = [
+            "cfg80211",
+            "mac80211",
+        ],
     )
 
     kernel_modules_install(

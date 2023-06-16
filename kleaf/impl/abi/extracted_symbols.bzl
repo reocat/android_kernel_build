@@ -71,6 +71,9 @@ def _extracted_symbols_impl(ctx):
             out = out.path,
         )
 
+    for base_name_module in ctx.attr.kernel_modules_exclude_list:
+        flags.append("--module-exclude={}".format(base_name_module))
+
     # Get the signed and stripped module archive for the GKI modules
     base_modules_archive = ctx.attr.kernel_build[KernelBuildAbiInfo].base_modules_staging_archive
     if not base_modules_archive:
@@ -93,7 +96,7 @@ def _extracted_symbols_impl(ctx):
         # Copy other inputs including vendor modules; this will overwrite modules being overridden
         cp -pfl {srcs} {intermediates_dir}
         {cp_src_cmd}
-        {extract_symbols} {flags} {intermediates_dir}
+        {extract_symbols} {flags} --print-modules {intermediates_dir}
         rm -rf {intermediates_dir}
     """.format(
         srcs = " ".join([file.path for file in srcs]),
@@ -125,6 +128,9 @@ extracted_symbols = rule(
         "kernel_build": attr.label(providers = [KernelEnvAndOutputsInfo, KernelBuildAbiInfo]),
         # KernelModuleInfo
         "kernel_modules": attr.label_list(allow_files = True),
+        "kernel_modules_exclude_list": attr.string_list(
+            doc = "Base name list of kernel modules to exclude.",
+        ),
         "module_grouping": attr.bool(default = True),
         "src": attr.label(doc = "Source `abi_gki_*` file. Used when `kmi_symbol_list_add_only`.", allow_single_file = True),
         "kmi_symbol_list_add_only": attr.bool(),
