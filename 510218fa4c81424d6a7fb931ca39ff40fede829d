@@ -52,6 +52,24 @@
       "parentUuid": "1c539f54_03f55c7b",
       "revId": "510218fa4c81424d6a7fb931ca39ff40fede829d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0548127_be42092e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-16T21:13:31Z",
+      "side": 1,
+      "message": "But still, adding --no-group globally doesn\u0027t seem to do any harm. So I agree with what Matthias says.",
+      "parentUuid": "13d58966_7695a982",
+      "revId": "510218fa4c81424d6a7fb931ca39ff40fede829d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
