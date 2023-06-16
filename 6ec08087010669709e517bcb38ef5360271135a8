@@ -46,6 +46,29 @@
       },
       "revId": "6ec08087010669709e517bcb38ef5360271135a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0962007_c0e6e72e",
+        "filename": "kleaf/impl/abi/kernel_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-16T07:19:07Z",
+      "side": 1,
+      "message": "`{package}` is still used here, but was removed, causing the build errors.",
+      "range": {
+        "startLine": 416,
+        "startChar": 138,
+        "endLine": 416,
+        "endChar": 147
+      },
+      "revId": "6ec08087010669709e517bcb38ef5360271135a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
