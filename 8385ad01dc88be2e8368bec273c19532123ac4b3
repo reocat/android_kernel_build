@@ -178,6 +178,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "caccb4c6_c83d8186",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-06-16T17:47:55Z",
+      "side": 1,
+      "message": "Added the logic to `common_kernels.bzl` to add the symbol lists, so we should be able to abandon the change in `common` (2601826).",
+      "parentUuid": "448f8590_261a7e17",
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3da028c3_82f79403",
@@ -298,6 +316,24 @@
       "side": 1,
       "message": "ping",
       "parentUuid": "13a8eb63_b4084ad0",
+      "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43f742bb_1baa9665",
+        "filename": "kleaf/bazelrc/flags.bazelrc",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-06-16T17:47:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bee66c3_4982e233",
       "revId": "8385ad01dc88be2e8368bec273c19532123ac4b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
