@@ -248,6 +248,13 @@ def main():
       help="Only process modules matching the filter. Can be passed multiple times."
   )
 
+  parser.add_argument(
+      "--module-exclude",
+      action="append",
+      dest="module_excludes",
+      help="Do not process modules matching the filter. Can be passed multiple times."
+  )
+
   args = parser.parse_args()
 
   if not os.path.isdir(args.directory):
@@ -269,6 +276,12 @@ def main():
     modules = [
         mod for mod in modules if any(
             [re.search(f, os.path.basename(mod)) for f in args.module_filters])
+    ]
+
+  if args.module_excludes:
+    modules = [
+        mod for mod in modules if not any(
+            [re.search(f, os.path.basename(mod)) for f in args.module_excludes])
     ]
 
   # Partition vendor (unsigned) and GKI modules (signed) in two lists
