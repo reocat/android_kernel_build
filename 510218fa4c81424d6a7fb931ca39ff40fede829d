@@ -16,6 +16,24 @@
       "message": "This appears to be a flag that should be applied to _all_ invocations. Can we use the same mechanism that we use for arguments of `tar` ? https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/BUILD.bazel;l\u003d53 \n\n`rsync_args` ?\n\nThat way it also applies to all invocations done by kbuild itself.",
       "revId": "510218fa4c81424d6a7fb931ca39ff40fede829d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c539f54_03f55c7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-06-16T15:53:04Z",
+      "side": 1,
+      "message": "I think this is only an issue with `rsync -a` calls because `-a` is shorthand for `-rlptgoD` and the `-g` is what\u0027s causing trouble. Instead of `-a --no-group`, I believe it\u0027d be equivalent to pass `-rlptoD`.\n\nEither way, it should do no harm to add `--no-group` to all the calls. I\u0027m fine with adding an `rsync_args` if it makes things cleaner.",
+      "parentUuid": "c557fa83_9e85d977",
+      "revId": "510218fa4c81424d6a7fb931ca39ff40fede829d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
