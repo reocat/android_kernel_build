@@ -525,7 +525,9 @@ def kernel_build(
         module_signing_key = module_signing_key,
         system_trusted_key = system_trusted_key,
         lto = lto,
-        defconfig_fragments = defconfig_fragments,
+        defconfig_fragments = (defconfig_fragments or []) + [
+            Label("//build/kernel/kleaf:defconfig_fragment"),
+        ],
         **internal_kwargs
     )
 
