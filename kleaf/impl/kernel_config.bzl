@@ -27,13 +27,14 @@ load(
     "KernelEnvMakeGoalsInfo",
     "KernelToolchainInfo",
 )
+load(":config_utils.bzl", "config_utils")
 load(":debug.bzl", "debug")
 load(":hermetic_toolchain.bzl", "hermetic_toolchain")
 load(":kernel_config_settings.bzl", "kernel_config_settings")
 load(":kgdb.bzl", "kgdb")
 load(":scripts_config_arg_builder.bzl", _config = "scripts_config_arg_builder")
 load(":stamp.bzl", "stamp")
-load(":utils.bzl", "kernel_utils")
+load(":utils.bzl", "kernel_utils", "utils")
 
 def _determine_local_path(ctx, file_name, file_attr):
     """A local action that stores the path to sandboxed file to a file object"""
@@ -337,6 +338,48 @@ def _config_btf_debug_info(ctx):
 
     return struct(configs = configs, deps = [])
 
+def _get_apply_defconfig_fragments_step(ctx, defconfig_depset_written):
+    deps = depset()
+    cmd = ""
+    if ctx.attr.defconfig_fragments:
+        merge_step = config_utils.create_merge_dot_config_step(defconfig_depset_written)
+        deps = depset(transitive = [
+            merge_step.inputs,
+            defconfig_depset_written.depset,
+        ])
+        cmd = """
+            {merge_cmd}
+            if [[ -s {defconfig_depset_file} ]]; then
+                need_olddefconfig=1
+            fi
+        """.format(
+            defconfig_depset_file = defconfig_depset_written.depset_file.path,
+            merge_cmd = merge_step.cmd,
+        )
+
+    return struct(
+        cmd = cmd,
+        deps = deps,
+    )
+
+def _get_check_defconfig_fragments_step(ctx, defconfig_depset_written):
+    deps = depset()
+    cmd = ""
+    if ctx.attr.defconfig_fragments:
+        deps = defconfig_depset_written.depset
+        cmd = """
+            for f in $(cat {defconfig_depset_file}); do
+                {check_defconfig_cmd}
+            done
+        """.format(
+            defconfig_depset_file = defconfig_depset_written.depset_file.path,
+            check_defconfig_cmd = config_utils.create_check_defconfig_cmd(ctx.label, '"${f}"'),
+        )
+    return struct(
+        cmd = cmd,
+        deps = deps,
+    )
+
 def _reconfig(ctx):
     """Return a command and extra inputs to re-configure `.config` file."""
     configs = []
@@ -356,16 +399,42 @@ def _reconfig(ctx):
         configs += pair.configs
         deps += pair.deps
 
-    return struct(cmd = """
-        configs_to_apply=$(echo {configs})
-        # There could be reconfigurations based on configs which can lead to
-        #  an empty `configs_to_apply` even when `configs` is not empty,
-        #  for that reason it is better to check it is not empty before using it.
-        if [ -n "${{configs_to_apply}}" ]; then
-            ${{KERNEL_DIR}}/scripts/config --file ${{OUT_DIR}}/.config ${{configs_to_apply}}
-            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} olddefconfig
-        fi
-    """.format(configs = " ".join(configs)), deps = deps)
+    defconfig_depset = depset(transitive = [target.files for target in ctx.attr.defconfig_fragments])
+    defconfig_depset_written = utils.write_depset(
+        ctx,
+        defconfig_depset,
+        "defconfig_depset.txt",
+    )
+    apply_defconfig_fragments_step = _get_apply_defconfig_fragments_step(ctx, defconfig_depset_written)
+    check_defconfig_fragments_step = _get_check_defconfig_fragments_step(ctx, defconfig_depset_written)
+
+    cmd = """
+        (
+            need_olddefconfig=
+            configs_to_apply=$(echo {configs})
+            # There could be reconfigurations based on configs which can lead to
+            #  an empty `configs_to_apply` even when `configs` is not empty,
+            #  for that reason it is better to check it is not empty before using it.
+            if [ -n "${{configs_to_apply}}" ]; then
+                ${{KERNEL_DIR}}/scripts/config --file ${{OUT_DIR}}/.config ${{configs_to_apply}}
+                need_olddefconfig=1
+            fi
+
+            {apply_defconfig_fragments_cmd}
+
+            if [[ -n "${{need_olddefconfig}}" ]]; then
+                make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} olddefconfig
+            fi
+
+            {check_defconfig_fragments_cmd}
+        )
+    """.format(
+        configs = " ".join(configs),
+        apply_defconfig_fragments_cmd = apply_defconfig_fragments_step.cmd,
+        check_defconfig_fragments_cmd = check_defconfig_fragments_step.cmd,
+    )
+
+    return struct(cmd = cmd, deps = depset(deps, transitive = [apply_defconfig_fragments_step.deps]))
 
 def _kernel_config_impl(ctx):
     localversion_file = stamp.write_localversion(ctx)
@@ -382,16 +451,17 @@ def _kernel_config_impl(ctx):
             ".fragment",
         ]])
     ]
+    transitive_inputs = []
 
     out_dir = ctx.actions.declare_directory(ctx.attr.name + "/out_dir")
     outputs = [out_dir]
 
     reconfig = _reconfig(ctx)
-    inputs += reconfig.deps
+    transitive_inputs.append(reconfig.deps)
 
     tools = []
 
-    transitive_inputs = [ctx.attr.env[KernelEnvInfo].inputs]
+    transitive_inputs.append(ctx.attr.env[KernelEnvInfo].inputs)
     transitive_tools = [ctx.attr.env[KernelEnvInfo].tools]
 
     cache_dir_step = cache_dir.get_step(
@@ -472,7 +542,7 @@ def _kernel_config_impl(ctx):
     env_and_outputs_info = KernelEnvAndOutputsInfo(
         get_setup_script = _env_and_outputs_get_setup_script,
         tools = ctx.attr.env[KernelEnvInfo].tools,
-        inputs = depset(post_setup_deps, transitive = [ctx.attr.env[KernelEnvInfo].inputs]),
+        inputs = depset(post_setup_deps, transitive = transitive_inputs),
         data = struct(
             pre_setup = ctx.attr.env[KernelEnvInfo].setup,
             post_setup = post_setup,
@@ -605,6 +675,15 @@ kernel_config = rule(
         "system_trusted_key": attr.label(
             doc = "Label to trusted system key.",
             allow_single_file = True,
+        ),
+        "defconfig_fragments": attr.label_list(
+            doc = "defconfig fragments",
+            allow_files = True,
+        ),
+        "_write_depset": attr.label(
+            default = "//build/kernel/kleaf/impl:write_depset",
+            executable = True,
+            cfg = "exec",
         ),
         "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
