@@ -30,6 +30,9 @@ mentioned here. In particular:
 - --preserve_cmd is not listed because it only affects artifact collection.
 - lto is in these lists because incremental builds with LTO changing causes incremental build
   breakages; see (b/257288175)
+- The following is not listed because it is already handled by defconfig_fragments. See
+  kernel_env.bzl, _handle_config_tags:
+  - gcov
 """
 
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
@@ -68,7 +71,6 @@ def _kernel_build_config_settings_raw():
         compile_commands_utils.config_settings_raw(),
         {
             "_use_kmi_symbol_list_strict_mode": "//build/kernel/kleaf:kmi_symbol_list_strict_mode",
-            "_gcov": "//build/kernel/kleaf:gcov",
             "_kasan": "//build/kernel/kleaf:kasan",
             "_kasan_sw_tags": "//build/kernel/kleaf:kasan_sw_tags",
             "_kcsan": "//build/kernel/kleaf:kcsan",
@@ -89,7 +91,6 @@ def _kernel_config_config_settings_raw():
             "kasan": "//build/kernel/kleaf:kasan",
             "kasan_sw_tags": "//build/kernel/kleaf:kasan_sw_tags",
             "kcsan": "//build/kernel/kleaf:kcsan",
-            "gcov": "//build/kernel/kleaf:gcov",
             "btf_debug_info": "//build/kernel/kleaf:btf_debug_info",
         },
     )
