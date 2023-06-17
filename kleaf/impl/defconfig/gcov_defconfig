@@ -1,0 +1,5 @@
+CONFIG_GCOV_KERNEL=y
+CONFIG_GCOV_PROFILE_ALL=y
+
+# TODO: Re-enable when https://github.com/ClangBuiltLinux/linux/issues/1778 is fixed.
+# CONFIG_CFI_CLANG is not set
