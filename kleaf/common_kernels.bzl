@@ -55,7 +55,9 @@ _ARCH_CONFIGS = {
     "kernel_aarch64": {
         "arch": "arm64",
         "build_config": "build.config.gki.aarch64",
-        "outs": DEFAULT_GKI_OUTS,
+        "outs": DEFAULT_GKI_OUTS + [
+            "kheaders_data.tar.xz",
+        ]
     },
     "kernel_aarch64_16k": {
         "arch": "arm64",
