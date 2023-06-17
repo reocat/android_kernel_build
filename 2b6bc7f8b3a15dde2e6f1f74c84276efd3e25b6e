@@ -46,6 +46,30 @@
       },
       "revId": "2b6bc7f8b3a15dde2e6f1f74c84276efd3e25b6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a0d0618_fb793ff8",
+        "filename": "kleaf/impl/kernel_platform_toolchain.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-17T00:21:02Z",
+      "side": 1,
+      "message": "Confirmed that this is not a workaround; see email thread \"cc_toolchain: tool_path only supports relative paths\".",
+      "parentUuid": "45339fa4_c9cd7c99",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 21
+      },
+      "revId": "2b6bc7f8b3a15dde2e6f1f74c84276efd3e25b6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
