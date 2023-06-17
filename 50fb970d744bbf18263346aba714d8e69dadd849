@@ -36,6 +36,43 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/ddk/ddk_config.bzl` to format the file, or apply the suggested fix.",
       "revId": "50fb970d744bbf18263346aba714d8e69dadd849",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000047087554",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2629386?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "6dbf6789_be62c63d",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/ddk/ddk_config.bzl",
+              "range": {
+                "startLine": 105,
+                "startChar": 0,
+                "endLine": 106,
+                "endChar": 0
+              },
+              "replacement": "            check_defconfig_cmd \u003d config_utils.create_check_defconfig_cmd(module_label, ctx.file.defconfig.path),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "5e417abb_0342862e",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-06-17T05:06:31Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/ddk/ddk_config.bzl` to format the file, or apply the suggested fix.",
+      "revId": "50fb970d744bbf18263346aba714d8e69dadd849",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
