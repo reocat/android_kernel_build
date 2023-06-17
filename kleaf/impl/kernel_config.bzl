@@ -102,27 +102,6 @@ def _determine_system_trusted_key_path(ctx):
 
     return _determine_local_path(ctx, "trusted_key.pem", ctx.file.system_trusted_key)
 
-def _config_gcov(ctx):
-    """Return configs for GCOV.
-
-    Args:
-        ctx: ctx
-    Returns:
-        A struct, where `configs` is a list of arguments to `scripts/config`,
-        and `deps` is a list of input files.
-    """
-    gcov = ctx.attr.gcov[BuildSettingInfo].value
-
-    if not gcov:
-        return struct(configs = [], deps = [])
-    configs = [
-        _config.enable("GCOV_KERNEL"),
-        _config.enable("GCOV_PROFILE_ALL"),
-        # TODO: Re-enable when https://github.com/ClangBuiltLinux/linux/issues/1778 is fixed.
-        _config.disable("CFI_CLANG"),
-    ]
-    return struct(configs = configs, deps = [])
-
 def _config_lto(ctx):
     """Return configs for LTO.
 
@@ -389,7 +368,6 @@ def _reconfig(ctx):
         _config_kcsan,
         _config_kasan,
         _config_kasan_sw_tags,
-        _config_gcov,
         _config_keys,
         _config_btf_debug_info,
         kgdb.get_scripts_config_args,
