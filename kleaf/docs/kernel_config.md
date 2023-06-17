@@ -139,6 +139,8 @@ own defconfig fragments to avoid fragmentation in the ecosystem (pun intended).
 *   `--page_size`
 *   `--rust` / `--norust`
 
+*   `--gcov`
+
 ### User-defined flags
 
 To control `kernel_build.defconfig_fragments` with command line flags,
