@@ -83,7 +83,8 @@ one takes effect.
 The convention is that the files should be named `X_defconfig`, where
 `X` describes what the defconfig fragment does.
 
-Example:
+Example (Note: `--gcov` is a standard Kleaf flag. The example below
+is for illustration purposes only. Do not use this method to enable GCOV!):
 
 ```python
 # path/to/tuna/BUILD.bazel
@@ -132,6 +133,7 @@ own defconfig fragments to avoid fragmentation in the ecosystem (pun intended).
 
 *   `--btf_debug_info`
 *   `--debug`
+*   `--gcov`
 *   `--kasan`
 *   `--kasan_sw_tags`
 *   `--kasan_generic`
