@@ -250,16 +250,26 @@ def _config_kasan(ctx):
     if trim_nonlisted_kmi_utils.get_value(ctx):
         fail("{}: --kasan requires trimming to be disabled".format(ctx.label))
 
-    configs = [
-        _config.enable("KASAN"),
-        _config.enable("KASAN_INLINE"),
-        _config.enable("KCOV"),
-        _config.enable("PANIC_ON_WARN_DEFAULT_ENABLE"),
-        _config.disable("RANDOMIZE_BASE"),
-        _config.disable("KASAN_OUTLINE"),
-        _config.set_val("FRAME_WARN", 0),
-        _config.disable("SHADOW_CALL_STACK"),
-    ]
+    if kasan == "generic":
+        configs = [
+            _config.enable("KASAN"),
+            _config.enable("KASAN_INLINE"),
+            _config.enable("KCOV"),
+            _config.enable("PANIC_ON_WARN_DEFAULT_ENABLE"),
+            _config.disable("RANDOMIZE_BASE"),
+            _config.disable("KASAN_OUTLINE"),
+            _config.set_val("FRAME_WARN", 0),
+            _config.disable("SHADOW_CALL_STACK"),
+        ]
+    elif kasan == "sw_tags":
+        configs = [
+            _config.enable("KASAN"),
+            _config.enable("KASAN_SW_TAGS"),
+            _config.enable("KASAN_OUTLINE"),
+            _config.enable("PANIC_ON_WARN_DEFAULT_ENABLE"),
+            _config.disable("KASAN_HW_TAGS"),
+            _config.set_val("FRAME_WARN", 0),
+        ]
     return struct(configs = configs, deps = [])
 
 def _reconfig(ctx):

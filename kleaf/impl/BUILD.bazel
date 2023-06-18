@@ -131,18 +131,29 @@ config_setting(
 )
 
 config_setting(
-    name = "kasan_is_true",
+    name = "kasan_generic",
     flag_values = {
-        "//build/kernel/kleaf:kasan": "1",
+        "//build/kernel/kleaf:kasan": "generic",
     },
     # All kernel_* from different packages can see this
     visibility = ["//visibility:public"],
 )
 
-# Forcefully add vmlinux to outs (implicitly) and to MAKE_GOALS.
-bool_setting(
-    name = "force_add_vmlinux",
-    build_setting_default = False,
+config_setting(
+    name = "kasan_sw_tags",
+    flag_values = {
+        "//build/kernel/kleaf:kasan": "sw_tags",
+    },
+    # All kernel_* from different packages can see this
+    visibility = ["//visibility:public"],
+)
+
+selects.config_setting_group(
+    name = "kasan_is_true",
+    match_all = [
+        "//build/kernel/kleaf:kasan_generic",
+        "//build/kernel/kleaf:kasan_sw_tags",
+    ],
     # All kernel_* from different packages can see this
     visibility = ["//visibility:public"],
 )

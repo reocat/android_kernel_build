@@ -43,9 +43,27 @@ bool_flag(
 
 # If true, enable kasan. This assumes --lto=none, but :print_flags only shows
 # values from the command line.
-bool_flag(
+string_flag(
     name = "kasan",
-    build_setting_default = False,
+    build_setting_default = "",
+)
+
+config_setting(
+    name = "kasan_generic",
+    flag_values = {":kasan": "generic"},
+)
+
+config_setting(
+    name = "kasan_sw_tags",
+    flag_values = {":kasan": "sw_tags"},
+)
+
+selects.config_setting_group(
+    name = "kasan_is_true",
+    match_any = [
+        "//build/kernel/kleaf/impl:kasan_generic",
+        "//build/kernel/kleaf/impl:kasan_sw_tags",
+    ],
 )
 
 # If true, //{common}:all_headers also includes //{common}:all_headers_unsafe.
