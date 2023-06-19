@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf01b78f_df27af1f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-19T16:24:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6aae40a_0ab3660d",
+      "range": {
+        "startLine": 9,
+        "startChar": 41,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "9f658bbcedf6c4449f2e518f77406d609e279f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b1df4e0_1ca40b87",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-06-19T14:45:23Z",
       "side": 1,
       "message": "Please help me understand why this can\u0027t be achieved with the `kernel_modules` argument already by doing the calculation before even passing it into `kernel_abi`.",
+      "revId": "9f658bbcedf6c4449f2e518f77406d609e279f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf9f89cc_b25dcbbd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-19T16:24:44Z",
+      "side": 1,
+      "message": "`kernel_modules` attribute in `kernel_abi` macro is for external modules.",
+      "parentUuid": "8b1df4e0_1ca40b87",
       "revId": "9f658bbcedf6c4449f2e518f77406d609e279f5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b374e2b5_1ccd91c6",
+        "filename": "abi/extract_symbols.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-19T16:24:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58ee981e_bed695cc",
+      "revId": "9f658bbcedf6c4449f2e518f77406d609e279f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fea180f_b2c43818",
@@ -71,6 +131,30 @@
       "writtenOn": "2023-06-19T14:45:23Z",
       "side": 1,
       "message": "\"to exclude from ....\"",
+      "range": {
+        "startLine": 132,
+        "startChar": 55,
+        "endLine": 132,
+        "endChar": 62
+      },
+      "revId": "9f658bbcedf6c4449f2e518f77406d609e279f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03fc8dbc_ba5b43ef",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-19T16:24:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fea180f_b2c43818",
       "range": {
         "startLine": 132,
         "startChar": 55,
