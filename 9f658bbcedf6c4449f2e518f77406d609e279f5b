@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6aae40a_0ab3660d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-19T14:45:23Z",
+      "side": 1,
+      "message": "exclusion",
+      "range": {
+        "startLine": 9,
+        "startChar": 41,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "9f658bbcedf6c4449f2e518f77406d609e279f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b1df4e0_1ca40b87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-19T14:45:23Z",
+      "side": 1,
+      "message": "Please help me understand why this can\u0027t be achieved with the `kernel_modules` argument already by doing the calculation before even passing it into `kernel_abi`.",
+      "revId": "9f658bbcedf6c4449f2e518f77406d609e279f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58ee981e_bed695cc",
+        "filename": "abi/extract_symbols.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-19T14:45:23Z",
+      "side": 1,
+      "message": "`filter` and `exclude` have a very close meaning, yet they mean the entire opposite here. Perhaps `--module-filter` should now become `--module-include` or `module-filter` should understand something like `[\u0027include.ko\u0027, \u0027!exclude.ko\u0027]`",
+      "revId": "9f658bbcedf6c4449f2e518f77406d609e279f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fea180f_b2c43818",
+        "filename": "kleaf/impl/abi/extracted_symbols.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-19T14:45:23Z",
+      "side": 1,
+      "message": "\"to exclude from ....\"",
+      "range": {
+        "startLine": 132,
+        "startChar": 55,
+        "endLine": 132,
+        "endChar": 62
+      },
+      "revId": "9f658bbcedf6c4449f2e518f77406d609e279f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
