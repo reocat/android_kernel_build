@@ -22,6 +22,30 @@
       },
       "revId": "fa832e04a0d5dbf9ae0f07cfe020c2124c5725fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea2c8458_f973a8b3",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-20T17:53:11Z",
+      "side": 1,
+      "message": "No because of L117.\n\nThis is just a different way of saying `[ctx.file.defconfig] if ctx.file.defconfig else []`. This is missed from the original depset; Because L117~145, the defconfig file is dependended on by cmd explicitly, but we only add it implicitly via `ddk_config_info.defconfig` before in the transitive argument. Hence, changing it to explicit declaration.",
+      "parentUuid": "13297226_2f826097",
+      "range": {
+        "startLine": 149,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 21
+      },
+      "revId": "fa832e04a0d5dbf9ae0f07cfe020c2124c5725fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
