@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c79a817_89f382dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-20T19:48:08Z",
+      "side": 1,
+      "message": "Let me give this change a try to see what the effect looks like",
+      "revId": "892115069601e4fc034c614bdff81d27e86b08a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa6727b2_d3d1a221",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-20T19:48:08Z",
+      "side": 1,
+      "message": "I would recommend this to go before $@ so it could technically be overriden",
+      "range": {
+        "startLine": 190,
+        "startChar": 14,
+        "endLine": 190,
+        "endChar": 26
+      },
+      "revId": "892115069601e4fc034c614bdff81d27e86b08a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
