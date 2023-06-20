@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59d69b9f_186d0e24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-20T20:03:21Z",
+      "side": 1,
+      "message": "The integration test failures seem genuine:\n\n`\"CONFIG_DELETED_SET: actual \u0027\u0027, expected \u0027CONFIG_DELETED_SET\u003dy\u0027.\" not found`\n\nPTAL",
+      "revId": "76aed0e82811a3756b341c5525f74707ea6a7478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
