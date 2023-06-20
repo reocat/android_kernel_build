@@ -107,6 +107,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "413c8a08_02642092",
+        "filename": "kleaf/bazelrc/network.bazelrc",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-20T16:32:16Z",
+      "side": 1,
+      "message": "I locally confirmed that when using `--config\u003dinternet` the default [repository cache location](https://bazel.build/run/build#repository-cache) is used. So this should be good as is.",
+      "parentUuid": "f9a6b823_43a53449",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 14
+      },
+      "revId": "87d7fd2499b8ad4349785d311f80ccab076e1a4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a14dede_5dadb177",
