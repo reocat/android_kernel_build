@@ -252,9 +252,13 @@ def _config_kasan(ctx):
     """
     lto = ctx.attr.lto
     kasan = ctx.attr.kasan[BuildSettingInfo].value
+    kasan_sw_tags = ctx.attr.kasan_sw_tags[BuildSettingInfo].value
 
     if not kasan:
         return struct(configs = [], deps = [])
+
+    if kasan and kasan_sw_tags:
+        fail("{}: cannot have both --kasan and --kasan_sw_tags simultaneously".format(ctx.label))
 
     if lto != "none":
         fail("{}: --kasan requires --lto=none, but --lto is {}".format(ctx.label, lto))
@@ -271,6 +275,41 @@ def _config_kasan(ctx):
         _config.disable("KASAN_OUTLINE"),
         _config.set_val("FRAME_WARN", 0),
         _config.disable("SHADOW_CALL_STACK"),
+    ]
+    return struct(configs = configs, deps = [])
+
+def _config_kasan_sw_tags(ctx):
+    """Return configs for --kasan_sw_tags.
+
+    Args:
+        ctx: ctx
+    Returns:
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
+    """
+    lto = ctx.attr.lto
+    kasan_generic = ctx.attr.kasan[BuildSettingInfo].value
+    kasan_sw_tags = ctx.attr.kasan_sw_tags[BuildSettingInfo].value
+
+    if not kasan_sw_tags:
+        return struct(configs = [], deps = [])
+
+    if kasan_generic and kasan_sw_tags:
+        fail("{}: cannot have both --kasan and --kasan_sw_tags simultaneously".format(ctx.label))
+
+    if lto != "none":
+        fail("{}: --kasan_sw_tags requires --lto=none, but --lto is {}".format(ctx.label, lto))
+
+    if trim_nonlisted_kmi_utils.get_value(ctx):
+        fail("{}: --kasan_sw_tags requires trimming to be disabled".format(ctx.label))
+
+    configs = [
+        _config.enable("KASAN"),
+        _config.enable("KASAN_SW_TAGS"),
+        _config.enable("KASAN_OUTLINE"),
+        _config.enable("PANIC_ON_WARN_DEFAULT_ENABLE"),
+        _config.disable("KASAN_HW_TAGS"),
+        _config.set_val("FRAME_WARN", 0),
     ]
     return struct(configs = configs, deps = [])
 
@@ -347,6 +386,7 @@ def _reconfig(ctx):
         _config_trim,
         _config_kcsan,
         _config_kasan,
+        _config_kasan_sw_tags,
         _config_gcov,
         _config_keys,
         _config_btf_debug_info,
