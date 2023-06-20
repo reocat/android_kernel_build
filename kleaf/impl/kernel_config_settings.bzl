@@ -32,6 +32,7 @@ mentioned here. In particular:
   breakages; see (b/257288175)
 - The following is not listed because it is already handled by defconfig_fragments. See
   kernel_env.bzl, _handle_config_tags:
+  - btf_debug_info
   - gcov
 """
 
@@ -91,7 +92,6 @@ def _kernel_config_config_settings_raw():
             "kasan": "//build/kernel/kleaf:kasan",
             "kasan_sw_tags": "//build/kernel/kleaf:kasan_sw_tags",
             "kcsan": "//build/kernel/kleaf:kcsan",
-            "btf_debug_info": "//build/kernel/kleaf:btf_debug_info",
         },
     )
 
