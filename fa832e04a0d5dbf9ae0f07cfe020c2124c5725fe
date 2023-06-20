@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13297226_2f826097",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-20T17:29:26Z",
+      "side": 1,
+      "message": "Do you need to remove `allow_single_file \u003d True,` in L307?",
+      "range": {
+        "startLine": 149,
+        "startChar": 16,
+        "endLine": 149,
+        "endChar": 21
+      },
+      "revId": "fa832e04a0d5dbf9ae0f07cfe020c2124c5725fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
