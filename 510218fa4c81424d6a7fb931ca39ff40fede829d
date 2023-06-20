@@ -88,6 +88,24 @@
       "parentUuid": "d0548127_be42092e",
       "revId": "510218fa4c81424d6a7fb931ca39ff40fede829d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15459f9b_2a2c863f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-06-20T18:03:39Z",
+      "side": 1,
+      "message": "Okay, added `--no-group` to all `rsync` calls using a method similar to `tar`.",
+      "parentUuid": "ef401267_388767f6",
+      "revId": "510218fa4c81424d6a7fb931ca39ff40fede829d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
