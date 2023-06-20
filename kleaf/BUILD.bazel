@@ -15,7 +15,6 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//lib:selects.bzl", "selects")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
-load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load("//build/bazel_common_rules/docs:docs.bzl", "docs")
 load("//build/kernel/kleaf/tests:empty_test.bzl", "empty_test")
 load("//build/kernel/kleaf/impl:ddk/gen_ddk_headers.bzl", "gen_ddk_headers")
@@ -395,6 +394,11 @@ bzl_library(
     deps = [":hermetic_tools_def"],
 )
 
+<<<<<<< PATCH SET (802fc9 Revert "kleaf: Add a redirection page for deprecated docs")
+# Docs. To view them:
+#   bazel run //build/kernel/kleaf:docs_server
+
+=======
 filegroup(
     name = "docs_deprecated",
     srcs = ["index.html"],
@@ -408,6 +412,7 @@ copy_to_dist_dir(
 
 # Kleaf API Docs. To view them:
 #   Refer to kleaf/docs/api_reference.md
+>>>>>>> BASE      (e93727 kleaf: Add label_flag for extra symbol lists)
 docs(
     name = "docs",
     srcs = [
