@@ -451,6 +451,7 @@ def kernel_build(
     defconfig_fragments += [
         # keep sorted
         Label("//build/kernel/kleaf:defconfig_fragment"),
+        Label("//build/kernel/kleaf/impl/defconfig:btf_debug_info"),
         Label("//build/kernel/kleaf/impl/defconfig:gcov"),
     ]
 
