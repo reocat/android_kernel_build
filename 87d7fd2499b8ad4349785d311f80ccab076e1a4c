@@ -61,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a531e0c7_1cd9622d",
+        "filename": "kleaf/bazelrc/network.bazelrc",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-20T13:29:42Z",
+      "side": 1,
+      "message": "I\u0027m still trying to answer this, but so far idk. It works but not sure if the [default](https://bazel.build/reference/command-line-reference#flag--repository_cache) is still kept. \n\nAlso probably for consistency it might be better to set these values explicitly when using `build:internet` but I\u0027m not sure how to re-use `--cache_dir` and if that\u0027s an acceptable path, wdyt?",
+      "parentUuid": "a8dc7c8a_ae1f368d",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 14
+      },
+      "revId": "87d7fd2499b8ad4349785d311f80ccab076e1a4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1a14dede_5dadb177",
         "filename": "kleaf/common.bazelrc",
         "patchSetId": 7
