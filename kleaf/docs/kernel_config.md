@@ -156,6 +156,7 @@ defconfig fragments are applied on `.config`, and checked after `.config` is
 built. It is recommended to use these common flags instead of defining your
 own defconfig fragments to avoid fragmentation in the ecosystem (pun intended).
 
+*   `--btf_debug_info`
 *   `--gcov`
 
 ### User-defined flags
