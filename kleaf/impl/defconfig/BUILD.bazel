@@ -20,3 +20,13 @@ filegroup(
     }),
     visibility = ["//visibility:public"],
 )
+
+filegroup(
+    name = "btf_debug_info",
+    srcs = select({
+        "//build/kernel/kleaf:btf_debug_info_is_enabled": ["btf_debug_info_enabled_defconfig"],
+        "//build/kernel/kleaf:btf_debug_info_is_disabled": ["btf_debug_info_disabled_defconfig"],
+        "//conditions:default": [],
+    }),
+    visibility = ["//visibility:public"],
+)
