@@ -480,6 +480,7 @@ def kernel_build(
         make_goals = make_goals,
         target_platform = name + "_platform_target",
         exec_platform = name + "_platform_exec",
+        defconfig_fragments = defconfig_fragments,
         **internal_kwargs
     )
 
@@ -1807,6 +1808,11 @@ _kernel_build = rule(
         ),
         "_get_kmi_string": attr.label(
             default = "//build/kernel/kleaf/impl:get_kmi_string",
+            executable = True,
+            cfg = "exec",
+        ),
+        "_cache_dir_config_tags": attr.label(
+            default = "//build/kernel/kleaf/impl:cache_dir_config_tags",
             executable = True,
             cfg = "exec",
         ),

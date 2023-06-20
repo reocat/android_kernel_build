@@ -470,6 +470,7 @@ def _kernel_config_impl(ctx):
         ctx = ctx,
         common_config_tags = ctx.attr.env[KernelEnvAttrInfo].common_config_tags,
         symlink_name = "config",
+        defconfig_fragments = ctx.attr.defconfig_fragments,
     )
     inputs += cache_dir_step.inputs
     outputs += cache_dir_step.outputs
@@ -688,6 +689,11 @@ kernel_config = rule(
             cfg = "exec",
         ),
         "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
+        "_cache_dir_config_tags": attr.label(
+            default = "//build/kernel/kleaf/impl:cache_dir_config_tags",
+            executable = True,
+            cfg = "exec",
+        ),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
