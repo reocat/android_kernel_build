@@ -16,6 +16,24 @@
       "message": "The integration test failures seem genuine:\n\n`\"CONFIG_DELETED_SET: actual \u0027\u0027, expected \u0027CONFIG_DELETED_SET\u003dy\u0027.\" not found`\n\nPTAL",
       "revId": "76aed0e82811a3756b341c5525f74707ea6a7478",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1832d4c3_30f6cccf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-20T23:11:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59d69b9f_186d0e24",
+      "revId": "76aed0e82811a3756b341c5525f74707ea6a7478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
