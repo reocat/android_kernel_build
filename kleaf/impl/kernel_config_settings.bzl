@@ -116,7 +116,55 @@ def _kernel_env_config_settings():
         for attr_name, label in _kernel_env_config_settings_raw().items()
     }
 
-def _kernel_env_get_config_tags(ctx):
+def _kernel_env_get_config_tags(ctx, upper_rule_name, defconfig_fragments):
+    """Return necessary files for KernelEnvAttrInfo's fields related to "config tags"
+
+    config_tags is the mechanism to isolate --cache_dir.
+    """
+
+    # base: just all the different config settings
+    base_config_tags = _kernel_env_get_base_config_tags(ctx)
+    base_config_tags_file = ctx.actions.declare_file("{}/base_config_tags.json".format(ctx.label.name))
+    ctx.actions.write(base_config_tags_file, json.encode_indent(base_config_tags, indent = "    "))
+
+    # common: base + defconfig_fragments
+    common_config_tags_file = ctx.actions.declare_file("{}/common_config_tags.json".format(ctx.label.name))
+    args = ctx.actions.args()
+    args.add("--base", base_config_tags_file)
+    if defconfig_fragments:
+        args.add_all("--defconfig_fragments", defconfig_fragments)
+    args.add("--dest", common_config_tags_file)
+    ctx.actions.run(
+        outputs = [common_config_tags_file],
+        inputs = depset([base_config_tags_file], transitive = [depset(defconfig_fragments)]),
+        executable = ctx.executable._cache_dir_config_tags,
+        arguments = [args],
+        mnemonic = "{}CommonConfigTags".format(upper_rule_name),
+        progress_message = "Creating common_config_tags {}".format(ctx.label),
+    )
+
+    # env: common + label of this kernel_env, prefixed with #
+    env_config_tags_file = ctx.actions.declare_file("{}/config_tags.txt".format(ctx.label.name))
+    args = ctx.actions.args()
+    args.add("--base", common_config_tags_file)
+    args.add("--target", str(ctx.label))
+    args.add("--dest", env_config_tags_file)
+    args.add("--comment")
+    ctx.actions.run(
+        outputs = [env_config_tags_file],
+        inputs = [common_config_tags_file],
+        executable = ctx.executable._cache_dir_config_tags,
+        arguments = [args],
+        mnemonic = "{}ConfigTags".format(upper_rule_name),
+        progress_message = "Creating config_tags {}".format(ctx.label),
+    )
+
+    return struct(
+        common = common_config_tags_file,
+        env = env_config_tags_file,
+    )
+
+def _kernel_env_get_base_config_tags(ctx):
     """Returns dict to compute `OUT_DIR_SUFFIX` for `kernel_env`."""
     attr_to_label = _kernel_env_config_settings_raw()
     raw_attrs = _trim_attrs_raw() + _lto_attrs_raw()
@@ -163,7 +211,7 @@ def _create_progress_message_item(attr_key, attr_val, map, interesting_list):
     else:
         return "{}={}".format(print_attr_key, attr_val)
 
-def _get_progress_message_note(ctx):
+def _get_progress_message_note(ctx, defconfig_fragments):
     """Returns a description text for progress message.
 
     This is a shortened and human-readable version of `kernel_env_get_config_tags`.
@@ -196,6 +244,9 @@ def _get_progress_message_note(ctx):
         if not item:
             continue
         ret.append(item)
+
+    for file in defconfig_fragments:
+        ret.append(file.basename.removesuffix("_defconfig"))
 
     ret = sorted(sets.to_list(sets.make(ret)))
     ret = ";".join(ret)
