@@ -57,6 +57,7 @@ load(
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
+load(":defconfig_fragment_selector.bzl", "defconfig_fragment_string_flag_selector")
 load(":file.bzl", "file")
 load(":hermetic_toolchain.bzl", "hermetic_toolchain")
 load(":kernel_config.bzl", "kernel_config")
@@ -449,7 +450,9 @@ def kernel_build(
     })
 
     defconfig_fragments = _get_defconfig_fragments(
+        kernel_build_name = name,
         kernel_build_defconfig_fragments = defconfig_fragments,
+        **internal_kwargs
     )
 
     toolchain_constraints = []
@@ -665,12 +668,27 @@ def kernel_build(
     )
 
 def _get_defconfig_fragments(
-        kernel_build_defconfig_fragments):
+        kernel_build_name,
+        kernel_build_defconfig_fragments,
+        **internal_kwargs):
     # Use a separate list to avoid .append on the provided object directly.
     # kernel_build_defconfig_fragments could be a list or a select() expression.
     additional_fragments = [
         Label("//build/kernel/kleaf:defconfig_fragment"),
     ]
+
+    btf_debug_info_target = kernel_build_name + "_defconfig_fragment_btf_debug_info"
+    defconfig_fragment_string_flag_selector(
+        name = btf_debug_info_target,
+        flag = Label("//build/kernel/kleaf:btf_debug_info"),
+        files = {
+            Label("//build/kernel/kleaf/impl/defconfig:btf_debug_info_enabled_defconfig"): "enable",
+            Label("//build/kernel/kleaf/impl/defconfig:btf_debug_info_disabled_defconfig"): "disable",
+            # If --btf_debug_info=default, do not apply any defconfig fragments
+        },
+        **internal_kwargs
+    )
+    additional_fragments.append(btf_debug_info_target)
 
     if kernel_build_defconfig_fragments == None:
         kernel_build_defconfig_fragments = []
