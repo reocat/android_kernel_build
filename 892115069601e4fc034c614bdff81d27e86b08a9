@@ -39,6 +39,30 @@
       },
       "revId": "892115069601e4fc034c614bdff81d27e86b08a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb4a7526_102a5a4f",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-06-20T19:55:57Z",
+      "side": 1,
+      "message": "I thought about that, but `-a` would then override it if used anywhere. 😞",
+      "parentUuid": "aa6727b2_d3d1a221",
+      "range": {
+        "startLine": 190,
+        "startChar": 14,
+        "endLine": 190,
+        "endChar": 26
+      },
+      "revId": "892115069601e4fc034c614bdff81d27e86b08a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
