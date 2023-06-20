@@ -448,9 +448,11 @@ def kernel_build(
 
     if defconfig_fragments == None:
         defconfig_fragments = []
-    defconfig_fragments.append(
+    defconfig_fragments += [
+        # keep sorted
         Label("//build/kernel/kleaf:defconfig_fragment"),
-    )
+        Label("//build/kernel/kleaf/impl/defconfig:btf_debug_info"),
+    ]
 
     toolchain_constraints = []
     if toolchain_version != None:
