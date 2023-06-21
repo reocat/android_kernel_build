@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86d7a5b0_5d35c6d7",
+        "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-21T10:37:04Z",
+      "side": 1,
+      "message": "nit: For each `{key, value}` entry; `key` is the flag name, and `value` is the list of its possible values.",
+      "range": {
+        "startLine": 244,
+        "startChar": 23,
+        "endLine": 244,
+        "endChar": 71
+      },
+      "revId": "a5b092a22e8d11b485bc8900d4099571edf91b74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
