@@ -34,6 +34,24 @@
       "parentUuid": "5b8d050c_6fb0285f",
       "revId": "c8a9139092bfa8c3e7c25a44ec3cee88d6a84fd1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae2b3f6d_e93fda79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T19:51:46Z",
+      "side": 1,
+      "message": "\u003e but they were not previously defined, which I assumed fallbacks to a default.\n\nAren\u0027t they defined by --config\u003dno_internet, which is enabled globally by this change?",
+      "parentUuid": "0f3a542e_a31f6b59",
+      "revId": "c8a9139092bfa8c3e7c25a44ec3cee88d6a84fd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
