@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "991db577_14ad45e7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "767e7530_2fb8213d",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1a623d1_bab50ca2",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-06-21T12:29:02Z",
       "side": 1,
       "message": "typo: a",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 5
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e7f5a5a_250993c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1dae7253_d96dc31d",
       "range": {
         "startLine": 26,
         "startChar": 4,
@@ -110,6 +158,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8800b72f_aaf481d8",
+        "filename": "kleaf/impl/cache_dir_config_tags.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb8fa70b_269d97c0",
+      "range": {
+        "startLine": 39,
+        "startChar": 73,
+        "endLine": 39,
+        "endChar": 74
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "353899fb_57402797",
@@ -123,6 +195,30 @@
       "writtenOn": "2023-06-21T12:29:02Z",
       "side": 1,
       "message": "is it possible to have an empty target or why is this checking `None`? i.e. why not `if target:`?",
+      "range": {
+        "startLine": 54,
+        "startChar": 14,
+        "endLine": 54,
+        "endChar": 25
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82ea841c_d5731eaa",
+        "filename": "kleaf/impl/cache_dir_config_tags.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "Added a comment.\n\nIt is not possible to have an empty target, but this script itself should not care about it (IMO)",
+      "parentUuid": "353899fb_57402797",
       "range": {
         "startLine": 54,
         "startChar": 14,
@@ -156,6 +252,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38b6bcd1_10dd16ed",
+        "filename": "kleaf/impl/cache_dir_config_tags.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f282099_bfd2c225",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 32
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe8c7665_85c8616d",
@@ -169,6 +289,30 @@
       "writtenOn": "2023-06-21T12:29:02Z",
       "side": 1,
       "message": "previously there was this suggestion in `cache_dir.bzl`:\n\n```\necho \u0027Run `tools/bazel clean` and try again. If the error persists, report a bug.\u0027 \u003e\u00262\n```\n\nwill the same work here, is it worth keeping this suggestion?",
+      "range": {
+        "startLine": 80,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 34
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "627cdc3a_b55d2575",
+        "filename": "kleaf/impl/cache_dir_config_tags.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe8c7665_85c8616d",
       "range": {
         "startLine": 80,
         "startChar": 12,
@@ -202,6 +346,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "664c624d_a9f26896",
+        "filename": "kleaf/impl/cache_dir_config_tags.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f38422f_bfbbebe1",
+      "range": {
+        "startLine": 100,
+        "startChar": 9,
+        "endLine": 100,
+        "endChar": 15
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2a7f96d_a6c49f48",
@@ -215,6 +383,30 @@
       "writtenOn": "2023-06-21T12:29:02Z",
       "side": 1,
       "message": "is this like a `dry_run` or is it for using the result as a input in a shell script?",
+      "range": {
+        "startLine": 104,
+        "startChar": 25,
+        "endLine": 104,
+        "endChar": 34
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8f250e6_dec7a404",
+        "filename": "kleaf/impl/cache_dir_config_tags.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2a7f96d_a6c49f48",
       "range": {
         "startLine": 104,
         "startChar": 25,
@@ -250,6 +442,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b2763c39_de6cc5ab",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34df8e88_389dec84",
+      "range": {
+        "startLine": 119,
+        "startChar": 48,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2efce73b_ea0392e5",
         "filename": "kleaf/impl/kernel_config_settings.bzl",
         "patchSetId": 6
@@ -261,6 +477,30 @@
       "writtenOn": "2023-06-21T12:29:02Z",
       "side": 1,
       "message": "TIL: It\u0027s handy that this work with `File` objects so no need to specify `.file.path`.",
+      "range": {
+        "startLine": 136,
+        "startChar": 4,
+        "endLine": 136,
+        "endChar": 12
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2409bcf8_970c9388",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "but it can only work with one executable, not a full shell script.\n\nHonestly we should have put all shell snippets into a shell script (or at least a template) then use ctx.actions.run instead of run_shell everywhere. But it is too late now.\n\nAlso ctx.actions.run does not play well with hermetic_toolchain right now.",
+      "parentUuid": "2efce73b_ea0392e5",
       "range": {
         "startLine": 136,
         "startChar": 4,
@@ -294,6 +534,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18c6b45e_01a58f28",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "Done, see doc below",
+      "parentUuid": "d5190872_1a30b013",
+      "range": {
+        "startLine": 214,
+        "startChar": 36,
+        "endLine": 214,
+        "endChar": 55
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3bbe61ab_ef3fcf8f",
@@ -317,6 +581,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6d1d74a_b447dd8b",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "Done, I added a note in kernel_build.defconfig_fragments and --defconfig_fragment (in the follow up CL)",
+      "parentUuid": "3bbe61ab_ef3fcf8f",
+      "range": {
+        "startLine": 249,
+        "startChar": 47,
+        "endLine": 249,
+        "endChar": 57
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35783124_bfe6b547",
@@ -330,6 +618,30 @@
       "writtenOn": "2023-06-21T12:29:02Z",
       "side": 1,
       "message": "nit: Maybe make this a default in the macro?",
+      "range": {
+        "startLine": 190,
+        "startChar": 27,
+        "endLine": 190,
+        "endChar": 34
+      },
+      "revId": "8fb104676aa912b983060e2d66b36063b23bbfa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13cf2724_c8936c3c",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T21:05:39Z",
+      "side": 1,
+      "message": "I\u0027d like it to be supplied explicitly in kernel_filegroup, because this is a distinct characteristic about kernel_filegroup (that it doesn\u0027t have defconfig_fragments).",
+      "parentUuid": "35783124_bfe6b547",
       "range": {
         "startLine": 190,
         "startChar": 27,
