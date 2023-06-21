@@ -34,6 +34,24 @@
       "parentUuid": "0d77d510_8bd254d4",
       "revId": "1c2d43473091f4fc36961626224f7c67ea8a0c1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4341e023_13481b69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T17:16:19Z",
+      "side": 1,
+      "message": "And no to adding a note because this flag is a transient migration flag. Once we are sure that the feature does not cause any trouble, we\u0027ll make --noincompatible_kernel_use_resolved_toolchains a build failure, and make --incompatible_kernel_use_resolved_toolchains a no-op.\n\n@maennich@google.com FYI",
+      "parentUuid": "4224a4c2_f32600e4",
+      "revId": "1c2d43473091f4fc36961626224f7c67ea8a0c1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
