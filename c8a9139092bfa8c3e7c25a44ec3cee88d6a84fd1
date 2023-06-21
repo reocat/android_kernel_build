@@ -52,6 +52,24 @@
       "parentUuid": "0f3a542e_a31f6b59",
       "revId": "c8a9139092bfa8c3e7c25a44ec3cee88d6a84fd1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "666996ab_1f0d3308",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T19:54:14Z",
+      "side": 1,
+      "message": "Please also check that the Pixel builds are not broken (e.g. pa/2522340, though you might want a newer build number)",
+      "parentUuid": "ae2b3f6d_e93fda79",
+      "revId": "c8a9139092bfa8c3e7c25a44ec3cee88d6a84fd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
