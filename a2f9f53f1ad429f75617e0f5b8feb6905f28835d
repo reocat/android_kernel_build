@@ -68,6 +68,30 @@
       },
       "revId": "a2f9f53f1ad429f75617e0f5b8feb6905f28835d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c34e49b_d98756a3",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T19:57:50Z",
+      "side": 1,
+      "message": "actually let me send an email about usages for ctx.files to reconsider what this should be",
+      "parentUuid": "c1ea0272_40d67396",
+      "range": {
+        "startLine": 404,
+        "startChar": 100,
+        "endLine": 404,
+        "endChar": 101
+      },
+      "revId": "a2f9f53f1ad429f75617e0f5b8feb6905f28835d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
