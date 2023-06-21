@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b8d050c_6fb0285f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T17:11:16Z",
+      "side": 1,
+      "message": "When this is the default, and one specifies `--config\u003dinternet` explicitly, is --distdir and --repository_cache restored?\n\nIf I understand correctly, this would technically expand to\n\n```\nbazel build --config\u003dno_internet --config\u003dinternet ...\n```\n\nwhich becomes\n\n```\nbazel build --repository_cache\u003d --distdir\u003d --experimental_repository_disable_download --noexperimental_repository_disable_download ...\n```\n\nwhich is effectively\n\n```\nbazel build --repository_cache\u003d --distdir\u003d --noexperimental_repository_disable_download ...\n```\n\nIf everything fails, perhaps we should put these flags in the bazel wrapper instead of in configs...",
+      "revId": "c8a9139092bfa8c3e7c25a44ec3cee88d6a84fd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
