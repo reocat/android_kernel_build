@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "473816f1_7a0febaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T20:29:13Z",
+      "side": 1,
+      "message": "Because our GKI ABI monitoring doesn\u0027t seem to use this feature (since this is a feature request from a partner), can you add a separate test for this feature in a follow up CL? Thanks!",
+      "revId": "037ed6beb7fbb08897a8c00929a4ff397028e146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
