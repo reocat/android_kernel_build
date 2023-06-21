@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0478d8ef_1d194d93",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-21T09:58:54Z",
+      "side": 1,
+      "message": "nit: Add a note this is used in the `reconfig` method.",
+      "range": {
+        "startLine": 353,
+        "startChar": 16,
+        "endLine": 353,
+        "endChar": 33
+      },
+      "revId": "a2f9f53f1ad429f75617e0f5b8feb6905f28835d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1958700_49c58a74",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-21T09:58:54Z",
+      "side": 1,
+      "message": "Please add a comment here that it needs to be in sync with L372.",
+      "range": {
+        "startLine": 378,
+        "startChar": 85,
+        "endLine": 378,
+        "endChar": 93
+      },
+      "revId": "a2f9f53f1ad429f75617e0f5b8feb6905f28835d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1ea0272_40d67396",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-21T09:58:54Z",
+      "side": 1,
+      "message": "nit: Here and L410-411: Line length. Yo can break the line after the `(`\u0027s and `buildifier` will adjust it for you.",
+      "range": {
+        "startLine": 404,
+        "startChar": 100,
+        "endLine": 404,
+        "endChar": 101
+      },
+      "revId": "a2f9f53f1ad429f75617e0f5b8feb6905f28835d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
