@@ -83,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b84bf3f_8a338f04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-21T11:09:31Z",
+      "side": 1,
+      "message": "Perhaps add this detail to the documentation: \n\n`kernel_modules_exclude_list: Base name list of kernel modules to exclude from analysis.`",
+      "parentUuid": "bf9f89cc_b25dcbbd",
+      "revId": "9f658bbcedf6c4449f2e518f77406d609e279f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58ee981e_bed695cc",
