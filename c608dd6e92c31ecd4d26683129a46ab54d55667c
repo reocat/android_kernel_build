@@ -39,6 +39,30 @@
       },
       "revId": "c608dd6e92c31ecd4d26683129a46ab54d55667c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "319cb2e1_a2b9891a",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-21T20:35:32Z",
+      "side": 1,
+      "message": "This is intentional to make sure `\"//build/kernel/kleaf:defconfig_fragment\"` is resolved against where `kernel_build.bzl`\u0027s location. So if //build/kernel/kleaf is in a sub-repository, this will be resolved properly.\n\nnative.package_relative_label() does the opposite; it resolves against where the BUILD file is, which may not be the same repository as `//build/kernel/kleaf`.\n\n... And I am indeed passing it in rules (in this case it is _kernel_build)",
+      "parentUuid": "356c3fe5_ea391891",
+      "range": {
+        "startLine": 446,
+        "startChar": 23,
+        "endLine": 447,
+        "endChar": 14
+      },
+      "revId": "c608dd6e92c31ecd4d26683129a46ab54d55667c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
