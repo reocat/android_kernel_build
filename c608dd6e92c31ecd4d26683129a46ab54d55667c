@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30a6aefd_4904e86a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-21T10:23:39Z",
+      "side": 1,
+      "message": "Please consider adding a documentation entry for this new flag as it\u0027s an important one.",
+      "revId": "c608dd6e92c31ecd4d26683129a46ab54d55667c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "356c3fe5_ea391891",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-21T10:23:39Z",
+      "side": 1,
+      "message": "TIL: I thought we could only pass label flags in rules. 😮",
+      "range": {
+        "startLine": 446,
+        "startChar": 23,
+        "endLine": 447,
+        "endChar": 14
+      },
+      "revId": "c608dd6e92c31ecd4d26683129a46ab54d55667c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
