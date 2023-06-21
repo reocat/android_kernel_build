@@ -45,6 +45,22 @@ def _ddk_config_impl(ctx):
         ddk_config_info,
     ]
 
+def _create_merge_dot_config_step(defconfig_depset_written):
+    cmd = """
+        if [[ -s {defconfig_depset_file} ]]; then
+            {merge_dot_config_cmd}
+        fi
+    """.format(
+        merge_dot_config_cmd = config_utils.create_merge_dot_config_cmd(
+            paths_expr = "$(cat {defconfig_depset_file})",
+        ),
+    )
+
+    return struct(
+        inputs = defconfig_depset_written.depset,
+        cmd = cmd,
+    )
+
 def _create_kconfig_ext_step(ctx, kconfig_depset_written):
     intermediates_dir = utils.intermediates_dir(ctx)
     cmd = """
@@ -135,7 +151,7 @@ def _create_main_action(
 
     tools = config_env_and_outputs_info.tools
 
-    merge_dot_config_step = config_utils.create_merge_dot_config_step(
+    merge_dot_config_step = _create_merge_dot_config_step(
         defconfig_depset_written = defconfig_depset_written,
     )
     kconfig_ext_step = _create_kconfig_ext_step(
