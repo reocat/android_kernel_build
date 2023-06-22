@@ -49,6 +49,10 @@ load(
     "GKI_DOWNLOAD_CONFIGS",
     "X86_64_OUTS",
 )
+load(
+    ":download_repo.bzl",
+    "BUILD_NUMBER_STUB",
+)
 load(":print_debug.bzl", "print_debug")
 
 _ARCH_CONFIGS = {
@@ -948,6 +952,9 @@ def _define_prebuilts(target_configs, **kwargs):
         for config in GKI_DOWNLOAD_CONFIGS:
             target_suffix = config["target_suffix"]
             suffixed_target_outs = config["outs"]  # outs of target named {name}_{target_suffix}
+            suffixed_target_outs = [
+                out.format(build_number = BUILD_NUMBER_STUB) for out in suffixed_target_outs
+            ]
 
             native.filegroup(
                 name = name + "_" + target_suffix + "_downloaded",

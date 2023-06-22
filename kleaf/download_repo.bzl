@@ -13,6 +13,7 @@
 # limitations under the License.
 
 _BUILD_NUM_ENV_VAR = "KLEAF_DOWNLOAD_BUILD_NUMBER_MAP"
+BUILD_NUMBER_STUB = "BUILD_NUMBER"
 
 def _sanitize_repo_name(x):
     """Sanitize x so it can be used as a repository name.
@@ -120,13 +121,17 @@ fail_rule(
     repository_ctx.file("file/BUILD.bazel", build_file, executable = False)
 
 def _download_from_build_number(repository_ctx, build_number):
+    filename = repository_ctx.attr.filename.format(
+        build_number = build_number,
+    )
+
     # Download the requested file
     urls = [_ARTIFACT_URL_FMT.format(
         build_number = build_number,
         target = repository_ctx.attr.target,
-        filename = repository_ctx.attr.filename,
+        filename = filename,
     )]
-    download_path = repository_ctx.path("file/{}".format(repository_ctx.attr.filename))
+    download_path = repository_ctx.path("file/{}".format(filename))
     download_info = repository_ctx.download(
         url = urls,
         output = download_path,
@@ -139,7 +144,7 @@ def _download_from_build_number(repository_ctx, build_number):
     if not download_info.success and repository_ctx.attr.allow_fail:
         srcs = ""
     else:
-        srcs = '"{}"'.format(repository_ctx.attr.filename)
+        srcs = '"{}"'.format(filename)
 
     build_file = """filegroup(
     name="file",
@@ -148,7 +153,7 @@ def _download_from_build_number(repository_ctx, build_number):
 )
 """.format(
         srcs = srcs,
-        filename = repository_ctx.attr.filename,
+        filename = filename,
         parent_repo = repository_ctx.attr.parent_repo,
     )
     repository_ctx.file("file/BUILD.bazel", build_file, executable = False)
@@ -169,20 +174,60 @@ _download_artifact_repo = repository_rule(
 )
 
 def _alias_repo_impl(repository_ctx):
+    build_number = _get_build_number(repository_ctx)
+    if not build_number:
+        _handle_no_build_number(repository_ctx)
+    else:
+        _alias_repo_impl_internal(repository_ctx, build_number)
+
+def _alias_repo_impl_internal(repository_ctx, build_number):
     workspace_file = """workspace(name = "{}")
 """.format(repository_ctx.name)
     repository_ctx.file("WORKSPACE.bazel", workspace_file, executable = False)
 
     for filename, actual in repository_ctx.attr.aliases.items():
-        build_file = """alias(name="{filename}", actual="{actual}", visibility=["//visibility:public"])
+        # filename with {build_number} replaced by a fake build number
+        filename_fake = filename.format(
+            build_number = BUILD_NUMBER_STUB,
+        )
+
+        # filename with {build_number} replaced by the real build number
+        filename = filename.format(
+            build_number = build_number,
+        )
+
+        build_file = """\
+alias(
+    name="{filename}",
+    actual="{actual}",
+    visibility=["//visibility:public"]
+)
 """.format(filename = filename, actual = actual)
         repository_ctx.file("{}/BUILD.bazel".format(filename), build_file, executable = False)
+
+        if filename_fake != filename:
+            build_file = """\
+alias(
+    name="{filename_fake}",
+    actual="//{filename}",
+    visibility=["//visibility:public"]
+)
+""".format(
+                filename_fake = filename_fake,
+                filename = filename,
+            )
+            repository_ctx.file("{}/BUILD.bazel".format(filename_fake), build_file, executable = False)
 
 _alias_repo = repository_rule(
     implementation = _alias_repo_impl,
     attrs = {
         "aliases": attr.string_dict(),
+        "build_number": attr.string(),
+        "parent_repo": attr.string(doc = "Name of the parent `download_artifacts_repo`"),
     },
+    environ = [
+        _BUILD_NUM_ENV_VAR,
+    ],
 )
 
 def download_artifacts_repo(
@@ -267,4 +312,6 @@ def download_artifacts_repo(
             filename: "@" + name + "_" + _sanitize_repo_name(filename) + "//file"
             for filename in (list(files.keys()) + list(optional_files.keys()))
         },
+        build_number = build_number,
+        parent_repo = name,
     )
