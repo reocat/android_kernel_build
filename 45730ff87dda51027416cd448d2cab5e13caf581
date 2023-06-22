@@ -1,0 +1,51 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000047361031",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2634291?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "fc725e17_f1c019c8",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/gki_artifacts.bzl",
+              "range": {
+                "startLine": 197,
+                "startChar": 0,
+                "endLine": 197,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/impl/gki_artifacts.bzl",
+              "range": {
+                "startLine": 238,
+                "startChar": 0,
+                "endLine": 239,
+                "endChar": 0
+              },
+              "replacement": "            mnemonic \u003d \"GkiArtifactsPrebuiltsExtract\",\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "ca972a83_07b2a98d",
+        "filename": "kleaf/impl/gki_artifacts.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-06-22T03:07:18Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/gki_artifacts.bzl` to format the file, or apply the suggested fix.",
+      "revId": "45730ff87dda51027416cd448d2cab5e13caf581",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
