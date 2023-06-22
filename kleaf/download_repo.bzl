@@ -120,9 +120,7 @@ fail_rule(
     repository_ctx.file("file/BUILD.bazel", build_file, executable = False)
 
 def _download_from_build_number(repository_ctx, build_number):
-    local_filename = repository_ctx.attr.local_filename_fmt.format(
-        build_number = build_number
-    )
+    local_filename = repository_ctx.attr.local_filename
     remote_filename = repository_ctx.attr.remote_filename_fmt.format(
         build_number = build_number,
     )
@@ -165,7 +163,7 @@ _download_artifact_repo = repository_rule(
     attrs = {
         "build_number": attr.string(),
         "parent_repo": attr.string(doc = "Name of the parent `download_artifacts_repo`"),
-        "local_filename_fmt": attr.string(),
+        "local_filename": attr.string(),
         "remote_filename_fmt": attr.string(),
         "target": attr.string(doc = "Name of target on [ci.android.com](http://ci.android.com), e.g. `kernel_aarch64`"),
         "sha256": attr.string(default = ""),
@@ -177,22 +175,11 @@ _download_artifact_repo = repository_rule(
 )
 
 def _alias_repo_impl(repository_ctx):
-    build_number = _get_build_number(repository_ctx)
-    if not build_number:
-        _handle_no_build_number(repository_ctx)
-    else:
-        _alias_repo_impl_internal(repository_ctx, build_number)
-
-def _alias_repo_impl_internal(repository_ctx, build_number):
     workspace_file = """workspace(name = "{}")
 """.format(repository_ctx.name)
     repository_ctx.file("WORKSPACE.bazel", workspace_file, executable = False)
 
-    for local_filename_fmt, actual in repository_ctx.attr.aliases.items():
-        local_filename = local_filename_fmt.format(
-            build_number = build_number,
-        )
-
+    for local_filename, actual in repository_ctx.attr.aliases.items():
         build_file = """\
 alias(
     name="{local_filename}",
@@ -206,11 +193,9 @@ _alias_repo = repository_rule(
     implementation = _alias_repo_impl,
     attrs = {
         "aliases": attr.string_dict(doc = """
-        - Keys: local filename format.
+        - Keys: local filename.
         - Value: label to the actual target.
         """),
-        "build_number": attr.string(),
-        "parent_repo": attr.string(doc = "Name of the parent `download_artifacts_repo`"),
     },
     environ = [
         _BUILD_NUM_ENV_VAR,
@@ -285,9 +270,8 @@ def download_artifacts_repo(
 
             - If a list, this is equivalent to `{file: {} for file in files}`.
             - If a dict:
-                - Keys are the local file names. It may be a format string that accepts the
-                    following keys (however, this is unusal because the filename is dynamic):
-                    - `build_number`
+                - Keys are the local file names. Unlike `remote_filename_fmt`, the name
+                  is used as-is.
                 - Values are one of the following:
                 - If a string, this is equivalent to `{"sha256": value}`
                 - If a dict, the dictionary may contain these keys:
@@ -326,18 +310,18 @@ def download_artifacts_repo(
     optional_files = _transform_files_arg(name, optional_files)
 
     for files_dict, allow_fail in ((files, False), (optional_files, True)):
-        for local_filename_fmt, file_metadata in files_dict.items():
+        for local_filename, file_metadata in files_dict.items():
             # Need a repo for each file because repository_ctx.download is blocking. Defining multiple
             # repos allows downloading in parallel.
             # e.g. @gki_prebuilts_vmlinux
             _download_artifact_repo(
-                name = name + "_" + _sanitize_repo_name(local_filename_fmt),
+                name = name + "_" + _sanitize_repo_name(local_filename),
                 parent_repo = name,
-                local_filename_fmt = local_filename_fmt,
+                local_filename = local_filename,
                 build_number = build_number,
                 target = target,
                 sha256 = file_metadata.get("sha256"),
-                remote_filename_fmt = file_metadata.get("remote_filename_fmt", local_filename_fmt),
+                remote_filename_fmt = file_metadata.get("remote_filename_fmt", local_filename),
                 allow_fail = allow_fail,
             )
 
@@ -346,9 +330,7 @@ def download_artifacts_repo(
     _alias_repo(
         name = name,
         aliases = {
-            local_filename_fmt: "@" + name + "_" + _sanitize_repo_name(local_filename_fmt) + "//file"
-            for local_filename_fmt in (list(files.keys()) + list(optional_files.keys()))
+            local_filename: "@" + name + "_" + _sanitize_repo_name(local_filename) + "//file"
+            for local_filename in (list(files.keys()) + list(optional_files.keys()))
         },
-        build_number = build_number,
-        parent_repo = name,
     )
