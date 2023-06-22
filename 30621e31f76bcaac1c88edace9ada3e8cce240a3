@@ -36,6 +36,43 @@
       "message": "File is not formatted. Run `buildifier kleaf/download_repo.bzl` to format the file, or apply the suggested fix.",
       "revId": "30621e31f76bcaac1c88edace9ada3e8cce240a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000047369976",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2634292?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "00751a03_71da92bc",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/download_repo.bzl",
+              "range": {
+                "startLine": 124,
+                "startChar": 0,
+                "endLine": 125,
+                "endChar": 0
+              },
+              "replacement": "        build_number \u003d build_number,\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "1d77e499_562a6075",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-06-22T06:47:05Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/download_repo.bzl` to format the file, or apply the suggested fix.",
+      "revId": "30621e31f76bcaac1c88edace9ada3e8cce240a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
