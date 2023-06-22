@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df3ca015_b12171a7",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-22T00:29:26Z",
+      "side": 1,
+      "message": "Switching this to a string_flag means that `--kasan` would no longer work, and all users would be broken because of this incompatible change.\n\nPerhaps you want a separate bool_flag for kasan_sw_tags?\n\nIn your config_setting, you can implement logic that ensures `--kasan` and `--kasan_sw_tags` are not enabled simultanously. See https://bazel.build/docs/configurable-attributes#and-chaining\n\nOr you can keep the string_flag here, and in bazel.py (the wrapper), map `--kasan` to `--kasan\u003dgeneric` and `--kasan_sw_tags` to `--kasan\u003dsw_tags`. (though I don\u0027t think this is a good idea because of wrapper flag hacks)",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 11
+      },
+      "revId": "20b33ab72823676c7943cfe9e0a043c6185fa490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22aa8c8d_348af5d5",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-22T00:29:26Z",
+      "side": 1,
+      "message": "If you need a string_flag, you should also add `values \u003d ` to restrict the values for this flag. (See LTO for an example).",
+      "revId": "20b33ab72823676c7943cfe9e0a043c6185fa490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
