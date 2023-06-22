@@ -378,6 +378,12 @@ bzl_library(
 )
 
 bzl_library(
+    name = "download_repo_def",
+    srcs = ["download_repo.bzl"],
+    visibility = ["//visibility:private"],
+)
+
+bzl_library(
     name = "hermetic_tools_def",
     srcs = ["hermetic_tools.bzl"],
     visibility = ["//build/kernel/kleaf:__subpackages__"],
@@ -414,6 +420,7 @@ docs(
     ],
     default = "kernel.bzl",
     deps = [
+        ":download_repo_def",
         "//build/bazel_common_rules/dist",
         "//build/bazel_common_rules/exec",
         "//build/bazel_common_rules/workspace",
