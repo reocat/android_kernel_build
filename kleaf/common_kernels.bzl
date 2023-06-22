@@ -329,10 +329,10 @@ def define_common_kernels(
       - `kernel_aarch64_uapi_headers_download_or_build`
 
     Note: If a device should build against downloaded prebuilts unconditionally, set
-    `--//<package>:use_prebuilt_gki` and a fixed build number in `device.bazelrc`. For example:
+    `--use_prebuilt_gki` and a fixed build number in `device.bazelrc`. For example:
     ```
     # device.bazelrc
-    build --//common:use_prebuilt_gki
+    build --use_prebuilt_gki
     build --action_env=KLEAF_DOWNLOAD_BUILD_NUMBER_MAP="gki_prebuilts=8077484"
     ```
 
@@ -865,18 +865,16 @@ def define_common_kernels(
     _define_prebuilts(target_configs = target_configs, visibility = visibility)
 
 def _define_prebuilts(target_configs, **kwargs):
-    # Build number for GKI prebuilts
-    bool_flag(
+    # Legacy flag for backwards compatibility
+    native.alias(
         name = "use_prebuilt_gki",
-        build_setting_default = False,
+        actual = Label("//build/kernel/kleaf:use_prebuilt_gki"),
+        deprecation = "Use " + str(Label("//build/kernel/kleaf:use_prebuilt_gki")) + " instead",
     )
-
-    # Matches when --use_prebuilt_gki is set.
-    native.config_setting(
+    native.alias(
         name = "use_prebuilt_gki_set",
-        flag_values = {
-            ":use_prebuilt_gki": "true",
-        },
+        actual = Label("//build/kernel/kleaf:use_prebuilt_gki_is_true"),
+        deprecation = "Use " + str(Label("//build/kernel/kleaf:use_prebuilt_gki_is_true")) + " instead",
     )
 
     for name, value in CI_TARGET_MAPPING.items():
@@ -902,11 +900,11 @@ def _define_prebuilts(target_configs, **kwargs):
         kernel_filegroup(
             name = name + "_download_or_build",
             srcs = select({
-                ":use_prebuilt_gki_set": [":" + name + "_downloaded"],
+                Label("//build/kernel/kleaf:use_prebuilt_gki_is_true"): [":" + name + "_downloaded"],
                 "//conditions:default": [name],
             }),
             deps = select({
-                ":use_prebuilt_gki_set": [
+                Label("//build/kernel/kleaf:use_prebuilt_gki_is_true"): [
                     name + "_ddk_artifacts_downloaded",
                     name + "_unstripped_modules_archive_downloaded",
                     name + "_" + TOOLCHAIN_VERSION_FILENAME + "_downloaded",
@@ -922,11 +920,11 @@ def _define_prebuilts(target_configs, **kwargs):
             collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
             images = name + "_images_download_or_build",
             module_outs_file = select({
-                ":use_prebuilt_gki_set": "@{}//{}{}".format(repo_name, name, MODULE_OUTS_FILE_SUFFIX),
+                Label("//build/kernel/kleaf:use_prebuilt_gki_is_true"): "@{}//{}{}".format(repo_name, name, MODULE_OUTS_FILE_SUFFIX),
                 "//conditions:default": ":" + name + "_module_outs_file",
             }),
             protected_modules_list = select({
-                ":use_prebuilt_gki_set": "@{}//{}".format(repo_name, value["protected_modules"]),
+                Label("//build/kernel/kleaf:use_prebuilt_gki_is_true"): "@{}//{}".format(repo_name, value["protected_modules"]),
                 "//conditions:default": target_configs[name].get("protected_modules_list"),
             }),
             gki_artifacts = name + "_gki_artifacts_download_or_build",
@@ -945,7 +943,7 @@ def _define_prebuilts(target_configs, **kwargs):
         native.filegroup(
             name = name + "_gki_artifacts_download_or_build",
             srcs = select({
-                ":use_prebuilt_gki_set": [name + "_gki_artifacts_downloaded"],
+                Label("//build/kernel/kleaf:use_prebuilt_gki_is_true"): [name + "_gki_artifacts_downloaded"],
                 "//conditions:default": [name + "_gki_artifacts"],
             }),
             **kwargs
@@ -969,7 +967,7 @@ def _define_prebuilts(target_configs, **kwargs):
             native.filegroup(
                 name = name + "_" + target_suffix + "_download_or_build",
                 srcs = select({
-                    ":use_prebuilt_gki_set": [":" + name + "_" + target_suffix + "_downloaded"],
+                    Label("//build/kernel/kleaf:use_prebuilt_gki_is_true"): [":" + name + "_" + target_suffix + "_downloaded"],
                     "//conditions:default": [name + "_" + target_suffix],
                 }),
                 **kwargs
