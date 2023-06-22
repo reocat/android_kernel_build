@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d98d4913_e48a77c7",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-22T23:40:02Z",
+      "side": 1,
+      "message": "This does not work when there\u0027s a \u0027/\u0027 in remote_filename",
+      "range": {
+        "startLine": 129,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 8
+      },
+      "revId": "9ee5f71cdad2a039bbe67357cfeeea0737646f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
