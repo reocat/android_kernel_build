@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7c94508_ac2c6d63",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1962,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-23T12:09:14Z",
+      "side": 1,
+      "message": "I wonder whether we by now can flip this logic such that we do not have to opt out for a long list of flags (--kasan, --kcsan, --kgdb, what else?). Perhaps we mark our \"GKI\" or \"future release\" builds as such and ignore strict checking for those? If any flag taints this \"releaseability\", we should just downgrade to not strict. Doe this make sense?",
+      "revId": "9123876a0d23536929667d3a6bfe0d4663f21082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
