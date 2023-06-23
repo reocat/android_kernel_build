@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f89d3f17_efa496d0",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-23T18:10:12Z",
+      "side": 1,
+      "message": "This should be private now as it is an implementation detail of `:kasan_is_true`\n\n... unless you do need to differentiate the flags",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 41
+      },
+      "revId": "a907a594effa8e08cbc1bcf51db6e5d3de4e34e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9e72be4_f5b774e4",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-23T18:10:12Z",
+      "side": 1,
+      "message": "Do you need the `kasan_sw_tags` target elsewhere? This is unusual; usually you only need kasan_sw_tags_is_true.\n\nI would suggest making this private unless there is a need to expose this.",
+      "range": {
+        "startLine": 112,
+        "startChar": 4,
+        "endLine": 112,
+        "endChar": 41
+      },
+      "revId": "a907a594effa8e08cbc1bcf51db6e5d3de4e34e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c2c113e_15b3f5a7",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-23T18:10:12Z",
+      "side": 1,
+      "message": "This should be private now as it is an implementation detail of `:kasan_is_true`\n\n... unless you do need to differentiate the flags",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 41
+      },
+      "revId": "a907a594effa8e08cbc1bcf51db6e5d3de4e34e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47d333ef_e6b9f661",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-23T18:10:12Z",
+      "side": 1,
+      "message": "nit: I think it is more readable if this line is changed to\n\n```\nif kasan and kasan_sw_tags:\n```",
+      "range": {
+        "startLine": 259,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 23
+      },
+      "revId": "a907a594effa8e08cbc1bcf51db6e5d3de4e34e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "feab69b8_a4066ed3",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-23T18:10:12Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 295,
+        "endChar": 23
+      },
+      "revId": "a907a594effa8e08cbc1bcf51db6e5d3de4e34e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
