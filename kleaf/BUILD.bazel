@@ -103,7 +103,7 @@ bool_flag(
 # values from the command line.
 bool_flag(
     name = "kasan",
-    build_setting_default = False,
+    build_setting_default = True,
     visibility = ["//visibility:public"],
 )
 
