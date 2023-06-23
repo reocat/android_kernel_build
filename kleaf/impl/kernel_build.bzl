@@ -1004,7 +1004,10 @@ def _get_grab_gcno_step(ctx):
     if ctx.attr._gcov[BuildSettingInfo].value:
         gcno_dir = ctx.actions.declare_directory("{name}/{name}_gcno".format(name = ctx.label.name))
         gcno_mapping = ctx.actions.declare_file("{name}/gcno_mapping.{name}.json".format(name = ctx.label.name))
-        outputs += [gcno_dir, gcno_mapping]
+        gcno_zip = ctx.actions.declare_file(
+            "{name}/{name}.gcno.tar.gz".format(name = ctx.label.name),
+        )
+        outputs += [gcno_dir, gcno_mapping, gcno_zip]
         tools.append(ctx.executable._print_gcno_mapping)
 
         extra_args = ""
@@ -1019,11 +1022,14 @@ def _get_grab_gcno_step(ctx):
         grab_gcno_cmd = """
             rsync -a --prune-empty-dirs --include '*/' --include '*.gcno' --exclude '*' ${{OUT_DIR}}/ {gcno_dir}/
             {print_gcno_mapping} {extra_args} ${{OUT_DIR}}:{gcno_dir} > {gcno_mapping}
+            # Archive gcno_dir
+            tar czf {gcno_zip} -C {gcno_dir} .
         """.format(
             gcno_dir = gcno_dir.path,
             gcno_mapping = gcno_mapping.path,
             print_gcno_mapping = ctx.executable._print_gcno_mapping.path,
             extra_args = extra_args,
+            gcno_zip = gcno_zip.path,
         )
     return struct(
         inputs = inputs,
