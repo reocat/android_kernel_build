@@ -16,6 +16,29 @@
       "message": "Sorry, I had one other comment. There needs to be a single archive. Can we put all gcno directories and gcno mapping files into a single archive?",
       "revId": "060906463e31a7cd089e957b237d2f6a87dd611b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a545522e_5fc24491",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-23T17:52:41Z",
+      "side": 1,
+      "message": "nit: archive / tarball\n\nit is not a `.zip`",
+      "range": {
+        "startLine": 1007,
+        "startChar": 13,
+        "endLine": 1007,
+        "endChar": 16
+      },
+      "revId": "060906463e31a7cd089e957b237d2f6a87dd611b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
