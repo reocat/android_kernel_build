@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b27359dc_4d3946e5",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1965775
+      },
+      "writtenOn": "2023-06-23T12:08:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df3ca015_b12171a7",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 11
+      },
+      "revId": "20b33ab72823676c7943cfe9e0a043c6185fa490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22aa8c8d_348af5d5",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a69e252_b0ac5e37",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1965775
+      },
+      "writtenOn": "2023-06-23T12:08:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22aa8c8d_348af5d5",
+      "revId": "20b33ab72823676c7943cfe9e0a043c6185fa490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d350c36_50f3f59b",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-06-22T00:29:54Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Buildifier: Variable \"configs\" may not have been initialized. http://go/buildifier-warnings#uninitialized\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nVariable \"configs\" may not have been initialized. http://go/buildifier-warnings#uninitialized",
+      "range": {
+        "startLine": 285,
+        "startChar": 28,
+        "endLine": 285,
+        "endChar": 35
+      },
+      "revId": "20b33ab72823676c7943cfe9e0a043c6185fa490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1885d2ee_c222f812",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1965775
+      },
+      "writtenOn": "2023-06-23T12:08:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d350c36_50f3f59b",
       "range": {
         "startLine": 285,
         "startChar": 28,
