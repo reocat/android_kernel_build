@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000047516624",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2617938?revision\u003d22",
+      "fixSuggestions": [
+        {
+          "fixId": "824e3e46_fd8621ce",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/workspace.bzl",
+              "range": {
+                "startLine": 173,
+                "startChar": 0,
+                "endLine": 174,
+                "endChar": 0
+              },
+              "replacement": "        user_clang_toolchain_repository \u003d \"@kleaf_user_clang_toolchain\",\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "d98ba6b0_56cc66f7",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-06-24T01:37:26Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/workspace.bzl` to format the file, or apply the suggested fix.",
+      "revId": "c72bc9999f882d45fcf414f3ec883baeac5b17ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
