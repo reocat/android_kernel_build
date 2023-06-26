@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a4ad3f6_d26731be",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-26T10:29:52Z",
+      "side": 1,
+      "message": "similar edit as below:\n\n```suggestion\n    kasan \u003d ctx.attr.kasan[BuildSettingInfo].value\n\n    if not kasan:\n        return struct(configs \u003d [], deps \u003d [])\n\n    if ctx.attr.kasan_sw_tags[BuildSettingInfo].value:\n        fail(\"{}: cannot have both --kasan and --kasan_sw_tags simultaneously\".format(ctx.label))\n\n```",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 0
+      },
+      "revId": "e56cffc3b47e8b14ded0432bf10035eef3b71a9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "780f6dc3_796dc289",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-26T10:29:52Z",
+      "side": 1,
+      "message": "giving the kasan_generic a name is confusing. Also there is no need to test for kasan_sw_tags twice:\n\n```suggestion\n    lto \u003d ctx.attr.lto\n    kasan_sw_tags \u003d ctx.attr.kasan_sw_tags[BuildSettingInfo].value\n\n    if not kasan_sw_tags:\n        return struct(configs \u003d [], deps \u003d [])\n\n    if ctx.attr.kasan[BuildSettingInfo].value:\n        fail(\"{}: cannot have both --kasan and --kasan_sw_tags simultaneously\".format(ctx.label))\n\n```",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 299,
+        "endChar": 0
+      },
+      "revId": "e56cffc3b47e8b14ded0432bf10035eef3b71a9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
