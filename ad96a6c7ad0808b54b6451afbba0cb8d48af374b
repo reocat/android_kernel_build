@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4cd593a_dc646174",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-26T12:03:12Z",
+      "side": 1,
+      "message": "Add `visibility \u003d [\"//visibility:public\"],` after this to fix the build error:\n\n`ERROR: /buildbot/src/android/common-android-mainline/common/BUILD.bazel:51:22: in kernel_env rule //common:kernel_aarch64_env: target \u0027//build/kernel/kleaf:kasan_sw_tags\u0027 is not visible`",
+      "range": {
+        "startLine": 103,
+        "startChar": 33,
+        "endLine": 103,
+        "endChar": 34
+      },
+      "revId": "ad96a6c7ad0808b54b6451afbba0cb8d48af374b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
