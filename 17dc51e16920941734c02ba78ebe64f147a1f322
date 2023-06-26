@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de55a38d_b66734d2",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-26T16:50:13Z",
+      "side": 1,
+      "message": "nit: Please consider adding a doc note, that the only supported keyword in the format is `build_number`.",
+      "range": {
+        "startLine": 169,
+        "startChar": 43,
+        "endLine": 169,
+        "endChar": 45
+      },
+      "revId": "17dc51e16920941734c02ba78ebe64f147a1f322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
