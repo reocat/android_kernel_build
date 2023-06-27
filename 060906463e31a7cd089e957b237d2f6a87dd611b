@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5147dbac_9e6ba9b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-27T10:23:08Z",
+      "side": 1,
+      "message": "Done. PTAL.",
+      "parentUuid": "7cc932a5_a6cd4152",
+      "revId": "060906463e31a7cd089e957b237d2f6a87dd611b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a545522e_5fc24491",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-06-23T17:52:41Z",
       "side": 1,
       "message": "nit: archive / tarball\n\nit is not a `.zip`",
+      "range": {
+        "startLine": 1007,
+        "startChar": 13,
+        "endLine": 1007,
+        "endChar": 16
+      },
+      "revId": "060906463e31a7cd089e957b237d2f6a87dd611b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41f80ffd_340db482",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-27T10:23:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a545522e_5fc24491",
       "range": {
         "startLine": 1007,
         "startChar": 13,
