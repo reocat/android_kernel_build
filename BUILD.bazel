@@ -47,6 +47,11 @@ hermetic_tools(
         "rsync",
         "sh",
     ],
+    # TODO(b/289137454): Use flock from toybox by changing this to non_aliased_srcs.
+    non_aliased_host_tools = select({
+        "//build/kernel/kleaf:debug_cache_dir_conflict_needs_flock": ["flock"],
+        "//conditions:default": [],
+    }),
     py3_outs = [
         "python",
         "python3",
