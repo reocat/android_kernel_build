@@ -16,6 +16,24 @@
       "message": "This is blocked by b/288561432",
       "revId": "fc6d1bb25d73909aa5ee44028287ad2c20e50099",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7020806_dec5a3ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-27T11:27:21Z",
+      "side": 1,
+      "message": "And the test failure agrees with this:\n\n```\nERROR: @//build/kernel/kleaf/tests/kernel_config_test:kernel_defconfig_fragments_test_x86_64_kernel_build_config:\nCONFIG_CFI_CLANG: actual \u0027\u0027, expected \u0027# CONFIG_CFI_CLANG is not set\u0027 from build/kernel/kleaf/impl/defconfig/gcov_defconfig.\nAre they declared in Kconfig?\n```\n\nwhich is great, ty! 😊\n\nupd: Ah actually it\u0027s for a different ticket: b/264407394.",
+      "parentUuid": "4e1bccd5_aa240f96",
+      "revId": "fc6d1bb25d73909aa5ee44028287ad2c20e50099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
