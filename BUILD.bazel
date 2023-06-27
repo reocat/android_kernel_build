@@ -180,7 +180,12 @@ hermetic_tools(
             "diff",
             "expr",
             "nproc",
-        ],
+        ] + select({
+            "//build/kernel/kleaf:debug_cache_dir_conflict_needs_flock": [
+                "flock",
+            ],
+            "//conditions:default": [],
+        }),
         "//prebuilts/kernel-build-tools:linux-x86/bin/depmod": [
             "modinfo",
         ],
