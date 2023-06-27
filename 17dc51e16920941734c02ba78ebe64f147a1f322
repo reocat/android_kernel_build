@@ -22,6 +22,30 @@
       },
       "revId": "17dc51e16920941734c02ba78ebe64f147a1f322",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d4f6b2_1cfdd50f",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-27T01:09:54Z",
+      "side": 1,
+      "message": "CL:2639254",
+      "parentUuid": "de55a38d_b66734d2",
+      "range": {
+        "startLine": 169,
+        "startChar": 43,
+        "endLine": 169,
+        "endChar": 45
+      },
+      "revId": "17dc51e16920941734c02ba78ebe64f147a1f322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
