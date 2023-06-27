@@ -47,6 +47,10 @@ hermetic_tools(
         "rsync",
         "sh",
     ],
+    non_aliased_host_tools = select({
+        "//build/kernel/kleaf:debug_cache_dir_conflict_needs_flock": ["flock"],
+        "//conditions:default": [],
+    }),
     py3_outs = [
         "python",
         "python3",
