@@ -176,6 +176,14 @@ hermetic_tools(
     rsync_args = [
         "--no-group",
     ],
+    symlinks = {
+        "//prebuilts/build-tools:linux-x86/bin/toybox": select({
+            "//build/kernel/kleaf:debug_cache_dir_conflict_needs_flock": [
+                "flock",
+            ],
+            "//conditions:default": [],
+        }),
+    },
     tar_args = [
         "--mtime=@0",
         "--owner=0",
