@@ -70,6 +70,24 @@
       "parentUuid": "ae2b3f6d_e93fda79",
       "revId": "c8a9139092bfa8c3e7c25a44ec3cee88d6a84fd1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e2ccdad_b92e2844",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-27T12:14:20Z",
+      "side": 1,
+      "message": "This actually breaks the build, so I\u0027m holding it for now.\n\nI\u0027m checking whether CL:2634004 might help here.\n\nupd1: It doesn\u0027t, so I\u0027m investigating why.",
+      "parentUuid": "666996ab_1f0d3308",
+      "revId": "c8a9139092bfa8c3e7c25a44ec3cee88d6a84fd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
