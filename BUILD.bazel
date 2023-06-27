@@ -159,7 +159,12 @@ _HERMETIC_TOOLS = [
 
 hermetic_tools(
     name = "hermetic-tools",
-    srcs = _HERMETIC_TOOLS + [
+    srcs = _HERMETIC_TOOLS + select({
+        "//build/kernel/kleaf:debug_cache_dir_conflict_needs_flock": [
+            "//prebuilts/build-tools:linux-x86/bin/toybox",
+        ],
+        "//conditions:default": [],
+    }) + [
         "//prebuilts/clang/host/linux-x86/clang-{}:bin/llvm-strings".format(VARS["CLANG_VERSION"]),
     ],
     host_tools = [
