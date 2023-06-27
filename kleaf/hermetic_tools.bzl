@@ -213,6 +213,10 @@ def _handle_host_tools(ctx, hermetic_base, deps):
         else:
             host_outs.append(f)
 
+    for out_name in ctx.attr.non_aliased_host_tools:
+        out_file = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, out_name))
+        host_outs.append(out_file)
+
     command = """
             set -e
           # export PATH so which can work
@@ -272,7 +276,7 @@ def _hermetic_tools_impl(ctx):
 
     all_outputs += host_outs
 
-    info_deps = deps + ctx.outputs.host_tools
+    info_deps = deps + host_outs
     info_deps += py3.info_deps
 
     fail_hard = """
@@ -331,6 +335,7 @@ _hermetic_tools = rule(
         "srcs": attr.label_list(doc = "Hermetic tools in the tree", allow_files = True),
         "deps": attr.label_list(doc = "Additional_deps", allow_files = True),
         "tar_args": attr.string_list(),
+        "non_aliased_host_tools": attr.string_list(),
         "_disable_hermetic_tools_info": attr.label(
             default = "//build/kernel/kleaf/impl:incompatible_disable_hermetic_tools_info",
         ),
@@ -345,6 +350,7 @@ def hermetic_tools(
         name,
         srcs,
         host_tools = None,
+        non_aliased_host_tools = None,
         deps = None,
         tar_args = None,
         rsync_args = None,
@@ -354,13 +360,14 @@ def hermetic_tools(
 
     Args:
         name: Name of the target.
-        srcs: A list of labels referring to tools for hermetic builds. This is usually a `glob()`.
+        srcs: nonconfigurable. A list of labels referring to tools for hermetic builds. This is usually a `glob()`.
 
           Each item in `{srcs}` is treated as an executable that are added to the `PATH`.
-        host_tools: An allowlist of names of tools that are allowed to be used from the host.
+        host_tools: nonconfigurable. An allowlist of names of tools that are allowed to be used from the host.
 
           For each token `{tool}`, the label `{name}/{tool}` is created to refer to the tool.
-        py3_outs: List of tool names that are resolved to Python 3 binary.
+        non_aliased_host_tools: Like `host_tools` but the label `{name}/{tool}` is **not** created.
+        py3_outs: nonconfigurable. List of tool names that are resolved to Python 3 binary.
         deps: additional dependencies. Unlike `srcs`, these aren't added to the `PATH`.
         tar_args: List of fixed arguments provided to `tar` commands.
         rsync_args: List of fixed arguments provided to `rsync` commands.
@@ -385,6 +392,7 @@ def hermetic_tools(
         srcs = srcs,
         outs = outs,
         host_tools = host_tools,
+        non_aliased_host_tools = non_aliased_host_tools,
         py3_outs = py3_outs,
         deps = deps,
         tar_args = tar_args,
