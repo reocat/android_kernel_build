@@ -34,7 +34,7 @@ load(
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load("//build/kernel/kleaf/artifact_tests:kernel_test.bzl", "initramfs_modules_options_test")
 load("//build/kernel/kleaf/artifact_tests:device_modules_test.bzl", "device_modules_test")
-load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts")
+load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts", "gki_artifacts_prebuilts")
 load("//build/kernel/kleaf/impl:out_headers_allowlist_archive.bzl", "out_headers_allowlist_archive")
 load(
     "//build/kernel/kleaf/impl:constants.bzl",
@@ -338,6 +338,9 @@ def define_common_kernels(
 
     This is equivalent to specifying `--use_prebuilt_gki=8077484` for all Bazel commands.
 
+    You may set `--use_signed_prebuilts` to download the signed boot images instead
+    of the unsigned one. This requires `--use_prebuilt_gki` to be set to a signed build.
+
     Args:
       branch: **Deprecated**. This attribute is ignored.
 
@@ -526,7 +529,7 @@ def define_common_kernels(
         print(("\nWARNING: {package}: define_common_kernels() no longer uses the branch " +
                "attribute. Default value of --dist_dir has been changed to out/{{name}}/dist. " +
                "Please remove the branch attribute from define_common_kernels().").format(
-            package = native.package_name(),
+            package = str(native.package_relative_label(":x")).removesuffix(":x"),
         ))
 
     if visibility == None:
@@ -551,8 +554,8 @@ def define_common_kernels(
         target_configs[name] = _filter_keys(
             target_configs.get(name, {}),
             valid_keys = _TARGET_CONFIG_VALID_KEYS,
-            what = '//{package}:{name}: target_configs["{name}"]'.format(
-                package = native.package_name(),
+            what = '{label}: target_configs["{name}"]'.format(
+                label = native.package_relative_label(name),
                 name = name,
             ),
         )
@@ -585,6 +588,12 @@ def define_common_kernels(
 
         all_kmi_symbol_lists = target_config.get("additional_kmi_symbol_lists")
         all_kmi_symbol_lists = [] if all_kmi_symbol_lists == None else list(all_kmi_symbol_lists)
+
+        # Add user KMI symbol lists to additional lists
+        target_config["additional_kmi_symbol_lists"] = all_kmi_symbol_lists + [
+            "//build/kernel/kleaf:user_kmi_symbol_lists",
+        ]
+
         if target_config.get("kmi_symbol_list"):
             all_kmi_symbol_lists.append(target_config.get("kmi_symbol_list"))
         native.filegroup(
@@ -873,6 +882,7 @@ def _define_prebuilts(target_configs, **kwargs):
     for name, value in CI_TARGET_MAPPING.items():
         repo_name = value["repo_name"]
         main_target_outs = value["outs"]  # outs of target named {name}
+        gki_prebuilts_outs = value["gki_prebuilts_outs"]  # outputs of _gki_prebuilts
 
         native.filegroup(
             name = name + "_downloaded",
@@ -923,9 +933,30 @@ def _define_prebuilts(target_configs, **kwargs):
             **kwargs
         )
 
+        gki_artifacts_prebuilts(
+            name = name + "_gki_artifacts_downloaded",
+            srcs = select({
+                Label("//build/kernel/kleaf:use_signed_prebuilts_is_true"): [name + "_boot_img_archive_signed_downloaded"],
+                "//conditions:default": [name + "_boot_img_archive_downloaded"],
+            }),
+            outs = gki_prebuilts_outs,
+        )
+
+        native.filegroup(
+            name = name + "_gki_artifacts_download_or_build",
+            srcs = select({
+                ":use_prebuilt_gki_set": [name + "_gki_artifacts_downloaded"],
+                "//conditions:default": [name + "_gki_artifacts"],
+            }),
+            **kwargs
+        )
+
         for config in GKI_DOWNLOAD_CONFIGS:
             target_suffix = config["target_suffix"]
-            suffixed_target_outs = config["outs"]  # outs of target named {name}_{target_suffix}
+
+            # outs of target named {name}_{target_suffix}
+            suffixed_target_outs = list(config.get("outs", []))
+            suffixed_target_outs += list(config.get("outs_mapping", {}).keys())
 
             native.filegroup(
                 name = name + "_" + target_suffix + "_downloaded",

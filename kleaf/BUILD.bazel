@@ -15,7 +15,6 @@
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//lib:selects.bzl", "selects")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
-load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load("//build/bazel_common_rules/docs:docs.bzl", "docs")
 load("//build/kernel/kleaf/tests:empty_test.bzl", "empty_test")
 load("//build/kernel/kleaf/impl:ddk/gen_ddk_headers.bzl", "gen_ddk_headers")
@@ -175,6 +174,13 @@ bool_flag(
     visibility = ["//visibility:public"],
 )
 
+# Additional symbol lists to add to GKI kernel build
+label_flag(
+    name = "user_kmi_symbol_lists",
+    build_setting_default = "//build/kernel/kleaf/impl:empty_filegroup",
+    visibility = ["//visibility:public"],
+)
+
 # Flag to enable/disable BTF debug information
 string_flag(
     name = "btf_debug_info",
@@ -190,7 +196,7 @@ string_flag(
 # Use the resolved toolchains for building kernel_* rules.
 # See https://bazel.build/extending/toolchains for how toolchains are resolved.
 bool_flag(
-    name = "experimental_kernel_use_resolved_toolchains",
+    name = "incompatible_kernel_use_resolved_toolchains",
     build_setting_default = False,
     visibility = ["//visibility:public"],
 )
@@ -254,6 +260,19 @@ bool_flag(
 config_setting(
     name = "kgdb_is_true",
     flag_values = {":kgdb": "1"},
+    visibility = ["//visibility:public"],
+)
+
+bool_flag(
+    name = "use_signed_prebuilts",
+    build_setting_default = False,
+    visibility = ["//visibility:private"],
+)
+
+config_setting(
+    name = "use_signed_prebuilts_is_true",
+    flag_values = {":use_signed_prebuilts": "1"},
+    # Visible to any package that calls define_common_kernels()
     visibility = ["//visibility:public"],
 )
 
@@ -386,17 +405,6 @@ bzl_library(
     srcs = ["update_source_file.bzl"],
     visibility = ["//build/kernel/kleaf:__subpackages__"],
     deps = [":hermetic_tools_def"],
-)
-
-filegroup(
-    name = "docs_deprecated",
-    srcs = ["index.html"],
-    visibility = ["//visibility:public"],
-)
-
-copy_to_dist_dir(
-    name = "docs_deprecated_dist",
-    data = [":docs_deprecated"],
 )
 
 # Kleaf API Docs. To view them:

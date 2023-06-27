@@ -148,8 +148,12 @@ def kernel_build(
         arch: [Nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
           Target architecture. Default is `arm64`.
 
-          Value should be one of `arm64`, `x86_64` or `riscv64`, or
-          `arm` (for 32-bit).
+          Value should be one of:
+          * `arm64`
+          * `x86_64`
+          * `riscv64`
+          * `arm` (for 32-bit, uncommon)
+          * `i386` (for 32-bit, uncommon)
 
           This must be consistent to `ARCH` in build configs if the latter
           is specified. Otherwise, a warning / error may be raised.
@@ -1172,9 +1176,11 @@ def _get_modinst_step(ctx, modules_staging_dir):
     if base_kernel:
         cmd += """
           # Check that `make modules_install` does not revert include/config/kernel.release
-            if diff -q {base_kernel_release} ${{OUT_DIR}}/include/config/kernel.release; then
+            if ! diff -q {base_kernel_release} ${{OUT_DIR}}/include/config/kernel.release; then
                 echo "ERROR: make modules_install modifies include/config/kernel.release." >&2
-                echo "   This is not expected; please file a bug!" >&2
+                echo "    This is not expected; please file a bug!" >&2
+                echo "    expected: $(cat {base_kernel_release})" >&2
+                echo "    actual: $(cat ${{OUT_DIR}}/include/config/kernel.release)" >&2
             fi
         """.format(
             base_kernel_release = base_kernel[KernelBuildUnameInfo].kernel_release.path,
@@ -1951,6 +1957,13 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
         # buildifier: disable=print
         print("\nWARNING: {this_label}: Attribute kmi_symbol_list_strict_mode\
               IGNORED because --kcsan is set!".format(this_label = ctx.label))
+        return None
+
+    # Skip for the --kgdb targets as they are not valid GKI release targets
+    if ctx.attr._kgdb[BuildSettingInfo].value:
+        # buildifier: disable=print
+        print("\nWARNING: {this_label}: Attribute kmi_symbol_list_strict_mode\
+              IGNORED because --kgdb is set!".format(this_label = ctx.label))
         return None
 
     if not ctx.attr.kmi_symbol_list_strict_mode:

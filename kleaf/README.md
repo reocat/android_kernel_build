@@ -36,6 +36,12 @@
 
 [Building `compile_commands.json`](docs/compile_commands.md)
 
+[Ensuring hermeticity](docs/hermeticity.md)
+
+[Internet Access](docs/network.md)
+
+[Toolchain resolution](docs/toolchains.md)
+
 ### Configurations
 
 `--config=fast`: [Make local builds faster](docs/fast.md)
