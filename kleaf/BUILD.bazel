@@ -214,6 +214,19 @@ string_flag(
     visibility = ["//visibility:public"],
 )
 
+# Flag to control page size
+string_flag(
+    name = "page_size",
+    build_setting_default = "default",
+    values = [
+        "default",  # Respect value in defconfig
+        "4k",
+        "16k",
+        "64k",
+    ],
+    visibility = ["//visibility:public"],
+)
+
 # Use the resolved toolchains for building kernel_* rules.
 # See https://bazel.build/extending/toolchains for how toolchains are resolved.
 bool_flag(
