@@ -587,10 +587,9 @@ def define_common_kernels(
         target_config = target_configs[name]
         _define_common_kernel(
             name = name,
-            arch_config = arch_config,
-            target_config = target_config,
             toolchain_version = toolchain_version,
             visibility = visibility,
+            **(arch_config | target_config)
         )
 
     native.alias(
@@ -636,35 +635,67 @@ def define_common_kernels(
 
 def _define_common_kernel(
         name,
-        arch_config,
-        target_config,
+        outs,
+        arch,
+        build_config,
         toolchain_version,
-        visibility):
+        visibility,
+        enable_interceptor = None,
+        kmi_symbol_list = None,
+        additional_kmi_symbol_lists = None,
+        trim_nonlisted_kmi = None,
+        kmi_symbol_list_strict_mode = None,
+        module_implicit_outs = None,
+        protected_exports_list = None,
+        protected_modules_list = None,
+        make_goals = None,
+        defconfig_fragments = None,
+        abi_definition_stg = None,
+        kmi_enforced = None,
+        build_gki_artifacts = None,
+        gki_boot_img_sizes = None):
     native.alias(
         name = name + "_sources",
         actual = ":common_kernel_sources",
     )
 
-    all_kmi_symbol_lists = target_config.get("additional_kmi_symbol_lists")
+    all_kmi_symbol_lists = additional_kmi_symbol_lists
     all_kmi_symbol_lists = [] if all_kmi_symbol_lists == None else list(all_kmi_symbol_lists)
 
     # Add user KMI symbol lists to additional lists
-    target_config["additional_kmi_symbol_lists"] = all_kmi_symbol_lists + [
+    additional_kmi_symbol_lists = all_kmi_symbol_lists + [
         "//build/kernel/kleaf:user_kmi_symbol_lists",
     ]
 
-    if target_config.get("kmi_symbol_list"):
-        all_kmi_symbol_lists.append(target_config.get("kmi_symbol_list"))
+    if kmi_symbol_list:
+        all_kmi_symbol_lists.append(kmi_symbol_list)
     native.filegroup(
         name = name + "_all_kmi_symbol_lists",
         srcs = all_kmi_symbol_lists,
     )
 
-    json_target_config = dict(target_config)
-    if json_target_config.get("defconfig_fragments"):
+    json_target_config = dict(
+        name = name,
+        outs = outs,
+        arch = arch,
+        build_config = build_config,
+        toolchain_version = toolchain_version,
+        enable_interceptor = enable_interceptor,
+        kmi_symbol_list = kmi_symbol_list,
+        additional_kmi_symbol_lists = additional_kmi_symbol_lists,
+        trim_nonlisted_kmi = trim_nonlisted_kmi,
+        kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
+        module_implicit_outs = module_implicit_outs,
+        protected_exports_list = protected_exports_list,
+        protected_modules_list = protected_modules_list,
+        make_goals = make_goals,
+        abi_definition_stg = abi_definition_stg,
+        kmi_enforced = kmi_enforced,
+    )
+    if defconfig_fragments:
         json_target_config["defconfig_fragments"] = [
             str(e)
-            for e in json_target_config["defconfig_fragments"]
+            for e in defconfig_fragments
         ]
     json_target_config = json.encode_indent(json_target_config, indent = "    ")
 
@@ -674,18 +705,12 @@ def _define_common_kernel(
         tags = ["manual"],
     )
 
-    kernel_build_kwargs = _filter_keys(
-        target_config,
-        valid_keys = _KERNEL_BUILD_VALID_KEYS,
-        allow_unknown_keys = True,
-    )
-
     kernel_build_config(
         name = name + "_build_config",
         srcs = [
             # do not sort
             ":set_kernel_dir_build_config",
-            arch_config["build_config"],
+            build_config,
             Label("//build/kernel/kleaf:gki_build_config_fragment"),
         ],
     )
@@ -693,8 +718,8 @@ def _define_common_kernel(
     kernel_build(
         name = name,
         srcs = [name + "_sources"],
-        outs = arch_config["outs"],
-        arch = arch_config["arch"],
+        outs = outs,
+        arch = arch,
         implicit_outs = [
             # Kernel build time module signining utility and keys
             # Only available during GKI builds
@@ -704,32 +729,35 @@ def _define_common_kernel(
             "certs/signing_key.x509",
         ],
         build_config = name + "_build_config",
-        enable_interceptor = arch_config.get("enable_interceptor"),
+        enable_interceptor = enable_interceptor,
         visibility = visibility,
         collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
         strip_modules = _STRIP_MODULES,
         toolchain_version = toolchain_version,
         keep_module_symvers = _KEEP_MODULE_SYMVERS,
-        **kernel_build_kwargs
-    )
-
-    kernel_abi_kwargs = _filter_keys(
-        target_config,
-        valid_keys = _KERNEL_ABI_VALID_KEYS,
-        allow_unknown_keys = True,
+        kmi_symbol_list = kmi_symbol_list,
+        additional_kmi_symbol_lists = additional_kmi_symbol_lists,
+        trim_nonlisted_kmi = trim_nonlisted_kmi,
+        kmi_symbol_list_strict_mode = kmi_symbol_list_strict_mode,
+        module_implicit_outs = module_implicit_outs,
+        protected_exports_list = protected_exports_list,
+        protected_modules_list = protected_modules_list,
+        make_goals = make_goals,
+        defconfig_fragments = defconfig_fragments,
     )
 
     kernel_abi(
         name = name + "_abi",
         kernel_build = name,
         visibility = visibility,
-        define_abi_targets = bool(target_config.get("kmi_symbol_list")),
+        define_abi_targets = bool(kmi_symbol_list),
         # Sync with KMI_SYMBOL_LIST_MODULE_GROUPING
         module_grouping = None,
-        **kernel_abi_kwargs
+        abi_definition_stg = abi_definition_stg,
+        kmi_enforced = kmi_enforced,
     )
 
-    if arch_config.get("enable_interceptor"):
+    if enable_interceptor:
         return
 
     # A subset of headers in OUT_DIR that only contains scripts/. This is useful
@@ -775,12 +803,12 @@ def _define_common_kernel(
         modules_list = "android/gki_system_dlkm_modules",
     )
 
-    if target_config.get("build_gki_artifacts"):
+    if build_gki_artifacts:
         gki_artifacts(
             name = name + "_gki_artifacts",
             kernel_build = name,
-            boot_img_sizes = target_config.get("gki_boot_img_sizes", {}),
-            arch = arch_config["arch"],
+            boot_img_sizes = gki_boot_img_sizes,
+            arch = arch,
         )
     else:
         native.filegroup(
@@ -807,7 +835,7 @@ def _define_common_kernel(
         name = name + "_modules",
         srcs = [
             "{}/{}".format(name, module)
-            for module in (target_config["module_implicit_outs"] or [])
+            for module in (module_implicit_outs or [])
         ],
     )
 
@@ -876,9 +904,8 @@ def _define_common_kernel(
         name = name + "_additional_tests",
         kernel_build_name = name,
         kernel_modules_install = name + "_modules_install",
-        modules = (target_config.get("module_outs") or []) +
-                  (target_config.get("module_implicit_outs") or []),
-        arch = arch_config["arch"],
+        modules = (module_implicit_outs or []),
+        arch = arch,
     )
 
     native.test_suite(
