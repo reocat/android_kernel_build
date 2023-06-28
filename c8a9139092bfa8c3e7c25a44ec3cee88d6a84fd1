@@ -88,6 +88,24 @@
       "parentUuid": "666996ab_1f0d3308",
       "revId": "c8a9139092bfa8c3e7c25a44ec3cee88d6a84fd1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adfea0c6_107cec09",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-06-28T16:12:00Z",
+      "side": 1,
+      "message": "I think this is because the wrapper won\u0027t intercept values from `.bazelrc` files, so the config needs to be explicitly added.\n\nI\u0027ve prepared http://pa/2536557 and send it for review. After it gets in, we can merge this one.",
+      "parentUuid": "0e2ccdad_b92e2844",
+      "revId": "c8a9139092bfa8c3e7c25a44ec3cee88d6a84fd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
