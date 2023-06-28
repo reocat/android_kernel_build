@@ -155,6 +155,11 @@ class BazelWrapper(object):
             help="Absolute path to a custom clang toolchain",
             type=_require_absolute_path,
         )
+        parser.add_argument(
+            "--16k",
+            help="Use 16k pages",
+            action="store_true",
+        )
 
         # known_args: List of arguments known by this bazel wrapper. These
         #   are stripped from the final bazel invocation.
@@ -194,6 +199,9 @@ class BazelWrapper(object):
 
         if self.known_args.user_clang_toolchain is not None:
             self.env["KLEAF_USER_CLANG_TOOLCHAIN_PATH"] = self.known_args.user_clang_toolchain
+
+        if getattr(self.known_args, "16k"):
+            self.transformed_command_args.append("--page_size=16k")
 
         cache_dir_bazel_rc = f"{self.absolute_out_dir}/bazel/cache_dir.bazelrc"
         os.makedirs(os.path.dirname(cache_dir_bazel_rc), exist_ok=True)
