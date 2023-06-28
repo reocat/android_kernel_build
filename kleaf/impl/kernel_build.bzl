@@ -452,6 +452,7 @@ def kernel_build(
         # keep sorted
         Label("//build/kernel/kleaf:defconfig_fragment"),
         Label("//build/kernel/kleaf/impl/defconfig:btf_debug_info"),
+        Label("//build/kernel/kleaf/impl/defconfig:{}_page_size".format(arch)),
     ]
 
     toolchain_constraints = []

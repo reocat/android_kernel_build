@@ -21,3 +21,31 @@ filegroup(
     }),
     visibility = ["//visibility:public"],
 )
+
+filegroup(
+    name = "arm64_page_size",
+    srcs = select({
+        # The default is to not apply anything and use the default in
+        # gki_defconfig.
+        "//build/kernel/kleaf:page_size_4k": [],
+        "//build/kernel/kleaf:page_size_16k": ["arm64_16k_defconfig"],
+        "//build/kernel/kleaf:page_size_64k": ["arm64_64k_defconfig"],
+    }),
+    visibility = ["//visibility:public"],
+)
+
+[filegroup(
+    name = "{}_page_size".format(arch),
+    srcs = select({
+        "//build/kernel/kleaf:page_size_4k": [],
+        # Intentionally not set options for 16k and 64k
+        # so build will fail if --page_size=16k or 64k for non-arm64 architectures
+    }),
+    visibility = ["//visibility:public"],
+) for arch in [
+    # keep sorted
+    "arm",
+    "i386",
+    "riscv64",
+    "x86_64",
+]]
