@@ -60,7 +60,7 @@ _ARCH_CONFIGS = {
     },
     "kernel_aarch64_16k": {
         "arch": "arm64",
-        "build_config": "build.config.gki.aarch64.16k",
+        "build_config": "build.config.gki.aarch64",
         "outs": DEFAULT_GKI_OUTS,
     },
     "kernel_aarch64_interceptor": {
@@ -101,6 +101,7 @@ _KERNEL_BUILD_VALID_KEYS = [
     "protected_exports_list",
     "protected_modules_list",
     "make_goals",
+    "defconfig_fragments",
 ]
 
 # Subset of _TARGET_CONFIG_VALID_KEYS for kernel_abi.
@@ -199,6 +200,9 @@ def _default_target_configs():
         "kernel_aarch64_16k": {
             # Assume TRIM_NONLISTED_KMI="" in build.config.gki.aarch64.16k
             "trim_nonlisted_kmi": False,
+            "defconfig_fragments": [
+                Label("//build/kernel/kleaf/impl/defconfig:arm64_16k_defconfig"),
+            ],
         },
         "kernel_aarch64_debug": dicts.add(aarch64_common, {
             # Assume TRIM_NONLISTED_KMI="" in build.config.gki-debug.aarch64
@@ -602,9 +606,17 @@ def define_common_kernels(
             srcs = all_kmi_symbol_lists,
         )
 
+        json_target_config = dict(target_config)
+        if json_target_config.get("defconfig_fragments"):
+            json_target_config["defconfig_fragments"] = [
+                str(e)
+                for e in json_target_config["defconfig_fragments"]
+            ]
+        json_target_config = json.encode_indent(json_target_config, indent = "    ")
+
         print_debug(
             name = name + "_print_configs",
-            content = json.encode_indent(target_config, indent = "    ").replace("null", "None"),
+            content = json_target_config.replace("null", "None"),
             tags = ["manual"],
         )
 
