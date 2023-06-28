@@ -15,6 +15,8 @@
 Tests for artifacts produced by kernel_module.
 """
 
+visibility("//build/kernel/kleaf/...")
+
 def kernel_module_test(
         name,
         modules = None,
