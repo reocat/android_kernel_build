@@ -455,6 +455,7 @@ def kernel_build(
     defconfig_fragments = _get_defconfig_fragments(
         kernel_build_name = name,
         kernel_build_defconfig_fragments = defconfig_fragments,
+        kernel_build_arch = arch,
         **internal_kwargs
     )
 
@@ -673,6 +674,7 @@ def kernel_build(
 def _get_defconfig_fragments(
         kernel_build_name,
         kernel_build_defconfig_fragments,
+        kernel_build_arch,
         **internal_kwargs):
     # Use a separate list to avoid .append on the provided object directly.
     # kernel_build_defconfig_fragments could be a list or a select() expression.
@@ -692,6 +694,20 @@ def _get_defconfig_fragments(
         **internal_kwargs
     )
     additional_fragments.append(btf_debug_info_target)
+
+    page_size_target = kernel_build_name + "_defconfig_fragment_page_size"
+    defconfig_fragment_string_flag_selector(
+        name = page_size_target,
+        flag = Label("//build/kernel/kleaf:page_size"),
+        files = {
+            Label("//build/kernel/kleaf/impl/defconfig:{}_4k_defconfig".format(kernel_build_arch)): "4k",
+            Label("//build/kernel/kleaf/impl/defconfig:{}_16k_defconfig".format(kernel_build_arch)): "16k",
+            Label("//build/kernel/kleaf/impl/defconfig:{}_64k_defconfig".format(kernel_build_arch)): "64k",
+            # If --page_size=default, do not apply any defconfig fragments
+        },
+        **internal_kwargs
+    )
+    additional_fragments.append(page_size_target)
 
     if kernel_build_defconfig_fragments == None:
         kernel_build_defconfig_fragments = []
