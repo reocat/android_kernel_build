@@ -52,44 +52,15 @@ load(
 )
 load(":print_debug.bzl", "print_debug")
 
-_ARCH_CONFIGS = {
-    "kernel_aarch64": {
-        "arch": "arm64",
-        "build_config": "build.config.gki.aarch64",
-        "outs": DEFAULT_GKI_OUTS,
-    },
-    "kernel_aarch64_16k": {
-        "arch": "arm64",
-        "build_config": "build.config.gki.aarch64",
-        "outs": DEFAULT_GKI_OUTS,
-    },
-    "kernel_aarch64_interceptor": {
-        "arch": "arm64",
-        "build_config": "build.config.gki.aarch64",
-        "outs": DEFAULT_GKI_OUTS,
-        "enable_interceptor": True,
-    },
-    "kernel_aarch64_debug": {
-        "arch": "arm64",
-        "build_config": "build.config.gki-debug.aarch64",
-        "outs": DEFAULT_GKI_OUTS,
-    },
-    "kernel_riscv64": {
-        "arch": "riscv64",
-        "build_config": "build.config.gki.riscv64",
-        "outs": DEFAULT_GKI_OUTS,
-    },
-    "kernel_x86_64": {
-        "arch": "x86_64",
-        "build_config": "build.config.gki.x86_64",
-        "outs": X86_64_OUTS,
-    },
-    "kernel_x86_64_debug": {
-        "arch": "x86_64",
-        "build_config": "build.config.gki-debug.x86_64",
-        "outs": X86_64_OUTS,
-    },
-}
+_COMMON_KERNEL_NAMES = [
+    "kernel_aarch64",
+    "kernel_aarch64_16k",
+    "kernel_aarch64_interceptor",
+    "kernel_aarch64_debug",
+    "kernel_riscv64",
+    "kernel_x86_64",
+    "kernel_x86_64_debug",
+]
 
 # Subset of _TARGET_CONFIG_VALID_KEYS for kernel_build.
 _KERNEL_BUILD_VALID_KEYS = [
@@ -102,6 +73,9 @@ _KERNEL_BUILD_VALID_KEYS = [
     "protected_modules_list",
     "make_goals",
     "defconfig_fragments",
+    "arch",
+    "build_config",
+    "outs",
 ]
 
 # Subset of _TARGET_CONFIG_VALID_KEYS for kernel_abi.
@@ -191,6 +165,9 @@ def _default_target_configs():
 
     return {
         "kernel_aarch64": dicts.add(aarch64_common, {
+            "arch": "arm64",
+            "build_config": "build.config.gki.aarch64",
+            "outs": DEFAULT_GKI_OUTS,
             # In build.config.gki.aarch64:
             # - If there are symbol lists: assume TRIM_NONLISTED_KMI=${TRIM_NONLISTED_KMI:-1}
             # - If there aren't:           assume TRIM_NONLISTED_KMI unspecified
@@ -198,22 +175,44 @@ def _default_target_configs():
             "kmi_symbol_list_strict_mode": aarch64_trim_and_check,
         }),
         "kernel_aarch64_16k": {
+            "arch": "arm64",
+            "build_config": "build.config.gki.aarch64",
+            "outs": DEFAULT_GKI_OUTS,
             # Assume TRIM_NONLISTED_KMI="" in build.config.gki.aarch64.16k
             "trim_nonlisted_kmi": False,
             "defconfig_fragments": [
                 Label("//build/kernel/kleaf/impl/defconfig:arm64_16k_defconfig"),
             ],
         },
+        "kernel_aarch64_interceptor": {
+            "arch": "arm64",
+            "build_config": "build.config.gki.aarch64",
+            "outs": DEFAULT_GKI_OUTS,
+            "enable_interceptor": True,
+        },
         "kernel_aarch64_debug": dicts.add(aarch64_common, {
+            "arch": "arm64",
+            "build_config": "build.config.gki-debug.aarch64",
+            "outs": DEFAULT_GKI_OUTS,
             # Assume TRIM_NONLISTED_KMI="" in build.config.gki-debug.aarch64
             "trim_nonlisted_kmi": False,
         }),
         "kernel_riscv64": dicts.add(riscv64_common, {
+            "arch": "riscv64",
+            "build_config": "build.config.gki.riscv64",
+            "outs": DEFAULT_GKI_OUTS,
             # Assume TRIM_NONLISTED_KMI="" in build.config.gki.riscv64
             "trim_nonlisted_kmi": False,
         }),
-        "kernel_x86_64": x86_64_common,
+        "kernel_x86_64": dicts.add(x86_64_common, {
+            "arch": "x86_64",
+            "build_config": "build.config.gki.x86_64",
+            "outs": X86_64_OUTS,
+        }),
         "kernel_x86_64_debug": dicts.add(x86_64_common, {
+            "arch": "x86_64",
+            "build_config": "build.config.gki-debug.x86_64",
+            "outs": X86_64_OUTS,
             # Assume TRIM_NONLISTED_KMI="" in build.config.gki-debug.x86_64
             "trim_nonlisted_kmi": False,
         }),
@@ -555,7 +554,7 @@ def define_common_kernels(
     default_target_configs = None  # _default_target_configs is lazily evaluated.
     if target_configs == None:
         target_configs = {}
-    for name in _ARCH_CONFIGS.keys():
+    for name in _COMMON_KERNEL_NAMES:
         target_configs[name] = _filter_keys(
             target_configs.get(name, {}),
             valid_keys = _TARGET_CONFIG_VALID_KEYS,
@@ -583,13 +582,12 @@ def define_common_kernels(
         ),
     )
 
-    for name, arch_config in _ARCH_CONFIGS.items():
-        target_config = target_configs[name]
+    for name, target_config in target_configs.items():
         _define_common_kernel(
             name = name,
             toolchain_version = toolchain_version,
             visibility = visibility,
-            **(arch_config | target_config),
+            **target_config
         )
 
     native.alias(
