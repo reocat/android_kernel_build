@@ -551,7 +551,7 @@ def define_common_kernels(
         visibility = visibility,
     )
 
-    default_target_configs = None  # _default_target_configs is lazily evaluated.
+    default_target_configs = _default_target_configs()
     if target_configs == None:
         target_configs = {}
     for name in _COMMON_KERNEL_NAMES:
@@ -565,9 +565,6 @@ def define_common_kernels(
         )
         for key in _TARGET_CONFIG_VALID_KEYS:
             if key not in target_configs[name]:
-                # Lazily evaluate default_target_configs
-                if default_target_configs == None:
-                    default_target_configs = _default_target_configs()
                 target_configs[name][key] = default_target_configs.get(name, {}).get(key)
 
     native.filegroup(
