@@ -34,6 +34,7 @@ load(
     "ModuleSymversInfo",
 )
 load(":ddk/ddk_headers.bzl", "DdkHeadersInfo")
+visibility("//build/kernel/kleaf/...")
 
 def _reverse_dict(d):
     """Reverse a dictionary of {key: [value, ...]}
