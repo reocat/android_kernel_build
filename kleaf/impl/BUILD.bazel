@@ -172,6 +172,13 @@ config_setting(
     visibility = ["//visibility:public"],
 )
 
+config_setting(
+    name = "lto_is_set_to_default",
+    flag_values = {"//build/kernel/kleaf:lto": "default"},
+    # All kernel_* from different packages can see this
+    visibility = ["//visibility:public"],
+)
+
 selects.config_setting_group(
     name = "lto_is_default_and_kasan_is_true",
     match_all = [
