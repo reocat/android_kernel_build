@@ -16,6 +16,29 @@
       "message": "This should rely moving LTO configs from gki_defconfig to kernel_build.\n\nOnly mainline uses kernel_build.lto\u003dnone by default.",
       "revId": "12a663c9ec5642b2e0bf1aca523776caf1304286",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69b8f680_f01f85fd",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-28T22:36:23Z",
+      "side": 1,
+      "message": "default should use kernel_build.lto",
+      "range": {
+        "startLine": 456,
+        "startChar": 0,
+        "endLine": 456,
+        "endChar": 57
+      },
+      "revId": "12a663c9ec5642b2e0bf1aca523776caf1304286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
