@@ -34,6 +34,24 @@
       "parentUuid": "4e1bccd5_aa240f96",
       "revId": "fc6d1bb25d73909aa5ee44028287ad2c20e50099",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9180fea5_9852fda3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-28T01:00:23Z",
+      "side": 1,
+      "message": "Oh... I thought the error is only for riscv but it looks like it is the same for x86_64 too. 😞\n\nLet me double check",
+      "parentUuid": "e7020806_dec5a3ba",
+      "revId": "fc6d1bb25d73909aa5ee44028287ad2c20e50099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
