@@ -450,6 +450,7 @@ def kernel_build(
     defconfig_fragments = _get_defconfig_fragments(
         kernel_build_name = name,
         kernel_build_defconfig_fragments = defconfig_fragments,
+        kernel_build_arch = arch,
         **internal_kwargs
     )
 
@@ -668,6 +669,7 @@ def kernel_build(
 def _get_defconfig_fragments(
         kernel_build_name,
         kernel_build_defconfig_fragments,
+        kernel_build_arch,
         **internal_kwargs):
     defconfig_fragment_string_flag_selector(
         name = kernel_build_name + "_defconfig_fragment_btf_debug_info",
@@ -680,6 +682,18 @@ def _get_defconfig_fragments(
         **internal_kwargs
     )
 
+    defconfig_fragment_string_flag_selector(
+        name = kernel_build_name + "_defconfig_fragment_page_size",
+        flag = Label("//build/kernel/kleaf:page_size"),
+        files = {
+            Label("//build/kernel/kleaf/impl/defconfig:{}_4k_defconfig".format(kernel_build_arch)): "4k",
+            Label("//build/kernel/kleaf/impl/defconfig:{}_16k_defconfig".format(kernel_build_arch)): "16k",
+            Label("//build/kernel/kleaf/impl/defconfig:{}_64k_defconfig".format(kernel_build_arch)): "64k",
+            # If --page_size=default, do not apply any defconfig fragments
+        },
+        **internal_kwargs
+    )
+
     defconfig_fragments = kernel_build_defconfig_fragments
     if defconfig_fragments == None:
         defconfig_fragments = []
@@ -687,6 +701,7 @@ def _get_defconfig_fragments(
         # keep sorted
         Label("//build/kernel/kleaf:defconfig_fragment"),
         kernel_build_name + "_defconfig_fragment_btf_debug_info",
+        kernel_build_name + "_defconfig_fragment_page_size",
     ]
     return defconfig_fragments
 
