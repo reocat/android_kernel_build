@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ebbd059_e3989a78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-06-28T22:01:26Z",
+      "side": 1,
+      "message": "This should rely moving LTO configs from gki_defconfig to kernel_build.\n\nOnly mainline uses kernel_build.lto\u003dnone by default.",
+      "revId": "12a663c9ec5642b2e0bf1aca523776caf1304286",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
