@@ -36,6 +36,43 @@
       "message": "File is not formatted. Run `buildifier kleaf/common_kernels.bzl` to format the file, or apply the suggested fix.",
       "revId": "a53c973f00e709908b562ae2d5d52b36d8868cab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000047813256",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2645280?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "6aeb1bd9_3b4a0d1e",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/common_kernels.bzl",
+              "range": {
+                "startLine": 592,
+                "startChar": 0,
+                "endLine": 593,
+                "endChar": 0
+              },
+              "replacement": "            **(arch_config | target_config)\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a02b0eff_f75535c6",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-06-29T00:24:44Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/common_kernels.bzl` to format the file, or apply the suggested fix.",
+      "revId": "a53c973f00e709908b562ae2d5d52b36d8868cab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
