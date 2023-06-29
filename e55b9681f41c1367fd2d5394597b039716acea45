@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "010f71df_bfe814d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-29T12:41:55Z",
+      "side": 1,
+      "message": "What about all users (like the -lts branches and possibly android14* release branches that already forked off?",
+      "revId": "e55b9681f41c1367fd2d5394597b039716acea45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32b5346d_542aacc4",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-29T12:41:55Z",
+      "side": 1,
+      "message": "not only deprecated, but \"defunct\". Deprecation in my definition is one step before when it still is working.",
+      "range": {
+        "startLine": 1082,
+        "startChar": 41,
+        "endLine": 1082,
+        "endChar": 51
+      },
+      "revId": "e55b9681f41c1367fd2d5394597b039716acea45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
