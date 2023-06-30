@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16e1bf89_fe9b72fb",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-06-30T13:10:30Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Buildifier: Loaded symbol \"string_flag\" is unused. Please remove it.\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nLoaded symbol \"string_flag\" is unused. Please remove it.\nTo disable the warning, add \u0027@unused\u0027 in a comment.\nIf you want to re-export a symbol, use the following pattern:\n\n    load(..., _string_flag \u003d \"string_flag\", ...)\n    string_flag \u003d _string_flag\n http://go/buildifier-warnings#load",
+      "range": {
+        "startLine": 19,
+        "startChar": 63,
+        "endLine": 19,
+        "endChar": 74
+      },
+      "revId": "9057030380ca6e13037049079b74b6cca6ea6578",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
