@@ -111,6 +111,7 @@ def kernel_build(
         system_trusted_key = None,
         modules_prepare_force_generate_headers = None,
         defconfig_fragments = None,
+        page_size = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
 
@@ -398,6 +399,11 @@ def kernel_build(
           (e.g. `kasan_defconfig`) or `<prop>_<value>_defconfig` (e.g. `lto_none_defconfig`)
           to provide human-readable hints during the build. The prefix should
           describe what the defconfig does. However, this is not a requirement.
+        page_size: Default is `"4k"`. Page size of the kernel build.
+
+          Value may be one of `"4k"`, `"16k"` or `"64k"`.
+
+          Non-4k page size is only supported on `arch = "arm64"`.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -451,6 +457,7 @@ def kernel_build(
         kernel_build_name = name,
         kernel_build_defconfig_fragments = defconfig_fragments,
         kernel_build_arch = arch,
+        kernel_build_page_size = page_size,
         **internal_kwargs
     )
 
@@ -670,6 +677,7 @@ def _get_defconfig_fragments(
         kernel_build_name,
         kernel_build_defconfig_fragments,
         kernel_build_arch,
+        kernel_build_page_size,
         **internal_kwargs):
     defconfig_fragment_string_flag_selector(
         name = kernel_build_name + "_defconfig_fragment_btf_debug_info",
@@ -690,6 +698,9 @@ def _get_defconfig_fragments(
             Label("//build/kernel/kleaf/impl/defconfig:{}_16k_defconfig".format(kernel_build_arch)): "16k",
             Label("//build/kernel/kleaf/impl/defconfig:{}_64k_defconfig".format(kernel_build_arch)): "64k",
             # If --page_size=default, do not apply any defconfig fragments
+        },
+        transforms = {
+            "default": kernel_build_page_size or "default",
         },
         **internal_kwargs
     )
