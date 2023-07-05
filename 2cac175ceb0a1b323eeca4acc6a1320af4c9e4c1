@@ -16,6 +16,24 @@
       "message": "Currently this option doesn\u0027t enforce 4k, so it should be named \"default\". Or even better: create arm64_4k_defconfig, which will enforce 4k and add here one more option \"default\", which will not add any fragments.",
       "revId": "2cac175ceb0a1b323eeca4acc6a1320af4c9e4c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39243e7a_f777a7b8",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-05T18:43:23Z",
+      "side": 1,
+      "message": "The reason I did not \"enforce\" 4k is that if I enforce 4k, then with CL:2645182, the `kernel_aarch64_16k` target would have these applied:\n\n```\nCONFIG_ARM64_4K_PAGES\u003dy\n```\n\nthen in a different defconfig fragment\n\n```\nCONFIG_ARM64_16K_PAGES\u003dy\n```\n\n... then the latter will unset CONFIG_ARM64_4K_PAGES, causing the defconfig check in kernel_config to fail.\n\nLet me think about whether adding a `page_size` attribute to kernel_build would be more appropriate to fix this.",
+      "parentUuid": "6edb5eef_f05da814",
+      "revId": "2cac175ceb0a1b323eeca4acc6a1320af4c9e4c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
