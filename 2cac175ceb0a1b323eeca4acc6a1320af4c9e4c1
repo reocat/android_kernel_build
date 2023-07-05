@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6edb5eef_f05da814",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2023-07-05T18:38:18Z",
+      "side": 1,
+      "message": "Currently this option doesn\u0027t enforce 4k, so it should be named \"default\". Or even better: create arm64_4k_defconfig, which will enforce 4k and add here one more option \"default\", which will not add any fragments.",
+      "revId": "2cac175ceb0a1b323eeca4acc6a1320af4c9e4c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
