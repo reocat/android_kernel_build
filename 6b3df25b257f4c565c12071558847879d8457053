@@ -36,6 +36,43 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/defconfig_fragment_selector.bzl` to format the file, or apply the suggested fix.",
       "revId": "6b3df25b257f4c565c12071558847879d8457053",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000048182130",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2646466?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "e945827d_1831cf3f",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/defconfig_fragment_selector.bzl",
+              "range": {
+                "startLine": 46,
+                "startChar": 0,
+                "endLine": 47,
+                "endChar": 0
+              },
+              "replacement": "        ),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "26d3e4a0_64aefc74",
+        "filename": "kleaf/impl/defconfig_fragment_selector.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-07-05T21:33:47Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/defconfig_fragment_selector.bzl` to format the file, or apply the suggested fix.",
+      "revId": "6b3df25b257f4c565c12071558847879d8457053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
