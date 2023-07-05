@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c21467d1_15e9773e",
+        "filename": "kleaf/docs/kernel_config.md",
+        "patchSetId": 28
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-05T18:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e2e0878_65d10837",
+      "revId": "006c8b5675568936888d32b6058c7fdc8459768c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fc696f2_6d8b3c81",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-07-05T18:31:48Z",
       "side": 1,
       "message": "Something is wrong with indentation, probably it should be \"- --btf_debug_info\". And why this flag is mentioned in this file, even if it is not used?",
+      "revId": "006c8b5675568936888d32b6058c7fdc8459768c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49aa3f1c_07b6e602",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 28
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-05T18:45:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fc696f2_6d8b3c81",
       "revId": "006c8b5675568936888d32b6058c7fdc8459768c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
