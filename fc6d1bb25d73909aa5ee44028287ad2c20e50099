@@ -52,6 +52,24 @@
       "parentUuid": "e7020806_dec5a3ba",
       "revId": "fc6d1bb25d73909aa5ee44028287ad2c20e50099",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd5844df_34598705",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 33
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-05T17:55:07Z",
+      "side": 1,
+      "message": "We know that b/288561432 is no longer blocking this bug.\n\nHowever, this is still blocked by b/264407394 (CONFIG_CFI_CLANG and gcov). Hence leaving this comment open.",
+      "parentUuid": "9180fea5_9852fda3",
+      "revId": "fc6d1bb25d73909aa5ee44028287ad2c20e50099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
