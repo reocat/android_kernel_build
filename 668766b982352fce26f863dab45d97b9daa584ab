@@ -16,6 +16,24 @@
       "message": "The error is a legit one:\n\nThere is one `load(\"//build/kernel/kleaf/impl:gki_artifacts.bzl\", \"gki_artifacts\")` broken with this change, I\u0027ll see if I can made a quick fix for it.",
       "revId": "668766b982352fce26f863dab45d97b9daa584ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e83cf0a_7cbf93c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-05T16:50:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d179a903_7c8e4306",
+      "revId": "668766b982352fce26f863dab45d97b9daa584ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
