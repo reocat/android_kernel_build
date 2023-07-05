@@ -1,0 +1,51 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000048182127",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2646467?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "a0f2b448_995c4aaa",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/fail.bzl",
+              "range": {
+                "startLine": 47,
+                "startChar": 0,
+                "endLine": 48,
+                "endChar": 0
+              },
+              "replacement": "        mnemonic \u003d \"FailAction\",\n"
+            },
+            {
+              "path": "kleaf/fail.bzl",
+              "range": {
+                "startLine": 57,
+                "startChar": 0,
+                "endLine": 58,
+                "endChar": 0
+              },
+              "replacement": "    },\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "2f8e8f90_d886cd30",
+        "filename": "kleaf/fail.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-07-05T21:33:41Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/fail.bzl` to format the file, or apply the suggested fix.",
+      "revId": "6488afe94f29099a08fc966d5725bcac6ae9717e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
