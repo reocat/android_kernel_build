@@ -34,6 +34,24 @@
       "parentUuid": "6edb5eef_f05da814",
       "revId": "2cac175ceb0a1b323eeca4acc6a1320af4c9e4c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10f713ac_f1b21018",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-06T18:29:46Z",
+      "side": 1,
+      "message": "Done, I think this is clearer now. I also added a page_size attribute to kernel_build in the next CL so it\u0027ll be used as a fallback value when the flag is not set.",
+      "parentUuid": "39243e7a_f777a7b8",
+      "revId": "2cac175ceb0a1b323eeca4acc6a1320af4c9e4c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
