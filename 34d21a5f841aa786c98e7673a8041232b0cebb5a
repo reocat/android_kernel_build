@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8beaec92_049da6cb",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-06T12:14:16Z",
+      "side": 1,
+      "message": "`kleaf/impl/defconfig_fragment_selector.bzl`?",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 52
+      },
+      "revId": "34d21a5f841aa786c98e7673a8041232b0cebb5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98ef5fa8_d8d82d0d",
+        "filename": "kleaf/impl/defconfig_fragment_selector.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-06T12:14:16Z",
+      "side": 1,
+      "message": "TIL.",
+      "range": {
+        "startLine": 40,
+        "startChar": 22,
+        "endLine": 40,
+        "endChar": 45
+      },
+      "revId": "34d21a5f841aa786c98e7673a8041232b0cebb5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "523ee9ca_f6eb3922",
         "filename": "kleaf/impl/defconfig_fragment_selector.bzl",
         "patchSetId": 3
