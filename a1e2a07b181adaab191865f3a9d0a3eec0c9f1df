@@ -22,6 +22,53 @@
       },
       "revId": "a1e2a07b181adaab191865f3a9d0a3eec0c9f1df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a90364d_2ae4307c",
+        "filename": "kleaf/fail.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-06T22:09:25Z",
+      "side": 1,
+      "message": "No. I\u0027ll leave it as-is for utmost freedom to customize the error message.\n\nThe caller can add it themselves.",
+      "parentUuid": "495478f5_3432850d",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 33
+      },
+      "revId": "a1e2a07b181adaab191865f3a9d0a3eec0c9f1df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d26f378c_740a8b72",
+        "filename": "kleaf/fail.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-06T22:09:25Z",
+      "side": 1,
+      "message": "Should be \u003e\u00262",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 33
+      },
+      "revId": "a1e2a07b181adaab191865f3a9d0a3eec0c9f1df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
