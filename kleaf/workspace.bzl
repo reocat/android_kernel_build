@@ -49,6 +49,23 @@ def define_kleaf_workspace(common_kernel_package = None, include_remote_java_too
 
         These respositories should exist under `//prebuilts/bazel/`
     """
+
+    fail("""
+         ERROR: You are using the DEPRECATED "master" branch, make sure to switch
+           to "main" instead.
+
+         If you are using repo, make sure to update your manifests according:
+         You can use https://r.android.com/2639970 as an example, then make sure to
+         run "repo sync" to sync the tree.
+
+         If you are using git, you can run the following command to fix the upstream branch:
+         "git branch --set-upstream-to=aosp/main <branch_name>"
+
+         Additionally make sure to switch all your inflight changes to "main" branch.
+         """)
+
+    # buildifier: disable=unreachable
+
     if common_kernel_package == None:
         common_kernel_package = "@//common"
     if not common_kernel_package.startswith("@") and not common_kernel_package.startswith("//"):
