@@ -109,6 +109,7 @@ def kernel_build(
         module_signing_key = None,
         system_trusted_key = None,
         modules_prepare_force_generate_headers = None,
+        defconfig_fragments = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
 
@@ -390,6 +391,12 @@ def kernel_build(
         dtstree: Device tree support.
         modules_prepare_force_generate_headers: If `True` it forces generation of
           additional headers as part of modules_prepare.
+        defconfig_fragments: A list of targets that are applied to the defconfig.
+
+          As a convention, files should usually be named `<prop>_defconfig`
+          (e.g. `kasan_defconfig`) or `<prop>_<value>_defconfig` (e.g. `lto_none_defconfig`)
+          to provide human-readable hints during the build. The prefix should
+          describe what the defconfig does. However, this is not a requirement.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -439,6 +446,12 @@ def kernel_build(
         "//conditions:default": "default",
     })
 
+    if defconfig_fragments == None:
+        defconfig_fragments = []
+    defconfig_fragments.append(
+        Label("//build/kernel/kleaf:defconfig_fragment"),
+    )
+
     toolchain_constraints = []
     if toolchain_version != None:
         toolchain_constraint = "//prebuilts/clang/host/linux-x86/kleaf:{}".format(toolchain_version)
@@ -478,6 +491,7 @@ def kernel_build(
         make_goals = make_goals,
         target_platform = name + "_platform_target",
         exec_platform = name + "_platform_exec",
+        defconfig_fragments = defconfig_fragments,
         **internal_kwargs
     )
 
@@ -523,6 +537,7 @@ def kernel_build(
         module_signing_key = module_signing_key,
         system_trusted_key = system_trusted_key,
         lto = lto,
+        defconfig_fragments = defconfig_fragments,
         **internal_kwargs
     )
 
@@ -994,24 +1009,38 @@ def _get_grab_gcno_step(ctx):
     """Returns a step for grabbing the `*.gcno`files from `OUT_DIR`.
 
     Returns:
-      A struct with fields (inputs, tools, outputs, cmd, gcno_mapping)
+      A struct with fields (inputs, tools, outputs, cmd, gcno_mapping, gcno_dir)
     """
     grab_gcno_cmd = ""
     inputs = []
     outputs = []
     tools = []
     gcno_mapping = None
+    gcno_dir = None
     if ctx.attr._gcov[BuildSettingInfo].value:
         gcno_dir = ctx.actions.declare_directory("{name}/{name}_gcno".format(name = ctx.label.name))
         gcno_mapping = ctx.actions.declare_file("{name}/gcno_mapping.{name}.json".format(name = ctx.label.name))
-        outputs += [gcno_dir, gcno_mapping]
+        gcno_archive = ctx.actions.declare_file(
+            "{name}/{name}.gcno.tar.gz".format(name = ctx.label.name),
+        )
+        outputs += [gcno_dir, gcno_mapping, gcno_archive]
         tools.append(ctx.executable._print_gcno_mapping)
 
         extra_args = ""
         base_kernel = base_kernel_utils.get_base_kernel(ctx)
+        base_kernel_gcno_dir_cmd = ""
         if base_kernel and base_kernel[GcovInfo].gcno_mapping:
             extra_args = "--base {}".format(base_kernel[GcovInfo].gcno_mapping.path)
             inputs.append(base_kernel[GcovInfo].gcno_mapping)
+            if base_kernel[GcovInfo].gcno_dir:
+                inputs.append(base_kernel[GcovInfo].gcno_dir)
+                base_kernel_gcno_dir_cmd = """
+                    # Copy all *.gcno files and its subdirectories recursively.
+                    rsync -a --prune-empty-dirs --include '*/' --include '*.gcno' --exclude '*' {base_gcno_dir}/ {gcno_dir}/
+                """.format(
+                    base_gcno_dir = base_kernel[GcovInfo].gcno_dir.path,
+                    gcno_dir = gcno_dir.path,
+                )
 
         # Note: Emitting ${OUT_DIR} is one source of ir-reproducible output for sandbox actions.
         # However, note that these ir-reproducibility are tied to vmlinux, because these paths are already
@@ -1019,11 +1048,17 @@ def _get_grab_gcno_step(ctx):
         grab_gcno_cmd = """
             rsync -a --prune-empty-dirs --include '*/' --include '*.gcno' --exclude '*' ${{OUT_DIR}}/ {gcno_dir}/
             {print_gcno_mapping} {extra_args} ${{OUT_DIR}}:{gcno_dir} > {gcno_mapping}
+            # Archive gcno_dir + gcno_mapping + base_kernel_gcno_dir
+            {base_kernel_gcno_cmd}
+            cp {gcno_mapping} {gcno_dir}
+            tar czf {gcno_archive} -C {gcno_dir} .
         """.format(
             gcno_dir = gcno_dir.path,
             gcno_mapping = gcno_mapping.path,
             print_gcno_mapping = ctx.executable._print_gcno_mapping.path,
             extra_args = extra_args,
+            gcno_archive = gcno_archive.path,
+            base_kernel_gcno_cmd = base_kernel_gcno_dir_cmd,
         )
     return struct(
         inputs = inputs,
@@ -1031,6 +1066,7 @@ def _get_grab_gcno_step(ctx):
         cmd = grab_gcno_cmd,
         outputs = outputs,
         gcno_mapping = gcno_mapping,
+        gcno_dir = gcno_dir,
     )
 
 def _get_grab_kbuild_output_step(ctx):
@@ -1416,6 +1452,7 @@ def _build_main_action(
         compile_commands_out_dir = compile_commands_step.compile_commands_out_dir,
         gcno_outputs = grab_gcno_step.outputs,
         gcno_mapping = grab_gcno_step.gcno_mapping,
+        gcno_dir = grab_gcno_step.gcno_dir,
         module_symvers_outputs = copy_module_symvers_step.outputs,
     )
 
@@ -1625,6 +1662,7 @@ def _create_infos(
 
     gcov_info = GcovInfo(
         gcno_mapping = main_action_ret.gcno_mapping,
+        gcno_dir = main_action_ret.gcno_dir,
     )
 
     output_group_kwargs = {}
@@ -1809,6 +1847,11 @@ _kernel_build = rule(
             executable = True,
             cfg = "exec",
         ),
+        "_cache_dir_config_tags": attr.label(
+            default = "//build/kernel/kleaf/impl:cache_dir_config_tags",
+            executable = True,
+            cfg = "exec",
+        ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
         "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
@@ -1952,6 +1995,13 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
               IGNORED because --kasan is set!".format(this_label = ctx.label))
         return None
 
+    # Skip for the --kasan_sw_tags targets as they are not valid GKI release targets
+    if ctx.attr._kasan_sw_tags[BuildSettingInfo].value:
+        # buildifier: disable=print
+        print("\nWARNING: {this_label}: Attribute kmi_symbol_list_strict_mode\
+              IGNORED because --kasan_sw_tags is set!".format(this_label = ctx.label))
+        return None
+
     # Skip for the --kcsan targets as they are not valid GKI release targets
     if ctx.attr._kcsan[BuildSettingInfo].value:
         # buildifier: disable=print
@@ -2046,6 +2096,9 @@ def _kmi_symbol_list_violations_check(ctx, modules_staging_archive):
     # and can disable the runtime symbol protection with CONFIG_SIG_PROTECT=n
     # if required.
     if ctx.attr._kasan[BuildSettingInfo].value:
+        return None
+
+    if ctx.attr._kasan_sw_tags[BuildSettingInfo].value:
         return None
 
     # Skip for --kcsan build as they are not valid GKI releasae configurations.

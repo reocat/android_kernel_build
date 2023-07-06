@@ -150,6 +150,11 @@ class BazelWrapper(object):
             help="""ignore projects defined in the repo manifest, but """
                  """missing from the workspace""",
         )
+        parser.add_argument(
+            "--user_clang_toolchain",
+            help="Absolute path to a custom clang toolchain",
+            type=_require_absolute_path,
+        )
 
         # known_args: List of arguments known by this bazel wrapper. These
         #   are stripped from the final bazel invocation.
@@ -173,7 +178,7 @@ class BazelWrapper(object):
                 self.transformed_command_args.append("--color=yes")
 
         if self.known_args.use_prebuilt_gki:
-            self.transformed_command_args.append("--//common:use_prebuilt_gki")
+            self.transformed_command_args.append("--use_prebuilt_gki")
             self.transformed_command_args.append("--config=internet")
             self.env[
                 "KLEAF_DOWNLOAD_BUILD_NUMBER_MAP"] = f"gki_prebuilts={self.known_args.use_prebuilt_gki}"
@@ -186,6 +191,9 @@ class BazelWrapper(object):
 
         if self.known_args.ignore_missing_projects:
             self.env["KLEAF_IGNORE_MISSING_PROJECTS"] = "true"
+
+        if self.known_args.user_clang_toolchain is not None:
+            self.env["KLEAF_USER_CLANG_TOOLCHAIN_PATH"] = self.known_args.user_clang_toolchain
 
         cache_dir_bazel_rc = f"{self.absolute_out_dir}/bazel/cache_dir.bazelrc"
         os.makedirs(os.path.dirname(cache_dir_bazel_rc), exist_ok=True)
