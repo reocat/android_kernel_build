@@ -62,6 +62,24 @@
       "message": "Why not the other way around, like \"select\"? From value of flag to files.",
       "revId": "34d21a5f841aa786c98e7673a8041232b0cebb5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b310771_9af3a20b",
+        "filename": "kleaf/impl/defconfig_fragment_selector.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-06T12:44:15Z",
+      "side": 1,
+      "message": "(just a guess) It\u0027s a limitation of `label_keyed_string_dict` [0].\n\nAs to why not use `select` [1] directly? I\u0027m not sure.\n\n[0] https://bazel.build/rules/lib/toplevel/attr#label_keyed_string_dict\n[1] https://bazel.build/reference/be/functions#select",
+      "parentUuid": "523ee9ca_f6eb3922",
+      "revId": "34d21a5f841aa786c98e7673a8041232b0cebb5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
