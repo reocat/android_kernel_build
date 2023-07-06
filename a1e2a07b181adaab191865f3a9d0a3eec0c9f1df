@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "495478f5_3432850d",
+        "filename": "kleaf/fail.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-06T12:21:55Z",
+      "side": 1,
+      "message": "nit: Does the final message include the name of the target triggering this action? If not, could it be included? (I think it might be worth for debugging purposes).",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 33
+      },
+      "revId": "a1e2a07b181adaab191865f3a9d0a3eec0c9f1df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
