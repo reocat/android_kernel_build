@@ -59,6 +59,7 @@ load(
 load(":debug.bzl", "debug")
 load(
     ":defconfig_fragment_selector.bzl",
+    "defconfig_fragment_bool_flag_selector",
     "defconfig_fragment_string_flag_selector",
 )
 load(":file.bzl", "file")
@@ -722,6 +723,12 @@ def _get_defconfig_fragments(
         **internal_kwargs
     )
     additional_fragments.append(page_size_target)
+
+    additional_fragments += [
+        Label("//build/kernel/kleaf/impl/defconfig:kasan"),
+        Label("//build/kernel/kleaf/impl/defconfig:kasan_sw_tags"),
+        Label("//build/kernel/kleaf/impl/defconfig:kcsan"),
+    ]
 
     if kernel_build_defconfig_fragments == None:
         kernel_build_defconfig_fragments = []

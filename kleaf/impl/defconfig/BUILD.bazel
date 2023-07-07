@@ -13,6 +13,10 @@
 # limitations under the License.
 
 load("//build/kernel/kleaf:fail.bzl", "fail_action")
+load(
+    ":defconfig_fragment_selector.bzl",
+    "defconfig_fragment_bool_flag_selector",
+)
 
 # Used by all packages that uses kernel_build
 exports_files([
@@ -49,3 +53,30 @@ exports_files([
     "riscv64",
     "x86_64",
 ]]
+
+defconfig_fragment_bool_flag_selector(
+    name = "kasan",
+    flag = "//build/kernel/kleaf:kasan",
+    true_files = [
+        "kasan_defconfig",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+defconfig_fragment_bool_flag_selector(
+    name = "kasan_sw_tags",
+    flag = "//build/kernel/kleaf:kasan_sw_tags",
+    true_files = [
+        "kasan_sw_tags_defconfig",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+defconfig_fragment_bool_flag_selector(
+    name = "kcsan",
+    flag = "//build/kernel/kleaf:kcsan",
+    true_files = [
+        "kcsan_defconfig",
+    ],
+    visibility = ["//visibility:public"],
+)
