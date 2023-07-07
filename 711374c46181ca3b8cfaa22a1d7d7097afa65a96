@@ -1,0 +1,51 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000048363408",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2646468?revision\u003d7",
+      "fixSuggestions": [
+        {
+          "fixId": "dd1effdf_f1af4f2a",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_build.bzl",
+              "range": {
+                "startLine": 669,
+                "startChar": 0,
+                "endLine": 670,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/impl/kernel_build.bzl",
+              "range": {
+                "startLine": 678,
+                "startChar": 0,
+                "endLine": 678,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "4aa490b7_deeb8bc7",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-07-07T21:49:40Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_build.bzl` to format the file, or apply the suggested fix.",
+      "revId": "711374c46181ca3b8cfaa22a1d7d7097afa65a96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
