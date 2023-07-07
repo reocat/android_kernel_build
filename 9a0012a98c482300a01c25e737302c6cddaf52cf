@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cb7ff35_f49fb92c",
+        "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-07T21:57:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c51c71b_88d0fd62",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 13
+      },
+      "revId": "9a0012a98c482300a01c25e737302c6cddaf52cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d52e46c4_1c7f1b72",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-06T13:03:53Z",
       "side": 1,
       "message": "The linked ticket is for 16k, is it because it\u0027s the same root cause?",
+      "range": {
+        "startLine": 4,
+        "startChar": 4,
+        "endLine": 4,
+        "endChar": 13
+      },
+      "revId": "9a0012a98c482300a01c25e737302c6cddaf52cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c562525f_91d77845",
+        "filename": "kleaf/impl/defconfig/arm64_64k_defconfig",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-07T21:57:47Z",
+      "side": 1,
+      "message": "According to the bug description, yes. The problem is that incfs is not page agnostic.",
+      "parentUuid": "d52e46c4_1c7f1b72",
       "range": {
         "startLine": 4,
         "startChar": 4,
