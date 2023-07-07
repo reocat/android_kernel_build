@@ -157,6 +157,8 @@ built. It is recommended to use these common flags instead of defining your
 own defconfig fragments to avoid fragmentation in the ecosystem (pun intended).
 
 *   `--btf_debug_info`
+*   `--kasan`
+*   `--kasan_sw_tags`
 *   `--page_size`
 
 ### User-defined flags
