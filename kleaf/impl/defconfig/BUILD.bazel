@@ -64,3 +64,30 @@ fail_rule(
     name = "fail_debug_lto",
     message = "--debug requires --lto=none or default.",
 )
+
+filegroup(
+    name = "kasan_generic",
+    srcs = select({
+        "//build/kernel/kleaf:kasan_generic_is_true": ["kasan_defconfig"],
+        "//conditions:default": [],
+    }),
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "kasan_sw_tags",
+    srcs = select({
+        "//build/kernel/kleaf:kasan_sw_tags_is_true": ["kasan_sw_tags_defconfig"],
+        "//conditions:default": [],
+    }),
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "kcsan",
+    srcs = select({
+        "//build/kernel/kleaf:kcsan_is_true": ["kcsan_defconfig"],
+        "//conditions:default": [],
+    }),
+    visibility = ["//visibility:public"],
+)
