@@ -723,6 +723,12 @@ def _get_defconfig_fragments(
     )
     additional_fragments.append(page_size_target)
 
+    additional_fragments += [
+        Label("//build/kernel/kleaf/impl/defconfig:kasan"),
+        Label("//build/kernel/kleaf/impl/defconfig:kasan_sw_tags"),
+        Label("//build/kernel/kleaf/impl/defconfig:kcsan"),
+    ]
+
     if kernel_build_defconfig_fragments == None:
         kernel_build_defconfig_fragments = []
 
