@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6043d60a_f24b398b",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1318142
+      },
+      "writtenOn": "2023-07-12T00:04:22Z",
+      "side": 1,
+      "message": "2023",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de9b6ab7_136b937d",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1318142
+      },
+      "writtenOn": "2023-07-12T00:04:22Z",
+      "side": 1,
+      "message": "add prefix _ to android_kernel_version and upstream_kernel_version, so they use same naming convention of _files and _sbom_doc.",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 32
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1131390b_e35b5cd2",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1318142
+      },
+      "writtenOn": "2023-07-12T00:04:22Z",
+      "side": 1,
+      "message": "this should be true if a package(e.g. kernel) has files and packageVerificationCode is set.",
+      "range": {
+        "startLine": 135,
+        "startChar": 31,
+        "endLine": 135,
+        "endChar": 36
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0f5b245_dae37355",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1318142
+      },
+      "writtenOn": "2023-07-12T00:04:22Z",
+      "side": 1,
+      "message": "fix indent",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 58
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
