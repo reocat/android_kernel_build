@@ -308,6 +308,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3bba2a26_4dade17d",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1318142
+      },
+      "writtenOn": "2023-07-12T20:24:29Z",
+      "side": 1,
+      "message": "The symlink file should not be dereferenced when hashing, if it is shipped as a prebuilt file. For example, symlink a.ko points to b.ko, the hash of a.ko should be calculated from the symlink not the content of b.ko. \n\nThere might not be a case in kernel, but sometimes the symlink might not be valid until it is in runtime, so there is no way to dereference it in build process.",
+      "parentUuid": "5991ba89_24bb36a6",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "af18c2f4_cca3b95f",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 1
