@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa46e006_a7bcb558",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "please add a tracking bug and more rationale for this script.",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6043d60a_f24b398b",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 1
@@ -26,6 +43,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c194d5e_924cec08",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "Use import statements for packages and modules only, not for individual classes or functions.\n\n\nhttps://google.github.io/styleguide/pyguide.html#22-imports",
+      "range": {
+        "startLine": 60,
+        "startChar": 1,
+        "endLine": 60,
+        "endChar": 10
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a5d4df1_86cc3a42",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "consider actually passing `list[pathlib.Path]`. Many file operations used later on are methods of `pathlib.Path`.\n\nAlso, this is only used as a sequence, as such passing a generator is fine. E.g. the result of `pathlib.Path.glob()` used something like this:\n\n`p for p in pathlib.Path(dist_dir).glob(\u0027**/*\u0027) if p.is_file()`\n\n\nhttps://docs.python.org/3.11/library/pathlib.html#pathlib.Path.glob\nhttps://docs.python.org/3.11/library/pathlib.html#pathlib.Path.is_file",
+      "range": {
+        "startLine": 71,
+        "startChar": 31,
+        "endLine": 71,
+        "endChar": 34
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "de9b6ab7_136b937d",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 1
@@ -42,6 +105,98 @@
         "startChar": 9,
         "endLine": 73,
         "endChar": 32
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cd43eda_e48f1d3c",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "consider passing `pathlib.Path`, then use `file_path.is_symlink()`, `file_path.readlink()` and possibly `file_path.read_text()`",
+      "range": {
+        "startLine": 83,
+        "startChar": 33,
+        "endLine": 83,
+        "endChar": 36
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af18c2f4_cca3b95f",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "use `hashlib.file_digest()`\n\nhttps://docs.python.org/3.11/library/hashlib.html#hashlib.file_digest",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 26
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b741f03_cb59b901",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "```\n    h \u003d hashlib.sha1()\n    for c in sorted(f.checksum for f in files):\n      h.update(c)\n```",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 57
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9d9b614_4442051d",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "there seems to be no call to this function where this parameter is not equal to `_GOOGLE_ORGANIZATION_NAME`",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 52
       },
       "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -88,6 +243,212 @@
         "startChar": 0,
         "endLine": 137,
         "endChar": 58
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c2a7e85_732fb4ff",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "for an empty list, this will create something odd. Consider actually checking \n\n`if file_list:`",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 77
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a79a48f9_cc5079eb",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "relationships \u003d [\n        self._generate_relationship_dict(\n            f\"{_SPDX_REF}-{_MAIN_PACKAGE_NAME}\",\n            f\"{_SPDX_REF}-{_SOURCE_CODE_PACKAGE_NAME}\",\n            _GENERATED_FROM_RELATIONSHIP)\n        ),\n        self._generate_relationship_dict(\n            f\"{_SPDX_REF}-{_SOURCE_CODE_PACKAGE_NAME}\",\n            f\"{_SPDX_REF}-{_LINUX_UPSTREAM_PACKAGE_NAME}\",\n            _VARIANT_OF_RELATIONSHIP)\n        )]",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 9
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac332865_a91dfcac",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "```\n      relationships.extend(\n          self._generate_relationship_dict(\n              f.id,\n              f\"{_SPDX_REF}-{_SOURCE_CODE_PACKAGE_NAME}\",\n              _GENERATED_FROM_RELATIONSHIP)\n          ) for f in self._files)\n ```",
+      "range": {
+        "startLine": 201,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 11
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a29c0ac_8be37b78",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "error handling?",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a5f6861_33e27c4d",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "`json.dump()` can directly write to the file-like object\n\nhttps://docs.python.org/3.11/library/json.html#json.dump",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 61
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "492f50d1_ad5da971",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "this seems to be unused?",
+      "range": {
+        "startLine": 216,
+        "startChar": 6,
+        "endLine": 216,
+        "endChar": 16
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8b41a0b_79f69f28",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "use `type\u003dpathlib.Path`",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2134289_f9328e83",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "validate that `dist_dir` actually exists\n\npossibly also validate that `output_file` can be written to. What if it does exist?",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "502fdc3f_42a82728",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "see earlier suggestion\n\n```\nreturn p for p in pathlib.Path(dist_dir).glob(\u0027**/*\u0027) if p.is_file()\n```",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51b5834d_236f8cb9",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-12T02:05:36Z",
+      "side": 1,
+      "message": "why does this need to be made global?",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 13
       },
       "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
