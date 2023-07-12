@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2093976_eb2f0679",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T06:26:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6043d60a_f24b398b",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c194d5e_924cec08",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-07-12T02:05:36Z",
       "side": 1,
       "message": "Use import statements for packages and modules only, not for individual classes or functions.\n\n\nhttps://google.github.io/styleguide/pyguide.html#22-imports",
+      "range": {
+        "startLine": 60,
+        "startChar": 1,
+        "endLine": 60,
+        "endChar": 10
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25ebfa02_88068066",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T06:26:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c194d5e_924cec08",
       "range": {
         "startLine": 60,
         "startChar": 1,
@@ -100,6 +148,30 @@
       "writtenOn": "2023-07-12T00:04:22Z",
       "side": 1,
       "message": "add prefix _ to android_kernel_version and upstream_kernel_version, so they use same naming convention of _files and _sbom_doc.",
+      "range": {
+        "startLine": 73,
+        "startChar": 9,
+        "endLine": 73,
+        "endChar": 32
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "341dbef6_bffd2676",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T06:26:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de9b6ab7_136b937d",
       "range": {
         "startLine": 73,
         "startChar": 9,
@@ -219,6 +291,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "366cd64f_b1070323",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T06:26:51Z",
+      "side": 1,
+      "message": "There\u0027s one with _LINUX_ORGANIZATION_NAME.",
+      "parentUuid": "e9d9b614_4442051d",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 52
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1131390b_e35b5cd2",
@@ -242,6 +338,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "195ca147_83a3abe4",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T06:26:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1131390b_e35b5cd2",
+      "range": {
+        "startLine": 135,
+        "startChar": 31,
+        "endLine": 135,
+        "endChar": 36
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0f5b245_dae37355",
@@ -255,6 +375,30 @@
       "writtenOn": "2023-07-12T00:04:22Z",
       "side": 1,
       "message": "fix indent",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 58
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b4a6fae_85f7d742",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T06:26:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0f5b245_dae37355",
       "range": {
         "startLine": 133,
         "startChar": 0,
@@ -311,6 +455,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d23eb03f_dd0a3d99",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T06:26:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a79a48f9_cc5079eb",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 9
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac332865_a91dfcac",
@@ -324,6 +492,30 @@
       "writtenOn": "2023-07-12T02:05:36Z",
       "side": 1,
       "message": "```\n      relationships.extend(\n          self._generate_relationship_dict(\n              f.id,\n              f\"{_SPDX_REF}-{_SOURCE_CODE_PACKAGE_NAME}\",\n              _GENERATED_FROM_RELATIONSHIP)\n          ) for f in self._files)\n ```",
+      "range": {
+        "startLine": 201,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 11
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "201c1298_49a8cb30",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T06:26:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac332865_a91dfcac",
       "range": {
         "startLine": 201,
         "startChar": 0,
@@ -374,6 +566,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c15f8eee_dc8f4946",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T06:26:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a5f6861_33e27c4d",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 61
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "492f50d1_ad5da971",
@@ -387,6 +603,30 @@
       "writtenOn": "2023-07-12T02:05:36Z",
       "side": 1,
       "message": "this seems to be unused?",
+      "range": {
+        "startLine": 216,
+        "startChar": 6,
+        "endLine": 216,
+        "endChar": 16
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7189404_edc6a270",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T06:26:51Z",
+      "side": 1,
+      "message": "removed. had it for debug",
+      "parentUuid": "492f50d1_ad5da971",
       "range": {
         "startLine": 216,
         "startChar": 6,
@@ -461,6 +701,30 @@
       "writtenOn": "2023-07-12T02:05:36Z",
       "side": 1,
       "message": "why does this need to be made global?",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 13
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f4decad_8f5bdfc0",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T06:26:51Z",
+      "side": 1,
+      "message": "fixed, initially it was referenced in subsequent calls",
+      "parentUuid": "51b5834d_236f8cb9",
       "range": {
         "startLine": 242,
         "startChar": 0,
