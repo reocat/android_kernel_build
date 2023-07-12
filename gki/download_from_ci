@@ -420,15 +420,20 @@ def update_androidx_cf(gitlog, output_dir, version):
   i686_cf_dir = os.path.join(cf_dir, i686_cf_dirname)
   rockpi_cf_dir = os.path.join(cf_dir, rockpi_cf_dirname)
 
-  subprocess.check_call(["git", "rm", "-rf", i686_cf_dirname], cwd=cf_dir)
-  subprocess.check_call(["git", "rm", "-rf", rockpi_cf_dirname], cwd=cf_dir)
+  print("whee " + i686_cf_dir + " " + rockpi_cf_dir)
 
-  download_kernel("kernel_virt_i686", version, i686_cf_dir)
-  download_kernel_modules("kernel_virt_i686", i686_cf_dir)
-  download_kernel("kernel_rockpi4", version, rockpi_cf_dir)
-  download_kernel_modules("kernel_rockpi4", rockpi_cf_dir)
+  if os.path.exists(i686_cf_dir):
+    subprocess.check_call(["git", "rm", "-rf", i686_cf_dirname], cwd=cf_dir)
+    download_kernel("kernel_virt_i686", version, i686_cf_dir)
+    download_kernel_modules("kernel_virt_i686", i686_cf_dir)
 
-  commit_prebuilts(cf_dir, gitlog)
+  if os.path.exists(rockpi_cf_dir):
+    subprocess.check_call(["git", "rm", "-rf", rockpi_cf_dirname], cwd=cf_dir)
+    download_kernel("kernel_rockpi4", version, rockpi_cf_dir)
+    download_kernel_modules("kernel_rockpi4", rockpi_cf_dir)
+
+  if os.path.exists(i686_cf_dir) or os.path.exists(rockpi_cf_dir):
+    commit_prebuilts(cf_dir, gitlog)
 
 def update_androidx(output_dir, version):
   arm64_dir = os.path.join(output_dir, "kernel", "prebuilts", version, "arm64")
@@ -442,7 +447,7 @@ def update_androidx(output_dir, version):
   download_kernel("kernel_debug_aarch64", version, arm64_dir)
   download_kernel("kernel_aarch64", version, arm64_dir, fetch_system_dlkm=True)
   download_kernel_modules("kernel_aarch64", arm64_dir)
-  get_abi_definition("kernel_abi_aarch64", arm64_dir)
+  #get_abi_definition("kernel_abi_aarch64", arm64_dir)
   write_prebuilt_info(arm64_dir)
   (new_version, new_sha) = get_binary_kernel_version(arm64_kernel)
   gitlog = get_git_log(old_sha, new_sha)
