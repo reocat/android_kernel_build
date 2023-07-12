@@ -153,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0eb09ee_2bd0258d",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T20:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a5d4df1_86cc3a42",
+      "range": {
+        "startLine": 71,
+        "startChar": 31,
+        "endLine": 71,
+        "endChar": 34
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de9b6ab7_136b937d",
@@ -223,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "188bcf41_b29d0c1a",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T20:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cd43eda_e48f1d3c",
+      "range": {
+        "startLine": 83,
+        "startChar": 33,
+        "endLine": 83,
+        "endChar": 36
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "111a392f_f5107085",
@@ -240,6 +288,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5991ba89_24bb36a6",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T20:01:39Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "111a392f_f5107085",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af18c2f4_cca3b95f",
@@ -253,6 +319,30 @@
       "writtenOn": "2023-07-12T02:05:36Z",
       "side": 1,
       "message": "use `hashlib.file_digest()`\n\nhttps://docs.python.org/3.11/library/hashlib.html#hashlib.file_digest",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 26
+      },
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13624de2_402870b4",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T20:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af18c2f4_cca3b95f",
       "range": {
         "startLine": 89,
         "startChar": 0,
@@ -720,6 +810,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3039a7ee_b3a45013",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T20:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8b41a0b_79f69f28",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2134289_f9328e83",
@@ -737,6 +845,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee64afe2_c6fb99de",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T20:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2134289_f9328e83",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "502fdc3f_42a82728",
@@ -750,6 +876,24 @@
       "writtenOn": "2023-07-12T02:05:36Z",
       "side": 1,
       "message": "see earlier suggestion\n\n```\nreturn p for p in pathlib.Path(dist_dir).glob(\u0027**/*\u0027) if p.is_file()\n```",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43488071_817fad2c",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T20:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "502fdc3f_42a82728",
       "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
