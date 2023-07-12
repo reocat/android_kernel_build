@@ -135,6 +135,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "111a392f_f5107085",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-12T04:09:21Z",
+      "side": 1,
+      "message": "Why do we not dereference symlinks and hash the content of the pointed file?",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "af18c2f4_cca3b95f",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 1
