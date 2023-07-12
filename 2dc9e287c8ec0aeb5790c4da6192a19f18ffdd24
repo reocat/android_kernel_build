@@ -324,6 +324,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "559fcadc_04fc0881",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-12T22:01:10Z",
+      "side": 1,
+      "message": "as discussed offline, the kernel build artifacts are never symlinks, removed handling here.",
+      "parentUuid": "3bba2a26_4dade17d",
+      "revId": "2dc9e287c8ec0aeb5790c4da6192a19f18ffdd24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af18c2f4_cca3b95f",
