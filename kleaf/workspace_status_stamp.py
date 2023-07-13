@@ -68,7 +68,7 @@ class LocalversionResult(PathPopen):
         return ret
 
 
-def get_localversion(bin: Optional[str], project: str, *args) \
+def get_localversion_from_script(bin: Optional[str], project: str, *args) \
         -> Optional[PathCollectible]:
     """Call setlocalversion.
 
@@ -210,7 +210,9 @@ class Stamp(object):
 
     def __init__(self):
         self.ignore_missing_projects = os.environ.get(
-            "KLEAF_IGNORE_MISSING_PROJECTS", "false") == "true"
+            "KLEAF_IGNORE_MISSING_PROJECTS") == "true"
+        self.use_git_sha_from_repo = os.environ.get(
+            "KLEAF_USE_GIT_SHA_FROM_REPO") == "true"
         self.projects = list_projects()
         self.init_for_dot_source_date_epoch_dir()
 
@@ -240,6 +242,9 @@ class Stamp(object):
 
     def find_setlocalversion(self) -> None:
         self.setlocalversion = None
+
+        if self.use_git_sha_from_repo:
+            return
 
         all_projects = []
         if self.kernel_dir:
@@ -280,11 +285,28 @@ class Stamp(object):
                     project)
                 sys.exit(1)
 
-            path_popen = get_localversion(self.setlocalversion, project)
+            path_popen = self.get_localversion(project)
             if path_popen:
                 scmversion_map[project] = path_popen
 
         return scmversion_map
+
+    def get_localversion(self, project: str) -> Optional[PathCollectible]:
+        if not self.use_git_sha_from_repo:
+            return get_localversion_from_script(self.setlocalversion, project)
+
+        all_projects = self.projects
+        if self.ignore_missing_projects:
+            all_projects = {path: revision for path, revision in all_projects.items()
+                            if os.path.is_dir(path)}
+
+        if project in all_projects:
+            ret = all_projects[project]
+
+        if os.environ.get("BUILD_NUMBER"):
+            ret += "-ab" + os.environ["BUILD_NUMBER"]
+
+        return PresetResult(project, ret)
 
     def get_ext_modules(self) -> list[str]:
         if not self.setlocalversion:
