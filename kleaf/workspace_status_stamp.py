@@ -16,6 +16,7 @@ import dataclasses
 import logging
 import os
 import pathlib
+import shlex
 import shutil
 import subprocess
 import sys
@@ -107,62 +108,86 @@ def get_localversion(bin: Optional[str], project: str, *args) \
     return None
 
 
-def list_projects() -> list[str]:
+def list_projects() -> dict[str, str]:
     """Lists projects in the repository.
 
     Returns:
-        a list of projects in the repository.
+        a dictionary, where keys are paths to projects in the repository,
+        and values are the localversion.
     """
     if "KLEAF_REPO_MANIFEST" in os.environ:
         with open(os.environ["KLEAF_REPO_MANIFEST"]) as repo_prop_file:
             return parse_repo_manifest(repo_prop_file.read())
 
     try:
-        output = subprocess.check_output(["repo", "list", "-f"], text=True)
+        each_project_command = """
+            printf '%s:' "$PWD"
+            if head=$(git rev-parse --verify HEAD 2>/dev/null); then
+                printf '%s%s' -g "$(echo $head | cut -c1-12)"
+            fi
+            if {
+                git --no-optional-locks status -uno --porcelain 2>/dev/null ||
+                git diff-index --name-only HEAD
+            } | read dummy; then
+                printf '%s' -dirty
+            fi
+        """
+        args = ["repo", "forall", "-c", each_project_command]
+        output = subprocess.check_output(
+            args, text=True)
         return parse_repo_list(output)
     except (subprocess.SubprocessError, FileNotFoundError) as e:
-        logging.warning("Unable to execute repo manifest -r: %s", e)
-        return []
+        logging.warning(
+            "Unable to execute `%s`: %s",
+            " ".join([shlex.quote(arg) for arg in args]),
+            e)
+        return {}
 
 
-def parse_repo_manifest(manifest: str) -> list[str]:
+def parse_repo_manifest(manifest: str) -> dict[str, str]:
     """Parses a repo manifest file.
 
     Returns:
-        a list of paths to all projects in the repository.
+        a dictionary, where keys are paths to projects in the repository,
+        and values are the localversion.
     """
     try:
         dom = xml.dom.minidom.parseString(manifest)
     except xml.parsers.expat.ExpatError as e:
         logging.error("Unable to parse repo manifest: %s", e)
-        return []
+        return {}
     projects = dom.documentElement.getElementsByTagName("project")
     # https://gerrit.googlesource.com/git-repo/+/master/docs/manifest-format.md#element-project
-    return [
-        proj.getAttribute("path") or proj.getAttribute("name")
-        for proj in projects
-    ]
+    ret = {}
+    for proj in projects:
+        path = proj.getAttribute("path") or proj.getAttribute("name")
+        revision = proj.getAttribute("revision")
+        ret[path] = "-g{revision[:12]}"
+    return ret
 
 
-def parse_repo_list(repo_list: str) -> list[str]:
-    """Parses the result of `repo list -f`.
+def parse_repo_list(repo_list: str) -> dict[str, str]:
+    """Parses the result of the command that lists projects.
 
     Returns:
-        a list of paths to all projects in the repository.
+        a dictionary, where keys are paths to projects in the repository,
+        and values are the localversion.
     """
     workspace = pathlib.Path(".").absolute()
-    paths = []
+    paths = {}
     for line in repo_list.splitlines():
         line = line.strip()
         if not line or ":" not in line:
             continue
-        proj = pathlib.Path(line.split(":", 2)[0].strip())
-        if proj.is_relative_to(workspace):
-            paths.append(str(proj.relative_to(workspace)))
+        path, revision = line.split(":", 2)
+        path = pathlib.Path(path.strip())
+        revision = revision.strip()
+        if path.is_relative_to(workspace):
+            paths[str(path.relative_to(workspace))] = revision
         else:
             logging.info(
                 "Ignoring project %s because it is not under the Bazel workspace",
-                proj)
+                path)
     return paths
 
 
@@ -184,7 +209,8 @@ def collect(popen_obj: subprocess.Popen) -> str:
 class Stamp(object):
 
     def __init__(self):
-        self.ignore_missing_projects = os.environ.get("KLEAF_IGNORE_MISSING_PROJECTS", "false") == "true"
+        self.ignore_missing_projects = os.environ.get(
+            "KLEAF_IGNORE_MISSING_PROJECTS", "false") == "true"
         self.projects = list_projects()
         self.init_for_dot_source_date_epoch_dir()
 
@@ -218,7 +244,7 @@ class Stamp(object):
         all_projects = []
         if self.kernel_dir:
             all_projects.append(self.kernel_rel)
-        all_projects.extend(self.projects)
+        all_projects.extend(self.projects.keys())
 
         if self.ignore_missing_projects:
             all_projects = filter(os.path.isdir, all_projects)
@@ -241,7 +267,7 @@ class Stamp(object):
         if self.kernel_dir:
             all_projects.add(self.kernel_rel)
         all_projects |= set(self.get_ext_modules())
-        all_projects |= set(self.projects)
+        all_projects |= self.projects.keys()
 
         if self.ignore_missing_projects:
             all_projects = filter(os.path.isdir, all_projects)
@@ -287,7 +313,7 @@ class Stamp(object):
         all_projects = set()
         if self.kernel_dir:
             all_projects.add(self.kernel_rel)
-        all_projects |= set(self.projects)
+        all_projects |= self.projects.keys()
 
         if self.ignore_missing_projects:
             all_projects = filter(os.path.isdir, all_projects)
