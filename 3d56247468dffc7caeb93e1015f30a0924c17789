@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a89f63d_ba6b1b3c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-13T23:25:55Z",
+      "side": 1,
+      "message": "Git commit messages are usually following the convention\n```\n\u003csubject line \u003c 70 cols\u003e\n\n\u003cexplanatory text after empty line\u003e\n\n\u003ctrailers, such as `Bug: #nr`\u003e",
+      "revId": "3d56247468dffc7caeb93e1015f30a0924c17789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a49e837_73971b90",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-13T23:25:55Z",
+      "side": 1,
+      "message": "`Bug: 279663374`",
+      "revId": "3d56247468dffc7caeb93e1015f30a0924c17789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cc5e0c9_b7c1803a",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-13T23:25:55Z",
+      "side": 1,
+      "message": "this is deprecated, use `collections.abc.Iterable`\n\nhttps://docs.python.org/3.11/library/typing.html#typing.Iterable",
+      "range": {
+        "startLine": 44,
+        "startChar": 24,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "3d56247468dffc7caeb93e1015f30a0924c17789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9e2ccbd_df7dc238",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-13T23:25:55Z",
+      "side": 1,
+      "message": "`with file_path.open(\"rb\") as f:`",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 35
+      },
+      "revId": "3d56247468dffc7caeb93e1015f30a0924c17789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53b89738_7bc54cc8",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-13T23:25:55Z",
+      "side": 1,
+      "message": "`checksum`\n\n*Function names, variable names, and filenames should be descriptive; avoid abbreviation.*\n\nhttps://google.github.io/styleguide/pyguide.html#316-naming",
+      "range": {
+        "startLine": 90,
+        "startChar": 8,
+        "endLine": 90,
+        "endChar": 9
+      },
+      "revId": "3d56247468dffc7caeb93e1015f30a0924c17789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d971957_f7c96251",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-13T23:25:55Z",
+      "side": 1,
+      "message": "rather do the encoding when storing the checksum in `File`\n\nThen this can be done as\n\n```\nh.update(\u0027\u0027.join(sorted(f.checksum for f in files)))\n```",
+      "range": {
+        "startLine": 91,
+        "startChar": 17,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "3d56247468dffc7caeb93e1015f30a0924c17789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "723b8222_2062cb53",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-13T23:25:55Z",
+      "side": 1,
+      "message": "`pathlib.Path`",
+      "range": {
+        "startLine": 203,
+        "startChar": 41,
+        "endLine": 203,
+        "endChar": 44
+      },
+      "revId": "3d56247468dffc7caeb93e1015f30a0924c17789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "939ecd6d_96478d9e",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-13T23:25:55Z",
+      "side": 1,
+      "message": "this is too broad of an exception to catch. In particular, there are also multiple reasons why the code in the try block could fail.\n\n*Minimize the amount of code in a try/except block. The larger the body of the try, the more likely that an exception will be raised by a line of code that you didn’t expect to raise an exception. In those cases, the try/except block hides a real error.*\n\nhttps://google.github.io/styleguide/pyguide.html#24-exceptions",
+      "range": {
+        "startLine": 207,
+        "startChar": 11,
+        "endLine": 207,
+        "endChar": 20
+      },
+      "revId": "3d56247468dffc7caeb93e1015f30a0924c17789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12131d6f_2682a7a6",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-13T23:25:55Z",
+      "side": 1,
+      "message": "specify which directory does not exist (i.e. `dist_dir`)",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 76
+      },
+      "revId": "3d56247468dffc7caeb93e1015f30a0924c17789",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
