@@ -151,6 +151,16 @@ class BazelWrapper(object):
                  """missing from the workspace""",
         )
         parser.add_argument(
+            "--experimental_git_sha_from_repo",
+            help=textwrap.dedent("""\
+                                 Use repo or --repo_manifest to determine git sha, not
+                                 scripts/setlocalversion. This removes the unstable patch number
+                                 from scmversion.
+                                 """),
+            dest="git_sha_from_repo",
+            action="store_true",
+        )
+        parser.add_argument(
             "--user_clang_toolchain",
             help="Absolute path to a custom clang toolchain",
             type=_require_absolute_path,
@@ -191,6 +201,9 @@ class BazelWrapper(object):
 
         if self.known_args.ignore_missing_projects:
             self.env["KLEAF_IGNORE_MISSING_PROJECTS"] = "true"
+
+        if self.known_args.git_sha_from_repo:
+            self.env["KLEAF_USE_GIT_SHA_FROM_REPO"] = "true"
 
         if self.known_args.user_clang_toolchain is not None:
             self.env["KLEAF_USER_CLANG_TOOLCHAIN_PATH"] = self.known_args.user_clang_toolchain
