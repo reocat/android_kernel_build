@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9036e3e8_fe030418",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-13T14:53:34Z",
+      "side": 1,
+      "message": "I can CP this to those branches if a list exists, but in the mean time I have reverted this to its original function and only added notes about its deprecation.",
+      "parentUuid": "010f71df_bfe814d2",
+      "revId": "e55b9681f41c1367fd2d5394597b039716acea45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "32b5346d_542aacc4",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-06-29T12:41:55Z",
       "side": 1,
       "message": "not only deprecated, but \"defunct\". Deprecation in my definition is one step before when it still is working.",
+      "range": {
+        "startLine": 1082,
+        "startChar": 41,
+        "endLine": 1082,
+        "endChar": 51
+      },
+      "revId": "e55b9681f41c1367fd2d5394597b039716acea45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a50662ed_b834236b",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-13T14:53:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32b5346d_542aacc4",
       "range": {
         "startLine": 1082,
         "startChar": 41,
