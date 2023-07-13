@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79523a6a_8f6c4a6e",
+        "filename": "kleaf/impl/defconfig/BUILD.bazel",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-13T23:03:02Z",
+      "side": 1,
+      "message": "Fixed in CL:2656737",
+      "parentUuid": "0fb2b703_6bc94c0c",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 10
+      },
+      "revId": "49570deede412b7be52ca6b8b006c49dc495f8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bccf3ac6_6b20bc4a",
@@ -62,6 +86,24 @@
       "side": 1,
       "message": "\u003e File is not formatted. Run `buildifier kleaf/impl/kernel_build.bzl` to format the file, or apply the suggested fix.\n\nPlease fix.",
       "parentUuid": "2f8a4acd_ec58eb53",
+      "revId": "49570deede412b7be52ca6b8b006c49dc495f8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f676962c_5b13f1ce",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-13T23:03:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bccf3ac6_6b20bc4a",
       "revId": "49570deede412b7be52ca6b8b006c49dc495f8fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
