@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a992ab43_9458b512",
+        "filename": "kleaf/impl/defconfig/BUILD.bazel",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-13T13:46:06Z",
+      "side": 1,
+      "message": "here and below: These need to be `aarch64` otherwise it makes CL:2645182 fail.",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 10
+      },
+      "revId": "49570deede412b7be52ca6b8b006c49dc495f8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bccf3ac6_6b20bc4a",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 23
