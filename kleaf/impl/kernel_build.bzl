@@ -70,6 +70,8 @@ load(":modules_prepare.bzl", "modules_prepare")
 load(":raw_kmi_symbol_list.bzl", "raw_kmi_symbol_list")
 load(":utils.bzl", "kernel_utils", "utils")
 
+visibility("//build/kernel/kleaf/...")
+
 # Outputs of a kernel_build rule needed to build kernel_* that depends on it
 _kernel_build_internal_outs = [
     "Module.symvers",
@@ -1781,6 +1783,7 @@ def _kernel_build_additional_attrs():
     return dicts.add(
         kernel_config_settings.of_kernel_build(),
         base_kernel_utils.non_config_attrs(),
+        cache_dir.attrs(),
     )
 
 _kernel_build = rule(
@@ -1847,14 +1850,7 @@ _kernel_build = rule(
             executable = True,
             cfg = "exec",
         ),
-        "_cache_dir_config_tags": attr.label(
-            default = "//build/kernel/kleaf/impl:cache_dir_config_tags",
-            executable = True,
-            cfg = "exec",
-        ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
-        "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
-        "_cache_dir": attr.label(default = "//build/kernel/kleaf:cache_dir"),
         "_allow_undeclared_modules": attr.label(default = "//build/kernel/kleaf:allow_undeclared_modules"),
         "_warn_undeclared_modules": attr.label(default = "//build/kernel/kleaf:warn_undeclared_modules"),
         "_preserve_cmd": attr.label(default = "//build/kernel/kleaf/impl:preserve_cmd"),
