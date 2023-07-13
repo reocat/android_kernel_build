@@ -22,6 +22,30 @@
       },
       "revId": "a8297b30da99a8ce6630bb43486c229d20c30a31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd65d0ff_b2462062",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 17
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-13T19:12:49Z",
+      "side": 0,
+      "message": "Yes. target_config doesn\u0027t contain module_outs in the first place, so this has always been `None`.\n\nSee L100",
+      "parentUuid": "29a32762_9b410704",
+      "range": {
+        "startLine": 869,
+        "startChar": 19,
+        "endLine": 869,
+        "endChar": 51
+      },
+      "revId": "a8297b30da99a8ce6630bb43486c229d20c30a31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
