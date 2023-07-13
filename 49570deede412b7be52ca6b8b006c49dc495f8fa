@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0fb2b703_6bc94c0c",
+        "filename": "kleaf/impl/defconfig/BUILD.bazel",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-13T22:56:13Z",
+      "side": 1,
+      "message": "Something is wrong; this arm64_4k_defconfig should be correct because kernel_build.arch should never be \"aarch64\". Checking now...",
+      "parentUuid": "a992ab43_9458b512",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 10
+      },
+      "revId": "49570deede412b7be52ca6b8b006c49dc495f8fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bccf3ac6_6b20bc4a",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 23
