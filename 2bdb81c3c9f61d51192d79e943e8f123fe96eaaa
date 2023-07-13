@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fb72b18b_340ba27c",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-13T19:10:00Z",
+      "side": 1,
+      "message": "Also 4-space indent to be consistent with other lines",
+      "parentUuid": "f175097e_5bf8e113",
+      "range": {
+        "startLine": 1106,
+        "startChar": 0,
+        "endLine": 1106,
+        "endChar": 51
+      },
+      "revId": "2bdb81c3c9f61d51192d79e943e8f123fe96eaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "458838bf_f8b9aee8",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 5
