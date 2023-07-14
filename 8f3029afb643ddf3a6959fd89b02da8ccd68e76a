@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b06a9d6_8b838f53",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-14T23:40:15Z",
+      "side": 1,
+      "message": "for Python 3.10 or later (which we have), prefer union type expressions `str | None` to express a nullable value.\n\nhttps://peps.python.org/pep-0604/",
+      "range": {
+        "startLine": 59,
+        "startChar": 20,
+        "endLine": 59,
+        "endChar": 28
+      },
+      "revId": "8f3029afb643ddf3a6959fd89b02da8ccd68e76a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56273d57_e083298f",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-14T23:40:15Z",
+      "side": 1,
+      "message": "pass as `pathlib.Path` for proper typing and to access member functions like `Path.is_dir()`",
+      "range": {
+        "startLine": 111,
+        "startChar": 39,
+        "endLine": 111,
+        "endChar": 42
+      },
+      "revId": "8f3029afb643ddf3a6959fd89b02da8ccd68e76a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df7e1c2b_c28b11c2",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-14T23:40:15Z",
+      "side": 1,
+      "message": "`git rev-parse --short\u003d12` is what you are looking for :-)",
+      "range": {
+        "startLine": 128,
+        "startChar": 12,
+        "endLine": 128,
+        "endChar": 50
+      },
+      "revId": "8f3029afb643ddf3a6959fd89b02da8ccd68e76a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
