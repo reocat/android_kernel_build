@@ -158,6 +158,7 @@ class BazelWrapper(object):
                 from scmversion.
                 """),
             action="store_true",
+            default=True,
         )
         parser.add_argument(
             "--nokleaf_localversion",
