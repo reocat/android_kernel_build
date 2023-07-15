@@ -16,6 +16,24 @@
       "message": "Waiting for \"True\" ;-)",
       "revId": "e8dbbd8173799748ae289cdb764e62720d0d38e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04cb49d7_ca749c8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-15T00:57:33Z",
+      "side": 1,
+      "message": "Acknowledged\n\nThe string is set here: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/bazel.py;l\u003d193;drc\u003d73d05a76a4133f12914e4aed618d399a88619ab3\n\nThey can be any string as long as they are the same.",
+      "parentUuid": "ce6f23d6_8da41444",
+      "revId": "e8dbbd8173799748ae289cdb764e62720d0d38e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
