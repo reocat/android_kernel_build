@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b22d1474_09c92413",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-15T00:20:24Z",
+      "side": 1,
+      "message": "Done and see CL:2657906",
+      "parentUuid": "7b06a9d6_8b838f53",
+      "range": {
+        "startLine": 59,
+        "startChar": 20,
+        "endLine": 59,
+        "endChar": 28
+      },
+      "revId": "8f3029afb643ddf3a6959fd89b02da8ccd68e76a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56273d57_e083298f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-14T23:40:15Z",
       "side": 1,
       "message": "pass as `pathlib.Path` for proper typing and to access member functions like `Path.is_dir()`",
+      "range": {
+        "startLine": 111,
+        "startChar": 39,
+        "endLine": 111,
+        "endChar": 42
+      },
+      "revId": "8f3029afb643ddf3a6959fd89b02da8ccd68e76a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72a651a2_88f0c878",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-15T00:20:24Z",
+      "side": 1,
+      "message": "Done and see CL:2657907",
+      "parentUuid": "56273d57_e083298f",
       "range": {
         "startLine": 111,
         "startChar": 39,
