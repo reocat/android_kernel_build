@@ -87,10 +87,10 @@ class KernelSbom:
 
   def _checksum(self, file_path: pathlib.Path) -> str:
     with file_path.open("rb") as f:
-      return str(hashlib.file_digest(f, "sha1").hexdigest())
+      return str(hashlib.file_digest(f, "sha256").hexdigest())
 
   def _generate_package_verification_code(self, files: list[File]) -> str:
-    hash = hashlib.sha1()
+    hash = hashlib.sha256()
     for checksum in sorted(f.checksum.encode() for f in files):
       hash.update(checksum)
     return hash.hexdigest()
@@ -145,7 +145,7 @@ class KernelSbom:
         "SPDXID": file.id,
         "checksums": [
             {
-                "algorithm": "SHA1",
+                "algorithm": "SHA256",
                 "checksumValue": file.checksum,
             },
         ],
