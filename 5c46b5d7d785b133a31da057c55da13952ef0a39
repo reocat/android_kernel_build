@@ -16,6 +16,24 @@
       "message": "FTR, that is (\"flat is better than nested\"):\n\n```\nif not bin:\n  return None\n  \n...\n\nreturn LocalversionResult(...)\n```",
       "revId": "5c46b5d7d785b133a31da057c55da13952ef0a39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34a9fd7b_2f399ad7",
+        "filename": "kleaf/workspace_status_stamp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-17T22:29:57Z",
+      "side": 1,
+      "message": "I agree -- but let\u0027s leave it for later cleanup.\n\nI think it was like that due to a refactoring",
+      "parentUuid": "6e78db1c_ba467746",
+      "revId": "5c46b5d7d785b133a31da057c55da13952ef0a39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
