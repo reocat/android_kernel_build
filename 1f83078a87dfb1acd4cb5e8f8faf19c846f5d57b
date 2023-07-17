@@ -148,6 +148,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06af1b48_a24ab858",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-17T21:37:30Z",
+      "side": 1,
+      "message": "so, I thought we can invoke this script from $KVERSION from build system/.sh spots. Is there some $ENV or general way to extract version from this script\u0027s context as well?",
+      "parentUuid": "92a8b87e_2eced49f",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "262db37e_f3d5df59",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 14
@@ -159,6 +177,30 @@
       "writtenOn": "2023-07-17T17:12:37Z",
       "side": 1,
       "message": "note, I removed the `**/*` glob as support for subdirectories is lacking right now. Files with colliding names are not handled as they get the same id.",
+      "range": {
+        "startLine": 238,
+        "startChar": 52,
+        "endLine": 238,
+        "endChar": 53
+      },
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07f0430e_1ef28f63",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1981917
+      },
+      "writtenOn": "2023-07-17T21:37:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "262db37e_f3d5df59",
       "range": {
         "startLine": 238,
         "startChar": 52,
