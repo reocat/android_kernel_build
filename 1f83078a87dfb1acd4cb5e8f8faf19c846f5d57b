@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "294e9174_8e150def",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1318142
+      },
+      "writtenOn": "2023-07-17T20:22:16Z",
+      "side": 1,
+      "message": "This timestamp is used as \"created time of the SPDX doc\", so it should not link to the vmlinux binary.",
+      "parentUuid": "5242d3e4_55b481bd",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7e73b40_ce70478f",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 14
@@ -54,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b45c891c_5235b2e3",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1318142
+      },
+      "writtenOn": "2023-07-17T20:22:16Z",
+      "side": 1,
+      "message": "The document namespace is actually a unique identifier/URI for the SPDX document, so if it is a unique value for every SPDX doc created by this script in build process it is ok.",
+      "parentUuid": "d7e73b40_ce70478f",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c2324536_1d97cfbf",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 14
@@ -65,6 +101,24 @@
       "writtenOn": "2023-07-17T17:12:37Z",
       "side": 1,
       "message": "The version should be actually extracted from the vmlinux binary or from the full extended version string.",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92a8b87e_2eced49f",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1318142
+      },
+      "writtenOn": "2023-07-17T20:22:16Z",
+      "side": 1,
+      "message": "Not sure how the version looks like in vmlinux binary, it is ok if it is like the example \"5.15.110-android14-11-00098-gbdd2312e95c7-ab10365441\" whick contains buildid, otherwise we need to see if it contains some data to make it unique since it is used in document namespace.",
+      "parentUuid": "c2324536_1d97cfbf",
       "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
