@@ -16,6 +16,24 @@
       "message": "This does not work. The build number is not embedded into the string correctly.",
       "revId": "2fdbb32257330c2692865bfd03362c0faa1a5b65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4568e41_824d405a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-17T23:27:14Z",
+      "side": 1,
+      "message": "It does not work because the map is expected to contain PATH:VERSION PATH:VERSION separated by strings. I think it needs to be refactored so that spaces can be part of the version as well.",
+      "parentUuid": "d9913cad_cc84ef24",
+      "revId": "2fdbb32257330c2692865bfd03362c0faa1a5b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
