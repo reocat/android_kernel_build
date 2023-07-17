@@ -97,7 +97,7 @@ def get_localversion_from_script(bin: pathlib.Path | None, project: pathlib.Path
 
         suffix = None
         if os.environ.get("BUILD_NUMBER"):
-            suffix = "-ab" + os.environ["BUILD_NUMBER"]
+            suffix = " ab" + os.environ["BUILD_NUMBER"]
         return LocalversionResult(
             path=project,
             popen=popen,
@@ -140,7 +140,7 @@ def get_localversion_from_git(project: pathlib.Path) -> PathCollectible | None:
                              stdout=subprocess.PIPE, cwd=project)
     suffix = None
     if os.environ.get("BUILD_NUMBER"):
-        suffix = "-ab" + os.environ["BUILD_NUMBER"]
+        suffix = " ab" + os.environ["BUILD_NUMBER"]
     return LocalversionResult(
         path=project,
         popen=popen,
