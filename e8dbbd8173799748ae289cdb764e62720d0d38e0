@@ -52,6 +52,24 @@
       "parentUuid": "04cb49d7_ca749c8a",
       "revId": "e8dbbd8173799748ae289cdb764e62720d0d38e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a3666cd_de0b99e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-17T19:53:06Z",
+      "side": 1,
+      "message": "That would be nice too; workspace_status_stamp.py and bazel.py probably should share a library that manages all the environment variables it sets.",
+      "parentUuid": "9b652100_78b3e413",
+      "revId": "e8dbbd8173799748ae289cdb764e62720d0d38e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
