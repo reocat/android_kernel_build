@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb8ffe02_2097489e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-17T17:12:37Z",
+      "side": 1,
+      "message": "I created a patchset cleaning up some formatting an style issues and some minor other things. Please base any future changes on this version.",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5242d3e4_55b481bd",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-17T17:12:37Z",
+      "side": 1,
+      "message": "The date should be actually extracted from the vmlinux binary or from the full extended version string. Taking the local time is not an option as it breaks deterministic builds.",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7e73b40_ce70478f",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-17T17:12:37Z",
+      "side": 1,
+      "message": "the namespace contains the full version string. Is that actually an URL that will resolve? It certainly does not fit the name \"namespace\".",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2324536_1d97cfbf",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-17T17:12:37Z",
+      "side": 1,
+      "message": "The version should be actually extracted from the vmlinux binary or from the full extended version string.",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "262db37e_f3d5df59",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-17T17:12:37Z",
+      "side": 1,
+      "message": "note, I removed the `**/*` glob as support for subdirectories is lacking right now. Files with colliding names are not handled as they get the same id.",
+      "range": {
+        "startLine": 238,
+        "startChar": 52,
+        "endLine": 238,
+        "endChar": 53
+      },
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
