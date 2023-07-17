@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4900328c_90d4c731",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1318142
+      },
+      "writtenOn": "2023-07-17T20:51:07Z",
+      "side": 1,
+      "message": "This is used for SPDX tagvalue format and is not necessary in SPDX JSON because field checksum.algorithm has value \"SHA1\".",
+      "range": {
+        "startLine": 90,
+        "startChar": 15,
+        "endLine": 90,
+        "endChar": 21
+      },
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5242d3e4_55b481bd",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 14
