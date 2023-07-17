@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "130da33d_5b2f5264",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-17T22:31:01Z",
+      "side": 1,
+      "message": "see a later change where I dropped that already.",
+      "parentUuid": "4900328c_90d4c731",
+      "range": {
+        "startLine": 90,
+        "startChar": 15,
+        "endLine": 90,
+        "endChar": 21
+      },
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5242d3e4_55b481bd",
@@ -78,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f6df5a0_47704116",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-17T22:31:01Z",
+      "side": 1,
+      "message": "That inherently makes the build non-reproducible. I am quite strictly against such things. The time we already use is the latest commit timestamp and as such a fair representation of the actual sources involved. Would that be good enough?",
+      "parentUuid": "294e9174_8e150def",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7e73b40_ce70478f",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 14
@@ -107,6 +149,24 @@
       "side": 1,
       "message": "The document namespace is actually a unique identifier/URI for the SPDX document, so if it is a unique value for every SPDX doc created by this script in build process it is ok.",
       "parentUuid": "d7e73b40_ce70478f",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be000399_f39cf490",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-17T22:31:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b45c891c_5235b2e3",
       "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -160,6 +220,24 @@
       "side": 1,
       "message": "so, I thought we can invoke this script from $KVERSION from build system/.sh spots. Is there some $ENV or general way to extract version from this script\u0027s context as well?",
       "parentUuid": "92a8b87e_2eced49f",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69fddb84_343716ff",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-17T22:31:01Z",
+      "side": 1,
+      "message": "We will probably just call the script from kleaf with the version we have at hand.\n\nLet\u0027s wait for aosp/2656740 to land then.\n\nCc: @elsk@google.com",
+      "parentUuid": "06af1b48_a24ab858",
       "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
