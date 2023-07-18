@@ -262,7 +262,8 @@ def hermetic_tools(
 
     Args:
         name: Name of the target.
-        srcs: A list of labels referring to tools for hermetic builds. This is usually a `glob()`.
+        srcs: [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
+          A list of labels referring to tools for hermetic builds. This is usually a `glob()`.
 
           Each item in `{srcs}` is treated as an executable that are added to the `PATH`.
         symlinks: A dictionary, where keys are labels to an executable, and
@@ -271,10 +272,12 @@ def hermetic_tools(
           ```
           {"//label/to:toybox": "cp:realpath"}
           ```
-        host_tools: An allowlist of names of tools that are allowed to be used from the host.
+        host_tools: [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
+          An allowlist of names of tools that are allowed to be used from the host.
 
           For each token `{tool}`, the label `{name}/{tool}` is created to refer to the tool.
-        py3_outs: List of tool names that are resolved to Python 3 binary.
+        py3_outs: [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
+          List of tool names that are resolved to Python 3 binary.
         deps: additional dependencies. Unlike `srcs`, these aren't added to the `PATH`.
         tar_args: List of fixed arguments provided to `tar` commands.
 
