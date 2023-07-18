@@ -34,6 +34,24 @@
       "parentUuid": "d9913cad_cc84ef24",
       "revId": "2fdbb32257330c2692865bfd03362c0faa1a5b65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "304abe81_6617ab81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-18T00:06:36Z",
+      "side": 1,
+      "message": "@maennich@google.com\n\nI think this will require some non-trivial upstream changes that allows spaces in paths. The first error (after fixing Kleaf errors CL:2660379) I hit is this line:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/Makefile;l\u003d1613;drc\u003dcdef824f3de0e4d03f2e4da7aa0c02849bcadfe2\n\nThe error message is:\n\n```\nERROR: /mnt/sdc/android/kernel/common/BUILD.bazel:51:22: Building kernel (lto\u003ddefault;notrim) @//common:kernel_aarch64 failed: (Exit 2): bash failed: error executing command (from target //common:kernel_aarch64) /bin/bash -c ... (remaining 1 argument skipped)\nln: cannot create symbolic link from \u0027/mnt/sdc/android/kernel/out/bazel/output_user_root/1b6b21355d7d8de5177bf0bcb725bd7f/execroot/__main__/bazel-out/k8-fastbuild/bin/common/kernel_aarch64/staging/lib/modules/6.4.0-mainline-gb862f642f1b6\u0027 to \u0027ab123456/source\u0027: File exists\nmake[1]: *** [/mnt/sdc/android/kernel/common/Makefile:1613: __modinst_pre] Error 1\n```\n\nThe issue is that `$(MODLIB)/source` is not quoted: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/Makefile;l\u003d1190;drc\u003dcdef824f3de0e4d03f2e4da7aa0c02849bcadfe2\n\nI think that, and all other variables where `KERNELRELEASE` is referred to, needs to be quoted.",
+      "parentUuid": "c4568e41_824d405a",
+      "revId": "2fdbb32257330c2692865bfd03362c0faa1a5b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
