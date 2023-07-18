@@ -136,6 +136,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2557903f_ca740a15",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-18T08:32:51Z",
+      "side": 1,
+      "message": "Thanks for clarifying that. I am not going to argue against the standard definition, yet it is counterproductive in an environment where we want to create deterministic builds. In particular, this means we cannot create a deterministic distribution despite having relevant inputs to distinguish such as a commit timestamp and commit sha.",
+      "parentUuid": "18d75d6e_5b7fab92",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7e73b40_ce70478f",
