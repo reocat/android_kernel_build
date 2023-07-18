@@ -52,6 +52,24 @@
       "parentUuid": "c4568e41_824d405a",
       "revId": "2fdbb32257330c2692865bfd03362c0faa1a5b65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63caa9a9_6b33b1bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-18T00:13:00Z",
+      "side": 1,
+      "message": "Looking at the banner, here are all the things that participates in the version string:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/init/version-timestamp.c;l\u003d29;drc\u003db409ea4534204d4e6da3017d8713ce338f44b489\n\nAmong them, KBUILD_BUILD_VERSION looks like a possible candidate to embed build numbers. Here\u0027s some description of the variable:\n\nhttps://patchwork.kernel.org/comment/13106401/",
+      "parentUuid": "304abe81_6617ab81",
+      "revId": "2fdbb32257330c2692865bfd03362c0faa1a5b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
