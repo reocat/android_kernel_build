@@ -283,6 +283,8 @@ def _hermetic_tools_impl(ctx):
 
     setup = fail_hard + """
                 export PATH=$({path}/readlink -m {path})
+                # Ensure _setup_env.sh keeps the original items in PATH
+                export KLEAF_INTERNAL_BUILDTOOLS_PREBUILT_BIN={path}
 """.format(path = all_outputs[0].dirname)
     additional_setup = """
                 export PATH=$({path}/readlink -m {path}):$PATH
