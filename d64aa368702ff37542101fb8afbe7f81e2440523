@@ -22,6 +22,30 @@
       },
       "revId": "d64aa368702ff37542101fb8afbe7f81e2440523",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d496c9f_12d75103",
+        "filename": "kleaf/docs/scmversion.md",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-18T21:29:22Z",
+      "side": 1,
+      "message": "` prevents the anchor to be generated properly",
+      "parentUuid": "07bcb168_0fc3cf33",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 24
+      },
+      "revId": "d64aa368702ff37542101fb8afbe7f81e2440523",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
