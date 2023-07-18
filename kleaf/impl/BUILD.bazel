@@ -363,10 +363,12 @@ platform(
 
 get_python_interpreter(
     name = "python_interpreter",
-    visibility = ["//build/kernel:__pkg__"],
+    # All hermetic_tools() invocation can see this.
+    visibility = ["//visibility:public"],
 )
 
 get_python_runtime_files(
     name = "python_runtime_files",
-    visibility = ["//build/kernel:__pkg__"],
+    # All hermetic_tools() invocation can see this.
+    visibility = ["//visibility:public"],
 )
