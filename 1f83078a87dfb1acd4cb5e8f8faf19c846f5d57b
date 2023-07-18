@@ -120,6 +120,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18d75d6e_5b7fab92",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1318142
+      },
+      "writtenOn": "2023-07-18T02:28:05Z",
+      "side": 1,
+      "message": "I didn\u0027t explain clearly in my last comment. \n\nThe timestamp is the create time of the SPDX doc and the SPDX doc 1-1 links to the kernel binary, but the timestamp doesn\u0027t link to the commit information carried in the binary, considering there might be multiple binaries built from the same commit, for example for multiple archs/arch variants/toolchains, and each binary has its own SPDX doc and create timestamp. \n\nSee the SPDX spec for more details: https://spdx.github.io/spdx-spec/v2.3/document-creation-information/#69-created-field",
+      "parentUuid": "5f6df5a0_47704116",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d7e73b40_ce70478f",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 14
