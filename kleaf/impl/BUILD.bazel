@@ -74,6 +74,7 @@ bzl_library(
         "kernel_module_group.bzl",
         "kernel_modules_install.bzl",
         "kernel_platform_toolchain.bzl",
+        "kernel_sbom.bzl",
         "kernel_toolchains.bzl",
         "kernel_uapi_headers.bzl",
         "kernel_uapi_headers_cc_library.bzl",
@@ -283,7 +284,7 @@ py_test(
     srcs = ["get_kmi_string_test.py"],
     main = "get_kmi_string_test.py",
     deps = [
-        ":get_kmi_string",
+        "nget_kmi_string",
         "@io_abseil_py//absl/testing:absltest",
     ],
 )
