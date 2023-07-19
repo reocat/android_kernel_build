@@ -28,10 +28,16 @@ def _kernel_build_config_impl(ctx):
         srcs = " ".join([src.path for src in ctx.files.srcs]),
         out_file = out_file.path,
     )
+
+    inputs = depset(transitive = [
+        depset(transitive = [target.files for target in ctx.attr.srcs]),
+        depset(transitive = [target.files for target in ctx.attr.deps]),
+    ])
+
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
         mnemonic = "KernelBuildConfig",
-        inputs = ctx.files.srcs,
+        inputs = inputs,
         tools = hermetic_tools.deps,
         outputs = [out_file],
         command = command,
@@ -61,6 +67,14 @@ kernel_build_config(
 )
 ```
 
+""",
+        ),
+        "deps": attr.label_list(
+            allow_files = True,
+            doc = """Additional build config dependencies.
+
+These include build configs that are indirectly `source`d by items
+in `srcs`. Unlike `srcs`, they are not be emitted in the output.
 """,
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
