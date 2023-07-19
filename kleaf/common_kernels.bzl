@@ -788,6 +788,19 @@ def define_common_kernels(
             Label("//build/kernel:gki_certification_tools"),
         ]
 
+        native.genrule(
+            name = name + "_sbom",
+            srcs = dist_targets + [name + "/kernel.release"],
+            outs = [name + "/kernel_sbom.spdx.json"],
+            cmd = """$(location //build/kernel/kleaf:kernel_sbom) \
+                       --output_file $@                          \
+                       --files $(SRCS)                           \
+                       --version $$(cat $(location %s/kernel.release))""" % name,
+            tools = ["//build/kernel/kleaf:kernel_sbom"],
+        )
+
+        dist_targets.append(name + "_sbom")
+
         copy_to_dist_dir(
             name = name + "_dist",
             data = dist_targets,
