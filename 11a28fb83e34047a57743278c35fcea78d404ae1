@@ -16,6 +16,23 @@
       "message": "This needs to wait for a GCL change.",
       "revId": "11a28fb83e34047a57743278c35fcea78d404ae1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af85f3a8_9aa9df5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-19T20:55:47Z",
+      "side": 1,
+      "message": "@salguarnieri@google.com\n\nThis will grow the kzip from 220MB to 660MB-ish per branch. We have 6 branches right now as stated in cl/549414412.\n\nIf it is too costly, we can consider turning down indexing on LTS branches (they weren\u0027t enabled before anyways)",
+      "revId": "11a28fb83e34047a57743278c35fcea78d404ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
