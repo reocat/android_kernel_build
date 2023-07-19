@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca58fa2b_ac0627ec",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-19T00:04:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2965d37_667d8f6f",
+      "range": {
+        "startLine": 658,
+        "startChar": 4,
+        "endLine": 658,
+        "endChar": 5
+      },
+      "revId": "e5a83d5c4388c0f4a8e4669d61374facbd483efe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "837d35bc_f5494f3a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-06T15:28:32Z",
       "side": 1,
       "message": "nit: signing",
+      "range": {
+        "startLine": 699,
+        "startChar": 39,
+        "endLine": 699,
+        "endChar": 48
+      },
+      "revId": "e5a83d5c4388c0f4a8e4669d61374facbd483efe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecca0f73_3afd33ed",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-19T00:04:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "837d35bc_f5494f3a",
       "range": {
         "startLine": 699,
         "startChar": 39,
