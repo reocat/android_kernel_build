@@ -486,7 +486,7 @@ def define_common_kernels(
 
     # Workaround to set KERNEL_DIR correctly and
     #  avoid using the fallback (directory of the config).
-    set_kernel_dir_cmd = "KERNEL_DIR=\"{common_package}\"".format(
+    set_kernel_dir_cmd = "KERNEL_DIR=\"{common_package}\"; . $ROOT_DIR/$KERNEL_DIR/build_config_empty".format(
         common_package = native.package_name(),
     )
     write_file(
@@ -643,6 +643,10 @@ def _define_common_kernel(
             build_config,
             Label("//build/kernel/kleaf:gki_build_config_fragment"),
         ],
+        # UNCOMMENT TO FIX BUILD ERROR
+        # deps = [
+        #     "build_config_empty",
+        # ],
     )
 
     kernel_build(
