@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22e52311_65cd4d37",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-19T20:03:27Z",
+      "side": 1,
+      "message": "it should go to stderr so that the error shows up in build_error.log not build.log on ci.android.com",
+      "parentUuid": "6e3f97e4_5de33ba5",
+      "range": {
+        "startLine": 209,
+        "startChar": 6,
+        "endLine": 209,
+        "endChar": 11
+      },
+      "revId": "bb8220e584318357b909a59f629e403d948dbff7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f94f3c9_0cad2fb2",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 15
