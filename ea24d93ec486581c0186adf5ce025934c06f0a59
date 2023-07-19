@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab6cd98c_cd79ad53",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-19T23:21:24Z",
+      "side": 1,
+      "message": "`--files` and `--dist_dir` are mutually exclusive and one of them is required. As such, I would say it is ok to assume there is at least one file and it is rather a bug if not. That bug gets hence diagnosed. If someone really wants to create an sbom for an empty directory, `--dist_dir` would allow that.",
+      "parentUuid": "c5f34171_55fe0594",
+      "range": {
+        "startLine": 254,
+        "startChar": 13,
+        "endLine": 254,
+        "endChar": 14
+      },
+      "revId": "ea24d93ec486581c0186adf5ce025934c06f0a59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "80ab27f8_58a7e458",
         "filename": "kleaf/kernel_sbom.py",
         "patchSetId": 1
