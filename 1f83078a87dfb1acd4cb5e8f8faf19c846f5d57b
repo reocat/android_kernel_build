@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dfdb272_ae59da4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-19T15:57:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb8ffe02_2097489e",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4900328c_90d4c731",
@@ -274,6 +292,24 @@
       "side": 1,
       "message": "We will probably just call the script from kleaf with the version we have at hand.\n\nLet\u0027s wait for aosp/2656740 to land then.\n\nCc: @elsk@google.com",
       "parentUuid": "06af1b48_a24ab858",
+      "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca43144d_a8f5bc8d",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-19T15:57:40Z",
+      "side": 1,
+      "message": "Actually not needed.",
+      "parentUuid": "69fddb84_343716ff",
       "revId": "1f83078a87dfb1acd4cb5e8f8faf19c846f5d57b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
