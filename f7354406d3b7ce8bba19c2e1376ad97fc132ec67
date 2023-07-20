@@ -22,6 +22,30 @@
       },
       "revId": "f7354406d3b7ce8bba19c2e1376ad97fc132ec67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c2c6c2e_bc815753",
+        "filename": "kleaf/impl/kernel_build_config.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-20T21:11:18Z",
+      "side": 1,
+      "message": "That workaround is still needed because _setup_env.sh still uses BUILD_CONFIG to determine where KERNEL_DIR is. Without that workaround, KERNEL_DIR would still be a generated directory.",
+      "parentUuid": "345ac18d_ed90db92",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 10
+      },
+      "revId": "f7354406d3b7ce8bba19c2e1376ad97fc132ec67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
