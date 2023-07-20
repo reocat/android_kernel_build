@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2544b749_94986d43",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-20T23:44:16Z",
+      "side": 1,
+      "message": "This doesn\u0027t work on branches without riscv64 (e.g. android14-5.15).\n\nI think this should be moved to BUILD.bazel instead.",
+      "range": {
+        "startLine": 551,
+        "startChar": 14,
+        "endLine": 551,
+        "endChar": 34
+      },
+      "revId": "75d6f28a91e1abcf97a6b466498919e920d49e70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
