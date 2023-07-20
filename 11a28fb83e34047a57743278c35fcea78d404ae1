@@ -69,6 +69,52 @@
       "parentUuid": "04cb4d82_77f96708",
       "revId": "11a28fb83e34047a57743278c35fcea78d404ae1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca68f080_bccfb2d0",
+        "filename": "kleaf/impl/merge_kzip.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-20T10:57:01Z",
+      "side": 1,
+      "message": "nit: 2023",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "11a28fb83e34047a57743278c35fcea78d404ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af13952c_df23268c",
+        "filename": "kleaf/impl/merge_kzip.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-20T10:57:01Z",
+      "side": 1,
+      "message": "does this come from prebuilts?",
+      "range": {
+        "startLine": 35,
+        "startChar": 15,
+        "endLine": 35,
+        "endChar": 24
+      },
+      "revId": "11a28fb83e34047a57743278c35fcea78d404ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
