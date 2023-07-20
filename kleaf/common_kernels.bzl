@@ -585,6 +585,7 @@ def _define_common_kernel(
         additional_kmi_symbol_lists = None,
         trim_nonlisted_kmi = None,
         kmi_symbol_list_strict_mode = None,
+        kmi_symbol_list_add_only = None,
         module_implicit_outs = None,
         protected_exports_list = None,
         protected_modules_list = None,
@@ -696,6 +697,7 @@ def _define_common_kernel(
         module_grouping = None,
         abi_definition_stg = abi_definition_stg,
         kmi_enforced = kmi_enforced,
+        kmi_symbol_list_add_only = kmi_symbol_list_add_only,
     )
 
     if enable_interceptor:
