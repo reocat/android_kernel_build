@@ -57,6 +57,7 @@ load(
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
+load(":file_selector.bzl", "file_selector")
 load(":file.bzl", "file")
 load(":hermetic_toolchain.bzl", "hermetic_toolchain")
 load(":kernel_config.bzl", "kernel_config")
@@ -112,6 +113,7 @@ def kernel_build(
         system_trusted_key = None,
         modules_prepare_force_generate_headers = None,
         defconfig_fragments = None,
+        page_size = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
 
@@ -399,6 +401,12 @@ def kernel_build(
           (e.g. `kasan_defconfig`) or `<prop>_<value>_defconfig` (e.g. `lto_none_defconfig`)
           to provide human-readable hints during the build. The prefix should
           describe what the defconfig does. However, this is not a requirement.
+        page_size: Default is `"default"`. Page size of the kernel build.
+
+          Value may be one of `"default"`, `"4k"`, `"16k"` or `"64k"`. If
+          `"default"`, the defconfig is left as-is.
+
+          16k / 64k page size is only supported on `arch = "arm64"`.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -448,10 +456,12 @@ def kernel_build(
         "//conditions:default": "default",
     })
 
-    if defconfig_fragments == None:
-        defconfig_fragments = []
-    defconfig_fragments.append(
-        Label("//build/kernel/kleaf:defconfig_fragment"),
+    defconfig_fragments = _get_defconfig_fragments(
+        kernel_build_name = name,
+        kernel_build_defconfig_fragments = defconfig_fragments,
+        kernel_build_arch = arch,
+        kernel_build_page_size = page_size,
+        **internal_kwargs
     )
 
     toolchain_constraints = []
@@ -665,6 +675,70 @@ def kernel_build(
         modules = (real_outs.get("module_outs") or []) + (real_outs.get("module_implicit_outs") or []),
         **kwargs
     )
+
+def _get_defconfig_fragments(
+        kernel_build_name,
+        kernel_build_defconfig_fragments,
+        kernel_build_arch,
+        kernel_build_page_size,
+        **internal_kwargs):
+    # Use a separate list to avoid .append on the provided object directly.
+    # kernel_build_defconfig_fragments could be a list or a select() expression.
+    additional_fragments = [
+        Label("//build/kernel/kleaf:defconfig_fragment"),
+    ]
+
+    btf_debug_info_target = kernel_build_name + "_defconfig_fragment_btf_debug_info"
+    file_selector(
+        name = btf_debug_info_target,
+        first_selector = select({
+            Label("//build/kernel/kleaf:btf_debug_info_is_enabled"): "enable",
+            Label("//build/kernel/kleaf:btf_debug_info_is_disabled"): "disable",
+            # TODO(b/229662633): Add kernel_build.btf_debug_info. After that, this should be
+            #   `kernel_build_btf_debug_info or "enable"`.
+            "//conditions:default": "default",
+        }),
+        files = {
+            Label("//build/kernel/kleaf/impl/defconfig:btf_debug_info_enabled_defconfig"): "enable",
+            Label("//build/kernel/kleaf/impl/defconfig:btf_debug_info_disabled_defconfig"): "disable",
+            # If --btf_debug_info=default, do not apply any defconfig fragments
+            Label("//build/kernel/kleaf/impl:empty_filegroup"): "default",
+        },
+        **internal_kwargs
+    )
+    additional_fragments.append(btf_debug_info_target)
+
+    page_size_target = kernel_build_name + "_defconfig_fragment_page_size"
+    file_selector(
+        name = page_size_target,
+        first_selector = select({
+            Label("//build/kernel/kleaf:page_size_4k"): "4k",
+            Label("//build/kernel/kleaf:page_size_16k"): "16k",
+            Label("//build/kernel/kleaf:page_size_64k"): "64k",
+            # If --page_size=default, use kernel_build.page_size; If kernel_build.page_size
+            # is also unset, use "default".
+            "//conditions:default": None,
+        }),
+        second_selector = kernel_build_page_size,
+        third_selector = "default",
+        files = {
+            Label("//build/kernel/kleaf/impl/defconfig:{}_4k_defconfig".format(kernel_build_arch)): "4k",
+            Label("//build/kernel/kleaf/impl/defconfig:{}_16k_defconfig".format(kernel_build_arch)): "16k",
+            Label("//build/kernel/kleaf/impl/defconfig:{}_64k_defconfig".format(kernel_build_arch)): "64k",
+            # If --page_size=default, do not apply any defconfig fragments
+            Label("//build/kernel/kleaf/impl:empty_filegroup"): "default",
+        },
+        **internal_kwargs
+    )
+    additional_fragments.append(page_size_target)
+
+    if kernel_build_defconfig_fragments == None:
+        kernel_build_defconfig_fragments = []
+
+    # Do not call kernel_build_defconfig_fragments += ... to avoid
+    # modifying the incoming object from kernel_build.defconfig_fragments.
+    defconfig_fragments = kernel_build_defconfig_fragments + additional_fragments
+    return defconfig_fragments
 
 def _uniq(lst):
     """Deduplicates items in lst."""

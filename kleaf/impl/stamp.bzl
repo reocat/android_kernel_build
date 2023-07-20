@@ -28,9 +28,10 @@ visibility("//build/kernel/kleaf/...")
 def _get_status_at_path(ctx, status_name, quoted_src_path):
     # {path}:{scmversion} {path}:{scmversion} ...
 
-    cmd = """extract_git_metadata "$({stable_status_cmd})" {quoted_src_path}""".format(
+    cmd = """extract_git_metadata "$({stable_status_cmd})" {quoted_src_path} {status_name}""".format(
         stable_status_cmd = status.get_stable_status_cmd(ctx, status_name),
         quoted_src_path = quoted_src_path,
+        status_name = status_name,
     )
     return cmd
 
@@ -83,15 +84,13 @@ def _write_localversion(ctx):
             fi
             scmversion=""
             stable_scmversion=$({stable_scmversion_cmd})
-            if [[ -n "$stable_scmversion" ]]; then
-                scmversion_prefix=
-                if [[ -n "$android_release" ]] && [[ -n "$KMI_GENERATION" ]]; then
-                    scmversion_prefix="-$android_release-$KMI_GENERATION"
-                elif [[ -n "$android_release" ]]; then
-                    scmversion_prefix="-$android_release"
-                fi
-                scmversion="${{scmversion_prefix}}${{stable_scmversion}}"
+            scmversion_prefix=
+            if [[ -n "$android_release" ]] && [[ -n "$KMI_GENERATION" ]]; then
+                scmversion_prefix="-$android_release-$KMI_GENERATION"
+            elif [[ -n "$android_release" ]]; then
+                scmversion_prefix="-$android_release"
             fi
+            scmversion="${{scmversion_prefix}}${{stable_scmversion}}"
             echo $scmversion
         ) > {out_path}
     """.format(
