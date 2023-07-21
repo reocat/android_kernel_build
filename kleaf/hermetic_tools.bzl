@@ -18,6 +18,7 @@ Provide tools for a hermetic build.
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
+load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load(
     "//build/kernel/kleaf/impl:hermetic_exec.bzl",
     _hermetic_exec = "hermetic_exec",
@@ -88,7 +89,10 @@ def _handle_python(ctx, py_outs, runtime):
             info_deps = [],
         )
 
-    for out in py_outs:
+    hermetic_outs_dict = {}
+    for tool_name in py_outs:
+        out = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, tool_name))
+        hermetic_outs_dict[tool_name] = out
         ctx.actions.symlink(
             output = out,
             target_file = runtime.interpreter,
@@ -99,76 +103,9 @@ def _handle_python(ctx, py_outs, runtime):
             ),
         )
     return struct(
-        hermetic_outs_dict = {out.basename: out for out in py_outs},
+        hermetic_outs_dict = hermetic_outs_dict,
         # TODO(b/247624301): Use depset in HermeticToolsInfo.
         info_deps = runtime.files.to_list(),
-    )
-
-def _handle_hermetic_tools(ctx):
-    hermetic_outs_dict = {out.basename: out for out in ctx.outputs.outs}
-
-    tar_src = None
-    tar_out = hermetic_outs_dict.pop("tar")
-
-    for src in ctx.files.srcs:
-        if src.basename == "tar" and ctx.attr.tar_args:
-            tar_src = src
-            continue
-        out = hermetic_outs_dict[src.basename]
-        ctx.actions.symlink(
-            output = out,
-            target_file = src,
-            is_executable = True,
-            progress_message = "Creating symlinks to in-tree tools {}/{}".format(
-                ctx.label,
-                src.basename,
-            ),
-        )
-
-    _handle_tar(
-        ctx = ctx,
-        src = tar_src,
-        out = tar_out,
-        hermetic_base = hermetic_outs_dict.values()[0].dirname,
-        deps = hermetic_outs_dict.values(),
-    )
-    hermetic_outs_dict["tar"] = tar_out
-
-    return hermetic_outs_dict
-
-def _handle_tar(ctx, src, out, hermetic_base, deps):
-    if not ctx.attr.tar_args:
-        return
-
-    command = """
-        set -e
-        PATH={hermetic_base}
-        (
-            toybox=$(realpath {src})
-            if [[ $(basename $toybox) != "toybox" ]]; then
-                echo "Expects toybox for tar" >&2
-                exit 1
-            fi
-
-            cat > {out} << EOF
-#!/bin/sh
-
-$toybox tar "\\$@" {tar_args}
-EOF
-        )
-    """.format(
-        src = src.path,
-        out = out.path,
-        hermetic_base = hermetic_base,
-        tar_args = " ".join([shell.quote(arg) for arg in ctx.attr.tar_args]),
-    )
-
-    ctx.actions.run_shell(
-        inputs = deps + [src],
-        outputs = [out],
-        command = command,
-        mnemonic = "HermeticToolsTar",
-        progress_message = "Creating wrapper for tar: {}".format(ctx.label),
     )
 
 def _handle_rsync(ctx, out, hermetic_base, deps):
@@ -211,6 +148,7 @@ def _handle_hermetic_symlinks(ctx):
     hermetic_symlinks_dict = {}
     for actual_target, tool_names in ctx.attr.symlinks.items():
         for tool_name in tool_names.split(":"):
+
             out = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, tool_name))
             target_file = _get_single_file(ctx, actual_target)
             ctx.actions.symlink(
@@ -230,8 +168,9 @@ def _handle_host_tools(ctx, hermetic_base, deps):
     deps = list(deps)
     host_outs = []
     rsync_out = None
-    for f in ctx.outputs.host_tools:
-        if f.basename == "rsync":
+    for host_tool in ctx.attr.host_tools:
+        f = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, host_tool))
+        if host_tool == "rsync":
             rsync_out = f
         else:
             host_outs.append(f)
@@ -271,15 +210,14 @@ def _handle_host_tools(ctx, hermetic_base, deps):
     return host_outs
 
 def _hermetic_tools_impl(ctx):
-    deps = [] + ctx.files.srcs + ctx.files.deps
+    deps = [] + ctx.files.deps
     all_outputs = []
 
-    hermetic_outs_dict = _handle_hermetic_tools(ctx)
-    hermetic_outs_dict.update(_handle_hermetic_symlinks(ctx))
+    hermetic_outs_dict = _handle_hermetic_symlinks(ctx)
 
     py3 = _handle_python(
         ctx = ctx,
-        py_outs = ctx.outputs.py3_outs,
+        py_outs = ctx.attr.py3_outs,
         runtime = ctx.toolchains[_PY_TOOLCHAIN_TYPE].py3_runtime,
     )
     hermetic_outs_dict.update(py3.hermetic_outs_dict)
@@ -296,7 +234,7 @@ def _hermetic_tools_impl(ctx):
 
     all_outputs += host_outs
 
-    info_deps = deps + ctx.outputs.host_tools
+    info_deps = deps + host_outs
     info_deps += py3.info_deps
 
     fail_hard = """
@@ -327,8 +265,14 @@ def _hermetic_tools_impl(ctx):
         run_additional_setup = run_additional_setup,
     )
 
+    default_info_files = [
+        file
+        for file in all_outputs
+        if "kleaf_internal_do_not_use" not in file.path
+    ]
+
     infos = [
-        DefaultInfo(files = depset(all_outputs)),
+        DefaultInfo(files = depset(default_info_files)),
         platform_common.ToolchainInfo(
             hermetic_toolchain_info = hermetic_toolchain_info,
         ),
@@ -353,12 +297,9 @@ _hermetic_tools = rule(
     implementation = _hermetic_tools_impl,
     doc = "",
     attrs = {
-        "host_tools": attr.output_list(),
-        "outs": attr.output_list(),
-        "py3_outs": attr.output_list(),
-        "srcs": attr.label_list(doc = "Hermetic tools in the tree", allow_files = True),
+        "host_tools": attr.string_list(),
+        "py3_outs": attr.string_list(),
         "deps": attr.label_list(doc = "Additional_deps", allow_files = True),
-        "tar_args": attr.string_list(),
         "symlinks": attr.label_keyed_string_dict(
             doc = "symlinks to labels",
             allow_files = True,
@@ -375,7 +316,7 @@ _hermetic_tools = rule(
 
 def hermetic_tools(
         name,
-        srcs,
+        srcs = None,
         host_tools = None,
         deps = None,
         tar_args = None,
@@ -403,6 +344,8 @@ def hermetic_tools(
         py3_outs: List of tool names that are resolved to Python 3 binary.
         deps: additional dependencies. Unlike `srcs`, these aren't added to the `PATH`.
         tar_args: List of fixed arguments provided to `tar` commands.
+
+          This only applies to `tar` in `srcs`.
         rsync_args: List of fixed arguments provided to `rsync` commands.
         aliases: [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
 
@@ -410,6 +353,11 @@ def hermetic_tools(
 
           For example, if `aliases = ["cp"],` then `<name>/cp` refers to a
           `cp`.
+
+          **Note**: It is not recommended to rely on these targets. Consider
+          using the full hermetic toolchain with
+          [`hermetic_toolchain`](#hermetic_toolchainget) or
+          [`hermetic_genrule`](#hermetic_genrule), etc.
 
           **Note**: Items in `srcs`, `host_tools` and `py3_outs` already have
           `<name>/<tool>` target created.
@@ -419,36 +367,44 @@ def hermetic_tools(
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common
     """
 
+    private_kwargs = kwargs | {
+        "visibility": ["//visibility:private"]
+    }
+
     if aliases == None:
         aliases = []
 
-    if host_tools:
-        host_tools = ["{}/{}".format(name, tool) for tool in host_tools]
+    if symlinks == None:
+        symlinks = {}
 
-    outs = None
+    if host_tools:
+        aliases += host_tools
+
     if srcs:
-        outs = ["{}/{}".format(
-            name,
-            paths.basename(native.package_relative_label(src).name),
-        ) for src in srcs]
+        aliases += [
+            paths.basename(native.package_relative_label(src).name)
+            for src in srcs
+        ]
+        symlinks = symlinks | _src_to_symlinks(name, srcs, tar_args, **private_kwargs)
 
     if py3_outs:
-        py3_outs = ["{}/{}".format(name, paths.basename(py3_name)) for py3_name in py3_outs]
+        aliases += py3_outs
 
     _hermetic_tools(
         name = name,
-        srcs = srcs,
-        outs = outs,
         host_tools = host_tools,
         py3_outs = py3_outs,
         deps = deps,
-        tar_args = tar_args,
         rsync_args = rsync_args,
         symlinks = symlinks,
         **kwargs
     )
 
-    alias_kwargs = kwargs
+    alias_kwargs = kwargs | dict(
+        # Mark aliases as deprecated to discourage direct usage.
+        deprecation = "Use hermetic_toolchain or hermetic_genrule for the full hermetic toolchain",
+        tags = ["manual"],
+    )
 
     for alias in aliases:
         native.filegroup(
@@ -457,3 +413,37 @@ def hermetic_tools(
             output_group = alias,
             **alias_kwargs
         )
+
+def _src_to_symlinks(name, srcs, tar_args, **private_kwargs):
+    """Map `hermetic_tools.srcs` to `_hermetic_tools.symlinks`"""
+    symlinks = {}
+    for src in srcs:
+        tool_name = paths.basename(native.package_relative_label(src).name)
+
+        if tar_args and tool_name == "tar":
+            symlinks = symlinks | _replace_tar(name, src, tar_args, **private_kwargs)
+        else:
+            symlinks[src] = tool_name
+
+    return symlinks
+
+# TODO(b/291816237): Deprecate tar_args
+def _replace_tar(name, src, tar_args, **private_kwargs):
+    """Handle hermetic_tools.tar_args, returning values to `_hermetic_tools.symlinks`."""
+    symlinks = {}
+    symlinks[src] = "kleaf_internal_do_not_use/tar_toybox"
+
+    write_file(
+        name = name + "/kleaf_internal_do_not_use/tar_bin",
+        out = name + "/kleaf_internal_do_not_use/tar",
+        content = [
+            "#!/bin/sh",
+            """${{0%/*}}/kleaf_internal_do_not_use/tar_toybox tar "$@" {tar_args}""".format(
+                tar_args = " ".join([shell.quote(arg) for arg in tar_args])
+            )
+        ],
+        **private_kwargs
+    )
+    symlinks[name + "/kleaf_internal_do_not_use/tar"] = "tar"
+
+    return symlinks
