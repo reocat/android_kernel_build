@@ -33,8 +33,6 @@ hermetic_exec_test = _hermetic_exec_test
 hermetic_genrule = _hermetic_genrule
 hermetic_toolchain = _hermetic_toolchain
 
-_PY_TOOLCHAIN_TYPE = "@bazel_tools//tools/python:toolchain_type"
-
 # Deprecated.
 HermeticToolsInfo = provider(
     doc = """Legacy information provided by [hermetic_tools](#hermetic_tools).
@@ -82,32 +80,6 @@ Like `run_setup` but preserves original `PATH`.""",
     },
 )
 
-def _handle_python(ctx, py_outs, runtime):
-    if not py_outs:
-        return struct(
-            hermetic_outs_dict = {},
-            info_deps = [],
-        )
-
-    hermetic_outs_dict = {}
-    for tool_name in py_outs:
-        out = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, tool_name))
-        hermetic_outs_dict[tool_name] = out
-        ctx.actions.symlink(
-            output = out,
-            target_file = runtime.interpreter,
-            is_executable = True,
-            progress_message = "Creating symlink for {}: {}".format(
-                paths.basename(out.path),
-                ctx.label,
-            ),
-        )
-    return struct(
-        hermetic_outs_dict = hermetic_outs_dict,
-        # TODO(b/247624301): Use depset in HermeticToolsInfo.
-        info_deps = runtime.files.to_list(),
-    )
-
 def _handle_rsync(ctx, out, hermetic_base, deps):
     if not ctx.attr.rsync_args:
         return
@@ -148,7 +120,6 @@ def _handle_hermetic_symlinks(ctx):
     hermetic_symlinks_dict = {}
     for actual_target, tool_names in ctx.attr.symlinks.items():
         for tool_name in tool_names.split(":"):
-
             out = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, tool_name))
             target_file = _get_single_file(ctx, actual_target)
             ctx.actions.symlink(
@@ -215,13 +186,6 @@ def _hermetic_tools_impl(ctx):
 
     hermetic_outs_dict = _handle_hermetic_symlinks(ctx)
 
-    py3 = _handle_python(
-        ctx = ctx,
-        py_outs = ctx.attr.py3_outs,
-        runtime = ctx.toolchains[_PY_TOOLCHAIN_TYPE].py3_runtime,
-    )
-    hermetic_outs_dict.update(py3.hermetic_outs_dict)
-
     hermetic_outs = hermetic_outs_dict.values()
     all_outputs += hermetic_outs
     deps += hermetic_outs
@@ -235,7 +199,6 @@ def _hermetic_tools_impl(ctx):
     all_outputs += host_outs
 
     info_deps = deps + host_outs
-    info_deps += py3.info_deps
 
     fail_hard = """
          # error on failures
@@ -298,7 +261,6 @@ _hermetic_tools = rule(
     doc = "",
     attrs = {
         "host_tools": attr.string_list(),
-        "py3_outs": attr.string_list(),
         "deps": attr.label_list(doc = "Additional_deps", allow_files = True),
         "symlinks": attr.label_keyed_string_dict(
             doc = "symlinks to labels",
@@ -309,9 +271,6 @@ _hermetic_tools = rule(
         ),
         "rsync_args": attr.string_list(),
     },
-    toolchains = [
-        config_common.toolchain_type(_PY_TOOLCHAIN_TYPE, mandatory = True),
-    ],
 )
 
 def hermetic_tools(
@@ -368,7 +327,7 @@ def hermetic_tools(
     """
 
     private_kwargs = kwargs | {
-        "visibility": ["//visibility:private"]
+        "visibility": ["//visibility:private"],
     }
 
     if aliases == None:
@@ -376,6 +335,9 @@ def hermetic_tools(
 
     if symlinks == None:
         symlinks = {}
+
+    if deps == None:
+        deps = []
 
     if host_tools:
         aliases += host_tools
@@ -389,11 +351,17 @@ def hermetic_tools(
 
     if py3_outs:
         aliases += py3_outs
+        symlinks = symlinks | {
+            Label("//build/kernel/kleaf/impl:python_interpreter"): ":".join(py3_outs),
+        }
+
+        # Do not use .append or += to avoid modifying the incoming object,
+        # which may be a select
+        deps = deps + [Label("//build/kernel/kleaf/impl:python_runtime_files")]
 
     _hermetic_tools(
         name = name,
         host_tools = host_tools,
-        py3_outs = py3_outs,
         deps = deps,
         rsync_args = rsync_args,
         symlinks = symlinks,
@@ -439,8 +407,8 @@ def _replace_tar(name, src, tar_args, **private_kwargs):
         content = [
             "#!/bin/sh",
             """${{0%/*}}/kleaf_internal_do_not_use/tar_toybox tar "$@" {tar_args}""".format(
-                tar_args = " ".join([shell.quote(arg) for arg in tar_args])
-            )
+                tar_args = " ".join([shell.quote(arg) for arg in tar_args]),
+            ),
         ],
         **private_kwargs
     )
