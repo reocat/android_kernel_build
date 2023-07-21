@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa6dbb3e_1d121cc9",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-21T13:59:31Z",
+      "side": 1,
+      "message": "what is this used for? I ask because I\u0027d like to accommodate the queries in http://b/256196368#comment3 somewhere in this wrapper later.",
+      "range": {
+        "startLine": 336,
+        "startChar": 19,
+        "endLine": 336,
+        "endChar": 34
+      },
+      "revId": "b8b3f0167e657893c0125a6b544e678f2c2473f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "756d7d5f_9c6ef4ca",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-21T13:59:31Z",
+      "side": 1,
+      "message": "nit: is this really needed or is it to be explicit about the menu showed?",
+      "range": {
+        "startLine": 362,
+        "startChar": 8,
+        "endLine": 363,
+        "endChar": 44
+      },
+      "revId": "b8b3f0167e657893c0125a6b544e678f2c2473f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
