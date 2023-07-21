@@ -19,6 +19,7 @@ load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@bazel_skylib//rules:write_file.bzl", "write_file")
+load("@kleaf_host_tools//:host_tools.bzl", _REGISTERED_HOST_TOOLS = "HOST_TOOLS")
 load(
     "//build/kernel/kleaf/impl:hermetic_exec.bzl",
     _hermetic_exec = "hermetic_exec",
@@ -80,33 +81,6 @@ Like `run_setup` but preserves original `PATH`.""",
     },
 )
 
-def _handle_rsync(ctx, out, hermetic_base, deps):
-    if not ctx.attr.rsync_args:
-        return
-
-    command = """
-        set -e
-        export PATH
-        rsync=$(realpath $({hermetic_base}/which rsync))
-        cat > {out} << EOF
-#!/bin/sh
-
-$rsync "\\$@" {rsync_args}
-EOF
-    """.format(
-        out = out.path,
-        hermetic_base = hermetic_base,
-        rsync_args = " ".join([shell.quote(arg) for arg in ctx.attr.rsync_args]),
-    )
-
-    ctx.actions.run_shell(
-        inputs = deps,
-        outputs = [out],
-        command = command,
-        mnemonic = "HermeticToolsRsync",
-        progress_message = "Creating wrapper for rsync: {}".format(ctx.label),
-    )
-
 def _get_single_file(ctx, target):
     files_list = target.files.to_list()
     if len(files_list) != 1:
@@ -135,16 +109,26 @@ def _handle_hermetic_symlinks(ctx):
 
     return hermetic_symlinks_dict
 
-def _handle_host_tools(ctx, hermetic_base, deps):
+# TODO(b/291816237): Require all host tools to be registered.
+def _handle_unregistered_host_tools(ctx, hermetic_base, deps):
+    if not ctx.attr.unregistered_host_tools:
+        return []
+
+    # buildifier: disable=print
+    print("""\
+WARNING: {} contains host_tools {}. They should be predeclared in
+   @kleaf_host_tools. This will become an error in the future.
+   Add them to @kleaf_host_tools to prevent the error.
+""".format(
+        ctx.label,
+        repr(ctx.attr.unregistered_host_tools),
+    ))
+
     deps = list(deps)
     host_outs = []
-    rsync_out = None
-    for host_tool in ctx.attr.host_tools:
+    for host_tool in ctx.attr.unregistered_host_tools:
         f = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, host_tool))
-        if host_tool == "rsync":
-            rsync_out = f
-        else:
-            host_outs.append(f)
+        host_outs.append(f)
 
     command = """
             set -e
@@ -162,21 +146,12 @@ def _handle_host_tools(ctx, hermetic_base, deps):
         inputs = deps,
         outputs = host_outs,
         command = command,
-        progress_message = "Creating symlinks to {}".format(ctx.label),
+        progress_message = "Creating host tool symlinks {}".format(ctx.label),
         mnemonic = "HermeticTools",
         execution_requirements = {
             "no-remote": "1",
         },
     )
-
-    if rsync_out:
-        _handle_rsync(
-            ctx = ctx,
-            out = rsync_out,
-            hermetic_base = hermetic_base,
-            deps = deps,
-        )
-        host_outs.append(rsync_out)
 
     return host_outs
 
@@ -190,7 +165,7 @@ def _hermetic_tools_impl(ctx):
     all_outputs += hermetic_outs
     deps += hermetic_outs
 
-    host_outs = _handle_host_tools(
+    host_outs = _handle_unregistered_host_tools(
         ctx = ctx,
         hermetic_base = hermetic_outs[0].dirname,
         deps = deps,
@@ -260,7 +235,7 @@ _hermetic_tools = rule(
     implementation = _hermetic_tools_impl,
     doc = "",
     attrs = {
-        "host_tools": attr.string_list(),
+        "unregistered_host_tools": attr.string_list(),
         "deps": attr.label_list(doc = "Additional_deps", allow_files = True),
         "symlinks": attr.label_keyed_string_dict(
             doc = "symlinks to labels",
@@ -269,7 +244,6 @@ _hermetic_tools = rule(
         "_disable_hermetic_tools_info": attr.label(
             default = "//build/kernel/kleaf/impl:incompatible_disable_hermetic_tools_info",
         ),
-        "rsync_args": attr.string_list(),
     },
 )
 
@@ -306,6 +280,8 @@ def hermetic_tools(
 
           This only applies to `tar` in `srcs`.
         rsync_args: List of fixed arguments provided to `rsync` commands.
+
+          This only applies to `rsync` in `host_tools`.
         aliases: [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
 
           List of aliases to create to refer to a single tool.
@@ -339,8 +315,12 @@ def hermetic_tools(
     if deps == None:
         deps = []
 
+    unregistered_host_tools = []
     if host_tools:
         aliases += host_tools
+        additional_symlinks, unregistered_host_tools = \
+            _host_tool_to_symlinks(name, host_tools, rsync_args, **private_kwargs)
+        symlinks = symlinks | additional_symlinks
 
     if srcs:
         aliases += [
@@ -361,9 +341,8 @@ def hermetic_tools(
 
     _hermetic_tools(
         name = name,
-        host_tools = host_tools,
+        unregistered_host_tools = unregistered_host_tools,
         deps = deps,
-        rsync_args = rsync_args,
         symlinks = symlinks,
         **kwargs
     )
@@ -413,5 +392,43 @@ def _replace_tar(name, src, tar_args, **private_kwargs):
         **private_kwargs
     )
     symlinks[name + "/kleaf_internal_do_not_use/tar"] = "tar"
+
+    return symlinks
+
+def _host_tool_to_symlinks(name, host_tools, rsync_args, **private_kwargs):
+    """Map `hermetic_tools.host_tools` to `_hermetic_tools.symlinks`"""
+    symlinks = {}
+    unregistered_host_tools = []
+    for host_tool in host_tools:
+        if host_tool not in _REGISTERED_HOST_TOOLS:
+            unregistered_host_tools.append(host_tool)
+            continue
+        tool_label = Label("@kleaf_host_tools//:{}".format(host_tool))
+
+        if rsync_args and host_tool == "rsync":
+            symlinks = symlinks | _replace_rsync(name, tool_label, rsync_args, **private_kwargs)
+        else:
+            symlinks[tool_label] = host_tool
+
+    return symlinks, unregistered_host_tools
+
+# TODO(b/291816237): Deprecate rsync_args
+def _replace_rsync(name, tool_label, rsync_args, **private_kwargs):
+    """Handle hermetic_tools.rsync_args, returnning values to `_hermetic_tools.symlinks`."""
+    symlinks = {}
+    symlinks[tool_label] = "kleaf_internal_do_not_use/rsync_real"
+
+    write_file(
+        name = name + "/kleaf_internal_do_not_use/rsync_bin",
+        out = name + "/kleaf_internal_do_not_use/rsync",
+        content = [
+            "#!/bin/sh -x",
+            """${{0%/*}}/kleaf_internal_do_not_use/rsync_real "$@" {rsync_args}""".format(
+                rsync_args = " ".join([shell.quote(arg) for arg in rsync_args]),
+            ),
+        ],
+        **private_kwargs
+    )
+    symlinks[name + "/kleaf_internal_do_not_use/rsync"] = "rsync"
 
     return symlinks
