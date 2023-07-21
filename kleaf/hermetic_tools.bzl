@@ -81,32 +81,6 @@ Like `run_setup` but preserves original `PATH`.""",
     },
 )
 
-def _handle_python(ctx, py_outs, runtime):
-    if not py_outs:
-        return struct(
-            hermetic_outs_dict = {},
-            info_deps = [],
-        )
-
-    hermetic_outs_dict = {}
-    for tool_name in py_outs:
-        out = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, tool_name))
-        hermetic_outs_dict[tool_name] = out
-        ctx.actions.symlink(
-            output = out,
-            target_file = runtime.interpreter,
-            is_executable = True,
-            progress_message = "Creating symlink for {}: {}".format(
-                paths.basename(out.path),
-                ctx.label,
-            ),
-        )
-    return struct(
-        hermetic_outs_dict = hermetic_outs_dict,
-        # TODO(b/247624301): Use depset in HermeticToolsInfo.
-        info_deps = runtime.files.to_list(),
-    )
-
 # TODO(b/291816237): Deprecate tar_args
 def _handle_tar(ctx, src, out, hermetic_base, deps):
     command = """
@@ -263,13 +237,6 @@ def _hermetic_tools_impl(ctx):
 
     hermetic_outs_dict = _handle_hermetic_symlinks(ctx)
 
-    py3 = _handle_python(
-        ctx = ctx,
-        py_outs = ctx.attr.py3_outs,
-        runtime = ctx.toolchains[_PY_TOOLCHAIN_TYPE].py3_runtime,
-    )
-    hermetic_outs_dict.update(py3.hermetic_outs_dict)
-
     hermetic_outs = hermetic_outs_dict.values()
     all_outputs += hermetic_outs
     deps += hermetic_outs
@@ -283,7 +250,6 @@ def _hermetic_tools_impl(ctx):
     all_outputs += host_outs
 
     info_deps = deps + host_outs
-    info_deps += py3.info_deps
 
     fail_hard = """
          # error on failures
@@ -346,7 +312,6 @@ _hermetic_tools = rule(
     doc = "",
     attrs = {
         "host_tools": attr.string_list(),
-        "py3_outs": attr.string_list(),
         "deps": attr.label_list(doc = "Additional_deps", allow_files = True),
         "tar_args": attr.string_list(),
         "symlinks": attr.label_keyed_string_dict(
@@ -358,9 +323,22 @@ _hermetic_tools = rule(
         ),
         "rsync_args": attr.string_list(),
     },
-    toolchains = [
-        config_common.toolchain_type(_PY_TOOLCHAIN_TYPE, mandatory = True),
-    ],
+)
+
+def _get_python_interpreter_impl(ctx):
+    return DefaultInfo(files = depset([ctx.toolchains[_PY_TOOLCHAIN_TYPE].py3_runtime.interpreter]))
+
+_get_python_interpreter = rule(
+    implementation = _get_python_interpreter_impl,
+    toolchains = [config_common.toolchain_type(_PY_TOOLCHAIN_TYPE, mandatory = True)],
+)
+
+def _get_python_runtime_files_impl(ctx):
+    return DefaultInfo(files = ctx.toolchains[_PY_TOOLCHAIN_TYPE].py3_runtime.files)
+
+_get_python_runtime_files = rule(
+    implementation = _get_python_runtime_files_impl,
+    toolchains = [config_common.toolchain_type(_PY_TOOLCHAIN_TYPE, mandatory = True)],
 )
 
 def hermetic_tools(
@@ -420,6 +398,9 @@ def hermetic_tools(
     if symlinks == None:
         symlinks = {}
 
+    if deps == None:
+        deps = []
+
     if host_tools:
         aliases += host_tools
 
@@ -434,12 +415,18 @@ def hermetic_tools(
         }
 
     if py3_outs:
+        _get_python_interpreter(name = name + "_python_interpreter")
+        _get_python_runtime_files(name = name + "_python_runtime_files")
         aliases += py3_outs
+        symlinks = symlinks | {
+            name + "_python_interpreter": ":".join(py3_outs)
+        }
+        # Do not use .append or += to avoid modifying the incoming list
+        deps = deps + [name + "_python_runtime_files"]
 
     _hermetic_tools(
         name = name,
         host_tools = host_tools,
-        py3_outs = py3_outs,
         deps = deps,
         tar_args = tar_args,
         rsync_args = rsync_args,
