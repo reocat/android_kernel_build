@@ -226,6 +226,8 @@ _DEPRECATED_DO_NOT_ADD_MORE_ALIASES = [
     "pkill",
     "ps",
     "pwd",
+    "python",
+    "python3",
     "readlink",
     "realpath",
     "rm",
@@ -274,10 +276,6 @@ _DEPRECATED_DO_NOT_ADD_MORE_ALIASES = [
 hermetic_tools(
     name = "hermetic-tools",
     aliases = _DEPRECATED_DO_NOT_ADD_MORE_ALIASES,
-    py3_outs = [
-        "python",
-        "python3",
-    ],
     symlinks = {
         # Host tools
         "@kleaf_host_tools//:bash": "bash",
@@ -297,6 +295,13 @@ hermetic_tools(
 
         # Embeds additional args that calls kleaf_internal_do_not_use/tar
         "build-tools/kleaf_internal_do_not_use_path/linux-x86/tar": "tar",
+
+        # Python
+        "//build/kernel/kleaf/impl:python_interpreter": ":".join([
+            # keep sorted
+            "python",
+            "python3",
+        ]),
     } | {
         tool: paths.basename(package_relative_label(tool).name)
         for tool in _HERMETIC_TOOLS
@@ -304,6 +309,7 @@ hermetic_tools(
     visibility = ["//visibility:public"],
     deps = [
         ":sysroot",
+        "//build/kernel/kleaf/impl:python_runtime_files",
         "//prebuilts/build-tools:linux-x86",
         "//prebuilts/kernel-build-tools:linux-x86",
         "@prebuilt_ndk//:sysroot",
