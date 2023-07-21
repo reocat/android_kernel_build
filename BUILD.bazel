@@ -37,16 +37,6 @@ _HERMETIC_TOOLS = [
     # This is still needed because build.config.common specifies DTC= the symlink
     "build-tools/path/linux-x86/dtc",
 
-    # These could be in hermetic_tools.symlinks, but hermetic_tools.symlinks
-    # does not declare the :hermetic-tools/<tool> alias. Hence, the symlinks
-    # are kept under build-tools/path/linux-x86 for now.
-    "build-tools/path/linux-x86/dd",
-    "build-tools/path/linux-x86/diff",
-    "build-tools/path/linux-x86/expr",
-    "build-tools/path/linux-x86/modinfo",
-    "build-tools/path/linux-x86/nproc",
-    "build-tools/path/linux-x86/unzip",
-
     # TODO(b/274975942): Delete these symlinks under build-tools/path/linux-x86
     # once build.sh goes away.
     "//prebuilts/build-tools:linux-x86/bin/flex",
@@ -160,10 +150,23 @@ _HERMETIC_TOOLS = [
     # "build-tools/path/linux-x86/python3",
 ]
 
+# Extra symlinks to toybox beside those in //prebuilts/build-tools
+_EXTRA_TOYBOX_SYMLINKS = [
+    # keep sorted
+    "dd",
+    "diff",
+    "expr",
+    "nproc",
+]
+
 hermetic_tools(
     name = "hermetic-tools",
     srcs = _HERMETIC_TOOLS + [
         "//prebuilts/clang/host/linux-x86/clang-{}:bin/llvm-strings".format(VARS["CLANG_VERSION"]),
+    ],
+    aliases = _EXTRA_TOYBOX_SYMLINKS + [
+        "modinfo",
+        "unzip",
     ],
     host_tools = [
         "bash",
@@ -178,6 +181,11 @@ hermetic_tools(
     rsync_args = [
         "--no-group",
     ],
+    symlinks = {
+        "//prebuilts/build-tools:linux-x86/bin/toybox": ":".join(_EXTRA_TOYBOX_SYMLINKS),
+        "//prebuilts/kernel-build-tools:linux-x86/bin/depmod": "modinfo",
+        "//prebuilts/build-tools:linux-x86/bin/ziptool": "unzip",
+    },
     tar_args = [
         "--mtime=@0",
         "--owner=0",
