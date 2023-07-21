@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55793322_0badfcda",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-21T18:56:08Z",
+      "side": 1,
+      "message": "This is nothing related to the comment.\n\nThis just shows the following text in the help menu (see https://paste.googleplex.com/5545447568441344?raw for reference):\n\n```\nTarget patterns:\n  $ bazel help target-syntax\n```\n\nIt doesn\u0027t actually execute this command. It is telling the user that they can run this command to know more about \"target patterns\" in L314.",
+      "parentUuid": "fa6dbb3e_1d121cc9",
+      "range": {
+        "startLine": 336,
+        "startChar": 19,
+        "endLine": 336,
+        "endChar": 34
+      },
+      "revId": "b8b3f0167e657893c0125a6b544e678f2c2473f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "756d7d5f_9c6ef4ca",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-21T13:59:31Z",
       "side": 1,
       "message": "nit: is this really needed or is it to be explicit about the menu showed?",
+      "range": {
+        "startLine": 362,
+        "startChar": 8,
+        "endLine": 363,
+        "endChar": 44
+      },
+      "revId": "b8b3f0167e657893c0125a6b544e678f2c2473f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a646ce35_afcb5387",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-21T18:56:08Z",
+      "side": 1,
+      "message": "This is just trying to be explicit about what menu is showed.\n\nSo if you run `bazel help`, you see this:\n\n```\n\u003d\u003d\u003d\nKleaf help menu:\n  $ bazel help kleaf\n\u003d\u003d\u003d\nNative help menu:\n  \u003cdetailed menu\u003e\n```\n\nif you run `bazel help kleaf` you see this:\n\n```\n\u003d\u003d\u003d\nKleaf help menu:\n  \u003cdetailed menu\u003e\n\u003d\u003d\u003d\nNative help menu:\n  $ bazel help\n```",
+      "parentUuid": "756d7d5f_9c6ef4ca",
       "range": {
         "startLine": 362,
         "startChar": 8,
