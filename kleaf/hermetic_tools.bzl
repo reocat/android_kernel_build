@@ -88,7 +88,10 @@ def _handle_python(ctx, py_outs, runtime):
             info_deps = [],
         )
 
-    for out in py_outs:
+    hermetic_outs_dict = {}
+    for tool_name in py_outs:
+        out = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, tool_name))
+        hermetic_outs_dict[tool_name] = out
         ctx.actions.symlink(
             output = out,
             target_file = runtime.interpreter,
@@ -99,47 +102,13 @@ def _handle_python(ctx, py_outs, runtime):
             ),
         )
     return struct(
-        hermetic_outs_dict = {out.basename: out for out in py_outs},
+        hermetic_outs_dict = hermetic_outs_dict,
         # TODO(b/247624301): Use depset in HermeticToolsInfo.
         info_deps = runtime.files.to_list(),
     )
 
-def _handle_hermetic_tools(ctx):
-    hermetic_outs_dict = {out.basename: out for out in ctx.outputs.outs}
-
-    tar_src = None
-    tar_out = hermetic_outs_dict.pop("tar")
-
-    for src in ctx.files.srcs:
-        if src.basename == "tar" and ctx.attr.tar_args:
-            tar_src = src
-            continue
-        out = hermetic_outs_dict[src.basename]
-        ctx.actions.symlink(
-            output = out,
-            target_file = src,
-            is_executable = True,
-            progress_message = "Creating symlinks to in-tree tools {}/{}".format(
-                ctx.label,
-                src.basename,
-            ),
-        )
-
-    _handle_tar(
-        ctx = ctx,
-        src = tar_src,
-        out = tar_out,
-        hermetic_base = hermetic_outs_dict.values()[0].dirname,
-        deps = hermetic_outs_dict.values(),
-    )
-    hermetic_outs_dict["tar"] = tar_out
-
-    return hermetic_outs_dict
-
+# TODO(b/291816237): Deprecate tar_args
 def _handle_tar(ctx, src, out, hermetic_base, deps):
-    if not ctx.attr.tar_args:
-        return
-
     command = """
         set -e
         PATH={hermetic_base}
@@ -211,6 +180,11 @@ def _handle_hermetic_symlinks(ctx):
     hermetic_symlinks_dict = {}
     for actual_target, tool_names in ctx.attr.symlinks.items():
         for tool_name in tool_names.split(":"):
+
+            # TODO(b/291816237): Deprecate tar_args
+            if tool_name == "tar" and ctx.attr.tar_args:
+                tool_name = "kleaf_internal_do_not_use_real_tar"
+
             out = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, tool_name))
             target_file = _get_single_file(ctx, actual_target)
             ctx.actions.symlink(
@@ -224,14 +198,27 @@ def _handle_hermetic_symlinks(ctx):
             )
             hermetic_symlinks_dict[tool_name] = out
 
+    # TODO(b/291816237): Deprecate tar_args
+    if "kleaf_internal_do_not_use_real_tar" in hermetic_symlinks_dict:
+        tar_out = ctx.actions.declare_file("{}/tar".format(ctx.attr.name))
+        _handle_tar(
+            ctx = ctx,
+            src = hermetic_symlinks_dict["kleaf_internal_do_not_use_real_tar"],
+            out = tar_out,
+            hermetic_base = hermetic_symlinks_dict.values()[0].dirname,
+            deps = hermetic_symlinks_dict.values(),
+        )
+        hermetic_symlinks_dict["tar"] = tar_out
+
     return hermetic_symlinks_dict
 
 def _handle_host_tools(ctx, hermetic_base, deps):
     deps = list(deps)
     host_outs = []
     rsync_out = None
-    for f in ctx.outputs.host_tools:
-        if f.basename == "rsync":
+    for host_tool in ctx.attr.host_tools:
+        f = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, host_tool))
+        if host_tool == "rsync":
             rsync_out = f
         else:
             host_outs.append(f)
@@ -271,15 +258,14 @@ def _handle_host_tools(ctx, hermetic_base, deps):
     return host_outs
 
 def _hermetic_tools_impl(ctx):
-    deps = [] + ctx.files.srcs + ctx.files.deps
+    deps = [] + ctx.files.deps
     all_outputs = []
 
-    hermetic_outs_dict = _handle_hermetic_tools(ctx)
-    hermetic_outs_dict.update(_handle_hermetic_symlinks(ctx))
+    hermetic_outs_dict = _handle_hermetic_symlinks(ctx)
 
     py3 = _handle_python(
         ctx = ctx,
-        py_outs = ctx.outputs.py3_outs,
+        py_outs = ctx.attr.py3_outs,
         runtime = ctx.toolchains[_PY_TOOLCHAIN_TYPE].py3_runtime,
     )
     hermetic_outs_dict.update(py3.hermetic_outs_dict)
@@ -296,7 +282,7 @@ def _hermetic_tools_impl(ctx):
 
     all_outputs += host_outs
 
-    info_deps = deps + ctx.outputs.host_tools
+    info_deps = deps + host_outs
     info_deps += py3.info_deps
 
     fail_hard = """
@@ -327,8 +313,14 @@ def _hermetic_tools_impl(ctx):
         run_additional_setup = run_additional_setup,
     )
 
+    default_info_files = [
+        file
+        for file in all_outputs
+        if not file.basename.startswith("kleaf_internal_do_not_use")
+    ]
+
     infos = [
-        DefaultInfo(files = depset(all_outputs)),
+        DefaultInfo(files = depset(default_info_files)),
         platform_common.ToolchainInfo(
             hermetic_toolchain_info = hermetic_toolchain_info,
         ),
@@ -353,10 +345,8 @@ _hermetic_tools = rule(
     implementation = _hermetic_tools_impl,
     doc = "",
     attrs = {
-        "host_tools": attr.output_list(),
-        "outs": attr.output_list(),
-        "py3_outs": attr.output_list(),
-        "srcs": attr.label_list(doc = "Hermetic tools in the tree", allow_files = True),
+        "host_tools": attr.string_list(),
+        "py3_outs": attr.string_list(),
         "deps": attr.label_list(doc = "Additional_deps", allow_files = True),
         "tar_args": attr.string_list(),
         "symlinks": attr.label_keyed_string_dict(
@@ -411,6 +401,11 @@ def hermetic_tools(
           For example, if `aliases = ["cp"],` then `<name>/cp` refers to a
           `cp`.
 
+          **Note**: It is not recommended to rely on these targets. Consider
+          using the full hermetic toolchain with
+          [`hermetic_toolchain`](#hermetic_toolchainget) or
+          [`hermetic_genrule`](#hermetic_genrule), etc.
+
           **Note**: Items in `srcs`, `host_tools` and `py3_outs` already have
           `<name>/<tool>` target created.
         **kwargs: Additional attributes to the internal rule, e.g.
@@ -422,23 +417,27 @@ def hermetic_tools(
     if aliases == None:
         aliases = []
 
-    if host_tools:
-        host_tools = ["{}/{}".format(name, tool) for tool in host_tools]
+    if symlinks == None:
+        symlinks = {}
 
-    outs = None
+    if host_tools:
+        aliases += host_tools
+
     if srcs:
-        outs = ["{}/{}".format(
-            name,
-            paths.basename(native.package_relative_label(src).name),
-        ) for src in srcs]
+        aliases += [
+            paths.basename(native.package_relative_label(src).name)
+            for src in srcs
+        ]
+        symlinks = symlinks | {
+            src: paths.basename(native.package_relative_label(src).name)
+            for src in srcs
+        }
 
     if py3_outs:
-        py3_outs = ["{}/{}".format(name, paths.basename(py3_name)) for py3_name in py3_outs]
+        aliases += py3_outs
 
     _hermetic_tools(
         name = name,
-        srcs = srcs,
-        outs = outs,
         host_tools = host_tools,
         py3_outs = py3_outs,
         deps = deps,
@@ -453,4 +452,7 @@ def hermetic_tools(
             name = name + "/" + alias,
             srcs = [name],
             output_group = alias,
+            # Mark aliases as deprecated to discourage direct usage.
+            deprecation = "Use hermetic_toolchain or hermetic_genrule for the full hermetic toolchain",
+            tags = ["manual"],
         )
