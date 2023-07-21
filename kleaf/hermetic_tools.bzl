@@ -179,33 +179,6 @@ EOF
         progress_message = "Creating wrapper for tar: {}".format(ctx.label),
     )
 
-def _handle_rsync(ctx, out, hermetic_base, deps):
-    if not ctx.attr.rsync_args:
-        return
-
-    command = """
-        set -e
-        export PATH
-        rsync=$(realpath $({hermetic_base}/which rsync))
-        cat > {out} << EOF
-#!/bin/sh
-
-$rsync "\\$@" {rsync_args}
-EOF
-    """.format(
-        out = out.path,
-        hermetic_base = hermetic_base,
-        rsync_args = " ".join([shell.quote(arg) for arg in ctx.attr.rsync_args]),
-    )
-
-    ctx.actions.run_shell(
-        inputs = deps,
-        outputs = [out],
-        command = command,
-        mnemonic = "HermeticToolsRsync",
-        progress_message = "Creating wrapper for rsync: {}".format(ctx.label),
-    )
-
 def _get_single_file(ctx, target):
     files_list = target.files.to_list()
     if len(files_list) != 1:
@@ -234,50 +207,6 @@ def _handle_hermetic_symlinks(ctx):
 
     return hermetic_symlinks_dict
 
-def _handle_host_tools(ctx, hermetic_base, deps):
-    deps = list(deps)
-    host_outs = []
-    rsync_out = None
-    for f in ctx.outputs.host_tools:
-        if f.basename == "rsync":
-            rsync_out = f
-        else:
-            host_outs.append(f)
-
-    command = """
-            set -e
-          # export PATH so which can work
-            export PATH
-            for i in {host_outs}; do
-                {hermetic_base}/ln -s $({hermetic_base}/which $({hermetic_base}/basename $i)) $i
-            done
-        """.format(
-        host_outs = " ".join([f.path for f in host_outs]),
-        hermetic_base = hermetic_base,
-    )
-
-    ctx.actions.run_shell(
-        inputs = deps,
-        outputs = host_outs,
-        command = command,
-        progress_message = "Creating symlinks to {}".format(ctx.label),
-        mnemonic = "HermeticTools",
-        execution_requirements = {
-            "no-remote": "1",
-        },
-    )
-
-    if rsync_out:
-        _handle_rsync(
-            ctx = ctx,
-            out = rsync_out,
-            hermetic_base = hermetic_base,
-            deps = deps,
-        )
-        host_outs.append(rsync_out)
-
-    return host_outs
-
 def _hermetic_tools_impl(ctx):
     deps = [] + ctx.files.srcs + ctx.files.deps
     all_outputs = []
@@ -296,15 +225,7 @@ def _hermetic_tools_impl(ctx):
     all_outputs += hermetic_outs
     deps += hermetic_outs
 
-    host_outs = _handle_host_tools(
-        ctx = ctx,
-        hermetic_base = hermetic_outs[0].dirname,
-        deps = deps,
-    )
-
-    all_outputs += host_outs
-
-    info_deps = deps + ctx.outputs.host_tools
+    info_deps = [] + deps
     info_deps += py3.info_deps
 
     fail_hard = """
@@ -370,7 +291,7 @@ _hermetic_tools = rule(
     implementation = _hermetic_tools_impl,
     doc = "",
     attrs = {
-        "host_tools": attr.output_list(),
+        "unregistered_host_tools": attr.string_list(),
         "outs": attr.output_list(),
         "py3_outs": attr.output_list(),
         "srcs": attr.label_list(doc = "Hermetic tools in the tree", allow_files = True),
@@ -383,7 +304,6 @@ _hermetic_tools = rule(
         "_disable_hermetic_tools_info": attr.label(
             default = "//build/kernel/kleaf/impl:incompatible_disable_hermetic_tools_info",
         ),
-        "rsync_args": attr.string_list(),
     },
     toolchains = [
         config_common.toolchain_type(_PY_TOOLCHAIN_TYPE, mandatory = True),
@@ -393,10 +313,8 @@ _hermetic_tools = rule(
 def hermetic_tools(
         name,
         srcs,
-        host_tools = None,
         deps = None,
         tar_args = None,
-        rsync_args = None,
         py3_outs = None,
         symlinks = None,
         aliases = None,
@@ -414,13 +332,9 @@ def hermetic_tools(
           ```
           {"//label/to:toybox": "cp:realpath"}
           ```
-        host_tools: An allowlist of names of tools that are allowed to be used from the host.
-
-          For each token `{tool}`, the label `{name}/{tool}` is created to refer to the tool.
         py3_outs: List of tool names that are resolved to Python 3 binary.
         deps: additional dependencies. Unlike `srcs`, these aren't added to the `PATH`.
         tar_args: List of fixed arguments provided to `tar` commands.
-        rsync_args: List of fixed arguments provided to `rsync` commands.
         aliases: [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
 
           List of aliases to create to refer to a single tool.
@@ -439,9 +353,6 @@ def hermetic_tools(
     if aliases == None:
         aliases = []
 
-    if host_tools:
-        host_tools = ["{}/{}".format(name, tool) for tool in host_tools]
-
     outs = None
     if srcs:
         outs = ["{}/{}".format(
@@ -456,11 +367,9 @@ def hermetic_tools(
         name = name,
         srcs = srcs,
         outs = outs,
-        host_tools = host_tools,
         py3_outs = py3_outs,
         deps = deps,
         tar_args = tar_args,
-        rsync_args = rsync_args,
         symlinks = symlinks,
         **kwargs
     )
