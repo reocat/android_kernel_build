@@ -31,8 +31,6 @@ hermetic_exec_test = _hermetic_exec_test
 hermetic_genrule = _hermetic_genrule
 hermetic_toolchain = _hermetic_toolchain
 
-_PY_TOOLCHAIN_TYPE = "@bazel_tools//tools/python:toolchain_type"
-
 # Deprecated.
 HermeticToolsInfo = provider(
     doc = """Legacy information provided by [hermetic_tools](#hermetic_tools).
@@ -80,32 +78,6 @@ Like `run_setup` but preserves original `PATH`.""",
     },
 )
 
-def _handle_python(ctx, py_outs, runtime):
-    if not py_outs:
-        return struct(
-            hermetic_outs_dict = {},
-            info_deps = [],
-        )
-
-    hermetic_outs_dict = {}
-    for tool_name in py_outs:
-        out = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, tool_name))
-        hermetic_outs_dict[tool_name] = out
-        ctx.actions.symlink(
-            output = out,
-            target_file = runtime.interpreter,
-            is_executable = True,
-            progress_message = "Creating symlink for {}: {}".format(
-                paths.basename(out.path),
-                ctx.label,
-            ),
-        )
-    return struct(
-        hermetic_outs_dict = hermetic_outs_dict,
-        # TODO(b/247624301): Use depset in HermeticToolsInfo.
-        info_deps = runtime.files.to_list(),
-    )
-
 def _get_single_file(ctx, target):
     files_list = target.files.to_list()
     if len(files_list) != 1:
@@ -140,19 +112,9 @@ def _hermetic_tools_impl(ctx):
 
     hermetic_outs_dict = _handle_hermetic_symlinks(ctx)
 
-    py3 = _handle_python(
-        ctx = ctx,
-        py_outs = ctx.attr.py3_outs,
-        runtime = ctx.toolchains[_PY_TOOLCHAIN_TYPE].py3_runtime,
-    )
-    hermetic_outs_dict.update(py3.hermetic_outs_dict)
-
     hermetic_outs = hermetic_outs_dict.values()
     all_outputs += hermetic_outs
     deps += hermetic_outs
-
-    info_deps = [] + deps
-    info_deps += py3.info_deps
 
     fail_hard = """
          # error on failures
@@ -176,7 +138,7 @@ def _hermetic_tools_impl(ctx):
 """.format(path = paths.dirname(all_outputs[0].short_path))
 
     hermetic_toolchain_info = _HermeticToolchainInfo(
-        deps = depset(info_deps),
+        deps = depset(deps),
         setup = setup,
         run_setup = run_setup,
         run_additional_setup = run_additional_setup,
@@ -200,7 +162,7 @@ def _hermetic_tools_impl(ctx):
 
     if not ctx.attr._disable_hermetic_tools_info[BuildSettingInfo].value:
         hermetic_tools_info = HermeticToolsInfo(
-            deps = info_deps,
+            deps = deps,
             setup = setup,
             additional_setup = additional_setup,
             run_setup = run_setup,
@@ -214,7 +176,6 @@ _hermetic_tools = rule(
     implementation = _hermetic_tools_impl,
     doc = "",
     attrs = {
-        "py3_outs": attr.string_list(),
         "deps": attr.label_list(doc = "Additional_deps", allow_files = True),
         "symlinks": attr.label_keyed_string_dict(
             doc = "symlinks to labels",
@@ -224,15 +185,11 @@ _hermetic_tools = rule(
             default = "//build/kernel/kleaf/impl:incompatible_disable_hermetic_tools_info",
         ),
     },
-    toolchains = [
-        config_common.toolchain_type(_PY_TOOLCHAIN_TYPE, mandatory = True),
-    ],
 )
 
 def hermetic_tools(
         name,
         deps = None,
-        py3_outs = None,
         symlinks = None,
         aliases = None,
         **kwargs):
@@ -246,7 +203,6 @@ def hermetic_tools(
           ```
           {"//label/to:toybox": "cp:realpath"}
           ```
-        py3_outs: List of tool names that are resolved to Python 3 binary.
         deps: additional dependencies. These aren't added to the `PATH`.
         aliases: [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
 
@@ -259,9 +215,6 @@ def hermetic_tools(
           using the full hermetic toolchain with
           [`hermetic_toolchain`](#hermetic_toolchainget) or
           [`hermetic_genrule`](#hermetic_genrule), etc.
-
-          **Note**: Items in `srcs`, `host_tools` and `py3_outs` already have
-          `<name>/<tool>` target created.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -274,12 +227,11 @@ def hermetic_tools(
     if symlinks == None:
         symlinks = {}
 
-    if py3_outs:
-        aliases += py3_outs
+    if deps == None:
+        deps = []
 
     _hermetic_tools(
         name = name,
-        py3_outs = py3_outs,
         deps = deps,
         symlinks = symlinks,
         **kwargs
