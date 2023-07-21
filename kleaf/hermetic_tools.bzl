@@ -88,7 +88,10 @@ def _handle_python(ctx, py_outs, runtime):
             info_deps = [],
         )
 
-    for out in py_outs:
+    hermetic_outs_dict = {}
+    for tool_name in py_outs:
+        out = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, tool_name))
+        hermetic_outs_dict[tool_name] = out
         ctx.actions.symlink(
             output = out,
             target_file = runtime.interpreter,
@@ -99,13 +102,16 @@ def _handle_python(ctx, py_outs, runtime):
             ),
         )
     return struct(
-        hermetic_outs_dict = {out.basename: out for out in py_outs},
+        hermetic_outs_dict = hermetic_outs_dict,
         # TODO(b/247624301): Use depset in HermeticToolsInfo.
         info_deps = runtime.files.to_list(),
     )
 
 def _handle_hermetic_tools(ctx):
-    hermetic_outs_dict = {out.basename: out for out in ctx.outputs.outs}
+    hermetic_outs_dict = {}
+    for file in ctx.files.srcs:
+        toolname = file.basename
+        hermetic_outs_dict[toolname] = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, toolname))
 
     tar_src = None
     tar_out = hermetic_outs_dict.pop("tar")
@@ -230,8 +236,9 @@ def _handle_host_tools(ctx, hermetic_base, deps):
     deps = list(deps)
     host_outs = []
     rsync_out = None
-    for f in ctx.outputs.host_tools:
-        if f.basename == "rsync":
+    for host_tool in ctx.attr.host_tools:
+        f = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, host_tool))
+        if host_tool == "rsync":
             rsync_out = f
         else:
             host_outs.append(f)
@@ -279,7 +286,7 @@ def _hermetic_tools_impl(ctx):
 
     py3 = _handle_python(
         ctx = ctx,
-        py_outs = ctx.outputs.py3_outs,
+        py_outs = ctx.attr.py3_outs,
         runtime = ctx.toolchains[_PY_TOOLCHAIN_TYPE].py3_runtime,
     )
     hermetic_outs_dict.update(py3.hermetic_outs_dict)
@@ -296,7 +303,7 @@ def _hermetic_tools_impl(ctx):
 
     all_outputs += host_outs
 
-    info_deps = deps + ctx.outputs.host_tools
+    info_deps = deps + host_outs
     info_deps += py3.info_deps
 
     fail_hard = """
@@ -353,9 +360,8 @@ _hermetic_tools = rule(
     implementation = _hermetic_tools_impl,
     doc = "",
     attrs = {
-        "host_tools": attr.output_list(),
-        "outs": attr.output_list(),
-        "py3_outs": attr.output_list(),
+        "host_tools": attr.string_list(),
+        "py3_outs": attr.string_list(),
         "srcs": attr.label_list(doc = "Hermetic tools in the tree", allow_files = True),
         "deps": attr.label_list(doc = "Additional_deps", allow_files = True),
         "tar_args": attr.string_list(),
@@ -411,6 +417,11 @@ def hermetic_tools(
           For example, if `aliases = ["cp"],` then `<name>/cp` refers to a
           `cp`.
 
+          **Note**: It is not recommended to rely on these targets. Consider
+          using the full hermetic toolchain with
+          [`hermetic_toolchain`](#hermetic_toolchainget) or
+          [`hermetic_genrule`](#hermetic_genrule), etc.
+
           **Note**: Items in `srcs`, `host_tools` and `py3_outs` already have
           `<name>/<tool>` target created.
         **kwargs: Additional attributes to the internal rule, e.g.
@@ -423,22 +434,20 @@ def hermetic_tools(
         aliases = []
 
     if host_tools:
-        host_tools = ["{}/{}".format(name, tool) for tool in host_tools]
+        aliases += host_tools
 
-    outs = None
     if srcs:
-        outs = ["{}/{}".format(
-            name,
-            paths.basename(native.package_relative_label(src).name),
-        ) for src in srcs]
+        aliases += [
+            paths.basename(native.package_relative_label(src).name)
+            for src in srcs
+        ]
 
     if py3_outs:
-        py3_outs = ["{}/{}".format(name, paths.basename(py3_name)) for py3_name in py3_outs]
+        aliases += py3_outs
 
     _hermetic_tools(
         name = name,
         srcs = srcs,
-        outs = outs,
         host_tools = host_tools,
         py3_outs = py3_outs,
         deps = deps,
@@ -453,4 +462,7 @@ def hermetic_tools(
             name = name + "/" + alias,
             srcs = [name],
             output_group = alias,
+            # Mark aliases as deprecated to discourage direct usage.
+            deprecation = "Use hermetic_toolchain or hermetic_genrule for the full hermetic toolchain",
+            tags = ["manual"],
         )
