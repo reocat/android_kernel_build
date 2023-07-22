@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000049392964",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2670180?revision\u003d7",
+      "fixSuggestions": [
+        {
+          "fixId": "36bdfacb_b1240115",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "BUILD.bazel",
+              "range": {
+                "startLine": 147,
+                "startChar": 0,
+                "endLine": 148,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "971d9a98_dd24044b",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-07-22T01:52:01Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "dde9dfb5f76bc2463a7b6bd893a2658c842b9565",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000049392964",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2670180?revision\u003d7",
+      "fixSuggestions": [
+        {
+          "fixId": "b24152fa_524f9ce2",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/hermetic_tools.bzl",
+              "range": {
+                "startLine": 124,
+                "startChar": 0,
+                "endLine": 125,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "227750d4_6cf29984",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-07-22T01:52:01Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/hermetic_tools.bzl` to format the file, or apply the suggested fix.",
+      "revId": "dde9dfb5f76bc2463a7b6bd893a2658c842b9565",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
