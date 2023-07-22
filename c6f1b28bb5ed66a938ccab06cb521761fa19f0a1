@@ -56,6 +56,63 @@
       "message": "File is not formatted. Run `buildifier kleaf/hermetic_tools.bzl` to format the file, or apply the suggested fix.",
       "revId": "c6f1b28bb5ed66a938ccab06cb521761fa19f0a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000049390552",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2670180?revision\u003d6",
+      "fixSuggestions": [
+        {
+          "fixId": "75c001df_481f80d5",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/hermetic_tools.bzl",
+              "range": {
+                "startLine": 151,
+                "startChar": 0,
+                "endLine": 152,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/hermetic_tools.bzl",
+              "range": {
+                "startLine": 371,
+                "startChar": 0,
+                "endLine": 372,
+                "endChar": 0
+              },
+              "replacement": "        \"visibility\": [\"//visibility:private\"],\n"
+            },
+            {
+              "path": "kleaf/hermetic_tools.bzl",
+              "range": {
+                "startLine": 442,
+                "startChar": 0,
+                "endLine": 444,
+                "endChar": 0
+              },
+              "replacement": "                tar_args \u003d \" \".join([shell.quote(arg) for arg in tar_args]),\n            ),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "37254526_198dde59",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-07-22T00:52:07Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/hermetic_tools.bzl` to format the file, or apply the suggested fix.",
+      "revId": "c6f1b28bb5ed66a938ccab06cb521761fa19f0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
