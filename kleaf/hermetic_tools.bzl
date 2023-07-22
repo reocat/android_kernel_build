@@ -156,6 +156,10 @@ WARNING: {} contains host_tools {}. They should be predeclared in
     return host_outs
 
 def _hermetic_tools_impl(ctx):
+    for msg in ctx.attr.deprecation_messages:
+        # buildifier: disable=print
+        print(msg)
+
     deps = [] + ctx.files.deps
     all_outputs = []
 
@@ -241,6 +245,7 @@ _hermetic_tools = rule(
             doc = "symlinks to labels",
             allow_files = True,
         ),
+        "deprecation_messages": attr.string_list(),
         "_disable_hermetic_tools_info": attr.label(
             default = "//build/kernel/kleaf/impl:incompatible_disable_hermetic_tools_info",
         ),
@@ -262,24 +267,62 @@ def hermetic_tools(
 
     Args:
         name: Name of the target.
-        srcs: A list of labels referring to tools for hermetic builds. This is usually a `glob()`.
+        srcs: **Deprecated**.
+          [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
 
-          Each item in `{srcs}` is treated as an executable that are added to the `PATH`.
+          Use `symlinks` directly. Setting this is roughly equivalent to adding the following:
+
+          ```
+          symlinks = symlinks | {src: basename(src) for src in srcs}
+          aliases += [basename(src) for src in srcs]
+          ```
         symlinks: A dictionary, where keys are labels to an executable, and
           values are names to the tool, separated with `:`. e.g.
 
           ```
           {"//label/to:toybox": "cp:realpath"}
           ```
-        host_tools: An allowlist of names of tools that are allowed to be used from the host.
+        host_tools: **Deprecated**.
+          [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
 
-          For each token `{tool}`, the label `{name}/{tool}` is created to refer to the tool.
-        py3_outs: List of tool names that are resolved to Python 3 binary.
-        deps: additional dependencies. Unlike `srcs`, these aren't added to the `PATH`.
-        tar_args: List of fixed arguments provided to `tar` commands.
+          Use `symlinks` directly. Setting this is equivalent to adding the following:
+
+          ```
+          symlinks = symlinks | {"@kleaf_host_tools//:" + tool: tool for tool in host_tools}
+          aliases += host_tools
+          ```
+
+          These host tools must be pre-declared in `@kleaf_host_tools`.
+
+        py3_outs: **Deprecated**.
+          [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
+
+          Use `symlinks` directly. Setting this is roughly equivalent to adding the following:
+
+          ```
+          symlinks = symlinks | {<python3_interpreter>: ":".join(py3_outs)}
+          aliases += py3_outs
+          deps += <python3_runtime_files>
+          ```
+        deps: additional dependencies. These aren't added to the `PATH`.
+        tar_args: **Deprecated**.
+          [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
+
+          Use `symlinks` to redirect to a script that calls the real
+          tar binary with said arguments. See `//build/kernel:hermetic-tools`
+          for an example.
+
+          List of fixed arguments provided to `tar` commands.
 
           This only applies to `tar` in `srcs`.
-        rsync_args: List of fixed arguments provided to `rsync` commands.
+        rsync_args: **Deprecated**.
+          [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
+
+          Use `symlinks` to redirect to a script that calls the real
+          rsync binary with said arguments. See `//build/kernel:hermetic-tools`
+          for an example.
+
+          List of fixed arguments provided to `rsync` commands.
 
           This only applies to `rsync` in `host_tools`.
         aliases: [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
@@ -315,6 +358,21 @@ def hermetic_tools(
     if deps == None:
         deps = []
 
+    deprecation_messages = []
+    for field, field_name in (
+        (srcs, "srcs"),
+        (py3_outs, "py3_outs"),
+        (host_tools, "host_tools"),
+        (tar_args, "tar_args"),
+        (rsync_args, "rsync_args"),
+    ):
+        if field:
+            deprecation_messages.append("""
+WARNING: {}: {} is deprecated. Use symlinks instead.""".format(
+                native.package_relative_label(name),
+                field_name,
+            ))
+
     unregistered_host_tools = []
     if host_tools:
         aliases += host_tools
@@ -344,6 +402,7 @@ def hermetic_tools(
         unregistered_host_tools = unregistered_host_tools,
         deps = deps,
         symlinks = symlinks,
+        deprecation_messages = deprecation_messages,
         **kwargs
     )
 
