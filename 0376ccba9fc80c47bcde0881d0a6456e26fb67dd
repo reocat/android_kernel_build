@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aad72171_90820563",
+        "filename": "kleaf/impl/python.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-24T11:46:55Z",
+      "side": 1,
+      "message": "nit: (personal opinion, here and below) I think this will read cleaner in the `BUILD` file without the `get_` prefix.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 4
+      },
+      "revId": "0376ccba9fc80c47bcde0881d0a6456e26fb67dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
