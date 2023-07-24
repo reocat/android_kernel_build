@@ -86,6 +86,30 @@
       },
       "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b704f40e_29bd35ae",
+        "filename": "kleaf/impl/kleaf_host_tools_repo.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-24T22:33:11Z",
+      "side": 1,
+      "message": "Default is public, but yeah it would be useful to not expose to public",
+      "parentUuid": "ac8905da_ae2ded23",
+      "range": {
+        "startLine": 23,
+        "startChar": 16,
+        "endLine": 23,
+        "endChar": 17
+      },
+      "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
