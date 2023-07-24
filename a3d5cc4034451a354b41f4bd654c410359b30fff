@@ -1,0 +1,91 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "483ae582_1892fc71",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-24T10:22:09Z",
+      "side": 1,
+      "message": "nit: duplicated, remove.",
+      "range": {
+        "startLine": 12,
+        "startChar": 47,
+        "endLine": 12,
+        "endChar": 52
+      },
+      "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77c33495_3d31cb8d",
+        "filename": "kleaf/impl/kleaf_host_tools_repo.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-24T10:22:09Z",
+      "side": 1,
+      "message": "\u003e File is not formatted. Run `buildifier kleaf/impl/kleaf_host_tools_repo.bzl` to format the file, or apply the suggested fix.\n\nPlease fix.",
+      "parentUuid": "e3ef5f1e_6c635735",
+      "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "988d8fb1_48a5dd06",
+        "filename": "kleaf/impl/kleaf_host_tools_repo.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-24T10:22:09Z",
+      "side": 1,
+      "message": "`name \u003d \"{}\"`",
+      "range": {
+        "startLine": 19,
+        "startChar": 10,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac8905da_ae2ded23",
+        "filename": "kleaf/impl/kleaf_host_tools_repo.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-24T10:22:09Z",
+      "side": 1,
+      "message": "is `visibility` needed here?",
+      "range": {
+        "startLine": 23,
+        "startChar": 16,
+        "endLine": 23,
+        "endChar": 17
+      },
+      "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
