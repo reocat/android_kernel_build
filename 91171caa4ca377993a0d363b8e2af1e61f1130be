@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93c740cb_f9d24412",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T12:54:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3d2b3d_c68d2d3e",
+      "revId": "91171caa4ca377993a0d363b8e2af1e61f1130be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3668b17_0c37f8a3",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44f55686_ad44d564",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T12:54:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3668b17_0c37f8a3",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 38
+      },
+      "revId": "91171caa4ca377993a0d363b8e2af1e61f1130be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a69217b_08010090",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-07-25T11:19:59Z",
       "side": 1,
       "message": "Most of the rules in Kleaf includes https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/hermetic_toolchain.bzl, should this one too?",
+      "range": {
+        "startLine": 49,
+        "startChar": 14,
+        "endLine": 49,
+        "endChar": 18
+      },
+      "revId": "91171caa4ca377993a0d363b8e2af1e61f1130be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6d81284_558d4660",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T12:54:00Z",
+      "side": 1,
+      "message": "The way it is done it has no additional dependencies other than the kernel_sbom (python) binary itself. That way it is already hermetic.",
+      "parentUuid": "2a69217b_08010090",
       "range": {
         "startLine": 49,
         "startChar": 14,
