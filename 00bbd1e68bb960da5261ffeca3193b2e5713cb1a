@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df0fd1e1_499dbab6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-25T14:24:06Z",
+      "side": 1,
+      "message": "From presubmit, it seems only `kleaf-docs` is affected by this (so http://aosp/2673277 needs to go first), as is the only one using these rules (dependency of stardoc), however I think it\u0027s OK to cherry-pick it to other branches. WDYT?",
+      "revId": "00bbd1e68bb960da5261ffeca3193b2e5713cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
