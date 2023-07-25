@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95dbe885_b56535bc",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T10:58:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6be89485_f44a6bb1",
+      "range": {
+        "startLine": 791,
+        "startChar": 8,
+        "endLine": 791,
+        "endChar": 22
+      },
+      "revId": "b1284d9cecb8d12b545782e15c0ec36c82c26928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edcfe851_28f7587b",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "171d0114_b8a04b6c",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T10:58:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edcfe851_28f7587b",
+      "range": {
+        "startLine": 799,
+        "startChar": 21,
+        "endLine": 799,
+        "endChar": 55
+      },
+      "revId": "b1284d9cecb8d12b545782e15c0ec36c82c26928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85ffc4cf_4ed3a255",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-07-19T19:43:36Z",
       "side": 1,
       "message": "This is already in kernel_build.internal_outs. So if you are using a Starlark rule directly, then you can find the `File` object with `target[KernelBuildUnameInfo]`.\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_build.bzl;l\u003d79;drc\u003df8012d7108029cda16b431899eec047099e96639\n\n... unless you do want to put the file as part of the distribution; in that case I would suggest putting this in a separate CL (and drop the line from kernel_build.internal_outs)",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 21
+      },
+      "revId": "b1284d9cecb8d12b545782e15c0ec36c82c26928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e99bdc8_6a9b03a9",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T10:58:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85ffc4cf_4ed3a255",
       "range": {
         "startLine": 35,
         "startChar": 0,
