@@ -22,6 +22,30 @@
       },
       "revId": "eaf7db8c36f174b572ad1954649032f6c806000b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cbba3ac_ec6b3b7d",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T12:58:26Z",
+      "side": 1,
+      "message": "This is a literal copy of the upstream implementation. I will stick to it, though fixed the comments a little.",
+      "parentUuid": "a8578631_d66466f4",
+      "range": {
+        "startLine": 96,
+        "startChar": 20,
+        "endLine": 96,
+        "endChar": 25
+      },
+      "revId": "eaf7db8c36f174b572ad1954649032f6c806000b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
