@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05cb9613_14a5c8ff",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T21:28:45Z",
+      "side": 1,
+      "message": "nit: Sbom? This is what we do for camel cases (abbreviations are treated as one word), like UapiHeaders\n\nThe mnemonic is an \"API\" when we talk about `bazel query`\u0027s, BTW, so it is better to be consistent. Right now we just use \"the upper camel case of the rule / macro\", so \"KernelSbom\"",
+      "range": {
+        "startLine": 33,
+        "startChar": 27,
+        "endLine": 33,
+        "endChar": 30
+      },
+      "revId": "155cc4fe46075ac5e562afce7addc01ea9683b8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
