@@ -34,6 +34,29 @@
       "parentUuid": "df0fd1e1_499dbab6",
       "revId": "00bbd1e68bb960da5261ffeca3193b2e5713cb1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1006724_84d5c26b",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T18:44:21Z",
+      "side": 1,
+      "message": "This should just stay in kleaf-docs\u0027s WORKSPACE file, not this common workspace.bzl file I think.",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 5
+      },
+      "revId": "00bbd1e68bb960da5261ffeca3193b2e5713cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
