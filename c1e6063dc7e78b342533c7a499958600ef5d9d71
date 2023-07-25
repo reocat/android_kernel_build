@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a0ad7db_baa8eed5",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-25T11:07:39Z",
+      "side": 1,
+      "message": "nit: add a space before it.\n\nFeel free to ignore if it\u0027s an auto-formatter thing.",
+      "range": {
+        "startLine": 272,
+        "startChar": 40,
+        "endLine": 272,
+        "endChar": 41
+      },
+      "revId": "c1e6063dc7e78b342533c7a499958600ef5d9d71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
