@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a3d2b3d_c68d2d3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-25T11:13:07Z",
+      "side": 1,
+      "message": "`File build/kernel/kleaf/common_kernels.bzl imported \u0027//build/kernel/kleaf/impl:kernel_sbom.bzl\u0027, yet build/kernel/kleaf/impl/kernel_sbom.bzl was not found, even at roots [., external/__main__].`\n\nSeems a legit error, fix it by adding `kernel_sbom.bzl` to [build/kernel/kleaf/impl/BUILD.bazel;l\u003d23-25](https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/BUILD.bazel;l\u003d23-25).",
+      "revId": "91171caa4ca377993a0d363b8e2af1e61f1130be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
