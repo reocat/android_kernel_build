@@ -24,6 +24,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18594f35_49cee6ab",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T10:55:26Z",
+      "side": 1,
+      "message": "I fixed up all type annotations.",
+      "parentUuid": "c19fa33e_d493f0f2",
+      "range": {
+        "startLine": 124,
+        "startChar": 12,
+        "endLine": 124,
+        "endChar": 19
+      },
+      "revId": "bb8220e584318357b909a59f629e403d948dbff7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82ba5bb5_c68debe7",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T10:55:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c19fa33e_d493f0f2",
+      "range": {
+        "startLine": 124,
+        "startChar": 12,
+        "endLine": 124,
+        "endChar": 19
+      },
+      "revId": "bb8220e584318357b909a59f629e403d948dbff7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e3f97e4_5de33ba5",
@@ -71,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8040b4d_af179919",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T10:55:26Z",
+      "side": 1,
+      "message": "I decided entirely against manual error reporting. In both cases the error is fatal and since this script is supposed to be run from automation, a wrong usage is unusual. So, by not handling the error, any exception raised will propagate up and terminate the program with a nice stack trace and error message on stderr; the most useful output in such a situation.",
+      "parentUuid": "22e52311_65cd4d37",
+      "range": {
+        "startLine": 209,
+        "startChar": 6,
+        "endLine": 209,
+        "endChar": 11
+      },
+      "revId": "bb8220e584318357b909a59f629e403d948dbff7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f94f3c9_0cad2fb2",
@@ -84,6 +156,30 @@
       "writtenOn": "2023-07-19T20:02:46Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 212,
+        "startChar": 6,
+        "endLine": 212,
+        "endChar": 11
+      },
+      "revId": "bb8220e584318357b909a59f629e403d948dbff7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f6549a3_aaadc447",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T10:55:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f94f3c9_0cad2fb2",
       "range": {
         "startLine": 212,
         "startChar": 6,
