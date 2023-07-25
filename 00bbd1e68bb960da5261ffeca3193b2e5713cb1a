@@ -16,6 +16,24 @@
       "message": "From presubmit, it seems only `kleaf-docs` is affected by this (so http://aosp/2673277 needs to go first), as is the only one using these rules (dependency of stardoc), however I think it\u0027s OK to cherry-pick it to other branches. WDYT?",
       "revId": "00bbd1e68bb960da5261ffeca3193b2e5713cb1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ade464e0_1aa2a28d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T18:43:27Z",
+      "side": 1,
+      "message": "Only kleaf-docs would need Java.\n\nI don\u0027t think it makes sense to include this for a regular kernel build branch. Also I don\u0027t think we should convince partners to include this in their kernel branch either.",
+      "parentUuid": "df0fd1e1_499dbab6",
+      "revId": "00bbd1e68bb960da5261ffeca3193b2e5713cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
