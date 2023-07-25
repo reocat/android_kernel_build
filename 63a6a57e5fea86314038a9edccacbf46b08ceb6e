@@ -1,5 +1,121 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc71fdb7_d2d2576d",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T18:09:27Z",
+      "side": 1,
+      "message": "the convention is `kernel_build` (e.g. like kernel_abi, kernel_kythe, etc.)",
+      "range": {
+        "startLine": 846,
+        "startChar": 8,
+        "endLine": 846,
+        "endChar": 14
+      },
+      "revId": "63a6a57e5fea86314038a9edccacbf46b08ceb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcf1304c_6ed5d60d",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T18:09:27Z",
+      "side": 1,
+      "message": "nit: This actually needs to be `\\\\` in order to show up as a `\\` in the shell script. Otherwise, if you put `\\` here, it will just be\n\n```\nkernel_sbom.py                           --output_file \u003cout_file\u003e                     --files \u003csrcs\u003e ....\n```\n\nwith a lot of spaces :)",
+      "range": {
+        "startLine": 23,
+        "startChar": 55,
+        "endLine": 23,
+        "endChar": 56
+      },
+      "revId": "63a6a57e5fea86314038a9edccacbf46b08ceb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af29a8f4_d91c78ae",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T18:09:27Z",
+      "side": 1,
+      "message": "This whole thing is better replaced by a ctx.actions.run(), which means we don\u0027t have to keep the `ctx.files.srcs` list in the command script during analysis phase.\n\nExample: \n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/ddk/makefiles.bzl;l\u003d216-266;drc\u003d346241d8c7d74ba03b68c5275f8e1545b0838daa\n\nIn particular:\n\n```\n# You can reuse it in ctx.actions.run.inputs as well!\nsrcs_depset \u003d depset([target.files for target in ctx.attr.srcs])\n\n...\n\nargs.add(\"--files\", srcs_depset)\n```\n\nUsing ctx.files.srcs isn\u0027t \"too bad\" because the list is always generated anyways, but we should only use it when we need a list. If a depset is needed, then `depset([target.files for target in ctx.attr.srcs])` is a better choice. See internal discussion http://g/kleaf/o_EAunXV_NE/5nfeR_A_AQAJ",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 26
+      },
+      "revId": "63a6a57e5fea86314038a9edccacbf46b08ceb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a736fe87_a47df308",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T18:09:27Z",
+      "side": 1,
+      "message": "Please use a depset to avoid duplicating the potentially large list.\n\n```\ninputs \u003d depset([kernel_release],\n  transitive \u003d depset([target.files for target in ctx.attr.srcs])\n)\n```",
+      "range": {
+        "startLine": 36,
+        "startChar": 17,
+        "endLine": 36,
+        "endChar": 50
+      },
+      "revId": "63a6a57e5fea86314038a9edccacbf46b08ceb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7d94ea2_805e15e4",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T18:09:27Z",
+      "side": 1,
+      "message": "`ctx.label`\n\nBecause ctx.attr.name may duplicate across different packages",
+      "range": {
+        "startLine": 39,
+        "startChar": 57,
+        "endLine": 39,
+        "endChar": 70
+      },
+      "revId": "63a6a57e5fea86314038a9edccacbf46b08ceb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
