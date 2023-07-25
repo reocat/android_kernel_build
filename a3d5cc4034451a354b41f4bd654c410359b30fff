@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5a7415a_dc9ee46d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T21:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "483ae582_1892fc71",
+      "range": {
+        "startLine": 12,
+        "startChar": 47,
+        "endLine": 12,
+        "endChar": 52
+      },
+      "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77c33495_3d31cb8d",
@@ -42,6 +66,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d007a3c2_6b6eef65",
+        "filename": "kleaf/impl/kleaf_host_tools_repo.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T21:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77c33495_3d31cb8d",
+      "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "988d8fb1_48a5dd06",
@@ -55,6 +97,30 @@
       "writtenOn": "2023-07-24T10:22:09Z",
       "side": 1,
       "message": "`name \u003d \"{}\"`",
+      "range": {
+        "startLine": 19,
+        "startChar": 10,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f04da56e_4a61c70e",
+        "filename": "kleaf/impl/kleaf_host_tools_repo.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T21:36:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "988d8fb1_48a5dd06",
       "range": {
         "startLine": 19,
         "startChar": 10,
@@ -102,6 +168,30 @@
       "side": 1,
       "message": "Default is public, but yeah it would be useful to not expose to public",
       "parentUuid": "ac8905da_ae2ded23",
+      "range": {
+        "startLine": 23,
+        "startChar": 16,
+        "endLine": 23,
+        "endChar": 17
+      },
+      "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8d136f5_32deeb95",
+        "filename": "kleaf/impl/kleaf_host_tools_repo.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T21:36:59Z",
+      "side": 1,
+      "message": "Actually I do need \"public\" here. The Kleaf projects could be in a subworkspace, so I can\u0027t just put `@//build/kernel:__subpackages__` here because the workspace name that holds `//build/kernel` is unknown.",
+      "parentUuid": "b704f40e_29bd35ae",
       "range": {
         "startLine": 23,
         "startChar": 16,
