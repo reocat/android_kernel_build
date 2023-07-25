@@ -85,6 +85,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "23e51f2f_5edd9c6c",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T20:14:50Z",
+      "side": 1,
+      "message": "We do need it otherwise an external user can still `load()` it. This blocks usage at all.",
+      "parentUuid": "44f55686_ad44d564",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 38
+      },
+      "revId": "91171caa4ca377993a0d363b8e2af1e61f1130be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a69217b_08010090",
         "filename": "kleaf/impl/kernel_sbom.bzl",
         "patchSetId": 2
