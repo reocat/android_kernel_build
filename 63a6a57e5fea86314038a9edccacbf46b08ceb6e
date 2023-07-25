@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a65d85ac_f4fc3366",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T18:10:29Z",
+      "side": 1,
+      "message": "visibility(...)",
+      "revId": "63a6a57e5fea86314038a9edccacbf46b08ceb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bcf1304c_6ed5d60d",
         "filename": "kleaf/impl/kernel_sbom.bzl",
         "patchSetId": 6
