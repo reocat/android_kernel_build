@@ -56,6 +56,7 @@ def kernel_images(
         vendor_dlkm_props = None,
         ramdisk_compression = None,
         ramdisk_compression_args = None,
+        skip_unpacking_ramdisk = None,
         avb_sign_boot_img = None,
         avb_boot_partition_size = None,
         avb_boot_key = None,
@@ -258,6 +259,9 @@ def kernel_images(
         ramdisk_compression_args: Command line arguments passed only to lz4 command
           to control compression level. It only has effect when used with
           `ramdisk_compression` equal to "lz4".
+        skip_unpacking_ramdisk: If set to `True`, skip unpacking the vendor ramdisk and
+          copy it as is, without modifications, into the boot image.
+          Also skip the mkbootfs step.
         avb_sign_boot_img: If set to `True` signs the boot image using the avb_boot_key.
           The kernel prebuilt tool `avbtool` is used for signing.
         avb_boot_partition_size: Size of the boot partition in bytes.
@@ -415,6 +419,7 @@ def kernel_images(
             vendor_ramdisk_binaries = vendor_ramdisk_binaries,
             build_boot = build_boot,
             vendor_boot_name = vendor_boot_name,
+            skip_unpacking_ramdisk = skip_unpacking_ramdisk,
             avb_sign_boot_img = avb_sign_boot_img,
             avb_boot_partition_size = avb_boot_partition_size,
             avb_boot_key = avb_boot_key,
