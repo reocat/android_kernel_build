@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "842a238a_413347cc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T17:01:32Z",
+      "side": 1,
+      "message": "effective change:\n```\n--- before/kernel_sbom.spdx.json       2023-07-25 17:52:53.884045486 +0100\n+++ after/kernel_sbom.spdx.json        2023-07-25 17:46:01.667592388 +0100\n@@ -8,7 +8,7 @@\n         \"creators\": [\n             \"Organization: Google\"\n         ],\n-        \"created\": \"2023-07-25T16:52:53Z\"\n+        \"created\": \"2023-07-25T16:41:18Z\"\n     },\n     \"documentDescribes\": [\n         \"SPDXRef-kernel\"\n@@ -17,7 +17,7 @@\n         {\n             \"name\": \"kernel\",\n             \"SPDXID\": \"SPDXRef-kernel\",\n-            \"downloadLocation\": \"https://source.android.com\",\n+            \"downloadLocation\": null,\n             \"filesAnalyzed\": true,\n             \"versionInfo\": \"6.4.0-mainline-maybe-dirty\",\n             \"supplier\": \"Organization: Google\",\n@@ -118,7 +118,7 @@\n         {\n             \"name\": \"KernelSourceCode\",\n             \"SPDXID\": \"SPDXRef-KernelSourceCode\",\n-            \"downloadLocation\": \"https://source.android.com\",\n+            \"downloadLocation\": null,\n             \"filesAnalyzed\": false,\n             \"versionInfo\": \"6.4.0-mainline-maybe-dirty\",\n             \"supplier\": \"Organization: Google\"\n@@ -126,7 +126,7 @@\n         {\n             \"name\": \"LinuxUpstreamPackage\",\n             \"SPDXID\": \"SPDXRef-LinuxUpstreamPackage\",\n-            \"downloadLocation\": \"https://www.kernel.org\",\n+            \"downloadLocation\": \"kernel.org\",\n             \"filesAnalyzed\": false,\n             \"versionInfo\": \"6.4.0\",\n             \"supplier\": \"Organization: The Linux Kernel Organization\"\n```",
+      "revId": "c9a5394fdfdff465e8e37b69768250469541732d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
