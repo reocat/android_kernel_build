@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8a778f1_8581976b",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-25T18:11:31Z",
+      "side": 1,
+      "message": "But of course if you are using ctx.actions.run then this comment does not apply any more",
+      "parentUuid": "bcf1304c_6ed5d60d",
+      "range": {
+        "startLine": 23,
+        "startChar": 55,
+        "endLine": 23,
+        "endChar": 56
+      },
+      "revId": "63a6a57e5fea86314038a9edccacbf46b08ceb6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "af29a8f4_d91c78ae",
         "filename": "kleaf/impl/kernel_sbom.bzl",
         "patchSetId": 6
