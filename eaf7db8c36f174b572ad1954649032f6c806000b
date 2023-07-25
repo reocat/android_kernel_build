@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8578631_d66466f4",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-25T11:02:55Z",
+      "side": 1,
+      "message": "nit: maybe this can be a constant.",
+      "range": {
+        "startLine": 96,
+        "startChar": 20,
+        "endLine": 96,
+        "endChar": 25
+      },
+      "revId": "eaf7db8c36f174b572ad1954649032f6c806000b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
