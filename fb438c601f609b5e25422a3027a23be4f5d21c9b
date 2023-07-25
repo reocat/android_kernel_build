@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e4ec9d5_bba55e54",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-25T12:58:16Z",
+      "side": 1,
+      "message": "typo?",
+      "range": {
+        "startLine": 287,
+        "startChar": 9,
+        "endLine": 287,
+        "endChar": 10
+      },
+      "revId": "fb438c601f609b5e25422a3027a23be4f5d21c9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b273729_0a8bed55",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-25T12:58:16Z",
+      "side": 1,
+      "message": "where is this used?",
+      "revId": "fb438c601f609b5e25422a3027a23be4f5d21c9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
