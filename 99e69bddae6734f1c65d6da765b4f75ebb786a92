@@ -22,6 +22,30 @@
       },
       "revId": "99e69bddae6734f1c65d6da765b4f75ebb786a92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "290fd431_4a7cffdd",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T11:34:41Z",
+      "side": 1,
+      "message": "Either should work the same, actually. I coincidentally tested both.",
+      "parentUuid": "3559a5f0_d0fd7ff2",
+      "range": {
+        "startLine": 222,
+        "startChar": 6,
+        "endLine": 222,
+        "endChar": 10
+      },
+      "revId": "99e69bddae6734f1c65d6da765b4f75ebb786a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
