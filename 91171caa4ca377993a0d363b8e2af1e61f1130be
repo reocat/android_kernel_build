@@ -16,6 +16,52 @@
       "message": "`File build/kernel/kleaf/common_kernels.bzl imported \u0027//build/kernel/kleaf/impl:kernel_sbom.bzl\u0027, yet build/kernel/kleaf/impl/kernel_sbom.bzl was not found, even at roots [., external/__main__].`\n\nSeems a legit error, fix it by adding `kernel_sbom.bzl` to [build/kernel/kleaf/impl/BUILD.bazel;l\u003d23-25](https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/BUILD.bazel;l\u003d23-25).",
       "revId": "91171caa4ca377993a0d363b8e2af1e61f1130be",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3668b17_0c37f8a3",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-25T11:19:59Z",
+      "side": 1,
+      "message": "nit: IIRIC this won\u0027t be public unless exported via https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/kernel.bzl, so maybe not needed?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 38
+      },
+      "revId": "91171caa4ca377993a0d363b8e2af1e61f1130be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a69217b_08010090",
+        "filename": "kleaf/impl/kernel_sbom.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-07-25T11:19:59Z",
+      "side": 1,
+      "message": "Most of the rules in Kleaf includes https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/hermetic_toolchain.bzl, should this one too?",
+      "range": {
+        "startLine": 49,
+        "startChar": 14,
+        "endLine": 49,
+        "endChar": 18
+      },
+      "revId": "91171caa4ca377993a0d363b8e2af1e61f1130be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
