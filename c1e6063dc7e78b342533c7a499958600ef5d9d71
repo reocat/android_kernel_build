@@ -22,6 +22,30 @@
       },
       "revId": "c1e6063dc7e78b342533c7a499958600ef5d9d71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f55a0b2f_cd9cd2d0",
+        "filename": "kleaf/kernel_sbom.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-25T12:58:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a0ad7db_baa8eed5",
+      "range": {
+        "startLine": 272,
+        "startChar": 40,
+        "endLine": 272,
+        "endChar": 41
+      },
+      "revId": "c1e6063dc7e78b342533c7a499958600ef5d9d71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
