@@ -62,6 +62,30 @@
       },
       "revId": "cb7d018ebcc4ddeb69d29c7acdd7fd412d29ba42",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "099b2d49_654a93d6",
+        "filename": "BUILD.bazel",
+        "patchSetId": 31
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-26T16:37:57Z",
+      "side": 1,
+      "message": "No. We might not use some of the tools that are added later. This is intentionally NOT a glob (See CL:2670180 )\n\nEspecially if we are going to make the list shorter, this shouldn\u0027t be a glob",
+      "parentUuid": "08716320_4c48fedc",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 15
+      },
+      "revId": "cb7d018ebcc4ddeb69d29c7acdd7fd412d29ba42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
