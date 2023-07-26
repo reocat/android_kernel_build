@@ -200,6 +200,30 @@
       },
       "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7393d09_bdbc3abc",
+        "filename": "kleaf/impl/kleaf_host_tools_repo.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-26T02:49:59Z",
+      "side": 1,
+      "message": "I can use Label() to handle the repository name properly. See latest patchset.",
+      "parentUuid": "a8d136f5_32deeb95",
+      "range": {
+        "startLine": 23,
+        "startChar": 16,
+        "endLine": 23,
+        "endChar": 17
+      },
+      "revId": "a3d5cc4034451a354b41f4bd654c410359b30fff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
