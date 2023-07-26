@@ -70,6 +70,24 @@
       "parentUuid": "304abe81_6617ab81",
       "revId": "2fdbb32257330c2692865bfd03362c0faa1a5b65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a01d256_f5c15434",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-26T13:02:40Z",
+      "side": 1,
+      "message": "I agree that `KBUILD_BUILD_VERSION` is a good place to put the build number. I suppose we need to make BUILD_NUMBER require to be integer to not break downstream scripts.\n\nBut I can confirm the value would be visible on phones.",
+      "parentUuid": "63caa9a9_6b33b1bc",
+      "revId": "2fdbb32257330c2692865bfd03362c0faa1a5b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
