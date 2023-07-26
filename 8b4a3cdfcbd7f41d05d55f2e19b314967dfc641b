@@ -22,6 +22,29 @@
       },
       "revId": "8b4a3cdfcbd7f41d05d55f2e19b314967dfc641b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a77f7df2_0e453564",
+        "filename": "BUILD.bazel",
+        "patchSetId": 23
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-26T22:17:28Z",
+      "side": 1,
+      "message": "This is still causing trouble -- why?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "8b4a3cdfcbd7f41d05d55f2e19b314967dfc641b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
