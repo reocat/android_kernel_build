@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ef3b04b_749ee596",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-27T22:45:14Z",
+      "side": 1,
+      "message": "This has been verified on ABTD that it fixes the integration test.\n\nhttps://android-build.googleplex.com/builds/abtd/run/L72800000962237875?referrer\u003demail",
+      "revId": "8b1efb3ed98faf347f7d20042b38d2543c8d2242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3fcdc4d_dbd17f4c",
