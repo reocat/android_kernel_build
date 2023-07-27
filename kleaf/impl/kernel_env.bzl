@@ -21,6 +21,7 @@ load("@kernel_toolchain_info//:dict.bzl", "VARS")
 load(":abi/force_add_vmlinux_utils.bzl", "force_add_vmlinux_utils")
 load(
     ":common_providers.bzl",
+    "KernelBuildConfigInfo",
     "KernelEnvAttrInfo",
     "KernelEnvInfo",
     "KernelEnvMakeGoalsInfo",
@@ -155,6 +156,12 @@ def _kernel_env_impl(ctx):
         build_config,
     ]
     inputs += srcs
+
+    transitive_inputs = []
+    for target in [ctx.attr.build_config] + ctx.attr.srcs:
+        if KernelBuildConfigInfo in target:
+            transitive_inputs.append(target[KernelBuildConfigInfo].deps)
+
     tools = [
         setup_env,
         ctx.file._build_utils_sh,
@@ -257,7 +264,7 @@ def _kernel_env_impl(ctx):
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
         mnemonic = "KernelEnv",
-        inputs = inputs,
+        inputs = depset(inputs, transitive = transitive_inputs),
         outputs = [out_file],
         tools = depset(tools, transitive = transitive_tools),
         progress_message = "Creating build environment {}{}".format(progress_message_note, ctx.label),
@@ -291,9 +298,6 @@ def _kernel_env_impl(ctx):
          # source the build environment
            source {env}
            {set_up_jobs_cmd}
-         # re-setup the PATH to also include the hermetic tools, because env completely overwrites
-         # PATH with HERMETIC_TOOLCHAIN=1
-           {hermetic_tools_additional_setup}
          # setup LD_LIBRARY_PATH for prebuilts
            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${{ROOT_DIR}}/{linux_x86_libs_path}
          # Set up KCONFIG_EXT
@@ -311,7 +315,6 @@ def _kernel_env_impl(ctx):
              export KCPPFLAGS="$KCPPFLAGS -ffile-prefix-map=$(realpath ${{ROOT_DIR}}/${{KERNEL_DIR}})/="
            fi
            """.format(
-        hermetic_tools_additional_setup = hermetic_tools.additional_setup,
         env = out_file.path,
         build_utils_sh = ctx.file._build_utils_sh.path,
         linux_x86_libs_path = ctx.files._linux_x86_libs[0].dirname,
