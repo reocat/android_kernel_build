@@ -106,6 +106,24 @@
       "parentUuid": "9a01d256_f5c15434",
       "revId": "2fdbb32257330c2692865bfd03362c0faa1a5b65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8108ed2f_76603481",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-27T09:51:04Z",
+      "side": 1,
+      "message": "I wonder what happens if we actually leave the characters in. Release builds will always have a numeric value. For presubmits, we might see some parsers stumble upon this value. Let\u0027s give it a full presubmit perhaps.",
+      "parentUuid": "da68b336_fed00fb0",
+      "revId": "2fdbb32257330c2692865bfd03362c0faa1a5b65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
