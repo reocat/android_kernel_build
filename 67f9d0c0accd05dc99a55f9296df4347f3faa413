@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cd5b270_10e7ee57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-27T01:45:14Z",
+      "side": 1,
+      "message": "This should also require --incompatible_disable_hermetic_tools_symlink_source to be set and it works for some months to avoid breaking partners.",
+      "revId": "67f9d0c0accd05dc99a55f9296df4347f3faa413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
