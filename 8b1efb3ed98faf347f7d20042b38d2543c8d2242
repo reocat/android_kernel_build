@@ -16,6 +16,24 @@
       "message": "This is weird. We should rather process the list here in order instead of in reverse order. The way it is done in L196 is counter-intuitive in the way that the last entry in the list has highest priority.",
       "revId": "8b1efb3ed98faf347f7d20042b38d2543c8d2242",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "736af1aa_766d096e",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-07-27T22:02:14Z",
+      "side": 1,
+      "message": "this can also be cleaned up later, of course.",
+      "parentUuid": "f3fcdc4d_dbd17f4c",
+      "revId": "8b1efb3ed98faf347f7d20042b38d2543c8d2242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
