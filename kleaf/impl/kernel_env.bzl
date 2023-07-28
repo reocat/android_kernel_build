@@ -175,6 +175,14 @@ def _kernel_env_impl(ctx):
     if ctx.attr._debug_annotate_scripts[BuildSettingInfo].value:
         command += debug.trap()
 
+    command += """
+        echo TMPDIR=$TMPDIR
+        export TMPDIR=/tmp/small
+        echo TMPDIR=$TMPDIR
+        mktemp
+        echo "==================="
+    """
+
     if kconfig_ext:
         command += """
               export KCONFIG_EXT={kconfig_ext}

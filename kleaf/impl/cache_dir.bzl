@@ -116,6 +116,9 @@ def _get_step(ctx, common_config_tags, symlink_name):
             export OUT_DIR_SUFFIX=$(cat ${{KLEAF_CONFIG_TAGS_TMP}} | sha1sum -b | cut -c-8)
 
             KLEAF_CACHED_COMMON_OUT_DIR={cache_dir}/${{OUT_DIR_SUFFIX}}
+
+            echo {label}': cache_dir =' ${{KLEAF_CACHED_COMMON_OUT_DIR}} >&2
+
             export OUT_DIR=${{KLEAF_CACHED_COMMON_OUT_DIR}}/${{KERNEL_DIR}}
             mkdir -p "${{OUT_DIR}}"
 
