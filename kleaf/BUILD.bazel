@@ -353,6 +353,25 @@ string_flag(
     visibility = ["//visibility:public"],
 )
 
+# If true, enable debug.
+bool_flag(
+    name = "debug",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
+
+config_setting(
+    name = "debug_is_true",
+    flag_values = {":debug": "1"},
+    visibility = ["//visibility:public"],
+)
+
+config_setting(
+    name = "debug_is_false",
+    flag_values = {":debug": "0"},
+    visibility = ["//visibility:public"],
+)
+
 # Debug option to modify GKI build config via build config fragments.
 # By default it points to an empty filegroup.
 label_flag(
