@@ -22,6 +22,30 @@
       },
       "revId": "bed0010ef9ec3ba4637096886516b3909f06bde0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce1d5e30_16cc0625",
+        "filename": "kleaf/impl/defconfig/kasan_defconfig",
+        "patchSetId": 20
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-31T21:10:57Z",
+      "side": 1,
+      "message": "Yes. See\n\nhttps://android.googlesource.com/kernel/build/+/refs/heads/main/kleaf/docs/kernel_config.md\n\nBasically, add the defconfig fragment to `kernel_build.defconfig_fragments`. For GKI, you can either add it to common_kernels.bzl directly (which applies to all branches); or add it to common/BUILD.bazel\u0027s define_common_kernels invocation, then parse the incoming argument in common_kernels.bzl.\n\nThe reason we put it here is that these defconfig fragments are the same across all branches that we care about.",
+      "parentUuid": "322efca8_5b33d1de",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 37
+      },
+      "revId": "bed0010ef9ec3ba4637096886516b3909f06bde0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
