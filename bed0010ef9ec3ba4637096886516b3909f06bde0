@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "322efca8_5b33d1de",
+        "filename": "kleaf/impl/defconfig/kasan_defconfig",
+        "patchSetId": 20
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1123518
+      },
+      "writtenOn": "2023-07-31T21:01:24Z",
+      "side": 1,
+      "message": "Can we use config fragment in common/build.config.gki_kasan instead of a common config in kleaf build rule?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 37
+      },
+      "revId": "bed0010ef9ec3ba4637096886516b3909f06bde0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
