@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c94f69f1_aabb70b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-31T20:54:32Z",
+      "side": 1,
+      "message": "or CL:2632053",
+      "parentUuid": "b17d442a_dc3c0782",
+      "revId": "58c7f44602fb8d4a0431daeb2b9fb6191c885de9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "924b4279_c2b32848",
         "filename": "kleaf/impl/kernel_config_settings.bzl",
         "patchSetId": 1
