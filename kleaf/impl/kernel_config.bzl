@@ -247,6 +247,39 @@ def _config_keys(ctx):
 
     return struct(configs = configs, deps = deps)
 
+def _config_debug(ctx):
+    """Return configs for --debug.
+
+    Args:
+        ctx: ctx
+    Returns:
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
+    """
+    debug = ctx.attr.debug[BuildSettingInfo].value
+
+    configs = []
+
+    if not debug:
+        return struct(configs = [], deps = [])
+
+    configs = [
+        _config.enable("DEBUG_BUGVERBOSE"),
+        _config.enable("DYNAMIC_DEBUG"),
+        _config.enable("PRINTK_CALLER"),
+        _config.enable("PRINTK_TIME"),
+        _config.enable("SYMBOLIC_ERRNAME"),
+        _config.enable("DEBUG_INFO"),
+        _config.enable("DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT"),
+        _config.enable("CONFIG_DEBUG_SECTION_MISMATCH"),
+        _config.set_val("FRAME_WARN", 2048),
+        _config.enable("CONFIG_SECTION_MISMATCH_WARN_ONLY"),
+        _config.enable("CONFIG_DEBUG_FS"),
+        _config.enable("CONFIG_DEBUG_FS_ALLOW_ALL"),
+        _config.enable("CONFIG_DEBUG_IRQFLAGS"),
+    ]
+    return struct(configs = configs, deps = [])
+
 def _config_kasan(ctx):
     """Return configs for --kasan.
 
@@ -367,6 +400,7 @@ def _reconfig(ctx):
     check_defconfig_fragments_cmd = ""
 
     for fn in (
+        _config_debug,
         _config_lto,
         _config_trim,
         _config_kcsan,
