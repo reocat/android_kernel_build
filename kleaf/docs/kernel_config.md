@@ -157,6 +157,7 @@ built. It is recommended to use these common flags instead of defining your
 own defconfig fragments to avoid fragmentation in the ecosystem (pun intended).
 
 *   `--btf_debug_info`
+*   `--debug` : kleaf/impl/defconfig/debug_defconfig is the additional defconfig fragment applied
 *   `--page_size`
 
 ### User-defined flags
