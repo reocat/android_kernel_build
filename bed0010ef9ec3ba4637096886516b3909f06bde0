@@ -46,6 +46,30 @@
       },
       "revId": "bed0010ef9ec3ba4637096886516b3909f06bde0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c77e120_e1480da9",
+        "filename": "kleaf/impl/defconfig/kasan_defconfig",
+        "patchSetId": 20
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-07-31T21:11:19Z",
+      "side": 1,
+      "message": "... but it does not necessary apply to your case.",
+      "parentUuid": "ce1d5e30_16cc0625",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 37
+      },
+      "revId": "bed0010ef9ec3ba4637096886516b3909f06bde0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
