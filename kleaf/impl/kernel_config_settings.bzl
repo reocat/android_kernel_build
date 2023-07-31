@@ -72,6 +72,7 @@ def _kernel_build_config_settings_raw():
         kgdb.config_settings_raw(),
         compile_commands_utils.config_settings_raw(),
         {
+            "_debug": "//build/kernel/kleaf:debug",
             "_use_kmi_symbol_list_strict_mode": "//build/kernel/kleaf:kmi_symbol_list_strict_mode",
             "_gcov": "//build/kernel/kleaf:gcov",
             "_kasan": "//build/kernel/kleaf:kasan",
@@ -91,6 +92,7 @@ def _kernel_config_config_settings_raw():
     return dicts.add(
         kgdb.config_settings_raw(),
         {
+            "debug": "//build/kernel/kleaf:debug",
             "kasan": "//build/kernel/kleaf:kasan",
             "kasan_sw_tags": "//build/kernel/kleaf:kasan_sw_tags",
             "kcsan": "//build/kernel/kleaf:kcsan",
