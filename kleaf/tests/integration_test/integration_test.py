@@ -238,8 +238,76 @@ class KleafIntegrationTestBase(unittest.TestCase):
         """Returns the common package."""
         return "common"
 
+# Slow integration tests belong to their own shard.
 
-class KleafIntegrationTest(KleafIntegrationTestBase):
+class KleafIntegrationTestShard1(KleafIntegrationTestBase):
+
+    def test_incremental_switch_local_and_lto(self):
+        """Tests the following:
+
+        - switching from non-local to local and back works
+        - with --config=local, changing from --lto=none to --lto=thin and back works
+
+        See b/257288175."""
+        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE + _LOCAL)
+        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE)
+        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE + _LOCAL)
+        self._build([f"//{self._common()}:kernel_dist"] +
+                    ["--lto=thin"] + _LOCAL)
+        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE + _LOCAL)
+
+class KleafIntegrationTestShard2(KleafIntegrationTestBase):
+
+    def test_user_clang_toolchain(self):
+        """Test --user_clang_toolchain option."""
+
+        clang_version = None
+        build_config_constants = f"{self._common()}/build.config.constants"
+        with open(build_config_constants) as f:
+            for line in f.read().splitlines():
+                if line.startswith("CLANG_VERSION="):
+                    clang_version = line.strip().split("=", 2)[1]
+        self.assertIsNotNone(clang_version)
+        clang_dir = f"prebuilts/clang/host/linux-x86/clang-{clang_version}"
+        clang_dir = os.path.realpath(clang_dir)
+
+        # Do not use --config=local to ensure the toolchain dependency is
+        # correct.
+        args = [
+            f"--user_clang_toolchain={clang_dir}",
+            f"//{self._common()}:kernel",
+        ] + _LTO_NONE
+        self._build(args)
+
+# Quick integration tests. Each test case should finish within 1 minute.
+# The whole test suite should finish within 5 minutes. If the whole test suite
+# takes too long, consider sharding QuickIntegrationTest too.
+class QuickIntegrationTest(KleafIntegrationTestBase):
+
+    def test_module_does_not_depend_on_vmlinux(self):
+        """Tests that, the inputs for building a module does not include vmlinux and System.map.
+
+        See b/254357038."""
+        vd_modules = self._check_output("query", [
+            'kind("^_kernel_module rule$", //common-modules/virtual-device/...)'
+        ]).splitlines()
+        self.assertTrue(vd_modules)
+
+        print(
+            f"+ build/kernel/kleaf/analysis/inputs.py 'mnemonic(\"KernelModule.*\", {vd_modules[0]})'"
+        )
+        input_to_module = analyze_inputs(
+            aquery_args=[f'mnemonic("KernelModule.*", {vd_modules[0]})'] +
+            _FASTEST).keys()
+        self.assertFalse([
+            path
+            for path in input_to_module if pathlib.Path(path).name == "vmlinux"
+        ], "An external module must not depend on vmlinux")
+        self.assertFalse([
+            path for path in input_to_module
+            if pathlib.Path(path).name == "System.map"
+        ], "An external module must not depend on System.map")
+
     def test_change_to_core_kernel_does_not_affect_modules_prepare(self):
         """Tests that, with a small change to the core kernel, modules_prepare does not change.
 
@@ -271,44 +339,6 @@ class KleafIntegrationTest(KleafIntegrationTestBase):
                              Check their content here:
                              old: {old_modules_archive.name}
                              new: {modules_prepare_archive}"""))
-
-    def test_module_does_not_depend_on_vmlinux(self):
-        """Tests that, the inputs for building a module does not include vmlinux and System.map.
-
-        See b/254357038."""
-        vd_modules = self._check_output("query", [
-            'kind("^_kernel_module rule$", //common-modules/virtual-device/...)'
-        ]).splitlines()
-        self.assertTrue(vd_modules)
-
-        print(
-            f"+ build/kernel/kleaf/analysis/inputs.py 'mnemonic(\"KernelModule.*\", {vd_modules[0]})'"
-        )
-        input_to_module = analyze_inputs(
-            aquery_args=[f'mnemonic("KernelModule.*", {vd_modules[0]})'] +
-            _FASTEST).keys()
-        self.assertFalse([
-            path
-            for path in input_to_module if pathlib.Path(path).name == "vmlinux"
-        ], "An external module must not depend on vmlinux")
-        self.assertFalse([
-            path for path in input_to_module
-            if pathlib.Path(path).name == "System.map"
-        ], "An external module must not depend on System.map")
-
-    def test_incremental_switch_local_and_lto(self):
-        """Tests the following:
-
-        - switching from non-local to local and back works
-        - with --config=local, changing from --lto=none to --lto=thin and back works
-
-        See b/257288175."""
-        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE + _LOCAL)
-        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE)
-        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE + _LOCAL)
-        self._build([f"//{self._common()}:kernel_dist"] +
-                    ["--lto=thin"] + _LOCAL)
-        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE + _LOCAL)
 
     def test_override_javatmp(self):
         """Tests that out/bazel/javatmp can be overridden.
@@ -455,27 +485,6 @@ class KleafIntegrationTest(KleafIntegrationTestBase):
             stderr)
         self.assertNotIn("DECLARED_SET", stderr)
         self.assertNotIn("DECLARED_UNSET", stderr)
-
-    def test_user_clang_toolchain(self):
-        """Test --user_clang_toolchain option."""
-
-        clang_version = None
-        build_config_constants = f"{self._common()}/build.config.constants"
-        with open(build_config_constants) as f:
-            for line in f.read().splitlines():
-                if line.startswith("CLANG_VERSION="):
-                    clang_version = line.strip().split("=", 2)[1]
-        self.assertIsNotNone(clang_version)
-        clang_dir = f"prebuilts/clang/host/linux-x86/clang-{clang_version}"
-        clang_dir = os.path.realpath(clang_dir)
-
-        # Do not use --config=local to ensure the toolchain dependency is
-        # correct.
-        args = [
-            f"--user_clang_toolchain={clang_dir}",
-            f"//{self._common()}:kernel",
-        ] + _LTO_NONE
-        self._build(args)
 
     @unittest.skip("b/293357796")
     def test_dash_dash_help(self):
