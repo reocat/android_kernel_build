@@ -313,6 +313,13 @@ bool_flag(
 
 # Debug options
 
+# If true, enable debug.
+bool_flag(
+    name = "debug",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
+
 # Runs all script invocations with `set -x`
 # and a trap that executes `date` after every command.
 bool_flag(
