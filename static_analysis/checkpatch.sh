@@ -20,11 +20,26 @@ set -e
 
 export STATIC_ANALYSIS_SRC_DIR=$(dirname $(readlink -f $0))
 
-ROOT_DIR=$($(dirname $(dirname $(readlink -f $0)))/gettop.sh)
-pushd ${ROOT_DIR}
-source ${STATIC_ANALYSIS_SRC_DIR}/../_setup_env.sh
-export OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
-export DIST_DIR=$(readlink -m ${DIST_DIR:-${OUT_DIR}/dist})
+if [[ -n "${BUILD_WORKSPACE_DIRECTORY}" ]]; then
+  # In bazel environment. These variables should be set by the environment.
+  if [[ -z ${DIST_DIR} ]]; then
+    echo "DIST_DIR is not specified" >&2
+    exit 1
+  fi
+  if [[ -z ${KERNEL_DIR} ]]; then
+    echo "KERNEL_DIR is not specified" >&2
+    exit 1
+  fi
+  pushd ${BUILD_WORKSPACE_DIRECTORY}
+else
+  # Legacy path that depends on BUILD_CONFIG directly.
+  ROOT_DIR=$($(dirname $(dirname $(readlink -f $0)))/gettop.sh)
+  pushd ${ROOT_DIR}
+  source ${STATIC_ANALYSIS_SRC_DIR}/../_setup_env.sh
+  export OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
+  export DIST_DIR=$(readlink -m ${DIST_DIR:-${OUT_DIR}/dist})
+fi
+
 mkdir -p ${DIST_DIR}
 
 export KERNEL_DIR=$(readlink -m ${KERNEL_DIR})

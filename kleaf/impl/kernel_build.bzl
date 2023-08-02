@@ -29,6 +29,7 @@ load(":abi/force_add_vmlinux_utils.bzl", "force_add_vmlinux_utils")
 load(":abi/trim_nonlisted_kmi_utils.bzl", "trim_nonlisted_kmi_utils")
 load(":btf.bzl", "btf")
 load(":cache_dir.bzl", "cache_dir")
+load(":checkpatch.bzl", "checkpatch")
 load(
     ":common_providers.bzl",
     "GcovInfo",
@@ -421,6 +422,7 @@ def kernel_build(
     kmi_symbol_list_target_name = name + "_kmi_symbol_list"
     abi_symbollist_target_name = name + "_kmi_symbol_list_abi_symbollist"
     raw_kmi_symbol_list_target_name = name + "_raw_kmi_symbol_list"
+    checkpatch_name = name + "_checkpatch"
 
     if srcs == None:
         srcs = native.glob(
@@ -563,6 +565,11 @@ def kernel_build(
         **internal_kwargs
     )
 
+    checkpatch(
+        name = checkpatch_name,
+        env = env_target_name,
+    )
+
     _kernel_build(
         name = name,
         config = config_target_name,
@@ -663,6 +670,8 @@ def kernel_build(
             env = env_target_name,
             **kwargs
         )
+
+
 
     kernel_build_test(
         name = name + "_test",
