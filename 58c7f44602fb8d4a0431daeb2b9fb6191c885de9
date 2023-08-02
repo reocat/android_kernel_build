@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f219476_035dc13d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-02T18:16:42Z",
+      "side": 1,
+      "message": "@maennich@google.com for ideas.\n\nWe had another \"debug\" build on ci.android.com; e.g. kernel_aarch64_debug refers to kernel_aarch64 with --notrim. b/288459401\n\nSo looking for another name here...\n\n--\n\nEDIT: I agree, your build looks more \"debuggable\" than the kernel_aarch64_debug target on ci.android.com. Perhaps kernel_aarch64_debug should be changed to use this.",
+      "parentUuid": "b305d91d_2a78c821",
+      "revId": "58c7f44602fb8d4a0431daeb2b9fb6191c885de9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "924b4279_c2b32848",
         "filename": "kleaf/impl/kernel_config_settings.bzl",
         "patchSetId": 1

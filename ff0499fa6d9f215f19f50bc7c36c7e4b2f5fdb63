@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c751db5_c5fdc573",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-02T18:16:42Z",
+      "side": 1,
+      "message": "Add `\":debug_is_true\",`\n\nThis way, when one specifies `--debug`, it automatically implies `lto\u003dnone`.",
+      "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dcedcec_81bb332f",
+        "filename": "kleaf/impl/defconfig/debug_defconfig",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-02T18:16:42Z",
+      "side": 1,
+      "message": "huh?\n\nOnly `CONFIG_X\u003dy` and `# CONFIG_X is not set` is recognized. The `CONFIG_X\u003dy` will enable the config, and `# CONFIG_X is not set` will disable the config.\n\nThese lines won\u0027t have any effect. These lines won\u0027t touch the config; it will not enable nor disable the config, nor check values for them.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 37
+      },
+      "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69fda223_3a2f5097",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-02T18:16:42Z",
+      "side": 1,
+      "message": "Please file a bug on me, and add a TODO here to clean this up. \n\n\"The extra check in kernel_config.bzl that checks LTO\u003dnone when --debug / --kasan / --kcsan is set should be deleted, and checked with some other method.\"",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 23
+      },
+      "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bdfdf1f_341bdb0e",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-02T18:16:42Z",
+      "side": 1,
+      "message": "delete. This is not needed, because `_kernel_build()` doesn\u0027t use or set this attribute.",
+      "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
