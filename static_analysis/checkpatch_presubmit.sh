@@ -22,9 +22,13 @@ set -e
 
 export STATIC_ANALYSIS_SRC_DIR=$(dirname $(readlink -f $0))
 
-source ${STATIC_ANALYSIS_SRC_DIR}/../_setup_env.sh
-export OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
-export DIST_DIR=$(readlink -m ${DIST_DIR:-${OUT_DIR}/dist})
+if [[ -z ${DIST_DIR} ]]; then
+  echo "DIST_DIR is not specified" >&2
+  exit 1
+fi
+
+# FIXME infer KERNEL_DIR from bazel
+export KERNEL_DIR=common
 
 APPLIED_PROP_PATH=${DIST_DIR}/applied.prop
 BUILD_INFO_PATH=${DIST_DIR}/BUILD_INFO
@@ -80,6 +84,7 @@ set -e
 verify_file_exists ${APPLIED_PROP_PATH}
 
 # Check for external modules first
+# FIXME
 if EXT_MODULES=$(. ${ROOT_DIR}/build.config 2>/dev/null && echo ${EXT_MODULES}); then
   for EXT_MOD in ${EXT_MODULES}; do
     EXT_GIT_SHA1=$(sed -nE "s#^${EXT_MOD} .*([0-9a-f]{40}).*#\\1#p" "${APPLIED_PROP_PATH}")

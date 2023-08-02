@@ -22,16 +22,24 @@ export STATIC_ANALYSIS_SRC_DIR=$(dirname $(readlink -f $0))
 
 ROOT_DIR=$($(dirname $(dirname $(readlink -f $0)))/gettop.sh)
 pushd ${ROOT_DIR}
-source ${STATIC_ANALYSIS_SRC_DIR}/../_setup_env.sh
-export OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
-export DIST_DIR=$(readlink -m ${DIST_DIR:-${OUT_DIR}/dist})
+
+if [[ -z ${DIST_DIR} ]]; then
+  echo "DIST_DIR is not specified" >&2
+  exit 1
+fi
+if [[ -z ${KERNEL_DIR} ]]; then
+  echo "KERNEL_DIR is not specified" >&2
+  exit 1
+fi
+
 mkdir -p ${DIST_DIR}
 
 export KERNEL_DIR=$(readlink -m ${KERNEL_DIR})
 
 CHECKPATCH_PL_PATH="${KERNEL_DIR}/scripts/checkpatch.pl"
 GIT_SHA1="HEAD"
-PATCH_DIR="${OUT_DIR}/checkpatch/patches"
+PATCH_DIR="$(mktemp -d checkpatch_patches_XXXXXX)"
+trap "rm -rf ${PATCH_DIR}" EXIT
 IGNORELIST_FILE="${STATIC_ANALYSIS_SRC_DIR}/checkpatch_ignorelist"
 RESULTS_PATH=${DIST_DIR}/checkpatch.log
 RETURN_CODE=0
@@ -73,13 +81,6 @@ while [[ $# -gt 0 ]]; do
   esac
   shift
 done
-
-
-# Clean up from any previous run.
-if [[ -d "${PATCH_DIR}" ]]; then
-  rm -fr "${PATCH_DIR}"
-fi
-mkdir -p "${PATCH_DIR}"
 
 # Update ignorelist.
 if [[ -f "${IGNORELIST_FILE}" ]]; then
