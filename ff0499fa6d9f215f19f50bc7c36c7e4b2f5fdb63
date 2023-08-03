@@ -85,6 +85,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0743cc17_0363c2bd",
+        "filename": "kleaf/impl/defconfig/debug_defconfig",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-03T04:10:47Z",
+      "side": 1,
+      "message": "Ok.\n\nIs there a proper owner for this specific defconfig fragment? Would you add yourself as an owner? If so please add an OWNERS file in this directory with `per-file`. If not then the Kleaf team will have to own / maintain it.\n\n(Unresolving for visibility; no action is needed)",
+      "parentUuid": "816af12f_77e7e210",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 37
+      },
+      "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "69fda223_3a2f5097",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 7
@@ -120,6 +144,30 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "69fda223_3a2f5097",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 23
+      },
+      "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "523954cd_0d01adfa",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-03T04:10:47Z",
+      "side": 1,
+      "message": "Did you file a bug and add a TODO here?",
+      "parentUuid": "8b7f3b88_c5bdb06b",
       "range": {
         "startLine": 250,
         "startChar": 0,
