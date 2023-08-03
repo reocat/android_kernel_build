@@ -163,6 +163,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d809a2e_43566cd6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-08-03T16:36:57Z",
+      "side": 1,
+      "message": "We need a target that is not trimmed. It is used for debugging while the symbol list updates are pending in AOSP. A module can safely use all symbols of the current _debug kernel while it gets denied for a symbol not allowlisted otherwise.\n\nIn any case, a change of this scale needs 2 weeks heads-up in the newsletter. I am sure downstream users of ci.android.com depend on the _debug targets.",
+      "parentUuid": "70f46cc4_e4c8b2a8",
+      "revId": "58c7f44602fb8d4a0431daeb2b9fb6191c885de9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "924b4279_c2b32848",
         "filename": "kleaf/impl/kernel_config_settings.bzl",
         "patchSetId": 1
