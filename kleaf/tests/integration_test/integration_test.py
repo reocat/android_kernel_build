@@ -109,6 +109,13 @@ class Exec(object):
         popen = subprocess.Popen(args, **kwargs)
         return popen
 
+    @staticmethod
+    def check_errors(args: list[str], **kwargs) -> str:
+        """Returns errors of a shell command"""
+        kwargs.setdefault("text", True)
+        sys.stderr.write(f"+ {' '.join(args)}\n")
+        return subprocess.run(
+            args, check = False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, **kwargs).stdout
 
 class KleafIntegrationTestBase(unittest.TestCase):
 
@@ -142,6 +149,19 @@ class KleafIntegrationTestBase(unittest.TestCase):
         args += command_args
 
         return Exec.check_output(args, **kwargs)
+
+    def _check_errors(self, command: str, command_args: list[str],
+                      use_bazelrc=True,
+                      **kwargs) -> str:
+        """Returns errors of a bazel command."""
+
+        args = [str(_BAZEL)]
+        if use_bazelrc:
+            args.append(f"--bazelrc={self._bazel_rc.name}")
+        args.append(command)
+        args += command_args
+
+        return Exec.check_errors(args, **kwargs)
 
     def _popen(self, command: str, command_args: list[str], **kwargs) \
             -> subprocess.Popen:
@@ -238,9 +258,37 @@ class KleafIntegrationTestBase(unittest.TestCase):
         """Returns the common package."""
         return "common"
 
+
+
+class KleafIntegrationTestSymbolList(KleafIntegrationTestBase):
+
+    def test_non_exported_symbol_fails(self):
+        """Tests the following:
+
+        - Validates a non-exported symbol makes the build fail.
+          For this particular example use db845c mixed build.
+
+        This test requires a branch with ABI monitoring enabled.
+        """
+
+        # Select an arbitrary driver and unexport a symbols.
+        self.driver_file = f"{self._common()}/drivers/i2c/i2c-core-base.c"
+        self.restore_file_after_test(self.driver_file)
+        self.replace_lines(self.driver_file,
+                           lambda x: re.search("EXPORT_SYMBOL_GPL\(i2c_adapter_type\);", x),
+                           [""])
+
+        # Check for errors in the logs.
+        output = self._check_errors("build", [f"//{self._common()}:db845c", "--config=fast"])
+
+        def matching_line(line): return re.match(
+             r"^ERROR: modpost: \"i2c_adapter_type\" \[.*\] undefined!$",
+             line)
+        self.assertTrue(
+             any([matching_line(line) for line in output.splitlines()]))
+
+
 # Slow integration tests belong to their own shard.
-
-
 class KleafIntegrationTestShard1(KleafIntegrationTestBase):
 
     def test_incremental_switch_local_and_lto(self):
