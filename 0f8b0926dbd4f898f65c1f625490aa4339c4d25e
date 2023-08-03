@@ -16,6 +16,24 @@
       "message": "Question:\n\n- How quick is this test? If \u003c1min you can move it to QuickIntegrationTest\n- Is this the only way to test this? Is there a way to write this test in Bazel?\n\nAlso:\n- Don\u0027t forget to add GCL changes as well (FYI: cl/553214991)",
       "revId": "0f8b0926dbd4f898f65c1f625490aa4339c4d25e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdc697dd_823f1add",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-03T20:41:32Z",
+      "side": 1,
+      "message": "1. I\u0027d like to keep this separate so it can be added only in branches where ABI monitoring is enabled, otherwise the trimming and KMI strict mode won\u0027t be enforced.\n1. Let me think about this a little bit more, I though this was a good place for the test, but it might be easier using just Starlark.\n1. ACK I\u0027ll add it to the appropriate branches once is merged, one thing I noticed is that because the branch freeze already happened we might not have an adequate branch for this test.",
+      "parentUuid": "cbabb60d_5125a29c",
+      "revId": "0f8b0926dbd4f898f65c1f625490aa4339c4d25e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
