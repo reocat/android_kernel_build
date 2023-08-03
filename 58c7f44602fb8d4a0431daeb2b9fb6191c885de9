@@ -107,6 +107,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc6372ec_b74b0ced",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1123518
+      },
+      "writtenOn": "2023-08-03T01:05:53Z",
+      "side": 1,
+      "message": "Yes, it\u0027s discussed in b/284012861. The --notrim build should be renamed as kernel_aarch64_notrim. And kernel_aarch64_debug should be the real debug target.",
+      "parentUuid": "5f219476_035dc13d",
+      "revId": "58c7f44602fb8d4a0431daeb2b9fb6191c885de9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "924b4279_c2b32848",

@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fa21e1c_131c604d",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1123518
+      },
+      "writtenOn": "2023-08-03T01:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c751db5_c5fdc573",
+      "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3dcedcec_81bb332f",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-08-02T18:16:42Z",
       "side": 1,
       "message": "huh?\n\nOnly `CONFIG_X\u003dy` and `# CONFIG_X is not set` is recognized. The `CONFIG_X\u003dy` will enable the config, and `# CONFIG_X is not set` will disable the config.\n\nThese lines won\u0027t have any effect. These lines won\u0027t touch the config; it will not enable nor disable the config, nor check values for them.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 37
+      },
+      "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "816af12f_77e7e210",
+        "filename": "kleaf/impl/defconfig/debug_defconfig",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1123518
+      },
+      "writtenOn": "2023-08-03T01:05:53Z",
+      "side": 1,
+      "message": "I am still experimenting the symbol lists. The original config from common/kernel/configs/debug.config can\u0027t even build. Some symbols can\u0027t build when changing from \"y\" to \"is not set\". The current config is the one I am able to build and boot up a device. Let\u0027s start from here and leave the not working ones in comment so it will be easier to turn them on gradually.",
+      "parentUuid": "3dcedcec_81bb332f",
       "range": {
         "startLine": 16,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b7f3b88_c5bdb06b",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1123518
+      },
+      "writtenOn": "2023-08-03T01:05:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "69fda223_3a2f5097",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 23
+      },
+      "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bdfdf1f_341bdb0e",
@@ -77,6 +143,24 @@
       "writtenOn": "2023-08-02T18:16:42Z",
       "side": 1,
       "message": "delete. This is not needed, because `_kernel_build()` doesn\u0027t use or set this attribute.",
+      "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "159133f0_b0d603e6",
+        "filename": "kleaf/impl/kernel_config_settings.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1123518
+      },
+      "writtenOn": "2023-08-03T01:05:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bdfdf1f_341bdb0e",
       "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
