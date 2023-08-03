@@ -238,6 +238,26 @@ class KleafIntegrationTestBase(unittest.TestCase):
         """Returns the common package."""
         return "common"
 
+
+
+class KleafIntegrationTestSymbolList(KleafIntegrationTestBase):
+
+    def test_non_exported_symbol_fails(self):
+        """Tests the following:
+
+        - Validates a non-exported symbol makes the build fail.
+          For this particular example use db845c mixed build.
+
+        This test uses a branch with ABI monitoring enabled.
+        """
+        # Select an arbitrary driver and unexport their symbols.
+        self.driver_file = f"{self._common()}/drivers/i2c/i2c-core-base.c"
+        self.restore_file_after_test(self.driver_file)
+        self.replace_lines(self.driver_file,
+                           lambda x: re.search("EXPORT_SYMBOL_GPL(i2c_adapter_type);", x),
+                           [])
+        self._build([f"//{self._common()}:db845c"] + _LOCAL + ["--lto=fast"])
+
 # Slow integration tests belong to their own shard.
 
 
