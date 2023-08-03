@@ -109,6 +109,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10c8bdb2_b0c97243",
+        "filename": "kleaf/impl/defconfig/debug_defconfig",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1123518
+      },
+      "writtenOn": "2023-08-03T17:00:04Z",
+      "side": 1,
+      "message": "My team will not own this build target, but we will own the tests on this build target. The debug build target should be owned by your team in my opinion just like other targets. After the presubmit build/test is on, it will be easier for everyone to contribute to this target.",
+      "parentUuid": "0743cc17_0363c2bd",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 37
+      },
+      "revId": "ff0499fa6d9f215f19f50bc7c36c7e4b2f5fdb63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "69fda223_3a2f5097",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 7
