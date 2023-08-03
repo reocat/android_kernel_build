@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eecd2b18_adb41f16",
+        "filename": "kleaf/docs/kernel_config.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-03T10:59:14Z",
+      "side": 1,
+      "message": "IMO this comment would be better in `kleaf/BUILD.bazel` (where the flag is defined), because the [bazel wrapper](https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/bazel.py;l\u003d470-477) uses that to auto-generate some help info.",
+      "range": {
+        "startLine": 160,
+        "startChar": 14,
+        "endLine": 160,
+        "endChar": 97
+      },
+      "revId": "875f4b3e3758eff0af8dcca5156823c331e7b3c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
