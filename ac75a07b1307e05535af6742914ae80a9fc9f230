@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a344f76e_009ca29e",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-03T17:19:26Z",
+      "side": 1,
+      "message": "The docstring needs to be like this:\n\n```\n\"\"\"one line summary\n\ncontinue here after an empty line\n\nArgs:\n    ...\nReturns:\n    ...\n\"\"\"\n```\n\nSo please move the TODO to a separate comment",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 39
+      },
+      "revId": "ac75a07b1307e05535af6742914ae80a9fc9f230",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
