@@ -34,6 +34,24 @@
       "parentUuid": "cbabb60d_5125a29c",
       "revId": "0f8b0926dbd4f898f65c1f625490aa4339c4d25e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06362119_c5a0065e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-04T00:06:55Z",
+      "side": 1,
+      "message": "re #1: This makes sense to me. Could you please add a comment there to say that this test is not intended to be run on branches that have not yet enabled ABI monitoring? Or have some checking to skip this test on the mainline branch (e.g. use some `bazel query` on attributes of `//common:kernel_aarch64_abi` to determine whether ABI checks are enforced)\n\nre #2: If there\u0027s a way to avoid adding more integration tests, it would be more easily to be parallelized. For integration tests, we are currently manually maintaining several shards. So the maintenance cost for integration tests are high.\n\nHowever, if you absolutely have to modify the tree, then I think this is the best place of the test for now.",
+      "parentUuid": "fdc697dd_823f1add",
+      "revId": "0f8b0926dbd4f898f65c1f625490aa4339c4d25e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
