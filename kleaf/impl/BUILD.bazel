@@ -289,6 +289,18 @@ py_test(
     ],
 )
 
+sh_binary(
+    name = "checkpatch",
+    srcs = [
+        "checkpatch.sh",
+    ],
+    # All checkpatch rules from any package can see this
+    visibility = ["//visibility:public"],
+    data = [
+        "//build/kernel/static_analysis:checkpatch_ignorelist",
+    ],
+)
+
 kernel_platform_toolchain(
     name = "kernel_toolchain_target",
 )
