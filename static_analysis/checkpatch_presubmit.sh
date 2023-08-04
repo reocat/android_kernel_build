@@ -20,15 +20,6 @@
 
 set -e
 
-export STATIC_ANALYSIS_SRC_DIR=$(dirname $(readlink -f $0))
-
-source ${STATIC_ANALYSIS_SRC_DIR}/../_setup_env.sh
-export OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
-export DIST_DIR=$(readlink -m ${DIST_DIR:-${OUT_DIR}/dist})
-
-APPLIED_PROP_PATH=${DIST_DIR}/applied.prop
-BUILD_INFO_PATH=${DIST_DIR}/BUILD_INFO
-
 verify_file_exists() {
   if [[ ! -f $1 ]]; then
     echo "Missing $1"
@@ -46,6 +37,10 @@ while [[ $# -gt 0 ]]; do
     BUILD_ID="$2"
     shift
     ;;
+  --dist_dir)
+    DIST_DIR="$2"
+    shift
+    ;;
   --help)
     echo "Checks whether given build is for presubmit. If so, extract git_sha1"
     echo "from repo.prop and invoke checkpatch.sh."
@@ -61,6 +56,33 @@ while [[ $# -gt 0 ]]; do
   esac
   shift
 done
+
+if [[ -n "${BUILD_WORKSPACE_DIRECTORY}" ]]; then
+  # In bazel env
+  if [[ ! -x "${GIT}" ]]; then
+    echo "ERROR: GIT is not set!" >&2
+    exit 1
+  fi
+  CHECKPATCH_SH=$(dirname $0)/checkpatch.sh
+else
+  # Deprecated usage via build.config
+  echo "WARNING: Invoking checkpatch_presubmit.sh directly is deprecated." >&2
+  echo "  Please refer to build/kernel/kleaf/docs/checkpatch.md" >&2
+
+  export STATIC_ANALYSIS_SRC_DIR=$(dirname $(readlink -f $0))
+
+  source ${STATIC_ANALYSIS_SRC_DIR}/../_setup_env.sh
+  export OUT_DIR=$(readlink -m ${OUT_DIR:-${ROOT_DIR}/out/${BRANCH}})
+  DIST_DIR=$(readlink -m ${DIST_DIR:-${OUT_DIR}/dist})
+
+  GIT=git
+  CHECKPATCH_SH=${STATIC_ANALYSIS_SRC_DIR}/checkpatch.sh
+fi
+
+export DIST_DIR
+
+APPLIED_PROP_PATH=${DIST_DIR}/applied.prop
+BUILD_INFO_PATH=${DIST_DIR}/BUILD_INFO
 
 if [[ -z $BUILD_ID ]]; then
   echo "WARNING: No --bid supplied. Assuming not presubmit build. Exiting."
@@ -85,10 +107,10 @@ if EXT_MODULES=$(. ${ROOT_DIR}/build.config 2>/dev/null && echo ${EXT_MODULES});
     EXT_GIT_SHA1=$(sed -nE "s#^${EXT_MOD} .*([0-9a-f]{40}).*#\\1#p" "${APPLIED_PROP_PATH}")
     if [[ -n "${EXT_GIT_SHA1}" ]]; then
       # Skip merge commits
-      if [ $(git -C ${EXT_MOD} show --no-patch --format="%p" ${EXT_GIT_SHA1} | wc -w) -gt 1 ] ; then
+      if [ $($GIT -C ${EXT_MOD} show --no-patch --format="%p" ${EXT_GIT_SHA1} | wc -w) -gt 1 ] ; then
         echo "Merge commit detected for ${EXT_MOD}. Skipping this check."
       else
-        ${STATIC_ANALYSIS_SRC_DIR}/checkpatch.sh --git_sha1 ${EXT_GIT_SHA1} \
+        ${CHECKPATCH_SH} --git_sha1 ${EXT_GIT_SHA1} \
           --ext_mod ${EXT_MOD} ${FORWARDED_ARGS[*]}
       fi
     fi
@@ -108,16 +130,16 @@ fi
 # from other common kernel repositories where _this_ check has been run as part
 # of the developement process.
 if [ "${KERNEL_DIR}" == "common" ]; then
-    if [ $(git -C ${KERNEL_DIR} show --no-patch --format="%p" ${GIT_SHA1} | wc -w) -gt 1 ] ; then
+    if [ $($GIT -C ${KERNEL_DIR} show --no-patch --format="%p" ${GIT_SHA1} | wc -w) -gt 1 ] ; then
         echo "Merge commit detected for a ${KERNEL_DIR} kernel. Skipping this check."
         exit 0
     fi
 
-    SUBJECT=$(git -C ${KERNEL_DIR} show --no-patch --format="%s" ${GIT_SHA1})
+    SUBJECT=$($GIT -C ${KERNEL_DIR} show --no-patch --format="%s" ${GIT_SHA1})
     if [[ "$SUBJECT" =~ ^UPSTREAM|^BACKPORT|^FROMGIT ]]; then
         echo "Not linting upstream patches for a ${KERNEL_DIR} kernel. Skipping this check."
         exit 0
     fi
 fi
 
-${STATIC_ANALYSIS_SRC_DIR}/checkpatch.sh --git_sha1 ${GIT_SHA1} ${FORWARDED_ARGS[*]}
+${CHECKPATCH_SH} --git_sha1 ${GIT_SHA1} ${FORWARDED_ARGS[*]}
