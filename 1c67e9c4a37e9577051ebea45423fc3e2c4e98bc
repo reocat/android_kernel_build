@@ -1,0 +1,51 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000050313934",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2693302?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "1db35f85_302916c1",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/BUILD.bazel",
+              "range": {
+                "startLine": 297,
+                "startChar": 0,
+                "endLine": 299,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/impl/BUILD.bazel",
+              "range": {
+                "startLine": 302,
+                "startChar": 0,
+                "endLine": 302,
+                "endChar": 0
+              },
+              "replacement": "    # All checkpatch rules from any package can see this\n    visibility \u003d [\"//visibility:public\"],\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "2d282df1_86f3c5c4",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-08-04T06:48:35Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "1c67e9c4a37e9577051ebea45423fc3e2c4e98bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
