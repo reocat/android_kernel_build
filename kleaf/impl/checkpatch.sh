@@ -200,6 +200,7 @@ PATCH_FILE="${PATCH_DIR}/*.patch"
 
 if ! $(stat -t ${PATCH_FILE} >/dev/null 2>&1); then
   echo "Patch empty (probably due to suppressions). Skipping analysis."
+  popd
   exit 0
 fi
 
