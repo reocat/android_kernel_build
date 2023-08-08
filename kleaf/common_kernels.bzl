@@ -167,6 +167,13 @@ def _default_target_configs():
             # Assume BUILD_GKI_ARTIFACTS=1
             "build_gki_artifacts": True,
             "gki_boot_img_sizes": gki_boot_img_sizes,
+            "deprecation": """{debug_target} is deprecated.
+    Consider building {main_target} with:
+        * --notrim to disable trimming, or
+        * --debug to enable additional debug options.""".format(
+                debug_target = native.package_relative_label("kernel_aarch64_debug"),
+                main_target = native.package_relative_label("kernel_aarch64"),
+            ),
         }),
         "kernel_riscv64": dicts.add(riscv64_common, {
             # Assume TRIM_NONLISTED_KMI="" in build.config.gki.riscv64
@@ -176,6 +183,13 @@ def _default_target_configs():
         "kernel_x86_64_debug": dicts.add(x86_64_common, {
             "trim_nonlisted_kmi": False,
             "kmi_symbol_list_strict_mode": False,
+            "deprecation": """{debug_target} is deprecated.
+    Consider building {main_target} with:
+        * --notrim to disable trimming, or
+        * --debug to enable additional debug options.""".format(
+                debug_target = native.package_relative_label("kernel_x86_64_debug"),
+                main_target = native.package_relative_label("kernel_x86_64"),
+            ),
         }),
     }
 
