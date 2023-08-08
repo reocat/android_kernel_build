@@ -46,6 +46,30 @@
       },
       "revId": "862a0191e14f8b82a73a08e8c5daa0d05062a410",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6939669_5cba9e35",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-08T21:50:15Z",
+      "side": 1,
+      "message": "CL:2699534",
+      "parentUuid": "4e3412b9_ab95fa85",
+      "range": {
+        "startLine": 319,
+        "startChar": 37,
+        "endLine": 319,
+        "endChar": 42
+      },
+      "revId": "862a0191e14f8b82a73a08e8c5daa0d05062a410",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
