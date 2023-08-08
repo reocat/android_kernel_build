@@ -22,6 +22,30 @@
       },
       "revId": "783a71ffe0571a88ae733be3916035889bbe41f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04a09cf2_007e3716",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-08T20:07:10Z",
+      "side": 1,
+      "message": "(so it shows up as \"skipped\" instead of \"passed\" in test frameworks)",
+      "parentUuid": "f28f5754_024fe1d0",
+      "range": {
+        "startLine": 285,
+        "startChar": 10,
+        "endLine": 285,
+        "endChar": 15
+      },
+      "revId": "783a71ffe0571a88ae733be3916035889bbe41f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
