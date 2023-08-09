@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "476cc5ae_4f88059d",
+        "filename": "static_analysis/checkpatch_presubmit_bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-09T13:38:10Z",
+      "side": 1,
+      "message": "nit: Log the `bid`.",
+      "range": {
+        "startLine": 111,
+        "startChar": 69,
+        "endLine": 111,
+        "endChar": 70
+      },
+      "revId": "5c11859f1fc55d391c6def5b5657ce43682b15b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
