@@ -211,6 +211,53 @@
       },
       "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "addf2e08_d461e3e2",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:34:57Z",
+      "side": 1,
+      "message": "nit: Also instead of dup(), IMO it is cleaner to fold this into L434 (`async def run(command, env, filter_regex)`), because both postprocess the stdout/stderr stream.\n\n(But maybe I am just not a fan of execve in general)",
+      "parentUuid": "9ec0e33b_b82cfbaf",
+      "range": {
+        "startLine": 436,
+        "startChar": 20,
+        "endLine": 436,
+        "endChar": 34
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3530638_7c0f63a9",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:34:57Z",
+      "side": 1,
+      "message": "does python have a named constant for this?",
+      "range": {
+        "startLine": 439,
+        "startChar": 36,
+        "endLine": 439,
+        "endChar": 37
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
