@@ -297,7 +297,6 @@ def _config_kasan(ctx):
         _config.enable("KASAN"),
         _config.enable("KASAN_INLINE"),
         _config.enable("KCOV"),
-        _config.enable("PANIC_ON_WARN_DEFAULT_ENABLE"),
         _config.disable("RANDOMIZE_BASE"),
         _config.disable("KASAN_OUTLINE"),
         _config.set_val("FRAME_WARN", 0),
