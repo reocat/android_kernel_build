@@ -66,6 +66,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56323c47_c6624cb1",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:30:46Z",
+      "side": 1,
+      "message": "Another helpful target would be dist targets, though they are harder to query because the implementation is a macro over embedded_exec over py_binary",
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ded3a322_764c78fa",
         "filename": "kleaf/bazel.py",
         "patchSetId": 3
