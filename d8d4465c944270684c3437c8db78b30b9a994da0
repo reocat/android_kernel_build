@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a81705cc_0b04ce38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:05:57Z",
+      "side": 1,
+      "message": "This is only going to affect android15 and later. I have already put this on GKI newsletter.\n\nThis change does not \"break\" any builds, just prints a warning message. See GKI newsletter for details.",
+      "parentUuid": "293f72e7_448b2f72",
+      "revId": "d8d4465c944270684c3437c8db78b30b9a994da0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "14ef2176_fd6f8e92",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 3
