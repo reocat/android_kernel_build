@@ -41,6 +41,17 @@ _CONFIG_PATTERN = re.compile(
     r"^--config=(?P<config>[a-z_]+):\s*(?P<description>.*)$"
 )
 
+# Sync with the following files:
+#   kleaf/impl/kernel_build.bzl
+_QUERY_TARGETS_ARG = 'kind("kernel_build rule", //... except attr("tags", \
+    "manual", //...) except //.source_date_epoch_dir/... except //out/...)'
+
+# Sync with the following files:
+#   kleaf/impl/abi/abi_update.bzl
+#   kleaf/impl/abi/kernel_abi.bzl
+_QUERY_ABI_TARGETS_ARG = 'kind("(update_source_file|abi_update) rule", //... except attr("tags", \
+    "manual", //...) except //.source_date_epoch_dir/... except //out/...)'
+
 
 def _require_absolute_path(p: str) -> pathlib.Path:
     p = pathlib.Path(p)
@@ -304,6 +315,9 @@ class BazelWrapper(object):
         bazel_jdk_path = f"{self.root_dir}/{_BAZEL_JDK_REL_PATH}"
         final_args = [self.bazel_path] + self.transformed_startup_options
 
+        if self.known_startup_options.help or self.command == "help":
+            self._print_help()
+
         if not self.known_startup_options.help:
             final_args += [
                 f"--server_javabase={bazel_jdk_path}",
@@ -361,6 +375,20 @@ class BazelWrapper(object):
                 f"{self.root_dir}/{_BAZEL_RC_DIR}/{f}")
             bazelrc_parser.add_to(config_group, root_dir=self.root_dir)
 
+        # Additional helper queries for target discovery.
+        kleaf_group = parser.add_argument_group(
+            title="Kleaf Help - Query commands" + \
+                "\nusage: bazel help kleaf [<command>]",
+        )
+        kleaf_group.add_argument(
+            "targets",
+            help = "List kernel_build targets under current WORKSPACE",
+        )
+        kleaf_group.add_argument(
+            "abi_targets",
+            help = "List ABI related targets under current WORKSPACE",
+        )
+
         parser.add_argument_group(
             title="Target patterns",
             description="$ bazel help target-syntax"
@@ -369,21 +397,28 @@ class BazelWrapper(object):
         parser.print_help()
 
     def _print_help(self):
-        print("===============================")
 
         show_kleaf_help_menu = self.command == "help" and self.transformed_command_args and \
             self.transformed_command_args[0] == "kleaf"
 
-        if show_kleaf_help_menu:
+        # Handle kernel_build and kernel_abi_update targets.
+        show_kleaf_targets = show_kleaf_help_menu and \
+            len(self.transformed_command_args) > 1  and \
+            (self.transformed_command_args[1] in ["targets", "abi-targets", "abi_targets"])
+
+        if show_kleaf_targets:
+            self._rebuild_kleaf_help_args()
+            return
+        elif show_kleaf_help_menu:
+            print("===============================")
             print("Kleaf help menu:")
             self._print_kleaf_help()
         else:
+            print("===============================")
             print("Kleaf help menu:")
             print("  $ bazel help kleaf")
 
-        print()
         print("===============================")
-
         if show_kleaf_help_menu:
             print("Native bazel help menu:")
             print("  $ bazel help")
@@ -391,11 +426,30 @@ class BazelWrapper(object):
         else:
             print("Native bazel help menu:")
 
+    def _rebuild_kleaf_help_args(self):
+        # Transform the command to a query
+        self.command = "query"
+        _kleaf_help_command = self.transformed_command_args[1]
+        # Inform about the ignored arguments if any.
+        _ignored_args = self.transformed_command_args[2:]
+        if _ignored_args:
+            print("INFO: Ignoring arguments:", _ignored_args)
+        # Supress errors from malformed packages go away.
+        # e.g. clang packages with Soong dependencies, //external packages, etc.
+        self.transformed_command_args = [
+            "--keep_going",
+            "--ui_event_filters=-error",
+            "--noshow_progress"
+        ]
+        if _kleaf_help_command == "targets":
+            print("Kleaf available targets:")
+            self.transformed_command_args.append(_QUERY_TARGETS_ARG)
+        else:
+            print("Kleaf ABI update available targets:")
+            self.transformed_command_args.append(_QUERY_ABI_TARGETS_ARG)
+
     def run(self):
         final_args = self._build_final_args()
-
-        if self.known_startup_options.help or self.command == "help":
-            self._print_help()
 
         if self.known_args.strip_execroot:
             import asyncio
