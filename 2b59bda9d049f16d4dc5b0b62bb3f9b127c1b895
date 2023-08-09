@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ec4f161_82eb61f0",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:24:23Z",
+      "side": 1,
+      "message": "nitty nitty nit: I think this is a partial match (similar to re.search) so you can remove the prefix `_`. This is so that we aren\u0027t relying on the implementation detail of kernel_build (the fact that it is a macro wrapping a rule)",
+      "range": {
+        "startLine": 44,
+        "startChar": 28,
+        "endLine": 44,
+        "endChar": 41
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edfb616b_19bd5bd6",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:24:23Z",
+      "side": 1,
+      "message": "TIL",
+      "range": {
+        "startLine": 45,
+        "startChar": 57,
+        "endLine": 45,
+        "endChar": 73
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ded3a322_764c78fa",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:24:23Z",
+      "side": 1,
+      "message": "I think a more useful one for partners is to look for update_symbol_list.\n\nOnly partners that does out-of-tree ABI monitoring, and the Android Systems team, would be interested in this. This has less value but I think it is okay to be kept here.\n\n---\n\nnit: \n\nAlso, please add a `# Sync with abi_update.bzl` here and `# Sync with bazel.py` in abi_update.bzl, right above the `abi_update \u003d rule(` line",
+      "range": {
+        "startLine": 47,
+        "startChar": 32,
+        "endLine": 47,
+        "endChar": 42
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81495951_fb4073ae",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:24:23Z",
+      "side": 1,
+      "message": "nit: Consider moving this into a new function, and maybe combine with `_print_help` below, so we don\u0027t parse `bazel help kleaf` in different places.",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 91
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "864de2db_10bfe0e4",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:24:23Z",
+      "side": 1,
+      "message": "I think it is better to clear the `transformed_command_args` list before overwriting. One could run `bazel help kleaf targets abc def ghi` for example, and we should gracefully handle it (either print an error or ignore the trailing arguments)",
+      "range": {
+        "startLine": 327,
+        "startChar": 17,
+        "endLine": 327,
+        "endChar": 41
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb64fe68_9d14e5fd",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:24:23Z",
+      "side": 1,
+      "message": "nit: mention \"e.g. clang packages with Soong dependencies, //external packages\"",
+      "range": {
+        "startLine": 334,
+        "startChar": 35,
+        "endLine": 334,
+        "endChar": 53
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83690e97_baff9071",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:24:23Z",
+      "side": 1,
+      "message": "Mention the new special help menus somewhere around here or below",
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ec0e33b_b82cfbaf",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T21:24:23Z",
+      "side": 1,
+      "message": "_suppress_stderr?\n\nI thought that _ignore_errors means the return code is not checked, but it looks like it is for stderr stream.\n\nAlso, does `--ui_event_filters\u003d-stderr` help? This is from `--ui_event_filters\u003d-info,-stdout,-stderr --noshow_progress` in https://bazel.build/docs/user-manual#filtering_logging_outputs_from_bazel",
+      "range": {
+        "startLine": 436,
+        "startChar": 20,
+        "endLine": 436,
+        "endChar": 34
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
