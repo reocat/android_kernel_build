@@ -41,6 +41,12 @@ _CONFIG_PATTERN = re.compile(
     r"^--config=(?P<config>[a-z_]+):\s*(?P<description>.*)$"
 )
 
+_QUERY_TARGETS_ARG = 'kind("_kernel_build rule", //... except attr("tags", \
+    "manual", //...) except //.source_date_epoch_dir/... except //out/...)'
+
+_QUERY_ABI_TARGETS_ARG = 'kind("abi_update rule", //... except attr("tags", \
+    "manual", //...) except //.source_date_epoch_dir/... except //out/...)'
+
 
 def _require_absolute_path(p: str) -> pathlib.Path:
     p = pathlib.Path(p)
@@ -103,7 +109,6 @@ class BazelWrapper(object):
 
         self.command_args, self.dash_dash, self.target_patterns = _partition(remaining_args,
                                                                              dash_dash_idx)
-
         self._parse_startup_options()
         self._parse_command_args()
 
@@ -309,6 +314,25 @@ class BazelWrapper(object):
                 f"--server_javabase={bazel_jdk_path}",
                 f"--bazelrc={self.root_dir}/{_BAZEL_RC_NAME}",
             ]
+
+        # Handle kernel_build and kernel_abi_update targets.
+        show_kleaf_targets = self.command == "help" and self.transformed_command_args and \
+            len(self.transformed_command_args) > 1  and \
+            self.transformed_command_args[0] == "kleaf" and \
+            (self.transformed_command_args[1] in ["targets", "abi-targets", "abi_targets"])
+
+        if show_kleaf_targets:
+            self.command = "query"
+            self.transformed_command_args[0] = "--keep_going"
+            if self.transformed_command_args[1] == "targets":
+                print("Kleaf available targets:")
+                self.transformed_command_args[1] = _QUERY_TARGETS_ARG
+            else:
+                print("Kleaf ABI update available targets:")
+                self.transformed_command_args[1] = _QUERY_ABI_TARGETS_ARG
+            # Make the errors from malformed packages go away.
+            self._ignore_errors = True
+
         if self.command is not None:
             final_args.append(self.command)
         final_args += self.transformed_command_args
@@ -408,6 +432,10 @@ class BazelWrapper(object):
                     f"{self.absolute_user_root}" + r"/\S+?/execroot/__main__/")
             asyncio.run(run(final_args, self.env, filter_regex))
         else:
+            if self._ignore_errors:
+                # Suppress errors when doing queries.
+                fd_devnull = os.open(os.devnull, os.O_WRONLY)
+                os.dup2(fd_devnull, 2)
             os.execve(path=self.bazel_path, argv=final_args, env=self.env)
 
 
