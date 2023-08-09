@@ -22,6 +22,30 @@
       },
       "revId": "d8d052ec7130b72dd6dd6627d069909487abcea6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7180d697_d6a81107",
+        "filename": "kleaf/docs/checkpatch.md",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T20:48:25Z",
+      "side": 1,
+      "message": "IMO referring to `//common` in documentation is fine",
+      "parentUuid": "68d098c3_73aa6074",
+      "range": {
+        "startLine": 38,
+        "startChar": 23,
+        "endLine": 38,
+        "endChar": 29
+      },
+      "revId": "d8d052ec7130b72dd6dd6627d069909487abcea6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
