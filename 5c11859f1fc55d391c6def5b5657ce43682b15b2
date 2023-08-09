@@ -22,6 +22,30 @@
       },
       "revId": "5c11859f1fc55d391c6def5b5657ce43682b15b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcc3c594_a9d47ef2",
+        "filename": "static_analysis/checkpatch_presubmit_bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T20:47:33Z",
+      "side": 1,
+      "message": "It is not logged in checkpatch_presubmit.sh either, so I might do that later instead.",
+      "parentUuid": "476cc5ae_4f88059d",
+      "range": {
+        "startLine": 111,
+        "startChar": 69,
+        "endLine": 111,
+        "endChar": 70
+      },
+      "revId": "5c11859f1fc55d391c6def5b5657ce43682b15b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
