@@ -22,6 +22,30 @@
       },
       "revId": "76138063bb3701ac725b5ac7319c001b4a4e7cf1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93c5ce51_111c4132",
+        "filename": "static_analysis/checkpatch_presubmit_bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T20:47:01Z",
+      "side": 1,
+      "message": "This is left intentionally so people know that they can uncomment this line for debug output",
+      "parentUuid": "011e5c91_8033409f",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 28
+      },
+      "revId": "76138063bb3701ac725b5ac7319c001b4a4e7cf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
