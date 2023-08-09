@@ -16,6 +16,24 @@
       "message": "I think I should cherry-pick this to main-kernel-build-2023 for consistency",
       "revId": "f9376ccd7455bca051ba51001b16c8a72a97345c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5023cf32_82d97569",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T23:35:48Z",
+      "side": 1,
+      "message": "I don\u0027t need to, because currently, conditions:default is equivalent to lto_is_default. Until I modify the definition is lto_is_none and lto_is_default, this is okay.",
+      "parentUuid": "06e7804d_1b2e39c2",
+      "revId": "f9376ccd7455bca051ba51001b16c8a72a97345c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
