@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "293f72e7_448b2f72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1069543
+      },
+      "writtenOn": "2023-08-09T21:03:39Z",
+      "side": 1,
+      "message": "Yifan, please add a note on the whatsnew page to announce this to partners before merging this. Is this just going to affect android15 and later?",
+      "revId": "d8d4465c944270684c3437c8db78b30b9a994da0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "14ef2176_fd6f8e92",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 3
