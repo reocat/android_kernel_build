@@ -70,6 +70,30 @@
       },
       "revId": "bed0010ef9ec3ba4637096886516b3909f06bde0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57f3618e_0c4ad13e",
+        "filename": "kleaf/impl/defconfig/kasan_defconfig",
+        "patchSetId": 20
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-09T22:52:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c77e120_e1480da9",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 37
+      },
+      "revId": "bed0010ef9ec3ba4637096886516b3909f06bde0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
