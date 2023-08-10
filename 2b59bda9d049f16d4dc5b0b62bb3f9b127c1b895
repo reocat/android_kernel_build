@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "aaf80353_abc8a882",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-10T15:37:55Z",
+      "side": 1,
+      "message": "Unfortunately a cold start (i.e. after `bazel clean --expunge`) takes in avg `\u003e20s`, after that `\u003c2s`.",
+      "parentUuid": "5137d8c3_310142b0",
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "9ec4f161_82eb61f0",
         "filename": "kleaf/bazel.py",
         "patchSetId": 3
@@ -31,6 +49,30 @@
       "writtenOn": "2023-08-09T21:24:23Z",
       "side": 1,
       "message": "nitty nitty nit: I think this is a partial match (similar to re.search) so you can remove the prefix `_`. This is so that we aren\u0027t relying on the implementation detail of kernel_build (the fact that it is a macro wrapping a rule)",
+      "range": {
+        "startLine": 44,
+        "startChar": 28,
+        "endLine": 44,
+        "endChar": 41
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "378b8089_7eb36623",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-10T15:37:55Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "9ec4f161_82eb61f0",
       "range": {
         "startLine": 44,
         "startChar": 28,
@@ -81,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "555bf0b3_ba69b785",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-10T15:37:55Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "56323c47_c6624cb1",
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ded3a322_764c78fa",
@@ -94,6 +154,30 @@
       "writtenOn": "2023-08-09T21:24:23Z",
       "side": 1,
       "message": "I think a more useful one for partners is to look for update_symbol_list.\n\nOnly partners that does out-of-tree ABI monitoring, and the Android Systems team, would be interested in this. This has less value but I think it is okay to be kept here.\n\n---\n\nnit: \n\nAlso, please add a `# Sync with abi_update.bzl` here and `# Sync with bazel.py` in abi_update.bzl, right above the `abi_update \u003d rule(` line",
+      "range": {
+        "startLine": 47,
+        "startChar": 32,
+        "endLine": 47,
+        "endChar": 42
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b31ae0e_cbb0d57c",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-10T15:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ded3a322_764c78fa",
       "range": {
         "startLine": 47,
         "startChar": 32,
@@ -127,6 +211,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ab93ca4_dffbe31a",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-10T15:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81495951_fb4073ae",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 91
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "864de2db_10bfe0e4",
@@ -140,6 +248,30 @@
       "writtenOn": "2023-08-09T21:24:23Z",
       "side": 1,
       "message": "I think it is better to clear the `transformed_command_args` list before overwriting. One could run `bazel help kleaf targets abc def ghi` for example, and we should gracefully handle it (either print an error or ignore the trailing arguments)",
+      "range": {
+        "startLine": 327,
+        "startChar": 17,
+        "endLine": 327,
+        "endChar": 41
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca09c0c0_a1c560e2",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-10T15:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "864de2db_10bfe0e4",
       "range": {
         "startLine": 327,
         "startChar": 17,
@@ -173,6 +305,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ddb34f7_9531625d",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-10T15:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb64fe68_9d14e5fd",
+      "range": {
+        "startLine": 334,
+        "startChar": 35,
+        "endLine": 334,
+        "endChar": 53
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83690e97_baff9071",
@@ -186,6 +342,24 @@
       "writtenOn": "2023-08-09T21:24:23Z",
       "side": 1,
       "message": "Mention the new special help menus somewhere around here or below",
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1beb45e6_a3a04d98",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-10T15:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83690e97_baff9071",
       "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -237,6 +411,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0792293b_9878c219",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-10T15:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "addf2e08_d461e3e2",
+      "range": {
+        "startLine": 436,
+        "startChar": 20,
+        "endLine": 436,
+        "endChar": 34
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3530638_7c0f63a9",
@@ -250,6 +448,30 @@
       "writtenOn": "2023-08-09T21:34:57Z",
       "side": 1,
       "message": "does python have a named constant for this?",
+      "range": {
+        "startLine": 439,
+        "startChar": 36,
+        "endLine": 439,
+        "endChar": 37
+      },
+      "revId": "2b59bda9d049f16d4dc5b0b62bb3f9b127c1b895",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ab1a45f_e25bc95f",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-10T15:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3530638_7c0f63a9",
       "range": {
         "startLine": 439,
         "startChar": 36,
