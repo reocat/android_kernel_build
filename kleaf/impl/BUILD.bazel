@@ -256,6 +256,16 @@ config_setting(
     visibility = ["//visibility:public"],
 )
 
+# --kasan --kasan_sw_tags (this is invalid)
+selects.config_setting_group(
+    name = "multiple_kasan_flags_are_set",
+    match_all = [
+        ":kasan_generic_is_set_to_true",
+        ":kasan_sw_tags_is_set_to_true",
+    ],
+    visibility = ["//build/kernel/kleaf/impl/defconfig:__pkg__"],
+)
+
 # --kcsan
 config_setting(
     name = "kcsan_is_set_to_true",

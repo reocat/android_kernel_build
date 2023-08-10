@@ -72,7 +72,9 @@ filegroup(
         "//build/kernel/kleaf:kasan_generic_is_true": ["kasan_generic_defconfig"],
         "//build/kernel/kleaf:kasan_generic_is_false": [],
         "//conditions:default": [":fail_kasan_generic_lto"],
-    }),
+    }) + [
+        ":k_san_set_simultaneously_check",
+    ],
     visibility = ["//visibility:public"],
 )
 
@@ -87,7 +89,9 @@ filegroup(
         "//build/kernel/kleaf:kasan_sw_tags_is_true": ["arm64_kasan_sw_tags_defconfig"],
         "//build/kernel/kleaf:kasan_sw_tags_is_false": [],
         "//conditions:default": [":fail_kasan_sw_tags_lto"],
-    }),
+    }) + [
+        ":k_san_set_simultaneously_check",
+    ],
     visibility = ["//visibility:public"],
 )
 
@@ -104,7 +108,9 @@ fail_rule(
             "//build/kernel/kleaf:kasan_sw_tags_is_true": [":kasan_sw_tags_not_supported"],
             "//build/kernel/kleaf:kasan_sw_tags_is_false": [],
             "//conditions:default": [":fail_kasan_sw_tags_lto"],
-        }),
+        }) + [
+            ":k_san_set_simultaneously_check",
+        ],
         visibility = ["//visibility:public"],
     )
     for arch in [
@@ -135,5 +141,22 @@ filegroup(
 fail_rule(
     name = "fail_kcsan_lto",
     message = "--kcsan requires --lto=none or default.",
+    visibility = ["//visibility:private"],
+)
+
+filegroup(
+    name = "k_san_set_simultaneously_check",
+    srcs = select({
+        "//build/kernel/kleaf/impl:multiple_kasan_flags_are_set": [
+            ":fail_k_san_set_simultaneously",
+        ],
+        "//conditions:default": [],
+    }),
+    visibility = ["//visibility:private"],
+)
+
+fail_rule(
+    name = "fail_k_san_set_simultaneously",
+    message = "cannot have both --kasan and --kasan_sw_tags simultaneously",
     visibility = ["//visibility:private"],
 )
