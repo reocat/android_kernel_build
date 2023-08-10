@@ -69,25 +69,43 @@ filegroup(
     name = "kasan_generic",
     srcs = select({
         "//build/kernel/kleaf:kasan_generic_is_true": ["kasan_defconfig"],
-        "//conditions:default": [],
+        "//build/kernel/kleaf:kasan_generic_is_false": [],
+        "//conditions:default": [":fail_kasan_generic_lto"],
     }),
     visibility = ["//visibility:public"],
+)
+
+fail_rule(
+    name = "fail_kasan_generic_lto",
+    message = "--kasan requires --lto=none or default.",
 )
 
 filegroup(
     name = "kasan_sw_tags",
     srcs = select({
         "//build/kernel/kleaf:kasan_sw_tags_is_true": ["kasan_sw_tags_defconfig"],
-        "//conditions:default": [],
+        "//build/kernel/kleaf:kasan_sw_tags_is_false": [],
+        "//conditions:default": [":fail_kasan_sw_tags_lto"],
     }),
     visibility = ["//visibility:public"],
+)
+
+fail_rule(
+    name = "fail_kasan_sw_tags_lto",
+    message = "--kasan_sw_tags requires --lto=none or default.",
 )
 
 filegroup(
     name = "kcsan",
     srcs = select({
         "//build/kernel/kleaf:kcsan_is_true": ["kcsan_defconfig"],
-        "//conditions:default": [],
+        "//build/kernel/kleaf:kcsan_is_false": [],
+        "//conditions:default": [":fail_kcsan_lto"],
     }),
     visibility = ["//visibility:public"],
+)
+
+fail_rule(
+    name = "fail_kcsan_lto",
+    message = "--kcsan requires --lto=none or default.",
 )
