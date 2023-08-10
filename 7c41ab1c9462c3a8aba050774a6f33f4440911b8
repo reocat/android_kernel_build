@@ -46,6 +46,53 @@
       "message": "File is not formatted. Run `buildifier kleaf/tests/kernel_config_test/BUILD.bazel` to format the file, or apply the suggested fix.",
       "revId": "7c41ab1c9462c3a8aba050774a6f33f4440911b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000050834422",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2703788?revision\u003d4",
+      "fixSuggestions": [
+        {
+          "fixId": "9eb8b273_c4a03529",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/kernel_config_test/BUILD.bazel",
+              "range": {
+                "startLine": 18,
+                "startChar": 0,
+                "endLine": 18,
+                "endChar": 0
+              },
+              "replacement": "    \"kasan_lto_test\",\n"
+            },
+            {
+              "path": "kleaf/tests/kernel_config_test/BUILD.bazel",
+              "range": {
+                "startLine": 19,
+                "startChar": 0,
+                "endLine": 20,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "2391bc36_99c53727",
+        "filename": "kleaf/tests/kernel_config_test/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-08-10T23:12:30Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/kernel_config_test/BUILD.bazel` to format the file, or apply the suggested fix.",
+      "revId": "7c41ab1c9462c3a8aba050774a6f33f4440911b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
