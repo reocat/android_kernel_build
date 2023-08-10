@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000050789385",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2700875?revision\u003d4",
+      "fixSuggestions": [
+        {
+          "fixId": "ad075a3f_c70ae3b5",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/abi/kernel_abi.bzl",
+              "range": {
+                "startLine": 287,
+                "startChar": 0,
+                "endLine": 287,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "59b7dea1_025c492e",
+        "filename": "kleaf/impl/abi/kernel_abi.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-08-10T15:37:03Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/abi/kernel_abi.bzl` to format the file, or apply the suggested fix.",
+      "revId": "1372878160c0653a62668e17f6f6c6ea5db3adae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
