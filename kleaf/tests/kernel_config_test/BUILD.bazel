@@ -21,6 +21,7 @@ load(
     "kasan_sw_tags_lto_test",
     "kcsan_lto_test",
 )
+load(":k_san_exclusive_test.bzl", "k_san_exclusive_test")
 
 # Analysis test
 
@@ -31,6 +32,8 @@ kasan_sw_tags_lto_test(name = "kasan_sw_tags_lto_test")
 kcsan_lto_test(name = "kcsan_lto_test")
 
 debug_lto_test(name = "debug_lto_test")
+
+k_san_exclusive_test(name = "k_san_exclusive_test")
 
 # Quick test on artifacts.
 
