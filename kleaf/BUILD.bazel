@@ -52,7 +52,7 @@ selects.config_setting_group(
         "//build/kernel/kleaf/impl:lto_is_set_to_none",
         "//build/kernel/kleaf/impl:lto_is_set_to_default_and_kasan_is_true",
         "//build/kernel/kleaf/impl:lto_is_set_to_default_and_kcsan_is_true",
-        "//build/kernel/kleaf/impl:lto_is_set_to_default_and_debug_is_set_to_true",
+        "//build/kernel/kleaf/impl:lto_is_set_to_default_but_lto_should_be_none",
     ],
     visibility = ["//visibility:public"],
 )
