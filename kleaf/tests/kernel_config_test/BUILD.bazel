@@ -12,6 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load(
+    ":lto_test.bzl",
+    "debug_lto_test",
+)
 load(":kasan_test.bzl", "kasan_test")
 load(":kcsan_test.bzl", "kcsan_test")
 load(":kernel_config_option_test.bzl", "kernel_config_option_test_suite")
@@ -22,6 +26,8 @@ load(":kernel_defconfig_fragments_test.bzl", "kernel_defconfig_fragments_test")
 kasan_test(name = "kasan_test")
 
 kcsan_test(name = "kcsan_test")
+
+debug_lto_test(name = "debug_lto_test")
 
 # Quick test on artifacts.
 
