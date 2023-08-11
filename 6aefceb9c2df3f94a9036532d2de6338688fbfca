@@ -46,6 +46,30 @@
       },
       "revId": "6aefceb9c2df3f94a9036532d2de6338688fbfca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca5bf96e_5212875b",
+        "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-11T17:50:31Z",
+      "side": 1,
+      "message": "And the whole reason I do this is because Starlark does not allow while loop or recursion. Otherwise, with recursion, this code would be much easier to understand. Here\u0027s some Python pseudocode:\n\n```\ndef combinations(arr):\n    return pick_elements(arr)\n\ndef pick_elements(arr):\n    if not arr:\n        return [[]]\n    combinations \u003d pick_elements(arr[1:])\n    return [[element] + row for row in combinations for element in arr[0]]\n    \nprint(list(combinations([[11,12],\n [14,15],\n [17,18,19]])))\n```\nyields\n```\n[[11, 14, 17], [12, 14, 17], [11, 15, 17], [12, 15, 17], [11, 14, 18], [12, 14, 18], [11, 15, 18], [12, 15, 18], [11, 14, 19], [12, 14, 19], [11, 15, 19], [12, 15, 19]]\n```",
+      "parentUuid": "4ebf4d2b_b6af54d4",
+      "range": {
+        "startLine": 322,
+        "startChar": 14,
+        "endLine": 322,
+        "endChar": 17
+      },
+      "revId": "6aefceb9c2df3f94a9036532d2de6338688fbfca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
