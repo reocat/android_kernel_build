@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb54466a_3aa35ba1",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-11T20:16:30Z",
+      "side": 1,
+      "message": "(not actionable right now)\n\nupdate_source_file is not necessary an update_symbol_list target, but I think it is a good start.\n\nIn the future we might want to use tags to filter them.",
+      "range": {
+        "startLine": 52,
+        "startChar": 33,
+        "endLine": 52,
+        "endChar": 51
+      },
+      "revId": "899a792f75696c2fd20672b3cfe85841fa046b42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45116f9c_ee99736d",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-11T20:16:30Z",
+      "side": 1,
+      "message": "nit: Is there a reason why this needs to be moved from `run()`?\n\nIt doesn\u0027t seem to fit in `build_final_args`.\n\nPerhaps:\n\n```\ndef _rebuild_kleaf_help_args():\n    self.show_kleaf_help_menu \u003d self.command \u003d\u003d \"help\" and self.transformed_command_args and \\\n            self.transformed_command_args[0] \u003d\u003d \"kleaf\"\n    self.show_kleaf_targets \u003d and \\\n            len(self.transformed_command_args) \u003e 1  and \\\n            (self.transformed_command_args[1] in [\"targets\", \"abi-targets\", \"abi_targets\"])\n    if not self.show_kleaf_targets:\n        return\n    # original code           \n```\n\nthen in `__init__`, L114:\n\n```\ndef __init__(...):\n    # ...\n    self._parse_startup_options()\n    self._parse_command_args()\n    self._rebuild_kleaf_help_args()\n```",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 30
+      },
+      "revId": "899a792f75696c2fd20672b3cfe85841fa046b42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db75f846_69f889b8",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-11T20:16:30Z",
+      "side": 1,
+      "message": "nit: textwrap.dedent + multiline string",
+      "range": {
+        "startLine": 380,
+        "startChar": 18,
+        "endLine": 381,
+        "endChar": 56
+      },
+      "revId": "899a792f75696c2fd20672b3cfe85841fa046b42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
