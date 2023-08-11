@@ -247,62 +247,13 @@ def _config_keys(ctx):
 
     return struct(configs = configs, deps = deps)
 
-def _config_kasan(ctx):
-    """Return configs for --kasan.
+def _check_k_san_and_trim(ctx):
+    kasan = ctx.attr._kasan[BuildSettingInfo].value
+    kasan_sw_tags = ctx.attr._kasan_sw_tags[BuildSettingInfo].value
+    kcsan = ctx.attr._kcsan[BuildSettingInfo].value
 
-    Args:
-        ctx: ctx
-    Returns:
-        A struct, where `configs` is a list of arguments to `scripts/config`,
-        and `deps` is a list of input files.
-    """
-    kasan = ctx.attr.kasan[BuildSettingInfo].value
-
-    if not kasan:
-        return struct(configs = [], deps = [])
-
-    if trim_nonlisted_kmi_utils.get_value(ctx):
-        fail("{}: --kasan requires trimming to be disabled".format(ctx.label))
-
-    return struct(configs = [], deps = [])
-
-def _config_kasan_sw_tags(ctx):
-    """Return configs for --kasan_sw_tags.
-
-    Args:
-        ctx: ctx
-    Returns:
-        A struct, where `configs` is a list of arguments to `scripts/config`,
-        and `deps` is a list of input files.
-    """
-    kasan_sw_tags = ctx.attr.kasan_sw_tags[BuildSettingInfo].value
-
-    if not kasan_sw_tags:
-        return struct(configs = [], deps = [])
-
-    if trim_nonlisted_kmi_utils.get_value(ctx):
-        fail("{}: --kasan_sw_tags requires trimming to be disabled".format(ctx.label))
-
-    return struct(configs = [], deps = [])
-
-def _config_kcsan(ctx):
-    """Return configs for --kcsan.
-
-    Args:
-        ctx: ctx
-    Returns:
-        A struct, where `configs` is a list of arguments to `scripts/config`,
-        and `deps` is a list of input files.
-    """
-    kcsan = ctx.attr.kcsan[BuildSettingInfo].value
-
-    if not kcsan:
-        return struct(configs = [], deps = [])
-
-    if trim_nonlisted_kmi_utils.get_value(ctx):
-        fail("{}: --kcsan requires trimming to be disabled".format(ctx.label))
-
-    return struct(configs = [], deps = [])
+    if trim_nonlisted_kmi_utils.get_value(ctx) and (kasan or kasan_sw_tags or kcsan):
+        fail("{}: --kasan/--kasan_sw_tags/--kcsan requires trimming to be disabled".format(ctx.label))
 
 def _reconfig(ctx):
     """Return a command and extra inputs to re-configure `.config` file."""
@@ -312,12 +263,11 @@ def _reconfig(ctx):
     apply_defconfig_fragments_cmd = ""
     check_defconfig_fragments_cmd = ""
 
+    _check_k_san_and_trim(ctx)
+
     for fn in (
         _config_lto,
         _config_trim,
-        _config_kcsan,
-        _config_kasan,
-        _config_kasan_sw_tags,
         _config_gcov,
         _config_keys,
         kgdb.get_scripts_config_args,
@@ -622,6 +572,9 @@ kernel_config = rule(
         ),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        "_kasan": attr.label(default = "//build/kernel/kleaf:kasan"),
+        "_kasan_sw_tags": attr.label(default = "//build/kernel/kleaf:kasan_sw_tags"),
+        "_kcsan": attr.label(default = "//build/kernel/kleaf:kcsan"),
     } | _kernel_config_additional_attrs(),
     executable = True,
     toolchains = [hermetic_toolchain.type],
