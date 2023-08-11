@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45e24a7b_d9525181",
+        "filename": "kleaf/impl/defconfig/BUILD.bazel",
+        "patchSetId": 35
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-11T11:55:32Z",
+      "side": 1,
+      "message": "do we have info about the arch while doing the selects? I think no, but maybe that could help to include only the configs supported by individual archs.",
+      "range": {
+        "startLine": 70,
+        "startChar": 11,
+        "endLine": 70,
+        "endChar": 17
+      },
+      "revId": "08c4c9f9a044fb9860644cac3ed5b76c2496e712",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
