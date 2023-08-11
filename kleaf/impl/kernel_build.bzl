@@ -1951,6 +1951,9 @@ _kernel_build = rule(
         "src_protected_exports_list": attr.label(allow_single_file = True),
         "src_protected_modules_list": attr.label(allow_single_file = True),
         "src_kmi_symbol_list": attr.label(allow_single_file = True),
+        "_kasan": attr.label(default = "//build/kernel/kleaf:kasan"),
+        "_kasan_sw_tags": attr.label(default = "//build/kernel/kleaf:kasan_sw_tags"),
+        "_kcsan": attr.label(default = "//build/kernel/kleaf:kcsan"),
     } | _kernel_build_additional_attrs(),
     toolchains = [hermetic_toolchain.type],
 )
