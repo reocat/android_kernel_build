@@ -22,6 +22,30 @@
       },
       "revId": "6aefceb9c2df3f94a9036532d2de6338688fbfca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ebf4d2b_b6af54d4",
+        "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-11T17:37:29Z",
+      "side": 1,
+      "message": "This is logic to pick an item from each row in a 2-D array. So if you have\n\n```\n[[11,12,13]\n [14,15,16]\n [17,18,19]]\n```\n\nthen let i be the 3-digit number of base 3 ranging from 000 to 222:\n\n```\n000, 001, 002, 010, 011, 012, ... 222\n```\n\neach digit represents which element it should pick from a row:\n\n```\n11,14,17; 11,14,18; ... 13,16,19\n```\n\nThe i%len and i//len just converts i into base 3.\n\nhttps://www.mathsisfun.com/base-conversion-method.html\n\n---\n\nThough, in this case, each row is actually of different length (due to k*san):\n\n```\n[[11,12]\n [14,15]\n [17,18,19]]\n```\n\nSo each digit is actually of different base.\n\n```\n000, 001, 010, 011, 100 ... 112\n```\n\nThe idea is the same though.\n\n---\n\nLet me know if I can put any clarification text to make this clearer; I might have made this too succinct and hard to understand.",
+      "parentUuid": "b9a1d27b_682c33fa",
+      "range": {
+        "startLine": 322,
+        "startChar": 14,
+        "endLine": 322,
+        "endChar": 17
+      },
+      "revId": "6aefceb9c2df3f94a9036532d2de6338688fbfca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
