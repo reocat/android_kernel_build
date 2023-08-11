@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49c16ce8_5cdeb027",
+        "filename": "kleaf/impl/config_utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-11T17:27:36Z",
+      "side": 1,
+      "message": "yeah. It used to be a simple script copied from merge_config.sh, but it does grow more and more complicated. Let me think about how I can improve this.",
+      "parentUuid": "da3b0508_8bef4ed0",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 7
+      },
+      "revId": "91dd62801abf75181a9de474a98289a15291bc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4ea2852_0624b0a8",
         "filename": "kleaf/impl/config_utils.bzl",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-11T10:05:51Z",
       "side": 1,
       "message": "is this indentation intended?\n\nupd: It seems it\u0027s part of the msg.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 4
+      },
+      "revId": "91dd62801abf75181a9de474a98289a15291bc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b789cd1d_428eb49d",
+        "filename": "kleaf/impl/config_utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-11T17:27:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f4ea2852_0624b0a8",
       "range": {
         "startLine": 78,
         "startChar": 0,
