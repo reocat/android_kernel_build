@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb7c157d_90a33ab3",
+        "filename": "kleaf/impl/config_utils.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-12T00:38:57Z",
+      "side": 1,
+      "message": "Actually, I am going to leave this script as is.\n\nThe only place that uses this right now is arm64 with CONFIG_KASAN_INLINE. I could also made that arch specific, but I think it is still useful to leave this trick here so we can easily work around breakages due to defconfig not being applied.",
+      "parentUuid": "49c16ce8_5cdeb027",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 7
+      },
+      "revId": "91dd62801abf75181a9de474a98289a15291bc81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4ea2852_0624b0a8",
