@@ -70,6 +70,30 @@
       },
       "revId": "6aefceb9c2df3f94a9036532d2de6338688fbfca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac12a03c_1258703b",
+        "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-14T13:18:45Z",
+      "side": 1,
+      "message": "Acknowledged\n\nThank you for the clarification, I think what I was missing was `*\u003d` in L318.",
+      "parentUuid": "ca5bf96e_5212875b",
+      "range": {
+        "startLine": 322,
+        "startChar": 14,
+        "endLine": 322,
+        "endChar": 17
+      },
+      "revId": "6aefceb9c2df3f94a9036532d2de6338688fbfca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
