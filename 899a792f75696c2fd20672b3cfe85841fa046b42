@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f31a0e7d_805c0af2",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-14T12:58:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fb54466a_3aa35ba1",
+      "range": {
+        "startLine": 52,
+        "startChar": 33,
+        "endLine": 52,
+        "endChar": 51
+      },
+      "revId": "899a792f75696c2fd20672b3cfe85841fa046b42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45116f9c_ee99736d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3004dd03_020ff15f",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-14T12:58:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45116f9c_ee99736d",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 30
+      },
+      "revId": "899a792f75696c2fd20672b3cfe85841fa046b42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db75f846_69f889b8",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-08-11T20:16:30Z",
       "side": 1,
       "message": "nit: textwrap.dedent + multiline string",
+      "range": {
+        "startLine": 380,
+        "startChar": 18,
+        "endLine": 381,
+        "endChar": 56
+      },
+      "revId": "899a792f75696c2fd20672b3cfe85841fa046b42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9f495cd_c73a8119",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-14T12:58:40Z",
+      "side": 1,
+      "message": "Done. ty.",
+      "parentUuid": "db75f846_69f889b8",
       "range": {
         "startLine": 380,
         "startChar": 18,
