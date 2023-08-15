@@ -16,6 +16,24 @@
       "message": "Reverting this may break the _notrim / _debug builds, so I prefer a forward fix: CL:2710380.",
       "revId": "454a97af1bf46d918ca0edda1cbc73620ccae740",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b2fd2f7_937b04df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-15T20:52:58Z",
+      "side": 1,
+      "message": "Though I would still keep this revert open. I am running it against ABTD right now:\n\nhttps://android-build.googleplex.com/builds/abtd/run/L13900000962577620\n\nI think it should be preferred over the forward fix once we confirm this is okay.",
+      "parentUuid": "9600d238_732ce425",
+      "revId": "454a97af1bf46d918ca0edda1cbc73620ccae740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
