@@ -36,6 +36,43 @@
       "message": "File is not formatted. Run `buildifier kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl` to format the file, or apply the suggested fix.",
       "revId": "504704e3e629c7031c56af9f51e25f70e43b109b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000051140505",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2704714?revision\u003d12",
+      "fixSuggestions": [
+        {
+          "fixId": "e7b59473_5ea18a69",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+              "range": {
+                "startLine": 208,
+                "startChar": 0,
+                "endLine": 217,
+                "endChar": 0
+              },
+              "replacement": "                _FlagValuesConfigs(\n                    flag_values \u003d [\n                        _FlagValue(flag \u003d \"//build/kernel/kleaf:kasan\", value \u003d \"False\"),\n                        _FlagValue(flag \u003d \"//build/kernel/kleaf:kasan_sw_tags\", value \u003d \"True\"),\n                        _FlagValue(flag \u003d \"//build/kernel/kleaf:kcsan\", value \u003d \"False\"),\n                    ],\n                    configs \u003d [\"CONFIG_KASAN_SW_TAGS\u003dy\"],\n                ),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "dff57e58_09026cb3",
+        "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-08-15T20:48:44Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl` to format the file, or apply the suggested fix.",
+      "revId": "504704e3e629c7031c56af9f51e25f70e43b109b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
