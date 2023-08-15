@@ -33,7 +33,6 @@ filegroup(
 _HERMETIC_TOOLS = [
     # keep sorted
     "build-tools/path/linux-x86/bison",
-    "build-tools/path/linux-x86/dtc",
     "//prebuilts/build-tools:linux-x86/bin/flex",
     "//prebuilts/build-tools:linux-x86/bin/m4",
     "//prebuilts/build-tools:linux-x86/bin/make",
@@ -114,6 +113,7 @@ _HERMETIC_TOOLS = [
     "//prebuilts/kernel-build-tools:linux-x86/bin/build_image",
     "//prebuilts/kernel-build-tools:linux-x86/bin/build_super_image",
     "//prebuilts/kernel-build-tools:linux-x86/bin/certify_bootimg",
+    "//prebuilts/kernel-build-tools:linux-x86/bin/dtc",
     "//prebuilts/kernel-build-tools:linux-x86/bin/e2fsck",
     "//prebuilts/kernel-build-tools:linux-x86/bin/e2fsdroid",
     "//prebuilts/kernel-build-tools:linux-x86/bin/fec",
