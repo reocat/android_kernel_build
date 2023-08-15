@@ -34,6 +34,24 @@
       "parentUuid": "9600d238_732ce425",
       "revId": "454a97af1bf46d918ca0edda1cbc73620ccae740",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e020d37_159fb12f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-15T21:08:13Z",
+      "side": 1,
+      "message": "I think the revert alone is okay, but it would break these in the future:\n\n```\n//build/kernel/kleaf/tests/kernel_config_test:kernel_defconfig_fragments_test_x86_64_test_comb_gcov_False_btf_debug_info_enable_debug_True_kasan_False_kasan_sw_tags_False_kcsan_True\n```\n\nafter CL:2651308 goes in, with these error message:\n\n```\nERROR: @//build/kernel/kleaf/tests/kernel_config_test:kernel_defconfig_fragments_test_x86_64_kernel_build_config: \n    CONFIG_KCSAN_KCOV_BROKEN: actual \u0027\u0027, expected \u0027# CONFIG_KCSAN_KCOV_BROKEN is not set\u0027 from build/kernel/kleaf/impl/defconfig/kcsan_defconfig.\n    CONFIG_KASAN_STACK: actual \u0027\u0027, expected \u0027# CONFIG_KASAN_STACK is not set\u0027 from build/kernel/kleaf/impl/defconfig/kcsan_defconfig.\n    CONFIG_KASAN_HW_TAGS: actual \u0027\u0027, expected \u0027# CONFIG_KASAN_HW_TAGS is not set\u0027 from build/kernel/kleaf/impl/defconfig/kcsan_defconfig.\n    CONFIG_CFI: actual \u0027\u0027, expected \u0027# CONFIG_CFI is not set\u0027 from build/kernel/kleaf/impl/defconfig/kcsan_defconfig.\n    CONFIG_CFI_PERMISSIVE: actual \u0027\u0027, expected \u0027# CONFIG_CFI_PERMISSIVE is not set\u0027 from build/kernel/kleaf/impl/defconfig/kcsan_defconfig.\n    CONFIG_SHADOW_CALL_STACK: actual \u0027\u0027, expected \u0027# CONFIG_SHADOW_CALL_STACK is not set\u0027 from build/kernel/kleaf/impl/defconfig/kcsan_defconfig.\n```\n\nAlso, I think the test does need to be fixed. This is because the disabled configs may not be declared in Kconfig, especially if they are hiding behind some conditional. For example, in the kcsan error above, `CONFIG_KASAN_STACK` is only useful when `CONFIG_KASAN` is specified, but it is explicitly disabled.\n\nhttps://android-review.git.corp.google.com/c/kernel/build/+/2651308/40/kleaf/impl/defconfig/kcsan_defconfig\n\nYou may also argue that the line `# CONFIG_KASAN_STACK is not set` shouldn\u0027t be set in the first place, but the fact that `CONFIG_KASAN_STACK` depends on `CONFIG_KASAN` is encoded in common/lib/Kconfig.kasan, not in Kleaf. Hence, I think it is good to be explicit about \"`CONFIG_KASAN_STACK` should not be set for kcsan\". To do that, we\u0027ll need CL:2710380.",
+      "parentUuid": "9b2fd2f7_937b04df",
+      "revId": "454a97af1bf46d918ca0edda1cbc73620ccae740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
