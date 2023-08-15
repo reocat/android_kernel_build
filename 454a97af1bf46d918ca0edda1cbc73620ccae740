@@ -52,6 +52,24 @@
       "parentUuid": "9b2fd2f7_937b04df",
       "revId": "454a97af1bf46d918ca0edda1cbc73620ccae740",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3fb6482_9bafdee2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-15T21:11:59Z",
+      "side": 1,
+      "message": "That being said, based on go/revert-it, I\u0027ll land this revert first (after I confirm with go/abtd). Then I\u0027ll reland it in CL:2710894.",
+      "parentUuid": "2e020d37_159fb12f",
+      "revId": "454a97af1bf46d918ca0edda1cbc73620ccae740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
