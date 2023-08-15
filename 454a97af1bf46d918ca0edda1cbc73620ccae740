@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9600d238_732ce425",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-15T20:48:25Z",
+      "side": 1,
+      "message": "Reverting this may break the _notrim / _debug builds, so I prefer a forward fix: CL:2710380.",
+      "revId": "454a97af1bf46d918ca0edda1cbc73620ccae740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
