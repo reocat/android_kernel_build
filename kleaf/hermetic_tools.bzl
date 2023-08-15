@@ -305,20 +305,33 @@ def _hermetic_tools_impl(ctx):
            set -o pipefail
     """
 
+    hermetic_base = paths.join(
+        ctx.bin_dir.path,
+        paths.dirname(ctx.build_file_path),
+        ctx.attr.name,
+    )
+    hermetic_base_short = paths.join(
+        paths.dirname(ctx.build_file_path),
+        ctx.attr.name,
+    )
+
+    hashbang = """#!/bin/bash -e
+"""
+
     setup = fail_hard + """
                 export PATH=$({path}/readlink -m {path})
                 # Ensure _setup_env.sh keeps the original items in PATH
                 export KLEAF_INTERNAL_BUILDTOOLS_PREBUILT_BIN={path}
-""".format(path = all_outputs[0].dirname)
+""".format(path = hermetic_base)
     additional_setup = """
                 export PATH=$({path}/readlink -m {path}):$PATH
-""".format(path = all_outputs[0].dirname)
-    run_setup = fail_hard + """
+""".format(path = hermetic_base)
+    run_setup = hashbang + fail_hard + """
                 export PATH=$({path}/readlink -m {path})
-""".format(path = paths.dirname(all_outputs[0].short_path))
+""".format(path = hermetic_base_short)
     run_additional_setup = fail_hard + """
                 export PATH=$({path}/readlink -m {path}):$PATH
-""".format(path = paths.dirname(all_outputs[0].short_path))
+""".format(path = hermetic_base_short)
 
     hermetic_toolchain_info = _HermeticToolchainInfo(
         deps = depset(info_deps),
@@ -331,6 +344,9 @@ def _hermetic_tools_impl(ctx):
         DefaultInfo(files = depset(all_outputs)),
         platform_common.ToolchainInfo(
             hermetic_toolchain_info = hermetic_toolchain_info,
+        ),
+        OutputGroupInfo(
+            **{file.basename: depset([file]) for file in all_outputs}
         ),
     ]
 
@@ -379,6 +395,7 @@ def hermetic_tools(
         rsync_args = None,
         py3_outs = None,
         symlinks = None,
+        aliases = None,
         **kwargs):
     """Provide tools for a hermetic build.
 
@@ -400,11 +417,23 @@ def hermetic_tools(
         deps: additional dependencies. Unlike `srcs`, these aren't added to the `PATH`.
         tar_args: List of fixed arguments provided to `tar` commands.
         rsync_args: List of fixed arguments provided to `rsync` commands.
+        aliases: [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
+
+          List of aliases to create to refer to a single tool.
+
+          For example, if `aliases = ["cp"],` then `<name>/cp` refers to a
+          `cp`.
+
+          **Note**: Items in `srcs`, `host_tools` and `py3_outs` already have
+          `<name>/<tool>` target created.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common
     """
+
+    if aliases == None:
+        aliases = []
 
     if host_tools:
         host_tools = ["{}/{}".format(name, tool) for tool in host_tools]
@@ -431,3 +460,13 @@ def hermetic_tools(
         symlinks = symlinks,
         **kwargs
     )
+
+    alias_kwargs = kwargs
+
+    for alias in aliases:
+        native.filegroup(
+            name = name + "/" + alias,
+            srcs = [name],
+            output_group = alias,
+            **alias_kwargs
+        )

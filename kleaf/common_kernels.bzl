@@ -36,6 +36,8 @@ load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load("//build/kernel/kleaf/artifact_tests:kernel_test.bzl", "initramfs_modules_options_test")
 load("//build/kernel/kleaf/artifact_tests:device_modules_test.bzl", "device_modules_test")
 load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts", "gki_artifacts_prebuilts")
+load("//build/kernel/kleaf/impl:kernel_sbom.bzl", "kernel_sbom")
+load("//build/kernel/kleaf/impl:merge_kzip.bzl", "merge_kzip")
 load("//build/kernel/kleaf/impl:out_headers_allowlist_archive.bzl", "out_headers_allowlist_archive")
 load(
     "//build/kernel/kleaf/impl:constants.bzl",
@@ -549,9 +551,15 @@ def define_common_kernels(
         build_setting_default = "",
     )
 
-    native.alias(
+    kythe_candidates = [
+        "kernel_aarch64",
+        "kernel_x86_64",
+        "kernel_riscv64",
+    ]
+
+    merge_kzip(
         name = "kernel_kythe",
-        actual = ":kernel_aarch64_kythe",
+        srcs = [name + "_kythe" for name in kythe_candidates if name in target_configs],
     )
 
     copy_to_dist_dir(
@@ -832,6 +840,14 @@ def _define_common_kernel(
         Label("//build/kernel:gki_certification_tools"),
     ]
 
+    kernel_sbom(
+        name = name + "_sbom",
+        srcs = dist_targets,
+        kernel_build = name,
+    )
+
+    dist_targets.append(name + "_sbom")
+
     copy_to_dist_dir(
         name = name + "_dist",
         data = dist_targets,
@@ -1105,6 +1121,8 @@ def define_db845c(
 
     Requires [`define_common_kernels`](#define_common_kernels) to be called in the same package.
 
+    **Deprecated**. Use [`kernel_build`](#kernel_build) directly.
+
     Args:
         name: name of target. Usually `"db845c"`.
         build_config: See [kernel_build.build_config](#kernel_build-build_config). If `None`,
@@ -1122,7 +1140,19 @@ def define_db845c(
         gki_modules_list: List of gki modules to be copied to the dist directory.
           If `None`, all gki kernel modules will be copied.
         dist_dir: Argument to `copy_to_dist_dir`. If `None`, default is `"out/{name}/dist"`.
+
+    Deprecated:
+        Use [`kernel_build`](#kernel_build) directly.
     """
+
+    # buildifier: disable=print
+    print("""{}//{}:{}: define_db845c is deprecated.
+
+          Use [`kernel_build`](#kernel_build) directly.
+
+          Use https://r.android.com/2634654 and its cherry-picks as a reference
+            on how to unfold the macro and use the other rules directly.
+    """.format(native.package_relative_label(name), native.package_name(), name))
 
     if build_config == None:
         build_config = "build.config.db845c"

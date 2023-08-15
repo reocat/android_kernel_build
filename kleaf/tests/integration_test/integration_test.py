@@ -17,22 +17,21 @@ The rest of the arguments are passed to absltest.
 
 Example:
 
-    bazel run //build/kernel/kleaf/tests/integration_test
+    tools/bazel run //build/kernel/kleaf/tests/integration_test
 
-    bazel run //build/kernel/kleaf/tests/integration_test \\
-      -- --bazel_arg=--verbose_failures --bazel_arg=--announce_rc
+    tools/bazel run //build/kernel/kleaf/tests/integration_test \\
+      -- --bazel-arg=--verbose_failures --bazel-arg=--announce_rc
 
-    bazel run //build/kernel/kleaf/tests/integration_test \\
-      -- KleafIntegrationTest.test_simple_incremental
+    tools/bazel run //build/kernel/kleaf/tests/integration_test \\
+      -- QuickIntegrationTest.test_menuconfig_merge
 
-    bazel run //build/kernel/kleaf/tests/integration_test \\
-      -- --bazel_arg=--verbose_failures --bazel_arg=--announce_rc \\
-         KleafIntegrationTest.test_simple_incremental \\
+    tools/bazel run //build/kernel/kleaf/tests/integration_test \\
+      -- --bazel-arg=--verbose_failures --bazel-arg=--announce_rc \\
+         QuickIntegrationTest.test_menuconfig_merge \\
          --verbosity=2
 """
 
 import argparse
-import functools
 import hashlib
 import os
 import re
@@ -52,7 +51,6 @@ from build.kernel.kleaf.analysis.inputs import analyze_inputs
 _BAZEL = pathlib.Path("tools/bazel")
 
 # See local.bazelrc
-_NOLOCAL = ["--no//build/kernel/kleaf:config_local"]
 _LOCAL = ["--//build/kernel/kleaf:config_local"]
 
 _LTO_NONE = [
@@ -62,8 +60,6 @@ _LTO_NONE = [
 
 # Handy arguments to build as fast as possible.
 _FASTEST = _LOCAL + _LTO_NONE
-
-_INTEGRATION_TEST_BAZEL_RC = "out/bazel/integration_test.bazelrc"
 
 
 def load_arguments():
@@ -135,13 +131,17 @@ class KleafIntegrationTestBase(unittest.TestCase):
         self._check_call("build", command_args, **kwargs)
 
     def _check_output(self, command: str, command_args: list[str],
+                      use_bazelrc=True,
                       **kwargs) -> str:
         """Returns output of a bazel command."""
-        return Exec.check_output([
-            str(_BAZEL),
-            f"--bazelrc={self._bazel_rc.name}",
-            command,
-        ] + command_args, **kwargs)
+
+        args = [str(_BAZEL)]
+        if use_bazelrc:
+            args.append(f"--bazelrc={self._bazel_rc.name}")
+        args.append(command)
+        args += command_args
+
+        return Exec.check_output(args, **kwargs)
 
     def _popen(self, command: str, command_args: list[str], **kwargs) \
             -> subprocess.Popen:
@@ -167,8 +167,6 @@ class KleafIntegrationTestBase(unittest.TestCase):
             f.write(f"import %workspace%/build/kernel/kleaf/common.bazelrc\n")
             for arg in arguments.bazel_args:
                 f.write(f"build {shlex.quote(arg)}\n")
-
-        self._check_call("clean", [])
 
     def restore_file_after_test(self, path: pathlib.Path | str):
         with open(path) as file:
@@ -240,23 +238,53 @@ class KleafIntegrationTestBase(unittest.TestCase):
         """Returns the common package."""
         return "common"
 
+# Slow integration tests belong to their own shard.
 
-class KleafIntegrationTest(KleafIntegrationTestBase):
 
-    def test_simple_modules_prepare_local(self):
-        """Tests that fixdep is not needed."""
-        self._build([f"//{self._common()}:kernel_aarch64_modules_prepare"] +
-                    _FASTEST)
+class KleafIntegrationTestShard1(KleafIntegrationTestBase):
 
-    def test_simple_incremental(self):
-        self._build([f"//{self._common()}:kernel_dist"] + _FASTEST)
-        self._build([f"//{self._common()}:kernel_dist"] + _FASTEST)
+    def test_incremental_switch_local_and_lto(self):
+        """Tests the following:
 
-    def test_incremental_core_kernel_file_modified(self):
-        """Tests incremental build with a core kernel file modified."""
-        self._build([f"//{self._common()}:kernel_dist"] + _FASTEST)
-        self._touch_core_kernel_file()
-        self._build([f"//{self._common()}:kernel_dist"] + _FASTEST)
+        - switching from non-local to local and back works
+        - with --config=local, changing from --lto=none to --lto=thin and back works
+
+        See b/257288175."""
+        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE + _LOCAL)
+        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE)
+        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE + _LOCAL)
+        self._build([f"//{self._common()}:kernel_dist"] +
+                    ["--lto=thin"] + _LOCAL)
+        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE + _LOCAL)
+
+
+class KleafIntegrationTestShard2(KleafIntegrationTestBase):
+
+    def test_user_clang_toolchain(self):
+        """Test --user_clang_toolchain option."""
+
+        clang_version = None
+        build_config_constants = f"{self._common()}/build.config.constants"
+        with open(build_config_constants) as f:
+            for line in f.read().splitlines():
+                if line.startswith("CLANG_VERSION="):
+                    clang_version = line.strip().split("=", 2)[1]
+        self.assertIsNotNone(clang_version)
+        clang_dir = f"prebuilts/clang/host/linux-x86/clang-{clang_version}"
+        clang_dir = os.path.realpath(clang_dir)
+
+        # Do not use --config=local to ensure the toolchain dependency is
+        # correct.
+        args = [
+            f"--user_clang_toolchain={clang_dir}",
+            f"//{self._common()}:kernel",
+        ] + _LTO_NONE
+        self._build(args)
+
+# Quick integration tests. Each test case should finish within 1 minute.
+# The whole test suite should finish within 5 minutes. If the whole test suite
+# takes too long, consider sharding QuickIntegrationTest too.
+class QuickIntegrationTest(KleafIntegrationTestBase):
 
     def test_change_to_core_kernel_does_not_affect_modules_prepare(self):
         """Tests that, with a small change to the core kernel, modules_prepare does not change.
@@ -265,11 +293,13 @@ class KleafIntegrationTest(KleafIntegrationTestBase):
         """
         modules_prepare_archive = \
             f"bazel-bin/{self._common()}/kernel_aarch64_modules_prepare/modules_prepare_outdir.tar.gz"
+
+        # This also tests that fixdep is not needed.
         self._build([f"//{self._common()}:kernel_aarch64_modules_prepare"] +
                     _FASTEST)
         first_hash = self._sha256(modules_prepare_archive)
 
-        old_modules_archive = tempfile.NamedTemporaryFile()
+        old_modules_archive = tempfile.NamedTemporaryFile(delete=False)
         shutil.copyfile(modules_prepare_archive, old_modules_archive.name)
 
         self._touch_core_kernel_file()
@@ -278,8 +308,8 @@ class KleafIntegrationTest(KleafIntegrationTestBase):
                     _FASTEST)
         second_hash = self._sha256(modules_prepare_archive)
 
-        if first_hash != second_hash:
-            old_modules_archive.delete = False
+        if first_hash == second_hash:
+            os.unlink(old_modules_archive.name)
 
         self.assertEqual(
             first_hash, second_hash,
@@ -312,33 +342,6 @@ class KleafIntegrationTest(KleafIntegrationTestBase):
             if pathlib.Path(path).name == "System.map"
         ], "An external module must not depend on System.map")
 
-    def test_incremental_switch_to_local(self):
-        """Tests that switching from non-local to local works."""
-        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE)
-        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE + _LOCAL)
-
-    def test_incremental_switch_to_non_local(self):
-        """Tests that switching from local to non-local works."""
-        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE + _LOCAL)
-        self._build([f"//{self._common()}:kernel_dist"] + _LTO_NONE)
-
-    def test_change_lto_to_thin_when_local(self):
-        """Tests that, with --config=local, changing from --lto=none to --lto=thin works.
-
-        See b/257288175."""
-        self._build([f"//{self._common()}:kernel_dist"] + _LOCAL + _LTO_NONE)
-        self._build([f"//{self._common()}:kernel_dist"] + _LOCAL +
-                    ["--lto=thin"])
-
-    def test_change_lto_to_none_when_local(self):
-        """Tests that, with --config=local, changing from --lto=thin to --lto=local works.
-
-        See b/257288175."""
-        self._check_call("build", [f"//{self._common()}:kernel_dist"] +
-                         _LOCAL + ["--lto=thin"])
-        self._check_call("build", [f"//{self._common()}:kernel_dist"] +
-                         _LOCAL + _LTO_NONE)
-
     def test_override_javatmp(self):
         """Tests that out/bazel/javatmp can be overridden.
 
@@ -353,9 +356,9 @@ class KleafIntegrationTest(KleafIntegrationTestBase):
         self._check_call(startup_options=[
             f"--host_jvm_args=-Djava.io.tmpdir={new_java_tmp.name}"
         ],
-                         command="build",
-                         command_args=["//build/kernel/kleaf:empty_test"] +
-                         _FASTEST)
+            command="build",
+            command_args=["//build/kernel/kleaf:empty_test"] +
+            _FASTEST)
         self.assertFalse(default_java_tmp.exists())
 
     def test_override_absolute_out_dir(self):
@@ -433,7 +436,7 @@ class KleafIntegrationTest(KleafIntegrationTestBase):
 
         output = self._check_output("run", args)
 
-        matching_line = lambda line: re.match(
+        def matching_line(line): return re.match(
             r"^Updating .*common/arch/arm64/configs/menuconfig_test_defconfig$",
             line)
         self.assertTrue(
@@ -485,26 +488,19 @@ class KleafIntegrationTest(KleafIntegrationTestBase):
         self.assertNotIn("DECLARED_SET", stderr)
         self.assertNotIn("DECLARED_UNSET", stderr)
 
-    def test_user_clang_toolchain(self):
-        """Test --user_clang_toolchain option."""
+    @unittest.skip("b/293357796")
+    def test_dash_dash_help(self):
+        """Test that `bazel --help` works."""
+        self._check_output("--help", [], use_bazelrc=False)
 
-        clang_version = None
-        build_config_constants = f"{self._common()}/build.config.constants"
-        with open(build_config_constants) as f:
-            for line in f.read().splitlines():
-                if line.startswith("CLANG_VERSION="):
-                    clang_version = line.strip().split("=", 2)[1]
-        self.assertIsNotNone(clang_version)
-        clang_dir = f"prebuilts/clang/host/linux-x86/clang-{clang_version}"
-        clang_dir = os.path.realpath(clang_dir)
+    def test_help(self):
+        """Test that `bazel help` works."""
+        self._check_output("help", [])
 
-        # Do not use --config=local to ensure the toolchain dependency is
-        # correct.
-        args = [
-            f"--user_clang_toolchain={clang_dir}",
-            f"//{self._common()}:kernel",
-        ] + _LTO_NONE
-        self._build(args)
+    def test_help_kleaf(self):
+        """Test that `bazel help kleaf` works."""
+        self._check_output("help", ["kleaf"])
+
 
 class ScmversionIntegrationTest(KleafIntegrationTestBase):
 
@@ -574,12 +570,18 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
     def _env_without_build_number():
         env = dict(os.environ)
         env.pop("BUILD_NUMBER", None)
+        # Fix this error to execute `repo` properly:
+        #  ModuleNotFoundError: No module named 'color'
+        env.pop("PYTHONSAFEPATH", None)
         return env
 
     @staticmethod
     def _env_with_build_number(build_number):
         env = dict(os.environ)
         env["BUILD_NUMBER"] = str(build_number)
+        # Fix this error to execute `repo` properly:
+        #  ModuleNotFoundError: No module named 'color'
+        env.pop("PYTHONSAFEPATH", None)
         return env
 
     def test_mainline_no_stamp(self):
@@ -587,6 +589,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
         self._check_call(
             "build",
             _FASTEST + [
+                "--config=local",
                 f"//{self._common()}:kernel_aarch64",
             ],
             env=ScmversionIntegrationTest._env_without_build_number())
@@ -599,6 +602,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
             "build",
             _FASTEST + [
                 "--config=stamp",
+                "--config=local",
                 f"//{self._common()}:kernel_aarch64",
             ],
             env=ScmversionIntegrationTest._env_without_build_number())
@@ -613,6 +617,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
             "build",
             _FASTEST + [
                 "--config=stamp",
+                "--config=local",
                 f"//{self._common()}:kernel_aarch64",
             ],
             env=ScmversionIntegrationTest._env_with_build_number("123456"))
@@ -627,6 +632,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
         self._check_call(
             "build",
             _FASTEST + [
+                "--config=local",
                 f"//{self._common()}:kernel_aarch64",
             ],
             env=ScmversionIntegrationTest._env_without_build_number())
@@ -639,6 +645,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
             "build",
             _FASTEST + [
                 "--config=stamp",
+                "--config=local",
                 f"//{self._common()}:kernel_aarch64",
             ],
             env=ScmversionIntegrationTest._env_without_build_number())
@@ -653,6 +660,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
             "build",
             _FASTEST + [
                 "--config=stamp",
+                "--config=local",
                 f"//{self._common()}:kernel_aarch64",
             ],
             env=ScmversionIntegrationTest._env_with_build_number("123456"))
