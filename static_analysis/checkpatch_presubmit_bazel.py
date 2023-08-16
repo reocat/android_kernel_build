@@ -39,6 +39,7 @@ _SILENT_ARGS = [
     "--ui_event_filters=-info",
     "--noshow_progress",
 ]
+_IGNORED_PROJECTS = ["kernel/tests"]
 
 
 def load_arguments() -> dict[str, Any]:
@@ -130,6 +131,9 @@ def main(
             logging.error("Multiple git sha1 found in %s for %s",
                           applied_prop, path)
             return 1
+        if str(path) in _IGNORED_PROJECTS:
+          logging.info("Skipping ignored project %s.", path)
+          continue
         path_targets = _find_checkpatch_targets(path)
         if not path_targets:
             logging.info(
