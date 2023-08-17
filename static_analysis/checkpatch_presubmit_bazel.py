@@ -75,11 +75,17 @@ def _find_checkpatch_targets(path: pathlib.Path) -> list[str]:
     args += _SILENT_ARGS
     args.append(f'kind("^checkpatch rule$", //{path}:all)')
     _log_command(args)
-    lines = subprocess.check_output(
+    popen = subprocess.Popen(
         args,
         text=True,
         cwd=_resolve_against_workspace_root("."),
-    ).splitlines()
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    stdout, stderr = popen.communicate()
+    if popen.returncode != 0:
+        logging.warning("Exception occurred when looking up checkpatch() under %s: %s", path, stderr)
+    lines = stdout.splitlines()
     return [line.strip() for line in lines if line.strip()]
 
 
