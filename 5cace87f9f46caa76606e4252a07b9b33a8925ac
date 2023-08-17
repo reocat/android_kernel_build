@@ -16,6 +16,23 @@
       "message": "LGTM but please see if CL:2710136 fixes your issue.\n\nAlso, if you don\u0027t have a checkpatch() target under kernel/tests, running checkpatch_presubmit shouldn\u0027t check that project.",
       "revId": "5cace87f9f46caa76606e4252a07b9b33a8925ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8b57364_38ff3f49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-17T05:15:02Z",
+      "side": 1,
+      "message": "Ah, actually, I think I know what the proper fix was. Let me upload one.",
+      "revId": "5cace87f9f46caa76606e4252a07b9b33a8925ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
