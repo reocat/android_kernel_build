@@ -16,8 +16,8 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 load("@bazel_skylib//lib:selects.bzl", "selects")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
 load("//build/bazel_common_rules/docs:docs.bzl", "docs")
-load("//build/kernel/kleaf/tests:empty_test.bzl", "empty_test")
 load("//build/kernel/kleaf/impl:ddk/gen_ddk_headers.bzl", "gen_ddk_headers")
+load("//build/kernel/kleaf/tests:empty_test.bzl", "empty_test")
 load(":constants.bzl", "LTO_VALUES")
 load(":print_flags.bzl", "print_flags")
 
@@ -364,6 +364,23 @@ bool_flag(
     # TODO(b/291816237): Set this to true once build.config.common no longer
     #   hardcodes DTC.
     build_setting_default = False,
+    visibility = ["//build/kernel:__pkg__"],
+)
+
+# Default is false.
+# If true, workaround known issues when building on btrfs, sacrificing
+# hermeticity.
+# For details: b/292212788, or
+#   https://bugzilla.kernel.org/show_bug.cgi?id=217681
+bool_flag(
+    name = "workaround_btrfs_b292212788",
+    build_setting_default = False,
+    visibility = ["//visibility:private"],
+)
+
+config_setting(
+    name = "workaround_btrfs_b292212788_is_true",
+    flag_values = {":workaround_btrfs_b292212788": "1"},
     visibility = ["//build/kernel:__pkg__"],
 )
 
