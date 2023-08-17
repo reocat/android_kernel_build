@@ -166,3 +166,4 @@ e.g. to draw randomness from `/dev/urandom` to create key pairs for signing.
 
 Updating the ABI definition uses the host executables in order to use `git`.
 
+If `--workaround_btrfs` is set, `find` comes from the host machine.
