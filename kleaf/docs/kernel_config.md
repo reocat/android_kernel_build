@@ -161,6 +161,7 @@ own defconfig fragments to avoid fragmentation in the ecosystem (pun intended).
 *   `--kasan`
 *   `--kasan_sw_tags`
 *   `--kcsan`
+*   `--kunit`
 *   `--page_size`
 
 ### User-defined flags

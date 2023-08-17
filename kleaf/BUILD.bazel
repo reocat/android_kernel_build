@@ -348,6 +348,19 @@ config_setting(
     visibility = ["//visibility:public"],
 )
 
+# Enable KUNIT tests.
+bool_flag(
+    name = "kunit",
+    build_setting_default = False,
+    visibility = ["//visibility:private"],
+)
+
+config_setting(
+    name = "kunit_is_true",
+    flag_values = {":kunit": "1"},
+    visibility = ["//build/kernel/kleaf:__subpackages__"],
+)
+
 # Use the resolved toolchains for building kernel_* rules.
 # See https://bazel.build/extending/toolchains for how toolchains are resolved.
 bool_flag(

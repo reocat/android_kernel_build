@@ -1,0 +1,3 @@
+# TODO(b/296116800): Turn this to a module
+CONFIG_KUNIT=y
+CONFIG_KUNIT_ALL_TESTS=y

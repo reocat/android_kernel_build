@@ -138,3 +138,12 @@ fail_rule(
     message = "--kcsan requires --lto=none or default.",
     visibility = ["//visibility:private"],
 )
+
+filegroup(
+    name = "kunit",
+    srcs = select({
+        "//build/kernel/kleaf:kunit_is_true": ["kunit_defconfig"],
+        "//conditions:default": [],
+    }),
+    visibility = ["//visibility:public"],
+)
