@@ -46,6 +46,30 @@
       },
       "revId": "06a56288710432da2d9032eb4df6d37cbaba1c20",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "780bef8f_4fe30652",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-18T12:13:06Z",
+      "side": 1,
+      "message": "Yes, these were added in CL:2700893 and CPs.",
+      "parentUuid": "bb93bbc4_b347d2f0",
+      "range": {
+        "startLine": 100,
+        "startChar": 44,
+        "endLine": 100,
+        "endChar": 73
+      },
+      "revId": "06a56288710432da2d9032eb4df6d37cbaba1c20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
