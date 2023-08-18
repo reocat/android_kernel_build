@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a8dbd7_59efc004",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-08-18T15:32:01Z",
+      "side": 1,
+      "message": "I wonder whether we can encode a little bit more into this flag name.",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "b65b8060bb1ed7e417dd765afa8590974db6f127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edb7588d_bd06cf49",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-08-18T15:32:01Z",
+      "side": 1,
+      "message": "please add a reference to the bug number",
+      "revId": "b65b8060bb1ed7e417dd765afa8590974db6f127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b69cee_0c8f9541",
+        "filename": "kleaf/docs/hermeticity.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-08-18T15:32:01Z",
+      "side": 1,
+      "message": "add a reference to the b/ ?",
+      "revId": "b65b8060bb1ed7e417dd765afa8590974db6f127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
