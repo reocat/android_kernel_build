@@ -76,6 +76,7 @@ _"Not supported"_ is displayed. Contact [owners](../OWNERS) if you need support.
 * [`VENDOR_DLKM_MODULES_BLOCKLIST`](#vendor_dlkm_modules_blocklist)
 * [`VENDOR_DLKM_PROPS`](#vendor_dlkm_props)
 * [`SYSTEM_DLKM_FS_TYPE`](#system_dlkm_fs_type)
+* [`SYSTEM_DLKM_FS_TYPES`](#system_dlkm_fs_types)
 * [`SYSTEM_DLKM_MODULES_LIST`](#system_dlkm_modules_list)
 * [`SYSTEM_DLKM_MODULES_BLOCKLIST`](#system_dlkm_modules_blocklist)
 * [`SYSTEM_DLKM_PROPS`](#system_dlkm_props)
@@ -588,7 +589,7 @@ See [documentation for all rules].
 ## SYSTEM\_DLKM\_FS\_TYPE
 
 ```python
-kernel_images(system_dlkm_fs_type=[ext4, erofs])
+kernel_images(system_dlkm_fs_types=["ext4", "erofs"])
 ```
 
 See [documentation for all rules].
