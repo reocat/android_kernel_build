@@ -184,41 +184,17 @@ function create_modules_staging() {
   cp ${dest_dir}/modules.order ${dest_dir}/modules.load
 }
 
-function build_system_dlkm() {
+function build_system_dlkm_erofs() {
   echo "========================================================"
-  echo " Creating system_dlkm image"
+  echo " Creating system_dlkm.erofs.img image"
 
-  rm -rf ${SYSTEM_DLKM_STAGING_DIR}
-  create_modules_staging "${SYSTEM_DLKM_MODULES_LIST:-${MODULES_LIST}}" "${MODULES_STAGING_DIR}" \
-    ${SYSTEM_DLKM_STAGING_DIR} "${SYSTEM_DLKM_MODULES_BLOCKLIST:-${MODULES_BLOCKLIST}}" "-e"
-
-  local system_dlkm_root_dir=$(echo ${SYSTEM_DLKM_STAGING_DIR}/lib/modules/*)
-  cp ${system_dlkm_root_dir}/modules.load ${DIST_DIR}/system_dlkm.modules.load
   local system_dlkm_props_file
   local system_dlkm_file_contexts
-
-  if [ -f "${system_dlkm_root_dir}/modules.blocklist" ]; then
-    cp "${system_dlkm_root_dir}/modules.blocklist" "${DIST_DIR}/system_dlkm.modules.blocklist"
-  fi
-
-  local system_dlkm_default_fs_type="ext4"
-  if [[ "${SYSTEM_DLKM_FS_TYPE}" != "ext4" && "${SYSTEM_DLKM_FS_TYPE}" != "erofs" ]]; then
-    echo "WARNING: Invalid SYSTEM_DLKM_FS_TYPE = ${SYSTEM_DLKM_FS_TYPE}"
-    SYSTEM_DLKM_FS_TYPE="${system_dlkm_default_fs_type}"
-    echo "INFO: Defaulting SYSTEM_DLKM_FS_TYPE to ${SYSTEM_DLKM_FS_TYPE}"
-  fi
-
   if [ -z "${SYSTEM_DLKM_PROPS}" ]; then
     system_dlkm_props_file="$(mktemp)"
     system_dlkm_file_contexts="$(mktemp)"
-    echo -e "fs_type=${SYSTEM_DLKM_FS_TYPE}\n" >> ${system_dlkm_props_file}
+    echo -e "fs_type=erofs\n" >> ${system_dlkm_props_file}
     echo -e "use_dynamic_partition_size=true\n" >> ${system_dlkm_props_file}
-    if [[ "${SYSTEM_DLKM_FS_TYPE}" == "ext4" ]]; then
-      echo -e "ext_mkuserimg=mkuserimg_mke2fs\n" >> ${system_dlkm_props_file}
-      echo -e "ext4_share_dup_blocks=true\n" >> ${system_dlkm_props_file}
-      echo -e "extfs_rsv_pct=0\n" >> ${system_dlkm_props_file}
-      echo -e "journal_size=0\n" >> ${system_dlkm_props_file}
-    fi
     echo -e "mount_point=system_dlkm\n" >> ${system_dlkm_props_file}
     echo -e "selinux_fc=${system_dlkm_file_contexts}\n" >> ${system_dlkm_props_file}
 
@@ -236,6 +212,86 @@ function build_system_dlkm() {
     fi
   fi
 
+  build_image "${SYSTEM_DLKM_STAGING_DIR}" "${system_dlkm_props_file}" \
+    "${DIST_DIR}/system_dlkm.erofs.img" /dev/null
+
+  if [ -z "${SYSTEM_DLKM_PROPS}" ]; then
+    rm ${system_dlkm_props_file}
+    rm ${system_dlkm_file_contexts}
+  fi
+
+  # No need to sign the image as modules are signed
+  avbtool add_hashtree_footer \
+    --partition_name system_dlkm \
+    --image "${DIST_DIR}/system_dlkm.erofs.img"
+}
+
+function build_system_dlkm_ext4() {
+  echo "========================================================"
+  echo " Creating system_dlkm.ext4.img image"
+
+  local system_dlkm_props_file
+  local system_dlkm_file_contexts
+
+  if [ -z "${SYSTEM_DLKM_PROPS}" ]; then
+    system_dlkm_props_file="$(mktemp)"
+    system_dlkm_file_contexts="$(mktemp)"
+    echo -e "fs_type=ext4\n" >> ${system_dlkm_props_file}
+    echo -e "use_dynamic_partition_size=true\n" >> ${system_dlkm_props_file}
+    echo -e "ext_mkuserimg=mkuserimg_mke2fs\n" >> ${system_dlkm_props_file}
+    echo -e "ext4_share_dup_blocks=true\n" >> ${system_dlkm_props_file}
+    echo -e "extfs_rsv_pct=0\n" >> ${system_dlkm_props_file}
+    echo -e "journal_size=0\n" >> ${system_dlkm_props_file}
+    echo -e "mount_point=system_dlkm\n" >> ${system_dlkm_props_file}
+    echo -e "selinux_fc=${system_dlkm_file_contexts}\n" >> ${system_dlkm_props_file}
+    echo -e "/system_dlkm(/.*)? u:object_r:system_dlkm_file:s0" > ${system_dlkm_file_contexts}
+  else
+    system_dlkm_props_file="${SYSTEM_DLKM_PROPS}"
+    if [[ -f "${ROOT_DIR}/${system_dlkm_props_file}" ]]; then
+      system_dlkm_props_file="${ROOT_DIR}/${system_dlkm_props_file}"
+    elif [[ "${system_dlkm_props_file}" != /* ]]; then
+      echo "SYSTEM_DLKM_PROPS must be an absolute path or relative to ${ROOT_DIR}: ${system_dlkm_props_file}"
+      exit 1
+    elif [[ ! -f "${system_dlkm_props_file}" ]]; then
+      echo "Failed to find SYSTEM_DLKM_PROPS: ${system_dlkm_props_file}"
+      exit 1
+    fi
+  fi
+
+  build_image "${SYSTEM_DLKM_STAGING_DIR}" "${system_dlkm_props_file}" \
+    "${DIST_DIR}/system_dlkm.ext4.img" /dev/null
+
+  if [ -z "${SYSTEM_DLKM_PROPS}" ]; then
+    rm ${system_dlkm_props_file}
+    rm ${system_dlkm_file_contexts}
+  fi
+
+  # No need to sign the image as modules are signed
+  avbtool add_hashtree_footer \
+    --partition_name system_dlkm \
+    --image "${DIST_DIR}/system_dlkm.ext4.img"
+}
+
+function build_system_dlkm() {
+  echo "========================================================"
+  echo " Creating system_dlkm image"
+
+  if [[ "${SYSTEM_DLKM_FS_TYPE}" != "ext4" && "${SYSTEM_DLKM_FS_TYPE}" != "erofs" ]]; then
+    echo "ERROR: Invalid SYSTEM_DLKM_FS_TYPE = ${SYSTEM_DLKM_FS_TYPE}"
+    exit 1
+  fi
+  
+  rm -rf ${SYSTEM_DLKM_STAGING_DIR}
+  create_modules_staging "${SYSTEM_DLKM_MODULES_LIST:-${MODULES_LIST}}" "${MODULES_STAGING_DIR}" \
+    ${SYSTEM_DLKM_STAGING_DIR} "${SYSTEM_DLKM_MODULES_BLOCKLIST:-${MODULES_BLOCKLIST}}" "-e"
+
+  local system_dlkm_root_dir=$(echo ${SYSTEM_DLKM_STAGING_DIR}/lib/modules/*)
+  cp ${system_dlkm_root_dir}/modules.load ${DIST_DIR}/system_dlkm.modules.load
+
+  if [ -f "${system_dlkm_root_dir}/modules.blocklist" ]; then
+    cp "${system_dlkm_root_dir}/modules.blocklist" "${DIST_DIR}/system_dlkm.modules.blocklist"
+  fi
+
   # Re-sign the stripped modules using kernel build time key
   # If SYSTEM_DLKM_RE_SIGN=0, this is a trick in Kleaf for building
   # device-specific system_dlkm image, where keys are not available but the
@@ -248,18 +304,13 @@ function build_system_dlkm() {
     done
   fi
 
-  build_image "${SYSTEM_DLKM_STAGING_DIR}" "${system_dlkm_props_file}" \
-    "${DIST_DIR}/system_dlkm.img" /dev/null
-
-  if [ -z "${SYSTEM_DLKM_PROPS}" ]; then
-    rm ${system_dlkm_props_file}
-    rm ${system_dlkm_file_contexts}
+  if [[ "${SYSTEM_DLKM_FS_TYPE}" == "erofs" ]]; then
+    build_system_dlkm_erofs
   fi
-
-  # No need to sign the image as modules are signed
-  avbtool add_hashtree_footer \
-    --partition_name system_dlkm \
-    --image "${DIST_DIR}/system_dlkm.img"
+  
+  if [[ "${SYSTEM_DLKM_FS_TYPE}" == "ext4" ]]; then
+    build_system_dlkm_ext4
+  fi
 
   # Archive system_dlkm_staging_dir
   tar -czf "${DIST_DIR}/system_dlkm_staging_archive.tar.gz" -C "${SYSTEM_DLKM_STAGING_DIR}" .
