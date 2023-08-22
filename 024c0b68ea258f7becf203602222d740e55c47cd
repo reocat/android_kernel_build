@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfcc30e4_f4ff215f",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-22T22:25:01Z",
+      "side": 0,
+      "message": "Please keep the old attr for backwards compatibility. You can mark the old attr as deprecated.\n\nThen in the rule implementation, you can say `system_dlkm_fs_types \u003d ctx.attr.system_dlkm_fs_types + [ctx.attr.system_dlkm_fs_type]` and use that instead.\n\n**EDIT**: For backwards compatibility, consider:\n\nIf `system_dlkm_fs_type` (deprecated) is specified, build `system_dlkm.img` with the given fs type.\n\nIn addition, if `system_dlkm_fs_types` are specified, build `system_dlkm.\u003ctype\u003e.img` files with the given fs types.",
+      "revId": "024c0b68ea258f7becf203602222d740e55c47cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

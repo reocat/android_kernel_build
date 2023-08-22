@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2839ebdc_9a117c8e",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-22T22:25:01Z",
+      "side": 1,
+      "message": "This is not valid. This is not a f-string in Python, but a simple `str.format()` expression.",
+      "range": {
+        "startLine": 105,
+        "startChar": 67,
+        "endLine": 105,
+        "endChar": 96
+      },
+      "revId": "902abea6d7fbe915d628aab0092b00a2cd3b6d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6cda94af_1fcee807",
         "filename": "kleaf/impl/image/system_dlkm_image.bzl",
         "patchSetId": 1
@@ -14,6 +37,24 @@
       "writtenOn": "2023-08-22T22:02:07Z",
       "side": 1,
       "message": "@elsk@google.com How to pass the list of paths here?\n```\nERROR: /usr/local/google/home/ramjiyani/repos/android15-6.1/common/BUILD.bazel:107:22: in system_dlkm_image rule //common:kernel_aarch64_images_system_dlkm_image: \nTraceback (most recent call last):\n\tFile \"/usr/local/google/home/ramjiyani/repos/android15-6.1/build/kernel/kleaf/impl/image/system_dlkm_image.bzl\", line 122, column 15, in _system_dlkm_image_impl\n\t\t\"\"\".format(\nError in format: Invalid character \u0027[\u0027 inside replacement field\nERROR: /usr/local/google/home/ramjiyani/repos/android15-6.1/common/BUILD.bazel:107:22: Analysis of target \u0027//common:kernel_aarch64_images_system_dlkm_image\u0027 failed\nERROR: Analysis of target \u0027//common:kernel_aarch64_dist\u0027 failed; build aborted: Analysis failed\n```",
+      "revId": "902abea6d7fbe915d628aab0092b00a2cd3b6d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b0fd16_192a7286",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-22T22:25:01Z",
+      "side": 1,
+      "message": "If you are pass the full list to the shell script, then `\" \".join([shell.quote(e.path) for e in system_dlkm_images])`\n\nI think you might be better off looping over all fs_types in starlark and creating a shell script for each fs type, then concatenating together.",
+      "parentUuid": "6cda94af_1fcee807",
       "revId": "902abea6d7fbe915d628aab0092b00a2cd3b6d98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
