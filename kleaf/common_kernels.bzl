@@ -21,7 +21,6 @@ load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load(
     ":kernel.bzl",
     "kernel_abi",
-    "kernel_abi_dist",
     "kernel_build",
     "kernel_build_config",
     "kernel_compile_commands",
@@ -850,6 +849,7 @@ def _define_common_kernel(
 
     dist_targets = [
         name,
+        name + "_abi",
         name + "_uapi_headers",
         name + "_unstripped_modules_archive",
         name + "_additional_artifacts",
@@ -874,16 +874,6 @@ def _define_common_kernel(
         data = dist_targets,
         flat = True,
         dist_dir = "out/{name}/dist".format(name = name),
-        log = "info",
-    )
-
-    kernel_abi_dist(
-        name = name + "_abi_dist",
-        kernel_abi = name + "_abi",
-        kernel_build_add_vmlinux = True,
-        data = dist_targets,
-        flat = True,
-        dist_dir = "out_abi/{name}/dist".format(name = name),
         log = "info",
     )
 
