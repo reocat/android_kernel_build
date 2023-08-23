@@ -708,6 +708,7 @@ def _define_common_kernel(
         enable_interceptor = enable_interceptor,
         visibility = visibility,
         collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
+        kbuild_symtypes = "true",
         strip_modules = _STRIP_MODULES,
         toolchain_version = toolchain_version,
         keep_module_symvers = _KEEP_MODULE_SYMVERS,
@@ -869,12 +870,9 @@ def _define_common_kernel(
 
     dist_targets.append(name + "_sbom")
 
-    copy_to_dist_dir(
+    native.alias(
         name = name + "_dist",
-        data = dist_targets,
-        flat = True,
-        dist_dir = "out/{name}/dist".format(name = name),
-        log = "info",
+        actual = name + "_abi_dist",
     )
 
     kernel_abi_dist(
