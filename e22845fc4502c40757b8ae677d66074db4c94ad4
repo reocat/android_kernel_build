@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92b69cdd_069efa4b",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-24T16:34:19Z",
+      "side": 1,
+      "message": "nit: could you please put it in a separate CL?",
+      "range": {
+        "startLine": 711,
+        "startChar": 0,
+        "endLine": 711,
+        "endChar": 33
+      },
+      "revId": "e22845fc4502c40757b8ae677d66074db4c94ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69241f66_7d4eb9de",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-24T16:34:19Z",
+      "side": 1,
+      "message": "This should have a new boolean to:\n\n- disable the with_vmlinux transition for ALL sub-targets (including abi_dump, etc.), if the boolean is set\n- Take out the with_vmlinux part out of the notrim transition (that is, make notrim transition only disables trim but not add vmlinux and kbuild_symtypes), if the boolean is set\n\nFor GKI, this boolean should be set. But for partner ABI monitoring, they can\u0027t set it for mixed builds.\n\nI think this change is required before you alias _dist with _abi_dist above.",
+      "revId": "e22845fc4502c40757b8ae677d66074db4c94ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
