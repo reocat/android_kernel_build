@@ -84,10 +84,21 @@ def load_arguments():
                         dest="include_abi_tests",
                         help="Include ABI Monitoring related tests." +
                         "NOTE: It requires a branch with ABI monitoring enabled.")
+    group = parser.add_argument_group("CI", "flags for ci.android.com")
+    group.add_argument("--test_result_dir",
+                       type=_resolve_against_workspace_root,
+                       help="""Directory to store test results to be used in :reporter.
+
+                            If set, this script always has exit code 0.
+                       """)
     return parser.parse_known_args()
 
 
 arguments = None
+
+
+def _resolve_against_workspace_root(p: str) -> pathlib.Path:
+    return pathlib.Path(os.environ["BUILD_WORKSPACE_DIRECTORY"]) / p
 
 
 class Exec(object):
@@ -182,6 +193,7 @@ class KleafIntegrationTestBase(unittest.TestCase):
         ] + command_args, **kwargs)
 
     def setUp(self) -> None:
+        print(arguments)
         self.assertTrue(os.environ.get("BUILD_WORKSPACE_DIRECTORY"),
                         "BUILD_WORKSPACE_DIRECTORY is not set")
         os.chdir(os.environ["BUILD_WORKSPACE_DIRECTORY"])
@@ -412,6 +424,7 @@ class QuickIntegrationTest(KleafIntegrationTestBase):
         """Tests that out/bazel/javatmp can be overridden.
 
         See b/267580482."""
+        self.fail()
         default_java_tmp = pathlib.Path("out/bazel/javatmp")
         new_java_tmp = tempfile.TemporaryDirectory()
         self.addCleanup(new_java_tmp.cleanup)
@@ -736,4 +749,26 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
 if __name__ == "__main__":
     arguments, unknown = load_arguments()
     sys.argv[1:] = unknown
-    absltest.main()
+
+    if not arguments.test_result_dir:
+        absltest.main()
+        raise RuntimeError("Should not reach here")
+
+    os.makedirs(arguments.test_result_dir, exist_ok=True)
+    stdout = arguments.test_result_dir / "stdout.txt"
+    stderr = arguments.test_result_dir / "stderr.txt"
+    exit_code = arguments.test_result_dir / "exitcode.txt"
+    with open(stdout, "w") as stdout_file, \
+         open(stderr, "w") as stderr_file, \
+         open(exit_code, "w") as exit_code_file:
+        sys.stdout = stdout_file
+        sys.stderr = stderr_file
+        try:
+            absltest.main()
+            exit_code_file.write("0\n")
+        except SystemExit as e:
+            exit_code_file.write(f"{e.code if type(e.code) == 'int' else 1}\n")
+
+        sys.stdout = sys.__stdout__
+        sys.stdout = sys.__stderr__
+
