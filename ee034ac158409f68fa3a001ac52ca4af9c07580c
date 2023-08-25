@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e291455c_8b70ead0",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-25T22:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fd42578_30a495cc",
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfa8d5a1_79db11e8",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-08-25T20:48:57Z",
       "side": 1,
       "message": "Change this to `system_dlkm_fs_types`",
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "009a5a76_2d238935",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-25T22:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfa8d5a1_79db11e8",
       "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0aaf718_5df01150",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-25T22:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb6479c0_3b134b47",
+      "range": {
+        "startLine": 597,
+        "startChar": 0,
+        "endLine": 605,
+        "endChar": 0
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d3db329_9ec3d504",
@@ -71,6 +131,30 @@
       "writtenOn": "2023-08-25T20:48:57Z",
       "side": 1,
       "message": "nit: SYSTEM_DLKM_COMMON_OUTS\n\nsince system_dlkm produces some dynamic outputs after this CL",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d9d044e_2eab93cd",
+        "filename": "kleaf/impl/constants.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-25T22:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d3db329_9ec3d504",
       "range": {
         "startLine": 45,
         "startChar": 0,
@@ -261,6 +345,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c37304f1_6c013394",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-25T22:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22c0758d_e4d8e93d",
+      "range": {
+        "startLine": 109,
+        "startChar": 25,
+        "endLine": 109,
+        "endChar": 40
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adb78546_09762798",
@@ -297,6 +405,30 @@
       "writtenOn": "2023-08-25T20:48:57Z",
       "side": 1,
       "message": "nit: move this logic to L97~103?",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 103
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31c34cc1_9905e790",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-25T22:11:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67badd51_b6b19a98",
       "range": {
         "startLine": 160,
         "startChar": 0,
