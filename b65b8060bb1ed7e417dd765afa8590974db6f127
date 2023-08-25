@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ff73089_51b71402",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T18:22:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a835dd50_0bb11327",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "b65b8060bb1ed7e417dd765afa8590974db6f127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edb7588d_bd06cf49",
@@ -89,6 +113,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e7a67b8_dbe60c7f",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T18:22:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edb7588d_bd06cf49",
+      "revId": "b65b8060bb1ed7e417dd765afa8590974db6f127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75b69cee_0c8f9541",
@@ -102,6 +144,24 @@
       "writtenOn": "2023-08-18T15:32:01Z",
       "side": 1,
       "message": "add a reference to the b/ ?",
+      "revId": "b65b8060bb1ed7e417dd765afa8590974db6f127",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89022755_547f9281",
+        "filename": "kleaf/docs/hermeticity.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T18:22:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75b69cee_0c8f9541",
       "revId": "b65b8060bb1ed7e417dd765afa8590974db6f127",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
