@@ -30,6 +30,8 @@ load("//build/kernel/kleaf/tests:failure_test.bzl", "failure_test")
 load("//build/kernel/kleaf/tests:test_utils.bzl", "test_utils")
 load("//build/kernel/kleaf/tests/utils:contain_lines_test.bzl", "contain_lines_test")
 
+_LICENSE_HDR_STR = "# SPDX-License-Identifier: GPL-2.0"
+
 def _argv_to_dict(argv):
     """A naive algorithm that transforms argv to a dictionary.
 
@@ -315,7 +317,10 @@ def _makefile_top_module_uses_subdir_source_test(name):
         name = name,
         out = "bar.ko",
         srcs = ["subdir/foo.c"],
-        expected_lines = ["bar-y += subdir/foo.o"],
+        expected_lines = [
+            _LICENSE_HDR_STR,
+            "bar-y += subdir/foo.o",
+        ],
     )
 
 def _makefile_subdir_source_same_name_test(name):
@@ -342,7 +347,10 @@ def _makefile_subdir_source_same_name_test(name):
     write_file(
         name = name + "_expected_subdir_kbuild",
         out = name + "_exepcted/subdir/Kbuild",
-        content = ["# The module subdir/foo.ko has a source file subdir/foo.c"],
+        content = [
+            _LICENSE_HDR_STR,
+            "# The module subdir/foo.ko has a source file subdir/foo.c",
+        ],
     )
     contain_lines_test(
         name = name + "_subdir_kbuild_test",
@@ -359,7 +367,10 @@ def _makefile_subdir_source_same_name_test(name):
     write_file(
         name = name + "_expected_kbuild",
         out = name + "_expected/Kbuild",
-        content = ["obj-y += subdir/"],
+        content = [
+            _LICENSE_HDR_STR,
+            "obj-y += subdir/",
+        ],
     )
     contain_lines_test(
         name = name + "_kbuild_test",
@@ -396,7 +407,7 @@ def _makefile_subdir_source_different_name_test(name):
     write_file(
         name = name + "_expected_subdir_kbuild",
         out = name + "_exepcted/subdir/Kbuild",
-        content = ["bar-y += foo.o"],
+        content = [_LICENSE_HDR_STR, "bar-y += foo.o"],
     )
     contain_lines_test(
         name = name + "_subdir_kbuild_test",
@@ -413,7 +424,10 @@ def _makefile_subdir_source_different_name_test(name):
     write_file(
         name = name + "_expected_kbuild",
         out = name + "_expected/Kbuild",
-        content = ["obj-y += subdir/"],
+        content = [
+            _LICENSE_HDR_STR,
+            "obj-y += subdir/",
+        ],
     )
     contain_lines_test(
         name = name + "_kbuild_test",
@@ -554,6 +568,8 @@ def _makefiles_include_ordering_artifacts_test(name):
         ],
         expected_lines = [
             # do not sort
+            # License header file
+            _LICENSE_HDR_STR,
             # LINUXINCLUDE
             "LINUXINCLUDE := \\",
             # local "linux_includes"
@@ -628,6 +644,7 @@ def _makefiles_submodule_symvers_test(
         deps = [name + "_B"],
         top_level_makefile = True,
         expected_makefile_lines = [
+            _LICENSE_HDR_STR,
             "EXTRA_SYMBOLS += $(COMMON_OUT_DIR)/{}/{}_C_Module.symvers".format(
                 native.package_name(),
                 name,
