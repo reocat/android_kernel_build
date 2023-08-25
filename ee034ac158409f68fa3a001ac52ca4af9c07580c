@@ -1,0 +1,262 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fd42578_30a495cc",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "Delete this line",
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfa8d5a1_79db11e8",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "Change this to `system_dlkm_fs_types`",
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb6479c0_3b134b47",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "Do not add this section, because we no longer support build.sh.\n\nThis file is a manual for build.sh build.config variables to Kleaf equivalents. We never supported `SYSTEM_DLKM_FS_TYPES` in build.config before, and we should avoid adding more.",
+      "range": {
+        "startLine": 597,
+        "startChar": 0,
+        "endLine": 605,
+        "endChar": 0
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d3db329_9ec3d504",
+        "filename": "kleaf/impl/constants.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "nit: SYSTEM_DLKM_COMMON_OUTS\n\nsince system_dlkm produces some dynamic outputs after this CL",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fbd5f05_a2485762",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "```\n        system_dlkm_fs_type: Deprecated. Use `system_dlkm_fs_types` instead. \n            \n            Supported filesystems for `system_dlkm` image are `ext4` and `erofs`.\n            Defaults to `ext4` if not specified.\n```\n\nAlso see my comment below about the default value to both attributes",
+      "range": {
+        "startLine": 197,
+        "startChar": 29,
+        "endLine": 197,
+        "endChar": 183
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53787cfe_853d51ad",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "Do you need this? This is going to silently suppress e.g. if the caller (incorrectly?) specifies\n\n```\nsystem_dlkm_fs_type\u003dX,\nsystem_dlkm_fs_types\u003d[X, Y]\n```\n\nThis should either be an error or passed as-is, instead of silently dropping `system_dlkm_fs_types`",
+      "range": {
+        "startLine": 363,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 39
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "062c2d44_ef565f85",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "Since we are changing the default here (that is, if both arguments are unspecified, it changes from `system_dlkm_fs_type\u003dext4` to `system_dlkm_fs_types\u003dboth`), I think this is worth a GKI newsletter announcement.\n\nOr even better -- keep the old default value by dropping the original code:\n\n```\n        # if system_dlkm_fs_type \u003d\u003d None:\n        #   system_dlkm_fs_type \u003d \"ext4\"\n```\n... and passing the value as-is, then in the implementation:\n\n```\nsystem_dlkm_fs_type \u003d ctx.attr.system_dlkm_fs_type     # str | None\nsystem_dlkm_fs_types \u003d ctx.attr.system_dlkm_fs_types   # list[str]\nif not ctx.attr.system_dlkm_fs_type and not ctx.attr.system_dlkm_fs_types:\n  system_dlkm_fs_type \u003d \"ext4\"\n```\n\nBy setting default values only in the implementation, we can make this attribute more configurable (that is, it can accept e.g.\n\n```\nsystem_dlkm_fs_type \u003d select({...: None})\n```\n)",
+      "range": {
+        "startLine": 366,
+        "startChar": 0,
+        "endLine": 368,
+        "endChar": 56
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "640173ea_d987e9e3",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "```\nif system_dlkm_fs_type and system_dlkm_fs_types:\n  fail(...)\n```\n\n... to prevent both being set. It is better to check in the implementation rather than in the macro, so the attributes are configurable.",
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d0449ea_3b017558",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "This can be factored out, right? We only need to extract it once, not per image.\n\n(assuming that `build_system_dlkm` does not modify the staging directory)",
+      "range": {
+        "startLine": 108,
+        "startChar": 20,
+        "endLine": 108,
+        "endChar": 47
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22c0758d_e4d8e93d",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "nit: `{system_dlkm_img_name}`",
+      "range": {
+        "startLine": 109,
+        "startChar": 25,
+        "endLine": 109,
+        "endChar": 40
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adb78546_09762798",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "same for this; this can be at the very end instead of cleaning up after each image",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 51
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67badd51_b6b19a98",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-25T20:48:57Z",
+      "side": 1,
+      "message": "nit: move this logic to L97~103?",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 103
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
