@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b4c4e9ba_75e9bd46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-08-25T12:48:50Z",
+      "side": 1,
+      "message": "would that build fail (in the infra) if the ABI is inconsistent (i.e. ABI break) ?",
+      "revId": "e22845fc4502c40757b8ae677d66074db4c94ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92b69cdd_069efa4b",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 4
@@ -20,6 +37,23 @@
         "endLine": 711,
         "endChar": 33
       },
+      "revId": "e22845fc4502c40757b8ae677d66074db4c94ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20ef423c_71b16e20",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-08-25T12:48:50Z",
+      "side": 1,
+      "message": "Should it not be the other way around? kernel_abi_dist is actually kernel_dist? That would make the kernel_aarch64 target consistent with `//common:kernel_aarch64`.",
       "revId": "e22845fc4502c40757b8ae677d66074db4c94ad4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
