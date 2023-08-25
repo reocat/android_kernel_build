@@ -67,11 +67,17 @@ def die(*args, **kwargs):
     raise DieException(*args, **kwargs)
 
 
+def _get_license_str():
+  return textwrap.dedent("""\
+    # SPDX-License-Identifier: GPL-2.0
+
+  """)
+
 def _gen_makefile(
         module_symvers_list: list[pathlib.Path],
         output_makefile: pathlib.Path,
 ):
-    content = ""
+    content = _get_license_str()
 
     for module_symvers in module_symvers_list:
         content += textwrap.dedent(f"""\
@@ -178,6 +184,7 @@ def _gen_ddk_makefile_for_module(
     copts = json.load(copt_file) if copt_file else None
 
     with open(kbuild, "w") as out_file, open(out_cflags_path, "w") as out_cflags:
+        out_file.write(_get_license_str())
         out_file.write(textwrap.dedent(f"""\
             # Build {package / kernel_module_out}
             obj-m += {kernel_module_out.with_suffix('.o').name}
