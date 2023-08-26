@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28ff5a54_dda70af0",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-26T00:14:04Z",
+      "side": 1,
+      "message": "You still need this for the communication between system_dlkm_image.bzl and build_utils.sh, right?",
+      "range": {
+        "startLine": 375,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 43
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4fd42578_30a495cc",
         "filename": "kleaf/docs/build_configs.md",
         "patchSetId": 5
