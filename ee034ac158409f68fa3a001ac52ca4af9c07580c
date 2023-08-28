@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d34ee418_0bfdcf56",
+        "filename": "kleaf/build_config_to_bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-28T23:36:11Z",
+      "side": 1,
+      "message": "No, `build_utils.sh` still uses `SYSTEM_DLKM_FS_TYPE` being set with fs types in `SYSTEM_DLKM_FS_TYPES` each iteration.",
+      "parentUuid": "28ff5a54_dda70af0",
+      "range": {
+        "startLine": 375,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 43
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fd42578_30a495cc",
@@ -211,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a6a9535_afe387bc",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-28T23:36:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fbd5f05_a2485762",
+      "range": {
+        "startLine": 197,
+        "startChar": 29,
+        "endLine": 197,
+        "endChar": 183
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53787cfe_853d51ad",
@@ -224,6 +272,30 @@
       "writtenOn": "2023-08-25T20:48:57Z",
       "side": 1,
       "message": "Do you need this? This is going to silently suppress e.g. if the caller (incorrectly?) specifies\n\n```\nsystem_dlkm_fs_type\u003dX,\nsystem_dlkm_fs_types\u003d[X, Y]\n```\n\nThis should either be an error or passed as-is, instead of silently dropping `system_dlkm_fs_types`",
+      "range": {
+        "startLine": 363,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 39
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5122e233_5817834c",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-28T23:36:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53787cfe_853d51ad",
       "range": {
         "startLine": 363,
         "startChar": 0,
@@ -307,6 +379,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3656bb5_2e74ac7d",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-28T23:36:11Z",
+      "side": 1,
+      "message": "Going with the idea where if `fs_type` is not specified (system_dlkm.img as ext4) or specified (system_dlkm.img with given fs) the behavior doesn\u0027t change from the current behavior. This should be enough to not break anyone who are relying on the old `system_dlkm_fs_type` intentionally by specifying or unintentionally by default behavior.\n\nDon\u0027t think there is a need to add another flag or complexity to this. Wdyt?\n\nAs for our common_kernel builds, we will switch to `fs_types` and build both `ext4` and `erofs` images using the `system_dlkm_fs_types`, currently not specifying `system_dlkm_fs_type` and relying on the default behavior.\n\nGKI news letter: 08/25",
+      "parentUuid": "a3b329a8_337cbdc6",
+      "range": {
+        "startLine": 366,
+        "startChar": 0,
+        "endLine": 368,
+        "endChar": 56
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "640173ea_d987e9e3",
         "filename": "kleaf/impl/image/system_dlkm_image.bzl",
         "patchSetId": 5
@@ -318,6 +414,24 @@
       "writtenOn": "2023-08-25T20:48:57Z",
       "side": 1,
       "message": "```\nif system_dlkm_fs_type and system_dlkm_fs_types:\n  fail(...)\n```\n\n... to prevent both being set. It is better to check in the implementation rather than in the macro, so the attributes are configurable.",
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b07a1963_05f4c270",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-28T23:36:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "640173ea_d987e9e3",
       "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -335,6 +449,30 @@
       "writtenOn": "2023-08-25T20:48:57Z",
       "side": 1,
       "message": "This can be factored out, right? We only need to extract it once, not per image.\n\n(assuming that `build_system_dlkm` does not modify the staging directory)",
+      "range": {
+        "startLine": 108,
+        "startChar": 20,
+        "endLine": 108,
+        "endChar": 47
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f146f2e5_35403559",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-28T23:36:11Z",
+      "side": 1,
+      "message": "`build_system_dlkm` adds the filesystem props for the `build_image` inside the `system_dlkm_staging_dir`. So, it\u0027s better to have a clean copy for each fs type.",
+      "parentUuid": "2d0449ea_3b017558",
       "range": {
         "startLine": 108,
         "startChar": 20,
@@ -405,6 +543,30 @@
       "writtenOn": "2023-08-25T20:48:57Z",
       "side": 1,
       "message": "same for this; this can be at the very end instead of cleaning up after each image",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 51
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51466d20_3745a197",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-08-28T23:36:11Z",
+      "side": 1,
+      "message": "It\u0027s tainted with the filesystem props for `build_image` in `build_utils.sh`.",
+      "parentUuid": "adb78546_09762798",
       "range": {
         "startLine": 129,
         "startChar": 0,
