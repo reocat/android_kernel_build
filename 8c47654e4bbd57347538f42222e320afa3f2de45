@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b4a9a9f_11aa7d30",
+        "filename": "kleaf/bazelrc/flags.bazelrc",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-08-29T08:25:05Z",
+      "side": 1,
+      "message": "why not name everything `workaround_btrfs_b292212788` for consistency? It is also self-documenting.",
+      "range": {
+        "startLine": 26,
+        "startChar": 68,
+        "endLine": 26,
+        "endChar": 84
+      },
+      "revId": "8c47654e4bbd57347538f42222e320afa3f2de45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a319611e_c6a39cee",
+        "filename": "kleaf/docs/hermeticity.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-08-29T08:25:05Z",
+      "side": 1,
+      "message": "```suggestion\nIf `--workaround_btrfs_b292212788` is set, `find` comes from the host machine.\n```",
+      "range": {
+        "startLine": 169,
+        "startChar": 6,
+        "endLine": 169,
+        "endChar": 22
+      },
+      "revId": "8c47654e4bbd57347538f42222e320afa3f2de45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
