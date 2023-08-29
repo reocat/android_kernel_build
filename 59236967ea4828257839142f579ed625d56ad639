@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2692522c_4e3113ab",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-29T21:08:22Z",
+      "side": 1,
+      "message": "Wow, is this a new warning? I remembered that we don\u0027t have this warning before.\n\nI\u0027ll fix this!",
+      "parentUuid": "8bcc701c_68fadecd",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 76
+      },
+      "revId": "59236967ea4828257839142f579ed625d56ad639",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4c7e041_645eee49",
         "filename": "kleaf/docs/hermeticity.md",
         "patchSetId": 7
