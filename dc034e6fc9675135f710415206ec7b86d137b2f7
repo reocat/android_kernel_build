@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7e6e387_88d926f8",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-29T21:44:01Z",
+      "side": 1,
+      "message": "nit: move to L50. Then you can say that after L50, both system_dlkm_fs_type and system_dlkm_fs_types is fixed.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 52
+      },
+      "revId": "dc034e6fc9675135f710415206ec7b86d137b2f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
