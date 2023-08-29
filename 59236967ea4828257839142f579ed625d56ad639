@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bcc701c_68fadecd",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-29T21:01:24Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Buildifier: Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nLoad statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 76
+      },
+      "revId": "59236967ea4828257839142f579ed625d56ad639",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4c7e041_645eee49",
+        "filename": "kleaf/docs/hermeticity.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-08-29T21:01:24Z",
+      "side": 1,
+      "message": "`--workaround_btrfs_b292212788`",
+      "range": {
+        "startLine": 169,
+        "startChar": 4,
+        "endLine": 169,
+        "endChar": 22
+      },
+      "revId": "59236967ea4828257839142f579ed625d56ad639",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
