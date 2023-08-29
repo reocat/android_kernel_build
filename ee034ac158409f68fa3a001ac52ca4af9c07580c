@@ -401,6 +401,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7249253b_5198c052",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-08-29T00:45:35Z",
+      "side": 1,
+      "message": "You can defer to the flag addition later. The flag addition is to facilitate migration from the old mechanism `system_dlkm_fs_type` to the new mechanism `system_dlkm_fs_types` when `system_dlkm_fs_type` is officially deprecated. This can happen later.",
+      "parentUuid": "a3656bb5_2e74ac7d",
+      "range": {
+        "startLine": 366,
+        "startChar": 0,
+        "endLine": 368,
+        "endChar": 56
+      },
+      "revId": "ee034ac158409f68fa3a001ac52ca4af9c07580c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "640173ea_d987e9e3",
