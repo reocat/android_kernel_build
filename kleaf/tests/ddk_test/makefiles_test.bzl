@@ -717,7 +717,7 @@ def makefiles_test_suite(name):
 
     ddk_headers(
         name = name + "_foo_headers",
-        hdrs = ["foo.h"],
+        hdrs = ["include/foo/foo.h"],
         includes = ["include/foo"],
     )
 
