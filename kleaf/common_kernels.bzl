@@ -72,6 +72,9 @@ _COLLECT_UNSTRIPPED_MODULES = True
 # Always strip modules for common kernels.
 _STRIP_MODULES = True
 
+# Set `KBUILD_SYMTYPES=1` by default.
+_KBUILD_SYMTYPES = "true"
+
 # Always keep a copy of Module.symvers for common kernels.
 _KEEP_MODULE_SYMVERS = True
 
@@ -709,6 +712,7 @@ def _define_common_kernel(
         visibility = visibility,
         collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
         strip_modules = _STRIP_MODULES,
+        kbuild_symtypes = _KBUILD_SYMTYPES,
         toolchain_version = toolchain_version,
         keep_module_symvers = _KEEP_MODULE_SYMVERS,
         kmi_symbol_list = kmi_symbol_list,
