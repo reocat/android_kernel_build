@@ -673,6 +673,7 @@ filegroup(
 py_library(
     name = "buildozer_command_builder",
     srcs = ["buildozer_command_builder.py"],
+    imports = ["."],
     srcs_version = "PY3",
     visibility = ["//build/kernel/kleaf:__subpackages__"],
 )
