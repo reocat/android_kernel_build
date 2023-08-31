@@ -17,6 +17,24 @@
       "parentUuid": "608c1940_5483f036",
       "revId": "52a5f48a0d90f10b13a87f4ddf0813ee121ba6e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "824d509c_3eb719a0",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1074628
+      },
+      "writtenOn": "2023-08-31T16:29:08Z",
+      "side": 1,
+      "message": "```\nbash: buildifier: command not found\n```",
+      "parentUuid": "7c58a9e9_bb04a2c7",
+      "revId": "52a5f48a0d90f10b13a87f4ddf0813ee121ba6e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
