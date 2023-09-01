@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6526983_563e8927",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-01T16:44:06Z",
+      "side": 1,
+      "message": "Do we have some grace period for partners to opt into the new mechanism?",
+      "revId": "cdc02539b962d21edfe99d3cd714a46fcbb63e5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c34b664f_e79169dd",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-01T16:44:06Z",
+      "side": 1,
+      "message": "nit: Like \"DO_NOT_STRIP_MODULES\" -\u003e \"strip_modules\", I think it is better if this attribute has a positive tone, e.g. `unpack_ramdisk`",
+      "range": {
+        "startLine": 464,
+        "startChar": 14,
+        "endLine": 464,
+        "endChar": 36
+      },
+      "revId": "cdc02539b962d21edfe99d3cd714a46fcbb63e5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
