@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25f3cb88_bd2eb527",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-01T16:47:30Z",
+      "side": 1,
+      "message": "I see; this will use value in build.config if not specified in Bazel. Is this what you planned? If so please see my comment on the warning message.",
+      "parentUuid": "f6526983_563e8927",
+      "revId": "cdc02539b962d21edfe99d3cd714a46fcbb63e5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c34b664f_e79169dd",
         "filename": "kleaf/docs/build_configs.md",
         "patchSetId": 2
@@ -36,6 +54,29 @@
         "startChar": 14,
         "endLine": 464,
         "endChar": 36
+      },
+      "revId": "cdc02539b962d21edfe99d3cd714a46fcbb63e5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1909892_0c2f9b73",
+        "filename": "kleaf/impl/image/boot_images.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-01T16:47:30Z",
+      "side": 1,
+      "message": "nit:\n\n```\n    if ctx.attr.skip_unpacking_ramdisk:\n        boot_flag_cmd +\u003d \"\"\"\n            SKIP_UNPACKING_RAMDISK\u003d1\n        \"\"\"\n    else:\n        boot_flag_cmd +\u003d \"\"\"\n            if [[ -n ${{SKIP_UNPACKING_RAMDISK}} ]]; then\n                echo \"WARNING: ... is deprecated ...\" \u003e\u00262\n            fi\n        \"\"\"\n```",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 11
       },
       "revId": "cdc02539b962d21edfe99d3cd714a46fcbb63e5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
