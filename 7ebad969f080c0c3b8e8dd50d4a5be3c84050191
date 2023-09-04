@@ -16,6 +16,24 @@
       "message": "I think I need to add a test for this, to ensure only one header is added; I\u0027m suspicious `_merge_directories` might duplicate them, but need to confirm.",
       "revId": "7ebad969f080c0c3b8e8dd50d4a5be3c84050191",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73f492e9_88a11b96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-04T12:04:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c21aa653_d870186e",
+      "revId": "7ebad969f080c0c3b8e8dd50d4a5be3c84050191",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
