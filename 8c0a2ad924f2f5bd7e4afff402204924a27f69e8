@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14365c31_82fe17bb",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-05T12:39:07Z",
+      "side": 1,
+      "message": "This is required after (CL:2610669) where a new check was introduced.",
+      "range": {
+        "startLine": 329,
+        "startChar": 12,
+        "endLine": 329,
+        "endChar": 29
+      },
+      "revId": "8c0a2ad924f2f5bd7e4afff402204924a27f69e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
