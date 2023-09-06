@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec2f96b5_804f40f3",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "919ac8b3_cecb781c",
+      "range": {
+        "startLine": 347,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 0
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44b53415_acb65344",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-09-06T03:38:45Z",
       "side": 1,
       "message": "If using DIST_DIR\u003dutils.intermediates_dir(), then I would also recommend writing this to $DIST_DIR (which is our intermediates dir) instead of writing to /tmp",
+      "range": {
+        "startLine": 351,
+        "startChar": 22,
+        "endLine": 351,
+        "endChar": 28
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7940b70_a0a34790",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44b53415_acb65344",
       "range": {
         "startLine": 351,
         "startChar": 22,
@@ -111,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93034f9d_d23c4bb5",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c497837_58f0474a",
+      "range": {
+        "startLine": 354,
+        "startChar": 26,
+        "endLine": 354,
+        "endChar": 29
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2650578_e13518af",
@@ -142,6 +214,24 @@
       "side": 1,
       "message": "... so the text in console is mostly useless.",
       "parentUuid": "b2650578_e13518af",
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32a6a00c_6d56a110",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "889825fa_994092d4",
       "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -186,6 +276,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3015e2e_5323e4fd",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d66090e5_b334ca35",
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96d1f2ac_0dc620be",
@@ -204,6 +312,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94762959_c927e2bf",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d1f2ac_0dc620be",
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2fa29876_21fa0322",
@@ -217,6 +343,30 @@
       "writtenOn": "2023-09-06T03:30:04Z",
       "side": 1,
       "message": "No space before and after",
+      "range": {
+        "startLine": 1,
+        "startChar": 3,
+        "endLine": 1,
+        "endChar": 4
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "502d8cb1_a083a5c7",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fa29876_21fa0322",
       "range": {
         "startLine": 1,
         "startChar": 3,
@@ -257,6 +407,30 @@
       "writtenOn": "2023-09-06T03:47:23Z",
       "side": 1,
       "message": "This should be avoided:\n\nhttps://bazel.build/rules/performance#avoid-depset-to-list\n\nThis could be cleaned up with Args.add_all or utils.write_depset\n\nhttps://bazel.build/rules/lib/builtins/Args#add_all\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/utils.bzl;l\u003d175;drc\u003d346241d8c7d74ba03b68c5275f8e1545b0838daa\n\nIf not sure, please just file a bug on us and add a TODO here.",
+      "range": {
+        "startLine": 24,
+        "startChar": 17,
+        "endLine": 24,
+        "endChar": 36
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb336dc6_f23e7db9",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Yeah, I\u0027m not sure what you\u0027re looking for here. we strictly need just the `.img` files out of the label, so I\u0027m not sure how to do that without iterating over the files.",
+      "parentUuid": "fc0bd7e4_640cbd6a",
       "range": {
         "startLine": 24,
         "startChar": 17,
@@ -316,6 +490,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34d0649a_f07f8de5",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "I need it to access the `build_super` function in `build_utils.sh`. I tried with the `HermeticToolchainInfo`, but it seems that doesn\u0027t source `build_utils.sh`. Do you know of an easier way to do that?",
+      "parentUuid": "bb5f61b0_3a523b29",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 29,
+        "endChar": 48
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12266f13_bd0aaad8",
         "filename": "kleaf/impl/image/super_image.bzl",
         "patchSetId": 1
@@ -327,6 +525,30 @@
       "writtenOn": "2023-09-06T03:30:04Z",
       "side": 1,
       "message": "This is an implementation detail, so drop this",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 42
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "170fec85_1c3fcc95",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12266f13_bd0aaad8",
       "range": {
         "startLine": 67,
         "startChar": 0,
@@ -360,6 +582,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d11264f_3e5fbb5a",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "103ca020_83123892",
+      "range": {
+        "startLine": 69,
+        "startChar": 11,
+        "endLine": 69,
+        "endChar": 22
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6c77a08_4a96bec5",
@@ -383,6 +629,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d5b4350_77f9c7b1",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6c77a08_4a96bec5",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 29
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46f3d4bd_945a8b18",
@@ -396,6 +666,24 @@
       "writtenOn": "2023-09-06T03:47:23Z",
       "side": 1,
       "message": "Looks like you only depend on the files of the rules, not providers from `system_dlkm_image` rule.\n\nIf so, I think this should have `allow_files\u003dTrue`, so one can build super image from prebuilt *_dlkm images. (Same in L80)",
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "648fb762_bab87a81",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46f3d4bd_945a8b18",
       "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -425,6 +713,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2e8cc07_72d17dc5",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Okay - I\u0027ll do this pending resolution of if `HermeticToolchainInfo` could work.",
+      "parentUuid": "98a3bad0_73dc83df",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 82,
+        "endChar": 12
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "53ce3e32_118ae631",
         "filename": "kleaf/impl/image/super_image.bzl",
         "patchSetId": 1
@@ -436,6 +748,24 @@
       "writtenOn": "2023-09-06T03:30:04Z",
       "side": 1,
       "message": "If you already have a default here, why do you need another default (with different value!) in build_utils.sh?\n\nMaybe build_super should fail if SUPER_IMG_SIZE is not set?",
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "411478e1_6a4aa3cf",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T19:53:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53ce3e32_118ae631",
       "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
