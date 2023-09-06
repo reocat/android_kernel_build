@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b6fc4d7_63537ed0",
+        "filename": "kleaf/tests/ddk_test/makefiles_test.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:51:46Z",
+      "side": 1,
+      "message": "I would recommend only testing its existence in a separate, single unit test, instead of adding it to all existing unit tests. This can keep each individual test to focus on the topic it is trying to test.",
+      "range": {
+        "startLine": 350,
+        "startChar": 19,
+        "endLine": 351,
+        "endChar": 29
+      },
+      "revId": "6db08adbe99852b289315dfb8386e6b2c8fecfb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
