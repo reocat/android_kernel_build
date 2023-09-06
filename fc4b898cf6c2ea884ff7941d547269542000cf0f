@@ -38,6 +38,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fddf65b1_3d0a3a00",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T20:34:09Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Buildifier: Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nLoad statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load\n\n------\n\nNote: This is a new warning enabled in buildifier, so you might not see it in local buildifier run. Simply move the debug line up will fix the error.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 27
+      },
+      "revId": "fc4b898cf6c2ea884ff7941d547269542000cf0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67b0f408_5b3f9ebc",
         "filename": "kleaf/impl/image/super_image.bzl",
         "patchSetId": 2
