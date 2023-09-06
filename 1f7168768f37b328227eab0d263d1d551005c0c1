@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c497837_58f0474a",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:41:04Z",
+      "side": 1,
+      "message": "I mean just `local super_image_size\u003d\"${SUPER_IMAGE_SIZE:-268435456}\"`\n\nOr, as I suggested in the other comment, simply assert that the variable should be set\n\n```\nif [[ -z ${SUPER_IMAGE_SIZE} ]]; then\n  echo \"ERROR: ...\" \u003e\u00262\n  exit 1\nfi\n```",
+      "parentUuid": "43597002_ed1e7c32",
+      "range": {
+        "startLine": 354,
+        "startChar": 26,
+        "endLine": 354,
+        "endChar": 29
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b2650578_e13518af",
         "filename": "build_utils.sh",
         "patchSetId": 1
