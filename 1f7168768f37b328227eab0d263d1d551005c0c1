@@ -489,6 +489,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c1400aa_86dfddd4",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T21:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d9c2ed4_59f2e34c",
+      "range": {
+        "startLine": 24,
+        "startChar": 17,
+        "endLine": 24,
+        "endChar": 36
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75eaf48a_6ca82734",
@@ -574,6 +598,30 @@
       "side": 1,
       "message": "Just `source {path to build_utils.sh}` directly. For example:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/gki_artifacts.bzl;l\u003d93;drc\u003d90ff74f589116b6e72462557a5218a651a94a558",
       "parentUuid": "34d0649a_f07f8de5",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 29,
+        "endChar": 48
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53347fcb_c07570cd",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T21:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "220c5b3c_08cffd97",
       "range": {
         "startLine": 29,
         "startChar": 14,
@@ -797,6 +845,30 @@
       "side": 1,
       "message": "Okay - I\u0027ll do this pending resolution of if `HermeticToolchainInfo` could work.",
       "parentUuid": "98a3bad0_73dc83df",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 82,
+        "endChar": 12
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d97105f0_465a9c0d",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T21:43:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2e8cc07_72d17dc5",
       "range": {
         "startLine": 82,
         "startChar": 9,
