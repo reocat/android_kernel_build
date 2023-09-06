@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e5fc14a_fad602c8",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T20:22:22Z",
+      "side": 1,
+      "message": "Do you need this?\n\nEDIT: Actually, I think it might be simpler to just put L386 in .bzl directly",
+      "revId": "fc4b898cf6c2ea884ff7941d547269542000cf0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67b0f408_5b3f9ebc",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T20:22:22Z",
+      "side": 1,
+      "message": "I would suggest just \"unsparsed_image\", since the command technically works on other images too.\n\nSee below for other comments",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 21
+      },
+      "revId": "fc4b898cf6c2ea884ff7941d547269542000cf0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfcfc31a_f1c52628",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T20:22:22Z",
+      "side": 1,
+      "message": "Just `src` per convention",
+      "range": {
+        "startLine": 146,
+        "startChar": 9,
+        "endLine": 146,
+        "endChar": 20
+      },
+      "revId": "fc4b898cf6c2ea884ff7941d547269542000cf0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55c3fdff_cce12c08",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T20:22:22Z",
+      "side": 1,
+      "message": "If `unsparsed_image`, you might want to add an `out` attribute here as well for the name of the output file:\n\n```\n\"out\": attr.string(mandatory \u003d True)\n```\n\nOr remove `mandatory \u003d True`, and in the rule implementation use some sensible default (e.g. `{name}.img`)\n\nYou can technically also use `attr.output` (https://bazel.build/rules/lib/toplevel/attr#output) but\n\n```\nmyrule(name \u003d \"x\", out \u003d \"y\")\n```\ndeclares `:y`, and the convention in Kleaf is to declare `:x/y` instead. So we generally don\u0027t use attr.output, but instead use actions.declare_file + DefaultInfo as you are already doing right now.",
+      "revId": "fc4b898cf6c2ea884ff7941d547269542000cf0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1758e27_667a8c00",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T20:22:22Z",
+      "side": 1,
+      "message": "(same here; technically you just need simg2img)",
+      "revId": "fc4b898cf6c2ea884ff7941d547269542000cf0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

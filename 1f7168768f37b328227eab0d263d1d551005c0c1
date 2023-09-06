@@ -467,6 +467,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d9c2ed4_59f2e34c",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T20:22:22Z",
+      "side": 1,
+      "message": "Could you please file a bug on me and put the bug number here? Thank you!",
+      "parentUuid": "fb336dc6_f23e7db9",
+      "range": {
+        "startLine": 24,
+        "startChar": 17,
+        "endLine": 24,
+        "endChar": 36
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75eaf48a_6ca82734",
         "filename": "kleaf/impl/image/super_image.bzl",
         "patchSetId": 1
@@ -526,6 +550,30 @@
       "side": 1,
       "message": "I need it to access the `build_super` function in `build_utils.sh`. I tried with the `HermeticToolchainInfo`, but it seems that doesn\u0027t source `build_utils.sh`. Do you know of an easier way to do that?",
       "parentUuid": "bb5f61b0_3a523b29",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 29,
+        "endChar": 48
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "220c5b3c_08cffd97",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T20:22:22Z",
+      "side": 1,
+      "message": "Just `source {path to build_utils.sh}` directly. For example:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/gki_artifacts.bzl;l\u003d93;drc\u003d90ff74f589116b6e72462557a5218a651a94a558",
+      "parentUuid": "34d0649a_f07f8de5",
       "range": {
         "startLine": 29,
         "startChar": 14,
