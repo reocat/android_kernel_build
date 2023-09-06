@@ -343,6 +343,45 @@ function build_vendor_dlkm() {
   fi
 }
 
+function build_super() {
+  echo "========================================================"
+  echo " Creating super.img"
+
+  local super_props_file
+  super_props_file="$(mktemp)"
+  local dynamic_partitions=""
+  # Default to 256 MB
+  local super_image_size="$((${SUPER_IMAGE_SIZE:-268435456}))"
+  local group_size="$((super_image_size - 0x400000))"
+  cat << EOF >> "$super_props_file"
+lpmake=lpmake
+super_metadata_device=super
+super_block_devices=super
+super_super_device_size=${super_image_size}
+super_partition_size=${super_image_size}
+super_partition_groups=kb_dynamic_partitions
+super_kb_dynamic_partitions_group_size=${group_size}
+EOF
+
+  for image in "${SUPER_IMAGE_CONTENTS[@]}"; do
+    echo "  Adding ${image}"
+    partition_name=$(basename -s .img "${image}")
+    dynamic_partitions="${dynamic_partitions} ${partition_name}"
+    echo -e "${partition_name}_image=${image}" >> "$super_props_file"
+  done
+
+  echo -e "dynamic_partition_list=${dynamic_partitions}" >> "$super_props_file"
+  echo -e "super_kb_dynamic_partitions_partition_list=${dynamic_partitions}" >> "$super_props_file"
+
+  build_super_image -v "$super_props_file" "${DIST_DIR}/super.img"
+  rm -f "$super_props_file"
+
+  echo "super image created at ${DIST_DIR}/super.img"
+
+  simg2img "${DIST_DIR}/super.img" "${DIST_DIR}/super_unsparsed.img"
+  echo "Unsparsed super image created at ${DIST_DIR}/super_unsparsed.img"
+}
+
 function check_mkbootimg_path() {
   if [ -z "${MKBOOTIMG_PATH}" ]; then
     MKBOOTIMG_PATH="tools/mkbootimg/mkbootimg.py"
