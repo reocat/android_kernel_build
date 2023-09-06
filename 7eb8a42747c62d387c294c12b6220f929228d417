@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74b93e0a_4df95c0d",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-06T22:34:53Z",
+      "side": 1,
+      "message": "Is it possible for these paths to have a space in them? If so, would the command break?",
+      "parentUuid": "01dea3af_e80ca8be",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "790af098_6989489b",
         "filename": "kleaf/impl/image/super_image.bzl",
         "patchSetId": 3
