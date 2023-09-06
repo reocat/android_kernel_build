@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44b53415_acb65344",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:38:45Z",
+      "side": 1,
+      "message": "If using DIST_DIR\u003dutils.intermediates_dir(), then I would also recommend writing this to $DIST_DIR (which is our intermediates dir) instead of writing to /tmp",
+      "range": {
+        "startLine": 351,
+        "startChar": 22,
+        "endLine": 351,
+        "endChar": 28
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43597002_ed1e7c32",
         "filename": "build_utils.sh",
         "patchSetId": 1
@@ -60,6 +83,24 @@
       "writtenOn": "2023-09-06T03:30:04Z",
       "side": 1,
       "message": "drop this too\n\nDIST_DIR doesn\u0027t even mean anything outside of the sandbox",
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "889825fa_994092d4",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:38:45Z",
+      "side": 1,
+      "message": "... so the text in console is mostly useless.",
+      "parentUuid": "b2650578_e13518af",
       "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -175,6 +216,30 @@
       "writtenOn": "2023-09-06T03:30:04Z",
       "side": 1,
       "message": "Do you need a full KernelEnvInfo setup?\n\nIf not, please replace it with HermeticToolchainInfo.\n\nIf you are unsure, please create a bug and assign to me for further investigation, and add\n\n```\n# TODO(b/xxxxx): replace with HermeticToolchainInfo\n```",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 29,
+        "endChar": 48
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb5f61b0_3a523b29",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:38:45Z",
+      "side": 1,
+      "message": "I highly doubt that you need the full KernelEnvInfo other than setting `DIST_DIR` to a `$(mktemp -d)`, or even better, `utils.intermediates_dir()`.\n\nSo I would recommend you to change this to hermetic toolchain in this CL, so you can drop L82~86 too.\n\nSee https://android.googlesource.com/kernel/build/+/main/kleaf/docs/hermeticity.md#custom-rules for example\n\n---\n\nWhy use utils.intermediates_dir()? It is similar to RULEDIR in genrule, which is recommended here (though it also say that /tmp is writable):\n\nhttps://bazel.build/reference/be/make-variables#predefined_genrule_variables",
+      "parentUuid": "75eaf48a_6ca82734",
       "range": {
         "startLine": 29,
         "startChar": 14,
