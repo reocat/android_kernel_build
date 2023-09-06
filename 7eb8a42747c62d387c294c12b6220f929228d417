@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01dea3af_e80ca8be",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T22:32:07Z",
+      "side": 1,
+      "message": "nit: The convention is not to quote here. If you do want to quote, change L49 to `build_utils_sh \u003d shell.quote(ctx.file._build_utils_sh.path),`\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/fail.bzl;l\u003d45;drc\u003dc617c9252ade6d623d7b7c9ae80f8896627d427d\n\n(but it is not necessary, honestly) 😊",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "790af098_6989489b",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T22:32:07Z",
+      "side": 1,
+      "message": "same for these. You don\u0027t have to quote, but if you do, please use shell.quote",
+      "range": {
+        "startLine": 82,
+        "startChar": 25,
+        "endLine": 82,
+        "endChar": 26
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccece439_2534889f",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T22:32:07Z",
+      "side": 1,
+      "message": "Now that I think about it -- @ramjiyani@google.com this will conflict with your changes to system_dlkm with multiple different filesystem formats included in DefaultInfo, right?",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
