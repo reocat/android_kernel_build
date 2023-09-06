@@ -246,6 +246,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc0bd7e4_640cbd6a",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:47:23Z",
+      "side": 1,
+      "message": "This should be avoided:\n\nhttps://bazel.build/rules/performance#avoid-depset-to-list\n\nThis could be cleaned up with Args.add_all or utils.write_depset\n\nhttps://bazel.build/rules/lib/builtins/Args#add_all\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/utils.bzl;l\u003d175;drc\u003d346241d8c7d74ba03b68c5275f8e1545b0838daa\n\nIf not sure, please just file a bug on us and add a TODO here.",
+      "range": {
+        "startLine": 24,
+        "startChar": 17,
+        "endLine": 24,
+        "endChar": 36
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75eaf48a_6ca82734",
         "filename": "kleaf/impl/image/super_image.bzl",
         "patchSetId": 1
@@ -333,6 +356,46 @@
         "endLine": 69,
         "endChar": 22
       },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6c77a08_4a96bec5",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:47:23Z",
+      "side": 1,
+      "message": "(This and L79)\n\nDo you need both to build super image? One could technically build a super image with only either of them, or even neither of them, right?\n\nIf so, please drop L75 and L79",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 29
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46f3d4bd_945a8b18",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:47:23Z",
+      "side": 1,
+      "message": "Looks like you only depend on the files of the rules, not providers from `system_dlkm_image` rule.\n\nIf so, I think this should have `allow_files\u003dTrue`, so one can build super image from prebuilt *_dlkm images. (Same in L80)",
       "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
