@@ -1,0 +1,274 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "919ac8b3_cecb781c",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "drop (for cleaner stdout output)\n\nThe other echo\u0027s in other build_X functions should also be dropped, but it is outside the scope of this change.",
+      "range": {
+        "startLine": 347,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 0
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43597002_ed1e7c32",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "Do you need this?",
+      "range": {
+        "startLine": 354,
+        "startChar": 26,
+        "endLine": 354,
+        "endChar": 29
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2650578_e13518af",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "drop this too\n\nDIST_DIR doesn\u0027t even mean anything outside of the sandbox",
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d48463df_b23674ce",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "This should be a separate Bazel action because it generates a different output and is naturally detached from super.img.\n\nSo if the dependencies of super.img changes, super.img might be rebuilt, but as long as super.img does not change (even after the rebuild), super_unsparsed.img does not need to be rebuild.",
+      "range": {
+        "startLine": 381,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 68
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d66090e5_b334ca35",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "drop this too",
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d1f2ac_0dc620be",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "\u003e File is not formatted. Run `buildifier kleaf/impl/image/super_image.bzl` to format the file, or apply the suggested fix.\n\nPlease fix.",
+      "parentUuid": "8b181a60_5bd56eb5",
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fa29876_21fa0322",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "No space before and after",
+      "range": {
+        "startLine": 1,
+        "startChar": 3,
+        "endLine": 1,
+        "endChar": 4
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f381d39f_b510041b",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "Thank you!",
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75eaf48a_6ca82734",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "Do you need a full KernelEnvInfo setup?\n\nIf not, please replace it with HermeticToolchainInfo.\n\nIf you are unsure, please create a bug and assign to me for further investigation, and add\n\n```\n# TODO(b/xxxxx): replace with HermeticToolchainInfo\n```",
+      "range": {
+        "startLine": 29,
+        "startChar": 14,
+        "endLine": 29,
+        "endChar": 48
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12266f13_bd0aaad8",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "This is an implementation detail, so drop this",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 42
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "103ca020_83123892",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "quote these, otherwise the underscore is going to be recognized as emphasis in markdown",
+      "range": {
+        "startLine": 69,
+        "startChar": 11,
+        "endLine": 69,
+        "endChar": 22
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98a3bad0_73dc83df",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "The user of super_image technically shouldn\u0027t know about the implementation details of kernel_build.bzl. \n\nSo, if you absolutely need a KernelEnvInfo (see comment above), then please change this to:\n\n```\n\"kernel_build\": attr.label(providers \u003d [KernelBuildOriginalEnvInfo])\n```\n\nand access via `ctx.attr.kernel_build[KernelBuildOriginalEnvInfo].env_info`\n\nThen, the user of `super_image` can then do \n\n```\nkernel_build(name \u003d \"foo\")\nsuper_image(name \u003d \"foo_super_image\", kernel_build \u003d \":foo\")\n```\n\n... instead of ...\n\n```\nkernel_build(name \u003d \"foo\")\nsuper_image(name \u003d \"foo_super_image\", env \u003d \":foo_env\")\n```",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 82,
+        "endChar": 12
+      },
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53ce3e32_118ae631",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-06T03:30:04Z",
+      "side": 1,
+      "message": "If you already have a default here, why do you need another default (with different value!) in build_utils.sh?\n\nMaybe build_super should fail if SUPER_IMG_SIZE is not set?",
+      "revId": "1f7168768f37b328227eab0d263d1d551005c0c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
