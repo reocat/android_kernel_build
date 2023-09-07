@@ -56,6 +56,63 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/image/super_image.bzl` to format the file, or apply the suggested fix.",
       "revId": "bfbd90fe0707b5e87112d84f1e6119bffceaaf90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000053072564",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2746214?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "6925768d_fef8c345",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/image/super_image.bzl",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/impl/image/super_image.bzl",
+              "range": {
+                "startLine": 32,
+                "startChar": 0,
+                "endLine": 33,
+                "endChar": 0
+              },
+              "replacement": "            system_dlkm_image \u003d ctx.file.system_dlkm_image.path,\n"
+            },
+            {
+              "path": "kleaf/impl/image/super_image.bzl",
+              "range": {
+                "startLine": 38,
+                "startChar": 0,
+                "endLine": 39,
+                "endChar": 0
+              },
+              "replacement": "            vendor_dlkm_image \u003d ctx.file.vendor_dlkm_image.path,\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "b1e1dda4_007140ba",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-09-07T18:15:25Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/image/super_image.bzl` to format the file, or apply the suggested fix.",
+      "revId": "bfbd90fe0707b5e87112d84f1e6119bffceaaf90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
