@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41233e58_2e3711b0",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-07T17:13:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6ac1b9a4_925ec4e8",
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01dea3af_e80ca8be",
@@ -215,6 +233,30 @@
       "side": 1,
       "message": "It\u0027s not clear to me how to add the `OutputGroupInfo` to the `system_dlkm_image` and `vendor_dlkm_image` rules, so if I change this to `allow_single_file`, I don\u0027t know how to pass in just the `.img` file from those rules. Can you point to an example?",
       "parentUuid": "20b4e325_d01e0f20",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee5c84e3_d7b8aec7",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-07T17:13:44Z",
+      "side": 1,
+      "message": "Sure. Here\u0027s one good example:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/abi/abi_dump.bzl;l\u003d46;drc\u003d602cb014c5344b71905d14157cc13bae129b8fbe\n\nThen in the filegroup you can use output_group attribute to filter it:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/abi/kernel_abi.bzl;l\u003d370;drc\u003da56859eca90bc8b7982e06ef6a2cba73ca4cc41e\n\nSince the change to system_dlkm is functionally separate from this change to super image, I would suggest you to just use `allow_single_file` in this change, then file a bug on me to do the relevant system_dlkm changes. It is too long to fit within a comment. The change to system_dlkm_image can happen in parallel with this change.",
+      "parentUuid": "bf3e4927_b2aef080",
       "range": {
         "startLine": 113,
         "startChar": 0,
