@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fda8db95_107c6288",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-07T18:20:40Z",
+      "side": 1,
+      "message": "See http://r.android.com/2746214",
+      "parentUuid": "2833a848_f5713357",
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91384066_0abaf0ac",
@@ -370,6 +388,30 @@
       "side": 1,
       "message": "If you want to just make sure this change works, you can locally change the DefaultInfo of system_dlkm_image to just contain the image",
       "parentUuid": "0d9c0407_bfa5c8a6",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a4aa893_2b35a26f",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-07T18:20:40Z",
+      "side": 1,
+      "message": "Could you please test with http://r.android.com/2746214",
+      "parentUuid": "e2858e42_2e82d517",
       "range": {
         "startLine": 113,
         "startChar": 0,
