@@ -420,6 +420,30 @@
       },
       "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68fe4f44_facd6241",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-07T19:16:06Z",
+      "side": 1,
+      "message": "Tested - works for us!",
+      "parentUuid": "9a4aa893_2b35a26f",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
