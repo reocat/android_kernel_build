@@ -16,6 +16,24 @@
       "message": "This should also require --incompatible_disable_hermetic_tools_symlink_source to be set and it works for some months to avoid breaking partners.",
       "revId": "67f9d0c0accd05dc99a55f9296df4347f3faa413",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "263a3cd9_deda7556",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-07T18:59:44Z",
+      "side": 1,
+      "message": "Flag is enabled. Let\u0027s wait for some soak time.",
+      "parentUuid": "1cd5b270_10e7ee57",
+      "revId": "67f9d0c0accd05dc99a55f9296df4347f3faa413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

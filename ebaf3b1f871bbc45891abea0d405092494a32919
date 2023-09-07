@@ -16,6 +16,24 @@
       "message": "This will need https://android-review.git.corp.google.com/c/kernel/build/+/2660381 (which is reverted",
       "revId": "ebaf3b1f871bbc45891abea0d405092494a32919",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e584bb9_703ed101",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 34
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-07T18:59:44Z",
+      "side": 1,
+      "message": "No longer reverted",
+      "parentUuid": "de92f502_c1e90e02",
+      "revId": "ebaf3b1f871bbc45891abea0d405092494a32919",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
