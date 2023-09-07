@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2833a848_f5713357",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-07T17:22:20Z",
+      "side": 1,
+      "message": "I am going to approve this change as-is. Following up, I\u0027ll immediately upload a change to:\n\n- Modify allow_files to allow_single_file\n- Remove the depset to_list in super_image\n\nI\u0027ll use the bug you filed to keep track of this work.",
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "91384066_0abaf0ac",
         "filename": "build_utils.sh",
         "patchSetId": 3
