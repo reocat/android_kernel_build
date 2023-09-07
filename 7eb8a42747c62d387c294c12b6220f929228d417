@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7f9f971f_739bf08f",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-07T02:21:09Z",
+      "side": 1,
+      "message": "technically yes if the user checks out the tree in a path with spaces. It will break. But we mostly don\u0027t care. We don\u0027t quote paths virtually anywhere in Kleaf, but just tell people to not check out the tree in paths with weird characters.\n\nSo feel free not to quote them. I just suggest that, if you are quoting, then please use the most correct way to quote (shell.quote)",
+      "parentUuid": "74b93e0a_4df95c0d",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "790af098_6989489b",
         "filename": "kleaf/impl/image/super_image.bzl",
         "patchSetId": 3
