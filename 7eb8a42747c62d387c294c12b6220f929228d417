@@ -125,6 +125,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e93b9fb_c56fa838",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-07T17:17:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74b93e0a_4df95c0d",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "790af098_6989489b",
@@ -138,6 +162,30 @@
       "writtenOn": "2023-09-06T22:32:07Z",
       "side": 1,
       "message": "same for these. You don\u0027t have to quote, but if you do, please use shell.quote",
+      "range": {
+        "startLine": 82,
+        "startChar": 25,
+        "endLine": 82,
+        "endChar": 26
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "782ee976_ccc135a5",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-07T17:17:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "790af098_6989489b",
       "range": {
         "startLine": 82,
         "startChar": 25,
@@ -257,6 +305,30 @@
       "side": 1,
       "message": "Sure. Here\u0027s one good example:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/abi/abi_dump.bzl;l\u003d46;drc\u003d602cb014c5344b71905d14157cc13bae129b8fbe\n\nThen in the filegroup you can use output_group attribute to filter it:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/abi/kernel_abi.bzl;l\u003d370;drc\u003da56859eca90bc8b7982e06ef6a2cba73ca4cc41e\n\nSince the change to system_dlkm is functionally separate from this change to super image, I would suggest you to just use `allow_single_file` in this change, then file a bug on me to do the relevant system_dlkm changes. It is too long to fit within a comment. The change to system_dlkm_image can happen in parallel with this change.",
       "parentUuid": "bf3e4927_b2aef080",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d9c0407_bfa5c8a6",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-09-07T17:17:22Z",
+      "side": 1,
+      "message": "Thanks! And sure, I just want to make sure it works for our usecase before submitting. 😊",
+      "parentUuid": "ee5c84e3_d7b8aec7",
       "range": {
         "startLine": 113,
         "startChar": 0,
