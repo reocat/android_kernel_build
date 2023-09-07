@@ -199,6 +199,30 @@
       },
       "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf3e4927_b2aef080",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1966817
+      },
+      "writtenOn": "2023-09-07T16:58:52Z",
+      "side": 1,
+      "message": "It\u0027s not clear to me how to add the `OutputGroupInfo` to the `system_dlkm_image` and `vendor_dlkm_image` rules, so if I change this to `allow_single_file`, I don\u0027t know how to pass in just the `.img` file from those rules. Can you point to an example?",
+      "parentUuid": "20b4e325_d01e0f20",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
