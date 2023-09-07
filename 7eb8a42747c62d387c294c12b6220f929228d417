@@ -157,6 +157,30 @@
       },
       "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20b4e325_d01e0f20",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-07T03:06:47Z",
+      "side": 1,
+      "message": "No. The problem is that both images will be part of `SUPER_IMAGE_CONTENTS`, which goes into\n\nhttps://android-review.git.corp.google.com/c/kernel/build/+/2741980/3/build_utils.sh\n\nand will start breaking.\n\n---\n\nMy suggestion to @quic_johmoo@quicinc.com: this (and L118) should be `allow_single_file` to enforce the user to select a file by whatever means [1]. Also in L27~33, instead of blindly putting passing all images to SUPER_IMAGE_CONTENTS, it should explicitly pass the path to `ctx.file.X_dlkm_image` without assuming the name of the file (in build_utils.sh, the basename is assuming the name of the file)\n\n[1] The user may either provide a prebuilt file, or we can (in a separate CL) add OutputGroupInfo to system_dlkm so the user can use `filegroup(output_group \u003d ...)` to select the needed file.",
+      "parentUuid": "9c021dac_1f5e76d1",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
