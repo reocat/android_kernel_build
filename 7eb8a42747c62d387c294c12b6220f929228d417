@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "91384066_0abaf0ac",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-09-07T02:47:14Z",
+      "side": 1,
+      "message": "Does `super.img` need avb hash footer?",
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01dea3af_e80ca8be",
         "filename": "kleaf/impl/image/super_image.bzl",
         "patchSetId": 3
@@ -108,6 +125,30 @@
       "writtenOn": "2023-09-06T22:32:07Z",
       "side": 1,
       "message": "Now that I think about it -- @ramjiyani@google.com this will conflict with your changes to system_dlkm with multiple different filesystem formats included in DefaultInfo, right?",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c021dac_1f5e76d1",
+        "filename": "kleaf/impl/image/super_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-09-07T02:47:14Z",
+      "side": 1,
+      "message": "I am not sure. The way I understand is attribute `system_dlkm_image` here will be set to either `system_dlkm.ext4.img` OR `system_dlkm.erofs.img` and both of them will be in the `DefaultInfo`. So, should be fine?",
+      "parentUuid": "ccece439_2534889f",
       "range": {
         "startLine": 113,
         "startChar": 0,
