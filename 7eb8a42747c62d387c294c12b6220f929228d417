@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ac1b9a4_925ec4e8",
+        "filename": "build_utils.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-07T03:07:28Z",
+      "side": 1,
+      "message": "No. AVB footer is only added to individual partition images.",
+      "parentUuid": "91384066_0abaf0ac",
+      "revId": "7eb8a42747c62d387c294c12b6220f929228d417",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01dea3af_e80ca8be",
         "filename": "kleaf/impl/image/super_image.bzl",
         "patchSetId": 3
