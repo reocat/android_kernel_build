@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f4dc3d0_c153c91a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-07T18:28:03Z",
+      "side": 1,
+      "message": "@quic_johmoo@quicinc.com, do you always build super_image on top of a kernel_images rule, or do you also want to build super_image on prebuilts?\n\nIf the former, we might be able to simplify the API a bit with:\n\n```\nkernel_images(\n   name \u003d \"my_images\",\n   build_system_dlkm \u003d True,\n   build_vendor_dlkm \u003d True,\n   system_dlkm_fs_type \u003d \"ext4\",\n)\n\nsuper_image(\n   name \u003d \"my_super\",\n   kernel_images \u003d \":my_images\",\n)\n```\n\n... instead of asking the user to select the file. This is more restrictive than what the CL looks like right now.",
+      "range": {
+        "startLine": 9,
+        "startChar": 25,
+        "endLine": 10,
+        "endChar": 23
+      },
+      "revId": "e6338b7b1efe59558fe8356a5dc314b7478ceee0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
