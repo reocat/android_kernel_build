@@ -16,6 +16,24 @@
       "message": "Assuming this doesn\u0027t break CONFIG_UAPI_HEADER_TEST\u003dy; LTGM.",
       "revId": "6f05a23d41ebf6a8868e51c36a76f0581e9e8fc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b0e2a2f_ac542a62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-08T03:03:33Z",
+      "side": 1,
+      "message": "It does break, and fortunately we had a integration test to catch this:\n\nhttps://android-build.corp.google.com/test_investigate/?invocationId\u003dI13500010195330523\u0026testResultId\u003dTR59528918422197425\n\nInvestigating.",
+      "parentUuid": "0804fb0e_89b2b421",
+      "revId": "6f05a23d41ebf6a8868e51c36a76f0581e9e8fc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
