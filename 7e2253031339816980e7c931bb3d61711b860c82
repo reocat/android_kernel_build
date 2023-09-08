@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a4c692f1_ceec1940",
+        "filename": "BUILD.bazel",
+        "patchSetId": 45
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-08T21:48:30Z",
+      "side": 1,
+      "message": "https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/build-tools/path/linux-x86/bison",
+      "parentUuid": "9eb2c9d2_85185cab",
+      "range": {
+        "startLine": 39,
+        "startChar": 5,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "7e2253031339816980e7c931bb3d61711b860c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b6bfb074_884f2dc7",
         "filename": "BUILD.bazel",
         "patchSetId": 45
