@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9eb2c9d2_85185cab",
+        "filename": "BUILD.bazel",
+        "patchSetId": 45
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-08T21:47:58Z",
+      "side": 1,
+      "message": "build-tools/path/linux-x86/bison is a script not a symlink",
+      "parentUuid": "49da987b_5bd9eeb2",
+      "range": {
+        "startLine": 39,
+        "startChar": 5,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "7e2253031339816980e7c931bb3d61711b860c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b6bfb074_884f2dc7",
         "filename": "BUILD.bazel",
         "patchSetId": 45
