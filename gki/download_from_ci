@@ -57,6 +57,46 @@ X86_64_TARGETS = ["kernel_x86_64",
                   "u-boot_qemu_x86_64"]
 GIT_COMMIT_LOG_LENGTH = 100
 
+LINUX_BANNER_PREFIX = b'Linux version '
+
+# Example match:
+# 6.3.0-mainline-g1116c8fd4e78-ab10222743
+# This regex is intended to extract kernel release name(what's reported by `uname -r`)
+LINUX_RELEASE_REGEX = r'(?P<release>(?P<version>[0-9]+[.][0-9]+[.][0-9]+)[\w-]*-g(?P<sha>\w+)-ab\d+)'
+LINUX_BANNER_REGEX = LINUX_BANNER_PREFIX.decode() + \
+    LINUX_RELEASE_REGEX
+
+
+def try_parse_kernel_release(input_bytes, start_idx):
+  null_idx = input_bytes.find(b'\x00', start_idx)
+  if null_idx < 0:
+    return None
+  try:
+    linux_banner = input_bytes[start_idx:null_idx].decode()
+  except UnicodeDecodeError:
+    return None
+  mo = re.match(LINUX_BANNER_REGEX, linux_banner)
+  if mo:
+    return mo.group(0)[len(LINUX_BANNER_PREFIX):].strip()
+  return None
+
+
+def extract_kver_from_bytes(input_bytes):
+  """
+  Dump kernel release string from kernel binary bytes
+  """
+  idx = 0
+  while True:
+    idx = input_bytes.find(LINUX_BANNER_PREFIX, idx)
+    if idx < 0:
+      return None
+
+    value = try_parse_kernel_release(input_bytes, idx)
+    if value:
+      return value
+
+    idx += len(LINUX_BANNER_PREFIX)
+
 # Arguments from argparse.
 _args = None
 
@@ -67,6 +107,7 @@ def download(url_base, dest_dir, filename, dest_filename = None):
   dest_filename = os.path.join(dest_dir, dest_filename or filename)
   if not os.path.exists(dest_filename):
     print("Downloading %s to %s" % (filename, dest_dir))
+    os.makedirs(os.path.dirname(dest_filename), exist_ok=True)
     try:
       urllib.request.urlretrieve(os.path.join(url_base, filename), dest_filename)
     except urllib.error.HTTPError as e:
@@ -200,7 +241,8 @@ def extract_version_from_kernel(path):
     magic = file.read(4)
     if magic != b"HdrS":
       # fallback to grep (for the arm64 case)
-      return str(subprocess.check_output(["grep", "-a", "Linux version ", path]))
+      file.seek(0)
+      return extract_kver_from_bytes(file.read())
     # 2 byte offset to the version string at 0x20e
     file.seek(0x20e)
     offset = struct.unpack('h', file.read(2))[0]
@@ -208,16 +250,29 @@ def extract_version_from_kernel(path):
     file.seek(offset+0x200)
     # read the first null-terminated string with a reasonable assumption that
     # it isn't longer than 1023 bytes
+    # Example:
+    # 6.1.25-android14-11-g34fde9ec08a3-ab10675345 (build-user@build-host) #1 SMP PREEMPT Thu Aug 17 19:23:24 UTC 2023
     return file.read(1024).split(b'\0')[0].decode()
+
+def get_binary_kernel_release(path):
+  """Returns release name of the kernel (same as uname -r)."""
+  version = extract_version_from_kernel(path)
+  result = re.search(LINUX_RELEASE_REGEX, version)
+
+  if not result:
+    raise Exception(
+        "Could not determine release in kernel binary {}, extracted kernel version string is {}".format(path, version))
+  return result.group("release")
+
 
 def get_binary_kernel_version(path):
   """Returns a tuple of strings of the x.y.z (LTS) version and the SHA."""
   version = extract_version_from_kernel(path)
-  pattern = "(?P<release>(?P<version>[0-9]+[.][0-9]+[.][0-9]+)(-rc\d+)?(-\w+(-\d+)?)?-\d+-g(?P<sha>\w+)-ab\d+)"
-  result = re.search(pattern, version)
+  result = re.search(LINUX_RELEASE_REGEX, version)
 
   if not result:
-    raise Exception("Could not determine version in kernel binary " + path)
+    raise Exception(
+        "Could not determine release in kernel binary {}, extracted kernel version string is {}".format(path, version))
   return (result.group("version"), result.group("sha"))
 
 def get_binary_u_boot_version(path):
@@ -251,6 +306,7 @@ def repackage_kernels(build_is_x86_64, output_dir, version, suffix = ""):
                             shell=True)
       subprocess.check_call(["lz4", "-f", "-l", "-12", "--favor-decSpeed",
                             uncompressed_kernel, lz4_kernel])
+  return uncompressed_kernel
 
 def get_abi_definition(target, output_dir):
   os.makedirs(output_dir, exist_ok=True)
@@ -262,6 +318,20 @@ def get_abi_definition(target, output_dir):
   func = functools.partial(download, url_base, output_dir)
   _pool.map(func, files_to_fetch)
 
+# Example return value: 6.1.25-android14-11-g34fde9ec08a3-ab10675345
+def parse_kernel_release_from_gki_info(path):
+  """Parse kernel release from gki-info.txt
+  Args:
+    path: Path to gki-info.txt
+
+  Returns:
+    The kernel release, same as uname -r.
+  """
+  with open(path, "r") as fp:
+    for line in fp:
+      (key, val) = line.strip().split("=", maxsplit=1)
+      if key == "kernel_release":
+        return val.strip()
 
 def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
   if not os.path.isdir(output_dir):
@@ -274,6 +344,7 @@ def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
   if fetch_system_dlkm:
     # Fetch GKI modules tarball with signed modules
     files.append("system_dlkm_staging_archive.tar.gz")
+  files.append("gki-info.txt")
 
   url_base = BASE_URL.format(build_id=_args.build_id, target=target)
   func = functools.partial(download, url_base, output_dir)
@@ -285,7 +356,16 @@ def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
               os.path.join(output_dir, "System.map" + suffix))
   else:
     suffix = ""
-  repackage_kernels(build_is_x86_64, output_dir, version, suffix)
+  uncompressed_kernel = repackage_kernels(
+      build_is_x86_64, output_dir, version, suffix)
+  gki_info_path = os.path.join(output_dir, "gki-info.txt")
+  if os.path.exists(gki_info_path):
+    new_kernel_release = parse_kernel_release_from_gki_info(gki_info_path)
+  else:
+    new_kernel_release = get_binary_kernel_release(uncompressed_kernel)
+  with open(os.path.join(output_dir, "kernel_version.mk"), "w") as fp:
+    fp.write("BOARD_KERNEL_VERSION := " + new_kernel_release)
+
 
   if fetch_system_dlkm:
     # Extract the tarball for system_dlkm image content
