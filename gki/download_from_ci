@@ -262,6 +262,21 @@ def get_abi_definition(target, output_dir):
   func = functools.partial(download, url_base, output_dir)
   _pool.map(func, files_to_fetch)
 
+# Example return value: 6.1.25-android14-11-g34fde9ec08a3-ab10675345
+def parse_kernel_release_from_gki_info(path):
+  """Parse kernel release from gki-info.txt
+  Args:
+    path: Path to gki-info.txt
+
+  Returns:
+    The kernel release, same as uname -r.
+  """
+  with open(path, "r") as fp:
+    gki_info = fp.readlines()
+    for line in gki_info:
+      (key, val) = line.strip().split("=")
+      if key == "kernel_release":
+        return val
 
 def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
   if not os.path.isdir(output_dir):
@@ -270,6 +285,7 @@ def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
   build_is_x86_64 = target in X86_64_TARGETS
   files = ["bzImage"] if build_is_x86_64 else ["Image"]
   files.append("System.map")
+  files.append("gki-info.txt")
 
   if fetch_system_dlkm:
     # Fetch GKI modules tarball with signed modules
@@ -278,6 +294,10 @@ def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
   url_base = BASE_URL.format(build_id=_args.build_id, target=target)
   func = functools.partial(download, url_base, output_dir)
   _pool.map(func, files)
+
+  new_kernel_release = parse_kernel_release_from_gki_info(os.path.join(output_dir, "gki-info.txt"))
+  with open(os.path.join(output_dir, "kernel_version.mk"), "w") as fp:
+    fp.write("BOARD_KERNEL_VERSION := " + new_kernel_release)
 
   if target.startswith("kernel_debug_"):
     suffix = "-allsyms"
