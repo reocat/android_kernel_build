@@ -1,0 +1,159 @@
+load("@//build/kernel/kleaf:kernel.bzl", "android_filegroup", "ddk_module")
+
+copts = [
+    "-Werror",
+    "-Wno-nonnull",
+    "-Wno-fortify-source",
+]
+
+local_defines = [
+    "_GNU_SOURCE",
+    "VERSION=1.0",
+]
+
+cc_library(
+    name = "rttest",
+    srcs = glob([
+        "src/lib/rt-error.c",
+        "src/lib/rt-get_cpu.c",
+        "src/lib/rt-sched.c",
+        "src/lib/rt-utils.c",
+        "src/include/*.h",
+    ]),
+    copts = copts,
+    includes = ["src/include"],
+    linkstatic = True,
+    local_defines = local_defines,
+    target_compatible_with = ["@platforms//cpu:arm64"],
+    visibility = ["//visibility:public"],
+)
+
+# Won't work because the hermetic toolchain does not have
+# libnuma numa.h support
+cc_library(
+    name = "rttestnuma",
+    srcs = glob([
+        "src/lib/rt-numa.c",
+        "src/include/*.h",
+    ]),
+    copts = copts,
+    includes = ["src/include"],
+    linkopts = [
+        "-lrt",
+        "-lnuma",
+    ],
+    linkstatic = True,
+    local_defines = local_defines,
+    target_compatible_with = ["@platforms//cpu:arm64"],
+    visibility = ["//visibility:public"],
+)
+
+# Won't work because the hermetic toolchain does not have
+# libnuma numa.h support
+cc_binary(
+    name = "cyclictest",
+    srcs = [
+        "@rt-tests//:src/cyclictest/cyclictest.c",
+        "@rt-tests//:src/cyclictest/rt_numa.h",
+    ],
+    copts = copts,
+    includes = ["src/include"],
+    linkopts = [
+        "-lrt",
+        "-lnuma",
+    ],
+    local_defines = local_defines + ["PTHREAD_BIONIC"],
+    target_compatible_with = ["@platforms//cpu:arm64"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":rttest",
+        ":rttestnuma",
+    ],
+)
+
+cc_binary(
+    name = "cyclicdeadline",
+    srcs = [
+        "@rt-tests//:src/sched_deadline/cyclicdeadline.c",
+    ],
+    # No need for linkopts = -lrt as bionic include this already
+    copts = copts,
+    includes = ["src/include"],
+    local_defines = local_defines,
+    target_compatible_with = ["@platforms//cpu:arm64"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":rttest",
+    ],
+)
+
+cc_binary(
+    name = "deadline_test",
+    srcs = [
+        "@rt-tests//:src/sched_deadline/deadline_test.c",
+    ],
+    # no need for linkopts = -lrt as bionic include this already
+    copts = copts,
+    includes = ["src/include"],
+    local_defines = local_defines,
+    target_compatible_with = ["@platforms//cpu:arm64"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":rttest",
+    ],
+)
+
+# Won't work because the hermetic toolchain does not have
+# libnuma numa.h support
+cc_binary(
+    name = "signaltest",
+    srcs = [
+        "@rt-tests//:src/signaltest/signaltest.c",
+    ],
+    copts = copts,
+    includes = ["src/include"],
+    linkopts = [
+        "-lrt",
+        "-lnuma",
+    ],
+    local_defines = local_defines + ["PTHREAD_BIONIC"],
+    target_compatible_with = ["@platforms//cpu:arm64"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":rttest",
+        ":rttestnuma",
+    ],
+)
+
+# Won't work due to:
+# "Can't run this test without PI Mutex support"
+# Despite presence of _GNU_SOURCE, strdupa is not found
+# Despite presence of PTHREAD_BIONIC, pthread_attr_setaffinity_np is not found
+cc_binary(
+    name = "pi_stress",
+    srcs = [
+        "@rt-tests//:src/pi_tests/pi_stress.c",
+    ],
+    # no need for linkopts = -lrt as bionic include this already
+    copts = copts,
+    includes = ["src/include"],
+    local_defines = local_defines + ["PTHREAD_BIONIC"],
+    target_compatible_with = ["@platforms//cpu:arm64"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":rttest",
+    ],
+)
+
+android_filegroup(
+    name = "rttest_all_bins",
+    srcs = [
+        "cyclicdeadline",
+        "cyclictest",
+        "deadline_test",
+        "pi_stress",
+        "rttest",
+        "rttestnuma",
+        "signaltest",
+    ],
+)
