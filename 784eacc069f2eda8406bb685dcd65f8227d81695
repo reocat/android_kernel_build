@@ -101,6 +101,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82e9b725_c9b5aa47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1710792
+      },
+      "writtenOn": "2023-09-11T22:31:25Z",
+      "side": 1,
+      "message": "OK, I still need kernel_version.mk to be generated for Android 13, reverting the CL back to previous pathsets.",
+      "parentUuid": "10651f3a_180d0c74",
+      "revId": "784eacc069f2eda8406bb685dcd65f8227d81695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff33e8da_2536574e",
