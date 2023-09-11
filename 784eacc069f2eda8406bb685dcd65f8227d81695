@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd279293_9ad227da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1710792
+      },
+      "writtenOn": "2023-09-11T19:33:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cca30bc4_c1cb40bb",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 8
+      },
+      "revId": "784eacc069f2eda8406bb685dcd65f8227d81695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28a6a95d_c5f53460",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53881013_d928cb5a",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1710792
+      },
+      "writtenOn": "2023-09-11T19:33:59Z",
+      "side": 1,
+      "message": "`extract_kver_from_bytes` need to use the encoded bytes to search for occurrence of this text in input bytes.",
+      "parentUuid": "ff33e8da_2536574e",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 19
+      },
+      "revId": "784eacc069f2eda8406bb685dcd65f8227d81695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73ef4715_3c466ece",
@@ -77,6 +125,24 @@
       "writtenOn": "2023-09-11T10:00:19Z",
       "side": 1,
       "message": "There is not a strong guarantee about the stability of this string. And given `download_from_ci` needs to work with multiple versions, changes will cause confusion. \n\nCan you add an example for what exactly needs to be extracted?",
+      "revId": "784eacc069f2eda8406bb685dcd65f8227d81695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7fb50fe_1a43249f",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1710792
+      },
+      "writtenOn": "2023-09-11T19:33:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73ef4715_3c466ece",
       "revId": "784eacc069f2eda8406bb685dcd65f8227d81695",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -104,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4ce54f5_3a368226",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1710792
+      },
+      "writtenOn": "2023-09-11T19:33:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b584ef1_fe4813cc",
+      "range": {
+        "startLine": 66,
+        "startChar": 23,
+        "endLine": 66,
+        "endChar": 31
+      },
+      "revId": "784eacc069f2eda8406bb685dcd65f8227d81695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d409f85_47b1271c",
@@ -117,6 +207,30 @@
       "writtenOn": "2023-09-11T10:00:19Z",
       "side": 1,
       "message": "The expression uses groups. Please make use of that fact when extracting the group matches.",
+      "range": {
+        "startLine": 81,
+        "startChar": 14,
+        "endLine": 81,
+        "endChar": 19
+      },
+      "revId": "784eacc069f2eda8406bb685dcd65f8227d81695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "096e44c5_b96d09e9",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1710792
+      },
+      "writtenOn": "2023-09-11T19:33:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d409f85_47b1271c",
       "range": {
         "startLine": 81,
         "startChar": 14,
