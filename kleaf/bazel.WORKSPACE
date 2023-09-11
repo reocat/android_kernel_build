@@ -13,9 +13,18 @@
 # limitations under the License.
 
 load("//build/kernel/kleaf:workspace.bzl", "define_kleaf_workspace")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
 
 define_kleaf_workspace()
 
 # Optional epilog for analysis testing.
 load("//build/kernel/kleaf:workspace_epilog.bzl", "define_kleaf_workspace_epilog")
 define_kleaf_workspace_epilog()
+
+new_git_repository(
+    name = "rt-tests",
+    remote = "git://git.kernel.org/pub/scm/utils/rt-tests/rt-tests.git",
+    commit = "d39db4a7d179deaaec6515b6cc5cc3834e65ef09", # branch = "main"
+    verbose = True,
+    build_file = "//build/kernel/kleaf:BUILD.rtt",
+)
