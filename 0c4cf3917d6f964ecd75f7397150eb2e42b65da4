@@ -66,6 +66,73 @@
       "message": "File is not formatted. Run `buildifier kleaf/bazel.WORKSPACE` to format the file, or apply the suggested fix.",
       "revId": "0c4cf3917d6f964ecd75f7397150eb2e42b65da4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000053374442",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2744829?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "33a56497_f6f9c023",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.WORKSPACE",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 22,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/bazel.WORKSPACE",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 26,
+                "endChar": 0
+              },
+              "replacement": "    build_file \u003d \"//build/kernel/kleaf:BUILD.rtt\",\n    commit \u003d \"d39db4a7d179deaaec6515b6cc5cc3834e65ef09\",  # branch \u003d \"main\"\n"
+            },
+            {
+              "path": "kleaf/bazel.WORKSPACE",
+              "range": {
+                "startLine": 27,
+                "startChar": 0,
+                "endLine": 28,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/bazel.WORKSPACE",
+              "range": {
+                "startLine": 29,
+                "startChar": 0,
+                "endLine": 30,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "9221a1b3_6209e772",
+        "filename": "kleaf/bazel.WORKSPACE",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-09-11T22:22:21Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/bazel.WORKSPACE` to format the file, or apply the suggested fix.",
+      "revId": "0c4cf3917d6f964ecd75f7397150eb2e42b65da4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
