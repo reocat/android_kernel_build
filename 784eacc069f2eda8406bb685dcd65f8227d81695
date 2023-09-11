@@ -67,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2601cbe8_ab016f80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1710792
+      },
+      "writtenOn": "2023-09-11T19:43:45Z",
+      "side": 1,
+      "message": "I need `uname -r` of the kernel. gki-info.txt does contain what I want. Can I rely on gki-info.txt\u0027s format being consistent across different versions?",
+      "parentUuid": "28a6a95d_c5f53460",
+      "revId": "784eacc069f2eda8406bb685dcd65f8227d81695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff33e8da_2536574e",
         "filename": "gki/download_from_ci",
         "patchSetId": 2
