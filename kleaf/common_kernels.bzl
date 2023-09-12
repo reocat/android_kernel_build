@@ -36,6 +36,7 @@ load(
     "CI_TARGET_MAPPING",
     "DEFAULT_GKI_OUTS",
     "GKI_DOWNLOAD_CONFIGS",
+    "GKI_SYSTEM_DLKM_FS_TYPES",
     "X86_64_OUTS",
 )
 load(
@@ -778,7 +779,7 @@ def _define_common_kernel(
         kernel_modules_install = name + "_modules_install",
         # Sync with GKI_DOWNLOAD_CONFIGS, "images"
         build_system_dlkm = True,
-        system_dlkm_fs_types = ["erofs", "ext4"],
+        system_dlkm_fs_types = GKI_SYSTEM_DLKM_FS_TYPES,
         # Keep in sync with build.config.gki* MODULES_LIST
         modules_list = gki_system_dlkm_modules,
     )
