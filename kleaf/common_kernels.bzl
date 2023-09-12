@@ -23,6 +23,7 @@ load("//build/kernel/kleaf/artifact_tests:device_modules_test.bzl", "device_modu
 load("//build/kernel/kleaf/artifact_tests:kernel_test.bzl", "initramfs_modules_options_test")
 load(
     "//build/kernel/kleaf/impl:constants.bzl",
+    "GKI_SYSTEM_DLKM_FS_TYPES",
     "MODULE_OUTS_FILE_OUTPUT_GROUP",
     "MODULE_OUTS_FILE_SUFFIX",
     "TOOLCHAIN_VERSION_FILENAME",
@@ -778,7 +779,7 @@ def _define_common_kernel(
         kernel_modules_install = name + "_modules_install",
         # Sync with GKI_DOWNLOAD_CONFIGS, "images"
         build_system_dlkm = True,
-        system_dlkm_fs_types = ["erofs", "ext4"],
+        system_dlkm_fs_types = GKI_SYSTEM_DLKM_FS_TYPES,
         # Keep in sync with build.config.gki* MODULES_LIST
         modules_list = gki_system_dlkm_modules,
     )

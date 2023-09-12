@@ -20,6 +20,7 @@ load(
     "//build/kernel/kleaf/impl:constants.bzl",
     "DEFAULT_IMAGES",
     "GKI_ARTIFACTS_AARCH64_OUTS",
+    "GKI_SYSTEM_DLKM_FS_TYPES",
     "MODULES_STAGING_ARCHIVE",
     "MODULE_OUTS_FILE_SUFFIX",
     "SYSTEM_DLKM_COMMON_OUTS",
@@ -71,7 +72,10 @@ GKI_DOWNLOAD_CONFIGS = [
     {
         "target_suffix": "images",
         # TODO(b/297934577): Update GKI prebuilts to download system_dlkm.<fs>.img
-        "outs": SYSTEM_DLKM_COMMON_OUTS,
+        "outs": SYSTEM_DLKM_COMMON_OUTS + [
+            "system_dlkm.{}.img".format(fs_type)
+            for fs_type in GKI_SYSTEM_DLKM_FS_TYPES
+        ],
     },
     {
         "target_suffix": "toolchain_version",
