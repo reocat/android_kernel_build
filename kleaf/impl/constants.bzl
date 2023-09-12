@@ -48,4 +48,6 @@ SYSTEM_DLKM_COMMON_OUTS = [
     "system_dlkm.modules.blocklist",
 ]
 
+GKI_SYSTEM_DLKM_FS_TYPES = ["erofs", "ext4"]
+
 MODULES_STAGING_ARCHIVE = "modules_staging_dir.tar.gz"
