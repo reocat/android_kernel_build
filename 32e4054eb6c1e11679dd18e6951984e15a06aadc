@@ -1,0 +1,51 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000053409457",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2747676?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "3093361c_d76368cb",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/constants.bzl",
+              "range": {
+                "startLine": 23,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": "    \"GKI_SYSTEM_DLKM_FS_TYPES\",\n"
+            },
+            {
+              "path": "kleaf/constants.bzl",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 27,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "efd134d7_f6eb84fd",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-09-12T05:35:21Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/constants.bzl` to format the file, or apply the suggested fix.",
+      "revId": "32e4054eb6c1e11679dd18e6951984e15a06aadc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
