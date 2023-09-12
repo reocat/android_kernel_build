@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2df487d7_beb52284",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 6
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1710792
+      },
+      "writtenOn": "2023-09-12T19:49:33Z",
+      "side": 1,
+      "message": "Sure, I will not worry about the edge cases. But this still uses regex? I would refer to use pure python based implementation for better reproducibility. In addition, other code path needs to extract the build id and SHA1 hash from the kernel version. So we still need the capturing group regexes at some point(note L216 in the original code). The regex I added in L65 is merely a simplified version of L216 in old code.",
+      "parentUuid": "fa9796a2_51c7e24d",
+      "range": {
+        "startLine": 245,
+        "startChar": 6,
+        "endLine": 245,
+        "endChar": 49
+      },
+      "revId": "2844cc449d937ff1bb337b7c258f3d1be0ea677a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "29b2d31d_90ff4612",
         "filename": "gki/download_from_ci",
         "patchSetId": 6
