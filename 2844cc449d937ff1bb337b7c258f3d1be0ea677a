@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "072f6964_391e4fd1",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 6
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-12T16:02:36Z",
+      "side": 1,
+      "message": "`uname` traditionally just parses sysname, nodename and release using whitespace separators (later on it gets a little more complicated). See for example the toybox implementation: https://github.com/landley/toybox/blob/master/toys/posix/uname.c\n\n`-r` is defined as anything up to and including the first non-whitespace of the third value of `uname -a`. So, if the grep command returns \"Linux version 6.1.25-android14-11-g34fde9ec08a3-ab10675345 (build-user@build-host) #1 SMP PREE....\", that would be just \n\n```\nraw \u003d str(subprocess.check_output([\"grep\", \"-a\", \"Linux version \", path]))\nreturn raw.split()[2]\n```\n\nor with some reasonable assumptions in pure python\n\n```\ndata \u003d file.read()\npos \u003d data.find(b\"Linux version \")\nreturn data[pos:pos+100].split()[2].decode()\n```\n\nNone of the additional regex parsing is needed.\n \nEspecially since this is for legacy versions that will not change the format anymore, that should be more than enough.",
+      "range": {
+        "startLine": 245,
+        "startChar": 6,
+        "endLine": 245,
+        "endChar": 49
+      },
+      "revId": "2844cc449d937ff1bb337b7c258f3d1be0ea677a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29b2d31d_90ff4612",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-12T16:02:36Z",
+      "side": 1,
+      "message": "that is `for line in fp:`\n\n\n\n\n*Note that it’s already possible to iterate on file objects using `for line in file:` ... without calling `file.readlines()`.*\n\nhttps://docs.python.org/3.11/library/io.html#io.IOBase.readlines",
+      "range": {
+        "startLine": 331,
+        "startChar": 0,
+        "endLine": 332,
+        "endChar": 24
+      },
+      "revId": "2844cc449d937ff1bb337b7c258f3d1be0ea677a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dbd9ed4_c1f390f6",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 6
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-12T16:02:36Z",
+      "side": 1,
+      "message": "first split, then strip. And technically the version string could contain the character \u0027\u003d\u0027, so, this should be `split(maxsplit\u003d1)`",
+      "range": {
+        "startLine": 333,
+        "startChar": 19,
+        "endLine": 333,
+        "endChar": 42
+      },
+      "revId": "2844cc449d937ff1bb337b7c258f3d1be0ea677a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
