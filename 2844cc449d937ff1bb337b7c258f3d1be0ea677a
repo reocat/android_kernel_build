@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa9796a2_51c7e24d",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 6
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-12T16:50:01Z",
+      "side": 1,
+      "message": "That is unlikely going to happen anymore in android13. And otherwise, I would really not worry too much about that. But if you do, letting `grep` do the work is still much simpler for this script: \n\n```\ngrep -a -e \"Linux version .* SMP\" -m 1 -o vmlinux\n```",
+      "parentUuid": "3022b63e_0c0269a5",
+      "range": {
+        "startLine": 245,
+        "startChar": 6,
+        "endLine": 245,
+        "endChar": 49
+      },
+      "revId": "2844cc449d937ff1bb337b7c258f3d1be0ea677a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "29b2d31d_90ff4612",
         "filename": "gki/download_from_ci",
         "patchSetId": 6
