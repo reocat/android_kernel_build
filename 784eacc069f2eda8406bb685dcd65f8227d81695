@@ -119,6 +119,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ae6e737_1f1dd257",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-12T00:28:35Z",
+      "side": 1,
+      "message": "Perhaps keep both mechanisms and mark the other code path as deprecated? going forward, gki-info.txt appears to be the better choice. And once android 13 kernels goes deprecated, your code path can be deleted.",
+      "parentUuid": "82e9b725_c9b5aa47",
+      "revId": "784eacc069f2eda8406bb685dcd65f8227d81695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff33e8da_2536574e",
