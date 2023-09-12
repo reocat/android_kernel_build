@@ -38,6 +38,7 @@ load(
     "KernelBuildInfo",
     "KernelBuildMixedTreeInfo",
     "KernelBuildOriginalEnvInfo",
+    "KernelBuildMixedSrcsInfo",
     "KernelBuildUapiInfo",
     "KernelBuildUnameInfo",
     "KernelCmdsInfo",
@@ -513,6 +514,7 @@ def kernel_build(
         target_platform = name + "_platform_target",
         exec_platform = name + "_platform_exec",
         defconfig_fragments = defconfig_fragments,
+        base_kernel = base_kernel,
         **internal_kwargs
     )
 
@@ -1420,6 +1422,7 @@ def _build_main_action(
     )
 
     make_goals = ctx.attr.config[KernelEnvMakeGoalsInfo].make_goals
+
     command += """
            {kbuild_mixed_tree_cmd}
          # Actual kernel build
@@ -1466,6 +1469,7 @@ def _build_main_action(
            {cache_dir_post_cmd}
          """.format(
         cache_dir_post_cmd = cache_dir_step.post_cmd,
+        interceptor_command_prefix = interceptor_step.command_prefix,
         kbuild_mixed_tree_cmd = kbuild_mixed_tree_ret.cmd,
         search_and_cp_output = ctx.executable._search_and_cp_output.path,
         kbuild_mixed_tree_arg = kbuild_mixed_tree_ret.arg,
@@ -1485,7 +1489,6 @@ def _build_main_action(
         modules_staging_dir = modules_staging_dir,
         modules_staging_archive_self = modules_staging_archive_self.path,
         out_dir_kernel_headers_tar = out_dir_kernel_headers_tar.path,
-        interceptor_command_prefix = interceptor_step.command_prefix,
         label = ctx.label,
         make_goals = " ".join(make_goals),
         copy_module_symvers_cmd = copy_module_symvers_step.cmd,
@@ -1794,6 +1797,15 @@ def _create_infos(
         files = depset(kbuild_mixed_tree_files),
     )
 
+    # FIXME set KERNEL_DIR for kernel_build properly
+    kbuild_mixed_srcs_info = KernelBuildMixedSrcsInfo(inputs = depset(), setup = """
+        mkdir -p {kernel_dir}
+        tar xf {module_scripts} -C {kernel_dir}/
+    """.format(
+        module_scripts = module_scripts_archive,
+        kernel_dir = ctx.label.package,
+    ))
+
     cmds_info = KernelCmdsInfo(
         srcs = depset([target.files for target in ctx.attr.srcs]),
         directories = depset([main_action_ret.cmd_dir]),
@@ -1822,6 +1834,7 @@ def _create_infos(
         env_and_outputs_info,
         orig_env_info,
         kbuild_mixed_tree_info,
+        kbuild_mixed_srcs_info,
         kernel_build_info,
         kernel_build_module_info,
         kernel_build_uapi_info,
@@ -2376,7 +2389,14 @@ def _create_module_scripts_archive(
         # Create archive of module_scripts below ${{KERNEL_DIR}}
         mkdir -p {intermediates_dir}
         for file in "$@"; do
-            if [[ "${{file}}" =~ ^"${{KERNEL_DIR}}"/ ]]; then
+            if [[ "${{file}}" =~ ^@ ]]; then
+                param_file=${{file#@}}
+                while read -r file; do
+                    if [[ "${{file}}" =~ ^"${{KERNEL_DIR}}"/ ]]; then
+                        echo "${{file#"${{KERNEL_DIR}}"/}}"
+                    fi
+                done < ${{param_file}}
+            elif [[ "${{file}}" =~ ^"${{KERNEL_DIR}}"/ ]]; then
                 echo "${{file#"${{KERNEL_DIR}}"/}}"
             fi
         done > {intermediates_dir}/module_scripts_file_list.txt
@@ -2388,6 +2408,8 @@ def _create_module_scripts_archive(
 
     args = ctx.actions.args()
     args.add_all(module_srcs.module_scripts)
+    args.use_param_file("@%s")
+    args.set_param_file_format("multiline")
 
     ctx.actions.run_shell(
         mnemonic = "KernelBulidModuleScriptsArchive",

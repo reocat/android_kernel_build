@@ -64,6 +64,7 @@ def _modules_prepare_impl(ctx):
 
     command += """
          # Prepare for the module build
+         export MAKEFLAGS="${{MAKEFLAGS/-s/V=2}} -j1"
            make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} modules_prepare
          # Additional steps
            {force_gen_headers_cmd}

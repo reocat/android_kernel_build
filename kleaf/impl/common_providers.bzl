@@ -217,6 +217,17 @@ files required to build `KBUILD_MIXED_TREE` for the device kernel.""",
     },
 )
 
+KernelBuildMixedSrcsInfo = provider(
+    doc = """A provider that specifies the expectations of a [`kernel_build`](#kernel_build) on its
+[`base_kernel`](#kernel_build-base_kernel) for constructing the source tree""",
+    fields = {
+        "inputs": "",
+        # FIXME: SETUP FRAGMENT!
+        "setup": "",
+    },
+
+)
+
 KernelBuildUnameInfo = provider(
     doc = """A provider providing `kernel.release` of a `kernel_build`.""",
     fields = {

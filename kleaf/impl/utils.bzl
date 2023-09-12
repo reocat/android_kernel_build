@@ -227,8 +227,14 @@ def _filter_module_srcs(files):
     for file in files:
         if file.path.endswith(".h"):
             hdrs.append(file)
+
+        # FIXME add build configs to prebuilts
+        # FIXME add Kconfig to prebuilts
         if ("Makefile" in file.path or "scripts/" in file.path or
-            file.basename == "module.lds.S"):
+            file.basename == "module.lds.S" or file.basename.startswith("build.config") or
+            "Kconfig" in file.basename or "configs/" in file.path or "Kbuild" in file.basename or
+            file.path.endswith(".h") or ("tools" in file.path and not file.path.endswith(".c"))
+            or file.path.endswith(".map")):
             scripts.append(file)
         if "Kconfig" in file.basename:
             kconfig.append(file)

@@ -20,6 +20,7 @@ load(
     "GcovInfo",
     "KernelBuildAbiInfo",
     "KernelBuildInTreeModulesInfo",
+    "KernelBuildMixedSrcsInfo",
     "KernelBuildMixedTreeInfo",
     "KernelToolchainInfo",
 )
@@ -39,6 +40,7 @@ def _base_kernel_non_config_attrs():
         "base_kernel": attr.label(
             providers = [
                 KernelBuildInTreeModulesInfo,
+                KernelBuildMixedSrcsInfo,
                 KernelBuildMixedTreeInfo,
                 KernelBuildAbiInfo,
                 KernelToolchainInfo,

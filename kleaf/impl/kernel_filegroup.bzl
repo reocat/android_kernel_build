@@ -21,6 +21,7 @@ load(
     "KernelBuildAbiInfo",
     "KernelBuildExtModuleInfo",
     "KernelBuildInTreeModulesInfo",
+    "KernelBuildMixedSrcsInfo",
     "KernelBuildMixedTreeInfo",
     "KernelBuildUapiInfo",
     "KernelBuildUnameInfo",
@@ -33,6 +34,7 @@ load(
 load(
     ":constants.bzl",
     "MODULES_STAGING_ARCHIVE",
+    "MODULE_SCRIPTS_ARCHIVE_SUFFIX",
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
@@ -108,6 +110,9 @@ def _kernel_filegroup_impl(ctx):
     all_deps = ctx.files.srcs + ctx.files.deps
 
     modules_prepare_out_dir_tar_gz = utils.find_file("modules_prepare_outdir.tar.gz", all_deps, what = ctx.label)
+
+    # FIXME
+    module_scripts = utils.find_files(all_deps, suffix = MODULE_SCRIPTS_ARCHIVE_SUFFIX)[0]
 
     module_srcs = kernel_utils.filter_module_srcs(ctx.files.kernel_srcs)
 
@@ -207,9 +212,19 @@ def _kernel_filegroup_impl(ctx):
     mixed_tree_files = depset(transitive = [_get_mixed_tree_files(target) for target in ctx.attr.srcs])
     kernel_release = _get_kernel_release(ctx)
 
+    # FIXME set KERNEL_DIR for kernel_filegroup properly
+    kbuild_mixed_srcs_info = KernelBuildMixedSrcsInfo(inputs = depset([module_scripts]), setup = """
+        mkdir -p {kernel_dir}
+        tar xf {module_scripts} -C {kernel_dir}/
+    """.format(
+        module_scripts = module_scripts.path,
+        kernel_dir = ctx.label.package,
+    ))
+
     return [
         DefaultInfo(files = srcs_depset),
         KernelBuildMixedTreeInfo(files = mixed_tree_files),
+        kbuild_mixed_srcs_info,
         KernelBuildUnameInfo(kernel_release = kernel_release),
         kernel_module_dev_info,
         # TODO(b/219112010): implement KernelEnvAndOutputsInfo properly for kernel_filegroup

@@ -18,10 +18,12 @@ load("@bazel_skylib//lib:dicts.bzl", "dicts")
 load("@bazel_skylib//lib:shell.bzl", "shell")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load("@kernel_toolchain_info//:dict.bzl", "VARS")
+load(":abi/base_kernel_utils.bzl", "base_kernel_utils")
 load(":abi/force_add_vmlinux_utils.bzl", "force_add_vmlinux_utils")
 load(
     ":common_providers.bzl",
     "KernelBuildConfigInfo",
+    "KernelBuildMixedSrcsInfo",
     "KernelEnvAttrInfo",
     "KernelEnvInfo",
     "KernelEnvMakeGoalsInfo",
@@ -129,6 +131,18 @@ def _get_make_goals_deprecation_warning(ctx):
     )
     return msg
 
+def _get_base_kernel_srcs_step(ctx):
+    cmd = ""
+    transitive_inputs = []
+    if base_kernel_utils.get_base_kernel(ctx):
+        kbuild_mixed_srcs_info = base_kernel_utils.get_base_kernel(ctx)[KernelBuildMixedSrcsInfo]
+        cmd = kbuild_mixed_srcs_info.setup
+        transitive_inputs = [kbuild_mixed_srcs_info.inputs]
+    return struct(
+        cmd = cmd,
+        transitive_inputs = transitive_inputs,
+    )
+
 def _kernel_env_impl(ctx):
     srcs = [
         s
@@ -228,11 +242,15 @@ def _kernel_env_impl(ctx):
             quoted_clangtools_bin = shell.quote(bindgen.dirname),
         )
 
+    base_kernel_srcs_step = _get_base_kernel_srcs_step(ctx)
+    transitive_inputs += base_kernel_srcs_step.transitive_inputs
+
     command += """
         # create a build environment
           source {build_utils_sh}
           export BUILD_CONFIG={build_config}
           {set_localversion_cmd}
+          {base_kernel_srcs_cmd}
           source {setup_env}
           {check_arch_cmd}
         # Variables from resolved toolchain
@@ -248,6 +266,7 @@ def _kernel_env_impl(ctx):
         """.format(
         build_utils_sh = ctx.file._build_utils_sh.path,
         build_config = build_config.path,
+        base_kernel_srcs_cmd = base_kernel_srcs_step.cmd,
         set_localversion_cmd = stamp.set_localversion_cmd(ctx),
         setup_env = setup_env.path,
         check_arch_cmd = _get_check_arch_cmd(ctx),
@@ -296,6 +315,7 @@ def _kernel_env_impl(ctx):
            source {build_utils_sh}
          # source the build environment
            source {env}
+           {base_kernel_srcs_cmd}
            {set_up_jobs_cmd}
          # setup LD_LIBRARY_PATH for prebuilts
            export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${{ROOT_DIR}}/{linux_x86_libs_path}
@@ -318,6 +338,7 @@ def _kernel_env_impl(ctx):
         build_utils_sh = ctx.file._build_utils_sh.path,
         linux_x86_libs_path = ctx.files._linux_x86_libs[0].dirname,
         set_up_jobs_cmd = set_up_jobs_cmd,
+        base_kernel_srcs_cmd = base_kernel_srcs_step.cmd,
     )
 
     setup_tools = [
@@ -336,11 +357,12 @@ def _kernel_env_impl(ctx):
     if kconfig_ext:
         setup_inputs.append(kconfig_ext)
     setup_inputs += dtstree_srcs
+    setup_transitive_inputs = list(base_kernel_srcs_step.transitive_inputs)
 
     run_env = _get_run_env(ctx, srcs, toolchains)
 
     env_info = KernelEnvInfo(
-        inputs = depset(setup_inputs),
+        inputs = depset(setup_inputs, transitive = setup_transitive_inputs),
         tools = depset(setup_tools, transitive = setup_transitive_tools),
         setup = setup,
         run_env = run_env,
@@ -411,6 +433,8 @@ def _get_run_env(ctx, srcs, toolchains):
     if ctx.attr._debug_annotate_scripts[BuildSettingInfo].value:
         setup += debug.trap()
     setup += _get_make_verbosity_command(ctx)
+
+    # FIXME need to restore mixed sources
     setup += """
         # create a build environment
           source {build_utils_sh}
@@ -464,6 +488,7 @@ def _get_rust_tools(rust_toolchain_version):
 def _kernel_env_additional_attrs():
     return dicts.add(
         kernel_config_settings.of_kernel_env(),
+        base_kernel_utils.non_config_attrs(),
     )
 
 kernel_env = rule(
