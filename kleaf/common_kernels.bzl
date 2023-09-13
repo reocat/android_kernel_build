@@ -721,7 +721,7 @@ def _define_common_kernel(
         make_goals = make_goals,
         page_size = page_size,
         deprecation = deprecation,
-        pack_module_scripts = True,
+        pack_module_env = True,
     )
 
     kernel_abi(
