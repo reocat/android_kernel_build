@@ -400,6 +400,8 @@ platform(
         "@platforms//os:linux",
         "@platforms//cpu:x86_64",
     ],
+    # FIXME perhaps not expose this
+    visibility = ["//visibility:public"],
 )
 
 # 32-bit
@@ -409,6 +411,8 @@ platform(
         "@platforms//os:android",
         "@platforms//cpu:arm",
     ],
+    # FIXME perhaps not expose this
+    visibility = ["//visibility:public"],
 )
 
 platform(
@@ -417,6 +421,8 @@ platform(
         "@platforms//os:android",
         "@platforms//cpu:arm64",
     ],
+    # FIXME perhaps not expose this
+    visibility = ["//visibility:public"],
 )
 
 platform(
@@ -425,6 +431,8 @@ platform(
         "@platforms//os:android",
         "@platforms//cpu:i386",
     ],
+    # FIXME perhaps not expose this
+    visibility = ["//visibility:public"],
 )
 
 platform(
@@ -433,6 +441,8 @@ platform(
         "@platforms//os:android",
         "@platforms//cpu:riscv64",
     ],
+    # FIXME perhaps not expose this
+    visibility = ["//visibility:public"],
 )
 
 platform(
@@ -441,6 +451,8 @@ platform(
         "@platforms//os:android",
         "@platforms//cpu:x86_64",
     ],
+    # FIXME perhaps not expose this
+    visibility = ["//visibility:public"],
 )
 
 python_interpreter_file(

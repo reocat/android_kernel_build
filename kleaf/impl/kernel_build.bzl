@@ -1973,6 +1973,11 @@ _kernel_build = rule(
             executable = True,
             cfg = "exec",
         ),
+        "_build_utils_sh": attr.label(
+            allow_single_file = True,
+            default = Label("//build/kernel:build_utils"),
+            cfg = "exec",
+        ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_allow_undeclared_modules": attr.label(default = "//build/kernel/kleaf:allow_undeclared_modules"),
         "_warn_undeclared_modules": attr.label(default = "//build/kernel/kleaf:warn_undeclared_modules"),
@@ -2383,16 +2388,19 @@ def _create_module_env_archive(ctx, module_srcs):
     # FIXME Could be HermeticToolchainInfo
     cmd = env_info.setup + """
         # Create archive of environment below CWD
-        echo ". {setup_file}" > setup.sh
+        echo ". {build_utils}" > setup.sh
+        echo ". {setup_file}" >> setup.sh
         ( cat $@ && echo "setup.sh" ) | tar cf {out} --dereference -T -
     """.format(
         out = out.path,
         setup_file = setup_file.path,
+        build_utils = ctx.file._build_utils_sh.path,
     )
 
     args = ctx.actions.args()
     args.add_all(config_env_and_outputs_info.inputs)
     args.add(setup_file)
+    args.add(ctx.file._build_utils_sh)
     args.add_all(module_srcs.module_kconfig)
     args.add_all(module_srcs.module_hdrs)
     args.add_all(module_srcs.module_scripts)
