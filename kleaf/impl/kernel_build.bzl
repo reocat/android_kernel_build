@@ -52,9 +52,9 @@ load(":compile_commands_utils.bzl", "compile_commands_utils")
 load(
     ":constants.bzl",
     "MODULES_STAGING_ARCHIVE",
+    "MODULE_ENV_ARCHIVE_SUFFIX",
     "MODULE_OUTS_FILE_OUTPUT_GROUP",
     "MODULE_OUTS_FILE_SUFFIX",
-    "MODULE_SCRIPTS_ARCHIVE_SUFFIX",
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
@@ -115,7 +115,7 @@ def kernel_build(
         modules_prepare_force_generate_headers = None,
         defconfig_fragments = None,
         page_size = None,
-        pack_module_scripts = None,
+        pack_module_env = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
 
@@ -409,7 +409,7 @@ def kernel_build(
           `"default"`, the defconfig is left as-is.
 
           16k / 64k page size is only supported on `arch = "arm64"`.
-        pack_module_scripts: If `True`, create `{name}_module_scripts.tar.gz` as
+        pack_module_env: If `True`, create `{name}_module_env.tar.gz` as
           part of the default output of this target.
 
           The archive contains necessary scripts to build external modules.
@@ -596,7 +596,7 @@ def kernel_build(
         src_protected_modules_list = protected_modules_list,
         src_kmi_symbol_list = kmi_symbol_list,
         trim_nonlisted_kmi = trim_nonlisted_kmi,
-        pack_module_scripts = pack_module_scripts,
+        pack_module_env = pack_module_env,
         **kwargs
     )
 
@@ -1611,7 +1611,7 @@ def _create_infos(
         toolchain_version_out,
         kmi_strict_mode_out,
         kmi_symbol_list_violations_check_out,
-        module_scripts_archive,
+        module_env_archive,
         module_srcs):
     """Creates and returns a list of provided infos that the `kernel_build` target should return.
 
@@ -1625,7 +1625,7 @@ def _create_infos(
         kmi_strict_mode_out: from `_kmi_symbol_list_strict_mode`
         kmi_symbol_list_violations_check_out: from `_kmi_symbol_list_violations_check`
         module_srcs: from `kernel_utils.filter_module_srcs`
-        module_scripts_archive: from `_create_module_scripts_archive`
+        module_env_archive: from `_create_module_env_archive`
     """
 
     base_kernel = base_kernel_utils.get_base_kernel(ctx)
@@ -1793,8 +1793,8 @@ def _create_infos(
 
     default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
     default_info_files.append(all_module_names_file)
-    if module_scripts_archive:
-        default_info_files.append(module_scripts_archive)
+    if module_env_archive:
+        default_info_files.append(module_env_archive)
     if kmi_strict_mode_out:
         default_info_files.append(kmi_strict_mode_out)
     default_info_files.extend(main_action_ret.module_symvers_outputs)
@@ -1876,7 +1876,7 @@ def _kernel_build_impl(ctx):
 
     module_srcs = kernel_utils.filter_module_srcs(ctx.files.srcs)
 
-    module_scripts_archive = _create_module_scripts_archive(
+    module_env_archive = _create_module_env_archive(
         ctx = ctx,
         module_srcs = module_srcs,
     )
@@ -1890,7 +1890,7 @@ def _kernel_build_impl(ctx):
         toolchain_version_out = toolchain_version_out,
         kmi_strict_mode_out = kmi_strict_mode_out,
         kmi_symbol_list_violations_check_out = kmi_symbol_list_violations_check_out,
-        module_scripts_archive = module_scripts_archive,
+        module_env_archive = module_env_archive,
         module_srcs = module_srcs,
     )
 
@@ -1988,7 +1988,7 @@ _kernel_build = rule(
         "src_protected_exports_list": attr.label(allow_single_file = True),
         "src_protected_modules_list": attr.label(allow_single_file = True),
         "src_kmi_symbol_list": attr.label(allow_single_file = True),
-        "pack_module_scripts": attr.bool(default = False, doc = "Create `<name>_module_scripts.tar.gz`."),
+        "pack_module_env": attr.bool(default = False, doc = "Create `<name>_module_env.tar.gz`."),
     } | _kernel_build_additional_attrs(),
     toolchains = [hermetic_toolchain.type],
 )
@@ -2346,26 +2346,26 @@ def _repack_modules_staging_archive(
     )
     return modules_staging_archive
 
-def _create_module_scripts_archive(
+def _create_module_env_archive(
         ctx,
         module_srcs):
-    """Create `{name}_module_scripts.tar.gz`
+    """Create `{name}_module_env.tar.gz`
 
     Args:
         ctx: ctx
         module_srcs: from `kernel_utils.filter_module_srcs`
     """
-    if not ctx.attr.pack_module_scripts:
+    if not ctx.attr.pack_module_env:
         return None
 
     intermediates_dir = utils.intermediates_dir(ctx)
     env_info = ctx.attr.config[KernelBuildOriginalEnvInfo].env_info
     out = ctx.actions.declare_file("{name}/{name}{suffix}".format(
         name = ctx.label.name,
-        suffix = MODULE_SCRIPTS_ARCHIVE_SUFFIX,
+        suffix = MODULE_ENV_ARCHIVE_SUFFIX,
     ))
     cmd = env_info.setup + """
-        # Create archive of module_scripts below ${{KERNEL_DIR}}
+        # Create archive of environment below ${{KERNEL_DIR}}
         mkdir -p {intermediates_dir}
         for file in "$@"; do
             if [[ "${{file}}" =~ ^"${{KERNEL_DIR}}"/ ]]; then
@@ -2382,7 +2382,7 @@ def _create_module_scripts_archive(
     args.add_all(module_srcs.module_scripts)
 
     ctx.actions.run_shell(
-        mnemonic = "KernelBulidModuleScriptsArchive",
+        mnemonic = "KernelBulidModuleEnvArchive",
         inputs = depset(transitive = [
             env_info.inputs,
             module_srcs.module_scripts,
@@ -2391,6 +2391,6 @@ def _create_module_scripts_archive(
         tools = env_info.tools,
         command = cmd,
         arguments = [args],
-        progress_message = "Archiving scripts for ext module {}".format(_progress_message_suffix(ctx)),
+        progress_message = "Archiving env for ext module {}".format(_progress_message_suffix(ctx)),
     )
     return out
