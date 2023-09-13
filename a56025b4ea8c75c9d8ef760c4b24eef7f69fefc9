@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "870d0541_fefdc9a6",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-13T16:26:03Z",
+      "side": 1,
+      "message": "is this different than `[KernelBuildMixedTreeInfo].files`?",
+      "range": {
+        "startLine": 224,
+        "startChar": 9,
+        "endLine": 224,
+        "endChar": 15
+      },
+      "revId": "a56025b4ea8c75c9d8ef760c4b24eef7f69fefc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f715cecf_52ba7bf9",
         "filename": "kleaf/impl/utils.bzl",
         "patchSetId": 1
