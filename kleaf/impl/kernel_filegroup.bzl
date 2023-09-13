@@ -48,13 +48,17 @@ visibility("//build/kernel/kleaf/...")
 
 def _ext_mod_env_and_outputs_info_get_setup_script(data, restore_out_dir_cmd):
     # TODO(b/219112010): need to set up env and restore outputs
-    script = """
+    script = data.config_env_and_outputs_info.get_setup_script(
+        data = data.config_env_and_outputs_info.data,
+        restore_out_dir_cmd = restore_out_dir_cmd,
+    )
+    script += """
          # Restore modules_prepare outputs. Assumes env setup.
            [ -z ${{OUT_DIR}} ] && echo "ERROR: modules_prepare setup run without OUT_DIR set!" >&2 && exit 1
            tar xf {outdir_tar_gz} -C ${{OUT_DIR}}
            {restore_out_dir_cmd}
     """.format(
-        outdir_tar_gz = data.modules_prepare_out_dir_tar_gz,
+        outdir_tar_gz = data.modules_prepare_out_dir_tar_gz.path,
         restore_out_dir_cmd = restore_out_dir_cmd,
     )
     return script
@@ -111,15 +115,21 @@ def _kernel_filegroup_impl(ctx):
 
     module_srcs = kernel_utils.filter_module_srcs(ctx.files.kernel_srcs)
 
+    config_env_and_outputs_info = ctx.attr.kernel_build_do_not_use[KernelBuildExtModuleInfo].config_env_and_outputs_info
+
     ext_mod_env_and_outputs_info = KernelEnvAndOutputsInfo(
         get_setup_script = _ext_mod_env_and_outputs_info_get_setup_script,
         inputs = depset([
             modules_prepare_out_dir_tar_gz,
         ], transitive = [
             module_srcs.module_scripts,
+            config_env_and_outputs_info.inputs,
         ]),
-        tools = depset(),
-        data = struct(modules_prepare_out_dir_tar_gz = modules_prepare_out_dir_tar_gz),
+        tools = config_env_and_outputs_info.tools,
+        data = struct(
+            modules_prepare_out_dir_tar_gz = modules_prepare_out_dir_tar_gz,
+            config_env_and_outputs_info = config_env_and_outputs_info,
+        ),
     )
 
     kernel_module_dev_info = KernelBuildExtModuleInfo(
@@ -127,6 +137,10 @@ def _kernel_filegroup_impl(ctx):
         modules_env_and_minimal_outputs_info = ext_mod_env_and_outputs_info,
         modules_env_and_all_outputs_info = ext_mod_env_and_outputs_info,
         modules_install_env_and_outputs_info = ext_mod_env_and_outputs_info,
+        # FIXME
+        config_env_and_outputs_info = config_env_and_outputs_info,
+        module_kconfig = ctx.attr.kernel_build_do_not_use[KernelBuildExtModuleInfo].module_kconfig,
+        strip_modules = True,
         # TODO(b/211515836): module_hdrs / module_scripts might also be downloaded
         module_hdrs = module_srcs.module_hdrs,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
@@ -336,6 +350,9 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
             default = "//build/kernel/kleaf/impl:cache_dir_config_tags",
             executable = True,
             cfg = "exec",
+        ),
+        "kernel_build_do_not_use": attr.label(
+            providers = [KernelBuildExtModuleInfo],
         ),
     } | _kernel_filegroup_additional_attrs(),
     toolchains = [hermetic_toolchain.type],

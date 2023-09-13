@@ -1006,6 +1006,7 @@ def _define_prebuilts(target_configs, **kwargs):
                 "//conditions:default": target_configs[name].get("protected_modules_list"),
             }),
             gki_artifacts = name + "_gki_artifacts_download_or_build",
+            kernel_build_do_not_use = name,
             **kwargs
         )
 
