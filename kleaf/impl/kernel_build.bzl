@@ -1884,10 +1884,7 @@ def _kernel_build_impl(ctx):
 
     module_srcs = kernel_utils.filter_module_srcs(ctx.files.srcs)
 
-    module_env_archive = _create_module_env_archive(
-        ctx = ctx,
-        module_srcs = module_srcs,
-    )
+    module_env_archive = _create_module_env_archive(ctx)
 
     infos = _create_infos(
         ctx = ctx,
@@ -2354,46 +2351,53 @@ def _repack_modules_staging_archive(
     )
     return modules_staging_archive
 
-def _create_module_env_archive(
-        ctx,
-        module_srcs):
+def _create_module_env_archive(ctx):
     """Create `{name}_module_env.tar.gz`
 
     Args:
         ctx: ctx
-        module_srcs: from `kernel_utils.filter_module_srcs`
     """
     if not ctx.attr.pack_module_env:
         return None
 
-    intermediates_dir = utils.intermediates_dir(ctx)
+    config_env_and_outputs_info = ctx.attr.config[KernelEnvAndOutputsInfo]
+
     env_info = ctx.attr.config[KernelBuildOriginalEnvInfo].env_info
     out = ctx.actions.declare_file("{name}/{name}{suffix}".format(
         name = ctx.label.name,
         suffix = MODULE_ENV_ARCHIVE_SUFFIX,
     ))
+    setup_file = ctx.actions.declare_file("{name}/modules_env_archive/setup.sh".format(
+        name = ctx.label.name,
+    ))
+
+    ctx.actions.write(
+        output = setup_file,
+        content = config_env_and_outputs_info.get_setup_script(
+            data = config_env_and_outputs_info.data,
+            restore_out_dir_cmd = "# RESTORE_OUT_DIR_CMD_PLACEHOLDER",
+        ),
+    )
+
+    # FIXME Could be HermeticToolchainInfo
     cmd = env_info.setup + """
-        # Create archive of environment below ${{KERNEL_DIR}}
-        mkdir -p {intermediates_dir}
-        for file in "$@"; do
-            if [[ "${{file}}" =~ ^"${{KERNEL_DIR}}"/ ]]; then
-                echo "${{file#"${{KERNEL_DIR}}"/}}"
-            fi
-        done > {intermediates_dir}/module_scripts_file_list.txt
-        tar cf {out} --dereference -T {intermediates_dir}/module_scripts_file_list.txt -C ${{KERNEL_DIR}}
+        # Create archive of environment below CWD
+        tar cf {out} --dereference -T $@
     """.format(
         out = out.path,
-        intermediates_dir = intermediates_dir,
     )
 
     args = ctx.actions.args()
-    args.add_all(module_srcs.module_scripts)
+    args.add_all(config_env_and_outputs_info.inputs)
+    args.add(setup_file)
+    args.set_param_file_format("multiline")
+    args.use_param_file("%s", use_always = True)
 
     ctx.actions.run_shell(
         mnemonic = "KernelBulidModuleScriptsArchive",
-        inputs = depset(transitive = [
+        inputs = depset([setup_file], transitive = [
             env_info.inputs,
-            module_srcs.module_scripts,
+            config_env_and_outputs_info.inputs,
         ]),
         outputs = [out],
         tools = env_info.tools,
