@@ -16,6 +16,24 @@
       "message": "This should wait for this week\u0027s GKI newsletter.",
       "revId": "b3777c7abe3460c7742d2480b432f41df84866b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7170256_8c6ed528",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-13T02:09:14Z",
+      "side": 1,
+      "message": "Did we ever document that wrongly? I think we can safely break users using `impl/gki_artifacts.bzl` directly",
+      "parentUuid": "a74d5c90_4167afea",
+      "revId": "b3777c7abe3460c7742d2480b432f41df84866b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
