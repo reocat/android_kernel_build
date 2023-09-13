@@ -33,6 +33,7 @@ load(
 load(
     ":constants.bzl",
     "MODULES_STAGING_ARCHIVE",
+    "MODULE_ENV_ARCHIVE_SUFFIX",
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
@@ -40,22 +41,38 @@ load(":hermetic_toolchain.bzl", "hermetic_toolchain")
 load(":kernel_config_settings.bzl", "kernel_config_settings")
 load(
     ":utils.bzl",
-    "kernel_utils",
     "utils",
 )
 
 visibility("//build/kernel/kleaf/...")
 
+def _config_env_and_outputs_info_get_setup_script(data, restore_out_dir_cmd):
+    env_archives = data.env_archives
+    hermetic_tools = data.hermetic_tools
+
+    script = hermetic_tools.setup + """
+        {check_sandbox_cmd}
+        tar xf {env_archive}
+        . setup.sh
+        {restore_out_dir_cmd}
+    """.format(
+        check_sandbox_cmd = utils.get_check_sandbox_cmd(),
+        env_archive = env_archives[0].path,
+        restore_out_dir_cmd = restore_out_dir_cmd,
+    )
+    return script
+
 def _ext_mod_env_and_outputs_info_get_setup_script(data, restore_out_dir_cmd):
-    # TODO(b/219112010): need to set up env and restore outputs
-    script = """
+    script = data.config_env_and_outputs_info.get_setup_script(
+        data = data.config_env_and_outputs_info.data,
+        restore_out_dir_cmd = restore_out_dir_cmd,
+    )
+    script += """
          # Restore modules_prepare outputs. Assumes env setup.
            [ -z ${{OUT_DIR}} ] && echo "ERROR: modules_prepare setup run without OUT_DIR set!" >&2 && exit 1
            tar xf {outdir_tar_gz} -C ${{OUT_DIR}}
-           {restore_out_dir_cmd}
     """.format(
-        outdir_tar_gz = data.modules_prepare_out_dir_tar_gz,
-        restore_out_dir_cmd = restore_out_dir_cmd,
+        outdir_tar_gz = data.modules_prepare_out_dir_tar_gz.path,
     )
     return script
 
@@ -109,26 +126,46 @@ def _kernel_filegroup_impl(ctx):
 
     modules_prepare_out_dir_tar_gz = utils.find_file("modules_prepare_outdir.tar.gz", all_deps, what = ctx.label)
 
-    module_srcs = kernel_utils.filter_module_srcs(ctx.files.kernel_srcs)
+    old_config_env_and_outputs_info = ctx.attr.kernel_build_do_not_use[KernelBuildExtModuleInfo].config_env_and_outputs_info
+
+    env_archives = utils.find_files(all_deps, suffix = MODULE_ENV_ARCHIVE_SUFFIX)
+    config_env_and_outputs_info = KernelEnvAndOutputsInfo(
+        get_setup_script = _config_env_and_outputs_info_get_setup_script,
+        inputs = depset(env_archives),
+        tools = depset(transitive = [
+            # FIXME: resolve tools properly
+            old_config_env_and_outputs_info.tools,
+            hermetic_tools.deps,
+        ]),
+        data = struct(
+            env_archives = env_archives,
+            hermetic_tools = hermetic_tools,
+        ),
+    )
 
     ext_mod_env_and_outputs_info = KernelEnvAndOutputsInfo(
         get_setup_script = _ext_mod_env_and_outputs_info_get_setup_script,
         inputs = depset([
             modules_prepare_out_dir_tar_gz,
         ], transitive = [
-            module_srcs.module_scripts,
+            config_env_and_outputs_info.inputs,
         ]),
-        tools = depset(),
-        data = struct(modules_prepare_out_dir_tar_gz = modules_prepare_out_dir_tar_gz),
+        tools = config_env_and_outputs_info.tools,
+        data = struct(
+            modules_prepare_out_dir_tar_gz = modules_prepare_out_dir_tar_gz,
+            config_env_and_outputs_info = config_env_and_outputs_info,
+        ),
     )
 
     kernel_module_dev_info = KernelBuildExtModuleInfo(
         modules_staging_archive = utils.find_file(MODULES_STAGING_ARCHIVE, all_deps, what = ctx.label),
         modules_env_and_minimal_outputs_info = ext_mod_env_and_outputs_info,
         modules_env_and_all_outputs_info = ext_mod_env_and_outputs_info,
+        # FIXME: Should restore kernel_build outputs like System.map, vmlinux, etc.
         modules_install_env_and_outputs_info = ext_mod_env_and_outputs_info,
-        # TODO(b/211515836): module_hdrs / module_scripts might also be downloaded
-        module_hdrs = module_srcs.module_hdrs,
+        config_env_and_outputs_info = config_env_and_outputs_info,
+        module_kconfig = depset(),
+        strip_modules = True,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
     )
 
@@ -336,6 +373,9 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
             default = "//build/kernel/kleaf/impl:cache_dir_config_tags",
             executable = True,
             cfg = "exec",
+        ),
+        "kernel_build_do_not_use": attr.label(
+            providers = [KernelBuildExtModuleInfo],
         ),
     } | _kernel_filegroup_additional_attrs(),
     toolchains = [hermetic_toolchain.type],
