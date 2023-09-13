@@ -1876,7 +1876,11 @@ def _kernel_build_impl(ctx):
 
     module_srcs = kernel_utils.filter_module_srcs(ctx.files.srcs)
 
-    module_env_archive = _create_module_env_archive(ctx, module_srcs)
+    module_env_archive = _create_module_env_archive(
+        ctx = ctx,
+        module_srcs = module_srcs,
+        main_action_ret = main_action_ret,
+    )
 
     infos = _create_infos(
         ctx = ctx,
@@ -2348,23 +2352,21 @@ def _repack_modules_staging_archive(
     )
     return modules_staging_archive
 
-def _create_module_env_archive(ctx, module_srcs):
+def _create_module_env_archive(ctx, module_srcs, main_action_ret):
     """Create `{name}_module_env.tar.gz`
 
     Args:
         ctx: ctx
         module_srcs: module_srcs
+        main_action_ret: from main action
     """
     if not ctx.attr.pack_module_env:
         return None
 
     hermetic_tools = hermetic_toolchain.get(ctx)
     config_env_and_outputs_info = ctx.attr.config[KernelEnvAndOutputsInfo]
+    all_output_files = main_action_ret.all_output_files
 
-    out = ctx.actions.declare_file("{name}/{name}{suffix}".format(
-        name = ctx.label.name,
-        suffix = MODULE_ENV_ARCHIVE_SUFFIX,
-    ))
     setup_file = ctx.actions.declare_file("{name}/{name}{suffix}_intermediates/setup.sh".format(
         name = ctx.label.name,
         suffix = MODULE_ENV_ARCHIVE_SUFFIX,
@@ -2381,10 +2383,31 @@ def _create_module_env_archive(ctx, module_srcs):
         restore_out_dir_cmd = utils.get_check_sandbox_cmd(),
     )
 
+    # FIXME sync with _create_infos
+    # FIXME other outs from kernel_filegroup
+    setup_cmd += """
+        touch ${OUT_DIR}/System.map
+    """
+    internal_outs = all_output_files["internal_outs"].values()
+    for dep in internal_outs:
+        relpath = paths.relativize(dep.path, main_action_ret.ruledir)
+        setup_cmd += """
+            mkdir -p $(dirname ${{OUT_DIR}}/{relpath})
+            rsync -aL {dep} ${{OUT_DIR}}/{relpath}
+        """.format(
+            dep = dep.path,
+            relpath = relpath,
+        )
+
     ctx.actions.write(
         output = setup_file,
         content = setup_cmd,
     )
+
+    out = ctx.actions.declare_file("{name}/{name}{suffix}".format(
+        name = ctx.label.name,
+        suffix = MODULE_ENV_ARCHIVE_SUFFIX,
+    ))
 
     cmd = hermetic_tools.setup + """
         # Create archive of environment below CWD
@@ -2403,7 +2426,7 @@ EOF
         setup_file = setup_file.path,
     )
 
-    inputs = depset([
+    inputs = depset(internal_outs + [
         setup_file,
         ctx.file._build_utils_sh,
     ], transitive = [
