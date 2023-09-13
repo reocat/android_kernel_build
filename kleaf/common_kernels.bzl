@@ -977,6 +977,13 @@ def _define_prebuilts(target_configs, **kwargs):
         # - Otherwise build kernel_aarch64 from sources.
         kernel_filegroup(
             name = name + "_download_or_build",
+
+            # Use default clang toolchain
+            # To support custom clang versions, we'll need to define additional
+            # native.platform targets like kernel_filegroup
+            target_platform = Label("//build/kernel/kleaf/impl:android_{}".format(target_configs[name]["arch"])),
+            exec_platform = Label("//build/kernel/kleaf/impl:linux_x86_64"),
+
             srcs = select({
                 ":use_prebuilt_gki_set": [":" + name + "_downloaded"],
                 "//conditions:default": [name],
@@ -993,7 +1000,6 @@ def _define_prebuilts(target_configs, **kwargs):
                     # unstripped modules come from {name} in srcs, KernelUnstrippedModulesInfo
                 ],
             }),
-            kernel_srcs = [name + "_sources"],
             kernel_uapi_headers = name + "_uapi_headers_download_or_build",
             collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
             images = name + "_images_download_or_build",
