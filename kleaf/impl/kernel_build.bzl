@@ -1884,10 +1884,7 @@ def _kernel_build_impl(ctx):
 
     module_srcs = kernel_utils.filter_module_srcs(ctx.files.srcs)
 
-    module_env_archive = _create_module_env_archive(
-        ctx = ctx,
-        module_srcs = module_srcs,
-    )
+    module_env_archive = _create_module_env_archive(ctx, module_srcs)
 
     infos = _create_infos(
         ctx = ctx,
@@ -1974,6 +1971,11 @@ _kernel_build = rule(
         "_get_kmi_string": attr.label(
             default = "//build/kernel/kleaf/impl:get_kmi_string",
             executable = True,
+            cfg = "exec",
+        ),
+        "_build_utils_sh": attr.label(
+            allow_single_file = True,
+            default = Label("//build/kernel:build_utils"),
             cfg = "exec",
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
@@ -2354,45 +2356,64 @@ def _repack_modules_staging_archive(
     )
     return modules_staging_archive
 
-def _create_module_env_archive(
-        ctx,
-        module_srcs):
+def _create_module_env_archive(ctx, module_srcs):
     """Create `{name}_module_env.tar.gz`
 
     Args:
         ctx: ctx
-        module_srcs: from `kernel_utils.filter_module_srcs`
+        module_srcs: module_srcs
     """
     if not ctx.attr.pack_module_env:
         return None
 
-    intermediates_dir = utils.intermediates_dir(ctx)
+    config_env_and_outputs_info = ctx.attr.config[KernelEnvAndOutputsInfo]
+
     env_info = ctx.attr.config[KernelBuildOriginalEnvInfo].env_info
     out = ctx.actions.declare_file("{name}/{name}{suffix}".format(
         name = ctx.label.name,
         suffix = MODULE_ENV_ARCHIVE_SUFFIX,
     ))
+    setup_file = ctx.actions.declare_file("{name}/modules_env_archive/setup.sh".format(
+        name = ctx.label.name,
+    ))
+
+    ctx.actions.write(
+        output = setup_file,
+        content = config_env_and_outputs_info.get_setup_script(
+            data = config_env_and_outputs_info.data,
+            restore_out_dir_cmd = "# RESTORE_OUT_DIR_CMD_PLACEHOLDER",
+        ),
+    )
+
+    # FIXME Could be HermeticToolchainInfo
     cmd = env_info.setup + """
-        # Create archive of environment below ${{KERNEL_DIR}}
-        mkdir -p {intermediates_dir}
-        for file in "$@"; do
-            if [[ "${{file}}" =~ ^"${{KERNEL_DIR}}"/ ]]; then
-                echo "${{file#"${{KERNEL_DIR}}"/}}"
-            fi
-        done > {intermediates_dir}/module_scripts_file_list.txt
-        tar cf {out} --dereference -T {intermediates_dir}/module_scripts_file_list.txt -C ${{KERNEL_DIR}}
+        # Create archive of environment below CWD
+        echo ". {build_utils}" > setup.sh
+        echo ". {setup_file}" >> setup.sh
+        ( cat $@ && echo "setup.sh" ) | tar cf {out} --dereference -T -
     """.format(
         out = out.path,
-        intermediates_dir = intermediates_dir,
+        setup_file = setup_file.path,
+        build_utils = ctx.file._build_utils_sh.path,
     )
 
     args = ctx.actions.args()
+    args.add_all(config_env_and_outputs_info.inputs)
+    args.add(setup_file)
+    args.add(ctx.file._build_utils_sh)
+    args.add_all(module_srcs.module_kconfig)
+    args.add_all(module_srcs.module_hdrs)
     args.add_all(module_srcs.module_scripts)
+    args.set_param_file_format("multiline")
+    args.use_param_file("%s", use_always = True)
 
     ctx.actions.run_shell(
         mnemonic = "KernelBulidModuleEnvArchive",
-        inputs = depset(transitive = [
+        inputs = depset([setup_file], transitive = [
             env_info.inputs,
+            config_env_and_outputs_info.inputs,
+            module_srcs.module_kconfig,
+            module_srcs.module_hdrs,
             module_srcs.module_scripts,
         ]),
         outputs = [out],
