@@ -466,6 +466,10 @@ class BazelWrapper(object):
                     f"{self.absolute_user_root}" + r"/\S+?/execroot/__main__/")
             asyncio.run(run(final_args, self.env, filter_regex))
         else:
+            print(" \\\n  ".join(f"{key}={value}" for key, value in self.env.items()
+                if key.startswith("KLEAF_")), end="\\\n")
+            print(" \\\n  ".join(f"{arg}" for arg in final_args))
+
             os.execve(path=self.bazel_path, argv=final_args, env=self.env)
 
 
