@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58743b65_9ede09e5",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 9
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1710792
+      },
+      "writtenOn": "2023-09-14T08:44:39Z",
+      "side": 1,
+      "message": "Is the intention of this change to make results consistent for arm/x86? Then my current code should already provide consistent result, see reply below.",
+      "parentUuid": "6e926e10_cbd90dd7",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 208,
+        "endChar": 67
+      },
+      "revId": "ad040a3f7d9af8bb69848271315c52128b842198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7870622_15279ad6",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5f81d89_6492ebf5",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 9
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1710792
+      },
+      "writtenOn": "2023-09-14T08:44:39Z",
+      "side": 1,
+      "message": "The split here is done on \u0027\\0\u0027, not whitespace . I ran this function on an actual x86 kernel and the result is what\u0027s in L218 . Result includes full kernel version, including build platform, date, etc(not just `uname -r`).",
+      "parentUuid": "e7870622_15279ad6",
+      "revId": "ad040a3f7d9af8bb69848271315c52128b842198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0340d0bb_14a16205",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-09-14T06:21:54Z",
       "side": 1,
       "message": "```suggestion\n  with open(path, \"r\") as fp:\n    for line in fp:\n      line\u003d\u0027\u0027.join(line.split())\n      if line.startswith(\u0027kernel_release\u003d\u0027):\n        return line.partition(\u0027\u003d\u0027)[-1]\n```",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 300,
+        "endChar": 26
+      },
+      "revId": "ad040a3f7d9af8bb69848271315c52128b842198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c51be4b_141f1c3e",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 9
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1710792
+      },
+      "writtenOn": "2023-09-14T08:44:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0340d0bb_14a16205",
       "range": {
         "startLine": 294,
         "startChar": 0,
