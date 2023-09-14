@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8adda8e0_2ce502fa",
+        "filename": "kleaf/docs/download_prebuilt.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-14T15:05:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7315cfca_bfe7839d",
+      "range": {
+        "startLine": 91,
+        "startChar": 49,
+        "endLine": 91,
+        "endChar": 59
+      },
+      "revId": "2d6b4a2d672b097c1224b280f4f33c2ff4c75b9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7f57fac_0aa1fc04",
+        "filename": "kleaf/docs/download_prebuilt.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-14T15:05:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5425d7d_669fc891",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 49
+      },
+      "revId": "2d6b4a2d672b097c1224b280f4f33c2ff4c75b9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc5649b0_820a0778",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-09-13T18:16:40Z",
       "side": 1,
       "message": "Technically not all anchors are needed. I think this should be:\n\n```\nThe format \"may\" include ...\n```\n\nbecause \u003cthe list of anchors in artifact_url_fmt\u003e IS A SUBSET OF {build_number, target, filename}\n\nYou can provide extra format arguments, but you can\u0027t have missing format arguments.\n\nRight?",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 53,
+        "endChar": 41
+      },
+      "revId": "2d6b4a2d672b097c1224b280f4f33c2ff4c75b9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f677cbc9_dfcc5419",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-14T15:05:11Z",
+      "side": 1,
+      "message": "TIL (I thought it was an error in both cases). Thank you!",
+      "parentUuid": "dc5649b0_820a0778",
       "range": {
         "startLine": 53,
         "startChar": 19,
