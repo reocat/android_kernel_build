@@ -67,6 +67,7 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         bazel_skylib = True,
         io_abseil_py = True,
         io_bazel_stardoc = True,
+	rules_rust = True,
     )
 
     # Superset of all tools we need from host.
