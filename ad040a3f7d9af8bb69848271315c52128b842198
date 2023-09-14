@@ -83,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ca79cae_77ee5716",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 9
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-14T16:01:09Z",
+      "side": 1,
+      "message": "ah, you are right. Probably it should not give the full string, but rather `uname -r`. But consistency should win here I suppose.",
+      "parentUuid": "d5f81d89_6492ebf5",
+      "revId": "ad040a3f7d9af8bb69848271315c52128b842198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0340d0bb_14a16205",
