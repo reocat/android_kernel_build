@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e926e10_cbd90dd7",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 9
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-14T06:21:54Z",
+      "side": 1,
+      "message": "```suggestion\n      return data[pos:end].removeprefix(b\"Linux version \").decode().split()[0]\n```",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 208,
+        "endChar": 67
+      },
+      "revId": "ad040a3f7d9af8bb69848271315c52128b842198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7870622_15279ad6",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 9
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-14T06:21:54Z",
+      "side": 1,
+      "message": "Here is an equivalent split done for x86. In order to return consistent results from `extract_version_from_kernel` (which was admittedly not the case before your change!), this function should always return something like `6.1.25-android14-11-g34fde9ec08a3-ab10675345` regardless of platform. See my suggestion above that effectively makes `get_binary_kernel_release` obsolete.",
+      "revId": "ad040a3f7d9af8bb69848271315c52128b842198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0340d0bb_14a16205",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 9
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-14T06:21:54Z",
+      "side": 1,
+      "message": "```suggestion\n  with open(path, \"r\") as fp:\n    for line in fp:\n      line\u003d\u0027\u0027.join(line.split())\n      if line.startswith(\u0027kernel_release\u003d\u0027):\n        return line.partition(\u0027\u003d\u0027)[-1]\n```",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 300,
+        "endChar": 26
+      },
+      "revId": "ad040a3f7d9af8bb69848271315c52128b842198",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
