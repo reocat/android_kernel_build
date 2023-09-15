@@ -22,6 +22,30 @@
       },
       "revId": "8fcbb4c270ade19645530fdf5523d46d4d1f80aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cde252d7_55ef5f64",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-15T21:31:24Z",
+      "side": 1,
+      "message": "There are no visible difference if the number is 1 or 4. However, according to the description of the flag:\n\nhttps://bazel.build/reference/command-line-reference#flag--experimental_sandbox_async_tree_delete_idle_threads\n\n\u003e If greater than zero, execute the deletion of such threes on an asynchronous thread pool that has size 1 when the build is running and grows to the size specified by this flag when the server is idle.\n\nIt is okay if the number is big. The server will use this as a threadpool size; it won\u0027t instantiate new threads unless all threads are occupied and it needs to delete another sandbox.",
+      "parentUuid": "13565bbb_6fe6cb32",
+      "range": {
+        "startLine": 24,
+        "startChar": 60,
+        "endLine": 24,
+        "endChar": 61
+      },
+      "revId": "8fcbb4c270ade19645530fdf5523d46d4d1f80aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
