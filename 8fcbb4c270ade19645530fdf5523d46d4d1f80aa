@@ -46,6 +46,30 @@
       },
       "revId": "8fcbb4c270ade19645530fdf5523d46d4d1f80aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdf5a650_16f801e7",
+        "filename": "kleaf/common.bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1889077
+      },
+      "writtenOn": "2023-09-18T06:51:52Z",
+      "side": 1,
+      "message": "Yeah, I picked 4 rather arbitrarily. We will soon change the default value of this flag to something \u003e0 in Bazel and probably conduct a few experiments there.",
+      "parentUuid": "cde252d7_55ef5f64",
+      "range": {
+        "startLine": 24,
+        "startChar": 60,
+        "endLine": 24,
+        "endChar": 61
+      },
+      "revId": "8fcbb4c270ade19645530fdf5523d46d4d1f80aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
