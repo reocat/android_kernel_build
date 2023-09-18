@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00e15c6f_2ea21afe",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1889140
+      },
+      "writtenOn": "2023-09-18T17:07:29Z",
+      "side": 1,
+      "message": "should we create a bug to fix the version parser for arm64?",
+      "range": {
+        "startLine": 510,
+        "startChar": 11,
+        "endLine": 510,
+        "endChar": 50
+      },
+      "revId": "723ac8680fadebba1f096062ba185b1e25d6487c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
