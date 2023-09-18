@@ -2367,6 +2367,19 @@ def _create_module_env_archive(ctx, module_srcs, main_action_ret):
     config_env_and_outputs_info = ctx.attr.config[KernelEnvAndOutputsInfo]
     all_output_files = main_action_ret.all_output_files
 
+    # Restore items in `outs`, just like _create_infos
+    outs_list_file = ctx.actions.declare_file("{name}/{name}{suffix}_intermediates/outs.txt".format(
+        name = ctx.label.name,
+        suffix = MODULE_ENV_ARCHIVE_SUFFIX,
+    ))
+    outs_relpaths = []
+    for dep in all_output_files["outs"].values():
+        outs_relpaths.append(paths.relativize(dep.path, main_action_ret.ruledir))
+    ctx.actions.write(
+        output = outs_list_file,
+        content = "\n".join(outs_relpaths) + "\n",
+    )
+
     setup_file = ctx.actions.declare_file("{name}/{name}{suffix}_intermediates/setup.sh".format(
         name = ctx.label.name,
         suffix = MODULE_ENV_ARCHIVE_SUFFIX,
@@ -2384,10 +2397,6 @@ def _create_module_env_archive(ctx, module_srcs, main_action_ret):
     )
 
     # FIXME sync with _create_infos
-    # FIXME other outs from kernel_filegroup
-    setup_cmd += """
-        touch ${OUT_DIR}/System.map
-    """
     internal_outs = all_output_files["internal_outs"].values()
     for dep in internal_outs:
         relpath = paths.relativize(dep.path, main_action_ret.ruledir)
@@ -2398,6 +2407,12 @@ def _create_module_env_archive(ctx, module_srcs, main_action_ret):
             dep = dep.path,
             relpath = relpath,
         )
+
+    # FIXME API?
+    # FIXME this should be from main_action that returns rel path to out_dir?
+    setup_cmd += """
+        KLEAF_OUTS_LIST_FILE={outs_list_file}
+    """.format(outs_list_file = outs_list_file.path)
 
     ctx.actions.write(
         output = setup_file,
@@ -2429,6 +2444,7 @@ EOF
     inputs = depset(internal_outs + [
         setup_file,
         ctx.file._build_utils_sh,
+        outs_list_file,
     ], transitive = [
         config_env_and_outputs_info.inputs,
         module_srcs.module_kconfig,

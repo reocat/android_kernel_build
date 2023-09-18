@@ -66,6 +66,8 @@ def _config_env_and_outputs_info_get_setup_script(data, restore_out_dir_cmd):
     return script
 
 def _ext_mod_env_and_outputs_info_get_setup_script(data, restore_out_dir_cmd):
+    all_deps_depset_file = data.all_deps_depset_file
+
     script = data.config_env_and_outputs_info.get_setup_script(
         data = data.config_env_and_outputs_info.data,
         restore_out_dir_cmd = restore_out_dir_cmd,
@@ -74,8 +76,25 @@ def _ext_mod_env_and_outputs_info_get_setup_script(data, restore_out_dir_cmd):
          # Restore modules_prepare outputs. Assumes env setup.
            [ -z ${{OUT_DIR}} ] && echo "ERROR: modules_prepare setup run without OUT_DIR set!" >&2 && exit 1
            tar xf {outdir_tar_gz} -C ${{OUT_DIR}}
+
+        # Restore kernel_build.outs
+        if [[ -z "${{KLEAF_OUTS_LIST_FILE}}" ]]; then
+            echo "FATAL: KLEAF_OUTS_LIST_FILE is not defined!" >&2
+            exit 1
+        fi
+        for rel_path in $(cat ${{KLEAF_OUTS_LIST_FILE}}); do
+            base=$(basename ${{rel_path}})
+            actual_file_path=$(grep -e "/${{base}}"'$' {all_deps_depset_file})
+            if [[ -z ${{actual_file_path}} ]]; then
+                echo "ERROR: Can't find ${{base}} in srcs of {this_label}" >&2
+                exit 1
+            fi
+            cp -l ${{actual_file_path}} ${{OUT_DIR}}/${{rel_path}}
+        done
     """.format(
         outdir_tar_gz = data.modules_prepare_out_dir_tar_gz.path,
+        all_deps_depset_file = all_deps_depset_file.path,
+        this_label = data.this_label,
     )
     return script
 
@@ -127,6 +146,12 @@ def _kernel_filegroup_impl(ctx):
 
     all_deps = ctx.files.srcs + ctx.files.deps
 
+    all_deps_depset_file = ctx.actions.declare_file("{}/all_deps.txt".format(ctx.attr.name))
+    ctx.actions.write(
+        output = all_deps_depset_file,
+        content = "\n".join([dep.path for dep in all_deps]) + "\n",
+    )
+
     modules_prepare_out_dir_tar_gz = utils.find_file("modules_prepare_outdir.tar.gz", all_deps, what = ctx.label)
 
     # FIXME rust
@@ -151,21 +176,24 @@ def _kernel_filegroup_impl(ctx):
     ext_mod_env_and_outputs_info = KernelEnvAndOutputsInfo(
         get_setup_script = _ext_mod_env_and_outputs_info_get_setup_script,
         inputs = depset([
+            all_deps_depset_file,
             modules_prepare_out_dir_tar_gz,
         ], transitive = [
             config_env_and_outputs_info.inputs,
-        ]),
+        ] + [target.files for target in ctx.attr.srcs] + [target.files for target in ctx.attr.deps]),
         tools = config_env_and_outputs_info.tools,
         data = struct(
             modules_prepare_out_dir_tar_gz = modules_prepare_out_dir_tar_gz,
             config_env_and_outputs_info = config_env_and_outputs_info,
+            all_deps_depset_file = all_deps_depset_file,
+            this_label = ctx.label,
         ),
     )
 
     kernel_module_dev_info = KernelBuildExtModuleInfo(
         modules_staging_archive = utils.find_file(MODULES_STAGING_ARCHIVE, all_deps, what = ctx.label),
+        # TODO no need to restore all outputs for minimal_outputs_info
         modules_env_and_minimal_outputs_info = ext_mod_env_and_outputs_info,
-        # FIXME: Should restore kernel_build outputs like System.map, vmlinux, etc.
         modules_env_and_all_outputs_info = ext_mod_env_and_outputs_info,
         config_env_and_outputs_info = config_env_and_outputs_info,
         module_kconfig = depset(),
