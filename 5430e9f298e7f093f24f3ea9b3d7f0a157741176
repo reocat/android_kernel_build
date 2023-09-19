@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcc4ffb7_4b4af155",
+        "filename": "kleaf/impl/kernel_toolchains_utils.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-19T10:28:35Z",
+      "side": 1,
+      "message": "Question: I know this is how it was done before (refactoring), but why not using `_toolchains` directly? And even if it has a default label, could that be empty? hence causing an error here?",
+      "range": {
+        "startLine": 67,
+        "startChar": 20,
+        "endLine": 67,
+        "endChar": 34
+      },
+      "revId": "5430e9f298e7f093f24f3ea9b3d7f0a157741176",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
