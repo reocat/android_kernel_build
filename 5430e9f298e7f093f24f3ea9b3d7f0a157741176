@@ -22,6 +22,30 @@
       },
       "revId": "5430e9f298e7f093f24f3ea9b3d7f0a157741176",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13b2ddfe_a2e4400a",
+        "filename": "kleaf/impl/kernel_toolchains_utils.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-19T20:25:30Z",
+      "side": 1,
+      "message": "Ah ha 😄 this is because:\n\nhttps://bazel.build/extending/config#accessing-attributes-with-transitions\n\n\u003e When attaching a transition to an outgoing edge (regardless of whether the transition is a 1:1 or 1:2+ transition), ctx.attr is forced to be a list if it isn\u0027t already. The order of elements in this list is unspecified.\n\nSo we need a `[0]` here. It is guaranteed to have exactly one element because our transition (also defined privately in the same file) is 1:1.",
+      "parentUuid": "dcc4ffb7_4b4af155",
+      "range": {
+        "startLine": 67,
+        "startChar": 20,
+        "endLine": 67,
+        "endChar": 34
+      },
+      "revId": "5430e9f298e7f093f24f3ea9b3d7f0a157741176",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
