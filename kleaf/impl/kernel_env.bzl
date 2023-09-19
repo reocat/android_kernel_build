@@ -186,6 +186,9 @@ def _kernel_env_impl(ctx):
             dtstree = dtstree_makefile.short_path,
         )
 
+    #TODO: FIX ME: Cleanup.
+    command += debug.modpost_warn(ctx, with_redirect = False).cmd
+
     command += _get_make_verbosity_command(ctx)
 
     kbuild_symtypes = _get_kbuild_symtypes(ctx)
@@ -578,6 +581,7 @@ kernel_env = rule(
         "_allowlist_function_transition": attr.label(
             default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
         ),
+        "_debug_modpost_warn": attr.label(default = "//build/kernel/kleaf:debug_modpost_warn"),
     } | _kernel_env_additional_attrs(),
     toolchains = [hermetic_toolchain.type],
 )
