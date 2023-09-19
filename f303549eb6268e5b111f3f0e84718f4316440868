@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dcc60e7_b500342f",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-19T15:49:37Z",
+      "side": 1,
+      "message": "a custom download location",
+      "range": {
+        "startLine": 189,
+        "startChar": 71,
+        "endLine": 189,
+        "endChar": 85
+      },
+      "revId": "f303549eb6268e5b111f3f0e84718f4316440868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "122847f1_5e13cd38",
+        "filename": "kleaf/docs/download_prebuilt.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-19T15:49:37Z",
+      "side": 1,
+      "message": "This needs an example e.g. by listing the default value with all placeholders.",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 46
+      },
+      "revId": "f303549eb6268e5b111f3f0e84718f4316440868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f631bcb1_da3fe255",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-19T15:49:37Z",
+      "side": 1,
+      "message": "perhaps we can just refer to this as download location without even mentioning ci.android.com. Probably in most places, actually.",
+      "range": {
+        "startLine": 15,
+        "startChar": 54,
+        "endLine": 15,
+        "endChar": 100
+      },
+      "revId": "f303549eb6268e5b111f3f0e84718f4316440868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84c26bd6_9a878813",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-19T15:49:37Z",
+      "side": 1,
+      "message": "is that reachable from external, actually?",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 177
+      },
+      "revId": "f303549eb6268e5b111f3f0e84718f4316440868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26cf6dd6_44df84ab",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-19T15:49:37Z",
+      "side": 1,
+      "message": "can we put the default ci.android.com here?",
+      "range": {
+        "startLine": 31,
+        "startChar": 116,
+        "endLine": 31,
+        "endChar": 120
+      },
+      "revId": "f303549eb6268e5b111f3f0e84718f4316440868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
