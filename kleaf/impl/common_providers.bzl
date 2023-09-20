@@ -165,7 +165,6 @@ command = \"""
 """,
     fields = {
         "setup_script": "A file containing the setup script.",
-        "data": "Additional data consumed by `get_setup_script`.",
         "inputs": """A [depset](https://bazel.build/extending/depsets) containing inputs used
                    by `setup_script`. Note that dependencies of `restore_out_dir_cmd` is not
                    included. `inputs` are compiled against the target platform.
