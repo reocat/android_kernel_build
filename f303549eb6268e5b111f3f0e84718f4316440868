@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a25a0eb_f8585b85",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-20T10:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1dcc60e7_b500342f",
+      "range": {
+        "startLine": 189,
+        "startChar": 71,
+        "endLine": 189,
+        "endChar": 85
+      },
+      "revId": "f303549eb6268e5b111f3f0e84718f4316440868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "122847f1_5e13cd38",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-19T15:49:37Z",
       "side": 1,
       "message": "This needs an example e.g. by listing the default value with all placeholders.",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 46
+      },
+      "revId": "f303549eb6268e5b111f3f0e84718f4316440868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb2c9f79_5719d06b",
+        "filename": "kleaf/docs/download_prebuilt.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-20T10:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "122847f1_5e13cd38",
       "range": {
         "startLine": 100,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0673ab70_54e8436c",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-20T10:52:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f631bcb1_da3fe255",
+      "range": {
+        "startLine": 15,
+        "startChar": 54,
+        "endLine": 15,
+        "endChar": 100
+      },
+      "revId": "f303549eb6268e5b111f3f0e84718f4316440868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "84c26bd6_9a878813",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1407e9d_3617b7a7",
+        "filename": "kleaf/download_repo.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-20T10:52:59Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "84c26bd6_9a878813",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 177
+      },
+      "revId": "f303549eb6268e5b111f3f0e84718f4316440868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26cf6dd6_44df84ab",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-09-19T15:49:37Z",
       "side": 1,
       "message": "can we put the default ci.android.com here?",
+      "range": {
+        "startLine": 31,
+        "startChar": 116,
+        "endLine": 31,
+        "endChar": 120
+      },
+      "revId": "f303549eb6268e5b111f3f0e84718f4316440868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "853cd199_06f187e2",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-20T10:52:59Z",
+      "side": 1,
+      "message": "and stop using the one from `kleaf/download_repo.bzl`? I think we can do that in a follow-up CL.",
+      "parentUuid": "26cf6dd6_44df84ab",
       "range": {
         "startLine": 31,
         "startChar": 116,
