@@ -28,6 +28,7 @@ def _make(ctx, filename):
           directory structure.
 
     Args:
+        ctx: ctx
         filename: See [ctx.actions.declare_directory](https://bazel.build/rules/lib/actions#declare_directory).
     """
     directory = ctx.actions.declare_directory(filename)
@@ -66,15 +67,17 @@ def _files(directory_with_structure):
 def _restore(
         directory_with_structure,
         dst,
-        options = None):
+        options = None,
+        redirect_suffix = None):
     """Return a command that restores a `directory_with_structure`.
 
     It is expected that the shell has properly set up [hermetic tools](#hermetic_tools).
 
     Args:
         directory_with_structure: struct returned by `declare_directory_with_structure`.
-        dest: a string containing the path to the destination directory.
+        dst: a string containing the path to the destination directory.
         options: a string containing options to `rsync`. If `None`, default to `"-a"`.
+        redirect_suffix: If set, redirect output of `rsync` to the given sink
     """
 
     if options == None:
@@ -82,12 +85,13 @@ def _restore(
 
     return """
         cat {structure_file} | sed 's:^:{dst}/:' | xargs mkdir -p
-        rsync {options} {src}/ {dst}/
+        rsync {options} {src}/ {dst}/ {redirect_suffix}
     """.format(
         structure_file = directory_with_structure.structure_file.path,
         options = options,
         src = directory_with_structure.directory.path,
         dst = dst,
+        redirect_suffix = redirect_suffix or "",
     )
 
 def _isinstance(obj):

@@ -87,6 +87,7 @@ def _kernel_modules_install_impl(ctx):
     transitive_tools = [kernel_build_infos.ext_module_info.modules_install_env_and_outputs_info.tools]
 
     modules_staging_dws = dws.make(ctx, "{}/staging".format(ctx.label.name))
+    intermediates_dir = utils.intermediates_dir(ctx)
 
     command = kernel_build_infos.ext_module_info.modules_install_env_and_outputs_info.get_setup_script(
         data = kernel_build_infos.ext_module_info.modules_install_env_and_outputs_info.data,
@@ -97,26 +98,46 @@ def _kernel_modules_install_impl(ctx):
                mkdir -p {modules_staging_dir}
              # Restore modules_staging_dir from kernel_build
                tar xf {kernel_build_modules_staging_archive} -C {modules_staging_dir}
+
+               mkdir -p $(dirname {intermediates_dir}/{kernel_build_modules_staging_archive}.log)
+               # Print directories with trailing /, others without
+               ( cd {modules_staging_dir} && find . -type d -printf "%p/\\n" -or -print ) \\
+                    >{intermediates_dir}/{kernel_build_modules_staging_archive}.log
     """.format(
         modules_staging_dir = modules_staging_dws.directory.path,
         kernel_build_modules_staging_archive =
             kernel_build_infos.ext_module_info.modules_staging_archive.path,
+        intermediates_dir = intermediates_dir,
     )
     for input_modules_staging_dws in modules_staging_dws_list:
         # Allow directories to be written because we are merging multiple directories into one.
         # However, don't allow files to be written because we don't expect modules to produce
         # conflicting files. check_duplicated_files_in_archives further enforces this.
+        command += """
+            mkdir -p $(dirname {intermediates_dir}/{directory}.log)
+        """.format(
+            intermediates_dir = intermediates_dir,
+            directory = input_modules_staging_dws.directory.path,
+        )
         command += dws.restore(
             input_modules_staging_dws,
             dst = modules_staging_dws.directory.path,
-            options = "-aL --chmod=D+w",
+            # Use --checksum to ensure that, if two archives contains the same entry with different
+            # mod time, both rsync commands will write the entry to the log so that
+            # check_duplicated_files_in_archives will complain correctly.
+            # Use --info=name to print updated files to stdout, then redirect stdout to the log file
+            # for check_duplicated_files_in_archives.
+            options = "-acL --chmod=D+w --info=name",
+            redirect_suffix = ">{}/{}.log".format(intermediates_dir, input_modules_staging_dws.directory.path),
         )
 
     # TODO(b/194347374): maybe run depmod.sh with CONFIG_SHELL?
     command += """
              # Check if there are duplicated files in modules_staging_archive of
              # depended kernel_build and kernel_module's
-               {check_duplicated_files_in_archives} {modules_staging_archives}
+               {check_duplicated_files_in_archives} {intermediates_dir}
+               rm -rf {intermediates_dir}
+
              # Set variables
                if [[ ! -f ${{OUT_DIR}}/include/config/kernel.release ]]; then
                    echo "ERROR: No ${{OUT_DIR}}/include/config/kernel.release" >&2
@@ -141,6 +162,7 @@ def _kernel_modules_install_impl(ctx):
                  if [[ -n "$symlink" ]] && [[ -L "$symlink" ]]; then rm "$symlink"; fi
                )
     """.format(
+        intermediates_dir = intermediates_dir,
         modules_staging_archives = " ".join(
             [kernel_build_infos.ext_module_info.modules_staging_archive.path] +
             [input_modules_staging_dws.directory.path for input_modules_staging_dws in modules_staging_dws_list],

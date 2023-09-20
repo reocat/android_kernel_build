@@ -18,9 +18,6 @@ import argparse
 import collections
 import pathlib
 import os
-import tarfile
-
-from typing import Collection
 
 
 def _sanitize(line: str) -> str:
@@ -31,28 +28,27 @@ def _sanitize(line: str) -> str:
     return str(pathlib.PurePosixPath(line))
 
 
-def _list_files(archive: pathlib.Path) -> list[str]:
-    if os.path.isfile(archive):
-        with tarfile.open(archive) as tar:
-            tar: tarfile.TarFile
-            return [_sanitize(name) for name in tar.getnames()]
-    elif os.path.isdir(archive):
-        return [_sanitize(os.path.relpath(os.path.join(root, file), archive))
-                for root, dirs, files in os.walk(archive) for file in files]
-    else:
-        raise Exception(f"{archive} is not file or directory")
+def _list_entries(list_file: pathlib.Path) -> list[str]:
+    with open(list_file) as f:
+        return [_sanitize(name) for name in f if not name.strip().endswith("/")]
 
 
-def main(archives: Collection[pathlib.Path]) -> None:
+def main(list_files_dir: pathlib.Path) -> None:
     """Checks that when extracting each archive to the same directory, files won't
     be overwritten.
 
     This is a semi-replacement of the -k option in GNU tar.
     """
     reverse_dict: dict[str, list[str]] = collections.defaultdict(list)
-    for archive in archives:
-        for f in _list_files(archive):
-            reverse_dict[f].append(archive)
+
+    for root, _, files in os.walk(list_files_dir):
+        for file in files:
+            list_file = pathlib.Path(root) / file
+            for entry in _list_entries(list_file):
+                src_archive = str(list_file.relative_to(
+                    list_files_dir)).removesuffix(".log")
+                reverse_dict[entry].append(src_archive)
+
     duplicated = {f: f_archives for f, f_archives in reverse_dict.items() if
                   len(f_archives) > 1}
     if duplicated:
@@ -66,7 +62,7 @@ def main(archives: Collection[pathlib.Path]) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=main.__doc__)
-    parser.add_argument("archives", nargs="*", type=pathlib.Path,
-                        help="A list of tar archives or directories to check")
+    parser.add_argument("list_files_dir", type=pathlib.Path,
+                        help="Directory of text files containing list of entries to check")
     args = parser.parse_args()
     main(**vars(args))
