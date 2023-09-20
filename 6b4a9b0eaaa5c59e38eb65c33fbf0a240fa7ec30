@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "036eaa23_096eb23a",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-20T05:46:13Z",
+      "side": 1,
+      "message": "Still has dependency on {modules_staging_dir}; that is, either {kernel_build_modules_staging_archive} or {modules_staging_dir} would need to be part of the API between kernel_modules_install and kernel_filegroup/kernel_build. So we are still not removing the dependency properly.",
+      "range": {
+        "startLine": 100,
+        "startChar": 65,
+        "endLine": 100,
+        "endChar": 84
+      },
+      "revId": "6b4a9b0eaaa5c59e38eb65c33fbf0a240fa7ec30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
