@@ -1,0 +1,98 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000054194218",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2756751?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "c168a58e_934410ad",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/common_providers.bzl",
+              "range": {
+                "startLine": 178,
+                "startChar": 0,
+                "endLine": 179,
+                "endChar": 0
+              },
+              "replacement": "    },\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "ed80eebb_65c92213",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-09-20T22:14:48Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/common_providers.bzl` to format the file, or apply the suggested fix.",
+      "revId": "d4764f290101ff6c815e14c308269b5f1a59bbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000054194218",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2756751?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "33fbcd8e_f6066fe3",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_config.bzl",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 25,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/impl/kernel_config.bzl",
+              "range": {
+                "startLine": 28,
+                "startChar": 0,
+                "endLine": 28,
+                "endChar": 0
+              },
+              "replacement": "    \"KernelSerializedEnvInfo\",\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_config.bzl",
+              "range": {
+                "startLine": 492,
+                "startChar": 0,
+                "endLine": 493,
+                "endChar": 0
+              },
+              "replacement": "        ),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "1a0892c2_e75ebf55",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-09-20T22:14:48Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_config.bzl` to format the file, or apply the suggested fix.",
+      "revId": "d4764f290101ff6c815e14c308269b5f1a59bbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
