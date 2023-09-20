@@ -46,6 +46,53 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/modules_prepare.bzl` to format the file, or apply the suggested fix.",
       "revId": "727f0823d9cf27778a30247484970b7db6dfb45e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000054195192",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2756752?revision\u003d4",
+      "fixSuggestions": [
+        {
+          "fixId": "f935815b_ad0aa245",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/modules_prepare.bzl",
+              "range": {
+                "startLine": 106,
+                "startChar": 0,
+                "endLine": 106,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/impl/modules_prepare.bzl",
+              "range": {
+                "startLine": 122,
+                "startChar": 0,
+                "endLine": 123,
+                "endChar": 0
+              },
+              "replacement": "        DefaultInfo(files \u003d depset([ctx.outputs.outdir_tar_gz, setup_script])),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "140781a3_868ea5a7",
+        "filename": "kleaf/impl/modules_prepare.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-09-20T22:25:49Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/modules_prepare.bzl` to format the file, or apply the suggested fix.",
+      "revId": "727f0823d9cf27778a30247484970b7db6dfb45e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
