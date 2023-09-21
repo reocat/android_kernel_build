@@ -391,8 +391,9 @@ def _kernel_config_impl(ctx):
     ]
     transitive_inputs = []
 
-    out_dir = ctx.actions.declare_directory(ctx.attr.name + "/out_dir")
-    outputs = [out_dir]
+    # <kernel_build>_config_env.tar.gz
+    outdir_tar_gz = ctx.actions.declare_file("{name}/{name}_outdir.tar.gz")
+    outputs = [outdir_tar_gz]
 
     reconfig = _reconfig(ctx)
     transitive_inputs.append(reconfig.deps)
@@ -423,23 +424,23 @@ def _kernel_config_impl(ctx):
           {reconfig_cmd}
         # HACK: run syncconfig to avoid re-triggerring kernel_build
           make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} syncconfig
-        # Grab outputs
-          rsync -aL ${{OUT_DIR}}/.config {out_dir}/.config
-          rsync -aL ${{OUT_DIR}}/include/ {out_dir}/include/
 
         # Ensure reproducibility. The value of the real $ROOT_DIR is replaced in the setup script.
-          sed -i'' -e 's:'"${{ROOT_DIR}}"':${{ROOT_DIR}}:g' {out_dir}/include/config/auto.conf.cmd
+          sed -i'' -e 's:'"${{ROOT_DIR}}"':${{ROOT_DIR}}:g' ${{OUT_DIR}}/include/config/auto.conf.cmd
 
         # HACK: Ensure we always SYNC auto.conf. This ensures binaries like fixdep are always
         # re-built. See b/263415662
-          echo "include/config/auto.conf: FORCE" >> {out_dir}/include/config/auto.conf.cmd
+          echo "include/config/auto.conf: FORCE" >> ${{OUT_DIR}}/include/config/auto.conf.cmd
 
           {cache_dir_post_cmd}
+
+          rm -f ${{OUT_DIR}}/source
+          tar czf {outdir_tar_gz} -C ${{OUT_DIR}} .
         """.format(
-        out_dir = out_dir.path,
         cache_dir_cmd = cache_dir_step.cmd,
         cache_dir_post_cmd = cache_dir_step.post_cmd,
         reconfig_cmd = reconfig.cmd,
+        outdir_tar_gz = outdir_tar_gz.path,
     )
 
     debug.print_scripts(ctx, command)
@@ -456,19 +457,19 @@ def _kernel_config_impl(ctx):
         execution_requirements = kernel_utils.local_exec_requirements(ctx),
     )
 
-    post_setup_deps = [out_dir, localversion_file]
+    post_setup_deps = [outdir_tar_gz, localversion_file]
     post_setup = """
            [ -z ${{OUT_DIR}} ] && echo "FATAL: configs post_env_info setup run without OUT_DIR set!" >&2 && exit 1
          # Restore kernel config inputs
-           mkdir -p ${{OUT_DIR}}/include/
-           rsync -aL {out_dir}/.config ${{OUT_DIR}}/.config
-           rsync -aL --chmod=D+w {out_dir}/include/ ${{OUT_DIR}}/include/
+           mkdir -p ${{OUT_DIR}}
+           tar xf {outdir_tar_gz} -C ${{OUT_DIR}}
+
            rsync -aL --chmod=F+w {localversion_file} ${{OUT_DIR}}/localversion
 
          # Restore real value of $ROOT_DIR in auto.conf.cmd
            sed -i'' -e 's:${{ROOT_DIR}}:'"${{ROOT_DIR}}"':g' ${{OUT_DIR}}/include/config/auto.conf.cmd
     """.format(
-        out_dir = out_dir.path,
+        outdir_tar_gz = outdir_tar_gz.path,
         localversion_file = localversion_file.path,
     )
 
@@ -498,7 +499,7 @@ def _kernel_config_impl(ctx):
             env_info = ctx.attr.env[KernelEnvInfo],
         ),
         DefaultInfo(
-            files = depset([out_dir]),
+            files = depset([outdir_tar_gz]),
             executable = config_script_ret.executable,
             runfiles = config_script_ret.runfiles,
         ),
