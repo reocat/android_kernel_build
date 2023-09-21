@@ -513,7 +513,13 @@ def _kernel_config_impl(ctx):
             env_info = ctx.attr.env[KernelEnvInfo],
         ),
         DefaultInfo(
-            files = depset([outdir_tar_gz]),
+            files = depset(
+                [outdir_tar_gz],
+                # FIXME properly add them to kernel_filegroup
+                transitive = [
+                    ctx.attr.env.files,
+                ],
+            ),
             executable = config_script_ret.executable,
             runfiles = config_script_ret.runfiles,
         ),
