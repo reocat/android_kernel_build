@@ -1905,7 +1905,12 @@ def _create_infos(
     if ctx.file.src_protected_modules_list:
         default_info_files.append(ctx.file.src_protected_modules_list)
     default_info = DefaultInfo(
-        files = depset(default_info_files),
+        files = depset(default_info_files,
+            # FIXME properly add them to kernel_filegroup
+            transitive = [
+                ctx.attr.config.files,
+            ],
+        ),
         # For kernel_build_test
         runfiles = ctx.runfiles(files = default_info_files),
     )
