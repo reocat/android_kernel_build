@@ -981,6 +981,9 @@ def _define_prebuilts(target_configs, **kwargs):
                 ":use_prebuilt_gki_set": [":" + name + "_downloaded"],
                 "//conditions:default": [name],
             }),
+            # FIXME handle clang version for kernel_filegroup
+            target_platform = Label("//build/kernel/kleaf/impl:android_{}".format(target_configs[name]["arch"])),
+            exec_platform = Label("//build/kernel/kleaf/impl:linux_x86_64"),
             deps = select({
                 ":use_prebuilt_gki_set": [
                     name + "_ddk_artifacts_downloaded",
