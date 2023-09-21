@@ -412,6 +412,8 @@ def _kernel_config_impl(ctx):
     outputs += cache_dir_step.outputs
     tools += cache_dir_step.tools
 
+    inputs.append(localversion_file)
+
     command = ctx.attr.env[KernelEnvInfo].setup + """
           {cache_dir_cmd}
         # Pre-defconfig commands
@@ -435,12 +437,14 @@ def _kernel_config_impl(ctx):
           {cache_dir_post_cmd}
 
           rm -f ${{OUT_DIR}}/source
+          rsync -aL --chmod=F+w {localversion_file} ${{OUT_DIR}}/localversion
           tar czf {outdir_tar_gz} -C ${{OUT_DIR}} .
         """.format(
         cache_dir_cmd = cache_dir_step.cmd,
         cache_dir_post_cmd = cache_dir_step.post_cmd,
         reconfig_cmd = reconfig.cmd,
         outdir_tar_gz = outdir_tar_gz.path,
+        localversion_file = localversion_file.path,
     )
 
     debug.print_scripts(ctx, command)
@@ -457,20 +461,17 @@ def _kernel_config_impl(ctx):
         execution_requirements = kernel_utils.local_exec_requirements(ctx),
     )
 
-    post_setup_deps = [outdir_tar_gz, localversion_file]
+    post_setup_deps = [outdir_tar_gz]
     post_setup = """
            [ -z ${{OUT_DIR}} ] && echo "FATAL: configs post_env_info setup run without OUT_DIR set!" >&2 && exit 1
          # Restore kernel config inputs
            mkdir -p ${{OUT_DIR}}
            tar xf {outdir_tar_gz} -C ${{OUT_DIR}}
 
-           rsync -aL --chmod=F+w {localversion_file} ${{OUT_DIR}}/localversion
-
          # Restore real value of $ROOT_DIR in auto.conf.cmd
            sed -i'' -e 's:${{ROOT_DIR}}:'"${{ROOT_DIR}}"':g' ${{OUT_DIR}}/include/config/auto.conf.cmd
     """.format(
         outdir_tar_gz = outdir_tar_gz.path,
-        localversion_file = localversion_file.path,
     )
 
     if trim_nonlisted_kmi_utils.get_value(ctx):
