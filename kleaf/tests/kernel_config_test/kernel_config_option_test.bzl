@@ -45,25 +45,27 @@ def _get_config_file(ctx, kernel_build, filename):
         The file with name `{prefix}_config`, which points to the `.config` of the kernel.
     """
     kernel_config = kernel_build[KernelConfigAspectInfo].kernel_config
-    out_dir = utils.find_file(
-        name = "out_dir",
+    out_dir_archives = utils.find_files(
+        suffix = "_config_outdir.tar.gz",
         files = kernel_config.files.to_list(),
-        what = "{}: kernel_config outputs".format(kernel_build.label),
     )
+    if len(out_dir_archives) != 1:
+        fail("Expected 1 _config_outdir.tar.gz, but got: {}".format(out_dir_archives))
 
     # Create symlink so that the Python test script compares with the correct expected file.
     out = ctx.actions.declare_file("{}/{}".format(ctx.label.name, filename))
 
     hermetic_tools = hermetic_toolchain.get(ctx)
     command = hermetic_tools.setup + """
-        cp -pl {out_dir}/.config {out}
+        tar xf {out_dir_archive} ./.config
+        mv .config {out}
     """.format(
-        out_dir = out_dir.path,
+        out_dir_archive = out_dir_archives[0].path,
         out = out.path,
     )
 
     ctx.actions.run_shell(
-        inputs = [out_dir],
+        inputs = out_dir_archives,
         outputs = [out],
         command = command,
         tools = hermetic_tools.deps,

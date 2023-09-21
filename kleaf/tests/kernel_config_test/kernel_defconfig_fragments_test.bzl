@@ -63,23 +63,24 @@ def _get_config_impl(ctx):
 
     kernel_build = ctx.attr.kernel_build[0]
     kernel_config = kernel_build[KernelConfigAspectInfo].kernel_config
-    out_dir = utils.find_file(
-        name = "out_dir",
+    out_dir_archives = utils.find_files(
+        suffix = "_config_outdir.tar.gz",
         files = kernel_config.files.to_list(),
-        what = "{}: kernel_config outputs".format(kernel_build.label),
     )
+    if len(out_dir_archives) != 1:
+        fail("Expected 1 _config_outdir.tar.gz, but got: {}".format(out_dir_archives))
 
     out = ctx.actions.declare_file("{}/.config".format(ctx.label.name))
     hermetic_tools = hermetic_toolchain.get(ctx)
     command = hermetic_tools.setup + """
-        cp -pl {out_dir}/.config {out}
+        tar xf {out_dir_archive} -C {out_dirname} ./.config
     """.format(
-        out_dir = out_dir.path,
-        out = out.path,
+        out_dir_archive = out_dir_archives[0].path,
+        out_dirname = out.dirname,
     )
 
     ctx.actions.run_shell(
-        inputs = [out_dir],
+        inputs = out_dir_archives,
         outputs = [out],
         command = command,
         tools = hermetic_tools.deps,
