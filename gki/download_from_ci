@@ -309,6 +309,7 @@ def download_kernel(target, version, output_dir, fetch_system_dlkm=False):
     # Fetch GKI modules tarball with signed modules
     files.append("system_dlkm_staging_archive.tar.gz")
   files.append("gki-info.txt")
+  files.append("kernel_sbom.spdx.json")
 
   url_base = BASE_URL.format(build_id=_args.build_id, target=target)
   func = functools.partial(download, url_base, output_dir)
