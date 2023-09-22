@@ -143,7 +143,7 @@ def download_files(url_base, files):
     if dirname and not os.path.isdir(dirname):
       os.makedirs(dirname)
 
-  func = functools.partial(download, url_base, "")
+  func = functools.partial(download, url_base, os.getcwd())
   _pool.map(func, files)
 
 def get_kernel_dir():
