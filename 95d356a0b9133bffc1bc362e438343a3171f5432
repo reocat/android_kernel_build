@@ -34,6 +34,24 @@
       "parentUuid": "bb6adb1d_a20e7221",
       "revId": "95d356a0b9133bffc1bc362e438343a3171f5432",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "074f58ca_e60326aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-09-22T12:45:50Z",
+      "side": 1,
+      "message": "It used to fail. Now it does not, but rather downloads some html snippet into the file ...",
+      "parentUuid": "fb327cdc_cf58bc3e",
+      "revId": "95d356a0b9133bffc1bc362e438343a3171f5432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
