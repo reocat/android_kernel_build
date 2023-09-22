@@ -16,6 +16,24 @@
       "message": "This tries to unconditionally download something.",
       "revId": "95d356a0b9133bffc1bc362e438343a3171f5432",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb327cdc_cf58bc3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-09-22T10:49:03Z",
+      "side": 1,
+      "message": "But does it fail [0]? I thought there was a way to make it optional but maybe it was on other tool.\n\n[0] https://android.git.corp.google.com/kernel/build/+/refs/heads/main/gki/download_from_ci#74",
+      "parentUuid": "bb6adb1d_a20e7221",
+      "revId": "95d356a0b9133bffc1bc362e438343a3171f5432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
