@@ -152,13 +152,59 @@ def _kernel_filegroup_impl(ctx):
         ]),
     )
 
+    # FIXME clean up; merge with modules_prepare.bzl / kernel_build.bzl
+    modules_prepare_out_dir_tar_gz = utils.find_file("modules_prepare_outdir.tar.gz", all_deps, what = ctx.label)
+    internal_outs_archive = utils.find_files(all_deps, "_internal_outs.tar.gz")[0]
+    ddk_mod_min_setup = """
+        [ -z ${{OUT_DIR}} ] && echo "FATAL: modules_prepare setup run without OUT_DIR set!" >&2 && exit 1
+        mkdir -p ${{OUT_DIR}}
+        tar xf {modules_prepare_out_dir_tar_gz} -C ${{OUT_DIR}}
+    """.format(
+        modules_prepare_out_dir_tar_gz = modules_prepare_out_dir_tar_gz.path,
+    )
+    ext_mod_env_and_outputs_info_setup_restore_outputs = """
+        # Fake System.map for kernel_module
+          touch ${{OUT_DIR}}/System.map
+        # Restore kernel build outputs necessary for building external modules
+          tar xf {internal_outs_archive} -C ${{OUT_DIR}}
+    """.format(
+        internal_outs_archive = internal_outs_archive.path,
+    )
+    ddk_mod_min_env_setup_script = ctx.actions.declare_file("{name}/{name}_mod_min_setup.sh".format(name = ctx.attr.name))
+    ctx.actions.write(
+        output = ddk_mod_min_env_setup_script,
+        content = hermetic_tools.setup + """
+            . {ddk_config_env_setup_script}
+            {ddk_mod_min_setup}
+            {ext_mod_env_and_outputs_info_setup_restore_outputs}
+        """.format(
+            ddk_config_env_setup_script = ddk_config_env_setup_script.path,
+            ddk_mod_min_setup = ddk_mod_min_setup,
+            ext_mod_env_and_outputs_info_setup_restore_outputs = ext_mod_env_and_outputs_info_setup_restore_outputs,
+        )
+    )
+    mod_min_env = KernelSerializedEnvInfo(
+        setup_script = ddk_mod_min_env_setup_script,
+        inputs = depset([
+            ddk_mod_min_env_setup_script,
+            modules_prepare_out_dir_tar_gz,
+            internal_outs_archive,
+            ddk_config_env_setup_script,
+        ], transitive = [
+            ddk_config_env.inputs,
+        ]),
+        tools = ddk_config_env.tools,
+    )
+
     kernel_module_dev_info = KernelBuildExtModuleInfo(
         modules_staging_archive = utils.find_file(MODULES_STAGING_ARCHIVE, all_deps, what = ctx.label),
         # TODO(b/211515836): module_scripts might also be downloaded
         # Building kernel_module (excluding ddk_module) on top of kernel_filegroup is unsupported.
         # module_hdrs = None,
         ddk_config_env = ddk_config_env,
+        mod_min_env = mod_min_env,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
+        strip_modules = True, # FIXME
     )
 
     kernel_uapi_depsets = []
