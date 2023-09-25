@@ -37,6 +37,7 @@ def _kernel_filegroup_declaration_impl(ctx):
         info.modules_prepare_archive,
         info.modules_staging_archive,
         info.toolchain_version_file,
+        info.internal_outs_archive,
     ]
     deps_files += info.config_archive_files.to_list()
 
