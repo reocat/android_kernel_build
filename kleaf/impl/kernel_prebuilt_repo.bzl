@@ -278,6 +278,7 @@ workspace({})
         # FIXME use constant
         bazel_target_name + "_config_outdir.tar.gz",
         bazel_target_name + "_env.sh",
+        bazel_target_name + "_internal_outs.tar.gz",
     ]
     gki_prebuilts_outs = GKI_ARTIFACTS_AARCH64_OUTS
 
