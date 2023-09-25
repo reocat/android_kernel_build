@@ -1995,6 +1995,7 @@ def _create_infos(
         arch = ctx.attr.arch,
         config_files = ctx.attr.config[KernelConfigArchiveInfo].files,
         config_out_dir = ctx.file.config,
+        internal_outs_archive = internal_outs_archive,
     )
 
     default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
