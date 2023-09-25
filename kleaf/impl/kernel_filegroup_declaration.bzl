@@ -14,6 +14,7 @@
 
 """Given a kernel_build, generates corresponding kernel_filegroup target declaration."""
 
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load(":common_providers.bzl", "KernelBuildFilegroupDeclInfo")
 load(
     ":constants.bzl",
@@ -35,8 +36,6 @@ def _kernel_filegroup_declaration_impl(ctx):
 
     # ddk_artifacts
     deps_files = [
-        # _modules_prepare
-        info.modules_prepare_archive,
         info.modules_staging_archive,
         info.toolchain_version_file,
     ]
@@ -57,6 +56,11 @@ def _kernel_filegroup_declaration_impl(ctx):
             ctx.attr.kernel_build.label,
         ))
     kernel_uapi_headers = kernel_uapi_headers_lst[0]
+
+    internal_outs = {
+        file.path: paths.relativize(file.path, info.ruledir)
+        for file in info.internal_outs.to_list()
+    }
 
     fragment = """\
 platform(
@@ -90,6 +94,8 @@ kernel_filegroup(
     config_out_dir_files = {config_out_dir_files_repr},
     config_out_dir = {config_out_dir_repr},
     env_setup_script = {env_setup_script_repr},
+    modules_prepare_archive = {modules_prepare_archive_repr},
+    internal_outs = {internal_outs_repr},
     target_platform = {target_platform_repr},
     exec_platform = {exec_platform_repr},
     visibility = ["//visibility:public"],
@@ -110,6 +116,8 @@ kernel_filegroup(
         config_out_dir_files_repr = config_out_dir_files_repr,
         config_out_dir_repr = repr(info.config_out_dir.path),
         env_setup_script_repr = repr(info.env_setup_script.path),
+        modules_prepare_archive_repr = repr(info.modules_prepare_archive.path),
+        internal_outs_repr = repr(internal_outs),
         target_platform_repr = repr(ctx.attr.kernel_build.label.name + "_platform_target"),
         exec_platform_repr = repr(ctx.attr.kernel_build.label.name + "_platform_exec"),
         arch = info.arch,
@@ -132,10 +140,14 @@ kernel_filegroup(
         kernel_uapi_headers,
         info.config_out_dir,
         info.env_setup_script,
+        info.modules_prepare_archive,
     ]
     if info.src_protected_modules_list:
         direct_inputs.append(info.src_protected_modules_list)
-    transitive_inputs = [info.ddk_module_defconfig_fragments]
+    transitive_inputs = [
+        info.ddk_module_defconfig_fragments,
+        info.internal_outs,
+    ]
     inputs = depset(
         direct_inputs,
         transitive = transitive_inputs,
