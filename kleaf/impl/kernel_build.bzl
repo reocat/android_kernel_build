@@ -411,13 +411,10 @@ def kernel_build(
           `"default"`, the defconfig is left as-is.
 
           16k / 64k page size is only supported on `arch = "arm64"`.
-        pack_module_scripts: If `True`, create `{name}_module_scripts.tar.gz` as
-          part of the default output of this target.
+        pack_module_scripts: If `True`, create `{name}_module_env.tar.gz`
+          and other archives as part of the default output of this target.
 
-          The archive contains necessary scripts to build external modules.
-
-          **IMPLEMENTATION DETAIL**: The list of scripts is defined by
-          `kernel_utils.filter_module_srcs().module_scripts`.
+          These archives contains necessary files to build external modules.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -2424,14 +2421,15 @@ def _create_module_scripts_archive(
         suffix = MODULE_SCRIPTS_ARCHIVE_SUFFIX,
     ))
     cmd = env_info.setup + """
-        # Create archive of module_scripts below ${{KERNEL_DIR}}
+        # Create archive of module_scripts/module_kconfig below ${{KERNEL_DIR}}
         mkdir -p {intermediates_dir}
         for file in "$@"; do
             if [[ "${{file}}" =~ ^"${{KERNEL_DIR}}"/ ]]; then
                 echo "${{file#"${{KERNEL_DIR}}"/}}"
             fi
-        done > {intermediates_dir}/module_scripts_file_list.txt
-        tar cf {out} --dereference -T {intermediates_dir}/module_scripts_file_list.txt -C ${{KERNEL_DIR}}
+        # Need to uniq due to https://github.com/landley/toybox/issues/457
+        done | sort | uniq > {intermediates_dir}/file_list.txt
+        tar cf {out} --dereference -T {intermediates_dir}/file_list.txt -C ${{KERNEL_DIR}}
     """.format(
         out = out.path,
         intermediates_dir = intermediates_dir,
@@ -2439,17 +2437,19 @@ def _create_module_scripts_archive(
 
     args = ctx.actions.args()
     args.add_all(module_srcs.module_scripts)
+    args.add_all(module_srcs.module_kconfig)
 
     ctx.actions.run_shell(
         mnemonic = "KernelBulidModuleScriptsArchive",
         inputs = depset(transitive = [
             env_info.inputs,
             module_srcs.module_scripts,
+            module_srcs.module_kconfig,
         ]),
         outputs = [out],
         tools = env_info.tools,
         command = cmd,
         arguments = [args],
-        progress_message = "Archiving scripts for ext module {}".format(_progress_message_suffix(ctx)),
+        progress_message = "Archiving scripts/kconfig for ext module {}".format(_progress_message_suffix(ctx)),
     )
     return out
