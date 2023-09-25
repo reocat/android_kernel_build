@@ -1996,6 +1996,8 @@ def _create_infos(
         arch = ctx.attr.arch,
         env_setup_script = ctx.attr.config[KernelConfigInfo].env_setup_script,
         config_out_dir = ctx.file.config,
+        internal_outs = depset(all_output_files["internal_outs"].values()),
+        ruledir = main_action_ret.ruledir,
     )
 
     default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
@@ -2083,6 +2085,8 @@ def _kernel_build_impl(ctx):
         ctx = ctx,
         module_srcs = module_srcs,
     )
+
+    # TODO(b/291918087): Delete internal_outs_archive; it is no longer used anywhere.
     internal_outs_archive = _create_internal_outs_archive(
         ctx = ctx,
         main_action_ret = main_action_ret,
