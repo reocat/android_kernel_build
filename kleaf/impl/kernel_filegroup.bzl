@@ -211,6 +211,39 @@ def _kernel_filegroup_impl(ctx):
         tools = ddk_config_env.tools,
     )
 
+    # FIXME for now, assume that all `outs` of original kernel_build is found
+    # from root of $OUT_DIR.
+    env_and_outputs_info_setup_restore_outputs = """
+        rm ${{OUT_DIR}}/System.map  # create by min_env_setup.sh
+        # Copy symlinks to the sources into OUT_DIR
+        cp -p -t ${{OUT_DIR}} {srcs}
+    """.format(
+        srcs = " ".join([file.path for file in ctx.files.srcs]),
+    )
+    ddk_mod_full_env_setup_script = ctx.actions.declare_file("{name}/{name}_mod_full_setup.sh".format(name = ctx.attr.name))
+    ctx.actions.write(
+        output = ddk_mod_full_env_setup_script,
+        content = hermetic_tools.setup + """
+            . {ddk_mod_min_env_setup_script}
+            {env_and_outputs_info_setup_restore_outputs}
+        """.format(
+            ddk_mod_min_env_setup_script = ddk_mod_min_env_setup_script.path,
+            env_and_outputs_info_setup_restore_outputs = env_and_outputs_info_setup_restore_outputs,
+        ),
+    )
+    mod_full_env = KernelSerializedEnvInfo(
+        setup_script = ddk_mod_full_env_setup_script,
+        inputs = depset([
+            ddk_mod_full_env_setup_script,
+        ], transitive = [
+            target.files
+            for target in ctx.attr.srcs
+        ] + [
+            mod_min_env.inputs,
+        ]),
+        tools = mod_min_env.tools,
+    )
+
     kernel_module_dev_info = KernelBuildExtModuleInfo(
         modules_staging_archive = utils.find_file(MODULES_STAGING_ARCHIVE, all_deps, what = ctx.label),
         # TODO(b/211515836): module_scripts might also be downloaded
@@ -218,6 +251,8 @@ def _kernel_filegroup_impl(ctx):
         # module_hdrs = None,
         ddk_config_env = ddk_config_env,
         mod_min_env = mod_min_env,
+        mod_full_env = mod_full_env,
+        modinst_env = mod_full_env,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
         strip_modules = True,  # FIXME
     )
