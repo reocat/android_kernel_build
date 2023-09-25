@@ -33,8 +33,8 @@ load(
 load(
     ":constants.bzl",
     "MODULES_STAGING_ARCHIVE",
-    "TOOLCHAIN_VERSION_FILENAME",
     "MODULE_SCRIPTS_ARCHIVE_SUFFIX",
+    "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
 load(":hermetic_toolchain.bzl", "hermetic_toolchain")
@@ -181,7 +181,7 @@ def _kernel_filegroup_impl(ctx):
             ddk_config_env_setup_script = ddk_config_env_setup_script.path,
             ddk_mod_min_setup = ddk_mod_min_setup,
             ext_mod_env_and_outputs_info_setup_restore_outputs = ext_mod_env_and_outputs_info_setup_restore_outputs,
-        )
+        ),
     )
     mod_min_env = KernelSerializedEnvInfo(
         setup_script = ddk_mod_min_env_setup_script,
@@ -196,6 +196,14 @@ def _kernel_filegroup_impl(ctx):
         tools = ddk_config_env.tools,
     )
 
+    fake_setup_script = ctx.actions.declare_file("{name}/{name}_fake_setup.sh")
+    ctx.actions.write(output = fake_setup_script, content = "")
+    fake_env_info = KernelSerializedEnvInfo(
+        setup_script = fake_setup_script,
+        inputs = depset(),
+        tools = depset(),
+    )
+
     kernel_module_dev_info = KernelBuildExtModuleInfo(
         modules_staging_archive = utils.find_file(MODULES_STAGING_ARCHIVE, all_deps, what = ctx.label),
         # TODO(b/211515836): module_scripts might also be downloaded
@@ -203,8 +211,10 @@ def _kernel_filegroup_impl(ctx):
         # module_hdrs = None,
         ddk_config_env = ddk_config_env,
         mod_min_env = mod_min_env,
+        mod_full_env = fake_env_info,
+        modinst_env = fake_env_info,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
-        strip_modules = True, # FIXME
+        strip_modules = True,  # FIXME
     )
 
     kernel_uapi_depsets = []
