@@ -15,6 +15,7 @@
 """A target that mimics [`kernel_build`](#kernel_build) from a list of prebuilt files."""
 
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     ":common_providers.bzl",
     "GcovInfo",
@@ -145,25 +146,89 @@ def _get_ddk_config_env(ctx):
     )
     return ddk_config_env
 
+def _expect_single_file(target, what):
+    list_of_files = target.files.to_list()
+    if len(list_of_files) != 1:
+        fail("{} expects exactly one file, but got {}".format(what, list_of_files))
+    return list_of_files[0]
+
+def _get_mod_min_env(ctx, ddk_config_env):
+    if ddk_config_env == None:
+        return None
+    if not ctx.file.modules_prepare_archive:
+        return None
+
+    hermetic_tools = hermetic_toolchain.get(ctx)
+
+    # FIXME clean up; merge with modules_prepare.bzl / kernel_build.bzl
+    ddk_mod_min_setup = """
+        [ -z ${{OUT_DIR}} ] && echo "FATAL: modules_prepare setup run without OUT_DIR set!" >&2 && exit 1
+        mkdir -p ${{OUT_DIR}}
+        tar xf {modules_prepare_archive} -C ${{OUT_DIR}}
+    """.format(
+        modules_prepare_archive = ctx.file.modules_prepare_archive.path,
+    )
+    ext_mod_env_and_outputs_info_setup_restore_outputs = """
+        # Fake System.map for kernel_module
+          touch ${OUT_DIR}/System.map
+        # Restore kernel build outputs necessary for building external modules
+    """
+    for target, relpath in ctx.attr.internal_outs.items():
+        dep = _expect_single_file(target, what = "{}: internal_outs".format(ctx.label))
+        ext_mod_env_and_outputs_info_setup_restore_outputs += """
+            mkdir -p $(dirname ${{OUT_DIR}}/{relpath})
+            rsync -aL {dep} ${{OUT_DIR}}/{relpath}
+        """.format(
+            dep = dep.path,
+            relpath = relpath,
+        )
+
+    ddk_mod_min_env_setup_script = ctx.actions.declare_file("{name}/{name}_mod_min_setup.sh".format(name = ctx.attr.name))
+    ctx.actions.write(
+        output = ddk_mod_min_env_setup_script,
+        content = hermetic_tools.setup + """
+            . {ddk_config_env_setup_script}
+            {ddk_mod_min_setup}
+            {ext_mod_env_and_outputs_info_setup_restore_outputs}
+        """.format(
+            ddk_config_env_setup_script = ddk_config_env.setup_script.path,
+            ddk_mod_min_setup = ddk_mod_min_setup,
+            ext_mod_env_and_outputs_info_setup_restore_outputs = ext_mod_env_and_outputs_info_setup_restore_outputs,
+        ),
+    )
+    return KernelSerializedEnvInfo(
+        setup_script = ddk_mod_min_env_setup_script,
+        inputs = depset([
+            ddk_mod_min_env_setup_script,
+            ctx.file.modules_prepare_archive,
+            ddk_config_env.setup_script,
+        ], transitive = [
+            ddk_config_env.inputs,
+        ] + [target.files for target in ctx.attr.internal_outs]),
+        tools = ddk_config_env.tools,
+    )
+
 def _kernel_filegroup_impl(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
 
     all_deps = ctx.files.srcs + ctx.files.deps
 
     ddk_config_env = _get_ddk_config_env(ctx)
+    mod_min_env = _get_mod_min_env(ctx, ddk_config_env)
 
-    # TODO(b/219112010): Implement KernelSerializedEnvInfo properly
     kernel_module_dev_info = KernelBuildExtModuleInfo(
         modules_staging_archive = utils.find_file(MODULES_STAGING_ARCHIVE, all_deps, what = ctx.label),
         # TODO(b/211515836): module_scripts might also be downloaded
         # Building kernel_module (excluding ddk_module) on top of kernel_filegroup is unsupported.
         # module_hdrs = None,
         ddk_config_env = ddk_config_env,
+        mod_min_env = mod_min_env,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
         ddk_module_defconfig_fragments = depset(transitive = [
             target.files
             for target in ctx.attr.ddk_module_defconfig_fragments
         ]),
+        strip_modules = True,  # FIXME
     )
 
     kernel_uapi_depsets = []
@@ -374,6 +439,14 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
         "env_setup_script": attr.label(
             allow_single_file = True,
             doc = "Setup script from `kernel_env`",
+        ),
+        "modules_prepare_archive": attr.label(
+            allow_single_file = True,
+            doc = "Archive from `modules_prepare`",
+        ),
+        "internal_outs": attr.label_keyed_string_dict(
+            allow_files = True,
+            doc = "Keys: from `_kernel_build.internal_outs`. Values: path under `$OUT_DIR`.",
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_cache_dir_config_tags": attr.label(
