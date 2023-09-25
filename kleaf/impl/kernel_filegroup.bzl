@@ -183,12 +183,23 @@ def _kernel_filegroup_impl(ctx):
         ]),
     )
 
+    fake_setup_script = ctx.actions.declare_file("{name}/{name}_fake_setup.sh")
+    ctx.actions.write(output = fake_setup_script, content = "")
+    fake_env_info = KernelSerializedEnvInfo(
+        setup_script = fake_setup_script,
+        inputs = depset(),
+        tools = depset(),
+    )
+
     kernel_module_dev_info = KernelBuildExtModuleInfo(
         modules_staging_archive = utils.find_file(MODULES_STAGING_ARCHIVE, all_deps, what = ctx.label),
         # TODO(b/211515836): module_scripts might also be downloaded
         # Building kernel_module (excluding ddk_module) on top of kernel_filegroup is unsupported.
         # module_hdrs = None,
         ddk_config_env = ddk_config_env,
+        mod_min_env = fake_env_info,
+        mod_full_env = fake_env_info,
+        modinst_env = fake_env_info,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
     )
 
