@@ -311,6 +311,7 @@ KernelBuildFilegroupDeclInfo = provider(
             [`File`](https://bazel.build/rules/lib/File)s to replay the `kernel_config` environment.
 
             See [`KernelConfigArchiveInfo`](#KernelConfigArchiveInfo).""",
+        "internal_outs_archive": "Archive of `kernel_build`'s `internal_outs`. May be `None`.",
     },
 )
 
