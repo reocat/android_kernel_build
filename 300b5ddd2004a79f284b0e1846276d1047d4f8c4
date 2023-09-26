@@ -34,6 +34,24 @@
       "parentUuid": "a957b715_588cf3a8",
       "revId": "300b5ddd2004a79f284b0e1846276d1047d4f8c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbb67ae0_9cd134c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-26T18:38:51Z",
+      "side": 1,
+      "message": "There\u0027s indeed a 1s difference in the build (.5s due to archiving in kernel_config and .5s due to extracting in kernel_build, both on the critical path). See commit message.\n\nWe used to use a tarball back in 2021, and I switch to `declare_directory` partly due to performance of creating / extracting the archive. (The other part is due to optimizing for cache dir, but such optimization no longer applies with cache dir isolation now). \n\nThe tarball itself is ~300KB, containing ~2000 files.\n\nI could micro-optimize this by keeping the KernelEnvAndOutputsInfo for kernel_config and kernel_build, and use extra actions to create the archive. But this will create more branching in the difference between kernel_build and kernel_filegroup, which could lead to less code readability after the refactoring. \n\n:(",
+      "parentUuid": "f113908e_43f828f7",
+      "revId": "300b5ddd2004a79f284b0e1846276d1047d4f8c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
