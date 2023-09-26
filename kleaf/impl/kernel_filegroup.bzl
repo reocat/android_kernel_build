@@ -119,6 +119,8 @@ def _kernel_filegroup_impl(ctx):
         content = hermetic_tools.setup + """
             . {build_utils_sh}
             . {env_setup}
+            # FIXME build bots override TMPDIR
+            export TMPDIR=/tmp
             {eval_restore_out_dir_cmd}
             {config_post_setup}
 
