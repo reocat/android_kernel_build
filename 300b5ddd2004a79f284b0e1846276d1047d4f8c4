@@ -16,6 +16,24 @@
       "message": "can you say something about the performance impact of this change? I supposed packing up an entire out dir and unpacking it later comes at a cost?",
       "revId": "300b5ddd2004a79f284b0e1846276d1047d4f8c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f113908e_43f828f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-26T15:59:05Z",
+      "side": 1,
+      "message": "This is only packing the out_dir for kernel_config, which contains a bunch of empty files and a few small generated files. The resulting tarball is also small.\n\nI\u0027ll say more in the commit message.",
+      "parentUuid": "a957b715_588cf3a8",
+      "revId": "300b5ddd2004a79f284b0e1846276d1047d4f8c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
