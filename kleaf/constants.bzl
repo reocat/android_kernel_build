@@ -19,6 +19,7 @@ Utility public constants.
 load(
     "//build/kernel/kleaf/impl:constants.bzl",
     "DEFAULT_IMAGES",
+    "MODULE_SCRIPTS_ARCHIVE_SUFFIX",
 )
 
 _common_outs = [
