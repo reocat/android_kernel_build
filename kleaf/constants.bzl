@@ -19,6 +19,7 @@ Utility public constants.
 load(
     "//build/kernel/kleaf/impl:constants.bzl",
     "DEFAULT_IMAGES",
+    "MODULE_SCRIPTS_ARCHIVE_SUFFIX",
 )
 
 _common_outs = [
@@ -41,6 +42,12 @@ aarch64_outs = DEFAULT_GKI_OUTS
 
 # Deprecated; use X86_64_OUTS
 x86_64_outs = X86_64_OUTS
+            # FIXME these should go to ddk_artifacts to avoid being copied to $OUT_DIR
+            "kernel_aarch64" + MODULE_SCRIPTS_ARCHIVE_SUFFIX,
+            # FIXME use constant
+            "kernel_aarch64" + "_internal_outs.tar.gz",
+            "kernel_aarch64" + "_config_outdir.tar.gz",
+            "kernel_aarch64" + "_env.sh",
 
 LTO_VALUES = (
     "default",
