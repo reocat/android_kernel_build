@@ -1,0 +1,41 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000054696323",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2762268?revision\u003d4",
+      "fixSuggestions": [
+        {
+          "fixId": "bf90cf66_9e81bf69",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/utils.bzl",
+              "range": {
+                "startLine": 298,
+                "startChar": 0,
+                "endLine": 301,
+                "endChar": 0
+              },
+              "replacement": "        env_and_outputs_info \u003d kernel_build[KernelEnvAndOutputsInfo] if KernelEnvAndOutputsInfo in kernel_build else None,  # FIXME\n        kernel_build_info \u003d kernel_build[KernelBuildInfo] if KernelBuildInfo in kernel_build else None,  # FIXME\n        images_info \u003d kernel_build[KernelImagesInfo] if KernelImagesInfo in kernel_build else None,  # FIXME\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "dc7115e3_3ff28a81",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-09-26T20:26:52Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/utils.bzl` to format the file, or apply the suggested fix.",
+      "revId": "66b6090f98b37aaa980cfdc8e166aa407cbef519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
