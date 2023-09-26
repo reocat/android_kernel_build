@@ -22,6 +22,7 @@ load(
     "GKI_ARTIFACTS_AARCH64_OUTS",
     "MODULES_STAGING_ARCHIVE",
     "MODULE_OUTS_FILE_SUFFIX",
+    "MODULE_SCRIPTS_ARCHIVE_SUFFIX",
     "SYSTEM_DLKM_COMMON_OUTS",
     "TOOLCHAIN_VERSION_FILENAME",
 )
@@ -136,6 +137,12 @@ CI_TARGET_MAPPING = {
         "repo_name": "gki_prebuilts",
         "outs": DEFAULT_GKI_OUTS + [
             "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX,
+            # FIXME these should go to ddk_artifacts to avoid being copied to $OUT_DIR
+            "kernel_aarch64" + MODULE_SCRIPTS_ARCHIVE_SUFFIX,
+            # FIXME use constant
+            "kernel_aarch64" + "_internal_outs.tar.gz",
+            "kernel_aarch64" + "_config_outdir.tar.gz",
+            "kernel_aarch64" + "_env.sh",
         ],
         "protected_modules": "gki_aarch64_protected_modules",
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
