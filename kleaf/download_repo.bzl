@@ -226,8 +226,13 @@ alias(
     actual="{actual}",
     visibility=["//visibility:public"]
 )
-""".format(local_file_basename = _basename(local_filename), actual = actual)
+""".format(
+            local_file_basename = _basename(local_filename),
+            actual = actual,
+        )
         repository_ctx.file("{}/BUILD.bazel".format(local_filename), build_file, executable = False)
+
+    repository_ctx.file("BUILD.bazel", repository_ctx.attr.extra_build_file_content, executable = False)
 
 _alias_repo = repository_rule(
     implementation = _alias_repo_impl,
@@ -236,6 +241,7 @@ _alias_repo = repository_rule(
         - Keys: local filename.
         - Value: label to the actual target.
         """),
+        "extra_build_file_content": attr.string(doc = "Additional content in top level BUILD.bazel"),
     },
     environ = [
         _BUILD_NUM_ENV_VAR,
@@ -273,7 +279,8 @@ def download_artifacts_repo(
         files = None,
         optional_files = None,
         build_number = None,
-        artifact_url_fmt = None):
+        artifact_url_fmt = None,
+        extra_build_file_content = None):
     """Create a [repository](https://docs.bazel.build/versions/main/build-ref.html#repositories) that contains artifacts downloaded from [ci.android.com](http://ci.android.com).
 
     For each item `file` in `files`, the label `@{name}//{file}` can refer to the downloaded file.
@@ -350,6 +357,7 @@ def download_artifacts_repo(
             * {build_number}
             * {target}
             * {filename}
+        extra_build_file_content: Additional content in top-level BUILD.bazel file
     """
 
     files = _transform_files_arg(name, files)
@@ -380,4 +388,5 @@ def download_artifacts_repo(
             local_filename: "@" + name + "_" + _sanitize_repo_name(local_filename) + "//file"
             for local_filename in (list(files.keys()) + list(optional_files.keys()))
         },
+        extra_build_file_content = extra_build_file_content,
     )
