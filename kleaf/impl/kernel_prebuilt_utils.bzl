@@ -15,6 +15,10 @@
 """Utilities to define a repository for kernel prebuilts."""
 
 load(
+    "//build/kernel/kleaf:constants.bzl",
+    "DEFAULT_GKI_OUTS",
+)
+load(
     ":constants.bzl",
     "GKI_ARTIFACTS_AARCH64_OUTS",
     "MODULES_STAGING_ARCHIVE",
@@ -103,16 +107,16 @@ GKI_DOWNLOAD_CONFIGS = [
     },
 ]
 
-# Key: Bazel target name in common_kernels.bzl
-# repo_name: name of download_artifacts_repo in bazel.WORKSPACE
+# Key: name of repository in bazel.WORKSPACE
+# target: Bazel target name in common_kernels.bzl
 # outs: list of outs associated with that target name
 # arch: Architecture associated with this mapping.
 CI_TARGET_MAPPING = {
     # TODO(b/206079661): Allow downloaded prebuilts for x86_64 and debug targets.
-    "kernel_aarch64": {
+    "gki_prebuilts": {
         "arch": "arm64",
         # TODO: Rename this when more architectures are added.
-        "repo_name": "gki_prebuilts",
+        "target": "kernel_aarch64",
         "outs": DEFAULT_GKI_OUTS + [
             "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX,
             # FIXME these should go to ddk_artifacts to avoid being copied to $OUT_DIR
