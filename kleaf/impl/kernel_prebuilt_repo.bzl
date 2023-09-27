@@ -12,7 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Instantiates a repository that downloads artifacts from a given download location."""
+"""Repository for kernel prebuilts."""
+
+load(
+    ":kernel_prebuilt_utils.bzl",
+    "CI_TARGET_MAPPING",
+    "GKI_DOWNLOAD_CONFIGS",
+)
 
 visibility("//build/kernel/kleaf/...")
 
@@ -353,4 +359,38 @@ def download_artifacts_repo(
             local_filename: "@" + name + "_" + _sanitize_repo_name(local_filename) + "//file"
             for local_filename in (list(files.keys()) + list(optional_files.keys()))
         },
+    )
+
+def kernel_prebuilt_repo(
+        name,
+        artifact_url_fmt):
+    """Define a repository that downloads kernel prebuilts.
+
+    Args:
+        name: name of repository
+        artifact_url_fmt: see [`define_kleaf_workspace.artifact_url_fmt`](#define_kleaf_workspace-artifact_url_fmt)
+    """
+    mapping = CI_TARGET_MAPPING[name]
+    target = mapping["target"]
+
+    gki_prebuilts_files = {out: None for out in mapping["outs"]}
+    gki_prebuilts_optional_files = {mapping["protected_modules"]: None}
+    for config in GKI_DOWNLOAD_CONFIGS:
+        if config.get("mandatory", True):
+            files_dict = gki_prebuilts_files
+        else:
+            files_dict = gki_prebuilts_optional_files
+
+        files_dict.update({out: None for out in config.get("outs", [])})
+
+        for out, remote_filename_fmt in config.get("outs_mapping", {}).items():
+            file_metadata = {"remote_filename_fmt": remote_filename_fmt}
+            files_dict.update({out: file_metadata})
+
+    download_artifacts_repo(
+        name = name,
+        files = gki_prebuilts_files,
+        optional_files = gki_prebuilts_optional_files,
+        target = target,
+        artifact_url_fmt = artifact_url_fmt,
     )

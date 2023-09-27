@@ -15,6 +15,10 @@
 """Utilities to define a repository for kernel prebuilts."""
 
 load(
+    "//build/kernel/kleaf:constants.bzl",
+    "DEFAULT_GKI_OUTS",
+)
+load(
     ":constants.bzl",
     "GKI_ARTIFACTS_AARCH64_OUTS",
     "MODULES_STAGING_ARCHIVE",
