@@ -28,6 +28,11 @@ load(
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts", "gki_artifacts_prebuilts")
+load(
+    "//build/kernel/kleaf/impl:kernel_prebuilt_utils.bzl",
+    "CI_TARGET_MAPPING",
+    "GKI_DOWNLOAD_CONFIGS",
+)
 load("//build/kernel/kleaf/impl:kernel_sbom.bzl", "kernel_sbom")
 load("//build/kernel/kleaf/impl:merge_kzip.bzl", "merge_kzip")
 load("//build/kernel/kleaf/impl:out_headers_allowlist_archive.bzl", "out_headers_allowlist_archive")
@@ -35,11 +40,6 @@ load(
     ":constants.bzl",
     "DEFAULT_GKI_OUTS",
     "X86_64_OUTS",
-)
-load(
-    ":kernel_prebuilt_utils.bzl",
-    "CI_TARGET_MAPPING",
-    "GKI_DOWNLOAD_CONFIGS",
 )
 load(
     ":kernel.bzl",
@@ -963,8 +963,8 @@ def _define_prebuilts(target_configs, **kwargs):
         ],
     )
 
-    for name, value in CI_TARGET_MAPPING.items():
-        repo_name = value["repo_name"]
+    for repo_name, value in CI_TARGET_MAPPING.items():
+        name = value["target"]
         main_target_outs = value["outs"]  # outs of target named {name}
         gki_prebuilts_outs = value["gki_prebuilts_outs"]  # outputs of _gki_prebuilts
 
