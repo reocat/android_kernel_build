@@ -39,7 +39,7 @@ def _create_build_frag_for_src(ctx, src):
             src = src.label,
         ))
 
-    src_package = src.label.package
+    src_package = str(src.label.package)
     drop_src_package = lambda x: _drop_package(x, src_package)
 
     build_file = ctx.actions.declare_file("{name}/{src_package}/{src_name}/gen_BUILD.bazel".format(

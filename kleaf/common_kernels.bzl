@@ -626,7 +626,8 @@ def _define_common_kernel(
         build_gki_artifacts = None,
         gki_boot_img_sizes = None,
         page_size = None,
-        deprecation = None):
+        deprecation = None,
+        extra_dist = None):
     json_target_config = dict(
         name = name,
         outs = outs,
@@ -650,6 +651,7 @@ def _define_common_kernel(
         gki_boot_img_sizes = gki_boot_img_sizes,
         page_size = page_size,
         deprecation = deprecation,
+        extra_dist = extra_dist,
     )
     json_target_config = json.encode_indent(json_target_config, indent = "    ")
     json_target_config = json_target_config.replace("null", "None")
@@ -862,6 +864,8 @@ def _define_common_kernel(
         # BUILD_GKI_CERTIFICATION_TOOLS=1 for all kernel_build defined here.
         Label("//build/kernel:gki_certification_tools"),
     ]
+    if extra_dist:
+        dist_targets += extra_dist
 
     kernel_sbom(
         name = name + "_sbom",
