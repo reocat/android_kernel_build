@@ -12,19 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Repository for kernel prebuilts."""
-
-load(
-    ":constants.bzl",
-    "MODULE_OUTS_FILE_SUFFIX",
-    "TOOLCHAIN_VERSION_FILENAME",
-)
-load(
-    ":kernel_prebuilt_utils.bzl",
-    "CI_TARGET_MAPPING",
-    "GKI_DOWNLOAD_CONFIGS",
-    "get_prebuilt_build_file_fragment",
-)
+"""Instantiates a repository that downloads artifacts from a given download location."""
 
 visibility("//build/kernel/kleaf/...")
 
@@ -170,7 +158,7 @@ def _download_from_build_number(repository_ctx, build_number):
     build_file = """filegroup(
     name="file",
     srcs=[{srcs}],
-    visibility=["@{parent_repo}//:__pkg__"],
+    visibility=["@{parent_repo}//:__subpackages__"],
 )
 """.format(
         srcs = srcs,
@@ -217,33 +205,101 @@ _download_artifact_repo = repository_rule(
     ],
 )
 
-def kernel_prebuilt_repo(
+def _transform_files_arg(repo_name, files):
+    """Standardizes files / optional_files for download_artifacts_repo.
+
+    Returns dict[str, dict[str, str]]"""
+
+    if files == None:
+        files = {}
+
+    if type(files) == type({}):
+        new_files = {}
+        for key, value in files.items():
+            if value == None:
+                value = {}
+            if type(value) != type({}):
+                fail("@{}: Invalid value {}".format(repo_name, value))
+            new_files[key] = value
+        files = new_files
+
+    return files
+
+def download_artifacts_repo_helper(
         name,
-        artifact_url_fmt,
-        build_number = None):
-    """Define a repository that downloads kernel prebuilts.
+        target,
+        files = None,
+        optional_files = None,
+        build_number = None,
+        artifact_url_fmt = None):
+    """Create a [repository](https://docs.bazel.build/versions/main/build-ref.html#repositories) that contains artifacts downloaded from [ci.android.com](http://ci.android.com).
+
+    For each item `file` in `files`, the label `@{name}//{file}` can refer to the downloaded file.
+
+    For example:
+    ```
+    download_artifacts_repo(
+        name = "gki_prebuilts",
+        target = "kernel_aarch64",
+        build_number = "9359437"
+        files = ["vmlinux"],
+        optional_files = ["abi_symbollist"],
+    )
+    ```
+
+    You may refer to the file with the label `@gki_prebuilts//vmlinux`, etc.
+
+    To refer to all downloaded files, you may use `@gki_prebuilts//...`
+
+    You may leave the build_number empty. If so, you must override the build number at build time.
+    See below.
+
+    For the repo `gki_prebuilts`, you may override the build number with `--use_prebuilt_gki`,
+    e.g.
+
+    ```
+    bazel build --use_prebuilt_gki=8078291 @gki_prebuilts//vmlinux
+    ```
 
     Args:
-        name: name of repository
-        artifact_url_fmt: see [`define_kleaf_workspace.artifact_url_fmt`](#define_kleaf_workspace-artifact_url_fmt)
+        name: name of the repository.
+        target: build target on [ci.android.com](http://ci.android.com)
         build_number: build number on [ci.android.com](http://ci.android.com)
+        files: A dictionary.
+            - Keys are the local file names. Unlike `remote_filename_fmt`, the name
+                is used as-is.
+            - Values is a dictionary of metadata with these keys:
+                - "remote_filename_fmt": the file name on [ci.android.com](http://ci.android.com).
+                    If unspecified, use the local file name.
+                    The remote filename may be a format string that accepts the following keys:
+                    - `build_number`
+
+            Examples:
+
+            ```
+            files = {
+                "manifest.xml": {
+                    "remote_filename_fmt": "manifest_{build_number}.xml"
+                }
+            }
+            ```
+
+        optional_files: Same as `files`, but it is optional. If the file is not in the given
+          build, it will not be downloaded, and the label (e.g. `@gki_prebuilts//abi_symbollist`)
+          points to an empty filegroup.
+        artifact_url_fmt: API endpoint for Android CI artifacts.
+          The format may include anchors for the following properties:
+            * {build_number}
+            * {target}
+            * {filename}
+
+    Returns:
+        aliases, a dictionary where keys are a union of files and `optional_files`,
+        and values are labels to the downloaded file
     """
-    mapping = CI_TARGET_MAPPING[name]
-    target = mapping["target"]
 
-    files = {out: {} for out in mapping["outs"]}
-    optional_files = {mapping["protected_modules"]: {}}
-    for config in GKI_DOWNLOAD_CONFIGS:
-        if config.get("mandatory", True):
-            files_dict = files
-        else:
-            files_dict = optional_files
-
-        files_dict.update({out: {} for out in config.get("outs", [])})
-
-        for out, remote_filename_fmt in config.get("outs_mapping", {}).items():
-            file_metadata = {"remote_filename_fmt": remote_filename_fmt}
-            files_dict.update({out: file_metadata})
+    files = _transform_files_arg(name, files)
+    optional_files = _transform_files_arg(name, optional_files)
 
     for files_dict, allow_fail in ((files, False), (optional_files, True)):
         for local_filename, file_metadata in files_dict.items():
@@ -261,89 +317,8 @@ def kernel_prebuilt_repo(
                 artifact_url_fmt = artifact_url_fmt,
             )
 
-    aliases = {
+    # Return a dictionary to construct e.g. @gki_prebuilts//vmlinux
+    return {
         local_filename: "@" + name + "_" + _sanitize_repo_name(local_filename) + "//file"
         for local_filename in (list(files.keys()) + list(optional_files.keys()))
     }
-
-    _kernel_prebuilt_repo(
-        name = name,
-        aliases = aliases,
-        arch = mapping["arch"],
-        target = mapping["target"],
-        outs = mapping["outs"],
-        protected_modules = mapping["protected_modules"],
-        gki_prebuilts_outs = mapping["gki_prebuilts_outs"],
-        download_configs = {
-            config["target_suffix"]: list(config.get("outs", [])) + list(config.get("outs_mapping", {}).keys())
-            for config in GKI_DOWNLOAD_CONFIGS
-        },
-    )
-
-def _kernel_prebuilt_repo_impl(repository_ctx):
-    workspace_file = """workspace(name = "{}")
-""".format(repository_ctx.name)
-    repository_ctx.file("WORKSPACE.bazel", workspace_file, executable = False)
-    _kernel_prebuilt_repo_top_build_file(repository_ctx)
-
-def _kernel_prebuilt_repo_top_build_file(repository_ctx):
-    target = repository_ctx.attr.target
-
-    content = """\
-# Generated file. DO NOT EDIT.
-
-\"""Prebuilts for {target}.
-\"""
-
-load("{kernel_bzl}", "kernel_filegroup")
-load("{gki_artifacts_bzl}", "gki_artifacts_prebuilts")
-""".format(
-        kernel_bzl = Label("//build/kernel/kleaf:kernel.bzl"),
-        gki_artifacts_bzl = Label("//build/kernel/kleaf/impl:gki_artifacts.bzl"),
-        target = target,
-    )
-
-    # Aliases
-    for local_filename, actual in repository_ctx.attr.aliases.items():
-        content += """\
-
-alias(
-    name="{local_filename}",
-    actual="{actual}",
-    visibility=["//visibility:private"]
-)
-""".format(
-            local_filename = local_filename,
-            actual = actual,
-        )
-    content += get_prebuilt_build_file_fragment(
-        target = target,
-        main_target_outs = repository_ctx.attr.outs,
-        download_configs = repository_ctx.attr.download_configs,
-        gki_prebuilts_outs = repository_ctx.attr.gki_prebuilts_outs,
-        arch = repository_ctx.attr.arch,
-        protected_modules = repository_ctx.attr.protected_modules,
-        # TODO(b/298416462): This should be determined by downloaded artifacts.
-        collect_unstripped_modules = True,
-        module_outs_file_suffix = MODULE_OUTS_FILE_SUFFIX,
-        toolchain_version_filename = TOOLCHAIN_VERSION_FILENAME,
-    )
-    repository_ctx.file("BUILD.bazel", content, executable = False)
-
-_kernel_prebuilt_repo = repository_rule(
-    implementation = _kernel_prebuilt_repo_impl,
-    attrs = {
-        "aliases": attr.string_dict(doc = """
-            - Keys: local filename.
-            - Value: label to the actual target.
-            """),
-        "arch": attr.string(doc = "Architecture associated with this mapping."),
-        "target": attr.string(doc = "Bazel target name in common_kernels.bzl"),
-        "outs": attr.string_list(doc = "list of outs associated with that target name"),
-        "protected_modules": attr.string(),
-        "gki_prebuilts_outs": attr.string_list(),
-        "download_configs": attr.string_list_dict(doc = """
-            key: `target_suffix`. value: `outs` & `outs_mapping`.
-        """),
-    },
-)
