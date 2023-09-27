@@ -12,23 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Repository for kernel prebuilts."""
-
-load(
-    ":constants.bzl",
-    "MODULE_OUTS_FILE_SUFFIX",
-    "TOOLCHAIN_VERSION_FILENAME",
-)
-load(
-    ":kernel_prebuilt_utils.bzl",
-    "CI_TARGET_MAPPING",
-    "GKI_DOWNLOAD_CONFIGS",
-    "get_prebuilt_build_file_fragment",
-)
-load(
-    "//build/kernel/kleaf:download_repo.bzl",
-    "download_artifacts_repo_helper",
-)
+"""Instantiates a repository that downloads artifacts from a given download location."""
 
 visibility("//build/kernel/kleaf/...")
 
@@ -174,7 +158,7 @@ def _download_from_build_number(repository_ctx, build_number):
     build_file = """filegroup(
     name="file",
     srcs=[{srcs}],
-    visibility=["@{parent_repo}//{local_filename}:__pkg__"],
+    visibility=["@{parent_repo}//:__subpackages__"],
 )
 """.format(
         srcs = srcs,
@@ -221,38 +205,6 @@ _download_artifact_repo = repository_rule(
     ],
 )
 
-# Avoid dependency to paths, since we do not necessary have skylib loaded yet.
-def _basename(s):
-    return s.split("/")[-1]
-
-def _alias_repo_impl(repository_ctx):
-    workspace_file = """workspace(name = "{}")
-""".format(repository_ctx.name)
-    repository_ctx.file("WORKSPACE.bazel", workspace_file, executable = False)
-
-    for local_filename, actual in repository_ctx.attr.aliases.items():
-        build_file = """\
-alias(
-    name="{local_file_basename}",
-    actual="{actual}",
-    visibility=["//visibility:public"]
-)
-""".format(local_file_basename = _basename(local_filename), actual = actual)
-        repository_ctx.file("{}/BUILD.bazel".format(local_filename), build_file, executable = False)
-
-_alias_repo = repository_rule(
-    implementation = _alias_repo_impl,
-    attrs = {
-        "aliases": attr.string_dict(doc = """
-        - Keys: local filename.
-        - Value: label to the actual target.
-        """),
-    },
-    environ = [
-        _BUILD_NUM_ENV_VAR,
-    ],
-)
-
 def _transform_files_arg(repo_name, files):
     """Standardizes files / optional_files for download_artifacts_repo.
 
@@ -273,7 +225,7 @@ def _transform_files_arg(repo_name, files):
 
     return files
 
-def download_artifacts_repo(
+def download_artifacts_repo_helper(
         name,
         target,
         files = None,
@@ -340,6 +292,10 @@ def download_artifacts_repo(
             * {build_number}
             * {target}
             * {filename}
+
+    Returns:
+        aliases, a dictionary where keys are a union of files and `optional_files`,
+        and values are labels to the downloaded file
     """
 
     files = _transform_files_arg(name, files)
@@ -361,128 +317,8 @@ def download_artifacts_repo(
                 artifact_url_fmt = artifact_url_fmt,
             )
 
-    # Define a repo named @gki_prebuilts that contains aliases to individual files, e.g.
-    # @gki_prebuilts//vmlinux
-    _alias_repo(
-        name = name,
-        aliases = {
-            local_filename: "@" + name + "_" + _sanitize_repo_name(local_filename) + "//file"
-            for local_filename in (list(files.keys()) + list(optional_files.keys()))
-        },
-    )
-
-def kernel_prebuilt_repo(
-        name,
-        artifact_url_fmt):
-    """Define a repository that downloads kernel prebuilts.
-
-    Args:
-        name: name of repository
-        artifact_url_fmt: see [`define_kleaf_workspace.artifact_url_fmt`](#define_kleaf_workspace-artifact_url_fmt)
-    """
-    mapping = CI_TARGET_MAPPING[name]
-    target = mapping["target"]
-
-    gki_prebuilts_files = {out: None for out in mapping["outs"]}
-    gki_prebuilts_optional_files = {mapping["protected_modules"]: None}
-    for config in GKI_DOWNLOAD_CONFIGS:
-        if config.get("mandatory", True):
-            files_dict = gki_prebuilts_files
-        else:
-            files_dict = gki_prebuilts_optional_files
-
-        files_dict.update({out: None for out in config.get("outs", [])})
-
-        for out, remote_filename_fmt in config.get("outs_mapping", {}).items():
-            file_metadata = {"remote_filename_fmt": remote_filename_fmt}
-            files_dict.update({out: file_metadata})
-
-    aliases = download_artifacts_repo_helper(
-        name = name,
-        files = gki_prebuilts_files,
-        optional_files = gki_prebuilts_optional_files,
-        target = target,
-        artifact_url_fmt = artifact_url_fmt,
-    )
-
-    _kernel_prebuilt_repo(
-        name = name,
-        aliases = aliases,
-        arch = mapping["arch"],
-        target = mapping["target"],
-        outs = mapping["outs"],
-        protected_modules = mapping["protected_modules"],
-        gki_prebuilts_outs = mapping["gki_prebuilts_outs"],
-        download_configs = {
-            config["target_suffix"]: list(config.get("outs", [])) + list(config.get("outs_mapping", {}).keys())
-            for config in GKI_DOWNLOAD_CONFIGS
-        },
-    )
-
-def _kernel_prebuilt_repo_impl(repository_ctx):
-    workspace_file = """workspace(name = "{}")
-""".format(repository_ctx.name)
-    repository_ctx.file("WORKSPACE.bazel", workspace_file, executable = False)
-    _kernel_prebuilt_repo_top_build_file(repository_ctx)
-
-def _kernel_prebuilt_repo_top_build_file(repository_ctx):
-    target = repository_ctx.attr.target
-
-    content = """\
-# Generated file. DO NOT EDIT.
-
-\"""Prebuilts for {target}.
-\"""
-
-load("{kernel_bzl}", "kernel_filegroup")
-load("{gki_artifacts_bzl}", "gki_artifacts_prebuilts")
-""".format(
-        kernel_bzl = Label("//build/kernel/kleaf:kernel.bzl"),
-        gki_artifacts_bzl = Label("//build/kernel/kleaf/impl:gki_artifacts.bzl"),
-        target = target,
-    )
-
-    # Aliases
-    for local_filename, actual in repository_ctx.attr.aliases.items():
-        content += """\
-
-alias(
-    name="{local_filename}",
-    actual="{actual}",
-    visibility=["//visibility:private"]
-)
-""".format(
-            local_filename = local_filename,
-            actual = actual,
-        )
-    content += get_prebuilt_build_file_fragment(
-        target = target,
-        main_target_outs = repository_ctx.attr.outs,
-        download_configs = repository_ctx.attr.download_configs,
-        gki_prebuilts_outs = repository_ctx.attr.gki_prebuilts_outs,
-        arch = repository_ctx.attr.arch,
-        protected_modules = repository_ctx.attr.protected_modules,
-        # TODO(b/298416462): This should be determined by downloaded artifacts.
-        collect_unstripped_modules = True,
-        module_outs_file_suffix = MODULE_OUTS_FILE_SUFFIX,
-        toolchain_version_filename = TOOLCHAIN_VERSION_FILENAME,
-    )
-    repository_ctx.file("BUILD.bazel", content, executable = False)
-
-_kernel_prebuilt_repo = repository_rule(
-    implementation = _kernel_prebuilt_repo_impl,
-    attrs = {
-        "aliases": attr.string_dict(doc = """
-            - Keys: local filename.
-            - Value: label to the actual target.
-            """),
-        "arch": attr.string(doc = "Architecture associated with this mapping."),
-        "target": attr.string(doc = "Bazel target name in common_kernels.bzl"),
-        "outs": attr.string_list(doc = "list of outs associated with that target name"),
-        "protected_modules": attr.string(),
-        "gki_prebuilts_outs": attr.string_list(),
-        "download_configs": attr.string_list_dict(doc = """
-            key: `target_suffix`. value: `outs` & `outs_mapping`.
-        """),
-    },
-)
+    # Return a dictionary to construct e.g. @gki_prebuilts//vmlinux
+    return {
+        local_filename: "@" + name + "_" + _sanitize_repo_name(local_filename) + "//file"
+        for local_filename in (list(files.keys()) + list(optional_files.keys()))
+    }
