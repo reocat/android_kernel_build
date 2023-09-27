@@ -18,7 +18,7 @@ Defines repositories in a Kleaf workspace.
 
 load("//build/bazel_common_rules/workspace:external.bzl", "import_external_repositories")
 load(
-    "//build/kernel/kleaf:constants.bzl",
+    "//build/kernel/kleaf/impl/kernel_prebuilt_repo.bzl",
     "CI_TARGET_MAPPING",
     "GKI_DOWNLOAD_CONFIGS",
 )

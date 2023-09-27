@@ -33,10 +33,13 @@ load("//build/kernel/kleaf/impl:merge_kzip.bzl", "merge_kzip")
 load("//build/kernel/kleaf/impl:out_headers_allowlist_archive.bzl", "out_headers_allowlist_archive")
 load(
     ":constants.bzl",
-    "CI_TARGET_MAPPING",
     "DEFAULT_GKI_OUTS",
-    "GKI_DOWNLOAD_CONFIGS",
     "X86_64_OUTS",
+)
+load(
+    ":kernel_prebuilt_repo.bzl",
+    "CI_TARGET_MAPPING",
+    "GKI_DOWNLOAD_CONFIGS",
 )
 load(
     ":kernel.bzl",
