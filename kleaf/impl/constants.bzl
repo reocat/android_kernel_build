@@ -44,6 +44,7 @@ GKI_ARTIFACTS_AARCH64_OUTS = [
 
 SYSTEM_DLKM_OUTS = [
     "system_dlkm.img",
+    "system_dlkm_android.img",
     "system_dlkm_staging_archive.tar.gz",
     "system_dlkm.modules.load",
     "system_dlkm.modules.blocklist",

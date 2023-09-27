@@ -251,6 +251,11 @@ function build_system_dlkm() {
   build_image "${SYSTEM_DLKM_STAGING_DIR}" "${system_dlkm_props_file}" \
     "${DIST_DIR}/system_dlkm.img" /dev/null
 
+  mkdir -p ${SYSTEM_DLKM_STAGING_DIR}.android/lib/modules
+  cp $(find ${SYSTEM_DLKM_STAGING_DIR} -name "*.ko") ${SYSTEM_DLKM_STAGING_DIR}.android/lib/modules
+  build_image "${SYSTEM_DLKM_STAGING_DIR}.android" "${system_dlkm_props_file}" \
+    "${DIST_DIR}/system_dlkm_android.img" /dev/null
+
   if [ -z "${SYSTEM_DLKM_PROPS}" ]; then
     rm ${system_dlkm_props_file}
     rm ${system_dlkm_file_contexts}

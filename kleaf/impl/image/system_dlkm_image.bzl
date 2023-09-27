@@ -35,6 +35,7 @@ def _system_dlkm_image_impl(ctx):
     system_dlkm_modules_load = ctx.actions.declare_file("{}/{}".format(ctx.label.name, _MODULES_LOAD_NAME))
     system_dlkm_staging_archive = ctx.actions.declare_file("{}/{}".format(ctx.label.name, _STAGING_ARCHIVE_NAME))
     system_dlkm_modules_blocklist = ctx.actions.declare_file("{}/system_dlkm.modules.blocklist".format(ctx.label.name))
+    system_dlkm_android_img = ctx.actions.declare_file("{}/system_dlkm_android.img".format(ctx.label.name))
 
     modules_staging_dir = system_dlkm_img.dirname + "/staging"
     system_dlkm_staging_dir = modules_staging_dir + "/system_dlkm_staging"
@@ -100,6 +101,7 @@ def _system_dlkm_image_impl(ctx):
                  build_system_dlkm
                )
              # Move output files into place
+               mv "${{DIST_DIR}}/system_dlkm_android.img" {system_dlkm_android_img}
                mv "${{DIST_DIR}}/system_dlkm.img" {system_dlkm_img}
                mv "${{DIST_DIR}}/system_dlkm.modules.load" {system_dlkm_modules_load}
                mv "${{DIST_DIR}}/system_dlkm_staging_archive.tar.gz" {system_dlkm_staging_archive}
@@ -117,6 +119,7 @@ def _system_dlkm_image_impl(ctx):
         modules_staging_dir = modules_staging_dir,
         system_dlkm_fs_type = system_dlkm_fs_type,
         system_dlkm_staging_dir = system_dlkm_staging_dir,
+        system_dlkm_android_img = system_dlkm_android_img.path,
         system_dlkm_img = system_dlkm_img.path,
         system_dlkm_modules_load = system_dlkm_modules_load.path,
         system_dlkm_staging_archive = system_dlkm_staging_archive.path,
@@ -131,6 +134,7 @@ def _system_dlkm_image_impl(ctx):
             system_dlkm_modules_load,
             system_dlkm_staging_archive,
             system_dlkm_modules_blocklist,
+            system_dlkm_android_img,
         ],
         additional_inputs = additional_inputs,
         restore_modules_install = restore_modules_install,
