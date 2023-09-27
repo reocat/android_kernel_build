@@ -1,4 +1,3 @@
-
 # Copyright (C) 2023 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +14,10 @@
 
 """Utilities to define a repository for kernel prebuilts."""
 
+load(
+    "//build/kernel/kleaf:constants.bzl",
+    "DEFAULT_GKI_OUTS",
+)
 load(
     ":constants.bzl",
     "GKI_ARTIFACTS_AARCH64_OUTS",
@@ -131,3 +134,37 @@ CI_TARGET_MAPPING = {
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
     },
 }
+
+def kernel_prebuilt_repo(
+        name,
+        artifact_url_fmt):
+    """Define a repository that downloads kernel prebuilts.
+
+    Args:
+        name: name of repository
+        artifact_url_fmt: see [`define_kleaf_workspace.artifact_url_fmt`](#define_kleaf_workspace-artifact_url_fmt)
+    """
+    mapping = CI_TARGET_MAPPING[name]
+    target = mapping["target"]
+
+    gki_prebuilts_files = {out: None for out in mapping["outs"]}
+    gki_prebuilts_optional_files = {mapping["protected_modules"]: None}
+    for config in GKI_DOWNLOAD_CONFIGS:
+        if config.get("mandatory", True):
+            files_dict = gki_prebuilts_files
+        else:
+            files_dict = gki_prebuilts_optional_files
+
+        files_dict.update({out: None for out in config.get("outs", [])})
+
+        for out, remote_filename_fmt in config.get("outs_mapping", {}).items():
+            file_metadata = {"remote_filename_fmt": remote_filename_fmt}
+            files_dict.update({out: file_metadata})
+
+    download_artifacts_repo(
+        name = name,
+        files = gki_prebuilts_files,
+        optional_files = gki_prebuilts_optional_files,
+        target = target,
+        artifact_url_fmt = artifact_url_fmt,
+    )
