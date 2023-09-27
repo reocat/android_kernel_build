@@ -23,15 +23,12 @@ load("//build/kernel/kleaf/artifact_tests:device_modules_test.bzl", "device_modu
 load("//build/kernel/kleaf/artifact_tests:kernel_test.bzl", "initramfs_modules_options_test")
 load(
     "//build/kernel/kleaf/impl:constants.bzl",
-    "MODULE_OUTS_FILE_OUTPUT_GROUP",
-    "MODULE_OUTS_FILE_SUFFIX",
     "TOOLCHAIN_VERSION_FILENAME",
 )
-load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts", "gki_artifacts_prebuilts")
+load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts")
 load(
     "//build/kernel/kleaf/impl:kernel_prebuilt_utils.bzl",
     "CI_TARGET_MAPPING",
-    "GKI_DOWNLOAD_CONFIGS",
 )
 load("//build/kernel/kleaf/impl:kernel_sbom.bzl", "kernel_sbom")
 load("//build/kernel/kleaf/impl:merge_kzip.bzl", "merge_kzip")
@@ -48,7 +45,6 @@ load(
     "kernel_build",
     "kernel_build_config",
     "kernel_compile_commands",
-    "kernel_filegroup",
     "kernel_images",
     "kernel_kythe",
     "kernel_modules_install",
@@ -70,6 +66,7 @@ _COMMON_KERNEL_NAMES = {
 }
 
 # Always collect_unstripped_modules for common kernels.
+# Sync with kernel_prebuilt_repo.bzl
 _COLLECT_UNSTRIPPED_MODULES = True
 
 # Always strip modules for common kernels.
@@ -780,7 +777,7 @@ def _define_common_kernel(
         name = name + "_images",
         kernel_build = name,
         kernel_modules_install = name + "_modules_install",
-        # Sync with GKI_DOWNLOAD_CONFIGS, "images"
+        # Sync with _GKI_DOWNLOAD_CONFIGS, "images"
         build_system_dlkm = True,
         build_system_dlkm_flatten = True,
         system_dlkm_fs_types = ["erofs", "ext4"],
@@ -834,7 +831,7 @@ def _define_common_kernel(
     native.filegroup(
         name = name + "_additional_artifacts",
         srcs = [
-            # Sync with additional_artifacts_items
+            # Sync with additional_artifacts_items_repr
             name + "_headers",
             name + "_images",
             name + "_kmi_symbol_list",
@@ -961,118 +958,28 @@ def _define_prebuilts(target_configs, **kwargs):
 
     for repo_name, value in CI_TARGET_MAPPING.items():
         name = value["target"]
-        main_target_outs = value["outs"]  # outs of target named {name}
-        gki_prebuilts_outs = value["gki_prebuilts_outs"]  # outputs of _gki_prebuilts
-
-        native.filegroup(
-            name = name + "_downloaded",
-            srcs = ["@{}//{}".format(repo_name, filename) for filename in main_target_outs],
-            tags = ["manual"],
-        )
-
-        native.filegroup(
-            name = name + "_module_outs_file",
-            srcs = [":" + name],
-            output_group = MODULE_OUTS_FILE_OUTPUT_GROUP,
-        )
-
-        # A kernel_filegroup that:
-        # - If --use_prebuilt_gki_num is set, use downloaded prebuilt of kernel_aarch64
-        # - Otherwise build kernel_aarch64 from sources.
-        kernel_filegroup(
+        native.alias(
             name = name + "_download_or_build",
-            srcs = select({
-                ":use_prebuilt_gki_set": [":" + name + "_downloaded"],
-                "//conditions:default": [name],
+            actual = select({
+                ":use_prebuilt_gki_set": "@{}//:{}".format(repo_name, name),
+                "//conditions:default": name,
             }),
-            # FIXME handle clang version for kernel_filegroup
-            target_platform = Label("//build/kernel/kleaf/impl:android_{}".format(target_configs[name]["arch"])),
-            exec_platform = Label("//build/kernel/kleaf/impl:linux_x86_64"),
-            deps = select({
-                ":use_prebuilt_gki_set": [
-                    name + "_ddk_artifacts_downloaded",
-                    name + "_unstripped_modules_archive_downloaded",
-                    name + "_" + TOOLCHAIN_VERSION_FILENAME + "_downloaded",
-                ],
-                "//conditions:default": [
-                    name + "_ddk_artifacts",
-                    name + "_" + TOOLCHAIN_VERSION_FILENAME,
-                    # unstripped modules come from {name} in srcs, KernelUnstrippedModulesInfo
-                ],
-            }),
-            kernel_uapi_headers = name + "_uapi_headers_download_or_build",
-            collect_unstripped_modules = _COLLECT_UNSTRIPPED_MODULES,
-            images = name + "_images_download_or_build",
-            module_outs_file = select({
-                ":use_prebuilt_gki_set": "@{}//{}{}".format(repo_name, name, MODULE_OUTS_FILE_SUFFIX),
-                "//conditions:default": ":" + name + "_module_outs_file",
-            }),
-            protected_modules_list = select({
-                ":use_prebuilt_gki_set": "@{}//{}".format(repo_name, value["protected_modules"]),
-                "//conditions:default": target_configs[name].get("protected_modules_list"),
-            }),
-            gki_artifacts = name + "_gki_artifacts_download_or_build",
-            **kwargs
         )
 
-        gki_artifacts_prebuilts(
-            name = name + "_gki_artifacts_downloaded",
-            srcs = select({
-                Label("//build/kernel/kleaf:use_signed_prebuilts_is_true"): [name + "_boot_img_archive_signed_downloaded"],
-                "//conditions:default": [name + "_boot_img_archive_downloaded"],
+        native.alias(
+            name = name + "_images_download_or_build",
+            actual = select({
+                ":use_prebuilt_gki_set": "@{}//:{}_images".format(repo_name, name),
+                "//conditions:default": name + "_images",
             }),
-            outs = gki_prebuilts_outs,
         )
 
-        native.filegroup(
-            name = name + "_gki_artifacts_download_or_build",
-            srcs = select({
-                ":use_prebuilt_gki_set": [name + "_gki_artifacts_downloaded"],
-                "//conditions:default": [name + "_gki_artifacts"],
-            }),
-            **kwargs
-        )
-
-        for config in GKI_DOWNLOAD_CONFIGS:
-            target_suffix = config["target_suffix"]
-
-            # outs of target named {name}_{target_suffix}
-            suffixed_target_outs = list(config.get("outs", []))
-            suffixed_target_outs += list(config.get("outs_mapping", {}).keys())
-
-            native.filegroup(
-                name = name + "_" + target_suffix + "_downloaded",
-                srcs = ["@{}//{}".format(repo_name, filename) for filename in suffixed_target_outs],
-                tags = ["manual"],
-            )
-
-            # A filegroup that:
-            # - If --use_prebuilt_gki_num is set, use downloaded prebuilt of kernel_{arch}_{target_suffix}
-            # - Otherwise build kernel_{arch}_{target_suffix}
-            native.filegroup(
-                name = name + "_" + target_suffix + "_download_or_build",
-                srcs = select({
-                    ":use_prebuilt_gki_set": [":" + name + "_" + target_suffix + "_downloaded"],
-                    "//conditions:default": [name + "_" + target_suffix],
-                }),
-                **kwargs
-            )
-
-        additional_artifacts_items = [
-            name + "_headers",
-            name + "_images",
-            name + "_kmi_symbol_list",
-            name + "_gki_artifacts",
-        ]
-
-        native.filegroup(
-            name = name + "_additional_artifacts_downloaded",
-            srcs = [item + "_downloaded" for item in additional_artifacts_items],
-        )
-
-        native.filegroup(
+        native.alias(
             name = name + "_additional_artifacts_download_or_build",
-            srcs = [item + "_download_or_build" for item in additional_artifacts_items],
+            actual = select({
+                ":use_prebuilt_gki_set": "@{}//:{}_additional_artifacts".format(repo_name, name),
+                "//conditions:default": name + "_additional_artifacts",
+            }),
         )
 
 def _define_common_kernels_additional_tests(
