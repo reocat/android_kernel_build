@@ -113,6 +113,10 @@ GKI_DOWNLOAD_CONFIGS = [
             "modules_prepare_outdir.tar.gz",
             # _modules_staging_archive
             MODULES_STAGING_ARCHIVE,
+            # _ddk_headers_archive
+            # We only download GKI for arm64, not riscv64 or x86_64
+            # TODO(b/206079661): Allow downloaded prebuilts for risc64/x86_64/debug targets.
+            "kernel_aarch64_ddk_headers_archive.tar.gz",
         ],
     },
     {
