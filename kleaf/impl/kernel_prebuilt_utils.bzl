@@ -130,3 +130,117 @@ CI_TARGET_MAPPING = {
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
     },
 }
+
+def get_prebuilt_build_file_fragment(
+        target,
+        main_target_outs,
+        download_configs,
+        gki_prebuilts_outs,
+        arch,
+        protected_modules,
+        collect_unstripped_modules,
+        module_outs_file_suffix,
+        toolchain_version_filename):
+    """Helper function to generate a BUILD file for kernel prebuilts.
+
+    Args:
+        arch: Architecture associated with this mapping.
+        target: Bazel target name in common_kernels.bzl
+        main_target_outs: list of outs associated with that target name
+        gki_prebuilts_outs: List of output files from gki_artifacts()
+        download_configs: For each key-value pair, the key is
+            target suffix, and the value are the list of files for that target.
+            Define a filegroup named `{target}_{target_suffix}` with the
+            given list of files.
+        protected_modules: file name of the protected modules list
+        collect_unstripped_modules: value of `collect_unstripped_modules` for `kernel_filegroup`
+        module_outs_file_suffix: suffix of file that lists `module_outs`
+        toolchain_version_filename: filename for defining toolchain version
+
+    Returns:
+        string that represents a BUILD file for kernel prebuilts.
+    """
+    content = ""
+
+    # suffixed_target_outs: outs of target named {name}_{target_suffix}
+    for target_suffix, suffixed_target_outs in download_configs.items():
+        content += """\
+
+filegroup(
+    name = "{suffixed_target}",
+    srcs = {suffixed_target_outs_repr},
+    visibility = ["//visibility:private"],
+)
+""".format(
+            suffixed_target = target + "_" + target_suffix,
+            suffixed_target_outs_repr = repr(suffixed_target_outs),
+        )
+
+    content += """\
+
+gki_artifacts_prebuilts(
+    name = "{target}_gki_artifacts",
+    srcs = select({{
+        "{use_signed_prebuilts_is_true}": ["{target}_boot_img_archive_signed"],
+        "//conditions:default": ["{target}_boot_img_archive"],
+    }}),
+    outs = {gki_prebuilts_outs},
+    visibility = ["//visibility:private"],
+)
+""".format(
+        target = target,
+        use_signed_prebuilts_is_true = Label("//build/kernel/kleaf:use_signed_prebuilts_is_true"),
+        gki_prebuilts_outs = repr(gki_prebuilts_outs),
+    )
+
+    # FIXME handle clang version for kernel_filegroup
+    target_platform = Label("//build/kernel/kleaf/impl:android_{}".format(arch))
+    exec_platform = Label("//build/kernel/kleaf/impl:linux_x86_64")
+
+    content += """\
+
+kernel_filegroup(
+    name = "{target}",
+    srcs = {main_target_outs_repr},
+    target_platform = "{target_platform}",
+    exec_platform = "{exec_platform}",
+    deps = [
+        ":{target}_ddk_artifacts",
+        ":{target}_unstripped_modules_archive",
+        ":{target}_{toolchain_version_filename}",
+    ],
+    kernel_uapi_headers = "{target}_uapi_headers",
+    collect_unstripped_modules = {collect_unstripped_modules},
+    images = "{target}_images",
+    module_outs_file = "{module_outs_file}",
+    protected_modules_list = {protected_modules_repr},
+    gki_artifacts = ":{target}_gki_artifacts",
+    visibility = ["//visibility:public"],
+)
+""".format(
+        target = target,
+        main_target_outs_repr = repr(main_target_outs),
+        target_platform = target_platform,
+        exec_platform = exec_platform,
+        toolchain_version_filename = toolchain_version_filename,
+        collect_unstripped_modules = collect_unstripped_modules,
+        module_outs_file = target + module_outs_file_suffix,
+        protected_modules_repr = repr(protected_modules),
+    )
+
+    content += """\
+
+filegroup(
+    name = "{target}_additional_artifacts",
+    srcs = {additional_artifacts_items_repr},
+)
+""".format(
+        target = target,
+        additional_artifacts_items_repr = repr([
+            target + "_headers",
+            target + "_images",
+            target + "_kmi_symbol_list",
+            target + "_gki_artifacts",
+        ]),
+    )
+    return content
