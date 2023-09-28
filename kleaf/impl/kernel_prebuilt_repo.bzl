@@ -22,7 +22,6 @@ load(
 load(
     ":kernel_prebuilt_utils.bzl",
     "CI_TARGET_MAPPING",
-    "GKI_DOWNLOAD_CONFIGS",
     "get_prebuilt_build_file_fragment",
 )
 
@@ -217,6 +216,20 @@ _download_artifact_repo = repository_rule(
     ],
 )
 
+# buildifier: disable=name-conventions
+_FileMetadata = provider(
+    "metadata for a downloaded artifact",
+    fields = {
+        "remote_filename_fmt": """Format string of the filename on the download location..
+
+            The filename is determined by `remote_filename_fmt.format(...)`, with the following keys:
+
+            - `build_number`: the environment variable or the `build_number` attribute
+            """,
+        "mandatory": "Whether the file must exist",
+    },
+)
+
 def kernel_prebuilt_repo(
         name,
         artifact_url_fmt,
@@ -231,39 +244,39 @@ def kernel_prebuilt_repo(
     mapping = CI_TARGET_MAPPING[name]
     target = mapping["target"]
 
-    files = {out: {} for out in mapping["outs"]}
-    optional_files = {mapping["protected_modules"]: {}}
-    for config in GKI_DOWNLOAD_CONFIGS:
-        if config.get("mandatory", True):
-            files_dict = files
-        else:
-            files_dict = optional_files
+    files = {
+        out: _FileMetadata(remote_filename_fmt = out, mandatory = True)
+        for out in mapping["outs"]
+    }
+    files[mapping["protected_modules"]] = _FileMetadata(
+        remote_filename_fmt = mapping["protected_modules"],
+        mandatory = False,
+    )
+    for config in mapping["download_configs"]:
+        mandatory = config["mandatory"]
+        files |= {
+            out: _FileMetadata(remote_filename_fmt = remote_filename_fmt, mandatory = mandatory)
+            for out, remote_filename_fmt in config["outs_mapping"].items()
+        }
 
-        files_dict.update({out: {} for out in config.get("outs", [])})
-
-        for out, remote_filename_fmt in config.get("outs_mapping", {}).items():
-            file_metadata = {"remote_filename_fmt": remote_filename_fmt}
-            files_dict.update({out: file_metadata})
-
-    for files_dict, allow_fail in ((files, False), (optional_files, True)):
-        for local_filename, file_metadata in files_dict.items():
-            # Need a repo for each file because repository_ctx.download is blocking. Defining multiple
-            # repos allows downloading in parallel.
-            # e.g. @gki_prebuilts_vmlinux
-            _download_artifact_repo(
-                name = name + "_" + _sanitize_repo_name(local_filename),
-                parent_repo = name,
-                local_filename = local_filename,
-                build_number = build_number,
-                target = target,
-                remote_filename_fmt = file_metadata.get("remote_filename_fmt", local_filename),
-                allow_fail = allow_fail,
-                artifact_url_fmt = artifact_url_fmt,
-            )
+    for local_filename, file_metadata in files.items():
+        # Need a repo for each file because repository_ctx.download is blocking. Defining multiple
+        # repos allows downloading in parallel.
+        # e.g. @gki_prebuilts_vmlinux
+        _download_artifact_repo(
+            name = name + "_" + _sanitize_repo_name(local_filename),
+            parent_repo = name,
+            local_filename = local_filename,
+            build_number = build_number,
+            target = target,
+            remote_filename_fmt = file_metadata.remote_filename_fmt,
+            allow_fail = not file_metadata.mandatory,
+            artifact_url_fmt = artifact_url_fmt,
+        )
 
     aliases = {
         local_filename: "@" + name + "_" + _sanitize_repo_name(local_filename) + "//file"
-        for local_filename in (list(files.keys()) + list(optional_files.keys()))
+        for local_filename in files
     }
 
     _kernel_prebuilt_repo(
@@ -275,8 +288,8 @@ def kernel_prebuilt_repo(
         protected_modules = mapping["protected_modules"],
         gki_prebuilts_outs = mapping["gki_prebuilts_outs"],
         download_configs = {
-            config["target_suffix"]: list(config.get("outs", [])) + list(config.get("outs_mapping", {}).keys())
-            for config in GKI_DOWNLOAD_CONFIGS
+            config["target_suffix"]: list(config["outs_mapping"].keys())
+            for config in mapping["download_configs"]
         },
     )
 
