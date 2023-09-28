@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "415d3b9f_c5c08fb4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135739
+      },
+      "writtenOn": "2023-09-28T09:59:58Z",
+      "side": 1,
+      "message": "This branch contains some critical presubmit test. I\u0027ll cp to main.",
+      "parentUuid": "d9b3c58d_dffd1fe8",
+      "revId": "9f91b9113a2edf2440850e3f1198e2f6e09c5fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "722c75e2_97adf31a",
         "filename": "build_utils.sh",
         "patchSetId": 2
@@ -83,6 +101,24 @@
       "side": 1,
       "message": "I would name this as `system_dlkm.flatten.\u003cFS\u003e.img` as `android` doesn\u0027t say much on how this image is different than `system_dlkm.img` or `system_dlkm.\u003cFS\u003e.img`.\n\nOn main we now have `system_dlkm.\u003cFS\u003e.img` and build can generate the images for both `erofs` and `ext4`. I think, this should be implemented the same with support for both fs type in the main first.",
       "parentUuid": "71f33f99_813b3f36",
+      "revId": "9f91b9113a2edf2440850e3f1198e2f6e09c5fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70c3e80c_8f23dea0",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1135739
+      },
+      "writtenOn": "2023-09-28T09:59:58Z",
+      "side": 1,
+      "message": "Ack to the naming. Given that the artifacts in the kernel build are intended solely for testing purposes rather than release, the question arises: why is it necessary to include support for all the available file system types.",
+      "parentUuid": "0354d604_5dac10d2",
       "revId": "9f91b9113a2edf2440850e3f1198e2f6e09c5fb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
