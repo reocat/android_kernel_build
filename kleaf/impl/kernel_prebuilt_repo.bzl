@@ -216,20 +216,6 @@ _download_artifact_repo = repository_rule(
     ],
 )
 
-# buildifier: disable=name-conventions
-_FileMetadata = provider(
-    "metadata for a downloaded artifact",
-    fields = {
-        "remote_filename_fmt": """Format string of the filename on the download location..
-
-            The filename is determined by `remote_filename_fmt.format(...)`, with the following keys:
-
-            - `build_number`: the environment variable or the `build_number` attribute
-            """,
-        "mandatory": "Whether the file must exist",
-    },
-)
-
 def kernel_prebuilt_repo(
         name,
         artifact_url_fmt,
@@ -244,37 +230,24 @@ def kernel_prebuilt_repo(
     mapping = CI_TARGET_MAPPING[name]
     target = mapping["target"]
 
-    files = {}
     for config in mapping["download_configs"]:
-        mandatory = config["mandatory"]
-        files |= {
-            out: _FileMetadata(remote_filename_fmt = remote_filename_fmt, mandatory = mandatory)
-            for out, remote_filename_fmt in config["outs_mapping"].items()
-        }
-
-    for local_filename, file_metadata in files.items():
-        # Need a repo for each file because repository_ctx.download is blocking. Defining multiple
-        # repos allows downloading in parallel.
-        # e.g. @gki_prebuilts_vmlinux
-        _download_artifact_repo(
-            name = name + "_" + _sanitize_repo_name(local_filename),
-            parent_repo = name,
-            local_filename = local_filename,
-            build_number = build_number,
-            target = target,
-            remote_filename_fmt = file_metadata.remote_filename_fmt,
-            allow_fail = not file_metadata.mandatory,
-            artifact_url_fmt = artifact_url_fmt,
-        )
-
-    aliases = {
-        local_filename: "@" + name + "_" + _sanitize_repo_name(local_filename) + "//file"
-        for local_filename in files
-    }
+        for local_filename, remote_filename_fmt in config["outs_mapping"].items():
+            # Need a repo for each file because repository_ctx.download is blocking. Defining multiple
+            # repos allows downloading in parallel.
+            # e.g. @gki_prebuilts_vmlinux
+            _download_artifact_repo(
+                name = name + "_" + _sanitize_repo_name(local_filename),
+                parent_repo = name,
+                local_filename = local_filename,
+                build_number = build_number,
+                target = target,
+                remote_filename_fmt = remote_filename_fmt,
+                allow_fail = not config["mandatory"],
+                artifact_url_fmt = artifact_url_fmt,
+            )
 
     _kernel_prebuilt_repo(
         name = name,
-        aliases = aliases,
         arch = mapping["arch"],
         target = mapping["target"],
         gki_prebuilts_outs = mapping["gki_prebuilts_outs"],
@@ -307,8 +280,14 @@ load("{gki_artifacts_bzl}", "gki_artifacts_prebuilts")
         target = target,
     )
 
+    local_filenames = []
+    for outs in repository_ctx.attr.download_configs.values():
+        local_filenames += outs
+
     # Aliases
-    for local_filename, actual in repository_ctx.attr.aliases.items():
+    for local_filename in local_filenames:
+        actual = "@" + repository_ctx.attr.name + "_" + _sanitize_repo_name(local_filename) + "//file"
+
         content += """\
 
 alias(
@@ -335,10 +314,6 @@ alias(
 _kernel_prebuilt_repo = repository_rule(
     implementation = _kernel_prebuilt_repo_impl,
     attrs = {
-        "aliases": attr.string_dict(doc = """
-            - Keys: local filename.
-            - Value: label to the actual target.
-            """),
         "arch": attr.string(doc = "Architecture associated with this mapping."),
         "target": attr.string(doc = "Bazel target name in common_kernels.bzl"),
         "gki_prebuilts_outs": attr.string_list(),
