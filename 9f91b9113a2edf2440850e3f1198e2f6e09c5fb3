@@ -139,6 +139,24 @@
       "parentUuid": "0354d604_5dac10d2",
       "revId": "9f91b9113a2edf2440850e3f1198e2f6e09c5fb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e02c404_d584a8ad",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-09-28T18:09:14Z",
+      "side": 1,
+      "message": "Because platform supports both `erofs` and `ext4` as readonly fs; so when a partner wants to test a release GKI with `system_dlkm` from the artifacts to verify that release is good they were not able to do so with just `ext4` image if they were using `erofs` for the official image. Since these are test and dev only images we only did multiple fs support for android 15 and beyond as that also needs to worry about backward compatibility as many tests are downloading the artifacts and use them for testing even at Google.\n\nSince the flatten images are new to start with, they should be available for all fs types in a way that will be our lesson learned.",
+      "parentUuid": "70c3e80c_8f23dea0",
+      "revId": "9f91b9113a2edf2440850e3f1198e2f6e09c5fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
