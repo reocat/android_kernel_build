@@ -184,6 +184,10 @@ def _create_archive(ctx, package_files):
             package_build_file = files_for_package.build_file.path,
             package_build_file_dest = package_build_file_dest,
         )
+    cmd += """
+        touch BUILD.bazel
+    """
+    extra_files_in_archive.append("BUILD.bazel")
 
     cmd += """
         tar czf {out} --dereference -T "$@"
@@ -213,11 +217,6 @@ def _ddk_headers_archive_impl(ctx):
     return DefaultInfo(files = depset([archive]))
 
 ddk_headers_archive = rule(
-    doc = """An archive of [`ddk_headers`](#ddk_headers).
-
-        The archive includes all headers, as well as a `BUILD` file that is
-        semantically identical to the original `ddk_headers` definition.
-    """
     implementation = _ddk_headers_archive_impl,
     attrs = {
         "srcs": attr.label_list(
