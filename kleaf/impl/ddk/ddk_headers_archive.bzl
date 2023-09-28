@@ -154,47 +154,45 @@ load("//build/kernel/kleaf:kernel.bzl", "ddk_headers")
             progress_message = "Generating BUILD.bazel fragment for {} {}".format(ctx.label, package),
         )
 
-        targets_file = ctx.actions.declare_file("{name}/{package}/targets.txt".format(
-            name = ctx.attr.name,
-            package = package,
-        ))
-        target_names = [target.label.name for target in srcs_by_package[package]]
-        ctx.actions.write(output = targets_file, content = "TARGETS = " + repr(target_names))
-
-        package_metadata_file = ctx.actions.declare_file("{name}/{package}/metadata.bzl".format(
-            name = ctx.attr.name,
-            package = package,
-        ))
-
-        args = ctx.actions.args()
-        args.add(common_header)
-        args.add(targets_file)
-
-        cmd = hermetic_tools.setup + """
-            cat "$@" >> {}
-        """.format(package_metadata_file.path)
-
-        ctx.actions.run_shell(
-            inputs = [common_header, targets_file],
-            outputs = [package_metadata_file],
-            tools = hermetic_tools.deps,
-            command = cmd,
-            arguments = [args],
-            mnemonic = "DdkHeadersArchiveMetadataFile",
-            progress_message = "Generating metadata.bzl for {} {}".format(ctx.label, package),
-        )
-
         package_files[package] = struct(
             build_file = package_build_file,
-            metadata_file = package_metadata_file,
         )
 
     return package_files
+
+def _remove_workspace_name(label):
+    return str(label).removeprefix("@" + label.workspace_name)
+
+def _make_label_repr(s):
+    return "Label({s_repr})".format(s_repr = repr(s))
 
 def _create_archive(ctx, package_files):
     hermetic_tools = hermetic_toolchain.get(ctx)
 
     all_srcs_files = depset(transitive = [src[DdkHeadersInfo].files for src in ctx.attr.srcs])
+
+    target_labels = [target.label for target in ctx.attr.srcs]
+    # targets repr are resolved against the downloaded workspace, hence the workspace name should
+    # be removed.
+    target_label_strings = [_remove_workspace_name(label) for label in target_labels]
+    target_label_reprs = [_make_label_repr(s) for s in target_label_strings]
+
+    metadata = ctx.actions.declare_file("{name}/metadata.bzl".format(
+        name = ctx.attr.name,
+    ))
+    ctx.actions.write(output = metadata, content = """\
+# Generated file. DO NOT EDIT.
+
+\"""Generated package of DDK headers.
+
+ddk_headers_archive: {this_label}
+\"""
+
+TARGETS = [{target_label_reprs}]
+""".format(
+        this_label = ctx.label,
+        target_label_reprs = ", ".join(target_label_reprs),
+    ))
 
     out = ctx.actions.declare_file("{name}/{name}.tar.gz".format(
         name = ctx.attr.name,
@@ -206,20 +204,24 @@ def _create_archive(ctx, package_files):
     cmd = hermetic_tools.setup
     for package, files_for_package in package_files.items():
         package_build_file_dest = "{package}/BUILD.bazel".format(package = package)
-        package_metadata_file_dest = "{package}/metadata.bzl".format(package = package)
-        extra_files_in_archive += [package_build_file_dest, package_metadata_file_dest]
-        inputs += [files_for_package.build_file, files_for_package.metadata_file]
+        extra_files_in_archive.append(package_build_file_dest)
+        inputs.append(files_for_package.build_file)
         cmd += """
             mkdir -p {package}
             cp {package_build_file} {package_build_file_dest}
-            cp {package_metadata_file} {package_metadata_file_dest}
         """.format(
             package = package,
             package_build_file = files_for_package.build_file.path,
             package_build_file_dest = package_build_file_dest,
-            package_metadata_file = files_for_package.metadata_file.path,
-            package_metadata_file_dest = package_metadata_file_dest,
         )
+    cmd += """
+        cp {metadata} metadata.bzl
+        touch BUILD.bazel
+    """.format(
+        metadata = metadata.path
+    )
+    extra_files_in_archive += ["metadata.bzl", "BUILD.bazel"]
+    inputs.append(metadata)
 
     cmd += """
         tar czf {out} --dereference -T "$@"
