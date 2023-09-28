@@ -38,7 +38,6 @@ CI_TARGET_MAPPING = {
     "gki_prebuilts": {
         "arch": "arm64",
         "target": "kernel_aarch64",
-        "protected_modules": "gki_aarch64_protected_modules",
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
 
         # See common_kernels.bzl and download_repo.bzl.
@@ -56,6 +55,13 @@ CI_TARGET_MAPPING = {
                     "kernel_aarch64" + "_internal_outs.tar.gz": "kernel_aarch64" + "_internal_outs.tar.gz",
                     "kernel_aarch64" + "_config_outdir.tar.gz": "kernel_aarch64" + "_config_outdir.tar.gz",
                     "kernel_aarch64" + "_env.sh": "kernel_aarch64" + "_env.sh",
+                },
+            },
+            {
+                "target_suffix": "protected_modules_list",
+                "mandatory": False,
+                "outs_mapping": {
+                    "gki_aarch64_protected_modules": "gki_aarch64_protected_modules",
                 },
             },
             {
@@ -141,7 +147,6 @@ def get_prebuilt_build_file_fragment(
         download_configs,
         gki_prebuilts_outs,
         arch,
-        protected_modules,
         collect_unstripped_modules,
         module_outs_file_suffix,
         toolchain_version_filename):
@@ -155,7 +160,6 @@ def get_prebuilt_build_file_fragment(
             target suffix, and the value are the list of files for that target.
             Define a filegroup named `{target}_{target_suffix}` with the
             given list of files.
-        protected_modules: file name of the protected modules list
         collect_unstripped_modules: value of `collect_unstripped_modules` for `kernel_filegroup`
         module_outs_file_suffix: suffix of file that lists `module_outs`
         toolchain_version_filename: filename for defining toolchain version
@@ -216,7 +220,7 @@ kernel_filegroup(
     collect_unstripped_modules = {collect_unstripped_modules},
     images = "{target}_images",
     module_outs_file = "{module_outs_file}",
-    protected_modules_list = {protected_modules_repr},
+    protected_modules_list = ":{target}_protected_modules_list",
     gki_artifacts = ":{target}_gki_artifacts",
     visibility = ["//visibility:public"],
 )
@@ -227,7 +231,6 @@ kernel_filegroup(
         toolchain_version_filename = toolchain_version_filename,
         collect_unstripped_modules = collect_unstripped_modules,
         module_outs_file = target + module_outs_file_suffix,
-        protected_modules_repr = repr(protected_modules),
     )
 
     content += """\
