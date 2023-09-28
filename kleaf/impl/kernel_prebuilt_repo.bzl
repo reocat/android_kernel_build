@@ -153,11 +153,18 @@ def _download_from_build_number(repository_ctx, build_number):
         filename = remote_filename,
     )]
     download_path = repository_ctx.path("file/{}".format(local_filename))
+
     download_info = repository_ctx.download(
         url = urls,
         output = download_path,
         allow_fail = repository_ctx.attr.allow_fail,
     )
+
+    if repository_ctx.attr.extract and download_info.success:
+        repository_ctx.extract(
+            archive = download_path,
+            output = repository_ctx.path("file/{}_extracted".format(local_filename)),
+        )
 
     # Define the filegroup to contain the file.
     # If failing and it is allowed, set filegroup to empty
@@ -210,6 +217,7 @@ _download_artifact_repo = repository_rule(
             """,
             default = _ARTIFACT_URL_FMT,
         ),
+        "extract": attr.bool(doc = "Whether to extract"),
     },
     environ = [
         _BUILD_NUM_ENV_VAR,
@@ -243,6 +251,7 @@ def kernel_prebuilt_repo(
                 target = target,
                 remote_filename_fmt = remote_filename_fmt,
                 allow_fail = not config["mandatory"],
+                extract = config["extract"],
                 artifact_url_fmt = artifact_url_fmt,
             )
 

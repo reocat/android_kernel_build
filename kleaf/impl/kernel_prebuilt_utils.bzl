@@ -47,6 +47,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "files",
                 "mandatory": True,
+                "extract": False,
                 "outs_mapping": {e: e for e in DEFAULT_GKI_OUTS} | {
                     "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX: "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX,
                     # FIXME these should go to ddk_artifacts to avoid being copied to $OUT_DIR
@@ -60,6 +61,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "protected_modules_list",
                 "mandatory": False,
+                "extract": False,
                 "outs_mapping": {
                     "gki_aarch64_protected_modules": "gki_aarch64_protected_modules",
                 },
@@ -67,6 +69,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "uapi_headers",
                 "mandatory": True,
+                "extract": False,
                 "outs_mapping": {
                     "kernel-uapi-headers.tar.gz": "kernel-uapi-headers.tar.gz",
                 },
@@ -74,6 +77,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "unstripped_modules_archive",
                 "mandatory": True,
+                "extract": False,
                 "outs_mapping": {
                     "unstripped_modules.tar.gz": "unstripped_modules.tar.gz",
                 },
@@ -81,6 +85,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "headers",
                 "mandatory": True,
+                "extract": False,
                 "outs_mapping": {
                     "kernel-headers.tar.gz": "kernel-headers.tar.gz",
                 },
@@ -88,12 +93,14 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "images",
                 "mandatory": True,
+                "extract": False,
                 # TODO(b/297934577): Update GKI prebuilts to download system_dlkm.<fs>.img
                 "outs_mapping": {e: e for e in SYSTEM_DLKM_COMMON_OUTS},
             },
             {
                 "target_suffix": "toolchain_version",
                 "mandatory": True,
+                "extract": False,
                 "outs_mapping": {
                     TOOLCHAIN_VERSION_FILENAME: TOOLCHAIN_VERSION_FILENAME,
                 },
@@ -101,6 +108,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "boot_img_archive",
                 "mandatory": True,
+                "extract": False,
                 "outs_mapping": {
                     "boot-img.tar.gz": "boot-img.tar.gz",
                     # The others can be found by extracting the archive, see gki_artifacts_prebuilts
@@ -112,6 +120,7 @@ CI_TARGET_MAPPING = {
                 # exist for unsigned builds. A build error will be emitted by gki_artifacts_prebuilts
                 # if --use_signed_prebuilts and --use_gki_prebuilts=<an unsigned build number>.
                 "mandatory": False,
+                "extract": False,
                 "outs_mapping": {
                     # The basename is kept boot-img.tar.gz so it works with
                     # gki_artifacts_prebuilts. It is placed under the signed/
@@ -124,15 +133,26 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "ddk_artifacts",
                 "mandatory": True,
+                "extract": False,
                 "outs_mapping": {
                     # _modules_prepare
                     "modules_prepare_outdir.tar.gz": "modules_prepare_outdir.tar.gz",
                     # _modules_staging_archive
                     MODULES_STAGING_ARCHIVE: MODULES_STAGING_ARCHIVE,
+                },
+            },
+            {
+                "target_suffix": "ddk_headers_archive",
+                "mandatory": True,
+                "extract": True,
+                "outs_mapping": {
+                    "kernel_aarch64_ddk_headers_archive.tar.gz": "kernel_aarch64_ddk_headers_archive.tar.gz",
+                },
             },
             {
                 "target_suffix": "kmi_symbol_list",
                 "mandatory": False,
+                "extract": False,
                 "outs_mapping": {
                     "abi_symbollist": "abi_symbollist",
                     "abi_symbollist.report": "abi_symbollist.report",
