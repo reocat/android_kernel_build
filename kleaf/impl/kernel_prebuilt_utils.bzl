@@ -32,7 +32,6 @@ visibility("//build/kernel/kleaf/...")
 
 # Key: name of repository in bazel.WORKSPACE
 # target: Bazel target name in common_kernels.bzl
-# outs: list of outs associated with that target name
 # arch: Architecture associated with this mapping.
 CI_TARGET_MAPPING = {
     # TODO(b/206079661): Allow downloaded prebuilts for x86_64 and debug targets.
@@ -40,15 +39,6 @@ CI_TARGET_MAPPING = {
         "arch": "arm64",
         # TODO: Rename this when more architectures are added.
         "target": "kernel_aarch64",
-        "outs": DEFAULT_GKI_OUTS + [
-            "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX,
-            # FIXME these should go to ddk_artifacts to avoid being copied to $OUT_DIR
-            "kernel_aarch64" + MODULE_SCRIPTS_ARCHIVE_SUFFIX,
-            # FIXME use constant
-            "kernel_aarch64" + "_internal_outs.tar.gz",
-            "kernel_aarch64" + "_config_outdir.tar.gz",
-            "kernel_aarch64" + "_env.sh",
-        ],
         "protected_modules": "gki_aarch64_protected_modules",
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
 
@@ -56,6 +46,19 @@ CI_TARGET_MAPPING = {
         # - mandatory: If False, download errors are ignored. See workspace.bzl
         # - outs_mapping: key: local filename. value: remote_filename_fmt.
         "download_configs": [
+            {
+                "target_suffix": "files",
+                "mandatory": True,
+                "outs_mapping": {e: e for e in DEFAULT_GKI_OUTS} | {
+                    "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX: "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX,
+                    # FIXME these should go to ddk_artifacts to avoid being copied to $OUT_DIR
+                    "kernel_aarch64" + MODULE_SCRIPTS_ARCHIVE_SUFFIX: "kernel_aarch64" + MODULE_SCRIPTS_ARCHIVE_SUFFIX,
+                    # FIXME use constant
+                    "kernel_aarch64" + "_internal_outs.tar.gz": "kernel_aarch64" + "_internal_outs.tar.gz",
+                    "kernel_aarch64" + "_config_outdir.tar.gz": "kernel_aarch64" + "_config_outdir.tar.gz",
+                    "kernel_aarch64" + "_env.sh": "kernel_aarch64" + "_env.sh",
+                },
+            },
             {
                 "target_suffix": "uapi_headers",
                 "mandatory": True,
@@ -75,7 +78,7 @@ CI_TARGET_MAPPING = {
                 "mandatory": True,
                 "outs_mapping": {
                     "kernel-headers.tar.gz": "kernel-headers.tar.gz",
-            },
+                },
             },
             {
                 "target_suffix": "images",
@@ -141,7 +144,6 @@ CI_TARGET_MAPPING = {
 
 def get_prebuilt_build_file_fragment(
         target,
-        main_target_outs,
         download_configs,
         gki_prebuilts_outs,
         arch,
@@ -154,7 +156,6 @@ def get_prebuilt_build_file_fragment(
     Args:
         arch: Architecture associated with this mapping.
         target: Bazel target name in common_kernels.bzl
-        main_target_outs: list of outs associated with that target name
         gki_prebuilts_outs: List of output files from gki_artifacts()
         download_configs: For each key-value pair, the key is
             target suffix, and the value are the list of files for that target.
@@ -209,7 +210,7 @@ gki_artifacts_prebuilts(
 
 kernel_filegroup(
     name = "{target}",
-    srcs = {main_target_outs_repr},
+    srcs = [":{target}_files"],
     target_platform = "{target_platform}",
     exec_platform = "{exec_platform}",
     deps = [
@@ -227,7 +228,6 @@ kernel_filegroup(
 )
 """.format(
         target = target,
-        main_target_outs_repr = repr(main_target_outs),
         target_platform = target_platform,
         exec_platform = exec_platform,
         toolchain_version_filename = toolchain_version_filename,
