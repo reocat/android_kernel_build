@@ -16,6 +16,23 @@
       "message": "PR for test.",
       "revId": "9f91b9113a2edf2440850e3f1198e2f6e09c5fb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71f33f99_813b3f36",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-28T03:40:44Z",
+      "side": 1,
+      "message": "nit: please add `system_dlkm_android.img` and also explain what the filesystem format is (ext4 or erofs). It is the same as system_dlkm_fs_type, right?",
+      "revId": "9f91b9113a2edf2440850e3f1198e2f6e09c5fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
