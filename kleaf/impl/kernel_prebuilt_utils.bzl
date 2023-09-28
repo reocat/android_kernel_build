@@ -30,83 +30,6 @@ load(
 
 visibility("//build/kernel/kleaf/...")
 
-# See common_kernels.bzl and download_repo.bzl.
-# - mandatory: If False, download errors are ignored. Default is True; see workspace.bzl
-GKI_DOWNLOAD_CONFIGS = [
-    {
-        "target_suffix": "uapi_headers",
-        "outs": [
-            "kernel-uapi-headers.tar.gz",
-        ],
-    },
-    {
-        "target_suffix": "unstripped_modules_archive",
-        "outs": [
-            "unstripped_modules.tar.gz",
-        ],
-    },
-    {
-        "target_suffix": "headers",
-        "outs": [
-            "kernel-headers.tar.gz",
-        ],
-    },
-    {
-        "target_suffix": "images",
-        # TODO(b/297934577): Update GKI prebuilts to download system_dlkm.<fs>.img
-        "outs": SYSTEM_DLKM_COMMON_OUTS,
-    },
-    {
-        "target_suffix": "toolchain_version",
-        "outs": [
-            TOOLCHAIN_VERSION_FILENAME,
-        ],
-    },
-    {
-        "target_suffix": "boot_img_archive",
-        # We only download GKI for arm64, not riscv64 or x86_64
-        # TODO(b/206079661): Allow downloaded prebuilts for risc64/x86_64/debug targets.
-        "outs": [
-            "boot-img.tar.gz",
-            # The others can be found by extracting the archive, see gki_artifacts_prebuilts
-        ],
-    },
-    {
-        "target_suffix": "boot_img_archive_signed",
-        # Do not fail immediately if this file cannot be downloaded, because it does not
-        # exist for unsigned builds. A build error will be emitted by gki_artifacts_prebuilts
-        # if --use_signed_prebuilts and --use_gki_prebuilts=<an unsigned build number>.
-        "mandatory": False,
-        # We only download GKI for arm64, not riscv64 or x86_64
-        # TODO(b/206079661): Allow downloaded prebuilts for risc64/x86_64/debug targets.
-        "outs_mapping": {
-            # The basename is kept boot-img.tar.gz so it works with
-            # gki_artifacts_prebuilts. It is placed under the signed/
-            # directory to avoid conflicts with boot_img_archive in
-            # download_artifacts_repo.
-            # The others can be found by extracting the archive, see gki_artifacts_prebuilts
-            "signed/boot-img.tar.gz": "signed/certified-boot-img-{build_number}.tar.gz",
-        },
-    },
-    {
-        "target_suffix": "ddk_artifacts",
-        "outs": [
-            # _modules_prepare
-            "modules_prepare_outdir.tar.gz",
-            # _modules_staging_archive
-            MODULES_STAGING_ARCHIVE,
-        ],
-    },
-    {
-        "target_suffix": "kmi_symbol_list",
-        "mandatory": False,
-        "outs": [
-            "abi_symbollist",
-            "abi_symbollist.report",
-        ],
-    },
-]
-
 # Key: name of repository in bazel.WORKSPACE
 # target: Bazel target name in common_kernels.bzl
 # outs: list of outs associated with that target name
@@ -115,7 +38,6 @@ CI_TARGET_MAPPING = {
     # TODO(b/206079661): Allow downloaded prebuilts for x86_64 and debug targets.
     "gki_prebuilts": {
         "arch": "arm64",
-        # TODO: Rename this when more architectures are added.
         "target": "kernel_aarch64",
         "outs": DEFAULT_GKI_OUTS + [
             "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX,
@@ -128,6 +50,86 @@ CI_TARGET_MAPPING = {
         ],
         "protected_modules": "gki_aarch64_protected_modules",
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
+
+        # See common_kernels.bzl and download_repo.bzl.
+        # - mandatory: If False, download errors are ignored. See workspace.bzl
+        # - outs_mapping: key: local filename. value: remote_filename_fmt.
+        "download_configs": [
+            {
+                "target_suffix": "uapi_headers",
+                "mandatory": True,
+                "outs_mapping": {
+                    "kernel-uapi-headers.tar.gz": "kernel-uapi-headers.tar.gz",
+                },
+            },
+            {
+                "target_suffix": "unstripped_modules_archive",
+                "mandatory": True,
+                "outs_mapping": {
+                    "unstripped_modules.tar.gz": "unstripped_modules.tar.gz",
+                },
+            },
+            {
+                "target_suffix": "headers",
+                "mandatory": True,
+                "outs_mapping": {
+                    "kernel-headers.tar.gz": "kernel-headers.tar.gz",
+            },
+            },
+            {
+                "target_suffix": "images",
+                "mandatory": True,
+                # TODO(b/297934577): Update GKI prebuilts to download system_dlkm.<fs>.img
+                "outs_mapping": {e: e for e in SYSTEM_DLKM_COMMON_OUTS},
+            },
+            {
+                "target_suffix": "toolchain_version",
+                "mandatory": True,
+                "outs_mapping": {
+                    TOOLCHAIN_VERSION_FILENAME: TOOLCHAIN_VERSION_FILENAME,
+                },
+            },
+            {
+                "target_suffix": "boot_img_archive",
+                "mandatory": True,
+                "outs_mapping": {
+                    "boot-img.tar.gz": "boot-img.tar.gz",
+                    # The others can be found by extracting the archive, see gki_artifacts_prebuilts
+                },
+            },
+            {
+                "target_suffix": "boot_img_archive_signed",
+                # Do not fail immediately if this file cannot be downloaded, because it does not
+                # exist for unsigned builds. A build error will be emitted by gki_artifacts_prebuilts
+                # if --use_signed_prebuilts and --use_gki_prebuilts=<an unsigned build number>.
+                "mandatory": False,
+                "outs_mapping": {
+                    # The basename is kept boot-img.tar.gz so it works with
+                    # gki_artifacts_prebuilts. It is placed under the signed/
+                    # directory to avoid conflicts with boot_img_archive in
+                    # download_artifacts_repo.
+                    # The others can be found by extracting the archive, see gki_artifacts_prebuilts
+                    "signed/boot-img.tar.gz": "signed/certified-boot-img-{build_number}.tar.gz",
+                },
+            },
+            {
+                "target_suffix": "ddk_artifacts",
+                "mandatory": True,
+                "outs_mapping": {
+                    # _modules_prepare
+                    "modules_prepare_outdir.tar.gz": "modules_prepare_outdir.tar.gz",
+                    # _modules_staging_archive
+                    MODULES_STAGING_ARCHIVE: MODULES_STAGING_ARCHIVE,
+            },
+            {
+                "target_suffix": "kmi_symbol_list",
+                "mandatory": False,
+                "outs_mapping": {
+                    "abi_symbollist": "abi_symbollist",
+                    "abi_symbollist.report": "abi_symbollist.report",
+                },
+            },
+        ],
     },
 }
 
