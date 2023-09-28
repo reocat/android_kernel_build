@@ -32,8 +32,12 @@ import sys
 import tarfile
 import tempfile
 import urllib.request
+import socket
+from shutil import copyfileobj
 
 from pathlib import Path
+
+socket.setdefaulttimeout(120)
 
 BASE_URL = "https://ci.android.com/builds/submitted/{build_id}/{target}/latest/raw"
 ARM_TARGETS = ["u-boot_qemu_arm"]
@@ -68,7 +72,9 @@ def download(url_base, dest_dir, filename, dest_filename = None):
   if not os.path.exists(dest_filename):
     print("Downloading %s to %s" % (filename, dest_dir))
     try:
-      urllib.request.urlretrieve(os.path.join(url_base, filename), dest_filename)
+      #urllib.request.urlretrieve(os.path.join(url_base, filename), dest_filename)
+      with urllib.request.urlopen(os.path.join(url_base, filename), timeout=500) as in_stream, open(dest_filename, 'wb') as out_file:
+      	copyfileobj(in_stream, out_file)
     except urllib.error.HTTPError as e:
       print("Could not download %s: %s" % (filename, e))
 
