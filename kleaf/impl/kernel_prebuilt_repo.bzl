@@ -32,11 +32,11 @@ _BUILD_NUM_ENV_VAR = "KLEAF_DOWNLOAD_BUILD_NUMBER_MAP"
 def _sanitize_repo_name(x):
     """Sanitize x so it can be used as a repository name.
 
-    Replacing invalid characters (those not in `[A-Za-z0-9-_.]`) with `_`.
+    Replacing invalid characters (those not in `[A-Za-z0-9_]`) with `_`.
     """
     ret = ""
     for c in x.elems():
-        if not c.isalnum() and not c in "-_.":
+        if not c.isalnum() and not c in "_":
             c = "_"
         ret += c
     return ret
@@ -153,11 +153,26 @@ def _download_from_build_number(repository_ctx, build_number):
         filename = remote_filename,
     )]
     download_path = repository_ctx.path("file/{}".format(local_filename))
+
     download_info = repository_ctx.download(
         url = urls,
         output = download_path,
         allow_fail = repository_ctx.attr.allow_fail,
     )
+
+    if repository_ctx.attr.extract:
+        # Extract to root of repository
+        if download_info.success:
+            repository_ctx.extract(
+                archive = download_path,
+                output = repository_ctx.path(""),
+            )
+
+            # Complete the build file fragment
+            _mutate_build_files_for_archive(repository_ctx)
+        if not download_info.success and repository_ctx.allow_fail:
+            repository_ctx.file("BUILD.bazel", "# WARNING: Unable to download archive")
+            repository_ctx.file("metadata.bzl", "TARGETS = []")
 
     # Define the filegroup to contain the file.
     # If failing and it is allowed, set filegroup to empty
@@ -166,10 +181,11 @@ def _download_from_build_number(repository_ctx, build_number):
     else:
         srcs = '"{}"'.format(local_filename)
 
-    build_file = """filegroup(
-    name="file",
-    srcs=[{srcs}],
-    visibility=["@{parent_repo}//:__pkg__"],
+    build_file = """\
+filegroup(
+name="file",
+srcs=[{srcs}],
+visibility=["@{parent_repo}//:__pkg__"],
 )
 """.format(
         srcs = srcs,
@@ -177,6 +193,37 @@ def _download_from_build_number(repository_ctx, build_number):
         parent_repo = repository_ctx.attr.parent_repo,
     )
     repository_ctx.file("file/BUILD.bazel", build_file, executable = False)
+
+def _mutate_build_files_for_archive(repository_ctx):
+    # only go two levels deep
+    for dirent in repository_ctx.path("").readdir():
+        build_file = repository_ctx.path("BUILD.bazel")
+        if build_file.exists:
+            _mutate_build_file_for_archive(repository_ctx, build_file)
+        build_file = dirent.get_child("BUILD.bazel")
+        if build_file.exists:
+            _mutate_build_file_for_archive(repository_ctx, build_file)
+
+def _mutate_build_file_for_archive(repository_ctx, build_file):
+    build_file_content = repository_ctx.read(build_file)
+
+    # Assume that load() are on the same line
+    lines = []
+    for line in build_file_content.split("\n"):
+        if line.startswith("load("):
+            first_quote = line.find('"')
+            second_quote = line.find('"', first_quote + 1)
+            extension = line[first_quote + 1:second_quote]
+
+            # Resolve in the context of kernel_prebuilt_repo.bzl in case of using Kleaf in subworkspace.
+            extension = Label(extension)
+            line = '{prefix}"{extension}"{suffix}'.format(
+                prefix = line[:first_quote],
+                extension = extension,
+                suffix = line[second_quote + 1:],
+            )
+        lines.append(line)
+    repository_ctx.file(build_file, "\n".join(lines))
 
 _download_artifact_repo = repository_rule(
     implementation = _download_artifact_repo_impl,
@@ -210,6 +257,7 @@ _download_artifact_repo = repository_rule(
             """,
             default = _ARTIFACT_URL_FMT,
         ),
+        "extract": attr.bool(doc = "Whether to extract"),
     },
     environ = [
         _BUILD_NUM_ENV_VAR,
@@ -243,6 +291,7 @@ def kernel_prebuilt_repo(
                 target = target,
                 remote_filename_fmt = remote_filename_fmt,
                 allow_fail = not config["mandatory"],
+                extract = config["extract"],
                 artifact_url_fmt = artifact_url_fmt,
             )
 
@@ -266,7 +315,9 @@ def _kernel_prebuilt_repo_impl(repository_ctx):
 def _kernel_prebuilt_repo_top_build_file(repository_ctx):
     target = repository_ctx.attr.target
 
-    content = """\
+    files = {"BUILD.bazel": ""}
+
+    files["BUILD.bazel"] += """\
 # Generated file. DO NOT EDIT.
 
 \"""Prebuilts for {target}.
@@ -284,11 +335,38 @@ load("{gki_artifacts_bzl}", "gki_artifacts_prebuilts")
     for outs in repository_ctx.attr.download_configs.values():
         local_filenames += outs
 
+    for local_filename in local_filenames:
+        # FIXME check extract = ?
+        if not local_filename.endswith("_ddk_headers_archive.tar.gz"):
+            continue
+        files["BUILD.bazel"] += """\
+load("@{repo_name}_{sanitized_local_filename}//:metadata.bzl", {sanitized_local_filename}_TARGETS = "TARGETS")
+""".format(
+            repo_name = repository_ctx.attr.name,
+            sanitized_local_filename = _sanitize_repo_name(local_filename),
+        )
+
     # Aliases
     for local_filename in local_filenames:
-        actual = "@" + repository_ctx.attr.name + "_" + _sanitize_repo_name(local_filename) + "//file"
+        # FIXME check extract = ?
+        sanitized_local_filename = _sanitize_repo_name(local_filename)
+        if local_filename.endswith("_ddk_headers_archive.tar.gz"):
+            # FIXME put this in common/ package
 
-        content += """\
+            files["BUILD.bazel"] += """\
+
+[alias(
+    name = target.name,
+    actual = target,
+    visibility=["//visibility:public"],
+) for target in {sanitized_local_filename}_TARGETS]
+""".format(
+                sanitized_local_filename = sanitized_local_filename,
+            )
+
+        actual = "@" + repository_ctx.attr.name + "_" + sanitized_local_filename + "//file"
+
+        files["BUILD.bazel"] += """\
 
 alias(
     name="{local_filename}",
@@ -299,7 +377,7 @@ alias(
             local_filename = local_filename,
             actual = actual,
         )
-    content += get_prebuilt_build_file_fragment(
+    files["BUILD.bazel"] += get_prebuilt_build_file_fragment(
         target = target,
         download_configs = repository_ctx.attr.download_configs,
         gki_prebuilts_outs = repository_ctx.attr.gki_prebuilts_outs,
@@ -309,7 +387,9 @@ alias(
         module_outs_file_suffix = MODULE_OUTS_FILE_SUFFIX,
         toolchain_version_filename = TOOLCHAIN_VERSION_FILENAME,
     )
-    repository_ctx.file("BUILD.bazel", content, executable = False)
+
+    for file, content in files.items():
+        repository_ctx.file(file, content, executable = False)
 
 _kernel_prebuilt_repo = repository_rule(
     implementation = _kernel_prebuilt_repo_impl,
