@@ -153,30 +153,76 @@ def _download_from_build_number(repository_ctx, build_number):
         filename = remote_filename,
     )]
     download_path = repository_ctx.path("file/{}".format(local_filename))
+
     download_info = repository_ctx.download(
         url = urls,
         output = download_path,
         allow_fail = repository_ctx.attr.allow_fail,
     )
 
-    # Define the filegroup to contain the file.
-    # If failing and it is allowed, set filegroup to empty
-    if not download_info.success and repository_ctx.attr.allow_fail:
-        srcs = ""
-    else:
-        srcs = '"{}"'.format(local_filename)
+    if repository_ctx.attr.extract:
+        # Extract to root of repository
+        if download_info.success:
+            repository_ctx.extract(
+                archive = download_path,
+                output = repository_ctx.path(""),
+            )
 
-    build_file = """filegroup(
+            # Complete the build file fragment
+            _mutate_build_files_for_archive(repository_ctx)
+        if not download_info.success and repository_ctx.allow_fail:
+            repository_ctx.file("BUILD.bazel", "# WARNING: Unable to download archive")
+            repository_ctx.file("metadata.bzl", "TARGETS = []")
+    else: # Not extracting, treat as regular file
+        # Define the filegroup to contain the file.
+        # If failing and it is allowed, set filegroup to empty
+        if not download_info.success and repository_ctx.attr.allow_fail:
+            srcs = ""
+        else:
+            srcs = '"{}"'.format(local_filename)
+
+        build_file = """\
+filegroup(
     name="file",
     srcs=[{srcs}],
     visibility=["@{parent_repo}//:__pkg__"],
 )
-""".format(
-        srcs = srcs,
-        local_filename = local_filename,
-        parent_repo = repository_ctx.attr.parent_repo,
-    )
-    repository_ctx.file("file/BUILD.bazel", build_file, executable = False)
+    """.format(
+            srcs = srcs,
+            local_filename = local_filename,
+            parent_repo = repository_ctx.attr.parent_repo,
+        )
+        repository_ctx.file("file/BUILD.bazel", build_file, executable = False)
+
+def _mutate_build_files_for_archive(repository_ctx):
+    # only go two levels deep
+    for dirent in repository_ctx.path("").readdir():
+        build_file = repository_ctx.path("BUILD.bazel")
+        if build_file.exists:
+            _mutate_build_file_for_archive(repository_ctx, build_file)
+        build_file = dirent.get_child("BUILD.bazel")
+        if build_file.exists:
+            _mutate_build_file_for_archive(repository_ctx, build_file)
+
+def _mutate_build_file_for_archive(repository_ctx, build_file):
+    build_file_content = repository_ctx.read(build_file)
+
+    # Assume that load() are on the same line
+    lines = []
+    for line in build_file_content.split("\n"):
+        if line.startswith("load("):
+            first_quote = line.find('"')
+            second_quote = line.find('"', first_quote + 1)
+            extension = line[first_quote + 1:second_quote]
+            # Resolve in the context of kernel_prebuilt_repo.bzl in case of using Kleaf in subworkspace.
+            extension = Label(extension)
+            line = '{prefix}"{extension}"{suffix}'.format(
+                prefix = line[:first_quote],
+                extension = extension,
+                suffix = line[second_quote + 1:]
+            )
+        lines.append(line)
+    repository_ctx.file(build_file, "\n".join(lines))
 
 _download_artifact_repo = repository_rule(
     implementation = _download_artifact_repo_impl,
@@ -210,6 +256,7 @@ _download_artifact_repo = repository_rule(
             """,
             default = _ARTIFACT_URL_FMT,
         ),
+        "extract": attr.bool(doc = "Whether to extract"),
     },
     environ = [
         _BUILD_NUM_ENV_VAR,
@@ -243,6 +290,7 @@ def kernel_prebuilt_repo(
                 target = target,
                 remote_filename_fmt = remote_filename_fmt,
                 allow_fail = not config["mandatory"],
+                extract = config["extract"],
                 artifact_url_fmt = artifact_url_fmt,
             )
 
