@@ -50,6 +50,7 @@ def gen_ddk_headers_archive_build_file(
             hdrs = {hdrs_repr},
             linux_includes = {linux_includes_repr},
             includes = {includes_repr},
+            visibility = ["//visibility:public"],
         )
     """).format(
         name=name,
