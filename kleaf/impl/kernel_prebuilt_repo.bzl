@@ -244,10 +244,7 @@ def kernel_prebuilt_repo(
     mapping = CI_TARGET_MAPPING[name]
     target = mapping["target"]
 
-    files = {
-        out: _FileMetadata(remote_filename_fmt = out, mandatory = True)
-        for out in mapping["outs"]
-    }
+    files = {}
     files[mapping["protected_modules"]] = _FileMetadata(
         remote_filename_fmt = mapping["protected_modules"],
         mandatory = False,
@@ -284,7 +281,6 @@ def kernel_prebuilt_repo(
         aliases = aliases,
         arch = mapping["arch"],
         target = mapping["target"],
-        outs = mapping["outs"],
         protected_modules = mapping["protected_modules"],
         gki_prebuilts_outs = mapping["gki_prebuilts_outs"],
         download_configs = {
@@ -331,7 +327,6 @@ alias(
         )
     content += get_prebuilt_build_file_fragment(
         target = target,
-        main_target_outs = repository_ctx.attr.outs,
         download_configs = repository_ctx.attr.download_configs,
         gki_prebuilts_outs = repository_ctx.attr.gki_prebuilts_outs,
         arch = repository_ctx.attr.arch,
@@ -352,7 +347,6 @@ _kernel_prebuilt_repo = repository_rule(
             """),
         "arch": attr.string(doc = "Architecture associated with this mapping."),
         "target": attr.string(doc = "Bazel target name in common_kernels.bzl"),
-        "outs": attr.string_list(doc = "list of outs associated with that target name"),
         "protected_modules": attr.string(),
         "gki_prebuilts_outs": attr.string_list(),
         "download_configs": attr.string_list_dict(doc = """
