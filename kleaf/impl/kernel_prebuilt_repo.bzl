@@ -245,10 +245,6 @@ def kernel_prebuilt_repo(
     target = mapping["target"]
 
     files = {}
-    files[mapping["protected_modules"]] = _FileMetadata(
-        remote_filename_fmt = mapping["protected_modules"],
-        mandatory = False,
-    )
     for config in mapping["download_configs"]:
         mandatory = config["mandatory"]
         files |= {
@@ -281,7 +277,6 @@ def kernel_prebuilt_repo(
         aliases = aliases,
         arch = mapping["arch"],
         target = mapping["target"],
-        protected_modules = mapping["protected_modules"],
         gki_prebuilts_outs = mapping["gki_prebuilts_outs"],
         download_configs = {
             config["target_suffix"]: list(config["outs_mapping"].keys())
@@ -330,7 +325,6 @@ alias(
         download_configs = repository_ctx.attr.download_configs,
         gki_prebuilts_outs = repository_ctx.attr.gki_prebuilts_outs,
         arch = repository_ctx.attr.arch,
-        protected_modules = repository_ctx.attr.protected_modules,
         # TODO(b/298416462): This should be determined by downloaded artifacts.
         collect_unstripped_modules = True,
         module_outs_file_suffix = MODULE_OUTS_FILE_SUFFIX,
@@ -347,7 +341,6 @@ _kernel_prebuilt_repo = repository_rule(
             """),
         "arch": attr.string(doc = "Architecture associated with this mapping."),
         "target": attr.string(doc = "Bazel target name in common_kernels.bzl"),
-        "protected_modules": attr.string(),
         "gki_prebuilts_outs": attr.string_list(),
         "download_configs": attr.string_list_dict(doc = """
             key: `target_suffix`. value: `outs` & `outs_mapping`.
