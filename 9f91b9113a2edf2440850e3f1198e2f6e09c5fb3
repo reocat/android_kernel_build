@@ -20,6 +20,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9b3c58d_dffd1fe8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-09-28T04:42:41Z",
+      "side": 1,
+      "message": "@howardsoc@google.com Why on this branch? Why not in the `main` first if this is going to be required for now on for future kernels?\n\n@elsk@google.com Should we cherry pick this one https://r.android.com/2722036 on the 2023 branch? It will be a no-op if we don\u0027t apply https://r.android.com/2731981 which we can\u0027t on this branch as things may be dependent on `system_dlkm.img` named file from CI as prebuilts.",
+      "revId": "9f91b9113a2edf2440850e3f1198e2f6e09c5fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "722c75e2_97adf31a",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-09-28T04:42:41Z",
+      "side": 1,
+      "message": "Probably should control by another environment variable whether to flatten or not.\n\nThis will also need the footer?\n\n`main` branch has the latest version. Probably should cherry pick https://r.android.com/2722036 first and develop this on top if this is required to develop here. By default https://r.android.com/2722036 is a NO OP and needs https://r.android.com/2731981 to enable building both `system_dlkm.ext4.img` and `system_dlkm.erofs.img` - so we can skip enablement for this branch.",
+      "revId": "9f91b9113a2edf2440850e3f1198e2f6e09c5fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "71f33f99_813b3f36",
         "filename": "kleaf/impl/image/system_dlkm_image.bzl",
         "patchSetId": 2
@@ -31,6 +65,24 @@
       "writtenOn": "2023-09-28T03:40:44Z",
       "side": 1,
       "message": "nit: please add `system_dlkm_android.img` and also explain what the filesystem format is (ext4 or erofs). It is the same as system_dlkm_fs_type, right?",
+      "revId": "9f91b9113a2edf2440850e3f1198e2f6e09c5fb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0354d604_5dac10d2",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-09-28T04:42:41Z",
+      "side": 1,
+      "message": "I would name this as `system_dlkm.flatten.\u003cFS\u003e.img` as `android` doesn\u0027t say much on how this image is different than `system_dlkm.img` or `system_dlkm.\u003cFS\u003e.img`.\n\nOn main we now have `system_dlkm.\u003cFS\u003e.img` and build can generate the images for both `erofs` and `ext4`. I think, this should be implemented the same with support for both fs type in the main first.",
+      "parentUuid": "71f33f99_813b3f36",
       "revId": "9f91b9113a2edf2440850e3f1198e2f6e09c5fb3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
