@@ -156,11 +156,17 @@ def _kernel_filegroup_impl(ctx):
     # FIXME clean up; merge with modules_prepare.bzl / kernel_build.bzl
     modules_prepare_out_dir_tar_gz = utils.find_file("modules_prepare_outdir.tar.gz", all_deps, what = ctx.label)
     internal_outs_archive = utils.find_files(all_deps, "_internal_outs.tar.gz")[0]
+    ddk_headers_archive = utils.find_files(all_deps, "_ddk_headers_archive.tar.gz")[0]
     ddk_mod_min_setup = """
+        {check_sandbox_cmd}
+        tar xf {ddk_headers_archive}
+
         [ -z ${{OUT_DIR}} ] && echo "FATAL: modules_prepare setup run without OUT_DIR set!" >&2 && exit 1
         mkdir -p ${{OUT_DIR}}
         tar xf {modules_prepare_out_dir_tar_gz} -C ${{OUT_DIR}}
     """.format(
+        check_sandbox_cmd = utils.get_check_sandbox_cmd(),
+        ddk_headers_archive = ddk_headers_archive.path,
         modules_prepare_out_dir_tar_gz = modules_prepare_out_dir_tar_gz.path,
     )
     ext_mod_env_and_outputs_info_setup_restore_outputs = """
@@ -191,6 +197,7 @@ def _kernel_filegroup_impl(ctx):
             modules_prepare_out_dir_tar_gz,
             internal_outs_archive,
             ddk_config_env_setup_script,
+            ddk_headers_archive,
         ], transitive = [
             ddk_config_env.inputs,
         ]),
