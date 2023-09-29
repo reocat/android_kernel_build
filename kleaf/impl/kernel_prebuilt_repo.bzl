@@ -154,11 +154,21 @@ def _download_from_build_number(repository_ctx, build_number):
     )]
     download_path = repository_ctx.path("file/{}".format(local_filename))
 
-    download_info = repository_ctx.download(
-        url = urls,
-        output = download_path,
-        allow_fail = repository_ctx.attr.allow_fail,
-    )
+    if repository_ctx.attr.extract:
+        # FIXME short cut for local testing
+        repository_ctx.symlink(
+            repository_ctx.workspace_root.get_child("bazel-bin/common/kernel_aarch64_ddk_headers_archive/kernel_aarch64_ddk_headers_archive.tar.gz"),
+            download_path,
+        )
+        download_info = struct(
+            success = True,
+        )
+    else:
+        download_info = repository_ctx.download(
+            url = urls,
+            output = download_path,
+            allow_fail = repository_ctx.attr.allow_fail,
+        )
 
     if repository_ctx.attr.extract:
         # Extract to root of repository
