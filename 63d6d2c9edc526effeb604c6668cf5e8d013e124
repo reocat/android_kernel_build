@@ -16,6 +16,23 @@
       "message": "PR for test",
       "revId": "63d6d2c9edc526effeb604c6668cf5e8d013e124",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa93879_7dab80d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-09-29T21:36:47Z",
+      "side": 1,
+      "message": "@howardsoc@google.com\n\nhttps://r.android.com/2768532 \u0026 https://r.android.com/c/2769101 should replace this and will keep both main and 2023 branch in sync with the newer multi fs support. PTAL.\n\nBy default on the `anroid14-*` branches it will generate `system_dlkm.flatten.ext4.img` as `system_dlkm.img` on those branches are only ext4.",
+      "revId": "63d6d2c9edc526effeb604c6668cf5e8d013e124",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
