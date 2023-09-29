@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29511bf0_ad205720",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-09-29T08:23:06Z",
+      "side": 1,
+      "message": "Idea is to replace this: https://r.android.com/2764825\n\nand later cherry pick this on top of https://r.android.com/2722036 for 2023 branch to generate `system_dlkm.flatten.ext4.img` for `android14-*` branches.",
+      "revId": "43c950f70270747950dba55e4f2043351781c976",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
