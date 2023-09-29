@@ -112,8 +112,13 @@ def _system_dlkm_image_impl(ctx):
             system_dlkm_img = ctx.actions.declare_file("{}/system_dlkm.{}.img".format(ctx.label.name, fs_type))
             system_dlkm_img_name = "system_dlkm.{}.img".format(fs_type)
 
+        system_dlkm_flatten_img = ctx.actions.declare_file("{}/system_dlkm.flatten.{}.img".format(ctx.label.name, fs_type))
+        system_dlkm_flatten_img_name = "system_dlkm.flatten.{}.img".format(fs_type)
+
         outputs.append(system_dlkm_img)
+        outputs.append(system_dlkm_flatten_img)
         outputs_to_compare.append(system_dlkm_img_name)
+        outputs_to_compare.append(system_dlkm_flatten_img_name)
 
         command += """
                    {extract_staging_archive_cmd}
@@ -129,6 +134,7 @@ def _system_dlkm_image_impl(ctx):
                    )
                  # Move output files into place
                    mv "${{DIST_DIR}}/{system_dlkm_img_name}" {system_dlkm_img}
+                   mv "${{DIST_DIR}}/{system_dlkm_flatten_img_name}" {system_dlkm_flatten_img}
                    mv "${{DIST_DIR}}/system_dlkm.modules.load" {system_dlkm_modules_load}
                    mv "${{DIST_DIR}}/system_dlkm_staging_archive.tar.gz" {system_dlkm_staging_archive}
                    if [ -f "${{DIST_DIR}}/system_dlkm.modules.blocklist" ]; then
@@ -145,6 +151,8 @@ def _system_dlkm_image_impl(ctx):
             modules_staging_dir = modules_staging_dir,
             system_dlkm_fs_type = fs_type,
             system_dlkm_staging_dir = system_dlkm_staging_dir,
+            system_dlkm_flatten_img = system_dlkm_flatten_img.path,
+            system_dlkm_flatten_img_name = system_dlkm_flatten_img_name,
             system_dlkm_img = system_dlkm_img.path,
             system_dlkm_img_name = system_dlkm_img_name,
             system_dlkm_modules_load = system_dlkm_modules_load.path,
@@ -192,7 +200,8 @@ system_dlkm_image = rule(
 
 When included in a `copy_to_dist_dir` rule, this rule copies the following to `DIST_DIR`:
 - `system_dlkm.img` if system_dlkm_fs_type is specified
-- `system_dlkm.[erfos|ext4].img` if system_dlkm_fs_types is specified
+- `system_dlkm.[erofs|ext4].img` if system_dlkm_fs_types is specified
+- `system_dlkm.flatten.[erofs|ext4].img`
 - `system_dlkm.modules.load`
 
 """,
