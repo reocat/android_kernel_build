@@ -254,6 +254,15 @@ function build_system_dlkm() {
 
   build_image "${SYSTEM_DLKM_STAGING_DIR}" "${system_dlkm_props_file}" \
     "${DIST_DIR}/${SYSTEM_DLKM_IMAGE_NAME}" /dev/null
+  local generated_images=(${SYSTEM_DLKM_IMAGE_NAME})
+
+  # Build flatten image without the `uname -r` in the path and no depmod artifacts
+  local system_dlkm_flatten_image_name="system_dlkm.flatten.${SYSTEM_DLKM_FS_TYPE}.img"
+  mkdir -p ${SYSTEM_DLKM_STAGING_DIR}/flatten/lib/modules
+  cp $(find ${SYSTEM_DLKM_STAGING_DIR} -name "*.ko") ${SYSTEM_DLKM_STAGING_DIR}/flatten/lib/modules
+  build_image "${SYSTEM_DLKM_STAGING_DIR}/flatten" "${system_dlkm_props_file}" \
+  "${DIST_DIR}/${system_dlkm_flatten_image_name}" /dev/null
+  generated_images+=(${system_dlkm_flatten_image_name})
 
   if [ -z "${SYSTEM_DLKM_PROPS}" ]; then
     rm ${system_dlkm_props_file}
@@ -261,10 +270,13 @@ function build_system_dlkm() {
   fi
 
   # No need to sign the image as modules are signed
-  avbtool add_hashtree_footer \
-    --partition_name system_dlkm \
-    --hash_algorithm sha256 \
-    --image "${DIST_DIR}/${SYSTEM_DLKM_IMAGE_NAME}"
+  for image in "${generated_images[@]}"
+  do
+    avbtool add_hashtree_footer \
+      --partition_name system_dlkm \
+      --hash_algorithm sha256 \
+      --image "${DIST_DIR}/${image}"
+  done
 
   # Archive system_dlkm_staging_dir
   tar -czf "${DIST_DIR}/system_dlkm_staging_archive.tar.gz" -C "${SYSTEM_DLKM_STAGING_DIR}" .
