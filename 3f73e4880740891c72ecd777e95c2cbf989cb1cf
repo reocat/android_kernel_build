@@ -22,6 +22,30 @@
       },
       "revId": "3f73e4880740891c72ecd777e95c2cbf989cb1cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cba71f37_bb1e4f15",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-29T22:21:27Z",
+      "side": 1,
+      "message": "Never mind, the script is written as-is into setup.sh so this is okay.",
+      "parentUuid": "13373840_44c71631",
+      "range": {
+        "startLine": 354,
+        "startChar": 0,
+        "endLine": 360,
+        "endChar": 10
+      },
+      "revId": "3f73e4880740891c72ecd777e95c2cbf989cb1cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
