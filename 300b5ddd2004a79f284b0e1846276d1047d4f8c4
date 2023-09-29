@@ -70,6 +70,24 @@
       "parentUuid": "dbb67ae0_9cd134c7",
       "revId": "300b5ddd2004a79f284b0e1846276d1047d4f8c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b72d78b_4d7cb919",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-09-29T19:33:39Z",
+      "side": 1,
+      "message": "This performance regression is fixed by moving into a separate action.",
+      "parentUuid": "ecff3da2_718a1e75",
+      "revId": "300b5ddd2004a79f284b0e1846276d1047d4f8c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
