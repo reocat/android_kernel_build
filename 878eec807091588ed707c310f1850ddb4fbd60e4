@@ -56,6 +56,63 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_prebuilt_repo.bzl` to format the file, or apply the suggested fix.",
       "revId": "878eec807091588ed707c310f1850ddb4fbd60e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000054931704",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2766268?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "2bb45046_3b1297df",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_prebuilt_repo.bzl",
+              "range": {
+                "startLine": 176,
+                "startChar": 0,
+                "endLine": 177,
+                "endChar": 0
+              },
+              "replacement": "    else:  # Not extracting, treat as regular file\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_prebuilt_repo.bzl",
+              "range": {
+                "startLine": 217,
+                "startChar": 0,
+                "endLine": 217,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_prebuilt_repo.bzl",
+              "range": {
+                "startLine": 222,
+                "startChar": 0,
+                "endLine": 223,
+                "endChar": 0
+              },
+              "replacement": "                suffix \u003d line[second_quote + 1:],\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "2f6675b6_8ab84cf4",
+        "filename": "kleaf/impl/kernel_prebuilt_repo.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-09-29T00:33:06Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_prebuilt_repo.bzl` to format the file, or apply the suggested fix.",
+      "revId": "878eec807091588ed707c310f1850ddb4fbd60e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
