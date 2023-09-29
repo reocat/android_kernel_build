@@ -1,0 +1,88 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000054938175",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2766268?revision\u003d6",
+      "fixSuggestions": [
+        {
+          "fixId": "5f0f70f5_ecd232a8",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/ddk/ddk_headers_archive.bzl",
+              "range": {
+                "startLine": 175,
+                "startChar": 0,
+                "endLine": 175,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/impl/ddk/ddk_headers_archive.bzl",
+              "range": {
+                "startLine": 221,
+                "startChar": 0,
+                "endLine": 222,
+                "endChar": 0
+              },
+              "replacement": "        metadata \u003d metadata.path,\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "05c2754b_0527677a",
+        "filename": "kleaf/impl/ddk/ddk_headers_archive.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-09-29T02:53:21Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/ddk/ddk_headers_archive.bzl` to format the file, or apply the suggested fix.",
+      "revId": "ce08a1304d3677a4f021d59001769f9661ad7400",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000054938175",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2766268?revision\u003d6",
+      "fixSuggestions": [
+        {
+          "fixId": "ad4381f1_e91578c4",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_prebuilt_utils.bzl",
+              "range": {
+                "startLine": 276,
+                "startChar": 0,
+                "endLine": 278,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "6204a4fb_b2d6b349",
+        "filename": "kleaf/impl/kernel_prebuilt_utils.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-09-29T02:53:21Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_prebuilt_utils.bzl` to format the file, or apply the suggested fix.",
+      "revId": "ce08a1304d3677a4f021d59001769f9661ad7400",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
