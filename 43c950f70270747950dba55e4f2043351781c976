@@ -102,6 +102,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6c2e494_9ae79fd1",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-03T19:34:10Z",
+      "side": 1,
+      "message": "I think this is the code for generating system_dlkm for GKI.\n\nFor vendors\u0027 `kernel_images` rule with `build_system_dlkm\u003dTrue`, I think `kernel_images` should have an attribute to control whether flatten images are generated or not (and default to False).\n\n@ramjiyani@google.com could you please add a boolean to kernel_images to control this? A partner may want to just generate one system_dlkm image without the flattened one.",
+      "parentUuid": "598adac4_919a93f0",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 0
+      },
+      "revId": "43c950f70270747950dba55e4f2043351781c976",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b5ef7b7_9a90cdad",
         "filename": "kleaf/impl/image/system_dlkm_image.bzl",
         "patchSetId": 1
