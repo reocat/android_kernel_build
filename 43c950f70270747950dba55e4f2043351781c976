@@ -79,6 +79,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "598adac4_919a93f0",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-10-03T18:41:51Z",
+      "side": 1,
+      "message": "Do we want to enable this by default? Wouldn\u0027t it be better to allow the vendor to pick the type and then just generate just one system_dlkm.img?",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 0
+      },
+      "revId": "43c950f70270747950dba55e4f2043351781c976",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b5ef7b7_9a90cdad",
         "filename": "kleaf/impl/image/system_dlkm_image.bzl",
         "patchSetId": 1
