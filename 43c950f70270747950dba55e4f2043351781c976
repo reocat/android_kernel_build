@@ -52,6 +52,52 @@
       "parentUuid": "5454f85f_a612e484",
       "revId": "43c950f70270747950dba55e4f2043351781c976",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce5258e1_de155fb6",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-10-03T18:40:03Z",
+      "side": 1,
+      "message": "How do you load the modules without a `modules.load` file? Do you expect vendors to manually load the modules one-by-one? \n\nI\u0027m curious what the reasoning behind creating this image without a modules.load file is?",
+      "range": {
+        "startLine": 259,
+        "startChar": 63,
+        "endLine": 259,
+        "endChar": 82
+      },
+      "revId": "43c950f70270747950dba55e4f2043351781c976",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b5ef7b7_9a90cdad",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-10-03T18:40:03Z",
+      "side": 1,
+      "message": "erofs?",
+      "range": {
+        "startLine": 204,
+        "startChar": 24,
+        "endLine": 204,
+        "endChar": 29
+      },
+      "revId": "43c950f70270747950dba55e4f2043351781c976",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
