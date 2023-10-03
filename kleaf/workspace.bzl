@@ -30,7 +30,11 @@ load("//build/kernel/kleaf/impl:kleaf_host_tools_repo.bzl", "kleaf_host_tools_re
 load("//prebuilts/clang/host/linux-x86/kleaf:register.bzl", "register_clang_toolchains")
 
 # buildifier: disable=unnamed-macro
-def define_kleaf_workspace(common_kernel_package = None, include_remote_java_tools_repo = False, artifact_url_fmt = None):
+def define_kleaf_workspace(
+        common_kernel_package = None,
+        include_remote_java_tools_repo = False,
+        artifact_url_fmt = None,
+        kleaf_repo_name = None):
     """Common macro for defining repositories in a Kleaf workspace.
 
     **This macro must only be called from `WORKSPACE` or `WORKSPACE.bazel`
@@ -56,11 +60,17 @@ def define_kleaf_workspace(common_kernel_package = None, include_remote_java_too
           * {build_number}
           * {target}
           * {filename}
+      kleaf_repo_name: Name of the Kleaf repository. Default is "@".
     """
+    if kleaf_repo_name == None:
+        kleaf_repo_name = "@"
+    if not kleaf_repo_name.startswith("@"):
+        fail("Invalid kleaf_repo_name. It must start with @")
+
     if common_kernel_package == None:
-        common_kernel_package = "@//common"
+        common_kernel_package = "{}//common".format(kleaf_repo_name)
     if not common_kernel_package.startswith("@") and not common_kernel_package.startswith("//"):
-        common_kernel_package = "@//" + common_kernel_package
+        common_kernel_package = kleaf_repo_name + "//" + common_kernel_package
 
         # buildifier: disable=print
         print("""
@@ -162,8 +172,8 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
     )
 
     native.register_toolchains(
-        "//prebuilts/build-tools:py_toolchain",
-        "//build/kernel:hermetic_tools_toolchain",
+        "{}//prebuilts/build-tools:py_toolchain".format(kleaf_repo_name),
+        "{}//build/kernel:hermetic_tools_toolchain".format(kleaf_repo_name),
     )
 
     register_clang_toolchains()
