@@ -19,6 +19,7 @@ import pathlib
 import re
 import shlex
 import shutil
+import subprocess
 import sys
 import textwrap
 from typing import Tuple, Optional
@@ -84,7 +85,7 @@ class BazelWrapper(object):
         See https://bazel.build/reference/command-line-reference
 
         Args:
-            root_dir: root of repository
+            root_dir: root of Kleaf repository.
             bazel_args: The list of arguments the user provides through command line
             env: existing environment
         """
@@ -93,6 +94,11 @@ class BazelWrapper(object):
         self.env = env.copy()
 
         self.bazel_path = f"{self.root_dir}/{_BAZEL_REL_PATH}"
+
+        # Root of the top level workspace (named "@"). This is not necessarily
+        # equal to root_dir, especially when Kleaf tooling is in a subworkspace.
+        self.workspace_dir = subprocess.check_output([self.bazel_path, "info", "workspace"],
+                                                     text=True)
 
         command_idx = None
         for idx, arg in enumerate(bazel_args):
@@ -127,7 +133,7 @@ class BazelWrapper(object):
             "--output_root",
             metavar="PATH",
             type=_require_absolute_path,
-            default=_require_absolute_path(f"{self.root_dir}/out"),
+            default=_require_absolute_path(f"{self.workspace_dir}/out"),
             help="Absolute path to output directory",
         )
         group.add_argument(
