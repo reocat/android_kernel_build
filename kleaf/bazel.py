@@ -318,45 +318,46 @@ class BazelWrapper(object):
         self.gen_bazelrc_dir = self.absolute_out_dir / "bazel/bazelrc"
         os.makedirs(self.gen_bazelrc_dir, exist_ok=True)
 
-        self.transformed_startup_options += [
+        self.transformed_startup_options += self._transform_bazelrc_files([
             # Add support for various configs
             # Do not sort, the order here might matter.
-            f"--bazelrc={self.kleaf_repo_dir / 'build/kernel/kleaf/bazelrc/ants.bazelrc'}",
-            f"--bazelrc={self.kleaf_repo_dir / 'build/kernel/kleaf/bazelrc/android_ci.bazelrc'}",
-            f"--bazelrc={self.kleaf_repo_dir / 'build/kernel/kleaf/bazelrc/local.bazelrc'}",
-            f"--bazelrc={self.kleaf_repo_dir / 'build/kernel/kleaf/bazelrc/fast.bazelrc'}",
-            f"--bazelrc={self.kleaf_repo_dir / 'build/kernel/kleaf/bazelrc/rbe.bazelrc'}",
-        ]
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/ants.bazelrc",
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/android_ci.bazelrc",
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/local.bazelrc",
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/fast.bazelrc",
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/rbe.bazelrc",
+        ])
 
-        self.transformed_startup_options.append(
-            f"--bazelrc={self.kleaf_repo_dir / 'build/kernel/kleaf/bazelrc/stamp.bazelrc'}",
-        )
+        self.transformed_startup_options += self._transform_bazelrc_files([
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/stamp.bazelrc",
+        ])
 
-        self.transformed_startup_options += [
-            f"--bazelrc={self.kleaf_repo_dir / 'build/kernel/kleaf/bazelrc/release.bazelrc'}",
-            f"--bazelrc={self.kleaf_repo_dir / _FLAGS_BAZEL_RC}",
-        ]
+        self.transformed_startup_options += self._transform_bazelrc_files([
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/release.bazelrc",
+            self.kleaf_repo_dir / _FLAGS_BAZEL_RC,
+        ])
 
         cache_dir_bazelrc = self.gen_bazelrc_dir / "cache_dir.bazelrc"
-        os.makedirs(os.path.dirname(cache_dir_bazelrc), exist_ok=True)
         with open(cache_dir_bazelrc, "w") as f:
+            # The label //build/... will be re-written by _transform_bazelrc_files.
             f.write(textwrap.dedent(f"""\
                 build --//build/kernel/kleaf:cache_dir={shlex.quote(str(self.known_args.cache_dir))}
             """))
 
         if not self.known_startup_options.help:
-            self.transformed_startup_options.append(
-                f"--bazelrc={cache_dir_bazelrc}")
+            self.transformed_startup_options += self._transform_bazelrc_files([
+                cache_dir_bazelrc,
+            ])
 
-        self.transformed_startup_options += [
+        self.transformed_startup_options += self._transform_bazelrc_files([
             # Toolchains and platforms
-            f"--bazelrc={self.kleaf_repo_dir / 'build/kernel/kleaf/bazelrc/hermetic_cc.bazelrc'}",
-            f"--bazelrc={self.kleaf_repo_dir / 'build/kernel/kleaf/bazelrc/platforms.bazelrc'}",
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/hermetic_cc.bazelrc",
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/platforms.bazelrc",
             # Control Network access - with no internet by default.
-            f"--bazelrc={self.kleaf_repo_dir / 'build/kernel/kleaf/bazelrc/network.bazelrc'}",
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/network.bazelrc",
 
-            f"--bazelrc={self.kleaf_repo_dir / 'build/kernel/kleaf/common.bazelrc'}",
-        ]
+            self.kleaf_repo_dir / "build/kernel/kleaf/common.bazelrc",
+        ])
 
     def _build_final_args(self) -> list[str]:
         """Builds the final arguments for the subprocess."""
@@ -380,6 +381,42 @@ class BazelWrapper(object):
             os.makedirs(self.known_args.cache_dir, exist_ok=True)
 
         return final_args
+
+    def _transform_bazelrc_files(self, bazelrc_files: list[pathlib.Path]) -> list[str]:
+        """Given a list of bazelrc files, return startup options."""
+        startup_options = []
+        for old_path in bazelrc_files:
+            new_path = self._rewrite_bazelrc_file(old_path)
+            startup_options.append(f"--bazelrc={new_path}")
+        return startup_options
+
+    def _rewrite_bazelrc_file(self, old_path: pathlib.Path) -> pathlib.Path:
+        """Given a bazelrc file, rewrite and return the path."""
+        if self._kleaf_repository_is_top_workspace():
+            # common case; Kleaf tooling is in main Bazel workspace
+            return old_path
+        with open(old_path) as old_file:
+            content = old_file.read()
+
+        # Rewrite //build to @<kleaf_repo_name>//build
+        content = content.replace(
+            "//build", f"{self._kleaf_repo_name()}//build")
+
+        new_path = self.gen_bazelrc_dir / old_path.name
+        os.makedirs(new_path.parent, exist_ok=True)
+        with open(new_path, "w") as new_file:
+            new_file.write(content)
+        return new_path
+
+    def _kleaf_repository_is_top_workspace(self):
+        """Returns true if the Kleaf repository is the top-level workspace @."""
+        return self.workspace_dir == self.kleaf_repo_dir
+
+    def _kleaf_repo_name(self):
+        """Returns the name to the Kleaf repository."""
+        if self._kleaf_repository_is_top_workspace():
+            return "@"
+        return f"@{self.kleaf_repo_dir.name}"
 
     def _print_kleaf_help(self):
         parser = argparse.ArgumentParser(
