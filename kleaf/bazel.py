@@ -26,7 +26,6 @@ from typing import Tuple, Optional
 
 _BAZEL_REL_PATH = "prebuilts/bazel/linux-x86_64/bazel"
 _BAZEL_JDK_REL_PATH = "prebuilts/jdk/jdk11/linux-x86"
-_BAZEL_RC_NAME = "build/kernel/kleaf/common.bazelrc"
 _BAZEL_RC_DIR = "build/kernel/kleaf/bazelrc"
 _FLAGS_BAZEL_RC = "build/kernel/kleaf/bazelrc/flags.bazelrc"
 
@@ -308,6 +307,19 @@ class BazelWrapper(object):
             f"--server_javabase={bazel_jdk_path}"
         )
 
+        self.transformed_startup_options += [
+            # Add support for various configs
+            # Do not sort, the order here might matter.
+            f"--bazelrc={self.root_dir}/build/kernel/kleaf/bazelrc/ants.bazelrc",
+            f"--bazelrc={self.root_dir}/build/kernel/kleaf/bazelrc/android_ci.bazelrc",
+            f"--bazelrc={self.root_dir}/build/kernel/kleaf/bazelrc/local.bazelrc",
+            f"--bazelrc={self.root_dir}/build/kernel/kleaf/bazelrc/fast.bazelrc",
+            f"--bazelrc={self.root_dir}/build/kernel/kleaf/bazelrc/rbe.bazelrc",
+            f"--bazelrc={self.root_dir}/build/kernel/kleaf/bazelrc/stamp.bazelrc",
+            f"--bazelrc={self.root_dir}/build/kernel/kleaf/bazelrc/release.bazelrc",
+            f"--bazelrc={self.root_dir}/{_FLAGS_BAZEL_RC}",
+        ]
+
         cache_dir_bazel_rc = f"{self.absolute_out_dir}/bazel/cache_dir.bazelrc"
         os.makedirs(os.path.dirname(cache_dir_bazel_rc), exist_ok=True)
         with open(cache_dir_bazel_rc, "w") as f:
@@ -319,9 +331,15 @@ class BazelWrapper(object):
             self.transformed_startup_options.append(
                 f"--bazelrc={cache_dir_bazel_rc}")
 
-        self.transformed_startup_options.append(
-            f"--bazelrc={self.root_dir}/{_BAZEL_RC_NAME}"
-        )
+        self.transformed_startup_options += [
+            # Toolchains and platforms
+            f"--bazelrc={self.root_dir}/build/kernel/kleaf/bazelrc/hermetic_cc.bazelrc",
+            f"--bazelrc={self.root_dir}/build/kernel/kleaf/bazelrc/platforms.bazelrc",
+            # Control Network access - with no internet by default.
+            f"--bazelrc={self.root_dir}/build/kernel/kleaf/bazelrc/network.bazelrc",
+
+            f"--bazelrc={self.root_dir}/build/kernel/kleaf/common.bazelrc",
+        ]
 
     def _build_final_args(self) -> list[str]:
         """Builds the final arguments for the subprocess."""
