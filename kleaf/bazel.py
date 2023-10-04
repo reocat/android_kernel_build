@@ -303,6 +303,11 @@ class BazelWrapper(object):
         if self.known_args.user_clang_toolchain is not None:
             self.env["KLEAF_USER_CLANG_TOOLCHAIN_PATH"] = self.known_args.user_clang_toolchain
 
+        bazel_jdk_path = f"{self.root_dir}/{_BAZEL_JDK_REL_PATH}"
+        self.transformed_startup_options.append(
+            f"--server_javabase={bazel_jdk_path}"
+        )
+
         cache_dir_bazel_rc = f"{self.absolute_out_dir}/bazel/cache_dir.bazelrc"
         os.makedirs(os.path.dirname(cache_dir_bazel_rc), exist_ok=True)
         with open(cache_dir_bazel_rc, "w") as f:
@@ -314,19 +319,17 @@ class BazelWrapper(object):
             self.transformed_startup_options.append(
                 f"--bazelrc={cache_dir_bazel_rc}")
 
+        self.transformed_startup_options.append(
+            f"--bazelrc={self.root_dir}/{_BAZEL_RC_NAME}"
+        )
+
     def _build_final_args(self) -> list[str]:
         """Builds the final arguments for the subprocess."""
         # final_args:
         # bazel [startup_options] [additional_startup_options] command [transformed_command_args] -- [target_patterns]
 
-        bazel_jdk_path = f"{self.root_dir}/{_BAZEL_JDK_REL_PATH}"
         final_args = [self.bazel_path] + self.transformed_startup_options
 
-        if not self.known_startup_options.help:
-            final_args += [
-                f"--server_javabase={bazel_jdk_path}",
-                f"--bazelrc={self.root_dir}/{_BAZEL_RC_NAME}",
-            ]
         if self.command is not None:
             final_args.append(self.command)
         final_args += self.transformed_command_args
