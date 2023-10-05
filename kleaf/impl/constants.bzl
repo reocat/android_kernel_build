@@ -42,7 +42,8 @@ GKI_ARTIFACTS_AARCH64_OUTS = [
     for e in DEFAULT_IMAGES
 ]
 
-SYSTEM_DLKM_COMMON_OUTS = [
+SYSTEM_DLKM_OUTS = [
+    "system_dlkm.img",
     "system_dlkm_staging_archive.tar.gz",
     "system_dlkm.modules.load",
     "system_dlkm.modules.blocklist",

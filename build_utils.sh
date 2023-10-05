@@ -248,12 +248,8 @@ function build_system_dlkm() {
     done
   fi
 
-  if [ -z "${SYSTEM_DLKM_IMAGE_NAME}" ]; then
-    SYSTEM_DLKM_IMAGE_NAME="system_dlkm.img"
-  fi
-
   build_image "${SYSTEM_DLKM_STAGING_DIR}" "${system_dlkm_props_file}" \
-    "${DIST_DIR}/${SYSTEM_DLKM_IMAGE_NAME}" /dev/null
+    "${DIST_DIR}/system_dlkm.img" /dev/null
 
   if [ -z "${SYSTEM_DLKM_PROPS}" ]; then
     rm ${system_dlkm_props_file}
@@ -264,7 +260,7 @@ function build_system_dlkm() {
   avbtool add_hashtree_footer \
     --partition_name system_dlkm \
     --hash_algorithm sha256 \
-    --image "${DIST_DIR}/${SYSTEM_DLKM_IMAGE_NAME}"
+    --image "${DIST_DIR}/system_dlkm.img"
 
   # Archive system_dlkm_staging_dir
   tar -czf "${DIST_DIR}/system_dlkm_staging_archive.tar.gz" -C "${SYSTEM_DLKM_STAGING_DIR}" .
