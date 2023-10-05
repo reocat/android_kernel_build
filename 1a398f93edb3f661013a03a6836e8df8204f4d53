@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055457627",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2766267?revision\u003d13",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a0fa64a1_c09c15b1",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-05T20:58:31Z",
+      "side": 1,
+      "message": "Variable \"kwargs\" is unused. Please remove it. http://go/buildifier-warnings#unused-variable",
+      "range": {
+        "startLine": 933,
+        "startChar": 40,
+        "endLine": 933,
+        "endChar": 46
+      },
+      "revId": "1a398f93edb3f661013a03a6836e8df8204f4d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055457627",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2766267?revision\u003d13",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "669e4f69_71194750",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-05T20:58:31Z",
+      "side": 1,
+      "message": "Variable \"target_configs\" is unused. Please remove it. http://go/buildifier-warnings#unused-variable",
+      "range": {
+        "startLine": 933,
+        "startChar": 22,
+        "endLine": 933,
+        "endChar": 36
+      },
+      "revId": "1a398f93edb3f661013a03a6836e8df8204f4d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
