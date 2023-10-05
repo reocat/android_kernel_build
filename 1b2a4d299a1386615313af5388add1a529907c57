@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71ef01d4_33cf75a7",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-05T20:28:15Z",
+      "side": 1,
+      "message": "Without the startup options, this will kill the bazel server 😞\n\nThis is a bootstraping problem.",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 50
+      },
+      "revId": "1b2a4d299a1386615313af5388add1a529907c57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
