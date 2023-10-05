@@ -336,8 +336,10 @@ class BazelWrapper(object):
         ])
         stamp_extra_bazelrc = self.gen_bazelrc_dir / "stamp_extra.bazelrc"
         with open(stamp_extra_bazelrc, "w") as f:
-            workspace_status_common_sh = self._kleaf_repo_rel() / "build/kernel/kleaf/workspace_status_common.sh"
-            workspace_status_sh = self._kleaf_repo_rel() / "build/kernel/kleaf/workspace_status.sh"
+            workspace_status_common_sh = self._kleaf_repo_rel() / \
+                "build/kernel/kleaf/workspace_status_common.sh"
+            workspace_status_sh = self._kleaf_repo_rel() / \
+                "build/kernel/kleaf/workspace_status.sh"
             f.write(textwrap.dedent(f"""\
                 # By default, do not embed scmversion.
                 build --workspace_status_command={shlex.quote(str(workspace_status_common_sh))}
