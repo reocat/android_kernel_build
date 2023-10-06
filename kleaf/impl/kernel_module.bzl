@@ -258,7 +258,11 @@ def _kernel_module_impl(ctx):
     _check_module_symvers_restore_path(kernel_module_deps, ctx.label)
 
     # Define where to build the external module (default to the package name)
-    ext_mod = ctx.attr.makefile[0].label.package if ctx.attr.makefile else ctx.label.package
+    if ctx.attr.makefile:
+        ext_mod_label = ctx.attr.makefile[0].label
+    else:
+        ext_mod_label = ctx.label
+    ext_mod = paths.join(ext_mod_label.workspace_root, ctx.label.package)
 
     if ctx.files.makefile and ctx.file.internal_ddk_makefiles_dir:
         fail("{}: must not define `makefile` for `ddk_module`")
@@ -423,7 +427,7 @@ def _kernel_module_impl(ctx):
 
     command += """
              # Set variables
-               ext_mod_rel=$(realpath ${{ROOT_DIR}}/{ext_mod} --relative-to ${{KERNEL_DIR}})
+               ext_mod_rel=$(realpath ${{PWD}}/{ext_mod} --relative-to ${{ROOT_DIR}}/${{KERNEL_DIR}})
 
              # Actual kernel module build
                make -C {ext_mod} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} {make_filter} {make_redirect}
@@ -553,10 +557,10 @@ def _kernel_module_impl(ctx):
              # Use a new shell to avoid polluting variables
                (
              # Set variables
-               # realpath requires the existence of ${{ROOT_DIR}}/{ext_mod}, which may not be the case for
+               # realpath requires the existence of ${{PWD}}/{ext_mod}, which may not be the case for
                # _kernel_modules_install. Make that.
-               mkdir -p ${{ROOT_DIR}}/{ext_mod}
-               ext_mod_rel=$(realpath ${{ROOT_DIR}}/{ext_mod} --relative-to ${{KERNEL_DIR}})
+               mkdir -p ${{PWD}}/{ext_mod}
+               ext_mod_rel=$(realpath ${{PWD}}/{ext_mod} --relative-to ${{ROOT_DIR}}/${{KERNEL_DIR}})
              # Restore Modules.symvers
                mkdir -p $(dirname ${{OUT_DIR}}/${{ext_mod_rel}}/{internal_module_symvers_name})
                rsync -aL {module_symvers} ${{OUT_DIR}}/${{ext_mod_rel}}/{internal_module_symvers_name}
