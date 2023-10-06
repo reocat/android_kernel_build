@@ -117,8 +117,20 @@ def _kernel_filegroup_impl(ctx):
     ctx.actions.write(
         output = ddk_config_env_setup_script,
         content = hermetic_tools.setup + """
+            # FIXME Incorporate KLEAF_INTERNAL_BUILDTOOLS_PREBUILT_BIN set by hermetic
+            #  toolchain. This needs to be done again because our
+            #  hermetic toolchain may be in somewhere else.
+            OLD_KLEAF_INTERNAL_BUILDTOOLS_PREBUILT_BIN=$(realpath ${{KLEAF_INTERNAL_BUILDTOOLS_PREBUILT_BIN}})
+
             . {build_utils_sh}
             . {env_setup}
+
+            # FIXME Incorporate KLEAF_INTERNAL_BUILDTOOLS_PREBUILT_BIN set by hermetic
+            #  toolchain. This needs to be done again because our
+            #  hermetic toolchain may be in somewhere else.
+            {toolchains_setup_env_var_cmd}
+            export PATH="${{OLD_KLEAF_INTERNAL_BUILDTOOLS_PREBUILT_BIN}}:${{PATH}}"
+
             # FIXME build bots override TMPDIR
             export TMPDIR=/tmp
             {eval_restore_out_dir_cmd}
@@ -134,6 +146,7 @@ def _kernel_filegroup_impl(ctx):
             config_post_setup = config_post_setup,
             check_sandbox_cmd = utils.get_check_sandbox_cmd(),
             module_scripts_archive = module_scripts_archive.path,
+            toolchains_setup_env_var_cmd = toolchains.setup_env_var_cmd,
         ),
     )
     ddk_config_env = KernelSerializedEnvInfo(
