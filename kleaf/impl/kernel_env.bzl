@@ -237,7 +237,19 @@ def _kernel_env_impl(ctx):
           echo >> {out}
 
         # capture it as a file to be sourced in downstream rules
-          {preserve_env} >> {out}
+          ( export -p; export -f ) | \\
+            # Drop reference to bin_dir and replace with variable
+            sed "s|{bin_dir}|\\$KLEAF_BIN_DIR|g" | \\
+            # Remove the reference to PWD itself
+            sed '/^declare -x PWD=/d' | \\
+            # Now ensure, new new PWD gets expanded
+            sed "s|${{PWD}}|\\$PWD|g" | \\
+            # Replace $PWD/<not out> with $KLEAF_REPO_DIR/$1
+            sed "s|\\$PWD/out|__KLEAF_OUT_PH__|g" | \\
+            sed "s|\\$PWD|\\$KLEAF_REPO_DIR|g" | \\
+            sed "s|__KLEAF_OUT_PH__|\\$PWD/out|g" \\
+            >> {out}
+
           echo >> {out}
 
           cat {post_env_script} >> {out}
@@ -254,6 +266,7 @@ def _kernel_env_impl(ctx):
         config_tags_comment_file = config_tags_out.env.path,
         pre_env_script = pre_env_script.path,
         post_env_script = post_env_script.path,
+        bin_dir = ctx.bin_dir.path,
     )
 
     progress_message_note = kernel_config_settings.get_progress_message_note(ctx, defconfig_fragments)
@@ -323,6 +336,22 @@ def _get_env_setup_cmds(ctx):
     pre_env = ""
     if ctx.attr._debug_annotate_scripts[BuildSettingInfo].value:
         pre_env += debug.trap()
+
+    pre_env += """
+        # KLEAF_REPO_WORKSPACE_ROOT: workspace_root of the Kleaf repository. See Label.workspace_root.
+        # This should either be an empty string or (usually) external/kleaf.
+        # This needs to be defined by the user.
+
+        # bin_dir for Kleaf repository, relative to execroot
+        #  This is either bazel-out/k8-fastbuild/bin or bazel-out/k8-fastbuild/bin/external/kleaf.
+        KLEAF_BIN_DIR="{bin_dir}${{KLEAF_REPO_WORKSPACE_ROOT:+/$KLEAF_REPO_WORKSPACE_ROOT}}"
+
+        # Root of Kleaf repository (under execroot aka PWD)
+        #  This is either $PWD or $PWD/external/kleaf.
+        KLEAF_REPO_DIR="$PWD${{KLEAF_REPO_WORKSPACE_ROOT:+/$KLEAF_REPO_WORKSPACE_ROOT}}"
+    """.format(
+        bin_dir = ctx.bin_dir.path,
+    )
 
     post_env = """
         # Increase parallelism # TODO(b/192655643): do not use -j anymore
