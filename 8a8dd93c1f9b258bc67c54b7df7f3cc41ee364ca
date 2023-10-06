@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96928245_2b6ed9c5",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-10-06T23:09:47Z",
+      "side": 1,
+      "message": "@elsk@google.com Should be fixed with `# buildifier: disable\u003duninitialized` or there is a better way then just ignoring it?\n\nSame for the next line#159.",
+      "revId": "8a8dd93c1f9b258bc67c54b7df7f3cc41ee364ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
