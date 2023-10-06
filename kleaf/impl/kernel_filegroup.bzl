@@ -120,6 +120,9 @@ def _kernel_filegroup_impl(ctx):
             . {build_utils_sh}
             . {env_setup}
 
+            # FIXME technically, don't need PATH here
+            {toolchains_setup_env_var_cmd}
+
             # FIXME build bots override TMPDIR
             export TMPDIR=/tmp
             {eval_restore_out_dir_cmd}
@@ -136,6 +139,7 @@ def _kernel_filegroup_impl(ctx):
             config_post_setup = config_post_setup,
             check_sandbox_cmd = utils.get_check_sandbox_cmd(),
             module_scripts_archive = module_scripts_archive.path,
+            toolchains_setup_env_var_cmd = toolchains.setup_env_var_cmd,
         ),
     )
     ddk_config_env = KernelSerializedEnvInfo(
