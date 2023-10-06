@@ -771,6 +771,11 @@ def _define_common_kernel(
         kernel_modules_install = name + "_modules_install",
         # Sync with GKI_DOWNLOAD_CONFIGS, "images"
         build_system_dlkm = True,
+<<<<<<< HEAD   (a8a858 kleaf: system_dlkm: Add flatten images support)
+=======
+        build_system_dlkm_flatten = True,
+        system_dlkm_fs_types = ["erofs", "ext4"],
+>>>>>>> CHANGE (148e0e kleaf: system_dlkm: Enable flatten images for ACKs)
         # Keep in sync with build.config.gki* MODULES_LIST
         modules_list = gki_system_dlkm_modules,
     )
