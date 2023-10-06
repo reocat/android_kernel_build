@@ -58,6 +58,32 @@
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2767974?revision\u003d3",
       "fixSuggestions": [],
       "key": {
+        "uuid": "01de1dbe_a269ff3f",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-06T23:19:50Z",
+      "side": 1,
+      "message": "Variable \"system_dlkm_flatten_img\" may not have been initialized. http://go/buildifier-warnings#uninitialized",
+      "range": {
+        "startLine": 158,
+        "startChar": 38,
+        "endLine": 158,
+        "endChar": 61
+      },
+      "revId": "8a8dd93c1f9b258bc67c54b7df7f3cc41ee364ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055577157",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2767974?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
         "uuid": "b666becd_45e1fa7c",
         "filename": "kleaf/impl/image/system_dlkm_image.bzl",
         "patchSetId": 3
@@ -93,6 +119,32 @@
         "id": 1757831
       },
       "writtenOn": "2023-10-06T23:00:34Z",
+      "side": 1,
+      "message": "Variable \"system_dlkm_flatten_img_name\" may not have been initialized. http://go/buildifier-warnings#uninitialized",
+      "range": {
+        "startLine": 159,
+        "startChar": 43,
+        "endLine": 159,
+        "endChar": 71
+      },
+      "revId": "8a8dd93c1f9b258bc67c54b7df7f3cc41ee364ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055577157",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2767974?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5446b181_74412473",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-06T23:19:50Z",
       "side": 1,
       "message": "Variable \"system_dlkm_flatten_img_name\" may not have been initialized. http://go/buildifier-warnings#uninitialized",
       "range": {
