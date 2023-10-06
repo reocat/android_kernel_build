@@ -130,6 +130,9 @@ def _kernel_filegroup_impl(ctx):
             . {build_utils_sh}
             . {env_setup}
 
+            # FIXME technically, don't need PATH here
+            {toolchains_setup_env_var_cmd}
+
             # Restore source tree
             {restore_module_srcs_cmd}
 
@@ -142,6 +145,7 @@ def _kernel_filegroup_impl(ctx):
             eval_restore_out_dir_cmd = kernel_utils.eval_restore_out_dir_cmd(),
             config_post_setup = config_post_setup,
             restore_module_srcs_cmd = restore_module_srcs_cmd,
+            toolchains_setup_env_var_cmd = toolchains.setup_env_var_cmd,
         ),
     )
     ddk_config_env = KernelSerializedEnvInfo(
