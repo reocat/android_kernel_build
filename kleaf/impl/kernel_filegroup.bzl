@@ -119,6 +119,12 @@ def _kernel_filegroup_impl(ctx):
         content = hermetic_tools.setup + """
             . {build_utils_sh}
             . {env_setup}
+
+            # FIXME Incorporate KLEAF_INTERNAL_BUILDTOOLS_PREBUILT_BIN set by hermetic
+            #  toolchain. This needs to be done again because our
+            #  hermetic toolchain may be in somewhere else.
+            export PATH="${{KLEAF_INTERNAL_BUILDTOOLS_PREBUILT_BIN}}:${{PATH}}"
+
             # FIXME build bots override TMPDIR
             export TMPDIR=/tmp
             {eval_restore_out_dir_cmd}
