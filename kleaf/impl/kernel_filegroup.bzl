@@ -116,8 +116,10 @@ def _kernel_filegroup_impl(ctx):
     ctx.actions.write(
         output = ddk_config_env_setup_script,
         content = hermetic_tools.setup + """
+            KLEAF_REPO_WORKSPACE_ROOT={kleaf_repo_workspace_root}
             . {build_utils_sh}
             . {env_setup}
+
             # FIXME build bots override TMPDIR
             export TMPDIR=/tmp
             {eval_restore_out_dir_cmd}
@@ -127,6 +129,7 @@ def _kernel_filegroup_impl(ctx):
             mkdir -p ${{KERNEL_DIR}}
             tar xf {module_scripts_archive} -C ${{KERNEL_DIR}}
         """.format(
+            kleaf_repo_workspace_root = Label(":kernel_filegroup.bzl").workspace_root,
             build_utils_sh = ctx.file._build_utils_sh.path,
             env_setup = env_setup.path,
             eval_restore_out_dir_cmd = kernel_utils.eval_restore_out_dir_cmd(),
