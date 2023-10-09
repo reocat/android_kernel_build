@@ -249,7 +249,6 @@ def _kernel_module_impl(ctx):
     kernel_module_deps = [kernel_utils.create_kernel_module_dep_info(target) for target in kernel_module_deps]
     if ctx.attr.internal_ddk_makefiles_dir:
         kernel_module_deps += ctx.attr.internal_ddk_makefiles_dir[DdkSubmoduleInfo].kernel_module_deps.to_list()
-
     kernel_utils.check_kernel_build(
         [target.kernel_module_info for target in kernel_module_deps],
         ctx.attr.kernel_build.label,
@@ -422,12 +421,28 @@ def _kernel_module_impl(ctx):
         # Filter out warnings if there is no need for BTF generation
         make_filter = " 2> >(sed '/Skipping BTF generation/d' >&2) "
 
-    command += """
+    build_cmbc = False
+    for out in output_files:
+        if out.basename.endswith(".gb"):
+            build_cmbc = True
+            break
+
+    build_command = """
+            set -x
              # Set variables
                ext_mod_rel=$(realpath ${{ROOT_DIR}}/{ext_mod} --relative-to ${{KERNEL_DIR}})
 
              # Actual kernel module build
-               make -C {ext_mod} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} {make_filter} {make_redirect}
+             # /usr/bin/bear --append --output /usr/local/google/home/xnzhao/workspace/mali/android14-gs-pixel-5.15-udc-d1/compile_commands2.json --
+             make -C {ext_mod} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}}
+            """
+    if build_cmbc:
+        build_command += """
+            make -C {ext_mod} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} cbmc
+            """
+
+    build_command += """
+             #  {make_filter} {make_redirect}
              # Install into staging directory
                make -C {ext_mod} ${{TOOL_ARGS}} DEPMOD=true M=${{ext_mod_rel}} \
                    O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}}     \
@@ -461,7 +476,9 @@ def _kernel_module_impl(ctx):
                rsync -aL ${{OUT_DIR}}/${{ext_mod_rel}}/Module.symvers {module_symvers}
 
                {drop_modules_order_cmd}
-               """.format(
+               """
+
+    command += build_command.format(
         label = ctx.label,
         ext_mod = ext_mod,
         generate_btf = int(ctx.attr.generate_btf),
@@ -497,6 +514,8 @@ def _kernel_module_impl(ctx):
             execution_requirements = kernel_utils.local_exec_requirements(ctx)
 
     debug.print_scripts(ctx, command)
+    print(ctx.label.name + "=========================================")
+    print(command)
     ctx.actions.run_shell(
         mnemonic = "KernelModule" + strategy,
         inputs = depset(inputs, transitive = transitive_inputs),
@@ -534,6 +553,8 @@ def _kernel_module_impl(ctx):
             outdir = outdir,
             outs = " ".join(original_outs),
         )
+        print("--------------------")
+        print(command)
         debug.print_scripts(ctx, command, what = "cp_outputs")
         ctx.actions.run_shell(
             mnemonic = "KernelModuleCpOutputs",
@@ -549,7 +570,6 @@ def _kernel_module_impl(ctx):
             command = command,
             progress_message = "Copying outputs {}".format(ctx.label),
         )
-
     setup = """
              # Use a new shell to avoid polluting variables
                (
