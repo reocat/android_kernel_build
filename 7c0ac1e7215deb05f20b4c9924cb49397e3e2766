@@ -33,6 +33,23 @@
       "message": "As expected it was an infra issue.",
       "revId": "7c0ac1e7215deb05f20b4c9924cb49397e3e2766",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b5f9ae1_998b7798",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135739
+      },
+      "writtenOn": "2023-10-09T09:03:19Z",
+      "side": 1,
+      "message": "Abandon the CL, as b/303539984 has been marked as fixed and no longer reproducible.",
+      "revId": "7c0ac1e7215deb05f20b4c9924cb49397e3e2766",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
