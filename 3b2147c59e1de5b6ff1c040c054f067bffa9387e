@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b4158a3_949fd253",
+        "filename": "kleaf/zip.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T20:37:49Z",
+      "side": 1,
+      "message": "nit: just \"out\"",
+      "range": {
+        "startLine": 22,
+        "startChar": 19,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "3b2147c59e1de5b6ff1c040c054f067bffa9387e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b8ecd0d_512a9f7a",
+        "filename": "kleaf/zip.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T20:37:49Z",
+      "side": 1,
+      "message": "Please assign this to a variable, then use it in L29 in \"inputs\"",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 71
+      },
+      "revId": "3b2147c59e1de5b6ff1c040c054f067bffa9387e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
