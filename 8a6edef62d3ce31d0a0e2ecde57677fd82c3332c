@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055803905",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2767974?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "367d73f0_f31c2872",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-10T19:52:31Z",
+      "side": 1,
+      "message": "Variable \"system_dlkm_flatten_img_name\" may not have been initialized. http://go/buildifier-warnings#uninitialized",
+      "range": {
+        "startLine": 160,
+        "startChar": 43,
+        "endLine": 160,
+        "endChar": 71
+      },
+      "revId": "8a6edef62d3ce31d0a0e2ecde57677fd82c3332c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
