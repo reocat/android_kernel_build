@@ -16,6 +16,24 @@
       "message": "@elsk@google.com Should be fixed with `# buildifier: disable\u003duninitialized` or there is a better way then just ignoring it?\n\nSame for the next line#159.",
       "revId": "8a8dd93c1f9b258bc67c54b7df7f3cc41ee364ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf1e99d9_6a983a5f",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T18:39:23Z",
+      "side": 1,
+      "message": "Change this to\n\n```\nsystem_dlkm_flatten_img.path if system_dlkm_flatten_img else \"/dev/null\"\n```",
+      "parentUuid": "96928245_2b6ed9c5",
+      "revId": "8a8dd93c1f9b258bc67c54b7df7f3cc41ee364ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
