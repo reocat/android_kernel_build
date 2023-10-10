@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe55169e_f0241d5a",
+        "filename": "kleaf/zip.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T18:31:57Z",
+      "side": 1,
+      "message": "BTW using ctx.files.srcs is not as memory efficient as using the depset([target.files for target in ctx.attr.srcs])",
+      "parentUuid": "6c3945b5_228c6e78",
+      "range": {
+        "startLine": 8,
+        "startChar": 17,
+        "endLine": 8,
+        "endChar": 32
+      },
+      "revId": "9e6b2360e446c02af2e68d11462099fb9135cc19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "deb63756_b355ca8f",
         "filename": "kleaf/zip.bzl",
         "patchSetId": 3
