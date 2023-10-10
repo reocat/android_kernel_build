@@ -36,6 +36,41 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "209f7c56_4357b5cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-10-10T21:45:46Z",
+      "side": 1,
+      "message": "Moved to https://android-review.git.corp.google.com/c/platform/build/bazel_common_rules/+/2781563 with comments addressed.",
+      "revId": "3b2147c59e1de5b6ff1c040c054f067bffa9387e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fff7c69e_86a1e7c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-10-10T21:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abf23932_52275c9f",
+      "revId": "3b2147c59e1de5b6ff1c040c054f067bffa9387e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b4158a3_949fd253",
@@ -49,6 +84,30 @@
       "writtenOn": "2023-10-10T20:37:49Z",
       "side": 1,
       "message": "nit: just \"out\"",
+      "range": {
+        "startLine": 22,
+        "startChar": 19,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "3b2147c59e1de5b6ff1c040c054f067bffa9387e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d100529_ef8ce087",
+        "filename": "kleaf/zip.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-10-10T21:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b4158a3_949fd253",
       "range": {
         "startLine": 22,
         "startChar": 19,
@@ -82,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db069142_d8727221",
+        "filename": "kleaf/zip.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-10-10T21:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b8ecd0d_512a9f7a",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 71
+      },
+      "revId": "3b2147c59e1de5b6ff1c040c054f067bffa9387e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63301cc4_b889057d",
@@ -95,6 +178,30 @@
       "writtenOn": "2023-10-10T20:41:41Z",
       "side": 1,
       "message": "nit: maybe Zipping or just `Zip` ?\n\n\"Generating\" is too generic because other actions may produce the same progress message.",
+      "range": {
+        "startLine": 34,
+        "startChar": 28,
+        "endLine": 34,
+        "endChar": 38
+      },
+      "revId": "3b2147c59e1de5b6ff1c040c054f067bffa9387e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02a5f522_9cd4d244",
+        "filename": "kleaf/zip.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-10-10T21:45:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63301cc4_b889057d",
       "range": {
         "startLine": 34,
         "startChar": 28,
