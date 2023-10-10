@@ -52,6 +52,24 @@
       "parentUuid": "bf1e99d9_6a983a5f",
       "revId": "8a8dd93c1f9b258bc67c54b7df7f3cc41ee364ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "653c0da7_d637768c",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T19:12:52Z",
+      "side": 1,
+      "message": "In that case just add `system_dlkm_flatten_img \u003d None` at L116\n\nYeah -- the if expression is still evaluated, so it will hit a \"uninitialized variable\" error with my code (but not with `if ctx.attr.build_system_dlkm_flatten_image`, though the static analyzer is still unhappy)",
+      "parentUuid": "8e223589_89b5af37",
+      "revId": "8a8dd93c1f9b258bc67c54b7df7f3cc41ee364ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
