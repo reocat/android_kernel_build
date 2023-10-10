@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "abf23932_52275c9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T20:44:41Z",
+      "side": 1,
+      "message": "on a second thought, if you move to //build/bazel_common_rules, you should create another label //prebuilts/build-tools:soong_zip that are platform dependent, which needs resolution for the //build/bazel/platforms dependency.\n\nHmm...\n\nPerhaps do put it in //build/bazel_common_rules and add a TODO tag to make it available for other platforms later.",
+      "parentUuid": "1c56f30e_47c24038",
+      "revId": "3b2147c59e1de5b6ff1c040c054f067bffa9387e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1b4158a3_949fd253",
         "filename": "kleaf/zip.bzl",
         "patchSetId": 4
