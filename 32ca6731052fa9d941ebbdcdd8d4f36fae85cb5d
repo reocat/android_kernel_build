@@ -16,6 +16,23 @@
       "message": "Tested by\n```\ntools/bazel run //common:kernel_aarch64_dist\ntools/bazel test //build/kernel/kleaf:quick_tests\n```\n\nAnd add `kbuild_options: [\"KASAN_SANITIZE :\u003d n\"]` in oot module\u0027s ddk_module when --kasan applied and not applied.",
       "revId": "32ca6731052fa9d941ebbdcdd8d4f36fae85cb5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65401e82_9420a82e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T18:12:24Z",
+      "side": 1,
+      "message": "Are there any other options you want to pass besides KASAN_SANITIZE?\n\nIf not, I would rather add a single `kasan` attribute to ddk_module instead of a free-formed `kbuild_options`. The kbuild_options functionality as it is right now seems really easy to be abused.",
+      "revId": "32ca6731052fa9d941ebbdcdd8d4f36fae85cb5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
