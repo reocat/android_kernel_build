@@ -558,8 +558,8 @@ def _kernel_module_impl(ctx):
                mkdir -p ${{ROOT_DIR}}/{ext_mod}
                ext_mod_rel=$(realpath ${{ROOT_DIR}}/{ext_mod} --relative-to ${{KERNEL_DIR}})
              # Restore Modules.symvers
-               mkdir -p $(dirname ${{OUT_DIR}}/${{ext_mod_rel}}/{internal_module_symvers_name})
-               rsync -aL {module_symvers} ${{OUT_DIR}}/${{ext_mod_rel}}/{internal_module_symvers_name}
+               mkdir -p $(dirname ${{COMMON_OUT_DIR}}/{ext_mod}/{internal_module_symvers_name})
+               rsync -aL {module_symvers} ${{COMMON_OUT_DIR}}/{ext_mod}/{internal_module_symvers_name}
              # New shell ends
                )
     """.format(
