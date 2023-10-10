@@ -33,6 +33,24 @@
       "message": "Are there any other options you want to pass besides KASAN_SANITIZE?\n\nIf not, I would rather add a single `kasan` attribute to ddk_module instead of a free-formed `kbuild_options`. The kbuild_options functionality as it is right now seems really easy to be abused.",
       "revId": "32ca6731052fa9d941ebbdcdd8d4f36fae85cb5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ca010a1_0f18809e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T18:16:39Z",
+      "side": 1,
+      "message": "Furthermore, if you want to retain the functionality to disable kasan only for specific files, you can change the attribute to a list. For example:\n\n```\nddk_module(\n    disable_kasan \u003d [\n        \"*\", # special notation for KASAN_SANITIZE :\u003d n\n    ],\n```\n\n```\nddk_module(\n    disable_kasan \u003d [\n        \"a.c\", # generates KASAN_SANITIZE_a.o :\u003d n\n    ],\n```\n\nIf you are only interested in disabling all files, then a boolean is okay",
+      "parentUuid": "65401e82_9420a82e",
+      "revId": "32ca6731052fa9d941ebbdcdd8d4f36fae85cb5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
