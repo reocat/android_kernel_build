@@ -25,6 +25,32 @@
       },
       "revId": "d3b24dbc94ecc0cdfe7ab239a959fbdce5bd23e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055814252",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2781390?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "54974110_87b06114",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-10T21:35:21Z",
+      "side": 1,
+      "message": "syntax error near \u003c\u003c",
+      "range": {
+        "startLine": 774,
+        "startChar": 3,
+        "endLine": 774,
+        "endChar": 3
+      },
+      "revId": "d3b24dbc94ecc0cdfe7ab239a959fbdce5bd23e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
