@@ -32,6 +32,32 @@
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2781390?revision\u003d2",
       "fixSuggestions": [],
       "key": {
+        "uuid": "62959e30_e46d3d93",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-10T21:48:52Z",
+      "side": 1,
+      "message": "Loaded symbol \"striHEAng_flag\" is unused. Please remove it.\nTo disable the warning, add \u0027@unused\u0027 in a comment.\nIf you want to re-export a symbol, use the following pattern:\n\n    load(..., _striHEAng_flag \u003d \"striHEAng_flag\", ...)\n    striHEAng_flag \u003d _striHEAng_flag\n http://go/buildifier-warnings#load",
+      "range": {
+        "startLine": 19,
+        "startChar": 63,
+        "endLine": 19,
+        "endChar": 77
+      },
+      "revId": "b41b3f56ab23fc4ecd0d394adfe4c6c41be52c97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055815751",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2781390?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
         "uuid": "e02a633d_6fbbb2e5",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 2
@@ -41,6 +67,32 @@
         "id": 1757831
       },
       "writtenOn": "2023-10-10T21:48:45Z",
+      "side": 1,
+      "message": "Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 68
+      },
+      "revId": "b41b3f56ab23fc4ecd0d394adfe4c6c41be52c97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055815751",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2781390?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e1267372_9161e001",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-10T21:48:52Z",
       "side": 1,
       "message": "Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
       "range": {
@@ -84,6 +136,32 @@
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2781390?revision\u003d2",
       "fixSuggestions": [],
       "key": {
+        "uuid": "f0033911_af5cc34f",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-10T21:48:52Z",
+      "side": 1,
+      "message": "Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 90
+      },
+      "revId": "b41b3f56ab23fc4ecd0d394adfe4c6c41be52c97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055815751",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2781390?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
         "uuid": "40c10547_c14ba834",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 2
@@ -93,6 +171,32 @@
         "id": 1757831
       },
       "writtenOn": "2023-10-10T21:48:45Z",
+      "side": 1,
+      "message": "Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 1
+      },
+      "revId": "b41b3f56ab23fc4ecd0d394adfe4c6c41be52c97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055815751",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2781390?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6468bda3_a1e08cff",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-10T21:48:52Z",
       "side": 1,
       "message": "Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
       "range": {
