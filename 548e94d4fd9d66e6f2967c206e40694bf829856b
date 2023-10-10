@@ -216,6 +216,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71309b1a_713af029",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T19:08:47Z",
+      "side": 1,
+      "message": "For this very specific issue, the toybox prebuilts were updated at\n\nhttps://android-review.git.corp.google.com/c/platform/prebuilts/build-tools/+/2192763\n\n... which got prebuilts from:\n\nhttps://ci.android.com/builds/branches/aosp-build-tools-release/grid?head\u003d8978564\u0026tail\u003d8978564\u0026legacy\u003d1\n\nThe changes were https://android-review.git.corp.google.com/c/platform/external/toybox/+/2192287/1 and a few changes before it",
+      "parentUuid": "0e57612d_b7ff45a6",
+      "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23eecc4b_8605ba4f",
