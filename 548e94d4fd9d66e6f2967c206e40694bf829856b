@@ -198,6 +198,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e57612d_b7ff45a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T18:57:42Z",
+      "side": 1,
+      "message": "The fix is to fix toybox; it was a toybox bug. \n\nThe new toybox binary might not have been backported to android13 so we did not update that in build.sh.\n\nI think you can look at this thread for the actual fix, http://lists.landley.net/pipermail/toybox-landley.net/2022-August/029102.html but I can\u0027t find a github issue for it",
+      "parentUuid": "0f59dc9a_e835aeb9",
+      "revId": "548e94d4fd9d66e6f2967c206e40694bf829856b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23eecc4b_8605ba4f",
