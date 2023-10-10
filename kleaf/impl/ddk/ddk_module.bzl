@@ -36,6 +36,7 @@ def ddk_module(
         kconfig = None,
         defconfig = None,
         generate_btf = None,
+        sanitize_option = None,
         **kwargs):
     """
     Defines a DDK (Driver Development Kit) module.
@@ -408,6 +409,7 @@ def ddk_module(
         module_deps = deps,
         module_local_defines = local_defines,
         module_copts = copts,
+        sanitize_option = sanitize_option,
         top_level_makefile = True,
         **private_kwargs
     )
