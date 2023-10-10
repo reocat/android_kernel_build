@@ -34,6 +34,24 @@
       "parentUuid": "96928245_2b6ed9c5",
       "revId": "8a8dd93c1f9b258bc67c54b7df7f3cc41ee364ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e223589_89b5af37",
+        "filename": "kleaf/impl/image/system_dlkm_image.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-10-10T19:05:53Z",
+      "side": 1,
+      "message": "Thanks. It still doesn\u0027t make buildifier happy; tried both your suggestion in (patchset#4) and just initialization to \"/dev/null\" (patchset#5).",
+      "parentUuid": "bf1e99d9_6a983a5f",
+      "revId": "8a8dd93c1f9b258bc67c54b7df7f3cc41ee364ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
