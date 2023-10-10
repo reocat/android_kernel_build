@@ -36,6 +36,7 @@ def ddk_module(
         kconfig = None,
         defconfig = None,
         generate_btf = None,
+        sanitize_option = None,
         **kwargs):
     """
     Defines a DDK (Driver Development Kit) module.
@@ -358,6 +359,16 @@ def ddk_module(
           uses default value specified in `kconfig`.
         generate_btf: Allows generation of BTF type information for the module.
           See [kernel_module.generate_btf](#kernel_module-generate_btf)
+
+        sanitize_option: Allows to set KASAN_SANITIZE like flag for the module.
+          Flags can be:
+          - KASAN_SANITIZE := [n|y]
+          - KASAN_SANITIZE_file.o := [n|y]
+          - KCSAN_SANITIZE := [n|y]
+          - KCSAN_SANITIZE_file.o := [n|y]
+          - KCOV_SANITIZE := [n|y]
+          - KCOV_SANITIZE_file.o := [n|y]
+
         **kwargs: Additional attributes to the internal rule.
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
@@ -408,6 +419,7 @@ def ddk_module(
         module_deps = deps,
         module_local_defines = local_defines,
         module_copts = copts,
+        sanitize_option = sanitize_option,
         top_level_makefile = True,
         **private_kwargs
     )
