@@ -253,6 +253,8 @@ def _makefiles_impl(ctx):
     if ctx.attr.internal_target_fail_message:
         args.add("--internal-target-fail-message", ctx.attr.internal_target_fail_message)
 
+    args.add_all("--sanitize-option", ctx.attr.sanitize_option)
+
     ctx.actions.run(
         mnemonic = "DdkMakefiles",
         inputs = depset([
@@ -320,6 +322,7 @@ makefiles = rule(
         "module_out": attr.string(),
         "module_local_defines": attr.string_list(),
         "module_copts": attr.string_list(),
+        "sanitize_option": attr.string_list(),
         "top_level_makefile": attr.bool(),
         "internal_target_fail_message": attr.string(
             doc = "For testing only. Assert that this target to fail to build with the given message.",
