@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c56f30e_47c24038",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T20:39:58Z",
+      "side": 1,
+      "message": "Gerrit seems broken for me.\n\nSome additional advice:\n\n- Just rename the rule to `zip` instead of `zip_archive`; zip is clear enough\n- With the implementation you have right now, it is okay to be in build/bazel_common_rules, because you don\u0027t use Kleaf\u0027s hermetic tools\n- Rename `_zipper` to just `_zip` or `_soong_zip`",
+      "revId": "3b2147c59e1de5b6ff1c040c054f067bffa9387e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1b4158a3_949fd253",
         "filename": "kleaf/zip.bzl",
         "patchSetId": 4
