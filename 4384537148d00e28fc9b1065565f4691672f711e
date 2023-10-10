@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "873f3abf_096e8ac6",
+        "filename": "kleaf/zip.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T18:29:12Z",
+      "side": 1,
+      "message": "not needed if you are using `-f` with the explicit list",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 86
+      },
+      "revId": "4384537148d00e28fc9b1065565f4691672f711e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
