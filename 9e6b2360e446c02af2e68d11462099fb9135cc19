@@ -25,6 +25,32 @@
       },
       "revId": "9e6b2360e446c02af2e68d11462099fb9135cc19",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055796027",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2781907?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "be138558_15a3a81d",
+        "filename": "kleaf/zip.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-10T18:28:44Z",
+      "side": 1,
+      "message": "The file has no module docstring.\nA module docstring is a string literal (not a comment) which should be the first statement of a file (it may follow comment lines). http://go/buildifier-warnings#module-docstring",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "9e6b2360e446c02af2e68d11462099fb9135cc19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
