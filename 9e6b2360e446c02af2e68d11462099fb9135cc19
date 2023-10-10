@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6db2dfc8_11a226dc",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-10-10T19:44:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bcbcf12_aaf6d326",
+      "revId": "9e6b2360e446c02af2e68d11462099fb9135cc19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c3945b5_228c6e78",
@@ -65,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb05d170_c668511c",
+        "filename": "kleaf/zip.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-10-10T19:44:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe55169e_f0241d5a",
+      "range": {
+        "startLine": 8,
+        "startChar": 17,
+        "endLine": 8,
+        "endChar": 32
+      },
+      "revId": "9e6b2360e446c02af2e68d11462099fb9135cc19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "deb63756_b355ca8f",
@@ -78,6 +120,30 @@
       "writtenOn": "2023-10-10T18:31:04Z",
       "side": 1,
       "message": "This is not your output",
+      "range": {
+        "startLine": 17,
+        "startChar": 45,
+        "endLine": 17,
+        "endChar": 71
+      },
+      "revId": "9e6b2360e446c02af2e68d11462099fb9135cc19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a77bb10d_a3ede705",
+        "filename": "kleaf/zip.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-10-10T19:44:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "deb63756_b355ca8f",
       "range": {
         "startLine": 17,
         "startChar": 45,
