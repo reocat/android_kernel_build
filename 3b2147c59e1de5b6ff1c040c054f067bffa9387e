@@ -62,6 +62,29 @@
       },
       "revId": "3b2147c59e1de5b6ff1c040c054f067bffa9387e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63301cc4_b889057d",
+        "filename": "kleaf/zip.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-10T20:41:41Z",
+      "side": 1,
+      "message": "nit: maybe Zipping or just `Zip` ?\n\n\"Generating\" is too generic because other actions may produce the same progress message.",
+      "range": {
+        "startLine": 34,
+        "startChar": 28,
+        "endLine": 34,
+        "endChar": 38
+      },
+      "revId": "3b2147c59e1de5b6ff1c040c054f067bffa9387e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
