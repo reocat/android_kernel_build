@@ -76,6 +76,7 @@ def _get_license_str():
 def _gen_makefile(
         module_symvers_list: list[pathlib.Path],
         output_makefile: pathlib.Path,
+        kbuild_options: list[str],
 ):
     content = _get_license_str()
 
@@ -85,9 +86,10 @@ def _gen_makefile(
             EXTRA_SYMBOLS += $(COMMON_OUT_DIR)/{module_symvers}
             """)
 
-    content += textwrap.dedent("""\
+    kbuild_options = " ".join([x.replace(" ", "") for x in kbuild_options])
+    content += textwrap.dedent(f"""\
         modules modules_install clean:
-        \t$(MAKE) -C $(KERNEL_SRC) M=$(M) $(KBUILD_OPTIONS) KBUILD_EXTRA_SYMBOLS="$(EXTRA_SYMBOLS)" $(@)
+        \t$(MAKE) -C $(KERNEL_SRC) M=$(M) $(KBUILD_OPTIONS) {kbuild_options} KBUILD_EXTRA_SYMBOLS="$(EXTRA_SYMBOLS)" $(@)
         """)
 
     os.makedirs(output_makefile.parent, exist_ok=True)
@@ -126,12 +128,14 @@ def gen_ddk_makefile(
         produce_top_level_makefile: Optional[bool],
         submodule_makefiles: list[pathlib.Path],
         kernel_module_out: Optional[pathlib.Path],
+        kbuild_options: list[str],
         **kwargs
 ):
     if produce_top_level_makefile:
         _gen_makefile(
             module_symvers_list=module_symvers_list,
             output_makefile=output_makefiles / "Makefile",
+            kbuild_options=kbuild_options,
         )
 
     if kernel_module_out:
@@ -395,6 +399,7 @@ if __name__ == "__main__":
     parser.add_argument("--submodule-makefiles",
                         type=pathlib.Path, nargs="*", default=[])
     parser.add_argument("--internal-target-fail-message", default=None)
+    parser.add_argument("--kbuild-options", nargs="*", default=[])
 
     args = parser.parse_args()
 
