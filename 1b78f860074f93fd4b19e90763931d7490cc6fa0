@@ -16,6 +16,24 @@
       "message": "We need this in all aosp_kernel-common-android14-5.15 monthly branches.",
       "revId": "1b78f860074f93fd4b19e90763931d7490cc6fa0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c768a6c1_16851784",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2023-10-11T04:36:01Z",
+      "side": 1,
+      "message": "They all should be using the `main-kernel-build-2023` branch for the `build-tools`; so it should take care itself.",
+      "parentUuid": "541c6e23_bf506b55",
+      "revId": "1b78f860074f93fd4b19e90763931d7490cc6fa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
