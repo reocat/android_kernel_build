@@ -88,7 +88,11 @@ def _download_artifact_repo_impl(repository_ctx):
 
 def _get_build_number(repository_ctx):
     """Gets the value of build number, setting defaults if necessary."""
-    build_number = _parse_env(repository_ctx, _BUILD_NUM_ENV_VAR, repository_ctx.attr.parent_repo)
+    build_number = _parse_env(
+        repository_ctx,
+        _BUILD_NUM_ENV_VAR,
+        getattr(repository_ctx.attr, "parent_repo", repository_ctx.attr.name),
+    )
     if not build_number:
         build_number = repository_ctx.attr.build_number
     return build_number
@@ -304,6 +308,7 @@ def kernel_prebuilt_repo(
             config["target_suffix"]: list(config["outs_mapping"].keys())
             for config in mapping["download_configs"]
         },
+        build_number = build_number,
     )
 
 def _kernel_prebuilt_repo_impl(repository_ctx):
@@ -323,12 +328,26 @@ def _kernel_prebuilt_repo_top_build_file(repository_ctx):
 \"""Prebuilts for {target}.
 \"""
 
+load("@bazel_skylib//rules:common_settings.bzl", "bool_setting")
 load("{kernel_bzl}", "kernel_filegroup")
 load("{gki_artifacts_bzl}", "gki_artifacts_prebuilts")
 """.format(
         kernel_bzl = Label("//build/kernel/kleaf:kernel.bzl"),
         gki_artifacts_bzl = Label("//build/kernel/kleaf/impl:gki_artifacts.bzl"),
         target = target,
+    )
+
+    build_number = _get_build_number(repository_ctx)
+    files["BUILD.bazel"] += """\
+
+bool_setting(
+    name = "use_prebuilt_gki",
+    build_setting_default = {use_prebuilt_gki},
+    visibility = [{visibility_pkg}],
+)
+""".format(
+        use_prebuilt_gki = bool(build_number),
+        visibility_pkg = repr(str(Label("//build/kernel/kleaf:__subpackages__"))),
     )
 
     local_filenames = []
@@ -400,5 +419,9 @@ _kernel_prebuilt_repo = repository_rule(
         "download_configs": attr.string_list_dict(doc = """
             key: `target_suffix`. value: `outs` & `outs_mapping`.
         """),
+        "build_number": attr.string(),
     },
+    environ = [
+        _BUILD_NUM_ENV_VAR,
+    ],
 )
