@@ -16,6 +16,29 @@
       "message": "Internal discussion: https://groups.google.com/a/google.com/g/kleaf/c/o_EAunXV_NE/m/5nfeR_A_AQAJ",
       "revId": "7377cdae0e335ee7f9f061ddc869776692a76746",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffef26d3_a4425ae2",
+        "filename": "kleaf/docs/kleaf_development.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-10-11T12:32:21Z",
+      "side": 1,
+      "message": "what is the date referring to? A bazel version? a Kleaf code change? What about other (older) branches?",
+      "range": {
+        "startLine": 117,
+        "startChar": 17,
+        "endLine": 117,
+        "endChar": 26
+      },
+      "revId": "7377cdae0e335ee7f9f061ddc869776692a76746",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
