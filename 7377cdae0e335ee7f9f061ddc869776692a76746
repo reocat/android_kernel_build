@@ -39,6 +39,30 @@
       },
       "revId": "7377cdae0e335ee7f9f061ddc869776692a76746",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83a7dba0_839872f6",
+        "filename": "kleaf/docs/kleaf_development.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-11T16:25:58Z",
+      "side": 1,
+      "message": "This date refers to a discussion with the bazel folks. They mention that this was the behavior back then, but things might have changed since then.\n\nBut in any case, the recommendation \"avoid using `list[File]` if possible.\" always applies.",
+      "parentUuid": "ffef26d3_a4425ae2",
+      "range": {
+        "startLine": 117,
+        "startChar": 17,
+        "endLine": 117,
+        "endChar": 26
+      },
+      "revId": "7377cdae0e335ee7f9f061ddc869776692a76746",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
