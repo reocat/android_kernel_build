@@ -51,6 +51,24 @@
       "parentUuid": "65401e82_9420a82e",
       "revId": "32ca6731052fa9d941ebbdcdd8d4f36fae85cb5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "011a56bb_e7027dfe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-11T01:30:55Z",
+      "side": 1,
+      "message": "Acutally I prefer the kernel way.\n`KASAN_SANITIZE:\u003dn` is to disable whole oot module, `KASAN_SANITIZE_some_file.o:\u003dn` is to disable specific file.\n\nAnd KASAN_SANITIZE is not the only option we need to pass, for example there are KCOV_INSTRUMENT, KCSAN_SANITIZE can be passed in the same way, do disable_kasan or kasan attribute is not enough.",
+      "parentUuid": "0ca010a1_0f18809e",
+      "revId": "32ca6731052fa9d941ebbdcdd8d4f36fae85cb5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
