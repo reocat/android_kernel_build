@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055915089",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2768526?revision\u003d16",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3c936c51_0d05d2c4",
+        "filename": "kleaf/impl/kernel_prebuilt_utils.bzl",
+        "patchSetId": 16
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-11T19:52:42Z",
+      "side": 1,
+      "message": "syntax error near ,",
+      "range": {
+        "startLine": 131,
+        "startChar": 15,
+        "endLine": 131,
+        "endChar": 15
+      },
+      "revId": "a89358339fe567fa8f4ae3449bd42b347c9d9660",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
