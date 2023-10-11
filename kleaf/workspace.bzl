@@ -38,7 +38,8 @@ load("//prebuilts/clang/host/linux-x86/kleaf:register.bzl", "register_clang_tool
 def define_kleaf_workspace(
         common_kernel_package = None,
         include_remote_java_tools_repo = False,
-        artifact_url_fmt = None):
+        artifact_url_fmt = None,
+        prebuilts_build_number = None):
     """Common macro for defining repositories in a Kleaf workspace.
 
     **This macro must only be called from `WORKSPACE` or `WORKSPACE.bazel`
@@ -64,6 +65,8 @@ def define_kleaf_workspace(
           * {build_number}
           * {target}
           * {filename}
+      prebuilts_build_number: If set to a value, the build number from
+        `--use_prebuilt_gki` is ignored. This value is used instead.
     """
 
     if common_kernel_package == None:
@@ -121,6 +124,7 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         kernel_prebuilt_repo(
             name = repo_name,
             artifact_url_fmt = artifact_url_fmt,
+            build_number = prebuilts_build_number,
         )
 
     # TODO(b/200202912): Re-route this when rules_python is pulled into AOSP.
