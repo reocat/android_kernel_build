@@ -36,6 +36,43 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/utils.bzl` to format the file, or apply the suggested fix.",
       "revId": "0c58b1d9ffc6ee1af69210bbb40d5087accea07e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000055915093",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2776607?revision\u003d13",
+      "fixSuggestions": [
+        {
+          "fixId": "97a936a5_72c58b56",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/utils.bzl",
+              "range": {
+                "startLine": 316,
+                "startChar": 0,
+                "endLine": 319,
+                "endChar": 0
+              },
+              "replacement": "        env_and_outputs_info \u003d kernel_build[KernelEnvAndOutputsInfo] if KernelEnvAndOutputsInfo in kernel_build else None,  # FIXME\n        kernel_build_info \u003d kernel_build[KernelBuildInfo] if KernelBuildInfo in kernel_build else None,  # FIXME\n        images_info \u003d kernel_build[KernelImagesInfo] if KernelImagesInfo in kernel_build else None,  # FIXME\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "618214e1_23c9b022",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-11T19:52:51Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/utils.bzl` to format the file, or apply the suggested fix.",
+      "revId": "0c58b1d9ffc6ee1af69210bbb40d5087accea07e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
