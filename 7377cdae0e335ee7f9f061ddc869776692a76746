@@ -63,6 +63,30 @@
       },
       "revId": "7377cdae0e335ee7f9f061ddc869776692a76746",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "023d8c7a_a88e6f13",
+        "filename": "kleaf/docs/kleaf_development.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-11T19:00:44Z",
+      "side": 1,
+      "message": "Actually, let me update this. As of cl/546277754, the ctx.files.X is lazily computed, so it should be less preferred in any case.",
+      "parentUuid": "83a7dba0_839872f6",
+      "range": {
+        "startLine": 117,
+        "startChar": 17,
+        "endLine": 117,
+        "endChar": 26
+      },
+      "revId": "7377cdae0e335ee7f9f061ddc869776692a76746",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
