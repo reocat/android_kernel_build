@@ -532,9 +532,9 @@ config_setting(
     visibility = ["//visibility:public"],
 )
 
-bool_flag(
+alias(
     name = "use_prebuilt_gki",
-    build_setting_default = False,
+    actual = "@gki_prebuilts//:use_prebuilt_gki",
     # Visible to any package that calls define_common_kernels()
     visibility = ["//visibility:public"],
 )
