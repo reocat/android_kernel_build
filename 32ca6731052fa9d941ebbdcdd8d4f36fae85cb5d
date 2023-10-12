@@ -87,6 +87,24 @@
       "parentUuid": "011a56bb_e7027dfe",
       "revId": "32ca6731052fa9d941ebbdcdd8d4f36fae85cb5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ddb49e8_3c1d0f3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-12T00:52:30Z",
+      "side": 1,
+      "message": "It\u0027s not a fixed list, as it\u0027s fully dependent on which file the user want to disable sanitizer is.\n\nFor now, the list is KASAN_SANITIZE, KCSAN_SANITIZE, KCOV_SANITIZE.\nBut it might be file based too, ex\n`KASAN_SANITIZE_file_A.o :\u003d n`, `KASAN_SANITIZE_file_B.o :\u003d n`, ``KASAN_SANITIZE_file_C.o :\u003d n` ...",
+      "parentUuid": "06f3a50a_c8b720ed",
+      "revId": "32ca6731052fa9d941ebbdcdd8d4f36fae85cb5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
