@@ -16,6 +16,24 @@
       "message": "will be this the fallback option for cases where there is no ACK but in cases where ACK is present that will still take priority?",
       "revId": "bb0d5e8a31bc444130a817709839aea361028d88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "597a63c2_30480efe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T17:35:48Z",
+      "side": 1,
+      "message": "This change only adds build.config.constants to the dist directory for GKI. No priority was adjusted.\n\nIf you are talking about the overall implementation: for now, this will ALWAYS be the one chosen, because `common/` project is not part of `groups\u003d\"ddk\"` in the manifest. We only pull `groups\u003d\"ddk\"` projects. But this behavior can change later.",
+      "parentUuid": "b15ad155_8f1238da",
+      "revId": "bb0d5e8a31bc444130a817709839aea361028d88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
