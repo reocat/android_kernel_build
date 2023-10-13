@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "155908da_02df4ca0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T22:54:23Z",
+      "side": 1,
+      "message": "Setting default to `None` in the selector fixed both of these issues.",
+      "parentUuid": "ce5b7e1c_885d57d3",
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad7d7ef8_12a120b9",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-10-13T20:58:43Z",
       "side": 1,
       "message": "where is this used?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 36
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51a1146d_d405ffa9",
+        "filename": "kleaf/impl/defconfig/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T22:54:23Z",
+      "side": 1,
+      "message": "In `kernel_build.bzl:796`. Was getting a visibility error without it.",
+      "parentUuid": "ad7d7ef8_12a120b9",
       "range": {
         "startLine": 23,
         "startChar": 0,
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b4ea9d8_3ddab28a",
+        "filename": "kleaf/impl/defconfig/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T22:54:23Z",
+      "side": 1,
+      "message": "Around same place as above.",
+      "parentUuid": "ccd091a2_589a2e86",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 22
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42c22d31_07752551",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 2
@@ -77,6 +143,30 @@
       "writtenOn": "2023-10-13T20:58:43Z",
       "side": 1,
       "message": "I think you need \"None\" here to fall back to \"second_selector\", right?",
+      "range": {
+        "startLine": 790,
+        "startChar": 36,
+        "endLine": 790,
+        "endChar": 45
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dc56c63_f126c34a",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T22:54:23Z",
+      "side": 1,
+      "message": "Ah okay, you\u0027re right.",
+      "parentUuid": "42c22d31_07752551",
       "range": {
         "startLine": 790,
         "startChar": 36,
@@ -104,6 +194,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3ebf7fd_c8fb87f6",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 2055,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T22:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57020488_dbe0697b",
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8133ded_b6671ff7",
@@ -117,6 +225,30 @@
       "writtenOn": "2023-10-13T20:58:43Z",
       "side": 1,
       "message": "You don\u0027t need to handle the empty case here if you set `default\u003d\"default\"`",
+      "range": {
+        "startLine": 2261,
+        "startChar": 7,
+        "endLine": 2261,
+        "endChar": 26
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec3c0079_93db8d89",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 2261,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T22:54:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8133ded_b6671ff7",
       "range": {
         "startLine": 2261,
         "startChar": 7,
