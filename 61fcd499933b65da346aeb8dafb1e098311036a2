@@ -16,6 +16,24 @@
       "message": "This needs performance measurements",
       "revId": "61fcd499933b65da346aeb8dafb1e098311036a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "377bae9f_0fe2ce0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T23:06:09Z",
+      "side": 1,
+      "message": "There are no visible change in time for building kernel_config and in the total time for kernel_aarch64_dist, so I think this is good to go.",
+      "parentUuid": "1c1b8e67_ca639e25",
+      "revId": "61fcd499933b65da346aeb8dafb1e098311036a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
