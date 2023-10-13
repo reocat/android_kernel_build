@@ -16,6 +16,29 @@
       "message": "Verified with https://android-build.corp.google.com/abtd/run/L03300000963491519/",
       "revId": "a45afa7c6e0af6480fce14fdfe0a8eb2311d30a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd50ee3c_0a70e2ef",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-10-13T19:01:20Z",
+      "side": 1,
+      "message": "Do you have details on why this didn\u0027t work for you? I am using a system_dlkm `modules.dep` file without these prefixes just fine here -- https://r.android.com/2746395 for pixel devices.",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 100
+      },
+      "revId": "a45afa7c6e0af6480fce14fdfe0a8eb2311d30a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
