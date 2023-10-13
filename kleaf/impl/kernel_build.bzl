@@ -116,6 +116,7 @@ def kernel_build(
         defconfig_fragments = None,
         page_size = None,
         pack_module_scripts = None,
+        sanitizer = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
 
@@ -416,6 +417,9 @@ def kernel_build(
 
           **IMPLEMENTATION DETAIL**: The list of scripts is defined by
           `kernel_utils.filter_module_srcs().module_scripts`.
+        sanitizer: Default is `None`. Sanitizer configuration used during kernel build.
+          Value may be one of `"kasan"`, `"kasan_sw_tags"`, or `"kcsan"`.
+          By default, no sanitizer will be used.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -470,6 +474,7 @@ def kernel_build(
         kernel_build_defconfig_fragments = defconfig_fragments,
         kernel_build_arch = arch,
         kernel_build_page_size = page_size,
+        kernel_build_sanitizer = sanitizer,
         **internal_kwargs
     )
 
@@ -597,6 +602,7 @@ def kernel_build(
         src_kmi_symbol_list = kmi_symbol_list,
         trim_nonlisted_kmi = trim_nonlisted_kmi,
         pack_module_scripts = pack_module_scripts,
+        sanitizer = sanitizer,
         **kwargs
     )
 
@@ -721,15 +727,13 @@ def _get_defconfig_fragments(
         kernel_build_defconfig_fragments,
         kernel_build_arch,
         kernel_build_page_size,
+        kernel_build_sanitizer,
         **internal_kwargs):
     # Use a separate list to avoid .append on the provided object directly.
     # kernel_build_defconfig_fragments could be a list or a select() expression.
     additional_fragments = [
         Label("//build/kernel/kleaf:defconfig_fragment"),
         Label("//build/kernel/kleaf/impl/defconfig:debug"),
-        Label("//build/kernel/kleaf/impl/defconfig:kasan_any_mode"),
-        Label("//build/kernel/kleaf/impl/defconfig:{}_kasan_sw_tags".format(kernel_build_arch)),
-        Label("//build/kernel/kleaf/impl/defconfig:kcsan"),
     ]
 
     btf_debug_info_target = kernel_build_name + "_defconfig_fragment_btf_debug_info"
@@ -775,6 +779,27 @@ def _get_defconfig_fragments(
         **internal_kwargs
     )
     additional_fragments.append(page_size_target)
+
+    sanitizer_target = kernel_build_name + "_defconfig_fragment_sanitizer"
+    file_selector(
+        name = sanitizer_target,
+        first_selector = select({
+            Label("//build/kernel/kleaf:kasan_any_mode_is_true"): "kasan_any_mode",
+            Label("//build/kernel/kleaf:kasan_sw_tags_is_true"): "kasan_sw_tags",
+            Label("//build/kernel/kleaf:kcsan_is_true"): "kcsan",
+            "//conditions:default": None,
+        }),
+        second_selector = kernel_build_sanitizer,
+        third_selector = "default",
+        files = {
+            Label("//build/kernel/kleaf/impl/defconfig:kasan_any_mode"): "kasan",
+            Label("//build/kernel/kleaf/impl/defconfig:{}_kasan_sw_tags".format(kernel_build_arch)): "kasan_sw_tags",
+            Label("//build/kernel/kleaf/impl/defconfig:kcsan"): "kcsan",
+            Label("//build/kernel/kleaf/impl:empty_filegroup"): "default",
+        },
+        **internal_kwargs
+    )
+    additional_fragments.append(sanitizer_target)
 
     if kernel_build_defconfig_fragments == None:
         kernel_build_defconfig_fragments = []
@@ -2027,6 +2052,15 @@ _kernel_build = rule(
         "src_protected_modules_list": attr.label(allow_single_file = True),
         "src_kmi_symbol_list": attr.label(allow_single_file = True),
         "pack_module_scripts": attr.bool(default = False, doc = "Create `<name>_module_scripts.tar.gz`."),
+        "sanitizer": attr.string(
+            values = [
+                "default",
+                "kasan",
+                "kasan_sw_tags",
+                "kcsan",
+            ],
+            default = "default",
+        ),
     } | _kernel_build_additional_attrs(),
     toolchains = [hermetic_toolchain.type],
 )
@@ -2144,6 +2178,12 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
     if _skip_build_checks(ctx, what = "Attribute kmi_symbol_list_strict_mode"):
         return None
 
+    if ctx.attr.sanitizer and ctx.attr.sanitizer != "default":
+        # buildifier: disable=print
+        print("\nWARNING: {this_label}: Attribute kmi_symbol_list_strict_mode\
+              IGNORED because kernel_build.sanitizer is set!".format(this_label = ctx.label))
+        return None
+
     if not ctx.attr.kmi_symbol_list_strict_mode:
         return None
     if not ctx.files.raw_kmi_symbol_list:
@@ -2220,6 +2260,13 @@ def _kmi_symbol_list_violations_check(ctx, modules_staging_archive):
         fail("{}: raw_kmi_symbol_list must only provide at most one file".format(ctx.label))
 
     if _skip_build_checks(ctx, what = "Symbol list violations check"):
+        return None
+
+    # Skip for sanitizer build as they are not valid GKI releasae configurations.
+    # Downstreams are expect to build kernel+modules+vendor modules locally
+    # and can disable the runtime symbol protection with CONFIG_SIG_PROTECT=n
+    # if required.
+    if ctx.attr.sanitizer != "default":
         return None
 
     inputs = [
