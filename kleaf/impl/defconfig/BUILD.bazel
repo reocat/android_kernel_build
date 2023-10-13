@@ -20,8 +20,11 @@ exports_files([
     "arm64_16k_defconfig",
     "arm64_4k_defconfig",
     "arm64_64k_defconfig",
+    "arm64_kasan_sw_tags_defconfig",
     "btf_debug_info_disabled_defconfig",
     "btf_debug_info_enabled_defconfig",
+    "kasan_any_mode_defconfig",
+    "kcsan_defconfig",
 ])
 
 [[
