@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e27f5646_26c75884",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T18:14:43Z",
+      "side": 1,
+      "message": "Some generic comments:\n\n- I think you are mixing the change that \"adds kernel_build.sanitizer\" and the change that \"replaces --kasan / --kcsan / --kasan_sw_tags with --sanitizer\". While I do not immediately oppose the second change, could you please split the change so that one change does one job, and we can evaluate the second change with a scoped view?\n\nIf you just need to \"add kernel_build.sanitizer\", I believe the change would be much smaller.\n\n- It looks like you reverted `kasan_any_mode` back to `kasan_generic`. What\u0027s the reason for doing that? Again, I don\u0027t immediately oppose this change, but please split it to yet another change so we can understand the reasoning better.",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "766b699e_b97f37e8",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T18:14:43Z",
+      "side": 1,
+      "message": "kasan_generic is deprecated and renamed to `kasan_any_mode`; are you sure about this?\n\nI think you should revert this chunk",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf60c68e_a0cb8dc1",
+        "filename": "kleaf/docs/kernel_config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T18:14:43Z",
+      "side": 1,
+      "message": "No need to add a new flag if people are used to using `--kasan` etc. already",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0220b61_fa96f714",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T18:14:43Z",
+      "side": 1,
+      "message": "Same here and below; these are changes on the \"flag\" not kernel_build.sanitizer",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d32c6567_29662af4",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T18:14:43Z",
+      "side": 1,
+      "message": "just `sanitizer`\n\nLet file_selector handle the None case, since None could be in a select() expression.",
+      "range": {
+        "startLine": 478,
+        "startChar": 33,
+        "endLine": 478,
+        "endChar": 70
+      },
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f21d5abf_7bde6e0e",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T18:14:43Z",
+      "side": 1,
+      "message": "kasan_any_mode?\n\nAlso, if you are only adding kernel_build.sanitizer but not changing flags in this change, then this should be //build/kernel/kleaf:kasan_any_mode_is_set_to_true or the similar",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

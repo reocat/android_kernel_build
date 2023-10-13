@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b3539f7_2fc594b7",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T18:14:43Z",
+      "side": 0,
+      "message": "same here and below; if you are not changing the command line flag, you don\u0027t need these changes",
+      "revId": "6cea034e8df50d8e2c3e60d4e97497574c4caa41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eff3dd65_43210878",
+        "filename": "kleaf/bazelrc/flags.bazelrc",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T18:14:43Z",
+      "side": 0,
+      "message": "For backwards compatibility, I think we should keep these flags. See my other comment.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 51
+      },
+      "revId": "6cea034e8df50d8e2c3e60d4e97497574c4caa41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
