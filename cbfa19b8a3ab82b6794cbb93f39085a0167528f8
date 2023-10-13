@@ -318,6 +318,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e169cd81_8999f9bf",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T23:12:16Z",
+      "side": 1,
+      "message": "I mean `//build/kernel/kleaf/impl/defconfig:kasan_any_mode` instead of `//build/kernel/kleaf/impl/defconfig:kasan_any_mode_defconfig`",
+      "parentUuid": "41f5194a_f1d0bfe5",
+      "range": {
+        "startLine": 795,
+        "startChar": 55,
+        "endLine": 795,
+        "endChar": 79
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57020488_dbe0697b",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 2
