@@ -16,6 +16,115 @@
       "message": "PS2 scales back to just the attribute. But, it\u0027s not working properly. There are two issues:\n\n1. Passing `--lto\u003dthin` while passing `kernel_build.sanitizer \u003d \"kasan\"` does not fail. I\u0027m not sure why...\n\n2. Adding `kernel_build.sanitizer \u003d \"kasan\"` does not seem to properly change the defconfig fragments. Again, I\u0027m not sure why.",
       "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad7d7ef8_12a120b9",
+        "filename": "kleaf/impl/defconfig/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T20:58:43Z",
+      "side": 1,
+      "message": "where is this used?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 36
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccd091a2_589a2e86",
+        "filename": "kleaf/impl/defconfig/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T20:58:43Z",
+      "side": 1,
+      "message": "Where are these used?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 22
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42c22d31_07752551",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T20:58:43Z",
+      "side": 1,
+      "message": "I think you need \"None\" here to fall back to \"second_selector\", right?",
+      "range": {
+        "startLine": 790,
+        "startChar": 36,
+        "endLine": 790,
+        "endChar": 45
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57020488_dbe0697b",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 2055,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T20:58:43Z",
+      "side": 1,
+      "message": "add `values` and `default` so you don\u0027t need to handle the empty case",
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8133ded_b6671ff7",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 2261,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T20:58:43Z",
+      "side": 1,
+      "message": "You don\u0027t need to handle the empty case here if you set `default\u003d\"default\"`",
+      "range": {
+        "startLine": 2261,
+        "startChar": 7,
+        "endLine": 2261,
+        "endChar": 26
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
