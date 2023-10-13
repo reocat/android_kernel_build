@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64301173_5e986ebd",
+        "filename": "kleaf/impl/defconfig/kasan_any_mode_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T16:55:17Z",
+      "side": 1,
+      "message": "Do you want to \"always enable\" CONFIG_RANDOMIZE_BASE or \"don\u0027t touch the value of CONFIG_RANDOMIZE_BASE\"?\n\nIf the latter, this line should be deleted. Based on the commit message, I think you mean the latter but I am not sure.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "ce43383184b1b7bd24e52df6dfeb0d7225a9349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
