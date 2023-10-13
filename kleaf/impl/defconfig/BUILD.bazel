@@ -69,8 +69,7 @@ fail_rule(
 filegroup(
     name = "kasan_any_mode",
     srcs = select({
-        "//build/kernel/kleaf:kasan_any_mode_is_true": ["kasan_any_mode_defconfig"],
-        "//build/kernel/kleaf:kasan_any_mode_is_false": [],
+        "//build/kernel/kleaf/impl:lto_is_set_to_default_or_none": ["kasan_any_mode_defconfig"],
         "//conditions:default": [":fail_kasan_any_mode_lto"],
     }),
     visibility = ["//visibility:public"],
@@ -84,8 +83,7 @@ fail_rule(
 filegroup(
     name = "kasan_generic",
     srcs = select({
-        "//build/kernel/kleaf:kasan_generic_is_true": ["kasan_generic_defconfig"],
-        "//build/kernel/kleaf:kasan_generic_is_false": [],
+        "//build/kernel/kleaf/impl:lto_is_set_to_default_or_none": ["kasan_generic_defconfig"],
         "//conditions:default": [":fail_kasan_generic_lto"],
     }),
     visibility = ["//visibility:public"],
@@ -100,8 +98,7 @@ fail_rule(
 filegroup(
     name = "arm64_kasan_sw_tags",
     srcs = select({
-        "//build/kernel/kleaf:kasan_sw_tags_is_true": ["arm64_kasan_sw_tags_defconfig"],
-        "//build/kernel/kleaf:kasan_sw_tags_is_false": [],
+        "//build/kernel/kleaf/impl:lto_is_set_to_default_or_none": ["arm64_kasan_sw_tags_defconfig"],
         "//conditions:default": [":fail_kasan_sw_tags_lto"],
     }),
     visibility = ["//visibility:public"],
@@ -117,8 +114,7 @@ fail_rule(
     filegroup(
         name = "{}_kasan_sw_tags".format(arch),
         srcs = select({
-            "//build/kernel/kleaf:kasan_sw_tags_is_true": [":kasan_sw_tags_not_supported"],
-            "//build/kernel/kleaf:kasan_sw_tags_is_false": [],
+            "//build/kernel/kleaf/impl:lto_is_set_to_default_or_none": [":kasan_sw_tags_not_supported"],
             "//conditions:default": [":fail_kasan_sw_tags_lto"],
         }),
         visibility = ["//visibility:public"],
@@ -141,8 +137,7 @@ fail_rule(
 filegroup(
     name = "kcsan",
     srcs = select({
-        "//build/kernel/kleaf:kcsan_is_true": ["kcsan_defconfig"],
-        "//build/kernel/kleaf:kcsan_is_false": [],
+        "//build/kernel/kleaf/impl:lto_is_set_to_default_or_none": ["kcsan_defconfig"],
         "//conditions:default": [":fail_kcsan_lto"],
     }),
     visibility = ["//visibility:public"],
