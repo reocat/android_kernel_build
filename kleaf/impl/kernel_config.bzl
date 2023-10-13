@@ -249,63 +249,6 @@ def _config_keys(ctx):
 
     return struct(configs = configs, deps = deps)
 
-def _config_kasan(ctx):
-    """Return configs for --kasan.
-
-    Args:
-        ctx: ctx
-    Returns:
-        A struct, where `configs` is a list of arguments to `scripts/config`,
-        and `deps` is a list of input files.
-    """
-    kasan = ctx.attr.kasan[BuildSettingInfo].value
-
-    if not kasan:
-        return struct(configs = [], deps = [])
-
-    if trim_nonlisted_kmi_utils.get_value(ctx):
-        fail("{}: --kasan requires trimming to be disabled".format(ctx.label))
-
-    return struct(configs = [], deps = [])
-
-def _config_kasan_sw_tags(ctx):
-    """Return configs for --kasan_sw_tags.
-
-    Args:
-        ctx: ctx
-    Returns:
-        A struct, where `configs` is a list of arguments to `scripts/config`,
-        and `deps` is a list of input files.
-    """
-    kasan_sw_tags = ctx.attr.kasan_sw_tags[BuildSettingInfo].value
-
-    if not kasan_sw_tags:
-        return struct(configs = [], deps = [])
-
-    if trim_nonlisted_kmi_utils.get_value(ctx):
-        fail("{}: --kasan_sw_tags requires trimming to be disabled".format(ctx.label))
-
-    return struct(configs = [], deps = [])
-
-def _config_kcsan(ctx):
-    """Return configs for --kcsan.
-
-    Args:
-        ctx: ctx
-    Returns:
-        A struct, where `configs` is a list of arguments to `scripts/config`,
-        and `deps` is a list of input files.
-    """
-    kcsan = ctx.attr.kcsan[BuildSettingInfo].value
-
-    if not kcsan:
-        return struct(configs = [], deps = [])
-
-    if trim_nonlisted_kmi_utils.get_value(ctx):
-        fail("{}: --kcsan requires trimming to be disabled".format(ctx.label))
-
-    return struct(configs = [], deps = [])
-
 def _reconfig(ctx):
     """Return a command and extra inputs to re-configure `.config` file."""
     configs = []
@@ -317,9 +260,6 @@ def _reconfig(ctx):
     for fn in (
         _config_lto,
         _config_trim,
-        _config_kcsan,
-        _config_kasan,
-        _config_kasan_sw_tags,
         _config_gcov,
         _config_keys,
         kgdb.get_scripts_config_args,

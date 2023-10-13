@@ -22,6 +22,9 @@ exports_files([
     "arm64_64k_defconfig",
     "btf_debug_info_disabled_defconfig",
     "btf_debug_info_enabled_defconfig",
+    "kasan_enabled_defconfig",
+    "kasan_sw_tags_enabled_defconfig",
+    "kcsan_enabled_defconfig",
 ])
 
 [[

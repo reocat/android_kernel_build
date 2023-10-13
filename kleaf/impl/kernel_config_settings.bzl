@@ -75,9 +75,7 @@ def _kernel_build_config_settings_raw():
             "_use_kmi_symbol_list_strict_mode": "//build/kernel/kleaf:kmi_symbol_list_strict_mode",
             "_gcov": "//build/kernel/kleaf:gcov",
             "_debug": "//build/kernel/kleaf:debug",
-            "_kasan": "//build/kernel/kleaf:kasan",
-            "_kasan_sw_tags": "//build/kernel/kleaf:kasan_sw_tags",
-            "_kcsan": "//build/kernel/kleaf:kcsan",
+            "_sanitizer": "//build/kernel/kleaf:sanitizer",
             "_preserve_kbuild_output": "//build/kernel/kleaf:preserve_kbuild_output",
         },
     )
@@ -93,9 +91,7 @@ def _kernel_config_config_settings_raw():
         kgdb.config_settings_raw(),
         {
             "debug": "//build/kernel/kleaf:debug",
-            "kasan": "//build/kernel/kleaf:kasan",
-            "kasan_sw_tags": "//build/kernel/kleaf:kasan_sw_tags",
-            "kcsan": "//build/kernel/kleaf:kcsan",
+            "sanitizer": "//build/kernel/kleaf:sanitizer",
             "gcov": "//build/kernel/kleaf:gcov",
         },
     )

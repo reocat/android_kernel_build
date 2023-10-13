@@ -32,12 +32,12 @@ string_flag(
 )
 
 # The final LTO setting is "default" (use defconfig value).
-# If --lto=default, and none of --kasan/--kcsan/--kasan_sw_tags/--debug, LTO is default
+# If --lto=default, and none of --sanitizer=*/--debug, LTO is default
 selects.config_setting_group(
     name = "lto_is_default",
     match_all = [
         "//build/kernel/kleaf/impl:lto_is_set_to_default",
-        ":kasan_is_false",
+        ":kasan_generic_is_false",
         ":kcsan_is_false",
         ":debug_is_false",
     ],
@@ -45,7 +45,7 @@ selects.config_setting_group(
 )
 
 # The final LTO setting is "none".
-# If --lto=none, or if --lto=default AND --kasan/--kcsan/--kasan_sw_tags/--debug, LTO should be set to none.
+# If --lto=none, or if --lto=default AND --sanitizer=*/--debug, LTO should be set to none.
 selects.config_setting_group(
     name = "lto_is_none",
     match_any = [
@@ -100,129 +100,101 @@ bool_flag(
     visibility = ["//visibility:public"],
 )
 
-# If true, enable kasan (any mode).
-# This assumes --lto=none, but :print_flags only shows
-# values from the command line.
-bool_flag(
-    name = "kasan",
-    build_setting_default = False,
-    visibility = ["//visibility:public"],
-)
-
 # KASAN (any mode) is enabled in the final build.
 # One of the following:
-# --kasan --lto=default
-# --kasan --lto=none
+# --sanitizer=kasan --lto=default
+# --sanitizer=kasan --lto=none
 selects.config_setting_group(
     name = "kasan_any_mode_is_true",
     match_all = [
         "//build/kernel/kleaf/impl:lto_is_set_to_default_or_none",
-        "//build/kernel/kleaf/impl:kasan_generic_is_set_to_true",
+        ":kasan_generic_is_true",
     ],
     # All kernel_* from different packages can see this
     visibility = ["//visibility:public"],
 )
 
-# --kasan=false
-config_setting(
-    name = "kasan_any_mode_is_false",
-    flag_values = {":kasan": "0"},
-    visibility = ["//visibility:public"],
-)
-
-alias(
-    name = "kasan_generic_is_true",
-    actual = "kasan_any_mode_is_true",
-    deprecation = """This target is a misnomer. It enables KASAN with mode unspecified
-        (default to value in defconfig). Use kasan_any_mode_is_true instead.
-    """,
-)
-
-alias(
-    name = "kasan_generic_is_false",
-    actual = "kasan_any_mode_is_false",
-    deprecation = """This target is a misnomer. It enables KASAN with mode unspecified
-        (default to value in defconfig). Use kasan_any_mode_is_false instead.
-    """,
-)
-
-# If true, enable kasan sw tags.
-# This assumes --lto=none, but :print_flags only shows
-# values from the command line.
-bool_flag(
-    name = "kasan_sw_tags",
-    build_setting_default = False,
-    visibility = ["//visibility:public"],
-)
-
-# KASAN (Software Tag-based) is enabled in the final build.
-# One of the following:
-# --kasan_sw_tags --lto=default
-# --kasan_sw_tags --lto=none
 selects.config_setting_group(
-    name = "kasan_sw_tags_is_true",
-    match_all = [
-        "//build/kernel/kleaf/impl:lto_is_set_to_default_or_none",
-        "//build/kernel/kleaf/impl:kasan_sw_tags_is_set_to_true",
+    name = "kasan_any_mode_is_false",
+    match_any = [
+        ":sanitizer_is_default",
     ],
     # All kernel_* from different packages can see this
     visibility = ["//visibility:public"],
 )
 
-# --kasan_sw_tags=false
-config_setting(
-    name = "kasan_sw_tags_is_false",
-    flag_values = {":kasan_sw_tags": "0"},
-    visibility = ["//visibility:public"],
-)
-
-# Either kasan or kasan_sw_tags is enabled in the final build.
 selects.config_setting_group(
     name = "kasan_is_true",
     match_any = [
-        ":kasan_any_mode_is_true",
+        ":kasan_generic_is_true",
         ":kasan_sw_tags_is_true",
     ],
     visibility = ["//visibility:public"],
 )
 
-# Neither kasan nor kasan_sw_tags is enabled in the final build
-selects.config_setting_group(
-    name = "kasan_is_false",
-    match_all = [
-        ":kasan_any_mode_is_false",
-        ":kasan_sw_tags_is_false",
+string_flag(
+    name = "sanitizer",
+    build_setting_default = "default",
+    values = [
+        "default",  # Respect value in defconfig
+        "kasan",
+        "kasan_sw_tags",
+        "kcsan",
     ],
     visibility = ["//visibility:public"],
 )
 
-# If true, enable kcsan.
-# This assumes --lto=none, but :print_flags only shows
-# values from the command line.
-bool_flag(
-    name = "kcsan",
-    build_setting_default = False,
-    visibility = ["//visibility:public"],
-)
-
-# KCSAN is enabled in the final build.
-# One of the following:
-# --kcsan --lto=default
-# --kcsan --lto=none
-selects.config_setting_group(
-    name = "kcsan_is_true",
-    match_all = [
-        "//build/kernel/kleaf/impl:lto_is_set_to_default_or_none",
-        "//build/kernel/kleaf/impl:kcsan_is_set_to_true",
-    ],
-    # All kernel_* from different packages can see this
-    visibility = ["//visibility:public"],
-)
-
-# --kcsan=false
 config_setting(
+    name = "sanitizer_is_default",
+    flag_values = {":sanitizer": "default"},
+    visibility = ["//visibility:public"],
+)
+
+config_setting(
+    name = "kasan_generic_is_true",
+    flag_values = {":sanitizer": "kasan"},
+    visibility = ["//visibility:public"],
+)
+
+selects.config_setting_group(
+    name = "kasan_generic_is_false",
+    match_any = [
+        ":sanitizer_is_default",
+        ":kasan_sw_tags_is_true",
+        ":kcsan_is_true",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+config_setting(
+    name = "kasan_sw_tags_is_true",
+    flag_values = {":sanitizer": "kasan_sw_tags"},
+    visibility = ["//visibility:public"],
+)
+
+selects.config_setting_group(
+    name = "kasan_sw_tags_is_false",
+    match_any = [
+        ":sanitizer_is_default",
+        ":kasan_is_true",
+        ":kcsan_is_true",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+config_setting(
+    name = "kcsan_is_true",
+    flag_values = {":sanitizer": "kcsan"},
+    visibility = ["//visibility:public"],
+)
+
+selects.config_setting_group(
     name = "kcsan_is_false",
-    flag_values = {":kcsan": "0"},
+    match_any = [
+        ":sanitizer_is_default",
+        ":kasan_is_true",
+        ":kasan_sw_tags_is_true",
+    ],
     visibility = ["//visibility:public"],
 )
 
@@ -472,7 +444,7 @@ config_setting(
     visibility = ["//build/kernel:__pkg__"],
 )
 
-# If --lto=none, or if --kasan/--kcsan, LTO should be set to none.
+# If --lto=none, or if --sanitizer=kasan/kcsan, LTO should be set to none.
 selects.config_setting_group(
     name = "debug_cache_dir_conflict_needs_flock",
     match_any = [
