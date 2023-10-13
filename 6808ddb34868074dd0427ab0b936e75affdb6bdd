@@ -71,6 +71,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28d9f825_da5d9abf",
+        "filename": "kleaf/impl/defconfig/kasan_enabled_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T18:15:14Z",
+      "side": 1,
+      "message": "These files exist in impl/defconfig/ already",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d32c6567_29662af4",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 1
