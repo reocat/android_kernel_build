@@ -248,6 +248,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bdc747ce_af31b5e2",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T18:39:56Z",
+      "side": 1,
+      "message": "If you look at the label `//build/kernel/kleaf/impl/defconfig:kcsan` for example, it has a `select()` that optionally adds `kcsan_defconfig` only when `--kcsan` is set.\n\nAfter your change, you might not want this, and use file_selector() to control the interaction between --kcsan and kernel_build.sanitizer.",
+      "parentUuid": "386858e9_e74ceb80",
+      "range": {
+        "startLine": 731,
+        "startChar": 0,
+        "endLine": 731,
+        "endChar": 2
+      },
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f21d5abf_7bde6e0e",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 1
