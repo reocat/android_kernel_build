@@ -132,6 +132,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "239604b5_5c1a6b86",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T23:10:40Z",
+      "side": 1,
+      "message": "Should be a simple `\"kasan_any_mode\"`\n\nThis refers to the values in the \"files\" dict below, not actual labels.\n\nSee docs for `files_selector` for details on its API. The values are just IDs that are used in the first/second/thrid selector and in the values for files.",
+      "range": {
+        "startLine": 787,
+        "startChar": 67,
+        "endLine": 787,
+        "endChar": 117
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f62254c9_6f314cf3",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T23:10:40Z",
+      "side": 1,
+      "message": "Should be `\"kasan_sw_tags\"`",
+      "range": {
+        "startLine": 788,
+        "startChar": 66,
+        "endLine": 788,
+        "endChar": 146
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80e4fa45_5c20f709",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T23:10:40Z",
+      "side": 1,
+      "message": "`\"kcsan\"`",
+      "range": {
+        "startLine": 789,
+        "startChar": 58,
+        "endLine": 789,
+        "endChar": 99
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42c22d31_07752551",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 2
@@ -172,6 +241,52 @@
         "startChar": 36,
         "endLine": 790,
         "endChar": 45
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41f5194a_f1d0bfe5",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T23:10:40Z",
+      "side": 1,
+      "message": "This should be `kasan_any_mode`, right?\n\n... so that it also gets the check on whether LTO values are compatible.",
+      "range": {
+        "startLine": 795,
+        "startChar": 55,
+        "endLine": 795,
+        "endChar": 79
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a8ded96_64748565",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T23:10:40Z",
+      "side": 1,
+      "message": "kasan_any_mode",
+      "range": {
+        "startLine": 795,
+        "startChar": 84,
+        "endLine": 795,
+        "endChar": 97
       },
       "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
