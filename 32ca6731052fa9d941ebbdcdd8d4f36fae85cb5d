@@ -105,6 +105,24 @@
       "parentUuid": "06f3a50a_c8b720ed",
       "revId": "32ca6731052fa9d941ebbdcdd8d4f36fae85cb5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da5923b7_126b3674",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-13T16:57:33Z",
+      "side": 1,
+      "message": "I would appreciate if you add 3 attributes instead of adding one free-formed kbuild_options attribute that are easily abused.\n\nSee my previous comment on allowing file-based lists.",
+      "parentUuid": "9ddb49e8_3c1d0f3a",
+      "revId": "32ca6731052fa9d941ebbdcdd8d4f36fae85cb5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
