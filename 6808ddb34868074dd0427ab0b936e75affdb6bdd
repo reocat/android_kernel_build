@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a96911e4_12b0ab5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T18:36:52Z",
+      "side": 1,
+      "message": "Agree, let me scale back the change to just add the attribute. I thought they both had to be done for some reason!",
+      "parentUuid": "e27f5646_26c75884",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "766b699e_b97f37e8",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-10-13T18:14:43Z",
       "side": 1,
       "message": "kasan_generic is deprecated and renamed to `kasan_any_mode`; are you sure about this?\n\nI think you should revert this chunk",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f87dc9dd_43a15ad6",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T18:36:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "766b699e_b97f37e8",
       "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9325008d_7b87290b",
+        "filename": "kleaf/docs/kernel_config.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T18:36:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf60c68e_a0cb8dc1",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0220b61_fa96f714",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "514d1730_98a63f77",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T18:36:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0220b61_fa96f714",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28d9f825_da5d9abf",
@@ -82,6 +154,24 @@
       "writtenOn": "2023-10-13T18:15:14Z",
       "side": 1,
       "message": "These files exist in impl/defconfig/ already",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72e14f8c_6ff40320",
+        "filename": "kleaf/impl/defconfig/kasan_enabled_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T18:36:52Z",
+      "side": 1,
+      "message": "Sorry, was developing on a slightly dated branch.",
+      "parentUuid": "28d9f825_da5d9abf",
       "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -109,6 +199,53 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ef6e0f1_3cc89c26",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T18:36:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d32c6567_29662af4",
+      "range": {
+        "startLine": 478,
+        "startChar": 33,
+        "endLine": 478,
+        "endChar": 70
+      },
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "386858e9_e74ceb80",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T18:36:52Z",
+      "side": 1,
+      "message": "Why are these fragments being added unconditionally here? I thought these would be gated behind the attribute...",
+      "range": {
+        "startLine": 731,
+        "startChar": 0,
+        "endLine": 731,
+        "endChar": 2
+      },
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f21d5abf_7bde6e0e",
@@ -122,6 +259,24 @@
       "writtenOn": "2023-10-13T18:14:43Z",
       "side": 1,
       "message": "kasan_any_mode?\n\nAlso, if you are only adding kernel_build.sanitizer but not changing flags in this change, then this should be //build/kernel/kleaf:kasan_any_mode_is_set_to_true or the similar",
+      "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7747da06_0a4fb176",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-13T18:36:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f21d5abf_7bde6e0e",
       "revId": "6808ddb34868074dd0427ab0b936e75affdb6bdd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
