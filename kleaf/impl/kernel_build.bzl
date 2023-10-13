@@ -114,6 +114,11 @@ def kernel_build(
         modules_prepare_force_generate_headers = None,
         defconfig_fragments = None,
         page_size = None,
+<<<<<<< HEAD
+=======
+        pack_module_scripts = None,
+        sanitizers = None,
+>>>>>>> f4696ee (kleaf: Add support for kernel_build.sanitizers)
         **kwargs):
     """Defines a kernel build target with all dependent targets.
 
@@ -407,6 +412,23 @@ def kernel_build(
           `"default"`, the defconfig is left as-is.
 
           16k / 64k page size is only supported on `arch = "arm64"`.
+<<<<<<< HEAD
+=======
+        pack_module_scripts: If `True`, create `{name}_module_scripts.tar.gz` as
+          part of the default output of this target.
+
+          The archive contains necessary scripts to build external modules.
+
+          **IMPLEMENTATION DETAIL**: The list of scripts is defined by
+          `kernel_utils.filter_module_srcs().module_scripts`.
+        sanitizers: **non-configurable**. A list of sanitizer configurations.
+          By default, no sanitizers are explicity configured; values in defconfig are
+          respected. Possible values are:
+            - `["kasan_any_mode"]`
+            - `["kasan_sw_tags"]`
+            - `["kasan_generic"]`
+            - `["kcsan"]`
+>>>>>>> f4696ee (kleaf: Add support for kernel_build.sanitizers)
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -421,6 +443,10 @@ def kernel_build(
     kmi_symbol_list_target_name = name + "_kmi_symbol_list"
     abi_symbollist_target_name = name + "_kmi_symbol_list_abi_symbollist"
     raw_kmi_symbol_list_target_name = name + "_raw_kmi_symbol_list"
+
+    # Currently only support one sanitizer
+    if sanitizers and len(sanitizers) > 1:
+        fail("only one sanitizer may be passed to kernel_build.sanitizers")
 
     if srcs == None:
         srcs = native.glob(
@@ -461,6 +487,7 @@ def kernel_build(
         kernel_build_defconfig_fragments = defconfig_fragments,
         kernel_build_arch = arch,
         kernel_build_page_size = page_size,
+        kernel_build_sanitizers = sanitizers,
         **internal_kwargs
     )
 
@@ -587,6 +614,11 @@ def kernel_build(
         src_protected_modules_list = protected_modules_list,
         src_kmi_symbol_list = kmi_symbol_list,
         trim_nonlisted_kmi = trim_nonlisted_kmi,
+<<<<<<< HEAD
+=======
+        pack_module_scripts = pack_module_scripts,
+        sanitizers = sanitizers,
+>>>>>>> f4696ee (kleaf: Add support for kernel_build.sanitizers)
         **kwargs
     )
 
@@ -676,16 +708,63 @@ def kernel_build(
         **kwargs
     )
 
+<<<<<<< HEAD
+=======
+# buildifier: disable=print
+def _skip_build_checks(ctx, what):
+    # Skip for --k*san targets as they are usually debug targets.
+    if ctx.attr._kasan[BuildSettingInfo].value:
+        print("\nWARNING: {this_label}: {what} was\
+              IGNORED because --kasan is set!".format(this_label = ctx.label, what = what))
+        return True
+    if ctx.attr._kasan_sw_tags[BuildSettingInfo].value:
+        print("\nWARNING: {this_label}: {what} was\
+              IGNORED because --kasan_sw_tags is set!".format(this_label = ctx.label, what = what))
+        return True
+    if ctx.attr._kasan_generic[BuildSettingInfo].value:
+        print("\nWARNING: {this_label}: {what} was\
+              IGNORED because --kasan_generic is set!".format(this_label = ctx.label, what = what))
+        return True
+    if ctx.attr._kcsan[BuildSettingInfo].value:
+        print("\nWARNING: {this_label}: {what} was\
+              IGNORED because --kcsan is set!".format(this_label = ctx.label, what = what))
+        return True
+
+    # Skip for --kgdb as it is usually used for debug targets.
+    if ctx.attr._kgdb[BuildSettingInfo].value:
+        print("\nWARNING: {this_label}: {what} was\
+              IGNORED because --kgdb is set!".format(this_label = ctx.label, what = what))
+        return True
+
+    # Skip when --debug is specified.
+    if ctx.attr._debug[BuildSettingInfo].value:
+        print("\nWARNING: {this_label}: {what} was\
+              IGNORED because --debug is set!".format(this_label = ctx.label, what = what))
+        return True
+
+    if ctx.attr.sanitizers[0] != "default":
+        print("\nWARNING: {this_label}: {what} was\
+              IGNORED because kernel_build.sanitizers is set!".format(this_label = ctx.label, what = what))
+        return True
+
+    return False
+
+>>>>>>> f4696ee (kleaf: Add support for kernel_build.sanitizers)
 def _get_defconfig_fragments(
         kernel_build_name,
         kernel_build_defconfig_fragments,
         kernel_build_arch,
         kernel_build_page_size,
+        kernel_build_sanitizers,
         **internal_kwargs):
     # Use a separate list to avoid .append on the provided object directly.
     # kernel_build_defconfig_fragments could be a list or a select() expression.
     additional_fragments = [
         Label("//build/kernel/kleaf:defconfig_fragment"),
+<<<<<<< HEAD
+=======
+        Label("//build/kernel/kleaf/impl/defconfig:debug"),
+>>>>>>> f4696ee (kleaf: Add support for kernel_build.sanitizers)
     ]
 
     btf_debug_info_target = kernel_build_name + "_defconfig_fragment_btf_debug_info"
@@ -731,6 +810,33 @@ def _get_defconfig_fragments(
         **internal_kwargs
     )
     additional_fragments.append(page_size_target)
+
+    kernel_build_sanitizer = "default"
+    if kernel_build_sanitizers:
+        kernel_build_sanitizer = kernel_build_sanitizers[0]
+
+    sanitizer_target = kernel_build_name + "_defconfig_fragment_sanitizer"
+    file_selector(
+        name = sanitizer_target,
+        first_selector = select({
+            Label("//build/kernel/kleaf:kasan_any_mode_is_true"): "kasan_any_mode",
+            Label("//build/kernel/kleaf:kasan_sw_tags_is_true"): "kasan_sw_tags",
+            Label("//build/kernel/kleaf:kasan_generic_is_true"): "kasan_generic",
+            Label("//build/kernel/kleaf:kcsan_is_true"): "kcsan",
+            "//conditions:default": None,
+        }),
+        second_selector = kernel_build_sanitizer,
+        third_selector = "default",
+        files = {
+            Label("//build/kernel/kleaf/impl/defconfig:kasan_any_mode"): "kasan_any_mode",
+            Label("//build/kernel/kleaf/impl/defconfig:{}_kasan_sw_tags".format(kernel_build_arch)): "kasan_sw_tags",
+            Label("//build/kernel/kleaf/impl/defconfig:kasan_generic"): "kasan_generic",
+            Label("//build/kernel/kleaf/impl/defconfig:kcsan"): "kcsan",
+            Label("//build/kernel/kleaf/impl:empty_filegroup"): "default",
+        },
+        **internal_kwargs
+    )
+    additional_fragments.append(sanitizer_target)
 
     if kernel_build_defconfig_fragments == None:
         kernel_build_defconfig_fragments = []
@@ -1947,6 +2053,14 @@ _kernel_build = rule(
         "src_protected_exports_list": attr.label(allow_single_file = True),
         "src_protected_modules_list": attr.label(allow_single_file = True),
         "src_kmi_symbol_list": attr.label(allow_single_file = True),
+<<<<<<< HEAD
+=======
+        "pack_module_scripts": attr.bool(default = False, doc = "Create `<name>_module_scripts.tar.gz`."),
+        "sanitizers": attr.string_list(
+            allow_empty = False,
+            default = ["default"],
+        ),
+>>>>>>> f4696ee (kleaf: Add support for kernel_build.sanitizers)
     } | _kernel_build_additional_attrs(),
     toolchains = [hermetic_toolchain.type],
 )
@@ -2186,6 +2300,13 @@ def _kmi_symbol_list_violations_check(ctx, modules_staging_archive):
         # buildifier: disable=print
         print("\nWARNING: {this_label}: Symbol list violations check \
               IGNORED because --kgdb is set!".format(this_label = ctx.label))
+        return None
+
+    # Skip for sanitizer build as they are not valid GKI releasae configurations.
+    # Downstreams are expect to build kernel+modules+vendor modules locally
+    # and can disable the runtime symbol protection with CONFIG_SIG_PROTECT=n
+    # if required.
+    if ctx.attr.sanitizers[0] != "default":
         return None
 
     inputs = [
