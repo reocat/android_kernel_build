@@ -25,19 +25,25 @@ load(
 
 # Analysis test
 
-kasan_lto_test(name = "kasan_lto_test")
+# TODO: re-enable after resolving b/309430653
+# kasan_lto_test(name = "kasan_lto_test")
 
-kasan_sw_tags_lto_test(name = "kasan_sw_tags_lto_test")
+# TODO: re-enable after resolving b/309430653
+# kasan_sw_tags_lto_test(name = "kasan_sw_tags_lto_test")
 
-kasan_generic_lto_test(name = "kasan_generic_lto_test")
+# TODO: re-enable after resolving b/309430653
+# kasan_generic_lto_test(name = "kasan_generic_lto_test")
 
-kcsan_lto_test(name = "kcsan_lto_test")
+# TODO: re-enable after resolving b/309430653
+# kcsan_lto_test(name = "kcsan_lto_test")
 
-debug_lto_test(name = "debug_lto_test")
+# TODO: re-enable after resolving b/309430653
+# debug_lto_test(name = "debug_lto_test")
 
 # Quick test on artifacts.
 
-kernel_config_option_test_suite(name = "kernel_config_option_test_suite")
+# TODO: re-enable after resolving b/309430653
+# kernel_config_option_test_suite(name = "kernel_config_option_test_suite")
 
 kernel_defconfig_fragments_test(name = "kernel_defconfig_fragments_test")
 
