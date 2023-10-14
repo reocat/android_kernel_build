@@ -107,6 +107,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "464a62bd_ab80206b",
+        "filename": "kleaf/impl/defconfig/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-14T00:16:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1afe4e49_dc27fe1b",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 36
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccd091a2_589a2e86",
@@ -201,6 +225,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "579d40c6_4da9fdbb",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-14T00:16:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8f0bc67_8f27e65f",
+      "range": {
+        "startLine": 787,
+        "startChar": 67,
+        "endLine": 787,
+        "endChar": 117
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f62254c9_6f314cf3",
@@ -224,6 +272,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf1a7fe2_68650a76",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-14T00:16:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f62254c9_6f314cf3",
+      "range": {
+        "startLine": 788,
+        "startChar": 66,
+        "endLine": 788,
+        "endChar": 146
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80e4fa45_5c20f709",
@@ -237,6 +309,30 @@
       "writtenOn": "2023-10-13T23:10:40Z",
       "side": 1,
       "message": "`\"kcsan\"`",
+      "range": {
+        "startLine": 789,
+        "startChar": 58,
+        "endLine": 789,
+        "endChar": 99
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0f2c4b8_239cca98",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-14T00:16:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80e4fa45_5c20f709",
       "range": {
         "startLine": 789,
         "startChar": 58,
@@ -354,6 +450,54 @@
       "side": 1,
       "message": "I mean `//build/kernel/kleaf/impl/defconfig:kasan_any_mode` instead of `//build/kernel/kleaf/impl/defconfig:kasan_any_mode_defconfig`",
       "parentUuid": "41f5194a_f1d0bfe5",
+      "range": {
+        "startLine": 795,
+        "startChar": 55,
+        "endLine": 795,
+        "endChar": 79
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4de2a848_31b4d82d",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-14T00:16:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a8ded96_64748565",
+      "range": {
+        "startLine": 795,
+        "startChar": 84,
+        "endLine": 795,
+        "endChar": 97
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13e2ce7b_13651107",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-14T00:16:55Z",
+      "side": 1,
+      "message": "I think the issue with that strategy is that the `kasan_any_mode` filegroup will return nothing if the `--kasan` flag isn\u0027t set, right?\n\n```\nfilegroup(\n    name \u003d \"kasan_any_mode\",\n    srcs \u003d select({\n        \"//build/kernel/kleaf:kasan_any_mode_is_true\": [\"kasan_any_mode_defconfig\"],\n        \"//build/kernel/kleaf:kasan_any_mode_is_false\": [],\n        \"//conditions:default\": [\":fail_kasan_any_mode_lto\"],\n    }),\n    visibility \u003d [\"//visibility:public\"],\n)\n```\n\nWhen I try what you\u0027re suggesting, it seems like the sanitizer isn\u0027t actually applied.",
+      "parentUuid": "e169cd81_8999f9bf",
       "range": {
         "startLine": 795,
         "startChar": 55,
