@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "432b80a7_826d481b",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-14T00:50:44Z",
+      "side": 1,
+      "message": "Belongs to another change.\n\nartifact_url_fmt and prebuilts_build_number can be combined into one thing, maybe?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 37
+      },
+      "revId": "b2d04eccf8f4577b23c48285a1a5c7b76c30f4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
