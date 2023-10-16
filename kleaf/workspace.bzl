@@ -79,6 +79,7 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         ))
 
     import_external_repositories(
+        repo_rule = local_repository,
         # keep sorted
         bazel_skylib = True,
         io_abseil_py = True,
