@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056207819",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2780228?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dfed394e_5d56d2cf",
+        "filename": "kleaf/impl/ddk/ddk_module.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-16T02:08:28Z",
+      "side": 1,
+      "message": "Argument \"sanitize_option\" is not documented. http://go/buildifier-warnings#function-docstring-args",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 365,
+        "endChar": 7
+      },
+      "revId": "31fd4b92be12e156749750bdda949e7046d99673",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
