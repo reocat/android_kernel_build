@@ -535,6 +535,73 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_filegroup.bzl` to format the file, or apply the suggested fix.",
       "revId": "957a38ee16a53612e3dcbbe710effa3a662fc7bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056162517",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2762270?revision\u003d22",
+      "fixSuggestions": [
+        {
+          "fixId": "c0eece4e_0d0c8bff",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_filegroup.bzl",
+              "range": {
+                "startLine": 36,
+                "startChar": 0,
+                "endLine": 36,
+                "endChar": 0
+              },
+              "replacement": "    \"MODULE_SCRIPTS_ARCHIVE_SUFFIX\",\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_filegroup.bzl",
+              "range": {
+                "startLine": 37,
+                "startChar": 0,
+                "endLine": 38,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/impl/kernel_filegroup.bzl",
+              "range": {
+                "startLine": 183,
+                "startChar": 0,
+                "endLine": 184,
+                "endChar": 0
+              },
+              "replacement": "        ),\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_filegroup.bzl",
+              "range": {
+                "startLine": 206,
+                "startChar": 0,
+                "endLine": 207,
+                "endChar": 0
+              },
+              "replacement": "        strip_modules \u003d True,  # FIXME\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "90bb652d_b9a32a45",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-16T13:32:34Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_filegroup.bzl` to format the file, or apply the suggested fix.",
+      "revId": "957a38ee16a53612e3dcbbe710effa3a662fc7bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
