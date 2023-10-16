@@ -63,7 +63,6 @@ from typing import Sequence
 _MODULE_SYMBOL_PATTERN = r'^0x[0-9a-f]+\s+([_a-zA-Z][_a-zA-Z0-9]*)\s+(\S+)\s+EXPORT_SYMBOL\s*$'
 _MODPOST_ERROR_PATTERN = r'modpost: "([_a-zA-Z][_a-zA-Z0-9]*)" \[(\S*)] undefined!'
 
-
 class BuildCleanerError(Exception):
     pass
 
@@ -178,12 +177,13 @@ class DdkCleaner(SingleCleaner):
         for target in kernel_module_targets:
             logging.info("Looking up symbols for %s", target)
             with open(target.module_symvers_path()) as f:
-                for mo in re.finditer(_MODULE_SYMBOL_PATTERN, f.read()):
-                    symbol = mo.group(1)
-                    symbols[symbol].append(SymbolLocation(
-                        target=target,
-                        module_file=mo.group(2),
-                    ))
+                for line in f.readlines():
+                    for mo in re.finditer(_MODULE_SYMBOL_PATTERN, line):
+                        symbol = mo.group(1)
+                        symbols[symbol].append(SymbolLocation(
+                            target=target,
+                            module_file=mo.group(2),
+                        ))
 
         errors = []
 
