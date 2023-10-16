@@ -22,6 +22,30 @@
       },
       "revId": "ce43383184b1b7bd24e52df6dfeb0d7225a9349e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cc01697_44da13fd",
+        "filename": "kleaf/impl/defconfig/kasan_any_mode_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-16T01:35:27Z",
+      "side": 1,
+      "message": "I want  CONFIG_RANDOMIZE_BASE and CONFIG_SHADOW_CALL_STACK always been enabled when passing --kasan/--kcsan flags.",
+      "parentUuid": "64301173_5e986ebd",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "ce43383184b1b7bd24e52df6dfeb0d7225a9349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
