@@ -772,6 +772,12 @@ def _define_common_kernel(
         # Sync with GKI_DOWNLOAD_CONFIGS, "images"
         build_system_dlkm = True,
         build_system_dlkm_flatten = True,
+        avb_sign_boot_img = True,
+        avb_boot_algorithm = "SHA256_RSA2048",
+        avb_boot_key = "//prebuilts/kernel-build-tools:linux-x86/share/avb/testkey_rsa2048.pem",
+        avb_boot_partition_name = "boot",
+        avb_boot_partition_size = 0x04000000,
+        avb_sign_system_dlkm_img = True,
         # Keep in sync with build.config.gki* MODULES_LIST
         modules_list = gki_system_dlkm_modules,
     )

@@ -59,6 +59,8 @@ def kernel_images(
         ramdisk_compression = None,
         ramdisk_compression_args = None,
         avb_sign_boot_img = None,
+        avb_sign_system_dlkm_img = None,
+        avb_sign_vendor_dlkm_img = None,
         avb_boot_partition_size = None,
         avb_boot_key = None,
         avb_boot_algorithm = None,
@@ -272,6 +274,10 @@ def kernel_images(
           `ramdisk_compression` equal to "lz4".
         avb_sign_boot_img: If set to `True` signs the boot image using the avb_boot_key.
           The kernel prebuilt tool `avbtool` is used for signing.
+        avb_sign_system_dlkm_img: If set to `True` signs the system_dlkm image using the avb_boot_key.
+          The kernel prebuilt tool `avbtool` is used for signing.
+        avb_sign_vendor_dlkm_img: If set to `True` signs the vendor_dlkm image using the avb_boot_key.
+          The kernel prebuilt tool `avbtool` is used for signing.
         avb_boot_partition_size: Size of the boot partition in bytes.
           Used when `avb_sign_boot_img` is True.
         avb_boot_key: Path to the key used for signing.
@@ -368,6 +374,9 @@ def kernel_images(
         all_rules.append(":{}_initramfs".format(name))
 
     if build_system_dlkm:
+        if avb_sign_system_dlkm_img != None and (avb_boot_key == None or avb_boot_algorithm == None):
+            fail("avb_sign_system_dlkm_img provided but avb_boot_key and/or avb_boot_algorithm is not.")
+
         system_dlkm_image(
             name = "{}_system_dlkm_image".format(name),
             # For GKI system_dlkm
@@ -376,6 +385,9 @@ def kernel_images(
             base_kernel_images = base_kernel_images,
             build_system_dlkm_flatten_image = build_system_dlkm_flatten,
             deps = deps,
+            avb_sign_system_dlkm_img = avb_sign_system_dlkm_img,
+            avb_key = avb_boot_key,
+            avb_algorithm = avb_boot_algorithm,
             modules_list = modules_list,
             modules_blocklist = modules_blocklist,
             system_dlkm_fs_type = system_dlkm_fs_type,
@@ -391,11 +403,17 @@ def kernel_images(
         if vendor_dlkm_fs_type == None:
             vendor_dlkm_fs_type = "ext4"
 
+        if avb_sign_vendor_dlkm_img != None and (avb_boot_key == None or avb_boot_algorithm == None):
+            fail("avb_sign_vendor_dlkm_img provided but avb_boot_key and/or avb_boot_algorithm is not.")
+
         vendor_dlkm_image(
             name = "{}_vendor_dlkm_image".format(name),
             kernel_modules_install = kernel_modules_install,
             vendor_boot_modules_load = vendor_boot_modules_load,
             deps = deps,
+            avb_sign_vendor_dlkm_img = avb_sign_vendor_dlkm_img,
+            avb_key = avb_boot_key,
+            avb_algorithm = avb_boot_algorithm,
             vendor_dlkm_archive = vendor_dlkm_archive,
             vendor_dlkm_etc_files = vendor_dlkm_etc_files,
             vendor_dlkm_fs_type = vendor_dlkm_fs_type,
