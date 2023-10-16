@@ -40,6 +40,21 @@ def _vendor_dlkm_image_impl(ctx):
     if ctx.attr.vendor_dlkm_archive:
         vendor_dlkm_staging_archive = ctx.actions.declare_file("{}/{}".format(ctx.label.name, VENDOR_DLKM_STAGING_ARCHIVE_NAME))
 
+    extra_flags_cmd = ""
+    if ctx.attr.avb_sign_vendor_dlkm_img:
+        if not ctx.attr.avb_key or not ctx.attr.avb_algorithm:
+            fail("avb_sign_vendor_dlkm_img is true, but one of [avb_key," +
+                 " avb_algorithm] is not specified.")
+
+        extra_flags_cmd += """
+            AVB_SIGN_VENDOR_DLKM_IMG=1
+            AVB_VENDOR_DLKM_KEY={avb_key}
+            AVB_VENDOR_DLKM_ALGORITHM={avb_algorithm}
+        """.format(
+            avb_key = ctx.file.avb_key.path,
+            avb_algorithm = ctx.attr.avb_algorithm,
+        )
+
     command = ""
     additional_inputs = []
     if ctx.file.vendor_boot_modules_load:
@@ -69,6 +84,7 @@ def _vendor_dlkm_image_impl(ctx):
                 VENDOR_DLKM_ETC_FILES={quoted_vendor_dlkm_etc_files}
                 VENDOR_DLKM_FS_TYPE={vendor_dlkm_fs_type}
                 VENDOR_DLKM_STAGING_DIR={vendor_dlkm_staging_dir}
+                {extra_flags_cmd}
                 build_vendor_dlkm {vendor_dlkm_archive}
               )
             # Move output files into place
@@ -85,6 +101,7 @@ def _vendor_dlkm_image_impl(ctx):
             # Remove staging directories
               rm -rf {vendor_dlkm_staging_dir}
     """.format(
+        extra_flags_cmd = extra_flags_cmd,
         modules_staging_dir = modules_staging_dir,
         quoted_vendor_dlkm_etc_files = shell.quote(vendor_dlkm_etc_files),
         vendor_dlkm_fs_type = vendor_dlkm_fs_type,
@@ -181,5 +198,29 @@ Modules listed in this file is stripped away from the `vendor_dlkm` image.""",
         "dedup_dlkm_modules": attr.bool(doc = "Whether to exclude `system_dlkm` modules"),
         "system_dlkm_image": attr.label(),
         "base_kernel_images": attr.label(allow_files = True),
+        "avb_sign_vendor_dlkm_img": attr.bool(
+            doc = """ If set to `True` signs the vendor_dlkm image using the avb_key.
+            The kernel prebuilt tool `avbtool` is used for signing.""",
+        ),
+        "avb_key": attr.label(
+            doc = """ Key used for signing.
+            Used when `avb_sign_vendor_dlkm_img` is True.""",
+            allow_single_file = True,
+        ),
+        # Note: The actual values comes from:
+        # https://cs.android.com/android/platform/superproject/+/master:external/avb/avbtool.py
+        "avb_algorithm": attr.string(
+            doc = """ `avb_key` algorithm
+            used e.g. SHA256_RSA2048. Used when `avb_sign_vendor_dlkm_img` is True.""",
+            values = [
+                "NONE",
+                "SHA256_RSA2048",
+                "SHA256_RSA4096",
+                "SHA256_RSA8192",
+                "SHA512_RSA2048",
+                "SHA512_RSA4096",
+                "SHA512_RSA8192",
+            ],
+        ),
     }),
 )

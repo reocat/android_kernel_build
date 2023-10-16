@@ -185,6 +185,7 @@ function create_modules_staging() {
 }
 
 function build_system_dlkm() {
+  local avb_signing_args=()
   echo "========================================================"
   echo " Creating system_dlkm image"
 
@@ -280,13 +281,18 @@ function build_system_dlkm() {
     rm ${system_dlkm_file_contexts}
   fi
 
-  # No need to sign the image as modules are signed
+  if [ -n "${AVB_SIGN_SYSTEM_DLKM_IMG}" ]; then
+    avb_signing_args+=("--algorithm ${AVB_SYSTEM_DLKM_ALGORITHM}")
+    avb_signing_args+=("--key ${AVB_SYSTEM_DLKM_KEY}")
+  fi
+
   for image in "${generated_images[@]}"
   do
     avbtool add_hashtree_footer \
       --partition_name system_dlkm \
       --hash_algorithm sha256 \
-      --image "${DIST_DIR}/${image}"
+      --image "${DIST_DIR}/${image}" \
+      ${avb_signing_args[@]}
   done
 
   # Archive system_dlkm_staging_dir
@@ -359,6 +365,15 @@ function build_vendor_dlkm() {
 
   build_image "${VENDOR_DLKM_STAGING_DIR}" "${vendor_dlkm_props_file}" \
     "${DIST_DIR}/vendor_dlkm.img" /dev/null
+
+  if [ -n "${AVB_SIGN_VENDOR_DLKM_IMG}" ]; then
+    avbtool add_hashtree_footer \
+      --partition_name vendor_dlkm \
+      --hash_algorithm sha256 \
+      --image "${DIST_DIR}/vendor_dlkm.img" \
+      --algorithm ${AVB_VENDOR_DLKM_ALGORITHM} \
+      --key ${AVB_VENDOR_DLKM_KEY}
+  fi
 
   if [ -n "${vendor_dlkm_archive}" ]; then
     # Archive vendor_dlkm_staging_dir
@@ -625,17 +640,22 @@ function gki_add_avb_footer() {
 # VTS to verify that a GKI boot.img is authentic.
 # Dry running the process here so we can catch related issues early.
 function gki_dry_run_certify_bootimg() {
+  local qpr_month=$(date +'%m')
+  if [ $((${qpr_month} % 3)) -gt 0 ]; then
+    # Round up to the closest quarterly month
+    qpr_month=$((${qpr_month} + 3 - (${qpr_month} % 3)))
+  fi
   certify_bootimg --boot_img "$1" \
-    --algorithm SHA256_RSA4096 \
-    --key tools/mkbootimg/gki/testdata/testkey_rsa4096.pem \
+    --algorithm SHA256_RSA2048 \
+    --key prebuilts/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem \
     --gki_info "$2" \
-    --output "$1"
+    --output "$1" \
+    --extra_footer_args "--prop com.android.build.boot.security_patch:$(date +'%Y')-${qpr_month}-05"
 }
 
 # build_gki_artifacts_info <output_gki_artifacts_info_file>
 function build_gki_artifacts_info() {
-  local artifacts_info="certify_bootimg_extra_args=--prop ARCH:${ARCH} \
---prop BRANCH:${BRANCH}"
+  local artifacts_info="certify_bootimg_extra_args=--prop ARCH:${ARCH} --prop BRANCH:${BRANCH}"
 
   if [ -n "${BUILD_NUMBER}" ]; then
     artifacts_info="${artifacts_info} --prop BUILD_NUMBER:${BUILD_NUMBER}"
