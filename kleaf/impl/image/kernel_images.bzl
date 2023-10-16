@@ -22,6 +22,8 @@ load(":image/initramfs.bzl", "initramfs")
 load(":image/system_dlkm_image.bzl", "system_dlkm_image")
 load(":image/vendor_dlkm_image.bzl", "vendor_dlkm_image")
 
+visibility("//build/kernel/kleaf/...")
+
 def kernel_images(
         name,
         kernel_modules_install,
@@ -33,6 +35,7 @@ def kernel_images(
         build_vendor_boot = None,
         build_vendor_kernel_boot = None,
         build_system_dlkm = None,
+        build_system_dlkm_flatten = None,
         build_dtbo = None,
         dtbo_srcs = None,
         mkbootimg = None,
@@ -43,6 +46,7 @@ def kernel_images(
         modules_options = None,
         vendor_ramdisk_binaries = None,
         system_dlkm_fs_type = None,
+        system_dlkm_fs_types = None,
         system_dlkm_modules_list = None,
         system_dlkm_modules_blocklist = None,
         system_dlkm_props = None,
@@ -106,6 +110,8 @@ def kernel_images(
           - The list contains `dtb.img`
         build_initramfs: Whether to build initramfs. Keep in sync with `BUILD_INITRAMFS`.
         build_system_dlkm: Whether to build system_dlkm.img an image with GKI modules.
+        build_system_dlkm_flatten: Whether to build system_dlkm.flatten.<fs>.img.
+          This image have directory structure as `/lib/modules/*.ko` i.e. no `uname -r` in the path.
         build_vendor_dlkm: Whether to build `vendor_dlkm` image. It must be set if
           `vendor_dlkm_modules_list` is set.
 
@@ -191,7 +197,15 @@ def kernel_images(
           ```
 
           This corresponds to `MODULES_OPTIONS` in `build.config` for `build.sh`.
-        system_dlkm_fs_type: Supported filesystems for `system_dlkm.img` are `ext4` and `erofs`. Defaults to `ext4` if not specified.
+        system_dlkm_fs_type: Deprecated. Use `system_dlkm_fs_types` instead.
+
+            Supported filesystems for `system_dlkm` image are `ext4` and `erofs`.
+            Defaults to `ext4` if not specified.
+        system_dlkm_fs_types: List of file systems type for `system_dlkm` images.
+
+            Supported filesystems for `system_dlkm` image are `ext4` and `erofs`.
+            If not specified, builds `system_dlkm.img` with ext4 else builds
+            `system_dlkm.<fs>.img` for each file system type in the list.
         system_dlkm_modules_list: location of an optional file
           containing the list of kernel modules which shall be copied into a
           system_dlkm partition image.
@@ -354,19 +368,18 @@ def kernel_images(
         all_rules.append(":{}_initramfs".format(name))
 
     if build_system_dlkm:
-        if system_dlkm_fs_type == None:
-            system_dlkm_fs_type = "ext4"
-
         system_dlkm_image(
             name = "{}_system_dlkm_image".format(name),
             # For GKI system_dlkm
             kernel_modules_install = kernel_modules_install,
             # For device system_dlkm, give GKI's system_dlkm_staging_archive.tar.gz
             base_kernel_images = base_kernel_images,
+            build_system_dlkm_flatten_image = build_system_dlkm_flatten,
             deps = deps,
             modules_list = modules_list,
             modules_blocklist = modules_blocklist,
             system_dlkm_fs_type = system_dlkm_fs_type,
+            system_dlkm_fs_types = system_dlkm_fs_types,
             system_dlkm_modules_list = system_dlkm_modules_list,
             system_dlkm_modules_blocklist = system_dlkm_modules_blocklist,
             system_dlkm_props = system_dlkm_props,

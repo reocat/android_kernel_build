@@ -223,7 +223,8 @@ Not customizable in Bazel.
 
 Reason: This is the default for Bazel builds. Its value cannot be changed.
 
-Hermetic toolchain is guaranteed by the `hermetic_tools()` rule.
+See [Ensuring hermeticity](hermeticity.md) for details about ensuring
+hermeticity.
 
 See [documentation for all rules].
 
@@ -587,7 +588,7 @@ See [documentation for all rules].
 ## SYSTEM\_DLKM\_FS\_TYPE
 
 ```python
-kernel_images(system_dlkm_fs_type=[ext4, erofs])
+kernel_images(system_dlkm_fs_types=["ext4", "erofs"])
 ```
 
 See [documentation for all rules].
