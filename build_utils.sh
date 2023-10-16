@@ -14,18 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# TODO(b/266980402): remove it
 # rel_path <to> <from>
 # Generate relative directory path to reach directory <to> from <from>
 function rel_path() {
-  echo "WARNING: rel_path is deprecated. For Kleaf builds, use 'realpath $1 --relative-to $2' instead." >&2
-  ${ROOT_DIR}/build/kernel/build-tools/path/linux-x86/realpath "$1" --relative-to="$2"
-}
-
-# TODO(b/266980402): remove it
-# rel_path2 <to> <from>
-# Generate relative directory path to reach directory <to> from <from>
-function rel_path2() {
-  echo "ERROR: rel_path2 is deprecated. For Kleaf builds, use 'realpath $1 --relative-to $2' instead." >&2
+  echo "ERROR: rel_path is deprecated. For Kleaf builds, use 'realpath $1 --relative-to $2' instead." >&2
   exit 1
 }
 
@@ -255,8 +248,32 @@ function build_system_dlkm() {
     done
   fi
 
+  if [ -z "${SYSTEM_DLKM_IMAGE_NAME}" ]; then
+    SYSTEM_DLKM_IMAGE_NAME="system_dlkm.img"
+  fi
+
   build_image "${SYSTEM_DLKM_STAGING_DIR}" "${system_dlkm_props_file}" \
-    "${DIST_DIR}/system_dlkm.img" /dev/null
+    "${DIST_DIR}/${SYSTEM_DLKM_IMAGE_NAME}" /dev/null
+  local generated_images=(${SYSTEM_DLKM_IMAGE_NAME})
+
+  # Build flatten image as /lib/modules/*.ko; if unset or null: default false
+  if [[ ${SYSTEM_DLKM_GEN_FLATTEN_IMAGE:-0} == "1" ]]; then
+    local system_dlkm_flatten_image_name="system_dlkm.flatten.${SYSTEM_DLKM_FS_TYPE}.img"
+    mkdir -p ${SYSTEM_DLKM_STAGING_DIR}/flatten/lib/modules
+    cp $(find ${SYSTEM_DLKM_STAGING_DIR} -type f -name "*.ko") ${SYSTEM_DLKM_STAGING_DIR}/flatten/lib/modules
+    # Copy required depmod artifacts and scrub required files to correct paths
+    cp $(find ${SYSTEM_DLKM_STAGING_DIR} -name "modules.dep") ${SYSTEM_DLKM_STAGING_DIR}/flatten/lib/modules
+    # Remove existing paths leaving just basenames
+    sed -i 's/kernel[^:[:space:]]*\/\([^:[:space:]]*\.ko\)/\1/g' ${SYSTEM_DLKM_STAGING_DIR}/flatten/lib/modules/modules.dep
+    # Prefix /system/lib/modules/ for every module
+    sed -i 's#\([^:[:space:]]*\.ko\)#/system/lib/modules/\1#g' ${SYSTEM_DLKM_STAGING_DIR}/flatten/lib/modules/modules.dep
+    cp $(find ${SYSTEM_DLKM_STAGING_DIR} -name "modules.load") ${SYSTEM_DLKM_STAGING_DIR}/flatten/lib/modules
+    sed -i 's#.*/##' ${SYSTEM_DLKM_STAGING_DIR}/flatten/lib/modules/modules.load
+
+    build_image "${SYSTEM_DLKM_STAGING_DIR}/flatten" "${system_dlkm_props_file}" \
+    "${DIST_DIR}/${system_dlkm_flatten_image_name}" /dev/null
+    generated_images+=(${system_dlkm_flatten_image_name})
+   fi
 
   if [ -z "${SYSTEM_DLKM_PROPS}" ]; then
     rm ${system_dlkm_props_file}
@@ -264,9 +281,13 @@ function build_system_dlkm() {
   fi
 
   # No need to sign the image as modules are signed
-  avbtool add_hashtree_footer \
-    --partition_name system_dlkm \
-    --image "${DIST_DIR}/system_dlkm.img"
+  for image in "${generated_images[@]}"
+  do
+    avbtool add_hashtree_footer \
+      --partition_name system_dlkm \
+      --hash_algorithm sha256 \
+      --image "${DIST_DIR}/${image}"
+  done
 
   # Archive system_dlkm_staging_dir
   tar -czf "${DIST_DIR}/system_dlkm_staging_archive.tar.gz" -C "${SYSTEM_DLKM_STAGING_DIR}" .
@@ -763,7 +784,13 @@ function extract_git_metadata() {
   local git_project_candidate=$2
   local what=$3
   while [[ "${git_project_candidate}" != "." ]]; do
-    value_candidate=$(echo "${map}" | sed -E -n 's;(^|.*\s)'"${git_project_candidate}"':(\S+).*;\2;p' || true)
+    value_candidate=$(python3 -c '
+import sys, json
+js = json.load(sys.stdin)
+key = sys.argv[1]
+if key in js:
+    print(js[key])
+' "${git_project_candidate}" <<< "${map}")
     if [[ -n "${value_candidate}" ]]; then
         break
     fi
