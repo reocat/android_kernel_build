@@ -417,6 +417,9 @@ class BazelWrapper(object):
 
     def _kleaf_repo_name(self):
         """Returns the name to the Kleaf repository."""
+        kleaf_repo_name = os.environ.get("KLEAF_REPO_NAME")
+        if kleaf_repo_name:
+            return f"@{kleaf_repo_name}"
         if self._kleaf_repository_is_top_workspace():
             return "@"
         return f"@{self.kleaf_repo_dir.name}"
