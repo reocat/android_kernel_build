@@ -57,6 +57,20 @@ def _system_dlkm_image_impl(ctx):
     extract_staging_archive_cmd = ""
     extra_flags_cmd = ""
 
+    if ctx.attr.avb_sign_system_dlkm_img:
+        if not ctx.attr.avb_key or not ctx.attr.avb_algorithm:
+            fail("avb_sign_system_dlkm_img is true, but one of [avb_key," +
+                 " avb_algorithm] is not specified.")
+
+        extra_flags_cmd += """
+            AVB_SIGN_SYSTEM_DLKM_IMG=1
+            AVB_SYSTEM_DLKM_KEY={avb_key}
+            AVB_SYSTEM_DLKM_ALGORITHM={avb_algorithm}
+        """.format(
+            avb_key = ctx.file.avb_key.path,
+            avb_algorithm = ctx.attr.avb_algorithm,
+        )
+
     kernel_build_infos = ctx.attr.kernel_modules_install[KernelModuleInfo].kernel_build_infos
     if kernel_build_infos.images_info.base_kernel_label != None:
         if ctx.attr.base_kernel_images == None:
@@ -90,7 +104,7 @@ def _system_dlkm_image_impl(ctx):
             system_dlkm_staging_dir = system_dlkm_staging_dir,
         )
 
-        extra_flags_cmd = """
+        extra_flags_cmd += """
                      # Trick create_modules_staging to not strip, because they are already stripped and signed
                        DO_NOT_STRIP_MODULES=
                      # Trick create_modules_staging to not look at external modules. They aren't related.
@@ -212,5 +226,29 @@ When included in a `copy_to_dist_dir` rule, this rule copies the following to `D
         "system_dlkm_modules_list": attr.label(allow_single_file = True),
         "system_dlkm_modules_blocklist": attr.label(allow_single_file = True),
         "system_dlkm_props": attr.label(allow_single_file = True),
+        "avb_sign_system_dlkm_img": attr.bool(
+            doc = """ If set to `True` signs the system_dlkm image using the avb_key.
+            The kernel prebuilt tool `avbtool` is used for signing.""",
+        ),
+        "avb_key": attr.label(
+            doc = """ Key used for signing.
+            Used when `avb_sign_system_dlkm_img` is True.""",
+            allow_single_file = True,
+        ),
+        # Note: The actual values comes from:
+        # https://cs.android.com/android/platform/superproject/+/master:external/avb/avbtool.py
+        "avb_algorithm": attr.string(
+            doc = """ `avb_key` algorithm
+            used e.g. SHA256_RSA2048. Used when `avb_sign_system_dlkm_img` is True.""",
+            values = [
+                "NONE",
+                "SHA256_RSA2048",
+                "SHA256_RSA4096",
+                "SHA256_RSA8192",
+                "SHA512_RSA2048",
+                "SHA512_RSA4096",
+                "SHA512_RSA8192",
+            ],
+        ),
     }),
 )
