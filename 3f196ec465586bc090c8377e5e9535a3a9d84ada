@@ -16,6 +16,24 @@
       "message": "build and boot tested.",
       "revId": "3f196ec465586bc090c8377e5e9535a3a9d84ada",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dad23255_7909ffa0",
+        "filename": "kleaf/tests/kernel_config_test/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-17T09:06:09Z",
+      "side": 1,
+      "message": "\u003e File is not formatted. Run `buildifier kleaf/tests/kernel_config_test/BUILD.bazel` to format the file, or apply the suggested fix.\n\nPlease fix.",
+      "parentUuid": "ab36f5d7_2d44dd01",
+      "revId": "3f196ec465586bc090c8377e5e9535a3a9d84ada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
