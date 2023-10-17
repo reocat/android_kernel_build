@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "895f2100_e745ea3d",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-17T17:34:24Z",
+      "side": 1,
+      "message": "I\u0027ll submit a separate patch to rename this to kasan_any_mode_is_set_to_true to avoid confusion",
+      "range": {
+        "startLine": 121,
+        "startChar": 35,
+        "endLine": 121,
+        "endChar": 55
+      },
+      "revId": "6fcec27264412a7ba3b74a1f4196bae311bcf754",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
