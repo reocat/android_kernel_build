@@ -103,6 +103,32 @@
       },
       "revId": "77b2ad001bc6301a9c342b9a48daa40570b98f91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056304765",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2768528?revision\u003d23",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d7ced7f6_85ad0ea5",
+        "filename": "kleaf/impl/kernel_prebuilt_utils.bzl",
+        "patchSetId": 23
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-17T16:25:32Z",
+      "side": 1,
+      "message": "syntax error near ,",
+      "range": {
+        "startLine": 140,
+        "startChar": 15,
+        "endLine": 140,
+        "endChar": 15
+      },
+      "revId": "77b2ad001bc6301a9c342b9a48daa40570b98f91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
