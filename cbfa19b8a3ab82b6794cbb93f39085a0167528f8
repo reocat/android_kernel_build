@@ -178,6 +178,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0f42cce_89aa45db",
+        "filename": "kleaf/impl/defconfig/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-17T17:07:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6b4ea9d8_3ddab28a",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 22
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "239604b5_5c1a6b86",
@@ -546,6 +570,30 @@
       "side": 1,
       "message": "\u003e I think the issue with that strategy is that the kasan_any_mode filegroup will return nothing if the --kasan flag isn\u0027t set, right?\n\nIsn\u0027t that what we want?\n\n- If --kasan (which should really be --kasan_any_mode) is set and --lto\u003d(none or default), then apply kasan_any_mode_defconfig.\n- If --kasan (which should really be --kasan_any_mode) is not set, then don\u0027t return anything.\n- Otherwise (which means --kasan (kasan_any_mode) is set but LTO is incorrect value), fail.",
       "parentUuid": "5394cd23_f240f16b",
+      "range": {
+        "startLine": 795,
+        "startChar": 55,
+        "endLine": 795,
+        "endChar": 79
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72de2e04_d228ea22",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-17T17:07:21Z",
+      "side": 1,
+      "message": "Ah I see, the issue may lie in kernel_build.\n\n```\n        first_selector \u003d select({\n            Label(\"//build/kernel/kleaf:kasan_any_mode_is_true\"): \"kasan_any_mode\",\n            Label(\"//build/kernel/kleaf:kasan_sw_tags_is_true\"): \"kasan_sw_tags\",\n            Label(\"//build/kernel/kleaf:kcsan_is_true\"): \"kcsan\",\n            \"//conditions:default\": None,\n        }),\n```\n\nIf --kasan is set and LTO is incorrect value, then `None` is picked. But in fact, we want a fail branch somehow. Let me think about this a bit...",
+      "parentUuid": "c83723ee_39a8598c",
       "range": {
         "startLine": 795,
         "startChar": 55,
