@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66baa428_582315f8",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 23
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-10-17T15:35:56Z",
+      "side": 1,
+      "message": "nit: `external ddk modules`",
+      "range": {
+        "startLine": 219,
+        "startChar": 69,
+        "endLine": 219,
+        "endChar": 85
+      },
+      "revId": "1ad2b08d3b5a4dd0092f8bc288b5bf40c1842d5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2059d6b2_6d455b75",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 23
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-10-17T15:35:56Z",
+      "side": 1,
+      "message": "just to double check: removing this (code from the previous implementation) is OK, because it was just recently added and it\u0027s still not used right?",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 6
+      },
+      "revId": "1ad2b08d3b5a4dd0092f8bc288b5bf40c1842d5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
