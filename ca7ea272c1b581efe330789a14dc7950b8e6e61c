@@ -16,6 +16,46 @@
       "message": "Matthias, could you PTAL?",
       "revId": "ca7ea272c1b581efe330789a14dc7950b8e6e61c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61d1aa73_4c34501b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-10-17T09:51:38Z",
+      "side": 1,
+      "message": "The `K?SAN_SANITIZE*` family of options is targeting developer use cases to individually disable files or entire modules. Is that something that your productive code contains and something that can\u0027t be excluded within code using the `__no_sanitize_address` attribute? Further, would a `no_sanitize` option make sense to disable sanitizing for ddk modules entirely?\n\nIf there is no solution among the ideas above, please read one.\n\nWhile the change is targeted at disabling (or enabling) sanitizer options, this is effectively a flag to put arbitrary content into the makefile (or on the make command line the way it is implemented now). This allows for arbitrary abuse of the flag. Further, no actual checking is done that the syntax is correct etc. This can lead to hard to reproduce bugs or weird error messages bubbling up from the `make` execution.\n\nSo, we might as well give it a more general name. But we should also allow-list what options can be set and perhaps do some checking of correct flag usage.",
+      "revId": "ca7ea272c1b581efe330789a14dc7950b8e6e61c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec2ab525_e2540efe",
+        "filename": "kleaf/impl/ddk/gen_makefiles.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-10-17T09:51:38Z",
+      "side": 1,
+      "message": "This should rather as variables into the generated `Makefile` following upstream documentation. That also simplifies the inspection of the `Makefile` for debugging.\n\nhttps://docs.kernel.org/dev-tools/kasan.html#ignoring-accesses",
+      "range": {
+        "startLine": 92,
+        "startChar": 60,
+        "endLine": 92,
+        "endChar": 77
+      },
+      "revId": "ca7ea272c1b581efe330789a14dc7950b8e6e61c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
