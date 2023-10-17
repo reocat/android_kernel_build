@@ -22,6 +22,30 @@
       },
       "revId": "6fcec27264412a7ba3b74a1f4196bae311bcf754",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33007c8e_cf2adda1",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-17T17:40:08Z",
+      "side": 1,
+      "message": "See CL:2794192.\n\nThis CL should be easier to read once CL:2794192 is merged and this change is rebased on it.",
+      "parentUuid": "895f2100_e745ea3d",
+      "range": {
+        "startLine": 121,
+        "startChar": 35,
+        "endLine": 121,
+        "endChar": 55
+      },
+      "revId": "6fcec27264412a7ba3b74a1f4196bae311bcf754",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
