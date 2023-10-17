@@ -606,6 +606,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff7aaf2a_a25b9fbb",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-17T17:20:27Z",
+      "side": 1,
+      "message": "Actually, what you are seeing is due to another bug; see my other comment.\n\nThe bug I was talking about was a different issue, but it does need some treatment.\n\nI think it can be fixed by doing the following:\n\n- Here, keep `\"//build/kernel/kleaf/impl/defconfig:kasan_any_mode\"`\n  - We know that, if this filegroup is picked, the user either enables --kasan or sets kernel_build.sanitizer \u003d \"kasan_any_mode\". \n- Remaining is to check if LTO is the correct value. Change the definition of \"//build/kernel/kleaf/impl/defconfig:kasan_any_mode\" to the following:\n\n```\nfilegroup(\n    name \u003d \"kasan_any_mode\",\n    srcs \u003d select({\n        \"\u003clto is none or default\u003e\": [\"kasan_any_mode_defconfig\"],\n        \"//conditions:default\": [\":fail_kasan_any_mode_lto\"],\n    }),\n    visibility \u003d [\"//visibility:public\"],\n```\n\nThis should work, though it needs some unit test to confirm that it is actually checking properly.",
+      "parentUuid": "72de2e04_d228ea22",
+      "range": {
+        "startLine": 795,
+        "startChar": 55,
+        "endLine": 795,
+        "endChar": 79
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57020488_dbe0697b",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 2
