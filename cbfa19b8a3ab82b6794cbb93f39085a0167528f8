@@ -510,6 +510,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5394cd23_f240f16b",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-17T17:01:04Z",
+      "side": 1,
+      "message": "@elsk@google.com, any notes on how to handle the above?",
+      "parentUuid": "13e2ce7b_13651107",
+      "range": {
+        "startLine": 795,
+        "startChar": 55,
+        "endLine": 795,
+        "endChar": 79
+      },
+      "revId": "cbfa19b8a3ab82b6794cbb93f39085a0167528f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57020488_dbe0697b",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 2
