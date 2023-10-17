@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056307234",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2790414?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5c1dc9e4_5e7b6d00",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-17T00:18:32Z",
+      "side": 1,
+      "message": "Argument \"avb_sign_vendor_dlkm_img\" is not documented. http://go/buildifier-warnings#function-docstring-args",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 306,
+        "endChar": 7
+      },
+      "revId": "5facb2e6b13736eceadc371a16aab5a8f42880a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056307234",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2790414?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "81f6647f_83458d53",
+        "filename": "kleaf/impl/image/vendor_dlkm_image.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-17T00:18:32Z",
+      "side": 1,
+      "message": "Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 1
+      },
+      "revId": "5facb2e6b13736eceadc371a16aab5a8f42880a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
