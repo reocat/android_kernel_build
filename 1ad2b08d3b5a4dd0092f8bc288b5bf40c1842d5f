@@ -45,6 +45,30 @@
       },
       "revId": "1ad2b08d3b5a4dd0092f8bc288b5bf40c1842d5f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8c61eb5_6d7a4f7e",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 23
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-17T16:45:43Z",
+      "side": 1,
+      "message": "Right, it (and the previous KernelBuildExtModuleInfo, L125~132 in the previous code) is not used. This is because we never build external modules on top of kernel_filegroup before.",
+      "parentUuid": "2059d6b2_6d455b75",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 6
+      },
+      "revId": "1ad2b08d3b5a4dd0092f8bc288b5bf40c1842d5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
