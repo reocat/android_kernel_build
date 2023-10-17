@@ -50,6 +50,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46a0fd0c_67fe45c7",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-17T18:02:03Z",
+      "side": 1,
+      "message": "Per Matthias\u0027s offline comment, please change the API to the following so it is more future-proof:\n\n```\nsanitizers: **non-configurable**. A list of sanitizer configurations... . By default, no sanitizers are explicitly configured; values in defconfig are respected.\n```\n\nIn the implementation, just do `sanitizers[0]` for now, and `fail()` on more than 1 items.\n\nLater, if there are multiple sanitizers compatible with each other, the API can easily be expanded. The implementation can also be changed later to make the list configurable.",
+      "range": {
+        "startLine": 420,
+        "startChar": 8,
+        "endLine": 421,
+        "endChar": 73
+      },
+      "revId": "32034ebb2e2cba190bc0cf28a6b5473dd7f89d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37c8aba8_c8dc634c",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 4
