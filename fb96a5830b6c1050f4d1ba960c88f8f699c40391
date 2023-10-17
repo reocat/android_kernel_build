@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e7c8372_dd244751",
+        "filename": "build_utils.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 639,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-10-17T18:49:44Z",
+      "side": 1,
+      "message": "@bowgotsai@google.com, Do we generate a new gki-info.txt file when we do this or will we use the existing one? I\u0027m wondering if my fake SPL property below will be overwritten by the offical process?",
+      "range": {
+        "startLine": 637,
+        "startChar": 1,
+        "endLine": 639,
+        "endChar": 38
+      },
+      "revId": "fb96a5830b6c1050f4d1ba960c88f8f699c40391",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
