@@ -45,6 +45,30 @@
       },
       "revId": "32034ebb2e2cba190bc0cf28a6b5473dd7f89d57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5904f25_d721cb26",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-17T17:22:33Z",
+      "side": 1,
+      "message": "I mean:\n\nThe value in L795, the value of kernel_build.sanitizer, and the value in L787 must use the same string.",
+      "parentUuid": "37c8aba8_c8dc634c",
+      "range": {
+        "startLine": 795,
+        "startChar": 74,
+        "endLine": 795,
+        "endChar": 79
+      },
+      "revId": "32034ebb2e2cba190bc0cf28a6b5473dd7f89d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
