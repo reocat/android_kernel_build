@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a9ff478_f9d3c05f",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-17T17:24:01Z",
+      "side": 1,
+      "message": "This is fixed in BUILD files, so a user doesn\u0027t need to type it every time in the command line. The reason I didn\u0027t change `--kasan` to `--kasan_any_mode` is because (1) it is an existing option and (2) --kasan is easier to type. But perhaps eventually we should change this",
+      "parentUuid": "2f78ca55_ca37694a",
+      "range": {
+        "startLine": 421,
+        "startChar": 32,
+        "endLine": 421,
+        "endChar": 37
+      },
+      "revId": "32034ebb2e2cba190bc0cf28a6b5473dd7f89d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37c8aba8_c8dc634c",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 4
