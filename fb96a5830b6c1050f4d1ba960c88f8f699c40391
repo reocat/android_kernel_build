@@ -22,6 +22,29 @@
       },
       "revId": "fb96a5830b6c1050f4d1ba960c88f8f699c40391",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65a6c3d8_2db38ec5",
+        "filename": "build_utils.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-10-17T23:23:58Z",
+      "side": 1,
+      "message": "I just verified that this doesn\u0027t help us because once you boot with a newer SPL, you can\u0027t go back without wiping. So I think I\u0027ll just round up to the latest quarterly SPL. Thoughts on that @bowgotsai@google.com?",
+      "range": {
+        "startLine": 657,
+        "startChar": 0,
+        "endLine": 660,
+        "endChar": 0
+      },
+      "revId": "fb96a5830b6c1050f4d1ba960c88f8f699c40391",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
