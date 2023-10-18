@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c6dd8b6_cac34293",
+        "filename": "kleaf/impl/defconfig/kasan_generic_defconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-18T18:57:28Z",
+      "side": 1,
+      "message": "\u003e For this option to be generic, you can\u0027t assume what\u0027s in defconfig.\n\nI mean: for `--kasan_generic` flag to be generic about all possible `kernel_build`, you can\u0027t assume what\u0027s in the defconfig of the kernel_build (that is, you can\u0027t assume this is only applied on gki_defconfig, where HW_TAGS is set)",
+      "parentUuid": "e07a4c05_9f55f20c",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 33
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a2f6e440_a187865e",
         "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
         "patchSetId": 3
