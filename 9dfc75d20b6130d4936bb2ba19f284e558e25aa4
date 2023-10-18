@@ -49,6 +49,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e07a4c05_9f55f20c",
+        "filename": "kleaf/impl/defconfig/kasan_generic_defconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-18T18:56:30Z",
+      "side": 1,
+      "message": "I think you should disable CONFIG_KASAN_SW_TAGS as well and set CONFIG_KASAN_GENERIC. For this option to be generic, you can\u0027t assume what\u0027s in defconfig.\n\nOr, I think you just need to set `CONFIG_KASAN_GENERIC`; that way, HW_TAGS and SW_TAGS should be automatically disabled. Right?",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 33
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2f6e440_a187865e",
+        "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-18T18:56:30Z",
+      "side": 1,
+      "message": "Should be CONFIG_KASAN_GENERIC\u003dy; that\u0027s the key config you want to enable\n\n(We are also probably missing a test for kasan_sw_tags, but that can be added later)",
+      "range": {
+        "startLine": 287,
+        "startChar": 36,
+        "endLine": 287,
+        "endChar": 50
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e65c465c_5c5ff045",
         "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
         "patchSetId": 3
@@ -60,6 +106,30 @@
       "writtenOn": "2023-10-18T09:36:51Z",
       "side": 1,
       "message": "With this two tests it\u0027s not clear what the differences (expectations) are from using these flags (`kasan` vs `kasan_generic`), but based on the defconfigs, I see at least two:\n\n| kasan | kasan_generic |\n| --- | --- |\n| `# CONFIG_KASAN_OUTLINE is not set` | `CONFIG_KASAN_OUTLINE\u003dy` |\n|  | `# CONFIG_KASAN_HW_TAGS is not set` |\n\nConsider including any of them.",
+      "range": {
+        "startLine": 271,
+        "startChar": 20,
+        "endLine": 288,
+        "endChar": 22
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2ded8ae_9c05884a",
+        "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-18T18:56:30Z",
+      "side": 1,
+      "message": "(see my other comment)",
+      "parentUuid": "e65c465c_5c5ff045",
       "range": {
         "startLine": 271,
         "startChar": 20,
