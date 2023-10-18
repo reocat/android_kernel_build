@@ -22,6 +22,52 @@
       },
       "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "521251fb_68bd20cb",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-10-18T09:36:51Z",
+      "side": 1,
+      "message": "Remove this line, `\":kasan_is_false\"` already includes `\":kasan_generic_is_false\"`.",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e65c465c_5c5ff045",
+        "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-10-18T09:36:51Z",
+      "side": 1,
+      "message": "With this two tests it\u0027s not clear what the differences (expectations) are from using these flags (`kasan` vs `kasan_generic`), but based on the defconfigs, I see at least two:\n\n| kasan | kasan_generic |\n| --- | --- |\n| `# CONFIG_KASAN_OUTLINE is not set` | `CONFIG_KASAN_OUTLINE\u003dy` |\n|  | `# CONFIG_KASAN_HW_TAGS is not set` |\n\nConsider including any of them.",
+      "range": {
+        "startLine": 271,
+        "startChar": 20,
+        "endLine": 288,
+        "endChar": 22
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
