@@ -440,7 +440,7 @@ def kernel_build(
                 "**/BUILD.bazel",
                 "**/*.bzl",
             ],
-        )
+        ) + ["//common/tools/testing/selftests:kselftest_headers"]
 
     if strip_modules == None:
         strip_modules = False
