@@ -90,6 +90,26 @@ def _get_kernel_release(ctx):
         mnemonic = "KernelFilegroupKernelRelease",
     )
     return kernel_release
+def _extract_archive(ctx, archive):
+    hermetic_tools = hermetic_toolchain.get(ctx)
+    extracted = ctx.actions.declare_directory(
+        "{name}/{archive}_extracted".format(name = ctx.attr.name, archive = archive.basename)
+    )
+    command = hermetic_tools.setup + """
+        tar xf {archive} -C {extracted}
+    """.format(
+        archive = archive.path,
+        extracted = extracted.path,
+    )
+    ctx.actions.run_shell(
+        inputs = [archive],
+        outputs = [extracted],
+        tools = hermetic_tools.deps,
+        command = command,
+        mnemonic = "KernelFilegroupExtractArchive",
+        progress_message = "Extracting {} {}".format(archive.basename, ctx.label)
+    )
+    return extracted
 
 def _kernel_filegroup_impl(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
@@ -100,23 +120,26 @@ def _kernel_filegroup_impl(ctx):
     # TODO(b/219112010): Implement KernelSerializedEnvInfo properly
     # FIXME clean up; merge with kernel_config.bzl / kernel_build.bzl
     config_outdir_tar_gz = utils.find_files(all_deps, suffix = "_config_outdir.tar.gz")[0]
+    config_outdir = _extract_archive(ctx, config_outdir_tar_gz)
     config_post_setup = """
            [ -z ${{OUT_DIR}} ] && echo "FATAL: configs post_env_info setup run without OUT_DIR set!" >&2 && exit 1
          # Restore kernel config inputs
            mkdir -p ${{OUT_DIR}}
-           tar xf {config_outdir_tar_gz} -C ${{OUT_DIR}}
+           rsync -aL --link-dest=$(realpath {config_outdir} --relative-to ${{OUT_DIR}}) \\
+                {config_outdir}/ ${{OUT_DIR}}/
 
          # Restore real value of $ROOT_DIR in auto.conf.cmd
            sed -i'' -e 's:${{ROOT_DIR}}:'"${{ROOT_DIR}}"':g' ${{OUT_DIR}}/include/config/auto.conf.cmd
     """.format(
-        config_outdir_tar_gz = config_outdir_tar_gz.path,
+        config_outdir = config_outdir.path,
     )
     env_setup = utils.find_files(all_deps, suffix = "_env.sh")[0]
     module_scripts_archive = utils.find_files(all_deps, suffix = MODULE_SCRIPTS_ARCHIVE_SUFFIX)[0]
+    module_scripts_dir = _extract_archive(ctx, module_scripts_archive)
     ddk_config_env_setup_script = ctx.actions.declare_file("{name}/{name}_ddk_config_setup.sh".format(name = ctx.attr.name))
     ctx.actions.write(
         output = ddk_config_env_setup_script,
-        content = hermetic_tools.setup + """
+        content = hermetic_tools.setup + debug.trap() + """
             KLEAF_REPO_WORKSPACE_ROOT={kleaf_repo_workspace_root}
             . {build_utils_sh}
             . {env_setup}
@@ -130,8 +153,9 @@ def _kernel_filegroup_impl(ctx):
             {config_post_setup}
 
             {check_sandbox_cmd}
-            mkdir -p ${{KERNEL_DIR}}
-            tar xf {module_scripts_archive} -C ${{KERNEL_DIR}}
+
+            # FIXME ??
+            ln -sfT {module_scripts_dir} ${{KERNEL_DIR}}
         """.format(
             kleaf_repo_workspace_root = Label(":kernel_filegroup.bzl").workspace_root,
             build_utils_sh = ctx.file._build_utils_sh.path,
@@ -139,7 +163,7 @@ def _kernel_filegroup_impl(ctx):
             eval_restore_out_dir_cmd = kernel_utils.eval_restore_out_dir_cmd(),
             config_post_setup = config_post_setup,
             check_sandbox_cmd = utils.get_check_sandbox_cmd(),
-            module_scripts_archive = module_scripts_archive.path,
+            module_scripts_dir = module_scripts_dir.path,
             toolchains_setup_env_var_cmd = toolchains.setup_env_var_cmd,
         ),
     )
@@ -147,10 +171,10 @@ def _kernel_filegroup_impl(ctx):
         setup_script = ddk_config_env_setup_script,
         inputs = depset([
             ddk_config_env_setup_script,
-            config_outdir_tar_gz,
+            config_outdir,
             env_setup,
             ctx.version_file,
-            module_scripts_archive,
+            module_scripts_dir,
         ]),
         tools = depset([
             ctx.file._build_utils_sh,
@@ -187,7 +211,7 @@ def _kernel_filegroup_impl(ctx):
     ddk_mod_min_env_setup_script = ctx.actions.declare_file("{name}/{name}_mod_min_setup.sh".format(name = ctx.attr.name))
     ctx.actions.write(
         output = ddk_mod_min_env_setup_script,
-        content = hermetic_tools.setup + """
+        content = hermetic_tools.setup + debug.trap() + """
             . {ddk_config_env_setup_script}
             {ddk_mod_min_setup}
             {ext_mod_env_and_outputs_info_setup_restore_outputs}
@@ -223,7 +247,7 @@ def _kernel_filegroup_impl(ctx):
     ddk_mod_full_env_setup_script = ctx.actions.declare_file("{name}/{name}_mod_full_setup.sh".format(name = ctx.attr.name))
     ctx.actions.write(
         output = ddk_mod_full_env_setup_script,
-        content = hermetic_tools.setup + """
+        content = hermetic_tools.setup + debug.trap() + """
             . {ddk_mod_min_env_setup_script}
             {env_and_outputs_info_setup_restore_outputs}
         """.format(
