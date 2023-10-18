@@ -119,6 +119,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9d5b078_f7f0c30a",
+        "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-18T18:58:50Z",
+      "side": 1,
+      "message": "to be more accurate, this should be `CONFIG_KASAN\u003dy` and `CONFIG_KASAN_GENERIC\u003dy`, but I think the latter is sufficient",
+      "parentUuid": "a2f6e440_a187865e",
+      "range": {
+        "startLine": 287,
+        "startChar": 36,
+        "endLine": 287,
+        "endChar": 50
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e65c465c_5c5ff045",
         "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
         "patchSetId": 3
