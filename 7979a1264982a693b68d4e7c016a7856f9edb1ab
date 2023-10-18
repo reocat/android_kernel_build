@@ -1,6 +1,69 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72546394_fcea4d66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2023-10-18T08:41:43Z",
+      "side": 1,
+      "message": "Hi,\n\nAssuming we\u0027d wan",
+      "revId": "7979a1264982a693b68d4e7c016a7856f9edb1ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6aa321f_05dee0b0",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2023-10-18T08:41:43Z",
+      "side": 1,
+      "message": "In terms of the developer flash flow, no signing should be fine, IIRC.\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:external/avb/libavb/avb_vbmeta_image.c;l\u003d151;drc\u003dde53827b226bccef7407e4c253b0152e8d9f8e04\n\nHave you ever tried the flash flow with a not-signed AVB footer (i.e., no --algorithm and no --key).\n\nIt still has the AVB hash or hashtree descriptor but they\u0027re just not signed.\n\ni.e., The \"Authentication Data\" will be empty:\n\nhttps://android.git.corp.google.com/platform/external/avb/+/refs/heads/main/libavb/avb_vbmeta_image.h#71\n\nWe can use `avbtool info_image --image path/to/image` to check the output.\n\nAn example output:\n\nFooter version:           1.0\nImage size:               47185920 bytes\nOriginal image size:      21446656 bytes\nVBMeta offset:            21446656\nVBMeta size:              512 bytes\n\n--\n\nMinimum libavb version:   1.0\nHeader Block:             256 bytes\nAuthentication Block:     0 bytes              \u003c\u003d\u003d indicate not-signed\nAuxiliary Block:          256 bytes\nAlgorithm:                NONE                 \u003c\u003d\u003d indicate not-signed\nRollback Index:           0",
+      "range": {
+        "startLine": 285,
+        "startChar": 0,
+        "endLine": 286,
+        "endChar": 54
+      },
+      "revId": "7979a1264982a693b68d4e7c016a7856f9edb1ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7ca3b8c_d186b623",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2023-10-18T08:41:43Z",
+      "side": 1,
+      "message": "Same here, how about trying to remove --algorithm and --key.\n\nIf the developer flash flow can work without signing, let\u0027s keep it simple without signing, thoughts?",
+      "range": {
+        "startLine": 374,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 34
+      },
+      "revId": "7979a1264982a693b68d4e7c016a7856f9edb1ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d66113c_6849eb5d",
@@ -14,6 +77,30 @@
       "writtenOn": "2023-10-18T00:20:02Z",
       "side": 1,
       "message": "What do you think about this @bowgotsai@google.com? We might want to make this customizable in case we want to target for a specific platform SPL date.",
+      "range": {
+        "startLine": 643,
+        "startChar": 0,
+        "endLine": 648,
+        "endChar": 0
+      },
+      "revId": "7979a1264982a693b68d4e7c016a7856f9edb1ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cba13276_1b9b3fdb",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2023-10-18T08:41:43Z",
+      "side": 1,
+      "message": "Hi,\n\nFor GKI boot.img, it has two signatures:\n\n 1) The boot signature (used for GKI certification), added by `certify_bootimg` . The boot signature is opaque to device-specific AVB flow, so it shouldn\u0027t be related to the developer flashing flow.\n \nhttps://cs.android.com/android/platform/superproject/main/+/main:system/tools/mkbootimg/include/bootimg/bootimg.h;l\u003d321;drc\u003db4b04c2a965d9b3ce1ebf0442fc8047fe103d4e6\n\n 2) AVB signature, which is added by `avbtool add_hash_footer ...` and is related to the developer flashing flow.\n\n\nWe can check both signatures by the following commands, respectively:\n\n1) ./system/tools/mkbootimg/gki/boot_signature_info.sh path/to/boot.img \n\n2) avbtool info_image --image path/to/boot.img \n\nSo I think we don\u0027t need to modify certify_bootimg flow here, as it\u0027s not related to AVB. Instead, the modification should be in the gki_add_avb_footer() function above.",
+      "parentUuid": "8d66113c_6849eb5d",
       "range": {
         "startLine": 643,
         "startChar": 0,
