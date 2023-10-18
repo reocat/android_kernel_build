@@ -91,6 +91,27 @@ def _get_kernel_release(ctx):
     )
     return kernel_release
 
+def _extract_archive(ctx, archive):
+    hermetic_tools = hermetic_toolchain.get(ctx)
+    extracted = ctx.actions.declare_directory(
+        "{name}/{archive}_extracted".format(name = ctx.attr.name, archive = archive.basename)
+    )
+    command = hermetic_tools.setup + """
+        tar xf {archive} -C {extracted}
+    """.format(
+        archive = archive.path,
+        extracted = extracted.path,
+    )
+    ctx.actions.run_shell(
+        inputs = [archive],
+        outputs = [extracted],
+        tools = hermetic_tools.deps,
+        command = command,
+        mnemonic = "KernelFilegroupExtractArchive",
+        progress_message = "Extracting {} {}".format(archive.basename, ctx.label)
+    )
+    return extracted
+
 def _kernel_filegroup_impl(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
     toolchains = kernel_toolchains_utils.get(ctx)
@@ -113,10 +134,11 @@ def _kernel_filegroup_impl(ctx):
     )
     env_setup = utils.find_files(all_deps, suffix = "_env.sh")[0]
     module_scripts_archive = utils.find_files(all_deps, suffix = MODULE_SCRIPTS_ARCHIVE_SUFFIX)[0]
+    module_scripts_dir = _extract_archive(ctx, module_scripts_archive)
     ddk_config_env_setup_script = ctx.actions.declare_file("{name}/{name}_ddk_config_setup.sh".format(name = ctx.attr.name))
     ctx.actions.write(
         output = ddk_config_env_setup_script,
-        content = hermetic_tools.setup + """
+        content = hermetic_tools.setup + debug.trap() + """
             KLEAF_REPO_WORKSPACE_ROOT={kleaf_repo_workspace_root}
             . {build_utils_sh}
             . {env_setup}
@@ -131,7 +153,8 @@ def _kernel_filegroup_impl(ctx):
 
             {check_sandbox_cmd}
             mkdir -p ${{KERNEL_DIR}}
-            tar xf {module_scripts_archive} -C ${{KERNEL_DIR}}
+            # FIXME 1 second!
+            cp -r -s -t ${{KERNEL_DIR}} $(realpath {module_scripts_dir})/*
         """.format(
             kleaf_repo_workspace_root = Label(":kernel_filegroup.bzl").workspace_root,
             build_utils_sh = ctx.file._build_utils_sh.path,
@@ -139,8 +162,8 @@ def _kernel_filegroup_impl(ctx):
             eval_restore_out_dir_cmd = kernel_utils.eval_restore_out_dir_cmd(),
             config_post_setup = config_post_setup,
             check_sandbox_cmd = utils.get_check_sandbox_cmd(),
-            module_scripts_archive = module_scripts_archive.path,
             toolchains_setup_env_var_cmd = toolchains.setup_env_var_cmd,
+            module_scripts_dir = module_scripts_dir.path,
         ),
     )
     ddk_config_env = KernelSerializedEnvInfo(
@@ -150,7 +173,7 @@ def _kernel_filegroup_impl(ctx):
             config_outdir_tar_gz,
             env_setup,
             ctx.version_file,
-            module_scripts_archive,
+            module_scripts_dir,
         ]),
         tools = depset([
             ctx.file._build_utils_sh,
@@ -162,32 +185,36 @@ def _kernel_filegroup_impl(ctx):
 
     # FIXME clean up; merge with modules_prepare.bzl / kernel_build.bzl
     modules_prepare_out_dir_tar_gz = utils.find_file("modules_prepare_outdir.tar.gz", all_deps, what = ctx.label)
+    modules_prepare_out_dir = _extract_archive(ctx, modules_prepare_out_dir_tar_gz)
     internal_outs_archive = utils.find_files(all_deps, "_internal_outs.tar.gz")[0]
+    internal_outs_out_dir = _extract_archive(ctx, internal_outs_archive)
     ddk_headers_archive = utils.find_files(all_deps, "_ddk_headers_archive.tar.gz")[0]
+    ddk_headers_root_dir = _extract_archive(ctx, ddk_headers_archive)
     ddk_mod_min_setup = """
         {check_sandbox_cmd}
-        tar xf {ddk_headers_archive}
+
+        cp -r -s -t ./ {ddk_headers_root_dir}/*
 
         [ -z ${{OUT_DIR}} ] && echo "FATAL: modules_prepare setup run without OUT_DIR set!" >&2 && exit 1
         mkdir -p ${{OUT_DIR}}
-        tar xf {modules_prepare_out_dir_tar_gz} -C ${{OUT_DIR}}
+        rsync -aL {modules_prepare_out_dir}/ ${{OUT_DIR}}/
     """.format(
         check_sandbox_cmd = utils.get_check_sandbox_cmd(),
-        ddk_headers_archive = ddk_headers_archive.path,
-        modules_prepare_out_dir_tar_gz = modules_prepare_out_dir_tar_gz.path,
+        ddk_headers_root_dir = ddk_headers_root_dir.path,
+        modules_prepare_out_dir = modules_prepare_out_dir.path,
     )
     ext_mod_env_and_outputs_info_setup_restore_outputs = """
         # Fake System.map for kernel_module
           touch ${{OUT_DIR}}/System.map
         # Restore kernel build outputs necessary for building external modules
-          tar xf {internal_outs_archive} -C ${{OUT_DIR}}
+          rsync -aL {internal_outs_out_dir}/ ${{OUT_DIR}}/
     """.format(
-        internal_outs_archive = internal_outs_archive.path,
+        internal_outs_out_dir = internal_outs_out_dir.path,
     )
     ddk_mod_min_env_setup_script = ctx.actions.declare_file("{name}/{name}_mod_min_setup.sh".format(name = ctx.attr.name))
     ctx.actions.write(
         output = ddk_mod_min_env_setup_script,
-        content = hermetic_tools.setup + """
+        content = hermetic_tools.setup + debug.trap() + """
             . {ddk_config_env_setup_script}
             {ddk_mod_min_setup}
             {ext_mod_env_and_outputs_info_setup_restore_outputs}
@@ -201,10 +228,10 @@ def _kernel_filegroup_impl(ctx):
         setup_script = ddk_mod_min_env_setup_script,
         inputs = depset([
             ddk_mod_min_env_setup_script,
-            modules_prepare_out_dir_tar_gz,
-            internal_outs_archive,
+            modules_prepare_out_dir,
+            internal_outs_out_dir,
             ddk_config_env_setup_script,
-            ddk_headers_archive,
+            ddk_headers_root_dir,
         ], transitive = [
             ddk_config_env.inputs,
         ]),
@@ -223,7 +250,7 @@ def _kernel_filegroup_impl(ctx):
     ddk_mod_full_env_setup_script = ctx.actions.declare_file("{name}/{name}_mod_full_setup.sh".format(name = ctx.attr.name))
     ctx.actions.write(
         output = ddk_mod_full_env_setup_script,
-        content = hermetic_tools.setup + """
+        content = hermetic_tools.setup + debug.trap() + """
             . {ddk_mod_min_env_setup_script}
             {env_and_outputs_info_setup_restore_outputs}
         """.format(

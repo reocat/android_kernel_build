@@ -75,6 +75,7 @@ def _create_kconfig_ext_step(ctx, kconfig_depset_written):
             echo "ERROR: FATAL: KERNEL_DIR is not set!" >&2
             exit 1
         fi
+        # FIXME 1 second!
         rsync -aL --include="*/" --include="Kconfig*" --exclude="*" ${{KERNEL_DIR}}/${{KCONFIG_EXT_PREFIX}} {intermediates_dir}/
 
         KCONFIG_EXT_PREFIX=$(realpath {intermediates_dir} --relative-to ${{ROOT_DIR}}/${{KERNEL_DIR}})/
