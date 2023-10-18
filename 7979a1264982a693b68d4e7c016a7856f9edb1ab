@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3ddba13_020999d9",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-10-18T19:33:48Z",
+      "side": 1,
+      "message": "Thanks for the details. I verified we don\u0027t need signing -- just the security patch property and hashtree footer for system_dlkm and vendor_dlkm.",
+      "parentUuid": "e6aa321f_05dee0b0",
+      "range": {
+        "startLine": 285,
+        "startChar": 0,
+        "endLine": 286,
+        "endChar": 54
+      },
+      "revId": "7979a1264982a693b68d4e7c016a7856f9edb1ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7ca3b8c_d186b623",
@@ -72,6 +96,30 @@
       "writtenOn": "2023-10-18T08:41:43Z",
       "side": 1,
       "message": "Same here, how about trying to remove --algorithm and --key.\n\nIf the developer flash flow can work without signing, let\u0027s keep it simple without signing, thoughts?",
+      "range": {
+        "startLine": 374,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 34
+      },
+      "revId": "7979a1264982a693b68d4e7c016a7856f9edb1ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "612f7323_f5431adf",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-10-18T19:33:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7ca3b8c_d186b623",
       "range": {
         "startLine": 374,
         "startChar": 0,
@@ -119,6 +167,30 @@
       "side": 1,
       "message": "Hi,\n\nFor GKI boot.img, it has two signatures:\n\n 1) The boot signature (used for GKI certification), added by `certify_bootimg` . The boot signature is opaque to device-specific AVB flow, so it shouldn\u0027t be related to the developer flashing flow.\n \nhttps://cs.android.com/android/platform/superproject/main/+/main:system/tools/mkbootimg/include/bootimg/bootimg.h;l\u003d321;drc\u003db4b04c2a965d9b3ce1ebf0442fc8047fe103d4e6\n\n 2) AVB signature, which is added by `avbtool add_hash_footer ...` and is related to the developer flashing flow.\n\n\nWe can check both signatures by the following commands, respectively:\n\n1) ./system/tools/mkbootimg/gki/boot_signature_info.sh path/to/boot.img \n\n2) avbtool info_image --image path/to/boot.img \n\nSo I think we don\u0027t need to modify certify_bootimg flow here, as it\u0027s not related to AVB. Instead, the modification should be in the gki_add_avb_footer() function above.",
       "parentUuid": "8d66113c_6849eb5d",
+      "range": {
+        "startLine": 643,
+        "startChar": 0,
+        "endLine": 648,
+        "endChar": 0
+      },
+      "revId": "7979a1264982a693b68d4e7c016a7856f9edb1ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a67b824f_7d95243f",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-10-18T19:33:48Z",
+      "side": 1,
+      "message": "So I tried moving the security_patch property to `gki_add_avb_footer()`, but the problem is that `certify_bootimg` erases the AVB footer first to append a new footer [1]. I think the best solution would be to calculate the SPL month outside of these functions and then pass it in to both this function and `gki_add_avb_footer()`.\n\n[1] https://android.googlesource.com/platform/system/tools/mkbootimg/+/refs/heads/master/gki/certify_bootimg.py#256",
+      "parentUuid": "cba13276_1b9b3fdb",
       "range": {
         "startLine": 643,
         "startChar": 0,
