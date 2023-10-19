@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b978729_67fb41d3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-19T02:16:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e27ad48_cf1fe12e",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "521251fb_68bd20cb",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-18T09:36:51Z",
       "side": 1,
       "message": "Remove this line, `\":kasan_is_false\"` already includes `\":kasan_generic_is_false\"`.",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "573579a3_ee7ad81f",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-19T02:16:37Z",
+      "side": 1,
+      "message": "kasan_is_false is for gki_defconfig\nkasan_generic_is_false is for KASAN_GENERIC.",
+      "parentUuid": "521251fb_68bd20cb",
       "range": {
         "startLine": 41,
         "startChar": 8,
@@ -94,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60cef2f5_ab51464a",
+        "filename": "kleaf/impl/defconfig/kasan_generic_defconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-19T02:16:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c6dd8b6_cac34293",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 33
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2f6e440_a187865e",
@@ -141,6 +213,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98c725f5_ce3401f5",
+        "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-19T02:16:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9d5b078_f7f0c30a",
+      "range": {
+        "startLine": 287,
+        "startChar": 36,
+        "endLine": 287,
+        "endChar": 50
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e65c465c_5c5ff045",
@@ -178,6 +274,30 @@
       "side": 1,
       "message": "(see my other comment)",
       "parentUuid": "e65c465c_5c5ff045",
+      "range": {
+        "startLine": 271,
+        "startChar": 20,
+        "endLine": 288,
+        "endChar": 22
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b832544b_355f6f56",
+        "filename": "kleaf/tests/kernel_config_test/kernel_defconfig_fragments_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-19T02:16:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2ded8ae_9c05884a",
       "range": {
         "startLine": 271,
         "startChar": 20,
