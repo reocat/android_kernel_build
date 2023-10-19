@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54c28e7c_c1fe3816",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-19T12:52:25Z",
+      "side": 1,
+      "message": "Oh, understand now. fixed.",
+      "parentUuid": "8de9905b_0fb0aabd",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e07a4c05_9f55f20c",
