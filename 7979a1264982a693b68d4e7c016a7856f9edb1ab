@@ -199,6 +199,30 @@
       },
       "revId": "7979a1264982a693b68d4e7c016a7856f9edb1ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "708bc031_679d30dc",
+        "filename": "build_utils.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1080813
+      },
+      "writtenOn": "2023-10-19T09:16:08Z",
+      "side": 1,
+      "message": "Ah, your PS7 is actually correct because it uses \"--extra_footer_args\", which forwarded the args to `avbtool` for adding an AVB footer.\n\nAnyway, agree that adding in both places are less confusing.",
+      "parentUuid": "a67b824f_7d95243f",
+      "range": {
+        "startLine": 643,
+        "startChar": 0,
+        "endLine": 648,
+        "endChar": 0
+      },
+      "revId": "7979a1264982a693b68d4e7c016a7856f9edb1ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
