@@ -116,6 +116,23 @@
       },
       "revId": "32034ebb2e2cba190bc0cf28a6b5473dd7f89d57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "644a2cb1_461cd900",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 2059,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-19T01:21:53Z",
+      "side": 1,
+      "message": "once https://android-review.googlesource.com/c/kernel/build/+/2792434 merged, there will be another kasan_generic here.",
+      "revId": "32034ebb2e2cba190bc0cf28a6b5473dd7f89d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
