@@ -56,6 +56,63 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_filegroup.bzl` to format the file, or apply the suggested fix.",
       "revId": "417ff9fa9da7888761515180363e3601ba68b770",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056619938",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2795539?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "3c73e0c4_d898bc28",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_filegroup.bzl",
+              "range": {
+                "startLine": 93,
+                "startChar": 0,
+                "endLine": 93,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_filegroup.bzl",
+              "range": {
+                "startLine": 96,
+                "startChar": 0,
+                "endLine": 97,
+                "endChar": 0
+              },
+              "replacement": "        \"{name}/{archive}_extracted\".format(name \u003d ctx.attr.name, archive \u003d archive.basename),\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_filegroup.bzl",
+              "range": {
+                "startLine": 110,
+                "startChar": 0,
+                "endLine": 111,
+                "endChar": 0
+              },
+              "replacement": "        progress_message \u003d \"Extracting {} {}\".format(archive.basename, ctx.label),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "ad090ee9_e1fa002c",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-19T18:12:53Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_filegroup.bzl` to format the file, or apply the suggested fix.",
+      "revId": "417ff9fa9da7888761515180363e3601ba68b770",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
