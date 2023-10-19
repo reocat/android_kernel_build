@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8de9905b_0fb0aabd",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-10-19T10:29:07Z",
+      "side": 1,
+      "message": "I was referring to the check done in L205-214, `\":kasan_is_false\"` matches `\":kasan_generic_is_false\"` too, so this is redundant, was L211 not intended?",
+      "parentUuid": "573579a3_ee7ad81f",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "9dfc75d20b6130d4936bb2ba19f284e558e25aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e07a4c05_9f55f20c",
         "filename": "kleaf/impl/defconfig/kasan_generic_defconfig",
         "patchSetId": 3
