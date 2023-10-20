@@ -15,6 +15,7 @@
 """A target that mimics [`kernel_build`](#kernel_build) from a list of prebuilt files."""
 
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     ":common_providers.bzl",
     "GcovInfo",
@@ -90,57 +91,20 @@ def _get_kernel_release(ctx):
     )
     return kernel_release
 
-def _get_ddk_common_env_dir(ctx, all_deps):
-    hermetic_tools = hermetic_toolchain.get(ctx)
-    env_setup = utils.find_files(all_deps, suffix = "_env.sh")[0]
-    module_scripts_archive = utils.find_files(all_deps, suffix = MODULE_SCRIPTS_ARCHIVE_SUFFIX)[0]
-    ddk_headers_archive = utils.find_files(all_deps, "_ddk_headers_archive.tar.gz")[0]
-
-    ddk_common_env_dir = ctx.actions.declare_directory(
-        "{name}/ddk_common_env".format(name = ctx.attr.name),
-    )
-    command = hermetic_tools.setup + """
-        KLEAF_REPO_WORKSPACE_ROOT={kleaf_repo_workspace_root}
-        . {build_utils_sh}
-        . {env_setup}
-
-        # Now we have $KERNEL_DIR, restore things properly
-
-        mkdir -p {ddk_common_env_dir}/${{KERNEL_DIR}}
-        tar xf {module_scripts_archive} -C {ddk_common_env_dir}/${{KERNEL_DIR}}
-        tar xf {ddk_headers_archive} -C {ddk_common_env_dir}
-    """.format(
-        kleaf_repo_workspace_root = Label(":kernel_filegroup.bzl").workspace_root,
-        build_utils_sh = ctx.file._build_utils_sh.path,
-        env_setup = env_setup.path,
-        ddk_common_env_dir = ddk_common_env_dir.path,
-        module_scripts_archive = module_scripts_archive.path,
-        ddk_headers_archive = ddk_headers_archive.path,
-    )
-    ctx.actions.run_shell(
-        inputs = [
-            env_setup,
-            ctx.version_file,
-            module_scripts_archive,
-            ddk_headers_archive,
-        ],
-        outputs = [ddk_common_env_dir],
-        tools = depset([
-            ctx.file._build_utils_sh,
-        ], transitive = [
-            hermetic_tools.deps,
-        ]),
-        command = command,
-        progress_message = "Prep env for DDK modules {}".format(ctx.label),
-        mnemonic = "KernelFilegroupDdkCommonEnv",
-    )
-    return ddk_common_env_dir
-
 def _kernel_filegroup_impl(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
     toolchains = kernel_toolchains_utils.get(ctx)
 
     all_deps = ctx.files.srcs + ctx.files.deps
+
+    restore_module_srcs_cmd = utils.get_check_sandbox_cmd()
+    # TODO ensure no duplicates. (There should only be one item.)
+    for target in ctx.attr.module_srcs:
+        restore_module_srcs_cmd += """
+            mv -t ./ {module_srcs_root}
+        """.format(
+            module_srcs_root = paths.join(target.label.workspace_root, target.label.package)
+        )
 
     # TODO(b/219112010): Implement KernelSerializedEnvInfo properly
     # FIXME clean up; merge with kernel_config.bzl / kernel_build.bzl
@@ -158,8 +122,6 @@ def _kernel_filegroup_impl(ctx):
     )
     env_setup = utils.find_files(all_deps, suffix = "_env.sh")[0]
 
-    ddk_common_env_dir = _get_ddk_common_env_dir(ctx, all_deps)
-
     ddk_config_env_setup_script = ctx.actions.declare_file("{name}/{name}_ddk_config_setup.sh".format(name = ctx.attr.name))
     ctx.actions.write(
         output = ddk_config_env_setup_script,
@@ -175,22 +137,18 @@ def _kernel_filegroup_impl(ctx):
             export TMPDIR=/tmp
 
             # Restore source tree
-            {check_sandbox_cmd}
-            mv -t ./ {ddk_common_env_dir}/*
+            {restore_module_srcs_cmd}
 
             {eval_restore_out_dir_cmd}
             {config_post_setup}
-
-            mkdir -p ${{KERNEL_DIR}}
         """.format(
             kleaf_repo_workspace_root = Label(":kernel_filegroup.bzl").workspace_root,
             build_utils_sh = ctx.file._build_utils_sh.path,
             env_setup = env_setup.path,
             eval_restore_out_dir_cmd = kernel_utils.eval_restore_out_dir_cmd(),
             config_post_setup = config_post_setup,
-            check_sandbox_cmd = utils.get_check_sandbox_cmd(),
             toolchains_setup_env_var_cmd = toolchains.setup_env_var_cmd,
-            ddk_common_env_dir = ddk_common_env_dir.path,
+            restore_module_srcs_cmd = restore_module_srcs_cmd,
         ),
     )
     ddk_config_env = KernelSerializedEnvInfo(
@@ -200,8 +158,7 @@ def _kernel_filegroup_impl(ctx):
             config_outdir_tar_gz,
             env_setup,
             ctx.version_file,
-            ddk_common_env_dir,
-        ]),
+        ], transitive = [target.files for target in ctx.attr.module_srcs]),
         tools = depset([
             ctx.file._build_utils_sh,
         ], transitive = [
@@ -493,6 +450,7 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
             The `gki-info.txt` file should be part of that list.""",
             mandatory = True,
         ),
+        "module_srcs": attr.label_list(allow_files = True, doc = "core kernel sources to build modules"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_cache_dir_config_tags": attr.label(
             default = "//build/kernel/kleaf/impl:cache_dir_config_tags",
