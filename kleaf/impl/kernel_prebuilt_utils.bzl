@@ -246,6 +246,10 @@ kernel_filegroup(
         ":{target}_unstripped_modules_archive",
         ":{target}_{toolchain_version_filename}",
     ],
+    module_srcs = [
+        "//{{}}:module_env_files".format(subpackage)
+        for subpackage in subpackages(include = ["**"])
+    ],
     kernel_uapi_headers = "{target}_uapi_headers",
     collect_unstripped_modules = {collect_unstripped_modules},
     images = "{target}_images",
