@@ -114,10 +114,12 @@ def _kernel_filegroup_impl(ctx):
            [ -z ${{OUT_DIR}} ] && echo "FATAL: configs post_env_info setup run without OUT_DIR set!" >&2 && exit 1
          # Restore kernel config inputs
            mkdir -p ${{OUT_DIR}}
-           tar xf {config_outdir_tar_gz} -C ${{OUT_DIR}}
+           if [[ -z ${{KLEAF_INTERNAL_DO_NOT_EXTRACT_CONFIG_OUT_DIR}} ]]; then
+                tar xf {config_outdir_tar_gz} -C ${{OUT_DIR}}
 
-         # Restore real value of $ROOT_DIR in auto.conf.cmd
-           sed -i'' -e 's:${{ROOT_DIR}}:'"${{ROOT_DIR}}"':g' ${{OUT_DIR}}/include/config/auto.conf.cmd
+                # Restore real value of $ROOT_DIR in auto.conf.cmd
+                sed -i'' -e 's:${{ROOT_DIR}}:'"${{ROOT_DIR}}"':g' ${{OUT_DIR}}/include/config/auto.conf.cmd
+           fi
     """.format(
         config_outdir_tar_gz = config_outdir_tar_gz.path,
     )
@@ -192,6 +194,7 @@ def _kernel_filegroup_impl(ctx):
     ctx.actions.write(
         output = ddk_mod_min_env_setup_script,
         content = hermetic_tools.setup + """
+            KLEAF_INTERNAL_DO_NOT_EXTRACT_CONFIG_OUT_DIR=1
             . {ddk_config_env_setup_script}
             {ddk_mod_min_setup}
             {ext_mod_env_and_outputs_info_setup_restore_outputs}
