@@ -16,6 +16,40 @@
       "message": "@john can you show how to use it?\nWe need to build normal build and kasan build daily in CI. and will the sanitizers enabled for ddk_module too?",
       "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c37e6609_309aefb1",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-20T23:45:16Z",
+      "side": 1,
+      "message": "Also list possible values? This makes the docs easier to read for humans.",
+      "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38958cf8_eb0ace19",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 2132,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-20T23:45:16Z",
+      "side": 1,
+      "message": "`values \u003d `?\n\nEDIT: Ah I see, the implementation is only checking if the value is \"default\" or not.",
+      "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
