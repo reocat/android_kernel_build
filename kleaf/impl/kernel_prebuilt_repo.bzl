@@ -213,6 +213,17 @@ def _mutate_build_file_for_archive(repository_ctx, build_file):
                 suffix = line[second_quote + 1:],
             )
         lines.append(line)
+
+    # FIXME: The correct solution here should be to merge ddk_headers_archive
+    # into module_env archive directly to avoid mess.
+    lines.append("""\
+filegroup(
+    name = "module_env_files",
+    srcs = glob(["**/*"], exclude = ["BUILD.bazel"]),
+    visibility = ["//visibility:private"],
+)
+""")
+
     repository_ctx.file(build_file, "\n".join(lines))
 
 _download_artifact_repo = repository_rule(
