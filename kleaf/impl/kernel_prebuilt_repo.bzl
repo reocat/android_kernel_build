@@ -164,20 +164,6 @@ def _download_from_build_number(repository_ctx, build_number):
         allow_fail = repository_ctx.attr.allow_fail,
     )
 
-    if repository_ctx.attr.extract:
-        # Extract to root of repository
-        if download_info.success:
-            repository_ctx.extract(
-                archive = download_path,
-                output = repository_ctx.path(""),
-            )
-
-            # Complete the build file fragment
-            _mutate_build_files_for_archive(repository_ctx)
-        if not download_info.success and repository_ctx.attr.allow_fail:
-            repository_ctx.file("BUILD.bazel", "# WARNING: Unable to download archive")
-            repository_ctx.file("metadata.bzl", "TARGETS = []")
-
     # Define the filegroup to contain the file.
     # If failing and it is allowed, set filegroup to empty
     if not download_info.success and repository_ctx.attr.allow_fail:
@@ -261,7 +247,6 @@ _download_artifact_repo = repository_rule(
             """,
             default = _ARTIFACT_URL_FMT,
         ),
-        "extract": attr.bool(doc = "Whether to extract"),
     },
     environ = [
         _BUILD_NUM_ENV_VAR,
@@ -295,7 +280,6 @@ def kernel_prebuilt_repo(
                 target = target,
                 remote_filename_fmt = remote_filename_fmt,
                 allow_fail = not config["mandatory"],
-                extract = config["extract"],
                 artifact_url_fmt = artifact_url_fmt,
             )
 
@@ -305,7 +289,7 @@ def kernel_prebuilt_repo(
         target = mapping["target"],
         gki_prebuilts_outs = mapping["gki_prebuilts_outs"],
         download_configs = {
-            config["target_suffix"]: list(config["outs_mapping"].keys())
+            config["target_suffix"]: json.encode(config)
             for config in mapping["download_configs"]
         },
         build_number = build_number,
@@ -350,42 +334,28 @@ bool_setting(
         visibility_pkg = repr(str(Label("//build/kernel/kleaf:__subpackages__"))),
     )
 
-    local_filenames = []
-    for outs in repository_ctx.attr.download_configs.values():
-        local_filenames += outs
-
-    for local_filename in local_filenames:
-        # FIXME check extract = ?
-        if not local_filename.endswith("_ddk_headers_archive.tar.gz"):
-            continue
-        files["BUILD.bazel"] += """\
-load("@{repo_name}_{sanitized_local_filename}//:metadata.bzl", {sanitized_local_filename}_TARGETS = "TARGETS")
-""".format(
-            repo_name = repository_ctx.attr.name,
-            sanitized_local_filename = _sanitize_repo_name(local_filename),
-        )
+    download_configs = {
+        key: json.decode(value)
+        for key, value in repository_ctx.attr.download_configs.items()
+    }
 
     # Aliases
-    for local_filename in local_filenames:
-        # FIXME check extract = ?
-        sanitized_local_filename = _sanitize_repo_name(local_filename)
-        if local_filename.endswith("_ddk_headers_archive.tar.gz"):
-            # FIXME put this in common/ package
+    mutate_build_files = False
+    for _target_suffix, download_config in download_configs.items():
+        for local_filename in download_config["outs_mapping"].keys():
+            sanitized_local_filename = _sanitize_repo_name(local_filename)
+            actual = "@" + repository_ctx.attr.name + "_" + sanitized_local_filename + "//file"
+
+            if download_config["extract"]:
+                archive = repository_ctx.path(Label(actual).relative(":" + local_filename))
+                if archive.exists:
+                    repository_ctx.extract(
+                        archive = archive,
+                        output = repository_ctx.path(download_config["extract"]),
+                    )
+                    mutate_build_files = True
 
             files["BUILD.bazel"] += """\
-
-[alias(
-    name = target.name,
-    actual = target,
-    visibility=["//visibility:public"],
-) for target in {sanitized_local_filename}_TARGETS]
-""".format(
-                sanitized_local_filename = sanitized_local_filename,
-            )
-
-        actual = "@" + repository_ctx.attr.name + "_" + sanitized_local_filename + "//file"
-
-        files["BUILD.bazel"] += """\
 
 alias(
     name="{local_filename}",
@@ -393,12 +363,16 @@ alias(
     visibility=["//visibility:private"]
 )
 """.format(
-            local_filename = local_filename,
-            actual = actual,
-        )
+                local_filename = local_filename,
+                actual = actual,
+            )
+
+    if mutate_build_files:
+        _mutate_build_files_for_archive(repository_ctx)
+
     files["BUILD.bazel"] += get_prebuilt_build_file_fragment(
         target = target,
-        download_configs = repository_ctx.attr.download_configs,
+        download_configs = download_configs,
         gki_prebuilts_outs = repository_ctx.attr.gki_prebuilts_outs,
         arch = repository_ctx.attr.arch,
         # TODO(b/298416462): This should be determined by downloaded artifacts.
@@ -416,8 +390,8 @@ _kernel_prebuilt_repo = repository_rule(
         "arch": attr.string(doc = "Architecture associated with this mapping."),
         "target": attr.string(doc = "Bazel target name in common_kernels.bzl"),
         "gki_prebuilts_outs": attr.string_list(),
-        "download_configs": attr.string_list_dict(doc = """
-            key: `target_suffix`. value: `outs` & `outs_mapping`.
+        "download_configs": attr.string_dict(doc = """
+            key: `target_suffix`. value: JSON string to `download_config`.
         """),
         "build_number": attr.string(),
     },
