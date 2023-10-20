@@ -220,9 +220,11 @@ def _mutate_build_file_for_archive(repository_ctx, build_file):
 filegroup(
     name = "module_env_files",
     srcs = glob(["**/*"], exclude = ["BUILD.bazel"]),
-    visibility = ["//visibility:private"],
+    visibility=["@{parent_repo}//:__pkg__"],
 )
-""")
+""".format(
+        parent_repo = getattr(repository_ctx.attr, "parent_repo", repository_ctx.attr.name),
+    ))
 
     repository_ctx.file(build_file, "\n".join(lines))
 
