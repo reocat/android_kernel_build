@@ -71,6 +71,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe65cb7c_784bd094",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-20T19:54:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a9ff478_f9d3c05f",
+      "range": {
+        "startLine": 421,
+        "startChar": 32,
+        "endLine": 421,
+        "endChar": 37
+      },
+      "revId": "32034ebb2e2cba190bc0cf28a6b5473dd7f89d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfb3966e_54eb0c18",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-20T19:54:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46a0fd0c_67fe45c7",
+      "range": {
+        "startLine": 420,
+        "startChar": 8,
+        "endLine": 421,
+        "endChar": 73
+      },
+      "revId": "32034ebb2e2cba190bc0cf28a6b5473dd7f89d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37c8aba8_c8dc634c",
@@ -118,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "816e1497_36490e6c",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-20T19:54:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5904f25_d721cb26",
+      "range": {
+        "startLine": 795,
+        "startChar": 74,
+        "endLine": 795,
+        "endChar": 79
+      },
+      "revId": "32034ebb2e2cba190bc0cf28a6b5473dd7f89d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "644a2cb1_461cd900",
@@ -131,6 +203,24 @@
       "writtenOn": "2023-10-19T01:21:53Z",
       "side": 1,
       "message": "once https://android-review.googlesource.com/c/kernel/build/+/2792434 merged, there will be another kasan_generic here.",
+      "revId": "32034ebb2e2cba190bc0cf28a6b5473dd7f89d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e162c1bb_22c1cd94",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 2059,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-20T19:54:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "644a2cb1_461cd900",
       "revId": "32034ebb2e2cba190bc0cf28a6b5473dd7f89d57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
