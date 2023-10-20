@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61966181_4bcf6675",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905021
+      },
+      "writtenOn": "2023-10-20T23:39:46Z",
+      "side": 1,
+      "message": "@john can you show how to use it?\nWe need to build normal build and kasan build daily in CI. and will the sanitizers enabled for ddk_module too?",
+      "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
