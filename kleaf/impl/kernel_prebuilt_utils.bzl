@@ -47,7 +47,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "files",
                 "mandatory": True,
-                "extract": False,
+                "extract": None,
                 "outs_mapping": {e: e for e in DEFAULT_GKI_OUTS} | {
                     "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX: "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX,
                     # FIXME these should go to ddk_artifacts to avoid being copied to $OUT_DIR
@@ -61,7 +61,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "protected_modules_list",
                 "mandatory": False,
-                "extract": False,
+                "extract": None,
                 "outs_mapping": {
                     "gki_aarch64_protected_modules": "gki_aarch64_protected_modules",
                 },
@@ -69,7 +69,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "uapi_headers",
                 "mandatory": True,
-                "extract": False,
+                "extract": None,
                 "outs_mapping": {
                     "kernel-uapi-headers.tar.gz": "kernel-uapi-headers.tar.gz",
                 },
@@ -77,7 +77,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "unstripped_modules_archive",
                 "mandatory": True,
-                "extract": False,
+                "extract": None,
                 "outs_mapping": {
                     "unstripped_modules.tar.gz": "unstripped_modules.tar.gz",
                 },
@@ -85,7 +85,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "headers",
                 "mandatory": True,
-                "extract": False,
+                "extract": None,
                 "outs_mapping": {
                     "kernel-headers.tar.gz": "kernel-headers.tar.gz",
                 },
@@ -93,14 +93,14 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "images",
                 "mandatory": True,
-                "extract": False,
+                "extract": None,
                 # TODO(b/297934577): Update GKI prebuilts to download system_dlkm.<fs>.img
                 "outs_mapping": {e: e for e in SYSTEM_DLKM_COMMON_OUTS},
             },
             {
                 "target_suffix": "toolchain_version",
                 "mandatory": True,
-                "extract": False,
+                "extract": None,
                 "outs_mapping": {
                     TOOLCHAIN_VERSION_FILENAME: TOOLCHAIN_VERSION_FILENAME,
                 },
@@ -108,7 +108,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "boot_img_archive",
                 "mandatory": True,
-                "extract": False,
+                "extract": None,
                 "outs_mapping": {
                     "boot-img.tar.gz": "boot-img.tar.gz",
                     # The others can be found by extracting the archive, see gki_artifacts_prebuilts
@@ -120,7 +120,7 @@ CI_TARGET_MAPPING = {
                 # exist for unsigned builds. A build error will be emitted by gki_artifacts_prebuilts
                 # if --use_signed_prebuilts and --use_gki_prebuilts=<an unsigned build number>.
                 "mandatory": False,
-                "extract": False,
+                "extract": None,
                 "outs_mapping": {
                     # The basename is kept boot-img.tar.gz so it works with
                     # gki_artifacts_prebuilts. It is placed under the signed/
@@ -133,7 +133,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "ddk_artifacts",
                 "mandatory": True,
-                "extract": False,
+                "extract": None,
                 "outs_mapping": {
                     # _modules_prepare
                     "modules_prepare_outdir.tar.gz": "modules_prepare_outdir.tar.gz",
@@ -144,7 +144,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "ddk_headers_archive",
                 "mandatory": True,
-                "extract": True,
+                "extract": ".",
                 "outs_mapping": {
                     "kernel_aarch64_ddk_headers_archive.tar.gz": "kernel_aarch64_ddk_headers_archive.tar.gz",
                 },
@@ -152,7 +152,7 @@ CI_TARGET_MAPPING = {
             {
                 "target_suffix": "kmi_symbol_list",
                 "mandatory": False,
-                "extract": False,
+                "extract": None,
                 "outs_mapping": {
                     "abi_symbollist": "abi_symbollist",
                     "abi_symbollist.report": "abi_symbollist.report",
@@ -177,9 +177,9 @@ def get_prebuilt_build_file_fragment(
         target: Bazel target name in common_kernels.bzl
         gki_prebuilts_outs: List of output files from gki_artifacts()
         download_configs: For each key-value pair, the key is
-            target suffix, and the value are the list of files for that target.
+            target suffix, and the value is `download_config`.
             Define a filegroup named `{target}_{target_suffix}` with the
-            given list of files.
+            given list of files specified in `download_config`.
         collect_unstripped_modules: value of `collect_unstripped_modules` for `kernel_filegroup`
         module_outs_file_suffix: suffix of file that lists `module_outs`
         toolchain_version_filename: filename for defining toolchain version
@@ -189,8 +189,9 @@ def get_prebuilt_build_file_fragment(
     """
     content = ""
 
-    # suffixed_target_outs: outs of target named {name}_{target_suffix}
-    for target_suffix, suffixed_target_outs in download_configs.items():
+    for target_suffix, download_config in download_configs.items():
+        # suffixed_target_outs: outs of target named {name}_{target_suffix}
+        suffixed_target_outs = list(download_config["outs_mapping"].keys())
 
         content += """\
 
