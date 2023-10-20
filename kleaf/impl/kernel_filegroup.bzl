@@ -91,6 +91,52 @@ def _get_kernel_release(ctx):
     )
     return kernel_release
 
+def _get_ddk_common_env_dir(ctx, all_deps):
+    hermetic_tools = hermetic_toolchain.get(ctx)
+    env_setup = utils.find_files(all_deps, suffix = "_env.sh")[0]
+    module_scripts_archive = utils.find_files(all_deps, suffix = MODULE_SCRIPTS_ARCHIVE_SUFFIX)[0]
+    ddk_headers_archive = utils.find_files(all_deps, "_ddk_headers_archive.tar.gz")[0]
+
+    ddk_common_env_dir = ctx.actions.declare_directory(
+        "{name}/ddk_common_env".format(name = ctx.attr.name),
+    )
+    command = hermetic_tools.setup + """
+        KLEAF_REPO_WORKSPACE_ROOT={kleaf_repo_workspace_root}
+        . {build_utils_sh}
+        . {env_setup}
+
+        # Now we have $KERNEL_DIR, restore things properly
+
+        mkdir -p {ddk_common_env_dir}/${{KERNEL_DIR}}
+        tar xf {module_scripts_archive} -C {ddk_common_env_dir}/${{KERNEL_DIR}}
+        tar xf {ddk_headers_archive} -C {ddk_common_env_dir}
+    """.format(
+        kleaf_repo_workspace_root = Label(":kernel_filegroup.bzl").workspace_root,
+        build_utils_sh = ctx.file._build_utils_sh.path,
+        env_setup = env_setup.path,
+        ddk_common_env_dir = ddk_common_env_dir.path,
+        module_scripts_archive = module_scripts_archive.path,
+        ddk_headers_archive = ddk_headers_archive.path,
+    )
+    ctx.actions.run_shell(
+        inputs = [
+            env_setup,
+            ctx.version_file,
+            module_scripts_archive,
+            ddk_headers_archive,
+        ],
+        outputs = [ddk_common_env_dir],
+        tools = depset([
+            ctx.file._build_utils_sh,
+        ], transitive = [
+            hermetic_tools.deps,
+        ]),
+        command = command,
+        progress_message = "Prep env for DDK modules {}".format(ctx.label),
+        mnemonic = "KernelFilegroupDdkCommonEnv",
+    )
+    return ddk_common_env_dir
+
 def _kernel_filegroup_impl(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
     toolchains = kernel_toolchains_utils.get(ctx)
@@ -112,7 +158,9 @@ def _kernel_filegroup_impl(ctx):
         config_outdir_tar_gz = config_outdir_tar_gz.path,
     )
     env_setup = utils.find_files(all_deps, suffix = "_env.sh")[0]
-    module_scripts_archive = utils.find_files(all_deps, suffix = MODULE_SCRIPTS_ARCHIVE_SUFFIX)[0]
+
+    ddk_common_env_dir = _get_ddk_common_env_dir(ctx, all_deps)
+
     ddk_config_env_setup_script = ctx.actions.declare_file("{name}/{name}_ddk_config_setup.sh".format(name = ctx.attr.name))
     ctx.actions.write(
         output = ddk_config_env_setup_script,
@@ -125,20 +173,23 @@ def _kernel_filegroup_impl(ctx):
 
             # FIXME build bots override TMPDIR
             export TMPDIR=/tmp
+
+            # Restore source tree
+            {check_sandbox_cmd}
+            mv -t ./ {ddk_common_env_dir}/*
+
             {eval_restore_out_dir_cmd}
             {config_post_setup}
 
-            {check_sandbox_cmd}
             mkdir -p ${{KERNEL_DIR}}
-            tar xf {module_scripts_archive} -C ${{KERNEL_DIR}}
         """.format(
             build_utils_sh = ctx.file._build_utils_sh.path,
             env_setup = env_setup.path,
             eval_restore_out_dir_cmd = kernel_utils.eval_restore_out_dir_cmd(),
             config_post_setup = config_post_setup,
             check_sandbox_cmd = utils.get_check_sandbox_cmd(),
-            module_scripts_archive = module_scripts_archive.path,
             toolchains_setup_env_var_cmd = toolchains.setup_env_var_cmd,
+            ddk_common_env_dir = ddk_common_env_dir.path,
         ),
     )
     ddk_config_env = KernelSerializedEnvInfo(
@@ -148,7 +199,7 @@ def _kernel_filegroup_impl(ctx):
             config_outdir_tar_gz,
             env_setup,
             ctx.version_file,
-            module_scripts_archive,
+            ddk_common_env_dir,
         ]),
         tools = depset([
             ctx.file._build_utils_sh,
@@ -161,17 +212,13 @@ def _kernel_filegroup_impl(ctx):
     # FIXME clean up; merge with modules_prepare.bzl / kernel_build.bzl
     modules_prepare_out_dir_tar_gz = utils.find_file("modules_prepare_outdir.tar.gz", all_deps, what = ctx.label)
     internal_outs_archive = utils.find_files(all_deps, "_internal_outs.tar.gz")[0]
-    ddk_headers_archive = utils.find_files(all_deps, "_ddk_headers_archive.tar.gz")[0]
     ddk_mod_min_setup = """
-        {check_sandbox_cmd}
-        tar xf {ddk_headers_archive}
 
         [ -z ${{OUT_DIR}} ] && echo "FATAL: modules_prepare setup run without OUT_DIR set!" >&2 && exit 1
         mkdir -p ${{OUT_DIR}}
         tar xf {modules_prepare_out_dir_tar_gz} -C ${{OUT_DIR}}
     """.format(
         check_sandbox_cmd = utils.get_check_sandbox_cmd(),
-        ddk_headers_archive = ddk_headers_archive.path,
         modules_prepare_out_dir_tar_gz = modules_prepare_out_dir_tar_gz.path,
     )
     ext_mod_env_and_outputs_info_setup_restore_outputs = """
@@ -202,7 +249,6 @@ def _kernel_filegroup_impl(ctx):
             modules_prepare_out_dir_tar_gz,
             internal_outs_archive,
             ddk_config_env_setup_script,
-            ddk_headers_archive,
         ], transitive = [
             ddk_config_env.inputs,
         ]),
