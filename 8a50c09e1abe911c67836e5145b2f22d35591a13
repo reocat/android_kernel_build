@@ -36,6 +36,43 @@
       "message": "File is not formatted. Run `buildifier kleaf/impl/ddk/makefiles.bzl` to format the file, or apply the suggested fix.",
       "revId": "8a50c09e1abe911c67836e5145b2f22d35591a13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056757310",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2797923?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "a9de13f4_f3dde5ec",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/ddk/makefiles.bzl",
+              "range": {
+                "startLine": 147,
+                "startChar": 0,
+                "endLine": 148,
+                "endChar": 0
+              },
+              "replacement": "           submodule.label.package !\u003d module_label.package:\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "b679d753_cb8c8642",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-20T21:30:51Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/ddk/makefiles.bzl` to format the file, or apply the suggested fix.",
+      "revId": "8a50c09e1abe911c67836e5145b2f22d35591a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
