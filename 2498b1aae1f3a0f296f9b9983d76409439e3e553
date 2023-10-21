@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c9b3e91_aff134f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-21T00:06:16Z",
+      "side": 1,
+      "message": "Sure - just added a snippet in the docs on how to use it.\n\nYifan, can you confirm - if a `ddk_module` uses a `kernel_build` which sets a sanitizer this way, the `ddk_module` would have the sanitizer applied as well, correct?",
+      "parentUuid": "61966181_4bcf6675",
+      "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c37e6609_309aefb1",
@@ -37,6 +55,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "53ad15bf_892ab180",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-21T00:06:16Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "c37e6609_309aefb1",
+      "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "38958cf8_eb0ace19",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 6
@@ -48,6 +84,24 @@
       "writtenOn": "2023-10-20T23:45:16Z",
       "side": 1,
       "message": "`values \u003d `?\n\nEDIT: Ah I see, the implementation is only checking if the value is \"default\" or not.",
+      "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c5c2a3_4dca406e",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 2132,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-21T00:06:16Z",
+      "side": 1,
+      "message": "Yeah, there\u0027s no `values` for a string_list. Not sure why!",
+      "parentUuid": "38958cf8_eb0ace19",
       "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
