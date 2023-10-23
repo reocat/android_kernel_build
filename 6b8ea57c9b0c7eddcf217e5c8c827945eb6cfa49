@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6f2d349_d14f90f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-23T17:50:10Z",
+      "side": 1,
+      "message": "Note: Building x86_64 / riscv targets fails with\n\n```\nError in fail: --kasan_sw_tags only supported on arm64.\n```",
+      "revId": "6b8ea57c9b0c7eddcf217e5c8c827945eb6cfa49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
