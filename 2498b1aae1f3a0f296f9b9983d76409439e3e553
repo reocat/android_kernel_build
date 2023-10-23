@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb177afe_e01345d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-23T17:37:06Z",
+      "side": 1,
+      "message": "unresolving for visibility",
+      "parentUuid": "6650039f_1d7686d0",
+      "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c37e6609_309aefb1",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 6
