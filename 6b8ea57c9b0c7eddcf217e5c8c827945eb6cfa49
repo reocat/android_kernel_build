@@ -52,6 +52,24 @@
       "parentUuid": "c34c19ba_8314a0b0",
       "revId": "6b8ea57c9b0c7eddcf217e5c8c827945eb6cfa49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0a0d64a_c19eea59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-23T21:54:04Z",
+      "side": 1,
+      "message": "This is because `//common:kernel_x86_64` depends on `//common:kernel_x86_64__defconfig_fragment_sanitizer`. The latter depends on `\"//build/kernel/kleaf/impl/defconfig:x86_64_kasan_sw_tags\"` via L814, an `attr.label_keyed_string_dict`. (https://bazel.build/rules/lib/toplevel/attr#label_keyed_string_dict)\n\nAll keys in file_selector.files are depended on when Bazel calculates the dependency tree. It is just that during the analysis phase, files of `//build/kernel/kleaf/impl/defconfig:x86_64_kasan_sw_tags` aren\u0027t actually included in any actions. In other words, on the Target level, `:x86_64_kasan_sw_tags` is depended on; but on the Action level, it is not depended on.\n\nHowever, when Bazel calculates the dependency tree, it immediately hits an error during the analysis phase, because all branches of `//build/kernel/kleaf/impl/defconfig:x86_64_kasan_sw_tags` are `fail_rule`s. `fail_rule`\u0027s fail at analysis phase.\n\nThe solution is to change it to `fail`, which fails at execution phase (i.e. when the files are actually built).\n\nWith that solution, the unit tests that checks analysis phase errors are no longer correct, so they should be disabled. (Please also file a bug on me to re-enable some test that checks incompatibility between sanitizer and LTO).",
+      "parentUuid": "8a95ac89_e8e28056",
+      "revId": "6b8ea57c9b0c7eddcf217e5c8c827945eb6cfa49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
