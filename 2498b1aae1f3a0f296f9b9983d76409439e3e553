@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6650039f_1d7686d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-23T17:36:48Z",
+      "side": 1,
+      "message": "The ddk_module will see the same `CONFIG_`\u0027s, so yes.",
+      "parentUuid": "9c9b3e91_aff134f9",
+      "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c37e6609_309aefb1",
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "Yeah, there\u0027s no `values` for a string_list. Not sure why!",
       "parentUuid": "38958cf8_eb0ace19",
+      "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8add4845_29d918b2",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 2132,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-23T17:36:48Z",
+      "side": 1,
+      "message": "That\u0027s fine. file_selector should do value checking already. (Please confirm with passing invalid values to kernel_build.sanitizers and see if there\u0027s an error)\n\nI\u0027ll file a bazel bug for this",
+      "parentUuid": "55c5c2a3_4dca406e",
       "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
