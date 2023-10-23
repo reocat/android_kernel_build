@@ -34,6 +34,24 @@
       "parentUuid": "f6f2d349_d14f90f9",
       "revId": "6b8ea57c9b0c7eddcf217e5c8c827945eb6cfa49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a95ac89_e8e28056",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-23T19:38:38Z",
+      "side": 1,
+      "message": "I\u0027m confused... why is `x86_64_kasan_sw_tags` being selected in the first place? Isn\u0027t this error the desired behavior?",
+      "parentUuid": "c34c19ba_8314a0b0",
+      "revId": "6b8ea57c9b0c7eddcf217e5c8c827945eb6cfa49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
