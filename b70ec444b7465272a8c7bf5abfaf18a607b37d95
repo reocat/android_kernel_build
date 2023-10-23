@@ -51,6 +51,53 @@
       "robotId": "ayeaye",
       "robotRunId": "AR00000000000056970369",
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2798291?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "87a48797_8776f376",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_filegroup.bzl",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 102,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_filegroup.bzl",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "            module_srcs_root \u003d paths.join(target.label.workspace_root, target.label.package),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "3292c581_a3f5d371",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-23T18:18:47Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_filegroup.bzl` to format the file, or apply the suggested fix.",
+      "revId": "b70ec444b7465272a8c7bf5abfaf18a607b37d95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056970369",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2798291?revision\u003d3",
       "fixSuggestions": [],
       "key": {
         "uuid": "ba488578_a69a6e93",
@@ -62,6 +109,32 @@
         "id": 1757831
       },
       "writtenOn": "2023-10-23T18:18:41Z",
+      "side": 1,
+      "message": "Loaded symbol \"MODULE_SCRIPTS_ARCHIVE_SUFFIX\" is unused. Please remove it.\nTo disable the warning, add \u0027@unused\u0027 in a comment.\nIf you want to re-export a symbol, use the following pattern:\n\n    load(..., _MODULE_SCRIPTS_ARCHIVE_SUFFIX \u003d \"MODULE_SCRIPTS_ARCHIVE_SUFFIX\", ...)\n    MODULE_SCRIPTS_ARCHIVE_SUFFIX \u003d _MODULE_SCRIPTS_ARCHIVE_SUFFIX\n http://go/buildifier-warnings#load",
+      "range": {
+        "startLine": 37,
+        "startChar": 5,
+        "endLine": 37,
+        "endChar": 34
+      },
+      "revId": "b70ec444b7465272a8c7bf5abfaf18a607b37d95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056970369",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2798291?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7800af21_20566de7",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-23T18:18:47Z",
       "side": 1,
       "message": "Loaded symbol \"MODULE_SCRIPTS_ARCHIVE_SUFFIX\" is unused. Please remove it.\nTo disable the warning, add \u0027@unused\u0027 in a comment.\nIf you want to re-export a symbol, use the following pattern:\n\n    load(..., _MODULE_SCRIPTS_ARCHIVE_SUFFIX \u003d \"MODULE_SCRIPTS_ARCHIVE_SUFFIX\", ...)\n    MODULE_SCRIPTS_ARCHIVE_SUFFIX \u003d _MODULE_SCRIPTS_ARCHIVE_SUFFIX\n http://go/buildifier-warnings#load",
       "range": {
