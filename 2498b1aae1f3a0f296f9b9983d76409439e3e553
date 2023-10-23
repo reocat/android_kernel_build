@@ -212,6 +212,24 @@
       "parentUuid": "4926d67c_064257cb",
       "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7149b3a3_0249ec53",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 2132,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-10-23T22:25:37Z",
+      "side": 1,
+      "message": "Confirmed - setting `sanitizers \u003d [\"foo\"]`:\n```\nselector is foo, but no expected value in files matches. Acceptable values:\n[\"kasan_any_mode\", \"kasan_sw_tags\", \"kasan_generic\", \"kcsan\", \"default\"]\n```",
+      "parentUuid": "9d8493ff_72a97f85",
+      "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
