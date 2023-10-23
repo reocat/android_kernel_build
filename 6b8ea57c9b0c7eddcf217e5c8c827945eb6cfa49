@@ -16,6 +16,24 @@
       "message": "Note: Building x86_64 / riscv targets fails with\n\n```\nError in fail: --kasan_sw_tags only supported on arm64.\n```",
       "revId": "6b8ea57c9b0c7eddcf217e5c8c827945eb6cfa49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c34c19ba_8314a0b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-23T17:51:16Z",
+      "side": 1,
+      "message": "You can reproduce this with `bazel build //common:x86_64`\n\nI think this can be resolved with changing `fail_rule` to `fail`, but then the unit tests (kernel_config_test) also need to be adjusted or disabled.",
+      "parentUuid": "f6f2d349_d14f90f9",
+      "revId": "6b8ea57c9b0c7eddcf217e5c8c827945eb6cfa49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
