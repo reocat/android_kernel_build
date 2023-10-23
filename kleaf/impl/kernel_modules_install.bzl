@@ -131,11 +131,11 @@ def _kernel_modules_install_impl(ctx):
              # Run depmod
                (
                  cd ${{OUT_DIR}} # for System.map when mixed_build_prefix is not set
-                 INSTALL_MOD_PATH=${{real_modules_staging_dir}} ${{ROOT_DIR}}/${{KERNEL_DIR}}/scripts/depmod.sh depmod ${{kernelrelease}} ${{mixed_build_prefix}}
+                 INSTALL_MOD_PATH=${{real_modules_staging_dir}} DEPMOD=depmod ${{ROOT_DIR}}/${{KERNEL_DIR}}/scripts/depmod.sh ${{kernelrelease}} ${{mixed_build_prefix}}
                )
              # Remove symlinks that are dead outside of the sandbox
                (
-                 symlink="$(ls {modules_staging_dir}/lib/modules/*/source)"
+                 symlink="$(ls {modules_staging_dir}/lib/modules/*/build/source)"
                  if [[ -n "$symlink" ]] && [[ -L "$symlink" ]]; then rm "$symlink"; fi
                  symlink="$(ls {modules_staging_dir}/lib/modules/*/build)"
                  if [[ -n "$symlink" ]] && [[ -L "$symlink" ]]; then rm "$symlink"; fi
