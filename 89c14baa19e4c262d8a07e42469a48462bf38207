@@ -25,6 +25,32 @@
       },
       "revId": "89c14baa19e4c262d8a07e42469a48462bf38207",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056992159",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2764425?revision\u003d33",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1d3ff963_ceddfb2c",
+        "filename": "kleaf/constants.bzl",
+        "patchSetId": 33
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-23T21:40:49Z",
+      "side": 1,
+      "message": "Loaded symbol \"MODULE_SCRIPTS_ARCHIVE_SUFFIX\" is unused. Please remove it.\nTo disable the warning, add \u0027@unused\u0027 in a comment.\nIf you want to re-export a symbol, use the following pattern:\n\n    load(..., _MODULE_SCRIPTS_ARCHIVE_SUFFIX \u003d \"MODULE_SCRIPTS_ARCHIVE_SUFFIX\", ...)\n    MODULE_SCRIPTS_ARCHIVE_SUFFIX \u003d _MODULE_SCRIPTS_ARCHIVE_SUFFIX\n http://go/buildifier-warnings#load",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 34
+      },
+      "revId": "89c14baa19e4c262d8a07e42469a48462bf38207",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
