@@ -1,0 +1,77 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056975130",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2798792?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "13f68667_2aece619",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kernel_filegroup.bzl",
+              "range": {
+                "startLine": 102,
+                "startChar": 0,
+                "endLine": 102,
+                "endChar": 0
+              },
+              "replacement": "\n"
+            },
+            {
+              "path": "kleaf/impl/kernel_filegroup.bzl",
+              "range": {
+                "startLine": 107,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "            module_srcs_root \u003d paths.join(target.label.workspace_root, target.label.package),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "8ba223cd_45b52bc9",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-23T18:45:43Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kernel_filegroup.bzl` to format the file, or apply the suggested fix.",
+      "revId": "9153939d6642693e25f6c80b0bc7c396824a822d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000056975130",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2798792?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8b96be95_5c3d2aa9",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-10-23T18:45:43Z",
+      "side": 1,
+      "message": "Loaded symbol \"MODULE_SCRIPTS_ARCHIVE_SUFFIX\" is unused. Please remove it.\nTo disable the warning, add \u0027@unused\u0027 in a comment.\nIf you want to re-export a symbol, use the following pattern:\n\n    load(..., _MODULE_SCRIPTS_ARCHIVE_SUFFIX \u003d \"MODULE_SCRIPTS_ARCHIVE_SUFFIX\", ...)\n    MODULE_SCRIPTS_ARCHIVE_SUFFIX \u003d _MODULE_SCRIPTS_ARCHIVE_SUFFIX\n http://go/buildifier-warnings#load",
+      "range": {
+        "startLine": 37,
+        "startChar": 5,
+        "endLine": 37,
+        "endChar": 34
+      },
+      "revId": "9153939d6642693e25f6c80b0bc7c396824a822d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
