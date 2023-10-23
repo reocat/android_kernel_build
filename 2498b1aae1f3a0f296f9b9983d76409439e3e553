@@ -194,6 +194,24 @@
       "parentUuid": "8add4845_29d918b2",
       "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d8493ff_72a97f85",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 2132,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-23T17:45:55Z",
+      "side": 1,
+      "message": "Bazel bug: https://github.com/bazelbuild/bazel/issues/19923\n\nPlease do confirm that passing an invalid value is an error. Thank you!",
+      "parentUuid": "4926d67c_064257cb",
+      "revId": "2498b1aae1f3a0f296f9b9983d76409439e3e553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
