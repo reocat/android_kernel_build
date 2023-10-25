@@ -117,15 +117,15 @@ def _get_step(ctx, common_config_tags, symlink_name):
 
             export OUT_DIR_SUFFIX=$(cat ${{KLEAF_CONFIG_TAGS_TMP}} | sha1sum -b | cut -c-8)
 
-            KLEAF_CACHED_COMMON_OUT_DIR={cache_dir}/${{OUT_DIR_SUFFIX}}
-            export OUT_DIR=${{KLEAF_CACHED_COMMON_OUT_DIR}}/${{KERNEL_DIR}}
+            export COMMON_OUT_DIR={cache_dir}/${{OUT_DIR_SUFFIX}}
+            export OUT_DIR=${{COMMON_OUT_DIR}}/${{KERNEL_DIR}}
             mkdir -p "${{OUT_DIR}}"
 
             # Reconcile differences between expected file and target file, if any,
             # to prevent hash collision.
             {cache_dir_config_tags} \\
                 --base "${{KLEAF_CONFIG_TAGS_TMP}}" \\
-                --dest "${{KLEAF_CACHED_COMMON_OUT_DIR}}/kleaf_config_tags.json"
+                --dest "${{COMMON_OUT_DIR}}/kleaf_config_tags.json"
 
             rm -f "${{KLEAF_CONFIG_TAGS_TMP}}"
             unset KLEAF_CONFIG_TAGS_TMP
