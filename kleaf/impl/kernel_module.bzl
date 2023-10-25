@@ -553,6 +553,7 @@ def _kernel_module_impl(ctx):
             progress_message = "Copying outputs {}".format(ctx.label),
         )
 
+    module_symvers_restore_path = paths.join(ext_mod, ctx.attr.internal_module_symvers_name)
     setup = """
              # Use a new shell to avoid polluting variables
                (
@@ -562,8 +563,8 @@ def _kernel_module_impl(ctx):
                mkdir -p ${{ROOT_DIR}}/{ext_mod}
                ext_mod_rel=$(realpath ${{ROOT_DIR}}/{ext_mod} --relative-to ${{KERNEL_DIR}})
              # Restore Modules.symvers
-               mkdir -p $(dirname ${{OUT_DIR}}/${{ext_mod_rel}}/{internal_module_symvers_name})
-               rsync -aL {module_symvers} ${{OUT_DIR}}/${{ext_mod_rel}}/{internal_module_symvers_name}
+               mkdir -p $(dirname ${{COMMON_OUT_DIR}}/{module_symvers_restore_path})
+               rsync -aL {module_symvers} ${{COMMON_OUT_DIR}}/{module_symvers_restore_path}
              # New shell ends
                )
     """.format(
@@ -618,7 +619,7 @@ def _kernel_module_impl(ctx):
             # path/to/package/target_name/target_name_Module.symvers -> path/to/package/target_name_Module.symvers;
             # This is similar to ${{OUT_DIR}}/${{ext_mod_rel}}
             # It is needed to remove the `target_name` because we declare_file({name}/{internal_module_symvers_name}) above.
-            restore_paths = depset([paths.join(ext_mod, ctx.attr.internal_module_symvers_name)]),
+            restore_paths = depset([module_symvers_restore_path]),
         ),
         ddk_headers_info,
         ddk_config_info,
