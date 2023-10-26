@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21bcf6c1_39d3e9e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-26T21:53:58Z",
+      "side": 1,
+      "message": "The change itself is good. However, do we have to backport this? We freeze the prebuilts there already, I think.",
+      "revId": "a6a7a1fa16c79b187a190a310f2b49e737c22cc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
