@@ -16,6 +16,24 @@
       "message": "The change itself is good. However, do we have to backport this? We freeze the prebuilts there already, I think.",
       "revId": "a6a7a1fa16c79b187a190a310f2b49e737c22cc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "128424e9_512f3027",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-10-26T23:55:26Z",
+      "side": 1,
+      "message": "You\u0027re right. I think this might be a result of the `prebuilts/build-tools` directory not tracking the right branch. I\u0027ll check and get back to you.",
+      "parentUuid": "21bcf6c1_39d3e9e2",
+      "revId": "a6a7a1fa16c79b187a190a310f2b49e737c22cc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
