@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ea4853a_87ffe821",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-26T17:03:54Z",
+      "side": 1,
+      "message": "TIL difference between isdigit and isdecimal",
+      "parentUuid": "ce4be00c_1037b163",
+      "range": {
+        "startLine": 80,
+        "startChar": 15,
+        "endLine": 80,
+        "endChar": 22
+      },
+      "revId": "05007c51a5bab0c75b8f0151a85a2c839c1030d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0181219b_99630487",
