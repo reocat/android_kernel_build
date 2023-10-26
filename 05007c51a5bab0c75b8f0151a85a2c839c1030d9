@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce4be00c_1037b163",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-10-26T14:53:19Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "76a6cbd8_f5d27a46",
+      "range": {
+        "startLine": 80,
+        "startChar": 15,
+        "endLine": 80,
+        "endChar": 22
+      },
+      "revId": "05007c51a5bab0c75b8f0151a85a2c839c1030d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0181219b_99630487",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-26T14:40:04Z",
       "side": 1,
       "message": "`ArgumentTypeError` and does this not need to be instantiated? I.e.\n\n`raise argparse.ArgumentTypeError(\"Invalid build id value.\")`\n\nhttps://docs.python.org/3.12/library/argparse.html#argparse.ArgumentTypeError",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 21
+      },
+      "revId": "05007c51a5bab0c75b8f0151a85a2c839c1030d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2dad27a_07f9562f",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-10-26T14:53:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0181219b_99630487",
       "range": {
         "startLine": 81,
         "startChar": 12,
