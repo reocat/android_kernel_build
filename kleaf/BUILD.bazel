@@ -760,7 +760,7 @@ docs(
 #
 _CONTAINER = "gcr.io/androidbuild-re-dockerimage/android-build-remoteexec-image"
 
-_CONTAINER_VERSION = "sha256:582efb38f0c229ea39952fff9e132ccbe183e14869b39888010dacf56b360d62"
+_CONTAINER_VERSION = "sha256:6f527223371628c9139b5b16f3b1e757de96e8459f34a9afb2248fbca0dec722"
 
 platform(
     name = "rbe_platform",
