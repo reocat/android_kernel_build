@@ -46,6 +46,7 @@ hermetic_tools(
         "perl",
         "rsync",
         "sh",
+        "tar",
     ],
     py3_outs = [
         "python",
