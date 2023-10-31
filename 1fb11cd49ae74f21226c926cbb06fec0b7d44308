@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c50ee6f3_c54fc377",
+        "filename": "kleaf/impl/ddk/ddk_headers_archive.bzl",
+        "patchSetId": 48
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-31T19:39:23Z",
+      "side": 1,
+      "message": "Correct. The generation of the BUILD file doesn\u0027t need any source files; it just need the names of the source files.",
+      "parentUuid": "e5a9c406_33883977",
+      "range": {
+        "startLine": 77,
+        "startChar": 17,
+        "endLine": 77,
+        "endChar": 19
+      },
+      "revId": "1fb11cd49ae74f21226c926cbb06fec0b7d44308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "183a4818_710cde54",
