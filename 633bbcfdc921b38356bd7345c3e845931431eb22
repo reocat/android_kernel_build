@@ -16,6 +16,24 @@
       "message": "See CL:2791368. Could you hold this change a bit until that change merges, then directly import there?",
       "revId": "633bbcfdc921b38356bd7345c3e845931431eb22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2de0d3f0_ccfaa022",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-10-31T22:06:04Z",
+      "side": 1,
+      "message": "If you don\u0027t want to wait, just add \n\n```\n        native.local_repository(\n            name \u003d \"rules_rust\",\n            path \u003d \"external/bazelbuild-rules_rust\",\n        )\n```\n\nto workspace.bzl directly. I can resolve merge conflicts later",
+      "parentUuid": "b8fc7300_57e27489",
+      "revId": "633bbcfdc921b38356bd7345c3e845931431eb22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
