@@ -16,6 +16,24 @@
       "message": "can we deduplicate this with `update_microdroid_kernel` ?",
       "revId": "f46e1f1c8209f058be815ac93a7b6401c2de23fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fec13c0_7809a489",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1291338
+      },
+      "writtenOn": "2023-11-01T23:12:16Z",
+      "side": 1,
+      "message": "We will be using both.",
+      "parentUuid": "bd6b5e6b_7414b969",
+      "revId": "f46e1f1c8209f058be815ac93a7b6401c2de23fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
