@@ -34,6 +34,24 @@
       "parentUuid": "bd6b5e6b_7414b969",
       "revId": "f46e1f1c8209f058be815ac93a7b6401c2de23fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c682fe51_93061a0e",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-02T13:44:20Z",
+      "side": 1,
+      "message": "Sure, but the code can be deduplicated. This function is an exact copy of the above except for a few parameters. This script is already hard to maintain, we should not add more tech debt to it.",
+      "parentUuid": "7fec13c0_7809a489",
+      "revId": "f46e1f1c8209f058be815ac93a7b6401c2de23fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
