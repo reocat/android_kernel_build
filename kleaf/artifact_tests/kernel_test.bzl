@@ -15,6 +15,9 @@
 Tests for artifacts produced by kernel_module.
 """
 
+load("//build/kernel/kleaf/impl:hermetic_exec.bzl", "hermetic_exec_test")
+load("//build/bazel_common_rules/exec:embedded_exec.bzl", "embedded_exec")
+
 visibility("//build/kernel/kleaf/...")
 
 def kernel_module_test(
@@ -33,15 +36,14 @@ def kernel_module_test(
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
     """
     script = "//build/kernel/kleaf/artifact_tests:kernel_module_test.py"
-    modinfo = "//build/kernel:hermetic-tools/modinfo"
-    args = ["--modinfo", "$(location {})".format(modinfo)]
-    data = [modinfo]
+    args = []
+    data = []
     if modules:
         args.append("--modules")
-        args += ["$(locations {})".format(module) for module in modules]
+        args += ["$(rootpaths {})".format(module) for module in modules]
         data += modules
 
-    native.py_test(
+    _hermetic_py_test_common(
         name = name,
         main = script,
         srcs = [script],
@@ -70,17 +72,16 @@ def kernel_build_test(
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
     """
     script = "//build/kernel/kleaf/artifact_tests:kernel_build_test.py"
-    strings = "//build/kernel:hermetic-tools/llvm-strings"
-    args = ["--strings", "$(location {})".format(strings)]
+    args = []
     if target:
-        args += ["--artifacts", "$(locations {})".format(target)]
+        args += ["--artifacts", "$(rootpaths {})".format(target)]
 
-    native.py_test(
+    _hermetic_py_test_common(
         name = name,
         main = script,
         srcs = [script],
         python_version = "PY3",
-        data = [target, strings],
+        data = [target],
         args = args,
         timeout = "short",
         deps = [
@@ -107,31 +108,19 @@ def initramfs_modules_options_test(
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
     """
     script = "//build/kernel/kleaf/artifact_tests:initramfs_modules_options_test.py"
-    cpio = "//build/kernel:hermetic-tools/cpio"
-    diff = "//build/kernel:hermetic-tools/diff"
-    gzip = "//build/kernel:hermetic-tools/gzip"
     args = [
-        "--cpio",
-        "$(location {})".format(cpio),
-        "--diff",
-        "$(location {})".format(diff),
-        "--gzip",
-        "$(location {})".format(gzip),
         "--expected",
-        "$(location {})".format(expected_modules_options),
-        "$(locations {})".format(kernel_images),
+        "$(rootpath {})".format(expected_modules_options),
+        "$(rootpaths {})".format(kernel_images),
     ]
 
-    native.py_test(
+    _hermetic_py_test_common(
         name = name,
         main = script,
         srcs = [script],
         python_version = "PY3",
         data = [
-            cpio,
-            diff,
             expected_modules_options,
-            gzip,
             kernel_images,
         ],
         args = args,
@@ -139,5 +128,49 @@ def initramfs_modules_options_test(
         deps = [
             "@io_abseil_py//absl/testing:absltest",
         ],
+        **kwargs
+    )
+
+def _hermetic_py_test_common(
+        name,
+        srcs,
+        main = None,
+        args = None,
+        data = None,
+        deps = None,
+        python_version = None,
+        timeout = None,
+        **kwargs):
+
+    """Drop-in replacement for `py_test` that uses hermetic toolchain.
+
+    The test binary may find hermetic toolchain from `PATH`.
+    """
+
+    private_kwargs = kwargs | {
+        "visibility": ["//visibility:private"],
+    }
+    native.py_binary(
+        name = name + "_binary",
+        main = main,
+        srcs = srcs,
+        python_version = python_version,
+        data = data,
+        args = args,
+        deps = deps,
+        **private_kwargs
+    )
+
+    embedded_exec(
+        name = name + "_embedded",
+        actual = name + "_binary",
+        **private_kwargs
+    )
+
+    hermetic_exec_test(
+        name = name,
+        data = [name + "_embedded"],
+        script = "$(rootpath {}_embedded)".format(name),
+        timeout = timeout,
         **kwargs
     )
