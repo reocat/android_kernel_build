@@ -160,6 +160,24 @@
       "parentUuid": "a27ba79e_a0ff637a",
       "revId": "6b8ea57c9b0c7eddcf217e5c8c827945eb6cfa49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "372d8732_ff9eb8ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-02T15:47:33Z",
+      "side": 1,
+      "message": "The error is the following:\n\n```\nERROR: /mnt/disks/build-disk/src/android/common-android-mainline/build/kernel/kleaf/impl/defconfig/BUILD.bazel:131:10: in fail_rule rule //build/kernel/kleaf/impl/defconfig:fail_kasan_sw_tags_lto:\nTraceback (most recent call last):\nFile \"/mnt/disks/build-disk/src/android/common-android-mainline/build/kernel/kleaf/fail.bzl\", line 21, column 9, in _impl\nfail(ctx.attr.message if ctx.attr.message else \"unknown error\")\nError in fail: --kasan_sw_tags requires --lto\u003dnone or default.\nERROR: /mnt/disks/build-disk/src/android/common-android-mainline/build/kernel/kleaf/impl/defconfig/BUILD.bazel:131:10: Analysis of target \u0027//build/kernel/kleaf/impl/defconfig:fail_kasan_sw_tags_lto\u0027 failed\nERROR: Analysis of target \u0027//build/kernel/kleaf/tests/kernel_config_test:kernel_config_option_test_suite_combined_option_test_aarch64_trim_fast_nokasan_kgdb_aarch64\u0027 failed; build aborted: Analysis failed\n```\n\nThe failing target is `//build/kernel/kleaf/tests/kernel_config_test:kernel_config_option_test_suite_combined_option_test_aarch64_trim_fast_nokasan_kgdb_aarch64` I think",
+      "parentUuid": "88a48e79_60db9b12",
+      "revId": "6b8ea57c9b0c7eddcf217e5c8c827945eb6cfa49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
