@@ -164,9 +164,10 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
     )
 
     # Fake rules_cc to avoid fetching it for any py_binary targets.
-    kleaf_local_repository(
+    maybe(
+        repo_rule = kleaf_local_repository,
         name = "rules_cc",
-        path = "build/kernel/kleaf/impl/fake_rules_cc",
+        path = "external/bazelbuild-rules_cc",
     )
 
     # Stub out @remote_coverage_tools required for testing.
