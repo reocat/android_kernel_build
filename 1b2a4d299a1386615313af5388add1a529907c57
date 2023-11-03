@@ -22,6 +22,30 @@
       },
       "revId": "1b2a4d299a1386615313af5388add1a529907c57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6e86e6e_fa5cca44",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-03T23:03:24Z",
+      "side": 1,
+      "message": "The double-start no longer shows up.",
+      "parentUuid": "71ef01d4_33cf75a7",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 50
+      },
+      "revId": "1b2a4d299a1386615313af5388add1a529907c57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
