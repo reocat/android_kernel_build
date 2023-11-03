@@ -14,7 +14,11 @@
 
 # --config=android_ci: Flags used for ci.android.com builds.
 
+# Don't show progress, because stdout / stderr are directed to log files.
 common:android_ci --noshow_progress
+
+# Filter out INFO (and below) level logs so we get a crisp view of the warnings.
+common:android_ci --ui_event_filters=-info,-debug
 
 # Embed scmversion
 build:android_ci --config=stamp
