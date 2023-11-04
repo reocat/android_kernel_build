@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "82293e39_67969c70",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-04T00:03:41Z",
+      "side": 1,
+      "message": "that is actually interesting information.",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 52
+      },
+      "revId": "21d4bddd13ac666847bfac0284f5b4fa5e55d7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "cbd42e98_7477fcf9",
@@ -14,6 +37,23 @@
       "writtenOn": "2023-11-03T23:28:44Z",
       "side": 1,
       "message": "@maennich@google.com do you think we should keep these logs in build.log too?",
+      "revId": "21d4bddd13ac666847bfac0284f5b4fa5e55d7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "189948e9_2a13ed2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-04T00:03:41Z",
+      "side": 1,
+      "message": "I am not sure we should go so far to remove all this information as well. _Some_ small output is fine I would say to at least show some signs of activity .... hmm ...",
       "revId": "21d4bddd13ac666847bfac0284f5b4fa5e55d7cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
