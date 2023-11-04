@@ -98,6 +98,24 @@
       "parentUuid": "189948e9_2a13ed2d",
       "revId": "21d4bddd13ac666847bfac0284f5b4fa5e55d7cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa99cadf_9c7793f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-04T00:20:34Z",
+      "side": 1,
+      "message": "\u003e This is only useful when the build hangs.\n\nBy that I mean, if a build hangs and the build bot times out, without this change, we could look at the last line in output to get some information.",
+      "parentUuid": "adce5b25_503eb306",
+      "revId": "21d4bddd13ac666847bfac0284f5b4fa5e55d7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
