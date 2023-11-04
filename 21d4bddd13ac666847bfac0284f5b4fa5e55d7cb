@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbc83e88_ca18a4c2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-04T00:19:44Z",
+      "side": 1,
+      "message": "I agree that this is a handy summary of the time spent on the build. Note that we also have:\n\n- AB already contains time information for each build. In this case, though, it will be the time for both dist command and the test command, so it is not that useful.\n- More detailed build time is also available in the command.profile.gz.",
+      "parentUuid": "82293e39_67969c70",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 52
+      },
+      "revId": "21d4bddd13ac666847bfac0284f5b4fa5e55d7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "cbd42e98_7477fcf9",
@@ -54,6 +78,24 @@
       "writtenOn": "2023-11-04T00:03:41Z",
       "side": 1,
       "message": "I am not sure we should go so far to remove all this information as well. _Some_ small output is fine I would say to at least show some signs of activity .... hmm ...",
+      "revId": "21d4bddd13ac666847bfac0284f5b4fa5e55d7cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adce5b25_503eb306",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-04T00:19:44Z",
+      "side": 1,
+      "message": "This is only for CI, not for regular developer builds.\n\nI don\u0027t think we care about \"signs of activity\" on CI, right?\n\n- If the build breaks, there will be more error messages\n- This is only useful when the build hangs. We never see bazel hanging, so I think we can revert this change when this actually happens.\n\n---\n\nJust putting this up for some suggestion. Without this change, the \"spotless log enforcer\" (whatever that is implemented with) will include `^INFO:.*$` lines into the allowlist. With this change, I\u0027ll drop that regex so any INFO lines **NOT** from Bazel will also be caught.",
+      "parentUuid": "189948e9_2a13ed2d",
       "revId": "21d4bddd13ac666847bfac0284f5b4fa5e55d7cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
