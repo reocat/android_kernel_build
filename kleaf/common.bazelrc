@@ -59,3 +59,5 @@ try-import %workspace%/device.bazelrc
 # Support a local user-specific bazelrc file.
 try-import %workspace%/user.bazelrc
 
+# try lto
+build --lto=full
