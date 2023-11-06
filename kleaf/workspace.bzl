@@ -32,7 +32,7 @@ load("//prebuilts/clang/host/linux-x86/kleaf:register.bzl", "register_clang_tool
 # buildifier: disable=unnamed-macro
 def define_kleaf_workspace(
         common_kernel_package = None,
-        include_remote_java_tools_repo = False,
+        include_remote_java_tools_repo = False,  # buildifier: disable=unused-variable
         artifact_url_fmt = None):
     """Common macro for defining repositories in a Kleaf workspace.
 
@@ -50,7 +50,7 @@ def define_kleaf_workspace(
         `@` or `//`, it is prepended with `@//`.
 
         Do not provide the trailing `/`.
-      include_remote_java_tools_repo: Default is `False`. Whether to vendor two extra
+      include_remote_java_tools_repo: ** DEPRECATED** -- Default is `False`. Whether to vendor two extra
         repositories: remote_java_tools and remote_java_tools_linux.
 
         These respositories should exist under `//prebuilts/bazel/`
@@ -126,25 +126,6 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         kernel_prebuilt_repo(
             name = repo_name,
             artifact_url_fmt = artifact_url_fmt,
-        )
-
-    # TODO(b/200202912): Re-route this when rules_python is pulled into AOSP.
-    native.local_repository(
-        name = "rules_python",
-        path = "build/bazel_common_rules/rules/python/stubs",
-    )
-
-    # The following 2 repositories contain prebuilts that are necessary to the Java Rules.
-    # They are vendored locally to avoid the need for CI bots to download them.
-    if include_remote_java_tools_repo:
-        native.local_repository(
-            name = "remote_java_tools",
-            path = "prebuilts/bazel/common/remote_java_tools",
-        )
-
-        native.local_repository(
-            name = "remote_java_tools_linux",
-            path = "prebuilts/bazel/linux-x86_64/remote_java_tools_linux",
         )
 
     # Use checked-in JDK from prebuilts as local_jdk
