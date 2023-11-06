@@ -471,6 +471,7 @@ def kernel_build(
         kernel_build_defconfig_fragments = defconfig_fragments,
         kernel_build_arch = arch,
         kernel_build_page_size = page_size,
+        kernel_build_has_base_kernel = base_kernel != None,
         **internal_kwargs
     )
 
@@ -726,6 +727,7 @@ def _get_defconfig_fragments(
         kernel_build_defconfig_fragments,
         kernel_build_arch,
         kernel_build_page_size,
+        kernel_build_has_base_kernel,
         **internal_kwargs):
     # Use a separate list to avoid .append on the provided object directly.
     # kernel_build_defconfig_fragments could be a list or a select() expression.
@@ -737,6 +739,8 @@ def _get_defconfig_fragments(
         Label("//build/kernel/kleaf/impl/defconfig:kasan_generic"),
         Label("//build/kernel/kleaf/impl/defconfig:kcsan"),
     ]
+    if kernel_build_has_base_kernel:
+        additional_fragments.append(Label("//build/kernel/kleaf/impl/defconfig:module_signing"))
 
     btf_debug_info_target = kernel_build_name + "_defconfig_fragment_btf_debug_info"
     file_selector(

@@ -22,6 +22,7 @@ exports_files([
     "arm64_64k_defconfig",
     "btf_debug_info_disabled_defconfig",
     "btf_debug_info_enabled_defconfig",
+    "module_signing_disabled_defconfig",
 ])
 
 [[
@@ -152,4 +153,13 @@ fail_rule(
     name = "fail_kcsan_lto",
     message = "--kcsan requires --lto=none or default.",
     visibility = ["//visibility:private"],
+)
+
+filegroup(
+    name = "module_signing",
+    srcs = select({
+        "//build/kernel/kleaf:allow_sign_modules_is_true": [],
+        "//conditions:default": ["module_signing_disabled_defconfig"],
+    }),
+    visibility = ["//visibility:public"],
 )
