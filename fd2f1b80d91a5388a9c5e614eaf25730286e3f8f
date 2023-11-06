@@ -16,6 +16,24 @@
       "message": "Can you say _why_ this change is made?",
       "revId": "fd2f1b80d91a5388a9c5e614eaf25730286e3f8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f138bfac_58021cc6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 56
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-06T18:39:24Z",
+      "side": 1,
+      "message": "I explained it in the sentence \n\n\u003e This is different from\nkleaf_repo_dir when Kleaf is in a sub-repository.\n\n but let me expand the analysis a little bit",
+      "parentUuid": "7b863f1a_a06dfbca",
+      "revId": "fd2f1b80d91a5388a9c5e614eaf25730286e3f8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
