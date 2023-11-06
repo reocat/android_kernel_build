@@ -315,9 +315,6 @@ def _hermetic_tools_impl(ctx):
         ctx.attr.name,
     )
 
-    hashbang = """#!/bin/bash -e
-"""
-
     setup = fail_hard + """
                 export PATH=$({path}/readlink -m {path})
                 # Ensure _setup_env.sh keeps the original items in PATH
@@ -326,7 +323,7 @@ def _hermetic_tools_impl(ctx):
     additional_setup = """
                 export PATH=$({path}/readlink -m {path}):$PATH
 """.format(path = hermetic_base)
-    run_setup = hashbang + fail_hard + """
+    run_setup = fail_hard + """
                 export PATH=$({path}/readlink -m {path})
 """.format(path = hermetic_base_short)
     run_additional_setup = fail_hard + """

@@ -19,11 +19,6 @@ load("@bazel_skylib//lib:selects.bzl", "selects")
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "bool_setting")
 load(":kernel_platform_toolchain.bzl", "kernel_platform_toolchain")
 load(":kernel_toolchains.bzl", "kernel_toolchains")
-load(
-    ":python.bzl",
-    "python_interpreter_file",
-    "python_runtime_files",
-)
 
 bzl_library(
     name = "impl",
@@ -44,6 +39,7 @@ bzl_library(
         "android_filegroup.bzl",
         "btf.bzl",
         "cache_dir.bzl",
+        "checkpatch.bzl",
         "common_providers.bzl",
         "compile_commands_utils.bzl",
         "config_utils.bzl",
@@ -85,13 +81,11 @@ bzl_library(
         "kernel_uapi_headers_cc_library.bzl",
         "kernel_unstripped_modules_archive.bzl",
         "kgdb.bzl",
-        "kleaf_host_tools_repo.bzl",
         "kmi_symbol_list.bzl",
         "merge_kzip.bzl",
         "merged_kernel_uapi_headers.bzl",
         "modules_prepare.bzl",
         "out_headers_allowlist_archive.bzl",
-        "python.bzl",
         "raw_kmi_symbol_list.bzl",
         "scripts_config_arg_builder.bzl",
         "srcs_aspect.bzl",
@@ -296,6 +290,18 @@ py_test(
     ],
 )
 
+sh_binary(
+    name = "checkpatch",
+    srcs = [
+        "checkpatch.sh",
+    ],
+    data = [
+        "//build/kernel/static_analysis:checkpatch_ignorelist",
+    ],
+    # All checkpatch rules from any package can see this
+    visibility = ["//visibility:public"],
+)
+
 kernel_platform_toolchain(
     name = "kernel_toolchain_target",
 )
@@ -363,14 +369,4 @@ platform(
         "@platforms//os:android",
         "@platforms//cpu:x86_64",
     ],
-)
-
-python_interpreter_file(
-    name = "python_interpreter_file",
-    visibility = ["//build/kernel:__pkg__"],
-)
-
-python_runtime_files(
-    name = "python_runtime_files",
-    visibility = ["//build/kernel:__pkg__"],
 )

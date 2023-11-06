@@ -149,7 +149,7 @@ includes:
 * `build/kernel/kleaf/workspace_status.sh`, which uses `git` from the
   host machine.
   * The script may also use `printf` etc. from the host machine if
-    `--kleaf_localversion` is not set. See `scripts/setlocalversion`.
+    `--nokleaf_localversion`. See `scripts/setlocalversion`.
 
 All `ctx.actions.run_shell` uses a shell defined by Bazel, which is usually
 `/bin/bash`.
@@ -157,6 +157,9 @@ All `ctx.actions.run_shell` uses a shell defined by Bazel, which is usually
 When configuring a kernel via `tools/bazel run //path/to:foo_config`, the
 script is not hermetic in order to use `ncurses` from the host machine
 for `menuconfig`.
+
+When running a `checkpatch()` target, the execution is not fully hermetic
+in order to use `git` from the host machine.
 
 The kernel build may also read from absolute paths outside of the source tree,
 e.g. to draw randomness from `/dev/urandom` to create key pairs for signing.

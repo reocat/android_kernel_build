@@ -49,12 +49,3 @@ exports_files([
     "riscv64",
     "x86_64",
 ]]
-
-filegroup(
-    name = "debug",
-    srcs = select({
-        "//build/kernel/kleaf:debug_is_true": ["debug_defconfig"],
-        "//conditions:default": [],
-    }),
-    visibility = ["//visibility:public"],
-)
