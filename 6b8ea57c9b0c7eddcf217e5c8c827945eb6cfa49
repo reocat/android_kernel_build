@@ -178,6 +178,24 @@
       "parentUuid": "88a48e79_60db9b12",
       "revId": "6b8ea57c9b0c7eddcf217e5c8c827945eb6cfa49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f8e92df_499ee6f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-11-06T19:26:57Z",
+      "side": 1,
+      "message": "Ran the config tests locally and disabled tests which were failing and filed a bug on you to re-enable.",
+      "parentUuid": "372d8732_ff9eb8ab",
+      "revId": "6b8ea57c9b0c7eddcf217e5c8c827945eb6cfa49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
