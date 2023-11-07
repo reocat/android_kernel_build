@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d4a3524_0d782664",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 12
+      },
+      "lineNbr": 2269,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-07T11:28:22Z",
+      "side": 1,
+      "message": "Here and L2349-2355: Move these checks to `_skip_build_checks` function defined in L705.",
+      "range": {
+        "startLine": 2265,
+        "startChar": 4,
+        "endLine": 2269,
+        "endChar": 19
+      },
+      "revId": "492a7e47e0e4a4dd5682c24c912a0430a04eb958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
