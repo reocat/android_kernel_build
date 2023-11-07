@@ -576,6 +576,20 @@ config_setting(
     visibility = ["//visibility:public"],
 )
 
+# If true, doesn't add the config `# CONFIG_MODULE_SIG_ALL is not set`.
+#  - i.e. It is a temporary way to rollback to a previous functionallity if needed.
+bool_flag(
+    name = "allow_signing_modules",
+    build_setting_default = False,
+    visibility = ["//visibility:public"],
+)
+
+config_setting(
+    name = "allow_signing_modules_is_true",
+    flag_values = {":allow_signing_modules": "1"},
+    visibility = ["//visibility:public"],
+)
+
 # The values of --config, as passed by command line and bazelrc files.
 _config_values = (
     "local",
