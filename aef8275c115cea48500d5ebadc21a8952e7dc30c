@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "621b2974_925318ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-07T18:24:30Z",
+      "side": 1,
+      "message": "Thanks for working on this.\n\nI think it would be nice if the option is configurable on kernel_build / kernel_filegroup instead of in the command line. So for GKI and GKI prebuilts, we can say:\n\n```\nkernel_build(\n    sign_dependent_modules \u003d False,\n)\nkernel_filegroup(\n    sign_dependent_modules \u003d False,\n)\n```\n\n(sign_dependent_modules might need to be a tri-state in this case). \nThen, any kernel_module that depends on this kernel_build / kernel_filegroup will explicitly disable CONFIG_MODULE_SIG_ALL.\n\nOR, more flexibly:\n\n```\nkernel_build(\n    dependent_defconfig_fragments \u003d [\"//...:signing_modules_disabled_defconfig\"],\n)\n```\n\n(name for attributes TBD)\n\nThen any kernel_build / kernel_module that depends on this kernel_build/kernel_filegroup will apply the given defconfig fragment.\n\nThese setups allows us to configure the defconfig fragment on a (coarse) target level; i.e. only on external modules for a certain device, but not something else (e.g. another device).",
+      "revId": "aef8275c115cea48500d5ebadc21a8952e7dc30c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
