@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "146baa90_face92d1",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-07T12:49:14Z",
+      "side": 1,
+      "message": "By suggesting to deduplicate the code, I would have thought we get to a point where we have a generic, reusable function that takes parameters. E.g. something like this\n\n\n```\ndef update_kernel_binaries(update_location, target_prefix, download_modules):\n ...\n```\n\nsubsequently, we have callers\n\n```\nupdate_kernel_binaries(\"kernel/prebuilts/version\", \"kernel_microdroid_\", False)\nupdate_kernel_binaries(\"packages/modules/Virtualization/pkvm-experimental\", \"kernel_\", True)\n```\n\nThat makes the code reusable. In fact, a lot of duplication is going on already in this script :-/. I don\u0027t think we should keep adding to it.",
+      "range": {
+        "startLine": 664,
+        "startChar": 4,
+        "endLine": 664,
+        "endChar": 28
+      },
+      "revId": "3412baecdd745b7f375d6fd0458128da6d0a04e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a48da11e_40897b57",
         "filename": "gki/download_from_ci",
         "patchSetId": 3
