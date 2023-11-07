@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cdb94f8_4b7a2af1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-07T00:47:18Z",
+      "side": 1,
+      "message": "This change fails integration tests. To reproduce:\n\n```\nbazel build //common:kernel  --nobuild --lto\u003dthin\n```\n\nThis will produce the error \n\n```\nERROR: /mnt/sdc/android/kernel/build/kernel/kleaf/impl/defconfig/BUILD.bazel:146:10: in fail_rule rule //build/kernel/kleaf/impl/defconfig:fail_kcsan_lto: \nTraceback (most recent call last):\n\tFile \"/mnt/sdc/android/kernel/build/kernel/kleaf/fail.bzl\", line 21, column 9, in _impl\n\t\tfail(ctx.attr.message if ctx.attr.message else \"unknown error\")\nError in fail: --kcsan requires --lto\u003dnone or default.\n```\n\nI am looking into the issue now.",
+      "revId": "58a234cd94e4fabbfb66b5982652a5c0a0d6fdee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
