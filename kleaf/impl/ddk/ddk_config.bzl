@@ -249,7 +249,7 @@ def _create_ddk_config_info(ctx):
             order = "postorder",
         ),
         defconfig = depset(
-            ctx.files.defconfig,
+            ctx.files._signing_modules_defconfig + ctx.files.defconfig,
             transitive = [dep[DdkConfigInfo].defconfig for dep in ddk_config_deps],
             order = "postorder",
         ),
@@ -290,5 +290,6 @@ for its format.
             doc = "See [kernel_module.generate_btf](#kernel_module-generate_btf)",
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
+        "_signing_modules_defconfig": attr.label(default = "//build/kernel/kleaf/impl/defconfig:signing_modules"),
     },
 )
