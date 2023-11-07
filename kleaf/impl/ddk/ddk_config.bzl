@@ -249,8 +249,8 @@ def _create_ddk_config_info(ctx):
             order = "postorder",
         ),
         defconfig = depset(
-            ctx.files.defconfig,
-            transitive = [dep[DdkConfigInfo].defconfig for dep in ddk_config_deps],
+            ctx.files.defconfig,  # this is at most one item
+            transitive = [dep[DdkConfigInfo].defconfig for dep in ddk_config_deps] + [ctx.attr.kernel_build[KernelBuildExtModuleInfo].ddk_module_defconfig_fragments],
             order = "postorder",
         ),
     )
