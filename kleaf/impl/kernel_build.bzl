@@ -118,6 +118,7 @@ def kernel_build(
         page_size = None,
         pack_module_env = None,
         sanitizers = None,
+        ddk_module_defconfig_fragments = None,
         **kwargs):
     """Defines a kernel build target with all dependent targets.
 
@@ -422,6 +423,8 @@ def kernel_build(
             - `["kasan_sw_tags"]`
             - `["kasan_generic"]`
             - `["kcsan"]`
+        ddk_module_defconfig_fragments: A list of additional defconfigs, to be used
+          in `ddk_modules` building against this kernel.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -609,6 +612,7 @@ def kernel_build(
         trim_nonlisted_kmi = trim_nonlisted_kmi,
         pack_module_env = pack_module_env,
         sanitizers = sanitizers,
+        ddk_module_defconfig_fragments = ddk_module_defconfig_fragments,
         **kwargs
     )
 
@@ -1870,6 +1874,9 @@ def _create_infos(
         modinst_env = modinst_env,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
         strip_modules = ctx.attr.strip_modules,
+        ddk_module_defconfig_fragments = depset(
+            ctx.files.ddk_module_defconfig_fragments,
+        ),
     )
 
     kernel_uapi_depsets = []
@@ -2146,6 +2153,10 @@ _kernel_build = rule(
         "sanitizers": attr.string_list(
             allow_empty = False,
             default = ["default"],
+        ),
+        "ddk_module_defconfig_fragments": attr.label_list(
+            doc = "Additional defconfig fragments for dependant DDK modules.",
+            allow_empty = True,
         ),
     } | _kernel_build_additional_attrs(),
     toolchains = [hermetic_toolchain.type],

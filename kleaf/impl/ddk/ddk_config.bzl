@@ -241,6 +241,10 @@ def _create_ddk_config_info(ctx):
     module_label = Label(str(ctx.label).removesuffix("_config"))
     split_deps = kernel_utils.split_kernel_module_deps(ctx.attr.module_deps, module_label)
     ddk_config_deps = split_deps.ddk_configs
+    defconfigs = [] + ctx.files.defconfig
+    defconfig_fragments = ctx.attr.kernel_build[KernelBuildExtModuleInfo].ddk_module_defconfig_fragments
+    if defconfig_fragments:
+        defconfigs += defconfig_fragments.to_list()
 
     return DdkConfigInfo(
         kconfig = depset(
@@ -249,7 +253,7 @@ def _create_ddk_config_info(ctx):
             order = "postorder",
         ),
         defconfig = depset(
-            ctx.files.defconfig,
+            defconfigs,
             transitive = [dep[DdkConfigInfo].defconfig for dep in ddk_config_deps],
             order = "postorder",
         ),
