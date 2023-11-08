@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11235f22_5d0a0e9f",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-08T13:56:31Z",
+      "side": 1,
+      "message": "```suggestion\n# Needed for checkpatch script.\n```",
+      "range": {
+        "startLine": 811,
+        "startChar": 13,
+        "endLine": 811,
+        "endChar": 23
+      },
+      "revId": "5fc66389d1584cca52d17cc616e2f0e3ce55847f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a3d1cd2_cc529c4f",
+        "filename": "static_analysis/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-08T13:56:31Z",
+      "side": 1,
+      "message": "Should `kleaf_help.py` not rather be wrapped in a `py_library` and then used like a library dependency?",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 27
+      },
+      "revId": "5fc66389d1584cca52d17cc616e2f0e3ce55847f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
