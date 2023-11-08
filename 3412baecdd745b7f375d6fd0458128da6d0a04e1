@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0ecd9d9_965289d7",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1291338
+      },
+      "writtenOn": "2023-11-08T04:04:11Z",
+      "side": 1,
+      "message": "\u003e In fact, a lot of duplication is going on already in this script :-/. I don\u0027t think we should keep adding to it.\n\nHow much refactoring do you want? Deduplicating is always good, but I\u0027m not sure if it\u0027s within the scope of this change. Can we file a separate bug and track there? Or can I upload a separate change on top of this? Or do you want this to be refactored before I work on this change?",
+      "parentUuid": "146baa90_face92d1",
+      "range": {
+        "startLine": 664,
+        "startChar": 4,
+        "endLine": 664,
+        "endChar": 28
+      },
+      "revId": "3412baecdd745b7f375d6fd0458128da6d0a04e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a48da11e_40897b57",
         "filename": "gki/download_from_ci",
         "patchSetId": 3
