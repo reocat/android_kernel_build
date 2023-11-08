@@ -18,7 +18,11 @@ exports_files([
 
 py_binary(
     name = "checkpatch_presubmit",
-    srcs = ["checkpatch_presubmit_bazel.py"],
+    srcs = [
+        "checkpatch_presubmit_bazel.py",
+    ],
+    data = ["//build/kernel/kleaf:kleaf_help.py"],
+    imports = ["../kleaf"],
     main = "checkpatch_presubmit_bazel.py",
     visibility = ["//visibility:private"],
 )
