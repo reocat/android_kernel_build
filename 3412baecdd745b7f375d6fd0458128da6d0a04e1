@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3eb59353_5bde8b92",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-08T12:07:19Z",
+      "side": 1,
+      "message": "Ideally, I would see the refactoring first and then the actual change. But I understand that you have a goal to reach, so I will not insist. I would do appreciate if you could take on the task to deduplicate the code in general to make this tool a little more maintainable. In that case, please go for the initial duplicate code version (patchset 1) and keep a tracking bug for the cleanup.\n\nThanks!",
+      "parentUuid": "b0ecd9d9_965289d7",
+      "range": {
+        "startLine": 664,
+        "startChar": 4,
+        "endLine": 664,
+        "endChar": 28
+      },
+      "revId": "3412baecdd745b7f375d6fd0458128da6d0a04e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a48da11e_40897b57",
         "filename": "gki/download_from_ci",
         "patchSetId": 3
