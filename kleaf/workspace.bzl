@@ -111,12 +111,24 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         ],
     )
 
-    # The prebuilt NDK does not support Bazel.
+    # External repos without Bazel support.
     # https://docs.bazel.build/versions/main/external.html#non-bazel-projects
     new_kleaf_local_repository(
         name = "prebuilt_ndk",
         path = "prebuilts/ndk-r23",
         build_file = "build/kernel/kleaf/ndk.BUILD",
+    )
+
+    new_kleaf_local_repository(
+        name = "libcap",
+        path = "external/libcap",
+        build_file = "build/kernel/kleaf/libcap.BUILD",
+    )
+
+    new_kleaf_local_repository(
+        name = "libcap_ng",
+        path = "external/libcap-ng",
+        build_file = "build/kernel/kleaf/libcap_ng.BUILD",
     )
 
     key_value_repo(
