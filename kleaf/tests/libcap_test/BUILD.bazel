@@ -1,0 +1,5 @@
+cc_test(
+    name = "libcap_test",
+    srcs = ["cap_test.c"],
+    deps = ["@libcap"],
+)
