@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d561f51e_12554597",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-09T09:51:28Z",
+      "side": 1,
+      "message": "nit: use the short form\n\n```\nFixes: 13a80706ca63 (kleaf: split \"help kleaf\" code to a different file.)\n```\n\nOne piece of documentation (and how to configure git for that purpose): https://www.kernel.org/doc/html/latest/process/submitting-patches.html#describe-your-changes",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 55
+      },
+      "revId": "827f3b663a64bd4282319e7242854a166575dfeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f11be62a_2fc19c24",
         "filename": "kleaf/BUILD.bazel",
         "patchSetId": 3
