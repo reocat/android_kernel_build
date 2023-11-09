@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f207b0a4_ccadbd90",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1291338
+      },
+      "writtenOn": "2023-11-09T09:04:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07d579fa_d39a2a7d",
+      "range": {
+        "startLine": 106,
+        "startChar": 16,
+        "endLine": 106,
+        "endChar": 33
+      },
+      "revId": "3412baecdd745b7f375d6fd0458128da6d0a04e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "146baa90_face92d1",
@@ -112,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cb7630e_cd089329",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1291338
+      },
+      "writtenOn": "2023-11-09T09:04:33Z",
+      "side": 1,
+      "message": "Filed b/309909013. I\u0027ll track it.",
+      "parentUuid": "3eb59353_5bde8b92",
+      "range": {
+        "startLine": 664,
+        "startChar": 4,
+        "endLine": 664,
+        "endChar": 28
+      },
+      "revId": "3412baecdd745b7f375d6fd0458128da6d0a04e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a48da11e_40897b57",
@@ -125,6 +173,30 @@
       "writtenOn": "2023-11-07T12:34:56Z",
       "side": 1,
       "message": "Then this would become `use_gki` or similar.",
+      "range": {
+        "startLine": 719,
+        "startChar": 29,
+        "endLine": 719,
+        "endChar": 53
+      },
+      "revId": "3412baecdd745b7f375d6fd0458128da6d0a04e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78f1404e_c7cebf3f",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1291338
+      },
+      "writtenOn": "2023-11-09T09:04:33Z",
+      "side": 1,
+      "message": "obsolete; marking as resolved.",
+      "parentUuid": "a48da11e_40897b57",
       "range": {
         "startLine": 719,
         "startChar": 29,
