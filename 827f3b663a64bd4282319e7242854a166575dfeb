@@ -69,6 +69,30 @@
       },
       "revId": "827f3b663a64bd4282319e7242854a166575dfeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b03c9c10_53c58463",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-09T19:08:55Z",
+      "side": 1,
+      "message": "but we are already in the `kleaf` package, so the full label is\n\n```\n//build/kernel/kleaf:wrapper\n```\n\nright?",
+      "parentUuid": "c04d230c_0f2b05e6",
+      "range": {
+        "startLine": 814,
+        "startChar": 12,
+        "endLine": 814,
+        "endChar": 19
+      },
+      "revId": "827f3b663a64bd4282319e7242854a166575dfeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
