@@ -22,6 +22,30 @@
       },
       "revId": "37718c7038c2a9c0f751138a4642865fdd9e1392",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28182623_8ca57845",
+        "filename": "kleaf/tests/kernel_config_test/lto_test.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-09T22:59:53Z",
+      "side": 1,
+      "message": "No because this can resolve to zero files (for empty_filegroup case). allow_single_file requires exactly one file.",
+      "parentUuid": "eaf1c370_9728c520",
+      "range": {
+        "startLine": 156,
+        "startChar": 45,
+        "endLine": 156,
+        "endChar": 56
+      },
+      "revId": "37718c7038c2a9c0f751138a4642865fdd9e1392",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
