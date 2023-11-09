@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaf1c370_9728c520",
+        "filename": "kleaf/tests/kernel_config_test/lto_test.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-09T22:27:55Z",
+      "side": 1,
+      "message": "will allowing just a single file help avoid the later check for multiple files?",
+      "range": {
+        "startLine": 156,
+        "startChar": 45,
+        "endLine": 156,
+        "endChar": 56
+      },
+      "revId": "37718c7038c2a9c0f751138a4642865fdd9e1392",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
