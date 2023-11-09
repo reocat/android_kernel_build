@@ -117,6 +117,30 @@
       },
       "revId": "827f3b663a64bd4282319e7242854a166575dfeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd2fae41_79d0490a",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-09T22:33:23Z",
+      "side": 1,
+      "message": "True, I considered it as well, but found it (IMO) more misleading, as it\u0027s not a wrapper of `Kleaf`, but `Bazel`.\n\nAnyway this is not a CL blocker.",
+      "parentUuid": "b03c9c10_53c58463",
+      "range": {
+        "startLine": 814,
+        "startChar": 12,
+        "endLine": 814,
+        "endChar": 19
+      },
+      "revId": "827f3b663a64bd4282319e7242854a166575dfeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
