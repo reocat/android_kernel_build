@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb8e03e8_2b888959",
+        "filename": "kleaf/libcap.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-13T19:08:56Z",
+      "side": 1,
+      "message": "nit: This file should live in external/libcap/BUILD directly (now that Roboleaf won\u0027t end up using that file)\n\n(Same for libcap_ng.BUILD)\n\nBut I am not against putting the file here. After all, prebuilt-ndk does the same thing.",
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4930e95_c39f392b",
+        "filename": "kleaf/libcap.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-13T19:08:56Z",
+      "side": 1,
+      "message": "This is going to cause trouble when //build/kernel/kleaf does not live at `@`. See b/293260835\n\nSolution to this:\n\n- Change this to `@kleaf`\n- add `repo_mapping` to the the new_kleaf_local_respository() call:  https://bazel.build/reference/be/workspace#new_local_repository.repo_mapping\n\nYou can file a bug on me to support repo_mapping for kleaf_local_repository",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 7
+      },
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02c7e01a_e2dd83a9",
+        "filename": "kleaf/libcap.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-13T19:08:56Z",
+      "side": 1,
+      "message": "Can you also set up some simple tests (and run it on CI) for these libs/binaries to ensure that, when the upstream is updated, this will still compile / have the same behavior?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 10
+      },
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40df4886_142fb86d",
+        "filename": "kleaf/libcap_ng.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-13T19:08:56Z",
+      "side": 1,
+      "message": "Avoid this. Instead, declare visibility on each target.\n\nhttps://bazel.build/concepts/visibility#rule-target-visibility",
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9059419c_1909b992",
+        "filename": "kleaf/libcap_ng.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-13T19:08:56Z",
+      "side": 1,
+      "message": "It is best to list them out one by one directly (because glob() does disk I/O), unless there is a reason not to do so.",
+      "range": {
+        "startLine": 29,
+        "startChar": 11,
+        "endLine": 29,
+        "endChar": 15
+      },
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
