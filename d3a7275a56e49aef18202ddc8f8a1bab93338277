@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a69ce21_db99fa0c",
+        "filename": "kleaf/libcap.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-13T19:10:20Z",
+      "side": 1,
+      "message": "Actually, kleaf_local_repository should already support `repo_mapping`:\n\nhttps://bazel.build/extending/repo#attributes\n\nSo all you need to do is to add repo_mapping() to the `[new_]kleaf_local_respository()` call.",
+      "parentUuid": "b4930e95_c39f392b",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 7
+      },
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "02c7e01a_e2dd83a9",
         "filename": "kleaf/libcap.BUILD",
         "patchSetId": 2
