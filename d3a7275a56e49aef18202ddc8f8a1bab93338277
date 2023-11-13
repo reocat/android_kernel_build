@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87086912_9cc1ef72",
+        "filename": "kleaf/libcap.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-13T19:13:47Z",
+      "side": 1,
+      "message": "With my comment about using repo_mapping, feel free to discard this comment.\n\nBy putting libcap.BUILD in build/kernel/kleaf, we ensure all handling of @kleaf is in the same place.",
+      "parentUuid": "cb8e03e8_2b888959",
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4930e95_c39f392b",
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "Actually, kleaf_local_repository should already support `repo_mapping`:\n\nhttps://bazel.build/extending/repo#attributes\n\nSo all you need to do is to add repo_mapping() to the `[new_]kleaf_local_respository()` call.",
       "parentUuid": "b4930e95_c39f392b",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 7
+      },
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cecb433_3a576e14",
+        "filename": "kleaf/libcap.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-13T19:13:47Z",
+      "side": 1,
+      "message": "For example, something like this:\n\n```\nkleaf_workspace_name \u003d Label(\"//x\").workspace_name\nkleaf_local_repository(\n    name \u003d \"libcap\",\n    repo_mapping \u003d {\"@kleaf\": \"@\" + kleaf_workspace_name},\n)\n```",
+      "parentUuid": "9a69ce21_db99fa0c",
       "range": {
         "startLine": 14,
         "startChar": 6,
