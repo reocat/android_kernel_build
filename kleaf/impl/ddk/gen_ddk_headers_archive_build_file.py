@@ -26,7 +26,7 @@ import absl.flags.argparse_flags
 #   expression and let buildifier handle formatting.
 def list_to_repr(lst: list[pathlib.Path], indent=None):
   """Similar to repr(lst), but prettified & use double quotes."""
-  result = f"["
+  result = "["
   if lst:
     result += "\n"
   result += f"".join(f'{indent}{indent}"{elem}",\n' for elem in sorted(lst))
