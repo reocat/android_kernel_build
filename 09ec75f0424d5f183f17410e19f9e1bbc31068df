@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9bb051b_7cbac690",
+        "filename": "kleaf/tests/libcap_test/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-11-14T01:22:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e56c5d89_ac8c99d5",
+      "range": {
+        "startLine": 4,
+        "startChar": 14,
+        "endLine": 4,
+        "endChar": 20
+      },
+      "revId": "09ec75f0424d5f183f17410e19f9e1bbc31068df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "120477f1_82818aa1",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7613ed49_fbd3defa",
+        "filename": "kleaf/tests/libcap_test/cap_test.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-11-14T01:22:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "120477f1_82818aa1",
+      "revId": "09ec75f0424d5f183f17410e19f9e1bbc31068df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78b28fa0_a69a9673",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-11-14T00:17:48Z",
       "side": 1,
       "message": "I think it should check NULL right after cap_get_proc():\n\n```\ncaps \u003d cap_get_proc();\nif (caps \u003d\u003d NULL) {\n    perror(...)\n    return -1;\n}\n\ncaps_text \u003d cap_to_text(...);\nif (caps_text \u003d\u003d NULL) {\n    perror(...);\n    cap_free(caps);\n    return -1;\n}\n```",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 5
+      },
+      "revId": "09ec75f0424d5f183f17410e19f9e1bbc31068df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0f2b126_59f2a9aa",
+        "filename": "kleaf/tests/libcap_test/cap_test.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-11-14T01:22:50Z",
+      "side": 1,
+      "message": "Somewhere I saw cap_t was a struct. But confirmed it\u0027s a pointer. This case NULL check is enough for a build test here.",
+      "parentUuid": "78b28fa0_a69a9673",
       "range": {
         "startLine": 9,
         "startChar": 0,
