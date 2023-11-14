@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a45f6353_fefb93a6",
+        "filename": "kleaf/tests/libcap_test/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-11-14T01:24:12Z",
+      "side": 1,
+      "message": "Oh, buidifier likes @libcap instead of @libcap//:libcap",
+      "parentUuid": "b9bb051b_7cbac690",
+      "range": {
+        "startLine": 4,
+        "startChar": 14,
+        "endLine": 4,
+        "endChar": 20
+      },
+      "revId": "09ec75f0424d5f183f17410e19f9e1bbc31068df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "120477f1_82818aa1",
