@@ -19,7 +19,7 @@ import shlex
 import shutil
 import sys
 import textwrap
-from typing import Tuple, Optional
+from typing import Optional, Tuple
 
 from kleaf_help import KleafHelpPrinter
 
@@ -29,14 +29,18 @@ _BAZEL_RC_NAME = "build/kernel/kleaf/common.bazelrc"
 
 # Sync with the following files:
 #   kleaf/impl/kernel_build.bzl
-_QUERY_TARGETS_ARG = 'kind("kernel_build rule", //... except attr("tags", \
-    "manual", //...) except //.source_date_epoch_dir/... except //out/...)'
+_QUERY_TARGETS_ARG = (
+    'kind("kernel_build rule", //... except attr("tags",     "manual", //...)'
+    " except //.source_date_epoch_dir/... except //out/...)"
+)
 
 # Sync with the following files:
 #   kleaf/impl/abi/abi_update.bzl
 #   kleaf/impl/abi/kernel_abi.bzl
-_QUERY_ABI_TARGETS_ARG = 'kind("(update_source_file|abi_update) rule", //... except attr("tags", \
-    "manual", //...) except //.source_date_epoch_dir/... except //out/...)'
+_QUERY_ABI_TARGETS_ARG = (
+    'kind("(update_source_file|abi_update) rule", //... except attr("tags",    '
+    ' "manual", //...) except //.source_date_epoch_dir/... except //out/...)'
+)
 
 
 def _require_absolute_path(p: str | pathlib.Path) -> pathlib.Path:
@@ -46,8 +50,9 @@ def _require_absolute_path(p: str | pathlib.Path) -> pathlib.Path:
     return p
 
 
-def _partition(lst: list[str], index: Optional[int]) \
-        -> Tuple[list[str], Optional[str], list[str]]:
+def _partition(
+    lst: list[str], index: Optional[int]
+) -> Tuple[list[str], Optional[str], list[str]]:
     """Returns the triple split by index.
 
     That is, return a tuple:
@@ -57,21 +62,26 @@ def _partition(lst: list[str], index: Optional[int]) \
     """
     if index is None:
         return lst[:], None, []
-    return lst[:index], lst[index], lst[index + 1:]
+    return lst[:index], lst[index], lst[index + 1 :]
 
 
 class BazelWrapper(KleafHelpPrinter):
-    def __init__(self, kleaf_repo_dir: pathlib.Path, bazel_args: list[str], env):
+
+    def __init__(
+        self, kleaf_repo_dir: pathlib.Path, bazel_args: list[str], env
+    ):
         """Splits arguments to the bazel binary based on the functionality.
 
-        bazel [startup_options] command         [command_args] --               [target_patterns]
+        bazel [startup_options] command         [command_args] --
+        [target_patterns]
                                  ^- command_idx                ^- dash_dash_idx
 
         See https://bazel.build/reference/command-line-reference
 
         Args:
             kleaf_repo_dir: root of repository
-            bazel_args: The list of arguments the user provides through command line
+            bazel_args: The list of arguments the user provides through command
+              line
             env: existing environment
         """
 
@@ -86,8 +96,9 @@ class BazelWrapper(KleafHelpPrinter):
                 command_idx = idx
                 break
 
-        self.startup_options, self.command, remaining_args = _partition(bazel_args,
-                                                                        command_idx)
+        self.startup_options, self.command, remaining_args = _partition(
+            bazel_args, command_idx
+        )
 
         # Split command_args into `command_args -- target_patterns`
         dash_dash_idx = None
@@ -98,8 +109,9 @@ class BazelWrapper(KleafHelpPrinter):
             # are not provided to the Bazel executable target.
             pass
 
-        self.command_args, self.dash_dash, self.target_patterns = _partition(remaining_args,
-                                                                             dash_dash_idx)
+        self.command_args, self.dash_dash, self.target_patterns = _partition(
+            remaining_args, dash_dash_idx
+        )
 
         self._parse_startup_options()
         self._parse_command_args()
@@ -108,7 +120,8 @@ class BazelWrapper(KleafHelpPrinter):
     def add_startup_option_to_parser(self, parser):
         group = parser.add_argument_group(
             title="Startup options - Wrapper flags",
-            description="Startup options known by the Kleaf Bazel wrapper.",)
+            description="Startup options known by the Kleaf Bazel wrapper.",
+        )
         group.add_argument(
             "--output_root",
             metavar="PATH",
@@ -123,8 +136,10 @@ class BazelWrapper(KleafHelpPrinter):
             help="Passthrough flag to bazel if specified",
         )
         group.add_argument(
-            "-h", "--help", action="store_true",
-            help="show this help message and exit"
+            "-h",
+            "--help",
+            action="store_true",
+            help="show this help message and exit",
         )
 
     def _parse_startup_options(self):
@@ -132,24 +147,26 @@ class BazelWrapper(KleafHelpPrinter):
 
         After calling this function, the following attributes are set:
         - absolute_user_root: A path holding bazel build output location
-        - transformed_startup_options: The transformed list of startup_options to replace
+        - transformed_startup_options: The transformed list of startup_options
+        to replace
           existing startup_options to be fed to the Bazel binary
         """
 
         parser = argparse.ArgumentParser(add_help=False)
         self.add_startup_option_to_parser(parser)
 
-        self.known_startup_options, user_startup_options = parser.parse_known_args(
-            self.startup_options)
+        self.known_startup_options, user_startup_options = (
+            parser.parse_known_args(self.startup_options)
+        )
 
         self.absolute_out_dir = self.known_startup_options.output_root
-        self.absolute_user_root = self.known_startup_options.output_user_root or \
-            self.absolute_out_dir / "bazel/output_user_root"
+        self.absolute_user_root = (
+            self.known_startup_options.output_user_root
+            or self.absolute_out_dir / "bazel/output_user_root"
+        )
 
         if self.known_startup_options.help:
-            self.transformed_startup_options = [
-                "--help"
-            ]
+            self.transformed_startup_options = ["--help"]
 
         if not self.known_startup_options.help:
             javatmp = self.absolute_out_dir / "bazel/javatmp"
@@ -161,48 +178,64 @@ class BazelWrapper(KleafHelpPrinter):
 
         if not self.known_startup_options.help:
             self.transformed_startup_options.append(
-                f"--output_user_root={self.absolute_user_root}")
+                f"--output_user_root={self.absolute_user_root}"
+            )
 
     def add_command_args_to_parser(self, parser):
         absolute_cache_dir = self.absolute_out_dir / "cache"
         group = parser.add_argument_group(
             title="Args - Bazel wrapper flags",
-            description="Args known by the Kleaf Bazel wrapper.")
+            description="Args known by the Kleaf Bazel wrapper.",
+        )
 
         # Arguments known by this bazel wrapper.
         group.add_argument(
             "--use_prebuilt_gki",
             metavar="BUILD_NUMBER",
-            help="Use prebuilt GKI downloaded from ci.android.com or a custom download location.")
+            help=(
+                "Use prebuilt GKI downloaded from ci.android.com or a custom"
+                " download location."
+            ),
+        )
         group.add_argument(
             "--experimental_strip_sandbox_path",
             action="store_true",
             help=textwrap.dedent("""\
                 Deprecated; use --strip_execroot.
                 Strip sandbox path from output.
-                """))
+                """),
+        )
         group.add_argument(
-            "--strip_execroot", action="store_true",
-            help="Strip execroot from output.")
+            "--strip_execroot",
+            action="store_true",
+            help="Strip execroot from output.",
+        )
         group.add_argument(
-            "--make_jobs", metavar="JOBS", type=int, default=None,
-            help="--jobs to Kbuild")
+            "--make_jobs",
+            metavar="JOBS",
+            type=int,
+            default=None,
+            help="--jobs to Kbuild",
+        )
         group.add_argument(
-            "--cache_dir", metavar="PATH",
+            "--cache_dir",
+            metavar="PATH",
             type=_require_absolute_path,
             default=absolute_cache_dir,
-            help="Cache directory for --config=local.")
+            help="Cache directory for --config=local.",
+        )
         group.add_argument(
-            "--repo_manifest", metavar="<manifest.xml>",
+            "--repo_manifest",
+            metavar="<manifest.xml>",
             help="""Absolute path to repo manifest file, generated with """
-                 """`repo manifest -r`.""",
+            """`repo manifest -r`.""",
             type=_require_absolute_path,
         )
         group.add_argument(
             "--ignore_missing_projects",
-            action='store_true',
+            action="store_true",
             help="""ignore projects defined in the repo manifest, but """
-                 """missing from the workspace""",
+            """missing from the workspace""",
         )
         group.add_argument(
             "--kleaf_localversion",
@@ -232,10 +265,13 @@ class BazelWrapper(KleafHelpPrinter):
         """Parses the given list of command_args.
 
         After calling this function, the following attributes are set:
-        - known_args: A namespace holding options known by this Bazel wrapper script
-        - transformed_command_args: The transformed list of command_args to replace
+        - known_args: A namespace holding options known by this Bazel wrapper
+        script
+        - transformed_command_args: The transformed list of command_args to
+        replace
           existing command_args to be fed to the Bazel binary
-        - env: A dictionary containing the new environment variables for the subprocess.
+        - env: A dictionary containing the new environment variables for the
+        subprocess.
         """
 
         parser = argparse.ArgumentParser(add_help=False)
@@ -245,8 +281,9 @@ class BazelWrapper(KleafHelpPrinter):
         #   are stripped from the final bazel invocation.
         # remaining_command_args: the rest of the arguments
         # Skip startup options (before command) and target_patterns (after --)
-        self.known_args, self.transformed_command_args = parser.parse_known_args(
-            self.command_args)
+        self.known_args, self.transformed_command_args = (
+            parser.parse_known_args(self.command_args)
+        )
 
         if self.known_args.experimental_strip_sandbox_path:
             sys.stderr.write(
@@ -266,8 +303,9 @@ class BazelWrapper(KleafHelpPrinter):
         if self.known_args.use_prebuilt_gki:
             self.transformed_command_args.append("--use_prebuilt_gki")
             self.transformed_command_args.append("--config=internet")
-            self.env[
-                "KLEAF_DOWNLOAD_BUILD_NUMBER_MAP"] = f"gki_prebuilts={self.known_args.use_prebuilt_gki}"
+            self.env["KLEAF_DOWNLOAD_BUILD_NUMBER_MAP"] = (
+                f"gki_prebuilts={self.known_args.use_prebuilt_gki}"
+            )
 
         if self.known_args.make_jobs is not None:
             self.env["KLEAF_MAKE_JOBS"] = str(self.known_args.make_jobs)
@@ -282,7 +320,9 @@ class BazelWrapper(KleafHelpPrinter):
             self.env["KLEAF_USE_KLEAF_LOCALVERSION"] = "true"
 
         if self.known_args.user_clang_toolchain is not None:
-            self.env["KLEAF_USER_CLANG_TOOLCHAIN_PATH"] = self.known_args.user_clang_toolchain
+            self.env["KLEAF_USER_CLANG_TOOLCHAIN_PATH"] = (
+                self.known_args.user_clang_toolchain
+            )
 
         bazel_jdk_path = self.kleaf_repo_dir / _BAZEL_JDK_REL_PATH
         self.transformed_startup_options.append(
@@ -298,7 +338,8 @@ class BazelWrapper(KleafHelpPrinter):
 
         if not self.known_startup_options.help:
             self.transformed_startup_options.append(
-                f"--bazelrc={cache_dir_bazelrc}")
+                f"--bazelrc={cache_dir_bazelrc}"
+            )
 
         self.transformed_startup_options.append(
             f"--bazelrc={self.kleaf_repo_dir}/{_BAZEL_RC_NAME}"
@@ -320,7 +361,9 @@ class BazelWrapper(KleafHelpPrinter):
 
         if self.command == "clean":
             sys.stderr.write(
-                f"INFO: Removing cache directory for $OUT_DIR: {self.known_args.cache_dir}\n")
+                "INFO: Removing cache directory for $OUT_DIR:"
+                f" {self.known_args.cache_dir}\n"
+            )
             shutil.rmtree(self.known_args.cache_dir, ignore_errors=True)
         else:
             os.makedirs(self.known_args.cache_dir, exist_ok=True)
@@ -330,8 +373,11 @@ class BazelWrapper(KleafHelpPrinter):
     def _print_help(self):
         print("===============================")
 
-        show_kleaf_help_menu = self.command == "help" and self.transformed_command_args and \
-            self.transformed_command_args[0] == "kleaf"
+        show_kleaf_help_menu = (
+            self.command == "help"
+            and self.transformed_command_args
+            and self.transformed_command_args[0] == "kleaf"
+        )
 
         if show_kleaf_help_menu:
             print("Kleaf help menu:")
@@ -352,11 +398,16 @@ class BazelWrapper(KleafHelpPrinter):
 
     # Handle queries of kernel_build and kernel_abi_update targets.
     def _rebuild_kleaf_help_args(self):
-        show_kleaf_targets = self.command == "help" and self.transformed_command_args and \
-            self.transformed_command_args[0] == "kleaf" and \
-            len(self.transformed_command_args) > 1 and \
-            (self.transformed_command_args[1] in [
-             "targets", "abi-targets", "abi_targets"])
+        show_kleaf_targets = (
+            self.command == "help"
+            and self.transformed_command_args
+            and self.transformed_command_args[0] == "kleaf"
+            and len(self.transformed_command_args) > 1
+            and (
+                self.transformed_command_args[1]
+                in ["targets", "abi-targets", "abi_targets"]
+            )
+        )
 
         if not show_kleaf_targets:
             return
@@ -373,7 +424,7 @@ class BazelWrapper(KleafHelpPrinter):
         self.transformed_command_args = [
             "--keep_going",
             "--ui_event_filters=-error",
-            "--noshow_progress"
+            "--noshow_progress",
         ]
         if _kleaf_help_command == "targets":
             print("Kleaf available targets:")
@@ -391,12 +442,15 @@ class BazelWrapper(KleafHelpPrinter):
         if self.known_args.strip_execroot:
             import asyncio
             import re
+
             if self.absolute_user_root.is_relative_to(self.absolute_out_dir):
                 filter_regex = re.compile(
-                    str(self.absolute_out_dir) + r"/\S+?/execroot/__main__/")
+                    str(self.absolute_out_dir) + r"/\S+?/execroot/__main__/"
+                )
             else:
                 filter_regex = re.compile(
-                    str(self.absolute_user_root) + r"/\S+?/execroot/__main__/")
+                    str(self.absolute_user_root) + r"/\S+?/execroot/__main__/"
+                )
             asyncio.run(run(final_args, self.env, filter_regex))
         else:
             os.execve(path=self.bazel_path, argv=final_args, env=self.env)
@@ -404,6 +458,7 @@ class BazelWrapper(KleafHelpPrinter):
 
 async def output_filter(input_stream, output_stream, filter_regex):
     import re
+
     while not input_stream.at_eof():
         output = await input_stream.readline()
         output = re.sub(filter_regex, "", output.decode())
@@ -413,6 +468,7 @@ async def output_filter(input_stream, output_stream, filter_regex):
 
 async def run(command, env, filter_regex):
     import asyncio
+
     process = await asyncio.create_subprocess_exec(
         *command,
         stdout=asyncio.subprocess.PIPE,
@@ -428,5 +484,8 @@ async def run(command, env, filter_regex):
 
 
 if __name__ == "__main__":
-    BazelWrapper(kleaf_repo_dir=pathlib.Path(sys.argv[1]),
-                 bazel_args=sys.argv[2:], env=os.environ).run()
+    BazelWrapper(
+        kleaf_repo_dir=pathlib.Path(sys.argv[1]),
+        bazel_args=sys.argv[2:],
+        env=os.environ,
+    ).run()

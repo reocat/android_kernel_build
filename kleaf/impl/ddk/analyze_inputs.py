@@ -22,12 +22,12 @@ import functools
 import json
 import logging
 import operator
-import pathlib
 import os
-import shlex
+import pathlib
 import re
+import shlex
 import tarfile
-from typing import Iterable, Optional, Any
+from typing import Any, Iterable, Optional
 
 # Regex to parse .cmd files. Each section has the format of:
 # dep_foo := \
@@ -64,10 +64,16 @@ class IncludeData(object):
 
 class AnalyzeInputs(object):
 
-    def __init__(self, out: pathlib.Path, dirs: list[pathlib.Path],
-                 module_srcs: list[pathlib.Path],
-                 include_filters: list[str], exclude_filters: list[str],
-                 gen_files_archives: list[tarfile.TarFile], **ignored):
+    def __init__(
+        self,
+        out: pathlib.Path,
+        dirs: list[pathlib.Path],
+        module_srcs: list[pathlib.Path],
+        include_filters: list[str],
+        exclude_filters: list[str],
+        gen_files_archives: list[tarfile.TarFile],
+        **ignored
+    ):
         self._out = out
         self._dirs = dirs
         self._include_filters = include_filters
@@ -76,8 +82,12 @@ class AnalyzeInputs(object):
         self._unresolved: set[pathlib.Path] = set()
 
         self._cmd_parser = argparse.ArgumentParser()
-        self._cmd_parser.add_argument("-I", type=pathlib.Path, action="append", default=[])
-        self._cmd_parser.add_argument("-include", type=pathlib.Path, action="append", default=[])
+        self._cmd_parser.add_argument(
+            "-I", type=pathlib.Path, action="append", default=[]
+        )
+        self._cmd_parser.add_argument(
+            "-include", type=pathlib.Path, action="append", default=[]
+        )
         self._cmd_parser.add_argument("--sysroot", type=pathlib.Path)
 
         self._archived_input_names: set[pathlib.Path] = set()
@@ -104,7 +114,6 @@ class AnalyzeInputs(object):
         with open(stem.with_suffix(".json"), "w") as file:
             json.dump(deps.to_dict(), file, indent=2)
 
-
     def _get_deps(self, path: pathlib.Path) -> IncludeData:
         ret = IncludeData()
 
@@ -121,7 +130,9 @@ class AnalyzeInputs(object):
             for object, deps_str in deps.items():
                 deps_str = deps_str.replace("\\\n", " ")
                 one_deps = set(self._filter_deps(deps_str.split()))
-                one_parse_data = self._resolve_files(one_deps, cmds.get(object), path)
+                one_parse_data = self._resolve_files(
+                    one_deps, cmds.get(object), path
+                )
                 ret |= one_parse_data
         return ret
 
@@ -138,8 +149,12 @@ class AnalyzeInputs(object):
                 if fnmatch.fnmatch(dep_str, exclude_filter):
                     continue
 
-            should_include = any(fnmatch.fnmatch(dep_str, i) for i in self._include_filters)
-            should_exclude = any(fnmatch.fnmatch(dep_str, i) for i in self._exclude_filters)
+            should_include = any(
+                fnmatch.fnmatch(dep_str, i) for i in self._include_filters
+            )
+            should_exclude = any(
+                fnmatch.fnmatch(dep_str, i) for i in self._exclude_filters
+            )
 
             if should_include and not should_exclude:
                 yield pathlib.Path(dep_str)
@@ -156,13 +171,19 @@ class AnalyzeInputs(object):
                 continue
             known, _ = self._cmd_parser.parse_known_args(tokens[1:])
             ret.include_files |= set(known.include)
-            ret.include_dirs |= set(AnalyzeInputs._resolve_path(dir) for dir in known.I)
+            ret.include_dirs |= set(
+                AnalyzeInputs._resolve_path(dir) for dir in known.I
+            )
             if known.sysroot:
                 ret.include_dirs.add(AnalyzeInputs._resolve_path(known.sysroot))
         return ret
 
-    def _resolve_files(self, deps: Iterable[pathlib.Path], cmd: Optional[str],
-                       cmd_file_path: pathlib.Path) -> IncludeData:
+    def _resolve_files(
+        self,
+        deps: Iterable[pathlib.Path],
+        cmd: Optional[str],
+        cmd_file_path: pathlib.Path,
+    ) -> IncludeData:
         cmd_parse_data = self._parse_cmd(cmd)
 
         ret_deps = set()
@@ -173,7 +194,11 @@ class AnalyzeInputs(object):
                 # Absolute paths are unrecognized. All paths should already be handled by
                 # replacing ${ROOT_DIR} with a fake value.
                 if dep.is_absolute():
-                    logging.warning("%s: Unknown dep with absolute path %s", cmd_file_path, dep)
+                    logging.warning(
+                        "%s: Unknown dep with absolute path %s",
+                        cmd_file_path,
+                        dep,
+                    )
                     unresolved.add(dep)
                     continue
 
@@ -196,8 +221,11 @@ class AnalyzeInputs(object):
     @staticmethod
     def _resolve_path(path: pathlib.Path):
         if path.parts[0] == "${ROOT_DIR}":
-            path = pathlib.Path(*path.parts[1:]).resolve().relative_to(
-                pathlib.Path(".").resolve())
+            path = (
+                pathlib.Path(*path.parts[1:])
+                .resolve()
+                .relative_to(pathlib.Path(".").resolve())
+            )
         return path
 
 
@@ -208,10 +236,19 @@ if __name__ == "__main__":
     parser.add_argument("-v", "--verbose", action="store_true", default=False)
     parser.add_argument("--include_filters", nargs="*", default=["*"])
     parser.add_argument("--exclude_filters", nargs="*", default=[])
-    parser.add_argument("--gen_files_archives", type=tarfile.open, nargs="*", default=[],
-                        help="List of tar of generated files. Generated files are not considered"
-                            "as inputs to a target.")
-    parser.add_argument("--module_srcs", type=pathlib.Path, nargs="*", default=[])
+    parser.add_argument(
+        "--gen_files_archives",
+        type=tarfile.open,
+        nargs="*",
+        default=[],
+        help=(
+            "List of tar of generated files. Generated files are not considered"
+            "as inputs to a target."
+        ),
+    )
+    parser.add_argument(
+        "--module_srcs", type=pathlib.Path, nargs="*", default=[]
+    )
 
     args = parser.parse_args()
     log_level = logging.DEBUG if args.verbose else logging.INFO

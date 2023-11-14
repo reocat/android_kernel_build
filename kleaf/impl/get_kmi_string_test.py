@@ -17,9 +17,11 @@
 import doctest
 from absl.testing import absltest
 
+
 def load_tests(_loader, tests, _ignore):
     tests.addTests(doctest.DocTestSuite("get_kmi_string"))
     return tests
+
 
 if __name__ == "__main__":
     absltest.main()

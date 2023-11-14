@@ -48,11 +48,11 @@ def comment_json(object, fp):
 
 
 def main(
-        base: pathlib.Path,
-        target: str | None,
-        defconfig_fragments: list[pathlib.Path] | None,
-        dest: pathlib.Path,
-        comment: bool,
+    base: pathlib.Path,
+    target: str | None,
+    defconfig_fragments: list[pathlib.Path] | None,
+    dest: pathlib.Path,
+    comment: bool,
 ):
     config_tags = load_json(base)
 
@@ -65,12 +65,15 @@ def main(
     # treat it as a directive to set _defconfig_fragments as an empty list.
     if defconfig_fragments is not None:
         if DEFCONFIG_FRAGMENTS_KEY in config_tags:
-            print(f"ERROR: {base} already has {DEFCONFIG_FRAGMENTS_KEY}!",
-                  file=sys.stderr)
+            print(
+                f"ERROR: {base} already has {DEFCONFIG_FRAGMENTS_KEY}!",
+                file=sys.stderr,
+            )
             sys.exit(1)
 
         config_tags[DEFCONFIG_FRAGMENTS_KEY] = [
-            str(path) for path in defconfig_fragments]
+            str(path) for path in defconfig_fragments
+        ]
 
     if comment:
         write_json = comment_json
@@ -87,8 +90,11 @@ def main(
             print(f"New: ", file=sys.stderr)
             write_json(config_tags, sys.stderr)
             print(file=sys.stderr)
-            print("Run `tools/bazel clean` and try again. If the error persists, report a bug.",
-                  file=sys.stderr)
+            print(
+                "Run `tools/bazel clean` and try again. If the error persists,"
+                " report a bug.",
+                file=sys.stderr,
+            )
             sys.exit(1)
     else:
         with open(dest, "w") as dest_file:
@@ -98,26 +104,38 @@ def main(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--base", type=pathlib.Path,
+        "--base",
+        type=pathlib.Path,
         required=True,
         help="source kleaf_config_tags.json",
     )
     parser.add_argument(
-        "--target", help="If set, add label of target to the result")
+        "--target", help="If set, add label of target to the result"
+    )
     parser.add_argument(
-        "--defconfig_fragments", nargs="*",
-        type=pathlib.Path, default=None,
-        help="If set, add defconfig fragments to result")
+        "--defconfig_fragments",
+        nargs="*",
+        type=pathlib.Path,
+        default=None,
+        help="If set, add defconfig fragments to result",
+    )
     parser.add_argument(
-        "--dest", type=pathlib.Path,
+        "--dest",
+        type=pathlib.Path,
         required=True,
         help="""Output kleaf_config_tags.json. If the file already exists,
             compares the expected result with the actual file, and fails
             if a difference is detected (likely due to hash collision).""",
     )
     parser.add_argument(
-        "--comment", action="store_true", default=False,
-        help="Prefix each line with `# ` so the result can be used in a shell script")
+        "--comment",
+        action="store_true",
+        default=False,
+        help=(
+            "Prefix each line with `# ` so the result can be used in a shell"
+            " script"
+        ),
+    )
     args = parser.parse_args()
 
     main(**vars(args))

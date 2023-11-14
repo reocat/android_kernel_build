@@ -73,13 +73,16 @@ def get_kmi_string(kernel_release: str, keep_sublevel: bool) -> str:
     """
 
     ver_pat = re.compile(
-        r"^(?P<version>\d+)\.(?P<patch>\d+)\.(?P<sublevel>\d+).*")
+        r"^(?P<version>\d+)\.(?P<patch>\d+)\.(?P<sublevel>\d+).*"
+    )
     ver_mo = ver_pat.match(kernel_release)
     if not ver_mo:
-        logging.error("Unrecognized kernel release %s. This is not a valid GKI version. See "
-                      "https://source.android.com/docs/core/architecture/kernel/gki-versioning."
-                      "Check early warnings in the build log for details.",
-                      kernel_release)
+        logging.error(
+            "Unrecognized kernel release %s. This is not a valid GKI version."
+            " See https://source.android.com/docs/core/architecture/kernel/gki-versioning.Check"
+            " early warnings in the build log for details.",
+            kernel_release,
+        )
         sys.exit(1)
 
     version = ver_mo.group("version")
@@ -94,13 +97,16 @@ def get_kmi_string(kernel_release: str, keep_sublevel: bool) -> str:
         return f"{ver_string}-mainline"
 
     kmi_pat = re.compile(
-        r"^(\d+)\.(\d+)\.(\d+)-(?P<release>android\d+)-(?P<gen>\d+)(?:-.*)?$")
+        r"^(\d+)\.(\d+)\.(\d+)-(?P<release>android\d+)-(?P<gen>\d+)(?:-.*)?$"
+    )
     kmi_mo = kmi_pat.match(kernel_release)
     if not kmi_mo:
-        logging.warning("Unrecognized kernel release %s. This is not a valid GKI version. See "
-                        "https://source.android.com/docs/core/architecture/kernel/gki-versioning."
-                        "Check early warnings in the build log for details.",
-                        kernel_release)
+        logging.warning(
+            "Unrecognized kernel release %s. This is not a valid GKI version."
+            " See https://source.android.com/docs/core/architecture/kernel/gki-versioning.Check"
+            " early warnings in the build log for details.",
+            kernel_release,
+        )
         return ver_string
 
     android_release = kmi_mo.group("release")
@@ -112,9 +118,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--keep_sublevel", action="store_true")
     parser.add_argument("kernel_release")
-    logging.basicConfig(stream=sys.stderr,
-                        level=logging.WARNING,
-                        format="%(levelname)s: %(message)s")
+    logging.basicConfig(
+        stream=sys.stderr,
+        level=logging.WARNING,
+        format="%(levelname)s: %(message)s",
+    )
     result = get_kmi_string(**vars(parser.parse_args()))
     if result:
         print(result)
