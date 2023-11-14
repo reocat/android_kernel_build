@@ -16,27 +16,27 @@
 
 import argparse
 import json
-from typing import TextIO, Optional
+from typing import Optional, TextIO
 
 
 def main(base: Optional[TextIO], mappings: list[str]):
-    result = []
-    if base:
-        result = json.load(base)
+  result = []
+  if base:
+    result = json.load(base)
 
-    for mapping in mappings:
-        from_val, to_val = mapping.split(":")
+  for mapping in mappings:
+    from_val, to_val = mapping.split(":")
 
-        result.append({
-            "from": from_val,
-            "to": to_val,
-        })
+    result.append({
+        "from": from_val,
+        "to": to_val,
+    })
 
-    print(json.dumps(result, sort_keys=True, indent=2))
+  print(json.dumps(result, sort_keys=True, indent=2))
+
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--base", type=argparse.FileType())
-    parser.add_argument("mappings", nargs="*", metavar="FROM:TO")
-    main(**vars(parser.parse_args()))
-
+  parser = argparse.ArgumentParser(description=__doc__)
+  parser.add_argument("--base", type=argparse.FileType())
+  parser.add_argument("mappings", nargs="*", metavar="FROM:TO")
+  main(**vars(parser.parse_args()))
