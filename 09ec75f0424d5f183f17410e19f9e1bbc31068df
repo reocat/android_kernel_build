@@ -39,6 +39,29 @@
       "message": "license header",
       "revId": "09ec75f0424d5f183f17410e19f9e1bbc31068df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78b28fa0_a69a9673",
+        "filename": "kleaf/tests/libcap_test/cap_test.c",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-14T00:17:48Z",
+      "side": 1,
+      "message": "I think it should check NULL right after cap_get_proc():\n\n```\ncaps \u003d cap_get_proc();\nif (caps \u003d\u003d NULL) {\n    perror(...)\n    return -1;\n}\n\ncaps_text \u003d cap_to_text(...);\nif (caps_text \u003d\u003d NULL) {\n    perror(...);\n    cap_free(caps);\n    return -1;\n}\n```",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 5
+      },
+      "revId": "09ec75f0424d5f183f17410e19f9e1bbc31068df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
