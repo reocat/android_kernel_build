@@ -29,6 +29,7 @@ _FAKE_KERNEL_VERSION = "99.99.99"
 @dataclasses.dataclass
 class PathCollectible(object):
     """Represents a path and the result of an asynchronous task."""
+
     path: pathlib.Path
 
     def collect(self) -> str:
@@ -38,6 +39,7 @@ class PathCollectible(object):
 @dataclasses.dataclass
 class PathPopen(PathCollectible):
     """Consists of a path and the result of a subprocess."""
+
     popen: subprocess.Popen
 
     def collect(self) -> str:
@@ -47,6 +49,7 @@ class PathPopen(PathCollectible):
 @dataclasses.dataclass
 class PresetResult(PathCollectible):
     """Consists of a path and a pre-defined result."""
+
     result: str
 
     def collect(self) -> str:
@@ -56,6 +59,7 @@ class PresetResult(PathCollectible):
 @dataclasses.dataclass
 class LocalversionResult(PathPopen):
     """Consists of results of localversion."""
+
     removed_prefix: str | None
     suffix: str | None
 
@@ -68,14 +72,16 @@ class LocalversionResult(PathPopen):
         return ret
 
 
-def get_localversion_from_script(bin: pathlib.Path | None, project: pathlib.Path, *args) \
-        -> PathCollectible | None:
+def get_localversion_from_script(
+    bin: pathlib.Path | None, project: pathlib.Path, *args
+) -> PathCollectible | None:
     """Call setlocalversion.
 
     Args:
       bin: path to setlocalversion, or None if it does not exist.
       project: relative path to the project
       args: additional arguments
+
     Return:
       A PathCollectible object that resolves to the result, or None if bin or
       project does not exist.
@@ -89,11 +95,13 @@ def get_localversion_from_script(bin: pathlib.Path | None, project: pathlib.Path
         env = dict(os.environ)
         env["KERNELVERSION"] = _FAKE_KERNEL_VERSION
         env.pop("BUILD_NUMBER", None)
-        popen = subprocess.Popen([bin, srctree] + list(args),
-                                 text=True,
-                                 stdout=subprocess.PIPE,
-                                 cwd=working_dir,
-                                 env=env)
+        popen = subprocess.Popen(
+            [bin, srctree] + list(args),
+            text=True,
+            stdout=subprocess.PIPE,
+            cwd=working_dir,
+            env=env,
+        )
 
         suffix = None
         if os.environ.get("BUILD_NUMBER"):
@@ -102,7 +110,7 @@ def get_localversion_from_script(bin: pathlib.Path | None, project: pathlib.Path
             path=project,
             popen=popen,
             removed_prefix=_FAKE_KERNEL_VERSION,
-            suffix=suffix
+            suffix=suffix,
         )
 
     return None
@@ -113,6 +121,7 @@ def get_localversion_from_git(project: pathlib.Path) -> PathCollectible | None:
 
     Args:
       project: relative path to the project
+
     Return:
       A PathCollectible object that resolves to the result, or None if bin or
       project does not exist.
@@ -136,16 +145,14 @@ def get_localversion_from_git(project: pathlib.Path) -> PathCollectible | None:
             echo -n -dirty
         fi
     """
-    popen = subprocess.Popen(script, shell=True, text=True,
-                             stdout=subprocess.PIPE, cwd=project)
+    popen = subprocess.Popen(
+        script, shell=True, text=True, stdout=subprocess.PIPE, cwd=project
+    )
     suffix = None
     if os.environ.get("BUILD_NUMBER"):
         suffix = "-ab" + os.environ["BUILD_NUMBER"]
     return LocalversionResult(
-        path=project,
-        popen=popen,
-        removed_prefix=None,
-        suffix=suffix
+        path=project, popen=popen, removed_prefix=None, suffix=suffix
     )
 
 
@@ -203,8 +210,10 @@ def parse_repo_list(repo_list: str) -> list[pathlib.Path]:
             paths.append(proj.relative_to(workspace))
         else:
             logging.info(
-                "Ignoring project %s because it is not under the Bazel workspace",
-                proj)
+                "Ignoring project %s because it is not under the Bazel"
+                " workspace",
+                proj,
+            )
     return paths
 
 
@@ -226,10 +235,12 @@ def collect(popen_obj: subprocess.Popen) -> str:
 class Stamp(object):
 
     def __init__(self):
-        self.ignore_missing_projects = os.environ.get(
-            "KLEAF_IGNORE_MISSING_PROJECTS") == "true"
-        self.use_kleaf_localversion = os.environ.get(
-            "KLEAF_USE_KLEAF_LOCALVERSION") == "true"
+        self.ignore_missing_projects = (
+            os.environ.get("KLEAF_IGNORE_MISSING_PROJECTS") == "true"
+        )
+        self.use_kleaf_localversion = (
+            os.environ.get("KLEAF_USE_KLEAF_LOCALVERSION") == "true"
+        )
         self.projects = list_projects()
         self.init_for_dot_source_date_epoch_dir()
 
@@ -239,7 +250,8 @@ class Stamp(object):
             self.kernel_dir = None
         if self.kernel_dir:
             self.kernel_rel = self.kernel_dir.relative_to(
-                pathlib.Path(".").resolve())
+                pathlib.Path(".").resolve()
+            )
 
         self.find_setlocalversion()
 
@@ -275,8 +287,7 @@ class Stamp(object):
         for proj in all_projects:
             if not proj.is_dir():
                 logging.error(
-                    "Project %s in repo manifest does not exist on disk.",
-                    proj
+                    "Project %s in repo manifest does not exist on disk.", proj
                 )
                 sys.exit(1)
 
@@ -300,7 +311,8 @@ class Stamp(object):
             if not project.is_dir():
                 logging.error(
                     "Project %s in repo manifest does not exist on disk.",
-                    project)
+                    project,
+                )
                 sys.exit(1)
 
             path_popen = self.get_localversion(project)
@@ -324,22 +336,25 @@ class Stamp(object):
                     source build/_setup_env.sh
                     echo $EXT_MODULES
                   """
-            out = subprocess.check_output(cmd,
-                                          shell=True,
-                                          text=True,
-                                          stderr=subprocess.PIPE,
-                                          executable="/bin/bash")
+            out = subprocess.check_output(
+                cmd,
+                shell=True,
+                text=True,
+                stderr=subprocess.PIPE,
+                executable="/bin/bash",
+            )
             return [pathlib.Path(path) for path in out.split()]
         except subprocess.CalledProcessError as e:
             logging.warning(
                 "Unable to determine EXT_MODULES; scmversion "
                 "for external modules may be incorrect. "
-                "code=%d, stderr=%s", e.returncode, e.stderr.strip())
+                "code=%d, stderr=%s",
+                e.returncode,
+                e.stderr.strip(),
+            )
         return []
 
-    def async_get_source_date_epoch_all(self) \
-            -> dict[str, PathCollectible]:
-
+    def async_get_source_date_epoch_all(self) -> dict[str, PathCollectible]:
         all_projects: set[pathlib.Path] = set()
         if self.kernel_dir:
             all_projects.add(self.kernel_rel)
@@ -353,14 +368,20 @@ class Stamp(object):
             for proj in all_projects
         }
 
-    def async_get_source_date_epoch(self, rel_path: pathlib.Path) -> PathCollectible:
+    def async_get_source_date_epoch(
+        self, rel_path: pathlib.Path
+    ) -> PathCollectible:
         env_val = os.environ.get("SOURCE_DATE_EPOCH")
         if env_val:
             return PresetResult(rel_path, env_val)
         if shutil.which("git"):
             args = [
-                "git", "-C",
-                rel_path.resolve(), "log", "-1", "--pretty=%ct"
+                "git",
+                "-C",
+                rel_path.resolve(),
+                "log",
+                "-1",
+                "--pretty=%ct",
             ]
             popen = subprocess.Popen(args, text=True, stdout=subprocess.PIPE)
             return PathPopen(rel_path, popen)
@@ -380,21 +401,28 @@ class Stamp(object):
         scmversion_result_map: dict[pathlib.Path, str],
         source_date_epoch_result_map: dict[pathlib.Path, str],
     ) -> None:
-        stable_source_date_epochs = json.dumps({
-            str(key): value for key, value in source_date_epoch_result_map.items()
-        }, sort_keys=True)
+        stable_source_date_epochs = json.dumps(
+            {
+                str(key): value
+                for key, value in source_date_epoch_result_map.items()
+            },
+            sort_keys=True,
+        )
         print("STABLE_SOURCE_DATE_EPOCHS", stable_source_date_epochs)
 
         # If the list is empty, this prints "STABLE_SCMVERSIONS", and is
         # filtered by Bazel.
-        stable_scmversions = json.dumps({
-            str(key): value for key, value in scmversion_result_map.items()
-        }, sort_keys=True)
+        stable_scmversions = json.dumps(
+            {str(key): value for key, value in scmversion_result_map.items()},
+            sort_keys=True,
+        )
         print("STABLE_SCMVERSIONS", stable_scmversions)
 
 
-if __name__ == '__main__':
-    logging.basicConfig(stream=sys.stderr,
-                        level=logging.WARNING,
-                        format="%(levelname)s: %(message)s")
+if __name__ == "__main__":
+    logging.basicConfig(
+        stream=sys.stderr,
+        level=logging.WARNING,
+        format="%(levelname)s: %(message)s",
+    )
     sys.exit(Stamp().main())

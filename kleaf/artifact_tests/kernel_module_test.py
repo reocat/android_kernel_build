@@ -32,6 +32,7 @@ arguments = None
 
 
 class ScmVersionTestCase(unittest.TestCase):
+
     def test_contains_scmversion(self):
         """Test that all ko files have scmversion."""
         for module in arguments.modules:
@@ -47,15 +48,20 @@ class ScmVersionTestCase(unittest.TestCase):
         try:
             scmversion = subprocess.check_output(
                 ["modinfo", module, "-F", "scmversion"],
-                text=True, stderr=subprocess.PIPE).strip()
+                text=True,
+                stderr=subprocess.PIPE,
+            ).strip()
         except subprocess.CalledProcessError as e:
             self.fail("modinfo returns {}: {}".format(e.returncode, e.stderr))
 
-        self.assertRegex(scmversion, ScmVersionTestCase._scmversion_pattern,
-                         "no matching scmversion")
+        self.assertRegex(
+            scmversion,
+            ScmVersionTestCase._scmversion_pattern,
+            "no matching scmversion",
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     arguments, unknown = load_arguments()
     sys.argv[1:] = unknown
     absltest.main()

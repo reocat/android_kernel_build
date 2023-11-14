@@ -23,13 +23,16 @@ from absl.testing import absltest
 
 
 class VisibilityTest(unittest.TestCase):
+
     def test_visibility(self) -> None:
         for path in pathlib.Path(".").glob("**/*.bzl"):
             with self.subTest(str(path)), open(path) as f:
-                has_visibility = any(line.startswith(
-                    "visibility(") for line in f)
+                has_visibility = any(
+                    line.startswith("visibility(") for line in f
+                )
                 self.assertTrue(
-                    has_visibility, f"{path} should have visibility()")
+                    has_visibility, f"{path} should have visibility()"
+                )
 
 
 if __name__ == "__main__":
