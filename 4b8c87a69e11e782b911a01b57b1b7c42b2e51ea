@@ -1,0 +1,193 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "489472e2_1e6eb9a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-14T18:29:20Z",
+      "side": 1,
+      "message": "Looks mostly correct to me, but I don\u0027t have enough detailed knowledge on image building and depmod, so I am handing this to Ramji.",
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bc7a81b_ca95db75",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-14T18:29:20Z",
+      "side": 1,
+      "message": "spaces",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 1
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35fcbb3e_86a6e84c",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-14T18:29:20Z",
+      "side": 1,
+      "message": "Explain what this function does and what each argument represents.\n\nWhat is being filtered out? What is it being filtered against (what does the allowlist mean)? Why do we want to filter the list?\n\nAnd since this function does not exit immediately (but returns values): what does the return value mean? Why shouldn\u0027t it exit immediately on failures?",
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91f6b07f_7936c7a2",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-14T18:29:20Z",
+      "side": 1,
+      "message": "But for commands that succeeds, the exclamation point will make it fail immediately, right?\n\nSo I think this should be `\u003ccommand\u003e || :` or `\u003ccommand\u003e || true`\n\nEDIT: I see, this was from https://android-review.git.corp.google.com/c/kernel/build/+/1427028/5/build.sh. Feel free to keep this but fix this in a follow up change.",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 73
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beffb098_9cbcea47",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-14T18:29:20Z",
+      "side": 1,
+      "message": "Why do we need to escape #? # is not a special regex character right?\n\nEDIT: I see, this was from https://android-review.git.corp.google.com/c/kernel/build/+/1427028/5/build.sh. Feel free to keep this but fix this in a follow up change.",
+      "range": {
+        "startLine": 78,
+        "startChar": 14,
+        "endLine": 78,
+        "endChar": 15
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e7826c8_3a852ed7",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-14T18:29:20Z",
+      "side": 1,
+      "message": "(same as above)\n\nwhy shouldn\u0027t filter_module_list exit immediately on failures?",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 14
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30262d9d_18c1306a",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-14T18:29:20Z",
+      "side": 1,
+      "message": "unrelated, but this actually means \"remove\" modules from the tree, right?",
+      "range": {
+        "startLine": 217,
+        "startChar": 6,
+        "endLine": 217,
+        "endChar": 10
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3794dc7f_2d8ad2de",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-14T18:29:20Z",
+      "side": 1,
+      "message": "Under `set -e`, if the file does not exist, this command will immediately fail.\n\nI think it needs to be converted to a proper `if` statement.",
+      "range": {
+        "startLine": 221,
+        "startChar": 35,
+        "endLine": 221,
+        "endChar": 37
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b702de1c_3888414e",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-14T18:29:20Z",
+      "side": 1,
+      "message": "fix args",
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
