@@ -215,6 +215,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2469141_e56b6dbf",
+        "filename": "kleaf/libcap_ng.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-14T00:11:23Z",
+      "side": 1,
+      "message": "nit: this is okay to keep (to explicitly state your intentions)",
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9059419c_1909b992",
         "filename": "kleaf/libcap_ng.BUILD",
         "patchSetId": 2
