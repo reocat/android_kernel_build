@@ -107,6 +107,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39d2e5a4_5c0c104a",
+        "filename": "kleaf/libcap.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-11-14T00:01:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cecb433_3a576e14",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 7
+      },
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02c7e01a_e2dd83a9",
@@ -120,6 +144,30 @@
       "writtenOn": "2023-11-13T19:08:56Z",
       "side": 1,
       "message": "Can you also set up some simple tests (and run it on CI) for these libs/binaries to ensure that, when the upstream is updated, this will still compile / have the same behavior?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 10
+      },
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dee18d15_d4316c9e",
+        "filename": "kleaf/libcap.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-11-14T00:01:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02c7e01a_e2dd83a9",
       "range": {
         "startLine": 16,
         "startChar": 0,
@@ -147,6 +195,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d32b68e7_9aeaba6b",
+        "filename": "kleaf/libcap_ng.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-11-14T00:01:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40df4886_142fb86d",
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9059419c_1909b992",
@@ -160,6 +226,30 @@
       "writtenOn": "2023-11-13T19:08:56Z",
       "side": 1,
       "message": "It is best to list them out one by one directly (because glob() does disk I/O), unless there is a reason not to do so.",
+      "range": {
+        "startLine": 29,
+        "startChar": 11,
+        "endLine": 29,
+        "endChar": 15
+      },
+      "revId": "d3a7275a56e49aef18202ddc8f8a1bab93338277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f4f8781_e3fd8139",
+        "filename": "kleaf/libcap_ng.BUILD",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-11-14T00:01:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9059419c_1909b992",
       "range": {
         "startLine": 29,
         "startChar": 11,
