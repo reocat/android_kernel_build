@@ -32,12 +32,13 @@ import subprocess
 def extract_exported_symbols(binary):
   """Extracts the ksymtab exported symbols from an ELF binary."""
   symbols = []
-  out = subprocess.check_output(["llvm-nm", "--defined-only", binary],
-                                stderr=subprocess.DEVNULL).decode("ascii")
+  out = subprocess.check_output(
+      ["llvm-nm", "--defined-only", binary], stderr=subprocess.DEVNULL
+  ).decode("ascii")
   for line in out.splitlines():
     pos = line.find(" __ksymtab_")
     if pos != -1:
-      symbols.append(line[pos + len(" __ksymtab_"):])
+      symbols.append(line[pos + len(" __ksymtab_") :])
 
   return symbols
 
@@ -45,8 +46,9 @@ def extract_exported_symbols(binary):
 def extract_undefined_symbols(binary_path):
   """Extracts the undefined symbols from an ELF file at  binary_path."""
   symbols = []
-  out = subprocess.check_output(["llvm-nm", "--undefined-only", binary_path],
-                                stderr=subprocess.DEVNULL).decode("ascii")
+  out = subprocess.check_output(
+      ["llvm-nm", "--undefined-only", binary_path], stderr=subprocess.DEVNULL
+  ).decode("ascii")
   for line in out.splitlines():
     symbols.append(line.strip().split()[1])
 
@@ -55,8 +57,9 @@ def extract_undefined_symbols(binary_path):
 
 def is_signature_present(module):
   """Checks whether module has a signature appended (GKI) or not (vendor)"""
-  out = subprocess.check_output(["modinfo", "-F", "sig_id", module],
-                                stderr=subprocess.STDOUT).decode("ascii")
+  out = subprocess.check_output(
+      ["modinfo", "-F", "sig_id", module], stderr=subprocess.STDOUT
+  ).decode("ascii")
   return out == "PKCS#7\n"
 
 

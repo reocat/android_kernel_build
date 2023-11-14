@@ -23,39 +23,45 @@ from absl.testing import absltest
 
 
 def load_arguments():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--modules", nargs="*", default=[])
-    return parser.parse_known_args()
+  parser = argparse.ArgumentParser()
+  parser.add_argument("--modules", nargs="*", default=[])
+  return parser.parse_known_args()
 
 
 arguments = None
 
 
 class ScmVersionTestCase(unittest.TestCase):
-    def test_contains_scmversion(self):
-        """Test that all ko files have scmversion."""
-        for module in arguments.modules:
-            with self.subTest(module=module):
-                self._assert_contains_scmversion(module)
 
-    _scmversion_pattern = re.compile(r"^g[0-9a-f]{12,40}(-dirty)?$")
+  def test_contains_scmversion(self):
+    """Test that all ko files have scmversion."""
+    for module in arguments.modules:
+      with self.subTest(module=module):
+        self._assert_contains_scmversion(module)
 
-    def _assert_contains_scmversion(self, module):
-        basename = os.path.basename(module)
-        if os.path.splitext(basename)[1] != ".ko":
-            self.skipTest("{} is not a kernel module".format(basename))
-        try:
-            scmversion = subprocess.check_output(
-                ["modinfo", module, "-F", "scmversion"],
-                text=True, stderr=subprocess.PIPE).strip()
-        except subprocess.CalledProcessError as e:
-            self.fail("modinfo returns {}: {}".format(e.returncode, e.stderr))
+  _scmversion_pattern = re.compile(r"^g[0-9a-f]{12,40}(-dirty)?$")
 
-        self.assertRegex(scmversion, ScmVersionTestCase._scmversion_pattern,
-                         "no matching scmversion")
+  def _assert_contains_scmversion(self, module):
+    basename = os.path.basename(module)
+    if os.path.splitext(basename)[1] != ".ko":
+      self.skipTest("{} is not a kernel module".format(basename))
+    try:
+      scmversion = subprocess.check_output(
+          ["modinfo", module, "-F", "scmversion"],
+          text=True,
+          stderr=subprocess.PIPE,
+      ).strip()
+    except subprocess.CalledProcessError as e:
+      self.fail("modinfo returns {}: {}".format(e.returncode, e.stderr))
+
+    self.assertRegex(
+        scmversion,
+        ScmVersionTestCase._scmversion_pattern,
+        "no matching scmversion",
+    )
 
 
-if __name__ == '__main__':
-    arguments, unknown = load_arguments()
-    sys.argv[1:] = unknown
-    absltest.main()
+if __name__ == "__main__":
+  arguments, unknown = load_arguments()
+  sys.argv[1:] = unknown
+  absltest.main()
