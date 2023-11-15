@@ -1,0 +1,170 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2917a5b2_a4b7316d",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T16:50:35Z",
+      "side": 1,
+      "message": "always use depset for efficiency for concatenation",
+      "range": {
+        "startLine": 220,
+        "startChar": 45,
+        "endLine": 220,
+        "endChar": 49
+      },
+      "revId": "06592929aa2350b449ff48c00f7168ffd6ee4a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "109600be_d695f56e",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T16:50:35Z",
+      "side": 1,
+      "message": "File\u0027s not Target\u0027s, right?\n\nb/247622808",
+      "range": {
+        "startLine": 220,
+        "startChar": 53,
+        "endLine": 220,
+        "endChar": 60
+      },
+      "revId": "06592929aa2350b449ff48c00f7168ffd6ee4a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54412af8_ee4272f0",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T16:50:35Z",
+      "side": 1,
+      "message": "This can be avoided if you use:\n\n```\ndefconfig \u003d depset(\n    ctx.files.defconfig, # this is at most one item\n    transitive \u003d [dep[DdkConfigInfo].defconfig for dep in ddk_config_deps] + [ctx.attr.kernel_build[KernelBuildExtModuleInfo].ddk_module_defconfig_fragments]\n)\n```\n\n(in L255)\n\nb/256688440",
+      "range": {
+        "startLine": 247,
+        "startChar": 42,
+        "endLine": 247,
+        "endChar": 49
+      },
+      "revId": "06592929aa2350b449ff48c00f7168ffd6ee4a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32dcd3ef_53848a9a",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T16:50:35Z",
+      "side": 1,
+      "message": "nit: add\n\n```\nThese configs are also applied to external modules, including\n`kernel_module`s and `ddk_module`s.\n```",
+      "revId": "06592929aa2350b449ff48c00f7168ffd6ee4a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bded3bf_d2736db3",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T16:50:35Z",
+      "side": 1,
+      "message": "nit: \n```\n`ddk_module`s\n```",
+      "range": {
+        "startLine": 427,
+        "startChar": 14,
+        "endLine": 427,
+        "endChar": 25
+      },
+      "revId": "06592929aa2350b449ff48c00f7168ffd6ee4a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c1f3745_94850e43",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T16:50:35Z",
+      "side": 1,
+      "message": "nit: add\n\n```\nUnlike `defconfig_fragments`, `ddk_module_defconfig_fragments` is not applied\nto this `kernel_build` target, nor dependent legacy `kernel_module`s.\n```",
+      "revId": "06592929aa2350b449ff48c00f7168ffd6ee4a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0aaac63d_19d0b307",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 1878,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T16:50:35Z",
+      "side": 1,
+      "message": "nit: though this is not a very big list, always prefer\n\n```\ndepset(transitive \u003d [target.files for target in ctx.attr.ddk_module_defconfig_fragments])\n```",
+      "range": {
+        "startLine": 1878,
+        "startChar": 12,
+        "endLine": 1878,
+        "endChar": 53
+      },
+      "revId": "06592929aa2350b449ff48c00f7168ffd6ee4a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3aea566d_b9ef76ba",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T16:50:35Z",
+      "side": 1,
+      "message": "(same here)",
+      "revId": "06592929aa2350b449ff48c00f7168ffd6ee4a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
