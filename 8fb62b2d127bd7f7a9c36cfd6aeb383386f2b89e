@@ -16,6 +16,23 @@
       "message": "Still need to write build tests.",
       "revId": "8fb62b2d127bd7f7a9c36cfd6aeb383386f2b89e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdea1a2f_a112f282",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-11-15T21:44:52Z",
+      "side": 1,
+      "message": "Causing boot-up issues on pixel 6. Blocking until fixed.",
+      "revId": "8fb62b2d127bd7f7a9c36cfd6aeb383386f2b89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
