@@ -314,6 +314,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a79e7a1_60d74540",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T22:43:30Z",
+      "side": 1,
+      "message": "If you do so, please do so in a separate CL. NBD though",
+      "parentUuid": "18065bea_f638478d",
+      "range": {
+        "startLine": 217,
+        "startChar": 6,
+        "endLine": 217,
+        "endChar": 10
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3794dc7f_2d8ad2de",
         "filename": "build_utils.sh",
         "patchSetId": 4
@@ -349,6 +373,30 @@
       "side": 1,
       "message": "I don\u0027t think the command will fail if the file does not exist. According to https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html, `set -e` will cause a failure if the second part of the command fails, which is what we would expect, so it should be fine as is.",
       "parentUuid": "3794dc7f_2d8ad2de",
+      "range": {
+        "startLine": 221,
+        "startChar": 35,
+        "endLine": 221,
+        "endChar": 37
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4442a670_3399e0e2",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T22:43:30Z",
+      "side": 1,
+      "message": "Same as above. I ran:\n\n```\nset -e\n[[ -f does_not_exist ]] \u0026\u0026 echo true\n```\n\nthen my command window immediately exits. Right?",
+      "parentUuid": "9163e32f_ad355df3",
       "range": {
         "startLine": 221,
         "startChar": 35,
