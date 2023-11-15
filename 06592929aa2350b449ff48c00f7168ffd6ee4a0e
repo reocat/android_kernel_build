@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c6aa0db_fd801329",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T16:59:06Z",
+      "side": 1,
+      "message": "looks like you are indeed using a depset, so please just update the text",
+      "parentUuid": "2917a5b2_a4b7316d",
+      "range": {
+        "startLine": 220,
+        "startChar": 45,
+        "endLine": 220,
+        "endChar": 49
+      },
+      "revId": "06592929aa2350b449ff48c00f7168ffd6ee4a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "54412af8_ee4272f0",
         "filename": "kleaf/impl/ddk/ddk_config.bzl",
         "patchSetId": 5
