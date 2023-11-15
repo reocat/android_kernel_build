@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf165309_b5bd050e",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-11-15T21:19:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bc7a81b_ca95db75",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 1
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35fcbb3e_86a6e84c",
@@ -58,6 +82,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4e5d977_b7ce0bd7",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-11-15T21:19:59Z",
+      "side": 1,
+      "message": "Done. I\u0027d previously added return codes so that the modules.order temp file could be cleaned up. However, I\u0027ve consolidated this all into one function so that the function can just exit immediately when an error is encountered.",
+      "parentUuid": "35fcbb3e_86a6e84c",
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91f6b07f_7936c7a2",
@@ -71,6 +113,30 @@
       "writtenOn": "2023-11-14T18:29:20Z",
       "side": 1,
       "message": "But for commands that succeeds, the exclamation point will make it fail immediately, right?\n\nSo I think this should be `\u003ccommand\u003e || :` or `\u003ccommand\u003e || true`\n\nEDIT: I see, this was from https://android-review.git.corp.google.com/c/kernel/build/+/1427028/5/build.sh. Feel free to keep this but fix this in a follow up change.",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 73
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f697369e_09efebbe",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-11-15T21:19:59Z",
+      "side": 1,
+      "message": "I don\u0027t think this needs to change. According to: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html since the status is being inverted by `!` the shell should not exit even if the return code is 0.",
+      "parentUuid": "91f6b07f_7936c7a2",
       "range": {
         "startLine": 77,
         "startChar": 4,
@@ -104,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50905814_4635f503",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-11-15T21:19:59Z",
+      "side": 1,
+      "message": "Fixed with  aosp/2833213",
+      "parentUuid": "beffb098_9cbcea47",
+      "range": {
+        "startLine": 78,
+        "startChar": 14,
+        "endLine": 78,
+        "endChar": 15
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e7826c8_3a852ed7",
@@ -117,6 +207,30 @@
       "writtenOn": "2023-11-14T18:29:20Z",
       "side": 1,
       "message": "(same as above)\n\nwhy shouldn\u0027t filter_module_list exit immediately on failures?",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 189,
+        "endChar": 14
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f41042e_405f8452",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-11-15T21:19:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e7826c8_3a852ed7",
       "range": {
         "startLine": 189,
         "startChar": 0,
@@ -152,6 +266,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "18065bea_f638478d",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-11-15T21:19:59Z",
+      "side": 1,
+      "message": "Yes. Should I update the comment to reflect that?",
+      "parentUuid": "30262d9d_18c1306a",
+      "range": {
+        "startLine": 217,
+        "startChar": 6,
+        "endLine": 217,
+        "endChar": 10
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3794dc7f_2d8ad2de",
         "filename": "build_utils.sh",
         "patchSetId": 4
@@ -163,6 +301,30 @@
       "writtenOn": "2023-11-14T18:29:20Z",
       "side": 1,
       "message": "Under `set -e`, if the file does not exist, this command will immediately fail.\n\nI think it needs to be converted to a proper `if` statement.",
+      "range": {
+        "startLine": 221,
+        "startChar": 35,
+        "endLine": 221,
+        "endChar": 37
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9163e32f_ad355df3",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-11-15T21:19:59Z",
+      "side": 1,
+      "message": "I don\u0027t think the command will fail if the file does not exist. According to https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html, `set -e` will cause a failure if the second part of the command fails, which is what we would expect, so it should be fine as is.",
+      "parentUuid": "3794dc7f_2d8ad2de",
       "range": {
         "startLine": 221,
         "startChar": 35,
