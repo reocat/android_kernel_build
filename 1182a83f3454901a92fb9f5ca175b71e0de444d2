@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10c58944_7fded3a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T19:59:28Z",
+      "side": 1,
+      "message": "On a second thought, the Pixel branches / partner branches might not need to be fixed as long as they don\u0027t depend on libcap.",
+      "parentUuid": "262da953_2921cbb2",
+      "revId": "1182a83f3454901a92fb9f5ca175b71e0de444d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfeab18d_69974a53",
         "filename": "kleaf/tests/libcap_test/BUILD.bazel",
         "patchSetId": 6
