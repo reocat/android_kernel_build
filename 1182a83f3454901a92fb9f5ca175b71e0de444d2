@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4a8e672_d379eb5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-11-15T19:38:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "262da953_2921cbb2",
+      "revId": "1182a83f3454901a92fb9f5ca175b71e0de444d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfeab18d_69974a53",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-11-15T18:57:20Z",
       "side": 1,
       "message": "Please also add `tags\u003d[\"manual\"]` here to prevent this from being built when `bazel build //build/kernel/...`",
+      "revId": "1182a83f3454901a92fb9f5ca175b71e0de444d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fd45e3a_bc258633",
+        "filename": "kleaf/tests/libcap_test/BUILD.bazel",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-11-15T19:38:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfeab18d_69974a53",
       "revId": "1182a83f3454901a92fb9f5ca175b71e0de444d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
