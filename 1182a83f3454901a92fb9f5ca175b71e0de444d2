@@ -16,6 +16,40 @@
       "message": "Please send a go/gki-newsletter that external/libcap and libcap_ng will be required on mainline and 15-6.1. Then, merge this after the newsletter is sent out.\n\nYou might also need to fix internal Pixel branches on mainline and 15-6.1.",
       "revId": "1182a83f3454901a92fb9f5ca175b71e0de444d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d86d0e4_e72d3b07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T18:57:20Z",
+      "side": 1,
+      "message": "The presubmit error would be fixed once android15-6.1 manifest is updated.",
+      "revId": "1182a83f3454901a92fb9f5ca175b71e0de444d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfeab18d_69974a53",
+        "filename": "kleaf/tests/libcap_test/BUILD.bazel",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T18:57:20Z",
+      "side": 1,
+      "message": "Please also add `tags\u003d[\"manual\"]` here to prevent this from being built when `bazel build //build/kernel/...`",
+      "revId": "1182a83f3454901a92fb9f5ca175b71e0de444d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
