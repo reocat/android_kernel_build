@@ -91,6 +91,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "faf38743_af9861bf",
+        "filename": "kleaf/tests/BUILD.bazel",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T20:01:17Z",
+      "side": 1,
+      "message": "If you are not adding the test to build/kernel/kleaf/tests, then the libcap_test should be placed somewhere else.\n\nI think you can leave this here for now and move it to kernel_aarch64 AB target later.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 49
+      },
+      "revId": "1182a83f3454901a92fb9f5ca175b71e0de444d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bfeab18d_69974a53",
         "filename": "kleaf/tests/libcap_test/BUILD.bazel",
         "patchSetId": 6
