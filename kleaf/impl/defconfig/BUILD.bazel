@@ -22,6 +22,7 @@ exports_files([
     "arm64_64k_defconfig",
     "btf_debug_info_disabled_defconfig",
     "btf_debug_info_enabled_defconfig",
+    "signing_modules_disabled_defconfig",
 ])
 
 [[
@@ -147,4 +148,10 @@ fail_action(
     name = "fail_kcsan_lto",
     message = "--kcsan requires --lto=none or default.",
     visibility = ["//visibility:private"],
+)
+
+filegroup(
+    name = "signing_modules_disabled",
+    srcs = ["signing_modules_disabled_defconfig"],
+    visibility = ["//visibility:public"],
 )
