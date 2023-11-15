@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38eae269_f29ff00b",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-15T16:58:27Z",
+      "side": 1,
+      "message": "Looks like you are indeed using File\u0027s not Target\u0027s, so please just update the text",
+      "parentUuid": "109600be_d695f56e",
+      "range": {
+        "startLine": 220,
+        "startChar": 53,
+        "endLine": 220,
+        "endChar": 60
+      },
+      "revId": "06592929aa2350b449ff48c00f7168ffd6ee4a0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "54412af8_ee4272f0",
         "filename": "kleaf/impl/ddk/ddk_config.bzl",
         "patchSetId": 5
