@@ -37,6 +37,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb2123b2_bace4e2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-16T19:18:34Z",
+      "side": 1,
+      "message": "No as the change stands right now, but I would vote +1 to this idea.\n\nIf we do this, then the attribute should probably be named `kernel_build(dependent_target_defconfig_fragments)` (and note explicitly that this does not apply to legacy kernel_module)\n\n... or perhaps there is a way to propagate to dependent kernel_build and kernel_module too, by modifying the KernelBuildExtModuleInfo.ddk_config_env? @umendez@google.com can you see if this is feasible?",
+      "parentUuid": "799d9329_7879fb64",
+      "revId": "c5d979e57b6261bab39659a8cf5ed683a360dca7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5aaa1bfb_5733c1be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-16T19:18:34Z",
+      "side": 1,
+      "message": "No.\n\nHowever, note how defconfig\u0027s propagate for ddk_modules:\n\nif ddk_module A has defconfig\u003dconfig_A, then a ddk_module B that depends on A will automatically get config_A.\n\nkernel_build.defconfig_fragments also universally apply to all dependencies (kernel_module and ddk_module, though I am not sure about kernel_build.base_kernel).\n\nThis attribute (whatever the name is) aims to set defconfig fragments for dependencies BUT NOT ITSELF. I think the two counterparts above justifies the generalization here.",
+      "parentUuid": "e083a3a4_93031b76",
+      "revId": "c5d979e57b6261bab39659a8cf5ed683a360dca7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7573c16f_26144491",
         "filename": "kleaf/impl/common_providers.bzl",
         "patchSetId": 6
@@ -48,6 +84,30 @@
       "writtenOn": "2023-11-16T18:23:19Z",
       "side": 1,
       "message": "does this apply to only DDK modules? what about modules defined with `kernel_module`?",
+      "range": {
+        "startLine": 220,
+        "startChar": 9,
+        "endLine": 220,
+        "endChar": 39
+      },
+      "revId": "c5d979e57b6261bab39659a8cf5ed683a360dca7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "980929aa_98794377",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-16T19:18:34Z",
+      "side": 1,
+      "message": "Only to ddk_modules. kernel_modules use their own Kbuild / Makefile\u0027s (not the one we generate), so we can\u0027t inject defconfig fragments.\n\nHence the name.\n\n(but see my other comment; perhaps there is a way to do this by modifying ddk_config_env)",
+      "parentUuid": "7573c16f_26144491",
       "range": {
         "startLine": 220,
         "startChar": 9,
