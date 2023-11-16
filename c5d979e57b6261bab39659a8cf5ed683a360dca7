@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "799d9329_7879fb64",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-16T18:25:09Z",
+      "side": 1,
+      "message": "what about downstream `kernel_build`s that use this build as `base_kernel` ? Would that apply as well?",
+      "revId": "c5d979e57b6261bab39659a8cf5ed683a360dca7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7573c16f_26144491",
         "filename": "kleaf/impl/common_providers.bzl",
         "patchSetId": 6
