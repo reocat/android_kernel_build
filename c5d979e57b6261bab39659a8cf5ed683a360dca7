@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23435255_0ffd6b2a",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-16T18:19:06Z",
+      "side": 1,
+      "message": "question: Is this always a `depset()` or could this be `None`? If `None` then you can\u0027t put it into the depset (because of incompatible types).\n\nalso: line length (put it in a separate variable like you have in PS5)",
+      "range": {
+        "startLine": 253,
+        "startChar": 134,
+        "endLine": 253,
+        "endChar": 164
+      },
+      "revId": "c5d979e57b6261bab39659a8cf5ed683a360dca7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
