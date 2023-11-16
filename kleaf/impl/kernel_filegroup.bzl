@@ -15,6 +15,7 @@
 """A target that mimics [`kernel_build`](#kernel_build) from a list of prebuilt files."""
 
 load("@bazel_skylib//lib:dicts.bzl", "dicts")
+load("@bazel_skylib//lib:paths.bzl", "paths")
 load(
     ":common_providers.bzl",
     "GcovInfo",
@@ -96,6 +97,15 @@ def _kernel_filegroup_impl(ctx):
 
     all_deps = ctx.files.srcs + ctx.files.deps
 
+    restore_module_srcs_cmd = utils.get_check_sandbox_cmd()
+    # TODO ensure no duplicates. (There should only be one item.)
+    for target in ctx.attr.module_srcs:
+        restore_module_srcs_cmd += """
+            mv -t ./ {module_srcs_root}
+        """.format(
+            module_srcs_root = paths.join(target.label.workspace_root, target.label.package)
+        )
+
     # TODO(b/219112010): Implement KernelSerializedEnvInfo properly
     # FIXME clean up; merge with kernel_config.bzl / kernel_build.bzl
     config_outdir_tar_gz = utils.find_files(all_deps, suffix = "_config_outdir.tar.gz")[0]
@@ -119,6 +129,10 @@ def _kernel_filegroup_impl(ctx):
             KLEAF_REPO_WORKSPACE_ROOT={kleaf_repo_workspace_root}
             . {build_utils_sh}
             . {env_setup}
+
+            # Restore source tree
+            {restore_module_srcs_cmd}
+
             {eval_restore_out_dir_cmd}
             {config_post_setup}
         """.format(
@@ -127,6 +141,7 @@ def _kernel_filegroup_impl(ctx):
             env_setup = env_setup.path,
             eval_restore_out_dir_cmd = kernel_utils.eval_restore_out_dir_cmd(),
             config_post_setup = config_post_setup,
+            restore_module_srcs_cmd = restore_module_srcs_cmd,
         ),
     )
     ddk_config_env = KernelSerializedEnvInfo(
@@ -136,7 +151,7 @@ def _kernel_filegroup_impl(ctx):
             config_outdir_tar_gz,
             env_setup,
             ctx.version_file,
-        ]),
+        ], transitive = [target.files for target in ctx.attr.module_srcs]),
         tools = depset([
             ctx.file._build_utils_sh,
         ], transitive = [
@@ -345,6 +360,7 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
             The `gki-info.txt` file should be part of that list.""",
             mandatory = True,
         ),
+        "module_srcs": attr.label_list(allow_files = True, doc = "core kernel sources to build modules"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_cache_dir_config_tags": attr.label(
             default = "//build/kernel/kleaf/impl:cache_dir_config_tags",
