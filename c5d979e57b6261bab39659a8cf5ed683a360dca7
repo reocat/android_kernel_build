@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e083a3a4_93031b76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-16T18:23:19Z",
+      "side": 1,
+      "message": "this seems to be a niche feature for addressing the case that external modules should not be signed while the kernel\u0027s modules are. Are there more use cases to this that it is worth to generalize the feature like this?",
+      "revId": "c5d979e57b6261bab39659a8cf5ed683a360dca7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7573c16f_26144491",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-16T18:23:19Z",
+      "side": 1,
+      "message": "does this apply to only DDK modules? what about modules defined with `kernel_module`?",
+      "range": {
+        "startLine": 220,
+        "startChar": 9,
+        "endLine": 220,
+        "endChar": 39
+      },
+      "revId": "c5d979e57b6261bab39659a8cf5ed683a360dca7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23435255_0ffd6b2a",
         "filename": "kleaf/impl/ddk/ddk_config.bzl",
         "patchSetId": 6
