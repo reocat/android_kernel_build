@@ -32,6 +32,32 @@
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2835053?revision\u003d4",
       "fixSuggestions": [],
       "key": {
+        "uuid": "4ab0a6e1_f21e82ea",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-11-16T22:41:45Z",
+      "side": 1,
+      "message": "\"print()\" is a debug function and shouldn\u0027t be submitted. http://go/buildifier-warnings#print",
+      "range": {
+        "startLine": 517,
+        "startChar": 4,
+        "endLine": 517,
+        "endChar": 71
+      },
+      "revId": "2c86f85d5001b7a37617461f30aad2144fc315f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000059318658",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2835053?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
         "uuid": "a576b172_2a76de17",
         "filename": "kleaf/impl/kernel_module.bzl",
         "patchSetId": 4
@@ -41,6 +67,32 @@
         "id": 1757831
       },
       "writtenOn": "2023-11-16T22:41:41Z",
+      "side": 1,
+      "message": "\"print()\" is a debug function and shouldn\u0027t be submitted. http://go/buildifier-warnings#print",
+      "range": {
+        "startLine": 518,
+        "startChar": 4,
+        "endLine": 518,
+        "endChar": 18
+      },
+      "revId": "2c86f85d5001b7a37617461f30aad2144fc315f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000059318658",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2835053?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dad2c405_86173a9c",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-11-16T22:41:45Z",
       "side": 1,
       "message": "\"print()\" is a debug function and shouldn\u0027t be submitted. http://go/buildifier-warnings#print",
       "range": {
@@ -84,6 +136,32 @@
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2835053?revision\u003d4",
       "fixSuggestions": [],
       "key": {
+        "uuid": "afa435b8_e5b46195",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-11-16T22:41:45Z",
+      "side": 1,
+      "message": "\"print()\" is a debug function and shouldn\u0027t be submitted. http://go/buildifier-warnings#print",
+      "range": {
+        "startLine": 556,
+        "startChar": 8,
+        "endLine": 556,
+        "endChar": 37
+      },
+      "revId": "2c86f85d5001b7a37617461f30aad2144fc315f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000059318658",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2835053?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
         "uuid": "e3413e77_7cdac89e",
         "filename": "kleaf/impl/kernel_module.bzl",
         "patchSetId": 4
@@ -93,6 +171,32 @@
         "id": 1757831
       },
       "writtenOn": "2023-11-16T22:41:41Z",
+      "side": 1,
+      "message": "\"print()\" is a debug function and shouldn\u0027t be submitted. http://go/buildifier-warnings#print",
+      "range": {
+        "startLine": 557,
+        "startChar": 8,
+        "endLine": 557,
+        "endChar": 22
+      },
+      "revId": "2c86f85d5001b7a37617461f30aad2144fc315f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000059318658",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2835053?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d0727356_f3e424d9",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-11-16T22:41:45Z",
       "side": 1,
       "message": "\"print()\" is a debug function and shouldn\u0027t be submitted. http://go/buildifier-warnings#print",
       "range": {
