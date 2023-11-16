@@ -22,6 +22,30 @@
       },
       "revId": "2105c2303bca92efc9ef7df5907e09f5297084f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95a4fc47_9baf11bd",
+        "filename": "kleaf/impl/local_repository.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-16T23:26:27Z",
+      "side": 1,
+      "message": "the other branch always set `target`. If I indent to the left, the error message might also needs to be updated...\n\nAlso, L62 covers the existence check for L52",
+      "parentUuid": "39ec921b_c547d647",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 22
+      },
+      "revId": "2105c2303bca92efc9ef7df5907e09f5297084f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
