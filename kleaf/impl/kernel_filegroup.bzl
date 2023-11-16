@@ -33,7 +33,6 @@ load(
 load(
     ":constants.bzl",
     "MODULES_STAGING_ARCHIVE",
-    "MODULE_ENV_ARCHIVE_SUFFIX",
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
@@ -112,7 +111,7 @@ def _kernel_filegroup_impl(ctx):
         config_outdir_tar_gz = config_outdir_tar_gz.path,
     )
     env_setup = utils.find_files(all_deps, suffix = "_env.sh")[0]
-    module_scripts_archive = utils.find_files(all_deps, suffix = MODULE_ENV_ARCHIVE_SUFFIX)[0]
+
     ddk_config_env_setup_script = ctx.actions.declare_file("{name}/{name}_ddk_config_setup.sh".format(name = ctx.attr.name))
     ctx.actions.write(
         output = ddk_config_env_setup_script,
@@ -121,17 +120,11 @@ def _kernel_filegroup_impl(ctx):
             . {env_setup}
             {eval_restore_out_dir_cmd}
             {config_post_setup}
-
-            {check_sandbox_cmd}
-            mkdir -p ${{KERNEL_DIR}}
-            tar xf {module_scripts_archive} -C ${{KERNEL_DIR}}
         """.format(
             build_utils_sh = ctx.file._build_utils_sh.path,
             env_setup = env_setup.path,
             eval_restore_out_dir_cmd = kernel_utils.eval_restore_out_dir_cmd(),
             config_post_setup = config_post_setup,
-            check_sandbox_cmd = utils.get_check_sandbox_cmd(),
-            module_scripts_archive = module_scripts_archive.path,
         ),
     )
     ddk_config_env = KernelSerializedEnvInfo(
@@ -141,7 +134,6 @@ def _kernel_filegroup_impl(ctx):
             config_outdir_tar_gz,
             env_setup,
             ctx.version_file,
-            module_scripts_archive,
         ]),
         tools = depset([
             ctx.file._build_utils_sh,
