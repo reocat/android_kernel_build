@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000059313700",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2835053?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c6be6047_d1eb5296",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-11-16T22:06:43Z",
+      "side": 1,
+      "message": "\"print()\" is a debug function and shouldn\u0027t be submitted. http://go/buildifier-warnings#print",
+      "range": {
+        "startLine": 517,
+        "startChar": 4,
+        "endLine": 517,
+        "endChar": 71
+      },
+      "revId": "5a703a99f6a7e1417667854948a364e5c5486d5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000059313700",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2835053?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3f0e6842_3af1583c",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-11-16T22:06:43Z",
+      "side": 1,
+      "message": "\"print()\" is a debug function and shouldn\u0027t be submitted. http://go/buildifier-warnings#print",
+      "range": {
+        "startLine": 518,
+        "startChar": 4,
+        "endLine": 518,
+        "endChar": 18
+      },
+      "revId": "5a703a99f6a7e1417667854948a364e5c5486d5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000059313700",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2835053?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ffc7a7f5_1ce49909",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-11-16T22:06:43Z",
+      "side": 1,
+      "message": "\"print()\" is a debug function and shouldn\u0027t be submitted. http://go/buildifier-warnings#print",
+      "range": {
+        "startLine": 556,
+        "startChar": 8,
+        "endLine": 556,
+        "endChar": 37
+      },
+      "revId": "5a703a99f6a7e1417667854948a364e5c5486d5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000059313700",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2835053?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7758623a_e8468f84",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-11-16T22:06:43Z",
+      "side": 1,
+      "message": "\"print()\" is a debug function and shouldn\u0027t be submitted. http://go/buildifier-warnings#print",
+      "range": {
+        "startLine": 557,
+        "startChar": 8,
+        "endLine": 557,
+        "endChar": 22
+      },
+      "revId": "5a703a99f6a7e1417667854948a364e5c5486d5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
