@@ -274,6 +274,10 @@ workspace({})
     # FIXME
     main_target_outs = DEFAULT_GKI_OUTS + [
         bazel_target_name + MODULE_OUTS_FILE_SUFFIX,
+
+        # FIXME use constant
+        bazel_target_name + "_config_outdir.tar.gz",
+        bazel_target_name + "_env.sh",
     ]
     gki_prebuilts_outs = GKI_ARTIFACTS_AARCH64_OUTS
 
@@ -310,6 +314,8 @@ kernel_filegroup(
     ddk_module_defconfig_fragments = [
         {signing_modules_disabled_repr},
     ],
+    target_platform = {target_platform_repr},
+    exec_platform = {exec_platform_repr},
     visibility = ["//visibility:public"],
 )
 """.format(
@@ -338,6 +344,9 @@ kernel_filegroup(
             gki_prebuilts_outs_repr = repr(gki_prebuilts_outs),
             gki_artifacts_target = bazel_target_name + "_gki_artifacts",
             images_target = bazel_target_name + "_images",
+            # FIXME this information should come from the build.
+            target_platform_repr = repr(str(Label("//build/kernel/kleaf/impl:android_{}".format("arm64")))),
+            exec_platform_repr = repr(str(Label("//build/kernel/kleaf/impl:linux_x86_64")))
         )
 
     repository_ctx.file("BUILD.bazel", build_bazel_content)
