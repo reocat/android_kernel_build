@@ -173,6 +173,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0884ac6d_54db0ab5",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-11-17T06:20:11Z",
+      "side": 1,
+      "message": "I tried the same thing in a script and my shell doesn\u0027t exit; I see \"hello\":\n\n#!/bin/bash\nset -e\n! true\necho hello",
+      "parentUuid": "8d2b47d9_970535e2",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 73
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "beffb098_9cbcea47",
         "filename": "build_utils.sh",
         "patchSetId": 4
@@ -397,6 +421,30 @@
       "side": 1,
       "message": "Same as above. I ran:\n\n```\nset -e\n[[ -f does_not_exist ]] \u0026\u0026 echo true\n```\n\nthen my command window immediately exits. Right?",
       "parentUuid": "9163e32f_ad355df3",
+      "range": {
+        "startLine": 221,
+        "startChar": 35,
+        "endLine": 221,
+        "endChar": 37
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5910fb0a_4244eaa6",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-11-17T06:20:11Z",
+      "side": 1,
+      "message": "Correct. I think `[[ -f ... ]]` is a test and not a command, so that\u0027s why it fails. Fixed with proper `if` statements. thanks for catching that!",
+      "parentUuid": "4442a670_3399e0e2",
       "range": {
         "startLine": 221,
         "startChar": 35,
