@@ -360,6 +360,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b7ebda2_0894c05f",
+        "filename": "build_utils.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-11-17T06:28:48Z",
+      "side": 1,
+      "message": "Fixed with aosp/2835777",
+      "parentUuid": "0a79e7a1_60d74540",
+      "range": {
+        "startLine": 217,
+        "startChar": 6,
+        "endLine": 217,
+        "endChar": 10
+      },
+      "revId": "4b8c87a69e11e782b911a01b57b1b7c42b2e51ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3794dc7f_2d8ad2de",
