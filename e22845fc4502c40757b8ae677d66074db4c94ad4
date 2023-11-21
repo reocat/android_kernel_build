@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73920cc9_23084173",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-21T16:55:53Z",
+      "side": 1,
+      "message": "http://r.android.com/2733035",
+      "parentUuid": "92b69cdd_069efa4b",
+      "range": {
+        "startLine": 711,
+        "startChar": 0,
+        "endLine": 711,
+        "endChar": 33
+      },
+      "revId": "e22845fc4502c40757b8ae677d66074db4c94ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20ef423c_71b16e20",
