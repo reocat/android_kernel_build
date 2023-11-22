@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88621259_0c79c8da",
+        "filename": "kleaf/impl/abi/abi_transitions.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-22T19:59:08Z",
+      "side": 1,
+      "message": "You probably still need `kbuild_symtypes \u003d True` (depending on the resolution in the other discussion thread).\n\nThat is, either both L37 and L41 should have kbuild_symtypes\u003dTrue, or neither should have kbuild_symtypes\u003dTrue.\n\nWe drop vmlinux from make_goals (and consequently, ignore base_kernel) because for GKI, we already have vmlinux in make_goals and not have base_kernel. kbuild_symtypes is orthogonal, so it should be kept.",
+      "revId": "ba2901b9e0f055a7d792e6fd107a142d409922ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04af9471_ff0a2e9a",
         "filename": "kleaf/impl/abi/kernel_abi.bzl",
         "patchSetId": 1
