@@ -740,6 +740,8 @@ def _define_common_kernel(
         kmi_enforced = kmi_enforced,
         kmi_symbol_list_add_only = kmi_symbol_list_add_only,
         deprecation = deprecation,
+        # Not needed for GKI
+        ignore_add_vmlinux = True,
     )
 
     if enable_interceptor:
