@@ -70,6 +70,24 @@
       "parentUuid": "8a1ab0a3_3178ece7",
       "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edaaeace_50a20d52",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-22T19:42:22Z",
+      "side": 1,
+      "message": "In that case, perhaps:\n\n- Disable it by default:\n- Update the instructions to say, if there\u0027s a CRC mismatch, rebuild with `--kbuild_symtypes\u003dtrue` (I forgot what the actual flag is, please double check)\n\nWhat do y\u0027all think?",
+      "parentUuid": "017515df_ce6e4af5",
+      "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
