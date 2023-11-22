@@ -52,6 +52,24 @@
       "parentUuid": "04644264_e99b1ece",
       "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "017515df_ce6e4af5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-22T19:38:58Z",
+      "side": 1,
+      "message": "I found this doc that suggests it is useful to debug CRC missmatchs https://source.android.com/docs/core/architecture/kernel/abi-monitor#fixing-crc-mismatch but I could not find anything something to say it\u0027s an ABI dependency.\n\n+ @gprocida@google.com to confirm.",
+      "parentUuid": "8a1ab0a3_3178ece7",
+      "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
