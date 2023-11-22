@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f2d433c_ba825c0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-22T19:53:27Z",
+      "side": 1,
+      "message": "The idea LGTM.\n\nOne global comment: can we use `add_vmlinux` and use default value `True`? (I know there are a few other place where the negative of something is used, but we should still use positive of something if possible)",
+      "revId": "ba2901b9e0f055a7d792e6fd107a142d409922ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e7e964a_bbc0dbf8",
+        "filename": "kleaf/impl/abi/abi_transitions.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-22T19:53:27Z",
+      "side": 1,
+      "message": "can we add ignore_add_vmlinux everywhere and use attr.ignore_add_vmlinux directly?",
+      "range": {
+        "startLine": 36,
+        "startChar": 7,
+        "endLine": 36,
+        "endChar": 14
+      },
+      "revId": "ba2901b9e0f055a7d792e6fd107a142d409922ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04af9471_ff0a2e9a",
+        "filename": "kleaf/impl/abi/kernel_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-22T19:53:27Z",
+      "side": 1,
+      "message": "from all targets instantiated by this macro?",
+      "range": {
+        "startLine": 150,
+        "startChar": 83,
+        "endLine": 151,
+        "endChar": 31
+      },
+      "revId": "ba2901b9e0f055a7d792e6fd107a142d409922ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
