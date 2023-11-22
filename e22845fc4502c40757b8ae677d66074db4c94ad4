@@ -97,6 +97,24 @@
       "message": "This should have a new boolean to:\n\n- disable the with_vmlinux transition for ALL sub-targets (including abi_dump, etc.), if the boolean is set\n- Take out the with_vmlinux part out of the notrim transition (that is, make notrim transition only disables trim but not add vmlinux and kbuild_symtypes), if the boolean is set\n\nFor GKI, this boolean should be set. But for partner ABI monitoring, they can\u0027t set it for mixed builds.\n\nI think this change is required before you alias _dist with _abi_dist above.",
       "revId": "e22845fc4502c40757b8ae677d66074db4c94ad4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75bf1a2d_7964bd2f",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-22T19:46:05Z",
+      "side": 1,
+      "message": "Would something like http://r.android.com/2843378 work? I\u0027m still finalizing a doc with all details about it, but in the meantime I implemented the suggestion from this comment.",
+      "parentUuid": "69241f66_7d4eb9de",
+      "revId": "e22845fc4502c40757b8ae677d66074db4c94ad4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
