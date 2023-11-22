@@ -34,6 +34,24 @@
       "parentUuid": "9eb4b588_d1d7c266",
       "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a1ab0a3_3178ece7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-22T19:10:45Z",
+      "side": 1,
+      "message": "We always enable symtypes for ABI builds (this was from build_abi.sh).\n\nDo you suggest that we should drop it now? Why was it in build_abi.sh, and what has changed so we no longer need it?",
+      "parentUuid": "04644264_e99b1ece",
+      "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
