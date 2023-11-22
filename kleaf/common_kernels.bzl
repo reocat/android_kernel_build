@@ -740,6 +740,8 @@ def _define_common_kernel(
         kmi_enforced = kmi_enforced,
         kmi_symbol_list_add_only = kmi_symbol_list_add_only,
         deprecation = deprecation,
+        # Not needed for GKI
+        enable_add_vmlinux = False,
     )
 
     if enable_interceptor:
@@ -892,7 +894,8 @@ def _define_common_kernel(
     kernel_abi_dist(
         name = name + "_abi_dist",
         kernel_abi = name + "_abi",
-        kernel_build_add_vmlinux = True,
+        # Keep in sync with `enable_add_vmlinux` in kernel_abi rule above.
+        kernel_build_add_vmlinux = False,
         data = dist_targets,
         flat = True,
         dist_dir = "out_abi/{name}/dist".format(name = name),
