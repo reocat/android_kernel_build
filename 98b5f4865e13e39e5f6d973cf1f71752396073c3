@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "347e18fa_5a5efc07",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-23T01:04:08Z",
+      "side": 1,
+      "message": "Are we also under /tmp/bazel-working-directory for non-sandboxed actions?",
+      "range": {
+        "startLine": 187,
+        "startChar": 37,
+        "endLine": 187,
+        "endChar": 60
+      },
+      "revId": "98b5f4865e13e39e5f6d973cf1f71752396073c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
