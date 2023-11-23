@@ -106,6 +106,24 @@
       "parentUuid": "edaaeace_50a20d52",
       "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56bb2343_daf15d9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-11-23T15:45:52Z",
+      "side": 1,
+      "message": "I can confirm that the option was there for debugging (without a long rebuild once you work out how to turn the option on). Note that the symtypes are \"built\" anyway, This option is mostly about preserving them.\n\nDoes flipping the flag force a full rebuild? Is having it always on cheap and safe?\n\nOn the other hand, we haven\u0027t run into tricksy CRC issues in a while, as far as I know.",
+      "parentUuid": "7965926e_5ba18ef7",
+      "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
