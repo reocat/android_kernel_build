@@ -22,6 +22,30 @@
       },
       "revId": "98b5f4865e13e39e5f6d973cf1f71752396073c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d44ab95_476c5d72",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-23T10:08:30Z",
+      "side": 1,
+      "message": "for `--spawn_strategy\u003dlocal` we see the expected behaviour. Tested with a noop rule:\n\n```\ngenrule(\n    name \u003d \"noop\",\n    srcs \u003d [\":kernel_aarch64_sources\"],\n    outs \u003d [\"test\"],\n    cmd \u003d \"pwd; touch $@\",\n)\n```\n\n```\nbazel clean \u0026\u0026 bazel build //common:noop --spawn_strategy\u003dlocal\nINFO: Removing cache directory for $OUT_DIR: \n...\n(10:03:34) INFO: From Executing genrule //common:noop:\n/.../android/common-android-mainline/out/bazel/output_user_root/72180b6ddfb8c28b76da0780d124ee9a/execroot/_main\n...\n(10:03:34) INFO: Build completed successfully, 2 total actions\n```\n\n```\nbazel clean \u0026\u0026 bazel build //common:noop --spawn_strategy\u003dlinux-sandbox\nINFO: Removing cache directory for $OUT_DIR:\n...\n(10:05:13) INFO: From Executing genrule //common:noop:\n/tmp/bazel-working-directory/_main\n...\n(10:05:13) INFO: Build completed successfully, 2 total actions\n```\n\nFor `--spawn_strategy\u003dprocesswrapper-sandbox` the mechanism also works as expected:\n\n```\n...\n/.../android/common-android-mainline/out/bazel/output_user_root/72180b6ddfb8c28b76da0780d124ee9a/sandbox/processwrapper-sandbox/43/execroot/_main\n...\n```",
+      "parentUuid": "347e18fa_5a5efc07",
+      "range": {
+        "startLine": 187,
+        "startChar": 37,
+        "endLine": 187,
+        "endChar": 60
+      },
+      "revId": "98b5f4865e13e39e5f6d973cf1f71752396073c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
