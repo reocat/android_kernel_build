@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07804fb5_5b42f275",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-27T17:29:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f2d433c_ba825c0e",
+      "revId": "ba2901b9e0f055a7d792e6fd107a142d409922ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8e7e964a_bbc0dbf8",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-11-22T19:53:27Z",
       "side": 1,
       "message": "can we add ignore_add_vmlinux everywhere and use attr.ignore_add_vmlinux directly?",
+      "range": {
+        "startLine": 36,
+        "startChar": 7,
+        "endLine": 36,
+        "endChar": 14
+      },
+      "revId": "ba2901b9e0f055a7d792e6fd107a142d409922ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90b65024_2ead4e00",
+        "filename": "kleaf/impl/abi/abi_transitions.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-27T17:29:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e7e964a_bbc0dbf8",
       "range": {
         "startLine": 36,
         "startChar": 7,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1f2c11f_11dd2acd",
+        "filename": "kleaf/impl/abi/abi_transitions.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-27T17:29:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88621259_0c79c8da",
+      "revId": "ba2901b9e0f055a7d792e6fd107a142d409922ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04af9471_ff0a2e9a",
@@ -71,6 +131,30 @@
       "writtenOn": "2023-11-22T19:53:27Z",
       "side": 1,
       "message": "from all targets instantiated by this macro?",
+      "range": {
+        "startLine": 150,
+        "startChar": 83,
+        "endLine": 151,
+        "endChar": 31
+      },
+      "revId": "ba2901b9e0f055a7d792e6fd107a142d409922ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c303ad73_f2bef758",
+        "filename": "kleaf/impl/abi/kernel_abi.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-27T17:29:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04af9471_ff0a2e9a",
       "range": {
         "startLine": 150,
         "startChar": 83,
