@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c34c8bc4_1f5f3a59",
+        "filename": "kleaf/impl/abi/kernel_abi.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-27T23:45:09Z",
+      "side": 1,
+      "message": "nit:\n\n```\nIf `True`, enable\n```",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 25
+      },
+      "revId": "2e3cedcff6335bf6631478865b5613db4eec277c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fab1212e_189ca230",
+        "filename": "kleaf/impl/abi/kernel_abi.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-27T23:45:09Z",
+      "side": 1,
+      "message": "You don\u0027t need this, right? Because default value is set in attr.bool()?",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 33
+      },
+      "revId": "2e3cedcff6335bf6631478865b5613db4eec277c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
