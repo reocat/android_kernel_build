@@ -124,6 +124,24 @@
       "parentUuid": "7965926e_5ba18ef7",
       "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ff56d79_105f23b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-27T16:31:17Z",
+      "side": 1,
+      "message": "Acknowledged\n\nThank you all for your input.\n\nI\u0027ve submitted a new patchset disabling this transition by default for ABI builds. Which doesn\u0027t remove the option to keep those files if needed via kernel_build attribute or the `--kbuild_symtypes` flag.",
+      "parentUuid": "56bb2343_daf15d9e",
+      "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
