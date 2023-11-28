@@ -16,6 +16,29 @@
       "message": "Not sure that is the best location to define this expression. Perhaps something that is attached to the `kernel_build` rule is more suitable. Cc: @elsk@google.com @umendez@google.com",
       "revId": "77d512b4d79362cc1583652125dfa3f09f196d06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95ee5ecf_9cee8e86",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2023-11-28T18:00:55Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it make more sense to exclude headers that are outside `include/`?  Depending on `private` being in the filename is fragile.  There are lots of private headers that do not have `private` in their filename.",
+      "range": {
+        "startLine": 92,
+        "startChar": 29,
+        "endLine": 92,
+        "endChar": 62
+      },
+      "revId": "77d512b4d79362cc1583652125dfa3f09f196d06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
