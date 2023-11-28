@@ -46,6 +46,30 @@
       },
       "revId": "e7c8bb630a181292236a59ee9ec7b5d29dd4d49b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8c8e7e3_021dd293",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-28T00:29:27Z",
+      "side": 1,
+      "message": "ack",
+      "parentUuid": "aa7232b7_3974137c",
+      "range": {
+        "startLine": 92,
+        "startChar": 22,
+        "endLine": 92,
+        "endChar": 27
+      },
+      "revId": "e7c8bb630a181292236a59ee9ec7b5d29dd4d49b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
