@@ -63,6 +63,24 @@
       },
       "revId": "77d512b4d79362cc1583652125dfa3f09f196d06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8a0a7bd_5d8ab499",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-28T19:04:26Z",
+      "side": 1,
+      "message": "+1.\n\nIn particular, for partners who wants to do ABI monitoring on their own, should this be a configurable attribute for them?\n\nAdding the expression here (same goes to *.h) means it will be applied to everyone using this rule, which may include partners who wants to do out-of-tree ABI monitoring on their own.\n\nMy suggestion:\n\n- Add a `stg_file_pattern` attribute to kernel_abi()\n- Set it to `*.h \u0026 !(*[/_-]private.h | *[/_-]priv.h)` just for GKI\n- If the attribute is empty, do not add the `--files` flag. Otherwise, add the `--files` flag with the given string. (Don\u0027t forget to `shell.quote()` it before feeding it to the shell command!)",
+      "parentUuid": "b2e2c2cf_dc6f9d0b",
+      "revId": "77d512b4d79362cc1583652125dfa3f09f196d06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
