@@ -142,6 +142,24 @@
       "parentUuid": "56bb2343_daf15d9e",
       "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0ba5896_2805da0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-28T00:32:01Z",
+      "side": 1,
+      "message": "\u003e Does flipping the flag force a full rebuild?\n\nYes (IIUC, untested). Though, if you build with `--config\u003dlocal` you get the cached OUT_DIR as usual.\n\n\u003e Is having it always on cheap and safe?\n\nIIUC it is safe, because KBUILD_SYMTYPES in Kbuild just builds additional files. It doesn\u0027t seem to change the rest of the files.\n\nI am not sure if it is cheap or not.",
+      "parentUuid": "3ff56d79_105f23b7",
+      "revId": "7df0091cd7bf9fb684865d9793a73cd5d68830c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
