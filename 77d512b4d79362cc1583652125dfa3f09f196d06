@@ -81,6 +81,30 @@
       "parentUuid": "b2e2c2cf_dc6f9d0b",
       "revId": "77d512b4d79362cc1583652125dfa3f09f196d06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25035f86_dae335ae",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-11-28T19:37:45Z",
+      "side": 1,
+      "message": "I\u0027ve followed up on the bug.",
+      "parentUuid": "5bcefc9d_84c28fc1",
+      "range": {
+        "startLine": 92,
+        "startChar": 29,
+        "endLine": 92,
+        "endChar": 62
+      },
+      "revId": "77d512b4d79362cc1583652125dfa3f09f196d06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
