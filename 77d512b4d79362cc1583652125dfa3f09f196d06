@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2e2c2cf_dc6f9d0b",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-28T13:36:35Z",
+      "side": 1,
+      "message": "Not sure that is the best location to define this expression. Perhaps something that is attached to the `kernel_build` rule is more suitable. Cc: @elsk@google.com @umendez@google.com",
+      "revId": "77d512b4d79362cc1583652125dfa3f09f196d06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
