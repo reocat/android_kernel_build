@@ -22,6 +22,30 @@
       },
       "revId": "e7c8bb630a181292236a59ee9ec7b5d29dd4d49b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa7232b7_3974137c",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-28T00:18:13Z",
+      "side": 1,
+      "message": "Correct, that is just a filter expression.",
+      "parentUuid": "e0591c08_79cdf881",
+      "range": {
+        "startLine": 92,
+        "startChar": 22,
+        "endLine": 92,
+        "endChar": 27
+      },
+      "revId": "e7c8bb630a181292236a59ee9ec7b5d29dd4d49b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
