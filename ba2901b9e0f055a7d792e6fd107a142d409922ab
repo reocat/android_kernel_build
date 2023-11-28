@@ -136,6 +136,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aa1961e_ec2deac9",
+        "filename": "kleaf/impl/abi/abi_transitions.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2023-11-28T15:22:35Z",
+      "side": 1,
+      "message": "To remove it (see http://r.android.com/2733035) which I added as a baseline now, so it\u0027s clear how those changes are related.",
+      "parentUuid": "6ee534db_73bca56d",
+      "revId": "ba2901b9e0f055a7d792e6fd107a142d409922ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04af9471_ff0a2e9a",
