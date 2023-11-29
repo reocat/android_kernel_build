@@ -141,6 +141,24 @@
       "parentUuid": "cff7fa00_b3eb84b9",
       "revId": "77d512b4d79362cc1583652125dfa3f09f196d06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74f12bc9_df5336b1",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-11-29T07:57:15Z",
+      "side": 1,
+      "message": "I\u0027ve struggled to come up with any reason to make this configurable in that sense.\n\nABIs produced with different filtering will cause large changes to the ABI representation and confusion and more work at review time.",
+      "parentUuid": "b1d99978_9cbc2c46",
+      "revId": "77d512b4d79362cc1583652125dfa3f09f196d06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
