@@ -801,6 +801,7 @@ test_suite(
         ":check_declared_output_list_test",
         ":empty_test",
         "//build/bazel_common_rules/exec/tests",
+        "//build/bazel_common_rules/zip/tests",
         "//build/kernel/kleaf/impl:get_kmi_string_test",
         "//build/kernel/kleaf/impl:visibility_test",
         "//build/kernel/kleaf/tests",
