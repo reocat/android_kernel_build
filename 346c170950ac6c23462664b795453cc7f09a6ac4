@@ -16,6 +16,24 @@
       "message": "Unrelated failure. Bypassing",
       "revId": "346c170950ac6c23462664b795453cc7f09a6ac4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2e6da22_9be9c083",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2023-11-30T21:52:46Z",
+      "side": 1,
+      "message": "The failure is fixed by https://r.android.com/2855171",
+      "parentUuid": "0d7276b7_2dcc06d9",
+      "revId": "346c170950ac6c23462664b795453cc7f09a6ac4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
