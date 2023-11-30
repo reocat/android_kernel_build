@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fabfba8_5b1e7d29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:40:59Z",
+      "side": 1,
+      "message": "The bazel bits LGTM overall. I have some questions on the Kbuild bits.",
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3240cad8_d85c82c9",
