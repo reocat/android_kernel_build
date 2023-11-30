@@ -5,6 +5,7 @@
 #    build/kernel/kleaf/registry/update.py
 
 import collections
+import dataclasses
 from io import BytesIO
 import io
 import json
@@ -24,6 +25,25 @@ _REGISTRY = "https://bcr.bazel.build"
 _LOCAL_REGISTRY = pathlib.Path(__file__).relative_to(
     pathlib.Path(os.getcwd())).parent
 
+_COMMON_BAZEL_ARGS = [
+    "--enable_bzlmod",
+    "--config=internet",
+    f"--registry={_REGISTRY}",
+]
+
+
+@dataclasses.dataclass(frozen=True)
+class ModuleVersion:
+    module_name: str
+    version: str
+    unused: bool
+
+    def canonical_repo_name(self):
+        # https://github.com/bazelbuild/bazel/issues/20397
+        if self.module_name == "platforms":
+            return self.module_name
+        return f"{self.module_name}~{self.version}"
+
 
 def main():
     if not pathlib.Path(_BAZEL).exists():
@@ -31,18 +51,10 @@ def main():
                       pathlib.Path(_BAZEL).absolute())
         sys.exit(1)
 
-
     mod_graph = _load_mod_graph()
-
     module_versions_dict = _get_module_versions(mod_graph)
-
-    modules_dir = _LOCAL_REGISTRY / "modules"
-    if modules_dir.is_dir():
-        shutil.rmtree(modules_dir)
-    modules_dir.mkdir()
-
-    for module_name, module_versions in module_versions_dict.items():
-        _download_module(module_name, module_versions)
+    _download_module_registries(module_versions_dict)
+    _fetch_modules(module_versions_dict)
 
 
 def _load_mod_graph() -> dict[str, Any]:
@@ -51,44 +63,55 @@ def _load_mod_graph() -> dict[str, Any]:
         _BAZEL,
         "mod",
         "graph",
-        "--enable_bzlmod",
-        "--config=internet",
         "--include_builtin",
+        "--include_unused",
         "--output=json",
         "--verbose",
-        "--include_unused",
-        f"--registry={_REGISTRY}",
-    ]))
+    ] + _COMMON_BAZEL_ARGS, text=True))
 
 
-def _get_module_versions(mod_graph: dict[str, Any]) -> dict[str, set[str]]:
-    module_versions_dict: dict[str, set[str]] = collections.defaultdict(set)
-    _walk_mod_graph(mod_graph, module_versions_dict)
-    print(module_versions_dict)
-    return module_versions_dict
+def _get_module_versions(mod_graph: dict[str, Any]) -> set[ModuleVersion]:
+    module_versions = set[str]()
+    _walk_mod_graph(mod_graph, module_versions)
+    logging.info(module_versions)
+    return module_versions
 
-def _walk_mod_graph(mod_graph: dict[str, Any], module_versions_dict: dict[str, set[str]]):
+
+def _walk_mod_graph(mod_graph: dict[str, Any], module_versions: set[ModuleVersion]):
     key = mod_graph["key"]
+
+    if key != "<root>" and "@" not in key:
+        logging.error("Unrecognized repo name %s", key)
+        sys.exit(1)
 
     if "@" in key:
         module_name, version = key.split("@", 1)
-        original_version = mod_graph.get("originalVersion", version)
-        if not original_version:
-            original_version = version
         # <name>@_ is for builtin modules
-        if original_version != "_":
-            module_versions_dict[module_name].add(original_version)
-    elif key != "<root>":
-        logging.error("Unrecognized repo name %s", key)
-        sys.exit(1)
+        if version != "_":
+            unused = mod_graph.get("unused", False)
+            module_versions.add(ModuleVersion(module_name, version, unused))
 
     # bazel mod already trims visited edges, so no need to optimize for
     # visited edges here.
     for dep in mod_graph.get("dependencies", []):
-        _walk_mod_graph(dep, module_versions_dict)
+        _walk_mod_graph(dep, module_versions)
 
 
-def _download_module(module_name: str, module_versions: set[str]):
+def _download_module_registries(module_versions: set[ModuleVersion]):
+    # return  # FIXME this is skipped for now
+    modules_dir = _LOCAL_REGISTRY / "modules"
+    if modules_dir.is_dir():
+        shutil.rmtree(modules_dir)
+    modules_dir.mkdir()
+
+    module_versions_dict: dict[str, set[ModuleVersion]] = collections.defaultdict(set)
+    for module_version in module_versions:
+        module_versions_dict[module_version.module_name].add(module_version)
+    for module_name, module_versions in module_versions_dict.items():
+        _download_module_registry(module_name, module_versions)
+
+
+def _download_module_registry(module_name: str, module_versions: set[ModuleVersion]):
     """Pull necessary versions of a module from BCR to local registry"""
     logging.info("Downloading module %s", module_name)
     module_dir = pathlib.Path("modules", module_name)
@@ -96,8 +119,9 @@ def _download_module(module_name: str, module_versions: set[str]):
               lambda remote_file, local_file: _inject_versions(remote_file, local_file, module_versions))
 
     for module_version in module_versions:
-        logging.info("Downloading %s@%s", module_name, module_version)
-        version_dir = module_dir / module_version
+        logging.info("Downloading registry for %s@%s",
+                     module_name, module_version.version)
+        version_dir = module_dir / module_version.version
         _download(version_dir / "MODULE.bazel")
         _download(version_dir / "source.json")
 
@@ -106,9 +130,11 @@ def _download_module(module_name: str, module_versions: set[str]):
             for patch_name in source_json.get("patches", {}):
                 _download(version_dir / "patches" / patch_name)
 
-def _inject_versions(remote_file: BytesIO, local_file: BytesIO, module_versions: set[str]):
+
+def _inject_versions(remote_file: BytesIO, local_file: BytesIO, module_versions: set[ModuleVersion]):
     metadata = json.load(io.TextIOWrapper(remote_file, "utf-8"))
-    metadata["versions"] = list(module_versions)
+    metadata["versions"] = [
+        module_version.version for module_version in module_versions]
     json.dump(metadata, io.TextIOWrapper(local_file, "utf-8"),
               sort_keys=True, indent=4)
 
@@ -128,6 +154,30 @@ def _download(
     except urllib.error.HTTPError:
         logging.error("Cannot download %s", url)
         raise
+
+
+def _fetch_modules(module_versions_dict: dict[str, set[ModuleVersion]]):
+    used = set[ModuleVersion]()
+    for module_versions in module_versions_dict.values():
+        used.update(module_version for module_version in module_versions if module_version.used)
+
+    subprocess.check_call([
+        _BAZEL,
+        "fetch",
+    ] + _COMMON_BAZEL_ARGS + [
+        f"--repo=@@{module_version.canonical_repo_name()}" for module_version in used
+    ])
+
+    output_base = pathlib.Path(subprocess.check_output(
+        [_BAZEL, "info", "output_base"], text=True).strip())
+
+    cache_dir = _LOCAL_REGISTRY / "cache"
+    if cache_dir.is_dir():
+        shutil.rmtree(cache_dir)
+
+    for module_version in used:
+        shutil.copytree(output_base / "external" / module_version.canonical_repo_name(),
+                        cache_dir / module_version.canonical_repo_name())
 
 
 if __name__ == "__main__":
