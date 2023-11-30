@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a479f4f3_cf8deaff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T23:42:32Z",
+      "side": 1,
+      "message": "As said in another comment:\n\n- If adding a unit test -\u003e build/kernel/kleaf/tests\n- If adding an \"integration\" test that depends on `//common:kernel_aarch64` -\u003e //common:kernel_aarch64_additional_tests",
+      "parentUuid": "5e8b591a_0fa63914",
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3240cad8_d85c82c9",
         "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
         "patchSetId": 1
