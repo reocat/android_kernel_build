@@ -297,7 +297,7 @@ config_setting(
 bool_setting(
     name = "fail_action_write_to_file",
     build_setting_default = False,
-    visibility = ["//build/kernel/kleaf:__pkg__"],
+    visibility = ["//visibility:public"],
 )
 
 py_binary(
@@ -478,10 +478,10 @@ platform(
 
 python_interpreter_file(
     name = "python_interpreter_file",
-    visibility = ["//build/kernel:__pkg__"],
+    visibility = ["//build/kernel:hermetic-tools"],
 )
 
 python_runtime_files(
     name = "python_runtime_files",
-    visibility = ["//build/kernel:__pkg__"],
+    visibility = ["//build/kernel:hermetic-tools"],
 )

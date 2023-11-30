@@ -387,7 +387,7 @@ bool_flag(
     # TODO(b/291816237): Set this to true once build.config.common no longer
     #   hardcodes DTC.
     build_setting_default = True,
-    visibility = ["//build/kernel:__pkg__"],
+    visibility = ["//build/kernel:hermetic-tools"],
 )
 
 # Default is false.
@@ -404,7 +404,7 @@ bool_flag(
 config_setting(
     name = "workaround_btrfs_b292212788_is_true",
     flag_values = {":workaround_btrfs_b292212788": "1"},
-    visibility = ["//build/kernel:__pkg__"],
+    visibility = ["//build/kernel:hermetic-tools"],
 )
 
 # Default is false.
@@ -498,13 +498,13 @@ string_flag(
 config_setting(
     name = "debug_cache_dir_conflict_is_resolve",
     flag_values = {":debug_cache_dir_conflict": "resolve"},
-    visibility = ["//build/kernel:__pkg__"],
+    visibility = ["//build/kernel:hermetic-tools"],
 )
 
 config_setting(
     name = "debug_cache_dir_conflict_is_detect",
     flag_values = {":debug_cache_dir_conflict": "detect"},
-    visibility = ["//build/kernel:__pkg__"],
+    visibility = ["//build/kernel:hermetic-tools"],
 )
 
 # If --lto=none, or if --kasan/--kcsan, LTO should be set to none.
@@ -514,7 +514,7 @@ selects.config_setting_group(
         ":debug_cache_dir_conflict_is_resolve",
         ":debug_cache_dir_conflict_is_detect",
     ],
-    visibility = ["//build/kernel:__pkg__"],
+    visibility = ["//build/kernel:hermetic-tools"],
 )
 
 # Debug flag to control make verbosity
