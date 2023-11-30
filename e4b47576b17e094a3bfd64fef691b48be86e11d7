@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "57be284c_cf54f7d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:41:48Z",
+      "side": 1,
+      "message": "also please add some unit test for the new rule",
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3240cad8_d85c82c9",
         "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
         "patchSetId": 1
