@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3240cad8_d85c82c9",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:40:10Z",
+      "side": 1,
+      "message": "Can you explain why we need a warning here? Is it not valid to have an empty archive?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f63068a8_e2be04fe",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:40:10Z",
+      "side": 1,
+      "message": "```\n# Make unifdef, required by scripts/headers_install.sh\n```",
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "942f6db9_3268745d",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:40:10Z",
+      "side": 1,
+      "message": "Is there a reason why we cannot use `make headers_install` just like kernel_uapi_headers?\n\nThe generated makefile can include a phony `headers_install` target if necessary.\n\nThe concern is that if Kbuild changes upstream, then we might also want to change this code, but we may miss that.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 15
+      },
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d27970_8e250295",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:40:10Z",
+      "side": 1,
+      "message": "nitty nit:\n\nCould there be a lot of headers (a very long list)?\n\nIf so, consider using args (untested)\n\n```\nargs \u003d ctx.actions.args()\nargs.use_param_file(\"%s\", use_always\u003dTrue)\n# note: you can avoid depset expansion by avoiding ctx.files.X!\nargs.add_all(depset(transitive \u003d [target.files for target in ctx.attr.srcs]))\n```\n\nthen in L68, add `arguments \u003d [args]` to `ctx.actions.run_shell()`\n\nthen in the shell script, `$1` is the file that contains all the srcs. You can use `while read hdr; do ; ...; done \u003c $1`\n\nThis avoids expanding the paths at analysis phase, so you don\u0027t get a super big shell script.\n\n---\n\nYou can also further optimize for the small case by using `args.use_param_file(\"--flagfile\u003d%s\", use_always\u003dFalse)` and parse for `--flagfile` in the script. If the flag is set, use its contents; otherwise use `$@` directly. (Python\u0027s absl lib already handles --flagfile, but we are using shell here, so you have to parse manually)",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 70
+      },
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
