@@ -328,6 +328,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8b69bb3_d894e71f",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T23:40:20Z",
+      "side": 1,
+      "message": "Such tests should be added to `//common:kernel_aarch64_additional_tests` (and other archs). Once you add these \"integration\" tests to those test suites, our presubmit automatically catches any errors.",
+      "parentUuid": "2d246ad6_8e30b8f2",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 15
+      },
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1d27970_8e250295",
         "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
         "patchSetId": 1
