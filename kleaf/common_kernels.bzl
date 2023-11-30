@@ -764,7 +764,7 @@ def _define_common_kernel(
             name + "_uapi_headers",
         ],
         visibility = [
-            Label("//build/kernel/kleaf:__pkg__"),
+            Label("//build/kernel/kleaf:__subpackages__"),
         ],
     )
 

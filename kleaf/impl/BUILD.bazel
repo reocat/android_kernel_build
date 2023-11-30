@@ -293,7 +293,7 @@ config_setting(
 bool_flag(
     name = "incompatible_disable_hermetic_tools_info",
     build_setting_default = True,
-    visibility = ["//build/kernel:__pkg__"],
+    visibility = ["//build/kernel:__subpackages__"],
 )
 
 # If true, fail_action() does not fail to build, but write failure
@@ -301,7 +301,7 @@ bool_flag(
 bool_setting(
     name = "fail_action_write_to_file",
     build_setting_default = False,
-    visibility = ["//build/kernel/kleaf:__pkg__"],
+    visibility = ["//build/kernel/kleaf:__subpackages__"],
 )
 
 py_binary(
@@ -476,10 +476,10 @@ platform(
 
 python_interpreter_file(
     name = "python_interpreter_file",
-    visibility = ["//build/kernel:__pkg__"],
+    visibility = ["//build/kernel:__subpackages__"],
 )
 
 python_runtime_files(
     name = "python_runtime_files",
-    visibility = ["//build/kernel:__pkg__"],
+    visibility = ["//build/kernel:__subpackages__"],
 )
