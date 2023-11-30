@@ -164,6 +164,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73df9fd3_62874551",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:59:54Z",
+      "side": 1,
+      "message": "It is intentionally in `kleaf/impl` because a user of `fail_action()` shouldn\u0027t need to know that it is depending on :fail_action_write_to_file. It is an implicit dependency.\n\nIdeally, this should really be visibility \u003d \u003cevery target that uses fail_action but not any other targets\u003e, but unfortunately Bazel doesn\u0027t do visibility based on target types, but based on packages.\n\n(This may worth a Bazel fetaure...)",
+      "parentUuid": "60de76d5_a97a297e",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 58
+      },
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "91ab76fc_4051ec73",
         "filename": "kleaf/impl/BUILD.bazel",
         "patchSetId": 3
