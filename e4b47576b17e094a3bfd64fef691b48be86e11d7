@@ -150,6 +150,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "55eb0bf7_0982b822",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T23:38:59Z",
+      "side": 1,
+      "message": "My mistake. glob() has allow_empty\u003dTrue by default.\n\nhttps://bazel.build/reference/be/functions#glob\n\nbut still, if it is valid to have an empty archive, I think the warning should be dropped because a user has no mechanism to silence this warning when they intend to create an empty archive. Creating another attribute just for this purpose seems too much.",
+      "parentUuid": "fa9a9862_93ca4aa0",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f63068a8_e2be04fe",
         "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
         "patchSetId": 1
@@ -268,6 +292,30 @@
       "side": 1,
       "message": "Right, but the headers aren\u0027t in the kernel tree, so we\u0027d need to copy them there to \"pretend\" they\u0027re in tree for `make headers_install` to work, right?",
       "parentUuid": "5a8b3493_9360083f",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 15
+      },
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d246ad6_8e30b8f2",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T23:38:59Z",
+      "side": 1,
+      "message": "Maybe there are some Kbuild tricks to do to avoid copying? e.g. `make -C \u003cexternal directory\u003e M\u003d$(realpath \u003cexternal directory\u003e --relative-to $KERNEL_DIR)` (like how kernel_module handles it).\n\nI have zero idea whether this would work or not, though.\n\n\u003e we\u0027d need to copy them there to \"pretend\" they\u0027re in tree\n\nYou can do that because you are in the sandbox. Modifications don\u0027t affect the real tree. (Use `utils.check_sandbox_cmd()` to check at build time)\n\nAnd as a fallback, I am fine with your implementation right now. Just add some tests against `//common:kernel_*` to ensure that, if Kbuild changes (so the API for these scripts / binaries change), we get an early error and know we need to fix it.",
+      "parentUuid": "7bd453c6_bff72777",
       "range": {
         "startLine": 41,
         "startChar": 0,
