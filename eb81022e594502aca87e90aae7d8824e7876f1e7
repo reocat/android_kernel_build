@@ -1,5 +1,177 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6fe995d_0178e728",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:20:06Z",
+      "side": 1,
+      "message": "I know this is abandoned, but I think one of the visibility (for fail_action) do need to be fixed. The others shouldn\u0027t need to be fixed, and they all seem to be caused by hermetic_tools() being used somewhere other than //build/kernel. Do you know where is hermetic_tools() also used?",
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ae6a2dc_31144941",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:20:06Z",
+      "side": 1,
+      "message": "Should only be used by //build/kernel:hermetic-tools",
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d19e1e45_0043df7f",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:20:06Z",
+      "side": 1,
+      "message": "Should only be used by //build/kernel:hermetic-tools",
+      "range": {
+        "startLine": 401,
+        "startChar": 0,
+        "endLine": 401,
+        "endChar": 48
+      },
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f94b6b7b_feb4f79b",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:20:06Z",
+      "side": 1,
+      "message": "Should only be used by //build/kernel:hermetic-tools\n\nsame below",
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ca5fb48_5e6e9ee8",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:20:06Z",
+      "side": 1,
+      "message": "Should not need because the only target that depends on it is //build/kernel/kleaf:gen_ddk_headers, via label_flag\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/BUILD.bazel;l\u003d668;drc\u003d614299abdb955f1dccf73f2bb3b559832fed0361",
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2009e242_93e6fdc3",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:20:06Z",
+      "side": 1,
+      "message": "Should not need, because the only target that depends on this should be //build/kernel:hermetic-tools",
+      "range": {
+        "startLine": 296,
+        "startChar": 49,
+        "endLine": 296,
+        "endChar": 50
+      },
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "551d3ead_b9e5492a",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:20:06Z",
+      "side": 1,
+      "message": "visibility public, because this is a default dependency for `fail_action()` which is a public interface",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 58
+      },
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91ab76fc_4051ec73",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:20:06Z",
+      "side": 1,
+      "message": "Should not need, because the only target that depends on this should be //build/kernel:hermetic-tools",
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8393094d_92a33d50",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-11-30T22:20:06Z",
+      "side": 1,
+      "message": "Should not need, because the only target that depends on this should be //build/kernel:hermetic-tools",
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
