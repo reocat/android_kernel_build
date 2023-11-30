@@ -140,6 +140,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60de76d5_a97a297e",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-11-30T22:57:03Z",
+      "side": 1,
+      "message": "hmm, a public dependency should not be in kleaf/impl/ then?",
+      "parentUuid": "551d3ead_b9e5492a",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 58
+      },
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "91ab76fc_4051ec73",
         "filename": "kleaf/impl/BUILD.bazel",
         "patchSetId": 3
