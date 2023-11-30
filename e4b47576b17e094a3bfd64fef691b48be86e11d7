@@ -192,6 +192,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f402b19d_b9903a25",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-11-30T23:49:18Z",
+      "side": 1,
+      "message": "Okay, sounds good. I\u0027ll drop this in next rev.",
+      "parentUuid": "55eb0bf7_0982b822",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f63068a8_e2be04fe",
         "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
         "patchSetId": 1
@@ -357,6 +381,30 @@
       "writtenOn": "2023-11-30T23:40:20Z",
       "side": 1,
       "message": "Such tests should be added to `//common:kernel_aarch64_additional_tests` (and other archs). Once you add these \"integration\" tests to those test suites, our presubmit automatically catches any errors.",
+      "parentUuid": "2d246ad6_8e30b8f2",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 15
+      },
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b5b7857_7f31349a",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2023-11-30T23:49:18Z",
+      "side": 1,
+      "message": "Yeah, the module method works because the kbuild provides that `M` flag for external directories. I don\u0027t see any such thing for the `headers_install` target. Everything looks to be set within this one file without ways to influence the inputs from the outside: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/scripts/Makefile.headersinst\n\nI\u0027ll add an integration test for this as well. Still coming up to speed on the testing portion, so may be a day or two.",
       "parentUuid": "2d246ad6_8e30b8f2",
       "range": {
         "startLine": 41,
