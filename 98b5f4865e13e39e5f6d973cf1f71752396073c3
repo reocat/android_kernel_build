@@ -46,6 +46,30 @@
       },
       "revId": "98b5f4865e13e39e5f6d973cf1f71752396073c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31160920_fd72396c",
+        "filename": "kleaf/impl/utils.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-01T00:09:40Z",
+      "side": 1,
+      "message": "Nice! TIL\n\nThough, this means with `--config\u003dlocal` developers are still going to suffer long paths 😞",
+      "parentUuid": "6d44ab95_476c5d72",
+      "range": {
+        "startLine": 187,
+        "startChar": 37,
+        "endLine": 187,
+        "endChar": 60
+      },
+      "revId": "98b5f4865e13e39e5f6d973cf1f71752396073c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
