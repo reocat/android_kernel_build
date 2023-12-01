@@ -98,14 +98,14 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
 
     maybe(
         repo_rule = kleaf_local_repository,
-        name = "rules_pkg",
-        path = "external/rules_pkg",
+        name = "rules_license",
+        path = "external/bazelbuild-rules_license",
     )
 
     maybe(
         repo_rule = kleaf_local_repository,
-        name = "rules_license",
-        path = "external/bazelbuild-rules_license",
+        name = "rules_pkg",
+        path = "external/rules_pkg",
     )
 
     # Superset of all tools we need from host.
