@@ -16,6 +16,23 @@
       "message": "(see TH error)",
       "revId": "e7203983ab274b4fbb30c7aae307c43ef9e2ae70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45002cce_0e7da4cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2023-12-01T07:18:37Z",
+      "side": 1,
+      "message": "I didn\u0027t realize that this is a side effect of --incompatible_sandbox_hermetic_tmp, but a very welcome one 😊",
+      "revId": "e7203983ab274b4fbb30c7aae307c43ef9e2ae70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
