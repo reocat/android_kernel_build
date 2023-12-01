@@ -418,6 +418,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7b014f2_b8f4619b",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-01T00:03:28Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t see any such thing for the `headers_install` target\n\nIf we were to go that route, then we\u0027ll need some patch to \"support make headers_install for external modules\". Assuming that the upstream will reject changes related to out-of-tree modules, this will be another `ANDROID:` patch. I agree that this is not ideal either.",
+      "parentUuid": "2b5b7857_7f31349a",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 15
+      },
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d1d27970_8e250295",
         "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
         "patchSetId": 1
