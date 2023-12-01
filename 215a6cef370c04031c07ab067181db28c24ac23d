@@ -16,6 +16,24 @@
       "message": "LGTM. An interesting test to be added here would be to try the `strip_prefix` in attribute `pkg_files`, and see whether it can take wild cards.\n\nFor example, given:\n```\nbazel-out/k8-fastbuild-ST-c33f95032a75/bin/common/kunit_x86_64/mm/kfence/kfence_test.ko\n```\n\nStrip off prefix:\n```\nstrip_prefix: */*/bin/common/kunit_x86_64\n```\n\nAppend prefix:\n```\nprefix: testcases/kunit/x86_64\n```\n\nFinal desired result:\n```\ntestcases/kunit/x86_64/mm/kfence/kfence_test.ko\n```",
       "revId": "215a6cef370c04031c07ab067181db28c24ac23d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0534dad_3e788778",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1942600
+      },
+      "writtenOn": "2023-12-01T22:37:05Z",
+      "side": 1,
+      "message": "I can test this separately.",
+      "parentUuid": "db8e9db2_ba74444e",
+      "revId": "215a6cef370c04031c07ab067181db28c24ac23d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
