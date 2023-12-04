@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3453d173_5795b6eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2029640
+      },
+      "writtenOn": "2023-12-04T18:03:20Z",
+      "side": 1,
+      "message": "Yeah we can remove the one in https://source.corp.google.com/h/android/platform/superproject/main/+/main:bootable/libbootloader/gbl/integration/aosp_u-boot-mainline/workspace.bzl;l\u003d37;bpv\u003d1.",
+      "parentUuid": "742aa0cf_c454c788",
+      "revId": "dd46ce695c44e29a0633d0240eba88cca38c2701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7487a8f2_0be29969",
