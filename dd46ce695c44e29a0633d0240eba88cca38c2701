@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "742aa0cf_c454c788",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-12-04T08:10:05Z",
+      "side": 1,
+      "message": "@zyecheng@google.com This cl caused build error for u-boot. https://android-build.corp.google.com/artifact/pending/P66263312/gbl_efi_dist_and_test/latest/view/logs%2Fbuild_error.log\n\nCaused by redefine of rules_license at https://source.corp.google.com/h/android/platform/superproject/main/+/main:bootable/libbootloader/gbl/integration/aosp_u-boot-mainline/workspace.bzl;l\u003d37;bpv\u003d1\n\nAny suggestion this can be fixed? Would another cl of removing rules_license from aosp_u-boot-mainline/workspace.bzl under the same topic work?",
+      "revId": "dd46ce695c44e29a0633d0240eba88cca38c2701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7487a8f2_0be29969",
