@@ -52,6 +52,24 @@
       "parentUuid": "a0534dad_3e788778",
       "revId": "215a6cef370c04031c07ab067181db28c24ac23d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce9ae40f_ed85bfc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1942600
+      },
+      "writtenOn": "2023-12-04T18:06:05Z",
+      "side": 1,
+      "message": "I added the tests to this CL. Unfortunately, stripping via wildcards doesn\u0027t work. But overall this is still better. We\u0027ll have to get the directory names via a different method.",
+      "parentUuid": "42874aa2_4d3aa603",
+      "revId": "215a6cef370c04031c07ab067181db28c24ac23d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
