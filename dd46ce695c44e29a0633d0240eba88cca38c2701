@@ -36,6 +36,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8abea5cf_4eb8f76e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-05T01:07:54Z",
+      "side": 1,
+      "message": "You\u0027ll need to cherry-pick CL:2855565 to a few more branches before you can submit this. This includes:\n\n- kleaf_docs\n- uboot mainline\n- raviole mainline in partner gerrit",
+      "revId": "dd46ce695c44e29a0633d0240eba88cca38c2701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7487a8f2_0be29969",
