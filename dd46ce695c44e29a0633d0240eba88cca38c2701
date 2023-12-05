@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d4a8b94_612d31f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-05T01:08:27Z",
+      "side": 1,
+      "message": "unresolving\n\nAnd send GKI newsletter so partners update their mainline branches too",
+      "parentUuid": "8abea5cf_4eb8f76e",
+      "revId": "dd46ce695c44e29a0633d0240eba88cca38c2701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7487a8f2_0be29969",
         "filename": "kleaf/workspace.bzl",
         "patchSetId": 1
