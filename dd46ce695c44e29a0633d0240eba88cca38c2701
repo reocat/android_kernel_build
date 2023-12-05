@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9f5e04b_facf2ecc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-12-05T03:42:40Z",
+      "side": 1,
+      "message": "Actually https://android-review.git.corp.google.com/c/platform/bootable/libbootloader/+/2858606 fixes the issue.",
+      "parentUuid": "3453d173_5795b6eb",
+      "revId": "dd46ce695c44e29a0633d0240eba88cca38c2701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7487a8f2_0be29969",
