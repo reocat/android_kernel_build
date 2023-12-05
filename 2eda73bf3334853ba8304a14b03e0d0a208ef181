@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4172f4a_c6652dbf",
+        "filename": "kleaf/tests/zip_test/zip_content_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-05T01:14:03Z",
+      "side": 1,
+      "message": "nit: perhaps do this?\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/tests/utils/contain_lines_test.py;l\u003d59;drc\u003d986bc541400174b0bce5a51b4872047bcab42aa1\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/tests/utils/contain_lines_test.py;l\u003d126;drc\u003d986bc541400174b0bce5a51b4872047bcab42aa1",
+      "revId": "2eda73bf3334853ba8304a14b03e0d0a208ef181",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b047cf4_96db01eb",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-05T01:14:03Z",
+      "side": 1,
+      "message": "unnecessary change",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 5
+      },
+      "revId": "2eda73bf3334853ba8304a14b03e0d0a208ef181",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
