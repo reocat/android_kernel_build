@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15c23cb7_c560cdaf",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-12-06T01:55:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4956e294_1d0b4588",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 7
+      },
+      "revId": "1a0df124a1a2d9bdf66162072a2439c2880e878f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d339d8d_15b42406",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-06T01:28:13Z",
       "side": 1,
       "message": "docs go below def\n\nAlso the convention is\n\n```\n\"\"\"One line description. Do not exceed one line.\n\nDetailed description\ncan be multiline\n\nArgs:\n    arg1: doc of arg1\n    arg_2: doc of arg2\n\"\"\"\n```\n\nand an optional `Returns:` if there\u0027s a return value.\n\nYou can look up other scripts in the kleaf/ directory for examples.",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 7
+      },
+      "revId": "1a0df124a1a2d9bdf66162072a2439c2880e878f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77faae7e_3e05da25",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2023-12-06T01:55:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d339d8d_15b42406",
       "range": {
         "startLine": 55,
         "startChar": 0,
