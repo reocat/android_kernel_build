@@ -62,6 +62,24 @@
       "message": "Do you need to expose this? Where is this used?",
       "revId": "1a0df124a1a2d9bdf66162072a2439c2880e878f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e70f3c_77fa0360",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 14
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-06T01:31:30Z",
+      "side": 1,
+      "message": "Used in CL:2849975",
+      "parentUuid": "f6e302f3_4fe3aa5a",
+      "revId": "1a0df124a1a2d9bdf66162072a2439c2880e878f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
