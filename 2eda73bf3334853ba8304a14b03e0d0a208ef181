@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe2e2bf5_192f43b3",
+        "filename": "kleaf/tests/zip_test/zip_content_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-12-06T03:39:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4172f4a_c6652dbf",
+      "revId": "2eda73bf3334853ba8304a14b03e0d0a208ef181",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b047cf4_96db01eb",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-12-05T01:14:03Z",
       "side": 1,
       "message": "unnecessary change",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 5
+      },
+      "revId": "2eda73bf3334853ba8304a14b03e0d0a208ef181",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67f5018b_2f21fb89",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1990655
+      },
+      "writtenOn": "2023-12-06T03:39:08Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2b047cf4_96db01eb",
       "range": {
         "startLine": 100,
         "startChar": 0,
