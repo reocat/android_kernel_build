@@ -54,6 +54,7 @@ def main():
     mod_graph = _load_mod_graph()
     module_versions_dict = _get_module_versions(mod_graph)
     _download_module_registries(module_versions_dict)
+    _fetch_modules(module_versions_dict)
 
 
 def _load_mod_graph() -> dict[str, Any]:
@@ -153,6 +154,30 @@ def _download(
     except urllib.error.HTTPError:
         logging.error("Cannot download %s", url)
         raise
+
+
+def _fetch_modules(module_versions_dict: dict[str, set[ModuleVersion]]):
+    used = set[ModuleVersion]()
+    for module_versions in module_versions_dict.values():
+        used.update(module_version for module_version in module_versions if module_version.used)
+
+    subprocess.check_call([
+        _BAZEL,
+        "fetch",
+    ] + _COMMON_BAZEL_ARGS + [
+        f"--repo=@@{module_version.canonical_repo_name()}" for module_version in used
+    ])
+
+    output_base = pathlib.Path(subprocess.check_output(
+        [_BAZEL, "info", "output_base"], text=True).strip())
+
+    cache_dir = _LOCAL_REGISTRY / "cache"
+    if cache_dir.is_dir():
+        shutil.rmtree(cache_dir)
+
+    for module_version in used:
+        shutil.copytree(output_base / "external" / module_version.canonical_repo_name(),
+                        cache_dir / module_version.canonical_repo_name())
 
 
 if __name__ == "__main__":
