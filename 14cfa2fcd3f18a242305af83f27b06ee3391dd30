@@ -25,6 +25,32 @@
       },
       "revId": "14cfa2fcd3f18a242305af83f27b06ee3391dd30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000061115162",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2863474?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3eba6b23_850cd62f",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-12-07T21:12:31Z",
+      "side": 1,
+      "message": "Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 1
+      },
+      "revId": "14cfa2fcd3f18a242305af83f27b06ee3391dd30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
