@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "970027e0_ca42a853",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-07T21:48:19Z",
+      "side": 1,
+      "message": "This change only affects tests, not releases, so it is rather safe.",
+      "revId": "a30c9b0ec173f5d9c0c035300503d63861644009",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0dfa0f6f_4e69f497",
         "filename": "kleaf/artifact_tests/BUILD.bazel",
         "patchSetId": 1
