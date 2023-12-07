@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cdc7d8e1_aed52817",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-07T18:56:56Z",
+      "side": 1,
+      "message": "Because raviole mainline also uses build/kernel from the main branch. It also loads workspace.bzl.\n\nThis also includes partner\u0027s mainline branches. We don\u0027t know how many are there, so we usually just send a GKI newsletter and wait for a few weeks.\n\n(That is, until we adopt bzlmod -- go/kleaf-bzlmod-migration, we\u0027ll likely have to do this every time we add something to workspace.bzl )",
+      "parentUuid": "1032de5c_b5106d7b",
+      "revId": "dd46ce695c44e29a0633d0240eba88cca38c2701",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7487a8f2_0be29969",
         "filename": "kleaf/workspace.bzl",
         "patchSetId": 1
