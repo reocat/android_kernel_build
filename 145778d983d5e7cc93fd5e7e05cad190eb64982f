@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000061111709",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2863474?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ffb0cc43_918f7856",
+        "filename": "kleaf/artifact_tests/BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-12-07T20:36:10Z",
+      "side": 1,
+      "message": "syntax error near \u003c\u003c",
+      "range": {
+        "startLine": 39,
+        "startChar": 3,
+        "endLine": 39,
+        "endChar": 3
+      },
+      "revId": "145778d983d5e7cc93fd5e7e05cad190eb64982f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000061111709",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2863474?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d66db074_13762414",
+        "filename": "kleaf/kernel.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2023-12-07T20:36:10Z",
+      "side": 1,
+      "message": "syntax error near \u003c\u003c",
+      "range": {
+        "startLine": 21,
+        "startChar": 3,
+        "endLine": 21,
+        "endChar": 3
+      },
+      "revId": "145778d983d5e7cc93fd5e7e05cad190eb64982f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
