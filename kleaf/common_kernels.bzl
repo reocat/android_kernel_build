@@ -892,22 +892,23 @@ def _define_common_kernel(
 
     dist_targets.append(name + "_sbom")
 
-    copy_to_dist_dir(
+    kernel_abi_dist(
         name = name + "_dist",
+        kernel_abi = name + "_abi",
+        kernel_build_add_vmlinux = _GKI_ADD_VMLINUX,
         data = dist_targets,
         flat = True,
         dist_dir = "out/{name}/dist".format(name = name),
         log = "info",
     )
 
-    kernel_abi_dist(
+    native.alias(
         name = name + "_abi_dist",
-        kernel_abi = name + "_abi",
-        kernel_build_add_vmlinux = _GKI_ADD_VMLINUX,
-        data = dist_targets,
-        flat = True,
-        dist_dir = "out_abi/{name}/dist".format(name = name),
-        log = "info",
+        actual = name + "_dist",
+        deprecation = "Use //{package}:{name}_dist instead.".format(
+            package = native.package_name(),
+            name = name,
+        ),
     )
 
     _define_common_kernels_additional_tests(
