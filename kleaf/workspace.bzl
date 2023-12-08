@@ -90,12 +90,6 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         path = "external/python/absl-py",
     )
 
-    maybe(
-        repo_rule = kleaf_local_repository,
-        name = "io_bazel_stardoc",
-        path = "external/stardoc",
-    )
-
     # Superset of all tools we need from host.
     # For the subset of host tools we typically use for a kernel build,
     # see //build/kernel:hermetic-tools.
