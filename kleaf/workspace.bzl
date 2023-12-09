@@ -90,21 +90,6 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         path = "external/python/absl-py",
     )
 
-    # Superset of all tools we need from host.
-    # For the subset of host tools we typically use for a kernel build,
-    # see //build/kernel:hermetic-tools.
-    kleaf_host_tools_repo(
-        name = "kleaf_host_tools",
-        host_tools = [
-            "bash",
-            "perl",
-            "rsync",
-            "sh",
-            # For BTRFS (b/292212788)
-            "find",
-        ],
-    )
-
     # External repos without Bazel support.
     # https://docs.bazel.build/versions/main/external.html#non-bazel-projects
     new_kleaf_local_repository(
