@@ -41,3 +41,25 @@ kleaf_host_tools_repo = repository_rule(
         "host_tools": attr.string_list(doc = "List of host tools"),
     },
 )
+
+def _kleaf_host_tools_ext_impl(module_ctx):
+    host_tools = []
+    for module in module_ctx.modules:
+        for declared in module.tags.declare:
+            host_tools += declared.host_tools
+
+    kleaf_host_tools_repo(
+        name = "kleaf_host_tools",
+        host_tools = host_tools,
+    )
+
+kleaf_host_tools_ext = module_extension(
+    implementation = _kleaf_host_tools_ext_impl,
+    tag_classes = {
+        "declare": tag_class(
+            attrs = {
+                "host_tools": attr.string_list(doc = "List of host tools"),
+            },
+        ),
+    },
+)
