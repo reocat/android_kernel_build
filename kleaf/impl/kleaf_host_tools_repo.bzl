@@ -44,3 +44,23 @@ kleaf_host_tools_repo = repository_rule(
         "host_tools": attr.string_list(doc = "List of host tools"),
     },
 )
+
+def _kleaf_host_tools_ext_impl(_):
+    # Superset of all tools we need from host.
+    # For the subset of host tools we typically use for a kernel build,
+    # see //build/kernel:hermetic-tools.
+    kleaf_host_tools_repo(
+        name = "kleaf_host_tools",
+        host_tools = [
+            "bash",
+            "perl",
+            "rsync",
+            "sh",
+            # For BTRFS (b/292212788)
+            "find",
+        ],
+    )
+
+kleaf_host_tools_ext = module_extension(
+    implementation = _kleaf_host_tools_ext_impl,
+)

@@ -26,17 +26,3 @@ new_kleaf_local_repository(
         "prebuilts/ndk-r23",
     ],
 )
-
-load("//build/kernel/kleaf/impl:kleaf_host_tools_repo.bzl", "kleaf_host_tools_repo")
-
-kleaf_host_tools_repo(
-    name = "kleaf_host_tools",
-    host_tools = [
-        "bash",
-        "perl",
-        "rsync",
-        "sh",
-        # For BTRFS (b/292212788)
-        "find",
-    ],
-)
