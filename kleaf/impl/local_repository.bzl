@@ -90,3 +90,36 @@ new_kleaf_local_repository = repository_rule(
     },
     implementation = _new_kleaf_local_repository_impl,
 )
+
+def _kleaf_local_repository_ext_impl(module_ctx):
+    for module in module_ctx.modules:
+        for declared in module.tags.declare:
+            kleaf_local_repository(
+                name = declared.name,
+                path = declared.path,
+                path_candidates = declared.path_candidates,
+            )
+        for declared_new in module.tags.declare_new:
+            new_kleaf_local_repository(
+                name = declared_new.name,
+                build_file = declared_new.build_file,
+                path = declared_new.path,
+                path_candidates = declared_new.path_candidates,
+            )
+
+kleaf_local_repository_ext = module_extension(
+    implementation = _kleaf_local_repository_ext_impl,
+    tag_classes = {
+        "declare": tag_class(
+            attrs = _common_attrs() | {
+                "name": attr.string(mandatory = True),
+            },
+        ),
+        "declare_new": tag_class(
+            attrs = _common_attrs() | {
+                "name": attr.string(mandatory = True),
+                "build_file": attr.string(doc = "build file. Path is calculated with `repository_ctx.path(build_file)`"),
+            },
+        ),
+    },
+)
