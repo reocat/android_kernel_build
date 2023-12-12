@@ -10,19 +10,3 @@ key_value_repo(
         "common_kernel_package": common_kernel_package,
     },
 )
-
-load(
-    "//build/kernel/kleaf/impl:local_repository.bzl",
-    "new_kleaf_local_repository",
-)
-
-new_kleaf_local_repository(
-    name = "prebuilt_ndk",
-    build_file = "build/kernel/kleaf/ndk.BUILD",
-    path_candidates = [
-        # do not sort
-        "prebuilts/ndk-r26",
-        # TODO(b/309695443): Delete once all branches have switched to r26
-        "prebuilts/ndk-r23",
-    ],
-)
