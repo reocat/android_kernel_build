@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cbb5375_b3c6b5d6",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-12-12T09:48:05Z",
+      "side": 1,
+      "message": "do we really need a filegroup per bzl file? Can\u0027t it be just one?",
+      "revId": "2966e3fc848501c0692d5c11dc4164b4647882d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
