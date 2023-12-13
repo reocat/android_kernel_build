@@ -16,6 +16,24 @@
       "message": "do we really need a filegroup per bzl file? Can\u0027t it be just one?",
       "revId": "2966e3fc848501c0692d5c11dc4164b4647882d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f834d75b_b0895143",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-13T00:00:47Z",
+      "side": 1,
+      "message": "I need to call `stardoc()` once per bzl file. So I do need to separate them into multiple filegroup in the macro expansion phase.\n\nOn a second thought, I should just use exports_files with visibility set. I\u0027ll do this in the next CL.",
+      "parentUuid": "5cbb5375_b3c6b5d6",
+      "revId": "2966e3fc848501c0692d5c11dc4164b4647882d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
