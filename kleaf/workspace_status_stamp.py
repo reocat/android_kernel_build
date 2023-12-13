@@ -65,6 +65,7 @@ class LocalversionResult(PathPopen):
             ret = ret.removeprefix(self.removed_prefix)
         if self.suffix:
             ret += self.suffix
+        logging.error("localversion: %s", ret)
         return ret
 
 
@@ -141,6 +142,8 @@ def get_localversion_from_git(project: pathlib.Path) -> PathCollectible | None:
     suffix = None
     if os.environ.get("BUILD_NUMBER"):
         suffix = "-ab" + os.environ["BUILD_NUMBER"]
+
+    logging.error("%s -> %s", project.absolute(), suffix)
     return LocalversionResult(
         path=project,
         popen=popen,
