@@ -87,6 +87,30 @@
       },
       "revId": "321639086fca81443f737d52d6baa40fc1e82b79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d773bc8_404a4f18",
+        "filename": "kleaf/impl/local_repository.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1086744
+      },
+      "writtenOn": "2023-12-14T18:59:25Z",
+      "side": 1,
+      "message": "use_repo_rule is fully supported, not just to discourage load()s.\n\nYou can use dev_dependency on a repo rule usage itself like this:\n\n```\nlocal_repository \u003d use_repo_rule(...)\nlocal_repository(name \u003d \"X\", dev_dependency \u003d True)\n```",
+      "parentUuid": "e1bacc7a_dd811c1c",
+      "range": {
+        "startLine": 95,
+        "startChar": 16,
+        "endLine": 95,
+        "endChar": 37
+      },
+      "revId": "321639086fca81443f737d52d6baa40fc1e82b79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
