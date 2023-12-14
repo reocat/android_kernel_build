@@ -63,6 +63,30 @@
       },
       "revId": "321639086fca81443f737d52d6baa40fc1e82b79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1bacc7a_dd811c1c",
+        "filename": "kleaf/impl/local_repository.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-14T18:48:46Z",
+      "side": 1,
+      "message": "use_repo_rule doesn\u0027t have dev_dependency, though. Is there any plan to add dev_dependency to use_repo_rule?\n\nThis is not a big deal though; I don\u0027t think it is blocking us.",
+      "parentUuid": "aeffe78b_5f074db5",
+      "range": {
+        "startLine": 95,
+        "startChar": 16,
+        "endLine": 95,
+        "endChar": 37
+      },
+      "revId": "321639086fca81443f737d52d6baa40fc1e82b79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
