@@ -39,6 +39,30 @@
       },
       "revId": "321639086fca81443f737d52d6baa40fc1e82b79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeffe78b_5f074db5",
+        "filename": "kleaf/impl/local_repository.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-14T18:29:17Z",
+      "side": 1,
+      "message": "Is use_repo_rule a preferred option? I read your comment in\n\nhttps://github.com/bazelbuild/bazel/issues/17141#issuecomment-1622343142\n\nwhich gives me a sentiment that it is introduced to just discourage people from requesting `load()` in MODULE.bazel.\n\n---\n\n\u003e note that you might run into name conflicts if multiple modules provide tags with the same name. not sure how real that risk is.\n\nThis should not be a real risk for us because @@kleaf should be the only user (aosp/2863915). Though, I don\u0027t know if there\u0027s a way to restrict the visibility of this module extension.\n\nThat being said, I do agree that `use_repo_rule` will yield cleaner code, so I will use that. Thanks for your suggestion!",
+      "parentUuid": "f2c18194_0812c3bf",
+      "range": {
+        "startLine": 95,
+        "startChar": 16,
+        "endLine": 95,
+        "endChar": 37
+      },
+      "revId": "321639086fca81443f737d52d6baa40fc1e82b79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
