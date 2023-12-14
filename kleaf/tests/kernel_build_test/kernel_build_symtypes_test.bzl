@@ -66,7 +66,7 @@ def _make_kbuild_symtypes_test(kbuild_symtypes_flag_value):
             "expect_kbuild_symtypes": attr.bool(),
         },
         config_settings = {
-            "@//build/kernel/kleaf:kbuild_symtypes": kbuild_symtypes_flag_value,
+            str(Label("//build/kernel/kleaf:kbuild_symtypes")): kbuild_symtypes_flag_value,
         },
         extra_target_under_test_aspects = [kernel_env_aspect],
     )
