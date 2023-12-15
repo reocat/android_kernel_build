@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# This is an internal helper used by build.sh and build_abi.sh
 
 import argparse
 import enum
