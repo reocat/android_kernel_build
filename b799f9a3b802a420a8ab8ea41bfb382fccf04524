@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b399bf76_dfa022a6",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-12-15T13:49:25Z",
+      "side": 1,
+      "message": "Comma missing on previous line.\n\nPlease fix this ERROR reported by Buildifier: syntax error near \"label\"\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nsyntax error near \"label\"",
+      "range": {
+        "startLine": 342,
+        "startChar": 16,
+        "endLine": 342,
+        "endChar": 16
+      },
+      "revId": "b799f9a3b802a420a8ab8ea41bfb382fccf04524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
