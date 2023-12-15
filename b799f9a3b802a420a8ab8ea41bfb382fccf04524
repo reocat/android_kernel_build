@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac432c14_76fe04cc",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-12-15T14:18:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8f89f95_7fc85355",
+      "range": {
+        "startLine": 18,
+        "startChar": 9,
+        "endLine": 18,
+        "endChar": 12
+      },
+      "revId": "b799f9a3b802a420a8ab8ea41bfb382fccf04524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c629825d_904f7bbb",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-15T14:11:58Z",
       "side": 1,
       "message": "delete this line",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 1
+      },
+      "revId": "b799f9a3b802a420a8ab8ea41bfb382fccf04524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13d9c950_b19d8cde",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-12-15T14:18:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c629825d_904f7bbb",
       "range": {
         "startLine": 16,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92e1d848_926644a2",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-12-15T14:18:27Z",
+      "side": 1,
+      "message": "Most of those options are actually only build.sh.",
+      "parentUuid": "0c9e685f_5af9249d",
+      "range": {
+        "startLine": 4,
+        "startChar": 30,
+        "endLine": 4,
+        "endChar": 39
+      },
+      "revId": "b799f9a3b802a420a8ab8ea41bfb382fccf04524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec820e1d_288a2a26",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-12-15T14:11:58Z",
       "side": 1,
       "message": "```suggestion\nThis may cause `POST_DEFCONFIG_CMDS` to not be executed. Or\n```",
+      "range": {
+        "startLine": 281,
+        "startChar": 44,
+        "endLine": 281,
+        "endChar": 49
+      },
+      "revId": "b799f9a3b802a420a8ab8ea41bfb382fccf04524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d1a25fa_f8b00d06",
+        "filename": "kleaf/docs/errors.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-12-15T14:18:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec820e1d_288a2a26",
       "range": {
         "startLine": 281,
         "startChar": 44,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8ab1cba_8dbaa5d2",
+        "filename": "kleaf/docs/kleaf.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-12-15T14:18:27Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "22df48f1_145274f6",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 76
+      },
+      "revId": "b799f9a3b802a420a8ab8ea41bfb382fccf04524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b399bf76_dfa022a6",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-12-15T13:49:25Z",
       "side": 1,
       "message": "Comma missing on previous line.\n\nPlease fix this ERROR reported by Buildifier: syntax error near \"label\"\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nsyntax error near \"label\"",
+      "range": {
+        "startLine": 342,
+        "startChar": 16,
+        "endLine": 342,
+        "endChar": 16
+      },
+      "revId": "b799f9a3b802a420a8ab8ea41bfb382fccf04524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e10edd3a_d9a99788",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-12-15T14:18:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b399bf76_dfa022a6",
       "range": {
         "startLine": 342,
         "startChar": 16,
