@@ -16,10 +16,12 @@
 
 set -e
 
-BASE_DIR=$(readlink -f $(dirname $0)/../../)
+set -x
+
+BASE_DIR=$(readlink -f $(dirname $0)/../../../)
 
 # Build the hermetic container
-docker build -t hermetic $BASE_DIR/build/hermetic
+docker build -t hermetic $BASE_DIR/build/kernel/hermetic
 
 # Run the hermetic container
 docker run -ti                                                  \
