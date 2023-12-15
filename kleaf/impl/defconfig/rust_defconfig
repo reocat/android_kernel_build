@@ -3,3 +3,9 @@
 # support for Rust and Rust drivers being tested.
 
 CONFIG_RUST=y
+
+# TODO: Remove these once Rust binder is enabled
+# They are present to ensure Rust support is being exercised at least minimally
+CONFIG_SAMPLES=y
+CONFIG_SAMPLES_RUST=y
+CONFIG_SAMPLE_RUST_MINIMAL=y
