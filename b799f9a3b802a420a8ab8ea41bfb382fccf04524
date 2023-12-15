@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e1d1c2b_e566e427",
+        "filename": "kleaf/docs/build_configs.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2023-12-15T16:13:25Z",
+      "side": 1,
+      "message": "I know, I checked.\n\nIn any case `build_abi.sh` invoked `build.sh`.\n\nI don\u0027t see the significance of retaining one script\u0027s name but not the other.\n\nIs it time to just say \"legacy `build.config` files\"?",
+      "parentUuid": "92e1d848_926644a2",
+      "range": {
+        "startLine": 4,
+        "startChar": 30,
+        "endLine": 4,
+        "endChar": 39
+      },
+      "revId": "b799f9a3b802a420a8ab8ea41bfb382fccf04524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ec820e1d_288a2a26",
         "filename": "kleaf/docs/errors.md",
         "patchSetId": 2
