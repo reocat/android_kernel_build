@@ -49,3 +49,12 @@ exports_files([
     "riscv64",
     "x86_64",
 ]]
+
+filegroup(
+    name = "rust",
+    srcs = select({
+        "//build/kernel/kleaf:rust_is_enabled": ["rust_defconfig"],
+        "//conditions:default": [],
+    }),
+    visibility = ["//visibility:public"],
+)
