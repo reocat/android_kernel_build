@@ -158,6 +158,7 @@ own defconfig fragments to avoid fragmentation in the ecosystem (pun intended).
 
 *   `--btf_debug_info`
 *   `--page_size`
+*   `--rust`
 
 ### User-defined flags
 
