@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e0ffba0_d4d746cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3230548
+      },
+      "writtenOn": "2023-12-17T03:14:44Z",
+      "side": 1,
+      "message": "repo download -b change-2877378 kernel/build 2877378",
+      "revId": "e019da37d4d93b20f6f7f45807338ad88d174961",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
