@@ -16,6 +16,24 @@
       "message": "do we test this build in automation? Otherwise it will continuously go out of sync (and I keep forgetting that this exists)",
       "revId": "43337ece156eabd735426a0b007637bb52fa7339",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfcfed6d_fcb9a31b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-12-18T21:31:24Z",
+      "side": 1,
+      "message": "we do not, and it is currently still broken because of https://github.com/bazelbuild/bazel/issues/19355. It just serves as a reference to keep us honest in terms of hermeticity.",
+      "parentUuid": "804c3013_30c2a18f",
+      "revId": "43337ece156eabd735426a0b007637bb52fa7339",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
