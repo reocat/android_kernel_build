@@ -46,6 +46,30 @@
       },
       "revId": "35f1c7d42ceac52ad99a939c43b45d95b21c4415",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12ca7e2c_e87f3482",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-12-18T21:05:04Z",
+      "side": 1,
+      "message": "Correct, that is also somewhat a leftover from an experiment to have pigz and gzip at the same time:\n\n```\n \"@pigz//:pigz\": \"gzip\",\n \"@pigz\": \"pigz\",\n```\n\nI had hoped that I can workaround the unique key constrain, but that still did not work. Something that we possibly need to address for things like `toybox`.",
+      "parentUuid": "24856544_44507c3f",
+      "range": {
+        "startLine": 309,
+        "startChar": 12,
+        "endLine": 309,
+        "endChar": 26
+      },
+      "revId": "35f1c7d42ceac52ad99a939c43b45d95b21c4415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
