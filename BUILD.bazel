@@ -309,6 +309,11 @@ hermetic_tools(
             "//prebuilts/build-tools:path/linux-x86/find": "find",
         },
     }) | select({
+        "//build/kernel/kleaf:toolchain_from_sources_is_true": {
+        },
+        "//conditions:default": {
+        },
+    }) | select({
         "//build/kernel/kleaf:gzip_is_pigz_is_true": {
             "@pigz": "gzip",
         },
