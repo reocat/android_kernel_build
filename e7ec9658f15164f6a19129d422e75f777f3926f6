@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e0398356_7880e7ed",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T20:46:41Z",
+      "side": 1,
+      "message": "Actually, this is fine to have until we flip the flag on, I think",
+      "parentUuid": "7d44e476_b9679e47",
+      "range": {
+        "startLine": 138,
+        "startChar": 16,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "e7ec9658f15164f6a19129d422e75f777f3926f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "3746fbb2_1527027c",
         "filename": "kleaf/zopfli.BUILD",
         "patchSetId": 1
