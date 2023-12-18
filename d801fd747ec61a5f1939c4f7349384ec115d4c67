@@ -16,6 +16,23 @@
       "message": "hold",
       "revId": "d801fd747ec61a5f1939c4f7349384ec115d4c67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cea34f1_96d39fb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T20:50:16Z",
+      "side": 1,
+      "message": "This needs to hold until all users of --config\u003dfast has zopfli / pigz in their tree",
+      "revId": "d801fd747ec61a5f1939c4f7349384ec115d4c67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
