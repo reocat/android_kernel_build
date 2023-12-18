@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eeb0524_fd0f936a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T21:34:28Z",
+      "side": 1,
+      "message": "@maennich@google.com WDYT? Maybe there\u0027s a better way but I can\u0027t think of any right now.",
+      "revId": "159ee1956843503adc6f557a5fe6d03dcac80908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf5d2c6b_c1d0e13c",
+        "filename": "_setup_env.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T21:34:28Z",
+      "side": 1,
+      "message": "Please add a comment that this is for rust only.",
+      "revId": "159ee1956843503adc6f557a5fe6d03dcac80908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
