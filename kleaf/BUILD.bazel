@@ -407,11 +407,11 @@ config_setting(
     visibility = ["//build/kernel:__pkg__"],
 )
 
-# Default is false.
+# Default is true.
 # If true, use pigz as drop-in replacement for gzip.
 bool_flag(
     name = "gzip_is_pigz",
-    build_setting_default = False,
+    build_setting_default = True,
     visibility = ["//visibility:private"],
 )
 
