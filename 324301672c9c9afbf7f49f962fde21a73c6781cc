@@ -16,6 +16,24 @@
       "message": "These will be added to **all** kernel builds with `--rust`. Are you sure you want to do this? Are they critical for rust to be used in the kernel code? I am pushing back because I see \"samples\" in the name.\n\nIf you just want to create a build test that these options work, consider one of the following:\n\n* Defining a test kernel_build\n* Do this on the CI on a separate target, with `--defconfig_fragment` pointing to another additional defconfig file with these samples enabled\n* or any other solution that does NOT add them to all kernel builds when --rust is enabled.",
       "revId": "324301672c9c9afbf7f49f962fde21a73c6781cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32dc56a7_114e7579",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2023-12-18T22:03:03Z",
+      "side": 1,
+      "message": "These config options are not critical for running Rust code.\n\nThe intention, as described in the commit, was to make `--rust` produce a meaningfully testable build and revert once the Rust Binder driver lands, replacing it with enabling that. If you really don\u0027t want to land-and-later-revert this, I can try to put it somewhere else and delete it later. Without these settings, `--rust` will only create framework code that a sufficiently aggressive DCE will delete all of.\n\nMy main goal here is to make it so that I can get a cuttlefish build running in CI so we don\u0027t get any backsliding, and we can use it as a ratchet as we land more things.\n\nIf you still don\u0027t want me to add it to this file, where would you prefer I put a test defconfig? Would it go under `build/kernel/kleaf/tests/`? Those seem to be tests for the build system, rather than tests that involve actually booting a kernel.",
+      "parentUuid": "3b9b2f7b_89943d27",
+      "revId": "324301672c9c9afbf7f49f962fde21a73c6781cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
