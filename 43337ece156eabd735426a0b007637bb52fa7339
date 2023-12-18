@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "804c3013_30c2a18f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T21:27:03Z",
+      "side": 1,
+      "message": "do we test this build in automation? Otherwise it will continuously go out of sync (and I keep forgetting that this exists)",
+      "revId": "43337ece156eabd735426a0b007637bb52fa7339",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
