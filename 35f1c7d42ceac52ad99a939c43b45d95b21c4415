@@ -22,6 +22,30 @@
       },
       "revId": "35f1c7d42ceac52ad99a939c43b45d95b21c4415",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24856544_44507c3f",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T20:34:38Z",
+      "side": 1,
+      "message": "Buildifier won\u0027t clean it up because it doesn\u0027t know this is a label.",
+      "parentUuid": "64ea7915_db521405",
+      "range": {
+        "startLine": 309,
+        "startChar": 12,
+        "endLine": 309,
+        "endChar": 26
+      },
+      "revId": "35f1c7d42ceac52ad99a939c43b45d95b21c4415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
