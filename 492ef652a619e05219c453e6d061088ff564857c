@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f3b3312_f92aa825",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T22:14:46Z",
+      "side": 1,
+      "message": "Perhaps just use this flag name in the first place.\n\nAlso, the convention in bazel is generally that, when a flag is no longer experimental, you can still refer to it with the corresponding `--experimental_X` flag or `--(incompatible)_X` flag. So the two old lines should not be deleted.",
+      "revId": "492ef652a619e05219c453e6d061088ff564857c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
