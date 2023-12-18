@@ -37,6 +37,12 @@ new_kleaf_local_repository(
 )
 
 new_kleaf_local_repository(
+    name = "lz4",
+    build_file = "build/kernel/kleaf/lz4.BUILD",
+    path = "external/lz4",
+)
+
+new_kleaf_local_repository(
     name = "zopfli",
     build_file = "build/kernel/kleaf/zopfli.BUILD",
     path = "external/zopfli",
