@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca25c422_1b9f694f",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2023-12-18T21:00:12Z",
+      "side": 1,
+      "message": "yes for the newsletter entry, but I think we do not need to hold back merging as the use is guarded by flag.",
+      "parentUuid": "859803b6_ee908b02",
+      "range": {
+        "startLine": 138,
+        "startChar": 16,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "e7ec9658f15164f6a19129d422e75f777f3926f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "3746fbb2_1527027c",
