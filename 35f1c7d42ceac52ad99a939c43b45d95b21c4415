@@ -70,6 +70,30 @@
       },
       "revId": "35f1c7d42ceac52ad99a939c43b45d95b21c4415",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8cb6dc9_f9f1a42a",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T21:06:54Z",
+      "side": 1,
+      "message": "The way how hermetic_tools() does it is by adding more names in the values separated by `:`. See L315 below",
+      "parentUuid": "12ca7e2c_e87f3482",
+      "range": {
+        "startLine": 309,
+        "startChar": 12,
+        "endLine": 309,
+        "endChar": 26
+      },
+      "revId": "35f1c7d42ceac52ad99a939c43b45d95b21c4415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
