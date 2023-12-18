@@ -34,6 +34,24 @@
       "parentUuid": "3b9b2f7b_89943d27",
       "revId": "324301672c9c9afbf7f49f962fde21a73c6781cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6154d5fd_1b4cfe72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T22:10:30Z",
+      "side": 1,
+      "message": "I got your intention here. Perhaps just add a TODO comment to say that it should be replaced by binder configs later?",
+      "parentUuid": "32dc56a7_114e7579",
+      "revId": "324301672c9c9afbf7f49f962fde21a73c6781cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
