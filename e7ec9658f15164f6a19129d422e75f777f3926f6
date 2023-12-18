@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d44e476_b9679e47",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T20:31:21Z",
+      "side": 1,
+      "message": "This will need a GKI newsletter announcement for an ecosystem-wide manifest change\n\n(Yes we still don\u0027t have the importing of manifests I know...)",
+      "range": {
+        "startLine": 138,
+        "startChar": 16,
+        "endLine": 138,
+        "endChar": 31
+      },
+      "revId": "e7ec9658f15164f6a19129d422e75f777f3926f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3746fbb2_1527027c",
+        "filename": "kleaf/zopfli.BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T20:31:21Z",
+      "side": 1,
+      "message": "We should move this file to external/zopfli once we completed the bzlmod migration (CL:2863915). But it stays here for now.",
+      "revId": "e7ec9658f15164f6a19129d422e75f777f3926f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
