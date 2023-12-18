@@ -77,7 +77,6 @@ _HERMETIC_TOOLS = [
     "build-tools/path/linux-x86/ln",
     "build-tools/path/linux-x86/lpmake",
     "build-tools/path/linux-x86/ls",
-    "build-tools/path/linux-x86/lz4",
     "build-tools/path/linux-x86/m4",
     "build-tools/path/linux-x86/make",
     "build-tools/path/linux-x86/md5sum",
@@ -303,6 +302,13 @@ hermetic_tools(
         },
         "//conditions:default": {
             "build-tools/path/linux-x86/find": "find",
+        },
+    }) | select({
+        "//build/kernel/kleaf:toolchain_from_sources_is_true": {
+            "@lz4": "lz4",
+        },
+        "//conditions:default": {
+            "build-tools/path/linux-x86/lz4": "lz4",
         },
     }) | select({
         "//build/kernel/kleaf:gzip_is_pigz_is_true": {
