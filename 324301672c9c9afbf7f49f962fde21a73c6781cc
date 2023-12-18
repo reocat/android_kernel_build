@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b9b2f7b_89943d27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2023-12-18T21:38:43Z",
+      "side": 1,
+      "message": "These will be added to **all** kernel builds with `--rust`. Are you sure you want to do this? Are they critical for rust to be used in the kernel code? I am pushing back because I see \"samples\" in the name.\n\nIf you just want to create a build test that these options work, consider one of the following:\n\n* Defining a test kernel_build\n* Do this on the CI on a separate target, with `--defconfig_fragment` pointing to another additional defconfig file with these samples enabled\n* or any other solution that does NOT add them to all kernel builds when --rust is enabled.",
+      "revId": "324301672c9c9afbf7f49f962fde21a73c6781cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
