@@ -22,7 +22,7 @@ load(
     "GKI_ARTIFACTS_AARCH64_OUTS",
     "MODULES_STAGING_ARCHIVE",
     "MODULE_OUTS_FILE_SUFFIX",
-    "SYSTEM_DLKM_OUTS",
+    "SYSTEM_DLKM_COMMON_OUTS",
     "TOOLCHAIN_VERSION_FILENAME",
 )
 
@@ -70,7 +70,8 @@ GKI_DOWNLOAD_CONFIGS = [
     },
     {
         "target_suffix": "images",
-        "outs": SYSTEM_DLKM_OUTS,
+        # TODO(b/297934577): Update GKI prebuilts to download system_dlkm.<fs>.img
+        "outs": SYSTEM_DLKM_COMMON_OUTS,
     },
     {
         "target_suffix": "toolchain_version",
@@ -79,10 +80,30 @@ GKI_DOWNLOAD_CONFIGS = [
         ],
     },
     {
-        "target_suffix": "gki_artifacts",
+        "target_suffix": "boot_img_archive",
         # We only download GKI for arm64, not riscv64 or x86_64
         # TODO(b/206079661): Allow downloaded prebuilts for risc64/x86_64/debug targets.
-        "outs": GKI_ARTIFACTS_AARCH64_OUTS,
+        "outs": [
+            "boot-img.tar.gz",
+            # The others can be found by extracting the archive, see gki_artifacts_prebuilts
+        ],
+    },
+    {
+        "target_suffix": "boot_img_archive_signed",
+        # Do not fail immediately if this file cannot be downloaded, because it does not
+        # exist for unsigned builds. A build error will be emitted by gki_artifacts_prebuilts
+        # if --use_signed_prebuilts and --use_gki_prebuilts=<an unsigned build number>.
+        "mandatory": False,
+        # We only download GKI for arm64, not riscv64 or x86_64
+        # TODO(b/206079661): Allow downloaded prebuilts for risc64/x86_64/debug targets.
+        "outs_mapping": {
+            # The basename is kept boot-img.tar.gz so it works with
+            # gki_artifacts_prebuilts. It is placed under the signed/
+            # directory to avoid conflicts with boot_img_archive in
+            # download_artifacts_repo.
+            # The others can be found by extracting the archive, see gki_artifacts_prebuilts
+            "signed/boot-img.tar.gz": "signed/certified-boot-img-{build_number}.tar.gz",
+        },
     },
     {
         "target_suffix": "ddk_artifacts",
@@ -114,6 +135,7 @@ CI_TARGET_MAPPING = {
             "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX,
         ],
         "protected_modules": "gki_aarch64_protected_modules",
+        "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
     },
 }
 
