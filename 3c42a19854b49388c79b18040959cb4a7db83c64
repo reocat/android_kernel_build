@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b670993_333ad262",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-03T17:09:57Z",
+      "side": 1,
+      "message": "The change by itself is harmless. However, if this is broken, I think it is a bazel bug, because bazel documentation explicitly defined the behavior of returning `{}`:\n\nhttps://bazel.build/extending/config#no-op-transitions",
+      "revId": "3c42a19854b49388c79b18040959cb4a7db83c64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdc92e9d_27f7fd16",
+        "filename": "kleaf/impl/abi/abi_transitions.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-03T17:09:57Z",
+      "side": 1,
+      "message": "_WITH_VMLINUX_TRANSITION_OUTPUT_SETTINGS\n\n(maybe rename the variable)",
+      "range": {
+        "startLine": 46,
+        "startChar": 13,
+        "endLine": 49,
+        "endChar": 5
+      },
+      "revId": "3c42a19854b49388c79b18040959cb4a7db83c64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1411ae5_5fc49add",
+        "filename": "kleaf/impl/abi/abi_transitions.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-03T17:09:57Z",
+      "side": 1,
+      "message": "_WITH_VMLINUX_TRANSITION_OUTPUT_SETTINGS",
+      "range": {
+        "startLine": 61,
+        "startChar": 13,
+        "endLine": 64,
+        "endChar": 5
+      },
+      "revId": "3c42a19854b49388c79b18040959cb4a7db83c64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
