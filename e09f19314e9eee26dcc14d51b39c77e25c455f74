@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e683822d_0f9aa065",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-01-04T22:04:19Z",
+      "side": 1,
+      "message": "@elsk@google.com I removed `KERNEL_BASE` because it\u0027s already supported through `BASE_ADDRESS`, apologies.",
+      "revId": "e09f19314e9eee26dcc14d51b39c77e25c455f74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
