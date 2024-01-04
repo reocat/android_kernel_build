@@ -543,6 +543,15 @@ function build_boot_images() {
   if [ -n "${RAMDISK_OFFSET}" ]; then
     MKBOOTIMG_ARGS+=("--ramdisk_offset" "${RAMDISK_OFFSET}")
   fi
+  if [ -n "${KERNEL_BASE}" ]; then
+    MKBOOTIMG_ARGS+=("--base" "${KERNEL_BASE}")
+  fi
+  if [ -n "${DTB_OFFSET}" ]; then
+    MKBOOTIMG_ARGS+=("--dtb_offset" "${DTB_OFFSET}")
+  fi
+  if [ -n "${KERNEL_OFFSET}" ]; then
+    MKBOOTIMG_ARGS+=("--kernel_offset" "${KERNEL_OFFSET}")
+  fi
 
   DTB_FILE_LIST=$(find ${DIST_DIR} -name "*.dtb" | sort)
   if [ -z "${DTB_FILE_LIST}" ]; then
