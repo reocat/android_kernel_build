@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12a7fb68_00a4af95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-04T21:42:12Z",
+      "side": 1,
+      "message": "The change by itself LGTM. When cherry-picking this to main, we should also consider moving the *_OFFSET etc. variables to kernel_images() instead of staying in build config. This is b/236012223 (perhaps add a TODO line?)",
+      "revId": "0fede6a40ec63135438193cec59e169e005eca8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
