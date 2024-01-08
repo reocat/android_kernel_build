@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "63871118_ee9bcf3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-08T18:35:48Z",
+      "side": 1,
+      "message": "We have talked offline and notice that this is not a Bazel bug. The actual issue is described in the commit message of PS6. We were OR-ing the empty dictionary with additional keys, making it a non-empty dictionary.\n\nSee my other comment.",
+      "parentUuid": "89543aec_b72f683b",
+      "revId": "3c42a19854b49388c79b18040959cb4a7db83c64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fdc92e9d_27f7fd16",
         "filename": "kleaf/impl/abi/abi_transitions.bzl",
         "patchSetId": 5
