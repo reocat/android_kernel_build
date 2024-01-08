@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b905d76_b6f5c5bf",
+        "filename": "kleaf/docs/ddk/rules.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-01-08T20:09:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ebd7f17_94ac7faf",
+      "range": {
+        "startLine": 16,
+        "startChar": 27,
+        "endLine": 16,
+        "endChar": 30
+      },
+      "revId": "b708e808f9d3df9eec4a57a3a45a6fd92df625ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "054b1694_f6f2dbba",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-08T18:02:37Z",
       "side": 1,
       "message": "is that a reasonable restriction? The purpose of this flag in `cc_library` is also to allow .h files or `.data` files or whatever, that would not compile standalone for environments where headers get compiled. Effectively they are just other source files needed during compilation.",
+      "range": {
+        "startLine": 324,
+        "startChar": 63,
+        "endLine": 324,
+        "endChar": 65
+      },
+      "revId": "b708e808f9d3df9eec4a57a3a45a6fd92df625ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80a9f04f_3fcd46cf",
+        "filename": "kleaf/impl/ddk/makefiles.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-01-08T20:09:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "054b1694_f6f2dbba",
       "range": {
         "startLine": 324,
         "startChar": 63,
