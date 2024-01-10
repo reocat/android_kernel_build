@@ -22,6 +22,30 @@
       },
       "revId": "01aece85af33ea8a6aea50c09be185cad146e6b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0319dad_8ccd8416",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-01-10T22:17:33Z",
+      "side": 0,
+      "message": "I ran (with success):\n * `bazel run //aosp:kernel_aarch64_config -- menuconfig`\n * `bazel run --config\u003d\u003cdevice_configs\u003e  //\u003cpath_to_\u003e:\u003cdevice\u003e_config -- menuconfig`\n \nPlease also note this is for `main-kernel-build-2023` branch, so I can do additional checks if needed, do you have more suggestions for what I can check?",
+      "parentUuid": "84ddbd63_de2a1386",
+      "range": {
+        "startLine": 182,
+        "startChar": 12,
+        "endLine": 182,
+        "endChar": 49
+      },
+      "revId": "01aece85af33ea8a6aea50c09be185cad146e6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
