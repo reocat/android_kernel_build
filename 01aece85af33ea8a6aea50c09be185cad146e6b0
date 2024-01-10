@@ -46,6 +46,30 @@
       },
       "revId": "01aece85af33ea8a6aea50c09be185cad146e6b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90b0b2f8_71baa030",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-10T22:20:07Z",
+      "side": 0,
+      "message": "Ah indeed. In L405:\n\n\u003e     - It doesn\u0027t set `KCONFIG_EXT_PREFIX` or `dtstree`",
+      "parentUuid": "b0319dad_8ccd8416",
+      "range": {
+        "startLine": 182,
+        "startChar": 12,
+        "endLine": 182,
+        "endChar": 49
+      },
+      "revId": "01aece85af33ea8a6aea50c09be185cad146e6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
