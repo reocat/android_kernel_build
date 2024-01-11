@@ -1497,17 +1497,20 @@ def _build_main_action(
     command += """
            {kbuild_mixed_tree_cmd}
          # Actual kernel build
-           {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} {make_goals}
+	   # Workaround. Need to fix this in kernel_config.bzl
+	   cp -f ${{OUT_DIR}}/.config ${{KERNEL_DIR}}
+	   # if make_goals equal to deb-pkg, do not use OUT_DIR
+           {interceptor_command_prefix} make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} {make_goals}
          # Install modules
            {modinst_cmd}
          # Archive headers in OUT_DIR
-           find ${{OUT_DIR}} -name *.h -print0                          \
-               | tar czf {out_dir_kernel_headers_tar}                   \
-                       --absolute-names                                 \
-                       --dereference                                    \
-                       --transform "s,.*$OUT_DIR,,"                     \
-                       --transform "s,^/,,"                             \
-                       --null -T -
+         #  find ${{OUT_DIR}} -name *.h -print0                          \
+         #      | tar czf {out_dir_kernel_headers_tar}                   \
+         #              --absolute-names                                 \
+         #              --dereference                                    \
+         #              --transform "s,.*$OUT_DIR,,"                     \
+         #              --transform "s,^/,,"                             \
+         #              --null -T -
          # Grab outputs. If unable to find from OUT_DIR, look at KBUILD_MIXED_TREE as well.
            {search_and_cp_output} --srcdir ${{OUT_DIR}} {kbuild_mixed_tree_arg} {dtstree_arg} --dstdir {ruledir} {all_output_names_minus_modules}
          # Archive modules_staging_dir
