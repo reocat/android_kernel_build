@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb81bb04_42848719",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2024-01-11T00:49:07Z",
+      "side": 1,
+      "message": "I don\u0027t know if I did the test piece correctly. I didn\u0027t have a ton of time to fully grok it... so please feel free to criticize!",
+      "parentUuid": "a479f4f3_cf8deaff",
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3240cad8_d85c82c9",
         "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
         "patchSetId": 1
@@ -204,6 +222,30 @@
       "side": 1,
       "message": "Okay, sounds good. I\u0027ll drop this in next rev.",
       "parentUuid": "55eb0bf7_0982b822",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f39ce8b7_82c1e927",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2024-01-11T00:49:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f402b19d_b9903a25",
       "range": {
         "startLine": 32,
         "startChar": 0,
@@ -430,6 +472,30 @@
       "side": 1,
       "message": "\u003e I don\u0027t see any such thing for the `headers_install` target\n\nIf we were to go that route, then we\u0027ll need some patch to \"support make headers_install for external modules\". Assuming that the upstream will reject changes related to out-of-tree modules, this will be another `ANDROID:` patch. I agree that this is not ideal either.",
       "parentUuid": "2b5b7857_7f31349a",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 15
+      },
+      "revId": "e4b47576b17e094a3bfd64fef691b48be86e11d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e1e64f7_21ebb207",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1965070
+      },
+      "writtenOn": "2024-01-11T00:49:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7b014f2_b8f4619b",
       "range": {
         "startLine": 41,
         "startChar": 0,
