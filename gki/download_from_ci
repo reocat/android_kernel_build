@@ -499,7 +499,7 @@ def update_androidx(output_dir, version):
   download_kernel("kernel_debug_aarch64", version, arm64_dir)
   download_kernel("kernel_aarch64", version, arm64_dir, fetch_system_dlkm=True)
   download_kernel_modules("kernel_aarch64", arm64_dir)
-  get_abi_definition("kernel_abi_aarch64", arm64_dir)
+  get_abi_definition("kernel_aarch64", arm64_dir)
   write_prebuilt_info(arm64_dir)
   (new_version, new_sha) = get_binary_kernel_version(arm64_kernel)
   gitlog = get_git_log(old_sha, new_sha)
@@ -510,8 +510,7 @@ def update_androidx(output_dir, version):
   download_kernel("kernel_debug_x86_64", version, x86_64_dir)
   download_kernel("kernel_x86_64", version, x86_64_dir, fetch_system_dlkm=True)
   download_kernel_modules("kernel_x86_64", x86_64_dir)
-  # TODO(b/151893768) Re-enable when support for x86_64 was added.
-  # get_abi_definition("kernel_x86_64", x86_64_dir)
+  get_abi_definition("kernel_x86_64", x86_64_dir)
   write_prebuilt_info(x86_64_dir)
   commit_prebuilts(x86_64_dir, gitlog)
 
@@ -546,7 +545,7 @@ def update_android_mainline(output_dir):
   download_kernel("kernel_debug_aarch64", "mainline", arm64_dir, fetch_system_dlkm=True)
   download_kernel_modules("kernel_aarch64", arm64_dir)
   write_prebuilt_info(arm64_dir)
-  get_abi_definition("kernel_abi_aarch64", arm64_dir)
+  get_abi_definition("kernel_aarch64", arm64_dir)
 
   (new_version, new_sha) = get_binary_kernel_version(x86_64_kernel)
 
