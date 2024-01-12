@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73cacc88_d5f9451b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-12T23:22:01Z",
+      "side": 1,
+      "message": "Kicking off TH here to see if there are anything else need to be fixed.\n\nNote: I split the kernel_build change to the other CL. I think all those CLs or relevant fixes need to be merged first, then send GKI newsletter about relevant changes, and enable --incompatible_sandbox_hermetic_tmp later. In case partner builds break, they can always disable this flag in their device.bazelrc.",
+      "revId": "c18bc3a27c660f7daedd1c05f05648d0a1aecac1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
