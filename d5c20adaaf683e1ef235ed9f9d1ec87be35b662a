@@ -16,6 +16,23 @@
       "message": "Waiting on CL:2877114",
       "revId": "d5c20adaaf683e1ef235ed9f9d1ec87be35b662a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67300a1e_c3903f60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-13T00:25:18Z",
+      "side": 1,
+      "message": "Waiting for https://android-review.git.corp.google.com/q/topic:%22kleaf-clang-toolchain%22",
+      "revId": "d5c20adaaf683e1ef235ed9f9d1ec87be35b662a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
