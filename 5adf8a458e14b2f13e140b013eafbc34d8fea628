@@ -16,6 +16,24 @@
       "message": "FYI: I believe the script is nowadays also used for updating older branches. But it would be fair to expect to use the main-kernel-build-2023 then. So, perhaps assert that downloads are done for android15+ or assert that the ABI artifacts are there?",
       "revId": "5adf8a458e14b2f13e140b013eafbc34d8fea628",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11a6c584_837cb7e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-01-15T17:35:06Z",
+      "side": 1,
+      "message": "Done; Added a helper function to determine the android version, and used it to determine the target. PTAL.",
+      "parentUuid": "879e48c8_97eb24c3",
+      "revId": "5adf8a458e14b2f13e140b013eafbc34d8fea628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
