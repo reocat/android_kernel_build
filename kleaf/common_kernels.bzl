@@ -536,6 +536,8 @@ def define_common_kernels(
                 "BUILD.bazel",
                 "**/*.bzl",
                 ".git/**",
+                "tags*",
+                "cscope*",
             ],
         ),
     )
