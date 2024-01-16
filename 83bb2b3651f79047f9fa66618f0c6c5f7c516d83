@@ -34,6 +34,24 @@
       "parentUuid": "acf158ca_a4fb1a80",
       "revId": "83bb2b3651f79047f9fa66618f0c6c5f7c516d83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a19d295_d7542092",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-16T18:41:09Z",
+      "side": 1,
+      "message": "Also, according to .gitignore, it should be\n\n```\ntags\nTAGS\ncscope.*\nncscope.*\n```",
+      "parentUuid": "26c9f728_31ac9599",
+      "revId": "83bb2b3651f79047f9fa66618f0c6c5f7c516d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
