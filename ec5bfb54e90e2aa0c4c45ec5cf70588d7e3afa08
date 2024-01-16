@@ -22,6 +22,30 @@
       },
       "revId": "ec5bfb54e90e2aa0c4c45ec5cf70588d7e3afa08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb9ccaf2_49bada23",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-01-16T03:55:46Z",
+      "side": 1,
+      "message": "Not really, `android-mainline` is an special case treated in a separate function, see L620 - L623.",
+      "parentUuid": "4040f135_f1ac7241",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 88
+      },
+      "revId": "ec5bfb54e90e2aa0c4c45ec5cf70588d7e3afa08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
