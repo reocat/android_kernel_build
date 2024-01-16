@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acf158ca_a4fb1a80",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-01-16T16:35:29Z",
+      "side": 1,
+      "message": "Perhaps we can instead read `.gitignore` ? https://android.googlesource.com/kernel/common/+/refs/heads/android-mainline/.gitignore#120\n\nOr perhaps we can turn this around and do an inclusive list by now? @elsk@google.com @umendez@google.com",
+      "revId": "83bb2b3651f79047f9fa66618f0c6c5f7c516d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
