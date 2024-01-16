@@ -16,6 +16,24 @@
       "message": "Kicking off TH here to see if there are anything else need to be fixed.\n\nNote: I split the kernel_build change to the other CL. I think all those CLs or relevant fixes need to be merged first, then send GKI newsletter about relevant changes, and enable --incompatible_sandbox_hermetic_tmp later. In case partner builds break, they can always disable this flag in their device.bazelrc.",
       "revId": "c18bc3a27c660f7daedd1c05f05648d0a1aecac1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "844bd12b_d70c4c40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-01-16T16:37:52Z",
+      "side": 1,
+      "message": "Looks better now, just some raviole builds.\n\nThough, we do not actually needs this flag if we upgrade to 7.0.x where this is now the default. Hence, I will abandon this one.",
+      "parentUuid": "73cacc88_d5f9451b",
+      "revId": "c18bc3a27c660f7daedd1c05f05648d0a1aecac1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
