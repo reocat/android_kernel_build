@@ -39,6 +39,30 @@
       },
       "revId": "a45afa7c6e0af6480fce14fdfe0a8eb2311d30a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06f5b2b6_fd4908d5",
+        "filename": "build_utils.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2024-01-17T23:16:36Z",
+      "side": 1,
+      "message": "It was diagnosed and fixed suggested by Howard. I did not test myself on Pixel.",
+      "parentUuid": "cd50ee3c_0a70e2ef",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 100
+      },
+      "revId": "a45afa7c6e0af6480fce14fdfe0a8eb2311d30a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
