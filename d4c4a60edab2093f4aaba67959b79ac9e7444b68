@@ -16,6 +16,75 @@
       "message": "Requires change in bazel-central-registry",
       "revId": "d4c4a60edab2093f4aaba67959b79ac9e7444b68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cc1bb40_c0e589bf",
+        "filename": "kleaf/bazelrc/bzlmod.bazelrc",
+        "patchSetId": 34
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-01-17T13:50:28Z",
+      "side": 1,
+      "message": "nit: Should that not be \n```\ncommon:bzlmod --enable_bzlmod\n\ncommon --registry\u003dfile://%workspace%/external/bazelbuild-bazel-central-registry\ncommon --lockfile_mode\u003doff\n```\n\nI assume the flags are still valid, but just noops if bzlmod is not active.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 0
+      },
+      "revId": "d4c4a60edab2093f4aaba67959b79ac9e7444b68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24e9bf00_05f8771d",
+        "filename": "kleaf/bzlmod/DO_NOT_BUILD_HERE",
+        "patchSetId": 34
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-01-17T13:50:28Z",
+      "side": 1,
+      "message": "perhaps name the files differently ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 54
+      },
+      "revId": "d4c4a60edab2093f4aaba67959b79ac9e7444b68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b7c0f57_3f38c9f7",
+        "filename": "kleaf/bzlmod/MODULE.bazel",
+        "patchSetId": 34
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-01-17T13:50:28Z",
+      "side": 1,
+      "message": "kernels",
+      "range": {
+        "startLine": 15,
+        "startChar": 24,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "d4c4a60edab2093f4aaba67959b79ac9e7444b68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
