@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5945b8f9_24cee761",
+        "filename": "kleaf/bazelrc/bzlmod.bazelrc",
+        "patchSetId": 34
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-17T20:06:28Z",
+      "side": 1,
+      "message": "They should be like that, but to avoid unintentional interruption (e.g. a bug in Bazel that causes these flags to have side effects when --noenable_bzlmod), I put them behind --config\u003dbzlmod too.",
+      "parentUuid": "3cc1bb40_c0e589bf",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 0
+      },
+      "revId": "d4c4a60edab2093f4aaba67959b79ac9e7444b68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24e9bf00_05f8771d",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-17T13:50:28Z",
       "side": 1,
       "message": "perhaps name the files differently ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 54
+      },
+      "revId": "d4c4a60edab2093f4aaba67959b79ac9e7444b68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e95da80_bbb6b749",
+        "filename": "kleaf/bzlmod/DO_NOT_BUILD_HERE",
+        "patchSetId": 34
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-17T20:06:28Z",
+      "side": 1,
+      "message": "If so then buildifier ayeaye plugin also need to be updated.\n\nShould I name that file `bazel.MODULE`, then update the ayeaye plugin to include bazel.MODULE files?",
+      "parentUuid": "24e9bf00_05f8771d",
       "range": {
         "startLine": 2,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf08907b_70ce3d80",
+        "filename": "kleaf/bzlmod/MODULE.bazel",
+        "patchSetId": 34
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-17T20:06:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b7c0f57_3f38c9f7",
+      "range": {
+        "startLine": 15,
+        "startChar": 24,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "d4c4a60edab2093f4aaba67959b79ac9e7444b68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f46cec20_0078ef4f",
@@ -100,6 +172,30 @@
       "writtenOn": "2024-01-17T17:49:31Z",
       "side": 1,
       "message": "0.6.2",
+      "range": {
+        "startLine": 111,
+        "startChar": 15,
+        "endLine": 111,
+        "endChar": 20
+      },
+      "revId": "d4c4a60edab2093f4aaba67959b79ac9e7444b68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1eff8da_f2a9d1b6",
+        "filename": "kleaf/bzlmod/MODULE.bazel",
+        "patchSetId": 34
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-17T20:06:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f46cec20_0078ef4f",
       "range": {
         "startLine": 111,
         "startChar": 15,
