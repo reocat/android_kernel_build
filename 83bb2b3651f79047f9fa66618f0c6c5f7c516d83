@@ -88,6 +88,24 @@
       "parentUuid": "d299c5d7_7f064ec2",
       "revId": "83bb2b3651f79047f9fa66618f0c6c5f7c516d83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eba7f14_ddbf2233",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1882526
+      },
+      "writtenOn": "2024-01-18T11:02:28Z",
+      "side": 1,
+      "message": "\u003e I would +1 to the same list in `.gitignore` and plus perhaps `tags.temp`.\n\nTBC, are you suggesting I update this CL with\n```\nexclude \u003d [\n    ...\n    \"tags\",\n    \"tags.temp\",\n    \"tags.lock\",\n    \"TAGS\",\n    \"cscope.*\",\n    \"ncscope.*\",\n],\n```\n?",
+      "parentUuid": "65517b88_32fe97c5",
+      "revId": "83bb2b3651f79047f9fa66618f0c6c5f7c516d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
