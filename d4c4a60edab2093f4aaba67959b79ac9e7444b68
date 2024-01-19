@@ -114,6 +114,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea757778_f9249a36",
+        "filename": "kleaf/bzlmod/DO_NOT_BUILD_HERE",
+        "patchSetId": 34
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-01-19T10:59:25Z",
+      "side": 1,
+      "message": "Following the existing\n\n```\n  WORKSPACE -\u003e kleaf/bazel.WORKSPACE\n```\n\nstrictly speaking it should be\n\n```\n  MODULE.bazel -\u003e kleaf/bzlmod/bazel.MODULE.bazel\n  WORKSPACE -\u003e kleaf/bzlmod/bazel.WORKSPACE\n```\n\nAnd then since the buildifier analyzer looks at the extension, e.g. `.WORKSPACE` and `.bazel`, this would all just work fine and consistent.",
+      "parentUuid": "0e95da80_bbb6b749",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 54
+      },
+      "revId": "d4c4a60edab2093f4aaba67959b79ac9e7444b68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1b7c0f57_3f38c9f7",
         "filename": "kleaf/bzlmod/MODULE.bazel",
         "patchSetId": 34
