@@ -34,6 +34,24 @@
       "parentUuid": "5b52ba1c_29a2fea5",
       "revId": "c89f36611d5e48e1dff767983956f4d6130d2fe0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90d7ec82_de9d63b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1945845
+      },
+      "writtenOn": "2024-01-22T19:23:29Z",
+      "side": 1,
+      "message": "So yeah, `git send-email` might do that, but I don\u0027t think git always does, as I\u0027ve got a large stack here that\u0027s catching on this:\nhttps://r.android.com/q/topic:%22lazy-rcu-android15-6.1%22\n\nI feel like I\u0027ve also hit it on patches like:\nhttps://lore.kernel.org/lkml/20231220001856.3710363-9-jstultz@google.com/\n\nWhere the Signed-off by line has extra employer annotations.\n\nSo I think its a good check (esp when we do get badly malformed patches submitted), but I\u0027m not sure it should be a blocker.",
+      "parentUuid": "4f5495f0_bdba584a",
+      "revId": "c89f36611d5e48e1dff767983956f4d6130d2fe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
