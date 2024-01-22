@@ -16,6 +16,24 @@
       "message": "Not sure this is the right thing to do.  The example you provide concerning contributors submitting patches using their own email address only affects the email `From:` header.  If Git notices that the SMTP `From:` and Git `Author:` are different, it will add an additional `From:` line (taken from `Author:`) in the body of the email.",
       "revId": "c89f36611d5e48e1dff767983956f4d6130d2fe0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f5495f0_bdba584a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1870730
+      },
+      "writtenOn": "2024-01-22T08:34:15Z",
+      "side": 1,
+      "message": "Think of this as more of a \"Signed-off-by doesn\u0027t match the Author\" check.",
+      "parentUuid": "5b52ba1c_29a2fea5",
+      "revId": "c89f36611d5e48e1dff767983956f4d6130d2fe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
