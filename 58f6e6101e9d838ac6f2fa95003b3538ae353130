@@ -84,6 +84,32 @@
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2922868?revision\u003d2",
       "fixSuggestions": [],
       "key": {
+        "uuid": "1b772b43_e8c7ff45",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2024-01-22T23:02:50Z",
+      "side": 1,
+      "message": "Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 76
+      },
+      "revId": "58f6e6101e9d838ac6f2fa95003b3538ae353130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000065714884",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2922868?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
         "uuid": "94d7f409_24425cc2",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 2
@@ -145,6 +171,32 @@
         "id": 1757831
       },
       "writtenOn": "2024-01-22T21:15:49Z",
+      "side": 1,
+      "message": "Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "58f6e6101e9d838ac6f2fa95003b3538ae353130",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000065714884",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2922868?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2d377991_c9bacb18",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2024-01-22T23:02:50Z",
       "side": 1,
       "message": "Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
       "range": {
