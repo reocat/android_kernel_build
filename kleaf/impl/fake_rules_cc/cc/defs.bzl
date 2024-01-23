@@ -25,3 +25,6 @@ cc_toolchain_suite = native.cc_toolchain_suite
 cc_binary = native.cc_binary
 cc_library = native.cc_library
 cc_proto_library = native.cc_proto_library
+
+# Needed by protobuf
+cc_test = native.cc_test
