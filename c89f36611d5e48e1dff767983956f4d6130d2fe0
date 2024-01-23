@@ -52,6 +52,24 @@
       "parentUuid": "4f5495f0_bdba584a",
       "revId": "c89f36611d5e48e1dff767983956f4d6130d2fe0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf089509_c20d4420",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1870730
+      },
+      "writtenOn": "2024-01-23T11:02:26Z",
+      "side": 1,
+      "message": "The issue with Qais\u0027s patch-set is that it contains a single patch cherry-picked from the list which uses his personal email address as the Author.  However, in the SoB block the matching email address contains an employer annotation.  So the two examples you provide above are for the same issue.\n\nMoving forward, we can either improve checkpatch.pl to ignore these annotations (I\u0027ll reach out to Andy (the maintainer) right after this to start a discussion) and/or manually remove them and/or Bypass-Presubmit when this anomalies occur.\n\nEither way, I think turning down the check is not the correct way forward.",
+      "parentUuid": "90d7ec82_de9d63b6",
+      "revId": "c89f36611d5e48e1dff767983956f4d6130d2fe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
