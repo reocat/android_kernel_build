@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e44c7b3a_b649fabc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-01-23T17:37:42Z",
+      "side": 1,
+      "message": "Update: Talked offline and agreed that `ddk_config_env` only applies to DDK modules, so a different approach is needed for the dependent builds and/or kernel_modules, which I\u0027m planning to implement in a different CL, but along the current series, so this is blocked for now.",
+      "parentUuid": "eb2123b2_bace4e2f",
+      "revId": "c5d979e57b6261bab39659a8cf5ed683a360dca7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7573c16f_26144491",
         "filename": "kleaf/impl/common_providers.bzl",
         "patchSetId": 6
