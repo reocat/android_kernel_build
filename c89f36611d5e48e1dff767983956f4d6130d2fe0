@@ -70,6 +70,23 @@
       "parentUuid": "90d7ec82_de9d63b6",
       "revId": "c89f36611d5e48e1dff767983956f4d6130d2fe0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "557cdd1b_9b9e9e05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1945845
+      },
+      "writtenOn": "2024-01-23T19:14:57Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll abandon this for now. I still would like to avoid cases where folks bypass presubmit failures, as it creates a bad habit.",
+      "revId": "c89f36611d5e48e1dff767983956f4d6130d2fe0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
