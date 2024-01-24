@@ -106,6 +106,24 @@
       "parentUuid": "65517b88_32fe97c5",
       "revId": "83bb2b3651f79047f9fa66618f0c6c5f7c516d83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e7b4361_5e9a264b",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-24T01:08:40Z",
+      "side": 1,
+      "message": "Yeah, but please add some comments:\n\n```\n    # ctag files\n    \"tags\",\n    \"TAGS\",\n    \n    # temporary ctag files\n    \"tags.temp\",\n    \"tags.lock\",\n    \n    # cscope files\n    \"cscope.*\",\n    \"ncscope.*\",\n```\n\n(or replace the middle two with `tags.*` if it is not too broad)",
+      "parentUuid": "5eba7f14_ddbf2233",
+      "revId": "83bb2b3651f79047f9fa66618f0c6c5f7c516d83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
