@@ -16,6 +16,24 @@
       "message": "Just a note about `maybe` macro here (as this is a frozen branch): `maybe` in this context mean: _Adding a repository if it\u0027s not already present_ [0], i.e. it might  fail if the path doesn\u0027t exist (the path in this case is passed to `local_repository`[1]).\n\n\n[0] https://bazel.build/rules/lib/repo/utils#maybe\n[1] https://bazel.build/reference/be/workspace#local_repository",
       "revId": "412b570c7ef728e453a7fd5852e44e079fc9c9ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d60af499_c941a24d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-01-24T11:22:48Z",
+      "side": 1,
+      "message": "Resolved; I\u0027ve tried locally removing the repo (with `rm -rf` and by removing it from the manifest) and saw no errors, so just a false alarm. Sorry for the noise.",
+      "parentUuid": "3df61be4_2d0113ec",
+      "revId": "412b570c7ef728e453a7fd5852e44e079fc9c9ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
