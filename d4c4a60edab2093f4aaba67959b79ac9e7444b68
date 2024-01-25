@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "908c3992_b6fcbcd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 34
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-25T05:43:30Z",
+      "side": 1,
+      "message": "CL:2924780",
+      "parentUuid": "43c1bc45_5efacbec",
+      "revId": "d4c4a60edab2093f4aaba67959b79ac9e7444b68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cc1bb40_c0e589bf",
@@ -198,6 +216,30 @@
       "side": 1,
       "message": "I tried this. There is a small caveat; `buildifier` has some special handling for special files like `MODULE.bazel`. If I name it `bazel.MODULE.bazel` these special handling are not effective. For example, for these lines:\n\n```\nbazel_dep(\n    name \u003d \"rules_cc\",\n    version \u003d \"0.0.4\",\n)\nbazel_dep(\n    name \u003d \"rules_pkg\",\n    version \u003d \"0.9.1\",\n)\n\nbazel_dep(\n    name \u003d \"stardoc\",\n    version \u003d \"0.5.3\",\n    dev_dependency \u003d True,\n    repo_name \u003d \"io_bazel_stardoc\",\n)\n```\n\nIf the file is named MODULE.bazel, the non dev dependencies are grouped together WITHOUT a blank line in between, then a blank line, then the dev dependencies. If the file is NOT named MODULE.bazel, buildifier does not add this new line between dev and non-dev dependencies and will leave whatever blank lines the user uses (if there are more than 1, then reduce to 1).\n\nSo to retain PERFECT MODULE.bazel format, it needs to be named this way. However, I think it is fine to leave a few blank lines unfixed, so I\u0027ll name it `bazel.MODULE.bazel`.",
       "parentUuid": "fb031267_78f8fbfd",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 54
+      },
+      "revId": "d4c4a60edab2093f4aaba67959b79ac9e7444b68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0b7f985_542e33ee",
+        "filename": "kleaf/bzlmod/DO_NOT_BUILD_HERE",
+        "patchSetId": 34
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-25T05:43:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ce5e297_819fabb2",
       "range": {
         "startLine": 2,
         "startChar": 0,
