@@ -421,7 +421,7 @@ class BazelWrapper(KleafHelpPrinter):
         """Returns the name to the Kleaf repository."""
         if self._kleaf_repository_is_top_workspace():
             return "@"
-        return f"@{self.kleaf_repo_dir.name}"
+        return f"@kleaf"
 
     def _kleaf_repo_rel(self):
         """Return root of the Kleaf repository relative to the top-level workspace.
