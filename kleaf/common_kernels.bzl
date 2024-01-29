@@ -727,6 +727,9 @@ def _define_common_kernel(
         abi_definition_stg = abi_definition_stg,
         kmi_enforced = kmi_enforced,
         kmi_symbol_list_add_only = kmi_symbol_list_add_only,
+
+	# HACK(joefradley): Easy way for now to add kunit.ko to all targets
+	kernel_modules_exclude_list = ["kunit.ko"],
     )
 
     if enable_interceptor:
