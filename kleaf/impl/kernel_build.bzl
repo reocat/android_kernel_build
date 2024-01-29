@@ -57,8 +57,8 @@ load(
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
-load(":file_selector.bzl", "file_selector")
 load(":file.bzl", "file")
+load(":file_selector.bzl", "file_selector")
 load(":hermetic_toolchain.bzl", "hermetic_toolchain")
 load(":kernel_config.bzl", "kernel_config")
 load(":kernel_config_settings.bzl", "kernel_config_settings")
@@ -102,6 +102,7 @@ def kernel_build(
         protected_exports_list = None,
         protected_modules_list = None,
         additional_kmi_symbol_lists = None,
+        unstable_kmi_symbol_list = None,
         trim_nonlisted_kmi = None,
         kmi_symbol_list_strict_mode = None,
         collect_unstripped_modules = None,
@@ -311,7 +312,7 @@ def kernel_build(
 
           Let
           ```
-          all_kmi_symbol_lists = [kmi_symbol_list] + additional_kmi_symbol_list
+          all_kmi_symbol_lists = [kmi_symbol_list] + additional_kmi_symbol_lists + unstable_kmi_symbol_list
           ```
 
           If `all_kmi_symbol_lists` is a non-empty list, `abi_symbollist` and
@@ -330,6 +331,9 @@ def kernel_build(
           additional_kmi_symbol_lists = glob(["android/abi_gki_aarch64*"], exclude = ["android/abi_gki_aarch64"]),
           ```
 
+        unstable_kmi_symbol_list: A file containing a list of symbols available
+        in the KMI but not set in the stable ABI.
+
         protected_exports_list: A file containing list of protected exports.
           For example:
           ```
@@ -344,6 +348,7 @@ def kernel_build(
 
         trim_nonlisted_kmi: If `True`, trim symbols not listed in
           `kmi_symbol_list` and `additional_kmi_symbol_lists`.
+          `unstable_kmi_symbol_list` symbols will NOT be trimmed.
           This is the Bazel equivalent of `TRIM_NONLISTED_KMI`.
 
           Requires `all_kmi_symbol_lists` to be non-empty. If `kmi_symbol_list`
@@ -354,9 +359,10 @@ def kernel_build(
           trim_nonlisted_kmi = len(glob(["android/abi_gki_aarch64*"])) > 0
           ```
         kmi_symbol_list_strict_mode: If `True`, add a build-time check between
-          `[kmi_symbol_list] + additional_kmi_symbol_lists`
+          `[kmi_symbol_list] + additional_kmi_symbol_lists` + unstable_kmi_symbol_list
           and the KMI resulting from the build, to ensure
           they match 1-1.
+
         collect_unstripped_modules: If `True`, provide all unstripped in-tree.
 
           Approximately equivalent to `UNSTRIPPED_MODULES=*` in `build.sh`.
@@ -420,6 +426,7 @@ def kernel_build(
     src_kmi_symbol_list_target_name = name + "_src_kmi_symbol_list"
     kmi_symbol_list_target_name = name + "_kmi_symbol_list"
     abi_symbollist_target_name = name + "_kmi_symbol_list_abi_symbollist"
+    stable_abi_symbollist_target_name = name + "_stable_kmi_symbol_list_abi_symbollist"
     raw_kmi_symbol_list_target_name = name + "_raw_kmi_symbol_list"
 
     if srcs == None:
@@ -519,10 +526,14 @@ def kernel_build(
     if additional_kmi_symbol_lists:
         all_kmi_symbol_lists += additional_kmi_symbol_lists
 
+    if unstable_kmi_symbol_list:
+        all_kmi_symbol_lists += [unstable_kmi_symbol_list]
+
     _kmi_symbol_list(
         name = kmi_symbol_list_target_name,
         env = env_target_name,
         srcs = all_kmi_symbol_lists,
+        unstable_kmi_symbol_list = unstable_kmi_symbol_list,
         **internal_kwargs
     )
 
@@ -530,6 +541,13 @@ def kernel_build(
         name = abi_symbollist_target_name,
         srcs = [kmi_symbol_list_target_name],
         output_group = "abi_symbollist",
+        **internal_kwargs
+    )
+
+    native.filegroup(
+        name = stable_abi_symbollist_target_name,
+        srcs = [kmi_symbol_list_target_name],
+        output_group = "stable_abi_symbollist",
         **internal_kwargs
     )
 
@@ -580,7 +598,7 @@ def kernel_build(
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name,
         kernel_uapi_headers = uapi_headers_target_name,
         collect_unstripped_modules = collect_unstripped_modules,
-        combined_abi_symbollist = abi_symbollist_target_name,
+        combined_abi_symbollist = stable_abi_symbollist_target_name,
         enable_interceptor = enable_interceptor,
         strip_modules = strip_modules,
         src_protected_exports_list = protected_exports_list,
@@ -1940,7 +1958,7 @@ _kernel_build = rule(
         "kernel_uapi_headers": attr.label(),
         "combined_abi_symbollist": attr.label(
             doc = """The **combined** `abi_symbollist` file, consist of `kmi_symbol_list` and
-                `additional_kmi_symbol_lists`. Must be 0 or 1 file.""",
+                `additional_kmi_symbol_lists` minus the `unstable_kmi_symbol_list`. Must be 0 or 1 file.""",
             allow_files = True,
         ),
         "strip_modules": attr.bool(default = False, doc = "if set, debug information won't be kept for distributed modules.  Note, modules will still be stripped when copied into the ramdisk."),
