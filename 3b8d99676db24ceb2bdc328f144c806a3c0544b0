@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbd55fbd_4cc7889f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-01-29T11:16:16Z",
+      "side": 1,
+      "message": "Please add more context: Why is the change made? Some details on what the change does.",
+      "revId": "3b8d99676db24ceb2bdc328f144c806a3c0544b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f61ccf0_4e520086",
+        "filename": "kleaf/docs/kernel_config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-01-29T11:16:16Z",
+      "side": 1,
+      "message": "in order to flip the default and to have a way to opt out, perhaps also add `--norust`. Or is this already built in with `--rust\u003dfalse` ?\n```suggestion\n*   `--rust`\n*   `--norust`\n```",
+      "revId": "3b8d99676db24ceb2bdc328f144c806a3c0544b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
