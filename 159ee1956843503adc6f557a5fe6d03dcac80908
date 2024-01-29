@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a072650d_844450b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-01-29T09:22:52Z",
+      "side": 1,
+      "message": "I think this is ok. Though longterm I would like to get rid of `_setup_env.sh` in favour of a properly computed `env` dict for `ctx.action.run`.\n\nhttps://bazel.build/rules/lib/builtins/actions#run",
+      "parentUuid": "6eeb0524_fd0f936a",
+      "revId": "159ee1956843503adc6f557a5fe6d03dcac80908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf5d2c6b_c1d0e13c",
         "filename": "_setup_env.sh",
         "patchSetId": 7
