@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81c28eb5_2c6230a0",
+        "filename": "kleaf/bazelrc/flags.bazelrc",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-31T23:42:12Z",
+      "side": 1,
+      "message": "```\nbuild --flag_alias\u003dnorust\u003dno//build/kernel/kleaf:rust\n```\n\nThis will also be added to `bazel help kleaf`",
+      "revId": "3b8d99676db24ceb2bdc328f144c806a3c0544b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f61ccf0_4e520086",
         "filename": "kleaf/docs/kernel_config.md",
         "patchSetId": 2
@@ -31,6 +48,24 @@
       "writtenOn": "2024-01-29T11:16:16Z",
       "side": 1,
       "message": "in order to flip the default and to have a way to opt out, perhaps also add `--norust`. Or is this already built in with `--rust\u003dfalse` ?\n```suggestion\n*   `--rust`\n*   `--norust`\n```",
+      "revId": "3b8d99676db24ceb2bdc328f144c806a3c0544b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6113726e_694c3060",
+        "filename": "kleaf/docs/kernel_config.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-01-31T23:42:12Z",
+      "side": 1,
+      "message": "The change right now (PS2) already supports `--rust\u003dfalse`. To support `--norust` a new line is needed in flags.bazelrc, but it is also trivial to add. See my other comment. \n\nI would say, in the documentation here, combine them into:\n\n```\n* `--rust` / `--norust`\n```\n\n... or not mentioning it specifically is also fine. This is just a document about flags that uses defconfig fragments. A separate document, or `bazel kleaf help`, should mention `--rust` / `--norust`.",
+      "parentUuid": "1f61ccf0_4e520086",
       "revId": "3b8d99676db24ceb2bdc328f144c806a3c0544b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
