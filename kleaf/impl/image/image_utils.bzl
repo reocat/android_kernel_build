@@ -164,6 +164,8 @@ def _build_modules_image_impl_common(
             options = "-al --chmod=F+w --include=source --include=build --exclude='*'",
         )
 
+    # TODO: b/248107495 - Cat the contents of ctx.attr.kernel_modules_install[KernelModuleInfo].modules_order
+    #         and make it available for build_utils.sh
     if set_ext_modules and ctx.attr._set_ext_modules[BuildSettingInfo].value:
         ext_modules = ctx.attr.kernel_modules_install[KernelModuleInfo].packages.to_list()
         command += """EXT_MODULES={quoted_ext_modules}""".format(
