@@ -96,6 +96,10 @@ bazel_dep(
     version = "0.0.8",
 )
 bazel_dep(
+    name = "protobuf",
+    version = "3.19.6",
+)
+bazel_dep(
     name = "rules_cc",
     version = "0.0.4",
 )
