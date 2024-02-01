@@ -16,13 +16,13 @@
 
 # Use --platforms to select toolchains, not the legacy --cpu --cross_top --compiler.
 # See https://bazel.build/concepts/platforms#cxx
-build:hermetic_cc --incompatible_enable_cc_toolchain_resolution
-
-# Do not use host toolchain
-build:hermetic_cc --action_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
-
-build:hermetic_cc --//build/kernel/kleaf:config_hermetic_cc
-
-# Always use the hermetic CC toolchain for CC rules.
-# TODO(b/253562056): Allow to use host toolchain for debugging.
-build --config=hermetic_cc
+#build:hermetic_cc --incompatible_enable_cc_toolchain_resolution
+#
+## Do not use host toolchain
+#build:hermetic_cc --action_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
+#
+#build:hermetic_cc --//build/kernel/kleaf:config_hermetic_cc
+#
+## Always use the hermetic CC toolchain for CC rules.
+## TODO(b/253562056): Allow to use host toolchain for debugging.
+#build --config=hermetic_cc
