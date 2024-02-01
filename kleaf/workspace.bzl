@@ -145,6 +145,12 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         build_file = "build/kernel/kleaf/libcap_ng.BUILD",
     )
 
+    #kleaf_local_repository(
+    #    name = "com_google_protobuf",
+    #    path = "external/protobuf",
+    #    #repo_mapping = {"@com_google_protobuf": "@protobuf"}
+    #)
+
     new_kleaf_local_repository(
         name = "zopfli",
         path = "external/zopfli",

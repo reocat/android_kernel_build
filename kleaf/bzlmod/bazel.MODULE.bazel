@@ -52,6 +52,12 @@ new_kleaf_local_repository(
     path = "external/libcap-ng",
 )
 
+#new_kleaf_local_repository(
+#    name = "protobuf",
+#    build_file = "external/protobuf/BUILD.bazel",
+#    path = "external/protobuf",
+#)
+
 new_kleaf_local_repository(
     name = "zopfli",
     build_file = "build/kernel/kleaf/zopfli.BUILD",
