@@ -32,6 +32,32 @@
       "url": "https://android-build.googleplex.com/builds/treetop/android-review/2933513?revision\u003d3",
       "fixSuggestions": [],
       "key": {
+        "uuid": "1a67b790_789983e9",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2024-02-06T23:35:50Z",
+      "side": 1,
+      "message": "Load statement is out of its lexicographical order. http://go/buildifier-warnings#out-of-order-load",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "6047ece5befcaaf0ef4eed1c3c795f8f76b525a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000067488399",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2933513?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
         "uuid": "ce94c983_92afe8e7",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 3
@@ -41,6 +67,32 @@
         "id": 1757831
       },
       "writtenOn": "2024-02-06T23:35:42Z",
+      "side": 1,
+      "message": "Prefer using \".append()\" to adding a single element list. http://go/buildifier-warnings#list-append",
+      "range": {
+        "startLine": 530,
+        "startChar": 8,
+        "endLine": 530,
+        "endChar": 58
+      },
+      "revId": "6047ece5befcaaf0ef4eed1c3c795f8f76b525a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000067488399",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2933513?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "bbaf3c50_6104380a",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2024-02-06T23:35:50Z",
       "side": 1,
       "message": "Prefer using \".append()\" to adding a single element list. http://go/buildifier-warnings#list-append",
       "range": {
@@ -84,6 +136,43 @@
         "id": 1757831
       },
       "writtenOn": "2024-02-06T23:35:42Z",
+      "side": 1,
+      "message": "File is not formatted. Run `buildifier kleaf/impl/kmi_symbol_list.bzl` to format the file, or apply the suggested fix.",
+      "revId": "6047ece5befcaaf0ef4eed1c3c795f8f76b525a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000067488399",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2933513?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "2a65632b_3bc897c8",
+          "description": "Buildifier Suggestion",
+          "replacements": [
+            {
+              "path": "kleaf/impl/kmi_symbol_list.bzl",
+              "range": {
+                "startLine": 89,
+                "startChar": 0,
+                "endLine": 90,
+                "endChar": 0
+              },
+              "replacement": "        ),\n"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "3a1b5a01_51a989cb",
+        "filename": "kleaf/impl/kmi_symbol_list.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2024-02-06T23:35:50Z",
       "side": 1,
       "message": "File is not formatted. Run `buildifier kleaf/impl/kmi_symbol_list.bzl` to format the file, or apply the suggested fix.",
       "revId": "6047ece5befcaaf0ef4eed1c3c795f8f76b525a5",
