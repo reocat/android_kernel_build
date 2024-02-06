@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62d5f92d_44b916eb",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 79
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-06T08:16:05Z",
+      "side": 1,
+      "message": "This would be wrong when it is in a sub repository. I need to think about a better way to infer this.",
+      "range": {
+        "startLine": 406,
+        "startChar": 0,
+        "endLine": 410,
+        "endChar": 45
+      },
+      "revId": "42352f14ce8c7d309aee120a0fb547fdaf27edc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
