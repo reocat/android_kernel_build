@@ -16,6 +16,24 @@
       "message": "Hmm, it feels like it does not belong in the \"thin startup wrapper\" that bazel.py is supposed to be ... Isn\u0027t that a generic problem for bzlmod enabled projects?\n\nApproving regardless.",
       "revId": "3592d9b650ebf37d6f63abe43634efa456270577",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e75bf3d_4ea017eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 79
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-06T20:41:39Z",
+      "side": 1,
+      "message": "\u003e Isn\u0027t that a generic problem for bzlmod enabled projects?\n\nNo. This is a Kleaf problem.\n\nFor projects build with Kleaf, we add a lot of flags that are enabled by default for Kleaf builds, unless overwritten in the command line. I can categorize them into the following:\n\n- A bunch of flags that are disabled by Bazel by default, but enabled by Kleaf by default, like `--experimental_strict_action_env`, `--experimental_writable_outputs`, etc. (See common.bazelrc). What\u0027s worse, we are relying on the behavior of some of these flags, like `--tool_java_runtime_version\u003dlocal_jdk` (\"Ensure to always use @local_jdk\").\n\nThis includes `--workspace_status_command` addressed in CL:2774994 (but it needs work).\n\nIf Kleaf is used as a module of another workspace, that workspace will also need to enable these flags to ensure Kleaf is functional.\n\nIf the main workspace depends on another project that requires conflicting flags to be functional, then we have a problem not addressed in this change.\n\n- A bunch of flags that Kleaf sets to follow the convention of kernel development. For example, `--output_user_root` is set by bazel.py to put `out/` under workspace. By default, Bazel put it under `$HOME` if not specified.\n\n- A bunch of `--config\u003dX`s and `--flag_alias`es. We invent them to provide useful switches to kernel developers, specifically (like `--lto`, which is only meaningful with `--flag_alias\u003dlto\u003d//build/kernel/kleaf:lto`; or `--config\u003dfast`, which is only meaningful with `build:fast` lines in bazelrc).\n\nTechnically, these can all be dropped from bazelrc, and we are still providing a full feature set. It is just that kernel developers will need to elaborate on these flags. \n\nIf the main workspace defines `build:local` coincidentally, for example, then we have a problem not addressed in this change.\n\n----\n\nIn summary, after this change, the wrapper contains all quirkiness that a workspace must adopt in order to use `@kleaf` as a dependent module, including:\n\n- The hermetic bazel binary\n- The bazelrc file and the flags, stated above\n\n----\n\nI am open to suggestions to make this change better. I, too, don\u0027t like the implementation as-is, but I can\u0027t think of a better way either.",
+      "parentUuid": "8be0c643_1877a0c5",
+      "revId": "3592d9b650ebf37d6f63abe43634efa456270577",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
