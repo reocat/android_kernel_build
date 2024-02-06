@@ -25,6 +25,32 @@
       },
       "revId": "bda91eb4e38fbaab48b12a5de4dd79811240dbff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000067489771",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2933513?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "fd46c053_462be41d",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2024-02-06T23:48:04Z",
+      "side": 1,
+      "message": "Prefer using \".append()\" to adding a single element list. http://go/buildifier-warnings#list-append",
+      "range": {
+        "startLine": 530,
+        "startChar": 8,
+        "endLine": 530,
+        "endChar": 58
+      },
+      "revId": "bda91eb4e38fbaab48b12a5de4dd79811240dbff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
