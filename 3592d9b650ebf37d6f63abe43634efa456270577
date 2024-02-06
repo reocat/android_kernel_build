@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8be0c643_1877a0c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 79
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-06T20:11:29Z",
+      "side": 1,
+      "message": "Hmm, it feels like it does not belong in the \"thin startup wrapper\" that bazel.py is supposed to be ... Isn\u0027t that a generic problem for bzlmod enabled projects?\n\nApproving regardless.",
+      "revId": "3592d9b650ebf37d6f63abe43634efa456270577",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
