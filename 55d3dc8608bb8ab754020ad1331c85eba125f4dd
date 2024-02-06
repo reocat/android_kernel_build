@@ -16,6 +16,24 @@
       "message": "A better approach would probably be auto-generating a .bazelrc file. I need to think about this change a bit.",
       "revId": "55d3dc8608bb8ab754020ad1331c85eba125f4dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f6e29c7_13cd0298",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 57
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-06T18:35:22Z",
+      "side": 1,
+      "message": "Resolved because as it stands right now, `.bazelrc` is also read, though with a lower priority (i.e. read earlier than `--bazelrc` options). To prevent existing usages, this is the best option right now.",
+      "parentUuid": "7a4cd032_640b12a8",
+      "revId": "55d3dc8608bb8ab754020ad1331c85eba125f4dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
