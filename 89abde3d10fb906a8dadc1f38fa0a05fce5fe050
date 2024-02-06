@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5764a034_a6fd656f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-06T00:24:25Z",
+      "side": 1,
+      "message": "No, the default is to use the new (fixed) approach.",
+      "parentUuid": "a772c7f8_e98c4927",
+      "revId": "89abde3d10fb906a8dadc1f38fa0a05fce5fe050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c5e5432_4888dcc7",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-02-06T00:18:02Z",
       "side": 1,
       "message": "Wrong bug number?",
+      "revId": "89abde3d10fb906a8dadc1f38fa0a05fce5fe050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "091fb5cd_58d9d687",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-06T00:24:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c5e5432_4888dcc7",
       "revId": "89abde3d10fb906a8dadc1f38fa0a05fce5fe050",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -65,6 +101,30 @@
       "writtenOn": "2024-02-06T00:17:51Z",
       "side": 1,
       "message": "nit: Add link:\n\n```\n[`postorder`](https://bazel.build/rules/lib/builtins/depset)\n```",
+      "range": {
+        "startLine": 344,
+        "startChar": 63,
+        "endLine": 344,
+        "endChar": 72
+      },
+      "revId": "89abde3d10fb906a8dadc1f38fa0a05fce5fe050",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "049a04bf_5efa16c7",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-06T00:24:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7ab803b_f3d0d8d8",
       "range": {
         "startLine": 344,
         "startChar": 63,
