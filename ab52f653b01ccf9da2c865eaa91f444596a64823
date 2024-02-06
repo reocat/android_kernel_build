@@ -33,6 +33,42 @@
       "message": "Are there any tests (unit test or integration test) that ensures this does not regress?",
       "revId": "ab52f653b01ccf9da2c865eaa91f444596a64823",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a4f9b0c_2f760e03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-06T00:51:08Z",
+      "side": 1,
+      "message": "Yes, that\u0027s correct.",
+      "parentUuid": "97e05408_0ed66ec8",
+      "revId": "ab52f653b01ccf9da2c865eaa91f444596a64823",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bc673b4_499eba68",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-06T00:51:08Z",
+      "side": 1,
+      "message": "Not yet. I will add tests under `virtual-device` shortly.",
+      "parentUuid": "30cef58c_9491cf8d",
+      "revId": "ab52f653b01ccf9da2c865eaa91f444596a64823",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
