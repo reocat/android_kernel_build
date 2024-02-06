@@ -49,14 +49,16 @@ def _kernel_build_step(ctx):
         )
         outputs += [out_dir, compile_commands_with_vars]
         cmd = """
+            TMP_ROOT_DIR=/tmp/bazel-source-roots/0
             rsync -a --prune-empty-dirs \\
                 --include '*/' \\
                 --include '*.c' \\
                 --include '*.S' \\
                 --include '*.h' \\
                 --exclude '*' ${{OUT_DIR}}/ {out_dir}/
-            sed -e "s:${{OUT_DIR}}:\\${{OUT_DIR}}:g;s:${{ROOT_DIR}}:\\${{ROOT_DIR}}:g" \\
+            sed -e "s:${{OUT_DIR}}:\\${{OUT_DIR}}:g;s:${{TMP_ROOT_DIR}}:\\${{ROOT_DIR}}:g" \\
                 ${{OUT_DIR}}/compile_commands.json > {compile_commands_with_vars}
+            unset TMP_ROOT_DIR
         """.format(
             out_dir = out_dir.path,
             compile_commands_with_vars = compile_commands_with_vars.path,
