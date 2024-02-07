@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62f0db34_4ed5d471",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-07T23:07:02Z",
+      "side": 1,
+      "message": "nit: I think you may drop previous behaviors in current documentation. Instead, you may discuss changes in `build/kernel/kleaf/docs` (perhaps in build_configs.md under EXT_MODULES)",
+      "range": {
+        "startLine": 325,
+        "startChar": 62,
+        "endLine": 326,
+        "endChar": 33
+      },
+      "revId": "02e9a6e49927e125241b13cf888c3da5a1312eba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
