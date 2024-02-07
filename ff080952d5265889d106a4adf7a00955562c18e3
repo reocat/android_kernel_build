@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "08642bd9_e0b4b4df",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1961,
+      "author": {
+        "id": 1942600
+      },
+      "writtenOn": "2024-02-07T18:04:23Z",
+      "side": 1,
+      "message": "Yes, it\u0027s a set subtraction. How about this?\nThe **combined** `abi_symbollist` file is the sum of `kmi_symbol_list` and `additional_kmi_symbol_lists` minus the `unstable_kmi_symbol_list`.\n\n\u003e nit: consider renaming combined_abi_symbollist in a follow up CL to combined_stable_abi_symbollist to better reflect what it is.\n\nGood idea",
+      "parentUuid": "b73591a4_27b2b38a",
+      "range": {
+        "startLine": 1960,
+        "startChar": 61,
+        "endLine": 1961,
+        "endChar": 104
+      },
+      "revId": "ff080952d5265889d106a4adf7a00955562c18e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "202dd6a3_3010401c",
         "filename": "kleaf/impl/kmi_symbol_list.bzl",
         "patchSetId": 1
@@ -72,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd0c9155_63c62a77",
+        "filename": "kleaf/impl/kmi_symbol_list.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1942600
+      },
+      "writtenOn": "2024-02-07T18:04:23Z",
+      "side": 1,
+      "message": "Thanks will do. I did consider that briefly, but decided for less file changes for the initial POC. It will be easier to expand on the logic in a separate action to address robustness concern.",
+      "parentUuid": "202dd6a3_3010401c",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 15
+      },
+      "revId": "ff080952d5265889d106a4adf7a00955562c18e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f022c83d_1e6de98b",
         "filename": "kleaf/impl/kmi_symbol_list.bzl",
         "patchSetId": 1
@@ -83,6 +131,30 @@
       "writtenOn": "2024-02-07T17:27:52Z",
       "side": 1,
       "message": "This might be unnecessary. Just set `stable_abi_out_file \u003d full_abi_out_file`, unless you are relying on the name of the file to be exactly like `stable_abi_symbollist` somewhere else.\n\nSetting `stable_abi_out_file \u003d full_abi_out_file` will make them point to the same [File](https://bazel.build/rules/lib/builtins/File) object with the same file name.\n\nE.g. if you put this file in a distribution directory, then keep this `cp` so the name of the stable file is stable (pun intended).",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 9
+      },
+      "revId": "ff080952d5265889d106a4adf7a00955562c18e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3160b1ef_5904d33a",
+        "filename": "kleaf/impl/kmi_symbol_list.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1942600
+      },
+      "writtenOn": "2024-02-07T18:04:23Z",
+      "side": 1,
+      "message": "\u003e E.g. if you put this file in a distribution directory, then keep this cp so the name of the stable file is stable (pun intended).\n\n:), at this point I\u0027m not sure if it\u0027s worthwhile to keep this file around in the dist. Maybe we err on the side of less artifacts, and add it later if needed?\n\nThanks for logic reduction suggestion.",
+      "parentUuid": "f022c83d_1e6de98b",
       "range": {
         "startLine": 67,
         "startChar": 8,
