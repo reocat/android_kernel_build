@@ -194,3 +194,24 @@ build_test(
         ":android_tests_x86_64",
     ],
 )
+
+cc_library(
+    name = "cpp",
+    srcs = ["cpp.cpp"],
+)
+
+android_filegroup(
+    name = "cpp_x86_64",
+    srcs = [
+        ":cpp",
+    ],
+    cpu = "x86_64",
+)
+
+android_filegroup(
+    name = "cpp_arm64",
+    srcs = [
+        ":cpp",
+    ],
+    cpu = "arm64",
+)
