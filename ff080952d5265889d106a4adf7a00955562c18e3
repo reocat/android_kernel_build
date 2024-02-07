@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6f63a29_92c2100f",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-07T17:27:52Z",
+      "side": 1,
+      "message": "```suggestion\n          `[kmi_symbol_list] + additional_kmi_symbol_lists + unstable_kmi_symbol_list`\n```",
+      "range": {
+        "startLine": 362,
+        "startChar": 10,
+        "endLine": 362,
+        "endChar": 86
+      },
+      "revId": "ff080952d5265889d106a4adf7a00955562c18e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b73591a4_27b2b38a",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1961,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-07T17:27:52Z",
+      "side": 1,
+      "message": "Could you please elaborate what minus means? Is it just a regular set minus?\n\nIf a symbol is in both kmi_symbol_list and unstable_kmi_symbol_list, it won\u0027t show up in the combined_abi_symbollist (because `combined_abi_symbollist` is the stable symbol list), right?\n\nnit: consider renaming `combined_abi_symbollist` in a follow up CL to `combined_stable_abi_symbollist` to better reflect what it is.",
+      "range": {
+        "startLine": 1960,
+        "startChar": 61,
+        "endLine": 1961,
+        "endChar": 104
+      },
+      "revId": "ff080952d5265889d106a4adf7a00955562c18e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "202dd6a3_3010401c",
+        "filename": "kleaf/impl/kmi_symbol_list.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-07T17:27:52Z",
+      "side": 1,
+      "message": "While this works as-is, because this command is pretty with other commands, consider creating a separate action so they run in parallel with other actions.\n\nThere are unlikely any visible performance impact because this grep command should run relatively quickly. I make this suggestion only from a pedantic point of view.",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 15
+      },
+      "revId": "ff080952d5265889d106a4adf7a00955562c18e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f022c83d_1e6de98b",
+        "filename": "kleaf/impl/kmi_symbol_list.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-07T17:27:52Z",
+      "side": 1,
+      "message": "This might be unnecessary. Just set `stable_abi_out_file \u003d full_abi_out_file`, unless you are relying on the name of the file to be exactly like `stable_abi_symbollist` somewhere else.\n\nSetting `stable_abi_out_file \u003d full_abi_out_file` will make them point to the same [File](https://bazel.build/rules/lib/builtins/File) object with the same file name.\n\nE.g. if you put this file in a distribution directory, then keep this `cp` so the name of the stable file is stable (pun intended).",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 9
+      },
+      "revId": "ff080952d5265889d106a4adf7a00955562c18e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
