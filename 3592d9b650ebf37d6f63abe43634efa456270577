@@ -34,6 +34,24 @@
       "parentUuid": "8be0c643_1877a0c5",
       "revId": "3592d9b650ebf37d6f63abe43634efa456270577",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acdbb81d_5cc7b29a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 79
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-07T13:44:49Z",
+      "side": 1,
+      "message": "I wonder how (in bzlmod) one can specify per-module config. E.g. if you have a module that should be compiled with C++20 and one the needs to be built with C++17, one way of specifying this for the project is within bazelrc. Perhaps a bad example as there are other options in this case, but you get the point. Ideally we would specify that at the Kleaf module boundary.\n\nresolving for now, but perhaps worth a follow-up discussion.",
+      "parentUuid": "0e75bf3d_4ea017eb",
+      "revId": "3592d9b650ebf37d6f63abe43634efa456270577",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
