@@ -22,6 +22,30 @@
       },
       "revId": "02e9a6e49927e125241b13cf888c3da5a1312eba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e8ad9bd_684ffa08",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-08T10:45:41Z",
+      "side": 1,
+      "message": "Acknowledged. I\u0027ll follow-up with a documentation update in a separate CL, so this can go in now.",
+      "parentUuid": "62f0db34_4ed5d471",
+      "range": {
+        "startLine": 325,
+        "startChar": 62,
+        "endLine": 326,
+        "endChar": 33
+      },
+      "revId": "02e9a6e49927e125241b13cf888c3da5a1312eba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
