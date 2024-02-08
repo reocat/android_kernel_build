@@ -163,6 +163,11 @@ See [documentation for all rules].
 ## EXT\_MODULES
 
 ```python
+ddk_module()
+```
+
+NOTE: Legacy
+```python
 kernel_module()
 ```
 
