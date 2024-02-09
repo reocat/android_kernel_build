@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff386ef3_40b96336",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1942600
+      },
+      "writtenOn": "2024-02-09T17:05:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6f63a29_92c2100f",
+      "range": {
+        "startLine": 362,
+        "startChar": 10,
+        "endLine": 362,
+        "endChar": 86
+      },
+      "revId": "ff080952d5265889d106a4adf7a00955562c18e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b73591a4_27b2b38a",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "Yes, it\u0027s a set subtraction. How about this?\nThe **combined** `abi_symbollist` file is the sum of `kmi_symbol_list` and `additional_kmi_symbol_lists` minus the `unstable_kmi_symbol_list`.\n\n\u003e nit: consider renaming combined_abi_symbollist in a follow up CL to combined_stable_abi_symbollist to better reflect what it is.\n\nGood idea",
       "parentUuid": "b73591a4_27b2b38a",
+      "range": {
+        "startLine": 1960,
+        "startChar": 61,
+        "endLine": 1961,
+        "endChar": 104
+      },
+      "revId": "ff080952d5265889d106a4adf7a00955562c18e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19d6e0d8_976457b6",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1961,
+      "author": {
+        "id": 1942600
+      },
+      "writtenOn": "2024-02-09T17:05:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08642bd9_e0b4b4df",
       "range": {
         "startLine": 1960,
         "startChar": 61,
