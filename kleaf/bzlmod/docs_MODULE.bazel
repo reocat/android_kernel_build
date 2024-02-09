@@ -15,53 +15,12 @@
 """Kleaf: Build Android kernels with Bazel."""
 
 module(
-    name = "kleaf",
-    version = "0.0.0",
+    name = "kleaf_docs",
 )
-
-# Superset of all tools we need from host.
-# For the subset of host tools we typically use for a kernel build,
-# see //build/kernel:hermetic-tools.
-kleaf_host_tools_ext = use_extension("//build/kernel/kleaf/impl:kleaf_host_tools_repo.bzl", "kleaf_host_tools_ext")
-kleaf_host_tools_ext.declare(
-    host_tools = [
-        "bash",
-        "perl",
-        "rsync",
-        "sh",
-        # For BTRFS (b/292212788)
-        "find",
-    ],
-)
-use_repo(kleaf_host_tools_ext, "kleaf_host_tools")
 
 new_kleaf_local_repository = use_repo_rule(
     "//build/kernel/kleaf/impl:local_repository.bzl",
     "new_kleaf_local_repository",
-)
-
-new_kleaf_local_repository(
-    name = "libcap",
-    build_file = "build/kernel/kleaf/libcap.BUILD",
-    path = "external/libcap",
-)
-
-new_kleaf_local_repository(
-    name = "libcap_ng",
-    build_file = "build/kernel/kleaf/libcap_ng.BUILD",
-    path = "external/libcap-ng",
-)
-
-new_kleaf_local_repository(
-    name = "zopfli",
-    build_file = "build/kernel/kleaf/zopfli.BUILD",
-    path = "external/zopfli",
-)
-
-new_kleaf_local_repository(
-    name = "pigz",
-    build_file = "build/kernel/kleaf/pigz.BUILD",
-    path = "external/pigz",
 )
 
 new_kleaf_local_repository(
@@ -81,32 +40,20 @@ register_toolchains(
     "//prebuilts/build-tools:py_toolchain",
 )
 
-# TODO(b/276493276): Resolve the issue of these versions getting outdated.
-bazel_dep(
-    name = "abseil-py",
-    version = "1.4.0",
-    repo_name = "io_abseil_py",
-)
 bazel_dep(
     name = "bazel_skylib",
-    version = "1.5.0",
 )
 bazel_dep(
     name = "platforms",
-    version = "0.0.8",
 )
 bazel_dep(
     name = "rules_cc",
-    version = "0.0.4",
-)
-bazel_dep(
-    name = "rules_pkg",
-    version = "0.9.1",
 )
 
-local_path_override(
-    module_name = "abseil-py",
-    path = "external/python/absl-py",
+bazel_dep(
+    name = "stardoc",
+    version = "0.6.2",
+    repo_name = "io_bazel_stardoc",
 )
 
 local_path_override(
@@ -135,16 +82,31 @@ local_path_override(
 )
 
 local_path_override(
+    module_name = "rules_jvm_external",
+    path = "build/kernel/kleaf/bzlmod/fake_modules/rules_jvm_external",
+)
+
+local_path_override(
     module_name = "rules_license",
     path = "external/bazelbuild-rules_license",
 )
 
 local_path_override(
-    module_name = "rules_pkg",
-    path = "external/bazelbuild-rules_pkg",
+    module_name = "rules_python",
+    path = "external/bazelbuild-rules_python",
 )
 
 local_path_override(
-    module_name = "rules_python",
-    path = "external/bazelbuild-rules_python",
+    module_name = "rules_proto",
+    path = "external/bazelbuild-rules_proto",
+)
+
+local_path_override(
+    module_name = "stardoc",
+    path = "external/stardoc",
+)
+
+local_path_override(
+    module_name = "protobuf",
+    path = "external/protobuf",
 )
