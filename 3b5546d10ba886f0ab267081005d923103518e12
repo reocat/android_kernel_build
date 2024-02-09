@@ -22,6 +22,30 @@
       },
       "revId": "3b5546d10ba886f0ab267081005d923103518e12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f76e46f_63239a5c",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1045980
+      },
+      "writtenOn": "2024-02-09T21:07:02Z",
+      "side": 0,
+      "message": "It seems to, because this is the patch I used to upload the last set of prebuilts.",
+      "parentUuid": "49a83f1a_f587ce70",
+      "range": {
+        "startLine": 584,
+        "startChar": 0,
+        "endLine": 586,
+        "endChar": 51
+      },
+      "revId": "3b5546d10ba886f0ab267081005d923103518e12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
