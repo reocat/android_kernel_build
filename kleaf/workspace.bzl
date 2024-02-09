@@ -190,17 +190,6 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
             path = "prebuilts/bazel/linux-x86_64/remote_java_tools_linux",
         )
 
-    # Use checked-in JDK from prebuilts as local_jdk
-    #   Needed for stardoc
-    # Note: This was not added directly to avoid conflicts with roboleaf,
-    #   see https://android-review.googlesource.com/c/platform/build/bazel/+/2457390
-    #   for more details.
-    new_kleaf_local_repository(
-        name = "local_jdk",
-        path = "prebuilts/jdk/jdk11/linux-x86",
-        build_file = "build/kernel/kleaf/jdk11.BUILD",
-    )
-
     # Need rules_cc for any py_binary targets (especially copy_to_dist_dir).
     maybe(
         repo_rule = kleaf_local_repository,
@@ -212,12 +201,6 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
     kleaf_local_repository(
         name = "remote_coverage_tools",
         path = "build/bazel_common_rules/rules/coverage/remote_coverage_tools",
-    )
-
-    # Use checked-in JDK from prebuilts as local_jdk
-    #   Needed for stardoc
-    native.register_toolchains(
-        "@local_jdk//:all",
     )
 
     # Label(): Resolve the label against this extension (register.bzl) so the
