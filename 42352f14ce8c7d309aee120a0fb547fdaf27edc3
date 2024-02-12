@@ -46,6 +46,30 @@
       },
       "revId": "42352f14ce8c7d309aee120a0fb547fdaf27edc3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a4320c5_6e54e1f2",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 79
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-12T18:04:49Z",
+      "side": 1,
+      "message": "Done, I do this the simple way.",
+      "parentUuid": "2f81be5e_c9d39111",
+      "range": {
+        "startLine": 406,
+        "startChar": 0,
+        "endLine": 410,
+        "endChar": 45
+      },
+      "revId": "42352f14ce8c7d309aee120a0fb547fdaf27edc3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
