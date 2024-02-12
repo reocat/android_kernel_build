@@ -22,6 +22,30 @@
       },
       "revId": "debe244dbdc12eacfe1552dc81b950f26f90dae9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c27d858f_a4fd8e7b",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 84
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-12T19:39:51Z",
+      "side": 1,
+      "message": "Yes. This is to cover the case where one sets up their workspace like:\n\n```\n# MODULE.bazel\nbazel_dep(name \u003d \"kleaf\")\nlocal_path_override(module_name \u003d \"kleaf\", path \u003d \"/home/elsk/android/path/to/android-common\")\n```\n\nfor the \"use local ACK checkout\" case, where the ACK checkout could be anywhere in their filesystem.",
+      "parentUuid": "cdda8abf_e135ed54",
+      "range": {
+        "startLine": 434,
+        "startChar": 8,
+        "endLine": 435,
+        "endChar": 39
+      },
+      "revId": "debe244dbdc12eacfe1552dc81b950f26f90dae9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
