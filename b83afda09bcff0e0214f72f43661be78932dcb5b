@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "852f254f_8b8507fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-14T11:01:57Z",
+      "side": 1,
+      "message": "Is this change ready for review?",
+      "revId": "b83afda09bcff0e0214f72f43661be78932dcb5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a354653_6d26c2e7",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-14T11:01:57Z",
+      "side": 1,
+      "message": "nit: `vendor_boot_name`\n```suggestion\n        if vendor_boot_name:\n```",
+      "range": {
+        "startLine": 377,
+        "startChar": 11,
+        "endLine": 377,
+        "endChar": 56
+      },
+      "revId": "b83afda09bcff0e0214f72f43661be78932dcb5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
