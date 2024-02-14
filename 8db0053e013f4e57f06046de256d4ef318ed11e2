@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21827c7c_813cd7e7",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-14T23:59:40Z",
+      "side": 1,
+      "message": "```suggestion\n  gitlog \u003d f\"git log --first-parent -{GIT_COMMIT_LOG_LENGTH} --oneline --no-decorate \"\n```",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 94
+      },
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d348b5c3_2b8648a1",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-14T23:59:40Z",
+      "side": 1,
+      "message": "hmm, `old_sha` gets special treatment, but `new_sha` does not. And neither of it is documented ...",
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1fe230a_832ef2c8",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-14T23:59:40Z",
+      "side": 1,
+      "message": "```suggestion\n    gitlog +\u003d f\"{old_sha}..{new_sha}\"\n```",
+      "range": {
+        "startLine": 183,
+        "startChar": 4,
+        "endLine": 183,
+        "endChar": 46
+      },
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5171c517_6b8462f4",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-14T23:59:40Z",
+      "side": 1,
+      "message": "`str.removeprefix(prefix)`\n\nhttps://docs.python.org/3.12/library/stdtypes.html#str.removeprefix",
+      "range": {
+        "startLine": 733,
+        "startChar": 2,
+        "endLine": 733,
+        "endChar": 55
+      },
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25fdb169_13f99c34",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-14T23:59:40Z",
+      "side": 1,
+      "message": "Tat \n```suggestion\n    os.makedirs(directory, exist_ok\u003dTrue)\n```",
+      "range": {
+        "startLine": 751,
+        "startChar": 0,
+        "endLine": 752,
+        "endChar": 35
+      },
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd77da97_390d5c10",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-14T23:59:40Z",
+      "side": 1,
+      "message": "The default is `0o777` and that would be fine given directories will not end up in git anyway? Why change the permissions? Note, the mode only applies to the leaf directory created.",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 752,
+        "endChar": 35
+      },
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
