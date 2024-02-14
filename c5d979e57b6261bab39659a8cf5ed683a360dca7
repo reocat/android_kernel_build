@@ -241,6 +241,30 @@
       },
       "revId": "c5d979e57b6261bab39659a8cf5ed683a360dca7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4beb24a8_f012fd72",
+        "filename": "kleaf/impl/ddk/ddk_config.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-14T17:35:14Z",
+      "side": 1,
+      "message": "Done. The line length fix.",
+      "parentUuid": "7bc60ebc_b9997967",
+      "range": {
+        "startLine": 253,
+        "startChar": 134,
+        "endLine": 253,
+        "endChar": 164
+      },
+      "revId": "c5d979e57b6261bab39659a8cf5ed683a360dca7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
