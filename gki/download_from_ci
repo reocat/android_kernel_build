@@ -176,8 +176,11 @@ def get_build_kernel_version(data):
 
 def get_git_log(old_sha, new_sha, path=get_kernel_dir()):
   """Return a string containing the git log between two commits."""
-  gitlog = "git log --first-parent -{} --oneline --no-decorate {}..{}".format(GIT_COMMIT_LOG_LENGTH,
-                                                                              old_sha,new_sha)
+  gitlog = "git log --first-parent -{} --oneline --no-decorate ".format(GIT_COMMIT_LOG_LENGTH)
+  if old_sha is None:
+    gitlog += new_sha
+  else:
+    gitlog += "{}..{}".format(old_sha,new_sha)
   gitlog += ":\n" + subprocess.check_output(shlex.split(gitlog), text=True,
                                             cwd=path) + "\n"
   return gitlog
@@ -726,6 +729,9 @@ def update_u_boot():
   else:
     print("Unknown u-boot branch %s for build" % branch)
 
+def remove_prefix(prefix, s):
+  return s[len(prefix):] if s.startswith(prefix) else s
+
 def update_microdroid_kernel():
   url_base = BASE_URL.format(build_id=_args.build_id, target="kernel_microdroid_aarch64")
   url = os.path.join(url_base, "BUILD_INFO")
@@ -734,15 +740,20 @@ def update_microdroid_kernel():
   branch = json.loads(data)["branch"]
   version = get_build_kernel_version(data)
 
+  short_branch = remove_prefix("aosp_kernel-common-", branch)
   output_dir = os.environ["ANDROID_BUILD_TOP"]
   base_dir = os.path.join(output_dir, "packages", "modules", "Virtualization",
-                          "microdroid", "kernel")
+                          "microdroid", "kernel", short_branch)
 
   for arch in "arm64", "x86_64":
     arch_suffix = "aarch64" if arch == "arm64" else arch
     directory = os.path.join(base_dir, arch)
+    if not os.path.exists(directory):
+      os.makedirs(directory, 0o755)
     kernel = os.path.join(directory, "kernel-" + version)
-    (old_version, old_sha) = get_binary_kernel_version(kernel)
+    old_version, old_sha = None, None
+    if os.path.exists(kernel):
+      (old_version, old_sha) = get_binary_kernel_version(kernel)
 
     clean_download_dir(directory)
     download_kernel("kernel_microdroid_" + arch_suffix, version, directory)
