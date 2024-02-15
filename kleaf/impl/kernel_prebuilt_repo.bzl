@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Repository for kernel prebuilts."""
+"""Repository for kernel prebuilts.
+
+Deprecated; see kernel_prebuilt_repo_new.bzl.
+"""
 
 load(
     ":kernel_prebuilt_utils.bzl",
