@@ -16,6 +16,24 @@
       "message": "That looks odd: Enabling Rust support causes a change to the C ABI, even if not a single line of Rust is participating to the ABI. That is basically a roadblock for productive Rust use in the GKI kernel and should at least get a TODO with a blocking tracking bug.\n\nCan we make the file filter in STG a little smarter such that if `DW_AT_decl_file` is not set, we assume the file name to be \"rustymcrustface.rs\" and as such it does not match the usual file filters?\n\nPlease also add the tracking bug to the commit message for more details.",
       "revId": "e81647094a4e1dab54b6c093d07f00f7d88e1792",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4f8e9a8_d0e3ef84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1953271
+      },
+      "writtenOn": "2024-02-15T11:55:20Z",
+      "side": 1,
+      "message": "I have added a TODO to add proper support in STG to handle this case. In the meantime, we can go ahead with this change to unblock Rust development.\n\nOnce, STG has proper support to ignore file filters for Rust types we can revert this.",
+      "parentUuid": "6546fc8f_ace24716",
+      "revId": "e81647094a4e1dab54b6c093d07f00f7d88e1792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
