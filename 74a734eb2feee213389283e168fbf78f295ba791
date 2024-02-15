@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc673600_9a69cdb0",
+        "filename": "kleaf/tests/ddk_test/ddk_config_test.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-15T00:12:11Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "f01b6567_0a07c0db",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 3
+      },
+      "revId": "74a734eb2feee213389283e168fbf78f295ba791",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1896a48d_39535063",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-02-15T00:11:13Z",
       "side": 1,
       "message": "remove new line at the end",
+      "revId": "74a734eb2feee213389283e168fbf78f295ba791",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84a322db_d767d00d",
+        "filename": "kleaf/tests/ddk_test/defconfig.fragment",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-15T00:12:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1896a48d_39535063",
       "revId": "74a734eb2feee213389283e168fbf78f295ba791",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
