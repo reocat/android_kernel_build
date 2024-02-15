@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4e61650_8e272404",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1432579
+      },
+      "writtenOn": "2024-02-15T00:18:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21827c7c_813cd7e7",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 94
+      },
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d348b5c3_2b8648a1",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-02-14T23:59:40Z",
       "side": 1,
       "message": "hmm, `old_sha` gets special treatment, but `new_sha` does not. And neither of it is documented ...",
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f94556a_1007fa45",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1432579
+      },
+      "writtenOn": "2024-02-15T00:18:07Z",
+      "side": 1,
+      "message": "Added docs. PTAL",
+      "parentUuid": "d348b5c3_2b8648a1",
       "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efad6b7c_f7e5c000",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1432579
+      },
+      "writtenOn": "2024-02-15T00:18:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1fe230a_832ef2c8",
+      "range": {
+        "startLine": 183,
+        "startChar": 4,
+        "endLine": 183,
+        "endChar": 46
+      },
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5171c517_6b8462f4",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-02-14T23:59:40Z",
       "side": 1,
       "message": "`str.removeprefix(prefix)`\n\nhttps://docs.python.org/3.12/library/stdtypes.html#str.removeprefix",
+      "range": {
+        "startLine": 733,
+        "startChar": 2,
+        "endLine": 733,
+        "endChar": 55
+      },
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f57cb053_d7d33006",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1432579
+      },
+      "writtenOn": "2024-02-15T00:18:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5171c517_6b8462f4",
       "range": {
         "startLine": 733,
         "startChar": 2,
@@ -125,6 +215,54 @@
       "message": "The default is `0o777` and that would be fine given directories will not end up in git anyway? Why change the permissions? Note, the mode only applies to the leaf directory created.",
       "range": {
         "startLine": 752,
+        "startChar": 0,
+        "endLine": 752,
+        "endChar": 35
+      },
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e977dd67_ebdf7b17",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1432579
+      },
+      "writtenOn": "2024-02-15T00:18:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd77da97_390d5c10",
+      "range": {
+        "startLine": 752,
+        "startChar": 0,
+        "endLine": 752,
+        "endChar": 35
+      },
+      "revId": "8db0053e013f4e57f06046de256d4ef318ed11e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45326532_ae969edc",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 1
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1432579
+      },
+      "writtenOn": "2024-02-15T00:18:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25fdb169_13f99c34",
+      "range": {
+        "startLine": 751,
         "startChar": 0,
         "endLine": 752,
         "endChar": 35
