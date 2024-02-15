@@ -16,6 +16,24 @@
       "message": "unnecessary attribute?",
       "revId": "49abf6ebb4e9c47602ce7b34d1e923468a7a19c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43ecf9f6_7dc50128",
+        "filename": "kleaf/tests/cc_testing/cpp.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-15T22:22:59Z",
+      "side": 1,
+      "message": "yeah. I\u0027ll fix it in follow up CL.",
+      "parentUuid": "87475dfe_4153eedf",
+      "revId": "49abf6ebb4e9c47602ce7b34d1e923468a7a19c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
