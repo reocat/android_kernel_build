@@ -16,6 +16,29 @@
       "message": "I can\u0027t +2 here, but this LGTM.",
       "revId": "6c24bdd421ccb3296dc219a45054c921b47d41e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e1efac2_c8d6b603",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-15T10:32:02Z",
+      "side": 1,
+      "message": "The condition can also go away.\n```suggestion\n    os.makedirs(directory, exist_ok\u003dTrue)\n```",
+      "range": {
+        "startLine": 751,
+        "startChar": 0,
+        "endLine": 752,
+        "endChar": 43
+      },
+      "revId": "6c24bdd421ccb3296dc219a45054c921b47d41e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
