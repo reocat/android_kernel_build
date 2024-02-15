@@ -15,32 +15,11 @@
 """Extension that helps building Android kernel and drivers."""
 
 load(
-    "//build/kernel/kleaf/impl:declare_host_tools.bzl",
-    "declare_host_tools",
-)
-load(
     "//build/kernel/kleaf/impl:declare_kernel_prebuilts.bzl",
     "declare_kernel_prebuilts",
 )
-load(
-    "//build/kernel/kleaf/impl:declare_toolchain_constants.bzl",
-    "declare_toolchain_constants",
-)
 
 visibility("public")
-
-def _kernel_toolchain_ext_impl(module_ctx):
-    declare_toolchain_constants.declare_repos(module_ctx, "declare_toolchain_constants")
-    declare_host_tools.declare_repos(module_ctx, "declare_host_tools")
-
-kernel_toolchain_ext = module_extension(
-    doc = "Extension that manages what toolchain Kleaf should use.",
-    implementation = _kernel_toolchain_ext_impl,
-    tag_classes = {
-        "declare_toolchain_constants": declare_toolchain_constants.tag_class,
-        "declare_host_tools": declare_host_tools.tag_class,
-    },
-)
 
 def _kernel_prebuilt_ext_impl(module_ctx):
     declare_kernel_prebuilts.declare_repos(module_ctx, "declare_kernel_prebuilts")
