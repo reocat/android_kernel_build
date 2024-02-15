@@ -22,6 +22,29 @@
       },
       "revId": "fa56921f707379e5c0432ed1adae02d529b7febd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc07d06e_361dc391",
+        "filename": "kleaf/impl/abi/abi_dump.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-02-15T14:59:33Z",
+      "side": 1,
+      "message": "nit: double negative, but I don\u0027t really have a better suggestion\n\nuninhibit, unrepress, unsuppress, undeny? :-) The spellchecker tells me these aren\u0027t real words.\n\n`\u0027--rust\u0027 flag currently inhibits ABI leak prevention of private C type`",
+      "range": {
+        "startLine": 86,
+        "startChar": 38,
+        "endLine": 87,
+        "endChar": 17
+      },
+      "revId": "fa56921f707379e5c0432ed1adae02d529b7febd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
