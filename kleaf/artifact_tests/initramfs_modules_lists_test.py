@@ -110,7 +110,7 @@ class InitramfsModulesLists(unittest.TestCase):
 
     def test_diff(self):
         initramfs_list = [f for f in arguments.files if os.path.basename(f) == "initramfs.img"]
-        self.assertEqual(1, len(initramfs_list))
+        self.assertEqual(len(initramfs_list), 1)
         initramfs = initramfs_list[0]
         modules_lists_map = {}
 
@@ -171,6 +171,65 @@ class InitramfsModulesLists(unittest.TestCase):
 
         if arguments.expected_modules_charger_list:
             self._verify_modules_load_lists("modules.load.charger", vendor_boot_name, arguments.files)
+
+    def _verify_modules_dep_contains_modules_lists(self, modules_lists, modules_dir):
+        """Ensures that modules.dep contains all entries needed for modules.load*.
+
+        Given a list of modules lists, this function ensures that modules.dep
+        contains an entry for each module in all of the modules lists.
+
+        Args:
+            modules_lists: The list of modules.load* that need to be tested.
+            modules_dir: The directory in which the modules reside in.
+        """
+        modules_dep_path = os.path.join(modules_dir, "modules.dep")
+        modules_dep_set = set()
+
+        self.assertTrue(os.path.isfile(modules_dep_path), f"Can't find {modules_dep_path}")
+
+        with open(modules_dep_path) as modules_dep_file:
+            for line in modules_dep_file:
+                # depmod entries have the form:
+                # mod_path: dep_path_1 dep_path_2
+                mod_name = line.split(":")[0].strip()
+                modules_dep_set.add(os.path.basename(mod_name))
+
+        for mod_list in modules_lists:
+            mod_list_path = os.path.join(modules_dir, mod_list)
+            self.assertTrue(os.path.isfile(mod_list_path), f"Can't find {mod_list_path}")
+            mod_list_modules = set()
+
+            with open(mod_list_path) as mod_list_file:
+                for line in mod_list_file:
+                    mod_list_modules.add(os.path.basename(line.strip()))
+
+            self.assertTrue(mod_list_modules.issubset(modules_dep_set), "modules.dep does not contain an entry for each module to be loaded")
+
+    def test_modules_dep_contains_all_modules_lists(self):
+        initramfs_list = [f for f in arguments.files if os.path.basename(f) == "initramfs.img"]
+        self.assertEqual(len(initramfs_list), 1)
+        initramfs = initramfs_list[0]
+        modules_lists = []
+
+        if arguments.expected_modules_list:
+            modules_lists.append("modules.load")
+
+        if arguments.expected_modules_recovery_list:
+            modules_lists.append("modules.load.recovery")
+
+        if arguments.expected_modules_charger_list:
+            modules_lists.append("modules.load.charger")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            self._decompress_initramfs(initramfs, temp_dir)
+
+            lib_modules = os.path.join(temp_dir, "lib/modules")
+            self.assertTrue(os.path.isdir(lib_modules))
+
+            kernel_versions = os.listdir(lib_modules)
+            for v in kernel_versions:
+                modules_dir = os.path.join(lib_modules, v)
+                self._verify_modules_dep_contains_modules_lists(modules_lists, modules_dir)
 
 if __name__ == '__main__':
     arguments, unknown = load_arguments()
