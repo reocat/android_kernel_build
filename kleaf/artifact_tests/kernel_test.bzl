@@ -124,6 +124,8 @@ def initramfs_modules_lists_test(
         expected_modules_list = None,
         expected_modules_recovery_list = None,
         expected_modules_charger_list = None,
+        build_vendor_boot = None,
+        build_vendor_kernel_boot = None,
         **kwargs):
     """Tests that the initramfs has modules.load* files with the given content.
 
@@ -157,6 +159,15 @@ def initramfs_modules_lists_test(
         args += [
             "--expected_modules_charger_list",
             "$(rootpath {})".format(expected_modules_charger_list),
+        ]
+
+    if build_vendor_boot:
+        args += [
+            "--build_vendor_boot",
+        ]
+    elif build_vendor_kernel_boot:
+        args += [
+            "--build_vendor_kernel_boot"
         ]
 
     args.append("$(rootpaths {})".format(kernel_images))
