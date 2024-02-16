@@ -39,6 +39,30 @@
       },
       "revId": "b83afda09bcff0e0214f72f43661be78932dcb5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "037c502a_ea715982",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-16T16:31:44Z",
+      "side": 1,
+      "message": "Not yet. We should probably add a test for this.",
+      "parentUuid": "6a354653_6d26c2e7",
+      "range": {
+        "startLine": 377,
+        "startChar": 11,
+        "endLine": 377,
+        "endChar": 56
+      },
+      "revId": "b83afda09bcff0e0214f72f43661be78932dcb5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
