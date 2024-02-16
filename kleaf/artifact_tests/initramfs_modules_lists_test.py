@@ -66,9 +66,11 @@ class InitramfsModulesLists(unittest.TestCase):
 
             with open(modules_load_path) as modules_load_file, \
                  open(expected_modules_list_path) as expected_modules_list_file:
-                modules_load_lines = [os.path.basename(f) for f in modules_load_file.readlines()]
-                expected_modules_list_lines = expected_modules_list_file.readlines()
-                self.assertEqual(modules_load_lines.sort(), expected_modules_list_lines.sort())
+                modules_load_lines = [os.path.basename(f).strip() for f in modules_load_file.readlines()]
+                expected_modules_list_lines = [mod.strip() for mod in expected_modules_list_file.readlines()]
+                modules_load_lines.sort()
+                expected_modules_list_lines.sort()
+                self.assertEqual(modules_load_lines, expected_modules_list_lines)
 
     def test_diff(self):
         initramfs_list = [f for f in arguments.files if os.path.basename(f) == "initramfs.img"]
