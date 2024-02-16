@@ -35,6 +35,40 @@ arguments = None
 
 
 class InitramfsModulesLists(unittest.TestCase):
+    def _detect_decompression_cmd(self, initramfs):
+        """Determines what commands to use for decompressing initramfs.img
+
+        Args:
+            initramfs: The path to the initramfs.img to decompress
+
+        Returns:
+            The command that should be used to decompress the image.
+        """
+        GZIP_MAGIC = b'\x1f\x8b\x08'
+        # The kernel build uses legacy LZ4 compression (i.e. lz4 -l ...),
+        # so the legacy LZ4 magic must be used in little-endian format.
+        LZ4_MAGIC = b'\x02\x21\x4c\x18'
+        magic_to_decompression_cmd_map = {
+            GZIP_MAGIC: ["gzip", "-c", "-d"],
+            LZ4_MAGIC: ["lz4", "-c", "-d", "-l"],
+        }
+        max_magic_len = max(map(len, magic_to_decompression_cmd_map.keys()))
+        decompress_cmd = None
+        hdr = None
+
+        with open(initramfs, "rb") as initramfs_file:
+            hdr = initramfs_file.read(max_magic_len)
+
+        self.assertIsNotNone(hdr)
+
+        for magic in magic_to_decompression_cmd_map:
+            if hdr.startswith(magic):
+                decompression_cmd = magic_to_decompression_cmd_map[magic]
+                break
+
+        self.assertIsNotNone(decompression_cmd)
+        return decompression_cmd
+
     def _decompress_initramfs(self, initramfs, temp_dir):
         """Decompress initramfs into temp_dir.
 
@@ -42,13 +76,14 @@ class InitramfsModulesLists(unittest.TestCase):
             initramfs: path to initramfs.img gzip file to be decompressed
             temp_dir: directory in which to decompress initramfs.img into
         """
+        decompression_cmd = self._detect_decompression_cmd(initramfs)
         with open(initramfs) as initramfs_file:
             with subprocess.Popen(["cpio", "-i"], cwd=temp_dir,
                                   stdin=subprocess.PIPE, stdout=subprocess.PIPE) as cpio_sp:
-                with subprocess.Popen(["gzip", "-c", "-d"], stdin=initramfs_file,
-                                      stdout=cpio_sp.stdin) as gzip_sp:
-                    gzip_sp.communicate()
-                    self.assertEqual(0, gzip_sp.returncode)
+                with subprocess.Popen(decompression_cmd, stdin=initramfs_file,
+                                      stdout=cpio_sp.stdin) as decompress_sp:
+                    decompress_sp.communicate()
+                    self.assertEqual(0, decompress_sp.returncode)
 
     def _diff_modules_lists(self, modules_lists_map, modules_dir):
         """Compares generated modules lists against expected modules lists for equality.
