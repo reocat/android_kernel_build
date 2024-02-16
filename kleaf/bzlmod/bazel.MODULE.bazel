@@ -43,6 +43,12 @@ new_kleaf_local_repository(
 )
 
 new_kleaf_local_repository(
+    name = "zlib",
+    build_file = "build/kernel/kleaf/zlib.BUILD",
+    path = "external/zlib",
+)
+
+new_kleaf_local_repository(
     name = "zopfli",
     build_file = "build/kernel/kleaf/zopfli.BUILD",
     path = "external/zopfli",
