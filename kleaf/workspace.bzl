@@ -146,6 +146,12 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
     )
 
     new_kleaf_local_repository(
+        name = "zlib",
+        path = "external/zlib",
+        build_file = "build/kernel/kleaf/zlib.BUILD",
+    )
+
+    new_kleaf_local_repository(
         name = "zopfli",
         path = "external/zopfli",
         build_file = "build/kernel/kleaf/zopfli.BUILD",
