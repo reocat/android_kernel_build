@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04c1a81d_cd8de2c6",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-19T09:53:37Z",
+      "side": 1,
+      "message": "Use `assertCountEqual`.\n\n```suggestion\n\n        self.assertCountEqual(modules_load_lists, modules_load_list_matches)\n```",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 71
+      },
+      "revId": "5a331d2b1d26ffa363cb17889f18ae9d295e8d5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
