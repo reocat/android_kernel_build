@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61daeb3f_624eb692",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-19T10:03:14Z",
+      "side": 1,
+      "message": "nit: \"Test names should summarize the behavior being tested and its expected outcome.\"",
+      "revId": "6014b68ba11d622d59120fe9b736382a3cf0567a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "132ccfe3_5d4620dd",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-19T10:03:14Z",
+      "side": 1,
+      "message": "Put the expectation last.\n```suggestion\n        self.assertEqual(len(initramfs_list), 1)\n```",
+      "range": {
+        "startLine": 200,
+        "startChar": 8,
+        "endLine": 200,
+        "endChar": 48
+      },
+      "revId": "6014b68ba11d622d59120fe9b736382a3cf0567a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
