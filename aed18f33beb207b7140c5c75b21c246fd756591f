@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f91c4b0_130efb76",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-19T09:44:21Z",
+      "side": 1,
+      "message": "```suggestion\n                modules_load_lines \u003d [os.path.basename(line).strip() for line in modules_load_file]\n```\n\nhttps://docs.python.org/3.12/library/io.html#io.IOBase.readlines",
+      "range": {
+        "startLine": 69,
+        "startChar": 38,
+        "endLine": 69,
+        "endChar": 104
+      },
+      "revId": "aed18f33beb207b7140c5c75b21c246fd756591f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa23d0dd_67fbc947",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-19T09:44:21Z",
+      "side": 1,
+      "message": "```suggestion\n                expected_modules_list_lines \u003d [mod.strip() for mod in expected_modules_list_file]\n```",
+      "range": {
+        "startLine": 70,
+        "startChar": 47,
+        "endLine": 70,
+        "endChar": 108
+      },
+      "revId": "aed18f33beb207b7140c5c75b21c246fd756591f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f311d151_309d6052",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-19T09:44:21Z",
+      "side": 1,
+      "message": "That is `assertCountEqual`\n\n```suggestion\n                self.assertCountEqual(modules_load_lines, expected_modules_list_lines)\n```\n\nhttps://docs.python.org/3.12/library/unittest.html#unittest.TestCase.assertCountEqual",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 81
+      },
+      "revId": "aed18f33beb207b7140c5c75b21c246fd756591f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
