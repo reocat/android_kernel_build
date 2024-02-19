@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2bd3fcf_5684d3f4",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-19T09:49:43Z",
+      "side": 1,
+      "message": "The magic for LZ4 appears to be `04 22 4d 18`. Can we assert that as well? That would give a strong guarantee and would immediately fail for any new or invalid type of compression.",
+      "range": {
+        "startLine": 46,
+        "startChar": 32,
+        "endLine": 46,
+        "endChar": 59
+      },
+      "revId": "94c1dc98e74fd9dbf35115f1f9215dbfe3cccced",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96e7bd23_6ab8cff5",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-19T09:49:43Z",
+      "side": 1,
+      "message": "```suggestion\n        GZIP_MAGIC \u003d b\u0027\\x1f\\x8b\\x08\u0027\n\n        with open(initramfs, \"rb\") as initramfs_file:\n            if initramfs_file.read(len(GZIP_MAGIC)) \u003d\u003d GZIP_MAGIC:\n                return [\"gzip\", \"-c\", \"-d\"]\n\n        return [\"lz4\", \"-c\", \"-d\", \"-l\"]\n\n```",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 56,
+        "endChar": 0
+      },
+      "revId": "94c1dc98e74fd9dbf35115f1f9215dbfe3cccced",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
