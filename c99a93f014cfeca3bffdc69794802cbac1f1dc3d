@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20e394c3_d7a0da3b",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-20T18:56:34Z",
+      "side": 1,
+      "message": "nit: I know the existing code uses `os.path`, but please consider using `pathlib.Path` for more modern style",
+      "range": {
+        "startLine": 222,
+        "startChar": 26,
+        "endLine": 222,
+        "endChar": 39
+      },
+      "revId": "c99a93f014cfeca3bffdc69794802cbac1f1dc3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
