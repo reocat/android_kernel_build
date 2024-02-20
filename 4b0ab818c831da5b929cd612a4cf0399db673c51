@@ -34,6 +34,24 @@
       "parentUuid": "3a7c4b03_458819e9",
       "revId": "4b0ab818c831da5b929cd612a4cf0399db673c51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d90a6946_40373d87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-20T18:46:03Z",
+      "side": 1,
+      "message": "Also, looking at the error\n\nhttps://android-build.corp.google.com/artifact/pending/P70207854/checkpatch/latest/view/logs%2Fbuild_error.log\n\n```\nERROR: error loading package \u0027external/bazelbuild-rules_rust\u0027: Every .bzl file must have a corresponding package, but \u0027//rust:defs.bzl\u0027 does not have one. Please create a BUILD file in the same or any parent directory. Note that this BUILD file does not need to do anything except exist.\n```\n\nThe error seem to be that `external/bazelbuild-rules_rust/rust/BUILD` does not exist. This appears to be a bug upstream. Perhaps create an empty `BUILD` file there for now and check if the issue is fixed at a later tag, and if not file a bug on Github?",
+      "parentUuid": "5910624a_954f6722",
+      "revId": "4b0ab818c831da5b929cd612a4cf0399db673c51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
