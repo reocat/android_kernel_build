@@ -16,6 +16,24 @@
       "message": "Question: This works with or without sandbox, right?\n\n- If with sandbox, `/tmp/bazel-source-roots/[number]` is effective\n- If without sandbox, `ROOT_DIR` is effective",
       "revId": "4ce857d0d76383bc68e00dc1d28edde80ef1dfa4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abe55858_1c1938ef",
+        "filename": "kleaf/impl/compile_commands_utils.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-20T19:54:41Z",
+      "side": 1,
+      "message": "Yes, this only augments the new method, while leaving the old one for branches which does not yet have the ACK change.",
+      "parentUuid": "04ddaf2d_45758ab2",
+      "revId": "4ce857d0d76383bc68e00dc1d28edde80ef1dfa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
