@@ -14,7 +14,7 @@
 
 """Tests for contents of a given file."""
 
-def contain_lines_test(name, expected, actual, order = None):
+def contain_lines_test(name, expected, actual, order = None, size = None):
     """See `contain_lines_test.py` for explanation.
 
     Args:
@@ -22,6 +22,7 @@ def contain_lines_test(name, expected, actual, order = None):
         expected: A label expanding into the expected files.
         actual: A label expanding into the actual files.
         order: If True, also assert ordering.
+        size: Size hint for test timeout.
     """
 
     args = [
@@ -40,7 +41,7 @@ def contain_lines_test(name, expected, actual, order = None):
         srcs = ["//build/kernel/kleaf/tests/utils:contain_lines_test.py"],
         data = [expected, actual],
         args = args,
-        timeout = "short",
+        size = size,
         deps = [
             "@io_abseil_py//absl/testing:absltest",
         ],
