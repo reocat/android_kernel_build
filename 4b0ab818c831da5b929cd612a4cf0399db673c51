@@ -52,6 +52,24 @@
       "parentUuid": "5910624a_954f6722",
       "revId": "4b0ab818c831da5b929cd612a4cf0399db673c51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6cc7396_b469cf28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-20T19:42:25Z",
+      "side": 1,
+      "message": "There are `BUILD.bazel` files in place, but we suspect this is because the load statements within the project use `//rust/...` instead of `@rules_rust//rust/...`.\n\nDone",
+      "parentUuid": "d90a6946_40373d87",
+      "revId": "4b0ab818c831da5b929cd612a4cf0399db673c51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
