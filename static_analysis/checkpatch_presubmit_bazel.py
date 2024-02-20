@@ -40,6 +40,10 @@ _SILENT_ARGS = [
     "--noshow_progress",
 ]
 
+# TODO: Find a better way to handle this exceptions;
+_DENY_LIST_PATH = [
+    pathlib.Path("external/bazelbuild-rules_rust"),
+]
 
 def load_arguments() -> dict[str, Any]:
     parser = argparse.ArgumentParser(
@@ -71,6 +75,10 @@ def _log_command(args):
 
 
 def _find_checkpatch_targets(path: pathlib.Path) -> list[str]:
+    if path in _DENY_LIST_PATH:
+      logging.info("Skipped //%s path in deny list", path)
+      return []
+
     if not _resolve_against_workspace_root(path / "BUILD.bazel").is_file() and \
         not _resolve_against_workspace_root(path / "BUILD").is_file():
         logging.info("//%s is not a package; no BUILD file is found", path)
