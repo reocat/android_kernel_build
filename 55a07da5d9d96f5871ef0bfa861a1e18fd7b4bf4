@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a702aafe_272e71ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-20T18:20:38Z",
+      "side": 1,
+      "message": "The python test itself should finish relatively quickly, so I think it is adequate to set it to small size  / short timeout. The large part is the building of the prerequisites of the test (ddk images in this case).\n\nIs my understanding correct?",
+      "revId": "55a07da5d9d96f5871ef0bfa861a1e18fd7b4bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
