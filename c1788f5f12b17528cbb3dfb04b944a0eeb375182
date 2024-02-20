@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a20b35a_508daae5",
+        "filename": "kleaf/bzlmod/bazel.MODULE.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-20T19:19:05Z",
+      "side": 1,
+      "message": "Ignore the `(Also` at the end of the first paragraph",
+      "parentUuid": "7fae4638_0726d68a",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 1
+      },
+      "revId": "c1788f5f12b17528cbb3dfb04b944a0eeb375182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6ff61340_4cdb4819",
         "filename": "kleaf/workspace.bzl",
         "patchSetId": 1
