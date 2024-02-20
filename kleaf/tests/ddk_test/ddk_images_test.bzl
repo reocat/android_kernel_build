@@ -157,6 +157,7 @@ def ddk_images_test_suite(name):
         expected = name + "_expected",
         actual = name + "_modules_load",
         order = True,
+        size = "large",
     )
     tests.append(name + "_modules_load_test")
 
