@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85061d49_052e9108",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-20T10:49:17Z",
+      "side": 1,
+      "message": "```suggestion\n                expected_modules_list_lines \u003d [line.strip() for line in expected_modules_list_file]\n```",
+      "range": {
+        "startLine": 70,
+        "startChar": 47,
+        "endLine": 70,
+        "endChar": 50
+      },
+      "revId": "00eea97b7ad956a2ecf658ad31d9a387c6045d28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
