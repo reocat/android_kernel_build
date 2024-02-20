@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7717710e_f703f2ff",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-20T11:03:17Z",
+      "side": 1,
+      "message": "The keys need not be named constants. By not naming them and using comments instead, you could support multiple LZ4 magic values.\n\nNote, `str.startswith` supports `str` as well as `tuple[str]` as possible inputs. That way the key can be either (`str` for GZIP, `tuple[str]` for LZ4).\n\n\n```suggestion\n        magic_to_decompression_command \u003d {\n            # GZIP\n            b\u0027\\x1f\\x8b\\x08\u0027: [\"gzip\", \"-c\", \"-d\"],\n            \n            # LZ4\n            # The kernel build uses legacy LZ4 compression (i.e. lz4 -l ...),\n            # so the legacy LZ4 magic must be used in little-endian format.\n            b\u0027\\x02\\x21\\x4c\\x18\u0027: [\"lz4\", \"-c\", \"-d\", \"-l\"],\n        }\n```",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 9
+      },
+      "revId": "a157e119ac840862e3c11675e13bae57e4239574",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56812bfa_7cfb09fb",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-20T11:03:17Z",
+      "side": 1,
+      "message": "Those initializations are not required. In fact, due to a typo, you are not even using `decompress_cmd`. Yet, to avoid a use-before-define issue, consider\n\n```\n    for magic, command in magic_to_decompression_command.items():\n        if hdr.startswith(magic):\n            return command\n    else:\n        self.fail(\"No suitable compression method found.\")\n```",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 18
+      },
+      "revId": "a157e119ac840862e3c11675e13bae57e4239574",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
