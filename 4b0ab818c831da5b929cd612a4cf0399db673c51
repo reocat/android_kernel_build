@@ -16,6 +16,24 @@
       "message": "While this is a practical fix, I\u0027m not big fan of it, feel free to let me know if you have other suggestions, Thanks.",
       "revId": "4b0ab818c831da5b929cd612a4cf0399db673c51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5910624a_954f6722",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-20T18:17:38Z",
+      "side": 1,
+      "message": "Let\u0027s add a TODO to clean it up later. rules_rust only needs to be needed when prebuilts/rust is there:\n\nhttps://cs.android.com/search?q\u003d%22@rules_rust%22%20-f:external%2F\u0026ss\u003dandroid%2Fkernel%2Fsuperproject\n\nSo, this is only an issue when prebuilts/rust exists but rules_rust does not. They should be present or absent together.",
+      "parentUuid": "3a7c4b03_458819e9",
+      "revId": "4b0ab818c831da5b929cd612a4cf0399db673c51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
