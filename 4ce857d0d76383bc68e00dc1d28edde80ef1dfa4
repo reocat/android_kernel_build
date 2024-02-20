@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04ddaf2d_45758ab2",
+        "filename": "kleaf/impl/compile_commands_utils.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-20T19:26:07Z",
+      "side": 1,
+      "message": "Question: This works with or without sandbox, right?\n\n- If with sandbox, `/tmp/bazel-source-roots/[number]` is effective\n- If without sandbox, `ROOT_DIR` is effective",
+      "revId": "4ce857d0d76383bc68e00dc1d28edde80ef1dfa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
