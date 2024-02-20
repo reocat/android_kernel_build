@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37c0f0b3_298eb9a4",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-20T07:55:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f91c4b0_130efb76",
+      "range": {
+        "startLine": 69,
+        "startChar": 38,
+        "endLine": 69,
+        "endChar": 104
+      },
+      "revId": "aed18f33beb207b7140c5c75b21c246fd756591f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa23d0dd_67fbc947",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "230f962a_d4f249de",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-20T07:55:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa23d0dd_67fbc947",
+      "range": {
+        "startLine": 70,
+        "startChar": 47,
+        "endLine": 70,
+        "endChar": 108
+      },
+      "revId": "aed18f33beb207b7140c5c75b21c246fd756591f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f311d151_309d6052",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-02-19T09:44:21Z",
       "side": 1,
       "message": "That is `assertCountEqual`\n\n```suggestion\n                self.assertCountEqual(modules_load_lines, expected_modules_list_lines)\n```\n\nhttps://docs.python.org/3.12/library/unittest.html#unittest.TestCase.assertCountEqual",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 81
+      },
+      "revId": "aed18f33beb207b7140c5c75b21c246fd756591f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20eda518_040ffc33",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-20T07:55:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f311d151_309d6052",
       "range": {
         "startLine": 71,
         "startChar": 0,
