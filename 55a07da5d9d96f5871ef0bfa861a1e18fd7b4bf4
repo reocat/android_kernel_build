@@ -16,6 +16,24 @@
       "message": "The python test itself should finish relatively quickly, so I think it is adequate to set it to small size  / short timeout. The large part is the building of the prerequisites of the test (ddk images in this case).\n\nIs my understanding correct?",
       "revId": "55a07da5d9d96f5871ef0bfa861a1e18fd7b4bf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a51eeb04_4c34bda3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-20T19:24:45Z",
+      "side": 1,
+      "message": "Yes, that\u0027s my understanding as well, however I\u0027m not sure if the overall time takes in count the dependencies.",
+      "parentUuid": "a702aafe_272e71ee",
+      "revId": "55a07da5d9d96f5871ef0bfa861a1e18fd7b4bf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
