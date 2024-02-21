@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f659f7c9_1673466f",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-21T14:36:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20fb2f47_21d7c3fd",
+      "revId": "eb511c4250d87f35bed4dc95beda0fd585b57621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "112b8a6b_3fc5efea",
@@ -54,6 +72,54 @@
       "writtenOn": "2024-02-21T11:35:32Z",
       "side": 1,
       "message": "avoid abbreviation.\n\nhttps://google.github.io/styleguide/pyguide.html#316-naming",
+      "range": {
+        "startLine": 129,
+        "startChar": 16,
+        "endLine": 129,
+        "endChar": 17
+      },
+      "revId": "eb511c4250d87f35bed4dc95beda0fd585b57621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e815355_fbb65964",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-21T14:36:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "112b8a6b_3fc5efea",
+      "range": {
+        "startLine": 128,
+        "startChar": 12,
+        "endLine": 129,
+        "endChar": 37
+      },
+      "revId": "eb511c4250d87f35bed4dc95beda0fd585b57621",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51f53528_e59150ed",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-21T14:36:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d3f5992b_a5ec9211",
       "range": {
         "startLine": 129,
         "startChar": 16,
