@@ -21,6 +21,9 @@
 # dist dir. Notably, this includes the git_sha1 and whether to suppress
 # the check for post-submit.
 
+#ZZZ
+echo 1ZZZ: checkpatch.sh
+#ZZZ
 # Parse flags.
 CHECKPATCH_ARGS=(--show-types)
 GIT_SHA1=""
@@ -145,6 +148,11 @@ PATCH_DIR=${CHECKPATCH_TMP}/checkpatch/patches
 
 # Update ignorelist.
 if [[ -n "${IGNORELIST_FILE}" ]]; then
+  #ZZZ
+  echo ZZZ2: checkpatch.sh
+  echo ${IGNORELIST_FILE}
+  echo $(resolve_path "${IGNORELIST_FILE}")
+  #ZZZ
   IGNORELIST_FILE=$(resolve_path "${IGNORELIST_FILE}")
   if [[ -f "${IGNORELIST_FILE}" ]]; then
     IGNORED_ERRORS=$(grep -v '^#' ${IGNORELIST_FILE} | paste -s -d,)

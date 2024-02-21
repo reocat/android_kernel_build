@@ -148,12 +148,23 @@ def main(
     return_codes = []
     for path_targets, git_sha1 in targets:
         for target in path_targets:
+            #ZZZ
+            logging.error("2ZZZ: main %s", target)
+            #ZZZ
             return_codes.append(_run_checkpatch(
                 target=target,
                 git_sha1=git_sha1,
                 log=checkpatch_log,
                 checkpatch_args=checkpatch_args,
             ))
+            #ZZZ
+            _run_checkpatch(
+                target=target,
+                git_sha1=git_sha1,
+                log=dist_dir / "checkpatch_full.log",
+                checkpatch_args=checkpatch_args + ["--ignored_checks", ""],
+            )
+            #ZZZ
 
     success = sum(return_codes) == 0
 
