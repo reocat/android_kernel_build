@@ -67,7 +67,10 @@ def _resolve_against_workspace_root(value: str) -> pathlib.Path:
 
 def _log_command(args):
     quoted = [shlex.quote(str(arg)) for arg in args]
-    logging.debug("Running command line: %s", " ".join(quoted))
+    #ZZZlogging.debug("Running command line: %s", " ".join(quoted))
+    #ZZZ
+    logging.error("Running command line: %s", " ".join(quoted))
+    #ZZZ
 
 
 def _find_checkpatch_targets(path: pathlib.Path) -> list[str]:
@@ -100,6 +103,10 @@ def _run_checkpatch(
     args += checkpatch_args
     args += ["--log", log]
     args += ["--git_sha1", git_sha1]
+    #ZZZ
+    for arg in checkpatch_args:
+      logging.error("1ZZZ: _run_checkpatch %s", arg)
+    #ZZZ
     _log_command(args)
     return subprocess.run(
         args,
@@ -113,6 +120,9 @@ def main(
         dist_dir: pathlib.Path,
         bid: str | None,
 ) -> int:
+    #ZZZ
+    logging.error("1ZZZ: main")
+    #ZZZ
     if bid:
         # Skip checkpatch for postsubmit (b/35390488).
         if not bid.startswith("P"):
@@ -135,6 +145,9 @@ def main(
             logging.error("Multiple git sha1 found in %s for %s",
                           applied_prop, path)
             return 1
+        #ZZZ
+        logging.error("1.1ZZZ: main %s", path)
+        #ZZZ
         path_targets = _find_checkpatch_targets(path)
         if not path_targets:
             logging.info(
@@ -148,12 +161,23 @@ def main(
     return_codes = []
     for path_targets, git_sha1 in targets:
         for target in path_targets:
+            #ZZZ
+            logging.error("2ZZZ: main %s", target)
+            #ZZZ
             return_codes.append(_run_checkpatch(
                 target=target,
                 git_sha1=git_sha1,
                 log=checkpatch_log,
                 checkpatch_args=checkpatch_args,
             ))
+            #ZZZ
+            _run_checkpatch(
+                target=target,
+                git_sha1=git_sha1,
+                log=dist_dir / "checkpatch_full.log",
+                checkpatch_args=checkpatch_args + ["--ignored_checks", "//build/kernel/static_analysis:checkpatch_empty_ignorelist"],
+            )
+            #ZZZ
 
     success = sum(return_codes) == 0
 

@@ -16,6 +16,9 @@
 
 # Wrapper around checkpatch.pl to filter results.
 
+#ZZZ
+echo 2ZZZ: checkpatch.sh
+#ZZZ
 set -e
 
 export STATIC_ANALYSIS_SRC_DIR=$(dirname $(readlink -f $0))
@@ -123,6 +126,9 @@ fi
 # For now, include all known warnings in the ignorelist, and forward this code
 # unconditionally.
 
+#ZZZ
+#echo "${CHECKPATCH_PL_PATH}" ${CHECKPATCH_ARGS[*]} $PATCH_FILE > "${RESULTS_PATH}"
+#ZZZ
 set +e
 "${CHECKPATCH_PL_PATH}" ${CHECKPATCH_ARGS[*]} $PATCH_FILE > "${RESULTS_PATH}"
 CHECKPATCH_RC=$?
