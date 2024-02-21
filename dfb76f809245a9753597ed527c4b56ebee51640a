@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "315f26b5_93f0d642",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-21T10:47:24Z",
+      "side": 1,
+      "message": "*Use `import` statements for packages and modules only, not for individual types, classes, or functions.*\n\n\nhttps://google.github.io/styleguide/pyguide.html#22-imports\n```suggestion\nimport pathlib\n```",
+      "revId": "dfb76f809245a9753597ed527c4b56ebee51640a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
