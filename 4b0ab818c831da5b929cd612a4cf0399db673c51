@@ -70,6 +70,24 @@
       "parentUuid": "d90a6946_40373d87",
       "revId": "4b0ab818c831da5b929cd612a4cf0399db673c51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cdd7641_29ec493c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-21T00:17:32Z",
+      "side": 1,
+      "message": "I see. Indeed, `external/bazelbuild-rules_rust` should not be treated as a package. It has its own WORKSPACE file, and should be treated as a standalone workspace. I think we can even skip all packages starting with `//external` in a follow up change and call it done.",
+      "parentUuid": "c6cc7396_b469cf28",
+      "revId": "4b0ab818c831da5b929cd612a4cf0399db673c51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
