@@ -88,6 +88,24 @@
       "parentUuid": "c6cc7396_b469cf28",
       "revId": "4b0ab818c831da5b929cd612a4cf0399db673c51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b55a02d_497a49c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-21T00:19:15Z",
+      "side": 1,
+      "message": "Alternatively we can also configure the GCL files to skip running checkpatch for external/ projects; but it might be a bit harder to do.",
+      "parentUuid": "2cdd7641_29ec493c",
+      "revId": "4b0ab818c831da5b929cd612a4cf0399db673c51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
