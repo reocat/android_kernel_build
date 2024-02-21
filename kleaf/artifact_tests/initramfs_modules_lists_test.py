@@ -13,7 +13,6 @@
 # limitations under the License.
 
 import argparse
-import os
 import subprocess
 import sys
 import tempfile
@@ -96,17 +95,17 @@ class InitramfsModulesLists(unittest.TestCase):
             modules_dir:       directory that contains the modules.load* files
         """
         for modules_load, expected_modules_list_path in modules_lists_map.items():
-            modules_load_path = os.path.join(modules_dir, modules_load)
-            self.assertTrue(os.path.isfile(modules_load_path), f"Can't find {modules_load_path}")
+            modules_load_path = Path(modules_dir, modules_load)
+            self.assertTrue(modules_load_path.is_file(), f"Can't find {modules_load_path}")
 
             with open(modules_load_path) as modules_load_file, \
                  open(expected_modules_list_path) as expected_modules_list_file:
-                modules_load_lines = [os.path.basename(line).strip() for line in modules_load_file]
+                modules_load_lines = [Path(line.strip()).name for line in modules_load_file]
                 expected_modules_list_lines = [line.strip() for line in expected_modules_list_file]
                 self.assertCountEqual(modules_load_lines, expected_modules_list_lines)
 
     def test_diff(self):
-        initramfs_list = [f for f in arguments.files if os.path.basename(f) == "initramfs.img"]
+        initramfs_list = [f for f in arguments.files if Path(f).name == "initramfs.img"]
         self.assertEqual(len(initramfs_list), 1)
         initramfs = initramfs_list[0]
         modules_lists_map = {}
@@ -123,12 +122,12 @@ class InitramfsModulesLists(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
             self._decompress_initramfs(initramfs, temp_dir)
 
-            lib_modules = os.path.join(temp_dir, "lib/modules")
-            self.assertTrue(os.path.isdir(lib_modules))
+            lib_modules = Path(temp_dir, "lib/modules")
+            self.assertTrue(lib_modules.is_dir())
 
-            kernel_versions = os.listdir(lib_modules)
+            kernel_versions = lib_modules.iterdir()
             for v in kernel_versions:
-                modules_dir = os.path.join(lib_modules, v)
+                modules_dir = Path(lib_modules, v)
                 self._diff_modules_lists(modules_lists_map, modules_dir)
 
     def _verify_modules_load_lists(self, modules_list_name, vendor_boot_name, image_files):
@@ -148,7 +147,7 @@ class InitramfsModulesLists(unittest.TestCase):
             modules_load_lists.append(f"{vendor_boot_name}.{modules_list_name}")
 
         modules_load_list_re = re.compile(f".*{modules_list_name}$")
-        modules_load_list_matches = [os.path.basename(f) for f in image_files if modules_load_list_re.fullmatch(os.path.basename(f))]
+        modules_load_list_matches = [Path(f).name for f in image_files if modules_load_list_re.fullmatch(Path(f).name)]
 
         self.assertCountEqual(modules_load_lists, modules_load_list_matches)
 
