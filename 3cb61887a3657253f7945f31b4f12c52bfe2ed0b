@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1291a771_87184db5",
+        "filename": "static_analysis/checkpatch_presubmit_bazel.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-21T10:42:05Z",
+      "side": 1,
+      "message": "See below. how about this?\n\n```suggestion\n# TODO: Find a better way to handle this exceptions;\n_DENY_LIST_PATH \u003d [\n    \"external/\",\n]\n```",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 1
+      },
+      "revId": "3cb61887a3657253f7945f31b4f12c52bfe2ed0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f27d4a2_fc05025f",
+        "filename": "static_analysis/checkpatch_presubmit_bazel.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-21T10:42:05Z",
+      "side": 1,
+      "message": "```suggestion\n    if str(path).startswith(_DENY_LIST_PATH):\n      logging.info(\"Skipped //%s path in deny list\", path)\n      return []\n```",
+      "range": {
+        "startLine": 78,
+        "startChar": 2,
+        "endLine": 81,
+        "endChar": 0
+      },
+      "revId": "3cb61887a3657253f7945f31b4f12c52bfe2ed0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
