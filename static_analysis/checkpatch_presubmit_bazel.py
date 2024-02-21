@@ -113,6 +113,9 @@ def main(
         dist_dir: pathlib.Path,
         bid: str | None,
 ) -> int:
+    #ZZZ
+    logging.error("1ZZZ: main")
+    #ZZZ
     if bid:
         # Skip checkpatch for postsubmit (b/35390488).
         if not bid.startswith("P"):
