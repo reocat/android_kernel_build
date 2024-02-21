@@ -22,6 +22,30 @@
       },
       "revId": "c99a93f014cfeca3bffdc69794802cbac1f1dc3d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "349db97f_99d2a526",
+        "filename": "kleaf/artifact_tests/initramfs_modules_lists_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-21T01:28:45Z",
+      "side": 1,
+      "message": "Fixed for code added in this CL. aosp/2969645 addresses it for the rest of the file.",
+      "parentUuid": "20e394c3_d7a0da3b",
+      "range": {
+        "startLine": 222,
+        "startChar": 26,
+        "endLine": 222,
+        "endChar": 39
+      },
+      "revId": "c99a93f014cfeca3bffdc69794802cbac1f1dc3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
