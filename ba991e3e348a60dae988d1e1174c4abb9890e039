@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9934d428_e8ce8927",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-22T10:51:25Z",
+      "side": 1,
+      "message": "Time to retire `build.config.constants` and instead move those into `.bzl` ? Isn\u0027t that just a compatibility layer with `build.sh`?",
+      "revId": "ba991e3e348a60dae988d1e1174c4abb9890e039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
