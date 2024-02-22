@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15aff79c_d3930b58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-22T20:03:04Z",
+      "side": 1,
+      "message": "*NDK_TRIPLE is also easy; just hard-code them in prebuilts/clang, then in kernel_env we can get the value of `NDK_TRIPLE` from the resolved toolchain. We might need to check special branches like u-boot-mailnine, but that should be easy to resolve.\n\nThe harder ones are CLANG_VERSION and RUSTC_VERSION, which we do want to keep them separate per-branch, I think? Or should we also combine them together?",
+      "parentUuid": "8a385314_9bec2adb",
+      "revId": "ba991e3e348a60dae988d1e1174c4abb9890e039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6932d906_a184c844",
         "filename": "kleaf/bzlmod/bazel.MODULE.bazel",
         "patchSetId": 1
