@@ -81,6 +81,9 @@ register_toolchains(
     "//prebuilts/build-tools:py_toolchain",
 )
 
+kernel_prebuilt_ext = use_extension("@kleaf//build/kernel/kleaf:kernel_prebuilt_ext.bzl", "kernel_prebuilt_ext")
+use_repo(kernel_prebuilt_ext, "gki_prebuilts")
+
 # TODO(b/276493276): Resolve the issue of these versions getting outdated.
 bazel_dep(
     name = "abseil-py",
