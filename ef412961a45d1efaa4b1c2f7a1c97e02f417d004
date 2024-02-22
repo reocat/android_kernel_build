@@ -16,6 +16,24 @@
       "message": "I think this is the best way already :) Is there anything else you want to try out?",
       "revId": "ef412961a45d1efaa4b1c2f7a1c97e02f417d004",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5237550a_bd54f4ad",
+        "filename": "static_analysis/checkpatch_presubmit_bazel.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-22T11:58:50Z",
+      "side": 1,
+      "message": "I think the ideal would be to not have to maintain this list, I\u0027ve tried with `keep-going` option in bazel but that did not help.\n\nBut yeah it\u0027s probably good enough, anyways I think this comment doesn\u0027t hurt here, so if it\u0027s Ok I\u0027ll leave it there.",
+      "parentUuid": "796ee077_bddc3933",
+      "revId": "ef412961a45d1efaa4b1c2f7a1c97e02f417d004",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
