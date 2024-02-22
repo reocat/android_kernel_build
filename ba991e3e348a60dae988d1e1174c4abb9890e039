@@ -16,6 +16,29 @@
       "message": "Time to retire `build.config.constants` and instead move those into `.bzl` ? Isn\u0027t that just a compatibility layer with `build.sh`?",
       "revId": "ba991e3e348a60dae988d1e1174c4abb9890e039",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6932d906_a184c844",
+        "filename": "kleaf/bzlmod/bazel.MODULE.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-22T17:40:40Z",
+      "side": 1,
+      "message": "Maybe a naive question, but why don\u0027t you need to specify `toolchain_constants`? is it because there is only one attribute?",
+      "range": {
+        "startLine": 74,
+        "startChar": 28,
+        "endLine": 74,
+        "endChar": 29
+      },
+      "revId": "ba991e3e348a60dae988d1e1174c4abb9890e039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
