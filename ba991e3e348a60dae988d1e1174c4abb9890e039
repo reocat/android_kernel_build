@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00e95c2e_b5a48da3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-22T19:39:21Z",
+      "side": 1,
+      "message": "It is. But even it is moved to `.bzl` / `.scl` it won\u0027t solve the problem of referring to a hard-coded `//common:` here. (CL:2972168 mitigates this.) Also, even if we moved to `.bzl` / `.scl`, load statements are not allowed in MODULE.bazel. So using a format defined by us (build.config) is okay.\n\nThe core issue is that we have a per-branch build.config.constants with different RUSTC_VERSION / CLANG_VERSION / NDK_TRIPLE / BRANCH. If they were the same across android-mainline, android15-6.6, android15-6.1, then this tech debt can go away.",
+      "parentUuid": "9934d428_e8ce8927",
+      "revId": "ba991e3e348a60dae988d1e1174c4abb9890e039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6932d906_a184c844",
         "filename": "kleaf/bzlmod/bazel.MODULE.bazel",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2024-02-22T17:40:40Z",
       "side": 1,
       "message": "Maybe a naive question, but why don\u0027t you need to specify `toolchain_constants`? is it because there is only one attribute?",
+      "range": {
+        "startLine": 74,
+        "startChar": 28,
+        "endLine": 74,
+        "endChar": 29
+      },
+      "revId": "ba991e3e348a60dae988d1e1174c4abb9890e039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad4d8661_1f225e08",
+        "filename": "kleaf/bzlmod/bazel.MODULE.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-22T19:39:21Z",
+      "side": 1,
+      "message": "Yes, but I agree we should be explicit about the attribute. Done.",
+      "parentUuid": "6932d906_a184c844",
       "range": {
         "startLine": 74,
         "startChar": 28,
