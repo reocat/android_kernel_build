@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a385314_9bec2adb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-22T19:48:21Z",
+      "side": 1,
+      "message": "CL:2973759 removes BRANCH but we still have RUSTC_VERSION / CLANG_VERSION / *NDK_TRIPLE",
+      "parentUuid": "00e95c2e_b5a48da3",
+      "revId": "ba991e3e348a60dae988d1e1174c4abb9890e039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6932d906_a184c844",
         "filename": "kleaf/bzlmod/bazel.MODULE.bazel",
         "patchSetId": 1
