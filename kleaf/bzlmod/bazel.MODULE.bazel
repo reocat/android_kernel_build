@@ -61,6 +61,9 @@ use_repo(kernel_toolchain_ext, "kernel_toolchain_info")
 use_repo(kernel_toolchain_ext, "kleaf_clang_toolchain")
 use_repo(kernel_toolchain_ext, "kleaf_host_tools")
 
+kernel_prebuilt_ext = use_extension("//build/kernel/kleaf:kernel_prebuilt_ext.bzl", "kernel_prebuilt_ext")
+use_repo(kernel_prebuilt_ext, "gki_prebuilts")
+
 register_toolchains(
     "@kleaf_clang_toolchain//:all",
     "//build/kernel:hermetic_tools_toolchain",
