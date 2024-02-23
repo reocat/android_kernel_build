@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b297787_7f57c39c",
+        "filename": "kleaf/bzlmod/bazel.MODULE.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-23T19:21:23Z",
+      "side": 1,
+      "message": "But we can also apply the two patches (adding BUILD.bazel and MODULE.bazel) to the repository directly, right?",
+      "parentUuid": "f7f1a9e8_3d4adc8e",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 1
+      },
+      "revId": "c1788f5f12b17528cbb3dfb04b944a0eeb375182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6ff61340_4cdb4819",
         "filename": "kleaf/workspace.bzl",
         "patchSetId": 1
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "I can\u0027t spot the issue ...\n\nAnd any fix should go to the BCR version where I got this from.",
       "parentUuid": "4862316a_51d47e04",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 19
+      },
+      "revId": "c1788f5f12b17528cbb3dfb04b944a0eeb375182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b8d9dc9_868f51a2",
+        "filename": "kleaf/zlib.BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-23T19:21:23Z",
+      "side": 1,
+      "message": "As long as we don\u0027t use this target anywhere, this is fine.",
+      "parentUuid": "3bc0c2f3_4d2525f8",
       "range": {
         "startLine": 65,
         "startChar": 4,
