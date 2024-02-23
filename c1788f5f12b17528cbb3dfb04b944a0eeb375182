@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7f1a9e8_3d4adc8e",
+        "filename": "kleaf/bzlmod/bazel.MODULE.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-23T16:14:16Z",
+      "side": 1,
+      "message": "The zlib in Android is a (Chrome) fork of the upstream version. I took the BUILD.bazel file from the BCR 1.3.1 version and made it work with the fork. Hence, the separate zlib.BUILD file.",
+      "parentUuid": "7a20b35a_508daae5",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 1
+      },
+      "revId": "c1788f5f12b17528cbb3dfb04b944a0eeb375182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6ff61340_4cdb4819",
         "filename": "kleaf/workspace.bzl",
         "patchSetId": 1
@@ -101,6 +125,30 @@
       "writtenOn": "2024-02-20T19:18:27Z",
       "side": 1,
       "message": "not hermetic 😞\n\nBut if we are not using this target, it is probably fine",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 19
+      },
+      "revId": "c1788f5f12b17528cbb3dfb04b944a0eeb375182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bc0c2f3_4d2525f8",
+        "filename": "kleaf/zlib.BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-02-23T16:14:16Z",
+      "side": 1,
+      "message": "I can\u0027t spot the issue ...\n\nAnd any fix should go to the BCR version where I got this from.",
+      "parentUuid": "4862316a_51d47e04",
       "range": {
         "startLine": 65,
         "startChar": 4,
