@@ -16,6 +16,24 @@
       "message": "This works, but I am looking for a better solution.\n\nBefore this change, we only allow DDKv2 to build against @kleaf//common:kernel_aarch64. To build against a kernel_filegroup from downloaded prebuilts:\n\n- The prebuilts should have _env.sh to contain a dynamic `KERNEL_DIR\u003d$KLEAF_REPO_WORKSPACE_ROOT/common`. Before the change, it only has `KERNEL_DIR\u003dcommon` in the downloaded _env.sh.\n- The kernel_filegroup should set KLEAF_REPO_WORKSPACE_ROOT properly. This is done in follow up changes.\n\nBecause we use `export -p`, if we simply set `KERNEL_DIR\u003d$KLEAF_REPO_WORKSPACE_ROOT/common` here, it will be evaluated immediately to `common`, and `export -p` won\u0027t include `$KLEAF_REPO_WORKSPACE_ROOT`. Hence it is done in kernel_env.bzl instead.",
       "revId": "0e906c3a9f3c0f4027821aee19223a35f91f4640",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3583c99_e6e447ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-23T00:29:08Z",
+      "side": 1,
+      "message": "unresolving for viz",
+      "parentUuid": "ad5d5d29_e9a07f73",
+      "revId": "0e906c3a9f3c0f4027821aee19223a35f91f4640",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
