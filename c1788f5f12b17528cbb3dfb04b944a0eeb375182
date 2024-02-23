@@ -115,6 +115,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "346ab5ef_f34b793f",
+        "filename": "kleaf/bzlmod/bazel.MODULE.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-23T19:26:12Z",
+      "side": 1,
+      "message": "Without https://github.com/bazelbuild/bazel/issues/21307 , the only option is to apply the two patches directly.\n\nI insisted on applying the two patches instead of using `new_kleaf_local_repository` because `new_kleaf_local_repository` only instantiates a repository, but not treating it as a full Bazel module. Any dependencies that zlib might have will require some additional macro calls in the WORKSPACE file. If we add it as a Bazel module:\n\n- Any dependencies that zlib has will be resolved automatically\n- We have one more optional dependency of `groups\u003dddk` projects. That is, in the future, we could create a `groups\u003dddk-bazel-modules` group that contains zlib, rules_X, etc.; these projects are not necessarily checked out from AOSP, but can also be checked out from the Bazel central registry directly.",
+      "parentUuid": "0b297787_7f57c39c",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 1
+      },
+      "revId": "c1788f5f12b17528cbb3dfb04b944a0eeb375182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6ff61340_4cdb4819",
         "filename": "kleaf/workspace.bzl",
         "patchSetId": 1
