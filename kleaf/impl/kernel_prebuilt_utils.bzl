@@ -128,6 +128,7 @@ CI_TARGET_MAPPING = {
             "kernel_aarch64" + "_internal_outs.tar.gz",
             # FIXME this should belong to its own target
             "kernel_aarch64" + MODULE_ENV_ARCHIVE_SUFFIX,
+            "kernel_aarch64" + "_ddk_headers_archive.tar.gz",
         ],
         "protected_modules": "gki_aarch64_protected_modules",
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,

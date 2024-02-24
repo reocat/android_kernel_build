@@ -107,6 +107,7 @@ def _kernel_filegroup_impl(ctx):
     # FIXME clean up; merge with kernel_config.bzl / kernel_build.bzl
     config_outdir_tar_gz = utils.find_files(all_deps, suffix = "_config_outdir.tar.gz")[0]
     module_env_tar_gz = utils.find_files(all_deps, suffix = MODULE_ENV_ARCHIVE_SUFFIX)[0]
+    ddk_headers_tar_gz = utils.find_files(all_deps, suffix = "_ddk_headers_archive.tar.gz")[0]
     config_post_setup = """
            [ -z ${{OUT_DIR}} ] && echo "FATAL: configs post_env_info setup run without OUT_DIR set!" >&2 && exit 1
          # Restore kernel config inputs
@@ -118,9 +119,11 @@ def _kernel_filegroup_impl(ctx):
          # Restore module sources
            {check_sandbox_cmd}
            tar xf {module_env_tar_gz} -C ${{KLEAF_REPO_DIR}}
+           tar xf {ddk_headers_tar_gz} -C ${{KLEAF_REPO_DIR}}
     """.format(
         config_outdir_tar_gz = config_outdir_tar_gz.path,
         module_env_tar_gz = module_env_tar_gz.path,
+        ddk_headers_tar_gz = ddk_headers_tar_gz.path,
         check_sandbox_cmd = utils.get_check_sandbox_cmd(),
     )
     env_setup = utils.find_files(all_deps, suffix = "_env.sh")[0]
@@ -148,6 +151,7 @@ def _kernel_filegroup_impl(ctx):
             ddk_config_env_setup_script,
             config_outdir_tar_gz,
             module_env_tar_gz,
+            ddk_headers_tar_gz,
             env_setup,
             ctx.version_file,
         ]),
