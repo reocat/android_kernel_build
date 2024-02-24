@@ -312,6 +312,7 @@ KernelBuildFilegroupDeclInfo = provider(
 
             See [`KernelConfigArchiveInfo`](#KernelConfigArchiveInfo).""",
         "internal_outs_archive": "Archive of `kernel_build`'s `internal_outs`. May be `None`.",
+        "module_env_archive": "Archive preparing an environment to build modules. May be `None`.",
     },
 )
 
