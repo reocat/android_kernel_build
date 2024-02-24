@@ -22,6 +22,7 @@ load(
     ":constants.bzl",
     "GKI_ARTIFACTS_AARCH64_OUTS",
     "MODULES_STAGING_ARCHIVE",
+    "MODULE_ENV_ARCHIVE_SUFFIX",
     "MODULE_OUTS_FILE_SUFFIX",
     "SYSTEM_DLKM_COMMON_OUTS",
     "TOOLCHAIN_VERSION_FILENAME",
@@ -285,6 +286,7 @@ def _top_level_bazel(repository_ctx):
         bazel_target_name + "_config_outdir.tar.gz",
         bazel_target_name + "_env.sh",
         bazel_target_name + "_internal_outs.tar.gz",
+        bazel_target_name + MODULE_ENV_ARCHIVE_SUFFIX,
     ]
     gki_prebuilts_outs = GKI_ARTIFACTS_AARCH64_OUTS
 
