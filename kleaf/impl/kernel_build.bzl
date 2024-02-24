@@ -1645,6 +1645,7 @@ def _create_filegroup_def_archive(
         all_module_names_file,
         modules_staging_archive,
         internal_outs_archive,
+        module_scripts_archive,
         toolchain_version_out):
     """Creates a file containing kernel_filegroup definition of this target."""
 
@@ -1671,6 +1672,7 @@ def _create_filegroup_def_archive(
         modules_staging_archive,
         toolchain_version_out,
         internal_outs_archive,
+        module_scripts_archive,
     ]
     deps_files += ctx.attr.config[KernelConfigArchiveInfo].files.to_list()
     deps_repr = repr([":{}".format(file.basename) for file in deps_files] + [
@@ -2200,6 +2202,7 @@ def _kernel_build_impl(ctx):
         all_module_names_file = all_module_names_file,
         modules_staging_archive = modules_staging_archive,
         internal_outs_archive = internal_outs_archive,
+        module_scripts_archive = module_scripts_archive,
         toolchain_version_out = toolchain_version_out,
     )
 
