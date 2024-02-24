@@ -40,6 +40,7 @@ def _kernel_filegroup_declaration_impl(ctx):
         info.modules_staging_archive,
         info.toolchain_version_file,
         info.internal_outs_archive,
+        info.module_env_archive,
     ]
 
     deps_repr = repr([file.path for file in deps_files] +

@@ -33,6 +33,7 @@ load(
 load(
     ":constants.bzl",
     "MODULES_STAGING_ARCHIVE",
+    "MODULE_ENV_ARCHIVE_SUFFIX",
     "TOOLCHAIN_VERSION_FILENAME",
     "UNSTRIPPED_MODULES_ARCHIVE",
 )
@@ -105,6 +106,7 @@ def _kernel_filegroup_impl(ctx):
     # TODO(b/219112010): Implement KernelSerializedEnvInfo properly
     # FIXME clean up; merge with kernel_config.bzl / kernel_build.bzl
     config_out_dir = ctx.file.config_out_dir
+    module_env_tar_gz = utils.find_files(all_deps, suffix = MODULE_ENV_ARCHIVE_SUFFIX)[0]
     config_post_setup = """
            [ -z ${{OUT_DIR}} ] && echo "FATAL: configs post_env_info setup run without OUT_DIR set!" >&2 && exit 1
          # Restore kernel config inputs
@@ -115,8 +117,13 @@ def _kernel_filegroup_impl(ctx):
 
          # Restore real value of $ROOT_DIR in auto.conf.cmd
            sed -i'' -e 's:${{ROOT_DIR}}:'"${{ROOT_DIR}}"':g' ${{OUT_DIR}}/include/config/auto.conf.cmd
+         # Restore module sources
+           {check_sandbox_cmd}
+           tar xf {module_env_tar_gz} -C ${{KLEAF_REPO_DIR}}
     """.format(
         out_dir = config_out_dir.path,
+        module_env_tar_gz = module_env_tar_gz.path,
+        check_sandbox_cmd = utils.get_check_sandbox_cmd(),
     )
     env_setup = utils.find_files(ctx.files.config, suffix = "_env.sh")[0]
 
@@ -141,6 +148,7 @@ def _kernel_filegroup_impl(ctx):
         setup_script = ddk_config_env_setup_script,
         inputs = depset([
             ddk_config_env_setup_script,
+            module_env_tar_gz,
             env_setup,
             ctx.version_file,
         ], transitive = [target.files for target in ctx.attr.config]),
