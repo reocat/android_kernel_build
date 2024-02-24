@@ -125,12 +125,15 @@ def _get_ddk_config_env(ctx, all_deps):
     )
 
     module_env_tar_gz = utils.find_files(all_deps, suffix = MODULE_ENV_ARCHIVE_SUFFIX)[0]
+    ddk_headers_tar_gz = utils.find_files(all_deps, suffix = "_ddk_headers_archive.tar.gz")[0]
     ddk_config_env_setup_command += """
         # Restore module sources
         {check_sandbox_cmd}
         tar xf {module_env_tar_gz} -C ${{KLEAF_REPO_DIR}}
+        tar xf {ddk_headers_tar_gz} -C ${{KLEAF_REPO_DIR}}
     """.format(
         module_env_tar_gz = module_env_tar_gz.path,
+        ddk_headers_tar_gz = ddk_headers_tar_gz.path,
         check_sandbox_cmd = utils.get_check_sandbox_cmd(),
     )
     
@@ -147,6 +150,7 @@ def _get_ddk_config_env(ctx, all_deps):
         inputs = depset([
             ddk_config_env_setup_script,
             module_env_tar_gz,
+            ddk_headers_tar_gz,
             ctx.file.env_setup_script,
             ctx.version_file,
         ], transitive = [target.files for target in ctx.attr.config_out_dir_files]),
