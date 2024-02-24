@@ -33,6 +33,7 @@ load(
 load(
     ":constants.bzl",
     "MODULES_STAGING_ARCHIVE",
+    "MODULE_ENV_ARCHIVE_SUFFIX",
     "TOOLCHAIN_VERSION_FILENAME",
     "UNSTRIPPED_MODULES_ARCHIVE",
 )
@@ -124,9 +125,19 @@ def _get_ddk_config_env(ctx):
         out_dir = ctx.file.config_out_dir,
     )
 
+    ddk_config_env_setup_command += """
+        # Restore module sources
+        {check_sandbox_cmd}
+        tar xf {module_env_archive} -C ${{KLEAF_REPO_DIR}}
+    """.format(
+        module_env_archive = ctx.file.module_env_archive.path,
+        check_sandbox_cmd = utils.get_check_sandbox_cmd(),
+    )
+
     ddk_config_env_setup_script = ctx.actions.declare_file(
         "{name}/{name}_ddk_config_setup.sh".format(name = ctx.attr.name),
     )
+
     ctx.actions.write(
         output = ddk_config_env_setup_script,
         content = ddk_config_env_setup_command,
@@ -135,6 +146,7 @@ def _get_ddk_config_env(ctx):
         setup_script = ddk_config_env_setup_script,
         inputs = depset([
             ddk_config_env_setup_script,
+            ctx.file.module_env_archive,
             ctx.file.env_setup_script,
             ctx.version_file,
         ], transitive = [target.files for target in ctx.attr.config_out_dir_files]),
@@ -435,6 +447,11 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
         "modules_prepare_archive": attr.label(
             allow_single_file = True,
             doc = "Archive from `modules_prepare`",
+        ),
+        "module_env_archive": attr.label(
+            allow_single_file = True,
+            doc = """Archive from `kernel_build.pack_module_env` that contains
+                necessary files to build external modules.""",
         ),
         "internal_outs": attr.label_keyed_string_dict(
             allow_files = True,
