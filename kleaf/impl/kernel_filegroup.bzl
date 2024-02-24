@@ -99,7 +99,7 @@ def _get_kernel_release(ctx):
     )
     return kernel_release
 
-def _get_ddk_config_env(ctx):
+def _get_ddk_config_env(ctx, all_deps):
     """Returns `KernelBuildExtModuleInfo.ddk_config_env`."""
 
     if not ctx.file.config_out_dir or not ctx.file.env_setup_script:
@@ -124,12 +124,15 @@ def _get_ddk_config_env(ctx):
         out_dir = ctx.file.config_out_dir,
     )
 
+    ddk_headers_tar_gz = utils.find_files(all_deps, suffix = "_ddk_headers_archive.tar.gz")[0]
     ddk_config_env_setup_command += """
         # Restore module sources
         {check_sandbox_cmd}
         tar xf {module_env_archive} -C ${{KLEAF_REPO_DIR}}
+        tar xf {ddk_headers_tar_gz} -C ${{KLEAF_REPO_DIR}}
     """.format(
         module_env_archive = ctx.file.module_env_archive.path,
+        ddk_headers_tar_gz = ddk_headers_tar_gz.path,
         check_sandbox_cmd = utils.get_check_sandbox_cmd(),
     )
 
@@ -146,6 +149,7 @@ def _get_ddk_config_env(ctx):
         inputs = depset([
             ddk_config_env_setup_script,
             ctx.file.module_env_archive,
+            ddk_headers_tar_gz,
             ctx.file.env_setup_script,
             ctx.version_file,
         ], transitive = [target.files for target in ctx.attr.config_out_dir_files]),
@@ -216,7 +220,7 @@ def _kernel_filegroup_impl(ctx):
 
     all_deps = ctx.files.srcs + ctx.files.deps
 
-    ddk_config_env = _get_ddk_config_env(ctx)
+    ddk_config_env = _get_ddk_config_env(ctx, all_deps)
     mod_min_env = _get_mod_min_env(ctx, ddk_config_env)
 
     kernel_module_dev_info = KernelBuildExtModuleInfo(
