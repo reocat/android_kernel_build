@@ -1994,6 +1994,7 @@ def _create_infos(
         env_setup_script = ctx.attr.config[KernelConfigInfo].env_setup_script,
         config_out_dir = ctx.file.config,
         internal_outs_archive = internal_outs_archive,
+        module_env_archive = module_scripts_archive,
     )
 
     default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
