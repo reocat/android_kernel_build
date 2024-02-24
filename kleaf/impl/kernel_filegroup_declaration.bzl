@@ -205,6 +205,7 @@ def _kernel_filegroup_declaration_impl(ctx):
         info.modules_prepare_archive,
         info.modules_staging_archive,
         info.toolchain_version_file,
+        info.module_env_archive,
     ]
 
     # Get the only file from the depset, so using to_list() here is fast.
