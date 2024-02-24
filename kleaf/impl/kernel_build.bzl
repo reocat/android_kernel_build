@@ -2016,6 +2016,7 @@ def _create_infos(
         config_out_dir = ctx.file.config,
         internal_outs = depset(all_output_files["internal_outs"].values()),
         ruledir = main_action_ret.ruledir,
+        module_env_archive = module_scripts_archive,
     )
 
     default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
