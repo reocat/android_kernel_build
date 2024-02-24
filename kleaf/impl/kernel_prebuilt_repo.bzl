@@ -287,6 +287,7 @@ def _top_level_bazel(repository_ctx):
         bazel_target_name + "_env.sh",
         bazel_target_name + "_internal_outs.tar.gz",
         bazel_target_name + MODULE_ENV_ARCHIVE_SUFFIX,
+        bazel_target_name + "_ddk_headers_archive.tar.gz",
     ]
     gki_prebuilts_outs = GKI_ARTIFACTS_AARCH64_OUTS
 
