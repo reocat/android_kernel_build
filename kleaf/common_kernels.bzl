@@ -842,6 +842,8 @@ def _define_common_kernel(
     filegroup_extra_deps = [
         name + "_unstripped_modules_archive",
     ]
+    if ddk_headers_archive:
+        filegroup_extra_deps.append(ddk_headers_archive)
     kernel_filegroup_declaration(
         name = name + "_filegroup_declaration",
         kernel_build = name,
@@ -852,12 +854,9 @@ def _define_common_kernel(
     # Everything in name + "_dist" for the DDK.
     # These are necessary for driver development. Hence they are also added to
     # kernel_*_dist so they can be downloaded.
-    ddk_artifacts = [
+    ddk_artifacts = filegroup_extra_deps + [
         name + "_filegroup_declaration",
-        name + "_unstripped_modules_archive",
     ]
-    if ddk_headers_archive:
-        ddk_artifacts.append(ddk_headers_archive)
     native.filegroup(
         name = name + "_ddk_artifacts",
         srcs = ddk_artifacts,
