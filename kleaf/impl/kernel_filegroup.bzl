@@ -33,6 +33,7 @@ load(
 load(
     ":constants.bzl",
     "MODULES_STAGING_ARCHIVE",
+    "MODULE_ENV_ARCHIVE_SUFFIX",
     "TOOLCHAIN_VERSION_FILENAME",
     "UNSTRIPPED_MODULES_ARCHIVE",
 )
@@ -97,7 +98,7 @@ def _get_kernel_release(ctx):
     )
     return kernel_release
 
-def _get_ddk_config_env(ctx):
+def _get_ddk_config_env(ctx, all_deps):
     """Returns `KernelBuildExtModuleInfo.ddk_config_env`."""
 
     if not ctx.file.config_out_dir or not ctx.file.env_setup_script:
@@ -122,9 +123,20 @@ def _get_ddk_config_env(ctx):
         out_dir = ctx.file.config_out_dir,
     )
 
+    module_env_tar_gz = utils.find_files(all_deps, suffix = MODULE_ENV_ARCHIVE_SUFFIX)[0]
+    ddk_config_env_setup_command += """
+        # Restore module sources
+        {check_sandbox_cmd}
+        tar xf {module_env_tar_gz} -C ${{KLEAF_REPO_DIR}}
+    """.format(
+        module_env_tar_gz = module_env_tar_gz.path,
+        check_sandbox_cmd = utils.get_check_sandbox_cmd(),
+    )
+
     ddk_config_env_setup_script = ctx.actions.declare_file(
         "{name}/{name}_ddk_config_setup.sh".format(name = ctx.attr.name),
     )
+
     ctx.actions.write(
         output = ddk_config_env_setup_script,
         content = ddk_config_env_setup_command,
@@ -133,6 +145,7 @@ def _get_ddk_config_env(ctx):
         setup_script = ddk_config_env_setup_script,
         inputs = depset([
             ddk_config_env_setup_script,
+            module_env_tar_gz,
             ctx.file.env_setup_script,
             ctx.version_file,
         ], transitive = [target.files for target in ctx.attr.config_out_dir_files]),
