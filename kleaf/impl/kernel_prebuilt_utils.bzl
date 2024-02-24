@@ -94,6 +94,7 @@ GKI_DOWNLOAD_CONFIGS = [
         "target_suffix": "ddk_artifacts",
         "outs": [
             "kernel_aarch64" + FILEGROUP_DEF_ARCHIVE_SUFFIX,
+            "kernel_aarch64" + "_ddk_headers_archive.tar.gz",
         ],
     },
     {
