@@ -23,6 +23,7 @@ load(
     "FILEGROUP_DEF_ARCHIVE_SUFFIX",
     "GKI_ARTIFACTS_AARCH64_OUTS",
     "MODULES_STAGING_ARCHIVE",
+    "MODULE_ENV_ARCHIVE_SUFFIX",
     "MODULE_OUTS_FILE_SUFFIX",
     "SYSTEM_DLKM_COMMON_OUTS",
     "TOOLCHAIN_VERSION_FILENAME",
@@ -125,6 +126,8 @@ CI_TARGET_MAPPING = {
             "kernel_aarch64" + "_config_outdir.tar.gz",
             "kernel_aarch64" + "_env.sh",
             "kernel_aarch64" + "_internal_outs.tar.gz",
+            # FIXME this should belong to its own target
+            "kernel_aarch64" + MODULE_ENV_ARCHIVE_SUFFIX,
         ],
         "protected_modules": "gki_aarch64_protected_modules",
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
