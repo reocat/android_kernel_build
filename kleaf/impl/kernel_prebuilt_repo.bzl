@@ -22,9 +22,10 @@ load(
     ":constants.bzl",
     "GKI_ARTIFACTS_AARCH64_OUTS",
     "MODULES_STAGING_ARCHIVE",
+    "MODULE_ENV_ARCHIVE_SUFFIX",
     "MODULE_OUTS_FILE_SUFFIX",
-    "TOOLCHAIN_VERSION_FILENAME",
     "SYSTEM_DLKM_COMMON_OUTS",
+    "TOOLCHAIN_VERSION_FILENAME",
 )
 load(
     ":kernel_prebuilt_utils.bzl",
@@ -279,6 +280,7 @@ workspace({})
         bazel_target_name + "_config_outdir.tar.gz",
         bazel_target_name + "_env.sh",
         bazel_target_name + "_internal_outs.tar.gz",
+        bazel_target_name + MODULE_ENV_ARCHIVE_SUFFIX,
     ]
     gki_prebuilts_outs = GKI_ARTIFACTS_AARCH64_OUTS
 
@@ -320,35 +322,35 @@ kernel_filegroup(
     visibility = ["//visibility:public"],
 )
 """.format(
-            gki_artifacts_bzl_repr = repr(str(Label("//build/kernel/kleaf/impl:gki_artifacts.bzl"))),
-            kernel_bzl_repr = repr(str(Label("//build/kernel/kleaf:kernel.bzl"))),
-            use_signed_prebuilts_is_true_repr = repr(str(Label("//build/kernel/kleaf:use_signed_prebuilts_is_true"))),
-            signing_modules_disabled_repr = repr(str(Label("//build/kernel/kleaf/impl/defconfig:signing_modules_disabled"))),
-            name_repr = repr(bazel_target_name),
-            srcs_repr = repr(["//{}".format(filename) for filename in main_target_outs]),
-            deps_repr = repr([
-                # ddk_artifacts
-                # _modules_prepare
-                "//modules_prepare_outdir.tar.gz",
-                # _modules_staging_archive
-                "//" + MODULES_STAGING_ARCHIVE,
-                "//unstripped_modules.tar.gz",
-                "//" + TOOLCHAIN_VERSION_FILENAME,
-            ]),
-            uapi_headers_repr = repr("//kernel-uapi-headers.tar.gz"),
-            collect_unstripped_modules_repr = repr(_COLLECT_UNSTRIPPED_MODULES),
-            images_repr = repr(["//{}".format(filename) for filename in SYSTEM_DLKM_COMMON_OUTS]),
-            module_outs_repr = repr("//" + bazel_target_name + MODULE_OUTS_FILE_SUFFIX),
-            # FIXME this needs to come from the build because it is defined by
-            # common/BUILD.bazel, which we don't have at this stage.
-            protected_modules_repr = repr(None),
-            gki_prebuilts_outs_repr = repr(gki_prebuilts_outs),
-            gki_artifacts_target = bazel_target_name + "_gki_artifacts",
-            images_target = bazel_target_name + "_images",
-            # FIXME this information should come from the build.
-            target_platform_repr = repr(str(Label("//build/kernel/kleaf/impl:android_{}".format("arm64")))),
-            exec_platform_repr = repr(str(Label("//build/kernel/kleaf/impl:linux_x86_64")))
-        )
+        gki_artifacts_bzl_repr = repr(str(Label("//build/kernel/kleaf/impl:gki_artifacts.bzl"))),
+        kernel_bzl_repr = repr(str(Label("//build/kernel/kleaf:kernel.bzl"))),
+        use_signed_prebuilts_is_true_repr = repr(str(Label("//build/kernel/kleaf:use_signed_prebuilts_is_true"))),
+        signing_modules_disabled_repr = repr(str(Label("//build/kernel/kleaf/impl/defconfig:signing_modules_disabled"))),
+        name_repr = repr(bazel_target_name),
+        srcs_repr = repr(["//{}".format(filename) for filename in main_target_outs]),
+        deps_repr = repr([
+            # ddk_artifacts
+            # _modules_prepare
+            "//modules_prepare_outdir.tar.gz",
+            # _modules_staging_archive
+            "//" + MODULES_STAGING_ARCHIVE,
+            "//unstripped_modules.tar.gz",
+            "//" + TOOLCHAIN_VERSION_FILENAME,
+        ]),
+        uapi_headers_repr = repr("//kernel-uapi-headers.tar.gz"),
+        collect_unstripped_modules_repr = repr(_COLLECT_UNSTRIPPED_MODULES),
+        images_repr = repr(["//{}".format(filename) for filename in SYSTEM_DLKM_COMMON_OUTS]),
+        module_outs_repr = repr("//" + bazel_target_name + MODULE_OUTS_FILE_SUFFIX),
+        # FIXME this needs to come from the build because it is defined by
+        # common/BUILD.bazel, which we don't have at this stage.
+        protected_modules_repr = repr(None),
+        gki_prebuilts_outs_repr = repr(gki_prebuilts_outs),
+        gki_artifacts_target = bazel_target_name + "_gki_artifacts",
+        images_target = bazel_target_name + "_images",
+        # FIXME this information should come from the build.
+        target_platform_repr = repr(str(Label("//build/kernel/kleaf/impl:android_{}".format("arm64")))),
+        exec_platform_repr = repr(str(Label("//build/kernel/kleaf/impl:linux_x86_64"))),
+    )
 
     repository_ctx.file("BUILD.bazel", build_bazel_content)
 
