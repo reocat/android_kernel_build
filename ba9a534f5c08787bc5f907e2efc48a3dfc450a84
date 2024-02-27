@@ -163,6 +163,30 @@
       },
       "revId": "ba9a534f5c08787bc5f907e2efc48a3dfc450a84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d82938b_11181a1a",
+        "filename": "kleaf/tests/ddk_test/ddk_uapi_headers_test.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-27T23:53:12Z",
+      "side": 1,
+      "message": "Added logic to test that the number of outputs is exactly 1--the resultant tarball with the headers--and that the file is a  compressed tarball (ends with tar.gz)",
+      "parentUuid": "3a09fac4_dc4ffb5c",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "ba9a534f5c08787bc5f907e2efc48a3dfc450a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
