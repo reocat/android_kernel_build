@@ -12,6 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Deprecated. Use //build/kernel/kleaf:kernel_toolchain_ext.bzl directly."""
+"""Deprecated. Use //build/kernel/kleaf:kernel_ext.bzl directly."""
 
-fail("Use //build/kernel/kleaf:kernel_toolchain_ext.bzl directly.")
+fail("Use //build/kernel/kleaf:kernel_ext.bzl directly.")
