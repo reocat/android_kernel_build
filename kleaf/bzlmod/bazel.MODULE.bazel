@@ -70,10 +70,10 @@ new_kleaf_local_repository(
     path = "prebuilts/ndk-r26",
 )
 
-kernel_toolchain_ext = use_extension("//build/kernel/kleaf:kernel_toolchain_ext.bzl", "kernel_toolchain_ext")
-kernel_toolchain_ext.install(toolchain_constants = "//common:build.config.constants")
-use_repo(kernel_toolchain_ext, "kernel_toolchain_info")
-use_repo(kernel_toolchain_ext, "kleaf_clang_toolchain")
+kernel_ext = use_extension("//build/kernel/kleaf:kernel_ext.bzl", "kernel_ext")
+kernel_ext.declare_toolchain_constants(toolchain_constants = "//common:build.config.constants")
+use_repo(kernel_ext, "kernel_toolchain_info")
+use_repo(kernel_ext, "kleaf_clang_toolchain")
 
 register_toolchains(
     "@kleaf_clang_toolchain//:all",
