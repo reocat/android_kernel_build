@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca328212_f15e589d",
+        "filename": "kleaf/kernel_prebuilt_ext.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-27T00:16:16Z",
+      "side": 1,
+      "message": "Should be named `ext.bzl`",
+      "revId": "5d4529d5db74641c0eb79e0db2b579adb839d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3566f034_ea30100a",
+        "filename": "kleaf/kernel_prebuilt_ext.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-27T00:16:16Z",
+      "side": 1,
+      "message": "Should be named \"ext\"",
+      "revId": "5d4529d5db74641c0eb79e0db2b579adb839d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36639a79_8d7cb561",
+        "filename": "kleaf/kernel_prebuilt_ext.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-27T00:16:16Z",
+      "side": 1,
+      "message": "Should be named \"declare_gki_prebuilts\"",
+      "range": {
+        "startLine": 163,
+        "startChar": 9,
+        "endLine": 163,
+        "endChar": 16
+      },
+      "revId": "5d4529d5db74641c0eb79e0db2b579adb839d584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
