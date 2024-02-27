@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "443f4bf2_44b96778",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-27T22:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86ede23b_7456c287",
+      "range": {
+        "startLine": 42,
+        "startChar": 41,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "ba9a534f5c08787bc5f907e2efc48a3dfc450a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73c7c15a_34d8567e",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-27T21:16:02Z",
       "side": 1,
       "message": "nit: `${{hdr}}`",
+      "range": {
+        "startLine": 44,
+        "startChar": 29,
+        "endLine": 44,
+        "endChar": 33
+      },
+      "revId": "ba9a534f5c08787bc5f907e2efc48a3dfc450a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2177a6e_a06cbaae",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-27T22:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73c7c15a_34d8567e",
       "range": {
         "startLine": 44,
         "startChar": 29,
@@ -83,6 +131,30 @@
       "writtenOn": "2024-02-27T21:16:02Z",
       "side": 1,
       "message": "nit: I think the testing done here is minimal.\n\n`analysistest.target_under_test` only returns the build target under test [0].\n\n[0] https://github.com/bazelbuild/bazel-skylib/blob/main/lib/unittest.bzl#L588-L603",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "ba9a534f5c08787bc5f907e2efc48a3dfc450a84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a09fac4_dc4ffb5c",
+        "filename": "kleaf/tests/ddk_test/ddk_uapi_headers_test.bzl",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-27T22:07:24Z",
+      "side": 1,
+      "message": "Thanks for that. I\u0027ll check to see how I can augment this.",
+      "parentUuid": "3e8f0539_3101b1ee",
       "range": {
         "startLine": 27,
         "startChar": 0,
