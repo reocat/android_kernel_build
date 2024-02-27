@@ -25,6 +25,32 @@
       "tag": "",
       "revId": "bd231ba80f5ed88c87caf6c5dd012064e0cd52fd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000069515578",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/2978951?revision\u003d1",
+      "key": {
+        "uuid": "5c017e85_d127ae90",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2024-02-27T00:35:28Z",
+      "side": 1,
+      "message": "Loaded symbol \"kernel_utils\" is unused. Please remove it.\nTo disable the warning, add \u0027@unused\u0027 in a comment.\nIf you want to re-export a symbol, use the following pattern:\n\n    load(..., _kernel_utils \u003d \"kernel_utils\", ...)\n    kernel_utils \u003d _kernel_utils\n http://go/buildifier-warnings#load",
+      "range": {
+        "startLine": 19,
+        "startChar": 20,
+        "endLine": 19,
+        "endChar": 32
+      },
+      "tag": "",
+      "revId": "bd231ba80f5ed88c87caf6c5dd012064e0cd52fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
