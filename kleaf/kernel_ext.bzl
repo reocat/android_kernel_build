@@ -14,13 +14,19 @@
 
 """Extension that helps building Android kernel and drivers."""
 
+load(
+    "//build/kernel/kleaf/impl:declare_toolchain_constants.bzl",
+    "declare_toolchain_constants",
+)
 visibility("public")
 
-def _kernel_ext_impl(_module_ctx):
+def _kernel_ext_impl(module_ctx):
+    declare_toolchain_constants.declare_repos(module_ctx, "declare_toolchain_constants")
 
 kernel_ext = module_extension(
     doc = "Extension that helps building Android kernel and drivers",
     implementation = _kernel_ext_impl,
     tag_classes = {
+        "declare_toolchain_constants": declare_toolchain_constants.tag_class,
     },
 )
