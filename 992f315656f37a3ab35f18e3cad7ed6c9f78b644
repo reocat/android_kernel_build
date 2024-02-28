@@ -22,6 +22,30 @@
       },
       "revId": "992f315656f37a3ab35f18e3cad7ed6c9f78b644",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a51092e4_5de0e00b",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-28T18:57:21Z",
+      "side": 1,
+      "message": "\u003e `#` is used here, but `##` could be also used because in this case the pattern is a fixed string (i.e. doesn\u0027t contain wildcards like *).\n\nYeah; I just know that # is for shortest matching and ## is for longest (greedy) matching.",
+      "parentUuid": "f4e10c15_04948b9a",
+      "range": {
+        "startLine": 383,
+        "startChar": 33,
+        "endLine": 383,
+        "endChar": 58
+      },
+      "revId": "992f315656f37a3ab35f18e3cad7ed6c9f78b644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
