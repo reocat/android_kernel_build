@@ -76,4 +76,5 @@ copy_to_dist_dir(
     name = "docs_dist",
     data = [":docs"],
     dist_dir = package_name() + "/api_reference",
+    wipe_dist_dir = True,
 )
