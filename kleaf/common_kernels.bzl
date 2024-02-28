@@ -266,7 +266,7 @@ def define_common_kernels(
 
     - `kernel_aarch64_abi`
 
-    See [`kernel_abi()`](#kernel_abi) for details.
+    See [`kernel_abi()`](kernel.md#kernel_abi) for details.
 
     **Prebuilts**
 
@@ -332,7 +332,7 @@ def define_common_kernels(
         - `ADDITIONAL_KMI_SYMBOL_LISTS`
         - `TRIM_NONLISTED_KMI`
         - `KMI_SYMBOL_LIST_STRICT_MODE`
-        - `GKI_MODULES_LIST` (corresponds to [`kernel_build.module_implicit_outs`](#kernel_build-module_implicit_outs))
+        - `GKI_MODULES_LIST` (corresponds to [`kernel_build.module_implicit_outs`](kernel.md#kernel_build-module_implicit_outs))
         - `BUILD_GKI_ARTIFACTS`
         - `BUILD_GKI_BOOT_IMG_SIZE` and `BUILD_GKI_BOOT_IMG_{COMPRESSION}_SIZE`
 
@@ -344,7 +344,7 @@ def define_common_kernels(
 
         The values of the `target_configs` should be a dictionary, where keys
         are one of the following, and values are passed to the corresponding
-        argument in [`kernel_build`](#kernel_build):
+        argument in [`kernel_build`](kernel.md#kernel_build):
         - `kmi_symbol_list`
         - `additional_kmi_symbol_lists`
         - `trim_nonlisted_kmi`
@@ -1159,34 +1159,34 @@ def define_db845c(
 
     Requires [`define_common_kernels`](#define_common_kernels) to be called in the same package.
 
-    **Deprecated**. Use [`kernel_build`](#kernel_build) directly.
+    **Deprecated**. Use [`kernel_build`](kernel.md#kernel_build) directly.
 
     Args:
         name: name of target. Usually `"db845c"`.
-        build_config: See [kernel_build.build_config](#kernel_build-build_config). If `None`,
+        build_config: See [kernel_build.build_config](kernel.md#kernel_build-build_config). If `None`,
           default to `"build.config.db845c"`.
-        outs: See [kernel_build.outs](#kernel_build-outs).
-        module_outs: See [kernel_build.module_outs](#kernel_build-module_outs). The list of
+        outs: See [kernel_build.outs](kernel.md#kernel_build-outs).
+        module_outs: See [kernel_build.module_outs](kernel.md#kernel_build-module_outs). The list of
           in-tree kernel modules.
-        make_goals: See [kernel_build.make_goals](#kernel_build-make_goals).  A list of strings
+        make_goals: See [kernel_build.make_goals](kernel.md#kernel_build-make_goals).  A list of strings
           defining targets for the kernel build.
-        define_abi_targets: See [kernel_abi.define_abi_targets](#kernel_abi-define_abi_targets).
-        kmi_symbol_list: See [kernel_build.kmi_symbol_list](#kernel_build-kmi_symbol_list).
-        kmi_symbol_list_add_only: See [kernel_abi.kmi_symbol_list_add_only](#kernel_abi-kmi_symbol_list_add_only).
-        module_grouping: See [kernel_abi.module_grouping](#kernel_abi-module_grouping).
-        unstripped_modules_archive: See [kernel_abi.unstripped_modules_archive](#kernel_abi-unstripped_modules_archive).
+        define_abi_targets: See [kernel_abi.define_abi_targets](kernel.md#kernel_abi-define_abi_targets).
+        kmi_symbol_list: See [kernel_build.kmi_symbol_list](kernel.md#kernel_build-kmi_symbol_list).
+        kmi_symbol_list_add_only: See [kernel_abi.kmi_symbol_list_add_only](kernel.md#kernel_abi-kmi_symbol_list_add_only).
+        module_grouping: See [kernel_abi.module_grouping](kernel.md#kernel_abi-module_grouping).
+        unstripped_modules_archive: See [kernel_abi.unstripped_modules_archive](kernel.md#kernel_abi-unstripped_modules_archive).
         gki_modules_list: List of gki modules to be copied to the dist directory.
           If `None`, all gki kernel modules will be copied.
         dist_dir: Argument to `copy_to_dist_dir`. If `None`, default is `"out/{name}/dist"`.
 
     Deprecated:
-        Use [`kernel_build`](#kernel_build) directly.
+        Use [`kernel_build`](kernel.md#kernel_build) directly.
     """
 
     # buildifier: disable=print
     print("""{}//{}:{}: define_db845c is deprecated.
 
-          Use [`kernel_build`](#kernel_build) directly.
+          Use [`kernel_build`](kernel.md#kernel_build) directly.
 
           Use https://r.android.com/2634654 and its cherry-picks as a reference
             on how to unfold the macro and use the other rules directly.
