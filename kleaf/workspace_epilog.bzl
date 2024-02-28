@@ -24,6 +24,6 @@ def define_kleaf_workspace_epilog():
     [Bazel analysis tests](https://bazel.build/rules/testing).
 
     If called, it must be called after
-    [`define_kleaf_workspace`](#define_kleaf_workspace) is called.
+    [`define_kleaf_workspace`](workspace.md#define_kleaf_workspace) is called.
     """
     bazel_skylib_workspace()
