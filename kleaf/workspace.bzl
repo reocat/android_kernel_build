@@ -26,7 +26,7 @@ load(
     "//build/kernel/kleaf/impl:kernel_prebuilt_utils.bzl",
     "CI_TARGET_MAPPING",
 )
-load("//build/kernel/kleaf/impl:kleaf_host_tools_repo.bzl", "kleaf_host_tools_repo")
+load("//build/kernel/kleaf/impl:declare_host_tools.bzl", "kleaf_host_tools_repo")
 load(
     "//build/kernel/kleaf/impl:local_repository.bzl",
     "kleaf_local_repository",
