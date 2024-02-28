@@ -22,6 +22,30 @@
       },
       "revId": "edd2695c41f465766f317f015dc5147ec721b6bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "914b8f6e_7e130166",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1934715
+      },
+      "writtenOn": "2024-02-28T14:17:59Z",
+      "side": 1,
+      "message": "Right, I just checked and it doesn\u0027t look like `headers_install` uses `fixdep`.\n\nI think what we have on lines 42 and 43 should suffice; there wouldn\u0027t be generated headers in an external module, nor should there be duplicates of what is in the kernel.",
+      "parentUuid": "4b2a27bd_bb0bb379",
+      "range": {
+        "startLine": 39,
+        "startChar": 48,
+        "endLine": 39,
+        "endChar": 63
+      },
+      "revId": "edd2695c41f465766f317f015dc5147ec721b6bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
