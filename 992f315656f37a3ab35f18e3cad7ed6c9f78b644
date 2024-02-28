@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4e10c15_04948b9a",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-28T13:28:29Z",
+      "side": 1,
+      "message": "Just to confirm (as I\u0027m having some trouble understanding how the replacements with `#` work):\n  * `${{KLEAF_REPO_WORKSPACE_ROOT}}` is equal to `{kleaf_repo_workspace_root}`\n  * `#` is used here, but `##` could be also used because in this case the pattern is a fixed string (i.e. doesn\u0027t contain wildcards like `*`).\n  * Both `KLEAF_REPO_WORKSPACE_ROOT` and `KERNEL_DIR` are relative values.\n\nActually after writing this msg I think I get it now.",
+      "range": {
+        "startLine": 383,
+        "startChar": 33,
+        "endLine": 383,
+        "endChar": 58
+      },
+      "revId": "992f315656f37a3ab35f18e3cad7ed6c9f78b644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
