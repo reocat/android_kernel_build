@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b2a27bd_bb0bb379",
+        "filename": "kleaf/impl/ddk/ddk_uapi_headers.bzl",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-02-28T12:00:43Z",
+      "side": 1,
+      "message": "From looking at [0], it appears this depends on `scripts/basic`[1], but that helper only adds a `fixdep` support which I\u0027m not sure is used for `headers_install`, if it didn\u0027t, this would be good as is.\n\nBut looking at L47 I think this is because this is not running trough Kbuild/Makefile and instead running the tool/script directly, which I guess it\u0027s Ok. With the downside that preprocessing from `scripts/Makefile.headersinst` gone, which I think is what L42-43 do here, so all good too?\n\n\n[0] https://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/Makefile;l\u003d1330-1332\n[1] https://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/Makefile;l\u003d636-639",
+      "range": {
+        "startLine": 39,
+        "startChar": 48,
+        "endLine": 39,
+        "endChar": 63
+      },
+      "revId": "edd2695c41f465766f317f015dc5147ec721b6bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
