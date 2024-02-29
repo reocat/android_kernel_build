@@ -22,6 +22,30 @@
       },
       "revId": "cb22fb3b3332490d5272807bb2d6c6dd32dbd24d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc5748bf_38a2056a",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-29T20:34:33Z",
+      "side": 1,
+      "message": "because it is `//build/kernel/kleaf` package?\n\nI also want to align with `kernel.bzl`. The reason the extension is not in `kernel.bzl` is because this is needed at early stages, and used by MODULE.bazel files instead of BUILD files.",
+      "parentUuid": "698d2439_fa1753d1",
+      "range": {
+        "startLine": 771,
+        "startChar": 9,
+        "endLine": 771,
+        "endChar": 15
+      },
+      "revId": "cb22fb3b3332490d5272807bb2d6c6dd32dbd24d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
