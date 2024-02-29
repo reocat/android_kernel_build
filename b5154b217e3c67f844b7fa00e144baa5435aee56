@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf9d1b70_4ecd9424",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-29T20:33:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38c24b2a_ad7097b2",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 81
+      },
+      "revId": "b5154b217e3c67f844b7fa00e144baa5435aee56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eed5ec53_162da442",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-29T20:20:57Z",
       "side": 1,
       "message": "apparent?",
+      "range": {
+        "startLine": 171,
+        "startChar": 12,
+        "endLine": 171,
+        "endChar": 20
+      },
+      "revId": "b5154b217e3c67f844b7fa00e144baa5435aee56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d4b2078_904eb937",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-29T20:33:29Z",
+      "side": 1,
+      "message": "Done [facepalm]",
+      "parentUuid": "eed5ec53_162da442",
       "range": {
         "startLine": 171,
         "startChar": 12,
