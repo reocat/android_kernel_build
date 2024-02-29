@@ -22,6 +22,30 @@
       },
       "revId": "f6285b0e3e3fd6ff03b233c561b89f7c46f8e1b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e58f5e9_6bd437a1",
+        "filename": "kleaf/docs/BUILD.bazel",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-02-29T19:08:22Z",
+      "side": 1,
+      "message": "No.\n\ndist_dir is already part of the copy_to_dist_dir rule. It will correctly copy files to the source tree.\n\nI\u0027ll add --flat",
+      "parentUuid": "9ee8b35d_a7bd0ca1",
+      "range": {
+        "startLine": 19,
+        "startChar": 47,
+        "endLine": 19,
+        "endChar": 51
+      },
+      "revId": "f6285b0e3e3fd6ff03b233c561b89f7c46f8e1b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
