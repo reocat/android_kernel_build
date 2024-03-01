@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# TODO(b/291816237): Add prebuilts/build-tools/common/bison to
+#   hermetic tools
+
+base=$(dirname $(readlink -f $0))
+export BISON_PKGDATADIR=$(readlink -f ${base}/../../../../../prebuilts/build-tools/common/bison)
+export M4=$(which m4)
+
+${0%/*}/kleaf_internal_do_not_use/bison $*
