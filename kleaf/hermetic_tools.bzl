@@ -274,3 +274,48 @@ def hermetic_tools(
             output_group = alias,
             **alias_kwargs
         )
+
+def _bison_impl(ctx):
+    file = ctx.actions.declare_file("{}/bison".format(ctx.attr.name))
+    root_from_base = "/".join([".."] * len(file.dirname.split("/")))
+
+    content = """\
+#!/bin/sh
+
+export BISON_PKGDATADIR=${{0%/*}}/{root_from_base}/{pkgdata_dir}
+export M4=$(which m4)
+
+if [ -z "${{M4}}" ]; then
+    echo "m4 is not found!" >&2
+    exit 1
+fi
+
+if [ ! -d "${{BISON_PKGDATADIR}}" ]; then
+    echo "BISON_PKGDATADIR ${{BISON_PKGDATADIR}} is empty!" >&2
+    exit 1
+fi
+
+${{0%/*}}/{root_from_base}/{actual} $*
+""".format(
+        pkgdata_dir = ctx.file.pkgdata_dir.path,
+        actual = ctx.file.actual.path,
+        root_from_base = root_from_base,
+    )
+    ctx.actions.write(file, content, is_executable = True)
+
+    return DefaultInfo(
+        files = depset([file]),
+        runfiles = ctx.runfiles(
+            files = [ctx.file.actual],
+            transitive_files = ctx.attr.pkgdata_files.files,
+        ),
+    )
+
+bison = rule(
+    implementation = _bison_impl,
+    attrs = {
+        "actual": attr.label(allow_single_file = True),
+        "pkgdata_dir": attr.label(allow_single_file = True),
+        "pkgdata_files": attr.label(allow_files = True),
+    },
+)
