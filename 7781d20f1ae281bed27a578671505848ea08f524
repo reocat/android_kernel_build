@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52f0d870_61ff577b",
+        "filename": "kleaf/impl/kernel_prebuilt_repo.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-04T19:39:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fb88877_3dae2f89",
+      "range": {
+        "startLine": 183,
+        "startChar": 123,
+        "endLine": 183,
+        "endChar": 124
+      },
+      "revId": "7781d20f1ae281bed27a578671505848ea08f524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "239a7297_8a8eb35c",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd730755_e790367a",
+        "filename": "kleaf/impl/kernel_prebuilt_repo.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-04T19:39:30Z",
+      "side": 1,
+      "message": "No because I used `repr()`.",
+      "parentUuid": "239a7297_8a8eb35c",
+      "range": {
+        "startLine": 220,
+        "startChar": 11,
+        "endLine": 220,
+        "endChar": 12
+      },
+      "revId": "7781d20f1ae281bed27a578671505848ea08f524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d3eb386_69897113",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-04T16:11:27Z",
       "side": 1,
       "message": "nit: I think this is still a typo.",
+      "range": {
+        "startLine": 271,
+        "startChar": 9,
+        "endLine": 271,
+        "endChar": 17
+      },
+      "revId": "7781d20f1ae281bed27a578671505848ea08f524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fea7b3f8_b9682d69",
+        "filename": "kleaf/impl/kernel_prebuilt_repo.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-04T19:39:30Z",
+      "side": 1,
+      "message": "I can never get this right!\n\nDone",
+      "parentUuid": "8d3eb386_69897113",
       "range": {
         "startLine": 271,
         "startChar": 9,
