@@ -16,6 +16,69 @@
       "message": "@maennich@google.com Do you remember why CL:1012296 sets m4 and BISON_PKGDATADIR? It seems to work without those.",
       "revId": "2d7b806cd5e5cf1df3afc346bd24be4904c434bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c1e7fe9_cf0ccbbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-03-04T23:01:37Z",
+      "side": 1,
+      "message": "just nits",
+      "revId": "2d7b806cd5e5cf1df3afc346bd24be4904c434bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34450bb3_91d80da4",
+        "filename": "BUILD.bazel",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-03-04T23:01:37Z",
+      "side": 1,
+      "message": "I was first confused about the rule having the same name as the target. Any more specific name for the rule, maybe?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 5
+      },
+      "revId": "2d7b806cd5e5cf1df3afc346bd24be4904c434bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2913d062_2bf16532",
+        "filename": "BUILD.bazel",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-03-04T23:01:37Z",
+      "side": 1,
+      "message": "Should we define this in the toplevel BUILD.bazel?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 5
+      },
+      "revId": "2d7b806cd5e5cf1df3afc346bd24be4904c434bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
