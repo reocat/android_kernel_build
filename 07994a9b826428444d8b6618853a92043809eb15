@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "636721da_a31c6175",
+        "filename": "kleaf/impl/declare_kernel_prebuilts.bzl",
+        "patchSetId": 36
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-04T10:45:29Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n\"\"\"Helper to kernel_ext to define kernel prebuilt repo\"\"\"\n```",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 15,
+        "endChar": 4
+      },
+      "revId": "07994a9b826428444d8b6618853a92043809eb15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
