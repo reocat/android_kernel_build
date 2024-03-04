@@ -16,6 +16,24 @@
       "message": "Build for Rust postsubmit targets: https://android-build.corp.google.com/builds/abtd/run/L73100030002301307",
       "revId": "132362fb3a7ad5e7391ec626235a2df50bd8623c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "594d5396_d49641e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2024-03-04T16:10:57Z",
+      "side": 1,
+      "message": "Hmm, seems like the aarch64 target failed to build. There are the warnings that I am familiar with:\n```\n***\n*** Rust bindings generator \u0027bindgen\u0027 is too new. This may or may not work.\n***   Your version:     0.69.2\n***   Expected version: 0.65.1\n***\n***\n*** Please see Documentation/rust/quick-start.rst for details\n*** on how to set up the Rust support.\n***\ndie__process_class: tag not supported 0x2f (template_type_parameter)!\ndie__process_class: tag not supported 0x33 (variant_part)!\n```\nand then these that I haven\u0027t seen before:\n```\nINFO: ABI DIFFERENCES HAVE BEEN DETECTED!\nINFO: function symbol \u0027void __ClearPageMovable(struct page*)\u0027 changed\n  CRC changed from 0xc167c396 to 0x39b21988\n\nfunction symbol \u0027void __SetPageMovable(struct page*, const struct movable_operations*)\u0027 changed\n  CRC changed from 0x1d375376 to 0x12756ed0\n\nfunction symbol \u0027int ___pskb_trim(struct sk_buff*, unsigned int)\u0027 changed\n  CRC changed from 0x7cdd344a to 0x11f6119c\n\n... 3669 omitted; 3672 symbols have only CRC changes\n\ntype \u0027struct module\u0027 changed\n  byte size changed from 1408 to 1472\n  member \u0027ctor_fn_t* ctors\u0027 was added\n  member \u0027unsigned int num_ctors\u0027 was added\n  5 members (\u0027struct _ddebug_info dyndbg_info\u0027 .. \u0027u64 android_kabi_reserved4\u0027) changed\n    offset changed by 128\n\ntype \u0027struct clk\u0027 changed\n  was only declared, is now fully defined\n\ntype \u0027struct reset_control\u0027 changed\n  was only declared, is now fully defined\n\n... 340 lines skipped ...\n```",
+      "parentUuid": "a02d4efe_0c80bb58",
+      "revId": "132362fb3a7ad5e7391ec626235a2df50bd8623c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
