@@ -7,6 +7,21 @@ You may view the documentation for the aforementioned Bazel rules and macros in
 
 The link redirects to the generated documentation for this branch.
 
+## View online
+
+You may also view the API reference for `android-mainline` online by using
+the links below.
+
+**Note**: Due to known bugs in Markdown rendering, links to anchors may
+or may not work.
+
+<!-- Ref: b/327647132 -->
+
+- To view the API reference on Code Search, visit
+  [https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/docs/api_reference/](https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/docs/api_reference/)
+- To view the API reference on Gitiles, visit
+  [https://android.googlesource.com/kernel/build/+/refs/heads/main/kleaf/docs/api_reference](https://android.googlesource.com/kernel/build/+/refs/heads/main/kleaf/docs/api_reference).
+
 ## Updating docs
 
 ```sh
