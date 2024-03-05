@@ -79,6 +79,54 @@
       },
       "revId": "2d7b806cd5e5cf1df3afc346bd24be4904c434bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a36d581_c39ecf54",
+        "filename": "BUILD.bazel",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-05T00:57:36Z",
+      "side": 1,
+      "message": "bison_rule / bison_wrapper etc.?\n\nI can\u0027t think of any good names. This is essentially \"a rule that generates a shell script wrapper over the actual bison binary\".",
+      "parentUuid": "34450bb3_91d80da4",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 5
+      },
+      "revId": "2d7b806cd5e5cf1df3afc346bd24be4904c434bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17351765_949c079f",
+        "filename": "BUILD.bazel",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-05T00:57:36Z",
+      "side": 1,
+      "message": "What do you mean? You mean put it in `//:bison`?\n\nI could also move it to `//build/kernel/kleaf/impl:bison` if it makes more sense.",
+      "parentUuid": "2913d062_2bf16532",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 5
+      },
+      "revId": "2d7b806cd5e5cf1df3afc346bd24be4904c434bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
