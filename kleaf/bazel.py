@@ -19,6 +19,7 @@ import shlex
 import shutil
 import subprocess
 import sys
+import tempfile
 import textwrap
 from typing import Tuple, Optional
 
@@ -80,13 +81,6 @@ class BazelWrapper(KleafHelpPrinter):
 
         self.bazel_path = self.kleaf_repo_dir / _BAZEL_REL_PATH
 
-        # Root of the top level workspace (named "@"), where WORKSPACE
-        # is located. This is not necessarily
-        # equal to kleaf_repo_dir, especially when Kleaf tooling is in a subworkspace.
-        self.workspace_dir = pathlib.Path(subprocess.check_output(
-            [self.bazel_path, "info", "workspace"],
-            text=True).strip())
-
         command_idx = None
         for idx, arg in enumerate(bazel_args):
             if not arg.startswith("-"):
@@ -108,9 +102,45 @@ class BazelWrapper(KleafHelpPrinter):
         self.command_args, self.dash_dash, self.target_patterns = _partition(remaining_args,
                                                                              dash_dash_idx)
 
+        self.workspace_dir = self._get_workspace_dir()
         self._parse_startup_options()
         self._parse_command_args()
         self._rebuild_kleaf_help_args()
+
+    def _get_workspace_dir(self):
+        """Returns Root of the top level workspace (named "@")
+
+        where WORKSPACE is located. This is not necessarily equal to
+        kleaf_repo_dir, especially when Kleaf tooling is in a submodule.
+        """
+
+        parser = argparse.ArgumentParser(add_help=False, allow_abbrev=False)
+        self.add_startup_option_to_parser(parser)
+
+        known_startup_options, user_startup_options = parser.parse_known_args(
+            self.startup_options)
+
+        # If --output_root or --output_user_root is specified, use the given
+        # --output_user_root in `bazel info workspace`. Otherwise use /tmp.
+        # Don't delete the directory so that future runs of
+        # `bazel info workspace` does not restart the server.
+        absolute_out_dir = known_startup_options.output_root or \
+            pathlib.Path(tempfile.gettempdir()) / "kleaf_tmp_out"
+        absolute_user_root = known_startup_options.output_user_root or \
+            absolute_out_dir / "bazel/output_user_root"
+        transformed_startup_options = [f"--output_user_root={absolute_user_root}"]
+
+        if not known_startup_options.help:
+            javatmp = absolute_out_dir / "bazel/javatmp"
+            transformed_startup_options.append(
+                f"--host_jvm_args=-Djava.io.tmpdir={javatmp}",
+            )
+
+        transformed_startup_options += user_startup_options
+
+        return pathlib.Path(subprocess.check_output(
+            [self.bazel_path] + transformed_startup_options + ["info", "workspace"],
+            text=True).strip())
 
     def add_startup_option_to_parser(self, parser):
         group = parser.add_argument_group(
@@ -120,7 +150,6 @@ class BazelWrapper(KleafHelpPrinter):
             "--output_root",
             metavar="PATH",
             type=_require_absolute_path,
-            default=_require_absolute_path(self.workspace_dir / "out"),
             help="Absolute path to output directory",
         )
         group.add_argument(
@@ -149,7 +178,8 @@ class BazelWrapper(KleafHelpPrinter):
         self.known_startup_options, user_startup_options = parser.parse_known_args(
             self.startup_options)
 
-        self.absolute_out_dir = self.known_startup_options.output_root
+        self.absolute_out_dir = self.known_startup_options.output_root or \
+            _require_absolute_path(self.workspace_dir / "out")
         self.absolute_user_root = self.known_startup_options.output_user_root or \
             self.absolute_out_dir / "bazel/output_user_root"
 
