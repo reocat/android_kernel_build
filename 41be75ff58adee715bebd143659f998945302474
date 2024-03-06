@@ -16,6 +16,24 @@
       "message": "This needs CL:2972494",
       "revId": "41be75ff58adee715bebd143659f998945302474",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "510b96d9_2aa20aef",
+        "filename": "kleaf/impl/kernel_prebuilt_repo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-06T01:11:13Z",
+      "side": 1,
+      "message": "Given that:\n- The list of release blockers for 7.1.0 indicates that it may take some time for the official release\n- There are no known users for --use_prebuilt_gki on android15 branches\n- Even if there are, the downsides are small; it makes a one-time download take longer. (However, downloads are subject to bandwidth constraints in the first place).\n\nI\u0027ll leave this as a TODO and submit it for now to unblock future work. When 7.1.0 is officially checked in, I\u0027ll re-enable parallel download.",
+      "parentUuid": "823d67fb_e3b17c26",
+      "revId": "41be75ff58adee715bebd143659f998945302474",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
