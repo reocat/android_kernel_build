@@ -16,6 +16,47 @@
       "message": "For b/328233115, we also need to not write to $HOME when --output_root / --output_user_root is NOT set.",
       "revId": "8faf4dd28829e19afd3931a0644a74348f12889c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdcabf4f_00527274",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120915
+      },
+      "writtenOn": "2024-03-06T09:01:43Z",
+      "side": 1,
+      "message": "I agree. Also, for b/328233115, --output_user_root is set at line 130\n\n```\ntransformed_startup_options.append(f\"--output_user_root\u003d{absolute_user_root}\")\n```\n\nThen we need to remove --output_base to make it work. Otherwise bazel reports:\n\n```\nWARNING: Running Bazel server needs to be killed, because the startup options are different.\n```",
+      "parentUuid": "ed2a16fb_77dc2824",
+      "revId": "8faf4dd28829e19afd3931a0644a74348f12889c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90fc0b00_cbdd8198",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1120915
+      },
+      "writtenOn": "2024-03-06T09:01:43Z",
+      "side": 1,
+      "message": "Do you mean +\u003d?",
+      "range": {
+        "startLine": 134,
+        "startChar": 44,
+        "endLine": 134,
+        "endChar": 45
+      },
+      "revId": "8faf4dd28829e19afd3931a0644a74348f12889c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
