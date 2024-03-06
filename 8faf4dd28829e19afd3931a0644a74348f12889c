@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "357e4a1d_1a01d465",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-06T19:15:19Z",
+      "side": 1,
+      "message": "Can you try NOT using --output_base in the first place? Does that work?",
+      "parentUuid": "bdcabf4f_00527274",
+      "revId": "8faf4dd28829e19afd3931a0644a74348f12889c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "90fc0b00_cbdd8198",
         "filename": "kleaf/bazel.py",
         "patchSetId": 3
@@ -49,6 +67,30 @@
       "writtenOn": "2024-03-06T09:01:43Z",
       "side": 1,
       "message": "Do you mean +\u003d?",
+      "range": {
+        "startLine": 134,
+        "startChar": 44,
+        "endLine": 134,
+        "endChar": 45
+      },
+      "revId": "8faf4dd28829e19afd3931a0644a74348f12889c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f0de001_5e73ef90",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-06T19:15:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90fc0b00_cbdd8198",
       "range": {
         "startLine": 134,
         "startChar": 44,
