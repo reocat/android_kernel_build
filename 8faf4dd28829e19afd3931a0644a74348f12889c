@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed2a16fb_77dc2824",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-06T00:52:53Z",
+      "side": 1,
+      "message": "For b/328233115, we also need to not write to $HOME when --output_root / --output_user_root is NOT set.",
+      "revId": "8faf4dd28829e19afd3931a0644a74348f12889c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
