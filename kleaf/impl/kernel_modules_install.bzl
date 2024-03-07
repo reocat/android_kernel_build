@@ -53,6 +53,9 @@ def _kernel_modules_install_impl(ctx):
     # A list of declared files for outputs of kernel_module rules
     external_modules = []
 
+    # A list of additional files other than kernel modules.
+    outs = []
+
     # TODO(b/256688440): Avoid depset[directory_with_structure] to_list
     modules_staging_dws_depset = depset(transitive = [
         kernel_module[KernelModuleInfo].modules_staging_dws_depset
@@ -75,6 +78,10 @@ def _kernel_modules_install_impl(ctx):
     for module_file in module_files:
         declared_file = ctx.actions.declare_file("{}/{}".format(ctx.label.name, module_file.basename))
         external_modules.append(declared_file)
+
+    for out in ctx.attr.outs:
+        out_file = ctx.actions.declare_file("{}/{}".format(ctx.label.name, out))
+        outs.append(out_file)
 
     transitive_inputs = [
         kernel_build_infos.ext_module_info.modinst_env.inputs,
@@ -158,6 +165,17 @@ def _kernel_modules_install_impl(ctx):
             search_and_cp_output = ctx.executable._search_and_cp_output.path,
         )
 
+    if outs:
+        command += """
+                # Move additional files to declared output location
+                   {search_and_cp_output} --srcdir {modules_staging_dir}/lib/modules/*/ --dstdir {outdir} {filenames}
+        """.format(
+            modules_staging_dir = modules_staging_dws.directory.path,
+            outdir = outs[0].dirname,
+            filenames = " ".join([out.basename for out in outs]),
+            search_and_cp_output = ctx.executable._search_and_cp_output.path,
+        )
+
     command += dws.record(modules_staging_dws)
 
     debug.print_scripts(ctx, command)
@@ -165,7 +183,7 @@ def _kernel_modules_install_impl(ctx):
         mnemonic = "KernelModulesInstall",
         inputs = depset(inputs, transitive = transitive_inputs),
         tools = depset(tools, transitive = transitive_tools),
-        outputs = external_modules + dws.files(modules_staging_dws),
+        outputs = external_modules + dws.files(modules_staging_dws) + outs,
         command = command,
         progress_message = "Running depmod {}".format(ctx.label),
     )
@@ -181,7 +199,7 @@ def _kernel_modules_install_impl(ctx):
     )
 
     return [
-        DefaultInfo(files = depset(external_modules)),
+        DefaultInfo(files = depset(external_modules + outs)),
         KernelModuleInfo(
             kernel_build_infos = kernel_build_infos,
             modules_staging_dws_depset = depset([modules_staging_dws]),
@@ -259,6 +277,30 @@ In `foo_dist`, specifying `foo_modules_install` in `data` won't include
             cfg = "exec",
             executable = True,
             doc = "Label referring to the script to process outputs",
+        ),
+        "outs": attr.string_list(
+            doc = """ A list of additional outputs from `make modules_install`.
+Since external modules are returned by default,
+it is used to obtain modules.* related files (results of depmod).
+Example:
+```
+kernel_modules_install(
+    name = "foo_modules_install",
+    kernel_modules = [":foo_module_list"],
+    outs = [
+        "modules.dep",
+        "modules.alias"
+    ],
+)
+
+copy_to_dist_dir(
+    name = "foo_dist",
+    data = [
+        ":foo_modules_install",
+    ],
+)
+```
+""",
         ),
     },
 )
