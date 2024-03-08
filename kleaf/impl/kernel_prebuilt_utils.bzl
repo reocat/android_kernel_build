@@ -20,6 +20,7 @@ load(
 )
 load(
     ":constants.bzl",
+    "FILEGROUP_DEF_ARCHIVE_SUFFIX",
     "GKI_ARTIFACTS_AARCH64_OUTS",
     "MODULES_STAGING_ARCHIVE",
     "MODULE_OUTS_FILE_SUFFIX",
