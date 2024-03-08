@@ -15,6 +15,11 @@
 """Repository for kernel prebuilts."""
 
 load(
+    ":constants.bzl",
+    "FILEGROUP_DEF_ARCHIVE_SUFFIX",
+    "FILEGROUP_DEF_TEMPLATE_NAME",
+)
+load(
     ":kernel_prebuilt_utils.bzl",
     "CI_TARGET_MAPPING",
     "GKI_DOWNLOAD_CONFIGS",
@@ -254,9 +259,37 @@ filegroup(
         )
         repository_ctx.file(_join(local_filename, "BUILD.bazel"), content)
 
+    _create_top_level_files(repository_ctx, download_config)
+
+def _create_top_level_files(repository_ctx, download_config):
+    bazel_target_name = repository_ctx.attr.target
     repository_ctx.file("""WORKSPACE.bazel""", """\
 workspace({})
 """.format(repr(repository_ctx.attr.name)))
+
+    filegroup_def_archives = []
+    for local_filename in download_config:
+        if _basename(local_filename).endswith(FILEGROUP_DEF_ARCHIVE_SUFFIX):
+            filegroup_def_archives.append(repository_ctx.path(_join(local_filename, _basename(local_filename))))
+
+    if not filegroup_def_archives:
+        return
+    if len(filegroup_def_archives) > 1:
+        fail("Multiple files with suffix {}: {}".format(FILEGROUP_DEF_ARCHIVE_SUFFIX, filegroup_def_archives))
+
+    filegroup_def_archive = filegroup_def_archives[0]
+    repository_ctx.extract(filegroup_def_archive, repository_ctx.path(bazel_target_name))
+
+    template_content = repository_ctx.read(repository_ctx.path(_join(bazel_target_name, FILEGROUP_DEF_TEMPLATE_NAME)))
+
+    repository_ctx.file(repository_ctx.path(_join(bazel_target_name, "BUILD.bazel")), """\
+load({kernel_bzl_repr}, "kernel_filegroup")
+
+{template_content}
+""".format(
+        kernel_bzl_repr = repr(str(Label("//build/kernel/kleaf:kernel.bzl"))),
+        template_content = template_content,
+    ))
 
 kernel_prebuilt_repo = repository_rule(
     implementation = _kernel_prebuilt_repo_impl,
