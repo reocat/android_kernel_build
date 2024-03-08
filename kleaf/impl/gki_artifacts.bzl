@@ -22,7 +22,7 @@ load(":constants.bzl", "GKI_ARTIFACTS_AARCH64_OUTS")
 load(":hermetic_toolchain.bzl", "hermetic_toolchain")
 load(":utils.bzl", "utils")
 
-visibility("//build/kernel/kleaf/...")
+visibility("public")
 
 def _gki_artifacts_impl(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
@@ -191,6 +191,8 @@ For example:
 
 def _gki_artifacts_prebuilts_impl(ctx):
     # Assuming the rule specifies `outs = ["subdir/gki-info.txt"]`
+
+    print(ctx.attr.srcs)
 
     srcs_map = {src.basename: src for src in ctx.files.srcs}
 

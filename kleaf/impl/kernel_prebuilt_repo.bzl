@@ -15,6 +15,18 @@
 """Repository for kernel prebuilts."""
 
 load(
+    "//build/kernel/kleaf:constants.bzl",
+    "DEFAULT_GKI_OUTS",
+)
+load(
+    ":constants.bzl",
+    "GKI_ARTIFACTS_AARCH64_OUTS",
+    "MODULES_STAGING_ARCHIVE",
+    "MODULE_OUTS_FILE_SUFFIX",
+    "TOOLCHAIN_VERSION_FILENAME",
+    "SYSTEM_DLKM_COMMON_OUTS",
+)
+load(
     ":kernel_prebuilt_utils.bzl",
     "CI_TARGET_MAPPING",
     "GKI_DOWNLOAD_CONFIGS",
@@ -24,6 +36,9 @@ visibility("//build/kernel/kleaf/...")
 
 _BUILD_NUM_ENV_VAR = "KLEAF_DOWNLOAD_BUILD_NUMBER_MAP"
 ARTIFACT_URL_FMT = "https://androidbuildinternal.googleapis.com/android/internal/build/v3/builds/{build_number}/{target}/attempts/latest/artifacts/{filename}/url?redirect=true"
+
+# FIXME sync with common_kernels
+_COLLECT_UNSTRIPPED_MODULES = True
 
 def _bool_to_str(b):
     """Turns boolean to string."""
@@ -250,6 +265,82 @@ filegroup(
     repository_ctx.file("""WORKSPACE.bazel""", """\
 workspace({})
 """.format(repr(repository_ctx.attr.name)))
+
+    # Right now, we use the same target name for remote server and for the
+    # actual Bazel target. However, they don't have to be the same. Hence
+    # use a different variable name.
+    bazel_target_name = repository_ctx.attr.target
+
+    # FIXME
+    main_target_outs = DEFAULT_GKI_OUTS + [
+        bazel_target_name + MODULE_OUTS_FILE_SUFFIX,
+    ]
+    gki_prebuilts_outs = GKI_ARTIFACTS_AARCH64_OUTS
+
+    build_bazel_content = """\
+load({gki_artifacts_bzl_repr}, "gki_artifacts_prebuilts")
+load({kernel_bzl_repr}, "kernel_filegroup")
+
+gki_artifacts_prebuilts(
+    name = "{gki_artifacts_target}",
+    srcs = select({{
+        {use_signed_prebuilts_is_true_repr}: ["//signed/boot-img.tar.gz"],
+        "//conditions:default": ["//boot-img.tar.gz"],
+    }}),
+    outs = {gki_prebuilts_outs_repr},
+    visibility = ["//visibility:private"],
+)
+
+filegroup(
+    name = "{images_target}",
+    srcs = {images_repr},
+    visibility = ["//visibility:private"],
+)
+
+kernel_filegroup(
+    name = {name_repr},
+    srcs = {srcs_repr},
+    deps = {deps_repr},
+    kernel_uapi_headers = {uapi_headers_repr},
+    collect_unstripped_modules = {collect_unstripped_modules_repr},
+    images = ":{images_target}",
+    module_outs_file = {module_outs_repr},
+    protected_modules_list = {protected_modules_repr},
+    gki_artifacts = ":{gki_artifacts_target}",
+    ddk_module_defconfig_fragments = [
+        {signing_modules_disabled_repr},
+    ],
+    visibility = ["//visibility:public"],
+)
+""".format(
+            gki_artifacts_bzl_repr = repr(str(Label("//build/kernel/kleaf/impl:gki_artifacts.bzl"))),
+            kernel_bzl_repr = repr(str(Label("//build/kernel/kleaf:kernel.bzl"))),
+            use_signed_prebuilts_is_true_repr = repr(str(Label("//build/kernel/kleaf:use_signed_prebuilts_is_true"))),
+            signing_modules_disabled_repr = repr(str(Label("//build/kernel/kleaf/impl/defconfig:signing_modules_disabled"))),
+            name_repr = repr(bazel_target_name),
+            srcs_repr = repr(["//{}".format(filename) for filename in main_target_outs]),
+            deps_repr = repr([
+                # ddk_artifacts
+                # _modules_prepare
+                "//modules_prepare_outdir.tar.gz",
+                # _modules_staging_archive
+                "//" + MODULES_STAGING_ARCHIVE,
+                "//unstripped_modules.tar.gz",
+                "//" + TOOLCHAIN_VERSION_FILENAME,
+            ]),
+            uapi_headers_repr = repr("//kernel-uapi-headers.tar.gz"),
+            collect_unstripped_modules_repr = repr(_COLLECT_UNSTRIPPED_MODULES),
+            images_repr = repr(["//{}".format(filename) for filename in SYSTEM_DLKM_COMMON_OUTS]),
+            module_outs_repr = repr("//" + bazel_target_name + MODULE_OUTS_FILE_SUFFIX),
+            # FIXME this needs to come from the build because it is defined by
+            # common/BUILD.bazel, which we don't have at this stage.
+            protected_modules_repr = repr(None),
+            gki_prebuilts_outs_repr = repr(gki_prebuilts_outs),
+            gki_artifacts_target = bazel_target_name + "_gki_artifacts",
+            images_target = bazel_target_name + "_images",
+        )
+
+    repository_ctx.file("BUILD.bazel", build_bazel_content)
 
 kernel_prebuilt_repo = repository_rule(
     implementation = _kernel_prebuilt_repo_impl,
