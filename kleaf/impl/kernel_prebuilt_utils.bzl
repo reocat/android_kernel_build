@@ -25,6 +25,7 @@ load(
     "MODULE_OUTS_FILE_SUFFIX",
     "SYSTEM_DLKM_COMMON_OUTS",
     "TOOLCHAIN_VERSION_FILENAME",
+    "FILEGROUP_DEF_ARCHIVE_SUFFIX",
 )
 
 visibility("//build/kernel/kleaf/...")
@@ -118,6 +119,7 @@ CI_TARGET_MAPPING = {
         "target": "kernel_aarch64",
         "outs": DEFAULT_GKI_OUTS + [
             "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX,
+            "kernel_aarch64" + FILEGROUP_DEF_ARCHIVE_SUFFIX,
         ],
         "protected_modules": "gki_aarch64_protected_modules",
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
