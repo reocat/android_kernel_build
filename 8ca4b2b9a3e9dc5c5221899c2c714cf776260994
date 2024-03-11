@@ -16,6 +16,29 @@
       "message": "```\n-------- TESTING DONE --------\n########################################\nVerified checkpatch_full.log file is silently generated with all violations.\n\nestaats$ mkdir dist\nestaats$ echo \"common 6b71a75d49042b6fa7e954adda998b4ec2cca55e\" \u003e dist/applied.prop\nestaats$ tools/bazel run //build/kernel/static_analysis:checkpatch_presubmit -- --dist_dir\u003d`pwd`/dist\nINFO: Analyzed target //build/kernel/static_analysis:checkpatch_presubmit (0 packages loaded, 12 targets configured).\nINFO: Found 1 target...\nTarget //build/kernel/static_analysis:checkpatch_presubmit up-to-date:\n  bazel-bin/build/kernel/static_analysis/checkpatch_presubmit\nINFO: Elapsed time: 0.363s, Critical Path: 0.05s\nINFO: 1 process: 1 internal.\nINFO: Build completed successfully, 1 total action\nINFO: Running command line: bazel-bin/build/kernel/static_analysis/checkpatch_presubmit \u0027--dist_dir\u003d/usr/local/google/home/estaats/dev/checkpatch/aosp_kernel_main/dist\u0027\n/usr/local/google/home/estaats/.vim_bashrc: line 7: gawk: command not found\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n Running static analysis on common (6b71a75d49042b6fa7e954adda998b4ec2cca55e) ...\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nFinished running static analysis on common.\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nestaats$ cat dist/checkpatch_full.log\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\ncommon: 6b71a75d49042b6fa7e954adda998b4ec2cca55e\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nERROR:GERRIT_CHANGE_ID: Remove Gerrit Change-Id\u0027s before submitting upstream\n#14:\nChange-Id: I88e7a6218480964c72135b0e1107039141b535e8\n\ntotal: 1 errors, 0 warnings, 8 lines checked\n\nNOTE: For some of the reported defects, checkpatch may be able to\n      mechanically convert to the typical style using --fix or --fix-inplace.\n\n/tmp/.tmp.checkpatch.TGCAJg/checkpatch/patches/0001-ANDROID-fix-up-__NR_compat_syscalls-number-due-to-bu.patch has style problems, please review.\n\nNOTE: If any of the errors are false positives, please report\n      them to the maintainer, see CHECKPATCH in MAINTAINERS.\nestaats$\n```",
       "revId": "8ca4b2b9a3e9dc5c5221899c2c714cf776260994",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18c63c64_6fe97fb3",
+        "filename": "static_analysis/checkpatch_presubmit_bazel.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-11T18:08:29Z",
+      "side": 1,
+      "message": "According to go/py-style, I think there should be spaces around the equal sign.\n```suggestion\n    silent: bool \u003d False,\n```",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 23
+      },
+      "revId": "8ca4b2b9a3e9dc5c5221899c2c714cf776260994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
