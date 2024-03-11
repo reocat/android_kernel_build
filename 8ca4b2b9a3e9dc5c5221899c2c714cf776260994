@@ -39,6 +39,30 @@
       },
       "revId": "8ca4b2b9a3e9dc5c5221899c2c714cf776260994",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "380c0764_cb9851d9",
+        "filename": "static_analysis/checkpatch_presubmit_bazel.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-11T18:08:47Z",
+      "side": 1,
+      "message": "that is, when there is a type hint",
+      "parentUuid": "18c63c64_6fe97fb3",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 23
+      },
+      "revId": "8ca4b2b9a3e9dc5c5221899c2c714cf776260994",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
