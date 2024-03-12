@@ -53,6 +53,8 @@ load(
 load(":compile_commands_utils.bzl", "compile_commands_utils")
 load(
     ":constants.bzl",
+    "FILEGROUP_DEF_ARCHIVE_SUFFIX",
+    "FILEGROUP_DEF_TEMPLATE_NAME",
     "MODULES_STAGING_ARCHIVE",
     "MODULE_ENV_ARCHIVE_SUFFIX",
     "MODULE_OUTS_FILE_OUTPUT_GROUP",
@@ -84,6 +86,8 @@ _kernel_build_internal_outs = [
 
 _KERNEL_BUILD_OUT_ATTRS = ("outs", "module_outs", "implicit_outs", "module_implicit_outs", "internal_outs")
 _KERNEL_BUILD_MODULE_OUT_ATTRS = ("module_outs", "module_implicit_outs")
+
+_MODULES_PREPARE_ARCHIVE = "modules_prepare_outdir.tar.gz"
 
 def kernel_build(
         name,
@@ -583,7 +587,7 @@ def kernel_build(
         name = modules_prepare_target_name,
         config = config_target_name,
         srcs = srcs,
-        outdir_tar_gz = modules_prepare_target_name + "/modules_prepare_outdir.tar.gz",
+        outdir_tar_gz = modules_prepare_target_name + "/" + _MODULES_PREPARE_ARCHIVE,
         trim_nonlisted_kmi = trim_nonlisted_kmi,
         force_generate_headers = modules_prepare_force_generate_headers,
         **internal_kwargs
@@ -616,6 +620,7 @@ def kernel_build(
         pack_module_env = pack_module_env,
         sanitizers = sanitizers,
         ddk_module_defconfig_fragments = ddk_module_defconfig_fragments,
+        arch = arch,
         **kwargs
     )
 
@@ -1633,6 +1638,110 @@ def _build_main_action(
         module_symvers_outputs = copy_module_symvers_step.outputs,
     )
 
+def _create_filegroup_def(
+        ctx,
+        main_action_ret,
+        all_module_names_file,
+        modules_staging_archive,
+        toolchain_version_out):
+    """Creates a file containing kernel_filegroup definition of this target."""
+
+    hermetic_tools = hermetic_toolchain.get(ctx)
+
+    all_output_files = main_action_ret.all_output_files
+    filegroup_srcs = all_output_files["outs"].values() + all_output_files["module_outs"].values()
+    kernel_release = all_output_files["internal_outs"]["include/config/kernel.release"]
+
+    file_to_pkg_label = lambda file: repr(":{}".format(file.basename) if file else None)
+    files_to_label = lambda lst: repr(["//{}".format(file.basename) for file in lst])
+    files_to_pkg_label = lambda lst: repr([":{}".format(file.basename) for file in lst])
+
+    # ddk_artifacts
+    # _modules_prepare
+    deps = [
+        file.basename
+        for file in ctx.files.modules_prepare
+        if file.basename == _MODULES_PREPARE_ARCHIVE
+    ]
+
+    # _modules_staging_archive
+    deps.append(modules_staging_archive.basename)
+    deps += [
+        "unstripped_modules.tar.gz",  # FIXME use constant
+        toolchain_version_out.basename,
+    ]
+    deps_repr = repr(["//{}".format(dep) for dep in deps])
+
+    fragment = """\
+filegroup(
+    name = {uapi_headers_target_repr},
+    srcs = {uapi_headers_repr},
+    visibility = ["//visibility:private"],
+)
+
+kernel_filegroup(
+    name = {name_repr},
+    srcs = {srcs_repr},
+    deps = {deps_repr},
+    kernel_uapi_headers = {uapi_headers_target_repr},
+    collect_unstripped_modules = {collect_unstripped_modules_repr},
+    module_outs_file = {module_outs_repr},
+    protected_modules_list = {protected_modules_repr},
+    kernel_release = {kernel_release_repr},
+    ddk_module_defconfig_fragments = {ddk_module_defconfig_fragments_repr},
+    visibility = ["//visibility:public"],
+)
+""".format(
+        name_repr = repr(ctx.attr.name),
+        srcs_repr = files_to_label(filegroup_srcs),
+        deps_repr = deps_repr,
+        uapi_headers_target_repr = repr(ctx.attr.name + "_uapi_headers"),
+        uapi_headers_repr = files_to_label(ctx.files.kernel_uapi_headers),
+        collect_unstripped_modules_repr = repr(ctx.attr.collect_unstripped_modules),
+        module_outs_repr = file_to_pkg_label(all_module_names_file),
+        protected_modules_repr = file_to_pkg_label(ctx.file.src_protected_modules_list),
+        kernel_release_repr = file_to_pkg_label(kernel_release),
+        ddk_module_defconfig_fragments_repr = files_to_pkg_label(ctx.files.ddk_module_defconfig_fragments),
+    )
+
+    filegroup_def_file = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, FILEGROUP_DEF_TEMPLATE_NAME))
+    ctx.actions.write(filegroup_def_file, fragment)
+
+    filegroup_def_archive = ctx.actions.declare_file("{name}/{name}{suffix}".format(
+        name = ctx.attr.name,
+        suffix = FILEGROUP_DEF_ARCHIVE_SUFFIX,
+    ))
+    direct_inputs = [
+        filegroup_def_file,
+        all_module_names_file,
+        kernel_release,
+    ]
+    if ctx.file.src_protected_modules_list:
+        direct_inputs.append(ctx.file.src_protected_modules_list)
+    inputs = depset(
+        direct_inputs,
+        transitive = [target.files for target in ctx.attr.ddk_module_defconfig_fragments],
+    )
+    command = hermetic_tools.setup + """
+        tar cf {archive} --dereference --transform 's:.*/::g' "$@"
+    """.format(
+        archive = filegroup_def_archive.path,
+    )
+    args = ctx.actions.args()
+    args.add_all(inputs)
+    ctx.actions.run_shell(
+        inputs = inputs,
+        tools = hermetic_tools.deps,
+        outputs = [filegroup_def_archive],
+        command = command,
+        arguments = [args],
+        progress_message = "Creating archive of kernel_filegroup definition {}".format(ctx.label),
+        mnemonic = "KernelBuildFilegroupArchive",
+    )
+
+    # TODO: Move the list of files needed by the kernel_filegroup from DefaultInfo to here.
+    return filegroup_def_archive
+
 def _env_and_outputs_info_get_setup_script(data, restore_out_dir_cmd):
     """Setup script generator for `KernelEnvAndOutputsInfo`.
 
@@ -1744,7 +1853,8 @@ def _create_infos(
         kmi_symbol_list_violations_check_out,
         module_scripts_archive,
         module_srcs,
-        internal_outs_archive):
+        internal_outs_archive,
+        filegroup_def):
     """Creates and returns a list of provided infos that the `kernel_build` target should return.
 
     Args:
@@ -1759,6 +1869,7 @@ def _create_infos(
         module_srcs: from `kernel_utils.filter_module_srcs`
         module_scripts_archive: from `_create_module_scripts_archive`
         internal_outs_archive: from `_create_internal_outs_archive`
+        filegroup_def: from `_create_filegroup_def`
     """
 
     base_kernel = base_kernel_utils.get_base_kernel(ctx)
@@ -1977,6 +2088,7 @@ def _create_infos(
     default_info_files.extend(main_action_ret.gcno_outputs)
     if kmi_symbol_list_violations_check_out:
         default_info_files.append(kmi_symbol_list_violations_check_out)
+    default_info_files.append(filegroup_def)
     default_info = DefaultInfo(
         files = depset(default_info_files),
         # For kernel_build_test
@@ -2058,6 +2170,13 @@ def _kernel_build_impl(ctx):
         ctx = ctx,
         main_action_ret = main_action_ret,
     )
+    filegroup_def = _create_filegroup_def(
+        ctx = ctx,
+        main_action_ret = main_action_ret,
+        all_module_names_file = all_module_names_file,
+        modules_staging_archive = modules_staging_archive,
+        toolchain_version_out = toolchain_version_out,
+    )
 
     infos = _create_infos(
         ctx = ctx,
@@ -2071,6 +2190,7 @@ def _kernel_build_impl(ctx):
         module_scripts_archive = module_scripts_archive,
         module_srcs = module_srcs,
         internal_outs_archive = internal_outs_archive,
+        filegroup_def = filegroup_def,
     )
 
     return infos
