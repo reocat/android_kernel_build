@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a96ee1c_9c421f35",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-12T23:30:14Z",
+      "side": 1,
+      "message": "Unnecessary. The for loop will be a no op if the list is empty.\n\nNone check is not needed; ctx.attr.\u003clist_attr\u003e will never be None.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 32
+      },
+      "revId": "fbb7387b0d3e06609b69b6c72398e87c54d19a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "640e18dd_c75edf7a",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-12T23:30:14Z",
+      "side": 1,
+      "message": "just `outs`",
+      "range": {
+        "startLine": 282,
+        "startChar": 9,
+        "endLine": 282,
+        "endChar": 24
+      },
+      "revId": "fbb7387b0d3e06609b69b6c72398e87c54d19a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44b7f73f_70e35903",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-12T23:30:14Z",
+      "side": 1,
+      "message": "explain a bit more about where these output files are from. e.g. ```a list of additional outputs from `make modules_install`. Items may be `Modules.dep`, `Modules.alias`, etc.```",
+      "range": {
+        "startLine": 283,
+        "startChar": 40,
+        "endLine": 283,
+        "endChar": 46
+      },
+      "revId": "fbb7387b0d3e06609b69b6c72398e87c54d19a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26bde162_80acfbe5",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-12T23:30:14Z",
+      "side": 1,
+      "message": "To avoid being abused, instead of letting the caller to specify this list, consider adding\n\n```\nvalues \u003d [\n    \"Modules.dep\",\n    \"Modules.alias\",\n]\n```",
+      "revId": "fbb7387b0d3e06609b69b6c72398e87c54d19a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
