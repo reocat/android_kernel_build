@@ -16,6 +16,24 @@
       "message": "I like the idea, but I want the actual debugger users to approve this change",
       "revId": "83e3e839ad33b5a2a44f284241edc36fd5918674",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3474468d_af5128da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-03-12T20:43:03Z",
+      "side": 1,
+      "message": "I tested it with `gdb` and `lldb` with different setups and config options. And we will announce this change in newsletter.",
+      "parentUuid": "0454e131_16700b08",
+      "revId": "83e3e839ad33b5a2a44f284241edc36fd5918674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
