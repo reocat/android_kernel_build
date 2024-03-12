@@ -91,6 +91,9 @@ GKI_DOWNLOAD_CONFIGS = [
     {
         "target_suffix": "ddk_artifacts",
         "outs": [
+            "kernel_aarch64" + FILEGROUP_DEF_ARCHIVE_SUFFIX,
+            # TODO(b/291918087): Drop after common_kernels no longer use kernel_filegroup.
+            #   These files should already be in filegroup_def archive.
             # _modules_prepare
             "modules_prepare_outdir.tar.gz",
             # _modules_staging_archive
@@ -118,6 +121,8 @@ CI_TARGET_MAPPING = {
         # TODO: Rename this when more architectures are added.
         "target": "kernel_aarch64",
         "outs": DEFAULT_GKI_OUTS + [
+            # TODO(b/291918087): Drop after common_kernels no longer use kernel_filegroup.
+            #   These files should already be in filegroup_def archive.
             "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX,
         ],
         "protected_modules": "gki_aarch64_protected_modules",

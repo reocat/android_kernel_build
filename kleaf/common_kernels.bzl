@@ -843,6 +843,8 @@ def _define_common_kernel(
         ],
     )
 
+    # TODO(b/291918087): Drop after common_kernels no longer use kernel_filegroup.
+    #   These files should already be in filegroup_def archive.
     # Everything in name + "_dist" for the DDK.
     # These are necessary for driver development. Hence they are also added to
     # kernel_*_dist so they can be downloaded.
