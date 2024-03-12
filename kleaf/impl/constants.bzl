@@ -51,3 +51,6 @@ SYSTEM_DLKM_COMMON_OUTS = [
 MODULES_STAGING_ARCHIVE = "modules_staging_dir.tar.gz"
 
 MODULE_ENV_ARCHIVE_SUFFIX = "_module_env.tar.gz"
+
+FILEGROUP_DEF_TEMPLATE_NAME = "filegroup_def_template.txt"
+FILEGROUP_DEF_ARCHIVE_SUFFIX = "_filegroup_def.tar.gz"
