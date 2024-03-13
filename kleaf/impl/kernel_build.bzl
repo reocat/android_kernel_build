@@ -42,6 +42,7 @@ load(
     "KernelBuildUapiInfo",
     "KernelBuildUnameInfo",
     "KernelCmdsInfo",
+    "KernelConfigArchiveInfo",
     "KernelEnvAndOutputsInfo",
     "KernelEnvAttrInfo",
     "KernelEnvMakeGoalsInfo",
@@ -1992,6 +1993,7 @@ def _create_infos(
         ddk_module_defconfig_fragments = ddk_module_defconfig_fragments,
         kernel_uapi_headers = kernel_uapi_headers_depset,
         arch = ctx.attr.arch,
+        config_archive_files = ctx.attr.config[KernelConfigArchiveInfo].files,
     )
 
     default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
