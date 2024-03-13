@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f612aa6_41917e9f",
+        "filename": "static_analysis/checkpatch_presubmit_bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-03-13T12:49:46Z",
+      "side": 1,
+      "message": "strictly speaking, `silent\u003dTrue` should cause `stdout\u003dDEVNULL` and `stderr\u003dSTDOUT`\n\nIf you stick to the current solution, perhaps leave a comment to explain that we are not interested in the output and hence we swallow it.",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 30
+      },
+      "revId": "865622dcbb41738f8f1a5a7d75862e09e66bb472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
