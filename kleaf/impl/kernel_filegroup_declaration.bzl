@@ -40,6 +40,7 @@ def _kernel_filegroup_declaration_impl(ctx):
         info.modules_staging_archive,
         info.toolchain_version_file,
     ]
+    deps_files += info.config_archive_files.to_list()
 
     deps_repr = repr([file.path for file in deps_files] +
                      ["//{}".format(file.basename) for file in ctx.files.extra_deps])
