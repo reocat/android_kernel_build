@@ -44,6 +44,11 @@ def _kernel_filegroup_declaration_impl(ctx):
     deps_repr = repr([file.path for file in deps_files] +
                      ["//{}".format(file.basename) for file in ctx.files.extra_deps])
 
+    config_files = info.config_files.to_list()
+    config_out_dir = info.config_out_dir
+    config_repr = repr([file.path for file in config_files]) + \
+        " + glob({}, allow_empty = True)".format(repr([config_out_dir.path + "/**"]))
+
     kernel_uapi_headers_lst = info.kernel_uapi_headers.to_list()
     if not kernel_uapi_headers_lst:
         fail("{}: {} does not have kernel_uapi_headers.".format(ctx.label, ctx.attr.kernel_build.label))
@@ -83,6 +88,8 @@ kernel_filegroup(
     kernel_release = {kernel_release_repr},
     protected_modules_list = {protected_modules_repr},
     ddk_module_defconfig_fragments = {ddk_module_defconfig_fragments_repr},
+    config = {config_repr},
+    config_out_dir = {config_out_dir_repr},
     target_platform = {target_platform_repr},
     exec_platform = {exec_platform_repr},
     visibility = ["//visibility:public"],
@@ -100,6 +107,8 @@ kernel_filegroup(
         ddk_module_defconfig_fragments_repr = files_to_pkg_label(
             info.ddk_module_defconfig_fragments.to_list(),
         ),
+        config_repr = config_repr,
+        config_out_dir_repr = repr(config_out_dir.path),
         target_platform_repr = repr(ctx.attr.kernel_build.label.name + "_platform_target"),
         exec_platform_repr = repr(ctx.attr.kernel_build.label.name + "_platform_exec"),
         arch = info.arch,
@@ -120,10 +129,11 @@ kernel_filegroup(
         info.module_outs_file,
         info.kernel_release,
         kernel_uapi_headers,
+        info.config_out_dir,
     ]
     if info.src_protected_modules_list:
         direct_inputs.append(info.src_protected_modules_list)
-    transitive_inputs = [info.ddk_module_defconfig_fragments]
+    transitive_inputs = [info.ddk_module_defconfig_fragments, info.config_files]
     inputs = depset(
         direct_inputs,
         transitive = transitive_inputs,

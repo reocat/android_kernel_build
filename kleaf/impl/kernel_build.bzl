@@ -42,6 +42,7 @@ load(
     "KernelBuildUapiInfo",
     "KernelBuildUnameInfo",
     "KernelCmdsInfo",
+    "KernelConfigArchiveInfo",
     "KernelEnvAndOutputsInfo",
     "KernelEnvAttrInfo",
     "KernelEnvMakeGoalsInfo",
@@ -1992,6 +1993,8 @@ def _create_infos(
         ddk_module_defconfig_fragments = ddk_module_defconfig_fragments,
         kernel_uapi_headers = kernel_uapi_headers_depset,
         arch = ctx.attr.arch,
+        config_files = ctx.attr.config[KernelConfigArchiveInfo].files,
+        config_out_dir = ctx.file.config,
     )
 
     default_info_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
@@ -2121,6 +2124,7 @@ _kernel_build = rule(
                 KernelToolchainInfo,
             ],
             doc = "the kernel_config target",
+            allow_single_file = True,
         ),
         "keep_module_symvers": attr.bool(
             doc = "If true, a copy of `Module.symvers` is kept, with the name `{name}_Module.symvers`",

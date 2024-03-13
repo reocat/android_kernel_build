@@ -307,6 +307,11 @@ KernelBuildFilegroupDeclInfo = provider(
             [`File`](https://bazel.build/rules/lib/File)s containing
             archives of UAPI headers.""",
         "arch": "[`kernel_build.arch`](#kernel_build-arch)",
+        "config_files": """A [depset](https://bazel.build/extending/depsets) of
+            [`File`](https://bazel.build/rules/lib/File)s to replay the `kernel_config` environment.
+
+            See [`KernelConfigArchiveInfo`](#KernelConfigArchiveInfo).""",
+        "config_out_dir": """The output directory of `kernel_config`.""",
     },
 )
 

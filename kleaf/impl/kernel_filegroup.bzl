@@ -26,6 +26,7 @@ load(
     "KernelBuildUnameInfo",
     "KernelEnvAttrInfo",
     "KernelImagesInfo",
+    "KernelSerializedEnvInfo",
     "KernelToolchainInfo",
     "KernelUnstrippedModulesInfo",
 )
@@ -41,6 +42,7 @@ load(":kernel_config_settings.bzl", "kernel_config_settings")
 load(":kernel_toolchains_utils.bzl", "kernel_toolchains_utils")
 load(
     ":utils.bzl",
+    "kernel_utils",
     "utils",
 )
 
@@ -96,15 +98,66 @@ def _get_kernel_release(ctx):
 
 def _kernel_filegroup_impl(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
+    toolchains = kernel_toolchains_utils.get(ctx)
 
     all_deps = ctx.files.srcs + ctx.files.deps
 
     # TODO(b/219112010): Implement KernelSerializedEnvInfo properly
+    # FIXME clean up; merge with kernel_config.bzl / kernel_build.bzl
+    config_out_dir = ctx.file.config_out_dir
+    config_post_setup = """
+           [ -z ${{OUT_DIR}} ] && echo "FATAL: configs post_env_info setup run without OUT_DIR set!" >&2 && exit 1
+         # Restore kernel config inputs
+           mkdir -p ${{OUT_DIR}}/include
+           rsync -aL {out_dir}/.config ${{OUT_DIR}}/.config
+           rsync -aL --chmod=D+w {out_dir}/include/ ${{OUT_DIR}}/include/
+           rsync -aL --chmod=F+w {out_dir}/localversion ${{OUT_DIR}}/localversion
+
+         # Restore real value of $ROOT_DIR in auto.conf.cmd
+           sed -i'' -e 's:${{ROOT_DIR}}:'"${{ROOT_DIR}}"':g' ${{OUT_DIR}}/include/config/auto.conf.cmd
+    """.format(
+        out_dir = config_out_dir.path,
+    )
+    env_setup = utils.find_files(ctx.files.config, suffix = "_env.sh")[0]
+
+    ddk_config_env_setup_script = ctx.actions.declare_file("{name}/{name}_ddk_config_setup.sh".format(name = ctx.attr.name))
+    ctx.actions.write(
+        output = ddk_config_env_setup_script,
+        content = hermetic_tools.setup + """
+            KLEAF_REPO_WORKSPACE_ROOT={kleaf_repo_workspace_root}
+            . {build_utils_sh}
+            . {env_setup}
+            {eval_restore_out_dir_cmd}
+            {config_post_setup}
+        """.format(
+            kleaf_repo_workspace_root = Label(":kernel_filegroup.bzl").workspace_root,
+            build_utils_sh = ctx.file._build_utils_sh.path,
+            env_setup = env_setup.path,
+            eval_restore_out_dir_cmd = kernel_utils.eval_restore_out_dir_cmd(),
+            config_post_setup = config_post_setup,
+        ),
+    )
+    ddk_config_env = KernelSerializedEnvInfo(
+        setup_script = ddk_config_env_setup_script,
+        inputs = depset([
+            ddk_config_env_setup_script,
+            env_setup,
+            ctx.version_file,
+        ], transitive = [target.files for target in ctx.attr.config]),
+        tools = depset([
+            ctx.file._build_utils_sh,
+        ], transitive = [
+            hermetic_tools.deps,
+            toolchains.all_files,
+        ]),
+    )
+
     kernel_module_dev_info = KernelBuildExtModuleInfo(
         modules_staging_archive = utils.find_file(MODULES_STAGING_ARCHIVE, all_deps, what = ctx.label),
         # TODO(b/211515836): module_scripts might also be downloaded
         # Building kernel_module (excluding ddk_module) on top of kernel_filegroup is unsupported.
         # module_hdrs = None,
+        ddk_config_env = ddk_config_env,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
         ddk_module_defconfig_fragments = depset(transitive = [
             target.files
@@ -309,10 +362,23 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
             allow_single_file = True,
             doc = "A file providing the kernel release string. This is preferred over `gki_artifacts`.",
         ),
+        "config": attr.label_list(
+            allow_files = True,
+            doc = "List of files to support the functionality of `kernel_config`",
+        ),
+        "config_out_dir": attr.label(
+            doc = "Directory to support `kernel_config`",
+            allow_single_file = True,
+        ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_cache_dir_config_tags": attr.label(
             default = "//build/kernel/kleaf/impl:cache_dir_config_tags",
             executable = True,
+            cfg = "exec",
+        ),
+        "_build_utils_sh": attr.label(
+            allow_single_file = True,
+            default = Label("//build/kernel:build_utils"),
             cfg = "exec",
         ),
         "ddk_module_defconfig_fragments": attr.label_list(
