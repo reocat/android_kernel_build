@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c91c6c5_a208cc7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-13T21:39:46Z",
+      "side": 1,
+      "message": "@pchsueh@google.com PTAL again. I rewrote the implementation; now it does not call `bazel info workspace` any more.",
+      "parentUuid": "1a15200e_53ebb6b6",
+      "revId": "8faf4dd28829e19afd3931a0644a74348f12889c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90fc0b00_cbdd8198",
