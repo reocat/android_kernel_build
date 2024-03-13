@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d63fe345_f5584196",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1684017
+      },
+      "writtenOn": "2024-03-13T08:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a96ee1c_9c421f35",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 32
+      },
+      "revId": "fbb7387b0d3e06609b69b6c72398e87c54d19a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "640e18dd_c75edf7a",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-12T23:30:14Z",
       "side": 1,
       "message": "just `outs`",
+      "range": {
+        "startLine": 282,
+        "startChar": 9,
+        "endLine": 282,
+        "endChar": 24
+      },
+      "revId": "fbb7387b0d3e06609b69b6c72398e87c54d19a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b27e4625_08509913",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1684017
+      },
+      "writtenOn": "2024-03-13T08:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "640e18dd_c75edf7a",
       "range": {
         "startLine": 282,
         "startChar": 9,
@@ -101,6 +149,48 @@
       "side": 1,
       "message": "I mean, to avoid being abused, instead of **allowing arbitrary values**, consider adding\n\n```\nvalues \u003d [\n    \"Modules.dep\",\n    \"Modules.alias\",\n]\n```",
       "parentUuid": "26bde162_80acfbe5",
+      "revId": "fbb7387b0d3e06609b69b6c72398e87c54d19a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "489182f5_8f843148",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1684017
+      },
+      "writtenOn": "2024-03-13T08:18:17Z",
+      "side": 1,
+      "message": "The string_list attribute does not have a values ​​parameter.\nI tried making code like below for this, but...it\u0027s not nice.\n\n     for out in ctx.attr.outs:\n        if out.startswith(\"modules.\") and not out.endswith(\".ko\"):\n             out_file \u003d ctx.actions.declare_file(\"{}/{}\".format(ctx.label.name, out))\n             outs.append(out_file)\n\n\nCould you please tell me another way?",
+      "parentUuid": "b5c8eb43_71eabe4e",
+      "revId": "fbb7387b0d3e06609b69b6c72398e87c54d19a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d82789a1_114ba97c",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1684017
+      },
+      "writtenOn": "2024-03-13T08:18:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44b7f73f_70e35903",
+      "range": {
+        "startLine": 283,
+        "startChar": 40,
+        "endLine": 283,
+        "endChar": 46
+      },
       "revId": "fbb7387b0d3e06609b69b6c72398e87c54d19a55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
