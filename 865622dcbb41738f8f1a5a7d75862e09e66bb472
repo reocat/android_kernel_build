@@ -22,6 +22,30 @@
       },
       "revId": "865622dcbb41738f8f1a5a7d75862e09e66bb472",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1dddbe30_36705c80",
+        "filename": "static_analysis/checkpatch_presubmit_bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1161174
+      },
+      "writtenOn": "2024-03-13T15:28:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f612aa6_41917e9f",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 30
+      },
+      "revId": "865622dcbb41738f8f1a5a7d75862e09e66bb472",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
