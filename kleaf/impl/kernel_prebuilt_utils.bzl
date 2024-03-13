@@ -120,6 +120,9 @@ CI_TARGET_MAPPING = {
         "outs": DEFAULT_GKI_OUTS + [
             "kernel_aarch64" + MODULE_OUTS_FILE_SUFFIX,
             "kernel_aarch64" + FILEGROUP_DEF_ARCHIVE_SUFFIX,
+            # FIXME use constant
+            "kernel_aarch64" + "_config_outdir.tar.gz",
+            "kernel_aarch64" + "_env.sh",
         ],
         "protected_modules": "gki_aarch64_protected_modules",
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
