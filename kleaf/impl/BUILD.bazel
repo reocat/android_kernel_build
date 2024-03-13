@@ -426,6 +426,7 @@ platform(
         "@platforms//os:linux",
         "@platforms//cpu:x86_64",
     ],
+    visibility = ["//visibility:public"],
 )
 
 # 32-bit
@@ -443,6 +444,7 @@ platform(
         "@platforms//os:android",
         "@platforms//cpu:arm64",
     ],
+    visibility = ["//visibility:public"],
 )
 
 platform(
