@@ -86,6 +86,9 @@ bazel_dep(
 bazel_dep(
     name = "rules_pkg",
     version = "0.9.1",
+
+    # Kleaf tooling does not use rules_pkg. Some ACK branches does.
+    dev_dependency = True,
 )
 
 bazel_dep(
