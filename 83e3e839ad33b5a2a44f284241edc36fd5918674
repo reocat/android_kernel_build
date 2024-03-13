@@ -34,6 +34,29 @@
       "parentUuid": "0454e131_16700b08",
       "revId": "83e3e839ad33b5a2a44f284241edc36fd5918674",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed49452c_753b5923",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-03-13T16:53:09Z",
+      "side": 1,
+      "message": "can we drop the use of `realpath` if we were to use `dirname` to get to the parent directory?",
+      "range": {
+        "startLine": 406,
+        "startChar": 99,
+        "endLine": 406,
+        "endChar": 102
+      },
+      "revId": "83e3e839ad33b5a2a44f284241edc36fd5918674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
