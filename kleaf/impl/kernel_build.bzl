@@ -1680,6 +1680,24 @@ filegroup(
     visibility = ["//visibility:private"],
 )
 
+platform(
+    name = {target_platform_repr},
+    constraint_values = [
+        "@platforms//os:android",
+        "@platforms//cpu:{arch}",
+    ],
+    visibility = ["//visibility:private"],
+)
+
+platform(
+    name = {exec_platform_repr},
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+    visibility = ["//visibility:private"],
+)
+
 kernel_filegroup(
     name = {name_repr},
     srcs = {srcs_repr},
@@ -1690,6 +1708,8 @@ kernel_filegroup(
     protected_modules_list = {protected_modules_repr},
     kernel_release = {kernel_release_repr},
     ddk_module_defconfig_fragments = {ddk_module_defconfig_fragments_repr},
+    target_platform = {target_platform_repr},
+    exec_platform = {exec_platform_repr},
     visibility = ["//visibility:public"],
 )
 """.format(
@@ -1703,6 +1723,9 @@ kernel_filegroup(
         protected_modules_repr = file_to_pkg_label(ctx.file.src_protected_modules_list),
         kernel_release_repr = file_to_pkg_label(kernel_release),
         ddk_module_defconfig_fragments_repr = files_to_pkg_label(ctx.files.ddk_module_defconfig_fragments),
+        target_platform_repr = repr(ctx.attr.name + "_platform_target"),
+        exec_platform_repr = repr(ctx.attr.name + "_platform_exec"),
+        arch = ctx.attr.arch,
     )
 
     filegroup_def_file = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, FILEGROUP_DEF_TEMPLATE_NAME))
