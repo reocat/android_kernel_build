@@ -1672,6 +1672,10 @@ def _create_filegroup_def(
         UNSTRIPPED_MODULES_ARCHIVE,
         toolchain_version_out.basename,
     ]
+    deps += [
+        file.basename
+        for file in ctx.attr.config[KernelConfigArchiveInfo].files.to_list()
+    ]
     deps_repr = repr(["//{}".format(dep) for dep in deps])
 
     fragment = """\
