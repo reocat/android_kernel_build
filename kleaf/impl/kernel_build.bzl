@@ -1964,8 +1964,6 @@ def _create_infos(
     #   These files should already be in kernel_filegroup_declaration.
     internal_ddk_artifacts = [
     ]
-    if module_scripts_archive:
-        internal_ddk_artifacts.append(module_scripts_archive)
     internal_ddk_artifacts_depset = depset(internal_ddk_artifacts)
 
     output_group_kwargs = {}
