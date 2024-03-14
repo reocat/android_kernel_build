@@ -57,6 +57,30 @@
       },
       "revId": "83e3e839ad33b5a2a44f284241edc36fd5918674",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce4d1bf4_d09743d6",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-03-14T13:16:20Z",
+      "side": 1,
+      "message": "Unfortunately, `dirname` is doing only string manipulation stripping last component from path.",
+      "parentUuid": "ed49452c_753b5923",
+      "range": {
+        "startLine": 406,
+        "startChar": 99,
+        "endLine": 406,
+        "endChar": 102
+      },
+      "revId": "83e3e839ad33b5a2a44f284241edc36fd5918674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
