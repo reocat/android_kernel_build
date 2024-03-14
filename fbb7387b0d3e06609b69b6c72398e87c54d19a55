@@ -211,6 +211,24 @@
       "parentUuid": "489182f5_8f843148",
       "revId": "fbb7387b0d3e06609b69b6c72398e87c54d19a55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b2b3232_387f0791",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-14T19:22:10Z",
+      "side": 1,
+      "message": "Perhaps:\n\n```\n_OUT_ALLOWLIST \u003d [\n    \"modules.dep\",\n    \"modules.alias\",\n]\n# ...\nfor out in ctx.attr.outs:\n    if out not in _OUT_ALLOWLIST:\n        fail(...)\n```",
+      "parentUuid": "b17a7716_f1961363",
+      "revId": "fbb7387b0d3e06609b69b6c72398e87c54d19a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
