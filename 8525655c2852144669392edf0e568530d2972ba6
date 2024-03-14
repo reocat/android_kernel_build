@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e9c9d612_035796ca",
+        "filename": "kleaf/impl/gki_artifacts.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-14T18:44:24Z",
+      "side": 1,
+      "message": "Done. This is a leftover from a previous patchset. I reverted it.",
+      "parentUuid": "742fb19a_f4d8e24f",
+      "range": {
+        "startLine": 25,
+        "startChar": 12,
+        "endLine": 25,
+        "endChar": 18
+      },
+      "revId": "8525655c2852144669392edf0e568530d2972ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "51346dd7_94b36f38",
         "filename": "kleaf/impl/kernel_prebuilt_repo.bzl",
         "patchSetId": 9
@@ -60,6 +84,30 @@
       "writtenOn": "2024-03-14T15:42:13Z",
       "side": 1,
       "message": "nit: Line length",
+      "range": {
+        "startLine": 283,
+        "startChar": 117,
+        "endLine": 283,
+        "endChar": 118
+      },
+      "revId": "8525655c2852144669392edf0e568530d2972ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4d07238_c234eeab",
+        "filename": "kleaf/impl/kernel_prebuilt_repo.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-14T18:44:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fd4f40c_dc4b22e5",
       "range": {
         "startLine": 283,
         "startChar": 117,
