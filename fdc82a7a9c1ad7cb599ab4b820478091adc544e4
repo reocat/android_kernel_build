@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34704a27_e00b74b8",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-14T18:46:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3315659_0a059c3d",
+      "range": {
+        "startLine": 28,
+        "startChar": 5,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "fdc82a7a9c1ad7cb599ab4b820478091adc544e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2b04562_bb920798",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-14T10:37:32Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Buildifier: Loaded symbol \"kernel_filegroup\" is unused. Please remove it.\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nLoaded symbol \"kernel_filegroup\" is unused. Please remove it.\nTo disable the warning, add \u0027@unused\u0027 in a comment.\nIf you want to re-export a symbol, use the following pattern:\n\n    load(..., _kernel_filegroup \u003d \"kernel_filegroup\", ...)\n    kernel_filegroup \u003d _kernel_filegroup\n http://go/buildifier-warnings#load",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 52,
+        "endChar": 21
+      },
+      "revId": "fdc82a7a9c1ad7cb599ab4b820478091adc544e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "183f4af8_106d2b60",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-14T18:46:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2b04562_bb920798",
       "range": {
         "startLine": 52,
         "startChar": 5,
