@@ -1885,7 +1885,6 @@ def _create_infos(
         toolchain_version_out,
         kmi_strict_mode_out,
         kmi_symbol_list_violations_check_out,
-        module_scripts_archive,
         module_srcs,
         filegroup_def_archive):
     """Creates and returns a list of provided infos that the `kernel_build` target should return.
@@ -1900,7 +1899,6 @@ def _create_infos(
         kmi_strict_mode_out: from `_kmi_symbol_list_strict_mode`
         kmi_symbol_list_violations_check_out: from `_kmi_symbol_list_violations_check`
         module_srcs: from `kernel_utils.filter_module_srcs`
-        module_scripts_archive: from `_create_module_scripts_archive`
         filegroup_def_archive: from `_create_filegroup_def_archive`
     """
 
@@ -2082,8 +2080,6 @@ def _create_infos(
     internal_ddk_artifacts = [
         filegroup_def_archive,
     ]
-    if module_scripts_archive:
-        internal_ddk_artifacts.append(module_scripts_archive)
     internal_ddk_artifacts_depset = depset(internal_ddk_artifacts)
 
     output_group_kwargs = {}
@@ -2215,9 +2211,7 @@ def _kernel_build_impl(ctx):
         toolchain_version_out = toolchain_version_out,
         kmi_strict_mode_out = kmi_strict_mode_out,
         kmi_symbol_list_violations_check_out = kmi_symbol_list_violations_check_out,
-        module_scripts_archive = module_scripts_archive,
         module_srcs = module_srcs,
-        internal_outs_archive = internal_outs_archive,
         filegroup_def_archive = filegroup_def_archive,
     )
 
