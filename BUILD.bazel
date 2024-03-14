@@ -140,6 +140,7 @@ _HERMETIC_TOOLS = [
     "//prebuilts/kernel-build-tools:linux-x86/bin/tune2fs",
     "//prebuilts/kernel-build-tools:linux-x86/bin/ufdt_apply_overlay",
     "//prebuilts/clang/host/linux-x86/clang-{}:bin/llvm-strings".format(VARS["CLANG_VERSION"]),
+    "//prebuilts/clang/host/linux-x86/clang-{}:bin/llvm-strip".format(VARS["CLANG_VERSION"]),
 ] + glob([
     # Intentionally glob here to test for existance of alias destination
     # buildifier: disable=constant-glob

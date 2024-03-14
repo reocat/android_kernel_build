@@ -722,6 +722,7 @@ def _define_common_kernel(
         page_size = page_size,
         deprecation = deprecation,
         pack_module_env = True,
+        generate_vmlinux_btf = True,
         ddk_module_defconfig_fragments = [
             Label("//build/kernel/kleaf/impl/defconfig:signing_modules_disabled"),
         ],
