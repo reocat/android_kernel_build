@@ -1948,8 +1948,6 @@ def _create_infos(
     ]
     if module_scripts_archive:
         internal_ddk_artifacts.append(module_scripts_archive)
-    if internal_outs_archive:
-        internal_ddk_artifacts.append(internal_outs_archive)
     internal_ddk_artifacts_depset = depset(internal_ddk_artifacts)
 
     output_group_kwargs = {}
