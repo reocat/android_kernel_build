@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "742fb19a_f4d8e24f",
+        "filename": "kleaf/impl/gki_artifacts.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-14T15:42:13Z",
+      "side": 1,
+      "message": "nit: why? This is exposed trough the interface [build/kernel/kleaf/kernel.bzl;l\u003d36](https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/kernel.bzl;l\u003d36)",
+      "range": {
+        "startLine": 25,
+        "startChar": 12,
+        "endLine": 25,
+        "endChar": 18
+      },
+      "revId": "8525655c2852144669392edf0e568530d2972ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51346dd7_94b36f38",
+        "filename": "kleaf/impl/kernel_prebuilt_repo.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-14T15:42:13Z",
+      "side": 1,
+      "message": "nit: I\u0027m not sure if there is a guideline for naming arguments (see suggestion), and strictly speaking this function only requires two arguments (not used here) as `keyword-only` (so feel free to ignore) but I think it improves the readability.\n\n```suggestion\n    repository_ctx.extract(archive\u003dfilegroup_def_archive, output\u003drepository_ctx.path(bazel_target_name))\n```",
+      "range": {
+        "startLine": 281,
+        "startChar": 26,
+        "endLine": 281,
+        "endChar": 27
+      },
+      "revId": "8525655c2852144669392edf0e568530d2972ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fd4f40c_dc4b22e5",
+        "filename": "kleaf/impl/kernel_prebuilt_repo.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-14T15:42:13Z",
+      "side": 1,
+      "message": "nit: Line length",
+      "range": {
+        "startLine": 283,
+        "startChar": 117,
+        "endLine": 283,
+        "endChar": 118
+      },
+      "revId": "8525655c2852144669392edf0e568530d2972ba6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
