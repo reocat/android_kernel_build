@@ -16,10 +16,12 @@
 
 load(":common_providers.bzl", "KernelEnvInfo")
 load(":debug.bzl", "debug")
+load(":hermetic_toolchain.bzl", "hermetic_toolchain")
 
 visibility("//build/kernel/kleaf/...")
 
 def _btf_impl(ctx):
+    hermetic_tools = hermetic_toolchain.get(ctx)
     inputs = [
         ctx.file.vmlinux,
     ]
@@ -28,10 +30,7 @@ def _btf_impl(ctx):
     out_file = ctx.actions.declare_file("{}/vmlinux.btf".format(ctx.label.name))
     out_dir = out_file.dirname
 
-    # We need KernelEnvInfo for llvm-strip.
-    # TODO(b/272164611): We can get it from the clang toolchain; then we can use
-    #  hermetic tools.
-    command = ctx.attr.env[KernelEnvInfo].setup + """
+    command = hermetic_tools.setup + """
               mkdir -p {out_dir}
               cp -Lp {vmlinux} {btf}
               pahole -J {btf}
@@ -47,7 +46,7 @@ def _btf_impl(ctx):
         mnemonic = "Btf",
         inputs = depset(inputs, transitive = transitive_inputs),
         outputs = [out_file],
-        tools = tools,
+        tools = tools + hermetic_tools.deps,
         progress_message = "Building vmlinux.btf {}".format(ctx.label),
         command = command,
     )
@@ -67,4 +66,5 @@ btf = rule(
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
+    toolchains = [hermetic_toolchain.type],
 )
