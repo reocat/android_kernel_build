@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8d1c464_4cea5c36",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1693,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-14T13:25:50Z",
+      "side": 1,
+      "message": "nit: I feel like this should be a bit restrictive, but I don\u0027t have a better suggestion, i.e. I don\u0027t think relying on the default package visibility is an option.",
+      "range": {
+        "startLine": 1693,
+        "startChar": 17,
+        "endLine": 1693,
+        "endChar": 40
+      },
+      "revId": "f2b009d97ddd9ad9b35242978cdeedd10272d612",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a20817e_e45ba975",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1743,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-14T13:25:50Z",
+      "side": 1,
+      "message": "nit: Line length.",
+      "range": {
+        "startLine": 1743,
+        "startChar": 100,
+        "endLine": 1743,
+        "endChar": 104
+      },
+      "revId": "f2b009d97ddd9ad9b35242978cdeedd10272d612",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
