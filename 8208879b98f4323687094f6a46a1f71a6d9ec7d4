@@ -22,6 +22,30 @@
       },
       "revId": "8208879b98f4323687094f6a46a1f71a6d9ec7d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "612694be_572919cd",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-15T18:45:24Z",
+      "side": 1,
+      "message": "for a filegroup, srcs is equal to outs. I named it `filegroup_srcs` because it is meant to be provided as the srcs attribute to the kernel_filegroup.",
+      "parentUuid": "f0a47571_a05dd5a5",
+      "range": {
+        "startLine": 285,
+        "startChar": 19,
+        "endLine": 285,
+        "endChar": 23
+      },
+      "revId": "8208879b98f4323687094f6a46a1f71a6d9ec7d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
