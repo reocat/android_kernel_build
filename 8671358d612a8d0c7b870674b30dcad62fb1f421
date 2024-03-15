@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3e45fa7_2761d55b",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-15T05:07:28Z",
+      "side": 1,
+      "message": "4 spaces are enough",
+      "range": {
+        "startLine": 188,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 16
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ab3c98a_5e116481",
         "filename": "kleaf/impl/kernel_modules_install.bzl",
         "patchSetId": 8
@@ -36,6 +59,52 @@
         "startChar": 107,
         "endLine": 189,
         "endChar": 116
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c3e0618_094dbaf0",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-15T05:07:28Z",
+      "side": 1,
+      "message": "Are these module.* files directly below `{modules_staging_dir}/lib/modules/*/`? If so, consider using a simple `cp -pL` instead of calling a complicated Python script.",
+      "range": {
+        "startLine": 189,
+        "startChar": 19,
+        "endLine": 189,
+        "endChar": 117
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e56512a5_3777c954",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-15T05:07:28Z",
+      "side": 1,
+      "message": "4 spaces are enough",
+      "range": {
+        "startLine": 189,
+        "startChar": 9,
+        "endLine": 189,
+        "endChar": 19
       },
       "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
