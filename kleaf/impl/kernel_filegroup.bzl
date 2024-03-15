@@ -104,7 +104,7 @@ def _kernel_filegroup_impl(ctx):
 
     # TODO(b/219112010): Implement KernelSerializedEnvInfo properly
     # FIXME clean up; merge with kernel_config.bzl / kernel_build.bzl
-    config_outdir_tar_gz = utils.find_files(all_deps, suffix = "_config_outdir.tar.gz")[0]
+    config_outdir_tar_gz = utils.find_files(ctx.files.config, suffix = "_config_outdir.tar.gz")[0]
     config_post_setup = """
            [ -z ${{OUT_DIR}} ] && echo "FATAL: configs post_env_info setup run without OUT_DIR set!" >&2 && exit 1
          # Restore kernel config inputs
@@ -116,7 +116,7 @@ def _kernel_filegroup_impl(ctx):
     """.format(
         config_outdir_tar_gz = config_outdir_tar_gz.path,
     )
-    env_setup = utils.find_files(all_deps, suffix = "_env.sh")[0]
+    env_setup = utils.find_files(ctx.files.config, suffix = "_env.sh")[0]
 
     ddk_config_env_setup_script = ctx.actions.declare_file("{name}/{name}_ddk_config_setup.sh".format(name = ctx.attr.name))
     ctx.actions.write(
@@ -360,6 +360,10 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
         "kernel_release": attr.label(
             allow_single_file = True,
             doc = "A file providing the kernel release string. This is preferred over `gki_artifacts`.",
+        ),
+        "config": attr.label_list(
+            allow_files = True,
+            doc = "List of files to support the functionality of `kernel_config`",
         ),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_cache_dir_config_tags": attr.label(

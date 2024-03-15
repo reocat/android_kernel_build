@@ -40,10 +40,13 @@ def _kernel_filegroup_declaration_impl(ctx):
         info.modules_staging_archive,
         info.toolchain_version_file,
     ]
-    deps_files += info.config_archive_files.to_list()
 
     deps_repr = repr([file.path for file in deps_files] +
                      ["//{}".format(file.basename) for file in ctx.files.extra_deps])
+
+    config_files = info.config_archive_files.to_list()
+    config_repr = repr([file.path for file in config_files if not file.is_directory]) + \
+        " + glob({}, allow_empty = True)".format(repr([file.path + "/**" for file in config_files if file.is_directory]))
 
     kernel_uapi_headers_lst = info.kernel_uapi_headers.to_list()
     if not kernel_uapi_headers_lst:
@@ -84,6 +87,7 @@ kernel_filegroup(
     kernel_release = {kernel_release_repr},
     protected_modules_list = {protected_modules_repr},
     ddk_module_defconfig_fragments = {ddk_module_defconfig_fragments_repr},
+    config = {config_repr},
     target_platform = {target_platform_repr},
     exec_platform = {exec_platform_repr},
     visibility = ["//visibility:public"],
@@ -101,6 +105,7 @@ kernel_filegroup(
         ddk_module_defconfig_fragments_repr = files_to_pkg_label(
             info.ddk_module_defconfig_fragments.to_list(),
         ),
+        config_repr = config_repr,
         target_platform_repr = repr(ctx.attr.kernel_build.label.name + "_platform_target"),
         exec_platform_repr = repr(ctx.attr.kernel_build.label.name + "_platform_exec"),
         arch = info.arch,
