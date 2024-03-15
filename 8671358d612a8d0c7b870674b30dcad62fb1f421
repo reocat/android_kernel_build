@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1a3ee294_e37ca971",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "A build error occurs due to Samsung Proxy security.\nSince this issue requires security approval, I will check it next week.\nThank you for your review.",
+      "parentUuid": "dbc5150a_019e76f3",
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d3e45fa7_2761d55b",
         "filename": "kleaf/impl/kernel_modules_install.bzl",
         "patchSetId": 8
@@ -31,6 +49,30 @@
       "writtenOn": "2024-03-15T05:07:28Z",
       "side": 1,
       "message": "4 spaces are enough",
+      "range": {
+        "startLine": 188,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 16
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a594c0fb_d41dc20e",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3e45fa7_2761d55b",
       "range": {
         "startLine": 188,
         "startChar": 8,
@@ -110,6 +152,78 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b405fd39_c15947a1",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c3e0618_094dbaf0",
+      "range": {
+        "startLine": 189,
+        "startChar": 19,
+        "endLine": 189,
+        "endChar": 117
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3df370e2_5bca190c",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ab3c98a_5e116481",
+      "range": {
+        "startLine": 189,
+        "startChar": 107,
+        "endLine": 189,
+        "endChar": 116
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e24a48b1_e2b19c3e",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e56512a5_3777c954",
+      "range": {
+        "startLine": 189,
+        "startChar": 9,
+        "endLine": 189,
+        "endChar": 19
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfd6b9c5_f20fd402",
@@ -147,6 +261,30 @@
       "side": 1,
       "message": "Sorry, it should be `utils.package_bin_dir`",
       "parentUuid": "bfd6b9c5_f20fd402",
+      "range": {
+        "startLine": 192,
+        "startChar": 21,
+        "endLine": 192,
+        "endChar": 36
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "214c16d5_1b9edc2f",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3504477_ab30faec",
       "range": {
         "startLine": 192,
         "startChar": 21,
@@ -203,6 +341,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ede7500_051e54cb",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5782305_ef1aa47b",
+      "range": {
+        "startLine": 193,
+        "startChar": 33,
+        "endLine": 193,
+        "endChar": 63
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a65eb4e_ad84dda3",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68d9d674_f9c80947",
+      "range": {
+        "startLine": 193,
+        "startChar": 12,
+        "endLine": 193,
+        "endChar": 21
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "714068c2_7c260017",
@@ -220,6 +406,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e837e488_8811b28d",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "714068c2_7c260017",
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06fcc971_fd49e107",
@@ -233,6 +437,30 @@
       "writtenOn": "2024-03-15T05:01:54Z",
       "side": 1,
       "message": "Please quote this in single backticks. Otherwise, underscores are treated as italics",
+      "range": {
+        "startLine": 303,
+        "startChar": 53,
+        "endLine": 303,
+        "endChar": 67
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e01e0b0_922e56e7",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06fcc971_fd49e107",
       "range": {
         "startLine": 303,
         "startChar": 53,
@@ -290,6 +518,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26a93b85_ead8c7b3",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d47ff19a_0528e18b",
+      "range": {
+        "startLine": 305,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 1
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3731663d_ea15c412",
@@ -307,6 +559,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1751eaa8_0c398019",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3731663d_ea15c412",
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "031c752f_5f2a1c71",
@@ -320,6 +590,30 @@
       "writtenOn": "2024-03-15T05:01:54Z",
       "side": 1,
       "message": "nit: this is unnecessary",
+      "range": {
+        "startLine": 323,
+        "startChar": 0,
+        "endLine": 329,
+        "endChar": 1
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57e54f59_1ee8f594",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1710319
+      },
+      "writtenOn": "2024-03-15T09:34:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "031c752f_5f2a1c71",
       "range": {
         "startLine": 323,
         "startChar": 0,
