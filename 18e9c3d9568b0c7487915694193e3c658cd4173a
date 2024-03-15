@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04e7c4e4_e247a500",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1684017
+      },
+      "writtenOn": "2024-03-15T04:40:31Z",
+      "side": 1,
+      "message": "I added only the modules files used in LSI.\nOther files(modules.devname etc..) were removed because I thought they should be discussed again by creating an issue tracker when needed in the future.",
+      "revId": "18e9c3d9568b0c7487915694193e3c658cd4173a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
