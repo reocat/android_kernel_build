@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0a47571_a05dd5a5",
+        "filename": "kleaf/impl/common_providers.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-15T12:25:45Z",
+      "side": 1,
+      "message": "nit: given the description should this be named `filegroup_outs` instead?",
+      "range": {
+        "startLine": 285,
+        "startChar": 19,
+        "endLine": 285,
+        "endChar": 23
+      },
+      "revId": "8208879b98f4323687094f6a46a1f71a6d9ec7d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
