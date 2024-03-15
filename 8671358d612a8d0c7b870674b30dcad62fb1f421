@@ -199,6 +199,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d47ff19a_0528e18b",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-15T05:03:37Z",
+      "side": 1,
+      "message": "You could also put a `{}` here, and at the end, add `.format(_OUT_ALLOWLIST)`",
+      "parentUuid": "e67b950b_aa38a760",
+      "range": {
+        "startLine": 305,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 1
+      },
+      "revId": "8671358d612a8d0c7b870674b30dcad62fb1f421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3731663d_ea15c412",
         "filename": "kleaf/impl/kernel_modules_install.bzl",
         "patchSetId": 8
