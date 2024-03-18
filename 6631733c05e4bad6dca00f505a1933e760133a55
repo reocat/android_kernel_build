@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6dbab755_ce0f579d",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1684017
+      },
+      "writtenOn": "2024-03-18T06:57:58Z",
+      "side": 1,
+      "message": "buildifier also can\u0027t be installed due to Samsung proxy security.\nSo, I will check it after installation through security approval.",
+      "parentUuid": "6ed1139a_83d56f76",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "6631733c05e4bad6dca00f505a1933e760133a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e6d2f42_241a0f54",
         "filename": "kleaf/impl/kernel_modules_install.bzl",
         "patchSetId": 9
@@ -37,6 +61,30 @@
       "writtenOn": "2024-03-15T19:22:51Z",
       "side": 1,
       "message": "```suggestion\n        # Move additional files to declared output location\n        for out in {outs}; do\n            cp -pL {modules_staging_dir}/lib/modules/*/${{out}} {outdir}\n        done\n```",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 14
+      },
+      "revId": "6631733c05e4bad6dca00f505a1933e760133a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3d100d6_e304cffe",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1684017
+      },
+      "writtenOn": "2024-03-18T06:57:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e6d2f42_241a0f54",
       "range": {
         "startLine": 187,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "288d0ce8_f2a8b117",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1684017
+      },
+      "writtenOn": "2024-03-18T06:57:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "605698df_3b461cc3",
+      "range": {
+        "startLine": 306,
+        "startChar": 0,
+        "endLine": 308,
+        "endChar": 1
+      },
+      "revId": "6631733c05e4bad6dca00f505a1933e760133a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "301b9405_8cf28225",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-15T19:22:51Z",
       "side": 1,
       "message": "`repr(_OUT_ALLOWLIST)` is more accurate (though it produces the same output in this case)\n\n```suggestion\n\"\"\".format(repr(_OUT_ALLOWLIST)),\n```",
+      "range": {
+        "startLine": 321,
+        "startChar": 11,
+        "endLine": 321,
+        "endChar": 25
+      },
+      "revId": "6631733c05e4bad6dca00f505a1933e760133a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a2132d2_ef73ba43",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1684017
+      },
+      "writtenOn": "2024-03-18T06:57:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "301b9405_8cf28225",
       "range": {
         "startLine": 321,
         "startChar": 11,
