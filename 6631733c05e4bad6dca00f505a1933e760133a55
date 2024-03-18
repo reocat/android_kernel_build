@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "057d6ab2_798c4e6a",
+        "filename": "kleaf/impl/kernel_modules_install.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-18T19:55:40Z",
+      "side": 1,
+      "message": "You don\u0027t have to install buildifier. Just click the \"Show Fix\" button then click \"Apply Fix\"",
+      "parentUuid": "6dbab755_ce0f579d",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "6631733c05e4bad6dca00f505a1933e760133a55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e6d2f42_241a0f54",
         "filename": "kleaf/impl/kernel_modules_install.bzl",
         "patchSetId": 9
