@@ -24,6 +24,7 @@ load(":hermetic_toolchain.bzl", "hermetic_toolchain")
 
 visibility("//build/kernel/kleaf/...")
 
+# TODO(b/330409807): Clean up to_list usages
 def _kernel_filegroup_declaration_impl(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
     info = ctx.attr.kernel_build[KernelBuildFilegroupDeclInfo]
@@ -96,7 +97,7 @@ kernel_filegroup(
 )
 """.format(
         name_repr = repr(ctx.attr.kernel_build.label.name),
-        srcs_repr = files_to_label(info.filegroup_srcs),
+        srcs_repr = files_to_label(info.filegroup_srcs.to_list()),
         deps_repr = deps_repr,
         uapi_headers_target_repr = repr(ctx.attr.kernel_build.label.name + "_uapi_headers"),
         uapi_headers_repr = file_to_label(kernel_uapi_headers),
