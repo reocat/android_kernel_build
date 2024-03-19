@@ -16,6 +16,29 @@
       "message": "nit: can/should we perhaps make this conditional on the value of `--incompatible_sandbox_hermetic_tmp`? That is, only drop `base` if `--incompatible_sandbox_hermetic_tmp` is set.\n\nYou can detect the value of incompatible_sandbox_hermetic_tmp using a config_settings().\n\nI am not sure about this because it seems that we also **copy** files from the base kernel to the device kernel, so perhaps only the latter mapping is necessary regardless of the --incompatible_sandbox_hermetic_tmp flag. @joefradley@google.com do we need to keep the first entry when you build with `--noincompatible_sandbox_hermetic_tmp`?",
       "revId": "a0909d8af95a965d97964b3b7714f29c2bee8f4d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c719517b_dce632fb",
+        "filename": "kleaf/impl/print_gcno_mapping.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-19T20:24:48Z",
+      "side": 1,
+      "message": "double quotes for consistency with other code\n```suggestion\n        {\"from\": from_val, \"to\": to_val}\n```",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 33,
+        "endChar": 10
+      },
+      "revId": "a0909d8af95a965d97964b3b7714f29c2bee8f4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
