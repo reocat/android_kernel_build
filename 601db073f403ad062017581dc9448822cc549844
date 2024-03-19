@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4b84ad93_8db04e8b",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 161
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-19T21:37:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84e34c78_b6c65e73",
+      "range": {
+        "startLine": 124,
+        "startChar": 100,
+        "endLine": 124,
+        "endChar": 102
+      },
+      "revId": "601db073f403ad062017581dc9448822cc549844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "eb88e321_641bab05",
         "filename": "kleaf/impl/kernel_filegroup.bzl",
         "patchSetId": 161
@@ -60,6 +84,30 @@
       "writtenOn": "2024-03-19T11:54:51Z",
       "side": 1,
       "message": "I think this needs to be marked as required (mandatory) because its absence made some tests fail.",
+      "range": {
+        "startLine": 373,
+        "startChar": 9,
+        "endLine": 373,
+        "endChar": 25
+      },
+      "revId": "601db073f403ad062017581dc9448822cc549844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef2283a4_9f333a26",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 161
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-19T21:37:11Z",
+      "side": 1,
+      "message": "Done, I made them optional",
+      "parentUuid": "ebb9b6c3_5dcb511f",
       "range": {
         "startLine": 373,
         "startChar": 9,
