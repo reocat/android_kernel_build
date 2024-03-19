@@ -22,6 +22,29 @@
       },
       "revId": "3a2572fdaf84cb64f7f1d9fca4b85d6b485aa3ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a2dc069_3ee821e3",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-19T18:44:30Z",
+      "side": 1,
+      "message": "Do we want to check this?\n\nPartner\u0027s build servers may have different build ID formats.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 14
+      },
+      "revId": "3a2572fdaf84cb64f7f1d9fca4b85d6b485aa3ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
