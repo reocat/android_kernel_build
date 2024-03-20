@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a198420_73b5fa85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-03-20T10:43:33Z",
+      "side": 1,
+      "message": "\u003e only drop base if incompatible_sandbox_hermetic_tmp is set.\n\nActually we don\u0027t \"drop\" base unconditionally. We \"update\" mappings, so:\n* If `incompatible_sandbox_hermetic_tmp` is disabled, there will be two different \"from\" and script will just add the second.\n* If `incompatible_sandbox_hermetic_tmp` is enabled, both targets are built with the same \"from\" and module mapping will update \"to\" in existing mapping.",
+      "parentUuid": "17a64c9e_592e57a4",
+      "revId": "a0909d8af95a965d97964b3b7714f29c2bee8f4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c719517b_dce632fb",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-03-19T20:24:48Z",
       "side": 1,
       "message": "double quotes for consistency with other code\n```suggestion\n        {\"from\": from_val, \"to\": to_val}\n```",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 33,
+        "endChar": 10
+      },
+      "revId": "a0909d8af95a965d97964b3b7714f29c2bee8f4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7494589_9cee56d9",
+        "filename": "kleaf/impl/print_gcno_mapping.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-03-20T10:43:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c719517b_dce632fb",
       "range": {
         "startLine": 33,
         "startChar": 9,
