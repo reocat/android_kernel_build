@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11903c13_cd265b2d",
+        "filename": "kleaf/impl/kernel_filegroup_declaration.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-20T17:10:04Z",
+      "side": 1,
+      "message": "Right, but I added \"_template\" at the end, so I need to add another extension.\n\nI can clean this up in the next CL, but honestly the filename doesn\u0027t matter :)",
+      "parentUuid": "bce5a5c1_5254666a",
+      "range": {
+        "startLine": 103,
+        "startChar": 60,
+        "endLine": 103,
+        "endChar": 64
+      },
+      "revId": "9161cc053e46eed52a214c31698c160ebf30ae43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7370fcc_82598b26",
@@ -49,6 +73,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "04f9cadd_6b8575d0",
+        "filename": "kleaf/impl/kernel_filegroup_declaration.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-20T17:10:04Z",
+      "side": 1,
+      "message": "Ack, will do in a follow up CL.",
+      "parentUuid": "e7370fcc_82598b26",
+      "range": {
+        "startLine": 113,
+        "startChar": 11,
+        "endLine": 113,
+        "endChar": 12
+      },
+      "revId": "9161cc053e46eed52a214c31698c160ebf30ae43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "9ff45eee_e2589d0e",
         "filename": "kleaf/impl/kernel_filegroup_declaration.bzl",
         "patchSetId": 4
@@ -60,6 +108,30 @@
       "writtenOn": "2024-03-20T12:57:43Z",
       "side": 1,
       "message": "nit: is it worth precomputing this dict merges? I see 4 possibilities and 8 usages.",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 11
+      },
+      "revId": "9161cc053e46eed52a214c31698c160ebf30ae43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "168d283f_18b0aec5",
+        "filename": "kleaf/impl/kernel_filegroup_declaration.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-20T17:10:04Z",
+      "side": 1,
+      "message": "I tried that, but the dict merges are just `one_extra`, `one_pkg` etc. It is not saving a lot, and it is extra lines in the code",
+      "parentUuid": "9ff45eee_e2589d0e",
       "range": {
         "startLine": 151,
         "startChar": 8,
