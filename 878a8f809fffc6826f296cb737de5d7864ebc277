@@ -22,6 +22,30 @@
       },
       "revId": "878a8f809fffc6826f296cb737de5d7864ebc277",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9175ef72_ed28fa98",
+        "filename": "kleaf/impl/print_gcno_mapping.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-03-20T11:06:50Z",
+      "side": 1,
+      "message": "There are still nested dicts like `{\"from\": from_val, \"to\": to_val}`, these need to be printed with `sort_keys\u003dTrue`.",
+      "parentUuid": "ec4fcd97_27518c91",
+      "range": {
+        "startLine": 37,
+        "startChar": 29,
+        "endLine": 37,
+        "endChar": 43
+      },
+      "revId": "878a8f809fffc6826f296cb737de5d7864ebc277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
