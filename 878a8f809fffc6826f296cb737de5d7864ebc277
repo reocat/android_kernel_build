@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec4fcd97_27518c91",
+        "filename": "kleaf/impl/print_gcno_mapping.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-20T11:00:24Z",
+      "side": 1,
+      "message": "nit: Is this still needed? I see `result` coming from a sorted dictionary.",
+      "range": {
+        "startLine": 37,
+        "startChar": 29,
+        "endLine": 37,
+        "endChar": 43
+      },
+      "revId": "878a8f809fffc6826f296cb737de5d7864ebc277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
