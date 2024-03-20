@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bce5a5c1_5254666a",
+        "filename": "kleaf/impl/kernel_filegroup_declaration.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-20T12:57:43Z",
+      "side": 1,
+      "message": "`FILEGROUP_DEF_TEMPLATE_NAME` already has a `.txt` extension.",
+      "range": {
+        "startLine": 103,
+        "startChar": 60,
+        "endLine": 103,
+        "endChar": 64
+      },
+      "revId": "9161cc053e46eed52a214c31698c160ebf30ae43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7370fcc_82598b26",
+        "filename": "kleaf/impl/kernel_filegroup_declaration.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-20T12:57:43Z",
+      "side": 1,
+      "message": "1. TIL\n2. nit: Not sure if adding a comment here indicating these are `TemplateDict`[0] would be useful, it took me a bit to realize what they were for, or even a link to their description [1].\n\n[0] https://bazel.build/rules/lib/builtins/TemplateDict\n[1] https://bazel.build/rules/lib/builtins/TemplateDict.html#add_joined",
+      "range": {
+        "startLine": 113,
+        "startChar": 11,
+        "endLine": 113,
+        "endChar": 12
+      },
+      "revId": "9161cc053e46eed52a214c31698c160ebf30ae43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ff45eee_e2589d0e",
+        "filename": "kleaf/impl/kernel_filegroup_declaration.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-20T12:57:43Z",
+      "side": 1,
+      "message": "nit: is it worth precomputing this dict merges? I see 4 possibilities and 8 usages.",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 11
+      },
+      "revId": "9161cc053e46eed52a214c31698c160ebf30ae43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
