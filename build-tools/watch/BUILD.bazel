@@ -1,0 +1,5 @@
+cc_binary(
+    name = "watch",
+    srcs = ["watch.cpp"],
+    visibility = ["//visibility:public"],
+)

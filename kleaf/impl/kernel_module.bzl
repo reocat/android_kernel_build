@@ -355,6 +355,10 @@ def _kernel_module_impl(ctx):
     command_outputs += cache_dir_step.outputs
     tools += cache_dir_step.tools
 
+    tools.append(ctx.executable._watch)
+    watch_output = ctx.actions.declare_file("{}/watch.txt".format(ctx.attr.name))
+    command_outputs.append(watch_output)
+
     # Determine the proper script to set up environment
     if ctx.attr.internal_ddk_config:
         setup_info = ctx.attr.internal_ddk_config[KernelSerializedEnvInfo]
@@ -449,8 +453,14 @@ def _kernel_module_impl(ctx):
              # Set variables
                ext_mod_rel=$(realpath ${{ROOT_DIR}}/{ext_mod} --relative-to ${{KERNEL_DIR}})
 
+               {watch} $@ > {watch_output} &
+               KLEAF_WATCH_PID=$!
+
              # Actual kernel module build
                make -C {ext_mod} ${{TOOL_ARGS}} M=${{ext_mod_rel}} O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}} {make_filter} {make_redirect}
+
+               kill -9 ${{KLEAF_WATCH_PID}}
+
              # Install into staging directory
                make -C {ext_mod} ${{TOOL_ARGS}} DEPMOD=true M=${{ext_mod_rel}} \
                    O=${{OUT_DIR}} KERNEL_SRC=${{ROOT_DIR}}/${{KERNEL_DIR}}     \
@@ -503,6 +513,8 @@ def _kernel_module_impl(ctx):
         grab_modules_order_cmd = grab_modules_order_cmd,
         drop_modules_order_cmd = drop_modules_order_cmd,
         grab_cmd_cmd = grab_cmd_step.cmd,
+        watch = ctx.executable._watch.path,
+        watch_output = watch_output.path,
     )
 
     command += dws.record(modules_staging_dws)
@@ -521,6 +533,9 @@ def _kernel_module_impl(ctx):
         else:
             execution_requirements = kernel_utils.local_exec_requirements(ctx)
 
+    args = ctx.actions.args()
+    args.add_all(depset(inputs, transitive = transitive_inputs))
+
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
         mnemonic = "KernelModule" + strategy,
@@ -528,6 +543,7 @@ def _kernel_module_impl(ctx):
         tools = depset(tools, transitive = transitive_tools),
         outputs = command_outputs,
         command = command,
+        arguments = [args],
         progress_message = "Building external kernel module {}{}".format(
             ctx.attr.kernel_build[KernelEnvAttrInfo].progress_message_note,
             ctx.label,
@@ -700,6 +716,11 @@ _kernel_module = rule(
         ),
         "_check_declared_output_list": attr.label(
             default = Label("//build/kernel/kleaf:check_declared_output_list"),
+            cfg = "exec",
+            executable = True,
+        ),
+        "_watch": attr.label(
+            default = Label("//build/kernel/build-tools/watch"),
             cfg = "exec",
             executable = True,
         ),
