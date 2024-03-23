@@ -18,6 +18,7 @@
 import argparse
 import concurrent.futures
 import dataclasses
+import fnmatch
 import io
 import json
 import logging
@@ -79,6 +80,7 @@ class KleafProjectSetter:
     self.group: str = cmd_args.group
     self.url_fmt: str = cmd_args.url_fmt
     self.build_target: str = cmd_args.build_target
+    self.denied_projects: list[str] = cmd_args.denied_projects
 
   def _symlink_tools_bazel(self):
     # TODO: b/328770706 -- Error handling.
@@ -147,17 +149,62 @@ class KleafProjectSetter:
     except subprocess.CalledProcessError:
       return None
 
-  @staticmethod
-  def _add_submodules(git_root, kleaf_repo_dir, projects):
+  def _is_project_in_denylist(self, project_rel_path: pathlib.Path):
+    if self.denied_projects is None:
+      return False
+    return fnmatch.fnmatch(str(project_rel_path), self.denied_projects)
+
+  def _add_submodules(self, git_root, kleaf_repo_dir, projects):
     # TODO: b/328770706: Option to use Git or repo to sync
-    # raise NotImplementedError
-    pass
+    kleaf_repo_rel = kleaf_repo_dir.relative_to(git_root)
+
+    # Add submodules to Git index
+    relative_submodules = []
+    for project_metadata in projects.values():
+      if self._is_project_in_denylist(pathlib.Path(project_metadata["path"])):
+        continue
+      project_path = kleaf_repo_rel / project_metadata["path"]
+      subprocess.check_call([
+        "git", "update-index", "--add", "--cacheinfo", "160000",
+        project_metadata["revision"],
+        project_path,
+      ], cwd=git_root)
+      subprocess.check_call(["git", "restore", project_path], cwd=git_root)
+      subprocess.check_call(["git", "config", "-f", ".gitmodules",
+        f"submodule.{project_path}.url",
+        project_metadata["remote"]["fetch"] + project_metadata["name"]], cwd=git_root)
+      subprocess.check_call(["git", "config", "-f", ".gitmodules",
+        f"submodule.{project_path}.path",
+        project_path], cwd=git_root)
+      if project_metadata.get("cloneDepth") == "1":
+        subprocess.check_call(["git", "config", "-f", ".gitmodules",
+          "--type", "bool"
+          f"submodule.{project_path}.shallow", "true"], cwd=git_root)
+      # TODO also add .gitattributes
+      relative_submodules.append(project_path)
+
+    # Checkout submodules
+    subprocess.check_call(["git", "submodule", "update", "--init", "--recursive",
+      "--recommend-shallow", "--filter=blob:none", "--jobs=8"] + relative_submodules, cwd=git_root)
+
+    # Add symlinks
+    for project_metadata in projects.values():
+      if self._is_project_in_denylist(pathlib.Path(project_metadata["path"])):
+        continue
+      project_abs_path = kleaf_repo_dir / project_metadata["path"]
+      for link_files in project_metadata.get("linkFiles", []):
+        dest = kleaf_repo_dir / link_files["dest"]
+        src = project_abs_path / link_files["src"]
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.unlink()
+        # Use os.path.relpath because relative_to(walk_up) is only available
+        # on Python 3.12, which we don't have yet.
+        dest.symlink_to(os.path.relpath(src, dest.parent))
 
   @staticmethod
   def _checkout_projects(kleaf_rep_dir, projects):
     # TODO: b/328770706: Option to use Git or repo to sync
-    # raise NotImplementedError
-    pass
+    raise NotImplementedError
 
   def _set_build_info(self):
     assert self.build_id, "build_id is not set!"
@@ -307,7 +354,11 @@ if __name__ == "__main__":
   parser.add_argument(
       "--group",
       help="Group to check out. If `all`, check out all projects, including kernel sources",
-      default = "ddk",
+      default="ddk",
+  )
+  parser.add_argument(
+      "--denied_projects",
+      help="Wildcard of projects to not checkout, e.g. prebuilts/**",
   )
   args = parser.parse_args()
   logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
