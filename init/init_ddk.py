@@ -18,6 +18,7 @@
 import argparse
 import concurrent.futures
 import dataclasses
+import fnmatch
 import io
 import json
 import logging
@@ -81,6 +82,9 @@ class KleafProjectSetter:
     self.group: str = cmd_args.group
     self.url_fmt: str = cmd_args.url_fmt
     self.build_target: str = cmd_args.build_target
+    self.allowed_projects: list[str] = cmd_args.allowed_projects
+    self.denied_projects: list[str] = cmd_args.denied_projects
+    self.headers_hack: str | None = cmd_args.headers_hack
 
   def _symlink_tools_bazel(self):
     # TODO: b/328770706 -- Error handling.
@@ -151,17 +155,135 @@ class KleafProjectSetter:
     except subprocess.CalledProcessError:
       return None
 
-  @staticmethod
-  def _add_submodules(git_root, kleaf_repo_dir, projects):
+  def _is_project_in_allowlist(self, project_rel_path: pathlib.Path):
+    if self.allowed_projects:
+      return any(fnmatch.fnmatch(str(project_rel_path), pattern) for pattern in self.allowed_projects)
+    if self.denied_projects:
+      return not any(fnmatch.fnmatch(str(project_rel_path), pattern) for pattern in self.denied_projects)
+    return True
+
+  def _add_submodules(self, git_root, kleaf_repo_dir, projects):
     # TODO: b/328770706: Option to use Git or repo to sync
-    # raise NotImplementedError
-    pass
+    kleaf_repo_rel = kleaf_repo_dir.relative_to(git_root)
+
+    if self.headers_hack:
+      # The submodule might not even exist, so don't check
+      subprocess.run(
+          ["git", "submodule", "deinit", "-f", kleaf_repo_rel / "build/kernel"],
+          cwd=git_root,
+      )
+
+    # TODO: For stability, perhaps deinit before re-initializing?
+
+    # Add submodules to Git index
+    for project_metadata in projects.values():
+      if not self._is_project_in_allowlist(pathlib.Path(project_metadata["path"])):
+        continue
+      project_path = kleaf_repo_rel / project_metadata["path"]
+      subprocess.check_call(
+          [
+              "git",
+              "update-index",
+              "--add",
+              "--cacheinfo",
+              "160000",
+              project_metadata["revision"],
+              project_path,
+          ],
+          cwd=git_root,
+      )
+      subprocess.check_call(["git", "restore", project_path], cwd=git_root)
+      subprocess.check_call(
+          [
+              "git",
+              "config",
+              "-f",
+              ".gitmodules",
+              f"submodule.{project_path}.url",
+              project_metadata["remote"]["fetch"] + project_metadata["name"],
+          ],
+          cwd=git_root,
+      )
+      subprocess.check_call(
+          [
+              "git",
+              "config",
+              "-f",
+              ".gitmodules",
+              f"submodule.{project_path}.path",
+              project_path,
+          ],
+          cwd=git_root,
+      )
+      if project_metadata.get("cloneDepth") == "1":
+        subprocess.check_call(
+            [
+                "git",
+                "config",
+                "-f",
+                ".gitmodules",
+                "--type",
+                "bool",
+                f"submodule.{project_path}.shallow",
+                "true",
+            ],
+            cwd=git_root,
+        )
+      # TODO also add .gitattributes
+
+      # Checkout submodules
+      # --recommend-shallow does not work. As a workaround, we manually clone with depth 1.
+      args = [
+          "git", "submodule", "update", "--init", "--recursive",
+          "--filter=blob:none", "--jobs=8", "--recommend-shallow",
+      ]
+      if project_metadata.get("cloneDepth") == "1":
+        args.append("--depth=1")
+      args.append(project_path)
+      print("+" + (" ".join([str(arg) for arg in args])))
+      subprocess.check_call(args, cwd=git_root)
+
+    # Add symlinks
+    for project_metadata in projects.values():
+      if self._is_project_in_allowlist(pathlib.Path(project_metadata["path"])):
+        continue
+      project_abs_path = kleaf_repo_dir / project_metadata["path"]
+      for link_files in project_metadata.get("linkFiles", []):
+        dest = kleaf_repo_dir / link_files["dest"]
+        src = project_abs_path / link_files["src"]
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.unlink()
+        # Use os.path.relpath because relative_to(walk_up) is only available
+        # on Python 3.12, which we don't have yet.
+        dest.symlink_to(os.path.relpath(src, dest.parent))
+
+    if self.headers_hack:
+      project_metadata = projects["build/kernel"]
+      if not self._is_project_in_allowlist(pathlib.Path(project_metadata["path"])):
+        project_abs_path = kleaf_repo_dir / project_metadata["path"]
+        subprocess.check_call(
+            [
+                "git",
+                "fetch",
+                project_metadata["remote"]["fetch"] + project_metadata["name"],
+                self.headers_hack,
+            ],
+            cwd=project_abs_path,
+        )
+        subprocess.check_call(
+            [
+                "git",
+                "reset",
+                "FETCH_HEAD",
+                "--hard",
+            ],
+            cwd=project_abs_path,
+        )
 
   @staticmethod
   def _checkout_projects(kleaf_rep_dir, projects):
     # TODO: b/328770706: Option to use Git or repo to sync
-    # raise NotImplementedError
-    pass
+    raise NotImplementedError
 
   def _set_build_info(self):
     assert self.build_id, "build_id is not set!"
@@ -319,6 +441,23 @@ if __name__ == "__main__":
           " kernel sources"
       ),
       default="ddk",
+  )
+  parser.add_argument(
+      "--allowed_projects",
+      default=[],
+      action="append",
+      help="Wildcard of projects to checkout only, e.g. build/kernel",
+  )
+  parser.add_argument(
+      "--denied_projects",
+      default=[],
+      action="append",
+      help="Wildcard of projects to not checkout, e.g. prebuilts/**",
+  )
+  parser.add_argument(
+      "--headers_hack",
+      help="Cherry-pick change to workaround ddk_headers issue",
+      default=None,
   )
   args = parser.parse_args()
   logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
