@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc1630cc_f0a137ee",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-25T17:11:01Z",
+      "side": 1,
+      "message": "this was checked in L259, was this meant to be `self.prebuilts_dir.exists()`?",
+      "range": {
+        "startLine": 229,
+        "startChar": 4,
+        "endLine": 229,
+        "endChar": 30
+      },
+      "revId": "e5150caa0d69065b7ed3f14e00e978a0e8b20525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
