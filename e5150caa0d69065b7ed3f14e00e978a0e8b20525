@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b1def83_a59e7ee4",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T23:46:22Z",
+      "side": 1,
+      "message": "This works around the error with hermetic python.\n\n```\nssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1002\n```\n\nLet me try the non-hermetic one.",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 37
+      },
+      "revId": "e5150caa0d69065b7ed3f14e00e978a0e8b20525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ea6cc31_fca1ab21",
         "filename": "init/init_ddk.py",
         "patchSetId": 2
