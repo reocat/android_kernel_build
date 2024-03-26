@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69085316_ec219d80",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1188,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T18:48:18Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Buildifier: Arguments \"ctx\", \"src_dir\" are not documented.\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nArguments \"ctx\", \"src_dir\" are not documented.\n\nIf the documentation for the arguments exists but is not recognized by Buildifier\nmake sure it follows the line \"Args:\" which has the same indentation as the opening \"\"\",\nand the argument description starts with \"\u003cargument_name\u003e:\" and indented with at least\none (preferably two) space more than \"Args:\", for example:\n\n    def get_grab_gcno_step(ctx):\n        \"\"\"Function description.\n\n        Args:\n          ctx: argument description, can be\n            multiline with additional indentation.\n        \"\"\" http://go/buildifier-warnings#function-docstring-args",
+      "range": {
+        "startLine": 1184,
+        "startChar": 4,
+        "endLine": 1188,
+        "endChar": 7
+      },
+      "revId": "7e2193bf147e9c1d5067f1e88f04ad77ccf47095",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0191aa4b_2749c683",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1206,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T18:48:18Z",
+      "side": 1,
+      "message": "This is a fragile predicate. This may break if kernel_build provides a different src_dir in the future.\n\nConsider adding a new argument, e.g. `is_kernel_build \u003d True` or `type \u003d \"kernel_build\"`, then check that argument instead.",
+      "range": {
+        "startLine": 1206,
+        "startChar": 8,
+        "endLine": 1206,
+        "endChar": 35
+      },
+      "revId": "7e2193bf147e9c1d5067f1e88f04ad77ccf47095",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
