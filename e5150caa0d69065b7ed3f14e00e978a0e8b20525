@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ea6cc31_fca1ab21",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T19:26:33Z",
+      "side": 1,
+      "message": "Does not belong to this change, but the next change",
+      "revId": "e5150caa0d69065b7ed3f14e00e978a0e8b20525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b766322_0fd5ce82",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T19:26:33Z",
+      "side": 1,
+      "message": "--ddk_workspace shouldn\u0027t be needed for the program to enter this function.",
+      "revId": "e5150caa0d69065b7ed3f14e00e978a0e8b20525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc1630cc_f0a137ee",
         "filename": "init/init_ddk.py",
         "patchSetId": 2
@@ -43,6 +77,86 @@
         "startChar": 4,
         "endLine": 229,
         "endChar": 30
+      },
+      "revId": "e5150caa0d69065b7ed3f14e00e978a0e8b20525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e36668e_3500ff4c",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T19:26:33Z",
+      "side": 1,
+      "message": "This should be pushed to the end of the program, if the files are not immediately needed",
+      "revId": "e5150caa0d69065b7ed3f14e00e978a0e8b20525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ed7c289_0b060a83",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T19:26:33Z",
+      "side": 1,
+      "message": "This can be dedented, and let _set_build_info() return when build_id is not set.",
+      "revId": "e5150caa0d69065b7ed3f14e00e978a0e8b20525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "389cbcd8_06744139",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T19:26:33Z",
+      "side": 1,
+      "message": "The predicate should go into the function",
+      "range": {
+        "startLine": 258,
+        "startChar": 6,
+        "endLine": 258,
+        "endChar": 28
+      },
+      "revId": "e5150caa0d69065b7ed3f14e00e978a0e8b20525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91d6a6dc_d3af8361",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T19:26:33Z",
+      "side": 1,
+      "message": "The predicate should go into the function",
+      "range": {
+        "startLine": 261,
+        "startChar": 6,
+        "endLine": 261,
+        "endChar": 52
       },
       "revId": "e5150caa0d69065b7ed3f14e00e978a0e8b20525",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
