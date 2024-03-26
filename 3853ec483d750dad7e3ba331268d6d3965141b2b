@@ -22,6 +22,30 @@
       },
       "revId": "3853ec483d750dad7e3ba331268d6d3965141b2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d96312a6_40685d6c",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T19:23:45Z",
+      "side": 1,
+      "message": "It would be nice but not strictly necessary. In fact I see some Bazel projects check in their MODULE.bazel.lock to Git.\n\nWe could put a comment there to suggest the user to do so, if the file does not exist before.",
+      "parentUuid": "2dd7f398_6bc56c50",
+      "range": {
+        "startLine": 121,
+        "startChar": 55,
+        "endLine": 121,
+        "endChar": 56
+      },
+      "revId": "3853ec483d750dad7e3ba331268d6d3965141b2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
