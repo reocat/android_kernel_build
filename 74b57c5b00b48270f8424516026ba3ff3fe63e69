@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10edaa85_f6fc787d",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T19:21:33Z",
+      "side": 1,
+      "message": "Let\u0027s try putting the predicates inside each step so the prerequisites are local. For example, instead of checking here, we should do\n\n```\nif not self.ddk_workspace or not self.kleaf_repo_dir:\n    return\n```\nin `_symlink_tools_bazel()` and `_generate_module_bazel()` instead.\n\nThis applies to the follow up CLs too (which I create 😞). This allows us to e.g. say `init_ddk --kleaf_repo_dir\u003d... --build_id\u003d...` without `--ddk_workspace` to only checkout the sources of a build",
+      "range": {
+        "startLine": 74,
+        "startChar": 4,
+        "endLine": 74,
+        "endChar": 50
+      },
+      "revId": "74b57c5b00b48270f8424516026ba3ff3fe63e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bd54b1a_b7da1a5a",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T19:21:33Z",
+      "side": 1,
+      "message": "As discussed, this is not needed in this script. branch -\u003e build_id mapping should be calculated the bootstrapping script.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 3
+      },
+      "revId": "74b57c5b00b48270f8424516026ba3ff3fe63e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2888e4c6_56c62fc5",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T19:21:33Z",
+      "side": 1,
+      "message": "This can be left None by default. The value should come from the bootstrapping script if necessary.",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 19
+      },
+      "revId": "74b57c5b00b48270f8424516026ba3ff3fe63e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
