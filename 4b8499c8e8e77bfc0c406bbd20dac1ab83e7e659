@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fb6dcc4_d33442ff",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T22:25:53Z",
+      "side": 1,
+      "message": "This needs to come from declare_toolchain_constants.bzl",
+      "range": {
+        "startLine": 358,
+        "startChar": 0,
+        "endLine": 361,
+        "endChar": 35
+      },
+      "revId": "4b8499c8e8e77bfc0c406bbd20dac1ab83e7e659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0637ab30_109e9851",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T22:25:53Z",
+      "side": 1,
+      "message": "These are just for debugging purposes. Perhaps change to `--debug_allowed_projects` and `--debug_denied_projects`",
+      "revId": "4b8499c8e8e77bfc0c406bbd20dac1ab83e7e659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20f043d2_66af7ba3",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T22:25:53Z",
+      "side": 1,
+      "message": "Instead of doing this, we let the init_ddk script download ddk_headers_archive and extract it to kleaf_repo_dir.\n\nThe question then becomes how we get the name of the ddk_headers_archive. I think:\n\n- //build/kernel:init_ddk should stay neutral (it does not do any extractions of DDK header archives, at least by default)\n- The init_ddk.zip downloaded from go/ab should automatically know what headers it is trying to extract. This can be achieved by creating a special init_ddk target for kernel_aarch64 (and later kernel_x86_64 and kernel_riscv64).",
+      "revId": "4b8499c8e8e77bfc0c406bbd20dac1ab83e7e659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
