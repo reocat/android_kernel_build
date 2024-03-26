@@ -401,6 +401,11 @@ sh_binary(
     visibility = ["//visibility:public"],
 )
 
+exports_files([
+    # All test_mappings_dist targets from any package can see this
+    "test_mappings.sh",
+])
+
 kernel_platform_toolchain(
     name = "kernel_toolchain_target",
 )
