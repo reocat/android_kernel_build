@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c96a2aa_ce7ba1a3",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1188,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-26T18:49:11Z",
+      "side": 1,
+      "message": "Because this function becomes public, its docs needs to follow the given format.",
+      "parentUuid": "69085316_ec219d80",
+      "range": {
+        "startLine": 1184,
+        "startChar": 4,
+        "endLine": 1188,
+        "endChar": 7
+      },
+      "revId": "7e2193bf147e9c1d5067f1e88f04ad77ccf47095",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0191aa4b_2749c683",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 6
