@@ -37,6 +37,7 @@ _TOOLS_BAZEL = "tools/bazel"
 _DEVICE_BAZELRC = "device.bazelrc"
 _MODULE_BAZEL_FILE = "MODULE.bazel"
 _ARTIFACT_URL_FMT = "https://androidbuildinternal.googleapis.com/android/internal/build/v3/builds/{build_id}/{build_target}/attempts/latest/artifacts/{filename}/url?redirect=true"
+_BUILD_IDS_URL_FMT = "https://androidbuildinternal.googleapis.com/android/internal/build/v3/buildIds/{branch}?buildType=submitted&successful=True&maxResults=1"
 
 _KLEAF_DEPENDENCY_TEMPLATE = """\
 \"""Kleaf: Build Android kernels with Bazel.\"""
@@ -306,31 +307,47 @@ class KleafProjectSetter:
         # TODO: b/328770706: This is only supported on ci.android.com
         # TODO: Relying on build_info is fragile. We should create our own mechanism.
         build_info_fp = io.BytesIO()
-        self._download("BUILD_INFO", build_info_fp)
+        self._download_artifact("BUILD_INFO", build_info_fp)
         build_info_fp.seek(0)
         self.build_info = json.load(
             io.TextIOWrapper(build_info_fp, encoding="utf-8")
         )
+
+    def _set_build_id(self):
+        # branch ~ aosp_kernel-common-android-mainline
+        assert self.branch, "branch is not set!"
+        build_ids_fp = io.BytesIO()
+        url = _BUILD_IDS_URL_FMT.format(branch=self.branch)
+        self._download(url, build_ids_fp)
+        build_ids_fp.seek(0)
+        build_ids_res = json.load(
+            io.TextIOWrapper(build_ids_fp, encoding="utf-8"))
+        # TODO: b/328770706 -- Do the appropriate handling here.
+        self.build_id = build_ids_res["buildIds"][0]["buildId"]
 
     def _infer_download_list(self) -> list[str]:
         assert self.build_info, "build_info is not set!"
         # TODO type checking
         return self.build_info["target"]["dir_list"]
 
-    def _download(self, remote_filename, out_f: BinaryIO, close: bool = False):
+    def _download_artifact(self, remote_filename, out_f: BinaryIO, close: bool = False):
         url = self.url_fmt.format(
             build_id=self.build_id,
             build_target=self.build_target,
             filename=urllib.parse.quote(remote_filename, safe=""),  # / -> %2F
         )
+        # FIXME: Move this log to the _download function.
+        print(f"Scheduling download for {remote_filename}")
+        self._download(url, out_f, close)
+
+    def _download(self, url, out_f: BinaryIO, close: bool = False):
         try:
             # FIXME: For demo purposes, do not verify cert. DO NOT SUBMIT THIS!
             ctx = ssl.create_default_context()
             ctx.check_hostname = False
             ctx.verify_mode = ssl.CERT_NONE
-
             with urllib.request.urlopen(url, context=ctx) as in_f:
-                print(f"Scheduling download for {remote_filename}")
+                # print(f"Scheduling download for {remote_filename}")
                 if close:
                     with out_f:
                         shutil.copyfileobj(in_f, out_f)
@@ -372,7 +389,7 @@ class KleafProjectSetter:
         dst.unlink(missing_ok=True)
         dst.parent.mkdir(parents=True, exist_ok=True)
         with open(dst, "wb") as dst_file:
-            self._download(file, dst_file)
+            self._download_artifact(file, dst_file)
         with open(self.kleaf_repo_dir / "common" / "BUILD.bazel", "w"):
             pass
 
@@ -405,9 +422,7 @@ class KleafProjectSetter:
     def run(self):
         if self.branch or self.build_id:
             if not self.build_id:
-                pass
-                # TODO: b/328770706: Infer tip of branch build id
-                # self.build_id = ...
+                self._set_build_id()
             self._set_build_info()
 
             if self.prebuilts_dir:
