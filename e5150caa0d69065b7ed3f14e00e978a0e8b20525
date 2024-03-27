@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ab61c54e_0b530601",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-27T23:24:19Z",
+      "side": 1,
+      "message": "This should be:\n\n```\n_SCRIPT \u003d \"\"\"\\\nimport shutil\nimport sys\nimport urllib.request\nwith urllib.request.urlopen(sys.argv[1]) as i, open(sys.argv[2], \"wb\") as o:\n    shutil.copyfileobj(i, o)\n\"\"\"\n\nsubprocess.check_call([\"python3\", \"-c\", _SCRIPT, url, out_file_name])\n```",
+      "parentUuid": "4badf52d_5c645ac1",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 37
+      },
+      "revId": "e5150caa0d69065b7ed3f14e00e978a0e8b20525",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ea6cc31_fca1ab21",
         "filename": "init/init_ddk.py",
         "patchSetId": 2
