@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eb24bcb_73c12675",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-03-27T16:23:12Z",
+      "side": 1,
+      "message": "I think \"WARN\" is more in line with what Bazel emits. At least we should avoid having \"WARN\" and \"WARNING\" mixed in the output.",
+      "range": {
+        "startLine": 53,
+        "startChar": 55,
+        "endLine": 53,
+        "endChar": 62
+      },
+      "revId": "943c3236cf31349f3875e4739b0f47e2c3ce95dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
