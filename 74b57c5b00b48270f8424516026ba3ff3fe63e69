@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "95886fd7_773221d1",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-27T21:52:47Z",
+      "side": 1,
+      "message": "This doesn\u0027t need to be publicly visible because it is expected to be run from the command line directly.",
+      "range": {
+        "startLine": 463,
+        "startChar": 0,
+        "endLine": 463,
+        "endChar": 24
+      },
+      "revId": "74b57c5b00b48270f8424516026ba3ff3fe63e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10edaa85_f6fc787d",
         "filename": "init/init_ddk.py",
         "patchSetId": 7
