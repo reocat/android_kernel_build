@@ -22,6 +22,30 @@
       },
       "revId": "560f3a3e1d3931f73992d7c017482750be09b1e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43b6c0e3_0c552165",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1895,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-28T12:42:58Z",
+      "side": 1,
+      "message": "Yeah I though maybe it was still needed in CL:2755269 but it seems it\u0027s not, and since these will be the only place where it is used I suggest to be deprecated instead, but maybe in another CL, so non-blocking this one.",
+      "parentUuid": "cf8ce908_3ba9d765",
+      "range": {
+        "startLine": 1895,
+        "startChar": 8,
+        "endLine": 1895,
+        "endChar": 19
+      },
+      "revId": "560f3a3e1d3931f73992d7c017482750be09b1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
