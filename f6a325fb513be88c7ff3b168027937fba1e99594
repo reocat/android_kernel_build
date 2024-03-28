@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf152d93_265a247f",
+        "filename": "kleaf/impl/kernel_filegroup.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-28T15:03:12Z",
+      "side": 1,
+      "message": "if there are no other users for this, maybe drop and deprecate it.",
+      "range": {
+        "startLine": 267,
+        "startChar": 8,
+        "endLine": 267,
+        "endChar": 35
+      },
+      "revId": "f6a325fb513be88c7ff3b168027937fba1e99594",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
