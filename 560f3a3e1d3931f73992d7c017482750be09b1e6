@@ -46,6 +46,30 @@
       },
       "revId": "560f3a3e1d3931f73992d7c017482750be09b1e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "893e71bc_4bb9aa16",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 1895,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-28T17:02:34Z",
+      "side": 1,
+      "message": "I still plan to use two fields to indicate that they are for different purposes. On the producer side (kernel_build / kernel_filegroup), I merge them together because they are implemented in the same way. In the consumer side (kernel_modules_install, kernel_modules), I keep them separate because they should not look at the implementation details.",
+      "parentUuid": "43b6c0e3_0c552165",
+      "range": {
+        "startLine": 1895,
+        "startChar": 8,
+        "endLine": 1895,
+        "endChar": 19
+      },
+      "revId": "560f3a3e1d3931f73992d7c017482750be09b1e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
