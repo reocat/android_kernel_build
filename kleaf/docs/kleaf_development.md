@@ -9,6 +9,10 @@ This documentation summarizes principles used in Kleaf development.
 * Follow [BUILD Style Guide](https://bazel.build/build/style-guide) for BUILD
   files.
 
+For Python:
+* Use PEP 8 for formatting. Our team uses autopep8.
+* Use [.pylintrc](../../.pylintrc) for linting.
+
 ## Conventions
 
 * Follow these [conventions](https://bazel.build/extending/macros#conventions)
