@@ -16,6 +16,69 @@
       "message": "Unfortunately I had to break the relationship with the next CL\u0027s will re-add them manually later.",
       "revId": "e70ad36996c23a3c474a58440059b54341b17436",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce6cf99e_40828fa5",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-28T18:41:41Z",
+      "side": 1,
+      "message": "Could you please add a new line before this so it is easier to read?\n```suggestion\n\n\"\"\"Configures the project layout to build DDK modules.\"\"\"\n```",
+      "revId": "e70ad36996c23a3c474a58440059b54341b17436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb12ec98_5b36d4c1",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-28T18:41:41Z",
+      "side": 1,
+      "message": "Use tools_bazel.parent.mkdir(exist_ok\u003dTrue)\n```suggestion\n        tools_bazel.parent.mkdir(parents\u003dTrue, exist_ok\u003dTrue)\n```",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 54
+      },
+      "revId": "e70ad36996c23a3c474a58440059b54341b17436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afba2eed_393faaca",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-28T18:41:41Z",
+      "side": 1,
+      "message": "technically, we don\u0027t need self.kleaf_repo_dir to be set to generate a MODULE.bazel file. We only need it to generate one **with @kleaf** definition.\n\nSo I would suggest:\n\n```suggestion\n        if not self.ddk_workspace:\n            return\n        module_bazel \u003d self.ddk_workspace / _MODULE_BAZEL_FILE\n        with open(module_bazel, \"w\", encoding\u003d\"utf-8\") as f:\n            # TODO: b/328770706 -- Use markers to avoid overriding user overrides.\n            if self.kleaf_repo_dir:\n                f.write(\n                    _MODULE_BAZEL_CONTENT_TEMPLATE.format(\n                        kleaf_repo_dir\u003dself.kleaf_repo_dir\n                    )\n                )\n```\n\nThis way, if we want to add something else unrelated to @kleaf, it is not affected by the first predicate.",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 13
+      },
+      "revId": "e70ad36996c23a3c474a58440059b54341b17436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
