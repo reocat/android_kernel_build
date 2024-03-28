@@ -37,6 +37,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8172922_9ce44b1f",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-28T18:47:46Z",
+      "side": 1,
+      "message": "maybe \"_KLEAF_DEPENDENCY_TEMPLATE\" or something like that? We\u0027ll have a \"_PREBUILTS_TEMPLATE\" later; this allows them to be distinguished.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "e70ad36996c23a3c474a58440059b54341b17436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fb12ec98_5b36d4c1",
         "filename": "init/init_ddk.py",
         "patchSetId": 8
