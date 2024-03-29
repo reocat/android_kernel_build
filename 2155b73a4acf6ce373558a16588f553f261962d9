@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e3c3867_00d6cac6",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-03-29T20:48:32Z",
+      "side": 1,
+      "message": "This check does not work. ctx.label is a Label() object, not a string.",
+      "range": {
+        "startLine": 1210,
+        "startChar": 11,
+        "endLine": 1210,
+        "endChar": 38
+      },
+      "revId": "2155b73a4acf6ce373558a16588f553f261962d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0af3fc63_fabaef71",
         "filename": "kleaf/impl/kernel_module.bzl",
         "patchSetId": 8
