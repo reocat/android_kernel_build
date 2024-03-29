@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43acdade_bf4ac3d0",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-29T11:18:31Z",
+      "side": 1,
+      "message": "I think @elsk@google.com\u0027s suggestion was to have a function argument which the caller can control, with a default value producing the actual behavior, then `kernel_module` can change it. This is because this check is unfortunately not enough as it will only check.",
+      "range": {
+        "startLine": 1210,
+        "startChar": 8,
+        "endLine": 1210,
+        "endChar": 39
+      },
+      "revId": "2155b73a4acf6ce373558a16588f553f261962d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0af3fc63_fabaef71",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-29T11:18:31Z",
+      "side": 1,
+      "message": "insert this in the right order to fix the Buildifier warning.",
+      "range": {
+        "startLine": 30,
+        "startChar": 5,
+        "endLine": 30,
+        "endChar": 6
+      },
+      "revId": "2155b73a4acf6ce373558a16588f553f261962d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56c0f730_b65700db",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-03-29T11:18:31Z",
+      "side": 1,
+      "message": "Same here, these need to be sorted.",
+      "range": {
+        "startLine": 47,
+        "startChar": 5,
+        "endLine": 48,
+        "endChar": 24
+      },
+      "revId": "2155b73a4acf6ce373558a16588f553f261962d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
