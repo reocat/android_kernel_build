@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42c32190_40b9bbcd",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1188,
+      "author": {
+        "id": 1952320
+      },
+      "writtenOn": "2024-03-29T08:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c96a2aa_ce7ba1a3",
+      "range": {
+        "startLine": 1184,
+        "startChar": 4,
+        "endLine": 1188,
+        "endChar": 7
+      },
+      "revId": "7e2193bf147e9c1d5067f1e88f04ad77ccf47095",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0191aa4b_2749c683",
@@ -61,6 +85,30 @@
       "writtenOn": "2024-03-26T18:48:18Z",
       "side": 1,
       "message": "This is a fragile predicate. This may break if kernel_build provides a different src_dir in the future.\n\nConsider adding a new argument, e.g. `is_kernel_build \u003d True` or `type \u003d \"kernel_build\"`, then check that argument instead.",
+      "range": {
+        "startLine": 1206,
+        "startChar": 8,
+        "endLine": 1206,
+        "endChar": 35
+      },
+      "revId": "7e2193bf147e9c1d5067f1e88f04ad77ccf47095",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88f1eb70_f58f3d12",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1206,
+      "author": {
+        "id": 1952320
+      },
+      "writtenOn": "2024-03-29T08:43:12Z",
+      "side": 1,
+      "message": "Done. \nThanks for reminding. Please help to review again.",
+      "parentUuid": "0191aa4b_2749c683",
       "range": {
         "startLine": 1206,
         "startChar": 8,
