@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "beb49ad1_5c01557c",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1952320
+      },
+      "writtenOn": "2024-04-01T07:34:20Z",
+      "side": 1,
+      "message": "Done. I has added `is_kernel_build`. For `kernel_build`, it will be the default value `True`, and for `kernel_module`, it will be set to `False`.",
+      "parentUuid": "43acdade_bf4ac3d0",
+      "range": {
+        "startLine": 1210,
+        "startChar": 8,
+        "endLine": 1210,
+        "endChar": 39
+      },
+      "revId": "2155b73a4acf6ce373558a16588f553f261962d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "104d7517_69f54da6",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1952320
+      },
+      "writtenOn": "2024-04-01T07:34:20Z",
+      "side": 1,
+      "message": "Done. Sorry, this was my mistake, thanks for pointing it out!",
+      "parentUuid": "1e3c3867_00d6cac6",
+      "range": {
+        "startLine": 1210,
+        "startChar": 11,
+        "endLine": 1210,
+        "endChar": 38
+      },
+      "revId": "2155b73a4acf6ce373558a16588f553f261962d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0af3fc63_fabaef71",
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c902947_f5f37120",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1952320
+      },
+      "writtenOn": "2024-04-01T07:34:20Z",
+      "side": 1,
+      "message": "Done. Thanks.",
+      "parentUuid": "0af3fc63_fabaef71",
+      "range": {
+        "startLine": 30,
+        "startChar": 5,
+        "endLine": 30,
+        "endChar": 6
+      },
+      "revId": "2155b73a4acf6ce373558a16588f553f261962d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56c0f730_b65700db",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-03-29T11:18:31Z",
       "side": 1,
       "message": "Same here, these need to be sorted.",
+      "range": {
+        "startLine": 47,
+        "startChar": 5,
+        "endLine": 48,
+        "endChar": 24
+      },
+      "revId": "2155b73a4acf6ce373558a16588f553f261962d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f93711c5_ba6c98d1",
+        "filename": "kleaf/impl/kernel_module.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1952320
+      },
+      "writtenOn": "2024-04-01T07:34:20Z",
+      "side": 1,
+      "message": "Done. Thanks.",
+      "parentUuid": "56c0f730_b65700db",
       "range": {
         "startLine": 47,
         "startChar": 5,
