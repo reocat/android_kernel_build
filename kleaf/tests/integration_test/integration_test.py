@@ -223,6 +223,7 @@ class KleafIntegrationTestBase(unittest.TestCase):
                 new_file.write(old_content)
 
         self.addCleanup(cleanup)
+        return cleanup
 
     def filter_lines(
         self,
@@ -583,6 +584,63 @@ class QuickIntegrationTest(KleafIntegrationTestBase):
         """Test that `bazel help kleaf` works."""
         self._check_output("help", ["kleaf"])
 
+    def test_config_sync(self):
+        """Test that, with --config=local, .config and include/config are in sync.
+
+        See b/312268956.
+        """
+
+        gki_defconfig_path = f"{self._common()}/arch/arm64/configs/gki_defconfig"
+        restore_defconfig = self.restore_file_after_test(gki_defconfig_path)
+
+        with open(gki_defconfig_path, encoding="utf-8") as f:
+            self.assertIn("CONFIG_UAPI_HEADER_TEST=y\n", f)
+
+        self._build([f"//{self._common()}:kernel_aarch64_config"] +
+                    _LOCAL)
+
+        out_dir = pathlib.Path(
+            f"bazel-bin/{self._common()}/kernel_aarch64_config/out_dir/")
+        dot_config_path = out_dir / ".config"
+        autoconf_path = out_dir / "include/generated/autoconf.h"
+        rustc_cfg_path = out_dir / "include/generated/rustc_cfg"
+        include_config_path = out_dir / "include/config/UAPI_HEADER_TEST"
+
+        with open(dot_config_path, encoding="utf-8") as f:
+            self.assertIn("CONFIG_UAPI_HEADER_TEST=y\n", f)
+        with open(autoconf_path, encoding="utf-8") as f:
+            self.assertIn("#define CONFIG_UAPI_HEADER_TEST 1\n", f)
+        if rustc_cfg_path.is_file():
+            with open(rustc_cfg_path, encoding="utf-8") as f:
+                self.assertIn('--cfg=CONFIG_UAPI_HEADER_TEST="y"\n', f)
+        self.assertTrue(include_config_path.is_file())
+
+        self.filter_lines(gki_defconfig_path,
+                          lambda x: "CONFIG_UAPI_HEADER_TEST" not in x)
+        self._build([f"//{self._common()}:kernel_aarch64_config"] +
+                    _LOCAL)
+
+        with open(dot_config_path, encoding="utf-8") as f:
+            self.assertNotIn("CONFIG_UAPI_HEADER_TEST=y\n", f)
+        with open(autoconf_path, encoding="utf-8") as f:
+            self.assertNotIn("#define CONFIG_UAPI_HEADER_TEST 1\n", f)
+        if rustc_cfg_path.is_file():
+            with open(rustc_cfg_path, encoding="utf-8") as f:
+                self.assertNotIn('--cfg=CONFIG_UAPI_HEADER_TEST="y"\n', f)
+        self.assertFalse(include_config_path.is_file())
+
+        restore_defconfig()
+        self._build([f"//{self._common()}:kernel_aarch64_config"] +
+                    _LOCAL)
+
+        with open(dot_config_path, encoding="utf-8") as f:
+            self.assertIn("CONFIG_UAPI_HEADER_TEST=y\n", f)
+        with open(autoconf_path, encoding="utf-8") as f:
+            self.assertIn("#define CONFIG_UAPI_HEADER_TEST 1\n", f)
+        if rustc_cfg_path.is_file():
+            with open(rustc_cfg_path, encoding="utf-8") as f:
+                self.assertIn('--cfg=CONFIG_UAPI_HEADER_TEST="y"\n', f)
+        self.assertTrue(include_config_path.is_file())
 
 class ScmversionIntegrationTest(KleafIntegrationTestBase):
 
