@@ -166,6 +166,29 @@
       "message": "nit: please add a document for this field. It is a bit unclear to me what this file is \"config\"uring.\n\nmaybe: \"if set, use `mkdtimg cfg_create` with the given config file, instead of `mkdtimg create`\"?",
       "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1140d57d_bde2eb45",
+        "filename": "kleaf/impl/image/kernel_images.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T03:00:27Z",
+      "side": 1,
+      "message": "drop",
+      "range": {
+        "startLine": 214,
+        "startChar": 21,
+        "endLine": 214,
+        "endChar": 32
+      },
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
