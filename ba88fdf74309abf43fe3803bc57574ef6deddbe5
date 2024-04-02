@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "265e0284_cfd67623",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T02:53:11Z",
+      "side": 1,
+      "message": "or maybe just create symlinks to {srcs} using `ln -s`.",
+      "parentUuid": "fe840ccc_413d8f74",
+      "range": {
+        "startLine": 39,
+        "startChar": 17,
+        "endLine": 39,
+        "endChar": 18
+      },
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1ff764cc_ad438564",
         "filename": "kleaf/impl/image/dtbo.bzl",
         "patchSetId": 2
