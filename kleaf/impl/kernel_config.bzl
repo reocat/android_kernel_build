@@ -356,6 +356,7 @@ def _reconfig(ctx):
             {apply_defconfig_fragments_cmd}
 
             if [[ -n "${{need_olddefconfig}}" ]]; then
+                rm -rf ${{OUT_DIR}}/include
                 make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} olddefconfig
             fi
 
@@ -418,8 +419,6 @@ def _kernel_config_impl(ctx):
           eval ${{POST_DEFCONFIG_CMDS}}
         # Re-config
           {reconfig_cmd}
-        # HACK: run syncconfig to avoid re-triggerring kernel_build
-          make -C ${{KERNEL_DIR}} ${{TOOL_ARGS}} O=${{OUT_DIR}} syncconfig
         # Grab outputs
           rsync -aL ${{OUT_DIR}}/.config {out_dir}/.config
           rsync -aL ${{OUT_DIR}}/include/ {out_dir}/include/
