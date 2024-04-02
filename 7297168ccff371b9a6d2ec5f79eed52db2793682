@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c37cfd9_93915b30",
+        "filename": "kleaf/impl/btf.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T18:42:19Z",
+      "side": 1,
+      "message": "You need to add strip_executable to this info if you do this",
+      "parentUuid": "ca4347b5_ad04a67e",
+      "revId": "7297168ccff371b9a6d2ec5f79eed52db2793682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cfe62d44_9dd37894",
         "filename": "kleaf/impl/btf.bzl",
         "patchSetId": 5
