@@ -22,6 +22,8 @@ visibility("//build/kernel/kleaf/...")
 
 def _dtbo_impl(ctx):
     output = ctx.actions.declare_file("{}/dtbo.img".format(ctx.label.name))
+    dtbo_staging_dir = output.dirname + "/staging"
+    inputs = []
     transitive_inputs = [target.files for target in ctx.attr.srcs]
     transitive_inputs.append(ctx.attr.kernel_build[KernelEnvAndOutputsInfo].inputs)
     tools = ctx.attr.kernel_build[KernelEnvAndOutputsInfo].tools
@@ -30,18 +32,33 @@ def _dtbo_impl(ctx):
         restore_out_dir_cmd = utils.get_check_sandbox_cmd(),
     )
 
-    command += """
+    if ctx.file.config_file:
+        inputs += [ctx.file.config_file]
+        command += """
+             mkdir -p {dtbo_staging_dir}
+             cp -vf {srcs} {dtbo_staging_dir}
+
              # make dtbo
-               mkdtimg create {output} ${{MKDTIMG_FLAGS}} {srcs}
-    """.format(
-        output = output.path,
-        srcs = " ".join([f.path for f in ctx.files.srcs]),
-    )
+               mkdtimg cfg_create {output} ${{MKDTIMG_FLAGS}} {config} -d {dtbo_staging_dir}
+        """.format(
+            output = output.path,
+            srcs = " ".join([f.path for f in ctx.files.srcs]),
+            config = ctx.file.config_file.path,
+            dtbo_staging_dir = dtbo_staging_dir,
+        )
+    else:
+        command += """
+                 # make dtbo
+                   mkdtimg create {output} ${{MKDTIMG_FLAGS}} {srcs}
+        """.format(
+            output = output.path,
+            srcs = " ".join([f.path for f in ctx.files.srcs]),
+        )
 
     debug.print_scripts(ctx, command)
     ctx.actions.run_shell(
         mnemonic = "Dtbo",
-        inputs = depset(transitive = transitive_inputs),
+        inputs = depset(inputs, transitive = transitive_inputs),
         outputs = [output],
         tools = tools,
         progress_message = "Building dtbo {}".format(ctx.label),
@@ -59,6 +76,9 @@ dtbo = rule(
         ),
         "srcs": attr.label_list(
             allow_files = True,
+        ),
+        "config_file": attr.label(
+            allow_single_file = True,
         ),
         "_debug_print_scripts": attr.label(
             default = "//build/kernel/kleaf:debug_print_scripts",
