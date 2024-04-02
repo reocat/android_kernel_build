@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b62ef48_0ab1db36",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T18:41:41Z",
+      "side": 1,
+      "message": "Alternatively, you may also do what kernel_platform_toolchain.bzl does, and use `cc_common.get_tool_for_action` to find where the strip executable is.\n\nI think with this approach, you\u0027ll need to calculate all_files again (or not), so I didn\u0027t suggest this. But if you think all_files doesn\u0027t need to be in tools, then this approach is also acceptable.",
+      "revId": "7297168ccff371b9a6d2ec5f79eed52db2793682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53166713_dc4043a5",
+        "filename": "BUILD.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T18:41:41Z",
+      "side": 1,
+      "message": "This adds a tool for ALL rules that uses hermetic tools info, which is not necessary.\n\nSee my other comment.\n\nllvm-strings should also be cleaned up in the same way, but it is unrelated to this CL.",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 93
+      },
+      "revId": "7297168ccff371b9a6d2ec5f79eed52db2793682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca4347b5_ad04a67e",
+        "filename": "kleaf/impl/btf.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T18:41:41Z",
+      "side": 1,
+      "message": "```\nllvm_strip \u003d ctx.attr._exec_toolchain[KernelPlatformToolchainInfo].strip_executable\n```",
+      "revId": "7297168ccff371b9a6d2ec5f79eed52db2793682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfe62d44_9dd37894",
+        "filename": "kleaf/impl/btf.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T18:41:41Z",
+      "side": 1,
+      "message": "nit: for correctness, other files in the clang toolchain should be added:\n```\ntools \u003d depset(transitive \u003d [ctx.attr._exec_toolchain[KernelPlatformToolchainInfo].all_files, hermetic_tools.deps])\n```\n\nthough this may impact the sandbox creation time. Also, files in the clang toolchain are often updated together. So use your judgement 😊\n\nWhatever you use, place a comment here to explain why you put / not put all_files in tools",
+      "revId": "7297168ccff371b9a6d2ec5f79eed52db2793682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c7559a5_21e303d6",
+        "filename": "kleaf/impl/btf.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T18:41:41Z",
+      "side": 1,
+      "message": "```\n\"_exec_toolchain\": attr.label(default \u003d \"//build/kernel/kleaf/impl:kernel_platform_toolchain\", providers \u003d [KernelPlatformToolchainInfo])\n```",
+      "revId": "7297168ccff371b9a6d2ec5f79eed52db2793682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
