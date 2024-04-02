@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a76e37_d04bf28e",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T02:52:08Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Buildifier: Prefer using \".append()\" to adding a single element list. http://go/buildifier-warnings#list-append\n\nAnalyzer Description: Check formats of Bazel definitions.\nOwner: kleaf@google.com\n\nPrefer using \".append()\" to adding a single element list. http://go/buildifier-warnings#list-append",
+      "range": {
+        "startLine": 36,
+        "startChar": 8,
+        "endLine": 36,
+        "endChar": 40
+      },
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe840ccc_413d8f74",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T02:52:08Z",
+      "side": 1,
+      "message": "Do you need -v and -f?\n\nAlso, be careful about copying `{srcs}`; these are symlinks inside the sandbox. Do copying symlinks to another directory work?\n\nI am not sure if you need `-L` here.",
+      "range": {
+        "startLine": 39,
+        "startChar": 17,
+        "endLine": 39,
+        "endChar": 18
+      },
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ff764cc_ad438564",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T02:52:08Z",
+      "side": 1,
+      "message": "The sandbox is automatically teared down, but for the sake of sanity, please:\n\n```\nrm -rf {dtbo_staging_dir}\n```",
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f26ad88_f54aeb86",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T02:52:08Z",
+      "side": 1,
+      "message": "```\n./prebuilts/kernel-build-tools/linux-x86/bin/mkdtimg cfg_create \u003cimage_file\u003e \u003cconfig_file\u003e (\u003coption\u003e...)\n```\n\nnit: looks like {config} should go before `${{MKDTIMG_FLAGS}}`",
+      "range": {
+        "startLine": 42,
+        "startChar": 15,
+        "endLine": 42,
+        "endChar": 92
+      },
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5f0e3d8_a62b2495",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T02:52:08Z",
+      "side": 1,
+      "message": "Could you please indent these two lines so they are the same as L41~42?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 68
+      },
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28857919_3bb03a1c",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T02:52:08Z",
+      "side": 1,
+      "message": "nit: please add a document for this field. It is a bit unclear to me what this file is \"config\"uring.\n\nmaybe: \"if set, use `mkdtimg cfg_create` with the given config file, instead of `mkdtimg create`\"?",
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
