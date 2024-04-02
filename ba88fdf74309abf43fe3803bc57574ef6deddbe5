@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90719593_135524db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-02T02:56:53Z",
+      "side": 1,
+      "message": "Please add something like: This change adds `cfg_create` command support when kernel_images.dtbo_config is set. (and any additional explanation on this change.)",
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d9a76e37_d04bf28e",
         "filename": "kleaf/impl/image/dtbo.bzl",
         "patchSetId": 2
