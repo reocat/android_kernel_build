@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0940b982_76e2fa8a",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1962616
+      },
+      "writtenOn": "2024-04-02T03:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9a76e37_d04bf28e",
+      "range": {
+        "startLine": 36,
+        "startChar": 8,
+        "endLine": 36,
+        "endChar": 40
+      },
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe840ccc_413d8f74",
@@ -78,6 +102,30 @@
       "side": 1,
       "message": "or maybe just create symlinks to {srcs} using `ln -s`.",
       "parentUuid": "fe840ccc_413d8f74",
+      "range": {
+        "startLine": 39,
+        "startChar": 17,
+        "endLine": 39,
+        "endChar": 18
+      },
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2665dc97_97b6ffed",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1962616
+      },
+      "writtenOn": "2024-04-02T03:28:26Z",
+      "side": 1,
+      "message": "Seems like ln -s is not working.\n\n\nUse --sandbox_debug to see verbose messages from the sandbox and retain the sandbox build root for debugging\n\u0027bazel-out/k8-fastbuild/bin/exynos/device/erd/erd9945/erd9945_images_dtbo/staging/s5e9945-erd9945.dtbo\u0027 -\u003e \u0027bazel-out/k8-fastbuild/bin/exynos/device/erd/erd9945/erd9945/s5e9945-erd9945.dtbo\u0027\n\u0027bazel-out/k8-fastbuild/bin/exynos/device/erd/erd9945/erd9945_images_dtbo/staging/s5e9945.dtb\u0027 -\u003e \u0027bazel-out/k8-fastbuild/bin/exynos/device/erd/erd9945/erd9945/exynos-base-dts/s5e9945.dtb\u0027\nCan not read file: s5e9945-erd9945.dtbo\nCan not output image with config: exynos/device/erd/erd9945/dtboimg.cfg",
+      "parentUuid": "265e0284_cfd67623",
       "range": {
         "startLine": 39,
         "startChar": 17,
@@ -128,6 +176,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9a8250f_404c16c5",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1962616
+      },
+      "writtenOn": "2024-04-02T03:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ff764cc_ad438564",
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a55356e_bb85ec4d",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1962616
+      },
+      "writtenOn": "2024-04-02T03:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f26ad88_f54aeb86",
+      "range": {
+        "startLine": 42,
+        "startChar": 15,
+        "endLine": 42,
+        "endChar": 92
+      },
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5f0e3d8_a62b2495",
@@ -151,6 +241,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7b35139_4bd734b1",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1962616
+      },
+      "writtenOn": "2024-04-02T03:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5f0e3d8_a62b2495",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 68
+      },
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28857919_3bb03a1c",
@@ -164,6 +278,24 @@
       "writtenOn": "2024-04-02T02:52:08Z",
       "side": 1,
       "message": "nit: please add a document for this field. It is a bit unclear to me what this file is \"config\"uring.\n\nmaybe: \"if set, use `mkdtimg cfg_create` with the given config file, instead of `mkdtimg create`\"?",
+      "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8f4e905_47cb86ac",
+        "filename": "kleaf/impl/image/dtbo.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1962616
+      },
+      "writtenOn": "2024-04-02T03:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28857919_3bb03a1c",
       "revId": "ba88fdf74309abf43fe3803bc57574ef6deddbe5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
