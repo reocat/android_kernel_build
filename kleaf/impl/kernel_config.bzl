@@ -308,6 +308,7 @@ def _reconfig(ctx):
     configs = []
     deps = []
     transitive_deps = []
+    local_need_olddefconfig_cmd = ""
     apply_defconfig_fragments_cmd = ""
     check_defconfig_fragments_cmd = ""
 
@@ -341,6 +342,14 @@ def _reconfig(ctx):
             " ".join(defconfig_fragments_paths),
         )
 
+    if ctx.attr._config_is_local[BuildSettingInfo].value:
+        # $OUT_DIR/include from previous builds in cache dir may include
+        # outdated configs. To make sure it is in sync, delete it and re-run
+        # make olddefconfig.
+        local_need_olddefconfig_cmd = """
+            need_olddefconfig=1
+        """
+
     cmd = """
         (
             need_olddefconfig=
@@ -354,6 +363,7 @@ def _reconfig(ctx):
             fi
 
             {apply_defconfig_fragments_cmd}
+            {local_need_olddefconfig_cmd}
 
             if [[ -n "${{need_olddefconfig}}" ]]; then
                 rm -rf ${{OUT_DIR}}/include
@@ -364,6 +374,7 @@ def _reconfig(ctx):
         )
     """.format(
         configs = " ".join(configs),
+        local_need_olddefconfig_cmd = local_need_olddefconfig_cmd,
         apply_defconfig_fragments_cmd = apply_defconfig_fragments_cmd,
         check_defconfig_fragments_cmd = check_defconfig_fragments_cmd,
     )
@@ -631,6 +642,7 @@ kernel_config = rule(
             cfg = "exec",
         ),
         "_config_is_stamp": attr.label(default = "//build/kernel/kleaf:config_stamp"),
+        "_config_is_local": attr.label(default = "//build/kernel/kleaf:config_local"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     } | _kernel_config_additional_attrs(),
     executable = True,
