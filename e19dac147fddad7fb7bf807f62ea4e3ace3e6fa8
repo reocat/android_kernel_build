@@ -22,6 +22,30 @@
       },
       "revId": "e19dac147fddad7fb7bf807f62ea4e3ace3e6fa8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "654418b7_291f074e",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-04T20:40:46Z",
+      "side": 0,
+      "message": "I need to dig into this. For some reason, for other builds, it can regenerate include/{generated/,config/} properly; but not for uboot.\n\nPerhaps it was because uboot has its own fork of Kbuild?",
+      "parentUuid": "7ee6e66f_5c6c2af9",
+      "range": {
+        "startLine": 422,
+        "startChar": 64,
+        "endLine": 422,
+        "endChar": 74
+      },
+      "revId": "e19dac147fddad7fb7bf807f62ea4e3ace3e6fa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
