@@ -22,6 +22,7 @@ import pathlib
 import sys
 
 _TOOLS_BAZEL = "tools/bazel"
+_DEVICE_BAZELRC = "device.bazelrc"
 _MODULE_BAZEL_FILE = "MODULE.bazel"
 
 _KLEAF_DEPENDENCY_TEMPLATE = """\
@@ -71,9 +72,22 @@ class KleafProjectSetter:
                     )
                 )
 
+    def _generate_bazelrc(self):
+        if not self.ddk_workspace:
+            return
+        bazelrc = self.ddk_workspace / _DEVICE_BAZELRC
+        with open(bazelrc, "w", encoding="utf-8") as f:
+            # TODO: b/328770706 -- Do not overwrite the file, but overwrite just a section
+            f.write("common --config=internet\n")
+            f.write(
+                "common"
+                f" --registry=file:{self.kleaf_repo_dir}/external/bazelbuild-bazel-central-registry\n"
+            )
+
     def _handle_local_kleaf(self):
         self._symlink_tools_bazel()
         self._generate_module_bazel()
+        self._generate_bazelrc()
 
     def run(self):
         self._handle_local_kleaf()
