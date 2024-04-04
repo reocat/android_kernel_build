@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ee6e66f_5c6c2af9",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-04T09:47:20Z",
+      "side": 0,
+      "message": "So it seems this is needed after all:\n\n```\n--syncconfig            Similar to oldconfig but generates configuration in\n                        include/{generated/,config/}\n```\n\nwhich is the reason why it breaks u-boot:\n```\nrsync: change_dir \"/tmp/bazel-working-directory/_main/out/u-boot-mainline/u-boot/include\" failed: No such file or directory (2)\nrsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1183) [sender\u003d3.1.0]\n```",
+      "range": {
+        "startLine": 422,
+        "startChar": 64,
+        "endLine": 422,
+        "endChar": 74
+      },
+      "revId": "e19dac147fddad7fb7bf807f62ea4e3ace3e6fa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
