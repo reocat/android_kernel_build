@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4466896d_00b733c4",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-08T19:08:37Z",
+      "side": 1,
+      "message": "You don\u0027t seem to be writing to the input file\n```suggestion\n        with open(path, \"r\", encoding\u003d\"utf-8\") as input_file:\n```",
+      "range": {
+        "startLine": 74,
+        "startChar": 25,
+        "endLine": 74,
+        "endChar": 27
+      },
+      "revId": "e8d5f20c8d7b09af742bf3b19b7808900d55ef91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43fab50f_ab4a4c31",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-08T19:08:37Z",
+      "side": 1,
+      "message": "Is this the right indentation? We should only use output_file within the `with` block, right? (Though I agree that output_file is still available outside the `with` block)",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 43
+      },
+      "revId": "e8d5f20c8d7b09af742bf3b19b7808900d55ef91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0be60af8_ad02d7db",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-08T19:08:37Z",
+      "side": 1,
+      "message": "nit: Use `textwrap.dedent(\"\"\"\\`",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 99
+      },
+      "revId": "e8d5f20c8d7b09af742bf3b19b7808900d55ef91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
