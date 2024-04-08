@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bee9c1a7_72af8f2b",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-08T19:10:01Z",
+      "side": 1,
+      "message": "nit: Two with statements can be combined into one, so you save one indent level",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 16
+      },
+      "revId": "e8d5f20c8d7b09af742bf3b19b7808900d55ef91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43fab50f_ab4a4c31",
         "filename": "init/init_ddk.py",
         "patchSetId": 3
