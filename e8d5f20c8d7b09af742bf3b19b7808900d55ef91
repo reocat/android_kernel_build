@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89c7843c_8c72ac3c",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-08T19:09:29Z",
+      "side": 1,
+      "message": "Perhaps you mean `shutil.move(output_file_obj.name, path)`",
+      "parentUuid": "43fab50f_ab4a4c31",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 43
+      },
+      "revId": "e8d5f20c8d7b09af742bf3b19b7808900d55ef91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0be60af8_ad02d7db",
         "filename": "init/init_ddk.py",
         "patchSetId": 3
