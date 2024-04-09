@@ -163,9 +163,6 @@ def _config_trim(ctx):
     if trim_nonlisted_kmi_utils.get_value(ctx) and not ctx.files.raw_kmi_symbol_list:
         fail("{}: trim_nonlisted_kmi is set but raw_kmi_symbol_list is empty.".format(ctx.label))
 
-    if len(ctx.files.raw_kmi_symbol_list) > 1:
-        fail("{}: raw_kmi_symbol_list must only provide at most one file".format(ctx.label))
-
     if not trim_nonlisted_kmi_utils.get_value(ctx):
         return struct(configs = [], deps = [])
 
@@ -181,10 +178,21 @@ def _config_trim(ctx):
               IGNORED because --debug is set!".format(this_label = ctx.label))
         return struct(configs = [], deps = [])
 
-    raw_symbol_list_path_file = _determine_raw_symbollist_path(ctx)
     configs = [
         _config.disable("UNUSED_SYMBOLS"),
         _config.enable("TRIM_UNUSED_KSYMS"),
+    ]
+    return struct(configs = configs)
+
+def _config_symbol_list(ctx):
+    if not ctx.files.raw_kmi_symbol_list:
+        return struct(configs = [], deps = [])
+
+    if len(ctx.files.raw_kmi_symbol_list) > 1:
+        fail("{}: raw_kmi_symbol_list must only provide at most one file".format(ctx.label))
+
+    raw_symbol_list_path_file = _determine_raw_symbollist_path(ctx)
+    configs = [
         _config.set_str(
             "UNUSED_KSYMS_WHITELIST",
             "$(cat {})".format(raw_symbol_list_path_file.path),
@@ -314,6 +322,7 @@ def _reconfig(ctx):
     for fn in (
         _config_lto,
         _config_trim,
+        _config_symbol_list,
         _config_kcsan,
         _config_kasan,
         _config_kasan_sw_tags,
