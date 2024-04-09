@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d166d944_a3d2c088",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-09T13:53:33Z",
+      "side": 1,
+      "message": "At the end I went for `w+` as I need to create the file if it doesn\u0027t exist.",
+      "parentUuid": "4466896d_00b733c4",
+      "range": {
+        "startLine": 74,
+        "startChar": 25,
+        "endLine": 74,
+        "endChar": 27
+      },
+      "revId": "e8d5f20c8d7b09af742bf3b19b7808900d55ef91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bee9c1a7_72af8f2b",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-08T19:10:01Z",
       "side": 1,
       "message": "nit: Two with statements can be combined into one, so you save one indent level",
+      "range": {
+        "startLine": 75,
+        "startChar": 12,
+        "endLine": 75,
+        "endChar": 16
+      },
+      "revId": "e8d5f20c8d7b09af742bf3b19b7808900d55ef91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5681af4b_9dc589fe",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-09T13:53:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bee9c1a7_72af8f2b",
       "range": {
         "startLine": 75,
         "startChar": 12,
@@ -84,6 +132,30 @@
       "side": 1,
       "message": "Perhaps you mean `shutil.move(output_file_obj.name, path)`",
       "parentUuid": "43fab50f_ab4a4c31",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 43
+      },
+      "revId": "e8d5f20c8d7b09af742bf3b19b7808900d55ef91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25382750_60febd72",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-09T13:53:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89c7843c_8c72ac3c",
       "range": {
         "startLine": 93,
         "startChar": 0,
