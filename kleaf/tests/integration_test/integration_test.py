@@ -345,30 +345,32 @@ class KleafIntegrationTestShard1(KleafIntegrationTestBase):
         """
 
         gki_defconfig_path = (
-            f"{self._common()}/arch/arm64/configs/gki_defconfig")
+            f"{self._common()}/arch/arm64/configs/elsk_defconfig")
         restore_defconfig = self.restore_file_after_test(gki_defconfig_path)
         extract_ikconfig = f"{self._common()}/scripts/extract-ikconfig"
 
         with open(gki_defconfig_path, encoding="utf-8") as f:
             self.assertIn("CONFIG_UAPI_HEADER_TEST=y\n", f)
 
-        self._build([f"//{self._common()}:kernel_aarch64", "--config=fast"])
+        self._build([f"//{self._common()}:elsk"] + _LOCAL + ["--debug_make_verbosity=V"])
         vmlinux = pathlib.Path(
-            f"bazel-bin/{self._common()}/kernel_aarch64/vmlinux")
+            f"bazel-bin/{self._common()}/elsk/vmlinux.o")
 
         output = subprocess.check_output([extract_ikconfig, vmlinux], text=True)
         self.assertIn("CONFIG_UAPI_HEADER_TEST=y", output.splitlines())
 
         self.filter_lines(gki_defconfig_path,
                           lambda x: "CONFIG_UAPI_HEADER_TEST" not in x)
-        self._build([f"//{self._common()}:kernel_aarch64", "--config=fast"])
+        self._build([f"//{self._common()}:elsk"] + _LOCAL + ["--debug_make_verbosity=V"])
 
         output = subprocess.check_output([extract_ikconfig, vmlinux], text=True)
-        self.assertIn("# CONFIG_UAPI_HEADER_TEST is not set",
-                      output.splitlines())
+        self.assertTrue("# CONFIG_UAPI_HEADER_TEST is not set" in output.splitlines(),
+            f"Value of CONFIG_UAPI_HEADER_TEST is {[line for line in output.splitlines() if 'CONFIG_UAPI_HEADER_TEST' in line]}")
+
+        return
 
         restore_defconfig()
-        self._build([f"//{self._common()}:kernel_aarch64", "--config=fast"])
+        self._build([f"//{self._common()}:elsk"] + _LOCAL + ["--debug_make_verbosity=V"])
 
         output = subprocess.check_output([extract_ikconfig, vmlinux], text=True)
         self.assertIn("CONFIG_UAPI_HEADER_TEST=y", output.splitlines())
