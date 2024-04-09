@@ -17,12 +17,16 @@
 """Configures the project layout to build DDK modules."""
 
 import argparse
+import concurrent.futures
+import json
 import logging
 import pathlib
 import shutil
+import subprocess
 import sys
 import tempfile
 import textwrap
+import urllib
 
 _TOOLS_BAZEL = "tools/bazel"
 _DEVICE_BAZELRC = "device.bazelrc"
@@ -32,11 +36,33 @@ _MODULE_BAZEL_FILE = "MODULE.bazel"
 
 _KLEAF_DEPENDENCY_TEMPLATE = """\
 \"""Kleaf: Build Android kernels with Bazel.\"""
+
 bazel_dep(name = "kleaf")
 local_path_override(
     module_name = "kleaf",
     path = "{kleaf_repo_dir}",
 )
+"""
+
+_PREBUILTS_CONTENT_TEMPLATE = """\
+kernel_prebuilt_ext = use_extension(
+    "@kleaf//build/kernel/kleaf:kernel_prebuilt_ext.bzl",
+    "kernel_prebuilt_ext",
+)
+kernel_prebuilt_ext.declare_kernel_prebuilts(
+    name = "gki_prebuilts",
+    auto_download_config = True,
+    local_artifact_path = "{prebuilts_dir}",
+)
+use_repo(kernel_prebuilt_ext, "gki_prebuilts")
+"""
+
+_DOWNLOAD_SCRIPT = """\
+import shutil
+import sys
+import urllib.request
+with urllib.request.urlopen(sys.argv[1]) as i, open(sys.argv[2], "wb") as o:
+    shutil.copyfileobj(i, o)
 """
 
 
@@ -49,19 +75,22 @@ class KleafProjectSetter:
 
     def __init__(self, cmd_args: argparse.Namespace):
         self.ddk_workspace: pathlib.Path | None = cmd_args.ddk_workspace
+        self.build_id: str | None = cmd_args.build_id
+        self.build_target: str | None = cmd_args.build_target
         self.kleaf_repo_dir: pathlib.Path | None = cmd_args.kleaf_repo_dir
+        self.prebuilts_dir: pathlib.Path | None = cmd_args.prebuilts_dir
+        self.url_fmt: str = cmd_args.url_fmt
 
     def _symlink_tools_bazel(self):
+        """Creates the symlink tools/bazel."""
         if not self.ddk_workspace or not self.kleaf_repo_dir:
             return
-        # TODO: b/328770706 -- Error handling.
         # Calculate the paths.
         tools_bazel = self.ddk_workspace / _TOOLS_BAZEL
         kleaf_tools_bazel = self.kleaf_repo_dir / _TOOLS_BAZEL
         # Prepare the location and clean up if necessary
         tools_bazel.parent.mkdir(parents=True, exist_ok=True)
         tools_bazel.unlink(missing_ok=True)
-
         tools_bazel.symlink_to(kleaf_tools_bazel)
 
     @staticmethod
@@ -94,16 +123,32 @@ class KleafProjectSetter:
                 output_file.write(_FILE_MARKER_END)
             shutil.move(output_file.name, path)
 
+    def _try_rel_workspace(self, path: pathlib.Path):
+        """Tries to convert |path| to be relative to ddk_workspace."""
+        try:
+            return path.resolve().relative_to(self.ddk_workspace)
+        except ValueError:
+            return path
+
     def _generate_module_bazel(self):
-        if not self.ddk_workspace or not self.kleaf_repo_dir:
+        """Configures the dependencies for the DDK workspace."""
+        if not self.ddk_workspace:
             return
         module_bazel = self.ddk_workspace / _MODULE_BAZEL_FILE
-        self._update_file(
-            module_bazel,
-            _KLEAF_DEPENDENCY_TEMPLATE.format(
+        module_bazel_content = ""
+        if self.kleaf_repo_dir:
+            module_bazel_content += _KLEAF_DEPENDENCY_TEMPLATE.format(
                 kleaf_repo_dir=self.kleaf_repo_dir
-            ),
-        )
+            )
+        if self.prebuilts_dir:
+            module_bazel_content += "\n"
+            module_bazel_content += _PREBUILTS_CONTENT_TEMPLATE.format(
+                # The prebuilts directory must be relative to the DDK workspace.
+                prebuilts_dir=self._try_rel_workspace(self.prebuilts_dir),
+            )
+
+        if module_bazel_content:
+            self._update_file(module_bazel, module_bazel_content)
 
     def _generate_bazelrc(self):
         if not self.ddk_workspace or not self.kleaf_repo_dir:
@@ -122,8 +167,53 @@ class KleafProjectSetter:
         self._generate_module_bazel()
         self._generate_bazelrc()
 
+    def _infer_download_list(self) -> list[str]:
+        assert self.build_info, "build_info is not set!"
+        target_dict = self.build_info.get("target", {})
+        dir_list = target_dict.get("dir_list", [])
+        return dir_list
+
+    def _download(self, remote_filename: str, out_file_name: str):
+        url = self.url_fmt.format(
+            build_id=self.build_id,
+            build_target=self.build_target,
+            filename=urllib.parse.quote(remote_filename, safe=""),  # / -> %2F
+        )
+        subprocess.check_call(
+            ["python3", "-c", _DOWNLOAD_SCRIPT, url, out_file_name]
+        )
+
+    def _set_build_info(self):
+        # assert self.build_id, "build_id is not set!"
+        # TODO: b/328770706: This is only supported on ci.android.com
+        with tempfile.NamedTemporaryFile(mode="w+", delete=False) as build_info:
+            self._download("BUILD_INFO", build_info.name)
+            self.build_info = json.load(build_info)
+
+    def _download_prebuilts(self):
+        if not self.prebuilts_dir:
+            return
+
+        # assert self.build_id, "build_id is not set!"
+        # TODO: b/328770706: download less files
+        files = self._infer_download_list()
+
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            futures = []
+            for file in files:
+                dst = self.prebuilts_dir / file
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                futures.append(executor.submit(self._download, file, dst.name))
+            for complete_ret in concurrent.futures.as_completed(futures):
+                complete_ret.result()  # Raise exception if any
+
+    def _handle_prebuilts(self):
+        self._set_build_info()
+        self._download_prebuilts()
+
     def run(self):
         self._handle_local_kleaf()
+        self._handle_prebuilts()
 
 
 if __name__ == "__main__":
@@ -158,6 +248,12 @@ if __name__ == "__main__":
         type=str,
         help='the build target to download, e.g. "kernel_aarch64"',
         default="kernel_aarch64",
+    )
+    parser.add_argument(
+        "--prebuilts_dir",
+        help="Path to prebuilts",
+        type=pathlib.Path,
+        default=None,
     )
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
