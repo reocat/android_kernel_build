@@ -123,6 +123,8 @@ def _get_config_env(ctx):
     config_env_setup_command = get_config_setup_command(
         env_setup_command = env_setup_command,
         out_dir = ctx.file.config_out_dir,
+        # Building external module does not need any of the files
+        files_to_restore = None,
     )
 
     config_env_setup_script = ctx.actions.declare_file(
