@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "602dae02_9bbb10c2",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-10T16:01:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8dc5c34_e0d9ff2f",
+      "range": {
+        "startLine": 68,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 20
+      },
+      "revId": "4d0a50a885a4d1e68abb3110c6b79b966bd1bdca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcb467ab_2e72ef21",
@@ -61,6 +85,30 @@
       "writtenOn": "2024-04-09T20:36:07Z",
       "side": 1,
       "message": "Do we have a precondition that this is an absolute path? If not, you probably need `self.kleaf_repo_dir.resolve()` or `pathlib.Path.cwd() / self.kleaf_repo_dir` instead.",
+      "range": {
+        "startLine": 116,
+        "startChar": 41,
+        "endLine": 116,
+        "endChar": 55
+      },
+      "revId": "4d0a50a885a4d1e68abb3110c6b79b966bd1bdca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "988218db_138edd06",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-10T16:01:12Z",
+      "side": 1,
+      "message": "Right, I still need to resolve this. I\u0027ll do it in the next patchset.",
+      "parentUuid": "fcb467ab_2e72ef21",
       "range": {
         "startLine": 116,
         "startChar": 41,
