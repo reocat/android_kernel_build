@@ -199,14 +199,12 @@ def _download_remote_file(repository_ctx, local_path, remote_filename_fmt, file_
             fail_later = repr("ERROR: No build_number specified for @@{}".format(repository_ctx.attr.name)),
         ))
 
-    # TODO(b/325494748): With bazel 7.1.0, use parallel download
-    download_status = repository_ctx.download(
+    return repository_ctx.download(
         url = artifact_url,
         output = local_path,
         allow_fail = not file_mandatory,
-        # block = False,
+        block = False,
     )
-    return _true_future if download_status.success else _false_future
 
 def _kernel_prebuilt_repo_impl(repository_ctx):
     bazel_target_name = repository_ctx.attr.target
