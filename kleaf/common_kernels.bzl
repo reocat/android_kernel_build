@@ -970,8 +970,8 @@ def _define_prebuilts(**kwargs):
         ],
     )
 
-    for repo_name, value in CI_TARGET_MAPPING.items():
-        name = value["target"]
+    for name, value in CI_TARGET_MAPPING.items():
+        repo_name = value["repo_name"]
         deprecate_msg = "Use @{}//{} directly".format(repo_name, name)
         not_available_msg = "This will no longer be available. File a bug if you rely on this target."
 
