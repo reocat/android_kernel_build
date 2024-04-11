@@ -96,10 +96,6 @@ def _infer_download_config(target):
     download_config = {}
     mandatory = {}
 
-    for out in chosen_mapping["outs"]:
-        download_config[out] = out
-        mandatory[out] = True
-
     protected_modules = chosen_mapping["protected_modules"]
     download_config[protected_modules] = protected_modules
     mandatory[protected_modules] = False

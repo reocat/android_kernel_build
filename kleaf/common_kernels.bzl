@@ -972,15 +972,13 @@ def _define_prebuilts(**kwargs):
 
     for repo_name, value in CI_TARGET_MAPPING.items():
         name = value["target"]
-        main_target_outs = value["outs"]  # outs of target named {name}
         gki_prebuilts_outs = value["gki_prebuilts_outs"]  # outputs of _gki_prebuilts
         deprecate_msg = "Use @{}//{} directly".format(repo_name, name)
         not_available_msg = "This will no longer be available. File a bug if you rely on this target."
 
-        native.filegroup(
+        native.alias(
             name = name + "_downloaded",
-            srcs = ["@{}//{}".format(repo_name, filename) for filename in main_target_outs],
-            tags = ["manual"],
+            actual = name + "_files_downloaded",
             deprecation = deprecate_msg,
         )
 
