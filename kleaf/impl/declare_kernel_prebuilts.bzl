@@ -41,29 +41,20 @@ _tag_class = tag_class(
             """,
         ),
         "auto_download_config": attr.bool(
-            doc = """If `True`, infer `download_config` and `mandatory`
-                from `target`.""",
+            doc = """If `True`, infer `download_configs` from `target`.""",
         ),
-        "download_config": attr.string_dict(
+        "download_configs": attr.string_dict(
             doc = """Configure the list of files to download.
 
                 Key: local file name.
 
-                Value: remote file name format string, with the following anchors:
-                    * {build_number}
-                    * {target}
-            """,
-        ),
-        "mandatory": attr.string_dict(
-            doc = """Configure whether files are mandatory.
-
-                Key: local file name.
-
-                Value: Whether the file is mandatory.
-
-                If a file name is not found in the dictionary, default
-                value is `True`. If mandatory, failure to download the
-                file results in a build failure.
+                Value: A JSON string representing a dictionary with the following keys:
+                    * `mandatory`: Whether the files in `outs_mapping` is mandatory.
+                        If mandatory, failure to download the
+                        file results in a build failure.
+                    * `remote_filename_fmt`: remote file name format string, with the following anchors:
+                        * {build_number}
+                        * {target}
             """,
         ),
         "target": attr.string(
@@ -92,7 +83,7 @@ def _declare_repos(module_ctx, tag_name):
                 apparent_name = module_tag.name,
                 local_artifact_path = module_tag.local_artifact_path,
                 auto_download_config = module_tag.auto_download_config,
-                download_config = module_tag.download_config,
+                download_configs = module_tag.download_configs,
                 mandatory = module_tag.mandatory,
                 target = module_tag.target,
             )
