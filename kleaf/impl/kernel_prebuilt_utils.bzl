@@ -39,12 +39,16 @@ CI_TARGET_MAPPING = {
         "arch": "arm64",
         # TODO: Rename this when more architectures are added.
         "target": "kernel_aarch64",
-        "outs": DEFAULT_GKI_OUTS,
         "protected_modules": "gki_aarch64_protected_modules",
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
         "download_configs": [
             # - mandatory: If False, download errors are ignored.
             # - outs_mapping: local_filename -> remote_artifact_fmt
+            {
+                "target_suffix": "files",
+                "mandatory": True,
+                "outs_mapping": {item: item for item in DEFAULT_GKI_OUTS},
+            },
             {
                 "target_suffix": "uapi_headers",
                 "mandatory": True,
