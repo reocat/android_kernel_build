@@ -972,7 +972,6 @@ def _define_prebuilts(**kwargs):
 
     for repo_name, value in CI_TARGET_MAPPING.items():
         name = value["target"]
-        gki_prebuilts_outs = value["gki_prebuilts_outs"]  # outputs of _gki_prebuilts
         deprecate_msg = "Use @{}//{} directly".format(repo_name, name)
         not_available_msg = "This will no longer be available. File a bug if you rely on this target."
 
@@ -1008,7 +1007,7 @@ def _define_prebuilts(**kwargs):
                 Label("//build/kernel/kleaf:use_signed_prebuilts_is_true"): [name + "_boot_img_archive_signed_downloaded"],
                 "//conditions:default": [name + "_boot_img_archive_downloaded"],
             }),
-            outs = gki_prebuilts_outs,
+            outs = [name + "_gki_prebuilts_outs_downloaded"],
             deprecation = deprecate_msg,
         )
 
