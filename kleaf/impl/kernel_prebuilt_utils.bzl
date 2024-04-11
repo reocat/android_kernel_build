@@ -29,16 +29,16 @@ load(
 
 visibility("//build/kernel/kleaf/...")
 
-# Key: name of repository in bazel.WORKSPACE
-# target: Bazel target name in common_kernels.bzl
+# Key: Bazel target name in common_kernels.bzl
+# repo_name: name of download_artifacts_repo in bazel.WORKSPACE
 # outs: list of outs associated with that target name
 # arch: Architecture associated with this mapping.
 CI_TARGET_MAPPING = {
     # TODO(b/206079661): Allow downloaded prebuilts for x86_64 and debug targets.
-    "gki_prebuilts": {
+    "kernel_aarch64": {
         "arch": "arm64",
         # TODO: Rename this when more architectures are added.
-        "target": "kernel_aarch64",
+        "repo_name": "gki_prebuilts",
         # Key: local file name.
         "download_configs": {
             "kernel-uapi-headers.tar.gz": {
