@@ -175,13 +175,13 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
         },
     )
 
-    for repo_name, value in CI_TARGET_MAPPING.items():
+    for target, value in CI_TARGET_MAPPING.items():
         kernel_prebuilt_repo(
-            name = repo_name,
-            apparent_name = repo_name,
+            name = value["repo_name"],
+            apparent_name = value["repo_name"],
             artifact_url_fmt = artifact_url_fmt,
             download_configs = json.encode(value["download_configs"]),
-            target = value["target"],
+            target = target,
         )
 
     maybe(
