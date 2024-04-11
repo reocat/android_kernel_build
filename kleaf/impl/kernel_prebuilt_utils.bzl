@@ -43,44 +43,49 @@ CI_TARGET_MAPPING = {
         "protected_modules": "gki_aarch64_protected_modules",
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
         "download_configs": [
-            # - mandatory: If False, download errors are ignored. Default is True
+            # - mandatory: If False, download errors are ignored.
+            # - outs_mapping: local_filename -> remote_artifact_fmt
             {
                 "target_suffix": "uapi_headers",
-                "outs": [
-                    "kernel-uapi-headers.tar.gz",
-                ],
+                "mandatory": True,
+                "outs_mapping": {
+                    "kernel-uapi-headers.tar.gz": "kernel-uapi-headers.tar.gz",
+                },
             },
             {
                 "target_suffix": "unstripped_modules_archive",
-                "outs": [
-                    UNSTRIPPED_MODULES_ARCHIVE,
-                ],
+                "mandatory": True,
+                "outs_mapping": {
+                    UNSTRIPPED_MODULES_ARCHIVE: UNSTRIPPED_MODULES_ARCHIVE,
+                },
             },
             {
                 "target_suffix": "headers",
-                "outs": [
-                    "kernel-headers.tar.gz",
-                ],
+                "mandatory": True,
+                "outs_mapping": {
+                    "kernel-headers.tar.gz": "kernel-headers.tar.gz",
+                },
             },
             {
                 "target_suffix": "images",
+                "mandatory": True,
                 # TODO(b/297934577): Update GKI prebuilts to download system_dlkm.<fs>.img
-                "outs": SYSTEM_DLKM_COMMON_OUTS,
+                "outs_mapping": {item: item for item in SYSTEM_DLKM_COMMON_OUTS},
             },
             {
                 "target_suffix": "toolchain_version",
-                "outs": [
-                    TOOLCHAIN_VERSION_FILENAME,
-                ],
+                "mandatory": True,
+                "outs_mapping": {
+                    TOOLCHAIN_VERSION_FILENAME: TOOLCHAIN_VERSION_FILENAME,
+                },
             },
             {
                 "target_suffix": "boot_img_archive",
-                # We only download GKI for arm64, not riscv64 or x86_64
-                # TODO(b/206079661): Allow downloaded prebuilts for risc64/x86_64/debug targets.
-                "outs": [
-                    "boot-img.tar.gz",
+                "mandatory": True,
+                "outs_mapping": {
+                    "boot-img.tar.gz": "boot-img.tar.gz",
                     # The others can be found by extracting the archive, see gki_artifacts_prebuilts
-                ],
+                },
             },
             {
                 "target_suffix": "boot_img_archive_signed",
@@ -88,8 +93,6 @@ CI_TARGET_MAPPING = {
                 # exist for unsigned builds. A build error will be emitted by gki_artifacts_prebuilts
                 # if --use_signed_prebuilts and --use_gki_prebuilts=<an unsigned build number>.
                 "mandatory": False,
-                # We only download GKI for arm64, not riscv64 or x86_64
-                # TODO(b/206079661): Allow downloaded prebuilts for risc64/x86_64/debug targets.
                 "outs_mapping": {
                     # The basename is kept boot-img.tar.gz so it works with
                     # gki_artifacts_prebuilts. It is placed under the signed/
@@ -101,17 +104,18 @@ CI_TARGET_MAPPING = {
             },
             {
                 "target_suffix": "ddk_artifacts",
-                "outs": [
-                    "kernel_aarch64" + FILEGROUP_DEF_ARCHIVE_SUFFIX,
-                ],
+                "mandatory": True,
+                "outs_mapping": {
+                    "kernel_aarch64" + FILEGROUP_DEF_ARCHIVE_SUFFIX: "kernel_aarch64" + FILEGROUP_DEF_ARCHIVE_SUFFIX,
+                },
             },
             {
                 "target_suffix": "kmi_symbol_list",
                 "mandatory": False,
-                "outs": [
-                    "abi_symbollist",
-                    "abi_symbollist.report",
-                ],
+                "outs_mapping": {
+                    "abi_symbollist": "abi_symbollist",
+                    "abi_symbollist.report": "abi_symbollist.report",
+                },
             },
         ],
     },

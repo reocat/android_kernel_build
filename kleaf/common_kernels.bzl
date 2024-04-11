@@ -1027,13 +1027,9 @@ def _define_prebuilts(**kwargs):
         for config in value["download_configs"]:
             target_suffix = config["target_suffix"]
 
-            # outs of target named {name}_{target_suffix}
-            suffixed_target_outs = list(config.get("outs", []))
-            suffixed_target_outs += list(config.get("outs_mapping", {}).keys())
-
             native.filegroup(
                 name = name + "_" + target_suffix + "_downloaded",
-                srcs = ["@{}//{}".format(repo_name, filename) for filename in suffixed_target_outs],
+                srcs = ["@{}//{}".format(repo_name, filename) for filename in config["outs_mapping"]],
                 tags = ["manual"],
                 deprecation = deprecate_msg,
             )
