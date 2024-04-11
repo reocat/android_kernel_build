@@ -96,11 +96,9 @@ def _infer_download_config(target):
     download_config = {}
     mandatory = {}
 
-    for config in chosen_mapping["download_configs"]:
-        config_mandatory = config["mandatory"]
-        for out, remote_filename_fmt in config.get("outs_mapping", {}).items():
-            download_config[out] = remote_filename_fmt
-            mandatory[out] = config_mandatory
+    for out, config in chosen_mapping["download_configs"].items():
+        download_config[out] = config["remote_filename_fmt"]
+        mandatory[out] = config["mandatory"]
 
     mandatory = {key: _bool_to_str(value) for key, value in mandatory.items()}
 
