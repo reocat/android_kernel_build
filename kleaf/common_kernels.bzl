@@ -32,7 +32,6 @@ load("//build/kernel/kleaf/impl:kernel_filegroup_declaration.bzl", "kernel_fileg
 load(
     "//build/kernel/kleaf/impl:kernel_prebuilt_utils.bzl",
     "CI_TARGET_MAPPING",
-    "GKI_DOWNLOAD_CONFIGS",
 )
 load("//build/kernel/kleaf/impl:kernel_sbom.bzl", "kernel_sbom")
 load("//build/kernel/kleaf/impl:merge_kzip.bzl", "merge_kzip")
@@ -779,7 +778,7 @@ def _define_common_kernel(
         name = name + "_images",
         kernel_build = name,
         kernel_modules_install = name + "_modules_install",
-        # Sync with GKI_DOWNLOAD_CONFIGS, "images"
+        # Sync with CI_TARGET_MAPPING.*.download_configs.images
         build_system_dlkm = True,
         build_system_dlkm_flatten = True,
         system_dlkm_fs_types = ["erofs", "ext4"],
@@ -1025,7 +1024,7 @@ def _define_prebuilts(**kwargs):
             **kwargs
         )
 
-        for config in GKI_DOWNLOAD_CONFIGS:
+        for config in value["download_configs"]:
             target_suffix = config["target_suffix"]
 
             # outs of target named {name}_{target_suffix}

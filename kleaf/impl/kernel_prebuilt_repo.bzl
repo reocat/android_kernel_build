@@ -22,7 +22,6 @@ load(
 load(
     ":kernel_prebuilt_utils.bzl",
     "CI_TARGET_MAPPING",
-    "GKI_DOWNLOAD_CONFIGS",
 )
 
 visibility("//build/kernel/kleaf/...")
@@ -105,7 +104,7 @@ def _infer_download_config(target):
     download_config[protected_modules] = protected_modules
     mandatory[protected_modules] = False
 
-    for config in GKI_DOWNLOAD_CONFIGS:
+    for config in chosen_mapping["download_configs"]:
         config_mandatory = config.get("mandatory", True)
         for out in config.get("outs", []):
             download_config[out] = out
