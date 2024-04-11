@@ -39,7 +39,6 @@ CI_TARGET_MAPPING = {
         "arch": "arm64",
         # TODO: Rename this when more architectures are added.
         "target": "kernel_aarch64",
-        "protected_modules": "gki_aarch64_protected_modules",
         "gki_prebuilts_outs": GKI_ARTIFACTS_AARCH64_OUTS,
         "download_configs": [
             # - mandatory: If False, download errors are ignored.
@@ -119,6 +118,13 @@ CI_TARGET_MAPPING = {
                 "outs_mapping": {
                     "abi_symbollist": "abi_symbollist",
                     "abi_symbollist.report": "abi_symbollist.report",
+                },
+            },
+            {
+                "target_suffix": "protected_modules",
+                "mandatory": False,
+                "outs_mapping": {
+                    "gki_aarch64_protected_modules": "gki_aarch64_protected_modules",
                 },
             },
         ],

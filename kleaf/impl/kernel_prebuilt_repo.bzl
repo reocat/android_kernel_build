@@ -96,10 +96,6 @@ def _infer_download_config(target):
     download_config = {}
     mandatory = {}
 
-    protected_modules = chosen_mapping["protected_modules"]
-    download_config[protected_modules] = protected_modules
-    mandatory[protected_modules] = False
-
     for config in chosen_mapping["download_configs"]:
         config_mandatory = config["mandatory"]
         for out, remote_filename_fmt in config.get("outs_mapping", {}).items():
