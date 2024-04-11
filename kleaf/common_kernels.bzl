@@ -1021,12 +1021,14 @@ def _define_prebuilts(**kwargs):
             **kwargs
         )
 
-        for config in value["download_configs"]:
-            target_suffix = config["target_suffix"]
+        files_by_target_suffix = {}
+        for local_filename, config in value["download_configs"].items():
+            files_by_target_suffix.setdefault(config["target_suffix"], []).append(local_filename)
 
+        for target_suffix, files in files_by_target_suffix.items():
             native.filegroup(
                 name = name + "_" + target_suffix + "_downloaded",
-                srcs = ["@{}//{}".format(repo_name, filename) for filename in config["outs_mapping"]],
+                srcs = ["@{}//{}".format(repo_name, filename) for filename in files],
                 tags = ["manual"],
                 deprecation = deprecate_msg,
             )
