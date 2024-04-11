@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6de0c1d7_53d7a431",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-11T23:11:58Z",
+      "side": 1,
+      "message": "BTW: see https://android-review.git.corp.google.com/q/topic:%22cleanup_prebuilts%22. In the ideal case:\n\n- The init_ddk.zip that go/ab distributes should contain a download_configs.json, which contains the download_configs dictionary at https://android-review.git.corp.google.com/c/kernel/build/+/3038943/2/kleaf/impl/kernel_prebuilt_utils.bzl. Alternatively the download_configs.json can be a separate file.\n- The init_ddk.py inside the zip should use this JSON to infer the list of files to download \u0026 populate this field. \n\nThis can be done as a follow up and after https://android-review.git.corp.google.com/q/topic:%22cleanup_prebuilts%22 merges.",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b9ad2b70_57d6608e",
         "filename": "init/init_ddk.py",
         "patchSetId": 1
