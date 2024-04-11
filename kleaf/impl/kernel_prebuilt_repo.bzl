@@ -70,10 +70,7 @@ def _get_build_number(repository_ctx):
 
 def _infer_download_configs(target):
     """Returns inferred `download_config` and `mandatory` from target."""
-    chosen_mapping = None
-    for mapping in CI_TARGET_MAPPING.values():
-        if mapping["target"] == target:
-            chosen_mapping = mapping
+    chosen_mapping = CI_TARGET_MAPPING.get(target)
     if not chosen_mapping:
         fail("auto_download_config with {} is not supported yet.".format(target))
 
