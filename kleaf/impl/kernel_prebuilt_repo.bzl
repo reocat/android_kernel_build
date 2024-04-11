@@ -118,10 +118,27 @@ def _infer_download_config(target):
 
     return download_config, mandatory
 
+def _get_remote_filename(repository_ctx, build_number, remote_filename_fmt):
+    bazel_target_name = repository_ctx.attr.target
+    remote_filename = remote_filename_fmt.format(
+        build_number = build_number,
+        target = bazel_target_name,
+    )
+    remote_filename_with_fake_build_number = remote_filename_fmt.format(
+        build_number = "__FAKE_BUILD_NUMBER_PLACEHOLDER__",
+        target = bazel_target_name,
+    )
+    if not build_number and remote_filename != remote_filename_with_fake_build_number:
+        return struct(wait = lambda: struct(
+            fail_later = repr("ERROR: No build_number specified for @@{}".format(repository_ctx.attr.name)),
+        ))
+    return remote_filename
+
+
 _true_future = struct(wait = lambda: struct(success = True))
 _false_future = struct(wait = lambda: struct(success = False))
 
-def _symlink_local_file(repository_ctx, local_path, remote_filename, file_mandatory):
+def _symlink_local_file(repository_ctx, local_path, remote_filename_fmt, file_mandatory):
     """Creates symlink in local_path that points to remote_filename.
 
     Returns:
@@ -133,6 +150,10 @@ def _symlink_local_file(repository_ctx, local_path, remote_filename, file_mandat
         - Or a string, `fail_later`, an error message for an error that should
           be postponed to the analysis phase when the target is requested.
         """
+
+    build_number = _get_build_number(repository_ctx)
+    remote_filename = _get_remote_filename(repository_ctx, build_number, remote_filename_fmt)
+
     artifact_path = repository_ctx.workspace_root.get_child(repository_ctx.attr.local_artifact_path).get_child(remote_filename)
     if artifact_path.exists:
         repository_ctx.symlink(artifact_path, local_path)
@@ -141,7 +162,7 @@ def _symlink_local_file(repository_ctx, local_path, remote_filename, file_mandat
         fail("{}: {} does not exist".format(repository_ctx.attr.name, artifact_path))
     return _false_future
 
-def _download_remote_file(repository_ctx, local_path, remote_filename, file_mandatory):
+def _download_remote_file(repository_ctx, local_path, remote_filename_fmt, file_mandatory):
     """Download `remote_filename` to `local_path`.
 
     Returns:
@@ -155,6 +176,7 @@ def _download_remote_file(repository_ctx, local_path, remote_filename, file_mand
           be postponed to the analysis phase when the target is requested.
         """
     build_number = _get_build_number(repository_ctx)
+    remote_filename = _get_remote_filename(repository_ctx, build_number, remote_filename_fmt)
 
     # This doesn't have to be the same as the Bazel target name, hence
     # we use a separate variable to signify so. If we have the ci_target_name
@@ -204,10 +226,6 @@ def _kernel_prebuilt_repo_impl(repository_ctx):
     futures = {}
     for local_filename, remote_filename_fmt in download_config.items():
         local_path = repository_ctx.path(_join(local_filename, _basename(local_filename)))
-        remote_filename = remote_filename_fmt.format(
-            build_number = repository_ctx.attr.build_number,
-            target = bazel_target_name,
-        )
         file_mandatory = _str_to_bool(mandatory.get(local_filename, _bool_to_str(True)))
 
         if repository_ctx.attr.local_artifact_path:
@@ -218,7 +236,7 @@ def _kernel_prebuilt_repo_impl(repository_ctx):
         futures[local_filename] = download(
             repository_ctx = repository_ctx,
             local_path = local_path,
-            remote_filename = remote_filename,
+            remote_filename_fmt = remote_filename_fmt,
             file_mandatory = file_mandatory,
         )
 
