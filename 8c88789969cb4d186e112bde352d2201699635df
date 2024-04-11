@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9ad2b70_57d6608e",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-11T19:08:57Z",
+      "side": 1,
+      "message": "nit: Now that the script get more and more complicated, both `bool(module_bazel_content) \u003d\u003d True` and `bool(module_bazel_content) \u003d\u003d False` is worth some INFO/DEBUG logs\n\ne.g. `Nothing to update in {module_bazel}`, `Updating {module_bazel}`",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d18bbc0_393d6c31",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-11T19:08:57Z",
+      "side": 1,
+      "message": "This is worth a comment to describe why we need to do this",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45c0ef00_c464e5d5",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-11T19:08:57Z",
+      "side": 1,
+      "message": "delete?\n\nwe don\u0027t care if build_id is set or not. It is possible that url_fmt doesn\u0027t need build_id anchor.",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "042a228c_323dfef8",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-11T19:08:57Z",
+      "side": 1,
+      "message": "nit: Now that the script get more and more complicated, both `bool(self.prebuilts_dir) \u003d\u003d True` and `bool(self.prebuilts_dir) \u003d\u003d False` is worth some INFO/DEBUG logs\n\nE.g. `Skip downloading prebuilts because --prebuilts_dir is not set`, `Populating prebuilts in {prebuilts_dir}`",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb913d18_646ef374",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-11T19:08:57Z",
+      "side": 1,
+      "message": "delete?",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
