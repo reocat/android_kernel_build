@@ -55,6 +55,16 @@ _tag_class = tag_class(
                     * `remote_filename_fmt`: remote file name format string, with the following anchors:
                         * {build_number}
                         * {target}
+
+                This may not be set simultaneously with `download_configs_file`.
+            """,
+        ),
+        "download_configs_file": attr.string(
+            doc = """Path to a file containing `download_configs`.
+
+                If relative, it is interpreted against the workspace root.
+
+                This may not be set simultaneously with `download_configs`.
             """,
         ),
         "target": attr.string(
@@ -84,6 +94,7 @@ def _declare_repos(module_ctx, tag_name):
                 local_artifact_path = module_tag.local_artifact_path,
                 auto_download_config = module_tag.auto_download_config,
                 download_configs = module_tag.download_configs,
+                download_configs_file = module_tag.download_configs_file,
                 mandatory = module_tag.mandatory,
                 target = module_tag.target,
             )
