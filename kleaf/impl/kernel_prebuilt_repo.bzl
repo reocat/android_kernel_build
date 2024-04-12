@@ -68,13 +68,38 @@ def _get_build_number(repository_ctx):
         build_number = repository_ctx.attr.build_number
     return build_number
 
-def _infer_download_configs(target):
-    """Returns inferred `download_config` and `mandatory` from target."""
-    chosen_mapping = CI_TARGET_MAPPING.get(target)
-    if not chosen_mapping:
-        fail("auto_download_config with {} is not supported yet.".format(target))
+def _get_download_configs(repository_ctx):
+    bazel_target_name = repository_ctx.attr.target
 
-    return chosen_mapping["download_configs"]
+    list_attrs_set = [
+        bool(repository_ctx.attr.download_configs),
+        bool(repository_ctx.attr.download_configs_file),
+        repository_ctx.attr.auto_download_config,
+    ]
+    num_attrs_set = len([attr_set for attr_set in list_attrs_set if attr_set])
+
+    if num_attrs_set > 1:
+        fail("{}: At most one of auto_download_config, download_configs, download_configs_file may be set".format(
+            repository_ctx.name,
+        ))
+
+    if repository_ctx.attr.download_configs:
+        return json.decode(repository_ctx.attr.download_configs)
+
+    if repository_ctx.attr.download_config_file:
+        path = repository_ctx.workspace_root.get_child(repository_ctx.attr.download_config_file)
+        return json.decode(repository_ctx.read(path))
+
+    if repository_ctx.attr.auto_download_config:
+        chosen_mapping = CI_TARGET_MAPPING.get(bazel_target_name)
+        if not chosen_mapping:
+            fail("auto_download_config with {} is not supported yet.".format(bazel_target_name))
+
+        return chosen_mapping["download_configs"]
+
+    fail("{}: one of download_configs or download_configs_file must be set.".format(
+        repository_ctx.name,
+    ))
 
 def _get_remote_filename(repository_ctx, build_number, remote_filename_fmt):
     bazel_target_name = repository_ctx.attr.target
@@ -164,14 +189,7 @@ def _download_remote_file(repository_ctx, local_path, remote_filename_fmt, file_
     )
 
 def _kernel_prebuilt_repo_impl(repository_ctx):
-    bazel_target_name = repository_ctx.attr.target
-    download_configs = json.decode(repository_ctx.attr.download_configs)
-    if repository_ctx.attr.auto_download_config:
-        if download_configs:
-            fail("{}: download_configs should not be set when auto_download_config is True".format(
-                repository_ctx.attr.name,
-            ))
-        download_configs = _infer_download_configs(bazel_target_name)
+    download_configs = _get_download_configs(repository_ctx)
 
     futures = {}
     for local_filename, config in download_configs.items():
@@ -308,6 +326,16 @@ kernel_prebuilt_repo = repository_rule(
                     * `remote_filename_fmt`: remote file name format string, with the following anchors:
                         * {build_number}
                         * {target}
+
+                This may not be set simultaneously with `download_configs_file`.
+            """,
+        ),
+        "download_configs_file": attr.string(
+            doc = """Path to a file containing `download_configs`.
+
+                If relative, it is interpreted against the workspace root.
+
+                This may not be set simultaneously with `download_configs`.
             """,
         ),
         "target": attr.string(doc = "Name of target on the download location, e.g. `kernel_aarch64`"),
