@@ -1,6 +1,6 @@
 load("@bazel_skylib//rules:build_test.bzl", "build_test")
-load("//build/kernel/kleaf/impl:android_filegroup.bzl", "android_filegroup")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "hermetic_genrule")
+load("//build/kernel/kleaf/impl:android_filegroup.bzl", "android_filegroup")
 
 _LINUX_X86_64 = [
     "@platforms//os:linux",
@@ -23,12 +23,12 @@ cc_library(
 )
 
 cc_binary(
-    name = "mybin_full_static_linux_x86_64",
+    name = "mybin_fully_static_linux_x86_64",
     srcs = [
         "bin.c",
         "lib.h",
     ],
-    features = ["full_static_link"],
+    features = ["fully_static_link"],
     linkstatic = True,
     target_compatible_with = _LINUX_X86_64,
     deps = [":mylib_linux_x86_64"],
@@ -75,14 +75,14 @@ hermetic_genrule(
     cmd = """
         $(location :hello_world_linux_x86_64) > $@
         $(location :mybin_dynamic_linux_x86_64) >> $@
-        $(location :mybin_full_static_linux_x86_64) >> $@
+        $(location :mybin_fully_static_linux_x86_64) >> $@
         $(location :mybin_static_linux_x86_64) >> $@
         $(location :openssl_client_linux_x86_64) >> $@
     """,
     tools = [
         ":hello_world_linux_x86_64",
         ":mybin_dynamic_linux_x86_64",
-        ":mybin_full_static_linux_x86_64",
+        ":mybin_fully_static_linux_x86_64",
         ":mybin_static_linux_x86_64",
         ":mylib_linux_x86_64",
         ":openssl_client_linux_x86_64",
@@ -120,7 +120,7 @@ cc_binary(
         "bin.c",
         "lib.h",
     ],
-    features = ["full_static_link"],
+    features = ["fully_static_link"],
     linkstatic = True,
     target_compatible_with = ["@platforms//os:android"],
     deps = [":mylib_android"],
