@@ -17,6 +17,7 @@
 """Configures the project layout to build DDK modules."""
 
 import argparse
+import json
 import logging
 import pathlib
 import shutil
@@ -39,6 +40,19 @@ local_path_override(
 )
 """
 
+_LOCAL_PREBUILTS_CONTENT_TEMPLATE = """\
+kernel_prebuilt_ext = use_extension(
+    "@kleaf//build/kernel/kleaf:kernel_prebuilt_ext.bzl",
+    "kernel_prebuilt_ext",
+)
+kernel_prebuilt_ext.declare_kernel_prebuilts(
+    name = "gki_prebuilts",
+    download_configs = {download_configs},
+    local_artifact_path = "{prebuilts_dir}",
+)
+use_repo(kernel_prebuilt_ext, "gki_prebuilts")
+"""
+
 
 class KleafProjectSetterError(RuntimeError):
     pass
@@ -50,18 +64,17 @@ class KleafProjectSetter:
     def __init__(self, cmd_args: argparse.Namespace):
         self.ddk_workspace: pathlib.Path | None = cmd_args.ddk_workspace
         self.kleaf_repo_dir: pathlib.Path | None = cmd_args.kleaf_repo_dir
+        self.prebuilts_dir: pathlib.Path | None = cmd_args.prebuilts_dir
 
     def _symlink_tools_bazel(self):
         if not self.ddk_workspace or not self.kleaf_repo_dir:
             return
-        # TODO: b/328770706 -- Error handling.
         # Calculate the paths.
         tools_bazel = self.ddk_workspace / _TOOLS_BAZEL
         kleaf_tools_bazel = self.kleaf_repo_dir / _TOOLS_BAZEL
-        # Prepare the location and clean up if necessary
+        # Prepare the location and clean up if necessary.
         tools_bazel.parent.mkdir(parents=True, exist_ok=True)
         tools_bazel.unlink(missing_ok=True)
-
         tools_bazel.symlink_to(kleaf_tools_bazel)
 
     @staticmethod
@@ -94,16 +107,43 @@ class KleafProjectSetter:
                 output_file.write(_FILE_MARKER_END)
             shutil.move(output_file.name, path)
 
+    def _try_rel_workspace(self, path: pathlib.Path):
+        """Tries to convert |path| to be relative to ddk_workspace."""
+        try:
+            return path.resolve().relative_to(self.ddk_workspace)
+        except ValueError:
+            return path
+
+    def _read_download_configs(self) -> str:
+        download_configs = (
+            self.ddk_workspace / self.prebuilts_dir / "download_configs.json"
+        )
+        with open(download_configs, "r", encoding="utf-8") as config:
+            return repr(json.dumps(json.load(config), separators=(",", ": ")))
+
     def _generate_module_bazel(self):
-        if not self.ddk_workspace or not self.kleaf_repo_dir:
+        """Configures the dependencies for the DDK workspace."""
+        if not self.ddk_workspace:
             return
         module_bazel = self.ddk_workspace / _MODULE_BAZEL_FILE
-        self._update_file(
-            module_bazel,
-            _KLEAF_DEPENDENCY_TEMPLATE.format(
-                kleaf_repo_dir=self.kleaf_repo_dir
-            ),
-        )
+        module_bazel_content = ""
+        if self.kleaf_repo_dir:
+            module_bazel_content += _KLEAF_DEPENDENCY_TEMPLATE.format(
+                kleaf_repo_dir=self.kleaf_repo_dir,
+            )
+        if self.prebuilts_dir:
+            module_bazel_content += "\n"
+            module_bazel_content += _LOCAL_PREBUILTS_CONTENT_TEMPLATE.format(
+                # TODO: b/328770706 - Use download_configs_file when available.
+                download_configs=self._read_download_configs(),
+                # The prebuilts directory must be relative to the DDK workspace.
+                prebuilts_dir=self._try_rel_workspace(self.prebuilts_dir),
+            )
+        if module_bazel_content:
+            logging.info("Updating %s", module_bazel)
+            self._update_file(module_bazel, module_bazel_content)
+        else:
+            logging.info("Nothing to update in %s", module_bazel)
 
     def _generate_bazelrc(self):
         if not self.ddk_workspace or not self.kleaf_repo_dir:
@@ -132,6 +172,17 @@ if __name__ == "__main__":
         description=__doc__, formatter_class=argparse.RawTextHelpFormatter
     )
     parser.add_argument(
+        "--build_id",
+        type=str,
+        help="the build id to download the build for, e.g. 6148204",
+    )
+    parser.add_argument(
+        "--build_target",
+        type=str,
+        help='the build target to download, e.g. "kernel_aarch64"',
+        default="kernel_aarch64",
+    )
+    parser.add_argument(
         "--ddk_workspace",
         help="Absolute path to DDK workspace root.",
         type=pathlib.Path,
@@ -144,20 +195,15 @@ if __name__ == "__main__":
         default=None,
     )
     parser.add_argument(
-        "--url_fmt",
-        help="URL format endpoint for CI downloads.",
+        "--prebuilts_dir",
+        help="Path to local GKI prebuilts. Path must be relative to workspace.",
+        type=pathlib.Path,
         default=None,
     )
     parser.add_argument(
-        "--build_id",
-        type=str,
-        help="the build id to download the build for, e.g. 6148204",
-    )
-    parser.add_argument(
-        "--build_target",
-        type=str,
-        help='the build target to download, e.g. "kernel_aarch64"',
-        default="kernel_aarch64",
+        "--url_fmt",
+        help="URL format endpoint for CI downloads.",
+        default=None,
     )
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
