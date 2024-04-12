@@ -39,17 +39,29 @@ local_path_override(
 )
 """
 
-_LOCAL_PREBUILTS_CONTENT_TEMPLATE = """\
+_PREBUILTS_EXTENSION_TEMPLATE = """\
 kernel_prebuilt_ext = use_extension(
     "@kleaf//build/kernel/kleaf:kernel_prebuilt_ext.bzl",
     "kernel_prebuilt_ext",
 )
+{prebuilts_declaration}
+use_repo(kernel_prebuilt_ext, "gki_prebuilts")
+"""
+
+_LOCAL_PREBUILTS_DECL_TEMPLATE = """\
 kernel_prebuilt_ext.declare_kernel_prebuilts(
     name = "gki_prebuilts",
     auto_download_config = True,
     local_artifact_path = "{prebuilts_dir}",
 )
-use_repo(kernel_prebuilt_ext, "gki_prebuilts")
+"""
+
+_DOWNLOAD_PREBUILTS_DECL_TEMPLATE = """\
+kleaf_ext.declare_gki_prebuilts(
+    name = "gki_prebuilts",
+    target = "{build_target}",
+    build_number = "{build_number}"
+)
 """
 
 
@@ -125,10 +137,28 @@ class KleafProjectSetter:
             )
         if self.prebuilts_dir:
             module_bazel_content += "\n"
-            module_bazel_content += _LOCAL_PREBUILTS_CONTENT_TEMPLATE.format(
-                # The prebuilts directory must be relative to the DDK workspace.
-                prebuilts_dir=self._try_rel_workspace(self.prebuilts_dir),
+            module_bazel_content += _PREBUILTS_EXTENSION_TEMPLATE.format(
+                prebuilts_declaration=_LOCAL_PREBUILTS_DECL_TEMPLATE.format(
+                    # The prebuilts directory must be relative to the DDK workspace.
+                    prebuilts_dir=self._try_rel_workspace(self.prebuilts_dir),
+                )
             )
+        elif self.use_prebuilts:
+            if not self.build_id or not self.build_target:
+                logging.warning(
+                    "build_id or build_target missing, skipping prebuilts"
+                    " setup."
+                )
+                return
+
+            module_bazel_content += "\n"
+            module_bazel_content += _PREBUILTS_EXTENSION_TEMPLATE.format(
+                prebuilts_declaration=_DOWNLOAD_PREBUILTS_DECL_TEMPLATE.format(
+                    build_id=self.build_id,
+                    build_target=self.build_target,
+                )
+            )
+
         if module_bazel_content:
             logging.info("Updating %s", module_bazel)
             self._update_file(module_bazel, module_bazel_content)
@@ -154,6 +184,7 @@ class KleafProjectSetter:
 
     def run(self):
         self._handle_local_kleaf()
+        self._handle_prebuilts()
 
 
 if __name__ == "__main__":
@@ -192,6 +223,11 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--url_fmt",
+        help="URL format endpoint for CI downloads.",
+        default=None,
+    )
+    parser.add_argument(
+        "--use_prebuilts",
         help="URL format endpoint for CI downloads.",
         default=None,
     )
