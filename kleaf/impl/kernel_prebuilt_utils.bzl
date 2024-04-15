@@ -27,7 +27,9 @@ load(
     "UNSTRIPPED_MODULES_ARCHIVE",
 )
 
-visibility("//build/kernel/kleaf/...")
+# This was originally restricted to //build/kernel/kleaf/
+#   but it was relaxed as it is needed for DDK.
+visibility("//build/kernel/...")
 
 # Key: Bazel target name in common_kernels.bzl
 # repo_name: name of download_artifacts_repo in bazel.WORKSPACE

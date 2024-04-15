@@ -13,9 +13,11 @@
 # limitations under the License.
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("@kernel_toolchain_info//:dict.bzl", "VARS")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "hermetic_genrule", "hermetic_tools")
 load("//build/kernel/kleaf/impl:bison_wrapper.bzl", "bison_wrapper")
+load("//build/kernel/kleaf/impl:kernel_prebuilt_utils.bzl", "CI_TARGET_MAPPING")
 
 filegroup(
     name = "sysroot",
@@ -464,8 +466,18 @@ py_binary(
 py_binary(
     name = "init_ddk",
     srcs = ["init/init_ddk.py"],
+    data = [":download_configs"],
     main = "init/init_ddk.py",
     visibility = ["//visibility:private"],
+)
+
+# Make this arch agnostic.
+write_file(
+    name = "download_configs",
+    out = "download_configs.json",
+    content = [
+        json.encode(CI_TARGET_MAPPING["kernel_aarch64"]["download_configs"]),
+    ],
 )
 
 py_test(
