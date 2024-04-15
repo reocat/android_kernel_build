@@ -372,7 +372,6 @@ def _kernel_filegroup_impl(ctx):
 
     abi_info = KernelBuildAbiInfo(
         src_protected_modules_list = protected_modules_list,
-        module_outs_file = ctx.file.module_outs_file,
         modules_staging_archive = utils.find_file(MODULES_STAGING_ARCHIVE, all_deps, what = ctx.label),
     )
     in_tree_modules_info = KernelBuildInTreeModulesInfo(module_outs_file = ctx.file.module_outs_file)
