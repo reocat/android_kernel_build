@@ -84,7 +84,6 @@ def _declare_repos(module_ctx, tag_name):
                 local_artifact_path = module_tag.local_artifact_path,
                 auto_download_config = module_tag.auto_download_config,
                 download_configs = module_tag.download_configs,
-                mandatory = module_tag.mandatory,
                 target = module_tag.target,
             )
 
