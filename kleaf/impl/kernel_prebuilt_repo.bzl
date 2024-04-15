@@ -76,7 +76,20 @@ def _infer_download_configs(target):
 
     return chosen_mapping["download_configs"]
 
-def _get_remote_filename(repository_ctx, build_number, remote_filename_fmt):
+def _get_remote_filename(
+        repository_ctx,
+        build_number,
+        remote_filename_fmt,
+        fallback_local_filename = None):
+    """Returns remote_filename by using the format remote_filename_fmt with build_number.
+
+    Args:
+        repository_ctx: repository_ctx
+        build_number: build number
+        remote_filename_fmt: the format string
+        fallback_local_filename: If set, and build number is not set but used,
+            fallback to the given local_filename for the local prebuilt case.
+    """
     bazel_target_name = repository_ctx.attr.target
     remote_filename = remote_filename_fmt.format(
         build_number = build_number,
@@ -87,16 +100,21 @@ def _get_remote_filename(repository_ctx, build_number, remote_filename_fmt):
         target = bazel_target_name,
     )
     if not build_number and remote_filename != remote_filename_with_fake_build_number:
-        return struct(wait = lambda: struct(
-            fail_later = repr("ERROR: No build_number specified for @@{}".format(repository_ctx.attr.name)),
-        ))
+        if fallback_local_filename:
+            return fallback_local_filename
+        fail("ERROR: No build_number specified for @@{}".format(repository_ctx.attr.name))
     return remote_filename
+
+def _get_local_path(repository_ctx, local_filename):
+    """Returns a path object where we store the file named local_filename"""
+    return repository_ctx.path(_join(local_filename, _basename(local_filename)))
 
 _true_future = struct(wait = lambda: struct(success = True))
 _false_future = struct(wait = lambda: struct(success = False))
 
-def _symlink_local_file(repository_ctx, local_path, remote_filename_fmt, file_mandatory):
-    """Creates symlink in local_path that points to remote_filename.
+# buildifier: disable=unused-variable
+def _symlink_local_file(repository_ctx, local_filename, remote_filename_fmt, file_mandatory):
+    """Creates symlink in local_filename that points to remote_filename.
 
     Returns:
         a future object, with `wait()` function that returns a struct containing:
@@ -108,10 +126,9 @@ def _symlink_local_file(repository_ctx, local_path, remote_filename_fmt, file_ma
           be postponed to the analysis phase when the target is requested.
         """
 
-    build_number = _get_build_number(repository_ctx)
-    remote_filename = _get_remote_filename(repository_ctx, build_number, remote_filename_fmt)
+    local_path = _get_local_path(repository_ctx, local_filename)
 
-    artifact_path = repository_ctx.workspace_root.get_child(repository_ctx.attr.local_artifact_path).get_child(remote_filename)
+    artifact_path = repository_ctx.workspace_root.get_child(repository_ctx.attr.local_artifact_path).get_child(local_filename)
     if artifact_path.exists:
         repository_ctx.symlink(artifact_path, local_path)
         return _true_future
@@ -119,8 +136,8 @@ def _symlink_local_file(repository_ctx, local_path, remote_filename_fmt, file_ma
         fail("{}: {} does not exist".format(repository_ctx.attr.name, artifact_path))
     return _false_future
 
-def _download_remote_file(repository_ctx, local_path, remote_filename_fmt, file_mandatory):
-    """Download `remote_filename` to `local_path`.
+def _download_remote_file(repository_ctx, local_filename, remote_filename_fmt, file_mandatory):
+    """Download `remote_filename` to `local_filename`.
 
     Returns:
         a future object, with `wait()` function that returns a struct containing:
@@ -132,6 +149,8 @@ def _download_remote_file(repository_ctx, local_path, remote_filename_fmt, file_
         - Or a string, `fail_later`, an error message for an error that should
           be postponed to the analysis phase when the target is requested.
         """
+
+    local_path = _get_local_path(repository_ctx, local_filename)
     build_number = _get_build_number(repository_ctx)
     remote_filename = _get_remote_filename(repository_ctx, build_number, remote_filename_fmt)
 
@@ -176,8 +195,6 @@ def _kernel_prebuilt_repo_impl(repository_ctx):
 
     futures = {}
     for local_filename, config in download_configs.items():
-        local_path = repository_ctx.path(_join(local_filename, _basename(local_filename)))
-
         if repository_ctx.attr.local_artifact_path:
             download = _symlink_local_file
         else:
@@ -185,7 +202,7 @@ def _kernel_prebuilt_repo_impl(repository_ctx):
 
         futures[local_filename] = download(
             repository_ctx = repository_ctx,
-            local_path = local_path,
+            local_filename = local_filename,
             remote_filename_fmt = config["remote_filename_fmt"],
             file_mandatory = config["mandatory"],
         )
