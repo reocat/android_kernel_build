@@ -165,13 +165,14 @@ def _download_remote_file(repository_ctx, local_path, remote_filename_fmt, file_
 
 def _kernel_prebuilt_repo_impl(repository_ctx):
     bazel_target_name = repository_ctx.attr.target
-    download_configs = json.decode(repository_ctx.attr.download_configs)
     if repository_ctx.attr.auto_download_config:
-        if download_configs:
+        if repository_ctx.attr.download_configs:
             fail("{}: download_configs should not be set when auto_download_config is True".format(
                 repository_ctx.attr.name,
             ))
         download_configs = _infer_download_configs(bazel_target_name)
+    else:
+        download_configs = json.decode(repository_ctx.attr.download_configs)
 
     futures = {}
     for local_filename, config in download_configs.items():
