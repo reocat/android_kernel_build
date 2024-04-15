@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8455b9a_2286f9e6",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-15T21:32:52Z",
+      "side": 1,
+      "message": "nit: consider using encode_indent for better readability on build bots",
+      "range": {
+        "startLine": 479,
+        "startChar": 13,
+        "endLine": 479,
+        "endChar": 19
+      },
+      "revId": "4cd252645758b3b49b06bd93dd1ab29a0fea79a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
