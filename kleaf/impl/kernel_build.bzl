@@ -1889,7 +1889,6 @@ def _create_infos(
     kernel_build_abi_info = KernelBuildAbiInfo(
         trim_nonlisted_kmi = trim_nonlisted_kmi_utils.get_value(ctx),
         combined_abi_symbollist = combined_abi_symbollist,
-        module_outs_file = all_module_names_file,
         modules_staging_archive = modules_staging_archive,
         base_modules_staging_archive = base_kernel_utils.get_base_modules_staging_archive(ctx),
         src_protected_exports_list = ctx.file.src_protected_exports_list,

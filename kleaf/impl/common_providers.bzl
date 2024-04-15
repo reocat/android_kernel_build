@@ -203,7 +203,6 @@ KernelBuildAbiInfo = provider(
     fields = {
         "trim_nonlisted_kmi": "Value of `trim_nonlisted_kmi` in [`kernel_build()`](kernel.md#kernel_build).",
         "combined_abi_symbollist": "The **combined** `abi_symbollist` file from the `_kmi_symbol_list` rule, consist of the source `kmi_symbol_list` and `additional_kmi_symbol_lists`.",
-        "module_outs_file": "A file containing `[kernel_build.module_outs]`(kernel.md#kernel_build-module_outs) and `[kernel_build.module_implicit_outs]`(kernel.md#kernel_build-module_implicit_outs).",
         "modules_staging_archive": "Archive containing staging kernel modules. ",
         "base_modules_staging_archive": "Archive containing staging kernel modules of the base kernel",
         "src_kmi_symbol_list": """Source file for `kmi_symbol_list` that points to the symbol list
@@ -245,7 +244,6 @@ KernelBuildFilegroupDeclInfo = provider(
         "filegroup_srcs": """[depset](https://bazel.build/extending/depsets) of
             [`File`](https://bazel.build/rules/lib/File)s that the
             `kernel_filegroup` should return as default outputs.""",
-        # TODO(b/291918087): This may be embedded in the generated BUILD file directly
         "module_outs_file": """A file containing
             `[kernel_build.module_outs]`(kernel.md#kernel_build-module_outs) and
             `[kernel_build.module_implicit_outs]`(kernel.md#kernel_build-module_implicit_outs).""",
