@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a637733_a6a6d090",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-16T17:30:08Z",
+      "side": 1,
+      "message": "Can you call .resolve() when the directory does not exist? (i.e. is it `realpath` or `readlink -e`?)\n\nAlso why do you need to .resolve() before .mkdir()?",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 29
+      },
+      "revId": "3dbfaeb6f57396610e1fdcb4054de7a9b79bd7c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40362ddf_6291b47c",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-16T17:30:08Z",
+      "side": 1,
+      "message": "unrelated to this change, but where do we enforce \"absolute path\"? Perhaps the type should be a \"_require_absolute_path\" function",
+      "revId": "3dbfaeb6f57396610e1fdcb4054de7a9b79bd7c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
