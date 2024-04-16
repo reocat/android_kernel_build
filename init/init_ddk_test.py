@@ -14,6 +14,7 @@
 
 """Tests for init_ddk.py"""
 
+import json
 import logging
 import pathlib
 import tempfile
@@ -217,6 +218,32 @@ class KleafProjectSetterTest(parameterized.TestCase):
             )
             self.assertTrue(out_file.exists())
             self.assertEqual(out_file.read_text(), "Hello World!")
+
+    def test_non_mandatory_doesnt_fail(self):
+        """Tests that optional files don't produce errors."""
+        with tempfile.TemporaryDirectory() as tmp:
+            ddk_workspace = pathlib.Path(tmp) / "ddk_workspace"
+            prebuilts_dir = ddk_workspace / "prebuilts_dir"
+            download_configs = ddk_workspace / "download_configs.json"
+            download_configs.parent.mkdir(parents=True, exist_ok=True)
+            download_configs.write_text(json.dumps({
+                "non-existent-file": {
+                    "target_suffix": "non-existent-file",
+                    "mandatory": False,
+                    "remote_filename_fmt": "non-existent-file",
+                }
+            }))
+            with open(download_configs, "r", encoding="utf-8"):
+                url_fmt = f"file://{str(download_configs.parent)}/{{filename}}"
+                init_ddk.KleafProjectSetter(
+                    build_id="12345",
+                    build_target=None,
+                    ddk_workspace=ddk_workspace,
+                    kleaf_repo=None,
+                    local=None,
+                    prebuilts_dir=prebuilts_dir,
+                    url_fmt=url_fmt,
+                ).run()
 
 
 # This could be run as: tools/bazel test //build/kernel:init_ddk_test --test_output=all
