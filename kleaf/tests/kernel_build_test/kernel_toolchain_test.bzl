@@ -63,11 +63,6 @@ def kernel_toolchain_test(name):
         )
 
         write_file(
-            name = filegroup_name + "_module_outs_file",
-            out = filegroup_name + "_module_outs_file/my_modules",
-        )
-
-        write_file(
             name = filegroup_name + "_gki_info",
             out = filegroup_name + "_gki_info/gki-info.txt",
             content = [
@@ -100,7 +95,6 @@ def kernel_toolchain_test(name):
                 filegroup_name + "_unstripped_modules",
                 filegroup_name + "_staging_archive",
             ],
-            module_outs_file = filegroup_name + "_module_outs_file",
             gki_artifacts = filegroup_name + "_gki_info",
             target_platform = filegroup_name + "_target_platform",
             exec_platform = filegroup_name + "_exec_platform",

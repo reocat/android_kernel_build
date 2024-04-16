@@ -129,7 +129,6 @@ def order_test(name):
             name + "_base_modules_staging_archive",
         ],
         kernel_uapi_headers = name + "_base_uapi_headers",
-        module_outs_file = name + "_module_outs_file",
         gki_artifacts = name + "_gki_info",
         target_platform = Label("//build/kernel/kleaf/impl:android_arm64"),
         exec_platform = Label("//build/kernel/kleaf/impl:linux_x86_64"),
