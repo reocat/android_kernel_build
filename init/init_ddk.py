@@ -164,13 +164,39 @@ class KleafProjectSetter:
             """),
         )
 
-    def _handle_local_kleaf(self):
+    @staticmethod
+    def _create_directory(path: pathlib.Path):
+        if not path.exists():
+            logging.info("Creating directory %s.", path)
+        path.mkdir(parents=True, exist_ok=True)
+
+    def _handle_ddk_workspace(self):
+        if not self.ddk_workspace:
+            return
+        self._create_directory(self.ddk_workspace)
+
+    def _handle_kleaf_repo(self):
+        if not self.kleaf_repo_dir:
+            return
+        self._create_directory(self.kleaf_repo_dir)
+        # TODO: b/328770706 - According to the needs, syncing git repos logic should go here.
+
+    def _handle_prebuilts(self):
+        if not self.ddk_workspace or not self.prebuilts_dir:
+            return
+        self._create_directory(self.ddk_workspace / self.prebuilts_dir)
+        # TODO: b/328770706 - When build_id is given dowloand artifacts here.
+
+    def _run(self):
         self._symlink_tools_bazel()
         self._generate_module_bazel()
         self._generate_bazelrc()
 
     def run(self):
-        self._handle_local_kleaf()
+        self._handle_ddk_workspace()
+        self._handle_kleaf_repo()
+        self._handle_prebuilts()
+        self._run()
 
 
 if __name__ == "__main__":
