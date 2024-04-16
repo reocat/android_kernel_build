@@ -72,7 +72,6 @@ KernelToolchainInfo = provider(
     doc = "Provides a single toolchain version.",
     fields = {
         "toolchain_version": "The toolchain version",
-        "toolchain_version_file": "A file containing the toolchain version",
     },
 )
 
@@ -249,8 +248,7 @@ KernelBuildFilegroupDeclInfo = provider(
             `[kernel_build.module_outs]`(kernel.md#kernel_build-module_outs) and
             `[kernel_build.module_implicit_outs]`(kernel.md#kernel_build-module_implicit_outs).""",
         "modules_staging_archive": "Archive containing staging kernel modules. ",
-        # TODO(b/291918087): This may be embedded in the generated BUILD file directly
-        "toolchain_version_file": "A file containing the toolchain version",
+        "toolchain_version": "The toolchain version",
         "kernel_release": "The file `kernel.release`.",
         "modules_prepare_archive": """Archive containing the file built by
             [`modules_prepare`](#modules_prepare)""",

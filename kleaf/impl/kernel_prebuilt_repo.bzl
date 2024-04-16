@@ -283,9 +283,12 @@ workspace({})
     repository_ctx.file(repository_ctx.path(_join(bazel_target_name, "BUILD.bazel")), """\
 load({kernel_bzl_repr}, "kernel_filegroup")
 
+_CLANG_KLEAF_PKG = {clang_kleaf_pkg}
+
 {template_content}
 """.format(
         kernel_bzl_repr = repr(str(Label("//build/kernel/kleaf:kernel.bzl"))),
+        clang_kleaf_pkg = repr(str(Label("//prebuilts/clang/host/linux-x86/kleaf"))),
         template_content = template_content,
     ))
 

@@ -25,7 +25,6 @@ load("//build/kernel/kleaf/artifact_tests:kernel_test.bzl", "initramfs_modules_o
 load(
     "//build/kernel/kleaf/impl:constants.bzl",
     "MODULE_OUTS_FILE_OUTPUT_GROUP",
-    "TOOLCHAIN_VERSION_FILENAME",
 )
 load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts", "gki_artifacts_prebuilts")
 load("//build/kernel/kleaf/impl:kernel_filegroup_declaration.bzl", "kernel_filegroup_declaration")
@@ -799,13 +798,6 @@ def _define_common_kernel(
             srcs = [],
         )
 
-    # toolchain_version from <name>
-    native.filegroup(
-        name = name + "_" + TOOLCHAIN_VERSION_FILENAME,
-        srcs = [name],
-        output_group = TOOLCHAIN_VERSION_FILENAME,
-    )
-
     # modules_staging_archive from <name>
     native.filegroup(
         name = name + "_modules_staging_archive",
@@ -828,7 +820,6 @@ def _define_common_kernel(
     # - UAPI headers, because device-specific external kernel modules may install different
     #   headers.
     # - DDK; see _ddk_artifacts below.
-    # - toolchain_version: avoid conflict with device kernel's kernel_build() in dist dir.
     native.filegroup(
         name = name + "_additional_artifacts",
         srcs = [
@@ -881,7 +872,6 @@ def _define_common_kernel(
         name + "_ddk_artifacts",
         name + "_modules",
         name + "_modules_install",
-        name + "_" + TOOLCHAIN_VERSION_FILENAME,
         # BUILD_GKI_CERTIFICATION_TOOLS=1 for all kernel_build defined here.
         Label("//build/kernel:gki_certification_tools"),
         "build.config.constants",

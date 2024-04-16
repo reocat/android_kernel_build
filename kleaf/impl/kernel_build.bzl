@@ -57,7 +57,6 @@ load(
     "MODULE_ENV_ARCHIVE_SUFFIX",
     "MODULE_OUTS_FILE_OUTPUT_GROUP",
     "MODULE_OUTS_FILE_SUFFIX",
-    "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
 load(":file.bzl", "file")
@@ -1424,8 +1423,7 @@ def _build_main_action(
         kbuild_mixed_tree_ret,
         all_output_names,
         all_module_names_file,
-        all_module_basenames_file,
-        check_toolchain_outs):
+        all_module_basenames_file):
     """Adds the main action for the `kernel_build`."""
     base_kernel_all_module_names_file = _get_base_kernel_all_module_names_file(ctx)
 
@@ -1593,7 +1591,7 @@ def _build_main_action(
     transitive_inputs.append(
         ctx.attr.config[KernelSerializedEnvInfo].inputs,
     )
-    inputs = [] + check_toolchain_outs
+    inputs = []
     inputs += kbuild_mixed_tree_ret.outputs
     for step in steps:
         inputs += step.inputs
@@ -1745,7 +1743,6 @@ def _create_infos(
         all_module_names_file,
         main_action_ret,
         modules_staging_archive,
-        toolchain_version_out,
         kmi_strict_mode_out,
         kmi_symbol_list_violations_check_out,
         module_scripts_archive,
@@ -1758,7 +1755,6 @@ def _create_infos(
         all_module_names_file: A file containing all module names
         main_action_ret: from `_build_main_action`
         modules_staging_archive: from `_repack_modules_staging_archive`
-        toolchain_version_out: from `_kernel_build_dump_toolchain_version`
         kmi_strict_mode_out: from `_kmi_symbol_list_strict_mode`
         kmi_symbol_list_violations_check_out: from `_kmi_symbol_list_violations_check`
         module_srcs: from `kernel_utils.filter_module_srcs`
@@ -1930,7 +1926,6 @@ def _create_infos(
     #   These files should already be in kernel_filegroup_declaration.
     output_group_kwargs["modules_staging_archive"] = depset([modules_staging_archive])
     output_group_kwargs[MODULE_OUTS_FILE_OUTPUT_GROUP] = depset([all_module_names_file])
-    output_group_kwargs[TOOLCHAIN_VERSION_FILENAME] = depset([toolchain_version_out])
     output_group_info = OutputGroupInfo(**output_group_kwargs)
 
     kbuild_mixed_tree_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
@@ -1955,7 +1950,7 @@ def _create_infos(
                                 all_output_files["module_outs"].values()),
         module_outs_file = all_module_names_file,
         modules_staging_archive = modules_staging_archive,
-        toolchain_version_file = toolchain_version_out,
+        toolchain_version = ctx.attr.config[KernelToolchainInfo].toolchain_version,
         kernel_release = all_output_files["internal_outs"]["include/config/kernel.release"],
         modules_prepare_archive = modules_prepare_archive,
         collect_unstripped_modules = ctx.attr.collect_unstripped_modules,
@@ -2009,7 +2004,7 @@ def _create_infos(
 
 def _kernel_build_impl(ctx):
     kbuild_mixed_tree_ret = _create_kbuild_mixed_tree(ctx)
-    check_toolchain_outs = _kernel_build_check_toolchain(ctx)
+    _kernel_build_check_toolchain(ctx)
 
     all_output_names = _split_out_attrs(ctx)
 
@@ -2033,7 +2028,6 @@ def _kernel_build_impl(ctx):
         all_output_names = all_output_names,
         all_module_names_file = all_module_names_file,
         all_module_basenames_file = all_module_basenames_file,
-        check_toolchain_outs = check_toolchain_outs,
     )
 
     modules_staging_archive = _repack_modules_staging_archive(
@@ -2041,8 +2035,6 @@ def _kernel_build_impl(ctx):
         modules_staging_archive_self = main_action_ret.modules_staging_archive_self,
         all_module_basenames_file = all_module_basenames_file,
     )
-
-    toolchain_version_out = _kernel_build_dump_toolchain_version(ctx)
 
     kmi_strict_mode_out = _kmi_symbol_list_strict_mode(
         ctx,
@@ -2065,7 +2057,6 @@ def _kernel_build_impl(ctx):
         all_module_names_file = all_module_names_file,
         main_action_ret = main_action_ret,
         modules_staging_archive = modules_staging_archive,
-        toolchain_version_out = toolchain_version_out,
         kmi_strict_mode_out = kmi_strict_mode_out,
         kmi_symbol_list_violations_check_out = kmi_symbol_list_violations_check_out,
         module_scripts_archive = module_scripts_archive,
@@ -2184,38 +2175,16 @@ _kernel_build = rule(
 )
 
 def _kernel_build_check_toolchain(ctx):
-    """Checks toolchain_version is the same as base_kernel.
-
-    Returns:
-        A list, which may or may not contain a [File](https://bazel.build/rules/lib/File) that
-        checks toolchain version at execution phase when it is built. If it is an empty list,
-        no checks need to be performed at execution phase.
-    """
-
-    hermetic_tools = hermetic_toolchain.get(ctx)
+    """Checks toolchain_version is the same as base_kernel at analysis phase."""
 
     base_kernel = base_kernel_utils.get_base_kernel(ctx)
     if not base_kernel:
-        return []
+        return
 
     this_toolchain = ctx.attr.config[KernelToolchainInfo].toolchain_version
-    base_toolchain = utils.getoptattr(base_kernel[KernelToolchainInfo], "toolchain_version")
-    base_toolchain_file = utils.getoptattr(base_kernel[KernelToolchainInfo], "toolchain_version_file")
+    base_toolchain = base_kernel[KernelToolchainInfo].toolchain_version
 
-    if base_toolchain == None and base_toolchain_file == None:
-        # buildifier: disable=print
-        print(("\nWARNING: {this_label}: No check is performed between the toolchain " +
-               "version of the base build ({base_kernel}) and the toolchain version of " +
-               "{this_name} ({this_toolchain}), because the toolchain version of {base_kernel} " +
-               "is unknown.").format(
-            this_label = ctx.label,
-            base_kernel = base_kernel.label,
-            this_name = ctx.label.name,
-            this_toolchain = this_toolchain,
-        ))
-        return []
-
-    if base_toolchain != None and this_toolchain != base_toolchain:
+    if this_toolchain != base_toolchain:
         fail("""{this_label}:
 
 ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
@@ -2232,55 +2201,6 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
             base_kernel = base_kernel.label,
             base_toolchain = base_toolchain,
         ))
-
-    if base_toolchain_file != None:
-        out = ctx.actions.declare_file("{}_toolchain_version/toolchain_version_checked".format(ctx.label.name))
-        base_toolchain = "$(cat {})".format(base_toolchain_file.path)
-        msg = """ERROR: toolchain_version is {this_toolchain} for {this_label}, but
-       toolchain_version is {base_toolchain} for {base_kernel} (base_kernel).
-       They must use the same toolchain_version.
-
-       Fix by setting toolchain_version of {this_label} to be {base_toolchain}.
-""".format(
-            this_label = ctx.label,
-            this_toolchain = this_toolchain,
-            base_kernel = base_kernel.label,
-            base_toolchain = base_toolchain,
-        )
-        command = hermetic_tools.setup + """
-                # Check toolchain_version against base kernel
-                  if ! diff <(cat {base_toolchain_file}) <(echo "{this_toolchain}") > /dev/null; then
-                    echo "{msg}" >&2
-                    exit 1
-                  fi
-                  touch {out}
-        """.format(
-            base_toolchain_file = base_toolchain_file.path,
-            this_toolchain = this_toolchain,
-            msg = msg,
-            out = out.path,
-        )
-
-        debug.print_scripts(ctx, command, what = "check_toolchain")
-        ctx.actions.run_shell(
-            mnemonic = "KernelBuildCheckToolchain",
-            inputs = [base_toolchain_file],
-            outputs = [out],
-            tools = hermetic_tools.deps,
-            command = command,
-            progress_message = "Checking toolchain version against base kernel {}".format(_progress_message_suffix(ctx)),
-        )
-        return [out]
-    return []
-
-def _kernel_build_dump_toolchain_version(ctx):
-    this_toolchain = ctx.attr.config[KernelToolchainInfo].toolchain_version
-    out = ctx.actions.declare_file("{}_toolchain_version/{}".format(ctx.attr.name, TOOLCHAIN_VERSION_FILENAME))
-    ctx.actions.write(
-        output = out,
-        content = this_toolchain + "\n",
-    )
-    return out
 
 def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
     """Run for `KMI_SYMBOL_LIST_STRICT_MODE`.
