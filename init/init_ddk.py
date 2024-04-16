@@ -83,7 +83,12 @@ class KleafProjectSetter:
         add_content: bool = False
         skip_line: bool = False
         update_written: bool = False
-        open_mode = "r" if path.exists() else "a+"
+        if path.exists():
+            open_mode = "r"
+            logging.info("Updating file %s.", path)
+        else:
+            open_mode = "a+"
+            logging.info("Creating file %s.", path)
         with (
             open(path, open_mode, encoding="utf-8") as input_file,
             tempfile.NamedTemporaryFile(mode="w", delete=False) as output_file,
@@ -147,7 +152,6 @@ class KleafProjectSetter:
                 ),
             )
         if module_bazel_content:
-            logging.info("Updating %s", module_bazel)
             self._update_file(module_bazel, module_bazel_content)
         else:
             logging.info("Nothing to update in %s", module_bazel)
