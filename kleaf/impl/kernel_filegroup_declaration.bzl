@@ -100,7 +100,7 @@ kernel_filegroup(
     kernel_uapi_headers = {uapi_headers_repr},
     collect_unstripped_modules = {collect_unstripped_modules_repr},
     strip_modules = {strip_modules_repr},
-    module_outs_file = {module_outs_repr},
+    all_module_names = {all_module_names_repr},
     kernel_release = {kernel_release_repr},
     protected_modules_list = {protected_modules_repr},
     ddk_module_defconfig_fragments = {ddk_module_defconfig_fragments_repr},
@@ -156,7 +156,12 @@ def _write_filegroup_decl_file(ctx, info, deps_files, kernel_uapi_headers, templ
     sub.add_joined("{uapi_headers_repr}", depset([kernel_uapi_headers]), **(one | extra))
     sub.add("{collect_unstripped_modules_repr}", repr(info.collect_unstripped_modules))
     sub.add("{strip_modules_repr}", repr(info.strip_modules))
-    sub.add_joined("{module_outs_repr}", depset([info.module_outs_file]), **(one | pkg))
+    sub.add_joined(
+        "{all_module_names_repr}",
+        depset(info.all_module_names),
+        map_each = repr,
+        **join
+    )
     sub.add_joined("{kernel_release_repr}", depset([info.kernel_release]), **(one | pkg))
     sub.add_joined(
         "{protected_modules_repr}",
@@ -227,7 +232,6 @@ def _create_archive(ctx, info, deps_files, kernel_uapi_headers, filegroup_decl_f
     ))
     direct_inputs = deps_files + [
         filegroup_decl_file,
-        info.module_outs_file,
         info.kernel_release,
         kernel_uapi_headers,
         info.config_out_dir,

@@ -24,7 +24,6 @@ load("//build/kernel/kleaf/artifact_tests:device_modules_test.bzl", "device_modu
 load("//build/kernel/kleaf/artifact_tests:kernel_test.bzl", "initramfs_modules_options_test")
 load(
     "//build/kernel/kleaf/impl:constants.bzl",
-    "MODULE_OUTS_FILE_OUTPUT_GROUP",
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts", "gki_artifacts_prebuilts")
@@ -979,13 +978,6 @@ def _define_prebuilts(**kwargs):
             name = name + "_downloaded",
             actual = name + "_files_downloaded",
             deprecation = deprecate_msg,
-        )
-
-        native.filegroup(
-            name = name + "_module_outs_file",
-            srcs = [":" + name],
-            output_group = MODULE_OUTS_FILE_OUTPUT_GROUP,
-            deprecation = not_available_msg,
         )
 
         # A kernel_filegroup that:
