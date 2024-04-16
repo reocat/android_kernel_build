@@ -22,10 +22,6 @@ load("@bazel_skylib//rules:write_file.bzl", "write_file")
 load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 load("//build/kernel/kleaf/artifact_tests:device_modules_test.bzl", "device_modules_test")
 load("//build/kernel/kleaf/artifact_tests:kernel_test.bzl", "initramfs_modules_options_test")
-load(
-    "//build/kernel/kleaf/impl:constants.bzl",
-    "MODULE_OUTS_FILE_OUTPUT_GROUP",
-)
 load("//build/kernel/kleaf/impl:gki_artifacts.bzl", "gki_artifacts", "gki_artifacts_prebuilts")
 load("//build/kernel/kleaf/impl:kernel_filegroup_declaration.bzl", "kernel_filegroup_declaration")
 load(
@@ -979,13 +975,6 @@ def _define_prebuilts(**kwargs):
             name = name + "_downloaded",
             actual = name + "_files_downloaded",
             deprecation = deprecate_msg,
-        )
-
-        native.filegroup(
-            name = name + "_module_outs_file",
-            srcs = [":" + name],
-            output_group = MODULE_OUTS_FILE_OUTPUT_GROUP,
-            deprecation = not_available_msg,
         )
 
         # A kernel_filegroup that:

@@ -55,8 +55,6 @@ load(
     ":constants.bzl",
     "MODULES_STAGING_ARCHIVE",
     "MODULE_ENV_ARCHIVE_SUFFIX",
-    "MODULE_OUTS_FILE_OUTPUT_GROUP",
-    "MODULE_OUTS_FILE_SUFFIX",
 )
 load(":debug.bzl", "debug")
 load(":file.bzl", "file")
@@ -846,12 +844,6 @@ def _uniq(lst):
     """Deduplicates items in lst."""
     return sets.to_list(sets.make(lst))
 
-def _path_or_empty(file):
-    """Returns path of the file if it is not `None`, otherwise empty string."""
-    if not file:
-        return ""
-    return file.path
-
 def _progress_message_suffix(ctx):
     """Returns suffix for all progress messages for kernel_build."""
     return "{}{}".format(
@@ -910,15 +902,12 @@ def _create_kbuild_mixed_tree(ctx):
         arg = arg,
     )
 
-def _get_base_kernel_all_module_names_file(ctx):
-    """Returns the file containing all module names from the base kernel or None if there's no base_kernel."""
-    base_kernel_for_module_outs = base_kernel_utils.get_base_kernel_for_module_outs(ctx)
-    if base_kernel_for_module_outs:
-        base_kernel_all_module_names_file = base_kernel_for_module_outs[KernelBuildInTreeModulesInfo].module_outs_file
-        if not base_kernel_all_module_names_file:
-            fail("{}: base_kernel {} does not provide module_outs_file.".format(ctx.label, base_kernel_utils.get_base_kernel(ctx).label))
-        return base_kernel_all_module_names_file
-    return None
+def _get_base_kernel_all_module_names(ctx):
+    """Returns the file containing all module names from the base kernel or `[]` if there's no base_kernel."""
+    base_kernel_for_module_names = base_kernel_utils.get_base_kernel_for_module_names(ctx)
+    if base_kernel_for_module_names:
+        return base_kernel_for_module_names[KernelBuildInTreeModulesInfo].all_module_names
+    return []
 
 def _get_out_attr_vals(ctx):
     """Common implementation for getting all ctx.attr.*out.
@@ -1015,7 +1004,7 @@ def _get_interceptor_step(ctx):
         output_file = interceptor_output,
     )
 
-def _get_grab_intree_modules_step(ctx, has_any_modules, modules_staging_dir, ruledir, all_module_names_file):
+def _get_grab_intree_modules_step(ctx, has_any_modules, modules_staging_dir, ruledir, all_module_names):
     """Returns a step for grabbing the in-tree modules from `OUT_DIR`.
 
     Returns:
@@ -1031,12 +1020,12 @@ def _get_grab_intree_modules_step(ctx, has_any_modules, modules_staging_dir, rul
     if has_any_modules:
         tools.append(ctx.executable._search_and_cp_output)
         grab_intree_modules_cmd = """
-            {search_and_cp_output} --srcdir {modules_staging_dir}/lib/modules/*/kernel --dstdir {ruledir} $(cat {all_module_names_file})
+            {search_and_cp_output} --srcdir {modules_staging_dir}/lib/modules/*/kernel --dstdir {ruledir} {all_module_names}
         """.format(
             search_and_cp_output = ctx.executable._search_and_cp_output.path,
             modules_staging_dir = modules_staging_dir,
             ruledir = ruledir,
-            all_module_names_file = all_module_names_file.path,
+            all_module_names = " ".join(all_module_names),
         )
     return struct(
         inputs = [],
@@ -1090,8 +1079,8 @@ def _get_grab_unstripped_modules_step(ctx, has_any_modules, all_module_basenames
 
 def _get_check_remaining_modules_step(
         ctx,
-        all_module_names_file,
-        base_kernel_all_module_names_file,
+        all_module_names,
+        base_kernel_all_module_names,
         modules_staging_dir):
     """Returns a step for checking remaining '*.ko' files in `OUT_DIR`.
 
@@ -1122,7 +1111,7 @@ def _get_check_remaining_modules_step(
 
     cmd = """
            remaining_ko_files=$({check_declared_output_list} \\
-                --declared $(cat {all_module_names_file} {base_kernel_all_module_names_file_path}) \\
+                --declared {all_module_names} {base_kernel_all_module_names} \\
                 --actual $(cd {modules_staging_dir}/lib/modules/*/kernel && find . -type f -name '*.ko' | sed 's:^[.]/::'))
            if [[ ${{remaining_ko_files}} ]]; then
              echo "{message_type}: The following kernel modules are built but not copied. Add these lines to the module_outs attribute of {label}:" >&2
@@ -1137,20 +1126,17 @@ def _get_check_remaining_modules_step(
     """.format(
         message_type = message_type,
         check_declared_output_list = ctx.executable._check_declared_output_list.path,
-        all_module_names_file = all_module_names_file.path,
-        base_kernel_all_module_names_file_path = _path_or_empty(base_kernel_all_module_names_file),
+        all_module_names = " ".join(all_module_names),
+        base_kernel_all_module_names = " ".join(base_kernel_all_module_names),
         modules_staging_dir = modules_staging_dir,
         label = ctx.label,
         epilog = epilog,
     )
-    inputs = [all_module_names_file]
-    if base_kernel_all_module_names_file:
-        inputs.append(base_kernel_all_module_names_file)
     tools = [ctx.executable._check_declared_output_list]
 
     return struct(
         cmd = cmd,
-        inputs = inputs,
+        inputs = [],
         tools = tools,
         outputs = [],
     )
@@ -1422,10 +1408,9 @@ def _build_main_action(
         ctx,
         kbuild_mixed_tree_ret,
         all_output_names,
-        all_module_names_file,
         all_module_basenames_file):
     """Adds the main action for the `kernel_build`."""
-    base_kernel_all_module_names_file = _get_base_kernel_all_module_names_file(ctx)
+    base_kernel_all_module_names = _get_base_kernel_all_module_names(ctx)
 
     # Declare outputs.
     ## Declare outputs based on the *outs attributes
@@ -1471,7 +1456,7 @@ def _build_main_action(
         has_any_modules = bool(all_output_names.modules),
         modules_staging_dir = modules_staging_dir,
         ruledir = ruledir,
-        all_module_names_file = all_module_names_file,
+        all_module_names = all_output_names.modules,
     )
     grab_unstripped_modules_step = _get_grab_unstripped_modules_step(
         ctx = ctx,
@@ -1487,8 +1472,8 @@ def _build_main_action(
     copy_module_symvers_step = _get_copy_module_symvers_step(ctx)
     check_remaining_modules_step = _get_check_remaining_modules_step(
         ctx = ctx,
-        all_module_names_file = all_module_names_file,
-        base_kernel_all_module_names_file = base_kernel_all_module_names_file,
+        all_module_names = all_output_names.modules,
+        base_kernel_all_module_names = base_kernel_all_module_names,
         modules_staging_dir = modules_staging_dir,
     )
     steps = (
@@ -1740,7 +1725,7 @@ def _get_serialized_env_info_setup_restore_outputs_command(outputs, fake_system_
 def _create_infos(
         ctx,
         kbuild_mixed_tree_ret,
-        all_module_names_file,
+        all_module_names,
         main_action_ret,
         modules_staging_archive,
         kmi_strict_mode_out,
@@ -1752,7 +1737,7 @@ def _create_infos(
     Args:
         ctx: ctx
         kbuild_mixed_tree_ret: from `_create_kbuild_mixed_tree`
-        all_module_names_file: A file containing all module names
+        all_module_names: `module_outs` + `module_implicit_outs`
         main_action_ret: from `_build_main_action`
         modules_staging_archive: from `_repack_modules_staging_archive`
         kmi_strict_mode_out: from `_kmi_symbol_list_strict_mode`
@@ -1904,7 +1889,7 @@ def _create_infos(
     )
 
     in_tree_modules_info = KernelBuildInTreeModulesInfo(
-        module_outs_file = all_module_names_file,
+        all_module_names = all_module_names,
     )
 
     images_info = KernelImagesInfo(
@@ -1925,7 +1910,6 @@ def _create_infos(
     # TODO(b/291918087): Drop after common_kernels no longer use kernel_filegroup.
     #   These files should already be in kernel_filegroup_declaration.
     output_group_kwargs["modules_staging_archive"] = depset([modules_staging_archive])
-    output_group_kwargs[MODULE_OUTS_FILE_OUTPUT_GROUP] = depset([all_module_names_file])
     output_group_info = OutputGroupInfo(**output_group_kwargs)
 
     kbuild_mixed_tree_files = all_output_files["outs"].values() + all_output_files["module_outs"].values()
@@ -1948,7 +1932,7 @@ def _create_infos(
     filegroup_decl_info = KernelBuildFilegroupDeclInfo(
         filegroup_srcs = depset(all_output_files["outs"].values() +
                                 all_output_files["module_outs"].values()),
-        module_outs_file = all_module_names_file,
+        all_module_names = all_module_names,
         modules_staging_archive = modules_staging_archive,
         toolchain_version = ctx.attr.config[KernelToolchainInfo].toolchain_version,
         kernel_release = all_output_files["internal_outs"]["include/config/kernel.release"],
@@ -2008,13 +1992,6 @@ def _kernel_build_impl(ctx):
 
     all_output_names = _split_out_attrs(ctx)
 
-    # A file containing all module names
-    all_module_names_file = _write_module_names_to_file(
-        ctx,
-        ctx.label.name + MODULE_OUTS_FILE_SUFFIX,
-        all_output_names.modules,
-    )
-
     # A file containing the basenames of the modules
     all_module_basenames_file = _write_module_names_to_file(
         ctx,
@@ -2026,7 +2003,6 @@ def _kernel_build_impl(ctx):
         ctx = ctx,
         kbuild_mixed_tree_ret = kbuild_mixed_tree_ret,
         all_output_names = all_output_names,
-        all_module_names_file = all_module_names_file,
         all_module_basenames_file = all_module_basenames_file,
     )
 
@@ -2037,9 +2013,9 @@ def _kernel_build_impl(ctx):
     )
 
     kmi_strict_mode_out = _kmi_symbol_list_strict_mode(
-        ctx,
-        main_action_ret.all_output_files,
-        all_module_names_file,
+        ctx = ctx,
+        all_output_files = main_action_ret.all_output_files,
+        all_module_names = all_output_names.modules,
     )
 
     kmi_symbol_list_violations_check_out = _kmi_symbol_list_violations_check(ctx, modules_staging_archive)
@@ -2054,7 +2030,7 @@ def _kernel_build_impl(ctx):
     infos = _create_infos(
         ctx = ctx,
         kbuild_mixed_tree_ret = kbuild_mixed_tree_ret,
-        all_module_names_file = all_module_names_file,
+        all_module_names = all_output_names.modules,
         main_action_ret = main_action_ret,
         modules_staging_archive = modules_staging_archive,
         kmi_strict_mode_out = kmi_strict_mode_out,
@@ -2202,7 +2178,7 @@ ERROR: `toolchain_version` is "{this_toolchain}" for "{this_label}", but
             base_toolchain = base_toolchain,
         ))
 
-def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
+def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names):
     """Run for `KMI_SYMBOL_LIST_STRICT_MODE`.
     """
     if not ctx.attr._use_kmi_symbol_list_strict_mode[BuildSettingInfo].value:
@@ -2232,7 +2208,6 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
 
     inputs = [
         module_symvers,
-        all_module_names_file,
     ]
     inputs += ctx.files.raw_kmi_symbol_list  # This is 0 or 1 file
     transitive_inputs = [ctx.attr.config[KernelSerializedEnvInfo].inputs]
@@ -2249,11 +2224,11 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
         {verify_ksymtab} \\
             --symvers-file {module_symvers} \\
             --raw-kmi-symbol-list {raw_kmi_symbol_list} \\
-            --objects {vmlinux_base} $(cat {all_module_names_file} | sed 's/\\.ko$//')
+            --objects {vmlinux_base} {all_module_names}
         touch {out}
     """.format(
         vmlinux_base = vmlinux.basename,  # A fancy way of saying "vmlinux"
-        all_module_names_file = all_module_names_file.path,
+        all_module_names = " ".join([m.removesuffix(".ko") for m in all_module_names]),
         verify_ksymtab = ctx.executable._verify_ksymtab.path,
         module_symvers = module_symvers.path,
         raw_kmi_symbol_list = ctx.files.raw_kmi_symbol_list[0].path,
