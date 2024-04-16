@@ -195,6 +195,28 @@ class KleafProjectSetterTest(parameterized.TestCase):
                 expected=str(prebuilts_dir_abs),
             )
 
+    def test_download_works_for_local_file(self):
+        """Tests that local files can be downloaded."""
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_dir = pathlib.Path(tmp_dir)
+            remote_file = tmp_dir / "remote_file"
+            remote_file.write_text("Hello World!")
+            out_file = tmp_dir / "out_file"
+            url_fmt = f"file://{tmp_dir}"
+            init_ddk.KleafProjectSetter(
+                build_id=None,
+                build_target=None,
+                ddk_workspace=None,
+                kleaf_repo=None,
+                local=False,
+                prebuilts_dir=None,
+                url_fmt=url_fmt + "/{filename}",
+            )._download(
+                remote_filename="remote_file",
+                out_file_name=out_file,
+            )
+            self.assertTrue(out_file.exists())
+
 
 # This could be run as: tools/bazel test //build/kernel:init_ddk_test --test_output=all
 if __name__ == "__main__":
