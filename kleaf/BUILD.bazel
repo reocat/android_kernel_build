@@ -518,10 +518,10 @@ selects.config_setting_group(
 )
 
 # Debug flag to control make verbosity
-# E (default) = Error (-s)
-# I = Info
-# D = Debug (V=1)
-# V = Verbose (V=2)
+# E (default): Only print errors (make -s)
+# I: print brief description of make targets being built (make)
+# D: print full commands (make V=1)
+# V: print the reason for the rebuild of each make target (make V=2)
 string_flag(
     name = "debug_make_verbosity",
     build_setting_default = "E",

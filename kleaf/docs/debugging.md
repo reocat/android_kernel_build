@@ -18,8 +18,11 @@ This is a non exhaustive list of options to help debugging compilation issues:
 
 *   Customise Kbuild:
 
-    *   `--debug_make_verbosity`: Controls verbosity of `make` executions `E
-        (default) = Error, I = Info, D = Debug`
+    *   `--debug_make_verbosity`: Controls verbosity of `make` executions.
+        * `E` (default): Only print errors (`make -s`)
+        * `I`: print brief description of make targets being built (`make`)
+        * `D`: print full commands (`make V=1`)
+        * `V`: print the reason for the rebuild of each make target (`make V=2`)
 
     *   `--debug_modpost_warn`: Sets
         [`KBUILD_MODPOST_WARN=1`](https://www.kernel.org/doc/html/latest/kbuild/kbuild.html#kbuild-modpost-warn).
