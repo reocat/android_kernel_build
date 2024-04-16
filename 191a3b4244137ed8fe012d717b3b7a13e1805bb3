@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44f1fa2c_4ed51b94",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-16T18:55:12Z",
+      "side": 1,
+      "message": "Consider adding a WARNING here\n```suggestion\n            logging.warning(\n                \"Path %s is not relative to DDK workspace %s, using absolute path\",\n                path,\n                self.ddk_workspace,\n            )\n            return path\n```",
+      "revId": "191a3b4244137ed8fe012d717b3b7a13e1805bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4475842c_9d35edcd",
         "filename": "init/init_ddk.py",
         "patchSetId": 7
