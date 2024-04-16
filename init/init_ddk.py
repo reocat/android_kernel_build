@@ -36,7 +36,7 @@ _KLEAF_DEPENDENCY_TEMPLATE = """\
 bazel_dep(name = "kleaf")
 local_path_override(
     module_name = "kleaf",
-    path = "{kleaf_repo_dir}",
+    path = "{kleaf_repo}",
 )
 """
 
@@ -63,17 +63,17 @@ class KleafProjectSetter:
 
     def __init__(self, cmd_args: argparse.Namespace):
         self.ddk_workspace: pathlib.Path | None = cmd_args.ddk_workspace
-        self.kleaf_repo_dir: pathlib.Path | None = cmd_args.kleaf_repo_dir
+        self.kleaf_repo: pathlib.Path | None = cmd_args.kleaf_repo
         self.prebuilts_dir: pathlib.Path | None = cmd_args.prebuilts_dir
 
     def _symlink_tools_bazel(self):
-        if not self.ddk_workspace or not self.kleaf_repo_dir:
+        if not self.ddk_workspace or not self.kleaf_repo:
             return
         # Calculate the paths.
         tools_bazel = self.ddk_workspace / _TOOLS_BAZEL
-        kleaf_tools_bazel = self.kleaf_repo_dir / _TOOLS_BAZEL
+        kleaf_tools_bazel = self.kleaf_repo / _TOOLS_BAZEL
         # Prepare the location and clean up if necessary.
-        tools_bazel.parent.mkdir(parents=True, exist_ok=True)
+        self._create_directory(tools_bazel.parent)
         tools_bazel.unlink(missing_ok=True)
         tools_bazel.symlink_to(kleaf_tools_bazel)
 
@@ -132,9 +132,9 @@ class KleafProjectSetter:
             return
         module_bazel = self.ddk_workspace / _MODULE_BAZEL_FILE
         module_bazel_content = ""
-        if self.kleaf_repo_dir:
+        if self.kleaf_repo:
             module_bazel_content += _KLEAF_DEPENDENCY_TEMPLATE.format(
-                kleaf_repo_dir=self.kleaf_repo_dir,
+                kleaf_repo=self.kleaf_repo,
             )
         if self.prebuilts_dir:
             module_bazel_content += "\n"
@@ -153,14 +153,14 @@ class KleafProjectSetter:
             logging.info("Nothing to update in %s", module_bazel)
 
     def _generate_bazelrc(self):
-        if not self.ddk_workspace or not self.kleaf_repo_dir:
+        if not self.ddk_workspace or not self.kleaf_repo:
             return
         bazelrc = self.ddk_workspace / _DEVICE_BAZELRC
         self._update_file(
             bazelrc,
             textwrap.dedent(f"""\
             common --config=internet
-            common --registry=file:{self.kleaf_repo_dir}/external/bazelbuild-bazel-central-registry
+            common --registry=file:{self.kleaf_repo}/external/bazelbuild-bazel-central-registry
             """),
         )
 
@@ -176,9 +176,9 @@ class KleafProjectSetter:
         self._create_directory(self.ddk_workspace)
 
     def _handle_kleaf_repo(self):
-        if not self.kleaf_repo_dir:
+        if not self.kleaf_repo:
             return
-        self._create_directory(self.kleaf_repo_dir)
+        self._create_directory(self.kleaf_repo)
         # TODO: b/328770706 - According to the needs, syncing git repos logic should go here.
 
     def _handle_prebuilts(self):
@@ -228,7 +228,7 @@ if __name__ == "__main__":
         default=None,
     )
     parser.add_argument(
-        "--kleaf_repo_dir",
+        "--kleaf_repo",
         help="Absolute path to Kleaf's repo dir.",
         type=abs_path,
         default=None,
