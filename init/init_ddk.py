@@ -128,19 +128,31 @@ class KleafProjectSetter:
 
 if __name__ == "__main__":
 
+    def abs_path(path: str) -> pathlib.Path | None:
+        path = pathlib.Path(path)
+        if not path.is_absolute():
+            raise ValueError(f"{path} is not an absolute path.")
+        return path
+
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawTextHelpFormatter
     )
     parser.add_argument(
         "--ddk_workspace",
         help="Absolute path to DDK workspace root.",
-        type=pathlib.Path,
+        type=abs_path,
         default=None,
     )
     parser.add_argument(
         "--kleaf_repo_dir",
         help="Absolute path to Kleaf's repo dir.",
-        type=pathlib.Path,
+        type=abs_path,
+        default=None,
+    )
+    parser.add_argument(
+        "--prebuilts_dir",
+        help="Path to local GKI prebuilts. Path must be relative to workspace.",
+        type=abs_path,
         default=None,
     )
     parser.add_argument(
