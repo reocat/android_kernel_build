@@ -16,6 +16,24 @@
       "message": "Do you plan to put this file in init_ddk.zip and make init_ddk.zip target specific, or keep init_ddk.zip generic and make this file target specific?",
       "revId": "86407cc3b4f88d8804019f2be7f3d27f55bb6e4f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84abb932_e79f46b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-16T10:54:59Z",
+      "side": 1,
+      "message": "The latter, to leave this file as target specific and keep `init_ddk.zip` generic, with no particular reason (i.e. it can be changed if needed), other than to treat this artifact similar to the majority in go/ab.",
+      "parentUuid": "13a367ae_234550fc",
+      "revId": "86407cc3b4f88d8804019f2be7f3d27f55bb6e4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
