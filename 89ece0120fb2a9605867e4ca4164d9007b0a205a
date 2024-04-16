@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "553eec9a_0a677390",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 2311,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-16T10:34:39Z",
+      "side": 1,
+      "message": "I think this is causing the build failures, so maybe `_drop_ko_suffix` was intended to be used here?\n\n```suggestion\n        all_module_names \u003d \" \".join(_drop_ko_suffix(m) for m in all_module_names),\n```",
+      "range": {
+        "startLine": 2311,
+        "startChar": 36,
+        "endLine": 2311,
+        "endChar": 52
+      },
+      "revId": "89ece0120fb2a9605867e4ca4164d9007b0a205a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43a14395_27d67468",
         "filename": "kleaf/impl/kernel_build.bzl",
         "patchSetId": 2
