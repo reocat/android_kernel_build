@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "982e5e4d_a146e047",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-16T22:25:53Z",
+      "side": 1,
+      "message": "Let\u0027s change this to load an actual JSON file in follow up CL",
+      "parentUuid": "4cdc41ef_63f1a9a2",
+      "range": {
+        "startLine": 122,
+        "startChar": 54,
+        "endLine": 122,
+        "endChar": 76
+      },
+      "revId": "191a3b4244137ed8fe012d717b3b7a13e1805bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bce641cc_fcd2ca90",
