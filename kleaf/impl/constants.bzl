@@ -16,8 +16,6 @@
 
 visibility("//build/kernel/kleaf/...")
 
-TOOLCHAIN_VERSION_FILENAME = "toolchain_version"
-
 # The suffix of the file in the default outputs of kernel_build that stores
 # the list of `module_outs` for that kernel_build.
 MODULE_OUTS_FILE_SUFFIX = "_modules"

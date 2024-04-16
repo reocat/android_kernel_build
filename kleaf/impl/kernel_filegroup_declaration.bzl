@@ -40,7 +40,6 @@ def _kernel_filegroup_declaration_impl(ctx):
         # _modules_prepare
         info.modules_prepare_archive,
         info.modules_staging_archive,
-        info.toolchain_version_file,
     ]
 
     # Get the only file from the depset, so using to_list() here is fast.
@@ -80,6 +79,8 @@ platform(
     constraint_values = [
         "@platforms//os:android",
         "@platforms//cpu:{arch}",
+        # @kleaf//prebuilts/clang/host/linux-x86/kleaf:{toolchain_version}
+        package_relative_label(_CLANG_KLEAF_PKG).same_package_label({toolchain_version_repr}),
     ],
     visibility = ["//visibility:private"],
 )
@@ -89,6 +90,8 @@ platform(
     constraint_values = [
         "@platforms//os:linux",
         "@platforms//cpu:x86_64",
+        # @kleaf//prebuilts/clang/host/linux-x86/kleaf:{toolchain_version}
+        package_relative_label(_CLANG_KLEAF_PKG).same_package_label({toolchain_version_repr}),
     ],
     visibility = ["//visibility:private"],
 )
@@ -203,6 +206,8 @@ def _write_filegroup_decl_file(ctx, info, deps_files, kernel_uapi_headers, templ
         format_joined = "{\n        %s\n    }",
     )
 
+    sub.add("{toolchain_version}", info.toolchain_version)
+    sub.add("{toolchain_version_repr}", repr(info.toolchain_version))
     sub.add("{target_platform_repr}", repr(ctx.attr.kernel_build.label.name + "_platform_target"))
     sub.add("{exec_platform_repr}", repr(ctx.attr.kernel_build.label.name + "_platform_exec"))
     sub.add("{arch}", info.arch)
