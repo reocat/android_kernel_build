@@ -21,15 +21,25 @@ import json
 import logging
 import pathlib
 import shutil
+import subprocess
 import sys
 import tempfile
 import textwrap
+import urllib
 
 _TOOLS_BAZEL = "tools/bazel"
 _DEVICE_BAZELRC = "device.bazelrc"
 _FILE_MARKER_BEGIN = "### GENERATED SECTION - DO NOT MODIFY - BEGIN ###\n"
 _FILE_MARKER_END = "### GENERATED SECTION - DO NOT MODIFY - END ###\n"
 _MODULE_BAZEL_FILE = "MODULE.bazel"
+
+_DOWNLOAD_SCRIPT = """\
+import shutil
+import sys
+import urllib.request
+with urllib.request.urlopen(sys.argv[1]) as i, open(sys.argv[2], "wb") as o:
+    shutil.copyfileobj(i, o)
+"""
 
 _KLEAF_DEPENDENCY_TEMPLATE = """\
 \"""Kleaf: Build Android kernels with Bazel.\"""
@@ -163,6 +173,20 @@ class KleafProjectSetter:
         if not path.exists():
             logging.info("Creating directory %s.", path)
         path.mkdir(parents=True, exist_ok=True)
+
+    def _download(self, remote_filename: str, out_file_name: str):
+        url = self.url_fmt.format(
+            build_id=self.build_id,
+            build_target=self.build_target,
+            filename=urllib.parse.quote(remote_filename, safe=""),  # / -> %2F
+        )
+        # Workaround: Rely on host keychain to download files.
+        # This is needed otheriwese downloads fail when running this script
+        #   using the hermetic Python toolchain.
+        subprocess.check_call(
+            ["python3", "-c", _DOWNLOAD_SCRIPT, url, out_file_name],
+            stderr=subprocess.STDOUT,
+        )
 
     def _handle_ddk_workspace(self):
         if not self.ddk_workspace:
