@@ -196,7 +196,7 @@ def _write_filegroup_decl_file(ctx, info, deps_files, kernel_uapi_headers, templ
         info.internal_outs,
         allow_closure = True,
         map_each = lambda file: "{key}: {value}".format(
-            key = repr(":{}".format(file.path) if file else None),
+            key = repr(file.path if file else None),
             value = repr(paths.relativize(file.path, info.ruledir)),
         ),
         join_with = ",\n        ",
