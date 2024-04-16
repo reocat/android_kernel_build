@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bce641cc_fcd2ca90",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-16T17:34:24Z",
+      "side": 1,
+      "message": "This can be a bit confusing. Can you make it consistent with other paths? Maybe this one needs to be an absolute path too, and we try to make it relative to the --ddk_workspace in the code",
+      "range": {
+        "startLine": 199,
+        "startChar": 42,
+        "endLine": 199,
+        "endChar": 78
+      },
+      "revId": "191a3b4244137ed8fe012d717b3b7a13e1805bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
