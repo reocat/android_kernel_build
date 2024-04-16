@@ -22,9 +22,11 @@ import json
 import logging
 import pathlib
 import shutil
+import subprocess
 import sys
 import tempfile
 import textwrap
+import urllib
 
 _TOOLS_BAZEL = "tools/bazel"
 _DEVICE_BAZELRC = "device.bazelrc"
@@ -173,6 +175,48 @@ class KleafProjectSetter:
             """),
         )
 
+    def _get_url(self, remote_filename: str) -> str:
+        """Returns a valid url when it can be formed with target and id."""
+        url = self.url_fmt.format(
+            build_id=self.build_id,
+            build_target=self.build_target,
+            filename=urllib.parse.quote(remote_filename, safe=""),  # / -> %2F
+        )
+        url_with_fake_id = self.url_fmt.format(
+            build_id="__FAKE_BUILD_NUMBER_PLACEHOLDER__",
+            build_target=self.build_target,
+            filename=urllib.parse.quote(remote_filename, safe=""),  # / -> %2F
+        )
+        if not self.build_id and url != url_with_fake_id:
+            return None
+        return url
+
+    def _download(self, remote_filename: str, out_file_name: str):
+        if not self.url_fmt:
+            logging.error(
+                "Unable to download file %s because --url_fmt was not set.",
+                remote_filename,
+            )
+            return
+        url = self._get_url(remote_filename)
+        if not url:
+            logging.error(
+                "Unable to download %s file because --build_id is missing.",
+                remote_filename,
+            )
+            return
+        # Workaround: Rely on host keychain to download files.
+        # This is needed otheriwese downloads fail when running this script
+        #   using the hermetic Python toolchain.
+        subprocess.check_call(
+            [
+                "python3",
+                pathlib.Path(__file__).parent / "init_download.py",
+                url,
+                out_file_name,
+            ],
+        )
+
     def _handle_ddk_workspace(self):
         if not self.ddk_workspace:
             return
@@ -217,6 +261,7 @@ if __name__ == "__main__":
         "--build_id",
         type=str,
         help="the build id to download the build for, e.g. 6148204",
+        default=None,
     )
     parser.add_argument(
         "--build_target",
