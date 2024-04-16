@@ -17,6 +17,7 @@
 """Configures the project layout to build DDK modules."""
 
 import argparse
+import concurrent.futures
 import json
 import logging
 import pathlib
@@ -80,6 +81,7 @@ class KleafProjectSetter:
         self.url_fmt: str | None = cmd_args.url_fmt
 
     def _symlink_tools_bazel(self):
+        """Creates the symlink tools/bazel."""
         if not self.ddk_workspace or not self.kleaf_repo:
             return
         # Calculate the paths.
@@ -139,6 +141,7 @@ class KleafProjectSetter:
             return path
 
     def _read_download_configs(self) -> str:
+        """Reads the previously downloaded download_configs.json file."""
         download_configs = self.prebuilts_dir / "download_configs.json"
         with open(download_configs, "r", encoding="utf-8") as config:
             # Compress the representation by removing empty spaces to save some space.
@@ -170,6 +173,7 @@ class KleafProjectSetter:
             logging.info("Nothing to update in %s", module_bazel)
 
     def _generate_bazelrc(self):
+        """Creates a configuration file with the minimum setup required."""
         if not self.ddk_workspace or not self.kleaf_repo:
             return
         bazelrc = self.ddk_workspace / _DEVICE_BAZELRC
@@ -183,11 +187,19 @@ class KleafProjectSetter:
 
     @staticmethod
     def _create_directory(path: pathlib.Path):
+        """Make sure directories are created as needed."""
+        path = path.resolve()
         if not path.exists():
             logging.info("Creating directory %s.", path)
         path.mkdir(parents=True, exist_ok=True)
 
-    def _download(self, remote_filename: str, out_file_name: str):
+    def _download(
+        self,
+        remote_filename: str,
+        out_file_name: str,
+        fail_on_error: bool = True,
+    ):
+        """Given the url_fmt, build_id and build_target downloads a remote file."""
         if not self.url_fmt:
             logging.error(
                 "Unable to download file %s because --url_fmt was not set.",
@@ -202,10 +214,39 @@ class KleafProjectSetter:
         # Workaround: Rely on host keychain to download files.
         # This is needed otheriwese downloads fail when running this script
         #   using the hermetic Python toolchain.
-        subprocess.check_call(
+        subprocess.run(
             ["python3", "-c", _DOWNLOAD_SCRIPT, url, out_file_name],
-            stderr=subprocess.STDOUT,
+            # Suppress errors when the file is optional.
+            stderr=subprocess.STDOUT if fail_on_error else subprocess.DEVNULL,
+            check=fail_on_error,
         )
+
+    def _infer_download_list(self) -> dict[str, dict]:
+        """Infers the list of files to be downloaded using download_configs.json."""
+        download_configs = self.prebuilts_dir / "download_configs.json"
+        with open(download_configs, "w+", encoding="utf-8") as download_configs:
+            self._download("download_configs.json", download_configs.name)
+            return json.load(download_configs)
+
+    def _download_prebuilts(self):
+        """Downloads prebuilts from a given build_id when provideded."""
+        if not self.build_id:
+            logging.info("Using local prebuilts from %s", self.prebuilts_dir)
+            return
+        logging.info("Downloading prebuilts into %s", self.prebuilts_dir)
+        files_dict = self._infer_download_list()
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            futures = []
+            for file, config in files_dict.items():
+                dst = self.prebuilts_dir / file
+                self._create_directory(dst.parent)
+                futures.append(
+                    executor.submit(
+                        self._download, file, dst, config["mandatory"]
+                    )
+                )
+            for complete_ret in concurrent.futures.as_completed(futures):
+                complete_ret.result()  # Raise exception if any
 
     def _handle_ddk_workspace(self):
         if not self.ddk_workspace:
@@ -222,7 +263,7 @@ class KleafProjectSetter:
         if not self.ddk_workspace or not self.prebuilts_dir:
             return
         self._create_directory(self.ddk_workspace / self.prebuilts_dir)
-        # TODO: b/328770706 - When build_id is given dowloand artifacts here.
+        self._download_prebuilts()
 
     def _run(self):
         self._symlink_tools_bazel()
