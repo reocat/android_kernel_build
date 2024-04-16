@@ -22,6 +22,30 @@
       },
       "revId": "64b47b599e2a986dead80535bd4ac249c035917a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad67ac14_63cc7eea",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-16T22:28:21Z",
+      "side": 1,
+      "message": "For some reason the updated help text remained in the next CL. Let me update it here as well.",
+      "parentUuid": "2ace5b15_fbe8a39e",
+      "range": {
+        "startLine": 154,
+        "startChar": 43,
+        "endLine": 154,
+        "endChar": 78
+      },
+      "revId": "64b47b599e2a986dead80535bd4ac249c035917a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
