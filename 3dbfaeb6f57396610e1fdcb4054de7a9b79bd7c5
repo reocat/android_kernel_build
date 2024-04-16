@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e05345eb_098aecfe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-16T22:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdfc33cc_ada9acf2",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 75
+      },
+      "revId": "3dbfaeb6f57396610e1fdcb4054de7a9b79bd7c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a637733_a6a6d090",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "914b54ca_6e969694",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-16T22:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a637733_a6a6d090",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 29
+      },
+      "revId": "3dbfaeb6f57396610e1fdcb4054de7a9b79bd7c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40362ddf_6291b47c",
@@ -60,6 +108,24 @@
       "writtenOn": "2024-04-16T17:30:08Z",
       "side": 1,
       "message": "unrelated to this change, but where do we enforce \"absolute path\"? Perhaps the type should be a \"_require_absolute_path\" function",
+      "revId": "3dbfaeb6f57396610e1fdcb4054de7a9b79bd7c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f09d9e2_49c35fcf",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-16T22:50:32Z",
+      "side": 1,
+      "message": "Done in base CL.",
+      "parentUuid": "40362ddf_6291b47c",
       "revId": "3dbfaeb6f57396610e1fdcb4054de7a9b79bd7c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
