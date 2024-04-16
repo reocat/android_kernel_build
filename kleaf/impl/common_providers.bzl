@@ -217,7 +217,9 @@ KernelBuildInTreeModulesInfo = provider(
     doc = """A provider that specifies the expectations of a [`kernel_build`](kernel.md#kernel_build) on its
 [`base_kernel`](kernel.md#kernel_build-base_kernel) for the list of in-tree modules in the `base_kernel`.""",
     fields = {
-        "module_outs_file": "A file containing `[kernel_build.module_outs]`(kernel.md#kernel_build-module_outs) and `[kernel_build.module_implicit_outs]`(kernel.md#kernel_build-module_implicit_outs).",
+        "all_module_names": """`[kernel_build.module_outs]`(kernel.md#kernel_build-module_outs)
+            and `[kernel_build.module_implicit_outs]`(kernel.md#kernel_build-module_implicit_outs).
+        """,
     },
 )
 
@@ -244,8 +246,7 @@ KernelBuildFilegroupDeclInfo = provider(
         "filegroup_srcs": """[depset](https://bazel.build/extending/depsets) of
             [`File`](https://bazel.build/rules/lib/File)s that the
             `kernel_filegroup` should return as default outputs.""",
-        # TODO(b/291918087): This may be embedded in the generated BUILD file directly
-        "module_outs_file": """A file containing
+        "all_module_names": """
             `[kernel_build.module_outs]`(kernel.md#kernel_build-module_outs) and
             `[kernel_build.module_implicit_outs]`(kernel.md#kernel_build-module_implicit_outs).""",
         "modules_staging_archive": "Archive containing staging kernel modules. ",

@@ -18,14 +18,6 @@ visibility("//build/kernel/kleaf/...")
 
 TOOLCHAIN_VERSION_FILENAME = "toolchain_version"
 
-# The suffix of the file in the default outputs of kernel_build that stores
-# the list of `module_outs` for that kernel_build.
-MODULE_OUTS_FILE_SUFFIX = "_modules"
-
-# The output group of the file of a kernel_build that stores
-# the list of `module_outs` for that kernel_build.
-MODULE_OUTS_FILE_OUTPUT_GROUP = "module_outs_file"
-
 # List of images produced by non-x86 kernels.
 DEFAULT_IMAGES = [
     "Image",

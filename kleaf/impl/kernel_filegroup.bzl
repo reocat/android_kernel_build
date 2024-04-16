@@ -374,7 +374,7 @@ def _kernel_filegroup_impl(ctx):
         src_protected_modules_list = protected_modules_list,
         modules_staging_archive = utils.find_file(MODULES_STAGING_ARCHIVE, all_deps, what = ctx.label),
     )
-    in_tree_modules_info = KernelBuildInTreeModulesInfo(module_outs_file = ctx.file.module_outs_file)
+    in_tree_modules_info = KernelBuildInTreeModulesInfo(all_module_names = ctx.attr.all_module_names)
 
     images_info = KernelImagesInfo(
         base_kernel_label = None,
@@ -507,9 +507,9 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
         "strip_modules": attr.bool(
             doc = """See [`kernel_build.strip_modules`](#kernel_build-strip_modules).""",
         ),
-        "module_outs_file": attr.label(
-            allow_single_file = True,
-            doc = """A file containing `module_outs` of the original [`kernel_build`](#kernel_build) target.""",
+        "all_module_names": attr.string_list(
+            doc = """`module_outs` and `module_implicit_outs` of the original
+                [`kernel_build`](#kernel_build) target.""",
             mandatory = True,
         ),
         "images": attr.label(
