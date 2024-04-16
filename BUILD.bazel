@@ -464,6 +464,7 @@ py_binary(
 py_binary(
     name = "init_ddk",
     srcs = ["init/init_ddk.py"],
+    data = ["init/init_download.py"],
     main = "init/init_ddk.py",
     visibility = ["//visibility:private"],
 )
