@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d85317_54b4a111",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-16T22:40:15Z",
+      "side": 1,
+      "message": "nit: We do not require this, right? the `try_rel_workspace()` function will use an absolute path if it is not relative to the workspace. It is not ideal but it should still work.\n\nMaybe `Usually, it is located...`",
+      "range": {
+        "startLine": 155,
+        "startChar": 51,
+        "endLine": 156,
+        "endChar": 24
+      },
+      "revId": "8a24ab49fc6d55c6c298c77ec236b2e2bac586ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
