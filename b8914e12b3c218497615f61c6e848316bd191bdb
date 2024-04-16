@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4bcc6ce_643b57cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-16T18:58:20Z",
+      "side": 1,
+      "message": "again please split the change next time (unresolved for viz)",
+      "revId": "b8914e12b3c218497615f61c6e848316bd191bdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05043f97_7a87915c",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-16T18:58:20Z",
+      "side": 1,
+      "message": "This belongs to a separate change?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 51
+      },
+      "revId": "b8914e12b3c218497615f61c6e848316bd191bdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
