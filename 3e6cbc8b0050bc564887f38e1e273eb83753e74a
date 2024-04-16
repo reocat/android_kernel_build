@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e049442d_adb2e93a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-16T12:45:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31f773ca_cf656ee7",
+      "revId": "3e6cbc8b0050bc564887f38e1e273eb83753e74a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24abd10d_ea203952",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-04-15T22:58:28Z",
       "side": 1,
       "message": "I think you also need to handle the part to download build.config.constants to \u003ckleaf_repo_dir\u003e/common/build.config.constants. This can happen in a follow up CL though.",
+      "revId": "3e6cbc8b0050bc564887f38e1e273eb83753e74a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d29a4aff_6d81924c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-16T12:45:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "24abd10d_ea203952",
       "revId": "3e6cbc8b0050bc564887f38e1e273eb83753e74a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
