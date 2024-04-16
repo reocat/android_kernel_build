@@ -17,8 +17,7 @@
 To update:
 
 ```
-tools/bazel run //build/kernel/kleaf/docs:docs_dist \\
-    --config=bzlmod --config=internet
+tools/bazel run --config=internet //build/kernel/kleaf/docs:docs_dist
 ```
 """
 

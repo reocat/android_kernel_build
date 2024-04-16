@@ -29,6 +29,5 @@ or may not work.
 ## Updating docs
 
 ```sh
-tools/bazel run //build/kernel/kleaf/docs:docs_dist \
-    --config=bzlmod --config=internet
+tools/bazel run --config=internet //build/kernel/kleaf/docs:docs_dist
 ```
