@@ -40,7 +40,6 @@ def _kernel_filegroup_declaration_impl(ctx):
         # _modules_prepare
         info.modules_prepare_archive,
         info.modules_staging_archive,
-        info.toolchain_version_file,
     ]
 
     # Get the only file from the depset, so using to_list() here is fast.
@@ -111,6 +110,7 @@ kernel_filegroup(
     module_env_archive = {module_env_archive_repr},
     outs = {outs_repr},
     internal_outs = {internal_outs_repr},
+    toolchain_version = {toolchain_version_repr},
     target_platform = {target_platform_repr},
     exec_platform = {exec_platform_repr},
     visibility = ["//visibility:public"],
@@ -203,6 +203,7 @@ def _write_filegroup_decl_file(ctx, info, deps_files, kernel_uapi_headers, templ
         format_joined = "{\n        %s\n    }",
     )
 
+    sub.add("{toolchain_version_repr}", repr(info.toolchain_version))
     sub.add("{target_platform_repr}", repr(ctx.attr.kernel_build.label.name + "_platform_target"))
     sub.add("{exec_platform_repr}", repr(ctx.attr.kernel_build.label.name + "_platform_exec"))
     sub.add("{arch}", info.arch)

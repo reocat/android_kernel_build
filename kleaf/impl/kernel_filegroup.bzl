@@ -33,7 +33,6 @@ load(
 load(
     ":constants.bzl",
     "MODULES_STAGING_ARCHIVE",
-    "TOOLCHAIN_VERSION_FILENAME",
     "UNSTRIPPED_MODULES_ARCHIVE",
 )
 load(":debug.bzl", "debug")
@@ -56,12 +55,15 @@ def _get_mixed_tree_files(target):
         return target[KernelBuildMixedTreeInfo].files
     return target.files
 
-def _get_toolchain_version_info(ctx, all_deps):
-    # Traverse all dependencies and look for a file named "toolchain_version".
-    # If no file matches, leave it as None so that _kernel_build_check_toolchain prints a
-    # warning.
-    toolchain_version_file = utils.find_file(name = TOOLCHAIN_VERSION_FILENAME, files = all_deps, what = ctx.label)
-    return KernelToolchainInfo(toolchain_version_file = toolchain_version_file)
+def _get_toolchain_version_info(ctx):
+    # If a version is specified, use it
+    if ctx.attr.toolchain_version:
+        return ctx.attr.toolchain_version
+
+    # Otherwise, use default toolchain
+    return KernelToolchainInfo(
+        toolchain_version = kernel_toolchains_utils.get(ctx).compiler_version,
+    )
 
 def _get_kernel_release(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
@@ -415,7 +417,7 @@ def _kernel_filegroup_impl(ctx):
         images_info,
         kernel_env_attr_info,
         gcov_info,
-        _get_toolchain_version_info(ctx, all_deps),
+        _get_toolchain_version_info(ctx),
     ]
     if serialized_env:
         infos.append(serialized_env)
@@ -559,6 +561,7 @@ default, which in turn sets `collect_unstripped_modules` to `True` by default.
             allow_files = True,
             doc = "Keys: from `_kernel_build.internal_outs`. Values: path under `$OUT_DIR`.",
         ),
+        "toolchain_version": attr.string(doc = "The toolchain version"),
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
         "_cache_dir_config_tags": attr.label(
             default = "//build/kernel/kleaf/impl:cache_dir_config_tags",
