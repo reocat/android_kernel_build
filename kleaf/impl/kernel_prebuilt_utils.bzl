@@ -23,7 +23,6 @@ load(
     "FILEGROUP_DEF_ARCHIVE_SUFFIX",
     "GKI_ARTIFACTS_AARCH64_OUTS",
     "SYSTEM_DLKM_COMMON_OUTS",
-    "TOOLCHAIN_VERSION_FILENAME",
     "UNSTRIPPED_MODULES_ARCHIVE",
 )
 
@@ -55,11 +54,6 @@ CI_TARGET_MAPPING = {
                 "target_suffix": "headers",
                 "mandatory": True,
                 "remote_filename_fmt": "kernel-headers.tar.gz",
-            },
-            TOOLCHAIN_VERSION_FILENAME: {
-                "target_suffix": "toolchain_version",
-                "mandatory": True,
-                "remote_filename_fmt": TOOLCHAIN_VERSION_FILENAME,
             },
             "boot-img.tar.gz": {
                 "target_suffix": "boot_img_archive",
