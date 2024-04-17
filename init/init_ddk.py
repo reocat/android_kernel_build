@@ -73,7 +73,7 @@ class KleafProjectSetter:
         tools_bazel = self.ddk_workspace / _TOOLS_BAZEL
         kleaf_tools_bazel = self.kleaf_repo / _TOOLS_BAZEL
         # Prepare the location and clean up if necessary.
-        self._create_directory(tools_bazel.parent)
+        tools_bazel.parent.mkdir(parents=True, exist_ok=True)
         tools_bazel.unlink(missing_ok=True)
         tools_bazel.symlink_to(kleaf_tools_bazel)
 
@@ -168,27 +168,21 @@ class KleafProjectSetter:
             """),
         )
 
-    @staticmethod
-    def _create_directory(path: pathlib.Path):
-        if not path.exists():
-            logging.info("Creating directory %s.", path)
-        path.mkdir(parents=True, exist_ok=True)
-
     def _handle_ddk_workspace(self):
         if not self.ddk_workspace:
             return
-        self._create_directory(self.ddk_workspace)
+        self.ddk_workspace.mkdir(parents=True, exist_ok=True)
 
     def _handle_kleaf_repo(self):
         if not self.kleaf_repo:
             return
-        self._create_directory(self.kleaf_repo)
+        self.kleaf_repo.mkdir(parents=True, exist_ok=True)
         # TODO: b/328770706 - According to the needs, syncing git repos logic should go here.
 
     def _handle_prebuilts(self):
         if not self.ddk_workspace or not self.prebuilts_dir:
             return
-        self._create_directory(self.ddk_workspace / self.prebuilts_dir)
+        self.prebuilts_dir.mkdir(parents=True, exist_ok=True)
         # TODO: b/328770706 - When build_id is given dowloand artifacts here.
 
     def _run(self):
