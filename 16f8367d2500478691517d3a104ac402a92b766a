@@ -1,0 +1,201 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "700efa35_e3ba9d71",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-17T23:07:44Z",
+      "side": 1,
+      "message": "This commit message has very limited information about what is done and why. Please document the change approprietly.",
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbde06db_07ce00fb",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-17T23:07:44Z",
+      "side": 1,
+      "message": "There is quite a lot that could go wrong here ... 404, file or directory cannot be opened, insufficient storage space. I think _some_ error handling would make sense.",
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2a61376_f07985d4",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-17T23:07:44Z",
+      "side": 1,
+      "message": "The python style guide discourages abbreviations.\n\nhttps://google.github.io/styleguide/pyguide.html#316-naming",
+      "range": {
+        "startLine": 40,
+        "startChar": 44,
+        "endLine": 40,
+        "endChar": 45
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2c35a59a_9ce5b17c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 40,
+                "startChar": 0,
+                "endLine": 42,
+                "endChar": 0
+              },
+              "replacement": "with urllib.request.urlopen(sys.argv[1]) as input_file, open(sys.argv[2], \"wb\") as output_file:\n    shutil.copyfileobj(input_file, output_file)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7264f76f_0604f392",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-17T23:07:44Z",
+      "side": 1,
+      "message": "It really is time for a `dataclass` ...",
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "563e0dec_13bbf2bd",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-17T23:07:44Z",
+      "side": 1,
+      "message": "`None` is a valid value for this data member and I am somewhat certain it will cause issues when passed to the script ...",
+      "range": {
+        "startLine": 198,
+        "startChar": 26,
+        "endLine": 198,
+        "endChar": 34
+      },
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cd718d5_38b6790c",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-17T23:07:44Z",
+      "side": 1,
+      "message": "how do we make sure this points to the host toolchain?",
+      "range": {
+        "startLine": 206,
+        "startChar": 14,
+        "endLine": 206,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d667b2fd_1944520f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 206,
+                "startChar": 0,
+                "endLine": 207,
+                "endChar": 0
+              },
+              "replacement": "            [\"/usr/bin/python3\", \"-c\", _DOWNLOAD_SCRIPT, url, out_file_name],\n"
+            }
+          ]
+        }
+      ],
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56f2da36_91208668",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-17T23:07:44Z",
+      "side": 1,
+      "message": "Is this redirection necessary if the output is not used at all? Would that not just swallow the errors?",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7253829d_53ebcb64",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 206,
+                "startChar": 0,
+                "endLine": 208,
+                "endChar": 0
+              },
+              "replacement": "            [\"python3\", \"-c\", _DOWNLOAD_SCRIPT, url, out_file_name]\n"
+            }
+          ]
+        }
+      ],
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
