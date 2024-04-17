@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1d980dc_ec669fec",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-17T20:26:58Z",
+      "side": 1,
+      "message": "nit: Please add a one-line python doc about what the test is about\n\n(I notice that the tests above are also missing docs, but those can be added later)",
+      "revId": "e8fb0f5d1997065e5bfbf2486792dd626959e318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47925527_49d7948a",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-17T20:26:58Z",
+      "side": 1,
+      "message": "does the above throw any exceptions that you do not want to check?\n\nIf you want to suppress any exceptions, just `pass` here would be fine, right?",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 34
+      },
+      "revId": "e8fb0f5d1997065e5bfbf2486792dd626959e318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64db487d_dfc4e3ce",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-17T20:26:58Z",
+      "side": 1,
+      "message": "`_run_test_module_bazel_for_prebuilts`?",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 43
+      },
+      "revId": "e8fb0f5d1997065e5bfbf2486792dd626959e318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
