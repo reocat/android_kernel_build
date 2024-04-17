@@ -14,6 +14,7 @@
 
 """Tests for init_ddk.py"""
 
+import argparse
 import logging
 import pathlib
 import tempfile
@@ -21,7 +22,13 @@ from typing import Any
 
 from absl.testing import absltest
 from absl.testing import parameterized
-from init_ddk import (KleafProjectSetter, _FILE_MARKER_BEGIN, _FILE_MARKER_END)
+from init_ddk import (
+    KleafProjectSetter,
+    _FILE_MARKER_BEGIN,
+    _FILE_MARKER_END,
+    _MODULE_BAZEL_FILE,
+    _TOOLS_BAZEL,
+)
 
 # pylint: disable=protected-access
 
@@ -59,6 +66,7 @@ class KleafProjectSetterTest(parameterized.TestCase):
         ),
     ])
     def test_update_file_existing(self, current_content, wanted_content):
+        """Tests only text within markers are updated."""
         with tempfile.TemporaryDirectory() as tmp:
             tmp_file = pathlib.Path(tmp) / "some_file"
             with open(tmp_file, "w+", encoding="utf-8") as tf:
@@ -68,6 +76,7 @@ class KleafProjectSetterTest(parameterized.TestCase):
                 self.assertEqual(wanted_content, got.read())
 
     def test_update_file_no_existing(self):
+        """Tests files are created when they don't exist."""
         with tempfile.TemporaryDirectory() as tmp:
             tmp_file = pathlib.Path(tmp) / "some_file"
             KleafProjectSetter._update_file(tmp_file, "\n" + _HELLO_WORLD)
@@ -76,6 +85,109 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     join(_FILE_MARKER_BEGIN, _HELLO_WORLD, _FILE_MARKER_END),
                     got.read(),
                 )
+
+    def test_create_dirs(self):
+        """Tests corresponding directories are created if they don't exist."""
+        with tempfile.TemporaryDirectory() as tmp:
+            ddk_workspace = pathlib.Path(tmp) / "ddk_workspace"
+            kleaf_repo = pathlib.Path(tmp) / "kleaf_repo"
+            prebuilts_dir = pathlib.Path(tmp) / "prebuilts_dir"
+            obj = KleafProjectSetter(
+                argparse.Namespace(
+                    build_id=None,
+                    build_target=None,
+                    ddk_workspace=ddk_workspace,
+                    kleaf_repo=kleaf_repo,
+                    local=None,
+                    prebuilts_dir=prebuilts_dir,
+                    url_fmt=None,
+                )
+            )
+            try:
+                obj.run()
+            except:  # pylint: disable=bare-except
+                pass
+            finally:
+                self.assertTrue(ddk_workspace.exists())
+                self.assertTrue(kleaf_repo.exists())
+                self.assertTrue(prebuilts_dir.exists())
+
+    def test_tools_bazel_symlink(self):
+        """Tests a symlink to tools/bazel is correclty created."""
+        with tempfile.TemporaryDirectory() as tmp:
+            ddk_workspace = pathlib.Path(tmp) / "ddk_workspace"
+            tools_bazel_symlink = ddk_workspace / _TOOLS_BAZEL
+            obj = KleafProjectSetter(
+                argparse.Namespace(
+                    build_id=None,
+                    build_target=None,
+                    ddk_workspace=ddk_workspace,
+                    kleaf_repo=pathlib.Path(tmp) / "kleaf_repo",
+                    local=None,
+                    prebuilts_dir=None,
+                    url_fmt=None,
+                )
+            )
+            try:
+                obj.run()
+            except:  # pylint: disable=bare-except
+                pass
+            finally:
+                self.assertTrue(tools_bazel_symlink.is_symlink())
+
+    def _run_test_module_bazel_for_prebuilts(
+        self,
+        ddk_workspace: pathlib.Path,
+        prebuilts_dir: pathlib.Path,
+        expected: str,
+    ):
+        """Helper method for checking path in a prebuilt extension."""
+        download_configs = prebuilts_dir / "download_configs.json"
+        download_configs.parent.mkdir(parents=True)
+        download_configs.write_text("{}")
+        obj = KleafProjectSetter(
+            argparse.Namespace(
+                build_id=None,
+                build_target=None,
+                ddk_workspace=ddk_workspace,
+                kleaf_repo=None,
+                local=None,
+                prebuilts_dir=prebuilts_dir,
+                url_fmt=None,
+            )
+        )
+        try:
+            obj.run()
+        except:  # pylint: disable=bare-except
+            pass
+        finally:
+            module_bazel = ddk_workspace / _MODULE_BAZEL_FILE
+            self.assertTrue(module_bazel.exists())
+            content = module_bazel.read_text()
+            self.assertTrue(f'local_artifact_path = "{expected}"' in content)
+
+    def test_module_bazel_for_prebuilts(self):
+        """Tests prebuilts setup is correct for relative and non-relative to workspace dirs."""
+        with tempfile.TemporaryDirectory() as tmp:
+            ddk_workspace = pathlib.Path(tmp) / "ddk_workspace"
+
+            # Verify the right local_artifact_path is set for prebuilts
+            #  in a relative to workspace directory.
+            prebuilts_dir_rel = ddk_workspace / "prebuilts_dir"
+            self._run_test_module_bazel_for_prebuilts(
+                ddk_workspace=ddk_workspace,
+                prebuilts_dir=prebuilts_dir_rel,
+                expected="prebuilts_dir",
+            )
+
+            # Verify the right local_artifact_path is set for prebuilts
+            #  in a non-relative to workspace directory.
+            prebuilts_dir_abs = pathlib.Path(tmp) / "prebuilts_dir"
+            self._run_test_module_bazel_for_prebuilts(
+                ddk_workspace=ddk_workspace,
+                prebuilts_dir=prebuilts_dir_abs,
+                expected=str(prebuilts_dir_abs),
+            )
 
 
 # This could be run as: tools/bazel test //build/kernel:init_ddk_test --test_output=all
