@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d3c1e06_1ff87064",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T19:43:41Z",
+      "side": 1,
+      "message": "1. Yes unless `strict\u003dTrue`.\n2. It\u0027s probably not needed anymore now that all paths are absolute, so removing it now.\n\nDone.",
+      "parentUuid": "6c8443ee_2276e744",
+      "range": {
+        "startLine": 191,
+        "startChar": 7,
+        "endLine": 191,
+        "endChar": 29
+      },
+      "revId": "221c0a6c6b4195a566b4c9636a090dd4a5728a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2416d3b_9baeb7ce",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-17T19:17:03Z",
       "side": 1,
       "message": "nit: `mandatory` to be consistent with Bazel \u0026 the JSON key",
+      "range": {
+        "startLine": 200,
+        "startChar": 8,
+        "endLine": 200,
+        "endChar": 21
+      },
+      "revId": "221c0a6c6b4195a566b4c9636a090dd4a5728a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d132ae6_d8c962d9",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T19:43:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2416d3b_9baeb7ce",
       "range": {
         "startLine": 200,
         "startChar": 8,
