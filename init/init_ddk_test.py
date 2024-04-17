@@ -112,6 +112,7 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     build_target=None,
                     ddk_workspace=ddk_workspace,
                     kleaf_repo=kleaf_repo,
+                    local=False,
                     prebuilts_dir=prebuilts_dir,
                     url_fmt=None,
                 ).run()
@@ -133,6 +134,7 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     build_target=None,
                     ddk_workspace=ddk_workspace,
                     kleaf_repo=temp_dir / "kleaf_repo",
+                    local=False,
                     prebuilts_dir=None,
                     url_fmt=None,
                 ).run()
@@ -158,6 +160,7 @@ class KleafProjectSetterTest(parameterized.TestCase):
                 build_target=None,
                 ddk_workspace=ddk_workspace,
                 kleaf_repo=None,
+                local=False,
                 prebuilts_dir=prebuilts_dir,
                 url_fmt=None,
             ).run()

@@ -66,6 +66,7 @@ class KleafProjectSetter:
     build_id: str | None
     build_target: str | None
     ddk_workspace: pathlib.Path | None
+    local: bool | None
     kleaf_repo: pathlib.Path | None
     prebuilts_dir: pathlib.Path | None
     url_fmt: str | None
@@ -228,6 +229,12 @@ if __name__ == "__main__":
         help="Absolute path to DDK workspace root.",
         type=abs_path,
         default=None,
+    )
+    parser.add_argument(
+        "--local",
+        help="Whether to use a local source tree containing Kleaf.",
+        action="store_true",
+        default=False,
     )
     parser.add_argument(
         "--kleaf_repo",
