@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24960caf_71d2818e",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T21:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1d980dc_ec669fec",
+      "revId": "e8fb0f5d1997065e5bfbf2486792dd626959e318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47925527_49d7948a",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68c6882b_312017f9",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T21:05:42Z",
+      "side": 1,
+      "message": "Not at the moment, but it might later.\n\nDone.",
+      "parentUuid": "47925527_49d7948a",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 34
+      },
+      "revId": "e8fb0f5d1997065e5bfbf2486792dd626959e318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64db487d_dfc4e3ce",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-04-17T20:26:58Z",
       "side": 1,
       "message": "`_run_test_module_bazel_for_prebuilts`?",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 43
+      },
+      "revId": "e8fb0f5d1997065e5bfbf2486792dd626959e318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b484a9a_dae6c0bb",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T21:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64db487d_dfc4e3ce",
       "range": {
         "startLine": 134,
         "startChar": 8,
