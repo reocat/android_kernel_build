@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80b0e6e2_a8262fc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T00:00:38Z",
+      "side": 1,
+      "message": "Resolving comments for viz, as they were implemented in distinct CLs and this one will be abandoned shortly.",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6de0c1d7_53d7a431",
@@ -31,6 +48,24 @@
       "writtenOn": "2024-04-11T23:11:58Z",
       "side": 1,
       "message": "BTW: see https://android-review.git.corp.google.com/q/topic:%22cleanup_prebuilts%22. In the ideal case:\n\n- The init_ddk.zip that go/ab distributes should contain a download_configs.json, which contains the download_configs dictionary at https://android-review.git.corp.google.com/c/kernel/build/+/3038943/2/kleaf/impl/kernel_prebuilt_utils.bzl. Alternatively the download_configs.json can be a separate file.\n- The init_ddk.py inside the zip should use this JSON to infer the list of files to download \u0026 populate this field. \n\nThis can be done as a follow up and after https://android-review.git.corp.google.com/q/topic:%22cleanup_prebuilts%22 merges.",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df6fe6e6_b9620c6f",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T00:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6de0c1d7_53d7a431",
       "revId": "8c88789969cb4d186e112bde352d2201699635df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +87,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a1d6b4e_d4397c59",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T00:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9ad2b70_57d6608e",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d18bbc0_393d6c31",
@@ -65,6 +118,24 @@
       "writtenOn": "2024-04-11T19:08:57Z",
       "side": 1,
       "message": "This is worth a comment to describe why we need to do this",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9a32ffc_625f4cc4",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T00:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d18bbc0_393d6c31",
       "revId": "8c88789969cb4d186e112bde352d2201699635df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +157,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "536fe5bb_ff6fe5e1",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T00:00:38Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "45c0ef00_c464e5d5",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "042a228c_323dfef8",
@@ -103,6 +192,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e87f98d_a7174329",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T00:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "042a228c_323dfef8",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb913d18_646ef374",
@@ -116,6 +223,24 @@
       "writtenOn": "2024-04-11T19:08:57Z",
       "side": 1,
       "message": "delete?",
+      "revId": "8c88789969cb4d186e112bde352d2201699635df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f78a04a_969ad71a",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-17T00:00:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb913d18_646ef374",
       "revId": "8c88789969cb4d186e112bde352d2201699635df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
