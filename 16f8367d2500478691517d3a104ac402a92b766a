@@ -78,6 +78,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6224d11c_17fc9788",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-17T23:16:33Z",
+      "side": 1,
+      "message": "throwing them out correctly exits the program with non-zero status code, right?\n\nWe could prettify the error message by suppressing the stack trace, perhaps",
+      "parentUuid": "fbde06db_07ce00fb",
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7264f76f_0604f392",
         "filename": "init/init_ddk.py",
         "patchSetId": 11
@@ -95,6 +113,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64832e22_b22d86d3",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-17T23:16:33Z",
+      "side": 1,
+      "message": "or we set `self.cmd_args \u003d cmd_args`?",
+      "parentUuid": "7264f76f_0604f392",
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "563e0dec_13bbf2bd",
         "filename": "init/init_ddk.py",
         "patchSetId": 11
@@ -106,6 +142,30 @@
       "writtenOn": "2024-04-17T23:07:44Z",
       "side": 1,
       "message": "`None` is a valid value for this data member and I am somewhat certain it will cause issues when passed to the script ...",
+      "range": {
+        "startLine": 198,
+        "startChar": 26,
+        "endLine": 198,
+        "endChar": 34
+      },
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98738ce4_1de5f49c",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-17T23:16:33Z",
+      "side": 1,
+      "message": "+1. This should probably do the same check as https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_prebuilt_repo.bzl;l\u003d168;drc\u003de3d80b666b653d4ac83e542ff11d2b8dfb2f3fae .",
+      "parentUuid": "563e0dec_13bbf2bd",
       "range": {
         "startLine": 198,
         "startChar": 26,
@@ -153,6 +213,30 @@
           ]
         }
       ],
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "670f8d62_3a5dfe0d",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-17T23:16:33Z",
+      "side": 1,
+      "message": "We should just let PATH/which do the discovery, right? For example, if the user deliberately calls this in some user-defined environment with a custom PATH, we shouldn\u0027t stop them from doing that.",
+      "parentUuid": "8cd718d5_38b6790c",
+      "range": {
+        "startLine": 206,
+        "startChar": 14,
+        "endLine": 206,
+        "endChar": 21
+      },
       "revId": "16f8367d2500478691517d3a104ac402a92b766a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
