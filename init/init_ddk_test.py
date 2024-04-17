@@ -14,6 +14,7 @@
 
 """Tests for init_ddk.py"""
 
+import argparse
 import logging
 import pathlib
 import tempfile
@@ -21,7 +22,12 @@ from typing import Any
 
 from absl.testing import absltest
 from absl.testing import parameterized
-from init_ddk import (KleafProjectSetter, _FILE_MARKER_BEGIN, _FILE_MARKER_END)
+from init_ddk import (
+    KleafProjectSetter,
+    _FILE_MARKER_BEGIN,
+    _FILE_MARKER_END,
+    _TOOLS_BAZEL,
+)
 
 # pylint: disable=protected-access
 
@@ -76,6 +82,53 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     join(_FILE_MARKER_BEGIN, _HELLO_WORLD, _FILE_MARKER_END),
                     got.read(),
                 )
+
+    def test_create_dirs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ddk_workspace = pathlib.Path(tmp) / "ddk_workspace"
+            kleaf_repo = pathlib.Path(tmp) / "kleaf_repo"
+            prebuilts_dir = pathlib.Path(tmp) / "prebuilts_dir"
+            obj = KleafProjectSetter(
+                argparse.Namespace(
+                    build_id=None,
+                    build_target=None,
+                    ddk_workspace=ddk_workspace,
+                    kleaf_repo=kleaf_repo,
+                    local=None,
+                    prebuilts_dir=prebuilts_dir,
+                    url_fmt=None,
+                )
+            )
+            try:
+                obj.run()
+            except Exception as e:  # pylint: disable=broad-exception-caught
+                logging.warning(e)
+            finally:
+                self.assertTrue(ddk_workspace.exists())
+                self.assertTrue(kleaf_repo.exists())
+                self.assertTrue(prebuilts_dir.exists())
+
+    def test_tools_bazel_symlink(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ddk_workspace = pathlib.Path(tmp) / "ddk_workspace"
+            tools_bazel_symlink = ddk_workspace / _TOOLS_BAZEL
+            obj = KleafProjectSetter(
+                argparse.Namespace(
+                    build_id=None,
+                    build_target=None,
+                    ddk_workspace=ddk_workspace,
+                    kleaf_repo=pathlib.Path(tmp) / "kleaf_repo",
+                    local=None,
+                    prebuilts_dir=None,
+                    url_fmt=None,
+                )
+            )
+            try:
+                obj.run()
+            except Exception as e:  # pylint: disable=broad-exception-caught
+                logging.warning(e)
+            finally:
+                self.assertTrue(tools_bazel_symlink.is_symlink())
 
 
 # This could be run as: tools/bazel test //build/kernel:init_ddk_test --test_output=all
