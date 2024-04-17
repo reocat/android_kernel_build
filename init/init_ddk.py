@@ -77,6 +77,7 @@ class KleafProjectSetter:
         self.build_target: str | None = cmd_args.build_target
         self.ddk_workspace: pathlib.Path | None = cmd_args.ddk_workspace
         self.kleaf_repo: pathlib.Path | None = cmd_args.kleaf_repo
+        self.local: bool = cmd_args.local
         self.prebuilts_dir: pathlib.Path | None = cmd_args.prebuilts_dir
         self.url_fmt: str | None = cmd_args.url_fmt
 
@@ -296,6 +297,12 @@ if __name__ == "__main__":
         "--ddk_workspace",
         help="Absolute path to DDK workspace root.",
         type=abs_path,
+        default=None,
+    )
+    parser.add_argument(
+        "--local",
+        help="Whether to use a local source tree containing Kleaf.",
+        action="store_true",
         default=None,
     )
     parser.add_argument(
