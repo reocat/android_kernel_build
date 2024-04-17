@@ -326,6 +326,9 @@ class BazelWrapper(KleafHelpPrinter):
 
     def _handle_bazelrc(self):
         """Rewrite bazelrc files."""
+        if self.known_startup_options.help:
+            return
+
         self.gen_bazelrc_dir = self.absolute_out_dir / "bazel/bazelrc"
         os.makedirs(self.gen_bazelrc_dir, exist_ok=True)
 
@@ -370,10 +373,9 @@ class BazelWrapper(KleafHelpPrinter):
                 build --//build/kernel/kleaf:cache_dir={shlex.quote(str(self.known_args.cache_dir))}
             """))
 
-        if not self.known_startup_options.help:
-            self.transformed_startup_options += self._transform_bazelrc_files([
-                cache_dir_bazelrc,
-            ])
+        self.transformed_startup_options += self._transform_bazelrc_files([
+            cache_dir_bazelrc,
+        ])
 
         self.transformed_startup_options += self._transform_bazelrc_files([
             # Toolchains and platforms
