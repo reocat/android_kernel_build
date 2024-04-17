@@ -232,6 +232,12 @@ if __name__ == "__main__":
         default=None,
     )
     parser.add_argument(
+        "--local",
+        help="Whether to use a local source tree containing Kleaf.",
+        action="store_true",
+        default=False,
+    )
+    parser.add_argument(
         "--kleaf_repo",
         help="Absolute path to Kleaf's repo dir.",
         type=abs_path,
