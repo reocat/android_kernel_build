@@ -605,7 +605,6 @@ class QuickIntegrationTest(KleafIntegrationTestBase):
         self.assertNotIn("DECLARED_SET", stderr)
         self.assertNotIn("DECLARED_UNSET", stderr)
 
-    @unittest.skip("b/293357796")
     def test_dash_dash_help(self):
         """Test that `bazel --help` works."""
         self._check_output("--help", [], use_bazelrc=False)
