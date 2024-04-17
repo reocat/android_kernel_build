@@ -16,6 +16,23 @@
       "message": "```\n-------- TESTING DONE --------\n########################################\nVerified no errors are encountered when running checkpatch_presubmit on a patch\nwith a SPDX header.\n\nestaats$ echo \"// SPDX-License-Identifier: GPL-2.0\" \u003e common/kernel/test_file.c\nestaats$ git -C common add kernel/test_file.c\nestaats$ git -C common commit -m \"Test checkpatch with SPDX header\"\n[detached HEAD 568b36c5f0f2] Test checkpatch with SPDX header\n 1 file changed, 1 insertion(+)\n create mode 100644 kernel/test_file.c\nestaats$ mkdir dist\nestaats$ echo \"common 568b36c5f0f2\" \u003e dist/applied.prop\nestaats$ tools/bazel run //build/kernel/static_analysis:checkpatch_presubmit -- --dist_dir\u003d`pwd`/dist --ignore MISSING_SIGN_OFF\n.\n.\n.\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n Running static analysis on common (568b36c5f0f2) ...\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nFinished running static analysis on common.\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\nestaats$\n```",
       "revId": "b650301279039e8ac2de865f829704e5e7782d2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "942b2de2_d6d5bf25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-17T23:32:18Z",
+      "side": 1,
+      "message": "Ironically, checkpatch is excluded from presubmit if only this repo is changed.",
+      "revId": "b650301279039e8ac2de865f829704e5e7782d2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
