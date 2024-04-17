@@ -411,7 +411,7 @@ def _kernel_module_impl(ctx):
     inputs += grab_cmd_step.inputs
     command_outputs += grab_cmd_step.outputs
 
-    grab_gcno_step = get_grab_gcno_step(ctx, "${OUT_DIR}/${ext_mod_rel}", is_kernel_build = False)
+    grab_gcno_step = get_grab_gcno_step(ctx, "${COMMON_OUT_DIR}", is_kernel_build = False)
     inputs += grab_gcno_step.inputs
     command_outputs += grab_gcno_step.outputs
 
