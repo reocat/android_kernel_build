@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "092a3c72_a130b312",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-18T20:12:32Z",
+      "side": 1,
+      "message": "nit: I usually do `**vars(args)` though I am not sure if spelling them out explicitly is better",
+      "range": {
+        "startLine": 257,
+        "startChar": 27,
+        "endLine": 262,
+        "endChar": 47
+      },
+      "revId": "093a86833cf10286567ef002240a065de787c43d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
