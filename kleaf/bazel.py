@@ -157,6 +157,15 @@ class BazelWrapper(KleafHelpPrinter):
             help="Passthrough flag to bazel if specified",
         )
         group.add_argument(
+            "--stdout_stderr_regex_allowlist",
+            metavar="PATH",
+            type=_require_absolute_path,
+            help="""If set, enforces that stdout / stderr only contains lines
+                allowed by the list of regular expressions in the file.
+
+                Lines prefixed with # are ignored."""
+        )
+        group.add_argument(
             "-h", "--help", action="store_true",
             help="show this help message and exit"
         )
@@ -530,6 +539,7 @@ class BazelWrapper(KleafHelpPrinter):
                 env=self.env,
                 filter_regex=self._get_output_filter_regex(),
                 epilog_coro=self._get_epilog_coroutine(),
+                regex_allowlist=self._load_output_regex_allowlist(),
             ))
         else:
             os.execve(path=self.bazel_path, argv=final_args, env=self.env)
@@ -539,6 +549,8 @@ class BazelWrapper(KleafHelpPrinter):
         if self.known_args.strip_execroot:
             return True
         if self.command == "clean":
+            return True
+        if self.known_startup_options.stdout_stderr_regex_allowlist:
             return True
         return False
 
@@ -559,25 +571,63 @@ class BazelWrapper(KleafHelpPrinter):
             return None
         return self.remove_gen_bazelrc_dir()
 
+    def _load_output_regex_allowlist(self):
+        if not self.known_startup_options.stdout_stderr_regex_allowlist:
+            return None
+        with open(self.known_startup_options.stdout_stderr_regex_allowlist,
+                  encoding="utf-8") as file:
+            return [re.compile(line.rstrip("\n"))
+                    for line in file
+                    if line.rstrip("\n") and not line.startswith("#")]
+
     async def remove_gen_bazelrc_dir(self):
         sys.stderr.write("INFO: Deleting generated bazelrc directory.\n")
         shutil.rmtree(self.gen_bazelrc_dir, ignore_errors=True)
 
 
-async def output_filter(input_stream, output_stream, filter_regex):
-    """Pipes input to output, optionally filtering lines with given filter_regex.
+async def output_filter(
+    input_stream,
+    output_stream,
+    filter_regex,
+    regex_allowlist,
+    what,
+):
+    """Pipes input to output, optionally filtering lines.
 
     If filter_regex is None, don't filter lines.
+
+    If regex_allowlist is not None, require each line to be matching at least
+        one regex in regex_allowlist.
     """
+    unexpected_line_count = 0
+    first_unexpected_line = None
+
     while not input_stream.at_eof():
         output = await input_stream.readline()
-        if filter_regex:
-            output = re.sub(filter_regex, "", output.decode()).encode()
+        if filter_regex or regex_allowlist:
+            output_decoded = output.decode()
+            if filter_regex:
+                output_decoded = re.sub(filter_regex, "", output_decoded)
+            if regex_allowlist:
+                if not any(regex.match(output_decoded)
+                           for regex in regex_allowlist):
+                    unexpected_line_count += 1
+                    if first_unexpected_line is None:
+                        first_unexpected_line = output_decoded
+            output = output_decoded.encode()
         output_stream.buffer.write(output)
         output_stream.flush()
 
+    if unexpected_line_count:
+        dots = "..." if len(first_unexpected_line) > 60 else ""
+        shortened_first_unexpected_line = first_unexpected_line[:60] + dots
+        print(textwrap.dedent(f"""\
+            ERROR: Found {unexpected_line_count} unexpected lines in {what}, \
+the first one is:
+                {shortened_first_unexpected_line}"""), file=sys.stderr)
+        sys.exit(1)
 
-async def run(command, env, filter_regex, epilog_coro):
+async def run(command, env, filter_regex, epilog_coro, regex_allowlist):
     """Runs command with env asynchronously.
 
     Outputs are filtered with filter_regex if it is not None.
@@ -592,10 +642,10 @@ async def run(command, env, filter_regex, epilog_coro):
         env=env,
     )
 
-    await asyncio.gather(
-        output_filter(process.stderr, sys.stderr, filter_regex),
-        output_filter(process.stdout, sys.stdout, filter_regex),
-    )
+    await output_filter(process.stderr, sys.stderr, filter_regex,
+                      regex_allowlist, "stderr")
+    await output_filter(process.stdout, sys.stdout, filter_regex,
+                      regex_allowlist, "stdout")
     await process.wait()
     if epilog_coro:
         await epilog_coro
