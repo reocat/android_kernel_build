@@ -20,7 +20,7 @@ import shlex
 import shutil
 import sys
 import textwrap
-from typing import Tuple, Optional
+from typing import Generator, Tuple, Optional
 
 from kleaf_help import KleafHelpPrinter, FLAGS_BAZEL_RC
 
@@ -38,6 +38,47 @@ _QUERY_ABI_TARGETS_ARG = 'kind("(update_source_file|abi_update) rule", //... exc
     "manual", //...) except //.source_date_epoch_dir/... except //out/...)'
 
 _REPO_BOUNDARY_FILES = ("MODULE.bazel", "REPO.bazel", "WORKSPACE.bazel", "WORKSPACE")
+
+class BazelWrapperException(Exception):
+    """A generic Bazel-wrapper error."""
+
+    def __init__(self,
+                 message: str | None = None,
+                 code: int = 1,
+                 ):
+        """Initializes the error.
+
+        Args:
+            message: error message
+            code: exit code of the program.
+                Default is 1, "Build failed".
+                See https://bazel.build/run/scripts
+        """
+        Exception.__init__(self, message or "")
+        self.code = code
+
+
+class UnexpectedOutputLinesException(BazelWrapperException):
+    """Unexpected output lines are found in stdout / stderr."""
+
+    def __init__(self, message: str | None):
+        BazelWrapperException.__init__(self, message=message)
+
+
+class MultipleBazelWrapperException(BazelWrapperException):
+    def __init__(self, errors: list[BazelWrapperException]):
+        """Wraps multiple BazelWrapperException into one.
+
+        Args:
+            errors: a list of BazelWrapperException objects
+        """
+        assert errors
+        BazelWrapperException.__init__(
+            self,
+            message="\n".join(str(error) for error in errors),
+            code=errors[0].code
+        )
+
 
 def _require_absolute_path(p: str | pathlib.Path) -> pathlib.Path:
     p = pathlib.Path(p)
@@ -155,6 +196,15 @@ class BazelWrapper(KleafHelpPrinter):
             metavar="PATH",
             type=_require_absolute_path,
             help="Passthrough flag to bazel if specified",
+        )
+        group.add_argument(
+            "--stdout_stderr_regex_allowlist",
+            metavar="PATH",
+            type=_require_absolute_path,
+            help="""If set, enforces that stdout / stderr only contains lines
+                allowed by the list of regular expressions in the file.
+
+                Lines prefixed with # are ignored."""
         )
         group.add_argument(
             "-h", "--help", action="store_true",
@@ -341,6 +391,7 @@ class BazelWrapper(KleafHelpPrinter):
             self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/local.bazelrc",
             self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/fast.bazelrc",
             self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/rbe.bazelrc",
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/silent.bazelrc",
         ])
 
         self.transformed_startup_options += self._transform_bazelrc_files([
@@ -519,28 +570,43 @@ class BazelWrapper(KleafHelpPrinter):
             print("Kleaf ABI update available targets:")
             self.transformed_command_args.append(_QUERY_ABI_TARGETS_ARG)
 
-    def run(self):
+    def run(self) -> int:
+        """Runs the wrapper.
+
+        Returns:
+            exit code"""
         final_args = self._build_final_args()
 
         if self.known_startup_options.help or self.command == "help":
             self._print_help()
 
-        if self._should_run_as_subprocess():
-            import asyncio
+        if not self._should_run_as_subprocess():
+            os.execve(path=self.bazel_path, argv=final_args, env=self.env)
+            # should never reach here
+
+        import asyncio
+        try:
             asyncio.run(run(
                 command=final_args,
                 env=self.env,
                 filter_regex=self._get_output_filter_regex(),
                 epilog_coroutine=self._get_epilog_coroutine(),
+                regex_allowlist=self._load_output_regex_allowlist(),
             ))
-        else:
-            os.execve(path=self.bazel_path, argv=final_args, env=self.env)
+        except BazelWrapperException as exception:
+            if exception.message:
+                print(exception.message, file=sys.stderr)
+            return exception.code
+
+        return 0
+
 
     def _should_run_as_subprocess(self):
         """Returns whether to run bazel command as subprocess"""
         return any([
             self.known_args.strip_execroot,
             self.command == "clean",
+            self.known_startup_options.stdout_stderr_regex_allowlist,
         ])
 
     def _get_output_filter_regex(self):
@@ -560,25 +626,79 @@ class BazelWrapper(KleafHelpPrinter):
             return None
         return self.remove_gen_bazelrc_dir()
 
+    def _load_output_regex_allowlist(self) -> list[re.Pattern]:
+        """Loads stdout_stderr_regex_allowlist file."""
+        if not self.known_startup_options.stdout_stderr_regex_allowlist:
+            return None
+        with open(self.known_startup_options.stdout_stderr_regex_allowlist,
+                  encoding="utf-8") as file:
+            return list(self._parse_output_regex_lines(file))
+
+    def _parse_output_regex_lines(self, lines) -> \
+            Generator[re.Pattern, None, None]:
+        """Parses lines from stdout_stderr_regex_allowlist file."""
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            if line.startswith("#"):
+                continue
+            yield re.compile(line)
+
     async def remove_gen_bazelrc_dir(self):
         sys.stderr.write("INFO: Deleting generated bazelrc directory.\n")
         shutil.rmtree(self.gen_bazelrc_dir, ignore_errors=True)
 
 
-async def output_filter(input_stream, output_stream, filter_regex):
-    """Pipes input to output, optionally filtering lines with given filter_regex.
+async def output_filter(
+    input_stream,
+    output_stream,
+    filter_regex,
+    regex_allowlist,
+    what,
+):
+    """Pipes input to output, optionally filtering lines.
 
     If filter_regex is None, don't filter lines.
+
+    If regex_allowlist is not None, require each line to be matching at least
+        one regex in regex_allowlist.
     """
+    unexpected_line_count = 0
+    first_unexpected_line = None
+
     while not input_stream.at_eof():
         output = await input_stream.readline()
-        if filter_regex:
-            output = re.sub(filter_regex, "", output.decode()).encode()
+        if filter_regex or regex_allowlist:
+            output_decoded = output.decode()
+            if filter_regex:
+                output_decoded = re.sub(filter_regex, "", output_decoded)
+            if regex_allowlist:
+                if not any(regex.match(output_decoded)
+                           for regex in regex_allowlist):
+                    unexpected_line_count += 1
+                    if first_unexpected_line is None:
+                        first_unexpected_line = output_decoded
+            output = output_decoded.encode()
         output_stream.buffer.write(output)
         output_stream.flush()
 
+    if unexpected_line_count:
+        first_unexpected_line = first_unexpected_line.rstrip("\n")
+        raise UnexpectedOutputLinesException(textwrap.dedent(f"""\
+            ERROR: Found {unexpected_line_count} unexpected lines in {what}, \
+the first one is:
+                {_shorten_string(first_unexpected_line, 73)}"""))
 
-async def run(command, env, filter_regex, epilog_coroutine):
+
+def _shorten_string(string: str, char_max: int, ellipsis: str = "..."):
+    """Returns string shortened to char_max. If too long, appends ellipsis."""
+    if len(string) <= char_max:
+        return string
+    return string[:char_max - len(ellipsis)] + ellipsis
+
+
+async def run(command, env, filter_regex, epilog_coroutine, regex_allowlist):
     """Runs command with env asynchronously.
 
     Outputs are filtered with filter_regex if it is not None.
@@ -593,15 +713,34 @@ async def run(command, env, filter_regex, epilog_coroutine):
         env=env,
     )
 
-    await asyncio.gather(
-        output_filter(process.stderr, sys.stderr, filter_regex),
-        output_filter(process.stdout, sys.stdout, filter_regex),
-    )
-    await process.wait()
-    if epilog_coroutine:
-        await epilog_coroutine
+    stderr_coroutine = output_filter(process.stderr, sys.stderr, filter_regex,
+                                     regex_allowlist, "stderr")
+    stdout_coroutine = output_filter(process.stdout, sys.stdout, filter_regex,
+                                     regex_allowlist, "stdout")
 
+    # Wait for the process and stdout/stderr filters concurrently.
+    coroutines = [
+        stderr_coroutine,
+        stdout_coroutine,
+        process.wait(),
+    ]
+    tasks = [asyncio.Task(coroutine) for coroutine in coroutines]
+    done, _ = await asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
+    exceptions = [task.exception() for task in done if task.exception()]
+
+    # epilog_coroutine needs to run after process finishes, so it cannot
+    # be in the coroutines list.
+    if epilog_coroutine:
+        try:
+            await epilog_coroutine
+        except BazelWrapperException as exception:
+            exceptions.append(exception)
+
+    match len(exceptions):
+        case 0: pass
+        case 1: raise exceptions[0]
+        case _: raise MultipleBazelWrapperException(exceptions)
 
 if __name__ == "__main__":
-    BazelWrapper(kleaf_repo_dir=pathlib.Path(sys.argv[1]),
-                 bazel_args=sys.argv[2:], env=os.environ).run()
+    sys.exit(BazelWrapper(kleaf_repo_dir=pathlib.Path(sys.argv[1]),
+                          bazel_args=sys.argv[2:], env=os.environ).run())
