@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65a33581_87444d60",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T15:39:48Z",
+      "side": 1,
+      "message": "Consider using `kw_only\u003dTrue` to enforce keyword only constructions. This is beneficial to avoid caller confusion with multiple pathlib.Path data members.",
+      "fixSuggestions": [
+        {
+          "fixId": "848987d3_a5357090",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 63,
+                "startChar": 0,
+                "endLine": 63,
+                "endChar": 0
+              },
+              "replacement": "@dataclasses.dataclass(kw_only\u003dTrue)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e4dfa80a8b659ae22a71fff761d99fbb06b25e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
