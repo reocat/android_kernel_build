@@ -17,6 +17,7 @@
 """Configures the project layout to build DDK modules."""
 
 import argparse
+import dataclasses
 import json
 import logging
 import pathlib
@@ -58,13 +59,16 @@ class KleafProjectSetterError(RuntimeError):
     pass
 
 
+@dataclasses.dataclass(kw_only=True)
 class KleafProjectSetter:
     """Configures the project layout to build DDK modules."""
 
-    def __init__(self, cmd_args: argparse.Namespace):
-        self.ddk_workspace: pathlib.Path | None = cmd_args.ddk_workspace
-        self.kleaf_repo: pathlib.Path | None = cmd_args.kleaf_repo
-        self.prebuilts_dir: pathlib.Path | None = cmd_args.prebuilts_dir
+    build_id: str | None
+    build_target: str | None
+    ddk_workspace: pathlib.Path | None
+    kleaf_repo: pathlib.Path | None
+    prebuilts_dir: pathlib.Path | None
+    url_fmt: str | None
 
     def _symlink_tools_bazel(self):
         if not self.ddk_workspace or not self.kleaf_repo:
@@ -250,7 +254,12 @@ if __name__ == "__main__":
                         format="%(levelname)s: %(message)s")
 
     try:
-        KleafProjectSetter(cmd_args=args).run()
+        KleafProjectSetter(build_id=args.build_id,
+                           build_target=args.build_target,
+                           ddk_workspace=args.ddk_workspace,
+                           kleaf_repo=args.kleaf_repo,
+                           prebuilts_dir=args.prebuilts_dir,
+                           url_fmt=args.url_fmt).run()
     except KleafProjectSetterError as e:
         logging.error(e, exc_info=e)
         sys.exit(1)
