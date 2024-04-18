@@ -617,6 +617,11 @@ class QuickIntegrationTest(KleafIntegrationTestBase):
         """Test that `bazel help kleaf` works."""
         self._check_output("help", ["kleaf"])
 
+    def test_strip_execroot(self):
+        """Test that --strip_execroot works."""
+        self._check_output("build", ["--nobuild", "--strip_execroot",
+                                     "//build/kernel:hermetic-tools"])
+
 
 class ScmversionIntegrationTest(KleafIntegrationTestBase):
 

@@ -15,6 +15,7 @@
 import argparse
 import os
 import pathlib
+import re
 import shlex
 import shutil
 import sys
@@ -546,7 +547,6 @@ class BazelWrapper(KleafHelpPrinter):
 
         if run_as_subprocess:
             import asyncio
-            import re
             asyncio.run(run(final_args, self.env, filter_regex, epilog_coro))
         else:
             os.execve(path=self.bazel_path, argv=final_args, env=self.env)
@@ -561,7 +561,6 @@ async def output_filter(input_stream, output_stream, filter_regex):
 
     If filter_regex is None, don't filter lines.
     """
-    import re
     while not input_stream.at_eof():
         output = await input_stream.readline()
         if filter_regex:
