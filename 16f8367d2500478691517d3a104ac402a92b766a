@@ -333,6 +333,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b82a5676_daa7fbc4",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-18T21:00:19Z",
+      "side": 1,
+      "message": "It looks like by default, urllib relies on openssl to determine where the default cert is:\n\nhttps://docs.python.org/3/library/ssl.html#ssl.SSLContext.set_default_verify_paths\n\nbut I fail to find the source code for set_default_verify_paths. It is probably implemented natively? Or perhaps we can call `openssl` to get the default verify paths.",
+      "parentUuid": "7f274b6c_8dbd7995",
+      "range": {
+        "startLine": 206,
+        "startChar": 14,
+        "endLine": 206,
+        "endChar": 21
+      },
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56f2da36_91208668",
         "filename": "init/init_ddk.py",
         "patchSetId": 11
