@@ -131,6 +131,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8dccbc6_d609a873",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:39:42Z",
+      "side": 1,
+      "message": "or that, but it does not describe the ` | None \u003d default value` semantics. Instead, those are hidden even further.",
+      "parentUuid": "64832e22_b22d86d3",
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "563e0dec_13bbf2bd",
         "filename": "init/init_ddk.py",
         "patchSetId": 11
@@ -231,6 +249,30 @@
       "side": 1,
       "message": "We should just let PATH/which do the discovery, right? For example, if the user deliberately calls this in some user-defined environment with a custom PATH, we shouldn\u0027t stop them from doing that.",
       "parentUuid": "8cd718d5_38b6790c",
+      "range": {
+        "startLine": 206,
+        "startChar": 14,
+        "endLine": 206,
+        "endChar": 21
+      },
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f274b6c_8dbd7995",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:39:42Z",
+      "side": 1,
+      "message": "Then `/usr/bin/env python3` ? \n\nI am still thinking whether we need this subprocess call. All we need is the certificates, right? Can we somehow import the ones from the host instead?\n\nOn my machine:\n```\n$ python3 -m certifi\n/etc/ssl/certs/ca-certificates.crt\n```",
+      "parentUuid": "670f8d62_3a5dfe0d",
       "range": {
         "startLine": 206,
         "startChar": 14,
