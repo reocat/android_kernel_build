@@ -1,0 +1,454 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc333d8_287fbf3d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:36:10Z",
+      "side": 1,
+      "message": "Please add more details to the commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef0db1f_1bdf88d0",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:36:10Z",
+      "side": 1,
+      "message": "nit: a bazel configuration file",
+      "range": {
+        "startLine": 176,
+        "startChar": 21,
+        "endLine": 176,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ae65439f_1a67a6e7",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 176,
+                "startChar": 0,
+                "endLine": 177,
+                "endChar": 0
+              },
+              "replacement": "        \"\"\"Creates a bazel configuration file with the minimum setup required.\"\"\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2159d094_0a9220d2",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:36:10Z",
+      "side": 1,
+      "message": "unrelated to this change, still: I am not sure this function adds much value. It creates a rather noisy output suitable only for debugging.",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 47
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7c8b8db2_af004464",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 91,
+                "startChar": 0,
+                "endLine": 92,
+                "endChar": 0
+              },
+              "replacement": "        tools_bazel.parent.mkdir(parents\u003dTrue, exist_ok\u003dTrue)\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 188,
+                "startChar": 0,
+                "endLine": 195,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 241,
+                "startChar": 0,
+                "endLine": 242,
+                "endChar": 0
+              },
+              "replacement": "                dst.parent.mkdir(parents\u003dTrue, exist_ok\u003dTrue)\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 253,
+                "startChar": 0,
+                "endLine": 254,
+                "endChar": 0
+              },
+              "replacement": "        self.ddk_workspace.mkdir(parents\u003dTrue, exist_ok\u003dTrue)\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 258,
+                "startChar": 0,
+                "endLine": 259,
+                "endChar": 0
+              },
+              "replacement": "        self.kleaf_repo.mkdir(parents\u003dTrue, exist_ok\u003dTrue)\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 264,
+                "startChar": 0,
+                "endLine": 265,
+                "endChar": 0
+              },
+              "replacement": "        (self.ddk_workspace / self.prebuilts_dir).mkdir(\n            parents\u003dTrue, exist_ok\u003dTrue\n        )\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35bd94aa_b0b98d6a",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:36:10Z",
+      "side": 1,
+      "message": "pass as pathlib.Path for type safety.",
+      "range": {
+        "startLine": 198,
+        "startChar": 8,
+        "endLine": 198,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "595dbee3_26ecbcd8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 198,
+                "startChar": 0,
+                "endLine": 199,
+                "endChar": 0
+              },
+              "replacement": "        out_file_name: pathlib.Path,\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 217,
+                "startChar": 0,
+                "endLine": 218,
+                "endChar": 0
+              },
+              "replacement": "            [\"python3\", \"-c\", _DOWNLOAD_SCRIPT, url, out_file_name.name],\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9914577_e75420dd",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:36:10Z",
+      "side": 1,
+      "message": "Please document the parameters of this function. It is not obvious what `mandatory` implies.",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 31
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "039a3038_2223b659",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:36:10Z",
+      "side": 1,
+      "message": "those can all be explicitly annotated `-\u003e None`",
+      "range": {
+        "startLine": 200,
+        "startChar": 5,
+        "endLine": 200,
+        "endChar": 6
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1604f0fd_ddf6c6af",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 200,
+                "startChar": 0,
+                "endLine": 201,
+                "endChar": 0
+              },
+              "replacement": "    ) -\u003e None:\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 223,
+                "startChar": 0,
+                "endLine": 224,
+                "endChar": 0
+              },
+              "replacement": "    def _infer_download_list(self) -\u003e dict[str, dict[str, bool]]:\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 230,
+                "startChar": 0,
+                "endLine": 231,
+                "endChar": 0
+              },
+              "replacement": "    def _download_prebuilts(self) -\u003e None:\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 250,
+                "startChar": 0,
+                "endLine": 251,
+                "endChar": 0
+              },
+              "replacement": "    def _handle_ddk_workspace(self) -\u003e None:\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 255,
+                "startChar": 0,
+                "endLine": 256,
+                "endChar": 0
+              },
+              "replacement": "    def _handle_kleaf_repo(self) -\u003e None:\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 261,
+                "startChar": 0,
+                "endLine": 262,
+                "endChar": 0
+              },
+              "replacement": "    def _handle_prebuilts(self) -\u003e None:\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 267,
+                "startChar": 0,
+                "endLine": 268,
+                "endChar": 0
+              },
+              "replacement": "    def _run(self) -\u003e None:\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 272,
+                "startChar": 0,
+                "endLine": 273,
+                "endChar": 0
+              },
+              "replacement": "    def run(self) -\u003e None:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cc06331_15c3768f",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:36:10Z",
+      "side": 1,
+      "message": "perhaps the redirection should be done by the `_DOWNLOAD_SCRIPT`?",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 219,
+        "endChar": 74
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07e70aaa_84e7ffcc",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:36:10Z",
+      "side": 1,
+      "message": "the ProcessException raised here upon (any) failure is propagated to the caller, but not documented. \n\nIn any case, how about an API where the possible specific errors are contained and only a generic IOError is propagated.",
+      "range": {
+        "startLine": 216,
+        "startChar": 8,
+        "endLine": 222,
+        "endChar": 0
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53d0569d_b7f46fbc",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:36:10Z",
+      "side": 1,
+      "message": "why actually write the file to disk if it is only used to load the dict?\n\nWhy not download into memory and json.loads(str) ?",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 46
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0de5ca0_07f308e2",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:36:10Z",
+      "side": 1,
+      "message": "why not let `__download` create the directories?",
+      "range": {
+        "startLine": 241,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6378b0c8_7234dba8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 241,
+                "startChar": 0,
+                "endLine": 242,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
