@@ -285,6 +285,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90025e0f_14cc948b",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-18T20:25:59Z",
+      "side": 1,
+      "message": "certifi doesn\u0027t seem to be a standard python library; it is on PyPI. That\u0027s odd; urllib is a standard Python library, so I assume it shouldn\u0027t rely on certifi, a non-standard library, right? I wonder how urllib determines the certificates to use when calling `urllib.request`.",
+      "parentUuid": "7f274b6c_8dbd7995",
+      "range": {
+        "startLine": 206,
+        "startChar": 14,
+        "endLine": 206,
+        "endChar": 21
+      },
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56f2da36_91208668",
         "filename": "init/init_ddk.py",
         "patchSetId": 11
