@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "610b7d32_a8ca4e63",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T15:37:49Z",
+      "side": 1,
+      "message": "nit: `default\u003dFalse` is the default for `store_true` and hence can be omitted.\n\n```\n\u0027store_true\u0027 and \u0027store_false\u0027 - These are special cases of \u0027store_const\u0027 used for storing the values True and False respectively. In addition, they create default values of False and True respectively.\n```\n\nhttps://docs.python.org/3.12/library/argparse.html#action",
+      "fixSuggestions": [
+        {
+          "fixId": "e1dd5fb7_6f59a42b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 237,
+                "startChar": 0,
+                "endLine": 238,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "fe6492e846262197e04523f4db8a047137e4c371",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
