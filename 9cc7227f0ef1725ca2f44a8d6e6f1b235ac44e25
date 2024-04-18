@@ -1,0 +1,483 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7bb5e7a_9b2af58e",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:49:04Z",
+      "side": 1,
+      "message": "Use `import` statements for packages and modules only, not for individual types, classes, or functions.\n\nhttps://google.github.io/styleguide/pyguide.html#22-imports\n\n[thank you AI for fixing it :-)]",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "09575a0b_b3a5975e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 25,
+                "startChar": 0,
+                "endLine": 32,
+                "endChar": 0
+              },
+              "replacement": "from init_ddk import init_ddk\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 46,
+                "startChar": 0,
+                "endLine": 47,
+                "endChar": 0
+              },
+              "replacement": "        (\"Empty\", \"\", join(init_ddk._FILE_MARKER_BEGIN, _HELLO_WORLD, init_ddk._FILE_MARKER_END)),\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 52,
+                "startChar": 0,
+                "endLine": 53,
+                "endChar": 0
+              },
+              "replacement": "                init_ddk._FILE_MARKER_BEGIN,\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 54,
+                "startChar": 0,
+                "endLine": 55,
+                "endChar": 0
+              },
+              "replacement": "                init_ddk._FILE_MARKER_END,\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 59,
+                "startChar": 0,
+                "endLine": 60,
+                "endChar": 0
+              },
+              "replacement": "            join(init_ddk._FILE_MARKER_BEGIN, init_ddk._FILE_MARKER_END, \"Existing test after.\"),\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 62,
+                "endChar": 0
+              },
+              "replacement": "                init_ddk._FILE_MARKER_BEGIN,\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 63,
+                "startChar": 0,
+                "endLine": 64,
+                "endChar": 0
+              },
+              "replacement": "                init_ddk._FILE_MARKER_END,\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 74,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": "            init_ddk.KleafProjectSetter._update_file(tmp_file, \"\\n\" + _HELLO_WORLD)\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 82,
+                "startChar": 0,
+                "endLine": 83,
+                "endChar": 0
+              },
+              "replacement": "            init_ddk.KleafProjectSetter._update_file(tmp_file, \"\\n\" + _HELLO_WORLD)\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 85,
+                "startChar": 0,
+                "endLine": 86,
+                "endChar": 0
+              },
+              "replacement": "                    join(init_ddk._FILE_MARKER_BEGIN, _HELLO_WORLD, init_ddk._FILE_MARKER_END),\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 95,
+                "startChar": 0,
+                "endLine": 96,
+                "endChar": 0
+              },
+              "replacement": "            obj \u003d init_ddk.KleafProjectSetter(\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 119,
+                "startChar": 0,
+                "endLine": 121,
+                "endChar": 0
+              },
+              "replacement": "            tools_bazel_symlink \u003d ddk_workspace / init_ddk._TOOLS_BAZEL\n            obj \u003d init_ddk.KleafProjectSetter(\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 148,
+                "startChar": 0,
+                "endLine": 149,
+                "endChar": 0
+              },
+              "replacement": "        obj \u003d init_ddk.KleafProjectSetter(\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 164,
+                "startChar": 0,
+                "endLine": 165,
+                "endChar": 0
+              },
+              "replacement": "            module_bazel \u003d ddk_workspace / init_ddk._MODULE_BAZEL_FILE\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9cc7227f0ef1725ca2f44a8d6e6f1b235ac44e25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77c21ec1_47be51bd",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:49:04Z",
+      "side": 1,
+      "message": "Test names should summarize the behavior being tested and its expected outcome.\n\nhttp://go/unit-test-practices-python#naming\n\nnit: do not abbreviate.",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 24
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "48242e97_a3bedbc9",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 89,
+                "startChar": 0,
+                "endLine": 90,
+                "endChar": 0
+              },
+              "replacement": "    def test_create_directories(self):\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9cc7227f0ef1725ca2f44a8d6e6f1b235ac44e25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d8b222c_676cbc0a",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:49:04Z",
+      "side": 1,
+      "message": "`temp_dir` is more descriptive",
+      "range": {
+        "startLine": 91,
+        "startChar": 46,
+        "endLine": 91,
+        "endChar": 49
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8acc8ce7_234457a2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 70,
+                "startChar": 0,
+                "endLine": 72,
+                "endChar": 0
+              },
+              "replacement": "        with tempfile.TemporaryDirectory() as temp_dir:\n            tmp_file \u003d pathlib.Path(temp_dir) / \"some_file\"\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 80,
+                "startChar": 0,
+                "endLine": 82,
+                "endChar": 0
+              },
+              "replacement": "        with tempfile.TemporaryDirectory() as temp_dir:\n            tmp_file \u003d pathlib.Path(temp_dir) / \"some_file\"\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 91,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": "        with tempfile.TemporaryDirectory() as temp_dir:\n            ddk_workspace \u003d pathlib.Path(temp_dir) / \"ddk_workspace\"\n            kleaf_repo \u003d pathlib.Path(temp_dir) / \"kleaf_repo\"\n            prebuilts_dir \u003d pathlib.Path(temp_dir) / \"prebuilts_dir\"\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 117,
+                "startChar": 0,
+                "endLine": 119,
+                "endChar": 0
+              },
+              "replacement": "        with tempfile.TemporaryDirectory() as temp_dir:\n            ddk_workspace \u003d pathlib.Path(temp_dir) / \"ddk_workspace\"\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": "                    kleaf_repo\u003dpathlib.Path(temp_dir) / \"kleaf_repo\",\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 171,
+                "startChar": 0,
+                "endLine": 173,
+                "endChar": 0
+              },
+              "replacement": "        with tempfile.TemporaryDirectory() as temp_dir:\n            ddk_workspace \u003d pathlib.Path(temp_dir) / \"ddk_workspace\"\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 185,
+                "startChar": 0,
+                "endLine": 186,
+                "endChar": 0
+              },
+              "replacement": "            prebuilts_dir_abs \u003d pathlib.Path(temp_dir) / \"prebuilts_dir\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9cc7227f0ef1725ca2f44a8d6e6f1b235ac44e25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4817eeea_ea4831c1",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:49:04Z",
+      "side": 1,
+      "message": "You can reassign `tmp \u003d pathlib.Path(tmp)` for readability.",
+      "fixSuggestions": [
+        {
+          "fixId": "e613115b_40386a73",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 92,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": "            tmp \u003d pathlib.Path(tmp)\n            ddk_workspace \u003d tmp / \"ddk_workspace\"\n            kleaf_repo \u003d tmp / \"kleaf_repo\"\n            prebuilts_dir \u003d tmp / \"prebuilts_dir\"\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 118,
+                "startChar": 0,
+                "endLine": 119,
+                "endChar": 0
+              },
+              "replacement": "            tmp \u003d pathlib.Path(tmp)\n            ddk_workspace \u003d tmp / \"ddk_workspace\"\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 126,
+                "endChar": 0
+              },
+              "replacement": "                    kleaf_repo\u003dtmp / \"kleaf_repo\",\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 172,
+                "startChar": 0,
+                "endLine": 173,
+                "endChar": 0
+              },
+              "replacement": "            tmp \u003d pathlib.Path(tmp)\n            ddk_workspace \u003d tmp / \"ddk_workspace\"\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 185,
+                "startChar": 0,
+                "endLine": 186,
+                "endChar": 0
+              },
+              "replacement": "            prebuilts_dir_abs \u003d tmp / \"prebuilts_dir\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9cc7227f0ef1725ca2f44a8d6e6f1b235ac44e25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05932029_3a3216dd",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:49:04Z",
+      "side": 1,
+      "message": "No need for the temporary variable. Run it right away?",
+      "range": {
+        "startLine": 95,
+        "startChar": 12,
+        "endLine": 107,
+        "endChar": 25
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "817703b6_c43d752c",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 95,
+                "startChar": 0,
+                "endLine": 96,
+                "endChar": 0
+              },
+              "replacement": "            try:\n                KleafProjectSetter(\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 105,
+                "startChar": 0,
+                "endLine": 108,
+                "endChar": 0
+              },
+              "replacement": "                ).run()\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 120,
+                "startChar": 0,
+                "endLine": 121,
+                "endChar": 0
+              },
+              "replacement": "            try:\n                KleafProjectSetter(\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 130,
+                "startChar": 0,
+                "endLine": 133,
+                "endChar": 0
+              },
+              "replacement": "                ).run()\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 148,
+                "startChar": 0,
+                "endLine": 149,
+                "endChar": 0
+              },
+              "replacement": "        try:\n            KleafProjectSetter(\n"
+            },
+            {
+              "path": "init/init_ddk_test.py",
+              "range": {
+                "startLine": 158,
+                "startChar": 0,
+                "endLine": 161,
+                "endChar": 0
+              },
+              "replacement": "            ).run()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9cc7227f0ef1725ca2f44a8d6e6f1b235ac44e25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
