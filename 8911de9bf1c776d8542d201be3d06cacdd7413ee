@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17cc9f4f_cf3080e8",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-18T09:51:01Z",
+      "side": 1,
+      "message": "this allows for a default\u003dNone (tristate), but __init__ only accepts `bool` (binary)",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 5
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "2a08a88a_e23652f2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 313,
+                "startChar": 0,
+                "endLine": 314,
+                "endChar": 0
+              },
+              "replacement": "        default\u003dFalse,\n"
+            }
+          ]
+        }
+      ],
+      "revId": "8911de9bf1c776d8542d201be3d06cacdd7413ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
