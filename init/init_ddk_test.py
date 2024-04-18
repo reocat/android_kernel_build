@@ -14,7 +14,6 @@
 
 """Tests for init_ddk.py"""
 
-import argparse
 import logging
 import pathlib
 import tempfile
@@ -109,15 +108,12 @@ class KleafProjectSetterTest(parameterized.TestCase):
             prebuilts_dir = temp_dir / "prebuilts_dir"
             try:
                 init_ddk.KleafProjectSetter(
-                    argparse.Namespace(
-                        build_id=None,
-                        build_target=None,
-                        ddk_workspace=ddk_workspace,
-                        kleaf_repo=kleaf_repo,
-                        local=None,
-                        prebuilts_dir=prebuilts_dir,
-                        url_fmt=None,
-                    )
+                    build_id=None,
+                    build_target=None,
+                    ddk_workspace=ddk_workspace,
+                    kleaf_repo=kleaf_repo,
+                    prebuilts_dir=prebuilts_dir,
+                    url_fmt=None,
                 ).run()
             except:  # pylint: disable=bare-except
                 pass
@@ -133,15 +129,12 @@ class KleafProjectSetterTest(parameterized.TestCase):
             ddk_workspace = temp_dir / "ddk_workspace"
             try:
                 init_ddk.KleafProjectSetter(
-                    argparse.Namespace(
-                        build_id=None,
-                        build_target=None,
-                        ddk_workspace=ddk_workspace,
-                        kleaf_repo=temp_dir / "kleaf_repo",
-                        local=None,
-                        prebuilts_dir=None,
-                        url_fmt=None,
-                    )
+                    build_id=None,
+                    build_target=None,
+                    ddk_workspace=ddk_workspace,
+                    kleaf_repo=temp_dir / "kleaf_repo",
+                    prebuilts_dir=None,
+                    url_fmt=None,
                 ).run()
             except:  # pylint: disable=bare-except
                 pass
@@ -161,15 +154,12 @@ class KleafProjectSetterTest(parameterized.TestCase):
         download_configs.write_text("{}")
         try:
             init_ddk.KleafProjectSetter(
-                argparse.Namespace(
-                    build_id=None,
-                    build_target=None,
-                    ddk_workspace=ddk_workspace,
-                    kleaf_repo=None,
-                    local=None,
-                    prebuilts_dir=prebuilts_dir,
-                    url_fmt=None,
-                )
+                build_id=None,
+                build_target=None,
+                ddk_workspace=ddk_workspace,
+                kleaf_repo=None,
+                prebuilts_dir=prebuilts_dir,
+                url_fmt=None,
             ).run()
         except:  # pylint: disable=bare-except
             pass
