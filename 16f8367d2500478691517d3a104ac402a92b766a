@@ -357,6 +357,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0d37b576_8504d192",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-18T22:28:52Z",
+      "side": 1,
+      "message": "re\n\n\u003e `/usr/bin/env python3`\n\nThis is equivalent to `shutil.which(\"python3\")`, right? which is no different than `subprocess.Popen([\"python3\", ...])`, I suppose?",
+      "parentUuid": "b82a5676_daa7fbc4",
+      "range": {
+        "startLine": 206,
+        "startChar": 14,
+        "endLine": 206,
+        "endChar": 21
+      },
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56f2da36_91208668",
         "filename": "init/init_ddk.py",
         "patchSetId": 11
