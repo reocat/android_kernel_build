@@ -523,31 +523,40 @@ class BazelWrapper(KleafHelpPrinter):
         if self.known_startup_options.help or self.command == "help":
             self._print_help()
 
-        # Whether to run bazel comamnd as subprocess
-        run_as_subprocess = False
-        # Regex to filter output / stderr lines
-        filter_regex = None
-        # Epilog coroutine after bazel command finishes
-        epilog_coro = None
-
-        if self.known_args.strip_execroot:
-            run_as_subprocess = True
-            if self.absolute_user_root.is_relative_to(self.absolute_out_dir):
-                filter_regex = re.compile(
-                    str(self.absolute_out_dir) + r"/\S+?/execroot/__main__/")
-            else:
-                filter_regex = re.compile(
-                    str(self.absolute_user_root) + r"/\S+?/execroot/__main__/")
-
-        if self.command == "clean":
-            run_as_subprocess = True
-            epilog_coro = self.remove_gen_bazelrc_dir()
-
-        if run_as_subprocess:
+        if self._should_run_as_subprocess():
             import asyncio
-            asyncio.run(run(final_args, self.env, filter_regex, epilog_coro))
+            asyncio.run(run(
+                command=final_args,
+                env=self.env,
+                filter_regex=self._get_output_filter_regex(),
+                epilog_coroutine=self._get_epilog_coroutine(),
+            ))
         else:
             os.execve(path=self.bazel_path, argv=final_args, env=self.env)
+
+    def _should_run_as_subprocess(self):
+        """Returns whether to run bazel command as subprocess"""
+        return any([
+            self.known_args.strip_execroot,
+            self.command == "clean",
+        ])
+
+    def _get_output_filter_regex(self):
+        """Returns regex to filter output / stderr lines"""
+        if not self.known_args.strip_execroot:
+            return None
+        if self.absolute_user_root.is_relative_to(self.absolute_out_dir):
+            prefix = str(self.absolute_out_dir)
+        else:
+            prefix = str(self.absolute_user_root)
+
+        return re.compile(prefix + r"/\S+?/execroot/__main__/")
+
+    def _get_epilog_coroutine(self):
+        """Returns epilog coroutine after bazel command finishes"""
+        if self.command != "clean":
+            return None
+        return self.remove_gen_bazelrc_dir()
 
     async def remove_gen_bazelrc_dir(self):
         sys.stderr.write("INFO: Deleting generated bazelrc directory.\n")
@@ -567,12 +576,12 @@ async def output_filter(input_stream, output_stream, filter_regex):
         output_stream.flush()
 
 
-async def run(command, env, filter_regex, epilog_coro):
+async def run(command, env, filter_regex, epilog_coroutine):
     """Runs command with env asynchronously.
 
     Outputs are filtered with filter_regex if it is not None.
 
-    At the end, run the coroutine epilog_coro if it is not None.
+    At the end, run the coroutine epilog_coroutine if it is not None.
     """
     import asyncio
     process = await asyncio.create_subprocess_exec(
@@ -587,8 +596,8 @@ async def run(command, env, filter_regex, epilog_coro):
         output_filter(process.stdout, sys.stdout, filter_regex),
     )
     await process.wait()
-    if epilog_coro:
-        await epilog_coro
+    if epilog_coroutine:
+        await epilog_coroutine
 
 
 if __name__ == "__main__":
