@@ -16,6 +16,24 @@
       "message": "nit: The changes in this file likely ended up in the wrong change.",
       "revId": "b0ac9fc47f4cc1977064603edfb35984fe5df06e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "086980c0_f9cd3da5",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-18T14:02:28Z",
+      "side": 1,
+      "message": "They belong here, because the testing for that function is now gone.",
+      "parentUuid": "a0b1ddd1_f9346070",
+      "revId": "b0ac9fc47f4cc1977064603edfb35984fe5df06e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
