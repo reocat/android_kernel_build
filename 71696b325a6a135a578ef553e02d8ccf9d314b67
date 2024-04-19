@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "327fd0c6_ca4cf47a",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T11:50:35Z",
+      "side": 1,
+      "message": "nit: typo\n```suggestion\n        \"\"\"Returns whether to run bazel command as subprocess\"\"\"\n```",
+      "range": {
+        "startLine": 538,
+        "startChar": 40,
+        "endLine": 538,
+        "endChar": 47
+      },
+      "revId": "71696b325a6a135a578ef553e02d8ccf9d314b67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a48fac1f_73ba05be",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T11:50:35Z",
+      "side": 1,
+      "message": "nit: \n```suggestion\n        return self.command \u003d\u003d \"clean\"\n```",
+      "range": {
+        "startLine": 541,
+        "startChar": 8,
+        "endLine": 543,
+        "endChar": 20
+      },
+      "revId": "71696b325a6a135a578ef553e02d8ccf9d314b67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
