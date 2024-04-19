@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a81801c_39d44987",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T21:59:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ce346ee_fd9ce0f6",
+      "range": {
+        "startLine": 213,
+        "startChar": 16,
+        "endLine": 213,
+        "endChar": 48
+      },
+      "revId": "c1398ee28d64103fc0ba40336e83a25257214125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "961e2f28_b1ff19d8",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-04-19T21:51:56Z",
       "side": 1,
       "message": "nit: compare the two files (perhaps `filecmp`)",
+      "range": {
+        "startLine": 218,
+        "startChar": 12,
+        "endLine": 218,
+        "endChar": 46
+      },
+      "revId": "c1398ee28d64103fc0ba40336e83a25257214125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b4bf99_14ec8ee0",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T21:59:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "961e2f28_b1ff19d8",
       "range": {
         "startLine": 218,
         "startChar": 12,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5e3d9a1_b9c0a8e3",
+        "filename": "init/init_download.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T21:59:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21a53b11_de4372db",
+      "range": {
+        "startLine": 31,
+        "startChar": 25,
+        "endLine": 31,
+        "endChar": 29
+      },
+      "revId": "c1398ee28d64103fc0ba40336e83a25257214125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c29b1623_a4e54458",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-04-19T21:56:13Z",
       "side": 1,
       "message": "This should not be assumed. Use sys.exit. https://stackoverflow.com/a/6501134\n\nIn some cases the exit builtin might not even exist (for example, the hermetic python py3-cmd doesn\u0027t define this builtin)\n```suggestion\n    sys.exit(1)\n```",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 8
+      },
+      "revId": "c1398ee28d64103fc0ba40336e83a25257214125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5ec7543_cad2cbe1",
+        "filename": "init/init_download.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T21:59:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c29b1623_a4e54458",
       "range": {
         "startLine": 32,
         "startChar": 4,
