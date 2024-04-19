@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acaa52aa_cc5e4d90",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-19T19:59:34Z",
+      "side": 1,
+      "message": "Move it to its own script as we discussed offline?",
+      "revId": "21246f0a522edaeb2e93a6f5636ca850693fa87d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0dbe78c_bdf08c80",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-19T19:59:34Z",
+      "side": 1,
+      "message": "This is just `except Exception as exc`? also exc doesn\u0027t seem to be used at all\n\nAlso if you know the exception you are capturing, sometimes `exc.message` or `str(exc)` can be used",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "21246f0a522edaeb2e93a6f5636ca850693fa87d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2bb2942_70069c24",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-19T19:59:34Z",
+      "side": 1,
+      "message": "`file \u003d sys.stderr`",
+      "revId": "21246f0a522edaeb2e93a6f5636ca850693fa87d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
