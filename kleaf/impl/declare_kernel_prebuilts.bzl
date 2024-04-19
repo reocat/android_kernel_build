@@ -43,8 +43,8 @@ _tag_class = tag_class(
         "auto_download_config": attr.bool(
             doc = """If `True`, infer download configs from `target`.""",
         ),
-        "download_configs": attr.string(
-            doc = """A JSON dictionary that configure the list of files to download.
+        "download_configs_file": attr.string(
+            doc = """A file containing JSON dictionary that configure the list of files to download.
 
                 Key: local file name.
 
@@ -83,7 +83,12 @@ def _declare_repos(module_ctx, tag_name):
                 apparent_name = module_tag.name,
                 local_artifact_path = module_tag.local_artifact_path,
                 auto_download_config = module_tag.auto_download_config,
+<<<<<<< Updated upstream
                 download_configs = module_tag.download_configs,
+=======
+                download_configs_file = module_tag.download_configs_file,
+                mandatory = module_tag.mandatory,
+>>>>>>> Stashed changes
                 target = module_tag.target,
             )
 
