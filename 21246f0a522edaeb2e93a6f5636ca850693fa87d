@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edd3792d_e4f5cb44",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T21:48:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acaa52aa_cc5e4d90",
+      "revId": "21246f0a522edaeb2e93a6f5636ca850693fa87d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0dbe78c_bdf08c80",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "264d8671_caa5d064",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T21:48:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e0dbe78c_bdf08c80",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "21246f0a522edaeb2e93a6f5636ca850693fa87d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2bb2942_70069c24",
@@ -54,6 +96,24 @@
       "writtenOn": "2024-04-19T19:59:34Z",
       "side": 1,
       "message": "`file \u003d sys.stderr`",
+      "revId": "21246f0a522edaeb2e93a6f5636ca850693fa87d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05f88b01_ff168141",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T21:48:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2bb2942_70069c24",
       "revId": "21246f0a522edaeb2e93a6f5636ca850693fa87d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
