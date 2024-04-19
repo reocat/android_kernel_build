@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3918ef2f_218d679a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T17:52:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "700efa35_e3ba9d71",
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fbde06db_07ce00fb",
@@ -94,6 +112,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c504f133_6190463a",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T17:52:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2a61376_f07985d4",
+      "range": {
+        "startLine": 40,
+        "startChar": 44,
+        "endLine": 40,
+        "endChar": 45
+      },
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "845e9d3c_882c54b8",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T17:52:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6224d11c_17fc9788",
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7264f76f_0604f392",
@@ -147,6 +207,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "801d495e_a15ead3b",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T17:52:03Z",
+      "side": 1,
+      "message": "Done in CL:3047741",
+      "parentUuid": "f8dccbc6_d609a873",
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "563e0dec_13bbf2bd",
@@ -184,6 +262,30 @@
       "side": 1,
       "message": "+1. This should probably do the same check as https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/kernel_prebuilt_repo.bzl;l\u003d168;drc\u003de3d80b666b653d4ac83e542ff11d2b8dfb2f3fae .",
       "parentUuid": "563e0dec_13bbf2bd",
+      "range": {
+        "startLine": 198,
+        "startChar": 26,
+        "endLine": 198,
+        "endChar": 34
+      },
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4f11e08_fce33973",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T17:52:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98738ce4_1de5f49c",
       "range": {
         "startLine": 198,
         "startChar": 26,
@@ -379,6 +481,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1103af1_49caa66d",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T17:52:03Z",
+      "side": 1,
+      "message": "Since no better option is available, this approach is kept. We can revisit if if another standard way to do this is found.",
+      "parentUuid": "0d37b576_8504d192",
+      "range": {
+        "startLine": 206,
+        "startChar": 14,
+        "endLine": 206,
+        "endChar": 21
+      },
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56f2da36_91208668",
@@ -416,6 +542,30 @@
           ]
         }
       ],
+      "revId": "16f8367d2500478691517d3a104ac402a92b766a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3152326_d6edb81f",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T17:52:03Z",
+      "side": 1,
+      "message": "We want to print the errors when they happen, now the noise is reduced by just printing one line.",
+      "parentUuid": "56f2da36_91208668",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 37
+      },
       "revId": "16f8367d2500478691517d3a104ac402a92b766a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
