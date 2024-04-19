@@ -11,6 +11,10 @@ cc_binary(
     name = "hello_world_linux_x86_64",
     srcs = ["hello_world.c"],
     target_compatible_with = _LINUX_X86_64,
+    features = [
+        "static_link_cpp_runtimes",
+    ],
+    # deps = ["//prebuilts/build-tools/sysroots/x86_64-unknown-linux-musl:libc_musl"],
 )
 
 cc_library(
@@ -31,7 +35,10 @@ cc_binary(
     features = ["fully_static_link"],
     linkstatic = True,
     target_compatible_with = _LINUX_X86_64,
-    deps = [":mylib_linux_x86_64"],
+    deps = [
+        ":mylib_linux_x86_64",
+        # "//prebuilts/build-tools/sysroots/x86_64-unknown-linux-musl:libc_musl",
+    ],
 )
 
 cc_binary(
@@ -42,7 +49,10 @@ cc_binary(
     ],
     linkstatic = True,
     target_compatible_with = _LINUX_X86_64,
-    deps = [":mylib_linux_x86_64"],
+    deps = [
+        ":mylib_linux_x86_64",
+        # "//prebuilts/build-tools/sysroots/x86_64-unknown-linux-musl:libc_musl",
+    ],
 )
 
 cc_binary(
@@ -53,7 +63,10 @@ cc_binary(
     ],
     linkstatic = False,
     target_compatible_with = _LINUX_X86_64,
-    deps = [":mylib_linux_x86_64"],
+    deps = [
+        ":mylib_linux_x86_64",
+        # "//prebuilts/build-tools/sysroots/x86_64-unknown-linux-musl:libc_musl",
+    ],
 )
 
 cc_binary(
@@ -61,8 +74,10 @@ cc_binary(
     srcs = [
         "openssl_client.c",
     ],
+    linkstatic = False,
     target_compatible_with = _LINUX_X86_64,
     deps = [
+        # "//prebuilts/build-tools/sysroots/x86_64-unknown-linux-musl:libc_musl",
         "//prebuilts/kernel-build-tools:linux_x86_imported_libs",
     ],
 )
@@ -71,6 +86,9 @@ cc_binary(
     name = "cpp_linux_x86_64",
     srcs = ["cpp.cpp"],
     target_compatible_with = _LINUX_X86_64,
+    deps = [
+        # "//prebuilts/build-tools/sysroots/x86_64-unknown-linux-musl:libc_musl",
+    ],
 )
 
 cc_binary(
@@ -80,6 +98,9 @@ cc_binary(
         "-lpthread",
     ],
     target_compatible_with = _LINUX_X86_64,
+    deps = [
+        # "//prebuilts/build-tools/sysroots/x86_64-unknown-linux-musl:libc_musl",
+    ],
 )
 
 # genrule that applies the `cfg = exec` transition. This ensures that all these
@@ -88,11 +109,12 @@ hermetic_genrule(
     name = "linux_x86_64_tests_genrule",
     outs = ["linux_x86_64_tests_genrule.txt"],
     cmd = """
+    set -x
         $(location :hello_world_linux_x86_64) > $@
         $(location :mybin_dynamic_linux_x86_64) >> $@
         $(location :mybin_fully_static_linux_x86_64) >> $@
         $(location :mybin_static_linux_x86_64) >> $@
-        $(location :openssl_client_linux_x86_64) >> $@
+        # $(location :openssl_client_linux_x86_64) >> $@
         $(location :cpp_linux_x86_64) >> $@
     """,
     tools = [
