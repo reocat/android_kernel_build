@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ce346ee_fd9ce0f6",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-19T21:51:56Z",
+      "side": 1,
+      "message": "nit: just add it to L205? I think you can use `{{filename}}`",
+      "range": {
+        "startLine": 213,
+        "startChar": 16,
+        "endLine": 213,
+        "endChar": 48
+      },
+      "revId": "c1398ee28d64103fc0ba40336e83a25257214125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "961e2f28_b1ff19d8",
+        "filename": "init/init_ddk_test.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-19T21:51:56Z",
+      "side": 1,
+      "message": "nit: compare the two files (perhaps `filecmp`)",
+      "range": {
+        "startLine": 218,
+        "startChar": 12,
+        "endLine": 218,
+        "endChar": 46
+      },
+      "revId": "c1398ee28d64103fc0ba40336e83a25257214125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
