@@ -45,6 +45,52 @@
       },
       "revId": "c1398ee28d64103fc0ba40336e83a25257214125",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21a53b11_de4372db",
+        "filename": "init/init_download.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-19T21:56:13Z",
+      "side": 1,
+      "message": "If `traceback.format_exc()` returns `\"\"` for whatever reason, this will throw another index error. So maybe check `if formatted_lines` first.\n```suggestion\n    if formatted_lines:\n        print(formatted_lines[-1], file\u003dsys.stderr)\n```",
+      "range": {
+        "startLine": 31,
+        "startChar": 25,
+        "endLine": 31,
+        "endChar": 29
+      },
+      "revId": "c1398ee28d64103fc0ba40336e83a25257214125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29b1623_a4e54458",
+        "filename": "init/init_download.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-19T21:56:13Z",
+      "side": 1,
+      "message": "This should not be assumed. Use sys.exit. https://stackoverflow.com/a/6501134\n\nIn some cases the exit builtin might not even exist (for example, the hermetic python py3-cmd doesn\u0027t define this builtin)\n```suggestion\n    sys.exit(1)\n```",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 8
+      },
+      "revId": "c1398ee28d64103fc0ba40336e83a25257214125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
