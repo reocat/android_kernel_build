@@ -1,0 +1,103 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "190ee224_88965176",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-19T13:21:22Z",
+      "side": 1,
+      "message": "if ... is not None\n\nhttps://google.github.io/styleguide/pyguide.html#214-truefalse-evaluations",
+      "fixSuggestions": [
+        {
+          "fixId": "76447a33_23ea5954",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 553,
+                "startChar": 0,
+                "endLine": 554,
+                "endChar": 0
+              },
+              "replacement": "        if self.known_startup_options.stdout_stderr_regex_allowlist is not None:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1a8a0dd56afc53cb30a72ec10ef49b24c552f70f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c0ca71e_b2aef56d",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-19T13:21:22Z",
+      "side": 1,
+      "message": "So, an empty line with just a blank is significant. That might cause quite some funny effects. Intentional? How about expecting _any_ character? `if line.strip()` ?",
+      "range": {
+        "startLine": 581,
+        "startChar": 35,
+        "endLine": 581,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "bf0ea086_1ae5e85f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 581,
+                "startChar": 0,
+                "endLine": 582,
+                "endChar": 0
+              },
+              "replacement": "                    if line.strip() and not line.startswith(\"#\")]\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1a8a0dd56afc53cb30a72ec10ef49b24c552f70f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c91dc92b_d9bbefcc",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-19T13:21:22Z",
+      "side": 1,
+      "message": "I think `output_filter` is not the right location to terminate the program. Either return boolean or raise, but just killing the program while other things might still need to be done?",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 628,
+        "endChar": 19
+      },
+      "revId": "1a8a0dd56afc53cb30a72ec10ef49b24c552f70f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
