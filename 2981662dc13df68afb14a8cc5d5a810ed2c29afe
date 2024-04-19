@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5522cd9d_a46b97f6",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T18:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ef0db1f_1bdf88d0",
+      "range": {
+        "startLine": 176,
+        "startChar": 21,
+        "endLine": 176,
+        "endChar": 34
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2159d094_0a9220d2",
@@ -156,6 +180,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c3092b0_4897f73a",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T18:22:19Z",
+      "side": 1,
+      "message": "Done in CL:3046694",
+      "parentUuid": "2159d094_0a9220d2",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 47
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35bd94aa_b0b98d6a",
@@ -207,6 +255,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6709b144_0cc615ac",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T18:22:19Z",
+      "side": 1,
+      "message": "Applied the first one, but I have to disagree with the second, as using only the base name is incorrect here, the full path should be used.",
+      "parentUuid": "35bd94aa_b0b98d6a",
+      "range": {
+        "startLine": 198,
+        "startChar": 8,
+        "endLine": 198,
+        "endChar": 21
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9914577_e75420dd",
@@ -220,6 +292,30 @@
       "writtenOn": "2024-04-18T09:36:10Z",
       "side": 1,
       "message": "Please document the parameters of this function. It is not obvious what `mandatory` implies.",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 199,
+        "endChar": 31
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad4d3c09_4f1c83bd",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T18:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9914577_e75420dd",
       "range": {
         "startLine": 199,
         "startChar": 0,
@@ -341,6 +437,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d094f772_676dfada",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T18:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "039a3038_2223b659",
+      "range": {
+        "startLine": 200,
+        "startChar": 5,
+        "endLine": 200,
+        "endChar": 6
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cc06331_15c3768f",
@@ -354,6 +474,30 @@
       "writtenOn": "2024-04-18T09:36:10Z",
       "side": 1,
       "message": "perhaps the redirection should be done by the `_DOWNLOAD_SCRIPT`?",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 219,
+        "endChar": 74
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ceb5954_07b93f8f",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T18:22:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3cc06331_15c3768f",
       "range": {
         "startLine": 219,
         "startChar": 0,
@@ -410,6 +554,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8df0cd0_3d2174f0",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T18:22:19Z",
+      "side": 1,
+      "message": "This file is later used for setup purposes, so it\u0027s better to save it where it belongs. (see L72 for context).",
+      "parentUuid": "53d0569d_b7f46fbc",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 46
+      },
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0de5ca0_07f308e2",
@@ -447,6 +615,30 @@
           ]
         }
       ],
+      "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5dcfb26b_e13c4701",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-04-19T18:22:19Z",
+      "side": 1,
+      "message": "IMHO download, should only do one thing.",
+      "parentUuid": "e0de5ca0_07f308e2",
+      "range": {
+        "startLine": 241,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 50
+      },
       "revId": "2981662dc13df68afb14a8cc5d5a810ed2c29afe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
