@@ -16,6 +16,24 @@
       "message": "Some tests might need to be updated as well:\n\n```\nERROR: /mnt/disks/build-disk/src/android/common-android15-6.1/build/kernel/kleaf/tests/merged_kernel_uapi_headers_test/BUILD.bazel:17:11: //build/kernel/kleaf/tests/merged_kernel_uapi_headers_test:order_test_fg: no such attribute \u0027module_outs_file\u0027 in \u0027kernel_filegroup\u0027 rule\n```",
       "revId": "2e0781720f7256545d9d801444bf7e18ec7f1b9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01614e21_42a2eb25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-19T00:38:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9055475a_d42f738c",
+      "revId": "2e0781720f7256545d9d801444bf7e18ec7f1b9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
