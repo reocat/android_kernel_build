@@ -3,6 +3,77 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28781a0b_61dd1688",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-19T13:27:32Z",
+      "side": 1,
+      "message": "Please avoid abbreviations.\n\nhttps://google.github.io/styleguide/pyguide.html#316-naming",
+      "range": {
+        "startLine": 532,
+        "startChar": 23,
+        "endLine": 532,
+        "endChar": 27
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "150414df_4c3f52ae",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 532,
+                "startChar": 0,
+                "endLine": 533,
+                "endChar": 0
+              },
+              "replacement": "                epilog_coroutine\u003dself._get_epilog_coroutine(),\n"
+            },
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 580,
+                "startChar": 0,
+                "endLine": 581,
+                "endChar": 0
+              },
+              "replacement": "async def run(command, env, filter_regex, epilog_coroutine):\n"
+            },
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 585,
+                "startChar": 0,
+                "endLine": 586,
+                "endChar": 0
+              },
+              "replacement": "    At the end, run the coroutine epilog_coroutine if it is not None.\n"
+            },
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 600,
+                "startChar": 0,
+                "endLine": 602,
+                "endChar": 0
+              },
+              "replacement": "    if epilog_coroutine:\n        await epilog_coroutine\n"
+            }
+          ]
+        }
+      ],
+      "revId": "71696b325a6a135a578ef553e02d8ccf9d314b67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "327fd0c6_ca4cf47a",
         "filename": "kleaf/bazel.py",
         "patchSetId": 1
@@ -43,6 +114,47 @@
         "endLine": 543,
         "endChar": 20
       },
+      "revId": "71696b325a6a135a578ef553e02d8ccf9d314b67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "957936ab_8c81c044",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-19T13:27:32Z",
+      "side": 1,
+      "message": "return any()",
+      "range": {
+        "startLine": 536,
+        "startChar": 0,
+        "endLine": 543,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fdb418a7_1df49d3d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 539,
+                "startChar": 0,
+                "endLine": 544,
+                "endChar": 0
+              },
+              "replacement": "        return any([\n            self.known_args.strip_execroot,\n            self.command \u003d\u003d \"clean\",\n        ])\n"
+            }
+          ]
+        }
+      ],
       "revId": "71696b325a6a135a578ef553e02d8ccf9d314b67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
