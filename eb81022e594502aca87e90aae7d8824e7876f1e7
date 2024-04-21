@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "202b285f_c110396f",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-21T14:10:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ae6a2dc_31144941",
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d19e1e45_0043df7f",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-11-30T22:20:06Z",
       "side": 1,
       "message": "Should only be used by //build/kernel:hermetic-tools",
+      "range": {
+        "startLine": 401,
+        "startChar": 0,
+        "endLine": 401,
+        "endChar": 48
+      },
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a95b6b6_e15e83a0",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-21T14:10:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d19e1e45_0043df7f",
       "range": {
         "startLine": 401,
         "startChar": 0,
@@ -75,6 +117,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8516f560_66f717bd",
+        "filename": "kleaf/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-21T14:10:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f94b6b7b_feb4f79b",
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ca5fb48_5e6e9ee8",
@@ -92,6 +152,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afd5801c_4b8578bd",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-21T14:10:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7ca5fb48_5e6e9ee8",
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2009e242_93e6fdc3",
@@ -105,6 +183,30 @@
       "writtenOn": "2023-11-30T22:20:06Z",
       "side": 1,
       "message": "Should not need, because the only target that depends on this should be //build/kernel:hermetic-tools",
+      "range": {
+        "startLine": 296,
+        "startChar": 49,
+        "endLine": 296,
+        "endChar": 50
+      },
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d40fc749_26e3f3f1",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-21T14:10:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2009e242_93e6fdc3",
       "range": {
         "startLine": 296,
         "startChar": 49,
@@ -186,6 +288,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b396f5a4_20a31961",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-21T14:10:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73df9fd3_62874551",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 58
+      },
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91ab76fc_4051ec73",
@@ -203,6 +329,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfa643f3_75e207b8",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-21T14:10:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91ab76fc_4051ec73",
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8393094d_92a33d50",
@@ -216,6 +360,24 @@
       "writtenOn": "2023-11-30T22:20:06Z",
       "side": 1,
       "message": "Should not need, because the only target that depends on this should be //build/kernel:hermetic-tools",
+      "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0908bee1_00d41508",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 3
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-21T14:10:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8393094d_92a33d50",
       "revId": "eb81022e594502aca87e90aae7d8824e7876f1e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
