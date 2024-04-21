@@ -16,6 +16,24 @@
       "message": "Packages are the unit of granularity for deciding whether or not to allow access for target visibility. So using `:hermetic-tools` won\u0027t be possible (IIUIC).\n\n[0] https://bazel.build/concepts/visibility#target-visibility",
       "revId": "cc45b3aa11892fcf45d530fff96793cfb6779a1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f05d7f6a_d6311d4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-21T15:55:17Z",
+      "side": 1,
+      "message": "Alright, let\u0027s kill this one then.",
+      "parentUuid": "c0cb2aa1_85a9b707",
+      "revId": "cc45b3aa11892fcf45d530fff96793cfb6779a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
