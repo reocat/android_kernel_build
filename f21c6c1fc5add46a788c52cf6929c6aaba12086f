@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8957baf8_8e56d7bf",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-22T21:38:52Z",
+      "side": 1,
+      "message": "Python for loops do not define a scope. As such this declaration is not actually necessary.",
+      "revId": "f21c6c1fc5add46a788c52cf6929c6aaba12086f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d2104c_07848dc1",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-22T21:38:52Z",
+      "side": 1,
+      "message": "you could drop this instead out of the loop. Or, alternatively, assert on that claim that both invocations yield the same result.",
+      "revId": "f21c6c1fc5add46a788c52cf6929c6aaba12086f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7e6a60d_1e68fd57",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-22T21:38:52Z",
+      "side": 1,
+      "message": "where is `new_version` used?",
+      "range": {
+        "startLine": 763,
+        "startChar": 5,
+        "endLine": 763,
+        "endChar": 16
+      },
+      "revId": "f21c6c1fc5add46a788c52cf6929c6aaba12086f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
