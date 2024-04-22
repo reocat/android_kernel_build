@@ -745,6 +745,7 @@ def update_microdroid_kernel():
   base_dir = os.path.join(output_dir, "packages", "modules", "Virtualization",
                           "microdroid", "kernel", short_branch)
 
+  (old_sha, new_sha) = (None, None)
   for arch in "arm64", "x86_64":
     arch_suffix = "aarch64" if arch == "arm64" else arch
     directory = os.path.join(base_dir, arch)
@@ -757,9 +758,12 @@ def update_microdroid_kernel():
     clean_download_dir(directory)
     download_kernel("kernel_microdroid_" + arch_suffix, version, directory)
     write_prebuilt_info(directory)
+    # Note: this happens twice, but it should be fine since both invocations should result in the
+    # same output.
     (new_version, new_sha) = get_binary_kernel_version(kernel)
-    gitlog = get_git_log(old_sha, new_sha)
-    commit_prebuilts(directory, gitlog)
+
+  gitlog = get_git_log(old_sha, new_sha)
+  commit_prebuilts(directory, gitlog)
 
 
 def main():
