@@ -757,9 +757,10 @@ def update_microdroid_kernel():
     clean_download_dir(directory)
     download_kernel("kernel_microdroid_" + arch_suffix, version, directory)
     write_prebuilt_info(directory)
-    (new_version, new_sha) = get_binary_kernel_version(kernel)
-    gitlog = get_git_log(old_sha, new_sha)
-    commit_prebuilts(directory, gitlog)
+
+  (_, new_sha) = get_binary_kernel_version(kernel)
+  gitlog = get_git_log(old_sha, new_sha)
+  commit_prebuilts(base_dir, gitlog)
 
 
 def main():
