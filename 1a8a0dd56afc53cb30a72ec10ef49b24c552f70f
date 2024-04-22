@@ -79,6 +79,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1a435cf7_d08f03d7",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-22T20:54:54Z",
+      "side": 1,
+      "message": "An empty line with just a blank is indeed significant, but this is an Allowlist. An empty line with just a ` ` means empty lines with just a ` ` is okay in the stdout / stderr (note we are using re.match not re.search).\n\nThat being said, I agree that this should be `line.strip()` to make sure it is visually comprehensible by human eyes.",
+      "parentUuid": "6c0ca71e_b2aef56d",
+      "range": {
+        "startLine": 581,
+        "startChar": 35,
+        "endLine": 581,
+        "endChar": 39
+      },
+      "revId": "1a8a0dd56afc53cb30a72ec10ef49b24c552f70f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c91dc92b_d9bbefcc",
         "filename": "kleaf/bazel.py",
         "patchSetId": 6
@@ -90,6 +114,30 @@
       "writtenOn": "2024-04-19T13:21:22Z",
       "side": 1,
       "message": "I think `output_filter` is not the right location to terminate the program. Either return boolean or raise, but just killing the program while other things might still need to be done?",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 628,
+        "endChar": 19
+      },
+      "revId": "1a8a0dd56afc53cb30a72ec10ef49b24c552f70f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afdd82c4_5953d066",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-22T20:54:54Z",
+      "side": 1,
+      "message": "I might have understood the program incorrectly. I thought `create_subprocess_exec` creates a subprocess, so I have to sys.exit() to let L648 properly get the faulty signal. Let me change this to a boolean or raise.",
+      "parentUuid": "c91dc92b_d9bbefcc",
       "range": {
         "startLine": 628,
         "startChar": 0,
