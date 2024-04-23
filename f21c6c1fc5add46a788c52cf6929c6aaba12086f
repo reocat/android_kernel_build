@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efff4b75_1a52329b",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1432579
+      },
+      "writtenOn": "2024-04-23T22:27:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8957baf8_8e56d7bf",
+      "revId": "f21c6c1fc5add46a788c52cf6929c6aaba12086f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55d2104c_07848dc1",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa519a31_3d569e0c",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1432579
+      },
+      "writtenOn": "2024-04-23T22:27:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55d2104c_07848dc1",
+      "revId": "f21c6c1fc5add46a788c52cf6929c6aaba12086f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7e6a60d_1e68fd57",
@@ -65,6 +101,30 @@
       "writtenOn": "2024-04-22T21:38:52Z",
       "side": 1,
       "message": "where is `new_version` used?",
+      "range": {
+        "startLine": 763,
+        "startChar": 5,
+        "endLine": 763,
+        "endChar": 16
+      },
+      "revId": "f21c6c1fc5add46a788c52cf6929c6aaba12086f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc714851_e32b0c52",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 2
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1432579
+      },
+      "writtenOn": "2024-04-23T22:27:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7e6a60d_1e68fd57",
       "range": {
         "startLine": 763,
         "startChar": 5,
