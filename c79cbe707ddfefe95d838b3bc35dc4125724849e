@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74e9246a_ea0e5a56",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-23T00:16:20Z",
+      "side": 1,
+      "message": "typo\n```suggestion\n        \"\"\"Downloads prebuilts from a given build_id when provided.\"\"\"\n```",
+      "range": {
+        "startLine": 248,
+        "startChar": 58,
+        "endLine": 248,
+        "endChar": 68
+      },
+      "revId": "c79cbe707ddfefe95d838b3bc35dc4125724849e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61cfc8c4_220c7f6a",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-23T00:16:20Z",
+      "side": 1,
+      "message": "Similar to --local and --kleaf_repo_dir, whether to download should not depend on whether --build_id is set because --artifiact_url_fmt might not need build_id at all.\n\nPerhaps `if self._get_url(\"\") is not None:` is a better predicate? If so it is worth a comment though.",
+      "range": {
+        "startLine": 249,
+        "startChar": 8,
+        "endLine": 249,
+        "endChar": 29
+      },
+      "revId": "c79cbe707ddfefe95d838b3bc35dc4125724849e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
