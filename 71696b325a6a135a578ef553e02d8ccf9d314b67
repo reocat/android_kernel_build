@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52d31b9a_42073255",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-24T22:27:47Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "28781a0b_61dd1688",
+      "range": {
+        "startLine": 532,
+        "startChar": 23,
+        "endLine": 532,
+        "endChar": 27
+      },
+      "revId": "71696b325a6a135a578ef553e02d8ccf9d314b67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "327fd0c6_ca4cf47a",
@@ -85,6 +109,30 @@
       "writtenOn": "2024-04-19T11:50:35Z",
       "side": 1,
       "message": "nit: typo\n```suggestion\n        \"\"\"Returns whether to run bazel command as subprocess\"\"\"\n```",
+      "range": {
+        "startLine": 538,
+        "startChar": 40,
+        "endLine": 538,
+        "endChar": 47
+      },
+      "revId": "71696b325a6a135a578ef553e02d8ccf9d314b67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e67c572b_cf236dfa",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-24T22:27:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "327fd0c6_ca4cf47a",
       "range": {
         "startLine": 538,
         "startChar": 40,
@@ -155,6 +203,54 @@
           ]
         }
       ],
+      "revId": "71696b325a6a135a578ef553e02d8ccf9d314b67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a14d298_3f8956a5",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-24T22:27:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a48fac1f_73ba05be",
+      "range": {
+        "startLine": 541,
+        "startChar": 8,
+        "endLine": 543,
+        "endChar": 20
+      },
+      "revId": "71696b325a6a135a578ef553e02d8ccf9d314b67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7be4363d_3d54e786",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-24T22:27:47Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "957936ab_8c81c044",
+      "range": {
+        "startLine": 536,
+        "startChar": 0,
+        "endLine": 543,
+        "endChar": 20
+      },
       "revId": "71696b325a6a135a578ef553e02d8ccf9d314b67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
