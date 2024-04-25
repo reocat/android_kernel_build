@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16b17009_e51731d0",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-04-25T18:14:09Z",
+      "side": 1,
+      "message": "I don\u0027t think this string is accurate anymore (now with it being `/tmp/bazel-working-directory`). It should be adjusted in a follow-up change.",
+      "range": {
+        "startLine": 555,
+        "startChar": 43,
+        "endLine": 555,
+        "endChar": 51
+      },
+      "revId": "092c6eadf4e178acfd5bea1896708aaa6ef06a58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
