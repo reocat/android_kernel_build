@@ -161,7 +161,6 @@ def kernel_build(
           Value should be one of:
           * `arm64`
           * `x86_64`
-          * `riscv64`
           * `arm` (for 32-bit, uncommon)
           * `i386` (for 32-bit, uncommon)
 

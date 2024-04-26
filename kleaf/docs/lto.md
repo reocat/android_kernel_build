@@ -18,7 +18,6 @@ setting. For GKI, this is `gki_defconfig` in
 ```text
 common/arch/arm64/configs/gki_defconfig
 common/arch/x86/configs/gki_defconfig
-common/arch/riscv/configs/gki_defconfig
 ```
 
 ## Option 1: One-time build without LTO

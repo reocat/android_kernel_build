@@ -191,8 +191,6 @@ android_filegroup(
     cpu = "x86_64",
 )
 
-# TODO(b/228238975): Add tests for riscv
-
 # Build with --config=hermetic_cc
 build_test(
     name = "android_tests",

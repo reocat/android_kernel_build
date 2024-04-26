@@ -63,8 +63,8 @@ def _get_check_arch_cmd(ctx):
         exit_cmd = "exit 1"
 
     return """
-        if [[ "${{ARCH/riscv/riscv64}}" != "{declared_arch}" ]]; then
-            echo '{level}: {label} must specify arch = '"${{ARCH/riscv/riscv64}}"', but is {declared_arch}.' >&2
+        if [[ "${ARCH}" != "{declared_arch}" ]]; then
+            echo '{level}: {label} must specify arch = '"${ARCH}"', but is {declared_arch}.' >&2
             {exit_cmd}
         fi
     """.format(
