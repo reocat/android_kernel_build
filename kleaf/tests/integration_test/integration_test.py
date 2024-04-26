@@ -514,8 +514,6 @@ class QuickIntegrationTest(KleafIntegrationTestBase):
         archs = [
             ("aarch64", "arm64"),
             ("x86_64", "x86"),
-            # TODO(b/271919464): Need NDK_TRIPLE for riscv so --sysroot is properly set
-            # ("riscv64", "riscv"),
         ]
 
         for arch, srcarch in archs:

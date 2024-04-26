@@ -27,8 +27,6 @@ load(":kernel_config_aspect.bzl", "KernelConfigAspectInfo", "kernel_config_aspec
 _ARCHS = (
     "aarch64",
     "x86_64",
-    # b/264407394: gcov does not work with riscv64 because of conflict in CONFIG_CFI_CLANG
-    # "riscv64",
 )
 
 _INTERESTING_FLAGS = (

@@ -70,8 +70,6 @@ def _get_target_arch(ctx):
         return "arm64"
     if ctx.target_platform_has_constraint(ctx.attr._platform_cpu_i386[platform_common.ConstraintValueInfo]):
         return "i386"
-    if ctx.target_platform_has_constraint(ctx.attr._platform_cpu_riscv64[platform_common.ConstraintValueInfo]):
-        return "riscv64"
     if ctx.target_platform_has_constraint(ctx.attr._platform_cpu_x86_64[platform_common.ConstraintValueInfo]):
         return "x86_64"
     fail("{}: Cannot determine target platform.".format(ctx.label))
@@ -195,7 +193,6 @@ kernel_toolchains = rule(
         "_platform_cpu_arm": attr.label(default = "@platforms//cpu:arm"),
         "_platform_cpu_arm64": attr.label(default = "@platforms//cpu:arm64"),
         "_platform_cpu_i386": attr.label(default = "@platforms//cpu:i386"),
-        "_platform_cpu_riscv64": attr.label(default = "@platforms//cpu:riscv64"),
         "_platform_cpu_x86_64": attr.label(default = "@platforms//cpu:x86_64"),
     } | {
         "_clang_version_{}".format(version): attr.label(default = "//prebuilts/clang/host/linux-x86/kleaf:{}".format(version))

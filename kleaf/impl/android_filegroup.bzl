@@ -47,7 +47,6 @@ android_filegroup = rule(
                 "arm",
                 "arm64",
                 "i386",
-                "riscv64",
                 "x86_64",
             ],
         ),

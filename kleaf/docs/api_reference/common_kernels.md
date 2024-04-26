@@ -27,15 +27,13 @@ deprecated targets not listed):
 - `kernel_aarch64_16k_dist`
   - `kernel_aarch64_16k`
   - `kernel_aarch64_modules`
-- `kernel_riscv64_dist`
-  - `kernel_riscv64`
 - `kernel_x86_64_sources`
 - `kernel_x86_64_dist`
   - `kernel_x86_64`
   - `kernel_x86_64_uapi_headers`
   - `kernel_x86_64_additional_artifacts`
 
-`<name>` (aka `kernel_{aarch64,riscv64,x86_64}{_16k,}`) targets build the
+`<name>` (aka `kernel_{aarch64,x86_64}{_16k,}`) targets build the
 main kernel build artifacts, e.g. `vmlinux`, etc.
 
 `<name>_sources` are convenience filegroups that refers to all sources required to
@@ -60,7 +58,6 @@ Targets declared for cross referencing:
 
 Targets declared for Bazel rules analysis for debugging purposes:
 - `kernel_aarch64_print_configs`
-- `kernel_riscv64_print_configs`
 - `kernel_x86_64_print_configs`
 
 **ABI monitoring**
@@ -74,7 +71,7 @@ See [`kernel_abi()`](kernel.md#kernel_abi) for details.
 **Target configs**
 
 The content of `target_configs` should match the following variables in
-`build.config.gki{,-debug}.{aarch64,riscv64,x86_64}`:
+`build.config.gki{,-debug}.{aarch64,x86_64}`:
 - `KMI_SYMBOL_LIST`
 - `ADDITIONAL_KMI_SYMBOL_LISTS`
 - `TRIM_NONLISTED_KMI`
@@ -86,7 +83,6 @@ The content of `target_configs` should match the following variables in
 The keys of the `target_configs` may be one of the following:
 - `kernel_aarch64`
 - `kernel_aarch64_16k`
-- `kernel_riscv64`
 - `kernel_x86_64`
 
 The values of the `target_configs` should be a dictionary, where keys
@@ -138,10 +134,6 @@ The `default_target_configs` above contains sensible defaults:
     - No `kmi_symbol_list` nor `additional_kmi_symbol_lists`
     - `TRIM_NONLISTED_KMI` is not specified in `build.config`
     - `KMI_SYMBOL_LIST_STRICT_MODE` is not specified in `build.config`
-- `kernel_riscv64`:
-    - No `kmi_symbol_list` nor `additional_kmi_symbol_lists`
-    - `TRIM_NONLISTED_KMI` is not specified in `build.config`
-    - `KMI_SYMBOL_LIST_STRICT_MODE` is not specified in `build.config`
 - `kernel_x86_64`:
     - No `kmi_symbol_list` nor `additional_kmi_symbol_lists`
     - `TRIM_NONLISTED_KMI` is not specified in `build.config`
@@ -171,8 +163,6 @@ default_target_configs = {
     },
     "kernel_aarch64_16k": {
     },
-    "kernel_riscv64": {
-    },
     "kernel_x86_64": {
     },
 }
@@ -192,9 +182,6 @@ If `target_configs` is not set explicitly in `define_common_kernels()`:
 |(`trim_nonlisted_kmi=None`)        |              |
 |-----------------------------------|--------------|
 |`kernel_aarch64_16k`               |NO TRIM       |
-|(`trim_nonlisted_kmi=None`)        |              |
-|-----------------------------------|--------------|
-|`kernel_riscv64`                   |NO TRIM       |
 |(`trim_nonlisted_kmi=None`)        |              |
 |-----------------------------------|--------------|
 |`kernel_x86_64`                    |NO TRIM       |

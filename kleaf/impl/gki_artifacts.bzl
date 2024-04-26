@@ -172,7 +172,6 @@ For example:
             doc = "`ARCH`.",
             values = [
                 "arm64",
-                "riscv64",
                 "x86_64",
                 # We don't have 32-bit GKIs
             ],

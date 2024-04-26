@@ -58,7 +58,6 @@ _COMMON_KERNEL_NAMES = {
     "kernel_aarch64_16k": ["kernel_aarch64_16k", "kernel_aarch64"],
     "kernel_aarch64_interceptor": ["kernel_aarch64_interceptor", "kernel_aarch64"],
     "kernel_aarch64_debug": ["kernel_aarch64_debug", "kernel_aarch64"],
-    "kernel_riscv64": ["kernel_riscv64"],
     "kernel_x86_64": ["kernel_x86_64"],
     "kernel_x86_64_debug": ["kernel_x86_64_debug", "kernel_x86_64"],
 }
@@ -120,17 +119,6 @@ def _default_target_configs():
         "kmi_enforced": bool(aarch64_abi_definition_stg),
     }
 
-    # Common configs for riscv64
-    riscv64_common = {
-        "arch": "riscv64",
-        "build_config": "build.config.gki.riscv64",
-        "outs": DEFAULT_GKI_OUTS,
-        # Assume BUILD_GKI_ARTIFACTS=1
-        "build_gki_artifacts": True,
-        "gki_boot_img_sizes": gki_boot_img_sizes,
-        "gki_system_dlkm_modules": "android/gki_system_dlkm_modules_riscv64",
-    }
-
     # Common configs for x86_64 and x86_64_debug
     x86_64_common = {
         "arch": "x86_64",
@@ -177,10 +165,6 @@ def _default_target_configs():
                 main_target = native.package_relative_label("kernel_aarch64"),
             ),
         }),
-        "kernel_riscv64": dicts.add(riscv64_common, {
-            # Assume TRIM_NONLISTED_KMI="" in build.config.gki.riscv64
-            "trim_nonlisted_kmi": False,
-        }),
         "kernel_x86_64": x86_64_common,
         "kernel_x86_64_debug": dicts.add(x86_64_common, {
             "trim_nonlisted_kmi": False,
@@ -217,15 +201,13 @@ def define_common_kernels(
     - `kernel_aarch64_16k_dist`
       - `kernel_aarch64_16k`
       - `kernel_aarch64_modules`
-    - `kernel_riscv64_dist`
-      - `kernel_riscv64`
     - `kernel_x86_64_sources`
     - `kernel_x86_64_dist`
       - `kernel_x86_64`
       - `kernel_x86_64_uapi_headers`
       - `kernel_x86_64_additional_artifacts`
 
-    `<name>` (aka `kernel_{aarch64,riscv64,x86_64}{_16k,}`) targets build the
+    `<name>` (aka `kernel_{aarch64,x86_64}{_16k,}`) targets build the
     main kernel build artifacts, e.g. `vmlinux`, etc.
 
     `<name>_sources` are convenience filegroups that refers to all sources required to
@@ -250,7 +232,6 @@ def define_common_kernels(
 
     Targets declared for Bazel rules analysis for debugging purposes:
     - `kernel_aarch64_print_configs`
-    - `kernel_riscv64_print_configs`
     - `kernel_x86_64_print_configs`
 
     **ABI monitoring**
@@ -264,7 +245,7 @@ def define_common_kernels(
     **Target configs**
 
     The content of `target_configs` should match the following variables in
-    `build.config.gki{,-debug}.{aarch64,riscv64,x86_64}`:
+    `build.config.gki{,-debug}.{aarch64,x86_64}`:
     - `KMI_SYMBOL_LIST`
     - `ADDITIONAL_KMI_SYMBOL_LISTS`
     - `TRIM_NONLISTED_KMI`
@@ -276,7 +257,6 @@ def define_common_kernels(
     The keys of the `target_configs` may be one of the following:
     - `kernel_aarch64`
     - `kernel_aarch64_16k`
-    - `kernel_riscv64`
     - `kernel_x86_64`
 
     The values of the `target_configs` should be a dictionary, where keys
@@ -328,10 +308,6 @@ def define_common_kernels(
         - No `kmi_symbol_list` nor `additional_kmi_symbol_lists`
         - `TRIM_NONLISTED_KMI` is not specified in `build.config`
         - `KMI_SYMBOL_LIST_STRICT_MODE` is not specified in `build.config`
-    - `kernel_riscv64`:
-        - No `kmi_symbol_list` nor `additional_kmi_symbol_lists`
-        - `TRIM_NONLISTED_KMI` is not specified in `build.config`
-        - `KMI_SYMBOL_LIST_STRICT_MODE` is not specified in `build.config`
     - `kernel_x86_64`:
         - No `kmi_symbol_list` nor `additional_kmi_symbol_lists`
         - `TRIM_NONLISTED_KMI` is not specified in `build.config`
@@ -361,8 +337,6 @@ def define_common_kernels(
         },
         "kernel_aarch64_16k": {
         },
-        "kernel_riscv64": {
-        },
         "kernel_x86_64": {
         },
     }
@@ -382,9 +356,6 @@ def define_common_kernels(
     |(`trim_nonlisted_kmi=None`)        |              |
     |-----------------------------------|--------------|
     |`kernel_aarch64_16k`               |NO TRIM       |
-    |(`trim_nonlisted_kmi=None`)        |              |
-    |-----------------------------------|--------------|
-    |`kernel_riscv64`                   |NO TRIM       |
     |(`trim_nonlisted_kmi=None`)        |              |
     |-----------------------------------|--------------|
     |`kernel_x86_64`                    |NO TRIM       |
@@ -492,19 +463,13 @@ def define_common_kernels(
     default_target_configs = _default_target_configs()
     new_target_configs = {}
     for name, target_configs_names in _COMMON_KERNEL_NAMES.items():
-        new_target_config = _get_target_config(
+        new_target_configs[name] = _get_target_config(
             name = name,
             target_configs_names = target_configs_names,
             target_configs = target_configs,
             default_target_configs = default_target_configs,
         )
 
-        # On android14-5.15, riscv64 is not supported. However,
-        # default_target_configs still contains riscv64 unconditionally.
-        # Filter it out.
-        if not native.glob([new_target_config["build_config"]]):
-            continue
-        new_target_configs[name] = new_target_config
     target_configs = new_target_configs
 
     native.filegroup(
@@ -557,7 +522,6 @@ def define_common_kernels(
     kythe_candidates = [
         "kernel_aarch64",
         "kernel_x86_64",
-        "kernel_riscv64",
     ]
 
     merge_kzip(

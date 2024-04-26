@@ -23,9 +23,6 @@ build:android_arm64 --platforms=//build/kernel/kleaf/impl:android_arm64
 # --config=android_i386: Build against the x86 (32-bit) platform.
 build:android_i386 --platforms=//build/kernel/kleaf/impl:android_i386
 
-# --config=android_riscv64: Build against the riscv64 platform.
-build:android_riscv64 --platforms=//build/kernel/kleaf/impl:android_riscv64
-
 # --config=android_x86_64: Build against the x86_64 platform.
 build:android_x86_64 --platforms=//build/kernel/kleaf/impl:android_x86_64
 

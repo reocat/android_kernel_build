@@ -30,7 +30,7 @@ _common_outs = [
 ]
 
 # Common output files for aarch64 kernel builds.
-# Sync with build.config.gki.{aarch64,riscv64}
+# Sync with build.config.gki.aarch64
 DEFAULT_GKI_OUTS = _common_outs + DEFAULT_IMAGES
 
 # Common output files for x86_64 kernel builds.
