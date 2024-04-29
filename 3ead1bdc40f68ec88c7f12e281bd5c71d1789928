@@ -16,6 +16,24 @@
       "message": "Also, please update prebuilts/clang/host/linux-x86/kleaf",
       "revId": "3ead1bdc40f68ec88c7f12e281bd5c71d1789928",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81fcb0b3_693a09c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-29T19:53:45Z",
+      "side": 1,
+      "message": "(assuming we do not build riscv cc libraries and binaries)",
+      "parentUuid": "65034d83_dbd35584",
+      "revId": "3ead1bdc40f68ec88c7f12e281bd5c71d1789928",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
