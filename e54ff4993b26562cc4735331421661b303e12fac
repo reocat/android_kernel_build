@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "379e211d_dfafb20a",
+        "filename": "kleaf/bazelrc/platforms.bazelrc",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-29T19:52:54Z",
+      "side": 0,
+      "message": "BTW, this has nothing to do with kernel build, but only related to CC rules. Do we still want to delete this?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 75
+      },
+      "revId": "e54ff4993b26562cc4735331421661b303e12fac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2246e965_9d7ae757",
+        "filename": "kleaf/impl/BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-29T19:52:54Z",
+      "side": 0,
+      "message": "ditto",
+      "revId": "e54ff4993b26562cc4735331421661b303e12fac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "494e9656_81d9e8de",
+        "filename": "kleaf/impl/android_filegroup.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-29T19:52:54Z",
+      "side": 0,
+      "message": "ditto",
+      "revId": "e54ff4993b26562cc4735331421661b303e12fac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
