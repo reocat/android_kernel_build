@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79abbfb5_b28fd076",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-30T23:39:52Z",
+      "side": 1,
+      "message": "This looks strange to me, a former Java developer, because the super constructor is not the first statement. But the Python guide explicitly says no to `message or \"\"`, so I changed it to an if statement.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 41
+      },
+      "revId": "5091169a26b44ca584f9c0b7460bf3069ee85aa2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

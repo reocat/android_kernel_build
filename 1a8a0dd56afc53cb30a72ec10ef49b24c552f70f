@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed7ed6c3_df70ab50",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-30T23:39:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "190ee224_88965176",
+      "revId": "1a8a0dd56afc53cb30a72ec10ef49b24c552f70f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c0ca71e_b2aef56d",
@@ -101,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6b14457_a5706682",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-30T23:39:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a435cf7_d08f03d7",
+      "range": {
+        "startLine": 581,
+        "startChar": 35,
+        "endLine": 581,
+        "endChar": 39
+      },
+      "revId": "1a8a0dd56afc53cb30a72ec10ef49b24c552f70f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c91dc92b_d9bbefcc",
@@ -138,6 +180,30 @@
       "side": 1,
       "message": "I might have understood the program incorrectly. I thought `create_subprocess_exec` creates a subprocess, so I have to sys.exit() to let L648 properly get the faulty signal. Let me change this to a boolean or raise.",
       "parentUuid": "c91dc92b_d9bbefcc",
+      "range": {
+        "startLine": 628,
+        "startChar": 0,
+        "endLine": 628,
+        "endChar": 19
+      },
+      "revId": "1a8a0dd56afc53cb30a72ec10ef49b24c552f70f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32d6af6c_1dfe6ed9",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 628,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-04-30T23:39:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afdd82c4_5953d066",
       "range": {
         "startLine": 628,
         "startChar": 0,
