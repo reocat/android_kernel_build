@@ -65,6 +65,13 @@ class UnexpectedOutputLinesException(BazelWrapperException):
         BazelWrapperException.__init__(self, message=message)
 
 
+class BazelSubprocessException(BazelWrapperException):
+    """The internal `bazel` call fails."""
+
+    def __init__(self, code: int):
+        BazelWrapperException.__init__(self, code=code)
+
+
 class MultipleBazelWrapperException(BazelWrapperException):
     def __init__(self, errors: list[BazelWrapperException]):
         """Wraps multiple BazelWrapperException into one.
@@ -699,6 +706,13 @@ def _shorten_string(string: str, char_max: int, ellipsis: str = "..."):
     return string[:char_max - len(ellipsis)] + ellipsis
 
 
+async def _wait_for_subprocess(process):
+    """Wraps process.wait() and raises if exit code is non-zero."""
+    return_code = await process.wait()
+    if return_code != 0:
+        raise BazelSubprocessException(code=return_code)
+
+
 async def run(command, env, filter_regex, epilog_coroutine, regex_allowlist):
     """Runs command with env asynchronously.
 
@@ -723,7 +737,7 @@ async def run(command, env, filter_regex, epilog_coroutine, regex_allowlist):
     coroutines = [
         stderr_coroutine,
         stdout_coroutine,
-        process.wait(),
+        _wait_for_subprocess(process),
     ]
     tasks = [asyncio.Task(coroutine) for coroutine in coroutines]
     done, _ = await asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
