@@ -742,6 +742,12 @@ def _skip_build_checks(ctx, what):
               IGNORED because kernel_build.sanitizers is set!".format(this_label = ctx.label, what = what))
         return True
 
+    # Skip for --gcov builds.
+    if ctx.attr._gcov[BuildSettingInfo].value:
+        print("\nWARNING: {this_label}: {what} was\
+              IGNORED because --gcov is set!".format(this_label = ctx.label, what = what))
+        return True
+
     return False
 
 def _get_defconfig_fragments(
