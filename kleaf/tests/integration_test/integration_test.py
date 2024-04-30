@@ -622,6 +622,15 @@ class QuickIntegrationTest(KleafIntegrationTestBase):
         self._check_output("build", ["--nobuild", "--strip_execroot",
                                      "//build/kernel:hermetic-tools"])
 
+    def test_strip_execroot_error(self):
+        """Tests that if cmd with --strip_execroot fails, exit code is set."""
+        popen = self._popen("what",
+                            ["--strip_execroot"],
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE)
+        popen.communicate()
+        self.assertNotEqual(popen.returncode, 0)
+
 
 class ScmversionIntegrationTest(KleafIntegrationTestBase):
 
