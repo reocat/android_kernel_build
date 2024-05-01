@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31b33d06_43c9b24b",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-01T05:13:53Z",
+      "side": 1,
+      "message": "@umendez@google.com\n\nAlso, if self.kleaf_repo is relative to self.ddk_workspace, this should be `%workspace%/\u003cthe_relative_path\u003e`.",
+      "range": {
+        "startLine": 174,
+        "startChar": 37,
+        "endLine": 174,
+        "endChar": 54
+      },
+      "revId": "e7cc25488b694c59f975364c467d273322f3d10f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
