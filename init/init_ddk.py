@@ -117,7 +117,7 @@ class KleafProjectSetter:
                 output_file.write(_FILE_MARKER_BEGIN)
                 output_file.write(update + "\n")
                 output_file.write(_FILE_MARKER_END)
-            shutil.move(output_file.name, path)
+        shutil.move(output_file.name, path)
 
     def _try_rel_workspace(self, path: pathlib.Path):
         """Tries to convert |path| to be relative to ddk_workspace."""
