@@ -34,6 +34,138 @@
       "parentUuid": "822154e2_a8822036",
       "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ed57991_f5282714",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-01T22:34:36Z",
+      "side": 1,
+      "message": "```suggestion\n    if ctx.file.module_signing_key:\n        configs.append(_config.set_str(\n            \"MODULE_SIG_KEY\",\n            ctx.file.module_signing_key.basename,\n        ))\n\n    if ctx.file.system_trusted_key:\n        configs.append(_config.set_str(\n            \"SYSTEM_TRUSTED_KEYS\",\n            ctx.file.system_trusted_key.basename,\n        ))\n\n    return struct(\n        configs \u003d configs,\n        deps \u003d [],\n    )\n```",
+      "range": {
+        "startLine": 165,
+        "startChar": 4,
+        "endLine": 181,
+        "endChar": 0
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab74f15c_9d8d5692",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-01T22:34:36Z",
+      "side": 1,
+      "message": "unrelated nit: all the following functions are like empty shells that implement in union\n```\n  if trimming enabled and any kasan config is set, then fail\n```\nPerhaps they should be combined to reflect that (and to save quite amount of lines).",
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faa7c23d_6c74acc4",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-01T22:34:36Z",
+      "side": 1,
+      "message": "as far as I can see, none of the `fn` returns anything else then `deps \u003d []`, perhaps that return type interface can be simplified? (I did not check `kgdb.get_scripts_config_args`, though)",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 25
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce301035_218452dd",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-01T22:34:36Z",
+      "side": 1,
+      "message": "```suggestion\n    extra_restore_outputs_cmd \u003d \"\"\n    for file in (ctx.file.system_trusted_key, ctx.file.module_signing_key):\n      if not file: continue\n```",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 439,
+        "endChar": 39
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "981f280b_2b624762",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-01T22:34:36Z",
+      "side": 1,
+      "message": "`rsync --ignore-missing-args` -- \"ignore missing source args without error\"",
+      "range": {
+        "startLine": 566,
+        "startChar": 0,
+        "endLine": 566,
+        "endChar": 71
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb804355_9b0c22a3",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-01T22:34:36Z",
+      "side": 1,
+      "message": "```suggestion\n            rsync -aL --chmod\u003dF+w {out_dir}/{raw_kmi_symbol_list_below_out_dir} ${{OUT_DIR}}/\n```\n\n? ... unless you want to support subdirectories as argument (but this one is constant right now)",
+      "range": {
+        "startLine": 567,
+        "startChar": 80,
+        "endLine": 567,
+        "endChar": 128
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
