@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e6868b3_7060c1fb",
+        "filename": "kleaf/docs/bzlmod.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-01T23:29:39Z",
+      "side": 1,
+      "message": "Sometimes I get a weird error about rules_cc being needed from the Internet:\n\n```\nERROR: /DEFAULT.WORKSPACE.SUFFIX:50:6: fetching http_archive rule //external:rules_cc: Traceback (most recent call last):\n\tFile \"[...]/out/bazel/output_user_root/46cfe7c2401e18a01f46cecf0d3a5069/external/bazel_tools/tools/build_defs/repo/http.bzl\", line 133, column 45, in _http_archive_impl\n\t\tdownload_info \u003d ctx.download_and_extract(\nError in download_and_extract: java.io.IOException: Failed to download repository @@rules_cc: download is disabled.\n```\n\nThe error goes away if an empty WORKSPACE.bzlmod file is placed. I\u0027ll investigate into this.",
+      "range": {
+        "startLine": 34,
+        "startChar": 38,
+        "endLine": 35,
+        "endChar": 58
+      },
+      "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
