@@ -6,6 +6,10 @@ See [bzlmod support in Kleaf.](bzlmod.md)
 
 ## Legacy `WORKSPACE` support
 
+**Warning**: Support of non-Bzlmod builds are deprecated and will be
+removed in Android 16 branches. Information below are
+outdated and not supported with Bzlmod enabled.
+
 ### Using the provided `WORKSPACE` file
 
 Usually, the common kernel is checked out to `common/`. In this case, it is
