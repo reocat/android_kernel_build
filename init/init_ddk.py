@@ -39,7 +39,7 @@ _KLEAF_DEPENDENCY_TEMPLATE = """\
 bazel_dep(name = "kleaf")
 local_path_override(
     module_name = "kleaf",
-    path = "{kleaf_repo}",
+    path = "{kleaf_repo_relative}",
 )
 """
 
@@ -146,7 +146,7 @@ class KleafProjectSetter:
         module_bazel_content = ""
         if self.kleaf_repo:
             module_bazel_content += _KLEAF_DEPENDENCY_TEMPLATE.format(
-                kleaf_repo=self.kleaf_repo,
+                kleaf_repo_relative=self._try_rel_workspace(self.kleaf_repo),
             )
         if self.prebuilts_dir:
             module_bazel_content += "\n"
