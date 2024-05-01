@@ -171,7 +171,7 @@ class KleafProjectSetter:
             bazelrc,
             textwrap.dedent(f"""\
             common --config=internet
-            common --registry=file:{self.kleaf_repo}/external/bazelbuild-bazel-central-registry
+            common --registry=file://{self.kleaf_repo}/external/bazelbuild-bazel-central-registry
             """),
         )
 
