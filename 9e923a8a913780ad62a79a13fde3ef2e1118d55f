@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "887d2c56_0e174989",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-01T15:06:03Z",
+      "side": 1,
+      "message": "I think so, but it could deserve mention in the docstring.",
+      "parentUuid": "5c5179b9_cafef2cd",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 21
+      },
+      "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "651378d1_027b0369",
         "filename": "kleaf/bazel.py",
         "patchSetId": 12
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-01T10:47:25Z",
       "side": 1,
       "message": "nit: How does interact with the `--make_keep_going` flag? will this suppress all the errors and leave just one?",
+      "range": {
+        "startLine": 678,
+        "startChar": 4,
+        "endLine": 678,
+        "endChar": 25
+      },
+      "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e0be415_244a4ec2",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-01T15:06:03Z",
+      "side": 1,
+      "message": "I think I would like to see more clarification on the error case. If there are errors or any other reason the build will fail (rc!\u003d0), we should not do this check at all.",
+      "parentUuid": "651378d1_027b0369",
       "range": {
         "startLine": 678,
         "startChar": 4,
