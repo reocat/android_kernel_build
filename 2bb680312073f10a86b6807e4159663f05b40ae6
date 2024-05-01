@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0722e56b_9fe14817",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-01T01:38:33Z",
+      "side": 1,
+      "message": "If \"nothing to update\", the program should clear the section between the two markers (if the markers exist). This ensures the script is re-entrant.\n\nSame for device.bazelrc.",
+      "revId": "2bb680312073f10a86b6807e4159663f05b40ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
