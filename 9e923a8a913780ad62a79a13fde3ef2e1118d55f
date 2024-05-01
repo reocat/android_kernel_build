@@ -50,6 +50,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16f867cc_538f9777",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-01T22:47:47Z",
+      "side": 1,
+      "message": "that is `textwrap.shorten(string, char_max, placeholder\u003d\"...\")`\n\nhttps://docs.python.org/3.12/library/textwrap.html#textwrap.shorten",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 19
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7af67913_7fab1b01",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 106,
+                "startChar": 0,
+                "endLine": 113,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 701,
+                "startChar": 0,
+                "endLine": 702,
+                "endChar": 0
+              },
+              "replacement": "                {textwrap.shorten(first_unexpected_line, 73, placeholder\u003d\"...\")}\"\"\"))\n"
+            }
+          ]
+        }
+      ],
+      "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "651378d1_027b0369",
         "filename": "kleaf/bazel.py",
         "patchSetId": 12
@@ -115,6 +166,65 @@
         "endLine": 678,
         "endChar": 25
       },
+      "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c82f1b41_4b595d72",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-01T22:47:47Z",
+      "side": 1,
+      "message": "Acknowledged, but perhaps also add something to the commit message.",
+      "parentUuid": "40ece1e7_7009efa0",
+      "range": {
+        "startLine": 678,
+        "startChar": 4,
+        "endLine": 678,
+        "endChar": 25
+      },
+      "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48614ae0_08bf738f",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-01T22:47:47Z",
+      "side": 1,
+      "message": "Perhaps the error should also contain a hint where to find the allow-list file. Otherwise legitimate additions to the output might upset users that have no clue where to search for it.\n\n(kudos to the AI suggestion)",
+      "fixSuggestions": [
+        {
+          "fixId": "9fc098c1_5238481d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 701,
+                "startChar": 0,
+                "endLine": 702,
+                "endChar": 0
+              },
+              "replacement": "                {_shorten_string(first_unexpected_line, 73)}\n\n            If you believe this is a legitimate output, add it to the allowlist:\n                {self.known_startup_options.stdout_stderr_regex_allowlist}\"\"\"))\n"
+            }
+          ]
+        }
+      ],
       "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
