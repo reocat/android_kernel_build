@@ -93,6 +93,30 @@
       },
       "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40ece1e7_7009efa0",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-01T17:05:08Z",
+      "side": 1,
+      "message": "To Ulises question: No. All errors / warnings will still be printed, regardless of the --make_keep_going flag. This is only the first encountered unexpected line re-printed at the end of the execution. All lines, expected or not, are printed (L693).\n\nI\u0027ll address Matthias\u0027s suggestion and add a test case for this in a follow up change. I\u0027ll do this by dropping all UnexpectedOutputLinesException from the list if BazelSubprocessException is seen.",
+      "parentUuid": "3e0be415_244a4ec2",
+      "range": {
+        "startLine": 678,
+        "startChar": 4,
+        "endLine": 678,
+        "endChar": 25
+      },
+      "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
