@@ -167,11 +167,16 @@ class KleafProjectSetter:
         if not self.ddk_workspace or not self.kleaf_repo:
             return
         bazelrc = self.ddk_workspace / _DEVICE_BAZELRC
+
+        kleaf_repo = self._try_rel_workspace(self.kleaf_repo)
+        if not kleaf_repo.is_absolute():
+            kleaf_repo = (pathlib.Path("%workspace%") / kleaf_repo)
+
         self._update_file(
             bazelrc,
             textwrap.dedent(f"""\
             common --config=internet
-            common --registry=file:{self.kleaf_repo}/external/bazelbuild-bazel-central-registry
+            common --registry=file://{kleaf_repo}/external/bazelbuild-bazel-central-registry
             """),
         )
 
