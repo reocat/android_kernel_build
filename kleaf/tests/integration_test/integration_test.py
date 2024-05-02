@@ -66,6 +66,10 @@ _LTO_NONE = [
 # Handy arguments to build as fast as possible.
 _FASTEST = _LOCAL + _LTO_NONE
 
+_DDK_WORKSPACE_TEST_MODES = (
+    "kleaf_module_wraps_ddk_workspace",
+)
+
 
 def load_arguments():
     parser = argparse.ArgumentParser(
@@ -103,6 +107,24 @@ def _require_absolute_path(p: str) -> pathlib.Path:
     if not path.is_absolute():
         raise ValueError(f"{p} is not absolute")
     return path
+
+
+def _force_relative_to(path: pathlib.Path, other: pathlib.Path):
+    """Naive implementation of pathlib.Path.relative_to(walk_up)"""
+    if sys.version_info[0] == 3 and sys.version_info[1] >= 12:
+        return path.relative_to(other, walk_up=True)
+
+    path = path.resolve()
+    other = other.resolve()
+
+    try:
+        return path.relative_to(other)
+    except ValueError as e:
+        if (len(path.parts) <= len(other.parts) and
+                other.parts[:len(path.parts)] == path.parts):
+            parts = [".."] * (len(other.parts) - len(path.parts))
+            return pathlib.Path(*parts)
+        raise e
 
 
 class Exec(object):
@@ -206,11 +228,15 @@ class KleafIntegrationTestBase(unittest.TestCase):
         )
 
         self.assertTrue(_BAZEL.is_file())
+        self.write_bazelrc()
 
+    def write_bazelrc(self, kleaf_repo_rel = "."):
         self._bazel_rc = tempfile.NamedTemporaryFile()
         self.addCleanup(self._bazel_rc.close)
         with open(self._bazel_rc.name, "w") as f:
-            f.write(f"import %workspace%/build/kernel/kleaf/common.bazelrc\n")
+            kleaf_repo_rel = pathlib.Path(kleaf_repo_rel)
+            top_bazelrc = kleaf_repo_rel / "build/kernel/kleaf/common.bazelrc"
+            f.write(f"""import %workspace%/{top_bazelrc}\n""")
             for arg in arguments.bazel_args:
                 f.write(f"build {shlex.quote(arg)}\n")
 
@@ -395,6 +421,50 @@ class KleafIntegrationTestShard2(KleafIntegrationTestBase):
             f"//{self._common()}:kernel",
         ] + _LTO_NONE
         self._build(args)
+
+    def test_ddk_workspace_setup(self):
+        """Tests setting up a DDK workspace with @kleaf as dependency."""
+
+        kleaf_repo = pathlib.Path('.')
+        with self.subTest(kleaf_repo=kleaf_repo):
+            self._run_ddk_workspace_setup_test(kleaf_repo)
+
+    def _run_ddk_workspace_setup_test(self, kleaf_repo):
+        kleaf_repo = kleaf_repo.resolve()
+        ddk_workspace = pathlib.Path(
+            "build/kernel/kleaf/tests/integration_test/ddk_workspace_test")
+        ddk_workspace = ddk_workspace.resolve()
+
+        # kleaf_repo relative to ddk_workspace
+        kleaf_repo_rel = _force_relative_to(kleaf_repo, ddk_workspace)
+
+        Exec.check_call(["git", "clean", "-fdx"], cwd=ddk_workspace)
+
+        self._check_call("run", [
+            "//build/kernel:init_ddk",
+            "--",
+            "--local",
+            f"--kleaf_repo={kleaf_repo}",
+            f"--ddk_workspace={ddk_workspace}",
+        ])
+        # TODO: This should be replaced with an offline mode flag to :init_ddk
+        Exec.check_call([
+            sys.executable,
+            str(ddk_workspace / "fake_init_ddk.py"),
+            f"--kleaf_repo_rel={kleaf_repo_rel}",
+            f"--ddk_workspace={ddk_workspace}",
+        ])
+
+        # Modify self._bazel_rc so _check_call works within
+        # the DDK workspace.
+        self.write_bazelrc(kleaf_repo_rel)
+
+        self._check_call("clean", ["--expunge"], cwd=ddk_workspace)
+        self._check_call("test", ["//tests"], cwd=ddk_workspace)
+
+        # Delete generated files
+        self._check_call("clean", ["--expunge"], cwd=ddk_workspace)
+        Exec.check_call(["git", "clean", "-fdx"], cwd=ddk_workspace)
 
 # Quick integration tests. Each test case should finish within 1 minute.
 # The whole test suite should finish within 5 minutes. If the whole test suite
