@@ -1,0 +1,8 @@
+out
+bazel-*
+MODULE.bazel.lock
+
+# Generated files by init_ddk.py
+device.bazelrc
+MODULE.bazel
+tools
