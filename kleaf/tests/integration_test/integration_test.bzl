@@ -19,15 +19,17 @@ load("//build/kernel/kleaf:hermetic_tools.bzl", "hermetic_toolchain")
 def _integration_test_impl(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
     script_file = ctx.actions.declare_file("{}.sh".format(ctx.attr.name))
-    script = """#!/bin/bash -ex
+    script = """#!/bin/bash -e
         TOOLS=()
-        for tool in llvm-strings; do
+        for tool in llvm-strings mount umount unshare; do
             tool_path=$(
                 {run_setup}
                 command -v ${{tool}}
             )
             TOOLS+=( ${{tool}}=${{tool_path}} )
         done
+        # Use host git
+        TOOLS+=(git=$(command -v git))
 
         {integration_test_bin} "$@" --internal_tools "${{TOOLS[*]}}"
     """.format(
