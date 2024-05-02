@@ -76,6 +76,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1272d301_cb93b5c4",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-02T19:18:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ab74f15c_9d8d5692",
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "faa7c23d_6c74acc4",
@@ -89,6 +107,30 @@
       "writtenOn": "2024-05-01T22:34:36Z",
       "side": 1,
       "message": "as far as I can see, none of the `fn` returns anything else then `deps \u003d []`, perhaps that return type interface can be simplified? (I did not check `kgdb.get_scripts_config_args`, though)",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 25
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e11009ec_d1a0bcfa",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-02T19:18:52Z",
+      "side": 1,
+      "message": "Ack, there are quite amount of cleanup we can do due to the defconfig fragments; I just don\u0027t get to it yet",
+      "parentUuid": "faa7c23d_6c74acc4",
       "range": {
         "startLine": 280,
         "startChar": 0,
@@ -135,6 +177,30 @@
       "writtenOn": "2024-05-01T22:34:36Z",
       "side": 1,
       "message": "`rsync --ignore-missing-args` -- \"ignore missing source args without error\"",
+      "range": {
+        "startLine": 566,
+        "startChar": 0,
+        "endLine": 566,
+        "endChar": 71
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70c0f401_b782547d",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-02T19:18:52Z",
+      "side": 1,
+      "message": "`test -f` checks the existence of the file but `--ignore-missing-args` is more like `test -n`, right?",
+      "parentUuid": "981f280b_2b624762",
       "range": {
         "startLine": 566,
         "startChar": 0,
