@@ -213,6 +213,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84d7bfef_c9299c5f",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-02T23:19:31Z",
+      "side": 1,
+      "message": "effectively this also checks for existence, see this demo example:\n\n```\n$ touch abc\n$ mkdir subdir/\n\n$ rsync abc cde subdir/      # fails as cde is missing\nrsync: [sender] link_stat \"/tmp/test/cde\" failed: No such file or directory (2)\nrsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1338) [sender\u003d3.2.7]\n\n$ rsync --ignore-missing-args abc cde subdir/  # succeeds despite cde missing\n\n$ ll subdir/\ntotal 0\n-rw-r----- 1 maennich primarygroup 0 May  2 23:15 abc\n\n\n$ rsync asdf subdir/asdf\nrsync: [sender] link_stat \"/tmp/test/asdf\" failed: No such file or directory (2)\nrsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1338) [sender\u003d3.2.7]\n\n$ rsync --ignore-missing-args asdf subdir/asdf\n\n$ ll subdir\ntotal 0\n-rw-r----- 1 maennich primarygroup 0 May  2 23:15 abc\n```",
+      "parentUuid": "70c0f401_b782547d",
+      "range": {
+        "startLine": 566,
+        "startChar": 0,
+        "endLine": 566,
+        "endChar": 71
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb804355_9b0c22a3",
         "filename": "kleaf/impl/kernel_config.bzl",
         "patchSetId": 9
