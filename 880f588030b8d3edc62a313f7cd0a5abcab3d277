@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "293227ab_79e23439",
+        "filename": "static_analysis/checkpatch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1125653
+      },
+      "writtenOn": "2024-05-02T11:23:45Z",
+      "side": 1,
+      "message": "what about `Reapply` which is a revert of a revert?",
+      "range": {
+        "startLine": 87,
+        "startChar": 21,
+        "endLine": 87,
+        "endChar": 27
+      },
+      "revId": "880f588030b8d3edc62a313f7cd0a5abcab3d277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
