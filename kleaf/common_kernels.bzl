@@ -476,6 +476,7 @@ def define_common_kernels(
 
     # Workaround to set KERNEL_DIR correctly and
     #  avoid using the fallback (directory of the config).
+    # TODO(b/338438451): Clean this up with kernel_build.kernel_dir attr.
     set_kernel_dir_cmd = "KERNEL_DIR=\"{kernel_dir}\"".format(
         kernel_dir = paths.join(
             native.package_relative_label(":x").workspace_root,
