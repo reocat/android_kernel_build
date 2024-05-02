@@ -1,0 +1,302 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6ba7f05_b5279987",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-02T23:32:31Z",
+      "side": 1,
+      "message": "use a dataclass to simplify this",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a96e4738_d35d4da3",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 21,
+                "startChar": 0,
+                "endLine": 21,
+                "endChar": 0
+              },
+              "replacement": "import dataclasses\n"
+            },
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 24,
+                "startChar": 0,
+                "endLine": 24,
+                "endChar": 0
+              },
+              "replacement": "@dataclasses.dataclass\n"
+            },
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 26,
+                "startChar": 0,
+                "endLine": 37,
+                "endChar": 0
+              },
+              "replacement": "    kleaf_repo_rel: pathlib.Path\n    ddk_workspace: pathlib.Path\n"
+            },
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 100,
+                "startChar": 0,
+                "endLine": 101,
+                "endChar": 0
+              },
+              "replacement": "    FakeInitDdk(kleaf_repo_rel\u003dargs.kleaf_repo_rel,\n                ddk_workspace\u003dargs.ddk_workspace).run()\n"
+            }
+          ]
+        }
+      ],
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39ff8a3d_d9a3971c",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-02T23:32:31Z",
+      "side": 1,
+      "message": "use `path.open()` directly.",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 58
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "53ed7b23_8f1c355f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 40,
+                "startChar": 0,
+                "endLine": 41,
+                "endChar": 0
+              },
+              "replacement": "        with path.open(\"a\", encoding\u003d\"utf-8\") as out_file:\n"
+            },
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 45,
+                "startChar": 0,
+                "endLine": 46,
+                "endChar": 0
+              },
+              "replacement": "        with path.open(\"a\", encoding\u003d\"utf-8\") as out_file:\n"
+            },
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 56,
+                "endChar": 0
+              },
+              "replacement": "            with kleaf_module_bazel_path.open(encoding\u003d\"utf-8\") as src:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4403d110_d932d03a",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-02T23:32:31Z",
+      "side": 1,
+      "message": "having to specify that for rather simple files is unusual. Can you clarify why this is needed?",
+      "range": {
+        "startLine": 40,
+        "startChar": 29,
+        "endLine": 40,
+        "endChar": 45
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7be95f89_0202a07d",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-02T23:32:31Z",
+      "side": 1,
+      "message": "out_file.write() ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0a5a1adc_e512462d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 46,
+                "startChar": 0,
+                "endLine": 47,
+                "endChar": 0
+              },
+              "replacement": "            out_file.write(textwrap.dedent(\"\"\"\\\n"
+            },
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 48,
+                "startChar": 0,
+                "endLine": 49,
+                "endChar": 0
+              },
+              "replacement": "            \"\"\"))\n"
+            }
+          ]
+        }
+      ],
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b5a61ef_373dc918",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-02T23:32:31Z",
+      "side": 1,
+      "message": "Could be shortened a bit. E.g. as `(self.ddk_workspace / self.kleaf_repo_rel / \"MODULE.bazel\").open(encoding\u003d\"utf-8\")`",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 72
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "acb3277f_605a3996",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 53,
+                "startChar": 0,
+                "endLine": 56,
+                "endChar": 0
+              },
+              "replacement": "            with (self.ddk_workspace / self.kleaf_repo_rel /\n                  \"MODULE.bazel\").open(encoding\u003d\"utf-8\") as src:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f67e6ce_a8ea220a",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-02T23:32:31Z",
+      "side": 1,
+      "message": "that is only ever used once, inline?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 51
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "ddb82b18_14a2f3bf",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 62,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+              "range": {
+                "startLine": 71,
+                "startChar": 0,
+                "endLine": 72,
+                "endChar": 0
+              },
+              "replacement": "                if line.lstrip().startswith(\u0027module_name \u003d \"\u0027):\n"
+            }
+          ]
+        }
+      ],
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
