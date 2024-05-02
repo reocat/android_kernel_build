@@ -66,6 +66,10 @@ _LTO_NONE = [
 # Handy arguments to build as fast as possible.
 _FASTEST = _LOCAL + _LTO_NONE
 
+_DDK_WORKSPACE_TEST_MODES = (
+    "kleaf_module_wraps_ddk_workspace",
+)
+
 
 def load_arguments():
     parser = argparse.ArgumentParser(
@@ -85,6 +89,13 @@ def load_arguments():
                         dest="include_abi_tests",
                         help="Include ABI Monitoring related tests." +
                         "NOTE: It requires a branch with ABI monitoring enabled.")
+    parser.add_argument("--mounted-kleaf-repo",
+                        type=_require_absolute_path,
+                        help="""The path to Kleaf tooling repository.
+
+                            If not set, some tests will mount the Kleaf
+                            repository to certain locations and re-run itself
+                            with the flag set.""")
     parser.add_argument("--internal_tools",
                         type=_parse_internal_tools,
                         help="""Internal flag. Paths to hermetic tools.""")
@@ -217,11 +228,15 @@ class KleafIntegrationTestBase(unittest.TestCase):
         )
 
         self.assertTrue(_BAZEL.is_file())
+        self.write_bazelrc()
 
+    def write_bazelrc(self, kleaf_repo_rel = "."):
         self._bazel_rc = tempfile.NamedTemporaryFile()
         self.addCleanup(self._bazel_rc.close)
         with open(self._bazel_rc.name, "w") as f:
-            f.write(f"import %workspace%/build/kernel/kleaf/common.bazelrc\n")
+            kleaf_repo_rel = pathlib.Path(kleaf_repo_rel)
+            top_bazelrc = kleaf_repo_rel / "build/kernel/kleaf/common.bazelrc"
+            f.write(f"""import %workspace%/{top_bazelrc}\n""")
             for arg in arguments.bazel_args:
                 f.write(f"build {shlex.quote(arg)}\n")
 
@@ -387,6 +402,7 @@ class KleafIntegrationTestShard1(KleafIntegrationTestBase):
         output = subprocess.check_output([extract_ikconfig, vmlinux], text=True)
         self.assertIn("CONFIG_UAPI_HEADER_TEST=y", output.splitlines())
 
+
 class KleafIntegrationTestShard2(KleafIntegrationTestBase):
 
     def test_user_clang_toolchain(self):
@@ -409,6 +425,121 @@ class KleafIntegrationTestShard2(KleafIntegrationTestBase):
             f"//{self._common()}:kernel",
         ] + _LTO_NONE
         self._build(args)
+
+
+
+class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
+    """Tests setting up a DDK workspace with @kleaf as dependency."""
+
+    def setUp(self):
+        super().setUp()
+
+        self.real_kleaf_repo = pathlib.Path(".").resolve()
+        self.ddk_workspace = (pathlib.Path(__file__).resolve().parent /
+                              "ddk_workspace_test")
+
+    def test_ddk_workspace_below_kleaf_module(self):
+        """Tests that DDK workspace is below @kleaf"""
+        self._run_ddk_workspace_setup_test(self.real_kleaf_repo)
+
+    def test_kleaf_module_below_ddk_workspace(self):
+        """Tests that @kelaf is below DDK workspace"""
+        kleaf_repo = self.ddk_workspace / "external/kleaf"
+        this_test = self.id().removeprefix("__main__.")
+        if not arguments.mounted_kleaf_repo:
+            self._mount_and_run(kleaf_repo=kleaf_repo, test=this_test)
+            return
+        self._run_ddk_workspace_setup_test(arguments.mounted_kleaf_repo)
+
+    def _mount_and_run(self, kleaf_repo: pathlib.Path, test: str):
+        args = [self.get_tool("unshare"), "--mount", "--map-root-user"]
+
+        # toybox -R does not imply -U, so explicitly say so.
+        args.append("--user")
+
+        args.extend([shutil.which("bash"), "-c"])
+
+        test_args = [sys.executable, __file__]
+        test_args.extend(f"--bazel-arg={arg}" for arg in arguments.bazel_args)
+        test_args.extend(f"--bazel-wrapper-arg={arg}"
+                         for arg in arguments.bazel_wrapper_args)
+        test_args.append(f"--mounted-kleaf-repo={kleaf_repo}")
+        internal_tools = " ".join(
+            f"{key}={path}" for key, path in arguments.internal_tools.items())
+        test_args.extend(["--internal_tools", shlex.quote(internal_tools)])
+        test_args.append(test)
+        args.append(" ".join(shlex.quote(str(test_arg))
+                             for test_arg in test_args))
+
+        Exec.check_call(args)
+
+    def _run_ddk_workspace_setup_test(self, kleaf_repo: pathlib.Path):
+        # kleaf_repo relative to ddk_workspace
+        kleaf_repo_rel = self._force_relative_to(
+            kleaf_repo, self.ddk_workspace)
+
+        git_clean_args = [self.get_tool("git"), "clean", "-fdx"]
+        if kleaf_repo.is_relative_to(self.ddk_workspace):
+            git_clean_args.extend([
+                "-e",
+                str(kleaf_repo.relative_to(self.ddk_workspace)),
+            ])
+
+        Exec.check_call(git_clean_args, cwd=self.ddk_workspace)
+
+        # Delete generated files at the end
+        self.addCleanup(Exec.check_call, git_clean_args,
+                        cwd=self.ddk_workspace)
+
+        if kleaf_repo != self.real_kleaf_repo:
+            Exec.check_call([self.get_tool("mount"), "--bind", "-o", "ro",
+                             str(self.real_kleaf_repo), str(kleaf_repo)])
+            self.addCleanup(Exec.check_call,
+                            [self.get_tool("umount"), str(kleaf_repo)])
+
+        self._check_call("run", [
+            "//build/kernel:init_ddk",
+            "--",
+            "--local",
+            f"--kleaf_repo={kleaf_repo}",
+            f"--ddk_workspace={self.ddk_workspace}",
+        ])
+        Exec.check_call([
+            sys.executable,
+            str(self.ddk_workspace / "extra_setup.py"),
+            f"--kleaf_repo_rel={kleaf_repo_rel}",
+            f"--ddk_workspace={self.ddk_workspace}",
+        ])
+
+        # Modify self._bazel_rc so _check_call works within
+        # the DDK workspace.
+        self.write_bazelrc(kleaf_repo_rel)
+
+        self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
+        self._check_call("test", ["//tests"], cwd=self.ddk_workspace)
+
+        # Delete generated files
+        self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
+
+    @staticmethod
+    def _force_relative_to(path: pathlib.Path, other: pathlib.Path):
+        """Naive implementation of pathlib.Path.relative_to(walk_up)"""
+        if sys.version_info[0] == 3 and sys.version_info[1] >= 12:
+            return path.relative_to(other, walk_up=True)
+
+        path = path.resolve()
+        other = other.resolve()
+
+        if path.is_relative_to(other):
+            return path.relative_to(other)
+
+        if (len(path.parts) <= len(other.parts) and
+                other.parts[:len(path.parts)] == path.parts):
+            parts = [".."] * (len(other.parts) - len(path.parts))
+            return pathlib.Path(*parts)
+        raise ValueError(
+            f"Cannot calculate relative path from {path} to {other}")
+
 
 # Quick integration tests. Each test case should finish within 1 minute.
 # The whole test suite should finish within 5 minutes. If the whole test suite
