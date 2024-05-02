@@ -22,6 +22,30 @@
       },
       "revId": "880f588030b8d3edc62a313f7cd0a5abcab3d277",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7e99b51_4c35f6fe",
+        "filename": "static_analysis/checkpatch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-05-02T12:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "293227ab_79e23439",
+      "range": {
+        "startLine": 87,
+        "startChar": 21,
+        "endLine": 87,
+        "endChar": 27
+      },
+      "revId": "880f588030b8d3edc62a313f7cd0a5abcab3d277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
