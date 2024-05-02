@@ -1,0 +1,9 @@
+out
+bazel-*
+MODULE.bazel.lock
+
+# Generated files by fake_init_ddk.py
+device.bazelrc
+MODULE.bazel
+WORKSPACE.bzlmod
+tools
