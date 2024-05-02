@@ -501,8 +501,8 @@ def kernel_build(
     native.platform(
         name = name + "_platform_target",
         constraint_values = [
-            "@platforms//os:android",
-            "@platforms//cpu:{}".format(arch),
+            Label("@platforms//os:android"),
+            Label("@platforms//cpu:{}".format(arch)),
         ] + toolchain_constraints,
         **internal_kwargs
     )
@@ -510,8 +510,8 @@ def kernel_build(
     native.platform(
         name = name + "_platform_exec",
         constraint_values = [
-            "@platforms//os:linux",
-            "@platforms//cpu:x86_64",
+            Label("@platforms//os:linux"),
+            Label("@platforms//cpu:x86_64"),
         ] + toolchain_constraints,
         **internal_kwargs
     )
