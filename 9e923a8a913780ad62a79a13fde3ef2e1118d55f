@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e1bfe4f_e7a10f2d",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T22:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "887d2c56_0e174989",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 21
+      },
+      "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16f867cc_538f9777",
@@ -95,6 +119,30 @@
           ]
         }
       ],
+      "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11dd0053_9720042a",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T22:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16f867cc_538f9777",
+      "range": {
+        "startLine": 106,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 19
+      },
       "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -194,6 +242,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72e1c6b4_ab8158f2",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T22:32:22Z",
+      "side": 1,
+      "message": "Done:\n\n- Added to commit message\n- Changed it so that `UnexpectedOutputLinesException` is dropped if `BazelSubprocessException` exists",
+      "parentUuid": "c82f1b41_4b595d72",
+      "range": {
+        "startLine": 678,
+        "startChar": 4,
+        "endLine": 678,
+        "endChar": 25
+      },
+      "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "48614ae0_08bf738f",
@@ -225,6 +297,24 @@
           ]
         }
       ],
+      "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "222768e9_c9dae7c4",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T22:32:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48614ae0_08bf738f",
       "revId": "9e923a8a913780ad62a79a13fde3ef2e1118d55f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
