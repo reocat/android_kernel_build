@@ -66,6 +66,13 @@ class BazelSubprocessException(BazelWrapperException):
         BazelWrapperException.__init__(self, code=code)
 
 
+class UnexpectedOutputLinesException(BazelWrapperException):
+    """Unexpected output lines are found in stdout / stderr."""
+
+    def __init__(self, message: str):
+        BazelWrapperException.__init__(self, message=message)
+
+
 class MultipleBazelWrapperException(BazelWrapperException):
     def __init__(self, errors: list[BazelWrapperException]):
         """Wraps multiple BazelWrapperException into one.
@@ -75,6 +82,16 @@ class MultipleBazelWrapperException(BazelWrapperException):
                 Must not be empty.
         """
         assert errors
+
+        # Drop "unexpected lines" if exit code is non-zero.
+        bad_exit_code = any(isinstance(error, BazelSubprocessException)
+                            for error in errors)
+        unexpected_lines = any(isinstance(error, UnexpectedOutputLinesException)
+                               for error in errors)
+        if bad_exit_code and unexpected_lines:
+            errors = [error for error in errors
+                      if not isinstance(error, UnexpectedOutputLinesException)]
+
         BazelWrapperException.__init__(
             self,
             message="\n".join(error.message for error in errors),
@@ -199,6 +216,15 @@ class BazelWrapper(KleafHelpPrinter):
             type=_require_absolute_path,
             help="Passthrough flag to bazel if specified",
         )
+        group.add_argument(
+            "--stdout_stderr_regex_allowlist",
+            metavar="PATH",
+            type=_require_absolute_path,
+            help=textwrap.dedent("""\
+                If set, enforces that stdout / stderr only contains lines
+                allowed by the list of regular expressions in the file.
+                Lines prefixed with # are ignored."""
+            ))
         group.add_argument(
             "-h", "--help", action="store_true",
             help="show this help message and exit"
@@ -579,6 +605,8 @@ class BazelWrapper(KleafHelpPrinter):
 
         output_mutator = OutputMutator(
             filter_regex=self._get_output_filter_regex(),
+            regex_allowlist_path=
+                self.known_startup_options.stdout_stderr_regex_allowlist,
         )
 
         import asyncio
@@ -602,6 +630,8 @@ class BazelWrapper(KleafHelpPrinter):
         return any([
             self.known_args.strip_execroot,
             self.command == "clean",
+            (self.known_startup_options.stdout_stderr_regex_allowlist
+                is not None),
         ])
 
     def _get_output_filter_regex(self):
@@ -629,31 +659,70 @@ class BazelWrapper(KleafHelpPrinter):
 class OutputMutator:
     """Helper class to filter and mutate an output stream."""
     def __init__(
-        self,
-        filter_regex: re.Pattern | None,
-    ):
+            self,
+            filter_regex: re.Pattern | None,
+            regex_allowlist_path: pathlib.Path | None,
+        ):
+        self._regex_allowlist_path = regex_allowlist_path
+        self._regex_allowlist = []
         self._filter_regex = filter_regex
+
+        if regex_allowlist_path:
+            with open(regex_allowlist_path, encoding="utf-8") as file:
+                self._regex_allowlist = list(self._parse_regex_lines(file))
+
+    def _parse_regex_lines(self, lines) -> \
+            Generator[re.Pattern, None, None]:
+        """Parses lines from stdout_stderr_regex_allowlist file."""
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            if line.startswith("#"):
+                continue
+            yield re.compile(line)
 
     async def mutate_stream(
         self,
         input_stream: BinaryIO,
         output_stream: BinaryIO,
+        stream_name: str,
     ):
         """Pipes input to output, optionally mutating lines.
 
         If filter_regex is None, don't filter lines.
+
+        If regex_allowlist is not empty, require each line to be matching at
+            least one regex in regex_allowlist.
         """
+        unexpected_line_count = 0
+        first_unexpected_line = None
 
         while not input_stream.at_eof():
             output = await input_stream.readline()
-            if self._filter_regex:
+            if self._filter_regex or self._regex_allowlist:
                 output_decoded = output.decode()
                 if self._filter_regex:
                     output_decoded = re.sub(
                         self._filter_regex, "", output_decoded)
+                if self._regex_allowlist:
+                    if not any(regex.match(output_decoded)
+                               for regex in self._regex_allowlist):
+                        unexpected_line_count += 1
+                        if first_unexpected_line is None:
+                            first_unexpected_line = output_decoded
                 output = output_decoded.encode()
             output_stream.buffer.write(output)
             output_stream.flush()
+
+        if unexpected_line_count:
+            raise UnexpectedOutputLinesException(textwrap.dedent(f"""\
+                ERROR: Found {unexpected_line_count} unexpected lines \
+in {stream_name}, the first one is:
+                    {textwrap.shorten(first_unexpected_line, 76)}
+                If you believe this is a legitimate output, add it to the \
+allowlist:
+                    {self._regex_allowlist_path}"""))
 
 
 async def _wait_for_subprocess(process):
