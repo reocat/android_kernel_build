@@ -35,6 +35,14 @@ alias(
     visibility = ["//visibility:private"],
 )
 
+# Some aliases for :toybox to workaround dict keys needing to be unique
+# hermetic_tools.symlinks.
+[alias(
+    name = "toybox_%s" % tool,
+    actual = ":toybox",
+    visibility = ["//visibility:private"],
+) for tool in ("find", "flock", "gzip")]
+
 bison_wrapper(
     name = "bison",
     actual = "//prebuilts/build-tools:linux-x86/bin/bison",
@@ -52,70 +60,15 @@ _HERMETIC_TOOLS = [
     "//prebuilts/build-tools:linux-x86/bin/openssl",
     "//prebuilts/build-tools:linux-x86/bin/runextractor",
     "//prebuilts/build-tools:path/linux-x86/awk",
-    "//prebuilts/build-tools:path/linux-x86/basename",
     "//prebuilts/build-tools:path/linux-x86/bc",
     "//prebuilts/build-tools:path/linux-x86/bzcat",
     "//prebuilts/build-tools:path/linux-x86/bzip2",
-    "//prebuilts/build-tools:path/linux-x86/cat",
-    "//prebuilts/build-tools:path/linux-x86/chmod",
-    "//prebuilts/build-tools:path/linux-x86/cmp",
-    "//prebuilts/build-tools:path/linux-x86/comm",
-    "//prebuilts/build-tools:path/linux-x86/cp",
-    "//prebuilts/build-tools:path/linux-x86/cpio",
-    "//prebuilts/build-tools:path/linux-x86/cut",
-    "//prebuilts/build-tools:path/linux-x86/date",
-    "//prebuilts/build-tools:path/linux-x86/dirname",
-    "//prebuilts/build-tools:path/linux-x86/du",
-    "//prebuilts/build-tools:path/linux-x86/echo",
-    "//prebuilts/build-tools:path/linux-x86/egrep",
-    "//prebuilts/build-tools:path/linux-x86/env",
-    "//prebuilts/build-tools:path/linux-x86/getconf",
-    "//prebuilts/build-tools:path/linux-x86/grep",
-    "//prebuilts/build-tools:path/linux-x86/head",
-    "//prebuilts/build-tools:path/linux-x86/hostname",
-    "//prebuilts/build-tools:path/linux-x86/id",
-    "//prebuilts/build-tools:path/linux-x86/install",
-    "//prebuilts/build-tools:path/linux-x86/ln",
-    "//prebuilts/build-tools:path/linux-x86/ls",
-    "//prebuilts/build-tools:path/linux-x86/md5sum",
-    "//prebuilts/build-tools:path/linux-x86/mkdir",
-    "//prebuilts/build-tools:path/linux-x86/mktemp",
-    "//prebuilts/build-tools:path/linux-x86/mv",
     "//prebuilts/build-tools:path/linux-x86/od",
     "//prebuilts/build-tools:path/linux-x86/paste",
     "//prebuilts/build-tools:path/linux-x86/pgrep",
     "//prebuilts/build-tools:path/linux-x86/pkill",
     "//prebuilts/build-tools:path/linux-x86/ps",
     "//prebuilts/build-tools:path/linux-x86/pwd",
-    "//prebuilts/build-tools:path/linux-x86/readlink",
-    "//prebuilts/build-tools:path/linux-x86/realpath",
-    "//prebuilts/build-tools:path/linux-x86/rm",
-    "//prebuilts/build-tools:path/linux-x86/rmdir",
-    "//prebuilts/build-tools:path/linux-x86/sed",
-    "//prebuilts/build-tools:path/linux-x86/seq",
-    "//prebuilts/build-tools:path/linux-x86/setsid",
-    "//prebuilts/build-tools:path/linux-x86/sha1sum",
-    "//prebuilts/build-tools:path/linux-x86/sha256sum",
-    "//prebuilts/build-tools:path/linux-x86/sha512sum",
-    "//prebuilts/build-tools:path/linux-x86/sleep",
-    "//prebuilts/build-tools:path/linux-x86/sort",
-    "//prebuilts/build-tools:path/linux-x86/stat",
-    "//prebuilts/build-tools:path/linux-x86/tail",
-    "//prebuilts/build-tools:path/linux-x86/tee",
-    "//prebuilts/build-tools:path/linux-x86/test",
-    "//prebuilts/build-tools:path/linux-x86/timeout",
-    "//prebuilts/build-tools:path/linux-x86/touch",
-    "//prebuilts/build-tools:path/linux-x86/tr",
-    "//prebuilts/build-tools:path/linux-x86/true",
-    "//prebuilts/build-tools:path/linux-x86/truncate",
-    "//prebuilts/build-tools:path/linux-x86/uname",
-    "//prebuilts/build-tools:path/linux-x86/uniq",
-    "//prebuilts/build-tools:path/linux-x86/unix2dos",
-    "//prebuilts/build-tools:path/linux-x86/wc",
-    "//prebuilts/build-tools:path/linux-x86/which",
-    "//prebuilts/build-tools:path/linux-x86/whoami",
-    "//prebuilts/build-tools:path/linux-x86/xargs",
-    "//prebuilts/build-tools:path/linux-x86/xxd",
     "//prebuilts/build-tools:path/linux-x86/xz",
     "//prebuilts/build-tools:path/linux-x86/xzcat",
     "//prebuilts/build-tools:path/linux-x86/zipinfo",
@@ -280,30 +233,77 @@ _DEPRECATED_DO_NOT_ADD_MORE_ALIASES = [
 ]
 
 # Hermetic tools symlinks (other than _HERMETIC_TOOLS)
-_ADDITIONAL_TOYS = [
+_TOYS = [
+    # keep sorted
+    "basename",
+    "cat",
+    "chmod",
+    "cmp",
+    "comm",
+    "cp",
+    "cpio",
+    "cut",
+    "date",
     "dd",
     "diff",
+    "dirname",
+    "du",
+    "echo",
+    "egrep",
+    "env",
     "expr",
+    "getconf",
+    "grep",
+    "head",
+    "hostname",
+    "id",
+    "install",
+    "ln",
+    "ls",
+    "md5sum",
+    "mkdir",
+    "mktemp",
+    "mv",
     "nproc",
+    "readlink",
+    "realpath",
+    "rm",
+    "rmdir",
+    "sed",
+    "seq",
+    "setsid",
+    "sha1sum",
+    "sha256sum",
+    "sha512sum",
+    "sleep",
+    "sort",
+    "stat",
+    "tail",
+    "tee",
+    "test",
+    "timeout",
+    "touch",
+    "tr",
+    "true",
+    "truncate",
+    "uname",
+    "uniq",
+    "unix2dos",
+    "wc",
+    "which",
+    "whoami",
+    "xargs",
+    "xxd",
     # Real tar binary that shouldn't be used directly
     "kleaf_internal_do_not_use/tar",
 ]
-
-# Hacks to allow duplicate keys in hermetic_tools.symlinks.
-# This can't be an alias because it resolves to the same target during
-# analysis phase.
-filegroup(
-    name = "hermetic_tools_toybox_flock_alias",
-    srcs = [":toybox"],
-    visibility = ["//visibility:private"],
-)
 
 hermetic_tools(
     name = "hermetic-tools",
     aliases = _DEPRECATED_DO_NOT_ADD_MORE_ALIASES,
     symlinks = select({
         "//build/kernel/kleaf:debug_cache_dir_conflict_needs_flock": {
-            ":hermetic_tools_toybox_flock_alias": "flock",
+            ":toybox_flock": "flock",
         },
         "//conditions:default": {},
     }) | select({
@@ -311,7 +311,7 @@ hermetic_tools(
             "@kleaf_host_tools//:find": "find",
         },
         "//conditions:default": {
-            "//prebuilts/build-tools:path/linux-x86/find": "find",
+            ":toybox_find": "find",
         },
     }) | select({
         "//build/kernel/kleaf:toolchain_from_sources_is_true": {
@@ -325,10 +325,10 @@ hermetic_tools(
             "@pigz": "gzip",
         },
         "//conditions:default": {
-            "//prebuilts/build-tools:path/linux-x86/gzip": "gzip",
+            ":toybox_gzip": "gzip",
         },
     }) | {
-        ":toybox": ":".join(_ADDITIONAL_TOYS),
+        ":toybox": ":".join(_TOYS),
 
         # Host tools
         "@kleaf_host_tools//:bash": "bash",
