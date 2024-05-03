@@ -31,7 +31,10 @@ filegroup(
 
 alias(
     name = "toybox",
-    actual = "//prebuilts/build-tools:linux-x86/bin/toybox",
+    actual = select({
+        "//build/kernel/kleaf:toolchain_from_sources_is_true": "@toybox",
+        "//conditions:default": "//prebuilts/build-tools:linux-x86/bin/toybox",
+    }),
     visibility = ["//visibility:private"],
 )
 
