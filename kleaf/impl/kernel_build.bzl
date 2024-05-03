@@ -57,8 +57,8 @@ load(
     "TOOLCHAIN_VERSION_FILENAME",
 )
 load(":debug.bzl", "debug")
-load(":file_selector.bzl", "file_selector")
 load(":file.bzl", "file")
+load(":file_selector.bzl", "file_selector")
 load(":hermetic_toolchain.bzl", "hermetic_toolchain")
 load(":kernel_config.bzl", "kernel_config")
 load(":kernel_config_settings.bzl", "kernel_config_settings")
@@ -2088,6 +2088,12 @@ def _kmi_symbol_list_strict_mode(ctx, all_output_files, all_module_names_file):
         print("\nWARNING: {this_label}: Attribute kmi_symbol_list_strict_mode\
               IGNORED because --kgdb is set!".format(this_label = ctx.label))
         return None
+
+    # Skip for --gcov builds.
+    if ctx.attr._gcov[BuildSettingInfo].value:
+        print("\nWARNING: {this_label}: {what} was\
+              IGNORED because --gcov is set!".format(this_label = ctx.label, what = what))
+        return True
 
     if not ctx.attr.kmi_symbol_list_strict_mode:
         return None
