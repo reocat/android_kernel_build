@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000076691561",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/3073828?revision\u003d2",
+      "key": {
+        "uuid": "b3bb1b2b_f1646950",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 2095,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2024-05-03T14:57:51Z",
+      "side": 1,
+      "message": "\"print()\" is a debug function and shouldn\u0027t be submitted. http://go/buildifier-warnings#print",
+      "range": {
+        "startLine": 2094,
+        "startChar": 8,
+        "endLine": 2095,
+        "endChar": 77
+      },
+      "tag": "",
+      "revId": "c96bae66d08fab905523151b4eddd542431b9385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
