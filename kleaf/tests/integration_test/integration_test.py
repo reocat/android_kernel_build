@@ -144,58 +144,46 @@ class Exec(object):
 
 class KleafIntegrationTestBase(unittest.TestCase):
 
-    def _check_call(self,
-                    command: str,
-                    command_args: list[str],
-                    startup_options=(),
-                    **kwargs) -> None:
-        """Executes a bazel command."""
-
-        startup_options = list(startup_options)
-        startup_options.append(f"--bazelrc={self._bazel_rc.name}")
-        command_args = list(command_args)
-        command_args.extend(arguments.bazel_wrapper_args)
-        Exec.check_call([str(_BAZEL)] + startup_options + [
-            command,
-        ] + command_args, **kwargs)
-
-    def _build(self, command_args: list[str], **kwargs) -> None:
-        """Executes a bazel build command."""
-        self._check_call("build", command_args, **kwargs)
-
-    def _check_output(self, command: str, command_args: list[str],
-                      use_bazelrc=True,
-                      **kwargs) -> str:
-        """Returns output of a bazel command."""
-
+    def _build_exec_args_kwargs(
+        self,
+        command: str,
+        command_args: Iterable[str] = (),
+        use_bazelrc=True,
+        startup_options=(),
+        **kwargs,
+    ) -> tuple[list[str], dict[str, Any]]:
+        """Build args and kwargs to Exec"""
         args = [str(_BAZEL)]
+        args += list(startup_options)
         if use_bazelrc:
             args.append(f"--bazelrc={self._bazel_rc.name}")
         args.append(command)
-        args += command_args
+        args += list(command_args)
+        return args, kwargs
 
+    def _check_call(self, *args, **kwargs) -> None:
+        """Executes a bazel command."""
+        args, kwargs = self._build_exec_args_kwargs(*args, **kwargs)
+        Exec.check_call(args, **kwargs)
+
+    def _build(self, *args, **kwargs) -> None:
+        """Executes a bazel build command."""
+        self._check_call("build", *args, **kwargs)
+
+    def _check_output(self, *args, **kwargs) -> str:
+        """Returns output of a bazel command."""
+        args, kwargs = self._build_exec_args_kwargs(*args, **kwargs)
         return Exec.check_output(args, **kwargs)
 
-    def _check_errors(self, command: str, command_args: list[str],
-                      use_bazelrc=True,
-                      **kwargs) -> str:
+    def _check_errors(self, *args, **kwargs) -> str:
         """Returns errors of a bazel command."""
-
-        args = [str(_BAZEL)]
-        if use_bazelrc:
-            args.append(f"--bazelrc={self._bazel_rc.name}")
-        args.append(command)
-        args += command_args
-
+        args, kwargs = self._build_exec_args_kwargs(*args, **kwargs)
         return Exec.check_errors(args, **kwargs)
 
-    def _popen(self, command: str, command_args: list[str], **kwargs) \
-            -> subprocess.Popen:
-        return Exec.popen([
-            str(_BAZEL),
-            f"--bazelrc={self._bazel_rc.name}",
-            command,
-        ] + command_args, **kwargs)
+    def _popen(self, *args, **kwargs) -> subprocess.Popen:
+        """Executes a bazel command, returning the Popen object."""
+        args, kwargs = self._build_exec_args_kwargs(*args, **kwargs)
+        return Exec.popen(args, **kwargs)
 
     def setUp(self) -> None:
         self.assertTrue(os.environ.get("BUILD_WORKSPACE_DIRECTORY"),
@@ -607,11 +595,11 @@ class QuickIntegrationTest(KleafIntegrationTestBase):
 
     def test_dash_dash_help(self):
         """Test that `bazel --help` works."""
-        self._check_output("--help", [], use_bazelrc=False)
+        self._check_output("--help", use_bazelrc=False)
 
     def test_help(self):
         """Test that `bazel help` works."""
-        self._check_output("help", [])
+        self._check_output("help")
 
     def test_help_kleaf(self):
         """Test that `bazel help kleaf` works."""
