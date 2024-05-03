@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c5475f7_0cc9df6c",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 2053,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-03T15:40:05Z",
+      "side": 1,
+      "message": "I think this branch has some refactor CL\u0027s missing, hence this cherry-pick landed in a different function, please verify this is the right place to add this functionality and then disable the buildifier warning. Thank you.",
+      "range": {
+        "startLine": 2053,
+        "startChar": 4,
+        "endLine": 2053,
+        "endChar": 32
+      },
+      "revId": "c96bae66d08fab905523151b4eddd542431b9385",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
