@@ -20,7 +20,7 @@ import shlex
 import shutil
 import sys
 import textwrap
-from typing import BinaryIO, Tuple, Optional
+from typing import BinaryIO, Generator, Tuple, Optional
 
 from kleaf_help import KleafHelpPrinter, FLAGS_BAZEL_RC
 
@@ -57,13 +57,6 @@ class BazelWrapperException(Exception):
         Exception.__init__(self, message)
         self.code = code
         self.message = message
-
-
-class BazelSubprocessException(BazelWrapperException):
-    """The internal `bazel` call fails."""
-
-    def __init__(self, code: int):
-        BazelWrapperException.__init__(self, code=code)
 
 
 class MultipleBazelWrapperException(BazelWrapperException):
@@ -638,6 +631,7 @@ class OutputMutator:
         self,
         input_stream: BinaryIO,
         output_stream: BinaryIO,
+        stream_name: str,
     ):
         """Pipes input to output, optionally mutating lines.
 
@@ -654,13 +648,6 @@ class OutputMutator:
                 output = output_decoded.encode()
             output_stream.buffer.write(output)
             output_stream.flush()
-
-
-async def _wait_for_subprocess(process):
-    """Wraps process.wait() and raises if exit code is non-zero."""
-    return_code = await process.wait()
-    if return_code != 0:
-        raise BazelSubprocessException(code=return_code)
 
 
 async def run(command, env, epilog_coroutine, output_mutator):
@@ -691,7 +678,7 @@ async def run(command, env, epilog_coroutine, output_mutator):
     coroutines = [
         stderr_coroutine,
         stdout_coroutine,
-        _wait_for_subprocess(process),
+        process.wait(),
     ]
     tasks = [asyncio.Task(coroutine) for coroutine in coroutines]
     done, _ = await asyncio.wait(tasks, return_when=asyncio.ALL_COMPLETED)
