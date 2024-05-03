@@ -43,6 +43,12 @@ new_kleaf_local_repository(
 )
 
 new_kleaf_local_repository(
+    name = "toybox",
+    build_file = "build/kernel/kleaf/toybox.BUILD",
+    path = "external/toybox",
+)
+
+new_kleaf_local_repository(
     name = "zlib",
     build_file = "build/kernel/kleaf/zlib.BUILD",
     path = "external/zlib",
