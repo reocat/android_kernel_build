@@ -135,6 +135,30 @@
       ],
       "revId": "1f0d39032a63034cb9140b1bd816c021e9d5de37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d9d1ed5_5af53115",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T22:30:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d642597f_09bc891d",
+      "range": {
+        "startLine": 571,
+        "startChar": 0,
+        "endLine": 571,
+        "endChar": 37
+      },
+      "revId": "1f0d39032a63034cb9140b1bd816c021e9d5de37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
