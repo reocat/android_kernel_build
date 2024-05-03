@@ -1,0 +1,116 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5512320_4a0d525c",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-03T22:04:59Z",
+      "side": 1,
+      "message": "use a dataclass?",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3f713391_59bfb351",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 15,
+                "startChar": 0,
+                "endLine": 15,
+                "endChar": 0
+              },
+              "replacement": "import dataclasses\n"
+            },
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 42,
+                "startChar": 0,
+                "endLine": 42,
+                "endChar": 0
+              },
+              "replacement": "\n@dataclasses.dataclass\n"
+            },
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 44,
+                "startChar": 0,
+                "endLine": 60,
+                "endChar": 0
+              },
+              "replacement": "    message: str \u003d \"\"\n    code: int \u003d 1\n"
+            },
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 71,
+                "startChar": 0,
+                "endLine": 76,
+                "endChar": 0
+              },
+              "replacement": "        self.message \u003d \"\\n\".join(error.message for error in errors)\n        self.code \u003d errors[0].code\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1f0d39032a63034cb9140b1bd816c021e9d5de37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d642597f_09bc891d",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-03T22:04:59Z",
+      "side": 1,
+      "message": "assert then?",
+      "range": {
+        "startLine": 571,
+        "startChar": 0,
+        "endLine": 571,
+        "endChar": 37
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c7da64bb_b011ef9d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 571,
+                "startChar": 0,
+                "endLine": 572,
+                "endChar": 0
+              },
+              "replacement": "            assert False\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1f0d39032a63034cb9140b1bd816c021e9d5de37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
