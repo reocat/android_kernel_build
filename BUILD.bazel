@@ -29,6 +29,12 @@ filegroup(
     ],
 )
 
+alias(
+    name = "toybox",
+    actual = "//prebuilts/build-tools:linux-x86/bin/toybox",
+    visibility = ["//visibility:private"],
+)
+
 bison_wrapper(
     name = "bison",
     actual = "//prebuilts/build-tools:linux-x86/bin/bison",
@@ -288,7 +294,7 @@ _ADDITIONAL_TOYS = [
 # analysis phase.
 filegroup(
     name = "hermetic_tools_toybox_flock_alias",
-    srcs = ["//prebuilts/build-tools:linux-x86/bin/toybox"],
+    srcs = [":toybox"],
     visibility = ["//visibility:private"],
 )
 
@@ -322,7 +328,7 @@ hermetic_tools(
             "//prebuilts/build-tools:path/linux-x86/gzip": "gzip",
         },
     }) | {
-        "//prebuilts/build-tools:linux-x86/bin/toybox": ":".join(_ADDITIONAL_TOYS),
+        ":toybox": ":".join(_ADDITIONAL_TOYS),
 
         # Host tools
         "@kleaf_host_tools//:bash": "bash",
