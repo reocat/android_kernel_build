@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d687b91f_9e8eacd8",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T23:24:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ed57991_f5282714",
+      "range": {
+        "startLine": 165,
+        "startChar": 4,
+        "endLine": 181,
+        "endChar": 0
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab74f15c_9d8d5692",
@@ -90,6 +114,24 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "ab74f15c_9d8d5692",
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1220d1dc_b5146319",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T23:24:24Z",
+      "side": 1,
+      "message": "CL:3074107",
+      "parentUuid": "1272d301_cb93b5c4",
       "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -141,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea660d63_537ed74b",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T23:24:24Z",
+      "side": 1,
+      "message": "CL:3074107",
+      "parentUuid": "e11009ec_d1a0bcfa",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 25
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce301035_218452dd",
@@ -154,6 +220,30 @@
       "writtenOn": "2024-05-01T22:34:36Z",
       "side": 1,
       "message": "```suggestion\n    extra_restore_outputs_cmd \u003d \"\"\n    for file in (ctx.file.system_trusted_key, ctx.file.module_signing_key):\n      if not file: continue\n```",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 439,
+        "endChar": 39
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63995339_493b4bf8",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T23:24:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce301035_218452dd",
       "range": {
         "startLine": 433,
         "startChar": 0,
@@ -235,6 +325,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e9ffb80_09e9d8a0",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T23:24:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84d7bfef_c9299c5f",
+      "range": {
+        "startLine": 566,
+        "startChar": 0,
+        "endLine": 566,
+        "endChar": 71
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb804355_9b0c22a3",
@@ -248,6 +362,30 @@
       "writtenOn": "2024-05-01T22:34:36Z",
       "side": 1,
       "message": "```suggestion\n            rsync -aL --chmod\u003dF+w {out_dir}/{raw_kmi_symbol_list_below_out_dir} ${{OUT_DIR}}/\n```\n\n? ... unless you want to support subdirectories as argument (but this one is constant right now)",
+      "range": {
+        "startLine": 567,
+        "startChar": 80,
+        "endLine": 567,
+        "endChar": 128
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93096929_16703aea",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T23:24:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb804355_9b0c22a3",
       "range": {
         "startLine": 567,
         "startChar": 80,
