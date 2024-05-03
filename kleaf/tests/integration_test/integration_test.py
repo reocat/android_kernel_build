@@ -619,6 +619,63 @@ class QuickIntegrationTest(KleafIntegrationTestBase):
         popen.communicate()
         self.assertNotEqual(popen.returncode, 0)
 
+    def test_no_unexpected_output_error_with_proper_flags(self):
+        """With --config=silent, no errors emitted on unexpected lines."""
+        # Other integration tests may cause this test to emit the message
+        # WARNING: Build options [...] have changed, discarding analysis cache
+        # Shutdown the server to manually discard analysis cache.
+        self._check_call("shutdown")
+
+        logs = pathlib.Path("build/kernel/kleaf/spotless_log_regex.txt")
+
+        startup_options = [
+            f"--stdout_stderr_regex_allowlist={logs.resolve()}",
+        ]
+        popen = self._popen(
+            "build",
+            [
+                "--config=silent",
+                "//build/kernel:hermetic-tools",
+            ],
+            startup_options=startup_options,
+            stderr=subprocess.PIPE,
+            # Drops "WARNING: Duplicate rc file" for integration test due
+            # to usage of --bazelrc={self._bazelrc}
+            use_bazelrc=False,
+        )
+        _, stderr = popen.communicate()
+        self.assertEqual(popen.returncode, 0, stderr)
+
+    def test_detect_unexpected_output_error(self):
+        """Without --config=silent, there are errors on unexpected lines."""
+        logs = pathlib.Path("build/kernel/kleaf/spotless_log_regex.txt")
+
+        startup_options = [
+            f"--stdout_stderr_regex_allowlist={logs.resolve()}",
+        ]
+        popen = self._popen(
+            "build",
+            ["//build/kernel:hermetic-tools"],
+            startup_options=startup_options,
+            stderr=subprocess.PIPE,
+        )
+        _, stderr = popen.communicate()
+        self.assertNotEqual(popen.returncode, 0)
+        self.assertIn("unexpected lines", stderr)
+
+    def test_no_unexpected_output_error_if_process_exits_abnormally(self):
+        """If the bazel command fails, no errors emitted on unexpected lines."""
+        logs = pathlib.Path("build/kernel/kleaf/spotless_log_regex.txt")
+
+        startup_options = [
+            f"--stdout_stderr_regex_allowlist={logs.resolve()}",
+        ]
+        popen = self._popen("build", ["//does_not_exist"],
+            startup_options=startup_options,
+            stderr=subprocess.PIPE)
+        _, stderr = popen.communicate()
+        self.assertNotEqual(popen.returncode, 0)
+        self.assertNotIn("unexpected lines", stderr)
 
 class ScmversionIntegrationTest(KleafIntegrationTestBase):
 
