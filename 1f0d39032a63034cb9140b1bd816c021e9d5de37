@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "acf78f08_32b29f3d",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-03T22:29:08Z",
+      "side": 1,
+      "message": "Can I still use a dataclass when extending from Exception? I still need to call `Exception.__init__()` right?",
+      "parentUuid": "f5512320_4a0d525c",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "1f0d39032a63034cb9140b1bd816c021e9d5de37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d642597f_09bc891d",
         "filename": "kleaf/bazel.py",
         "patchSetId": 4
