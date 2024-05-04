@@ -158,6 +158,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb3c5b48_8c662867",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-04T03:25:42Z",
+      "side": 1,
+      "message": "pylint complains about this. We could disable this globally though.\n\nThe file we are using is https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/.pylintrc\n\nFrom https://google.github.io/styleguide/pylintrc",
+      "parentUuid": "4403d110_d932d03a",
+      "range": {
+        "startLine": 40,
+        "startChar": 29,
+        "endLine": 40,
+        "endChar": 45
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7be95f89_0202a07d",
         "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
         "patchSetId": 11
@@ -209,6 +233,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f373fa3_6e3a53dd",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-04T03:25:42Z",
+      "side": 1,
+      "message": "print() puts a new empty line at the end",
+      "parentUuid": "7be95f89_0202a07d",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 17
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b5a61ef_373dc918",
         "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
         "patchSetId": 11
@@ -244,6 +292,30 @@
           ]
         }
       ],
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1dd0738_d07963b6",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-04T03:25:42Z",
+      "side": 1,
+      "message": "The line is too long so I didn\u0027t use this. Perhaps we should change the pylintrc to allow 100 columns?",
+      "parentUuid": "8b5a61ef_373dc918",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 72
+      },
       "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
