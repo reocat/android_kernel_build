@@ -369,6 +369,29 @@
       ],
       "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52d5bcdd_5d68de83",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-04T03:26:27Z",
+      "side": 1,
+      "message": "I can call path.is_relative_to() instead of using exceptions",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 38
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
