@@ -19,7 +19,6 @@
 common --config=bzlmod
 
 common:bzlmod --enable_bzlmod
-common:bzlmod --registry=file://%workspace%/external/bazelbuild-bazel-central-registry
 
 # Set --lockfile_mode=off to prevent generation of MODULE.bazel.lock
 # and caching of source declarations in the registry.

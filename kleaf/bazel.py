@@ -390,6 +390,13 @@ class BazelWrapper(KleafHelpPrinter):
             self.kleaf_repo_dir / "build/kernel/kleaf/common.bazelrc",
         ])
 
+        # If @kleaf is root module, use local registry. Otherwise, the user
+        # must specify --registry if they want to use a local one.
+        registry_bazelrc = self.gen_bazelrc_dir / "registry.bazelrc"
+        with open(registry_bazelrc, "w", encoding="utf-8") as f:
+            if self._kleaf_repository_is_top_workspace():
+                f.write("common:bzlmod --registry=file://%workspace%/external/bazelbuild-bazel-central-registry")
+
     def _build_final_args(self) -> list[str]:
         """Builds the final arguments for the subprocess."""
         # final_args:

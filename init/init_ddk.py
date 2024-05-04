@@ -174,9 +174,8 @@ class KleafProjectSetter:
 
         self._update_file(
             bazelrc,
-            textwrap.dedent(f"""\
-            common --config=internet
-            common --registry=file://{kleaf_repo}/external/bazelbuild-bazel-central-registry
+            textwrap.dedent("""\
+                common --config=internet
             """),
         )
 
