@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a90bce00_1d829908",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-06T21:49:12Z",
+      "side": 1,
+      "message": "In particular, I need to call `Exception.__init__(self, message)` so the exception has the proper message.",
+      "parentUuid": "acf78f08_32b29f3d",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "1f0d39032a63034cb9140b1bd816c021e9d5de37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d642597f_09bc891d",
