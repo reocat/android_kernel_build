@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a32cee3_b0156b41",
+        "filename": "kleaf/impl/kernel_build.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1961,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-06T21:58:05Z",
+      "side": 1,
+      "message": "`minus` needs to be properly defined here. If a symbol is explicitly in kmi_symbol_list or additional_kmi_symbol_lists, and also in unstable_kmi_symbol_list, it should still be in the final combined_abi_symbollist.\n\nSo this documentation should NOT be changed.",
+      "range": {
+        "startLine": 1961,
+        "startChar": 46,
+        "endLine": 1961,
+        "endChar": 51
+      },
+      "revId": "b6a00da1ddad8f261de7588a7500b4b4abb5c920",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
