@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "730c7525_7d22289b",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-06T17:00:15Z",
+      "side": 1,
+      "message": "Add a comment that this checks if build_id is missing \u0026 url_fmt has an anchor depending on build_id\n\nnow that the error message is deleted",
+      "revId": "e3016f1f51625d98041d0ae26687ab89f7015eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
