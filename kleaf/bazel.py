@@ -149,6 +149,7 @@ class BazelWrapper(KleafHelpPrinter):
 
         self._parse_startup_options()
         self._parse_command_args()
+        self._add_extra_startup_options()
         self._rebuild_kleaf_help_args()
 
     @classmethod
@@ -216,8 +217,8 @@ class BazelWrapper(KleafHelpPrinter):
         parser = argparse.ArgumentParser(add_help=False, allow_abbrev=False)
         self.add_startup_option_to_parser(parser)
 
-        self.known_startup_options, user_startup_options = parser.parse_known_args(
-            self.startup_options)
+        self.known_startup_options, self.user_startup_options = \
+            parser.parse_known_args(self.startup_options)
 
         self.absolute_out_dir = self.known_startup_options.output_root
         self.absolute_user_root = self.known_startup_options.output_user_root or \
@@ -234,11 +235,7 @@ class BazelWrapper(KleafHelpPrinter):
                 f"--host_jvm_args=-Djava.io.tmpdir={javatmp}",
             ]
 
-        self.transformed_startup_options += user_startup_options
-
-        if not self.known_startup_options.help:
-            self.transformed_startup_options.append(
-                f"--output_user_root={self.absolute_user_root}")
+        # See _add_extra_startup_options for extra startup options
 
     def add_command_args_to_parser(self, parser):
         absolute_cache_dir = self.absolute_out_dir / "cache"
@@ -366,7 +363,15 @@ class BazelWrapper(KleafHelpPrinter):
         if self.known_args.user_clang_toolchain is not None:
             self.env["KLEAF_USER_CLANG_TOOLCHAIN_PATH"] = self.known_args.user_clang_toolchain
 
+    def _add_extra_startup_options(self):
+        """Adds extra startup options after command args are parsed."""
         self._handle_bazelrc()
+
+        self.transformed_startup_options += self.user_startup_options
+
+        if not self.known_startup_options.help:
+            self.transformed_startup_options.append(
+                f"--output_user_root={self.absolute_user_root}")
 
     def _handle_bazelrc(self):
         """Rewrite bazelrc files."""

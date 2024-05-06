@@ -201,7 +201,6 @@ class KleafIntegrationTestBase(unittest.TestCase):
         self._bazel_rc = tempfile.NamedTemporaryFile()
         self.addCleanup(self._bazel_rc.close)
         with open(self._bazel_rc.name, "w") as f:
-            f.write(f"import %workspace%/build/kernel/kleaf/common.bazelrc\n")
             for arg in arguments.bazel_args:
                 f.write(f"build {shlex.quote(arg)}\n")
 
