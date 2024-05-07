@@ -192,7 +192,8 @@ class KleafIntegrationTestBase(unittest.TestCase):
 
     def setUp(self) -> None:
         self.assertTrue(os.environ.get("BUILD_WORKSPACE_DIRECTORY"),
-                        "BUILD_WORKSPACE_DIRECTORY is not set")
+                        "BUILD_WORKSPACE_DIRECTORY is not set. " +
+                        "Did you use `tools/bazel test` instead of `tools/bazel run`?")
         os.chdir(os.environ["BUILD_WORKSPACE_DIRECTORY"])
         sys.stderr.write(
             f"BUILD_WORKSPACE_DIRECTORY={os.environ['BUILD_WORKSPACE_DIRECTORY']}\n"
@@ -674,7 +675,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
     def setUp(self) -> None:
         super().setUp()
 
-        self.strings = "bazel-bin/build/kernel/hermetic-tools/llvm-strings"
+        self.strings = shutil.which("llvm-strings")
         self.uname_pattern_prefix = re.compile(
             r"^Linux version [0-9]+[.][0-9]+[.][0-9]+(\S*)")
 
