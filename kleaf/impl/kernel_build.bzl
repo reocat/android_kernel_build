@@ -707,39 +707,23 @@ def kernel_build(
 
 # buildifier: disable=print
 def _skip_build_checks(ctx, what):
-    # Skip for --k*san targets as they are usually debug targets.
-    if ctx.attr._kasan[BuildSettingInfo].value:
-        print("\nWARNING: {this_label}: {what} was\
-              IGNORED because --kasan is set!".format(this_label = ctx.label, what = what))
-        return True
-    if ctx.attr._kasan_sw_tags[BuildSettingInfo].value:
-        print("\nWARNING: {this_label}: {what} was\
-              IGNORED because --kasan_sw_tags is set!".format(this_label = ctx.label, what = what))
-        return True
-    if ctx.attr._kasan_generic[BuildSettingInfo].value:
-        print("\nWARNING: {this_label}: {what} was\
-              IGNORED because --kasan_generic is set!".format(this_label = ctx.label, what = what))
-        return True
-    if ctx.attr._kcsan[BuildSettingInfo].value:
-        print("\nWARNING: {this_label}: {what} was\
-              IGNORED because --kcsan is set!".format(this_label = ctx.label, what = what))
-        return True
-
-    # Skip for --kgdb as it is usually used for debug targets.
-    if ctx.attr._kgdb[BuildSettingInfo].value:
-        print("\nWARNING: {this_label}: {what} was\
-              IGNORED because --kgdb is set!".format(this_label = ctx.label, what = what))
-        return True
-
-    # Skip when --debug is specified.
-    if ctx.attr._debug[BuildSettingInfo].value:
-        print("\nWARNING: {this_label}: {what} was\
-              IGNORED because --debug is set!".format(this_label = ctx.label, what = what))
-        return True
+    # Skip for these flags as they are usually debug targets.
+    for flag in (
+        "kasan",
+        "kasan_sw_tags",
+        "kasan_generic",
+        "kcsan",
+        "kgdb",
+        "debug",
+    ):
+        if getattr(ctx.attr, "_" + flag)[BuildSettingInfo].value:
+            print("\nWARNING: {this_label}: {what} was \
+IGNORED because --{flag} is set!".format(this_label = ctx.label, what = what, flag = flag))
+            return True
 
     if ctx.attr.sanitizers[0] != "default":
-        print("\nWARNING: {this_label}: {what} was\
-              IGNORED because kernel_build.sanitizers is set!".format(this_label = ctx.label, what = what))
+        print("\nWARNING: {this_label}: {what} was \
+IGNORED because kernel_build.sanitizers is set!".format(this_label = ctx.label, what = what))
         return True
 
     # Skip for --gcov builds.
