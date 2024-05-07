@@ -22,6 +22,30 @@
       },
       "revId": "4bf8a30b043387a0c8b069cb6c37cba22daf9316",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b85ae8d7_fa057334",
+        "filename": "kleaf/toybox.BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T20:43:30Z",
+      "side": 1,
+      "message": "I tried, the expression would rather be\n\n```\n            \"*/linux/generated/*.h\",\n            \"lib/*.h\",\n            \"lib/*.c\",\n```\n\nNot sure it is worth it to be specific on \u0027linux\u0027. I will keep it as is for now. That would also allow for target at a later point.",
+      "parentUuid": "e844b4b1_5a8361d1",
+      "range": {
+        "startLine": 19,
+        "startChar": 12,
+        "endLine": 19,
+        "endChar": 21
+      },
+      "revId": "4bf8a30b043387a0c8b069cb6c37cba22daf9316",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
