@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58c90b0e_7503cba3",
+        "filename": "BUILD.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-07T18:38:52Z",
+      "side": 1,
+      "message": "Note this.\n\nI think you can\u0027t use an alias above. Use a filegroup instead. (At least that\u0027s what my experience was before)\n\nAlso consider moving the aliases here.",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 17
+      },
+      "revId": "f1c5fee862db364aedf7565fe196abe734bd9163",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
