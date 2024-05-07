@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e33c163_c048db55",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:03:01Z",
+      "side": 1,
+      "message": "super().__init__",
+      "range": {
+        "startLine": 71,
+        "startChar": 8,
+        "endLine": 71,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6c9f2a61_4997da25",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/bazel.py",
+              "range": {
+                "startLine": 71,
+                "startChar": 0,
+                "endLine": 72,
+                "endChar": 0
+              },
+              "replacement": "        super().__init__(\n"
+            }
+          ]
+        }
+      ],
+      "revId": "e26aaf008cc039c9bc7ea7ca86b83e3cfe450a47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

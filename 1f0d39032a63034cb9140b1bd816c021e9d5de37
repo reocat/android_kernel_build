@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d728a69f_e6a9c0ae",
+        "filename": "kleaf/bazel.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:03:01Z",
+      "side": 1,
+      "message": "```\n    def __post_init__(self):\n        super().__init__(self, message)\n```",
+      "parentUuid": "a90bce00_1d829908",
+      "range": {
+        "startLine": 45,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 16
+      },
+      "revId": "1f0d39032a63034cb9140b1bd816c021e9d5de37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d642597f_09bc891d",
         "filename": "kleaf/bazel.py",
         "patchSetId": 4
