@@ -172,6 +172,13 @@ _TOYS = [
     "xxd",
 ]
 
+_TEST_TOYS = [
+    # keep sorted
+    "mount",
+    "umount",
+    "unshare",
+]
+
 hermetic_tools(
     name = "hermetic-tools",
     extra_args = {
@@ -236,6 +243,9 @@ hermetic_tools(
     } | {
         tool: paths.basename(package_relative_label(tool).name)
         for tool in _HERMETIC_TOOLS
+    },
+    test_symlinks = {
+        ":toybox": ":".join(_TEST_TOYS),
     },
     visibility = ["//visibility:public"],
     deps = [
