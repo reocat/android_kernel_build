@@ -137,6 +137,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37cadb67_87451a80",
+        "filename": "kleaf/bzlmod/bazel.MODULE.bazel",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T15:51:52Z",
+      "side": 1,
+      "message": "I decided to stick to the current approach. While the zlib-1.3.1 upstream version is similar, the Android fork is not the same and we should not supply it for users that expect zlib-1.3.1.",
+      "parentUuid": "346ab5ef_f34b793f",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 1
+      },
+      "revId": "c1788f5f12b17528cbb3dfb04b944a0eeb375182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ff61340_4cdb4819",
@@ -150,6 +174,30 @@
       "writtenOn": "2024-02-20T19:18:27Z",
       "side": 1,
       "message": "nit: this should go to L109, just like other projects with a BUILD file.\n\nI know it doesn\u0027t have a BUILD file right now, but see my other comment",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 0
+      },
+      "revId": "c1788f5f12b17528cbb3dfb04b944a0eeb375182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbc4626c_551a87d5",
+        "filename": "kleaf/workspace.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T15:51:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6ff61340_4cdb4819",
       "range": {
         "startLine": 147,
         "startChar": 0,
@@ -221,6 +269,30 @@
       "side": 1,
       "message": "As long as we don\u0027t use this target anywhere, this is fine.",
       "parentUuid": "3bc0c2f3_4d2525f8",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 19
+      },
+      "revId": "c1788f5f12b17528cbb3dfb04b944a0eeb375182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c438e0e_480e2fb9",
+        "filename": "kleaf/zlib.BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T15:51:52Z",
+      "side": 1,
+      "message": "Obsolete.",
+      "parentUuid": "8b8d9dc9_868f51a2",
       "range": {
         "startLine": 65,
         "startChar": 4,
