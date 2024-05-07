@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95636ee6_c4311776",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-07T18:43:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6ba7f05_b5279987",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 0
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39ff8a3d_d9a3971c",
@@ -206,6 +230,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb71f634_e5b09979",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-07T18:43:53Z",
+      "side": 1,
+      "message": "Ack. I\u0027ll add it to pylintrc in follow up CL, and drop encoding\u0027s in this CL",
+      "parentUuid": "cb3c5b48_8c662867",
+      "range": {
+        "startLine": 40,
+        "startChar": 29,
+        "endLine": 40,
+        "endChar": 45
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abfb8d3c_6fc343da",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-07T18:43:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39ff8a3d_d9a3971c",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 58
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7be95f89_0202a07d",
         "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
         "patchSetId": 11
@@ -303,6 +375,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3573a83_30f809d8",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-07T18:43:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6f373fa3_6e3a53dd",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 17
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b5a61ef_373dc918",
@@ -368,6 +464,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbebe6c4_63bd976c",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-07T18:43:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1dd0738_d07963b6",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 72
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f67e6ce_a8ea220a",
@@ -419,6 +539,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbae1e32_76e8e0dd",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-07T18:43:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f67e6ce_a8ea220a",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 51
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52d5bcdd_5d68de83",
@@ -432,6 +576,30 @@
       "writtenOn": "2024-05-04T03:26:27Z",
       "side": 1,
       "message": "I can call path.is_relative_to() instead of using exceptions",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 38
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23fd14b5_f50fa309",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-07T18:43:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52d5bcdd_5d68de83",
       "range": {
         "startLine": 119,
         "startChar": 0,
