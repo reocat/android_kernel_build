@@ -182,6 +182,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4877e95d_b5be7ad6",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:26:08Z",
+      "side": 1,
+      "message": "I think we should disable `unspecified-encoding`. It is not really an issue for us, but instead makes the code verbose.",
+      "parentUuid": "cb3c5b48_8c662867",
+      "range": {
+        "startLine": 40,
+        "startChar": 29,
+        "endLine": 40,
+        "endChar": 45
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7be95f89_0202a07d",
         "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
         "patchSetId": 11
@@ -245,6 +269,30 @@
       "side": 1,
       "message": "print() puts a new empty line at the end",
       "parentUuid": "7be95f89_0202a07d",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 17
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8957fadc_af94ed88",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:26:08Z",
+      "side": 1,
+      "message": "Use \"\\n\" ?",
+      "parentUuid": "6f373fa3_6e3a53dd",
       "range": {
         "startLine": 46,
         "startChar": 12,
