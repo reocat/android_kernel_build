@@ -276,6 +276,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "df20af3a_983f059f",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/fake_init_ddk.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-07T21:52:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb71f634_e5b09979",
+      "range": {
+        "startLine": 40,
+        "startChar": 29,
+        "endLine": 40,
+        "endChar": 45
+      },
+      "revId": "086bda5ec1f051fe8dfdfa3707f6884d5247759f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7be95f89_0202a07d",
