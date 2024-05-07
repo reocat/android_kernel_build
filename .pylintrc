@@ -50,6 +50,9 @@ confidence=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use"--disable=all --enable=classes
 # --disable=W"
+#
+# Kleaf:
+#   - Disable unspecified-encoding because we only need to run on Linux
 disable=R,
         abstract-method,
         apply-builtin,
@@ -123,6 +126,7 @@ disable=R,
         unicode-builtin,
         unnecessary-pass,
         unpacking-in-except,
+        unspecified-encoding,
         useless-else-on-loop,
         useless-suppression,
         using-cmp-argument,
