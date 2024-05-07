@@ -85,6 +85,9 @@ def load_arguments():
                         dest="include_abi_tests",
                         help="Include ABI Monitoring related tests." +
                         "NOTE: It requires a branch with ABI monitoring enabled.")
+    parser.add_argument("--internal_tools",
+                        type=_parse_internal_tools,
+                        help="""Internal flag. Paths to hermetic tools.""")
     group = parser.add_argument_group("CI", "flags for ci.android.com")
     group.add_argument("--test_result_dir",
                        type=_require_absolute_path,
@@ -103,6 +106,14 @@ def _require_absolute_path(p: str) -> pathlib.Path:
     if not path.is_absolute():
         raise ValueError(f"{p} is not absolute")
     return path
+
+
+def _parse_internal_tools(arg: str) -> dict[str, pathlib.Path]:
+    ret = dict[str, pathlib.Path]()
+    for token in arg.split(" "):
+        key, path = token.split("=")
+        ret[key] = _require_absolute_path(path)
+    return ret
 
 
 class Exec(object):
@@ -285,6 +296,9 @@ class KleafIntegrationTestBase(unittest.TestCase):
         """Returns the common package."""
         return "common"
 
+    @staticmethod
+    def get_tool(tool_name: str) -> str:
+        return str(arguments.internal_tools[tool_name])
 
 # NOTE: It requires a branch with ABI monitoring enabled.
 #   Include these using the flag --include-abi-tests
