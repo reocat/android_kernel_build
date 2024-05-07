@@ -25,7 +25,6 @@ load(
 load("//build/kernel/kleaf/impl:hermetic_genrule.bzl", _hermetic_genrule = "hermetic_genrule")
 load("//build/kernel/kleaf/impl:hermetic_toolchain.bzl", _hermetic_toolchain = "hermetic_toolchain")
 load("//build/kernel/kleaf/impl:utils.bzl", "utils")
-load(":fail.bzl", "fail_rule")
 
 # Re-export functions
 hermetic_exec = _hermetic_exec
@@ -169,7 +168,6 @@ def hermetic_tools(
         name,
         deps = None,
         symlinks = None,
-        aliases = None,
         **kwargs):
     """Provide tools for a hermetic build.
 
@@ -182,27 +180,11 @@ def hermetic_tools(
           {"//label/to:toybox": "cp:realpath"}
           ```
         deps: additional dependencies. These aren't added to the `PATH`.
-        aliases: **Deprecated; do not use.**
-
-          [nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).
-
-          List of aliases to create to refer to a `fail_rule`.
-
-          For example, if `aliases = ["cp"],` then usage of `<name>/cp` will
-          fail.
-
-          **Note**: It is not allowed to rely on these targets. Consider
-          using the full hermetic toolchain with
-          [`hermetic_toolchain`](#hermetic_toolchainget) or
-          [`hermetic_genrule`](#hermetic_genrule), etc.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common
     """
-
-    if aliases == None:
-        aliases = []
 
     if symlinks == None:
         symlinks = {}
@@ -216,18 +198,3 @@ def hermetic_tools(
         symlinks = symlinks,
         **kwargs
     )
-
-    alias_kwargs = kwargs | dict(
-        # Disallow direct usage of aliases.
-        message = """\
-Use hermetic_toolchain or hermetic_genrule for the full hermetic toolchain.
-  See build/kernel/kleaf/docs/hermeticity.md for details.
-""",
-        tags = ["manual"],
-    )
-
-    for alias in aliases:
-        fail_rule(
-            name = name + "/" + alias,
-            **alias_kwargs
-        )
