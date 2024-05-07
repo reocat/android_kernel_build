@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9641dcbc_44872a1c",
+        "filename": "BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-07T20:56:30Z",
+      "side": 1,
+      "message": "sorry I forgot to mention this in a previous review.\n\nnit: could you please add `# keep sorted` here so buildifier automatically sort this list? (Or does buildifier already sort this list now?)",
+      "revId": "d7ac235a193d47867452ac1d012d5c30f7d20f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
