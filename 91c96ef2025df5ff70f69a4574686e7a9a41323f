@@ -3,6 +3,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b98a1a6_30fe2f4d",
+        "filename": "kleaf/docs/bzlmod.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:48:01Z",
+      "side": 1,
+      "message": "elaborate?",
+      "range": {
+        "startLine": 13,
+        "startChar": 7,
+        "endLine": 13,
+        "endChar": 36
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "66ec2f19_e9e498f2",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/docs/bzlmod.md",
+              "range": {
+                "startLine": 13,
+                "startChar": 0,
+                "endLine": 14,
+                "endChar": 0
+              },
+              "replacement": "setup, this may be the easier option. This is because you can use the\n`WORKSPACE` file to declare dependencies, and the `WORKSPACE.bzlmod` file\nto declare dependencies that have not been migrated to bzlmod.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3e6868b3_7060c1fb",
         "filename": "kleaf/docs/bzlmod.md",
         "patchSetId": 5
@@ -19,6 +60,272 @@
         "startChar": 38,
         "endLine": 35,
         "endChar": 58
+      },
+      "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54db6319_74d984d8",
+        "filename": "kleaf/docs/bzlmod.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:48:01Z",
+      "side": 1,
+      "message": "use the public device names, please",
+      "range": {
+        "startLine": 49,
+        "startChar": 18,
+        "endLine": 49,
+        "endChar": 22
+      },
+      "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7519b5d_549578f5",
+        "filename": "kleaf/docs/bzlmod.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:48:01Z",
+      "side": 1,
+      "message": "Prefer descriptive short links",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 106
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "77a5fe96_ffa60b4d",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/docs/bzlmod.md",
+              "range": {
+                "startLine": 51,
+                "startChar": 0,
+                "endLine": 52,
+                "endChar": 0
+              },
+              "replacement": "[Pixel 2021 repo manifest](https://android.googlesource.com/kernel/manifest/+/refs/heads/gs-android-gs-raviole-mainline/default.xml)\n"
+            },
+            {
+              "path": "kleaf/docs/bzlmod.md",
+              "range": {
+                "startLine": 55,
+                "startChar": 0,
+                "endLine": 56,
+                "endChar": 0
+              },
+              "replacement": "[ACK repo manifest](https://android.googlesource.com/kernel/manifest/+/refs/heads/common-android-mainline/default.xml)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d0a96ef_7c571898",
+        "filename": "kleaf/docs/ddk/workspace.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:48:01Z",
+      "side": 1,
+      "message": "a DDK Workspace",
+      "range": {
+        "startLine": 1,
+        "startChar": 13,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "a797647f_ce0916dc",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/docs/ddk/workspace.md",
+              "range": {
+                "startLine": 1,
+                "startChar": 0,
+                "endLine": 2,
+                "endChar": 0
+              },
+              "replacement": "# Setting up a DDK Workspace\n"
+            }
+          ]
+        }
+      ],
+      "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30c9f51a_8d144dc8",
+        "filename": "kleaf/docs/ddk/workspace.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:48:01Z",
+      "side": 1,
+      "message": "let\u0027s drop this",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 17
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "cea13e1e_6368bb97",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/docs/ddk/workspace.md",
+              "range": {
+                "startLine": 3,
+                "startChar": 0,
+                "endLine": 4,
+                "endChar": 0
+              },
+              "replacement": "## Use the bootstrapping script\n"
+            }
+          ]
+        }
+      ],
+      "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "064e36a9_4c04dd28",
+        "filename": "kleaf/docs/ddk/workspace.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:48:01Z",
+      "side": 1,
+      "message": "one way is enough and we should keep documentation simple. Any second option is not rocket science and users are able to come up with that by themselves trivially.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 3
+      },
+      "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58203755_907b783c",
+        "filename": "kleaf/docs/ddk/workspace.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:48:01Z",
+      "side": 1,
+      "message": "might be a stretch, but perhaps on an initialized workspace, something like `bazel run //:ddk_init` or `bazel run @kleaf:init` or `./ddk_init` is something to be standardized? Such that init.py itself is only ever called once directly from internet and then is built in.",
+      "range": {
+        "startLine": 22,
+        "startChar": 37,
+        "endLine": 22,
+        "endChar": 52
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "b651576a_cce8a3cf",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/docs/ddk/workspace.md",
+              "range": {
+                "startLine": 22,
+                "startChar": 0,
+                "endLine": 23,
+                "endChar": 0
+              },
+              "replacement": "This command will be referred to as `python3 init.py` below. You may also\nuse `bazel run //:ddk_init` or `bazel run @kleaf:init` to run the script.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeef2c0c_ef369e75",
+        "filename": "kleaf/docs/download_prebuilt.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:48:01Z",
+      "side": 1,
+      "message": "are",
+      "range": {
+        "startLine": 3,
+        "startChar": 35,
+        "endLine": 3,
+        "endChar": 37
+      },
+      "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97c62571_7e456a04",
+        "filename": "kleaf/docs/workspace.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-07T16:48:01Z",
+      "side": 1,
+      "message": "Support for non-Bzlmod builds is",
+      "range": {
+        "startLine": 13,
+        "startChar": 21,
+        "endLine": 13,
+        "endChar": 23
       },
       "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
