@@ -674,7 +674,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
     def setUp(self) -> None:
         super().setUp()
 
-        self.strings = "bazel-bin/build/kernel/hermetic-tools/llvm-strings"
+        self.strings = shutil.which("llvm-strings")
         self.uname_pattern_prefix = re.compile(
             r"^Linux version [0-9]+[.][0-9]+[.][0-9]+(\S*)")
 
