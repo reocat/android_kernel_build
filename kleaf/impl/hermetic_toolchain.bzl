@@ -18,7 +18,7 @@ visibility("//build/kernel/kleaf/...")
 
 _TOOLCHAIN_TYPE = Label("//build/kernel:hermetic_tools_toolchain_type")
 
-def _get(ctx):
+def _get(ctx, for_tests = False):
     """Returns the resolved toolchain information.
 
     Args:
@@ -28,10 +28,13 @@ def _get(ctx):
                 hermetic_toolchain.type,
             ]
             ```
+        for_tests: If true, return the _HermeticToolchainInfo for tests
 
     Returns:
         _HermeticToolchainInfo (see hermetic_tools.bzl).
     """
+    if for_tests:
+        return ctx.toolchains[_TOOLCHAIN_TYPE].test_hermetic_toolchain_info
     return ctx.toolchains[_TOOLCHAIN_TYPE].hermetic_toolchain_info
 
 hermetic_toolchain = struct(
