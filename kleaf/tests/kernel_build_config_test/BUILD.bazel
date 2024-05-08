@@ -12,8 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@bazel_skylib//rules:diff_test.bzl", _skylib_diff_test = "diff_test")
 load("//build/kernel/kleaf:kernel.bzl", "kernel_build_config")
-load("//build/kernel/kleaf/tests:diff_test.bzl", "diff_test")
 
 # Test kernel_build_config
 
@@ -27,8 +27,15 @@ kernel_build_config(
     tags = ["manual"],
 )
 
-diff_test(
+_skylib_diff_test(
+    name = "kernel_build_config_test_internal",
+    file1 = "build.config.expected",
+    file2 = ":kernel_build_config_test_actual",
+    # Avoid running it without the hermetic_test wrapper
+    tags = ["manual"],
+)
+
+hermetic_test(
     name = "kernel_build_config_test",
-    actual = ":kernel_build_config_test_actual",
-    expected = "build.config.expected",
+    actual = ":kernel_build_config_test_internal",
 )
