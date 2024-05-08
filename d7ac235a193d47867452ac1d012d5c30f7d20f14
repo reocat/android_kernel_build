@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a76b7b13_6957b300",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-08T04:29:11Z",
+      "side": 1,
+      "message": "This breaks QuickIntegrationTest.test_change_to_core_kernel_does_not_affect_modules_prepare , possibly because one of the changes make the tools producing ir-reproducible output. In subsequent changes the test is not broken, indicating that the test may be flaky after a change in the topic.",
+      "revId": "d7ac235a193d47867452ac1d012d5c30f7d20f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9641dcbc_44872a1c",
         "filename": "BUILD.bazel",
         "patchSetId": 2
