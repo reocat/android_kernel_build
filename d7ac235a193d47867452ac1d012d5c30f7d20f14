@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9d8bc1e_6331cdf5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-08T08:52:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a76b7b13_6957b300",
+      "revId": "d7ac235a193d47867452ac1d012d5c30f7d20f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9641dcbc_44872a1c",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-05-07T20:56:30Z",
       "side": 1,
       "message": "sorry I forgot to mention this in a previous review.\n\nnit: could you please add `# keep sorted` here so buildifier automatically sort this list? (Or does buildifier already sort this list now?)",
+      "revId": "d7ac235a193d47867452ac1d012d5c30f7d20f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a503e0f6_d62455fc",
+        "filename": "BUILD.bazel",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-08T08:52:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9641dcbc_44872a1c",
       "revId": "d7ac235a193d47867452ac1d012d5c30f7d20f14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
