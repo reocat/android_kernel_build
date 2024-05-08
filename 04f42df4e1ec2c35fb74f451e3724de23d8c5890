@@ -63,6 +63,24 @@
       "message": "As discussed, the error in https://android-build.corp.google.com/test_investigate/?blocking\u003dblocking\u0026invocationId\u003dI67200010273252880\u0026status\u003dnone may be due to this change that causes pigz to be no longer producing stable output",
       "revId": "04f42df4e1ec2c35fb74f451e3724de23d8c5890",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7effcdf9_678a7c72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-08T08:50:30Z",
+      "side": 1,
+      "message": "resolved by setting `-DCHROMIUM_ZLIB_NO_CASTAGNOLI` to match the original zlib DEFLATE result",
+      "parentUuid": "7412cc0d_c2d0fafd",
+      "revId": "04f42df4e1ec2c35fb74f451e3724de23d8c5890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
