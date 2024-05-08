@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ea08a2b_899bc119",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-08T07:40:05Z",
+      "side": 1,
+      "message": "Actually, the \"-lz\" host zlib is the one from the prebuilt sysroot. So, it is not too bad.",
+      "parentUuid": "e629b4ec_4f737174",
+      "range": {
+        "startLine": 9,
+        "startChar": 23,
+        "endLine": 9,
+        "endChar": 40
+      },
+      "revId": "04f42df4e1ec2c35fb74f451e3724de23d8c5890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7412cc0d_c2d0fafd",
