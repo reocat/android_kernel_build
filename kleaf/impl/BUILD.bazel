@@ -485,3 +485,12 @@ python_runtime_files(
     name = "python_runtime_files",
     visibility = ["//build/kernel:__pkg__"],
 )
+
+cc_binary(
+    name = "arg_wrapper",
+    srcs = ["arg_wrapper.cpp"],
+    deps = [
+        "//prebuilts/kernel-build-tools:linux_x86_imported_libs",
+    ],
+    visibility = ["//build/kernel:__pkg__"],
+)
