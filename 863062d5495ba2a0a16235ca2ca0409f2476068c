@@ -22,6 +22,30 @@
       },
       "revId": "863062d5495ba2a0a16235ca2ca0409f2476068c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48181b0d_f1f8c6d2",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-08T23:52:58Z",
+      "side": 1,
+      "message": "No. I just want to reduce unwanted inputs. If you think we should keep it simple, I\u0027ll drop this CL",
+      "parentUuid": "16799eaf_25fe5ff5",
+      "range": {
+        "startLine": 218,
+        "startChar": 21,
+        "endLine": 218,
+        "endChar": 62
+      },
+      "revId": "863062d5495ba2a0a16235ca2ca0409f2476068c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
