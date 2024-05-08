@@ -15,8 +15,7 @@
 Tests for artifacts produced by kernel_module.
 """
 
-load("//build/kernel/kleaf/impl:hermetic_exec.bzl", "hermetic_exec_test")
-load(":py_test_hack.bzl", "run_py_binary_cmd")
+load("//build/kernel/kleaf/tests:hermetic_py_test.bzl", "hermetic_py_test")
 
 visibility("//build/kernel/kleaf/...")
 
@@ -35,20 +34,23 @@ def kernel_module_test(
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
     """
-    test_binary = Label("//build/kernel/kleaf/artifact_tests:kernel_module_test")
     args = []
-    data = [test_binary]
+    data = []
     if modules:
         args.append("--modules")
         args += ["$(rootpaths {})".format(module) for module in modules]
         data += modules
 
-    hermetic_exec_test(
+    hermetic_py_test(
         name = name,
         data = data,
-        script = run_py_binary_cmd(test_binary),
+        srcs = [Label("kernel_module_test.py")],
+        main = Label("kernel_module_test.py"),
         args = args,
         timeout = "short",
+        deps = [
+            "@io_abseil_py//absl/testing:absltest",
+        ],
         **kwargs
     )
 
@@ -66,20 +68,23 @@ def kernel_build_test(
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
     """
-    test_binary = Label("//build/kernel/kleaf/artifact_tests:kernel_build_test")
     args = []
-    data = [test_binary]
+    data = []
     if target:
         args += ["--artifacts", "$(rootpaths {})".format(target)]
         data.append(target)
 
-    hermetic_exec_test(
+    hermetic_py_test(
         name = name,
-        data = data,
-        script = run_py_binary_cmd(test_binary),
+        srcs = [Label("kernel_build_test.py")],
+        main = Label("kernel_build_test.py"),
         args = args,
-        timeout = "short",
-        **kwargs
+        data = data,
+        deps = [
+            "@io_abseil_py//absl/testing:absltest",
+            "@io_abseil_py//absl/testing:parameterized",
+        ],
+        **kwargs,
     )
 
 def initramfs_modules_options_test(
@@ -98,23 +103,25 @@ def initramfs_modules_options_test(
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
     """
-    test_binary = Label("//build/kernel/kleaf/artifact_tests:initramfs_modules_options_test")
     args = [
         "--expected",
         "$(rootpath {})".format(expected_modules_options),
         "$(rootpaths {})".format(kernel_images),
     ]
 
-    hermetic_exec_test(
+    hermetic_py_test(
         name = name,
         data = [
             expected_modules_options,
             kernel_images,
-            test_binary,
         ],
-        script = run_py_binary_cmd(test_binary),
+        srcs = [Label("initramfs_modules_options_test.py")],
+        main = Label("initramfs_modules_options_test.py"),
         args = args,
         timeout = "short",
+        deps = [
+            "@io_abseil_py//absl/testing:absltest",
+        ],
         **kwargs
     )
 
@@ -142,7 +149,6 @@ def initramfs_modules_lists_test(
           See complete list
           [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
     """
-    test_binary = Label("//build/kernel/kleaf/artifact_tests:initramfs_modules_lists_test")
     args = []
 
     if expected_modules_list:
@@ -170,17 +176,20 @@ def initramfs_modules_lists_test(
 
     args.append("$(rootpaths {})".format(kernel_images))
 
-    hermetic_exec_test(
+    hermetic_py_test(
         name = name,
         data = [
             expected_modules_list,
             expected_modules_recovery_list,
             expected_modules_charger_list,
             kernel_images,
-            test_binary,
         ],
-        script = run_py_binary_cmd(test_binary),
+        srcs = [Label("initramfs_modules_lists_test.py")],
+        main = Label("initramfs_modules_lists_test.py"),
         args = args,
         timeout = "short",
+        deps = [
+            "@io_abseil_py//absl/testing:absltest",
+        ],
         **kwargs
     )
