@@ -109,6 +109,9 @@ def _handle_hermetic_symlinks(ctx, symlinks_attr):
 
 def _hermetic_tools_impl(ctx):
     all_outputs = _handle_hermetic_symlinks(ctx, ctx.attr.symlinks)
+    test_outputs = _handle_hermetic_symlinks(ctx, ctx.attr.test_symlinks)
+
+    all_and_test_outputs = all_outputs + test_outputs
 
     if ctx.attr._disable_symlink_source[BuildSettingInfo].value:
         transitive_deps = []
@@ -156,14 +159,23 @@ def _hermetic_tools_impl(ctx):
         run_additional_setup = run_additional_setup,
     )
 
+    test_hermetic_toolchain_info = _HermeticToolchainInfo(
+        deps = depset(all_and_test_outputs, transitive = transitive_deps),
+        # Intentionally not setting because this should not be used at build time
+        # setup = ,
+        run_setup = run_setup,
+        run_additional_setup = run_additional_setup,
+    )
+
     infos = [
-        DefaultInfo(files = depset(all_outputs)),
+        DefaultInfo(files = depset(all_and_test_outputs)),
         platform_common.ToolchainInfo(
             hermetic_toolchain_info = hermetic_toolchain_info,
+            test_hermetic_toolchain_info = test_hermetic_toolchain_info,
         ),
         OutputGroupInfo(**{
             file.basename: depset([file])
-            for file in all_outputs
+            for file in all_and_test_outputs
             if "kleaf_internal_do_not_use" not in file.path
         }),
     ]
@@ -187,6 +199,10 @@ hermetic_tools = rule(
                 {"//label/to:toybox": "cp:realpath"}
                 ```
             """,
+        ),
+        "test_symlinks": attr.label_keyed_string_dict(
+            allow_files = True,
+            doc = """Like symlinks but for selected tests only.""",
         ),
         "extra_args": attr.string_list_dict(
             doc = """Keys are names to the tool (see `symlinks`). Values are
