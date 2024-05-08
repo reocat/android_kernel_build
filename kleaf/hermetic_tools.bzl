@@ -16,6 +16,7 @@ Provide tools for a hermetic build.
 """
 
 load("@bazel_skylib//lib:paths.bzl", "paths")
+load("@bazel_skylib//lib:shell.bzl", "shell")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
 load(
     "//build/kernel/kleaf/impl:hermetic_exec.bzl",
@@ -58,41 +59,76 @@ def _get_single_file(ctx, target):
         ))
     return files_list[0]
 
+def _handle_tool(ctx, tool_name, actual_target):
+    out = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, tool_name))
+    target_file = _get_single_file(ctx, actual_target)
+
+    if tool_name not in ctx.attr.extra_args:
+        ctx.actions.symlink(
+            output = out,
+            target_file = target_file,
+            is_executable = True,
+            progress_message = "Creating symlink to in-tree tool {}/{}".format(
+                ctx.label,
+                tool_name,
+            ),
+        )
+        return [out]
+
+    internal_symlink = ctx.actions.declare_file("{}/kleaf_internal_do_not_use/{}".format(ctx.attr.name, tool_name))
+    ctx.actions.symlink(
+        output = internal_symlink,
+        target_file = target_file,
+        is_executable = True,
+        progress_message = "Creating internal symlink to in-tree tool {}/{}".format(
+            ctx.label,
+            tool_name,
+        ),
+    )
+
+    hermetic_base_short = paths.join(
+        ctx.label.workspace_root,
+        ctx.label.package,
+        ctx.attr.name,
+    )
+
+    extra_args = " ".join([shell.quote(arg) for arg in ctx.attr.extra_args[tool_name]])
+    ctx.actions.write(out, """\
+#!/bin/bash -e
+
+# Ensure that PATH is already set up so that dirname / realpath is
+# hermetic.
+if ! [[ "$PATH" == *"{hermetic_base_short}"* ]]; then
+    echo "FATAL: PATH is not set up for hermetic tools!" >&2
+    exit 1
+fi
+
+$(dirname $(realpath "$0"))/kleaf_internal_do_not_use/{tool_name} "$@" {extra_args}
+""".format(
+        hermetic_base_short = hermetic_base_short,
+        tool_name = tool_name,
+        extra_args = extra_args,
+    ))
+    return [out, internal_symlink]
+
 def _handle_hermetic_symlinks(ctx):
-    hermetic_symlinks_dict = {}
+    all_outputs = []
     for actual_target, tool_names in ctx.attr.symlinks.items():
         for tool_name in tool_names.split(":"):
-            out = ctx.actions.declare_file("{}/{}".format(ctx.attr.name, tool_name))
-            target_file = _get_single_file(ctx, actual_target)
-            ctx.actions.symlink(
-                output = out,
-                target_file = target_file,
-                is_executable = True,
-                progress_message = "Creating symlinks to in-tree tools {}/{}".format(
-                    ctx.label,
-                    tool_name,
-                ),
-            )
-            hermetic_symlinks_dict[tool_name] = out
+            tool_outs = _handle_tool(ctx, tool_name, actual_target)
+            all_outputs.extend(tool_outs)
 
-    return hermetic_symlinks_dict
+    return all_outputs
 
 def _hermetic_tools_impl(ctx):
-    deps = [] + ctx.files.deps
-    all_outputs = []
-
-    hermetic_outs_dict = _handle_hermetic_symlinks(ctx)
-
-    hermetic_outs = hermetic_outs_dict.values()
-    all_outputs += hermetic_outs
-    deps += hermetic_outs
+    all_outputs = _handle_hermetic_symlinks(ctx)
 
     if ctx.attr._disable_symlink_source[BuildSettingInfo].value:
         transitive_deps = []
     else:
         transitive_deps = [target.files for target in ctx.attr.symlinks]
 
-    deps_depset = depset(deps, transitive = transitive_deps)
+    transitive_deps += [target.files for target in ctx.attr.deps]
 
     fail_hard = """
          # error on failures
@@ -126,25 +162,16 @@ def _hermetic_tools_impl(ctx):
 """.format(path = hermetic_base_short)
 
     hermetic_toolchain_info = _HermeticToolchainInfo(
-        deps = deps_depset,
+        deps = depset(all_outputs, transitive = transitive_deps),
         setup = setup,
         run_setup = run_setup,
         run_additional_setup = run_additional_setup,
     )
 
-    default_info_files = [
-        file
-        for file in all_outputs
-        if "kleaf_internal_do_not_use" not in file.path
-    ]
-
     infos = [
-        DefaultInfo(files = depset(default_info_files)),
+        DefaultInfo(files = depset(all_outputs)),
         platform_common.ToolchainInfo(
             hermetic_toolchain_info = hermetic_toolchain_info,
-        ),
-        OutputGroupInfo(
-            **{file.basename: depset([file]) for file in all_outputs}
         ),
     ]
 
@@ -159,6 +186,7 @@ _hermetic_tools = rule(
             doc = "symlinks to labels",
             allow_files = True,
         ),
+        "extra_args": attr.string_list_dict(),
         "_disable_symlink_source": attr.label(
             default = "//build/kernel/kleaf:incompatible_disable_hermetic_tools_symlink_source",
         ),
@@ -170,6 +198,7 @@ def hermetic_tools(
         deps = None,
         symlinks = None,
         aliases = None,
+        extra_args = None,
         **kwargs):
     """Provide tools for a hermetic build.
 
@@ -195,6 +224,8 @@ def hermetic_tools(
           using the full hermetic toolchain with
           [`hermetic_toolchain`](#hermetic_toolchainget) or
           [`hermetic_genrule`](#hermetic_genrule), etc.
+        extra_args: Keys are names to the tool (see `symlinks`). Values are
+          extra arguments added to the tool at the end.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -214,6 +245,7 @@ def hermetic_tools(
         name = name,
         deps = deps,
         symlinks = symlinks,
+        extra_args = extra_args,
         **kwargs
     )
 

@@ -282,8 +282,7 @@ _ADDITIONAL_TOYS = [
     "nproc",
     "umount",
     "unshare",
-    # Real tar binary that shouldn't be used directly
-    "kleaf_internal_do_not_use/tar",
+    "tar",
 ]
 
 # Hacks to allow duplicate keys in hermetic_tools.symlinks.
@@ -298,6 +297,16 @@ filegroup(
 hermetic_tools(
     name = "hermetic-tools",
     aliases = _DEPRECATED_DO_NOT_ADD_MORE_ALIASES,
+    extra_args = {
+        "rsync": ["--no-group"],
+        "tar": [
+            "--mtime=@0",
+            "--owner=0",
+            "--group=0",
+            "--numeric-owner",
+            "--sort=name",
+        ],
+    },
     symlinks = select({
         "//build/kernel/kleaf:debug_cache_dir_conflict_needs_flock": {
             ":hermetic_tools_toybox_flock_alias": "flock",
@@ -331,14 +340,7 @@ hermetic_tools(
         "@kleaf_host_tools//:bash": "bash",
         "@kleaf_host_tools//:sh": "sh",
         "@kleaf_host_tools//:perl": "perl",
-
-        # Real rsync that shouldn't be used directly
-        "@kleaf_host_tools//:rsync": "kleaf_internal_do_not_use/rsync",
-        # Embed additional args that calls kleaf_internal_do_not_use/rsync
-        "build-tools/kleaf_internal_do_not_use_path/linux-x86/rsync": "rsync",
-
-        # Embeds additional args that calls kleaf_internal_do_not_use/tar
-        "build-tools/kleaf_internal_do_not_use_path/linux-x86/tar": "tar",
+        "@kleaf_host_tools//:rsync": "rsync",
 
         # Additional symlinks other than in //prebuilts/build-tools
         "//prebuilts/kernel-build-tools:linux-x86/bin/depmod": ":".join([
