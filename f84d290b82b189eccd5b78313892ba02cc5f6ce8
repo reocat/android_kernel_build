@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e61a21d4_1dcfb7bc",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-08T23:52:06Z",
+      "side": 1,
+      "message": "Can I use $0 instead of ${BASH_SOURCE[0]} in sh? Are they equivalent at least in this use case?",
+      "parentUuid": "c1cd9c0b_dc01d422",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 14
+      },
+      "revId": "f84d290b82b189eccd5b78313892ba02cc5f6ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d9b4c4fc_0b38913c",
         "filename": "kleaf/hermetic_tools.bzl",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2024-05-08T22:57:59Z",
       "side": 1,
       "message": "Are we no controlling this sufficiently to skip this kind of error handling?",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 2
+      },
+      "revId": "f84d290b82b189eccd5b78313892ba02cc5f6ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6517bc2e_98ff96b3",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-08T23:52:06Z",
+      "side": 1,
+      "message": "This avoids usages like:\n\n```\nbazel build //build/kernel:hermetic-tools\nbazel-bin/build/kernel/hermetic-tools/rsync\n```\n\nThere\u0027s a chicken-and-egg problem here. The correct code should:\n- Find the realpath of this script (usually $0 is a symlink), then go to the wrapping directory\n- Run kleaf_internal_do_not_use/rsync under the wrapping directory\n\nBut in order to find the realpath / dirname, I have to have hermetic tools set up in the first place. This is usually the case, but if one executes `bazel-bin/build/kernel/hermetic-tools/rsync` directly for whatever reason (in fact, I did that once in the DDKv2 tests without realizing it), it\u0027ll use host realpath / dirname. This check prevents this edge case.",
+      "parentUuid": "d9b4c4fc_0b38913c",
       "range": {
         "startLine": 102,
         "startChar": 0,
