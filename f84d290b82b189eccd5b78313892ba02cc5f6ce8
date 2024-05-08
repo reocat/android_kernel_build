@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1cd9c0b_dc01d422",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-08T22:57:59Z",
+      "side": 1,
+      "message": "I have a preference to avoid bashisms if we can. We should not rely on Bash, but rather /bin/sh.",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 14
+      },
+      "revId": "f84d290b82b189eccd5b78313892ba02cc5f6ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9b4c4fc_0b38913c",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-08T22:57:59Z",
+      "side": 1,
+      "message": "Are we no controlling this sufficiently to skip this kind of error handling?",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 2
+      },
+      "revId": "f84d290b82b189eccd5b78313892ba02cc5f6ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
