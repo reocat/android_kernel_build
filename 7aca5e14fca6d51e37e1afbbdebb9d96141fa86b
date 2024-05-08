@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5a594d3_2c3be1bd",
+        "filename": "kleaf/tests/hermetic_py_test.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-08T23:03:45Z",
+      "side": 1,
+      "message": "in that case, why not use the native `py_test` directly then?",
+      "range": {
+        "startLine": 86,
+        "startChar": 11,
+        "endLine": 86,
+        "endChar": 31
+      },
+      "revId": "7aca5e14fca6d51e37e1afbbdebb9d96141fa86b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
