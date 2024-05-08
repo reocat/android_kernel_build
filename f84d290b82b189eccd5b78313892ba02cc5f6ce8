@@ -93,6 +93,30 @@
       },
       "revId": "f84d290b82b189eccd5b78313892ba02cc5f6ce8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f82a6eb_8dd2e708",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-08T23:58:14Z",
+      "side": 1,
+      "message": "rsync is a bad example because it is a host tool anyway; but tar is a hermetic tool. s/rsync/tar/g in my previous comment",
+      "parentUuid": "6517bc2e_98ff96b3",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 2
+      },
+      "revId": "f84d290b82b189eccd5b78313892ba02cc5f6ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
