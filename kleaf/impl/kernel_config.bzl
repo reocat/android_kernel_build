@@ -48,7 +48,8 @@ def _config_lto(ctx):
     Args:
         ctx: ctx
     Returns:
-        a list of arguments to `scripts/config`
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
     """
     lto_config_flag = ctx.attr.lto
 
@@ -85,7 +86,7 @@ def _config_lto(ctx):
             _config.disable("THINLTO"),
         ]
 
-    return lto_configs
+    return struct(configs = lto_configs, deps = [])
 
 def _config_trim(ctx):
     """Return configs for trimming.
@@ -93,30 +94,32 @@ def _config_trim(ctx):
     Args:
         ctx: ctx
     Returns:
-        a list of arguments to `scripts/config`
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
     """
     if trim_nonlisted_kmi_utils.get_value(ctx) and not ctx.files.raw_kmi_symbol_list:
         fail("{}: trim_nonlisted_kmi is set but raw_kmi_symbol_list is empty.".format(ctx.label))
 
     if not trim_nonlisted_kmi_utils.get_value(ctx):
-        return []
+        return struct(configs = [], deps = [])
 
     if ctx.attr._kgdb[BuildSettingInfo].value:
         # buildifier: disable=print
         print("\nWARNING: {this_label}: Symbol trimming \
               IGNORED because --kgdb is set!".format(this_label = ctx.label))
-        return []
+        return struct(configs = [], deps = [])
 
     if ctx.attr.debug[BuildSettingInfo].value:
         # buildifier: disable=print
         print("\nWARNING: {this_label}: Symbol trimming \
               IGNORED because --debug is set!".format(this_label = ctx.label))
-        return []
+        return struct(configs = [], deps = [])
 
-    return [
+    configs = [
         _config.disable("UNUSED_SYMBOLS"),
         _config.enable("TRIM_UNUSED_KSYMS"),
     ]
+    return struct(configs = configs, deps = [])
 
 def _config_symbol_list(ctx):
     """Return configs for `raw_symbol_list`.
@@ -124,20 +127,25 @@ def _config_symbol_list(ctx):
     Args:
         ctx: ctx
     Returns:
-        a list of arguments to `scripts/config`
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
     """
     if not ctx.files.raw_kmi_symbol_list:
-        return []
+        return struct(configs = [], deps = [])
 
     if len(ctx.files.raw_kmi_symbol_list) > 1:
         fail("{}: raw_kmi_symbol_list must only provide at most one file".format(ctx.label))
 
-    return [
+    configs = [
         _config.set_str(
             "UNUSED_KSYMS_WHITELIST",
             _RAW_KMI_SYMBOL_LIST_BELOW_OUT_DIR,
         ),
     ]
+    return struct(
+        configs = configs,
+        deps = [],
+    )
 
 def _config_keys(ctx):
     """Return configs for module signing keys and system trusted keys.
@@ -150,7 +158,8 @@ def _config_keys(ctx):
     Args:
         ctx: ctx
     Returns:
-        a list of arguments to `scripts/config`
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
     """
     configs = []
     if ctx.file.module_signing_key:
@@ -165,28 +174,91 @@ def _config_keys(ctx):
             ctx.file.system_trusted_key.basename,
         ))
 
-    return configs
+    return struct(
+        configs = configs,
+        deps = [],
+    )
 
-def _check_trimming_disabled(ctx):
-    """Checks that trimming is disabled if --k*san is set"""
-    if not trim_nonlisted_kmi_utils.get_value(ctx):
-        return
+def _config_kasan(ctx):
+    """Return configs for --kasan.
 
-    for attr_name in (
-        "kasan",
-        "kasan_sw_tags",
-        "kasan_generic",
-        "kcsan",
-    ):
-        if getattr(ctx.attr, attr_name)[BuildSettingInfo].value:
-            fail("{}: --{} requires trimming to be disabled".format(ctx.label, attr_name))
+    Args:
+        ctx: ctx
+    Returns:
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
+    """
+    kasan = ctx.attr.kasan[BuildSettingInfo].value
+
+    if not kasan:
+        return struct(configs = [], deps = [])
+
+    if trim_nonlisted_kmi_utils.get_value(ctx):
+        fail("{}: --kasan requires trimming to be disabled".format(ctx.label))
+
+    return struct(configs = [], deps = [])
+
+def _config_kasan_sw_tags(ctx):
+    """Return configs for --kasan_sw_tags.
+
+    Args:
+        ctx: ctx
+    Returns:
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
+    """
+    kasan_sw_tags = ctx.attr.kasan_sw_tags[BuildSettingInfo].value
+
+    if not kasan_sw_tags:
+        return struct(configs = [], deps = [])
+
+    if trim_nonlisted_kmi_utils.get_value(ctx):
+        fail("{}: --kasan_sw_tags requires trimming to be disabled".format(ctx.label))
+
+    return struct(configs = [], deps = [])
+
+def _config_kasan_generic(ctx):
+    """Return configs for --kasan_generic.
+
+    Args:
+        ctx: ctx
+    Returns:
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
+    """
+    kasan_generic = ctx.attr.kasan_generic[BuildSettingInfo].value
+
+    if not kasan_generic:
+        return struct(configs = [], deps = [])
+
+    if trim_nonlisted_kmi_utils.get_value(ctx):
+        fail("{}: --kasan_generic requires trimming to be disabled".format(ctx.label))
+
+    return struct(configs = [], deps = [])
+
+def _config_kcsan(ctx):
+    """Return configs for --kcsan.
+
+    Args:
+        ctx: ctx
+    Returns:
+        A struct, where `configs` is a list of arguments to `scripts/config`,
+        and `deps` is a list of input files.
+    """
+    kcsan = ctx.attr.kcsan[BuildSettingInfo].value
+
+    if not kcsan:
+        return struct(configs = [], deps = [])
+
+    if trim_nonlisted_kmi_utils.get_value(ctx):
+        fail("{}: --kcsan requires trimming to be disabled".format(ctx.label))
+
+    return struct(configs = [], deps = [])
 
 def _reconfig(ctx):
     """Return a command and extra inputs to re-configure `.config` file."""
-
-    _check_trimming_disabled(ctx)
-
     configs = []
+    deps = []
     transitive_deps = []
     apply_defconfig_fragments_cmd = ""
     check_defconfig_fragments_cmd = ""
@@ -195,10 +267,16 @@ def _reconfig(ctx):
         _config_lto,
         _config_trim,
         _config_symbol_list,
+        _config_kcsan,
+        _config_kasan,
+        _config_kasan_sw_tags,
+        _config_kasan_generic,
         _config_keys,
         kgdb.get_scripts_config_args,
     ):
-        configs += fn(ctx)
+        pair = fn(ctx)
+        configs += pair.configs
+        deps += pair.deps
 
     if ctx.files.defconfig_fragments:
         transitive_deps += [target.files for target in ctx.attr.defconfig_fragments]
@@ -244,7 +322,7 @@ def _reconfig(ctx):
 
     return struct(
         cmd = cmd,
-        deps = depset(transitive = transitive_deps),
+        deps = depset(deps, transitive = transitive_deps),
     )
 
 def _kernel_config_impl(ctx):
