@@ -408,6 +408,7 @@ class BazelWrapper(KleafHelpPrinter):
         self.transformed_startup_options += self._transform_bazelrc_files([
             # Add support for various configs
             # Do not sort, the order here might matter.
+            self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/canary.bazelrc",
             self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/ants.bazelrc",
             self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/android_ci.bazelrc",
             self.kleaf_repo_dir / "build/kernel/kleaf/bazelrc/local.bazelrc",
