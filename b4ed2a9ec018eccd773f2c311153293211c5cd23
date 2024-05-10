@@ -16,6 +16,24 @@
       "message": "why the alias? Is there anything wrong with using `diff_test` directly?",
       "revId": "b4ed2a9ec018eccd773f2c311153293211c5cd23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77de17ee_882986f6",
+        "filename": "kleaf/tests/kernel_build_config_test/BUILD.bazel",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T19:30:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bd5313a_34299f91",
+      "revId": "b4ed2a9ec018eccd773f2c311153293211c5cd23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
