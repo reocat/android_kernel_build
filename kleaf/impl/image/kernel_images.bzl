@@ -52,6 +52,7 @@ def kernel_images(
         modules_blocklist = None,
         modules_options = None,
         vendor_ramdisk_binaries = None,
+        vendor_ramdisk_dev_nodes = None,
         system_dlkm_fs_type = None,
         system_dlkm_fs_types = None,
         system_dlkm_modules_list = None,
@@ -289,6 +290,9 @@ def kernel_images(
           ```
           # do not sort
           ```
+        vendor_ramdisk_dev_nodes: List of dev nodes description files
+          which describes special device files to be added to the vendor
+          ramdisk. File format is as accepted by mkbootfs.
         ramdisk_compression: If provided it specfies the format used for any ramdisks generated.
           If not provided a fallback value from build.config is used.
           Possible values are `lz4`, `gzip`, None.
@@ -467,6 +471,7 @@ def kernel_images(
             initramfs = ":{}_initramfs".format(name) if build_initramfs else None,
             mkbootimg = mkbootimg,
             vendor_ramdisk_binaries = vendor_ramdisk_binaries,
+            vendor_ramdisk_dev_nodes = vendor_ramdisk_dev_nodes,
             build_boot = build_boot,
             vendor_boot_name = vendor_boot_name,
             unpack_ramdisk = unpack_ramdisk,

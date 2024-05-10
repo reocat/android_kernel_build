@@ -65,6 +65,7 @@ def _boot_images_impl(ctx):
         ]
     inputs += ctx.files.deps
     inputs += ctx.files.vendor_ramdisk_binaries
+    inputs += ctx.files.vendor_ramdisk_dev_nodes
 
     transitive_inputs = [
         kernel_build_outs,
@@ -115,6 +116,13 @@ def _boot_images_impl(ctx):
             VENDOR_RAMDISK_BINARY="{vendor_ramdisk_binaries}"
         """.format(
             vendor_ramdisk_binaries = " ".join([file.path for file in ctx.files.vendor_ramdisk_binaries]),
+        )
+
+    if ctx.files.vendor_ramdisk_dev_nodes:
+        command += """
+            VENDOR_RAMDISK_DEV_NODES="{vendor_ramdisk_dev_nodes}"
+        """.format(
+            vendor_ramdisk_dev_nodes = " ".join([file.path for file in ctx.files.vendor_ramdisk_dev_nodes]),
         )
 
     command += """
@@ -241,6 +249,7 @@ Execute `build_boot_images` in `build_utils.sh`.""",
 * If `None`, skip `vendor_boot`.
 """, values = ["vendor_boot", "vendor_kernel_boot"]),
         "vendor_ramdisk_binaries": attr.label_list(allow_files = True),
+        "vendor_ramdisk_dev_nodes": attr.label_list(allow_files = True),
         "unpack_ramdisk": attr.bool(
             doc = """ When false it skips unpacking the vendor ramdisk and copy it as
             is, without modifications, into the boot image. Also skip the mkbootfs step.
