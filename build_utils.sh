@@ -637,11 +637,18 @@ function build_boot_images() {
     exit 1
   fi
 
+  MKBOOTFS_ARGS=()
+  if [ -n "${VENDOR_RAMDISK_DEV_NODES}" ]; then
+    for vendor_ramdisk_dev_nodes in ${VENDOR_RAMDISK_DEV_NODES}; do
+      MKBOOTFS_ARGS+=("-n" "${vendor_ramdisk_dev_nodes}")
+    done
+  fi
+
   if [ -n "${SKIP_UNPACKING_RAMDISK}" ] && [ -e "${VENDOR_RAMDISK_BINARY}" ]; then
     cp "${VENDOR_RAMDISK_BINARY}" "${DIST_DIR}/ramdisk.${RAMDISK_EXT}"
-  elif [ "${#MKBOOTIMG_RAMDISK_DIRS[@]}" -gt 0 ]; then
+  elif [ "${#MKBOOTIMG_RAMDISK_DIRS[@]}" -gt 0 ] || [ "${#MKBOOTFS_ARGS[@]}" -gt 0 ]; then
     MKBOOTIMG_RAMDISK_CPIO="${MKBOOTIMG_STAGING_DIR}/ramdisk.cpio"
-    mkbootfs "${MKBOOTIMG_RAMDISK_DIRS[@]}" >"${MKBOOTIMG_RAMDISK_CPIO}"
+    mkbootfs "${MKBOOTIMG_RAMDISK_DIRS[@]}" "${MKBOOTFS_ARGS[@]}" >"${MKBOOTIMG_RAMDISK_CPIO}"
     ${RAMDISK_COMPRESS} "${MKBOOTIMG_RAMDISK_CPIO}" >"${DIST_DIR}/ramdisk.${RAMDISK_EXT}"
   fi
 
