@@ -40,23 +40,6 @@ _tag_class = tag_class(
                 `--config=internet` is not necessary.
             """,
         ),
-        "auto_download_config": attr.bool(
-            doc = """If `True`, infer download configs from `target`.""",
-        ),
-        "download_configs": attr.string(
-            doc = """A JSON dictionary that configure the list of files to download.
-
-                Key: local file name.
-
-                Value: A dictionary with the following keys:
-                    * `mandatory`: Whether the files in `outs_mapping` is mandatory.
-                        If mandatory, failure to download the
-                        file results in a build failure.
-                    * `remote_filename_fmt`: remote file name format string, with the following anchors:
-                        * {build_number}
-                        * {target}
-            """,
-        ),
         "target": attr.string(
             doc = """Name of the build target as identified by the remote build server.
 
@@ -82,8 +65,6 @@ def _declare_repos(module_ctx, tag_name):
                 name = module_tag.name,
                 apparent_name = module_tag.name,
                 local_artifact_path = module_tag.local_artifact_path,
-                auto_download_config = module_tag.auto_download_config,
-                download_configs = module_tag.download_configs,
                 target = module_tag.target,
             )
 
