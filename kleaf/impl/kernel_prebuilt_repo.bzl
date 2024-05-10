@@ -171,13 +171,17 @@ def _download_remote_file(repository_ctx, local_filename, remote_filename_fmt, f
     )
 
 def _get_download_configs(repository_ctx):
-    content = repository_ctx.attr.download_configs
-    if not content:
-        if repository_ctx.attr.local_artifact_path:
-            path = repository_ctx.workspace_root.get_child(repository_ctx.attr.local_artifact_path).get_child("download_configs.json")
-        else:
-            fail("Inferring download configs from remote is not supported yet.")
-        content = repository_ctx.read(path)
+    if repository_ctx.attr.local_artifact_path:
+        path = repository_ctx.workspace_root.get_child(repository_ctx.attr.local_artifact_path).get_child("download_configs.json")
+    else:
+        _download_remote_file(
+            repository_ctx = repository_ctx,
+            local_filename = "download_configs.json",
+            remote_filename_fmt = "download_configs.json",
+            file_mandatory = True,
+        ).wait()
+        path = _get_local_path(repository_ctx, "download_configs.json")
+    content = repository_ctx.read(path)
     return json.decode(content)
 
 def _kernel_prebuilt_repo_impl(repository_ctx):
@@ -304,22 +308,6 @@ kernel_prebuilt_repo = repository_rule(
             doc = "the default build number to use if the environment variable is not set.",
         ),
         "apparent_name": attr.string(doc = "apparant repo name", mandatory = True),
-        "download_configs": attr.string(
-            doc = """A JSON dictionary that configure the list of files to download.
-
-                Key: local file name.
-
-                Value: A dictionary with the following keys:
-                    * `mandatory`: Whether the files in `outs_mapping` is mandatory.
-                        If mandatory, failure to download the
-                        file results in a build failure.
-                    * `remote_filename_fmt`: remote file name format string, with the following anchors:
-                        * {build_number}
-                        * {target}
-
-                If not set, `<local_artifact_path>/download_configs.json` is used.
-            """,
-        ),
         "target": attr.string(doc = "Name of target on the download location, e.g. `kernel_aarch64`"),
         "artifact_url_fmt": attr.string(
             doc = """API endpoint for Android CI artifacts.
