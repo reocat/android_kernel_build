@@ -479,6 +479,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "533293b0_89fd3e20",
+        "filename": "kleaf/docs/ddk/workspace.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-10T14:51:02Z",
+      "side": 1,
+      "message": "Not sure the script needs to self-update. But it could basically do\n\ncurl \u0026 run and pass through that args or set them accordingly when called re-entrant. That is instead of the user having to specify all this. But let\u0027s move this discussion elsewhere, not necessary to resolve this here.",
+      "parentUuid": "268272de_b7fb7c90",
+      "range": {
+        "startLine": 22,
+        "startChar": 37,
+        "endLine": 22,
+        "endChar": 52
+      },
+      "revId": "91c96ef2025df5ff70f69a4574686e7a9a41323f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eeef2c0c_ef369e75",
         "filename": "kleaf/docs/download_prebuilt.md",
         "patchSetId": 5
