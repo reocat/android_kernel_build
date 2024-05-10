@@ -51,7 +51,6 @@ kernel_prebuilt_ext = use_extension(
 )
 kernel_prebuilt_ext.declare_kernel_prebuilts(
     name = "gki_prebuilts",
-    download_configs = {download_configs},
     local_artifact_path = "{prebuilts_dir_relative}",
 )
 use_repo(kernel_prebuilt_ext, "gki_prebuilts")
@@ -134,13 +133,6 @@ class KleafProjectSetter:
             )
             return path
 
-    def _read_download_configs(self) -> str:
-        """Reads the previously downloaded download_configs.json file."""
-        download_configs = self.prebuilts_dir / "download_configs.json"
-        with open(download_configs, "r", encoding="utf-8") as config:
-            # Compress the representation by removing empty spaces to save some space.
-            return repr(json.dumps(json.load(config), separators=(",", ":")))
-
     def _generate_module_bazel(self):
         """Configures the dependencies for the DDK workspace."""
         if not self.ddk_workspace:
@@ -154,8 +146,6 @@ class KleafProjectSetter:
         if self.prebuilts_dir:
             module_bazel_content += "\n"
             module_bazel_content += _LOCAL_PREBUILTS_CONTENT_TEMPLATE.format(
-                # TODO: b/328770706 - Use download_configs_file when available.
-                download_configs=self._read_download_configs(),
                 # The prebuilts directory must be relative to the DDK workspace.
                 prebuilts_dir_relative=self._try_rel_workspace(
                     self.prebuilts_dir
