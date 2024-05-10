@@ -171,7 +171,16 @@ def _download_remote_file(repository_ctx, local_filename, remote_filename_fmt, f
     )
 
 def _get_download_configs(repository_ctx):
-    content = repository_ctx.attr.download_configs
+    if repository_ctx.attr.download_configs and repository_ctx.attr.download_configs_file:
+        fail("{}: Exactly one of download_configs and download_configs_file must be set".format(
+            repository_ctx.attr.name,
+        ))
+
+    if repository_ctx.attr.download_configs_file:
+        content = repository_ctx.workspace_root.get_child(repository_ctx.attr.download_configs_file)
+    else:
+        content = repository_ctx.attr.download_configs
+
     return json.decode(content)
 
 def _kernel_prebuilt_repo_impl(repository_ctx):
@@ -310,6 +319,16 @@ kernel_prebuilt_repo = repository_rule(
                     * `remote_filename_fmt`: remote file name format string, with the following anchors:
                         * {build_number}
                         * {target}
+
+                At most one of `download_configs` and `download_configs_file` may be set.
+            """,
+        ),
+        "download_configs_file": attr.string(
+            doc = """A file that contains `download_configs`.
+
+                If relative, it is interpreted against workspace root.
+
+                At most one of `download_configs` and `download_configs_file` may be set.
             """,
         ),
         "target": attr.string(doc = "Name of target on the download location, e.g. `kernel_aarch64`"),
