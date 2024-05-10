@@ -34,6 +34,161 @@
       "parentUuid": "ba6d99ea_9a78f4ee",
       "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6ec9ae1_21488684",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-10T14:30:31Z",
+      "side": 1,
+      "message": "I suppose that is \n\n```suggestion\nauto realpath \u003d std::filesystem::read_symlink(\"/proc/self/exe\");\n```",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 0
+      },
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12565468_4046c61c",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-10T14:30:31Z",
+      "side": 1,
+      "message": "There is a lot of error handling going on here. But looking closely at it, if this one returns std::nullopt, then `Make` returns std::nullopt and then `main` will actually crash when it derefences it. Perhaps, since this is all quite self contained, let\u0027s just `Die()` for any error that we can\u0027t tolerate?",
+      "range": {
+        "startLine": 61,
+        "startChar": 40,
+        "endLine": 61,
+        "endChar": 53
+      },
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fab45052_4a3335ec",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-10T14:30:31Z",
+      "side": 1,
+      "message": "should the preset args not before the passed args? That way they can be overridden.",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "631542ae_68157db1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 89,
+                "startChar": 0,
+                "endLine": 92,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 95,
+                "startChar": 0,
+                "endLine": 95,
+                "endChar": 0
+              },
+              "replacement": "    for (int i \u003d 1; i \u003c argc; i++) {\n      new_argv.push_back(argv[i]);\n    }\n"
+            }
+          ]
+        }
+      ],
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64d43b28_8afce1ab",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-10T14:30:31Z",
+      "side": 1,
+      "message": "ArgWrapper is never used for anything else than a single Exec() call right after construction. I don\u0027t think there is very much value in making this a class in the first place. In particular, this allocates a std::vector\u003cstd::string\u003e during construction, another one during Make, just to copy the values into a third one during Exec. I suppose, this can be a single function and no class or state is actually needed.",
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7986906_71ff6eab",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-10T14:30:31Z",
+      "side": 1,
+      "message": "`argc \u003c 1` would be a little more descriptive for the condition checked.",
+      "range": {
+        "startLine": 125,
+        "startChar": 6,
+        "endLine": 125,
+        "endChar": 15
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "972e6dc7_c2b25645",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 125,
+                "startChar": 0,
+                "endLine": 127,
+                "endChar": 0
+              },
+              "replacement": "  if (argc \u003c 1) {\n    fprintf(stderr, \"ERROR: argc \u003d\u003d %d \u003c 1\\n\", argc);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
