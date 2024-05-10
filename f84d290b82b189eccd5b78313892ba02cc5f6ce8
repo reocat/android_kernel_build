@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3ba2ec5_fc20066a",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T00:38:23Z",
+      "side": 1,
+      "message": "(no longer applies)",
+      "parentUuid": "e61a21d4_1dcfb7bc",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 14
+      },
+      "revId": "f84d290b82b189eccd5b78313892ba02cc5f6ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9b4c4fc_0b38913c",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "rsync is a bad example because it is a host tool anyway; but tar is a hermetic tool. s/rsync/tar/g in my previous comment",
       "parentUuid": "6517bc2e_98ff96b3",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 2
+      },
+      "revId": "f84d290b82b189eccd5b78313892ba02cc5f6ce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f487f1b_64cae4b4",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T00:38:23Z",
+      "side": 1,
+      "message": "This no longer applies in the new PS. PTAL",
+      "parentUuid": "4f82a6eb_8dd2e708",
       "range": {
         "startLine": 102,
         "startChar": 0,
