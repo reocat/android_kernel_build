@@ -107,7 +107,7 @@ _HermeticToolchainInfo (see hermetic_tools.bzl).
 ## hermetic_tools
 
 <pre>
-hermetic_tools(<a href="#hermetic_tools-name">name</a>, <a href="#hermetic_tools-deps">deps</a>, <a href="#hermetic_tools-symlinks">symlinks</a>, <a href="#hermetic_tools-aliases">aliases</a>, <a href="#hermetic_tools-kwargs">kwargs</a>)
+hermetic_tools(<a href="#hermetic_tools-name">name</a>, <a href="#hermetic_tools-deps">deps</a>, <a href="#hermetic_tools-symlinks">symlinks</a>, <a href="#hermetic_tools-kwargs">kwargs</a>)
 </pre>
 
 Provide tools for a hermetic build.
@@ -120,7 +120,6 @@ Provide tools for a hermetic build.
 | <a id="hermetic_tools-name"></a>name |  Name of the target.   |  none |
 | <a id="hermetic_tools-deps"></a>deps |  additional dependencies. These aren't added to the `PATH`.   |  `None` |
 | <a id="hermetic_tools-symlinks"></a>symlinks |  A dictionary, where keys are labels to an executable, and values are names to the tool, separated with `:`. e.g.<br><br><pre><code>{"//label/to:toybox": "cp:realpath"}</code></pre>   |  `None` |
-| <a id="hermetic_tools-aliases"></a>aliases |  **Deprecated; do not use.**<br><br>[nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes).<br><br>List of aliases to create to refer to a `fail_rule`.<br><br>For example, if `aliases = ["cp"],` then usage of `<name>/cp` will fail.<br><br>**Note**: It is not allowed to rely on these targets. Consider using the full hermetic toolchain with [`hermetic_toolchain`](#hermetic_toolchainget) or [`hermetic_genrule`](#hermetic_genrule), etc.   |  `None` |
 | <a id="hermetic_tools-kwargs"></a>kwargs |  Additional attributes to the internal rule, e.g. [`visibility`](https://docs.bazel.build/versions/main/visibility.html). See complete list [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common   |  none |
 
 
