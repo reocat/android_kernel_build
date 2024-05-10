@@ -133,6 +133,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ac25d4d_3f2c2e97",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T17:51:46Z",
+      "side": 1,
+      "message": "It used to be that the preset args are after passed args (see the deleted rsync / tar scripts in this change). \n\nI can do this for rsync. I cannot do this for tar because e.g.\n\n```\ntar czf foo.tar.gz ...\n```\n\nbecomes\n\n```\ntar --mtime\u003d0 ... czf foo.tar.gz\n```\n\nSo, for tar, there needs to be some parsing of flags. If I am to do this, I would do this in a separate change.",
+      "parentUuid": "fab45052_4a3335ec",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 0
+      },
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64d43b28_8afce1ab",
@@ -146,6 +170,24 @@
       "writtenOn": "2024-05-10T14:30:31Z",
       "side": 1,
       "message": "ArgWrapper is never used for anything else than a single Exec() call right after construction. I don\u0027t think there is very much value in making this a class in the first place. In particular, this allocates a std::vector\u003cstd::string\u003e during construction, another one during Make, just to copy the values into a third one during Exec. I suppose, this can be a single function and no class or state is actually needed.",
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "270bff84_987415d4",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T17:51:46Z",
+      "side": 1,
+      "message": "ArgWrapper was mainly to hold `vector\u003cstring\u003e` and to provide a function that transforms it to `vector\u003cchar*\u003e`. I can combine the constructor and Exec() but it makes the function a bit long, so I didn\u0027t do this.\n\nI could also have a\n\n```\nclass Args {\n   vector\u003cstring\u003e argv_;\n   vector\u003cchar*\u003e exec(const string\u0026 internal_symlink);\n};\n```\ninstead, if that seems simpler",
+      "parentUuid": "64d43b28_8afce1ab",
       "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
