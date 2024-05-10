@@ -182,16 +182,28 @@ def _download_remote_file(repository_ctx, local_filename, remote_filename_fmt, f
         block = False,
     )
 
-def _kernel_prebuilt_repo_impl(repository_ctx):
-    bazel_target_name = repository_ctx.attr.target
+def _get_download_configs(repository_ctx):
+    if (int(repository_ctx.attr.auto_download_config) +
+        int(bool(repository_ctx.attr.download_configs)) +
+        int(bool(repository_ctx.attr.download_configs_file))) != 1:
+
+        fail("{}: Exactly one of download_configs, download_configs_file, or auto_download_config must be set".format(
+            repository_ctx.attr.name,
+        ))
+
     if repository_ctx.attr.auto_download_config:
-        if repository_ctx.attr.download_configs:
-            fail("{}: download_configs should not be set when auto_download_config is True".format(
-                repository_ctx.attr.name,
-            ))
-        download_configs = _infer_download_configs(bazel_target_name)
+        bazel_target_name = repository_ctx.attr.target
+        return _infer_download_configs(bazel_target_name)
+
+    if repository_ctx.attr.download_configs_file:
+        content = repository_ctx.workspace_root.get_child(repository_ctx.attr.download_configs_file)
     else:
-        download_configs = json.decode(repository_ctx.attr.download_configs)
+        content = repository_ctx.attr.download_configs
+
+    return json.decode(content)
+
+def _kernel_prebuilt_repo_impl(repository_ctx):
+    download_configs = _get_download_configs(repository_ctx)
 
     futures = {}
     for local_filename, config in download_configs.items():
@@ -315,7 +327,9 @@ kernel_prebuilt_repo = repository_rule(
         ),
         "apparent_name": attr.string(doc = "apparant repo name", mandatory = True),
         "auto_download_config": attr.bool(
-            doc = """If `True`, infer `download_configs` from `target`.""",
+            doc = """**DEPRECATED.** Use download_configs or download_configs_file.
+
+                If `True`, infer download configs from `target`.""",
         ),
         "download_configs": attr.string(
             doc = """A JSON dictionary that configure the list of files to download.
@@ -329,6 +343,16 @@ kernel_prebuilt_repo = repository_rule(
                     * `remote_filename_fmt`: remote file name format string, with the following anchors:
                         * {build_number}
                         * {target}
+
+                At most one of `download_configs` and `download_configs_file` may be set.
+            """,
+        ),
+        "download_configs_file": attr.string(
+            doc = """A file that contains `download_configs`.
+
+                If relative, it is interpreted against workspace root.
+
+                At most one of `download_configs` and `download_configs_file` may be set.
             """,
         ),
         "target": attr.string(doc = "Name of target on the download location, e.g. `kernel_aarch64`"),
