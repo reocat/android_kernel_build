@@ -77,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0d52b31_24cebaa7",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T19:17:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6ec9ae1_21488684",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 0
+      },
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12565468_4046c61c",
@@ -90,6 +114,30 @@
       "writtenOn": "2024-05-10T14:30:31Z",
       "side": 1,
       "message": "There is a lot of error handling going on here. But looking closely at it, if this one returns std::nullopt, then `Make` returns std::nullopt and then `main` will actually crash when it derefences it. Perhaps, since this is all quite self contained, let\u0027s just `Die()` for any error that we can\u0027t tolerate?",
+      "range": {
+        "startLine": 61,
+        "startChar": 40,
+        "endLine": 61,
+        "endChar": 53
+      },
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26cfd784_b66b5b20",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T19:17:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12565468_4046c61c",
       "range": {
         "startLine": 61,
         "startChar": 40,
@@ -210,6 +258,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7980fc0_b46eccc5",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T19:17:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "270bff84_987415d4",
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7986906_71ff6eab",
@@ -247,6 +313,30 @@
           ]
         }
       ],
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "384e28e4_6d1f5af4",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T19:17:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7986906_71ff6eab",
+      "range": {
+        "startLine": 125,
+        "startChar": 6,
+        "endLine": 125,
+        "endChar": 15
+      },
       "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
