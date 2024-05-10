@@ -172,6 +172,12 @@ def _download_remote_file(repository_ctx, local_filename, remote_filename_fmt, f
 
 def _get_download_configs(repository_ctx):
     content = repository_ctx.attr.download_configs
+    if not content:
+        if repository_ctx.attr.local_artifact_path:
+            path = repository_ctx.workspace_root.get_child(repository_ctx.attr.local_artifact_path).get_child("download_configs.json")
+        else:
+            fail("Inferring download configs from remote is not supported yet.")
+        content = repository_ctx.read(path)
     return json.decode(content)
 
 def _kernel_prebuilt_repo_impl(repository_ctx):
@@ -310,6 +316,8 @@ kernel_prebuilt_repo = repository_rule(
                     * `remote_filename_fmt`: remote file name format string, with the following anchors:
                         * {build_number}
                         * {target}
+
+                If not set, `<local_artifact_path>/download_configs.json` is used.
             """,
         ),
         "target": attr.string(doc = "Name of target on the download location, e.g. `kernel_aarch64`"),
