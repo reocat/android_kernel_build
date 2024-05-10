@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5ea1ccb_b69be170",
+        "filename": "kleaf/tests/integration_test/BUILD.bazel",
+        "patchSetId": 22
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T19:29:00Z",
+      "side": 1,
+      "message": "Ack. I like the main target (the one with the same name as the package) at the beginning",
+      "parentUuid": "e3338a30_5f17a49f",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 20
+      },
+      "revId": "07fec3212fcbbe6fd542d2d90009f23e47882eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f87e332f_65d26119",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28d73b91_c9dce46b",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T19:29:00Z",
+      "side": 1,
+      "message": "\u003e Does that mean that tools/bazel test is wrong? That is quite unintuitive.\n\nYes.\n\n\u003e Can we make hermetic_test a test such that it can run as a test?\n\nNo (at least I don\u0027t see a good way). The integration test is a bit special in that it invokes bazel recursively. So before this change, a more intuitive way should be:\n\n```\npython3 build/kernel/kleaf/tests/integration_test/integration_test.py -- --test_result_dir\u003dxxx\nbazel run //build/kernel/kleaf/tests/integration_test:reporter -- --test_result_dir\u003dxxx\n```\n\nBut with this change to wrap it with a shell script that sets PATH to hermetic tools, this becomes even harder after this change.",
+      "parentUuid": "f87e332f_65d26119",
+      "revId": "07fec3212fcbbe6fd542d2d90009f23e47882eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7a867d2_5955b54a",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-05-10T14:43:26Z",
       "side": 1,
       "message": "do you need to resolve it? Will check_output not already do that?",
+      "range": {
+        "startLine": 678,
+        "startChar": 23,
+        "endLine": 678,
+        "endChar": 35
+      },
+      "revId": "07fec3212fcbbe6fd542d2d90009f23e47882eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94c85adf_746d9ecf",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-10T19:29:00Z",
+      "side": 1,
+      "message": "No. Yes. But:\n\nhttps://docs.python.org/3/library/subprocess.html#subprocess.Popen\n\n\u003e Warning For maximum reliability, use a fully qualified path for the executable. To search for an unqualified name on PATH, use shutil.which().\n\nIt is unlikely we will port to Windows, but I think it is good practice to always provide a path.",
+      "parentUuid": "b7a867d2_5955b54a",
       "range": {
         "startLine": 678,
         "startChar": 23,
