@@ -186,7 +186,6 @@ WARNING: define_kleaf_workspace() should be called with common_kernel_package={}
             name = value["repo_name"],
             apparent_name = value["repo_name"],
             artifact_url_fmt = artifact_url_fmt,
-            download_configs = json.encode(value["download_configs"]),
             target = target,
         )
 
