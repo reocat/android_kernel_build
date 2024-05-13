@@ -70,6 +70,30 @@
       },
       "revId": "aba6209571d8df5304694c262ececff42334777b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40ca57c3_926f98b2",
+        "filename": "kleaf/tests/integration_test/BUILD.bazel",
+        "patchSetId": 28
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-13T22:27:57Z",
+      "side": 1,
+      "message": "See https://android-review.git.corp.google.com/q/hashtag:%22test_hermetic_tools%22+(status:open%20OR%20status:merged)",
+      "parentUuid": "799dbc0b_c0c20a6e",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 28
+      },
+      "revId": "aba6209571d8df5304694c262ececff42334777b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
