@@ -46,6 +46,30 @@
       },
       "revId": "863062d5495ba2a0a16235ca2ca0409f2476068c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdfadadb_83c28844",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-13T22:30:39Z",
+      "side": 1,
+      "message": "I do need this for repo / git",
+      "parentUuid": "48181b0d_f1f8c6d2",
+      "range": {
+        "startLine": 218,
+        "startChar": 21,
+        "endLine": 218,
+        "endChar": 62
+      },
+      "revId": "863062d5495ba2a0a16235ca2ca0409f2476068c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
