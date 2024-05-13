@@ -14,7 +14,9 @@
 
 """Rules that wraps a py_test / py_binary (for test purposes) so it is more hermetic."""
 
+load("@bazel_skylib//lib:shell.bzl", "shell")
 load("//build/kernel/kleaf:hermetic_tools.bzl", "hermetic_toolchain")
+load("//build/kernel/kleaf/impl:common_providers.bzl", "KernelPlatformToolchainInfo")
 
 def _hermetic_test_impl(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
@@ -24,6 +26,19 @@ def _hermetic_test_impl(ctx):
         run_setup = hermetic_tools.run_additional_setup
     else:
         run_setup = hermetic_tools.run_setup
+
+    runfiles_transitive_files = [
+        hermetic_tools.deps,
+    ]
+
+    if ctx.attr.use_cc_toolchain:
+        kernel_toolchain_exec = ctx.attr._kernel_toolchain_exec[KernelPlatformToolchainInfo]
+        run_setup += """
+export PATH={quoted_real_bin_path}":${{PATH}}"
+""".format(
+            quoted_real_bin_path = "${PWD}/" + shell.quote(kernel_toolchain_exec.bin_path),
+        )
+        runfiles_transitive_files.append(kernel_toolchain_exec.all_files)
 
     script = """#!/bin/bash -e
         {run_setup}
@@ -35,9 +50,6 @@ def _hermetic_test_impl(ctx):
 
     ctx.actions.write(script_file, script, is_executable = True)
 
-    runfiles_transitive_files = [
-        hermetic_tools.deps,
-    ]
     transitive_runfiles = [
         ctx.attr.actual[DefaultInfo].default_runfiles,
     ]
@@ -53,6 +65,11 @@ def _hermetic_test_impl(ctx):
         executable = script_file,
         runfiles = runfiles,
     )
+
+def _get_kernel_toolchain_exec(use_cc_toolchain):
+    if use_cc_toolchain:
+        return Label("//build/kernel/kleaf/impl:kernel_toolchain_exec")
+    return None
 
 _RULE_ATTRS = dict(
     doc = "Wraps a test binary so it runs with hermetic tools.",
@@ -78,6 +95,12 @@ _RULE_ATTRS = dict(
         "data": attr.label_list(allow_files = True, doc = """
             See [data](https://bazel.build/reference/be/common-definitions#typical.data)
         """),
+        "use_cc_toolchain": attr.bool(
+            doc = "Also include CC toolchain",
+        ),
+        "_kernel_toolchain_exec": attr.label(
+            default = _get_kernel_toolchain_exec,
+        ),
     },
     toolchains = [hermetic_toolchain.type],
 )
