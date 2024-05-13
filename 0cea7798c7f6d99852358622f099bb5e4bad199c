@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a30a0770_b53e8b84",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-13T18:57:44Z",
+      "side": 1,
+      "message": "Yes.\n\nIt is intentional to put the symlinks in default outputs. Otherwise, `bazel clean \u0026\u0026 bazel build //build/kernel:hermetic-tools` will create an rsync / tar binary that can\u0027t be used because the \"internal_symlink\" is not created.",
+      "parentUuid": "2a1e3e63_66d94ff0",
+      "range": {
+        "startLine": 160,
+        "startChar": 35,
+        "endLine": 160,
+        "endChar": 46
+      },
+      "revId": "0cea7798c7f6d99852358622f099bb5e4bad199c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b330ce4_c53b8496",
@@ -111,6 +135,30 @@
           ]
         }
       ],
+      "revId": "0cea7798c7f6d99852358622f099bb5e4bad199c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "422d8937_eeaf9dfb",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-13T18:57:44Z",
+      "side": 1,
+      "message": "If there is an I/O error when writing to std::cerr, errno will be mutated. This class is to ensure we are writing the correct errno. IMO it is bad practice to use strerror() without ensuring that the errno is saved **right next** to the syscall. \n\nIn other words, I do not want to encourage the usage of `std::cerr \u003c\u003c \"...\" \u003c\u003c strerror(errno)` because someone in the future may copy the code and write `std::cerr \u003c\u003c \"WARNING: ...\" \u003c\u003c strerror(errno)` without `exit(1)`, creating confusing and possibly incorrect. warning messages.",
+      "parentUuid": "6b330ce4_c53b8496",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 2
+      },
       "revId": "0cea7798c7f6d99852358622f099bb5e4bad199c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
