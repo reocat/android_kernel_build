@@ -101,6 +101,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "094fb01c_4348565e",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-13T19:15:27Z",
+      "side": 1,
+      "message": "These are two unrelated issues.\n\nThe first is `BUILD_WORKSPACE_DIRECTORY`; we need `BUILD_WORKSPACE_DIRECTORY` so we can `chdir(BUILD_WORKSPACE_DIRECTORY)` before calling any `tools/bazel` commands. Calling tools/bazel under execroot does not make sense.\n\nThe second is hermetic tools and PATH. The \"API\" that //build/kernel:hermetic-tools exposes is _HermeticToolsInfo, which provides some shell commands that `export PATH\u003d...`. Here, we are just indirectly using the API by wrapping it with hermetic_test.\n\nOf course, we can put another `path \u003d ...` in `_HermeticToolsInfo`, and use it directly by passing the path to the test, and in the test use `join(path, \"mount\")`; but that\u0027s an overkill IMO. I think it is much simpler to just `export PATH\u003d...; python3 the_test.py` (which is basically what the CL is doing now).\n\nThe handling of `repo` / `git` is orthogonal to this. It just changes the command from `export PATH\u003d\u003chermetic_base\u003e:/bin` to `export PATH\u003d\u003chermetic_base\u003e`, which is indeed cleaner. But I don\u0027t think it belongs to this CL.",
+      "parentUuid": "6156cf54_8640332a",
+      "revId": "07fec3212fcbbe6fd542d2d90009f23e47882eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7a867d2_5955b54a",
