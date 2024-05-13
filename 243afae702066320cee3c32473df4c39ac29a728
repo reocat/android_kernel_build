@@ -16,6 +16,24 @@
       "message": "That is somewhat brittle. Perhaps put the entire fallback logic into _this_ function, such that you pass multiple targets.",
       "revId": "243afae702066320cee3c32473df4c39ac29a728",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16994e1f_ec47a24d",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 612,
+      "author": {
+        "id": 1279898
+      },
+      "writtenOn": "2024-05-13T15:31:23Z",
+      "side": 1,
+      "message": "Done, merged the retry logic into a single function.",
+      "parentUuid": "4ae687f4_600ab89f",
+      "revId": "243afae702066320cee3c32473df4c39ac29a728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
