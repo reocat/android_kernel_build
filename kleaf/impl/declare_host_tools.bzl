@@ -31,6 +31,12 @@ _DEFAULT_HOST_TOOLS = [
     "find",
 ]
 
+_DEFAULT_OPTIONAL_HOST_TOOLS = [
+    # For tests
+    "repo",
+    "git",
+]
+
 def _kleaf_host_tools_repo_impl(repository_ctx):
     repository_ctx.file("WORKSPACE", """\
 workspace(name = "{}")
@@ -42,12 +48,23 @@ exports_files(
     visibility = [{visibility}],
 )
 """.format(
-        files = repr(repository_ctx.attr.host_tools),
+        files = repr(repository_ctx.attr.host_tools + repository_ctx.attr.optional_host_tools),
         visibility = repr(str(Label("//build/kernel:__subpackages__"))),
     ))
 
     for host_tool in repository_ctx.attr.host_tools:
         repository_ctx.symlink(repository_ctx.which(host_tool), host_tool)
+
+    for host_tool in repository_ctx.attr.optional_host_tools:
+        realpath = repository_ctx.which(host_tool)
+        if realpath != None:
+            repository_ctx.symlink(realpath, host_tool)
+        else:
+            repository_ctx.file(host_tool, """\
+#!{}
+echo "ERROR: No {} on host." >&2
+exit 1
+""".format(repository_ctx.which("sh"), host_tool))
 
 # TODO(b/276493276): Hide this once workspace.bzl is deleted.
 kleaf_host_tools_repo = repository_rule(
@@ -55,21 +72,28 @@ kleaf_host_tools_repo = repository_rule(
     implementation = _kleaf_host_tools_repo_impl,
     attrs = {
         "host_tools": attr.string_list(doc = "List of host tools"),
+        "optional_host_tools": attr.string_list(doc = "List of optional host tools"),
     },
 )
 
 def _declare_repos(module_ctx, tag_name):
     host_tools = []
+    optional_host_tools = []
     for module in module_ctx.modules:
         for declared in getattr(module.tags, tag_name):
             host_tools += declared.host_tools
+            optional_host_tools += declared.optional_host_tools
 
     if not host_tools:
         host_tools = _DEFAULT_HOST_TOOLS
 
+    if not optional_host_tools:
+        optional_host_tools = _DEFAULT_OPTIONAL_HOST_TOOLS
+
     kleaf_host_tools_repo(
         name = "kleaf_host_tools",
         host_tools = host_tools,
+        optional_host_tools = optional_host_tools,
     )
 
 _tag_class = tag_class(
@@ -81,6 +105,10 @@ _tag_class = tag_class(
                 If `declare_host_tools` is not called anywhere, or only called
                 with empty `host_tools`, the default is `{}`.
             """.format(repr(_DEFAULT_HOST_TOOLS)),
+        ),
+        "optional_host_tools": attr.string_list(
+            doc = """Like host_tools but optional.
+            """.format(repr(_DEFAULT_OPTIONAL_HOST_TOOLS)),
         ),
     },
 )
