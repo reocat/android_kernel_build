@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6156cf54_8640332a",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-13T13:06:32Z",
+      "side": 1,
+      "message": "See my other comment. Do we need to set `PATH` if we instead add and declare test-specific host tools like we do for other host tools?",
+      "parentUuid": "28d73b91_c9dce46b",
+      "revId": "07fec3212fcbbe6fd542d2d90009f23e47882eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b7a867d2_5955b54a",
         "filename": "kleaf/tests/integration_test/integration_test.py",
         "patchSetId": 22
