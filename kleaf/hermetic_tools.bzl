@@ -166,14 +166,14 @@ def _hermetic_tools_impl(ctx):
     )
 
     infos = [
-        DefaultInfo(files = depset(all_outputs)),
+        DefaultInfo(files = depset(all_outputs + test_outputs)),
         platform_common.ToolchainInfo(
             hermetic_toolchain_info = hermetic_toolchain_info,
             test_hermetic_toolchain_info = test_hermetic_toolchain_info,
         ),
         OutputGroupInfo(**{
             file.basename: depset([file])
-            for file in all_outputs
+            for file in (all_outputs + test_outputs)
             if "kleaf_internal_do_not_use" not in file.path
         }),
     ]
