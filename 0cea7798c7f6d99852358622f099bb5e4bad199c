@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b330ce4_c53b8496",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-13T13:21:52Z",
+      "side": 1,
+      "message": "Sorry for the back and forth, I am not sure we need this entire utility. Can\u0027t we just do `\u003c\u003c strerror(errno)` at the die_error() call sites instead?. Look at the suggestion, perhaps that is all we need here for this rather simple utility.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 2
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "fea8ee87_dcc37321",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 44,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 81,
+                "startChar": 0,
+                "endLine": 82,
+                "endChar": 0
+              },
+              "replacement": "    std::cerr \u003c\u003c \"ERROR: read_symlink /proc/self/exe: \" \u003c\u003c ec.message()\n              \u003c\u003c std::endl;\n    exit(1);\n"
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 91,
+                "startChar": 0,
+                "endLine": 92,
+                "endChar": 0
+              },
+              "replacement": "    std::cerr \u003c\u003c \"ERROR: Unable to open \" \u003c\u003c path \u003c\u003c \": \" \u003c\u003c strerror(errno)\n              \u003c\u003c std::endl;\n    exit(1);\n"
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 111,
+                "startChar": 0,
+                "endLine": 112,
+                "endChar": 0
+              },
+              "replacement": "      std::cerr \u003c\u003c \"ERROR: execv: \" \u003c\u003c executable \u003c\u003c \": \" \u003c\u003c strerror(errno)\n                \u003c\u003c std::endl;\n      exit(1);\n"
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 113,
+                "startChar": 0,
+                "endLine": 114,
+                "endChar": 0
+              },
+              "replacement": "    std::cerr \u003c\u003c \"ERROR: execv returns!\" \u003c\u003c std::endl;\n    exit(1);\n"
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 123,
+                "startChar": 0,
+                "endLine": 124,
+                "endChar": 0
+              },
+              "replacement": "    std::cerr \u003c\u003c \"ERROR: argc \u003d\u003d \" \u003c\u003c argc \u003c\u003c \" \u003c 1\" \u003c\u003c std::endl;\n    exit(1);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0cea7798c7f6d99852358622f099bb5e4bad199c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "171ba5b3_126bd73a",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-13T13:21:52Z",
+      "side": 1,
+      "message": "I think that can just be a function\n\n`[[noreturn]] void exec(const std::filesystem::path\u0026 executable);`",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 0
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "5370f396_77976196",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 100,
+                "startChar": 0,
+                "endLine": 109,
+                "endChar": 0
+              },
+              "replacement": "// Helper function that manages the constructed argv.\n[[noreturn]] void exec(const std::filesystem::path\u0026 executable,\n                       std::vector\u003cstd::string\u003e\u0026 argv) {\n  std::vector\u003cchar*\u003e cargv;\n  for (auto\u0026 arg : argv) {\n    cargv.push_back(arg.data());\n  }\n  cargv.push_back(nullptr);\n"
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 110,
+                "startChar": 0,
+                "endLine": 114,
+                "endChar": 0
+              },
+              "replacement": "  if (-1 !\u003d execv(executable.c_str(), cargv.data())) {\n    die_error() \u003c\u003c \"ERROR: execv: \" \u003c\u003c executable;\n"
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 115,
+                "startChar": 0,
+                "endLine": 116,
+                "endChar": 0
+              },
+              "replacement": "  die() \u003c\u003c \"ERROR: execv returns!\";\n}\n"
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 130,
+                "startChar": 0,
+                "endLine": 131,
+                "endChar": 0
+              },
+              "replacement": "  std::vector\u003cstd::string\u003e new_argv;\n"
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 141,
+                "startChar": 0,
+                "endLine": 142,
+                "endChar": 0
+              },
+              "replacement": "  exec(real_executable, new_argv);\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0cea7798c7f6d99852358622f099bb5e4bad199c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "defa740f_ee1432e3",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-13T13:21:52Z",
+      "side": 1,
+      "message": "why not build the `std::vector\u003cchar*\u003e` directly?",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "8968de64_aba8ac91",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 99,
+                "startChar": 0,
+                "endLine": 116,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 130,
+                "startChar": 0,
+                "endLine": 132,
+                "endChar": 0
+              },
+              "replacement": "  std::vector\u003cchar*\u003e new_argv;\n  new_argv.push_back(real_executable.c_str());\n"
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 134,
+                "startChar": 0,
+                "endLine": 135,
+                "endChar": 0
+              },
+              "replacement": "    new_argv.push_back(argv[i].c_str());\n"
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 139,
+                "startChar": 0,
+                "endLine": 140,
+                "endChar": 0
+              },
+              "replacement": "  for (auto\u0026 arg : preset_args) {\n    new_argv.push_back(arg.c_str());\n  }\n\n  new_argv.push_back(nullptr);\n"
+            },
+            {
+              "path": "kleaf/impl/arg_wrapper.cpp",
+              "range": {
+                "startLine": 141,
+                "startChar": 0,
+                "endLine": 142,
+                "endChar": 0
+              },
+              "replacement": "  if (-1 !\u003d execv(real_executable.c_str(), new_argv.data())) {\n    die_error() \u003c\u003c \"ERROR: execv: \" \u003c\u003c real_executable;\n  }\n  die() \u003c\u003c \"ERROR: execv returns!\";\n"
+            }
+          ]
+        }
+      ],
+      "revId": "0cea7798c7f6d99852358622f099bb5e4bad199c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
