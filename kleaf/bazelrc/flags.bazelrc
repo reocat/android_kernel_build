@@ -28,6 +28,8 @@ build --flag_alias=gzip_is_pigz=//build/kernel/kleaf:gzip_is_pigz
 build --flag_alias=nogzip_is_pigz=no//build/kernel/kleaf:gzip_is_pigz
 build --flag_alias=toolchain_from_sources=//build/kernel/kleaf:toolchain_from_sources
 build --flag_alias=notoolchain_from_sources=no//build/kernel/kleaf:toolchain_from_sources
+build --flag_alias=remove_strings_from_hermetic_tools=//build/kernel/kleaf:remove_strings_from_hermetic_tools
+build --flag_alias=noremove_strings_from_hermetic_tools=//build/kernel/kleaf:noremove_strings_from_hermetic_tools
 
 # flags that control kleaf integrity checking
 build --flag_alias=allow_ddk_unsafe_headers=//build/kernel/kleaf:allow_ddk_unsafe_headers
