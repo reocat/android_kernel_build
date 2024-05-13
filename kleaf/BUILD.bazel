@@ -635,6 +635,19 @@ config_setting(
     visibility = ["//visibility:public"],
 )
 
+# If true, drop llvm-strings from hermetic-tools.
+bool_flag(
+    name = "remove_strings_from_hermetic_tools",
+    build_setting_default = False,
+    visibility = ["//visibility:private"],
+)
+
+config_setting(
+    name = "remove_strings_from_hermetic_tools_is_true",
+    flag_values = {":remove_strings_from_hermetic_tools": "1"},
+    visibility = ["//build/kernel:__pkg__"],
+)
+
 # The values of --config, as passed by command line and bazelrc files.
 _config_values = (
     "local",
