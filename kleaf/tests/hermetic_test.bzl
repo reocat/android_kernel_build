@@ -17,13 +17,10 @@
 load("//build/kernel/kleaf:hermetic_tools.bzl", "hermetic_toolchain")
 
 def _hermetic_test_impl(ctx):
-    hermetic_tools = hermetic_toolchain.get(ctx)
+    hermetic_tools = hermetic_toolchain.get(ctx, for_tests = True)
     script_file = ctx.actions.declare_file("{}.sh".format(ctx.attr.name))
 
-    if ctx.attr.append_host_path:
-        run_setup = hermetic_tools.run_additional_setup
-    else:
-        run_setup = hermetic_tools.run_setup
+    run_setup = hermetic_tools.run_setup
 
     script = """#!/bin/bash -e
         {run_setup}
@@ -66,15 +63,6 @@ _RULE_ATTRS = dict(
             # This has no effect, but it is required if executable = True.
             cfg = "target",
         ),
-        "append_host_path": attr.bool(doc = """
-            **Use with caution.** If true, append host PATH to the end of PATH.
-            In this case:
-
-            - If a tool is found in the hermetic toolchain, the hermetic tool
-              is used.
-            - If a tool is not found in the hermetic toolchain, it may use the
-              host tool instead, which breaks hermeticity.
-        """),
         "data": attr.label_list(allow_files = True, doc = """
             See [data](https://bazel.build/reference/be/common-definitions#typical.data)
         """),
