@@ -25,7 +25,7 @@ def _hermetic_test_impl(ctx):
     else:
         run_setup = hermetic_tools.run_setup
 
-    script = """#!/bin/bash -ex
+    script = """#!/bin/bash -e
         {run_setup}
         {actual} "$@"
     """.format(
