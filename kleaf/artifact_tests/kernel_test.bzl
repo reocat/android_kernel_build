@@ -73,6 +73,7 @@ def kernel_build_test(
     hermetic_test(
         name = name,
         actual = Label("//build/kernel/kleaf/artifact_tests:kernel_build_test"),
+        use_cc_toolchain = True,
         data = data,
         args = args,
         timeout = "short",
