@@ -18,5 +18,7 @@
 # releases and some of them might get discontinued.
 
 # Enable building the toolchain from sources.
-build:canary --//build/kernel/kleaf:toolchain_from_sources
+build:canary --toolchain_from_sources
 
+# Drop llvm-strings from hermetic tools.
+build:canary --remove_strings_from_hermetic_tools
