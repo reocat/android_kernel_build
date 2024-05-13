@@ -410,6 +410,7 @@ kernel_platform_toolchain(
     deps = [
         "//prebuilts/kernel-build-tools:linux_x86_imported_libs",
     ],
+    visibility = ["//build/kernel/kleaf/tests:__subpackages__"],
 )
 
 kernel_toolchains(

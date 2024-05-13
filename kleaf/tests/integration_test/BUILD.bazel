@@ -29,6 +29,7 @@ load("//build/kernel/kleaf/tests/utils:write_flag.bzl", "write_flag")
 hermetic_test_binary(
     name = "integration_test",
     actual = ":integration_test_internal",
+    use_cc_toolchain = True,
 )
 
 py_binary(
