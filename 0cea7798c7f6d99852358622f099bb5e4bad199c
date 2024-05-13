@@ -395,6 +395,30 @@
       },
       "revId": "0cea7798c7f6d99852358622f099bb5e4bad199c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0cd1d92_af9b53fb",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-13T19:46:45Z",
+      "side": 1,
+      "message": "For the second one I could also use \n\n```\n  std::transform(preset_args.begin(), preset_args.end(),\n                 std::back_inserter(new_argv),\n                 static_cast\u003cchar* (std::string::*)()\u003e(\u0026std::string::data));\n```\n\nBut I don\u0027t think it is better than using a for loop (especially with the cast to disambiguate the two string::data() overloads)",
+      "parentUuid": "6767138e_3563c79e",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 22
+      },
+      "revId": "0cea7798c7f6d99852358622f099bb5e4bad199c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
