@@ -240,6 +240,10 @@ hermetic_tools(
         tool: paths.basename(package_relative_label(tool).name)
         for tool in _HERMETIC_TOOLS
     },
+    test_symlinks = {
+        "@kleaf_host_tools//:repo": "repo",
+        "@kleaf_host_tools//:git": "git",
+    },
     visibility = ["//visibility:public"],
     deps = [
         ":sysroot",
