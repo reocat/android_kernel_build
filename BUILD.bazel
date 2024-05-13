@@ -175,6 +175,13 @@ _TOYS = [
     "xxd",
 ]
 
+_TEST_TOYS = [
+    # keep sorted
+    "mount",
+    "umount",
+    "unshare",
+]
+
 hermetic_tools(
     name = "hermetic-tools",
     extra_args = {
@@ -243,6 +250,7 @@ hermetic_tools(
     test_symlinks = {
         "@kleaf_host_tools//:repo": "repo",
         "@kleaf_host_tools//:git": "git",
+        ":toybox": ":".join(_TEST_TOYS),
     },
     visibility = ["//visibility:public"],
     deps = [
