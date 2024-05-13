@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a1e3e63_66d94ff0",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 15
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-13T13:58:56Z",
+      "side": 1,
+      "message": "This will now include the internal links, but I think it\u0027s WAI as they are now part of the outputs here, right?",
+      "range": {
+        "startLine": 160,
+        "startChar": 35,
+        "endLine": 160,
+        "endChar": 46
+      },
+      "revId": "0cea7798c7f6d99852358622f099bb5e4bad199c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6b330ce4_c53b8496",
         "filename": "kleaf/impl/arg_wrapper.cpp",
         "patchSetId": 15
