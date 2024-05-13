@@ -29,10 +29,6 @@ load("//build/kernel/kleaf/tests/utils:write_flag.bzl", "write_flag")
 hermetic_test_binary(
     name = "integration_test",
     actual = ":integration_test_internal",
-    # Preserve host PATH so:
-    # - The test can use `git`
-    # - The bazel wrapper can use `repo` when not running on CI
-    append_host_path = True,
 )
 
 py_binary(
