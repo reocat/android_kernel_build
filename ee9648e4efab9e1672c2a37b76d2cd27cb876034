@@ -394,6 +394,30 @@
       },
       "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9856ed4f_d4796956",
+        "filename": "kleaf/impl/kernel_config.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-14T18:35:07Z",
+      "side": 1,
+      "message": "Introduced b/340144887 and fix at CL:3086446",
+      "parentUuid": "93096929_16703aea",
+      "range": {
+        "startLine": 567,
+        "startChar": 80,
+        "endLine": 567,
+        "endChar": 128
+      },
+      "revId": "ee9648e4efab9e1672c2a37b76d2cd27cb876034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
