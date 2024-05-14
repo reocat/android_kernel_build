@@ -177,7 +177,6 @@ class KleafProjectSetterTest(parameterized.TestCase):
         """Tests prebuilts setup is correct for relative and non-relative to workspace dirs."""
         with tempfile.TemporaryDirectory() as tmp:
             ddk_workspace = pathlib.Path(tmp) / "ddk_workspace"
-
             # Verify the right local_artifact_path is set for prebuilts
             #  in a relative to workspace directory.
             prebuilts_dir_rel = ddk_workspace / "prebuilts_dir"
@@ -226,13 +225,15 @@ class KleafProjectSetterTest(parameterized.TestCase):
             prebuilts_dir = ddk_workspace / "prebuilts_dir"
             download_configs = ddk_workspace / "download_configs.json"
             download_configs.parent.mkdir(parents=True, exist_ok=True)
-            download_configs.write_text(json.dumps({
-                "non-existent-file": {
-                    "target_suffix": "non-existent-file",
-                    "mandatory": False,
-                    "remote_filename_fmt": "non-existent-file",
-                }
-            }))
+            download_configs.write_text(
+                json.dumps({
+                    "non-existent-file": {
+                        "target_suffix": "non-existent-file",
+                        "mandatory": False,
+                        "remote_filename_fmt": "non-existent-file",
+                    }
+                })
+            )
             with open(download_configs, "r", encoding="utf-8"):
                 url_fmt = f"file://{str(download_configs.parent)}/{{filename}}"
                 init_ddk.KleafProjectSetter(
@@ -244,6 +245,69 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     prebuilts_dir=prebuilts_dir,
                     url_fmt=url_fmt,
                 ).run()
+
+    @parameterized.named_parameters(
+        # (Name, MODULE.bazel in @kleaf, expectation)
+        ("Empty", "", "\n"),
+        (
+            "Dev dependency",
+            """
+local_path_override(
+    module_name = "rules_rust",
+    path = "external/bazelbuild-rules_rust",
+)
+        """,
+            "\n",
+        ),
+        (
+            "All",
+            """
+local_path_override(
+    module_name = "abseil-py",
+    path = "external/python/absl-py",
+)
+local_path_override(
+    module_name = "apple_support",
+    path = "external/bazelbuild-apple_support",
+)
+local_path_override(
+    module_name = "rules_rust",
+    path = "external/bazelbuild-rules_rust",
+)
+        """,
+            """bazel_dep(name = "abseil-py")
+bazel_dep(name = "apple_support")
+local_path_override(
+    module_name = "abseil-py",
+    path = "kleaf_repo/external/python/absl-py",
+)
+local_path_override(
+    module_name = "apple_support",
+    path = "kleaf_repo/external/bazelbuild-apple_support",
+)
+""",
+        ),
+    )
+    def test_local_path_overrides_extraction(
+        self, current_content, wanted_content
+    ):
+        """Tests extraction of local path overrides works correctly."""
+        with tempfile.TemporaryDirectory() as tmp:
+            ddk_workspace = pathlib.Path(tmp) / "ddk_workspace"
+            kleaf_repo = ddk_workspace / "kleaf_repo"
+            kleaf_repo.mkdir(parents=True, exist_ok=True)
+            kleaf_repo_module_bazel = kleaf_repo / init_ddk._MODULE_BAZEL_FILE
+            kleaf_repo_module_bazel.write_text(current_content)
+            got_content = init_ddk.KleafProjectSetter(
+                build_id=None,
+                build_target=None,
+                ddk_workspace=ddk_workspace,
+                kleaf_repo=kleaf_repo,
+                local=True,
+                prebuilts_dir=None,
+                url_fmt=None,
+            )._get_local_path_overrides()
+            self.assertEqual(got_content, wanted_content)
 
 
 # This could be run as: tools/bazel test //build/kernel:init_ddk_test --test_output=all
