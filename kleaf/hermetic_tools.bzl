@@ -162,6 +162,7 @@ _hermetic_tools = rule(
             default = "//build/kernel/kleaf:incompatible_disable_hermetic_tools_symlink_source",
         ),
     },
+    cfg = "exec",
 )
 
 def hermetic_tools(
