@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebde1281_527f4e22",
+        "filename": "kleaf/tests/hermetic_test.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-14T11:03:32Z",
+      "side": 1,
+      "message": "nit: is this needed if L34 does the same check? or is it to avoid having a dependency when it\u0027s not needed?",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 15
+      },
+      "revId": "0acd342908380a5f193ad1d3a756c5e2311ba9c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
