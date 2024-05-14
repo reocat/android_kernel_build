@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a207313f_d96e1f45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-14T16:28:56Z",
+      "side": 1,
+      "message": "I need to add tests for this too.",
+      "revId": "8e93e1df58a05d4371c3e261659443ed3e376982",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0203ec87_71e22ecb",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-14T16:28:56Z",
+      "side": 1,
+      "message": "From local testing I need a `bazel_dep()` directive for each module_name found too, for the truly local case.",
+      "range": {
+        "startLine": 151,
+        "startChar": 49,
+        "endLine": 151,
+        "endChar": 60
+      },
+      "revId": "8e93e1df58a05d4371c3e261659443ed3e376982",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
