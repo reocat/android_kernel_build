@@ -357,6 +357,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9f6be761_9f0c7728",
+        "filename": "kleaf/impl/arg_wrapper.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-14T05:53:14Z",
+      "side": 1,
+      "message": "I still think this is valuable though. Perhaps, for `tar`, the handling of the first argument in `argv` can be:\n\n- If the first argument does not start with `-`, then `argv[0] \u003d \"-\" + argv[0]`\n- then `new_argv \u003d preset_args + argv`\n\nSo the previous case becomes `tar -mtime\u003d0 ... -czf foo.tar.gz`. That should work right?",
+      "parentUuid": "293029f0_cee0abdd",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 0
+      },
+      "revId": "231e361a3223ef68520bd7c3454f0c16555cecba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "64d43b28_8afce1ab",
         "filename": "kleaf/impl/arg_wrapper.cpp",
         "patchSetId": 9
