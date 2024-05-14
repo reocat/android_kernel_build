@@ -22,6 +22,7 @@ import dataclasses
 import json
 import logging
 import pathlib
+import re
 import shutil
 import subprocess
 import sys
@@ -123,8 +124,9 @@ class KleafProjectSetter:
     def _try_rel_workspace(self, path: pathlib.Path):
         """Tries to convert |path| to be relative to ddk_workspace."""
         if not self.ddk_workspace:
-            raise KleafProjectSetterError("ERROR: _try_rel_workspace called "
-                                          "without --ddk_workspace set!")
+            raise KleafProjectSetterError(
+                "ERROR: _try_rel_workspace called without --ddk_workspace set!"
+            )
         try:
             return path.relative_to(self.ddk_workspace)
         except ValueError:
@@ -136,6 +138,31 @@ class KleafProjectSetter:
             )
             return path
 
+    def _get_local_path_overrides(self):
+        """Naive algorithm to extract local_path_override()'s from local @kleaf."""
+        path_attr_prefix = 'path = "'
+        section = []
+        overrides = []
+        module_bazel = self.kleaf_repo / _MODULE_BAZEL_FILE
+        # Modify path so it is relative to the current DDK workspace.
+        kleaf_repo = self._try_rel_workspace(self.kleaf_repo)
+        with open(module_bazel, "r", encoding="utf-8") as src:
+            for line in src:
+                if line.startswith("local_path_override("):
+                    section.append(line)
+                    continue
+                if not section:
+                    continue
+                elif line.lstrip().startswith(path_attr_prefix):
+                    line = line.strip().removeprefix(path_attr_prefix)
+                    line = line.removesuffix('",')
+                    line = f'    path = "{kleaf_repo / line}",\n'
+                section.append(line)
+                if line.strip() == ")":
+                    overrides.append("".join(section))
+                    section.clear()
+        return "".join(overrides)
+
     def _generate_module_bazel(self):
         """Configures the dependencies for the DDK workspace."""
         if not self.ddk_workspace:
@@ -146,6 +173,13 @@ class KleafProjectSetter:
             module_bazel_content += _KLEAF_DEPENDENCY_TEMPLATE.format(
                 kleaf_repo_relative=self._try_rel_workspace(self.kleaf_repo),
             )
+        if self.local:
+            module_bazel_content += self._get_local_path_overrides()
+            # b/338440785 Due to an issue in Bazel, rules_cc seems to be
+            #  implicitly added in a fallback WORKSPACE.bzlmod file, hence
+            #  forcing an empty one here.
+            workspace_bzlmod = self.ddk_workspace / "WORKSPACE.bzlmod"
+            workspace_bzlmod.touch(exist_ok=True)
         if self.prebuilts_dir:
             module_bazel_content += "\n"
             module_bazel_content += _LOCAL_PREBUILTS_CONTENT_TEMPLATE.format(
@@ -168,19 +202,31 @@ class KleafProjectSetter:
         if not kleaf_repo.is_absolute():
             kleaf_repo = pathlib.Path("%workspace%") / kleaf_repo
 
+        bazelrc_content = []
+        if self.local:
+            bazelrc_content.append((
+                "common"
+                f" --registry=file://{kleaf_repo}/external/bazelbuild-bazel-central-registry"
+            ))
+        else:
+            # Kleaf enables bzlmod by default and sets a value which becomes obsolete
+            #  when using it as a dependent module, hence for a non-local builds bring
+            #  the default back.
+            bazelrc_content.append("common --registry=https://bcr.bazel.build")
+            # And additionally enable internet usage.
+            bazelrc_content.append("common --config=internet")
+
         self._update_file(
             bazelrc,
-            textwrap.dedent(f"""\
-            common --config=internet
-            common --registry=file://{kleaf_repo}/external/bazelbuild-bazel-central-registry
-            """),
+            "\n".join(bazelrc_content),
         )
 
     def _get_url(self, remote_filename: str) -> str | None:
         """Returns a valid url when it can be formed with target and id."""
         if not self.url_fmt:
-            raise KleafProjectSetterError("ERROR: _get_url called without "
-                                          "url_fmt set!")
+            raise KleafProjectSetterError(
+                "ERROR: _get_url called without url_fmt set!"
+            )
         url = self.url_fmt.format(
             build_id=self.build_id,
             build_target=self.build_target,
@@ -222,7 +268,8 @@ class KleafProjectSetter:
         url = self._get_url(remote_filename)
         if not url:
             raise KleafProjectSetterError(
-                f"ERROR: Unable to download {remote_filename}: can't infer URL")
+                f"ERROR: Unable to download {remote_filename}: can't infer URL"
+            )
         # Workaround: Rely on host keychain to download files.
         # This is needed otheriwese downloads fail when running this script
         #   using the hermetic Python toolchain.
@@ -241,7 +288,8 @@ class KleafProjectSetter:
         """Infers the list of files to be downloaded using download_configs.json."""
         if not self.prebuilts_dir:
             raise KleafProjectSetterError(
-                "ERROR: _infer_download_list called without --prebuilts_dir!")
+                "ERROR: _infer_download_list called without --prebuilts_dir!"
+            )
         download_configs = self.prebuilts_dir / "download_configs.json"
         with open(download_configs, "w+", encoding="utf-8") as config:
             self._download("download_configs.json", pathlib.Path(config.name))
@@ -251,7 +299,8 @@ class KleafProjectSetter:
         """Downloads prebuilts from a given build_id when provided."""
         if not self.prebuilts_dir:
             raise KleafProjectSetterError(
-                "ERROR: _download_prebuilts called without --prebuilts_dir!")
+                "ERROR: _download_prebuilts called without --prebuilts_dir!"
+            )
         logging.info("Downloading prebuilts into %s", self.prebuilts_dir)
         files_dict = self._infer_download_list()
         with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -354,7 +403,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO,
                         format="%(levelname)s: %(message)s")
-
+    # Validate pre-condition.
+    if args.local and not args.kleaf_repo:
+        parser.error("--local requires --kleaf_repo.")
     try:
         KleafProjectSetter(**vars(args)).run()
     except KleafProjectSetterError as e:
