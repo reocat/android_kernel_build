@@ -398,7 +398,6 @@ class KleafIntegrationTestShard2(KleafIntegrationTestBase):
         self._build(args)
 
 
-@unittest.skipTest("TODO(b/338263410): enable test after added to CI")
 class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
     """Tests setting up a DDK workspace with @kleaf as dependency."""
 
