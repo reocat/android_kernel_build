@@ -44,39 +44,6 @@ class DdkExtraSetup:
                 bazel_dep(name = "bazel_skylib")
             """), file=out_file)
 
-            # Copy local_path_override() from @kleaf because we do not
-            # have Internet on CI.
-            # TODO(b/338439996): Use offline flag in init_ddk.py instead.
-            with (self.ddk_workspace / self.kleaf_repo_rel /
-                  "MODULE.bazel").open() as src:
-                self._copy_local_path_override(src, out_file)
-
-    def _copy_local_path_override(self, src, dst):
-        """Naive algorithm to parse src and copy local_path_override() to dst"""
-        section = []
-        path_attr_prefix = 'path = "'
-
-        # Skip rules_rust because it is a dev_dependency.
-        # Modify path so it is relative to the current DDK workspace.
-        for line in src:
-            if line.startswith("local_path_override("):
-                section.append(line)
-                continue
-            if section:
-                if line.lstrip().startswith('module_name = "'):
-                    if '"rules_rust"' in line:
-                        section = []
-                        continue
-                elif line.lstrip().startswith(path_attr_prefix):
-                    line = line.strip()
-                    line = line.removeprefix(
-                        path_attr_prefix).removesuffix('",')
-                    line = f'    path = "{self.kleaf_repo_rel / line}",\n'
-                section.append(line)
-
-                if line.strip() == ")":
-                    print("".join(section), file=dst)
-                    section.clear()
 
     def run(self):
         self._generate_device_bazelrc()
