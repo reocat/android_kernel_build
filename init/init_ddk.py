@@ -151,10 +151,9 @@ class KleafProjectSetter:
                     self.prebuilts_dir
                 ),
             )
-        if module_bazel_content:
-            self._update_file(module_bazel, module_bazel_content)
-        else:
+        if not module_bazel_content:
             logging.info("Nothing to update in %s", module_bazel)
+        self._update_file(module_bazel, module_bazel_content)
 
     def _generate_bazelrc(self):
         """Creates a Bazel configuration file with the minimum setup required."""
