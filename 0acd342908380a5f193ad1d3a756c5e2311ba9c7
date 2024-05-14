@@ -22,6 +22,30 @@
       },
       "revId": "0acd342908380a5f193ad1d3a756c5e2311ba9c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89b29f37_de5d3e5e",
+        "filename": "kleaf/tests/hermetic_test.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-14T18:18:38Z",
+      "side": 1,
+      "message": "It is the latter. This is so that if the C toolchain breaks, we are still able to run as many tests as possible.",
+      "parentUuid": "ebde1281_527f4e22",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 15
+      },
+      "revId": "0acd342908380a5f193ad1d3a756c5e2311ba9c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
