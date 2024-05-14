@@ -398,7 +398,7 @@ class KleafIntegrationTestShard2(KleafIntegrationTestBase):
         self._build(args)
 
 
-
+@unittest.skipTest("TODO(b/338263410): enable test after added to CI")
 class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
     """Tests setting up a DDK workspace with @kleaf as dependency."""
 
@@ -456,8 +456,8 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         Exec.check_call(git_clean_args, cwd=self.ddk_workspace)
 
         # Delete generated files at the end
-        self.addCleanup(Exec.check_call, git_clean_args,
-                        cwd=self.ddk_workspace)
+        # self.addCleanup(Exec.check_call, git_clean_args,
+        #                 cwd=self.ddk_workspace)
 
         if kleaf_repo != self.real_kleaf_repo:
             Exec.check_call([shutil.which("mount"), "--bind", "-o", "ro",
