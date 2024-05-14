@@ -34,6 +34,24 @@
       "parentUuid": "730c7525_7d22289b",
       "revId": "e3016f1f51625d98041d0ae26687ab89f7015eb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6be88480_32a819db",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-14T11:27:47Z",
+      "side": 1,
+      "message": "Done; CL:3081492",
+      "parentUuid": "ff7174e2_2a9dec33",
+      "revId": "e3016f1f51625d98041d0ae26687ab89f7015eb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
