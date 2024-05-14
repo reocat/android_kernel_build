@@ -13,6 +13,7 @@
 # limitations under the License.
 
 load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("//build/kernel/kleaf:hermetic_tools.bzl", "hermetic_exec", "hermetic_genrule")
 
 test_suite(
     name = "tests",
@@ -50,5 +51,30 @@ bzl_library(
     deps = [
         "//build/kernel/kleaf:hermetic_tools_def",
         "@bazel_skylib//lib:shell",
+    ],
+)
+
+hermetic_exec(
+    name = "test_bin_1",
+    script = "echo 1",
+)
+
+hermetic_exec(
+    name = "test_bin_2",
+    script = "echo 2",
+)
+
+hermetic_genrule(
+    name = "test_genrule",
+    tools = [":test_bin_1"],
+    outs = ["out.txt"],
+    cmd = "touch $@",
+)
+
+filegroup(
+    name = "mytest",
+    srcs = [
+        ":test_genrule",
+        ":test_bin_2",
     ],
 )
