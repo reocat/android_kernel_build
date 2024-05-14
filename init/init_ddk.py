@@ -22,11 +22,11 @@ import dataclasses
 import json
 import logging
 import pathlib
+import re
 import shutil
 import subprocess
 import sys
 import tempfile
-import textwrap
 import urllib
 
 _TOOLS_BAZEL = "tools/bazel"
@@ -133,6 +133,41 @@ class KleafProjectSetter:
             )
             return path
 
+    def _get_local_path_overrides(self):
+        """Naive algorithm to extract local_path_override()'s from local @kleaf."""
+        section = []
+        path_attr_prefix = 'path = "'
+        dependencies = []
+        overrides = []
+        module_bazel = self.kleaf_repo / _MODULE_BAZEL_FILE
+        # Resolve it once, to use it later.
+        kleaf_repo = self._try_rel_workspace(self.kleaf_repo)
+        with open(module_bazel, "r", encoding="utf-8") as src:
+            # Skip rules_rust because it is a dev_dependency.
+            # Modify path so it is relative to the current DDK workspace.
+            for line in src:
+                if line.startswith("local_path_override("):
+                    section.append(line)
+                    continue
+                if section:
+                    if line.lstrip().startswith('module_name = "'):
+                        if '"rules_rust"' in line:
+                            section = []
+                            continue
+                        dependency = re.search('"([^"]*)"', line).group()
+                        dependencies.append(f'bazel_dep(name = {dependency})')
+                    elif line.lstrip().startswith(path_attr_prefix):
+                        line = line.strip()
+                        line = line.removeprefix(path_attr_prefix).removesuffix(
+                            '",'
+                        )
+                        line = f'    path = "{kleaf_repo / line}",\n'
+                    section.append(line)
+                    if line.strip() == ")":
+                        overrides.append("".join(section))
+                        section.clear()
+        return "\n".join(dependencies) + "\n" + "".join(overrides)
+
     def _generate_module_bazel(self):
         """Configures the dependencies for the DDK workspace."""
         if not self.ddk_workspace:
@@ -143,6 +178,8 @@ class KleafProjectSetter:
             module_bazel_content += _KLEAF_DEPENDENCY_TEMPLATE.format(
                 kleaf_repo_relative=self._try_rel_workspace(self.kleaf_repo),
             )
+        if self.kleaf_repo and self.local:
+            module_bazel_content += self._get_local_path_overrides()
         if self.prebuilts_dir:
             module_bazel_content += "\n"
             module_bazel_content += _LOCAL_PREBUILTS_CONTENT_TEMPLATE.format(
@@ -165,12 +202,23 @@ class KleafProjectSetter:
         if not kleaf_repo.is_absolute():
             kleaf_repo = pathlib.Path("%workspace%") / kleaf_repo
 
+        bazelrc_content = []
+        if self.local:
+            bazelrc_content.append((
+                "common"
+                f" --registry=file://{kleaf_repo}/external/bazelbuild-bazel-central-registry"
+            ))
+        else:
+            # Kleaf enables bzlmod by default and sets a value which becomes obsolete
+            #  when using it as a dependent module, hence for a non-local builds bring
+            #  the default back.
+            bazelrc_content.append("common --registry=https://bcr.bazel.build")
+            # And additionally enable internet usage.
+            bazelrc_content.append("common --config=internet")
+
         self._update_file(
             bazelrc,
-            textwrap.dedent(f"""\
-            common --config=internet
-            common --registry=file://{kleaf_repo}/external/bazelbuild-bazel-central-registry
-            """),
+            "\n".join(bazelrc_content),
         )
 
     def _get_url(self, remote_filename: str) -> str:
