@@ -34,6 +34,24 @@
       "parentUuid": "96e78aeb_634fb140",
       "revId": "e886c4d474d905dcc0bfde746d925a69c5eb6907",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "757f9364_cc8c45db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-14T00:15:13Z",
+      "side": 1,
+      "message": "The issue was probably that:\n- integration test uses test hermetic tools, which includes git\n- `bazel build :integration_test` builds hermetic tools \u0026 test hermetic tools, so in execroot, the hermetic base has all tools including git\n- when the integration test builds the kernel, it uses `--config\u003dlocal`, so `git` is slipped into the build\n- scripts/setlocalversion will then use both the scmversion from Kleaf from `workspace_status_stamp.py` and invoke `git` on its own, causing duplicated information.\n\nTo fix this, there are a few ways:\n1. Abandon this change and all of https://android-review.git.corp.google.com/q/hashtag:%22test_hermetic_tools%22+(status:open%20OR%20status:merged) and leave it as-is.\n2. Let `ScmversionTest` build without `--config\u003dlocal`. However, we cannot test `--config\u003dstamp` with `--config\u003dlocal` any more, and this is an important test because our internal teams depend on it. So this is a no-go.\n3. Split `//build/kernel:hermetic-tools` and create a `//build/kernel:test-hermetic-tools` target, and let tests depend on the latter instead. Because their hermetic base is different, the one for integration test and the one for the kernel build is isolated, so this bug can be prevented. (Or some variant of this approach, e.g. inside hermetic_base.bzl, duplicate the hermetic base)\n\nI am inclined to do #1 and keep `append_host_path \u003d True`. But if you feel strong about dropping the original PATH in tests, I can do #3 as well.",
+      "parentUuid": "1e38e946_075256ae",
+      "revId": "e886c4d474d905dcc0bfde746d925a69c5eb6907",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
