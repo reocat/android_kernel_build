@@ -472,12 +472,6 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             f"--kleaf_repo={kleaf_repo}",
             f"--ddk_workspace={self.ddk_workspace}",
         ])
-        Exec.check_call([
-            sys.executable,
-            str(self.ddk_workspace / "extra_setup.py"),
-            f"--kleaf_repo_rel={kleaf_repo_rel}",
-            f"--ddk_workspace={self.ddk_workspace}",
-        ])
 
         self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
         self._check_call("test", ["//tests"], cwd=self.ddk_workspace)
