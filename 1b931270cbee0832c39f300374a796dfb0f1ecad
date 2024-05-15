@@ -16,6 +16,24 @@
       "message": "Implementation wise, aosp/3087649 is correct. But overall, I still do not agree that the 16k flag should show up in uname because it is simply the wrong place to hold this information, IMO.\n\nI won\u0027t block this change by -2\u0027ing it, though. @maennich@google.com PTAL",
       "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6608c305_619c0d02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-05-15T18:42:08Z",
+      "side": 1,
+      "message": "This is an experimental build, and we need 16k to be as visible as possible in any logs or metrics. Please +2 and merge as messing with uname should not matter for Android V for a developer option. Please ping me if there is an issue, thanks.",
+      "parentUuid": "e9a9bd83_1cd87a4a",
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
