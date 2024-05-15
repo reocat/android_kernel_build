@@ -63,11 +63,7 @@ class DdkExtraSetup:
                 section.append(line)
                 continue
             if section:
-                if line.lstrip().startswith('module_name = "'):
-                    if '"rules_rust"' in line:
-                        section = []
-                        continue
-                elif line.lstrip().startswith(path_attr_prefix):
+                if line.lstrip().startswith(path_attr_prefix):
                     line = line.strip()
                     line = line.removeprefix(
                         path_attr_prefix).removesuffix('",')

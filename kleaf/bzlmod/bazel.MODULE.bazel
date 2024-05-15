@@ -110,8 +110,11 @@ bazel_dep(
     name = "rules_rust",
     version = "0.40.0",
 )
+
+# LINT.IfChange(rust)
 rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
 rust.toolchain(edition = "2021")
+# LINT.ThenChange(/init/init_ddk.py:rust)
 
 bazel_dep(
     name = "stardoc",
