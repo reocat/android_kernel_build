@@ -10,7 +10,7 @@ ddk_module(
     name = "out_of_tree",
     srcs = ["mydriver.c"],
     out = "out_of_tree.ko",
-    kernel_build = "@kleaf//common:kernel_aarch64",
+    kernel_build = "//tests:kernel",
     deps = ["@kleaf//common:all_headers_aarch64"],
 )
 

@@ -49,6 +49,7 @@ import pathlib
 import tempfile
 import textwrap
 import unittest
+import xml.dom.minidom
 from typing import Any, Callable, Iterable, TextIO
 
 from absl.testing import absltest
@@ -429,6 +430,32 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         self.ddk_workspace = (pathlib.Path(__file__).resolve().parent /
                               "ddk_workspace_test")
 
+    @classmethod
+    def _get_projects(cls, group: str):
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--repo_manifest", type=_require_absolute_path)
+        known, _ = parser.parse_known_args(arguments.bazel_wrapper_args)
+        if known.repo_manifest:
+            return cls._get_projects_from_manifest(known.repo_manifest, group)
+
+        output = Exec.check_output(
+            ["repo", "forall", "-g", group, "-c", "echo $REPO_PATH"])
+        return output.splitlines()
+
+    @staticmethod
+    def _get_projects_from_manifest(manifest: pathlib.Path, group: str):
+        with open(manifest) as manifest_file:
+            dom = xml.dom.minidom.parse(manifest_file)
+            projects = dom.documentElement.getElementsByTagName("project")
+            ret = []
+            for proj in projects:
+                groups = re.split(r",| ", proj.getAttribute("groups"))
+                if group not in groups:
+                    continue
+                path = proj.getAttribute("path") or proj.getAttribute("name")
+                ret.append(pathlib.Path(path))
+            return ret
+
     def test_ddk_workspace_below_kleaf_module(self):
         """Tests that DDK workspace is below @kleaf"""
         self._run_ddk_workspace_setup_test(self.real_kleaf_repo)
@@ -443,6 +470,29 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             self._unshare_mount_run(mount_spec=mount_spec)
             return
         self._run_ddk_workspace_setup_test(kleaf_repo)
+
+    def test_setup_with_prebuilts(self):
+        """Tests that init_ddk --prebuilts_dir & _ddk_headers_archive works."""
+        self._check_call("run", [f"//{self._common()}:kernel_aarch64_dist"])
+
+        prebuilts_dir = self.real_kleaf_repo / "out/kernel_aarch64/dist"
+        kleaf_repo = self.ddk_workspace / "external/kleaf"
+
+        if not arguments.mount_spec:
+            projects = self._get_projects("ddk")
+            mount_spec = {}
+            # Mimic init_ddk's behavior that, when build_id is set, checkout
+            # projects & symlinks.
+            for project_path in projects:
+                mount_spec[self.real_kleaf_repo / project_path] = \
+                    kleaf_repo / project_path
+                # TODO: Also symlinks like top level MODULE.bazel
+
+            self._unshare_mount_run(mount_spec=mount_spec)
+            return
+
+        self._run_ddk_workspace_setup_test(kleaf_repo,
+                                           prebuilts_dir=prebuilts_dir)
 
     def _unshare_mount_run(self, mount_spec: MountSpec):
         """Reruns the test in an unshare-d namespace with --mount-spec set."""
@@ -464,7 +514,9 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
 
         Exec.check_call(args)
 
-    def _run_ddk_workspace_setup_test(self, kleaf_repo: pathlib.Path):
+    def _run_ddk_workspace_setup_test(self,
+                                      kleaf_repo: pathlib.Path,
+                                      prebuilts_dir: pathlib.Path | None = None):
         # kleaf_repo relative to ddk_workspace
         kleaf_repo_rel = self._force_relative_to(
             kleaf_repo, self.ddk_workspace)
@@ -490,13 +542,16 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
                 self.addCleanup(Exec.check_call,
                                 [shutil.which("umount"), str(to_path)])
 
-        self._check_call("run", [
+        args = [
             "//build/kernel:init_ddk",
             "--",
             "--local",
             f"--kleaf_repo={kleaf_repo}",
             f"--ddk_workspace={self.ddk_workspace}",
-        ])
+        ]
+        if prebuilts_dir:
+            args.append(f"--prebuilts_dir={prebuilts_dir}")
+        self._check_call("run", args)
         Exec.check_call([
             sys.executable,
             str(self.ddk_workspace / "extra_setup.py"),
@@ -505,7 +560,13 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         ])
 
         self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
-        self._check_call("test", ["//tests"], cwd=self.ddk_workspace)
+
+        args = []
+        # Switch base kernel when using prebuilts
+        if prebuilts_dir:
+            args.append("--//tests:kernel=@gki_prebuilts//kernel_aarch64")
+        args.append("//tests")
+        self._check_call("test", args, cwd=self.ddk_workspace)
 
         # Delete generated files
         self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)

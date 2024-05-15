@@ -25,6 +25,7 @@ import pathlib
 import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 import textwrap
 import urllib
@@ -270,6 +271,37 @@ class KleafProjectSetter:
         if self._can_download_artifacts():
             self._download_prebuilts()
 
+    def _handle_headers(self) -> None:
+        if self.local:
+            # --local assumes the kernel source tree is complete.
+            return
+        if not self.prebuilts_dir:
+            logging.info(
+                "No prebuilts specified, skipping header extraction.")
+            return
+        if not self.kleaf_repo:
+            logging.info("Nowhere to extract headers because --kleaf_repo is "
+                         "unspecified")
+            return
+        # TODO: This should be target-specific. The name of the output is
+        # currently (2024-05-16) defined by common/BUILD.bazel, but it may
+        # change in the future.
+        header_archives = self.prebuilts_dir.glob(
+            "_ddk_headers_archive.tar.gz")
+        if not header_archives:
+            logging.warning("No _ddk_headers_archive.tar.gz found in %s, "
+                            "skipping header extraction.",
+                            self.prebuilts_dir)
+            return
+        if len(header_archives > 1):
+            raise KleafProjectSetterError(
+                f"Multiple _ddk_headers_archive.tar.gz found in "
+                f"{self.prebuilts_dir}: {header_archives}")
+        logging.info("Extracting header archive %s to %s",
+                     header_archives[0], self.kleaf_repo)
+        with tarfile.open(header_archives[0]) as tar:
+            tar.extractall(self.kleaf_repo)
+
     def _run(self) -> None:
         self._symlink_tools_bazel()
         self._generate_module_bazel()
@@ -279,6 +311,7 @@ class KleafProjectSetter:
         self._handle_ddk_workspace()
         self._handle_kleaf_repo()
         self._handle_prebuilts()
+        self._handle_headers()
         self._run()
 
 
