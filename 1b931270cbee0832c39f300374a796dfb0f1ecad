@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe29121f_c7ff1029",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-15T22:16:40Z",
+      "side": 1,
+      "message": "The commit message could explain why that is a good change and also give an example for an `uname -a` invocation.",
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9a9bd83_1cd87a4a",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -32,6 +49,47 @@
       "side": 1,
       "message": "This is an experimental build, and we need 16k to be as visible as possible in any logs or metrics. Please +2 and merge as messing with uname should not matter for Android V for a developer option. Please ping me if there is an issue, thanks.",
       "parentUuid": "e9a9bd83_1cd87a4a",
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4649b2c_09e5f9fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-15T22:16:40Z",
+      "side": 1,
+      "message": "This effectively creates a publicly accessible interface. Even if this is an experimental variant, as soon as we are going to release this (as a developer option) even to a small amount of people, there will be apps, frameworks depending on this string and hence we will not be able to easily drop it from the version string again. (see also https://www.hyrumslaw.com/)\n\nAny debug traces, panic logs etc. should be patched if necessary to contain that information. And otherwise userspace should use regular interfaces like /proc/config.gz to query configuration/features of the kernel.\n\nAs for metrics and tracking: surely we can measure adoption, but doing that as part of the version string would not allow us to ever remove this once 16k is becoming a default.\n\nSo, I concur, that the version string is not the right location to encode this.",
+      "parentUuid": "6608c305_619c0d02",
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2465fa38_6a23df6b",
+        "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-15T22:16:40Z",
+      "side": 1,
+      "message": "the commit message calls it \"16k\", the configuration refers to it as \"16K\", yet the suggested suffix is \"-16kB\".",
+      "range": {
+        "startLine": 6,
+        "startChar": 21,
+        "endLine": 6,
+        "endChar": 26
+      },
       "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
