@@ -25,6 +25,7 @@ import pathlib
 import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 import textwrap
 import urllib.parse
@@ -278,12 +279,60 @@ class KleafProjectSetter:
         self.kleaf_repo.mkdir(parents=True, exist_ok=True)
         # TODO: b/328770706 - According to the needs, syncing git repos logic should go here.
 
+        self._populate_kleaf_repo_extra_files()
+
     def _handle_prebuilts(self) -> None:
         if not self.ddk_workspace or not self.prebuilts_dir:
             return
         self.prebuilts_dir.mkdir(parents=True, exist_ok=True)
         if self._can_download_artifacts():
             self._download_prebuilts()
+
+    def _populate_kleaf_repo_extra_files(self) -> None:
+        """Populates kleaf_repo by adding extra files"""
+        if self.local:
+            logging.info("Skipped populating kleaf_repo with --local.")
+            # --local assumes the kernel source tree is complete.
+            return
+        if not self.kleaf_repo:
+            logging.info("Skipped populating --kleaf_repo because "
+                         "it is unspecified")
+            return
+        if not self.prebuilts_dir:
+            logging.info(
+                "No prebuilts specified, skip populating %s", self.kleaf_repo)
+            return
+        self._extract_headers_archive(self.prebuilts_dir, self.kleaf_repo)
+
+        build_config_constants = self.prebuilts_dir / "build.config.constants"
+        if build_config_constants.is_file():
+            shutil.copy(build_config_constants,
+                        self.kleaf_repo / "common/build.config.constants")
+            if not (self.kleaf_repo / "common/BUILD.bazel").is_file():
+                (self.kleaf_repo / "common/BUILD.bazel").write_text("")
+
+    @staticmethod
+    def _extract_headers_archive(prebuilts_dir: pathlib.Path,
+                                 kleaf_repo: pathlib.Path):
+        """Extracts DDK headers archive from prebuilts_dir into kleaf_repo"""
+        # TODO: This should be target-specific. The name of the output is
+        # currently (2024-05-16) defined by common/BUILD.bazel, but it may
+        # change in the future.
+        header_archives = list(prebuilts_dir.glob(
+            "*_ddk_headers_archive.tar.gz"))
+        if not header_archives:
+            logging.warning("No _ddk_headers_archive.tar.gz found in %s, "
+                            "skipping header extraction.",
+                            prebuilts_dir)
+            return
+        if len(header_archives) > 1:
+            raise KleafProjectSetterError(
+                f"Multiple _ddk_headers_archive.tar.gz found in "
+                f"{prebuilts_dir}: {header_archives}")
+        logging.info("Extracting header archive %s to %s",
+                     header_archives[0], kleaf_repo)
+        with tarfile.open(header_archives[0]) as tar:
+            tar.extractall(kleaf_repo)
 
     def _run(self) -> None:
         self._symlink_tools_bazel()
@@ -292,8 +341,8 @@ class KleafProjectSetter:
 
     def run(self) -> None:
         self._handle_ddk_workspace()
-        self._handle_kleaf_repo()
         self._handle_prebuilts()
+        self._handle_kleaf_repo()
         self._run()
 
 

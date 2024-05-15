@@ -38,7 +38,9 @@ Example:
 import argparse
 import collections
 import contextlib
+import dataclasses
 import hashlib
+import io
 import json
 import os
 import re
@@ -50,6 +52,7 @@ import pathlib
 import tempfile
 import textwrap
 import unittest
+import xml.dom.minidom
 from typing import Any, Callable, Iterable, TextIO
 
 from absl.testing import absltest
@@ -94,6 +97,13 @@ def load_arguments():
                             If not set, some tests will re-run itself
                             in an unshare-d namespace with the flag set.""",
                         default=MountSpec())
+    parser.add_argument("--link-spec",
+                        type=_deserialize_link_spec,
+                        help="""A JSON dictionary specifying symlinks.
+
+                            If not set, some tests will re-run itself
+                            with the flag set.""",
+                        default=LinkSpec())
     group = parser.add_argument_group("CI", "flags for ci.android.com")
     group.add_argument("--test_result_dir",
                        type=_require_absolute_path,
@@ -124,6 +134,56 @@ def _serialize_mount_spec(val: MountSpec):
 def _deserialize_mount_spec(s: str) -> MountSpec:
     return {pathlib.Path(key): pathlib.Path(value)
             for key, value in json.loads(s).items()}
+
+
+@dataclasses.dataclass
+class Link:
+    # Value in repo manifest. Relative against repo root.
+    dest: pathlib.Path
+
+    # Value in repo manifest. Relative against repo root.
+    src: pathlib.Path
+
+    @classmethod
+    def from_element(cls, element: xml.dom.minidom.Element,
+                     project_path: pathlib.Path) -> "Link":
+        return cls(dest=pathlib.Path(element.getAttribute("dest")),
+                   src=project_path / element.getAttribute("src"))
+
+
+LinkSpec = list[Link]
+
+
+def _serialize_link_spec(links: LinkSpec):
+    return json.dumps([{"dest": str(link.dest), "src": str(link.src)}
+                       for link in links])
+
+
+def _deserialize_link_spec(s: str) -> LinkSpec:
+    return [Link(dest=pathlib.Path(obj["dest"]), src=pathlib.Path(obj["src"]))
+            for obj in json.loads(s)]
+
+
+@dataclasses.dataclass
+class RepoProject:
+    # Project path
+    path: pathlib.Path
+
+    # List of symlinks to create
+    links: list[Link] = dataclasses.field(default_factory=list)
+
+    # List of groups
+    groups: list[str] = dataclasses.field(default_factory=list)
+
+    @classmethod
+    def from_element(cls, element: xml.dom.minidom.Element) -> "RepoProject":
+        path = pathlib.Path(
+                element.getAttribute("path") or element.getAttribute("name"))
+        project = cls(path=path)
+        for link_element in element.getElementsByTagName("linkfile"):
+            project.links.append(Link.from_element(link_element, path))
+        project.groups = re.split(r",| ", element.getAttribute("groups"))
+        return project
 
 
 class Exec(object):
@@ -432,6 +492,26 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         self.ddk_workspace = (pathlib.Path(__file__).resolve().parent /
                               "ddk_workspace_test")
 
+    @classmethod
+    def _get_projects(cls) -> list[RepoProject]:
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--repo_manifest", type=_require_absolute_path)
+        known, _ = parser.parse_known_args(arguments.bazel_wrapper_args)
+        if known.repo_manifest:
+            with open(known.repo_manifest) as manifest_file:
+                return cls._get_projects_from_manifest(manifest_file)
+
+        manifest_content = Exec.check_output(["repo", "manifest"])
+        manifest_file = io.StringIO(manifest_content)
+        return cls._get_projects_from_manifest(manifest_file)
+
+    @staticmethod
+    def _get_projects_from_manifest(manifest_file: TextIO) -> list[RepoProject]:
+        dom = xml.dom.minidom.parse(manifest_file)
+        project_elements = dom.documentElement.getElementsByTagName("project")
+        return [RepoProject.from_element(element)
+                for element in project_elements]
+
     def test_ddk_workspace_below_kleaf_module(self):
         """Tests that DDK workspace is below @kleaf"""
         self._run_ddk_workspace_setup_test(self.real_kleaf_repo)
@@ -443,11 +523,53 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             mount_spec = {
                 self.real_kleaf_repo: kleaf_repo
             }
-            self._unshare_mount_run(mount_spec=mount_spec)
+            self._unshare_mount_run(mount_spec=mount_spec, link_spec=LinkSpec())
             return
         self._run_ddk_workspace_setup_test(kleaf_repo)
 
-    def _unshare_mount_run(self, mount_spec: MountSpec):
+    def test_setup_with_prebuilts(self):
+        """Tests that init_ddk --prebuilts_dir & _ddk_headers_archive works."""
+        self._check_call("run", [f"//{self._common()}:kernel_aarch64_dist"])
+
+        prebuilts_dir = self.real_kleaf_repo / "out/kernel_aarch64/dist"
+        kleaf_repo = self.ddk_workspace / "external/kleaf"
+
+        if not arguments.mount_spec:
+            mount_spec, link_spec = self._get_proejct_mount_link_spec(
+                kleaf_repo, ["ddk", "ddk-external"],
+            )
+
+            self._unshare_mount_run(mount_spec=mount_spec, link_spec=link_spec)
+            return
+
+        self._run_ddk_workspace_setup_test(kleaf_repo,
+                                           prebuilts_dir=prebuilts_dir,
+                                           local=False)
+
+    def _get_proejct_mount_link_spec(self, kleaf_repo: pathlib.Path,
+                                     groups: list[str]) \
+        -> tuple[MountSpec, LinkSpec]:
+        """Returns MountSpec for projects that has any of the given groups."""
+
+        projects = self._get_projects()
+
+        relevant_projects = list[RepoProject]()
+        for project in projects:
+            if any(group in project.groups for group in groups):
+                relevant_projects.append(project)
+
+        mount_spec = MountSpec()
+        link_spec = LinkSpec()
+        # Mimic init_ddk's behavior that, when build_id is set, checkout
+        # projects & create symlinks.
+        for project in relevant_projects:
+            mount_spec[self.real_kleaf_repo / project.path] = \
+                kleaf_repo / project.path
+            link_spec.extend(project.links)
+
+        return mount_spec, link_spec
+
+    def _unshare_mount_run(self, mount_spec: MountSpec, link_spec: list[Link]):
         """Reruns the test in an unshare-d namespace with --mount-spec set."""
         args = [shutil.which("unshare"), "--mount", "--map-root-user"]
 
@@ -461,13 +583,17 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         test_args.extend(f"--bazel-wrapper-arg={arg}"
                          for arg in arguments.bazel_wrapper_args)
         test_args.append(f"--mount-spec={_serialize_mount_spec(mount_spec)}")
+        test_args.append(f"--link-spec={_serialize_link_spec(link_spec)}")
         test_args.append(self.id().removeprefix("__main__."))
         args.append(" ".join(shlex.quote(str(test_arg))
                              for test_arg in test_args))
 
         Exec.check_call(args)
 
-    def _run_ddk_workspace_setup_test(self, kleaf_repo: pathlib.Path):
+    def _run_ddk_workspace_setup_test(self,
+                                      kleaf_repo: pathlib.Path,
+                                      prebuilts_dir: pathlib.Path | None = None,
+                                      local: bool = True):
         # kleaf_repo relative to ddk_workspace
         kleaf_repo_rel = self._force_relative_to(
             kleaf_repo, self.ddk_workspace)
@@ -492,13 +618,24 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             self.addCleanup(Exec.check_call,
                             [shutil.which("umount"), str(to_path)])
 
-        self._check_call("run", [
+        for link in arguments.link_spec:
+            real_dest = kleaf_repo / link.dest
+            real_src = kleaf_repo / link.src
+            relative_src = self._force_relative_to(real_src, real_dest.parent)
+            real_dest.parent.mkdir(parents=True, exist_ok=True)
+            real_dest.symlink_to(relative_src)
+
+        args = [
             "//build/kernel:init_ddk",
             "--",
-            "--local",
             f"--kleaf_repo={kleaf_repo}",
             f"--ddk_workspace={self.ddk_workspace}",
-        ])
+        ]
+        if local:
+            args.append("--local")
+        if prebuilts_dir:
+            args.append(f"--prebuilts_dir={prebuilts_dir}")
+        self._check_call("run", args)
         Exec.check_call([
             sys.executable,
             str(self.ddk_workspace / "extra_setup.py"),
@@ -507,7 +644,13 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         ])
 
         self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
-        self._check_call("test", ["//tests"], cwd=self.ddk_workspace)
+
+        args = []
+        # Switch base kernel when using prebuilts
+        if prebuilts_dir:
+            args.append("--//tests:kernel=@gki_prebuilts//kernel_aarch64")
+        args.append("//tests")
+        self._check_call("test", args, cwd=self.ddk_workspace)
 
         # Delete generated files
         self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
