@@ -16,7 +16,7 @@ To opt-in a local workspace without having to pass the command line flag for
 every invocation, add to `user.bazelrc`:
 
 ```text
-# user.bazelrc
+# Opt into future features of Kleaf and the DDK.
 build --config=canary
 ```
 
