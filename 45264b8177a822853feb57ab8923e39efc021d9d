@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53953236_e98dcc58",
+        "filename": "kleaf/docs/canary.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-15T08:20:18Z",
+      "side": 1,
+      "message": "nit: IMHO a comment here should explain what the config does or why it is needed.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "af2cb2f4_b1eb56d8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/docs/canary.md",
+              "range": {
+                "startLine": 20,
+                "startChar": 0,
+                "endLine": 20,
+                "endChar": 0
+              },
+              "replacement": "# Opt into future features of Kleaf and the DDK.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "45264b8177a822853feb57ab8923e39efc021d9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
