@@ -44,6 +44,19 @@ local_path_override(
 )
 """
 
+# TODO: The use_extension & rust.toolchain() should be copied from
+# MODULE.bazel. For now, manually sync.
+# Because @kleaf depends on @rules_rust, users must also explicitly
+# depend on it.
+# https://github.com/bazelbuild/bazel/discussions/22024
+# LINT.IfChange(rust)
+_RUST_DEP = """
+bazel_dep(name = "rules_rust")
+rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
+rust.toolchain(edition = "2021")
+"""
+# LINT.ThenChange(/kleaf/bzlmod/bazel.MODULE.bazel:rust)
+
 _LOCAL_PREBUILTS_CONTENT_TEMPLATE = """\
 kernel_prebuilt_ext = use_extension(
     "@kleaf//build/kernel/kleaf:kernel_prebuilt_ext.bzl",
@@ -143,6 +156,7 @@ class KleafProjectSetter:
             module_bazel_content += _KLEAF_DEPENDENCY_TEMPLATE.format(
                 kleaf_repo_relative=self._try_rel_workspace(self.kleaf_repo),
             )
+            module_bazel_content += _RUST_DEP
         if self.prebuilts_dir:
             module_bazel_content += "\n"
             module_bazel_content += _LOCAL_PREBUILTS_CONTENT_TEMPLATE.format(
