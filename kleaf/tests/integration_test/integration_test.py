@@ -422,6 +422,14 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             return
         self._run_ddk_workspace_setup_test(arguments.mounted_kleaf_repo)
 
+    def test_setup_with_prebuilts(self):
+        """Tests that init_ddk --prebuilts_dir works."""
+        self._check_call("run", [f"//{self._common()}:kernel_aarch64_dist"])
+
+        prebuilts_dir = self.real_kleaf_repo / "out/kernel_aarch64/dist"
+        self._run_ddk_workspace_setup_test(self.real_kleaf_repo,
+                                           prebuilts_dir=prebuilts_dir)
+
     def _mount_and_run(self, kleaf_repo: pathlib.Path, test: str):
         args = [shutil.which("unshare"), "--mount", "--map-root-user"]
 
@@ -441,7 +449,9 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
 
         Exec.check_call(args)
 
-    def _run_ddk_workspace_setup_test(self, kleaf_repo: pathlib.Path):
+    def _run_ddk_workspace_setup_test(self,
+                                      kleaf_repo: pathlib.Path,
+                                      prebuilts_dir: pathlib.Path | None = None):
         # kleaf_repo relative to ddk_workspace
         kleaf_repo_rel = self._force_relative_to(
             kleaf_repo, self.ddk_workspace)
@@ -465,13 +475,16 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             self.addCleanup(Exec.check_call,
                             [shutil.which("umount"), str(kleaf_repo)])
 
-        self._check_call("run", [
+        args = [
             "//build/kernel:init_ddk",
             "--",
             "--local",
             f"--kleaf_repo={kleaf_repo}",
             f"--ddk_workspace={self.ddk_workspace}",
-        ])
+        ]
+        if prebuilts_dir:
+            args.append(f"--prebuilts_dir={prebuilts_dir}")
+        self._check_call("run", args)
         Exec.check_call([
             sys.executable,
             str(self.ddk_workspace / "extra_setup.py"),
@@ -480,7 +493,12 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         ])
 
         self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
-        self._check_call("test", ["//tests"], cwd=self.ddk_workspace)
+
+        args = []
+        if prebuilts_dir:
+            args.append("--//tests:kernel=@gki_prebuilts//kernel_aarch64")
+        args.append("//tests")
+        self._check_call("test", args, cwd=self.ddk_workspace)
 
         # Delete generated files
         self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
