@@ -116,8 +116,8 @@ EOF
         if [[ $rc == 0 ]]; then
             echo "INFO: $(cat {error_msg_file})"
         elif [[ $rc == 4 ]]; then
-            echo "{log_level}: ABI DIFFERENCES HAVE BEEN DETECTED!"
-            echo "{log_level}: $(cat {short_report})"
+            echo "{log_level}: ABI DIFFERENCES HAVE BEEN DETECTED!" >&2
+            echo "{log_level}: $(cat {short_report})" >&2
         else
             echo "ERROR: $(cat {error_msg_file})" >&2
         fi
