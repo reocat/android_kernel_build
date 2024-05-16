@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a45b4d6_770874b3",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2024-05-16T16:36:06Z",
+      "side": 1,
+      "message": "This implies that `avbtool add_hashtree_footer` doesn\u0027t default to sha256, but rather (presumably) to sha1.  Why doesn\u0027t it default to sha256?",
+      "range": {
+        "startLine": 350,
+        "startChar": 4,
+        "endLine": 350,
+        "endChar": 27
+      },
+      "revId": "fcdf8b5207c22d674639f6d129d9d6e310f5dc1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
