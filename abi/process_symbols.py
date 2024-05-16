@@ -55,31 +55,27 @@ def _validate_symbols(symbol_list, symbols):
     sys.exit(1)
 
 
-def _read_config(allow_file, deny_file):
-  """Reads symbol configuration file."""
-  config = {}
+def _read_forbidden_symbols_config(deny_file):
+  """Reads forbidden symbols configuration file."""
+  forbidden_symbols = {}
 
-  def read_file(status, config_file):
-    with open(config_file) as file:
-      for line in file:
-        fields = line.rstrip('\n').split(None, 1)
-        if not fields:
-          continue
-        symbol = fields[0]
-        if symbol.startswith('#'):
-          continue
-        reason = ''
-        if len(fields) > 1:
-          reason = fields[1]
-        if symbol in config:
-          print(f"symbol '{symbol}' duplicate configuration", file=sys.stderr)
-          continue
-        config[symbol] = (status, reason)
+  with open(deny_file) as file:
+    for line in file:
+      fields = line.rstrip('\n').split(None, 1)
+      if not fields:
+        continue
+      symbol = fields[0]
+      if symbol.startswith('#'):
+        continue
+      reason = ''
+      if len(fields) > 1:
+        reason = fields[1]
+      if symbol in forbidden_symbols:
+        print(f"symbol '{symbol}' duplicate configuration", file=sys.stderr)
+        continue
+      forbidden_symbols[symbol] = reason
 
-  read_file(Status.FORBIDDEN, deny_file)
-  read_file(Status.ALLOWED, allow_file)
-
-  return config
+  return forbidden_symbols
 
 
 def _read_symbol_lists(symbol_lists):
@@ -106,13 +102,13 @@ def _get_symbols(lines):
   return symbols
 
 
-def _check_symbols(config, symbols):
-  """Checks symbols against configuration."""
+def _check_symbols(forbidden_symbols, symbols):
+  """Checks symbols against forbidden symbols configuration."""
   report = []
   for symbol in sorted(symbols):
-    if symbol in config:
-      status, reason = config[symbol]
-      report.append([symbol, status, reason])
+    if symbol in forbidden_symbols:
+      reason = forbidden_symbols[symbol]
+      report.append([symbol, Status.FORBIDDEN, reason])
     else:
       report.append([symbol, Status.UNKNOWN, ''])
   return report
@@ -120,7 +116,6 @@ def _check_symbols(config, symbols):
 
 def main():
   dir = os.path.dirname(sys.argv[0])
-  allow_file = os.path.join(dir, 'symbols.allow')
   deny_file = os.path.join(dir, 'symbols.deny')
 
   parser = argparse.ArgumentParser()
@@ -157,10 +152,10 @@ def main():
   out_file = os.path.join(out_directory, args.out_file)
   report_file = os.path.join(out_directory, args.report_file)
 
-  config = _read_config(allow_file, deny_file)
+  forbidden_symbols = _read_forbidden_symbols_config(deny_file)
   lines = _read_symbol_lists(symbol_lists)
   symbols = _get_symbols(lines)
-  report = _check_symbols(config, symbols)
+  report = _check_symbols(forbidden_symbols, symbols)
 
   if args.verbose:
     print('========================================================')
