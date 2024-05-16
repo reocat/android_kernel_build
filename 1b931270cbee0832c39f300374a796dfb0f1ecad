@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90b71c06_cdb27a3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-05-16T21:31:15Z",
+      "side": 1,
+      "message": "hey I didn\u0027t know some tools have a max limit on uname size, and we can find another way. Thanks!",
+      "parentUuid": "74787321_e74cbeb8",
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2465fa38_6a23df6b",
         "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
         "patchSetId": 1
