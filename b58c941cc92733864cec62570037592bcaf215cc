@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "005023f5_7ece0323",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-16T19:42:22Z",
+      "side": 1,
+      "message": "Also overall comment: I think local mode and offline mode should be separate.\n\nThe `--local` flag refers to that, during init_ddk.py execution, there should not be internet access (usually assuming that there\u0027s already a source tree checkout / prebuilts downloaded).\n\nThe offline mode refers to that during `bazel build` it should not reach out to the internet; i.e. `--config\u003dno_internet`. To do that, we need local_path_override().\n\nThe offline mode may be the default and we probably don\u0027t need a flag for it.",
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2bcbdc34_13667462",
         "filename": "init/init_ddk.py",
         "patchSetId": 6
@@ -95,6 +112,23 @@
       "writtenOn": "2024-05-16T00:07:33Z",
       "side": 1,
       "message": "I don\u0027t think the root module should have bazel_dep() on anything unless the user actually uses it (e.g. for the integration tests, I use skylib, so I explicitly add it).\n\nWhat does this fix?",
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd0df757_40f38c47",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-16T19:42:22Z",
+      "side": 1,
+      "message": "I am referring to here. I think\n\n```\nif self.kleaf_repo:\n    module_bazel_content +\u003d self._get_local_path_overrides()\n```\n\nmight be more correct (without checking the --local flag)",
       "revId": "b58c941cc92733864cec62570037592bcaf215cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
