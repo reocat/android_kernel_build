@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74787321_e74cbeb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-05-16T00:30:22Z",
+      "side": 1,
+      "message": "This is about making sure that log snippets people pass around or other information that includes uname has this information at a high level, to help speed up triage of issues. I\u0027m aware of the potential consequences of this, and I\u0027m not saying I\u0027d be against a permanent 16kB marker.\n\nIf you can tolerate a few bytes, knowing they may be permanent-ish, I\u0027d appreciate it. Otherwise, can we chat about other ways to improve visibility around this? Thanks!",
+      "parentUuid": "b4649b2c_09e5f9fb",
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2465fa38_6a23df6b",
         "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
         "patchSetId": 1
