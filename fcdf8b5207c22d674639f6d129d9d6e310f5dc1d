@@ -22,6 +22,30 @@
       },
       "revId": "fcdf8b5207c22d674639f6d129d9d6e310f5dc1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fac4722_27e52667",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1137063
+      },
+      "writtenOn": "2024-05-16T16:58:16Z",
+      "side": 1,
+      "message": "Looks like it\u0027s from here: https://cs.android.com/android/platform/superproject/main/+/main:external/avb/avbtool.py?q\u003d%22default%3D%27sha1%27%22%20f:avbtool.py\n\nEverywhere else in that file has `default\u003d\u0027sha256\u0027`.  Maybe just an oversight?\n\n@bowgotsai@google.com, would it be possible to fix this, or is there some backwards compatibility issue?  SHA-256 has been required for a long time now.",
+      "parentUuid": "5a45b4d6_770874b3",
+      "range": {
+        "startLine": 350,
+        "startChar": 4,
+        "endLine": 350,
+        "endChar": 27
+      },
+      "revId": "fcdf8b5207c22d674639f6d129d9d6e310f5dc1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
