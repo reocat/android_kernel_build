@@ -131,6 +131,47 @@
       "message": "I am referring to here. I think\n\n```\nif self.kleaf_repo:\n    module_bazel_content +\u003d self._get_local_path_overrides()\n```\n\nmight be more correct (without checking the --local flag)",
       "revId": "b58c941cc92733864cec62570037592bcaf215cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07a19e77_f5436020",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-16T19:50:37Z",
+      "side": 1,
+      "message": "unrelated: could you explain why _handle_prebuilts needs self.ddk_workspace again?\n\nBackground: I am working on extracting the headers and I am planning to use `if self.prebuilts_dir` as the predicate. If there are prebuilts, I\u0027ll extract headers from there.",
+      "range": {
+        "startLine": 318,
+        "startChar": 11,
+        "endLine": 318,
+        "endChar": 33
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "4e926181_53441b8e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 318,
+                "startChar": 0,
+                "endLine": 319,
+                "endChar": 0
+              },
+              "replacement": "        if not self.prebuilts_dir:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
