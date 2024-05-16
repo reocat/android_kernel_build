@@ -118,6 +118,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "378e731c_6dfaebf5",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-16T20:10:59Z",
+      "side": 1,
+      "message": "I hit an error with `rules_cc` (http://b/338440785#comment3) my module was just a sample one with the minimum to compile. IMO is hard to know what thing the user will need, hence I added all what was available.",
+      "parentUuid": "de06340b_7f56eb88",
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd0df757_40f38c47",
         "filename": "init/init_ddk.py",
         "patchSetId": 6
