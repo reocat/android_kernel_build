@@ -1,0 +1,102 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bcbdc34_13667462",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-16T00:07:33Z",
+      "side": 1,
+      "message": "note: rules_rust will go away CL:3090287",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 60,
+        "endChar": 16
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0bac2773_bf0566e1",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 59,
+                "startChar": 0,
+                "endLine": 63,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 119,
+                "startChar": 0,
+                "endLine": 120,
+                "endChar": 0
+              },
+              "replacement": "                if not skip_line and line.strip():\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 154,
+                "startChar": 0,
+                "endLine": 155,
+                "endChar": 0
+              },
+              "replacement": "                if not section or line.strip():\n"
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 157,
+                "startChar": 0,
+                "endLine": 158,
+                "endChar": 0
+              },
+              "replacement": ""
+            },
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 159,
+                "startChar": 0,
+                "endLine": 163,
+                "endChar": 0
+              },
+              "replacement": ""
+            }
+          ]
+        }
+      ],
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de06340b_7f56eb88",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-16T00:07:33Z",
+      "side": 1,
+      "message": "I don\u0027t think the root module should have bazel_dep() on anything unless the user actually uses it (e.g. for the integration tests, I use skylib, so I explicitly add it).\n\nWhat does this fix?",
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
