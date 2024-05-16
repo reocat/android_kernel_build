@@ -46,6 +46,30 @@
       },
       "revId": "fcdf8b5207c22d674639f6d129d9d6e310f5dc1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be0e248d_1bb0dede",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2024-05-16T20:49:15Z",
+      "side": 1,
+      "message": "@ebiggers@google.com PTAL at comment from @bowgotsai@google.com here: http://b/331404372#comment14\n\nPosting snippet here:\n\n```\nthe default value (SHA-1) is specified in the avbtool, this is for backward compatiblity (b/156162446#comment3).\n```",
+      "parentUuid": "4fac4722_27e52667",
+      "range": {
+        "startLine": 350,
+        "startChar": 4,
+        "endLine": 350,
+        "endChar": 27
+      },
+      "revId": "fcdf8b5207c22d674639f6d129d9d6e310f5dc1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
