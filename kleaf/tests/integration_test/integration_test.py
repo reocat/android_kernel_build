@@ -38,6 +38,7 @@ Example:
 import argparse
 import contextlib
 import hashlib
+import json
 import os
 import re
 import shlex
@@ -66,7 +67,6 @@ _LTO_NONE = [
 # Handy arguments to build as fast as possible.
 _FASTEST = _LOCAL + _LTO_NONE
 
-
 def load_arguments():
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
@@ -85,13 +85,12 @@ def load_arguments():
                         dest="include_abi_tests",
                         help="Include ABI Monitoring related tests." +
                         "NOTE: It requires a branch with ABI monitoring enabled.")
-    parser.add_argument("--mounted-kleaf-repo",
-                        type=_require_absolute_path,
-                        help="""The path to Kleaf tooling repository.
+    parser.add_argument("--mount-spec",
+                        type=_deserialize_mount_spec,
+                        help="""A JSON dictionary specifying bind mounts.
 
-                            If not set, some tests will mount the Kleaf
-                            repository to certain locations and re-run itself
-                            with the flag set.""")
+                            If not set, some tests will re-run itself
+                            in an unshare-d namespace with the flag set.""")
     group = parser.add_argument_group("CI", "flags for ci.android.com")
     group.add_argument("--test_result_dir",
                        type=_require_absolute_path,
@@ -110,6 +109,18 @@ def _require_absolute_path(p: str) -> pathlib.Path:
     if not path.is_absolute():
         raise ValueError(f"{p} is not absolute")
     return path
+
+
+MountSpec = dict[pathlib.Path, pathlib.Path]
+
+
+def _serialize_mount_spec(val: MountSpec):
+    return json.dumps({str(key): str(value) for key, value in val.items()})
+
+
+def _deserialize_mount_spec(s: str) -> MountSpec:
+    return {pathlib.Path(key): pathlib.Path(value)
+            for key, value in json.loads(s).items()}
 
 
 class Exec(object):
@@ -425,13 +436,16 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
     def test_kleaf_module_below_ddk_workspace(self):
         """Tests that @kelaf is below DDK workspace"""
         kleaf_repo = self.ddk_workspace / "external/kleaf"
-        this_test = self.id().removeprefix("__main__.")
-        if not arguments.mounted_kleaf_repo:
-            self._mount_and_run(kleaf_repo=kleaf_repo, test=this_test)
+        if not arguments.mount_spec:
+            mount_spec = {
+                self.real_kleaf_repo: kleaf_repo
+            }
+            self._unshare_mount_run(mount_spec=mount_spec)
             return
-        self._run_ddk_workspace_setup_test(arguments.mounted_kleaf_repo)
+        self._run_ddk_workspace_setup_test(kleaf_repo)
 
-    def _mount_and_run(self, kleaf_repo: pathlib.Path, test: str):
+    def _unshare_mount_run(self, mount_spec: MountSpec):
+        """Reruns the test in an unshare-d namespace with --mount-spec set."""
         args = [shutil.which("unshare"), "--mount", "--map-root-user"]
 
         # toybox unshare -R does not imply -U, so explicitly say so.
@@ -443,8 +457,8 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         test_args.extend(f"--bazel-arg={arg}" for arg in arguments.bazel_args)
         test_args.extend(f"--bazel-wrapper-arg={arg}"
                          for arg in arguments.bazel_wrapper_args)
-        test_args.append(f"--mounted-kleaf-repo={kleaf_repo}")
-        test_args.append(test)
+        test_args.append(f"--mount-spec={_serialize_mount_spec(mount_spec)}")
+        test_args.append(self.id().removeprefix("__main__."))
         args.append(" ".join(shlex.quote(str(test_arg))
                              for test_arg in test_args))
 
@@ -468,11 +482,13 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         self.addCleanup(Exec.check_call, git_clean_args,
                         cwd=self.ddk_workspace)
 
-        if kleaf_repo != self.real_kleaf_repo:
-            Exec.check_call([shutil.which("mount"), "--bind", "-o", "ro",
-                             str(self.real_kleaf_repo), str(kleaf_repo)])
-            self.addCleanup(Exec.check_call,
-                            [shutil.which("umount"), str(kleaf_repo)])
+        if arguments.mount_spec:
+            for from_path, to_path in arguments.mount_spec.items():
+                to_path.mkdir(parents=True, exist_ok=True)
+                Exec.check_call([shutil.which("mount"), "--bind", "-o", "ro",
+                                str(from_path), str(to_path)])
+                self.addCleanup(Exec.check_call,
+                                [shutil.which("umount"), str(to_path)])
 
         self._check_call("run", [
             "//build/kernel:init_ddk",
