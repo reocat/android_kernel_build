@@ -145,6 +145,83 @@ ddk_uapi_headers(
 | <a id="ddk_uapi_headers-kernel_build"></a>kernel_build |  [`kernel_build`](#kernel_build).   | <a href="https://bazel.build/concepts/labels">Label</a> | required |  |
 
 
+<a id="dependency_graph_drawer"></a>
+
+## dependency_graph_drawer
+
+<pre>
+dependency_graph_drawer(<a href="#dependency_graph_drawer-name">name</a>, <a href="#dependency_graph_drawer-adjacency_list">adjacency_list</a>)
+</pre>
+
+A rule that creates a Graphviz[0] diagram file.
+
+  Inputs:
+    A json file describing a graph as an adjacency list.
+
+  Outputs:
+    A `dependency_graph.dot` file containing the diagram representation.
+
+    NOTE: For further simplification of the resulting diagram `tred` utility from
+    the CLI [1] can be used as in the following example:
+        `tred dependency_graph.dot > simplified.dot`
+
+  Example:
+    dependency_graph_drawer(
+        name = "db845c_dependency_graph",
+        adjacency_list = ":db845c_dependencies",
+    )
+
+[0] https://graphviz.org/
+[1] https://graphviz.org/docs/cli/tred/
+
+**ATTRIBUTES**
+
+
+| Name  | Description | Type | Mandatory | Default |
+| :------------- | :------------- | :------------- | :------------- | :------------- |
+| <a id="dependency_graph_drawer-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
+| <a id="dependency_graph_drawer-adjacency_list"></a>adjacency_list |  -   | <a href="https://bazel.build/concepts/labels">Label</a> | required |  |
+
+
+<a id="dependency_graph_extractor"></a>
+
+## dependency_graph_extractor
+
+<pre>
+dependency_graph_extractor(<a href="#dependency_graph_extractor-name">name</a>, <a href="#dependency_graph_extractor-enable_add_vmlinux">enable_add_vmlinux</a>, <a href="#dependency_graph_extractor-kernel_build">kernel_build</a>, <a href="#dependency_graph_extractor-kernel_modules">kernel_modules</a>)
+</pre>
+
+A rule that extracts a symbol dependency graph from a kernel build and modules.
+
+  It works by matching undefined symbols from one module with exported symbols from other.
+
+  Inputs:
+    It receives a Kernel build target, where the analysis will run (vmlinux + in-tree modules),
+     aditionally a list of external modules can be accepted.
+
+  Outputs:
+    A `dependency_graph.json` file describing the graph as an adjacency list.
+
+  Example:
+    dependency_graph_extractor(
+        name = "db845c_dependencies",
+        kernel_build = ":db845c",
+        # kernel_modules = [],
+    )
+
+[0] https://graphviz.org/
+
+**ATTRIBUTES**
+
+
+| Name  | Description | Type | Mandatory | Default |
+| :------------- | :------------- | :------------- | :------------- | :------------- |
+| <a id="dependency_graph_extractor-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
+| <a id="dependency_graph_extractor-enable_add_vmlinux"></a>enable_add_vmlinux |  If `True` enables `kernel_build_add_vmlinux` transition.   | Boolean | optional |  `True`  |
+| <a id="dependency_graph_extractor-kernel_build"></a>kernel_build |  -   | <a href="https://bazel.build/concepts/labels">Label</a> | optional |  `None`  |
+| <a id="dependency_graph_extractor-kernel_modules"></a>kernel_modules |  -   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
+
+
 <a id="extract_symbols"></a>
 
 ## extract_symbols
