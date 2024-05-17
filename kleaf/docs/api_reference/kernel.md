@@ -145,6 +145,83 @@ ddk_uapi_headers(
 | <a id="ddk_uapi_headers-kernel_build"></a>kernel_build |  [`kernel_build`](#kernel_build).   | <a href="https://bazel.build/concepts/labels">Label</a> | required |  |
 
 
+<a id="dependency_graph_drawer"></a>
+
+## dependency_graph_drawer
+
+<pre>
+dependency_graph_drawer(<a href="#dependency_graph_drawer-name">name</a>, <a href="#dependency_graph_drawer-adjacency_list">adjacency_list</a>)
+</pre>
+
+A rule that creates a Graphviz[0] diagram file.
+
+  Inputs:
+    A json file describing a graph as an adjacency list.
+
+  Outputs:
+    A `dependency_graph.dot` file containing the diagram representation.
+
+    NOTE: For further simplification of the resulting diagram `tred` utility from
+    the CLI [1] can be used as in the following example:
+        `tred dependency_graph.dot > simplified.dot`
+
+  Example:
+    dependency_graph_drawer(
+        name = "db845c_dependency_graph",
+        adjacency_list = ":db845c_dependencies",
+    )
+
+[0] https://graphviz.org/
+[1] https://graphviz.org/docs/cli/tred/
+
+**ATTRIBUTES**
+
+
+| Name  | Description | Type | Mandatory | Default |
+| :------------- | :------------- | :------------- | :------------- | :------------- |
+| <a id="dependency_graph_drawer-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
+| <a id="dependency_graph_drawer-adjacency_list"></a>adjacency_list |  -   | <a href="https://bazel.build/concepts/labels">Label</a> | required |  |
+
+
+<a id="dependency_graph_extractor"></a>
+
+## dependency_graph_extractor
+
+<pre>
+dependency_graph_extractor(<a href="#dependency_graph_extractor-name">name</a>, <a href="#dependency_graph_extractor-enable_add_vmlinux">enable_add_vmlinux</a>, <a href="#dependency_graph_extractor-kernel_build">kernel_build</a>, <a href="#dependency_graph_extractor-kernel_modules">kernel_modules</a>)
+</pre>
+
+A rule that extracts a symbol dependency graph from a kernel build and modules.
+
+  It works by matching undefined symbols from one module with exported symbols from other.
+
+  Inputs:
+    It receives a Kernel build target, where the analysis will run (vmlinux + in-tree modules),
+     aditionally a list of external modules can be accepted.
+
+  Outputs:
+    A `dependency_graph.json` file describing the graph as an adjacency list.
+
+  Example:
+    dependency_graph_extractor(
+        name = "db845c_dependencies",
+        kernel_build = ":db845c",
+        # kernel_modules = [],
+    )
+
+[0] https://graphviz.org/
+
+**ATTRIBUTES**
+
+
+| Name  | Description | Type | Mandatory | Default |
+| :------------- | :------------- | :------------- | :------------- | :------------- |
+| <a id="dependency_graph_extractor-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
+| <a id="dependency_graph_extractor-enable_add_vmlinux"></a>enable_add_vmlinux |  If `True` enables `kernel_build_add_vmlinux` transition.   | Boolean | optional |  `True`  |
+| <a id="dependency_graph_extractor-kernel_build"></a>kernel_build |  -   | <a href="https://bazel.build/concepts/labels">Label</a> | optional |  `None`  |
+| <a id="dependency_graph_extractor-kernel_modules"></a>kernel_modules |  -   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
+
+
 <a id="extract_symbols"></a>
 
 ## extract_symbols
@@ -942,7 +1019,8 @@ commands to Bazel commands.
 ## kernel_abi_dist
 
 <pre>
-kernel_abi_dist(<a href="#kernel_abi_dist-name">name</a>, <a href="#kernel_abi_dist-kernel_abi">kernel_abi</a>, <a href="#kernel_abi_dist-kernel_build_add_vmlinux">kernel_build_add_vmlinux</a>, <a href="#kernel_abi_dist-kwargs">kwargs</a>)
+kernel_abi_dist(<a href="#kernel_abi_dist-name">name</a>, <a href="#kernel_abi_dist-kernel_abi">kernel_abi</a>, <a href="#kernel_abi_dist-kernel_build_add_vmlinux">kernel_build_add_vmlinux</a>, <a href="#kernel_abi_dist-ignore_diff">ignore_diff</a>, <a href="#kernel_abi_dist-no_ignore_diff_target">no_ignore_diff_target</a>,
+                <a href="#kernel_abi_dist-kwargs">kwargs</a>)
 </pre>
 
 A wrapper over `copy_to_dist_dir` for [`kernel_abi`](#kernel_abi).
@@ -964,6 +1042,8 @@ particular, the `kernel_build` targets in `data` automatically builds
 | <a id="kernel_abi_dist-name"></a>name |  name of the dist target   |  none |
 | <a id="kernel_abi_dist-kernel_abi"></a>kernel_abi |  name of the [`kernel_abi`](#kernel_abi) invocation.   |  none |
 | <a id="kernel_abi_dist-kernel_build_add_vmlinux"></a>kernel_build_add_vmlinux |  If `True`, all `kernel_build` targets depended on by this change automatically applies a [transition](https://bazel.build/extending/config#user-defined-transitions) that always builds `vmlinux`. For up-to-date implementation details, look for `with_vmlinux_transition` in `build/kernel/kleaf/impl/abi`.<br><br>If there are multiple `kernel_build` targets in `data`, only keep the one for device build. Otherwise, the build may break. For example:<br><br><pre><code>kernel_build(&#10;    name = "tuna",&#10;    base_kernel = "//common:kernel_aarch64"&#10;    ...&#10;)&#10;&#10;kernel_abi(...)&#10;kernel_abi_dist(&#10;    name = "tuna_abi_dist",&#10;    data = [&#10;        ":tuna",&#10;        # "//common:kernel_aarch64", # remove GKI&#10;    ],&#10;    kernel_build_add_vmlinux = True,&#10;)</code></pre><br><br>Enabling this option ensures that `tuna_abi_dist` doesn't build `//common:kernel_aarch64` and `:tuna` twice, once with the transition and once without. Enabling this ensures that `//common:kernel_aarch64` and `:tuna` always built with the transition.<br><br>**Note**: Its value will be `True` by default in the future. During the migration period, this is `False` by default. Once all devices have been fixed, this attribute will be set to `True` by default.   |  `None` |
+| <a id="kernel_abi_dist-ignore_diff"></a>ignore_diff |  [Nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes). If `True` and the return code of `stgdiff` signals the ABI difference, then the result is ignored.   |  `None` |
+| <a id="kernel_abi_dist-no_ignore_diff_target"></a>no_ignore_diff_target |  [Nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes). If `ignore_diff` is `True`, this need to be set to a name of the target that doesn't have `ignore_diff`. This target will be recommended as an alternative to a user. If `no_ignore_diff_target` is None, there will be no alternative recommended.   |  `None` |
 | <a id="kernel_abi_dist-kwargs"></a>kwargs |  Additional attributes to the internal rule, e.g. [`visibility`](https://docs.bazel.build/versions/main/visibility.html). See complete list [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).   |  none |
 
 

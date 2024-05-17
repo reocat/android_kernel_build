@@ -2,27 +2,6 @@
 
 Provide tools for a hermetic build.
 
-<a id="hermetic_tools"></a>
-
-## hermetic_tools
-
-<pre>
-hermetic_tools(<a href="#hermetic_tools-name">name</a>, <a href="#hermetic_tools-deps">deps</a>, <a href="#hermetic_tools-extra_args">extra_args</a>, <a href="#hermetic_tools-symlinks">symlinks</a>)
-</pre>
-
-Provide tools for a hermetic build.
-
-**ATTRIBUTES**
-
-
-| Name  | Description | Type | Mandatory | Default |
-| :------------- | :------------- | :------------- | :------------- | :------------- |
-| <a id="hermetic_tools-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
-| <a id="hermetic_tools-deps"></a>deps |  additional dependencies. These aren't added to the `PATH`.   | <a href="https://bazel.build/concepts/labels">List of labels</a> | optional |  `[]`  |
-| <a id="hermetic_tools-extra_args"></a>extra_args |  Keys are names to the tool (see `symlinks`). Values are extra arguments added to the tool at the end.   | <a href="https://bazel.build/rules/lib/dict">Dictionary: String -> List of strings</a> | optional |  `{}`  |
-| <a id="hermetic_tools-symlinks"></a>symlinks |  A dictionary, where keys are labels to an executable, and values are names to the tool, separated with `:`. e.g.<br><br><pre><code>{"//label/to:toybox": "cp:realpath"}</code></pre>   | <a href="https://bazel.build/rules/lib/dict">Dictionary: Label -> String</a> | optional |  `{}`  |
-
-
 <a id="hermetic_exec"></a>
 
 ## hermetic_exec
@@ -121,5 +100,27 @@ Returns the resolved toolchain information.
 **RETURNS**
 
 _HermeticToolchainInfo (see hermetic_tools.bzl).
+
+
+<a id="hermetic_tools"></a>
+
+## hermetic_tools
+
+<pre>
+hermetic_tools(<a href="#hermetic_tools-name">name</a>, <a href="#hermetic_tools-deps">deps</a>, <a href="#hermetic_tools-symlinks">symlinks</a>, <a href="#hermetic_tools-extra_args">extra_args</a>, <a href="#hermetic_tools-kwargs">kwargs</a>)
+</pre>
+
+Provide tools for a hermetic build.
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="hermetic_tools-name"></a>name |  name of the target   |  none |
+| <a id="hermetic_tools-deps"></a>deps |  additional dependencies. These aren't added to the `PATH`.   |  `None` |
+| <a id="hermetic_tools-symlinks"></a>symlinks |  A dictionary, where keys are labels to an executable, and values are names to the tool, separated with `:`. e.g.<br><br><pre><code>{"//label/to:toybox": "cp:realpath"}</code></pre>   |  `None` |
+| <a id="hermetic_tools-extra_args"></a>extra_args |  Keys are names to the tool (see `symlinks`). Values are extra arguments added to the tool at the end.   |  `None` |
+| <a id="hermetic_tools-kwargs"></a>kwargs |  Additional attributes to the internal rule, e.g. [`visibility`](https://docs.bazel.build/versions/main/visibility.html). See complete list [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).   |  none |
 
 
