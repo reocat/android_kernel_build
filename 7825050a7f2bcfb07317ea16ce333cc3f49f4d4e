@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90717342_015ffa2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-17T21:27:50Z",
+      "side": 1,
+      "message": "Overall implementation-wise comment: I think the $(realpath) evaluation should happen inside `extract_git_metadata` so it is more generic. That is, if you have other symlinks to module directories in the repository for scmversion, evaluating extract_git_metadata on those symlinks would also work.\n\nPolicy-wise comments will be posted in the bug instead.",
+      "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e2b4bbf_df397305",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-17T21:27:50Z",
+      "side": 1,
+      "message": "`real_root_dir` may or may not be defined. Would `${ROOT_DIR}` work here?",
+      "range": {
+        "startLine": 78,
+        "startChar": 50,
+        "endLine": 78,
+        "endChar": 63
+      },
+      "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "533417d5_75b33e04",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-17T21:27:50Z",
+      "side": 1,
+      "message": "Instead of `export`-ing this variable, consider evaluating this as part of extract_git_metadata instead. This avoids creating too many environment variables (which is already a big surface)",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 6
+      },
+      "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7aaf238e_d664ef6f",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-17T21:27:50Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be `basename` but rather\n\n`$(realpath --relative-to ${ROOT_DIR} ${ROOT_DIR}/${KERNEL_DIR})`\n\n... because KERNEL_DIR may contain `/`.",
+      "range": {
+        "startLine": 78,
+        "startChar": 23,
+        "endLine": 78,
+        "endChar": 80
+      },
+      "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
