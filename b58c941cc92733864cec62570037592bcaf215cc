@@ -136,6 +136,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6c3da0f_55a186a5",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-17T20:42:54Z",
+      "side": 1,
+      "message": "The error with rules_cc should be resolved by adding an empty WORKSPACE.bzlmod file. The problem is probably that without a WORKSPACE file, Bazel generates one with non-empty content that defines **legacy** `rules_cc` (not the bzlmod `rules_cc`, which becomes `@@rules_cc~` later), and something depends on it. I think adding an empty WORKSPACE.bzlmod is a better workaround than explicitly defining bazel_dep(rules_cc) albeit still a workaround.",
+      "parentUuid": "378e731c_6dfaebf5",
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fd0df757_40f38c47",
         "filename": "init/init_ddk.py",
         "patchSetId": 6
