@@ -23,6 +23,11 @@ load(
     _initramfs_modules_lists_test = "initramfs_modules_lists_test",
     _kernel_module_test = "kernel_module_test",
 )
+load(
+    "//build/kernel/kleaf/impl:abi/dependency_graph.bzl",
+    _dependency_graph_drawer = "dependency_graph_drawer",
+    _dependency_graph_extractor = "dependency_graph_extractor",
+)
 load("//build/kernel/kleaf/impl:abi/extracted_symbols.bzl", _extract_symbols = "extracted_symbols")
 load("//build/kernel/kleaf/impl:abi/kernel_abi.bzl", _kernel_abi = "kernel_abi")
 load("//build/kernel/kleaf/impl:abi/kernel_abi_dist.bzl", _kernel_abi_dist = "kernel_abi_dist")
@@ -57,6 +62,8 @@ ddk_headers_archive = _ddk_headers_archive
 ddk_module = _ddk_module
 ddk_submodule = _ddk_submodule
 ddk_uapi_headers = _ddk_uapi_headers
+dependency_graph_drawer = _dependency_graph_drawer
+dependency_graph_extractor = _dependency_graph_extractor
 extract_symbols = _extract_symbols
 gki_artifacts = _gki_artifacts
 gki_artifacts_prebuilts = _gki_artifacts_prebuilts
