@@ -36,6 +36,7 @@ Example:
 """
 
 import argparse
+import collections
 import contextlib
 import hashlib
 import os
@@ -295,6 +296,26 @@ class KleafIntegrationTestBase(unittest.TestCase):
         """Returns the common package."""
         return "common"
 
+    @staticmethod
+    def _force_relative_to(path: pathlib.Path, other: pathlib.Path):
+        """Naive implementation of pathlib.Path.relative_to(walk_up)"""
+        if sys.version_info[0] == 3 and sys.version_info[1] >= 12:
+            return path.relative_to(other, walk_up=True)
+
+        path = path.resolve()
+        other = other.resolve()
+
+        if path.is_relative_to(other):
+            return path.relative_to(other)
+
+        path_parts = collections.deque(path.parts)
+        other_parts = collections.deque(other.parts)
+        while path_parts and other_parts and path_parts[0] == other_parts[0]:
+            path_parts.popleft()
+            other_parts.popleft()
+        parts = [".."] * len(other_parts) + list(path_parts)
+        return pathlib.Path(*parts)
+
 
 # NOTE: It requires a branch with ABI monitoring enabled.
 #   Include these using the flag --include-abi-tests
@@ -493,25 +514,6 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
 
         # Delete generated files
         self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
-
-    @staticmethod
-    def _force_relative_to(path: pathlib.Path, other: pathlib.Path):
-        """Naive implementation of pathlib.Path.relative_to(walk_up)"""
-        if sys.version_info[0] == 3 and sys.version_info[1] >= 12:
-            return path.relative_to(other, walk_up=True)
-
-        path = path.resolve()
-        other = other.resolve()
-
-        if path.is_relative_to(other):
-            return path.relative_to(other)
-
-        if (len(path.parts) <= len(other.parts) and
-                other.parts[:len(path.parts)] == path.parts):
-            parts = [".."] * (len(other.parts) - len(path.parts))
-            return pathlib.Path(*parts)
-        raise ValueError(
-            f"Cannot calculate relative path from {path} to {other}")
 
 
 # Quick integration tests. Each test case should finish within 1 minute.
