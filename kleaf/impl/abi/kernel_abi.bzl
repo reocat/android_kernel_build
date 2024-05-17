@@ -20,6 +20,7 @@ load(":abi/abi_dump.bzl", "abi_dump")
 load(":abi/abi_stgdiff.bzl", "stgdiff")
 load(":abi/abi_transitions.bzl", "abi_common_attrs", "with_vmlinux_transition")
 load(":abi/abi_update.bzl", "abi_update")
+load(":abi/dependency_graph.bzl", "dependency_graph")
 load(":abi/extracted_symbols.bzl", "extracted_symbols")
 load(":abi/get_src_kmi_symbol_list.bzl", "get_src_kmi_symbol_list")
 load(":abi/get_src_protected_exports_files.bzl", "get_src_protected_exports_list", "get_src_protected_modules_list")
@@ -292,6 +293,13 @@ def _define_abi_targets(
         kmi_symbol_list_add_only = kmi_symbol_list_add_only,
         kernel_modules_exclude_list = kernel_modules_exclude_list,
         enable_add_vmlinux = enable_add_vmlinux,
+        **private_kwargs
+    )
+
+    dependency_graph(
+        name = name + "_dependency_graph",
+        kernel_build = kernel_build,
+        kernel_modules = kernel_modules,
         **private_kwargs
     )
 
