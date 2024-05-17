@@ -155,57 +155,47 @@ def list_projects() -> list[pathlib.Path]:
     Returns:
         a list of projects in the repository.
     """
-    if "KLEAF_REPO_MANIFEST" in os.environ:
-        with open(os.environ["KLEAF_REPO_MANIFEST"]) as repo_prop_file:
-            return parse_repo_manifest(repo_prop_file.read())
+    repo_root_s, repo_manifest = os.environ["KLEAF_REPO_MANIFEST"].split(":")
+    repo_root = pathlib.Path(repo_root_s)
+
+    if repo_manifest:
+        with open(repo_manifest) as repo_manifest_file:
+            return parse_repo_manifest(repo_root, repo_manifest_file.read())
 
     try:
-        output = subprocess.check_output(["repo", "list", "-f"], text=True)
-        return parse_repo_list(output)
+        output = subprocess.check_output(["repo", "manifest", "-r"], text=True)
+        return parse_repo_manifest(repo_root, output)
     except (subprocess.SubprocessError, FileNotFoundError) as e:
-        logging.warning("Unable to execute repo list -f: %s", e)
+        logging.warning("Unable to execute repo manifest -r: %s", e)
         return []
 
 
-def parse_repo_manifest(manifest: str) -> list[pathlib.Path]:
+def parse_repo_manifest(repo_root: pathlib.Path, manifest: str) \
+        -> list[pathlib.Path]:
     """Parses a repo manifest file.
 
     Returns:
         a list of paths to all projects in the repository.
     """
+    kleaf_repo_dir = pathlib.Path(".").resolve()
     try:
         dom = xml.dom.minidom.parseString(manifest)
     except xml.parsers.expat.ExpatError as e:
         logging.error("Unable to parse repo manifest: %s", e)
         return []
     projects = dom.documentElement.getElementsByTagName("project")
-    # https://gerrit.googlesource.com/git-repo/+/master/docs/manifest-format.md#element-project
-    return [
-        pathlib.Path(proj.getAttribute("path") or proj.getAttribute("name"))
-        for proj in projects
-    ]
-
-
-def parse_repo_list(repo_list: str) -> list[pathlib.Path]:
-    """Parses the result of `repo list -f`.
-
-    Returns:
-        a list of paths to all projects in the repository.
-    """
-    workspace = pathlib.Path(".").absolute()
-    paths = []
-    for line in repo_list.splitlines():
-        line = line.strip()
-        if not line or ":" not in line:
-            continue
-        proj = pathlib.Path(line.split(":", 2)[0].strip())
-        if proj.is_relative_to(workspace):
-            paths.append(proj.relative_to(workspace))
+    ret = []
+    for project in projects:
+        # https://gerrit.googlesource.com/git-repo/+/master/docs/manifest-format.md#element-project
+        path_below_repo = pathlib.Path(project.getAttribute("path") or
+                                       project.getAttribute("name"))
+        realpath = repo_root / path_below_repo
+        if realpath.is_relative_to(kleaf_repo_dir):
+            ret.append(realpath.relative_to(kleaf_repo_dir))
         else:
-            logging.info(
-                "Ignoring project %s because it is not under the Bazel workspace",
-                proj)
-    return paths
+            logging.warning("Skipping project %s because it is not below %s",
+                            realpath, kleaf_repo_dir)
+    return ret
 
 
 def collect(popen_obj: subprocess.Popen) -> str:
