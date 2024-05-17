@@ -16,6 +16,47 @@
       "message": "I think this is OK because for symbol extraction this list is always included: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/abi/extract_symbols.py;l\u003d29-32",
       "revId": "62e8567af2d91379def327efb03739e664303aa0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26c1b4e4_c496f806",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-05-17T15:11:27Z",
+      "side": 1,
+      "message": "delete this line",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 13
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1c099ee1_c97d3196",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/process_symbols.py",
+              "range": {
+                "startLine": 29,
+                "startChar": 0,
+                "endLine": 31,
+                "endChar": 0
+              },
+              "replacement": "  FORBIDDEN \u003d 1\n"
+            }
+          ]
+        }
+      ],
+      "revId": "62e8567af2d91379def327efb03739e664303aa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
