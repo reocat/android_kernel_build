@@ -24,11 +24,14 @@ _TRACE_POINT = '__tracepoint_'
 _TRACE_ITER = '__traceiter_'
 
 
+<<<<<<< PATCH SET (1943c1 Simplify process_symbols.py script)
+=======
 class Status(enum.Enum):
   UNKNOWN = 0
   DENIED = 1
 
 
+>>>>>>> BASE      (fe05a2 Discontinue generating abi_symbollist.report for kernel buil)
 def _validate_symbols(symbol_list, symbols):
   """Validates Tracepoints consistenty in a given symbol list."""
   missing = []
@@ -101,6 +104,8 @@ def _get_symbols(lines):
   return symbols
 
 
+<<<<<<< PATCH SET (1943c1 Simplify process_symbols.py script)
+=======
 def _check_symbols(denied_symbols, symbols):
   """Checks symbols against denied symbols configuration."""
   report = []
@@ -113,6 +118,7 @@ def _check_symbols(denied_symbols, symbols):
   return report
 
 
+>>>>>>> BASE      (fe05a2 Discontinue generating abi_symbollist.report for kernel buil)
 def main():
   dir = os.path.dirname(sys.argv[0])
   deny_file = os.path.join(dir, 'symbols.deny')
@@ -150,7 +156,10 @@ def main():
   denied_symbols = _read_denied_symbols_config(deny_file)
   lines = _read_symbol_lists(symbol_lists)
   symbols = _get_symbols(lines)
+<<<<<<< PATCH SET (1943c1 Simplify process_symbols.py script)
+=======
   report = _check_symbols(denied_symbols, symbols)
+>>>>>>> BASE      (fe05a2 Discontinue generating abi_symbollist.report for kernel buil)
 
   if args.verbose:
     print('========================================================')
@@ -162,8 +171,9 @@ def main():
   if args.verbose:
 <<<<<<< PATCH SET (2929d9 Discontinue generating abi_symbollist.report for kernel buil)
     print('Checking symbols are not forbidden')
-  for symbol, status, reason in report:
-    if status == Status.FORBIDDEN:
+  for symbol in symbols:
+    if symbol in forbidden_symbols:
+      reason = forbidden_symbols[symbol]
       print(f"symbol '{symbol}' is not allowed: {reason}", file=sys.stderr)
       exit_status = 1
 =======
