@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edcc6858_61dff516",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-17T15:04:45Z",
+      "side": 1,
+      "message": "I think this is OK because for symbol extraction this list is always included: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/abi/extract_symbols.py;l\u003d29-32",
+      "revId": "62e8567af2d91379def327efb03739e664303aa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
