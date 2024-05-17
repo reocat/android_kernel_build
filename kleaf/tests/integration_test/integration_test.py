@@ -523,12 +523,13 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         if path.is_relative_to(other):
             return path.relative_to(other)
 
-        if (len(path.parts) <= len(other.parts) and
-                other.parts[:len(path.parts)] == path.parts):
-            parts = [".."] * (len(other.parts) - len(path.parts))
-            return pathlib.Path(*parts)
-        raise ValueError(
-            f"Cannot calculate relative path from {path} to {other}")
+        path_parts = collections.deque(path.parts)
+        other_parts = collections.deque(other.parts)
+        while path_parts and other_parts and path_parts[0] == other_parts[0]:
+            path_parts.popleft()
+            other_parts.popleft()
+        parts = [".."] * len(other_parts) + list(path_parts)
+        return pathlib.Path(*parts)
 
 
 # Quick integration tests. Each test case should finish within 1 minute.
