@@ -1,0 +1,62 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "559971d1_1fe2b98a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-05-17T15:15:34Z",
+      "side": 1,
+      "message": "What\u0027s all the mess in the commit message?",
+      "revId": "d24cdd9bd0c16389fb8f028252f2ec3ec0efcb49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfb549de_e6f7b3a4",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-05-17T15:15:34Z",
+      "side": 1,
+      "message": "Checking for forbidden symbols",
+      "range": {
+        "startLine": 164,
+        "startChar": 46,
+        "endLine": 165,
+        "endChar": 28
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "52a57b18_b5a2365f",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/process_symbols.py",
+              "range": {
+                "startLine": 164,
+                "startChar": 0,
+                "endLine": 165,
+                "endChar": 0
+              },
+              "replacement": "    print(\u0027Checking for forbidden symbols\u0027)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d24cdd9bd0c16389fb8f028252f2ec3ec0efcb49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
