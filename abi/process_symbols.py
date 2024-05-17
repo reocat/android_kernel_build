@@ -24,12 +24,6 @@ _TRACE_POINT = '__tracepoint_'
 _TRACE_ITER = '__traceiter_'
 
 
-class Status(enum.Enum):
-  UNKNOWN = 0
-  ALLOWED = 1
-  FORBIDDEN = 2
-
-
 def _validate_symbols(symbol_list, symbols):
   """Validates Tracepoints consistenty in a given symbol list."""
   missing = []
@@ -102,18 +96,6 @@ def _get_symbols(lines):
   return symbols
 
 
-def _check_symbols(forbidden_symbols, symbols):
-  """Checks symbols against forbidden symbols configuration."""
-  report = []
-  for symbol in sorted(symbols):
-    if symbol in forbidden_symbols:
-      reason = forbidden_symbols[symbol]
-      report.append([symbol, Status.FORBIDDEN, reason])
-    else:
-      report.append([symbol, Status.UNKNOWN, ''])
-  return report
-
-
 def main():
   dir = os.path.dirname(sys.argv[0])
   deny_file = os.path.join(dir, 'symbols.deny')
@@ -151,7 +133,6 @@ def main():
   forbidden_symbols = _read_forbidden_symbols_config(deny_file)
   lines = _read_symbol_lists(symbol_lists)
   symbols = _get_symbols(lines)
-  report = _check_symbols(forbidden_symbols, symbols)
 
   if args.verbose:
     print('========================================================')
@@ -162,8 +143,9 @@ def main():
   exit_status = 0
   if args.verbose:
     print('Checking symbols are not forbidden')
-  for symbol, status, reason in report:
-    if status == Status.FORBIDDEN:
+  for symbol in symbols:
+    if symbol in forbidden_symbols:
+      reason = forbidden_symbols[symbol]
       print(f"symbol '{symbol}' is not allowed: {reason}", file=sys.stderr)
       exit_status = 1
 
