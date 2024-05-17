@@ -344,6 +344,22 @@ py_binary(
     deps = [":symbol_extraction"],
 )
 
+# Tools visible to all packages.
+py_binary(
+    name = "dependency_graph_extractor",
+    srcs = ["abi/dependency_graph_extractor.py"],
+    main = "abi/dependency_graph_extractor.py",
+    visibility = ["//visibility:public"],
+    deps = [":symbol_extraction"],
+)
+
+py_binary(
+    name = "dependency_graph_drawer",
+    srcs = ["abi/dependency_graph_drawer.py"],
+    main = "abi/dependency_graph_drawer.py",
+    visibility = ["//visibility:public"],
+)
+
 # Tools visible to all packages that uses kernel_abi.
 # Implementation detail of kernel_abi; do not use directly.
 py_binary(
