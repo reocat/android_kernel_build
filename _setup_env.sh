@@ -75,21 +75,23 @@ export DIST_DIR=$(readlink -m ${DIST_DIR:-${COMMON_OUT_DIR}/dist})
 export UNSTRIPPED_DIR=${DIST_DIR}/unstripped
 export UNSTRIPPED_MODULES_ARCHIVE=unstripped_modules.tar.gz
 export MODULES_ARCHIVE=modules.tar.gz
+export REAL_KERNEL_DIR=$(basename $(readlink -f ${real_root_dir}/${KERNEL_DIR}))
 
 export TZ=UTC
 export LC_ALL=C
 if [ -z "${SOURCE_DATE_EPOCH}" ]; then
   if [[ -n "${KLEAF_SOURCE_DATE_EPOCHS}" ]]; then
-    export SOURCE_DATE_EPOCH=$(extract_git_metadata "${KLEAF_SOURCE_DATE_EPOCHS}" "${KERNEL_DIR}" SOURCE_DATE_EPOCH)
+    echo ${KLEAF_SOURCE_DATE_EPOCHS}
+    export SOURCE_DATE_EPOCH=$(extract_git_metadata "${KLEAF_SOURCE_DATE_EPOCHS}" "${REAL_KERNEL_DIR}" SOURCE_DATE_EPOCH)
     # Unset KLEAF_SOURCE_DATE_EPOCHS to avoid polluting {kernel_build}_env.sh
     # with unnecessary information (git metadata of unrelated projects)
     unset KLEAF_SOURCE_DATE_EPOCHS
   else
-    export SOURCE_DATE_EPOCH=$(git -C ${ROOT_DIR}/${KERNEL_DIR} log -1 --pretty=%ct)
+    export SOURCE_DATE_EPOCH=$(git -C ${ROOT_DIR}/${REAL_KERNEL_DIR} log -1 --pretty=%ct)
   fi
 fi
 if [ -z "${SOURCE_DATE_EPOCH}" ]; then
-  echo "WARNING: Unable to determine SOURCE_DATE_EPOCH for ${ROOT_DIR}/${KERNEL_DIR}, fallback to 0" >&2
+  echo "WARNING: Unable to determine SOURCE_DATE_EPOCH for ${ROOT_DIR}/${REAL_KERNEL_DIR}, fallback to 0" >&2
   export SOURCE_DATE_EPOCH=0
 fi
 export KBUILD_BUILD_TIMESTAMP="$(date -d @${SOURCE_DATE_EPOCH})"
