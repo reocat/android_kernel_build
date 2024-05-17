@@ -32,7 +32,7 @@ class PathCollectible(object):
     path: pathlib.Path
 
     def collect(self) -> str:
-        return NotImplementedError
+        raise NotImplementedError
 
 
 @dataclasses.dataclass
