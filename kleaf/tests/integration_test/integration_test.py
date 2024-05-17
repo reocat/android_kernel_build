@@ -546,6 +546,28 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
                                            prebuilts_dir=prebuilts_dir,
                                            local=False)
 
+    def test_setup_with_downloaded_prebuilts(self):
+        """Tests that init_ddk --prebuilts_dir & valid URL works."""
+        self._check_call("run", [f"//{self._common()}:kernel_aarch64_dist"])
+
+        kleaf_repo = self.ddk_workspace / "external/kleaf"
+
+        if not arguments.mount_spec:
+            mount_spec, link_spec = self._get_project_mount_link_spec(
+                kleaf_repo, ["ddk", "ddk-external"],
+            )
+
+            self._unshare_mount_run(mount_spec=mount_spec, link_spec=link_spec)
+            return
+
+        real_prebuilts_dir = self.real_kleaf_repo / "out/kernel_aarch64/dist"
+        prebuilts_dir = self.ddk_workspace / "gki_prebuilts"
+        self._run_ddk_workspace_setup_test(
+            kleaf_repo,
+            prebuilts_dir=prebuilts_dir,
+            local=False,
+            url_fmt=f"file://{real_prebuilts_dir}/{{filename}}")
+
     def _get_project_mount_link_spec(self, kleaf_repo: pathlib.Path,
                                      groups: list[str]) \
         -> tuple[MountSpec, LinkSpec]:
@@ -593,7 +615,8 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
     def _run_ddk_workspace_setup_test(self,
                                       kleaf_repo: pathlib.Path,
                                       prebuilts_dir: pathlib.Path | None = None,
-                                      local: bool = True):
+                                      local: bool = True,
+                                      url_fmt: str | None = None):
         # kleaf_repo relative to ddk_workspace
         kleaf_repo_rel = self._force_relative_to(
             kleaf_repo, self.ddk_workspace)
@@ -635,6 +658,8 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             args.append("--local")
         if prebuilts_dir:
             args.append(f"--prebuilts_dir={prebuilts_dir}")
+        if url_fmt:
+            args.append(f"--url_fmt={url_fmt}")
         self._check_call("run", args)
         Exec.check_call([
             sys.executable,
