@@ -56,7 +56,7 @@ def _write_localversion(ctx):
     out_file = ctx.actions.declare_file(ctx.attr.name + "/localversion")
     if ctx.attr._config_is_stamp[BuildSettingInfo].value:
         inputs = [ctx.info_file]
-        stable_scmversion_cmd = _get_status_at_path(ctx, "STABLE_SCMVERSIONS", '"${KERNEL_DIR}"')
+        stable_scmversion_cmd = _get_status_at_path(ctx, "STABLE_SCMVERSIONS", '"${REAL_KERNEL_DIR}"')
     else:
         inputs = []
         stable_scmversion_cmd = "echo '-maybe-dirty'"
