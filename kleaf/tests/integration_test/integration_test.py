@@ -197,6 +197,13 @@ class Exec(object):
         subprocess.check_call(args, **kwargs)
 
     @staticmethod
+    def call(args: list[str], **kwargs) -> None:
+        """Executes a shell command."""
+        kwargs.setdefault("text", True)
+        sys.stderr.write(f"+ {' '.join(args)}\n")
+        subprocess.call(args, **kwargs)
+
+    @staticmethod
     def check_output(args: list[str], **kwargs) -> str:
         """Returns output of a shell command"""
         kwargs.setdefault("text", True)
@@ -376,7 +383,7 @@ class KleafIntegrationTestBase(unittest.TestCase):
             to_path.mkdir(parents=True, exist_ok=True)
             Exec.check_call([shutil.which("mount"), "--bind", "-o", "ro",
                             str(from_path), str(to_path)])
-            self.addCleanup(Exec.check_call,
+            self.addCleanup(Exec.call,
                             [shutil.which("umount"), str(to_path)])
 
         for link in arguments.link_spec:
@@ -1045,9 +1052,10 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
                            lambda x: re.search(extraversion_pattern, x),
                            ["EXTRAVERSION ="])
 
-    def _get_vmlinux_scmversion(self):
+    def _get_vmlinux_scmversion(self, workspace_root=pathlib.Path(".")):
         strings_output = Exec.check_output([
-            self.strings, f"bazel-bin/{self._common()}/kernel_aarch64/vmlinux"
+            self.strings,
+            str(workspace_root / f"bazel-bin/{self._common()}/kernel_aarch64/vmlinux")
         ])
         ret = []
         for line in strings_output.splitlines():
@@ -1159,6 +1167,59 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
         scmversion_pat = re.compile(
             r"^-android99-56(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?-ab123456$")
         for scmversion in self._get_vmlinux_scmversion():
+            self.assertRegexpMatches(scmversion, scmversion_pat)
+
+    def test_stamp_repo_root_is_not_workspace_root(self):
+        """Tests that --config=stamp works when repo root is not Bazel workspace root."""
+
+        self._setup_mainline()
+
+        real_workspace_root = pathlib.Path(".").resolve()
+        repo_root = (pathlib.Path(__file__).resolve().parent /
+                              "fake_repo_root")
+        workspace_root = repo_root / "fake_workspace_root"
+
+        if not arguments.mount_spec:
+            mount_spec = {
+                real_workspace_root : workspace_root
+            }
+
+            self._unshare_mount_run(mount_spec=mount_spec, link_spec=LinkSpec())
+            return
+
+        self._mount(workspace_root)
+
+        manifest = self._get_repo_manifest()
+        for project in manifest.documentElement.getElementsByTagName("project"):
+            path = project.getAttribute("path") or project.getAttribute("name")
+            project.setAttribute(
+                "path", str(pathlib.Path("fake_workspace_root") / path))
+
+        new_manifest_temp_file = tempfile.NamedTemporaryFile(
+            mode="w+", delete=False)
+        new_manifest = pathlib.Path(new_manifest_temp_file.name)
+        self.addCleanup(new_manifest.unlink)
+
+        with new_manifest_temp_file as file_handle:
+            manifest.writexml(file_handle)
+
+        # KI: For this build, git commands on certain projects (e.g.
+        # prebuilts/ndk-r26, prebuilts/clang) are slow because it needs to
+        # refresh index.
+        self._check_call(
+            "build",
+            _FASTEST + [
+                "--config=stamp",
+                f"--repo_manifest={repo_root}:{new_manifest}",
+                f"//{self._common()}:kernel_aarch64",
+            ],
+            cwd=workspace_root,
+            env=ScmversionIntegrationTest._env_without_build_number(),
+        )
+
+        scmversion_pat = re.compile(
+            r"^-rc999-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?$")
+        for scmversion in self._get_vmlinux_scmversion(workspace_root):
             self.assertRegexpMatches(scmversion, scmversion_pat)
 
 
