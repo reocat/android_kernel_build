@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7057ecc7_1835f375",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-17T20:39:26Z",
+      "side": 1,
+      "message": "FTR: https://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/include/uapi/linux/utsname.h",
+      "parentUuid": "90b71c06_cdb27a3e",
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2465fa38_6a23df6b",
         "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
         "patchSetId": 1
