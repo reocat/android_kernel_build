@@ -33,6 +33,7 @@ bzl_library(
         "abi/abi_transitions.bzl",
         "abi/abi_update.bzl",
         "abi/base_kernel_utils.bzl",
+        "abi/dependency_graph.bzl",
         "abi/extracted_symbols.bzl",
         "abi/force_add_vmlinux_utils.bzl",
         "abi/get_src_kmi_symbol_list.bzl",
