@@ -370,7 +370,7 @@ class KleafIntegrationTestBase(unittest.TestCase):
         """Returns the common package."""
         return "common"
 
-    def _mount(self, kleaf_repo: pathlib.Path):
+    def _mount(self, kleaf_repo: pathlib.Path, ignore_errors=False):
         """Mount according to --mount-spec"""
         for from_path, to_path in arguments.mount_spec.items():
             to_path.mkdir(parents=True, exist_ok=True)
@@ -384,7 +384,8 @@ class KleafIntegrationTestBase(unittest.TestCase):
             real_src = kleaf_repo / link.src
             relative_src = self._force_relative_to(real_src, real_dest.parent)
             real_dest.parent.mkdir(parents=True, exist_ok=True)
-            real_dest.symlink_to(relative_src)
+            if not ignore_errors or not real_dest.exists():
+                real_dest.symlink_to(relative_src)
 
     @staticmethod
     def _force_relative_to(path: pathlib.Path, other: pathlib.Path):
@@ -1160,6 +1161,69 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
             r"^-android99-56(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?-ab123456$")
         for scmversion in self._get_vmlinux_scmversion():
             self.assertRegexpMatches(scmversion, scmversion_pat)
+
+    def test_stamp_repo_root_is_not_workspace_root(self):
+        """Tests that --config=stamp works when repo root is not Bazel workspace root."""
+
+        # repo_root_dir = tempfile.TemporaryDirectory() # FIXME
+        # self.addCleanup(repo_root_dir.cleanup) # FIXME
+        repo_root = pathlib.Path("/tmp/integration_test_repo_root")
+        shutil.rmtree(repo_root, ignore_errors=True) # FIXME
+
+        workspace_root = repo_root / "kleaf"
+        workspace_root.mkdir(parents=True, exist_ok=True)
+
+        if not arguments.mount_spec:
+            mount_spec, link_spec = self._get_project_mount_link_spec(
+                workspace_root, groups=[])
+
+            self._unshare_mount_run(mount_spec=mount_spec, link_spec=link_spec)
+            return
+
+        # Ignore symlinks that have already been created
+        self._mount(workspace_root, ignore_errors=True)
+
+        # <workspace_root>/<project_path>/.git points to
+        # <workspace_root>/.repo/projects/<project_path>.git
+        # which is intentionally dropped in this test. Fix it.
+        # FIXME: This does not work because <workspace_root>/<project_path>/
+        # is a bind mount point at this moment.
+        # for _, to_path in arguments.mount_spec.items():
+        #     git_symlink: pathlib.Path = to_path / ".git"
+        #     if git_symlink.is_symlink() and not git_symlink.readlink().exists():
+        #         git_symlink.unlink()
+        #         project_path = to_path.relative_to(workspace_root)
+        #         dest = pathlib.Path(".").resolve() / project_path / ".git"
+        #         print(f"Creating {git_symlink} to {dest}", file=sys.stderr)
+        #         git_symlink.symlink_to(dest, target_is_directory=True)
+        #         print(f"{git_symlink} now points to {git_symlink.readlink()}", file=sys.stderr)
+        # sys.exit(1)
+
+        manifest = self._get_repo_manifest()
+        for project in manifest.documentElement.getElementsByTagName("project"):
+            path = project.getAttribute("path") or project.getAttribute("name")
+            project.setAttribute("path", str(pathlib.Path("kleaf") / path))
+
+        new_manifest_temp_file = tempfile.NamedTemporaryFile(
+            mode="w+", delete=False)
+        new_manifest = pathlib.Path(new_manifest_temp_file.name)
+        self.addCleanup(new_manifest.unlink)
+
+        with new_manifest_temp_file as file_handle:
+            manifest.writexml(file_handle)
+
+        self._check_call(
+            "build",
+            _FASTEST + [
+                "--config=stamp",
+                f"--repo_manifest={repo_root}:{new_manifest}",
+                # Work around issue when building inside an unshare-d namespace
+                f"--noincompatible_sandbox_hermetic_tmp",
+                f"//{self._common()}:kernel_aarch64_env",
+            ],
+            cwd=workspace_root,
+            env=ScmversionIntegrationTest._env_without_build_number(),
+        )
 
 
 # Class that mimics tee(1)
