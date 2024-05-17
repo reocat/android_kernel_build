@@ -57,6 +57,29 @@
       ],
       "revId": "d24cdd9bd0c16389fb8f028252f2ec3ec0efcb49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "374183f8_1e0a1c09",
+        "filename": "kleaf/impl/kmi_symbol_list.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-17T16:14:56Z",
+      "side": 1,
+      "message": "remove to fix the build fail error:\n`ERROR: /mnt/disks/build-disk/src/android/common-android-mainline/build/kernel/kleaf/impl/kmi_symbol_list.bzl:34:26: name \u0027report_file\u0027 is not defined (did you mean \u0027out_file\u0027?)`",
+      "range": {
+        "startLine": 34,
+        "startChar": 25,
+        "endLine": 34,
+        "endChar": 36
+      },
+      "revId": "d24cdd9bd0c16389fb8f028252f2ec3ec0efcb49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
