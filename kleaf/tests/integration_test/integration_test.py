@@ -1161,6 +1161,54 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
         for scmversion in self._get_vmlinux_scmversion():
             self.assertRegexpMatches(scmversion, scmversion_pat)
 
+    def test_stamp_repo_root_is_not_workspace_root(self):
+        """Tests that --config=stamp works when repo root is not Bazel workspace root."""
+
+        # repo_root_dir = tempfile.TemporaryDirectory() # FIXME
+        # self.addCleanup(repo_root_dir.cleanup) # FIXME
+        repo_root = pathlib.Path("/tmp/integration_test_repo_root")
+        shutil.rmtree(repo_root, ignore_errors=True) # FIXME
+
+        real_workspace_root = pathlib.Path(".").resolve()
+        workspace_root = repo_root / "kleaf"
+        workspace_root.mkdir(parents=True, exist_ok=True)
+
+        if not arguments.mount_spec:
+            mount_spec = {
+                real_workspace_root : workspace_root
+            }
+
+            self._unshare_mount_run(mount_spec=mount_spec, link_spec=LinkSpec())
+            return
+
+        self._mount(workspace_root)
+
+        manifest = self._get_repo_manifest()
+        for project in manifest.documentElement.getElementsByTagName("project"):
+            path = project.getAttribute("path") or project.getAttribute("name")
+            project.setAttribute("path", str(pathlib.Path("kleaf") / path))
+
+        new_manifest_temp_file = tempfile.NamedTemporaryFile(
+            mode="w+", delete=False)
+        new_manifest = pathlib.Path(new_manifest_temp_file.name)
+        self.addCleanup(new_manifest.unlink)
+
+        with new_manifest_temp_file as file_handle:
+            manifest.writexml(file_handle)
+
+        self._check_call(
+            "build",
+            _FASTEST + [
+                "--config=stamp",
+                f"--repo_manifest={repo_root}:{new_manifest}",
+                # Work around issue when building inside an unshare-d namespace
+                # f"--noincompatible_sandbox_hermetic_tmp",
+                f"//{self._common()}:kernel_aarch64_env",
+            ],
+            cwd=workspace_root,
+            env=ScmversionIntegrationTest._env_without_build_number(),
+        )
+
 
 # Class that mimics tee(1)
 class Tee(object):

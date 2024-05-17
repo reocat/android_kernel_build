@@ -104,6 +104,21 @@ def _require_absolute_path(p: str | pathlib.Path) -> pathlib.Path:
     return p
 
 
+def _check_repo_manifest(value: str) \
+        -> tuple[pathlib.Path | None, pathlib.Path | None]:
+    splitted = value.split(":")
+    match len(splitted):
+        case 0: return (None, None)
+        case 1: return (None, _require_absolute_path(value))
+        case 2:
+            repo_root, repo_manifest = splitted
+            return (_require_absolute_path(repo_root),
+                    _require_absolute_path(repo_manifest))
+    raise argparse.ArgumentTypeError(
+        "Must be <REPO_MANIFEST> or <REPO_ROOT>:<REPO_MANIFEST>"
+    )
+
+
 def _partition(lst: list[str], index: Optional[int]) \
         -> Tuple[list[str], Optional[str], list[str]]:
     """Returns the triple split by index.
@@ -295,9 +310,16 @@ class BazelWrapper(KleafHelpPrinter):
             help="Cache directory for --config=local.")
         group.add_argument(
             "--repo_manifest", metavar="<manifest.xml>",
-            help="""Absolute path to repo manifest file, generated with """
-                 """`repo manifest -r`.""",
-            type=_require_absolute_path,
+            help="""One of the following:
+            - <REPO_MANIFEST>, an absolute path to the repo manifest file,
+                generated with `repo manifest -r`. In this case REPO_ROOT is
+                assumed to be the workspace root. This usage is deprecated
+                and may be removed in the future.
+            - <REPO_ROOT>:<REPO_MANIFEST>, where REPO_ROOT is the absolute
+                path to the repo root where `repo manifest -r` was executed.
+            """,
+            type=_check_repo_manifest,
+            default=(None, None),
         )
         group.add_argument(
             "--ignore_missing_projects",
@@ -375,8 +397,13 @@ class BazelWrapper(KleafHelpPrinter):
 
         self.env["KLEAF_MAKE_KEEP_GOING"] = "true" if self.known_args.make_keep_going else "false"
 
-        if self.known_args.repo_manifest is not None:
-            self.env["KLEAF_REPO_MANIFEST"] = self.known_args.repo_manifest
+        repo_root, repo_manifest = self.known_args.repo_manifest
+        if repo_root is None:
+            repo_root = self.workspace_dir
+        if repo_manifest is not None:
+            self.env["KLEAF_REPO_MANIFEST"] = f"{repo_root}:{repo_manifest}"
+        else:
+            self.env["KLEAF_REPO_MANIFEST"] = f"{repo_root}:"
 
         if self.known_args.ignore_missing_projects:
             self.env["KLEAF_IGNORE_MISSING_PROJECTS"] = "true"
