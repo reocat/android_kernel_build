@@ -27,7 +27,7 @@ import subprocess
 import sys
 import tempfile
 import textwrap
-import urllib
+import urllib.parse
 
 _TOOLS_BAZEL = "tools/bazel"
 _DEVICE_BAZELRC = "device.bazelrc"
@@ -86,7 +86,7 @@ class KleafProjectSetter:
         tools_bazel.symlink_to(kleaf_tools_bazel)
 
     @staticmethod
-    def _update_file(path: pathlib.Path | str, update: str):
+    def _update_file(path: pathlib.Path, update: str):
         """Updates the content of a section between markers in a file."""
         add_content: bool = False
         skip_line: bool = False
@@ -122,6 +122,9 @@ class KleafProjectSetter:
 
     def _try_rel_workspace(self, path: pathlib.Path):
         """Tries to convert |path| to be relative to ddk_workspace."""
+        if not self.ddk_workspace:
+            raise KleafProjectSetterError("ERROR: _try_rel_workspace called "
+                                          "without --ddk_workspace set!")
         try:
             return path.relative_to(self.ddk_workspace)
         except ValueError:
@@ -173,8 +176,11 @@ class KleafProjectSetter:
             """),
         )
 
-    def _get_url(self, remote_filename: str) -> str:
+    def _get_url(self, remote_filename: str) -> str | None:
         """Returns a valid url when it can be formed with target and id."""
+        if not self.url_fmt:
+            raise KleafProjectSetterError("ERROR: _get_url called without "
+                                          "url_fmt set!")
         url = self.url_fmt.format(
             build_id=self.build_id,
             build_target=self.build_target,
@@ -214,6 +220,9 @@ class KleafProjectSetter:
               not be downloaded.
         """
         url = self._get_url(remote_filename)
+        if not url:
+            raise KleafProjectSetterError(
+                f"ERROR: Unable to download {remote_filename}: can't infer URL")
         # Workaround: Rely on host keychain to download files.
         # This is needed otheriwese downloads fail when running this script
         #   using the hermetic Python toolchain.
@@ -230,13 +239,19 @@ class KleafProjectSetter:
 
     def _infer_download_list(self) -> dict[str, dict]:
         """Infers the list of files to be downloaded using download_configs.json."""
+        if not self.prebuilts_dir:
+            raise KleafProjectSetterError(
+                "ERROR: _infer_download_list called without --prebuilts_dir!")
         download_configs = self.prebuilts_dir / "download_configs.json"
         with open(download_configs, "w+", encoding="utf-8") as config:
-            self._download("download_configs.json", config.name)
+            self._download("download_configs.json", pathlib.Path(config.name))
             return json.load(config)
 
     def _download_prebuilts(self) -> None:
         """Downloads prebuilts from a given build_id when provided."""
+        if not self.prebuilts_dir:
+            raise KleafProjectSetterError(
+                "ERROR: _download_prebuilts called without --prebuilts_dir!")
         logging.info("Downloading prebuilts into %s", self.prebuilts_dir)
         files_dict = self._infer_download_list()
         with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -284,8 +299,8 @@ class KleafProjectSetter:
 
 if __name__ == "__main__":
 
-    def abs_path(path: str) -> pathlib.Path | None:
-        path = pathlib.Path(path)
+    def abs_path(path_string: str) -> pathlib.Path | None:
+        path = pathlib.Path(path_string)
         if not path.is_absolute():
             raise ValueError(f"{path} is not an absolute path.")
         return path
