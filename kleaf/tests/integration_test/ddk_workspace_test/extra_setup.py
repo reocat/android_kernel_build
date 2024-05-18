@@ -33,6 +33,7 @@ class DdkExtraSetup:
     ddk_workspace: pathlib.Path
 
     def _generate_device_bazelrc(self):
+        # TODO(b/338439996): Use offline flag in init_ddk.py instead.
         path = self.ddk_workspace / "device.bazelrc"
         with path.open("a") as out_file:
             print("common --config=no_internet", file=out_file)
@@ -56,18 +57,14 @@ class DdkExtraSetup:
         section = []
         path_attr_prefix = 'path = "'
 
-        # Skip rules_rust because it is a dev_dependency.
         # Modify path so it is relative to the current DDK workspace.
+        # TODO(b/338439996): Use offline flag in init_ddk.py instead.
         for line in src:
             if line.startswith("local_path_override("):
                 section.append(line)
                 continue
             if section:
-                if line.lstrip().startswith('module_name = "'):
-                    if '"rules_rust"' in line:
-                        section = []
-                        continue
-                elif line.lstrip().startswith(path_attr_prefix):
+                if line.lstrip().startswith(path_attr_prefix):
                     line = line.strip()
                     line = line.removeprefix(
                         path_attr_prefix).removesuffix('",')
