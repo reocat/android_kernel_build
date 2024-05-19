@@ -57,6 +57,117 @@
       ],
       "revId": "62e8567af2d91379def327efb03739e664303aa0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5d0694b_f739d177",
+        "filename": "abi/process_symbols.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-19T21:29:52Z",
+      "side": 1,
+      "message": "nit: the file is called \".deny\", hence terminology could actually be \"denied\" instead of \"forbidden\".",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 34
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7eb69f60_cf5d1b93",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/process_symbols.py",
+              "range": {
+                "startLine": 58,
+                "startChar": 0,
+                "endLine": 61,
+                "endChar": 0
+              },
+              "replacement": "def _read_denied_symbols_config(deny_file):\n  \"\"\"Reads denied symbols configuration file.\"\"\"\n  denied_symbols \u003d {}\n"
+            },
+            {
+              "path": "abi/process_symbols.py",
+              "range": {
+                "startLine": 73,
+                "startChar": 0,
+                "endLine": 74,
+                "endChar": 0
+              },
+              "replacement": "      if symbol in denied_symbols:\n"
+            },
+            {
+              "path": "abi/process_symbols.py",
+              "range": {
+                "startLine": 76,
+                "startChar": 0,
+                "endLine": 77,
+                "endChar": 0
+              },
+              "replacement": "      denied_symbols[symbol] \u003d reason\n"
+            },
+            {
+              "path": "abi/process_symbols.py",
+              "range": {
+                "startLine": 78,
+                "startChar": 0,
+                "endLine": 79,
+                "endChar": 0
+              },
+              "replacement": "  return denied_symbols\n"
+            },
+            {
+              "path": "abi/process_symbols.py",
+              "range": {
+                "startLine": 105,
+                "startChar": 0,
+                "endLine": 107,
+                "endChar": 0
+              },
+              "replacement": "def _check_symbols(denied_symbols, symbols):\n  \"\"\"Checks symbols against denied symbols configuration.\"\"\"\n"
+            },
+            {
+              "path": "abi/process_symbols.py",
+              "range": {
+                "startLine": 109,
+                "startChar": 0,
+                "endLine": 111,
+                "endChar": 0
+              },
+              "replacement": "    if symbol in denied_symbols:\n      reason \u003d denied_symbols[symbol]\n"
+            },
+            {
+              "path": "abi/process_symbols.py",
+              "range": {
+                "startLine": 155,
+                "startChar": 0,
+                "endLine": 156,
+                "endChar": 0
+              },
+              "replacement": "  denied_symbols \u003d _read_denied_symbols_config(deny_file)\n"
+            },
+            {
+              "path": "abi/process_symbols.py",
+              "range": {
+                "startLine": 158,
+                "startChar": 0,
+                "endLine": 159,
+                "endChar": 0
+              },
+              "replacement": "  report \u003d _check_symbols(denied_symbols, symbols)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "62e8567af2d91379def327efb03739e664303aa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
