@@ -144,6 +144,24 @@
       "message": "perhaps:\n\n```\nfunction extract_git_metadata() {\n  local ret\u003d$(_extract_git_metadata_internal \"$@\")\n  if [[ -n \"${ret}\" ]]; then\n      echo \"${ret}\"\n      return 0\n  fi\n  \n  local map\u003d$1\n  local git_project_candidate\u003d$2\n  local what\u003d$3\n  git_project_candidate\u003d$(realpath --relative-to \"${PWD}\" \"${git_project_candidate}\")\n  ret\u003d$(_extract_git_metadata_internal \"$@\")\n  if [[ -n \"${ret}\" ]]; then\n      echo \"${ret}\"\n      return 0\n  fi\n  echo \"WARNING: Can\u0027t determine $what for $2\" \u003e\u00262\n}\n\nfunction _extract_git_metadata_internal() {\n  # The original implementation\n}\n```",
       "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2d97f19_de3ab610",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1962616
+      },
+      "writtenOn": "2024-05-20T04:07:40Z",
+      "side": 1,
+      "message": "I don\u0027t think I can access symbolic link(\u003dcommon) in here,\nbecause ROOT_DIR has no symbolic link when this function called.",
+      "parentUuid": "998ee05e_b3ec66e8",
+      "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
