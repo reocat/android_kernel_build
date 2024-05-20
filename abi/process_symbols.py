@@ -26,8 +26,7 @@ _TRACE_ITER = '__traceiter_'
 
 class Status(enum.Enum):
   UNKNOWN = 0
-  ALLOWED = 1
-  FORBIDDEN = 2
+  DENIED = 1
 
 
 def _validate_symbols(symbol_list, symbols):
@@ -55,31 +54,27 @@ def _validate_symbols(symbol_list, symbols):
     sys.exit(1)
 
 
-def _read_config(allow_file, deny_file):
-  """Reads symbol configuration file."""
-  config = {}
+def _read_denied_symbols_config(deny_file):
+  """Reads denied symbols configuration file."""
+  denied_symbols = {}
 
-  def read_file(status, config_file):
-    with open(config_file) as file:
-      for line in file:
-        fields = line.rstrip('\n').split(None, 1)
-        if not fields:
-          continue
-        symbol = fields[0]
-        if symbol.startswith('#'):
-          continue
-        reason = ''
-        if len(fields) > 1:
-          reason = fields[1]
-        if symbol in config:
-          print(f"symbol '{symbol}' duplicate configuration", file=sys.stderr)
-          continue
-        config[symbol] = (status, reason)
+  with open(deny_file) as file:
+    for line in file:
+      fields = line.rstrip('\n').split(None, 1)
+      if not fields:
+        continue
+      symbol = fields[0]
+      if symbol.startswith('#'):
+        continue
+      reason = ''
+      if len(fields) > 1:
+        reason = fields[1]
+      if symbol in denied_symbols:
+        print(f"symbol '{symbol}' duplicate configuration", file=sys.stderr)
+        continue
+      denied_symbols[symbol] = reason
 
-  read_file(Status.FORBIDDEN, deny_file)
-  read_file(Status.ALLOWED, allow_file)
-
-  return config
+  return denied_symbols
 
 
 def _read_symbol_lists(symbol_lists):
@@ -106,13 +101,13 @@ def _get_symbols(lines):
   return symbols
 
 
-def _check_symbols(config, symbols):
-  """Checks symbols against configuration."""
+def _check_symbols(denied_symbols, symbols):
+  """Checks symbols against denied symbols configuration."""
   report = []
   for symbol in sorted(symbols):
-    if symbol in config:
-      status, reason = config[symbol]
-      report.append([symbol, status, reason])
+    if symbol in denied_symbols:
+      reason = denied_symbols[symbol]
+      report.append([symbol, Status.DENIED, reason])
     else:
       report.append([symbol, Status.UNKNOWN, ''])
   return report
@@ -120,7 +115,6 @@ def _check_symbols(config, symbols):
 
 def main():
   dir = os.path.dirname(sys.argv[0])
-  allow_file = os.path.join(dir, 'symbols.allow')
   deny_file = os.path.join(dir, 'symbols.deny')
 
   parser = argparse.ArgumentParser()
@@ -157,10 +151,10 @@ def main():
   out_file = os.path.join(out_directory, args.out_file)
   report_file = os.path.join(out_directory, args.report_file)
 
-  config = _read_config(allow_file, deny_file)
+  denied_symbols = _read_denied_symbols_config(deny_file)
   lines = _read_symbol_lists(symbol_lists)
   symbols = _get_symbols(lines)
-  report = _check_symbols(config, symbols)
+  report = _check_symbols(denied_symbols, symbols)
 
   if args.verbose:
     print('========================================================')
@@ -174,7 +168,7 @@ def main():
   with open(report_file, 'w') as rf:
     for symbol, status, reason in report:
       rf.write(f'{symbol}\t{status.name}\t{reason}\n')
-      if status == Status.FORBIDDEN:
+      if status == Status.DENIED:
         print(f"symbol '{symbol}' is not allowed: {reason}", file=sys.stderr)
         exit_status = 1
 
