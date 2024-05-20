@@ -137,9 +137,6 @@ def main():
       '--out-file', required=True, help='combined symbol list file name'
   )
   parser.add_argument(
-      '--report-file', required=True, help='symbol list report file name'
-  )
-  parser.add_argument(
       '--verbose', action='store_true', help='increase verbosity of the output'
   )
 
@@ -149,7 +146,6 @@ def main():
   out_directory = args.out_dir
   symbol_lists = [os.path.join(in_directory, s) for s in args.symbol_lists]
   out_file = os.path.join(out_directory, args.out_file)
-  report_file = os.path.join(out_directory, args.report_file)
 
   denied_symbols = _read_denied_symbols_config(deny_file)
   lines = _read_symbol_lists(symbol_lists)
@@ -164,13 +160,11 @@ def main():
 
   exit_status = 0
   if args.verbose:
-    print(f'Generating ABI symbol report {report_file}')
-  with open(report_file, 'w') as rf:
-    for symbol, status, reason in report:
-      rf.write(f'{symbol}\t{status.name}\t{reason}\n')
-      if status == Status.DENIED:
-        print(f"symbol '{symbol}' is not allowed: {reason}", file=sys.stderr)
-        exit_status = 1
+    print('Checking for denied symbols')
+  for symbol, status, reason in report:
+    if status == Status.DENIED:
+      print(f"symbol '{symbol}' is not allowed: {reason}", file=sys.stderr)
+      exit_status = 1
 
   return exit_status
 
