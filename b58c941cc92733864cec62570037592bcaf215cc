@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a934ef5a_e5e3905a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-20T23:49:09Z",
+      "side": 1,
+      "message": "Let me rephrase what I mean.\n\nThe `--local` flag is to ensure `init_ddk` don\u0027t write to `kleaf_repo` / `prebuilts_dir`. In case the user already has a checkout, we don\u0027t want to overwrite what they already have.\n\nThe `--no_internet` flag is to ensure we always use `--config\u003dno_internet` during `bazel build` if the build servers are in a contained environment.\n\nFor simplicity, we can make `--no_internet` always true and I don\u0027t think we should add a flag until partners explicitly request so.",
+      "parentUuid": "ce0fc22b_d1587ccd",
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bcbdc34_13667462",
@@ -243,6 +261,24 @@
       "side": 1,
       "message": "`self.kleaf_repo` without `--local` means the destination where we want to place the kleaf_repo downloaded from `--build_id`, The same could apply to `--prebuilts_dir`.",
       "parentUuid": "fd0df757_40f38c47",
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e95e555_2e69b007",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-20T23:49:09Z",
+      "side": 1,
+      "message": "Whether we are downloading or not downloading --kleaf_repo in init_ddk has nothing to do with whether we are downloading / not downloading external dependencies during `bazel build`. \n\nSo even if we have `--kleaf_repo` without `--local`, `local_path_override()` has nothing to do with this. \n\n```\nif self.ddk_workspace and self.kleaf_repo and self.no_internet:\n   # generate local_path_override()\nif self.ddk_workspace and self.kleaf_repo:\n   # generate WORKSPACE.bzlmod\n```\n\n... but for simplicity, I think we can just have `self.no_internet \u003d\u003d\u003d True` until there\u0027s a need to tweak it. So it simplifies to:\n\n```\nif self.ddk_workspace and self.kleaf_repo:\n   # generate local_path_override()\n   # generate WORKSPACE.bzlmod\n```\n\n(self.ddk_workspace is always set because of L167; I just put it there for illustration purposes)",
+      "parentUuid": "3153339e_0941c510",
       "revId": "b58c941cc92733864cec62570037592bcaf215cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

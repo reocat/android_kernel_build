@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "429641e5_0b2d42fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-20T23:49:09Z",
+      "side": 1,
+      "message": "Please delete local_path_override() from extra_setup.py to get rid of the integration test error",
+      "revId": "9487a41aea527ee5f7acb6c49187a5530002d2a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c85a58f_121b782e",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-20T23:49:09Z",
+      "side": 1,
+      "message": "TIL",
+      "range": {
+        "startLine": 180,
+        "startChar": 29,
+        "endLine": 180,
+        "endChar": 34
+      },
+      "revId": "9487a41aea527ee5f7acb6c49187a5530002d2a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc092c3e_7780c68f",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-20T23:49:09Z",
+      "side": 1,
+      "message": "This is `self.no_internet`; but maybe just make `self.no_internet` always true and drop the `else:`",
+      "range": {
+        "startLine": 204,
+        "startChar": 16,
+        "endLine": 204,
+        "endChar": 21
+      },
+      "revId": "9487a41aea527ee5f7acb6c49187a5530002d2a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
