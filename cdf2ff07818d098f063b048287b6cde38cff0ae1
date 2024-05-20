@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c0f817a_2dfceeba",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-20T23:50:55Z",
+      "side": 1,
+      "message": "there\u0027s also path.walk(), but I agree that path.glob() is more appropriate in this case",
+      "parentUuid": "0e8524c2_9ad1c59b",
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0f0c93f1_751e762b",
         "filename": "abi/dependency_graph.py",
         "patchSetId": 4
