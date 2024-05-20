@@ -1,0 +1,384 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e8524c2_9ad1c59b",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "you might be able to `Path.glob(\"**/*.ko\")` here.\n\nhttps://docs.python.org/3.12/library/pathlib.html#pathlib.Path.glob",
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f0c93f1_751e762b",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "perhaps `extract_exported_symbols` should sort in the first place.",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 44,
+        "endChar": 38
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "6e5a322c_329eb5f8",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/dependency_graph.py",
+              "range": {
+                "startLine": 44,
+                "startChar": 0,
+                "endLine": 47,
+                "endChar": 0
+              },
+              "replacement": "        os.path.basename(blob): symbol_extraction.extract_exported_symbols(blob)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "463b9e1f_76bd60b8",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 56,
+        "startChar": 30,
+        "endLine": 56,
+        "endChar": 55
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bd410b2_003c4bce",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "ksymtab handling might be a bit special casing, but in theory that should work for arbitrary binaries. But then again there is already DT_NEEDED in shared libraries to build a graph much easier.",
+      "range": {
+        "startLine": 124,
+        "startChar": 61,
+        "endLine": 124,
+        "endChar": 74
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70925ee0_9fa8f2a3",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "you can require a `pathlib.Path`.",
+      "fixSuggestions": [
+        {
+          "fixId": "33bdc4db_9a7419f6",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/dependency_graph.py",
+              "range": {
+                "startLine": 128,
+                "startChar": 0,
+                "endLine": 130,
+                "endChar": 0
+              },
+              "replacement": "        type\u003dpathlib.Path,\n"
+            },
+            {
+              "path": "abi/dependency_graph.py",
+              "range": {
+                "startLine": 141,
+                "startChar": 0,
+                "endLine": 142,
+                "endChar": 0
+              },
+              "replacement": "    if not args.directory.is_dir():\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6880f486_124e0e21",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "of",
+      "range": {
+        "startLine": 135,
+        "startChar": 27,
+        "endLine": 135,
+        "endChar": 29
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "1fd8fa2c_a069986e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/dependency_graph.py",
+              "range": {
+                "startLine": 135,
+                "startChar": 0,
+                "endLine": 136,
+                "endChar": 0
+              },
+              "replacement": "        help\u003d\"Dependencies of a module share the same color.\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "214710bf_bc9591ed",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "how to deal with multiple top level dependencies?",
+      "fixSuggestions": [
+        {
+          "fixId": "4c5647b5_fd6a1e94",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/dependency_graph.py",
+              "range": {
+                "startLine": 135,
+                "startChar": 0,
+                "endLine": 136,
+                "endChar": 0
+              },
+              "replacement": "        help\u003d\"Dependencies to a module share the same color. \"\n        \"This is useful to see the dependencies of a module in a single color.\",\n"
+            }
+          ]
+        }
+      ],
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6b04c3e_c9d15b1f",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "perhaps make this positional and mandatory? It does make little sense to run the script without?",
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "757951b7_b27968f6",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "I wonder whether those should be 2 rules. One that transforms the inputs into a \"bunch of binaries\" and one that does the actual analysis.\n\nThat way this would be generic without much effort (and portable to userspace libraries as well).",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 26
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1477e234_62bcd7b8",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "as of now this is constant, and perhaps can be inlined directly with `out.path` being the substitution.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 34
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b21f4750_d36d1c6e",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "is this always guaranteed to only contain `.ko` files and nothing else?",
+      "range": {
+        "startLine": 48,
+        "startChar": 58,
+        "endLine": 48,
+        "endChar": 65
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec40572d_bcf9fc0f",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "that might overwrite modules with same names? E.g. a vendor module overwriting a GKI module.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 91
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb11eb43_296ac19c",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "does this work with layered `base_kernel` builds?",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 94
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc94b4cc_b312f7ab",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-20T12:03:15Z",
+      "side": 1,
+      "message": "can we require `KernelModuleInfo` providers ?",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 62
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
