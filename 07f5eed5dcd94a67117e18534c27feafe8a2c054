@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b41cc2f_909163db",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-20T17:12:11Z",
+      "side": 1,
+      "message": "should a warning be emitted if this is not the case?",
+      "range": {
+        "startLine": 308,
+        "startChar": 8,
+        "endLine": 308,
+        "endChar": 10
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "3c115c0a_e0c4990e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "init/init_ddk.py",
+              "range": {
+                "startLine": 308,
+                "startChar": 0,
+                "endLine": 313,
+                "endChar": 0
+              },
+              "replacement": "        if not build_config_constants.is_file():\n            logging.warning(\"No build.config.constants found in %s, \"\n                            \"skipping copying it to %s\",\n                            self.prebuilts_dir, self.kleaf_repo)\n            return\n        shutil.copy(build_config_constants,\n                    self.kleaf_repo / \"common/build.config.constants\")\n        if not (self.kleaf_repo / \"common/BUILD.bazel\").is_file():\n            (self.kleaf_repo / \"common/BUILD.bazel\").write_text(\"\")\n"
+            }
+          ]
+        }
+      ],
+      "revId": "07f5eed5dcd94a67117e18534c27feafe8a2c054",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
