@@ -16,6 +16,24 @@
       "message": "This is still needed assuming that init_ddk does not specify the bazel_dep() (it shouldn\u0027t IMO)",
       "revId": "b58c941cc92733864cec62570037592bcaf215cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8946f51_c4cec3fa",
+        "filename": "kleaf/tests/integration_test/ddk_workspace_test/extra_setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-20T11:05:42Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "226021c5_438ea479",
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
