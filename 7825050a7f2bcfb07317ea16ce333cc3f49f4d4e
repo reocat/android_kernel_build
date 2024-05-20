@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d17531d8_c70b7ef0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962616
+      },
+      "writtenOn": "2024-05-20T03:05:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "90717342_015ffa2d",
+      "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e2b4bbf_df397305",
@@ -82,6 +100,30 @@
         "startChar": 23,
         "endLine": 78,
         "endChar": 80
+      },
+      "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e013dc91_87ef7eca",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1962616
+      },
+      "writtenOn": "2024-05-20T03:05:09Z",
+      "side": 1,
+      "message": "In ROOT_DIR, there\u0027s no symlink between KERNEL_DIR(\u003dcommon) and real kernel dir(\u003dkernel-6.6). so, ROOT_DIR is not working here.",
+      "parentUuid": "1e2b4bbf_df397305",
+      "range": {
+        "startLine": 78,
+        "startChar": 50,
+        "endLine": 78,
+        "endChar": 63
       },
       "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
