@@ -15,18 +15,12 @@
 # limitations under the License.
 
 import argparse
-import enum
 import os
 import sys
 
 
 _TRACE_POINT = '__tracepoint_'
 _TRACE_ITER = '__traceiter_'
-
-
-class Status(enum.Enum):
-  UNKNOWN = 0
-  DENIED = 1
 
 
 def _validate_symbols(symbol_list, symbols):
@@ -101,18 +95,6 @@ def _get_symbols(lines):
   return symbols
 
 
-def _check_symbols(denied_symbols, symbols):
-  """Checks symbols against denied symbols configuration."""
-  report = []
-  for symbol in sorted(symbols):
-    if symbol in denied_symbols:
-      reason = denied_symbols[symbol]
-      report.append([symbol, Status.DENIED, reason])
-    else:
-      report.append([symbol, Status.UNKNOWN, ''])
-  return report
-
-
 def main():
   dir = os.path.dirname(sys.argv[0])
   deny_file = os.path.join(dir, 'symbols.deny')
@@ -150,7 +132,6 @@ def main():
   denied_symbols = _read_denied_symbols_config(deny_file)
   lines = _read_symbol_lists(symbol_lists)
   symbols = _get_symbols(lines)
-  report = _check_symbols(denied_symbols, symbols)
 
   if args.verbose:
     print('========================================================')
@@ -160,9 +141,10 @@ def main():
 
   exit_status = 0
   if args.verbose:
-    print('Checking for denied symbols')
-  for symbol, status, reason in report:
-    if status == Status.FORBIDDEN:
+    print('Checking symbols are not forbidden')
+  for symbol in symbols:
+    if symbol in denied_symbols:
+      reason = denied_symbols[symbol]
       print(f"symbol '{symbol}' is not allowed: {reason}", file=sys.stderr)
       exit_status = 1
 
