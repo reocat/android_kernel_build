@@ -127,7 +127,7 @@ def _require_absolute_path(p: str) -> pathlib.Path:
 MountSpec = dict[pathlib.Path, pathlib.Path]
 
 
-def _serialize_mount_spec(val: MountSpec):
+def _serialize_mount_spec(val: MountSpec) -> str:
     return json.dumps({str(key): str(value) for key, value in val.items()})
 
 
@@ -155,7 +155,7 @@ class Link:
 LinkSpec = list[Link]
 
 
-def _serialize_link_spec(links: LinkSpec):
+def _serialize_link_spec(links: LinkSpec) -> str:
     return json.dumps([{"dest": str(link.dest), "src": str(link.src)}
                        for link in links])
 
