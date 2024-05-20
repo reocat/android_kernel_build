@@ -40,6 +40,30 @@
       ],
       "revId": "07f5eed5dcd94a67117e18534c27feafe8a2c054",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e669f58_9511777d",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-20T18:22:49Z",
+      "side": 1,
+      "message": "Acknowledged, will fix in follow up CL",
+      "parentUuid": "0b41cc2f_909163db",
+      "range": {
+        "startLine": 308,
+        "startChar": 8,
+        "endLine": 308,
+        "endChar": 10
+      },
+      "revId": "07f5eed5dcd94a67117e18534c27feafe8a2c054",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
