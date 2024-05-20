@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce0fc22b_d1587ccd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-20T15:36:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "005023f5_7ece0323",
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bcbdc34_13667462",
@@ -211,6 +229,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3153339e_0941c510",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-20T15:36:58Z",
+      "side": 1,
+      "message": "`self.kleaf_repo` without `--local` means the destination where we want to place the kleaf_repo downloaded from `--build_id`, The same could apply to `--prebuilts_dir`.",
+      "parentUuid": "fd0df757_40f38c47",
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07a19e77_f5436020",
@@ -248,6 +284,30 @@
           ]
         }
       ],
+      "revId": "b58c941cc92733864cec62570037592bcaf215cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94b7750a_da085106",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-20T15:36:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07a19e77_f5436020",
+      "range": {
+        "startLine": 318,
+        "startChar": 11,
+        "endLine": 318,
+        "endChar": 33
+      },
       "revId": "b58c941cc92733864cec62570037592bcaf215cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
