@@ -1,0 +1,45 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ecfa375_2bbf3f11",
+        "filename": "kleaf/tests/integration_test/integration_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-20T12:22:07Z",
+      "side": 1,
+      "message": "nit: Missing type hint.",
+      "range": {
+        "startLine": 120,
+        "startChar": 41,
+        "endLine": 120,
+        "endChar": 42
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "d1211a8e_ad1f5942",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/tests/integration_test/integration_test.py",
+              "range": {
+                "startLine": 120,
+                "startChar": 0,
+                "endLine": 121,
+                "endChar": 0
+              },
+              "replacement": "def _serialize_mount_spec(val: MountSpec) -\u003e str:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "755c644f4833a9f7a728509745d6b989752df1f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
