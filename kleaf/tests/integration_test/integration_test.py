@@ -1001,6 +1001,25 @@ class QuickIntegrationTest(KleafIntegrationTestBase):
         )
         self.assertNotIn("unexpected lines", stderr)
 
+    def test_hermetic_tools_double_compilation(self):
+        """Test that hermetic tools always has exec transition."""
+
+        target = "//build/kernel/kleaf/tests/integration_test/hermetic_tools_test:mytest"
+        output = self._check_output(
+            "cquery",
+            [
+                "--gzip_is_pigz",
+                # Use @.*pigz because under bzlmod, the repo name for extensions
+                # are mangled.
+                f'filter("@.*pigz//:pigz$", deps({target}))',
+                # Suppress INFO level logs. We are only interested in error logs
+                # and the cquery output.
+                "--ui_event_filters=,+error,+fail,+stderr,+stdout",
+                "--noshow_progress",
+            ]
+        )
+        self.assertEqual(1, output.count("@pigz//:pigz"))
+
 class ScmversionIntegrationTest(KleafIntegrationTestBase):
 
     def setUp(self) -> None:
