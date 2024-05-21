@@ -22,6 +22,29 @@
       },
       "revId": "8a08f14cc3253f53c83cfc6da4e798b642cc370f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fb06391_42c4b8d2",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-21T23:01:35Z",
+      "side": 1,
+      "message": "qq: why is not needed to specify the list of `providers` here?",
+      "range": {
+        "startLine": 210,
+        "startChar": 41,
+        "endLine": 210,
+        "endChar": 42
+      },
+      "revId": "8a08f14cc3253f53c83cfc6da4e798b642cc370f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
