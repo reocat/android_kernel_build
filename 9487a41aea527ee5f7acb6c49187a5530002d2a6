@@ -62,6 +62,30 @@
       },
       "revId": "9487a41aea527ee5f7acb6c49187a5530002d2a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d922037_b729e586",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-21T00:01:37Z",
+      "side": 1,
+      "message": "Another benefit of not supporting `self.no_internet \u003d\u003d False` case is that we can drop all the versions in our Kleaf\u0027s MODULE.bazel file, because all dependencies are from our external/ directory.",
+      "parentUuid": "dc092c3e_7780c68f",
+      "range": {
+        "startLine": 204,
+        "startChar": 16,
+        "endLine": 204,
+        "endChar": 21
+      },
+      "revId": "9487a41aea527ee5f7acb6c49187a5530002d2a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
