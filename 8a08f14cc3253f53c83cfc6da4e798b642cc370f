@@ -45,6 +45,30 @@
       },
       "revId": "8a08f14cc3253f53c83cfc6da4e798b642cc370f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55557031_b5579cc7",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-21T23:08:47Z",
+      "side": 1,
+      "message": "https://bazel.build/rules/lib/toplevel/attr#label\n\nIf providers is set, and the target doesn\u0027t provide the given providers, Bazel will fail early. This is mainly useful for public APIs.\n\nIn this case, we control what\u0027s provided to actual (this is a private rule), so I think it is unnecessarily duplicating information.",
+      "parentUuid": "9fb06391_42c4b8d2",
+      "range": {
+        "startLine": 210,
+        "startChar": 41,
+        "endLine": 210,
+        "endChar": 42
+      },
+      "revId": "8a08f14cc3253f53c83cfc6da4e798b642cc370f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
