@@ -131,6 +131,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f16a45c_f5de311e",
+        "filename": "_setup_env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-21T00:43:48Z",
+      "side": 1,
+      "message": "but real_root_dir may not be set, so you can\u0027t use it. Also, IIUC real_root_dir breaks out of the sandbox.",
+      "parentUuid": "e013dc91_87ef7eca",
+      "range": {
+        "startLine": 78,
+        "startChar": 50,
+        "endLine": 78,
+        "endChar": 63
+      },
+      "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "998ee05e_b3ec66e8",
         "filename": "build_utils.sh",
         "patchSetId": 2
@@ -160,6 +184,24 @@
       "side": 1,
       "message": "I don\u0027t think I can access symbolic link(\u003dcommon) in here,\nbecause ROOT_DIR has no symbolic link when this function called.",
       "parentUuid": "998ee05e_b3ec66e8",
+      "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "265d3a5c_d13e691c",
+        "filename": "build_utils.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-21T00:43:48Z",
+      "side": 1,
+      "message": "\u003e ROOT_DIR has no symbolic link when this function called.\n\nThe function is called here when determining the SCMversion for the kernel:\n\nhttps://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/stamp.bzl;l\u003d38;drc\u003df20708c4c5f4d3991af605ef6630df2e00dc1639\n\nIndeed, inside the sandbox, Bazel is going to treat your `//common` as its own package, so it won\u0027t be a symbolic link to your `kernel-x.y`.",
+      "parentUuid": "b2d97f19_de3ab610",
       "revId": "7825050a7f2bcfb07317ea16ce333cc3f49f4d4e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
