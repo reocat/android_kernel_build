@@ -145,6 +145,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d050a312_877e763f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2024-05-21T20:56:46Z",
+      "side": 1,
+      "message": "Note, since this has implications to how tools and apps parse the string, if we go with this approach, then we need to make sure we go through a proper review with the team on how we want to update the string as well as send a message to our partners on the changes.",
+      "parentUuid": "9f4d3bf6_0d46a0f0",
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2465fa38_6a23df6b",
         "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
         "patchSetId": 1
