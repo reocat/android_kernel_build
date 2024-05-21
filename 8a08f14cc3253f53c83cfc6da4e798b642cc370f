@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2428868f_7abab303",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-21T22:55:42Z",
+      "side": 1,
+      "message": "@lberki@google.com, Is it bad practice to return declare_file() from another rule in DefaultInfo? If so, I\u0027ll probably change the CL so it apply cfg\u003d\"exec\" on `deps` and `symlinks`, and create two copies of the symlinks instead (That is, there will be two `//build/kernel:hermetic-tools` with two sets of symlinks, but there will only be one `@pigz//:pigz` ever compiled).\n\nI ask this question because when I `bazel build //build/kernel:hermetic-tools`, it now prints paths like:\n\n```\nbazel-out/k8-opt-exec-ST-d57f47055a04/bin/build/kernel/hermetic-tools/xz\n```\n\nBefore the change, the output is:\n\n```\nbazel-bin/build/kernel/hermetic-tools/xz\n```",
+      "range": {
+        "startLine": 201,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 28
+      },
+      "revId": "8a08f14cc3253f53c83cfc6da4e798b642cc370f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
