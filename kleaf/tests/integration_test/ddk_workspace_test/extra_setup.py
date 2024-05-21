@@ -32,12 +32,6 @@ class DdkExtraSetup:
     # path to DDK workspace. Its value will be used as-is.
     ddk_workspace: pathlib.Path
 
-    def _generate_device_bazelrc(self):
-        # TODO(b/338439996): Use offline flag in init_ddk.py instead.
-        path = self.ddk_workspace / "device.bazelrc"
-        with path.open("a") as out_file:
-            print("common --config=no_internet", file=out_file)
-
     def _generate_module_bazel(self):
         path = self.ddk_workspace / "MODULE.bazel"
         with path.open("a") as out_file:
@@ -46,7 +40,6 @@ class DdkExtraSetup:
             """), file=out_file)
 
     def run(self):
-        self._generate_device_bazelrc()
         self._generate_module_bazel()
 
 
