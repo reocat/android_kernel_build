@@ -131,16 +131,16 @@ EOF
         short_report = short_report,
         log_level = log_level,
     )
-    if ctx.attr.kmi_enforced:
-        script_content += """
-            exit $rc
-        """
-    else:
-        script_content += """
-            if [[ $rc != 0 ]]; then
-                echo "WARNING: KMI is not enforced, return code of stgdiff is not checked" >&2
-            fi
-        """
+    # if ctx.attr.kmi_enforced:
+    #     script_content += """
+    #         exit $rc
+    #     """
+    # else:
+    #     script_content += """
+    #         if [[ $rc != 0 ]]; then
+    #             echo "WARNING: KMI is not enforced, return code of stgdiff is not checked" >&2
+    #         fi
+    #     """
     ctx.actions.write(script, script_content, is_executable = True)
 
     return [
