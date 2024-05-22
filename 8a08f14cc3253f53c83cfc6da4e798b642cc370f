@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f93fa5a2_d41ba80c",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-22T22:20:46Z",
+      "side": 1,
+      "message": "Yeah, I think so. I have put an entry in the GKI newsletter to announce this to partners in case they are depending on this implementation detail.",
+      "parentUuid": "e4b1e038_d81f7580",
+      "range": {
+        "startLine": 201,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 28
+      },
+      "revId": "8a08f14cc3253f53c83cfc6da4e798b642cc370f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fb06391_42c4b8d2",
