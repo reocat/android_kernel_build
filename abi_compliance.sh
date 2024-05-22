@@ -23,8 +23,8 @@
 #   tools/bazel //common:kernel_aarch64_abi_dist
 #   build/kernel/abi_compliance.sh out_abi/kernel_aarch64/dist/abi_stgdiff
 
-abi_reports_path="$1"
-abi_report=$(cat "${abi_reports_path}/abi.report.short")
+dist_build_outputs="$1"
+abi_report=$(cat "${dist_build_outputs}/abi_stgdiff/abi.report.short")
 
 if [ -n "${abi_report}" ]; then
     echo 'ERROR: ABI DIFFERENCES HAVE BEEN DETECTED!' >&2
