@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "825293ce_e1c85929",
+        "filename": "abi_compliance.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-22T14:36:48Z",
+      "side": 1,
+      "message": "Added LICENSE, description and usage.",
+      "parentUuid": "2d353096_9e187018",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "566e1028463a5c70ac3b53913510d31ee4531706",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25feb0b8_f9e3d20c",
@@ -108,6 +132,30 @@
       "writtenOn": "2024-05-22T14:22:37Z",
       "side": 1,
       "message": "nit: log that no file was found, otherwise the user will be clueless about what happened?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 2
+      },
+      "revId": "566e1028463a5c70ac3b53913510d31ee4531706",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23224e6b_606518a0",
+        "filename": "abi_compliance.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-22T14:36:48Z",
+      "side": 1,
+      "message": "`/bin/bash -e` and `cat` guarantee to produce meaningful error message:\n```\ncat: out_abi/kernel_aarch64/dist/abi_stgdiff/abi.report.short: No such file or directory\n```\n\nHowever I added INFO message if file exists and empty to assure user that check has happened.",
+      "parentUuid": "25feb0b8_f9e3d20c",
       "range": {
         "startLine": 10,
         "startChar": 0,
