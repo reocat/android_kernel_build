@@ -52,6 +52,70 @@
       "parentUuid": "c781d750_d2b96248",
       "revId": "566e1028463a5c70ac3b53913510d31ee4531706",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86cc9e6b_5df0f9f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:22:37Z",
+      "side": 1,
+      "message": "I\u0027m OK approving this for experimentation, we can revisit this after deciding wether to keep it or not. I\u0027d like the build tools to be consistent within this project and it involves using the hermetic tools provided by Kleaf.",
+      "parentUuid": "ec020481_e808d131",
+      "revId": "566e1028463a5c70ac3b53913510d31ee4531706",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d353096_9e187018",
+        "filename": "abi_compliance.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:22:37Z",
+      "side": 1,
+      "message": "Add LICENSE header following sample from other scripts in this project.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "566e1028463a5c70ac3b53913510d31ee4531706",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25feb0b8_f9e3d20c",
+        "filename": "abi_compliance.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:22:37Z",
+      "side": 1,
+      "message": "nit: log that no file was found, otherwise the user will be clueless about what happened?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 2
+      },
+      "revId": "566e1028463a5c70ac3b53913510d31ee4531706",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
