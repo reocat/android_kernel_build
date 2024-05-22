@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e4b1e038_d81f7580",
+        "filename": "kleaf/hermetic_tools.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1066075
+      },
+      "writtenOn": "2024-05-22T07:25:57Z",
+      "side": 1,
+      "message": "Returning files in the `DefaultInfo` of a rule that were declared in another is a perfectly reasonable thing to do. Even the simplest rules (think `filegroup()`) do that all the time.\n\nI was worried that this would not work this way because what does not work is returning an executable created by another rule in `DefaultInfo.executable`, but if you don\u0027t do that, all the power to you.\n\nThe change in the path is expected. It\u0027s because the new `xz` is in the exec configuration (hence the `-exec-` part in the path) whereas the old one was in the target configuration (which is why `bazel-bin/` can directly link to it)\n\nIs the new path acceptable to you?",
+      "parentUuid": "2428868f_7abab303",
+      "range": {
+        "startLine": 201,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 28
+      },
+      "revId": "8a08f14cc3253f53c83cfc6da4e798b642cc370f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9fb06391_42c4b8d2",
         "filename": "kleaf/hermetic_tools.bzl",
         "patchSetId": 2
