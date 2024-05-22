@@ -77,7 +77,9 @@ EOF
             echo "INFO: $(cat {error_msg_file})"
         elif [[ $rc == {change_code} ]]; then
             echo "{log_level}: ABI DIFFERENCES HAVE BEEN DETECTED!" >&2
-            echo "{log_level}: $(cat {short_report})" >&2
+            echo "{log_level}: Report summary:" >&2
+            echo >&2
+            cat {short_report} >&2
         else
             echo "ERROR: $(cat {error_msg_file})" >&2
             echo "WARNING: exit code is not checked. 'tools/bazel run {label}' to check the exit code." >&2
@@ -117,7 +119,9 @@ EOF
             echo "INFO: $(cat {error_msg_file})"
         elif [[ $rc == 4 ]]; then
             echo "{log_level}: ABI DIFFERENCES HAVE BEEN DETECTED!" >&2
-            echo "{log_level}: $(cat {short_report})" >&2
+            echo "{log_level}: Report summary:" >&2
+            echo >&2
+            cat {short_report} >&2
         else
             echo "ERROR: $(cat {error_msg_file})" >&2
         fi
