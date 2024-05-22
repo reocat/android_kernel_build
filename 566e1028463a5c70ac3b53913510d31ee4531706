@@ -16,6 +16,24 @@
       "message": "Is this for experimentation only? will it be worth making it a Bazel target? maybe via genrule?",
       "revId": "566e1028463a5c70ac3b53913510d31ee4531706",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c781d750_d2b96248",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-22T14:10:40Z",
+      "side": 1,
+      "message": "\u003e Is this for experimentation only?\n\nYes\n\n\u003e will it be worth making it a Bazel target?\n\nI don\u0027t think Bazel overhead is worth it for such simple task. However we may switch to a Bazel target in future, if we would need more complex logic, like merging ABI reports from multiple targets.",
+      "parentUuid": "7c969abd_994137b1",
+      "revId": "566e1028463a5c70ac3b53913510d31ee4531706",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
