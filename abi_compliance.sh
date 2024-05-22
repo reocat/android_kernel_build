@@ -21,10 +21,12 @@
 
 # Example:
 #   tools/bazel //common:kernel_aarch64_abi_dist
-#   build/kernel/abi_compliance.sh out_abi/kernel_aarch64/dist/abi_stgdiff
+#   build/kernel/abi_compliance.sh out_abi/kernel_aarch64/dist
 
-abi_reports_path="$1"
-abi_report=$(cat "${abi_reports_path}/abi.report.short")
+dist_dir="$1"
+echo "INFO: $(ls "${dist_dir}")"
+echo "INFO: $(ls 'out/prebuilt_cached')"
+abi_report=$(cat "${dist_dir}/abi_stgdiff/abi.report.short")
 
 if [ -n "${abi_report}" ]; then
     echo 'ERROR: ABI DIFFERENCES HAVE BEEN DETECTED!' >&2
