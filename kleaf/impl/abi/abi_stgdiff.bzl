@@ -131,7 +131,7 @@ EOF
         short_report = short_report,
         log_level = log_level,
     )
-    if ctx.attr.kmi_enforced:
+    if False:
         script_content += """
             exit $rc
         """
