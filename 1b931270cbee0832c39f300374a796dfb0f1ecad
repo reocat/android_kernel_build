@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46078005_146382a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1988540
+      },
+      "writtenOn": "2024-05-22T00:25:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe29121f_c7ff1029",
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9a9bd83_1cd87a4a",
@@ -174,6 +192,30 @@
       "writtenOn": "2024-05-15T22:16:40Z",
       "side": 1,
       "message": "the commit message calls it \"16k\", the configuration refers to it as \"16K\", yet the suggested suffix is \"-16kB\".",
+      "range": {
+        "startLine": 6,
+        "startChar": 21,
+        "endLine": 6,
+        "endChar": 26
+      },
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27b81443_e9bd251a",
+        "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1988540
+      },
+      "writtenOn": "2024-05-22T00:25:25Z",
+      "side": 1,
+      "message": "Standardized to \"-16K\" in both commit message heading and the string",
+      "parentUuid": "2465fa38_6a23df6b",
       "range": {
         "startLine": 6,
         "startChar": 21,
