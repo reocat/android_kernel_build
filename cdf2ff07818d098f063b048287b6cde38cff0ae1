@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e04610b_a64754ab",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:33:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e8524c2_9ad1c59b",
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f0c93f1_751e762b",
@@ -77,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e10ceb42_1c271553",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:33:11Z",
+      "side": 1,
+      "message": "It seems that `llvm-nm` does this by default unless we explicitly ask to order by address, so I think we can omit this.",
+      "parentUuid": "0f0c93f1_751e762b",
+      "range": {
+        "startLine": 44,
+        "startChar": 32,
+        "endLine": 44,
+        "endChar": 38
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "463b9e1f_76bd60b8",
@@ -90,6 +132,30 @@
       "writtenOn": "2024-05-20T12:03:15Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 56,
+        "startChar": 30,
+        "endLine": 56,
+        "endChar": 55
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a04bbbc_cdd07064",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:33:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "463b9e1f_76bd60b8",
       "range": {
         "startLine": 56,
         "startChar": 30,
@@ -164,6 +230,24 @@
           ]
         }
       ],
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58b2493f_0c9227a1",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:33:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70925ee0_9fa8f2a3",
       "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -244,6 +328,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bf47a84_9c41bfab",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:33:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "214710bf_bc9591ed",
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "969f043b_57230094",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:33:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6880f486_124e0e21",
+      "range": {
+        "startLine": 135,
+        "startChar": 27,
+        "endLine": 135,
+        "endChar": 29
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6b04c3e_c9d15b1f",
@@ -257,6 +383,24 @@
       "writtenOn": "2024-05-20T12:03:15Z",
       "side": 1,
       "message": "perhaps make this positional and mandatory? It does make little sense to run the script without?",
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ba2c054_0849f975",
+        "filename": "abi/dependency_graph.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:33:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6b04c3e_c9d15b1f",
       "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -307,6 +451,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da8d14cd_2e8bb31e",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:33:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1477e234_62bcd7b8",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 34
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b21f4750_d36d1c6e",
@@ -330,6 +498,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a08d0c8_63c99148",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:33:11Z",
+      "side": 1,
+      "message": "No, but a filter is in place for it in L72.",
+      "parentUuid": "b21f4750_d36d1c6e",
+      "range": {
+        "startLine": 48,
+        "startChar": 58,
+        "endLine": 48,
+        "endChar": 65
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec40572d_bcf9fc0f",
@@ -343,6 +535,30 @@
       "writtenOn": "2024-05-20T12:03:15Z",
       "side": 1,
       "message": "that might overwrite modules with same names? E.g. a vendor module overwriting a GKI module.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 91
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c33c661_ec3103ec",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-05-22T14:33:11Z",
+      "side": 1,
+      "message": "Yes, I duplicated code from https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/abi/extracted_symbols.bzl;l\u003d98, maybe I should factor this out in this or on a follow-up CL, or copy the comment here too.",
+      "parentUuid": "ec40572d_bcf9fc0f",
       "range": {
         "startLine": 72,
         "startChar": 0,
