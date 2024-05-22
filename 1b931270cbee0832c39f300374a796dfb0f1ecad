@@ -181,6 +181,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee792890_04374ef2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-22T22:32:01Z",
+      "side": 1,
+      "message": "Even with space left, I disagree it is the right place to announce the availability of individual features. Again, I understand the desire to have it visible. Yet, so far we could shield the version string from flagging (like e.g. for LTO) and I am quite insistent we should continue to do so. The version string should not become an interface for feature availability. There are more appropriate interfaces in the kernel query. To repeat myself: once we add something like this, we will not be able to remove it as downstream tools/frameworks _will_ depend on it despite us discouraging that.\n\n\u003eWe already have $(BRANCH)-$(KMI_GENERATION)-g$(git sha1)-ab$(BUILD_ID). All of those variables are defining the kernel version.\n\n\nNone of those values define feature availability. Instead, they identify the origin of the build. One could argue we should have never added the KMI_GENERATION, but alas, it is an incremental value signifying incompatibility and hence somewhat ok.\n\nAs you said, if we really really go down the road and add an interface to the UTS string, then we should make this a proper sustainable indicator leaving room for many features (e.g. encoding in a bitmap value).",
+      "parentUuid": "d050a312_877e763f",
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2465fa38_6a23df6b",
         "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
         "patchSetId": 1
