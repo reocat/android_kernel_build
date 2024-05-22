@@ -33,3 +33,4 @@ if [ -n "${abi_report}" ]; then
 fi
 
 echo 'INFO: no ABI differences reported by dependency target build.'
+

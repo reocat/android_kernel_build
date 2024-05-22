@@ -899,6 +899,9 @@ def _define_common_kernel(
         flat = True,
         dist_dir = "out_abi/{name}/dist".format(name = name),
         log = "info",
+        # DO NOT SUBMIT
+        ignore_diff = True,
+        no_ignore_diff_target = kernel_abi_dist_name,
     )
 
     kernel_abi_dist(
