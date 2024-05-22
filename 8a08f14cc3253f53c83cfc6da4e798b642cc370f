@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8c83326_7f92fbe8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-22T22:22:26Z",
+      "side": 1,
+      "message": "This breaks integration test test_setup_with_prebuilts, which calls bazel in a different directory with PATH polluted. I need to resolve this before merging this change.",
+      "revId": "8a08f14cc3253f53c83cfc6da4e798b642cc370f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2428868f_7abab303",
         "filename": "kleaf/hermetic_tools.bzl",
         "patchSetId": 2
