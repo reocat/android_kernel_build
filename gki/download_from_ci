@@ -90,20 +90,21 @@ def parse_args():
       nargs="?",
       type=str,
       help='the build target to download, e.g. "kernel_aarch64"')
-  parser.add_argument(
+  update_group = parser.add_mutually_exclusive_group()
+  update_group.add_argument(
       "-u",
       "--update-gki",
       action="store_true",
       help="update GKI kernel prebuilts in Android platform (set $ANDROID_BUILD_TOP)")
-  parser.add_argument(
+  update_group.add_argument(
       "--update-16k",
       action="store_true",
       help="update 16k kernel prebuilts in Android platform (set $ANDROID_BUILD_TOP)")
-  parser.add_argument(
+  update_group.add_argument(
       "--update-u-boot",
       action="store_true",
       help="update U-Boot prebuilts in Android platform (set $ANDROID_BUILD_TOP)")
-  parser.add_argument(
+  update_group.add_argument(
       "--update-microdroid",
       action="store_true",
       help="update Microdroid kernel prebuilts in Android platform (set $ANDROID_BUILD_TOP)")
