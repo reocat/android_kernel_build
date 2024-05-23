@@ -34,18 +34,19 @@ def _abi_update_impl(ctx):
         # Create git commit if requested
         if [[ $1 == "--commit" ]]; then
             real_abi_def="$(realpath {abi_definition})"
-            git -C $(dirname ${{real_abi_def}}) add $(basename ${{real_abi_def}})
-            git -C $(dirname ${{real_abi_def}}) commit -F $(realpath {git_message})
+            echo "WARNING: --commit is deprecated. Please add the files and commit manually."
+            echo "  You may use --print_git_commands to print sample git commands to run." >&2
+        fi
+
+        if [[ $1 == "--commit" ]] || [[ $1 == "--print_git_commands" ]]
+            echo "  git -C $(dirname ${{real_abi_def}}) add $(basename ${{real_abi_def}})"
+            echo "  git -C $(dirname ${{real_abi_def}}) commit -F $(realpath {git_message})"
+            echo "  git -C $(dirname ${{real_abi_def}}) commit --amend"
         fi
 
         # Re-instate a hermetic environment
         {hermetic_setup}
         {diff}
-        if [[ $1 == "--commit" ]]; then
-            echo
-            echo "INFO: git commit created. Execute the following to edit the commit message:"
-            echo "        git -C $(dirname $(rootpath {abi_definition})) commit --amend"
-        fi
     """.format(
         hermetic_setup = hermetic_tools.run_setup,
         semi_hermetic_setup = hermetic_tools.run_additional_setup,
