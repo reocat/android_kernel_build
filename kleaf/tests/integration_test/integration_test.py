@@ -124,16 +124,16 @@ def _require_absolute_path(p: str) -> pathlib.Path:
     return path
 
 
-MountSpec = dict[pathlib.Path, pathlib.Path]
+MountSpec = collections.OrderedDict[pathlib.Path, pathlib.Path]
 
 
 def _serialize_mount_spec(val: MountSpec) -> str:
-    return json.dumps({str(key): str(value) for key, value in val.items()})
+    return json.dumps([[str(key), str(value)] for key, value in val.items()])
 
 
 def _deserialize_mount_spec(s: str) -> MountSpec:
-    return {pathlib.Path(key): pathlib.Path(value)
-            for key, value in json.loads(s).items()}
+    return MountSpec((pathlib.Path(key), pathlib.Path(value))
+                     for key, value in json.loads(s))
 
 
 @dataclasses.dataclass
@@ -405,7 +405,7 @@ class KleafIntegrationTestBase(unittest.TestCase):
         return pathlib.Path(*parts)
 
     @classmethod
-    def _get_repo_manifest(cls) -> xml.dom.minidom.Document:
+    def _get_repo_manifest(cls, revision=False) -> xml.dom.minidom.Document:
         parser = argparse.ArgumentParser()
         parser.add_argument("--repo_manifest", type=_require_absolute_path)
         known, _ = parser.parse_known_args(arguments.bazel_wrapper_args)
@@ -413,7 +413,10 @@ class KleafIntegrationTestBase(unittest.TestCase):
             with open(known.repo_manifest) as manifest_file:
                 return xml.dom.minidom.parse(manifest_file)
 
-        manifest_content = Exec.check_output(["repo", "manifest"])
+        args = ["repo", "manifest"]
+        if revision:
+            args.append("-r")
+        manifest_content = Exec.check_output(args)
         return xml.dom.minidom.parseString(manifest_content)
 
     @classmethod
@@ -619,7 +622,8 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
 
     def test_ddk_workspace_below_kleaf_module(self):
         """Tests that DDK workspace is below @kleaf"""
-        self._run_ddk_workspace_setup_test(self.real_kleaf_repo)
+        self._run_ddk_workspace_setup_test(
+            self.real_kleaf_repo, self.ddk_workspace)
 
     def test_kleaf_module_below_ddk_workspace(self):
         """Tests that @kelaf is below DDK workspace"""
@@ -630,46 +634,68 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             }
             self._unshare_mount_run(mount_spec=mount_spec, link_spec=LinkSpec())
             return
-        self._run_ddk_workspace_setup_test(kleaf_repo)
+        self._run_ddk_workspace_setup_test(kleaf_repo, self.ddk_workspace)
 
     def test_setup_with_prebuilts(self):
         """Tests that init_ddk --prebuilts_dir & _ddk_headers_archive works."""
-        self._check_call("run", [f"//{self._common()}:kernel_aarch64_dist"])
-
-        kleaf_repo = self.ddk_workspace / "external/kleaf"
-
         if not arguments.mount_spec:
-            mount_spec, link_spec = self._get_project_mount_link_spec(
-                kleaf_repo, ["ddk", "ddk-external"],
-            )
+            with tempfile.TemporaryDirectory() as ddk_workspace_tmp:
+                ddk_workspace = pathlib.Path(ddk_workspace_tmp)
+                kleaf_repo = ddk_workspace / "external/kleaf"
+                mount_spec, link_spec = self._get_project_mount_link_spec(
+                    kleaf_repo, ["ddk", "ddk-external"],
+                )
+                mount_spec = MountSpec({
+                    self.ddk_workspace: ddk_workspace
+                }) | mount_spec
 
-            self._unshare_mount_run(mount_spec=mount_spec, link_spec=link_spec)
-            return
+                self._unshare_mount_run(mount_spec=mount_spec,
+                                        link_spec=link_spec)
+                return
 
+        self._check_call("run", [f"//{self._common()}:kernel_aarch64_dist"])
         real_prebuilts_dir = self.real_kleaf_repo / "out/kernel_aarch64/dist"
-        prebuilts_dir = self.ddk_workspace / "gki_prebuilts"
+        build_id = "123456"
+
+        with open(real_prebuilts_dir / f"manifest_{build_id}.xml", "w") as f:
+            self._get_repo_manifest(revision=True).writexml(f)
+
+        # Restore value of ddk_workspace in child process, which is a tmp dir
+        ddk_workspace = arguments.mount_spec[self.ddk_workspace]
+        kleaf_repo = ddk_workspace / "external/kleaf"
+        prebuilts_dir = ddk_workspace / "gki_prebuilts"
+
         self._run_ddk_workspace_setup_test(
             kleaf_repo,
+            ddk_workspace=ddk_workspace,
             prebuilts_dir=prebuilts_dir,
             local=False,
-            url_fmt=f"file://{real_prebuilts_dir}/{{filename}}")
+            url_fmt=f"file://{real_prebuilts_dir}/{{filename}}",
+            build_id=build_id,
+            # TODO(b/291918926): check whether repo sync works
+            dryrun_checkout=True)
 
     def _run_ddk_workspace_setup_test(self,
                                       kleaf_repo: pathlib.Path,
+                                      ddk_workspace: pathlib.Path,
                                       prebuilts_dir: pathlib.Path | None = None,
                                       local: bool = True,
-                                      url_fmt: str | None = None):
+                                      url_fmt: str | None = None,
+                                      build_id: str | None = None,
+                                      dryrun_checkout: bool = False):
         # kleaf_repo relative to ddk_workspace
         kleaf_repo_rel = self._force_relative_to(
-            kleaf_repo, self.ddk_workspace)
+            kleaf_repo, ddk_workspace)
 
         git_clean_args = [shutil.which("git"), "clean", "-fdx"]
-        if kleaf_repo.is_relative_to(self.ddk_workspace):
+        if kleaf_repo.is_relative_to(ddk_workspace):
             git_clean_args.extend([
                 "-e",
-                str(kleaf_repo.relative_to(self.ddk_workspace)),
+                str(kleaf_repo.relative_to(ddk_workspace)),
             ])
 
+        # git clean is executed in the self.ddk_workspace, not the mounted
+        # ddk_workspace, because the latter may be out of Git's version control.
         Exec.check_call(git_clean_args, cwd=self.ddk_workspace)
 
         # Delete generated files at the end
@@ -678,11 +704,16 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
 
         self._mount(kleaf_repo)
 
+        # Fake `repo init` executed by user
+        default_manifest = ddk_workspace / ".repo/manifests/default.xml"
+        default_manifest.parent.mkdir(parents=True, exist_ok=True)
+        default_manifest.write_text("""<?xml version="1.0" ?><manifest />""")
+
         args = [
             "//build/kernel:init_ddk",
             "--",
             f"--kleaf_repo={kleaf_repo}",
-            f"--ddk_workspace={self.ddk_workspace}",
+            f"--ddk_workspace={ddk_workspace}",
         ]
         if local:
             args.append("--local")
@@ -690,25 +721,29 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
             args.append(f"--prebuilts_dir={prebuilts_dir}")
         if url_fmt:
             args.append(f"--url_fmt={url_fmt}")
+        if build_id:
+            args.append(f"--build_id={build_id}")
+        if dryrun_checkout:
+            args.append("--dryrun_checkout")
         self._check_call("run", args)
         Exec.check_call([
             sys.executable,
-            str(self.ddk_workspace / "extra_setup.py"),
+            str(ddk_workspace / "extra_setup.py"),
             f"--kleaf_repo_rel={kleaf_repo_rel}",
-            f"--ddk_workspace={self.ddk_workspace}",
+            f"--ddk_workspace={ddk_workspace}",
         ])
 
-        self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
+        self._check_call("clean", ["--expunge"], cwd=ddk_workspace)
 
         args = []
         # Switch base kernel when using prebuilts
         if prebuilts_dir:
             args.append("--//tests:kernel=@gki_prebuilts//kernel_aarch64")
         args.append("//tests")
-        self._check_call("test", args, cwd=self.ddk_workspace)
+        self._check_call("test", args, cwd=ddk_workspace)
 
         # Delete generated files
-        self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
+        self._check_call("clean", ["--expunge"], cwd=ddk_workspace)
 
 
 # Quick integration tests. Each test case should finish within 1 minute.
