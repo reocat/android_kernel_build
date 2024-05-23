@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f79cb8de_26c77649",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-05-23T09:38:56Z",
+      "side": 1,
+      "message": "cd /path/to/common\ngit add android/abi_gki_aarch64.stg\ngit commit -F kernel_aarch64_abi_diff/git_message.txt --signoff --edit",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 20
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "c456cd4a_0780290b",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/docs/abi.md",
+              "range": {
+                "startLine": 94,
+                "startChar": 0,
+                "endLine": 98,
+                "endChar": 0
+              },
+              "replacement": "  cd /path/to/common\n  git add android/abi_gki_aarch64.stg\n  git commit -F kernel_aarch64_abi_diff/git_message.txt --signoff --edit\n"
+            }
+          ]
+        }
+      ],
+      "revId": "185fe84c124777289c374a564ea6997968bdab69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d60da6dd_a1b6792c",
+        "filename": "kleaf/impl/abi/abi_update.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-05-23T09:38:56Z",
+      "side": 1,
+      "message": "You should aim to chdir to the Git root, otherwise you\u0027ll need ../ or absolute paths. Or maybe the example above doesn\u0027t reflect the code here.\n\nSee also my suggestion for making the git commit a single line.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 39
+      },
+      "revId": "185fe84c124777289c374a564ea6997968bdab69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

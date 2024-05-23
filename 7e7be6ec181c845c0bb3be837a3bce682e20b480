@@ -22,6 +22,30 @@
       },
       "revId": "7e7be6ec181c845c0bb3be837a3bce682e20b480",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "827c3185_f45360ca",
+        "filename": "kleaf/impl/abi/abi_update.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-05-23T09:38:56Z",
+      "side": 1,
+      "message": "Yes. If they don\u0027t sign, we\u0027ll make them do it later anyway.",
+      "parentUuid": "c57f0bff_cf86bece",
+      "range": {
+        "startLine": 36,
+        "startChar": 55,
+        "endLine": 36,
+        "endChar": 57
+      },
+      "revId": "7e7be6ec181c845c0bb3be837a3bce682e20b480",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
