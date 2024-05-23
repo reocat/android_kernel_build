@@ -17,8 +17,11 @@
 import json
 import logging
 import pathlib
+import shutil
 import tempfile
+import textwrap
 from typing import Any
+import xml.dom.minidom
 
 from absl.testing import absltest
 from absl.testing import parameterized
@@ -115,6 +118,8 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     local=False,
                     prebuilts_dir=None,
                     url_fmt=None,
+                    superproject_tool="repo",
+                    sync="false",
                 ).run()
             except:  # pylint: disable=bare-except
                 pass
@@ -136,6 +141,8 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     local=False,
                     prebuilts_dir=None,
                     url_fmt=None,
+                    superproject_tool="repo",
+                    sync="false",
                 ).run()
             except:  # pylint: disable=bare-except
                 pass
@@ -162,6 +169,8 @@ class KleafProjectSetterTest(parameterized.TestCase):
                 local=False,
                 prebuilts_dir=prebuilts_dir,
                 url_fmt=None,
+                superproject_tool="repo",
+                sync="false",
             ).run()
         except:  # pylint: disable=bare-except
             pass
@@ -209,6 +218,8 @@ class KleafProjectSetterTest(parameterized.TestCase):
                 local=False,
                 prebuilts_dir=None,
                 url_fmt=url_fmt,
+                superproject_tool="repo",
+                sync="false",
             )._download(
                 remote_filename="remote_file",
                 out_file_name=out_file,
@@ -239,9 +250,11 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     build_target=None,
                     ddk_workspace=ddk_workspace,
                     kleaf_repo=None,
-                    local=None,
+                    local=False,
                     prebuilts_dir=prebuilts_dir,
                     url_fmt=url_fmt,
+                    superproject_tool="repo",
+                    sync="false",
                 ).run()
 
     @parameterized.named_parameters(
@@ -287,8 +300,82 @@ local_path_override(
                 local=True,
                 prebuilts_dir=None,
                 url_fmt=None,
+                superproject_tool="repo",
+                sync="false",
             )._get_local_path_overrides()
             self.assertEqual(got_content, wanted_content)
+
+    def test_update_manifest(self):
+        """Tests that the repo manifest is updated correctly."""
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = pathlib.Path(tmp)
+            ddk_workspace = tmp / "ddk_workspace"
+
+            repo_manifest = ddk_workspace / ".repo/manifests/default.xml"
+            repo_manifest.parent.mkdir(parents=True, exist_ok=True)
+            repo_manifest.write_text(textwrap.dedent("""\
+                <?xml version="1.0" encoding="UTF-8"?>
+                <manifest />
+            """))
+
+            remote_prebuilts_dir = tmp / "remote_prebuilts_dir"
+            remote_prebuilts_dir.mkdir(parents=True, exist_ok=True)
+            download_configs = remote_prebuilts_dir / "download_configs.json"
+            download_configs.write_text(json.dumps({
+                "manifest.xml": {
+                    "target_suffix": "init_ddk_files",
+                    "mandatory": False,
+                    "remote_filename_fmt": "manifest_{build_number}.xml",
+                },
+            }))
+
+            build_id = "12345"
+            downloaded_manifest = (remote_prebuilts_dir /
+                                   f"manifest_{build_id}.xml")
+            source = (pathlib.Path(__file__).parent /
+                      "test_data/sample_manifest.xml")
+            shutil.copy(source, downloaded_manifest)
+
+            init_ddk.KleafProjectSetter(
+                build_id=build_id,
+                build_target=None,
+                ddk_workspace=ddk_workspace,
+                kleaf_repo=ddk_workspace / "external/kleaf",
+                local=False,
+                prebuilts_dir=ddk_workspace / "prebuilts_dir",
+                url_fmt=f"file://{str(remote_prebuilts_dir)}/{{filename}}",
+                superproject_tool="repo",
+                sync="false",
+            ).run()
+
+            with xml.dom.minidom.parse(
+                str(ddk_workspace / ".repo/manifests/kleaf.xml")) as dom:
+
+                root: xml.dom.minidom.Element = dom.documentElement
+                self.assertFalse(root.getElementsByTagName("superproject"))
+                self.assertFalse(root.getElementsByTagName("default"))
+                self.assertTrue(root.getElementsByTagName("remote"))
+
+                projects = root.getElementsByTagName("project")
+                project_paths = [
+                    project.getAttribute("path") for project in projects
+                ]
+                self.assertCountEqual(
+                    project_paths, [
+                        "external/kleaf/build/kernel",
+                        # TODO(b/291918721): should sync to
+                        #  external/bazel-skylib directly below repo root
+                        "external/kleaf/external/bazel-skylib",
+                    ])
+
+            with xml.dom.minidom.parse(
+                str(ddk_workspace / ".repo/manifests/default.xml")) as dom:
+                root: xml.dom.minidom.Element = dom.documentElement
+                includes = root.getElementsByTagName("include")
+                include_names = [
+                    include.getAttribute("name") for include in includes
+                ]
+                self.assertListEqual(include_names, ["kleaf.xml"])
 
 
 # This could be run as: tools/bazel test //build/kernel:init_ddk_test --test_output=all
