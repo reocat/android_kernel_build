@@ -19,6 +19,7 @@ load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 # TODO(b/329305827): Move exec.bzl to //build/kernel
 load("//build/bazel_common_rules/exec/impl:exec.bzl", "exec_rule")
 load(":abi/abi_transitions.bzl", "abi_common_attrs", "with_vmlinux_transition")
+load(":abi/abi_stgdiff.bzl", "STGDIFF_CHANGE_CODE")
 load(":hermetic_exec.bzl", "hermetic_exec", "hermetic_exec_target")
 
 visibility("//build/kernel/kleaf/...")
@@ -42,6 +43,7 @@ def kernel_abi_dist(
         name,
         kernel_abi,
         kernel_build_add_vmlinux = None,
+        allow_abi_change = False,
         **kwargs):
     """A wrapper over `copy_to_dist_dir` for [`kernel_abi`](#kernel_abi).
 
@@ -92,6 +94,8 @@ def kernel_abi_dist(
         **Note**: Its value will be `True` by default in the future.
         During the migration period, this is `False` by default. Once all
         devices have been fixed, this attribute will be set to `True` by default.
+      allow_abi_change: If `True` and the return code of `stgdiff`
+        signals the ABI difference, then the result is ignored.
       **kwargs: Additional attributes to the internal rule, e.g.
         [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
         See complete list
@@ -127,9 +131,20 @@ def kernel_abi_dist(
           # Copy to dist dir
             $(rootpath {copy_to_dist_dir}) $@
           # Check return code of diff_abi and kmi_enforced
-            $(rootpath {diff_stg})
+            rc=0
+            $(rootpath {diff_stg}) || rc=$?
+
+            if [[ $rc -eq {change_code} && "{allow_abi_change}" = True ]]; then
+                rc=0
+                echo "WARNING: difference above is ignored." >&2
+                echo "WARNING: Use 'tools/bazel run {label}' to fail on ABI difference." >&2
+            fi
+            exit $rc
         """.format(
             copy_to_dist_dir = name + "_copy_to_dist_dir",
             diff_stg = kernel_abi + "_diff_executable",
-        ),
+            change_code = STGDIFF_CHANGE_CODE,
+            allow_abi_change = allow_abi_change,
+            label=kernel_abi + "_dist",
+        )
     )
