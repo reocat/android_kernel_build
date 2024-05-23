@@ -19,6 +19,7 @@ import logging
 import pathlib
 import tempfile
 from typing import Any
+from unittest.mock import Base
 
 from absl.testing import absltest
 from absl.testing import parameterized
@@ -116,9 +117,11 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     local=False,
                     prebuilts_dir=prebuilts_dir,
                     url_fmt=None,
+                    superproject_tool="repo",
+                    sync="false",
                 ).run()
-            except:  # pylint: disable=bare-except
-                pass
+            except BaseException as e:  # pylint: disable=bare-except
+                logging.error(e)
             finally:
                 self.assertTrue(ddk_workspace.exists())
                 self.assertTrue(kleaf_repo.exists())
@@ -138,6 +141,8 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     local=False,
                     prebuilts_dir=None,
                     url_fmt=None,
+                    superproject_tool="repo",
+                    sync="false",
                 ).run()
             except:  # pylint: disable=bare-except
                 pass
@@ -164,6 +169,8 @@ class KleafProjectSetterTest(parameterized.TestCase):
                 local=False,
                 prebuilts_dir=prebuilts_dir,
                 url_fmt=None,
+                superproject_tool="repo",
+                sync="false",
             ).run()
         except:  # pylint: disable=bare-except
             pass
@@ -211,6 +218,8 @@ class KleafProjectSetterTest(parameterized.TestCase):
                 local=False,
                 prebuilts_dir=None,
                 url_fmt=url_fmt,
+                superproject_tool="repo",
+                sync="false",
             )._download(
                 remote_filename="remote_file",
                 out_file_name=out_file,
@@ -241,9 +250,11 @@ class KleafProjectSetterTest(parameterized.TestCase):
                     build_target=None,
                     ddk_workspace=ddk_workspace,
                     kleaf_repo=None,
-                    local=None,
+                    local=False,
                     prebuilts_dir=prebuilts_dir,
                     url_fmt=url_fmt,
+                    superproject_tool="repo",
+                    sync="false",
                 ).run()
 
     @parameterized.named_parameters(
@@ -289,6 +300,8 @@ local_path_override(
                 local=True,
                 prebuilts_dir=None,
                 url_fmt=None,
+                superproject_tool="repo",
+                sync="false",
             )._get_local_path_overrides()
             self.assertEqual(got_content, wanted_content)
 
