@@ -21,19 +21,26 @@ import concurrent.futures
 import dataclasses
 import json
 import logging
+from os import set_blocking
 import pathlib
+import re
 import shutil
 import subprocess
 import sys
 import tarfile
 import tempfile
+import textwrap
+from typing import TextIO
 import urllib.parse
+import xml.dom.minidom
+import xml.parsers.expat
 
 _TOOLS_BAZEL = "tools/bazel"
 _DEVICE_BAZELRC = "device.bazelrc"
 _FILE_MARKER_BEGIN = "### GENERATED SECTION - DO NOT MODIFY - BEGIN ###\n"
 _FILE_MARKER_END = "### GENERATED SECTION - DO NOT MODIFY - END ###\n"
 _MODULE_BAZEL_FILE = "MODULE.bazel"
+_KLEAF_MANIFEST = "kleaf.xml"
 
 _KLEAF_DEPENDENCY_TEMPLATE = """\
 \"""Kleaf: Build Android kernels with Bazel.\"""
@@ -72,6 +79,8 @@ class KleafProjectSetter:
     kleaf_repo: pathlib.Path | None
     prebuilts_dir: pathlib.Path | None
     url_fmt: str | None
+    superproject_tool: str
+    dryrun_checkout: bool
 
     def _symlink_tools_bazel(self):
         """Creates the symlink tools/bazel."""
@@ -281,6 +290,21 @@ class KleafProjectSetter:
             check=mandatory,
         )
 
+    def _download_file_of_build(self, destination_directory: pathlib.Path,
+                                local_filename: str) -> None:
+        """Downloads a file from the given build_id."""
+        if local_filename not in self._download_list:
+            raise KleafProjectSetterError(
+                f"ERROR: Can't find download spec for {local_filename}"
+            )
+        config = self._download_list[local_filename]
+        remote_filename = config["remote_filename_fmt"].format(
+            build_number=self.build_id,
+        )
+        dst = destination_directory / local_filename
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        self._download(remote_filename, dst, config["mandatory"])
+
     def _load_meta_files(self):
         """Loads meta files, possibly downloading them."""
         if self.prebuilts_dir:
@@ -294,6 +318,7 @@ class KleafProjectSetter:
                 self._load_meta_files_from(pathlib.Path(meta_files_dir))
 
     def _download_meta_files_to(self, meta_files_dir: pathlib.Path):
+        """Downloads meta files to a given directory."""
         if not self._can_download_artifacts():
             raise KleafProjectSetterError(
                 "ERROR: _download_meta_files_to called without --url_fmt set!"
@@ -304,10 +329,15 @@ class KleafProjectSetter:
         with open(download_configs, "w+", encoding="utf-8") as f:
             self._download("download_configs.json", pathlib.Path(f.name))
 
+        self._download_file_of_build(meta_files_dir, "manifest.xml")
+
     def _load_meta_files_from(self, meta_files_dir: pathlib.Path):
+        """Loads meta files from a given directory."""
         download_configs = meta_files_dir / "download_configs.json"
         with open(download_configs, "r") as f:
             self._download_list = json.load(f)
+        self._repo_manifest_of_build = (
+            meta_files_dir / "manifest.xml").read_text()
 
     def _download_prebuilts(self) -> None:
         """Downloads prebuilts from a given build_id when provided."""
@@ -318,15 +348,10 @@ class KleafProjectSetter:
         logging.info("Downloading prebuilts into %s", self.prebuilts_dir)
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = []
-            for local_filename, config in self._download_list.items():
-                remote_filename = config["remote_filename_fmt"].format(
-                    build_number = self.build_id,
-                )
-                dst = self.prebuilts_dir / local_filename
-                dst.parent.mkdir(parents=True, exist_ok=True)
+            for local_filename in self._download_list:
                 futures.append(
-                    executor.submit(self._download, remote_filename, dst,
-                                    config["mandatory"])
+                    executor.submit(self._download_file_of_build,
+                                    self.prebuilts_dir, local_filename)
                 )
             for complete_ret in concurrent.futures.as_completed(futures):
                 complete_ret.result()  # Raise exception if any
@@ -340,8 +365,7 @@ class KleafProjectSetter:
         if not self.kleaf_repo:
             return
         self.kleaf_repo.mkdir(parents=True, exist_ok=True)
-        # TODO: b/328770706 - According to the needs, syncing git repos logic should go here.
-
+        self._sync_git_projects()
         self._populate_kleaf_repo_extra_files()
 
     def _handle_prebuilts(self) -> None:
@@ -350,6 +374,141 @@ class KleafProjectSetter:
         self.prebuilts_dir.mkdir(parents=True, exist_ok=True)
         if self._can_download_artifacts():
             self._download_prebuilts()
+
+    def _sync_git_projects(self) -> None:
+        """Populates kleaf_repo by adding and syncing Git projects."""
+        if self.local:
+            logging.info(
+                "Skipped adding Git projects to kleaf_repo with --local.")
+            # --local assumes the kernel source tree is complete.
+            return
+        if not self.kleaf_repo:
+            logging.info(
+                "Skipped adding Git projects because --kleaf_repo is "
+                "unspecified"
+            )
+            return
+        # repo root or git root, depending on the context
+        superproject_root = self._maybe_init_superproject()
+
+        project_paths = self._populate_kleaf_repo_manifest(superproject_root)
+        self._modify_main_repo_manifest(superproject_root)
+        self._repo_sync(superproject_root, project_paths)
+
+    def _maybe_init_superproject(self) -> pathlib.Path:
+        """Returns repo root or git root, depending on --superproject_tool."""
+        match self.superproject_tool:
+            case "repo":
+                return self._find_repo_root()
+            # TODO: For git, if --kleaf_repo not under git, run `git init`
+        raise KleafProjectSetterError(
+            f"Invalid value for --superproject_tool: {self.superproject_tool}")
+
+    def _find_repo_root(self) -> pathlib.Path:
+        """If --kleaf_repo is under a repo manifest, return repo root.
+
+        Otherwise raise, because we cannot infer a sensible `--manifest-url`
+        for `repo init`.
+        """
+        if not self.kleaf_repo:
+            raise KleafProjectSetterError(
+                "ERROR: _maybe_init_repo called without --kleaf_repo!")
+        repo_root = self._find_repo(self.kleaf_repo)
+        if repo_root:
+            return repo_root
+
+        raise KleafProjectSetterError(textwrap.dedent(f"""\
+            ERROR: repo not initialized at or above {self.kleaf_repo}.
+            Please set up a repo manifest project, then initialize it.
+            For details, please visit
+                https://gerrit.googlesource.com/git-repo/+/HEAD/README.md
+            For example:
+                cd {self._get_prospect_superproject_root()} && repo init -u ...
+        """))
+
+    @staticmethod
+    def _find_repo(curdir: pathlib.Path) -> pathlib.Path | None:
+        """Find repo installation."""
+        while curdir.parent != curdir:  # is not root
+            maybe_repo_main = curdir / ".repo"
+            if maybe_repo_main.is_dir():
+                return curdir
+            curdir = curdir.parent
+        return None
+
+    def _get_prospect_superproject_root(self):
+        """Returns a sensible default for superproject root."""
+        if not self.kleaf_repo:
+            raise KleafProjectSetterError(
+                "ERROR: _get_prospect_superproject_root called without "
+                "--kleaf_repo!")
+        if (self.ddk_workspace and
+                self.kleaf_repo.is_relative_to(self.ddk_workspace)):
+            return self.ddk_workspace
+        else:
+            return self.kleaf_repo
+
+    def _populate_kleaf_repo_manifest(self, superproject_root: pathlib.Path) \
+            -> list[pathlib.Path]:
+        """Populates .repo/manifests/kleaf.xml.
+
+        Returns:
+            list of Git project paths relative to repo root"""
+        if not self.kleaf_repo:
+            raise KleafProjectSetterError(
+                "ERROR: _populate_kleaf_repo_manifest called without "
+                "--kleaf_repo!")
+        if not self.prebuilts_dir:
+            # TODO: Support checking out full git sources without downloading
+            #   GKI prebuilts
+            logging.info("Skip checking out Kleaf projects without "
+                         "--prebuilts_dir")
+            return []
+
+        # TODO: if not self.prebuilts_dir, groups should be None.
+        groups = {"ddk", "ddk-external"}
+
+        kleaf_repo_rel = self.kleaf_repo.relative_to(superproject_root)
+
+        with open(superproject_root / f".repo/manifests/{_KLEAF_MANIFEST}") \
+                as kleaf_manifest:
+            return RepoManifestParser(
+                project_prefix=kleaf_repo_rel,
+                manifest=self._repo_manifest_of_build,
+                groups=groups,
+            ).write_transformed_dom(kleaf_manifest)
+
+    def _modify_main_repo_manifest(self, superproject_root: pathlib.Path):
+        # TODO: make sure comments in the original manifest is kept.
+        # TODO: name of manifest is configurable in repo. Do we want to allow
+        #   configuration of it?
+        manifest_path = superproject_root / ".repo/manifests/default.xml"
+        with open(manifest_path, "r+") as manifest:
+            try:
+                with xml.dom.minidom.parse(manifest) as dom:
+                    root: xml.dom.minidom.Element = dom.documentElement
+                    for include in root.getElementsByTagName("include"):
+                        if include.getAttribute("name") == _KLEAF_MANIFEST:
+                            return
+                    include = dom.createElement("include")
+                    include.setAttribute("name", _KLEAF_MANIFEST)
+                    root.appendChild(include)
+
+                    manifest.seek(0)
+                    dom.writexml(manifest)
+            except xml.parsers.expat.ExpatError as err:
+                raise KleafProjectSetterError(
+                    f"Unable to parse repo manifest {manifest_path}") from err
+
+    def _repo_sync(self, superproject_root: pathlib.Path,
+                   project_paths: list[pathlib.Path]):
+        """Syncs project_paths below superproject_root."""
+        if self.dryrun_checkout:
+            logging.info("Skip repo sync because --dryrun_checkout")
+            return
+        subprocess_args = ["repo", "sync", "-c"]
+        subprocess_args.extend(str(path) for path in project_paths)
+        subprocess.check_call(subprocess_args, cwd=superproject_root)
 
     def _populate_kleaf_repo_extra_files(self) -> None:
         """Populates kleaf_repo by adding extra files"""
@@ -424,6 +583,90 @@ class KleafProjectSetter:
         self._run()
 
 
+@dataclasses.dataclass
+class RepoManifestParser:
+    """Parses the repo manifest from a build."""
+    manifest: str
+    project_prefix: pathlib.Path
+
+    # If None, add all projects. If a set, only add projects that matches
+    # any of these groups. If an empty set, no project is added.
+    groups: set[str] | None
+
+    def write_transformed_dom(self, file: TextIO) \
+            -> list[pathlib.Path]:
+        """Transforms manifest from the build and write result to file.
+
+        Returns:
+            list of Git project paths relative to repo root
+        """
+        try:
+            with xml.dom.minidom.parse(self.manifest) as dom:
+                project_paths = self._transform_dom(dom)
+                dom.writexml(file)
+                return project_paths
+        except xml.parsers.expat.ExpatError as err:
+            raise KleafProjectSetterError("Unable to parse repo manifest") \
+                from err
+
+    def _transform_dom(self, dom: xml.dom.minidom.Document) \
+            -> list[pathlib.Path]:
+        """Transforms manifest from the build.
+
+        - Append project_prefix to each project.
+        - Filter out projects of mismatching groups
+        - Drop elements that may conflict with the main manifest
+
+        Returns:
+            list of Git project paths relative to repo root
+        """
+        root: xml.dom.minidom.Element = dom.documentElement
+        projects = root.getElementsByTagName("project")
+        defaults = self._parse_repo_manifest_defaults(root)
+        project_paths = []
+        for project in projects:
+            if not self._match_group(project):
+                root.removeChild(project).unlink()
+                continue
+
+            # https://gerrit.googlesource.com/git-repo/+/master/docs/manifest-format.md#element-project
+            orig_path_below_repo = pathlib.Path(project.getAttribute("path") or
+                                                project.getAttribute("name"))
+            path_below_repo = self.project_prefix / orig_path_below_repo
+            project_paths.append(path_below_repo)
+            project.setAttribute("path", str(path_below_repo))
+            # TODO filter non-DDK projects if necessary
+            for key, value in defaults:
+                if not project.hasAttribute(key):
+                    project.setAttribute(key, value)
+
+        # Avoid <superproject> and <default> in Kleaf manifest conflicting with
+        # the one in main manifest
+        for superproject in root.getElementsByTagName("superproject"):
+            root.removeChild(superproject).unlink()
+        for default_element in root.getElementsByTagName("default"):
+            root.removeChild(default_element).unlink()
+        return project_paths
+
+    def _match_group(self, project: xml.dom.minidom.Element):
+        """Returns true if project matches any of groups."""
+        if self.groups is None:
+            return True
+        project_groups = re.split(r",| ", project.getAttribute("groups"))
+        return bool(set(project_groups) & self.groups)
+
+    def _parse_repo_manifest_defaults(self, root: xml.dom.minidom.Element):
+        """Parses <default> in a repo manifest. """
+        ret = dict[str, str]()
+        for default_element in root.getElementsByTagName("default"):
+            attrs = default_element.attributes
+            for index in range(attrs.length):
+                attr = attrs.item(index)
+                assert isinstance(attr, xml.dom.minidom.Attr)
+                ret[attr.name] = attr.value
+        return ret
+
+
 if __name__ == "__main__":
 
     def abs_path(path_string: str) -> pathlib.Path | None:
@@ -477,6 +720,21 @@ if __name__ == "__main__":
         "--url_fmt",
         help="URL format endpoint for CI downloads.",
         default=None,
+    )
+    parser.add_argument(
+        "--superproject_tool",
+        help="""Tool to manage the superproject.
+
+            Currently only `repo` is supported. This requires repo to be
+            installed on your machine.
+        """,
+        choices=["repo"],
+        default="repo",
+    )
+    parser.add_argument(
+        "--dryrun_checkout",
+        help="Do not sync Git projects for Kleaf tooling.",
+        action="store_true",
     )
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO,
