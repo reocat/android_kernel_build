@@ -18,6 +18,7 @@
 
 import argparse
 import concurrent.futures
+import contextlib
 import dataclasses
 import json
 import logging
@@ -28,6 +29,10 @@ import sys
 import tarfile
 import tempfile
 import urllib.parse
+
+from init.init_errors import KleafProjectSetterError
+from init.repo_wrapper import RepoWrapper
+
 
 _TOOLS_BAZEL = "tools/bazel"
 _DEVICE_BAZELRC = "device.bazelrc"
@@ -57,10 +62,6 @@ use_repo(kernel_prebuilt_ext, "gki_prebuilts")
 """
 
 
-class KleafProjectSetterError(RuntimeError):
-    pass
-
-
 @dataclasses.dataclass(kw_only=True)
 class KleafProjectSetter:
     """Configures the project layout to build DDK modules."""
@@ -72,6 +73,14 @@ class KleafProjectSetter:
     kleaf_repo: pathlib.Path | None
     prebuilts_dir: pathlib.Path | None
     url_fmt: str | None
+    superproject_tool: str
+    dryrun_checkout: bool
+
+    def __post_init__(self):
+        """Initializes the KleafProjectSetter."""
+        self._superproject_manager: RepoWrapper | None = None
+        self._download_list: dict[str, dict] = {}
+        self._repo_manifest_of_build: str | None = None
 
     def _symlink_tools_bazel(self):
         """Creates the symlink tools/bazel."""
@@ -281,17 +290,49 @@ class KleafProjectSetter:
             check=mandatory,
         )
 
+    def _download_file_of_build(self, destination_directory: pathlib.Path,
+                                local_filename: str) -> None:
+        """Downloads a file from the given build_id."""
+        if local_filename not in self._download_list:
+            raise KleafProjectSetterError(
+                f"ERROR: Can't find download spec for {local_filename}"
+            )
+        config = self._download_list[local_filename]
+        remote_filename = config["remote_filename_fmt"].format(
+            build_number=self.build_id,
+        )
+        dst = destination_directory / local_filename
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        self._download(remote_filename, dst, config["mandatory"])
+
     def _load_meta_files(self):
         """Loads meta files, possibly downloading them."""
+        can_download = self._can_download_artifacts()
+        cm = None
         if self.prebuilts_dir:
-            if self._can_download_artifacts():
-                self._download_download_configs(self.prebuilts_dir)
-            # Otherwise meta files are already in prebuilts_dir.
-            self._load_download_configs(self.prebuilts_dir)
-        elif self._can_download_artifacts():
-            with tempfile.TemporaryDirectory() as meta_files_dir:
-                self._download_download_configs(pathlib.Path(meta_files_dir))
-                self._load_download_configs(pathlib.Path(meta_files_dir))
+            cm = contextlib.nullcontext(self.prebuilts_dir)
+        elif can_download:
+            cm = tempfile.TemporaryDirectory()
+
+        if cm is None:
+            return
+
+        with cm as meta_files_dir:
+            meta_files_dir = pathlib.Path(meta_files_dir)
+
+            if can_download:
+                self._download_download_configs(meta_files_dir)
+
+            with open(meta_files_dir / "download_configs.json", "r") as f:
+                self._download_list = json.load(f)
+
+            # We do not need to checkout projects in --local mode
+            if not self.local:
+                if can_download:
+                    self._download_file_of_build(meta_files_dir, "manifest.xml")
+
+                self._repo_manifest_of_build = (
+                    meta_files_dir / "manifest.xml").read_text()
 
     def _download_download_configs(self, meta_files_dir: pathlib.Path):
         """Downloads download_configs.json"""
@@ -305,12 +346,6 @@ class KleafProjectSetter:
         with open(download_configs, "w+", encoding="utf-8") as f:
             self._download("download_configs.json", pathlib.Path(f.name))
 
-    def _load_download_configs(self, meta_files_dir: pathlib.Path):
-        """Loads download_configs.json"""
-        download_configs = meta_files_dir / "download_configs.json"
-        with open(download_configs, "r") as f:
-            self._download_list = json.load(f)
-
     def _download_prebuilts(self) -> None:
         """Downloads prebuilts from a given build_id when provided."""
         if not self.prebuilts_dir:
@@ -320,15 +355,10 @@ class KleafProjectSetter:
         logging.info("Downloading prebuilts into %s", self.prebuilts_dir)
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = []
-            for local_filename, config in self._download_list.items():
-                remote_filename = config["remote_filename_fmt"].format(
-                    build_number = self.build_id,
-                )
-                dst = self.prebuilts_dir / local_filename
-                dst.parent.mkdir(parents=True, exist_ok=True)
+            for local_filename in self._download_list:
                 futures.append(
-                    executor.submit(self._download, remote_filename, dst,
-                                    config["mandatory"])
+                    executor.submit(self._download_file_of_build,
+                                    self.prebuilts_dir, local_filename)
                 )
             for complete_ret in concurrent.futures.as_completed(futures):
                 complete_ret.result()  # Raise exception if any
@@ -342,8 +372,7 @@ class KleafProjectSetter:
         if not self.kleaf_repo:
             return
         self.kleaf_repo.mkdir(parents=True, exist_ok=True)
-        # TODO: b/328770706 - According to the needs, syncing git repos logic should go here.
-
+        self._init_git_projects()
         self._populate_kleaf_repo_extra_files()
 
     def _handle_prebuilts(self) -> None:
@@ -352,6 +381,36 @@ class KleafProjectSetter:
         self.prebuilts_dir.mkdir(parents=True, exist_ok=True)
         if self._can_download_artifacts():
             self._download_prebuilts()
+
+    def _init_git_projects(self) -> None:
+        """Populates kleaf_repo by adding and syncing Git projects."""
+        if self.local:
+            logging.info(
+                "Skipped adding Git projects to kleaf_repo with --local.")
+            # --local assumes the kernel source tree is complete.
+            return
+        if not self.kleaf_repo:
+            logging.info(
+                "Skipped adding Git projects because --kleaf_repo is "
+                "unspecified"
+            )
+            return
+
+        match self.superproject_tool:
+            case "repo":
+                self._superproject_manager = RepoWrapper(
+                    kleaf_repo=self.kleaf_repo,
+                    prebuilts_dir=self.prebuilts_dir,
+                    ddk_workspace=self.ddk_workspace,
+                    repo_manifest_of_build=self._repo_manifest_of_build,
+                    dryrun_checkout=self.dryrun_checkout,
+                )
+                self._superproject_manager.update_manifest()
+
+    def _sync_git_projects(self) -> None:
+        if not self._superproject_manager:
+            return
+        self._superproject_manager.sync()
 
     def _populate_kleaf_repo_extra_files(self) -> None:
         """Populates kleaf_repo by adding extra files"""
@@ -424,6 +483,7 @@ class KleafProjectSetter:
         self._handle_prebuilts()
         self._handle_kleaf_repo()
         self._run()
+        self._sync_git_projects()
 
 
 if __name__ == "__main__":
@@ -479,6 +539,25 @@ if __name__ == "__main__":
         "--url_fmt",
         help="URL format endpoint for CI downloads.",
         default=None,
+    )
+    parser.add_argument(
+        "--superproject_tool",
+        help="""Tool to manage the superproject.
+
+            Currently only `repo` is supported. This requires repo to be
+            installed on your machine.
+        """,
+        choices=["repo"],
+        default="repo",
+    )
+    parser.add_argument(
+        "--dryrun_checkout",
+        help="""Do not sync Git projects for Kleaf tooling.
+
+        If --superproject_tool is repo, this means the program will skip
+        running `repo sync`. You should run `repo sync` yourself.
+        """,
+        action="store_true",
     )
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO,
