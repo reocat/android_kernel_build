@@ -900,6 +900,17 @@ def _define_common_kernel(
         log = "info",
     )
 
+    kernel_abi_dist(
+        name = name + "_abi_dist_ignore_diff",
+        kernel_abi = name + "_abi",
+        kernel_build_add_vmlinux = _GKI_ADD_VMLINUX,
+        data = dist_targets,
+        flat = True,
+        dist_dir = "out_abi/{name}/dist".format(name = name),
+        log = "info",
+        ignore_diff = True,
+    )
+
     _define_common_kernels_additional_tests(
         name = name + "_additional_tests",
         kernel_build_name = name,
