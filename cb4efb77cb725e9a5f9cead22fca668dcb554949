@@ -16,6 +16,24 @@
       "message": "Perhaps: https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser.add_mutually_exclusive_group",
       "revId": "cb4efb77cb725e9a5f9cead22fca668dcb554949",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "428f5a96_8e8055fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-05-23T23:55:46Z",
+      "side": 1,
+      "message": "There are a lot of issues with this script, and there aren\u0027t tests to support refactoring it. Can you accept this? I had to spend a while coming up on kernel today and figuring it out, since someone was blocked on their task for multiple days w/o this change.",
+      "parentUuid": "38228b84_32abeeca",
+      "revId": "cb4efb77cb725e9a5f9cead22fca668dcb554949",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
