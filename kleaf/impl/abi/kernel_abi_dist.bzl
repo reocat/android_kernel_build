@@ -18,6 +18,7 @@ load("//build/bazel_common_rules/dist:dist.bzl", "copy_to_dist_dir")
 
 # TODO(b/329305827): Move exec.bzl to //build/kernel
 load("//build/bazel_common_rules/exec/impl:exec.bzl", "exec_rule")
+load(":abi/abi_stgdiff.bzl", "STGDIFF_CHANGE_CODE")
 load(":abi/abi_transitions.bzl", "abi_common_attrs", "with_vmlinux_transition")
 load(":hermetic_exec.bzl", "hermetic_exec", "hermetic_exec_target")
 
@@ -42,6 +43,8 @@ def kernel_abi_dist(
         name,
         kernel_abi,
         kernel_build_add_vmlinux = None,
+        ignore_diff = None,
+        no_ignore_diff_target = None,
         **kwargs):
     """A wrapper over `copy_to_dist_dir` for [`kernel_abi`](#kernel_abi).
 
@@ -92,6 +95,12 @@ def kernel_abi_dist(
         **Note**: Its value will be `True` by default in the future.
         During the migration period, this is `False` by default. Once all
         devices have been fixed, this attribute will be set to `True` by default.
+      ignore_diff: If `True` and the return code of `stgdiff`
+        signals the ABI difference, then the result is ignored. `False` by default.
+      no_ignore_diff_target: If `ignore_diff` is `True`, this need to be set
+        to a target that would be recommended as an alternative where `ignore_diff`
+        is `False`. If `no_ignore_diff_target` is None, there will be no
+        alternative recommended.
       **kwargs: Additional attributes to the internal rule, e.g.
         [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
         See complete list
@@ -117,19 +126,51 @@ def kernel_abi_dist(
     else:
         exec_macro = hermetic_exec
 
+    if ignore_diff == None:
+        ignore_diff = False
+
+    exec_macro_script = """
+          # Copy to dist dir
+            $(rootpath {copy_to_dist_dir}) $@
+    """.format(copy_to_dist_dir = name + "_copy_to_dist_dir")
+
+    diff_stg = kernel_abi + "_diff_executable"
+
+    if not ignore_diff:
+        exec_macro_script += """
+          # Check return code of diff_abi and kmi_enforced
+            $(rootpath {diff_stg})
+        """.format(diff_stg = diff_stg)
+    else:
+        no_ignore_diff_target_script = ""
+        if no_ignore_diff_target != None:
+            no_ignore_diff_target_script = """
+                echo "WARNING: Use 'tools/bazel run {label}' to fail on ABI difference." >&2
+            """.format(
+                label = native.package_relative_label(no_ignore_diff_target),
+            )
+        exec_macro_script += """
+          # Store return code of diff_abi and ignore if diff was found
+            rc=0
+            $(rootpath {diff_stg}) || rc=$?
+
+            if [[ $rc -eq {change_code} ]]; then
+                echo "WARNING: difference above is ignored." >&2
+                {no_ignore_diff_target_script}
+            else
+                exit $rc
+            fi
+        """.format(
+            diff_stg = diff_stg,
+            change_code = STGDIFF_CHANGE_CODE,
+            no_ignore_diff_target_script = no_ignore_diff_target_script,
+        )
+
     exec_macro(
         name = name,
         data = [
             name + "_copy_to_dist_dir",
             kernel_abi + "_diff_executable",
         ],
-        script = """
-          # Copy to dist dir
-            $(rootpath {copy_to_dist_dir}) $@
-          # Check return code of diff_abi and kmi_enforced
-            $(rootpath {diff_stg})
-        """.format(
-            copy_to_dist_dir = name + "_copy_to_dist_dir",
-            diff_stg = kernel_abi + "_diff_executable",
-        ),
+        script = exec_macro_script,
     )
