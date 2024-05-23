@@ -44,6 +44,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e08cf07a_51ccc7b9",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-05-23T09:41:47Z",
+      "side": 1,
+      "message": "Or even just:\n\ngit -C /path/to/common commit -F kernel_aarch64_abi_diff/git_message.txt --signoff --edit android/abi_gki_aarch64.stg\n\nThe -F path will need to be relative to the -C path, or absolute, as before.",
+      "parentUuid": "f79cb8de_26c77649",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 20
+      },
+      "revId": "185fe84c124777289c374a564ea6997968bdab69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d60da6dd_a1b6792c",
         "filename": "kleaf/impl/abi/abi_update.bzl",
         "patchSetId": 4
