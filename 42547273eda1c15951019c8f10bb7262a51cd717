@@ -196,6 +196,30 @@
       },
       "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f717177_a401bd42",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T21:38:13Z",
+      "side": 1,
+      "message": "Though, see my comment above; you can\u0027t actually assert that this label exist. But regardless, package_relative_label + same_package_label is a better way to print this label.\n\nhttps://bazel.build/rules/lib/builtins/Label#same_package_label",
+      "parentUuid": "45dec3c5_2bdce040",
+      "range": {
+        "startLine": 148,
+        "startChar": 20,
+        "endLine": 148,
+        "endChar": 30
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
