@@ -27,6 +27,7 @@ import subprocess
 import sys
 import tarfile
 import tempfile
+import textwrap
 import urllib.parse
 
 _TOOLS_BAZEL = "tools/bazel"
@@ -72,6 +73,7 @@ class KleafProjectSetter:
     kleaf_repo: pathlib.Path | None
     prebuilts_dir: pathlib.Path | None
     url_fmt: str | None
+    superproject_tool: str
 
     def _symlink_tools_bazel(self):
         """Creates the symlink tools/bazel."""
@@ -318,7 +320,7 @@ class KleafProjectSetter:
             return
         self.kleaf_repo.mkdir(parents=True, exist_ok=True)
         # TODO: b/328770706 - According to the needs, syncing git repos logic should go here.
-
+        self._sync_git_projects()
         self._populate_kleaf_repo_extra_files()
 
     def _handle_prebuilts(self) -> None:
@@ -327,6 +329,79 @@ class KleafProjectSetter:
         self.prebuilts_dir.mkdir(parents=True, exist_ok=True)
         if self._can_download_artifacts():
             self._download_prebuilts()
+
+    def _sync_git_projects(self) -> None:
+        """Populates kleaf_repo by adding and syncing Git projects."""
+        if self.local:
+            logging.info(
+                "Skipped adding Git projects to kleaf_repo with --local.")
+            # --local assumes the kernel source tree is complete.
+            return
+        if not self.kleaf_repo:
+            logging.info(
+                "Skipped adding Git projects because --kleaf_repo is "
+                "unspecified"
+            )
+            return
+        # repo root or git root, depending on the context
+        superproject_root = self._maybe_init_superproject()
+        kleaf_repo_rel = self.kleaf_repo.relative_to(superproject_root)
+
+
+
+    def _maybe_init_superproject(self) -> pathlib.Path:
+        """Returns repo root or git root, depending on --superproject_tool.
+        """
+        match self.superproject_tool:
+            case "repo":
+                return self._find_repo_root()
+            # TODO: For git, if --kleaf_repo not under git, run `git init`
+        raise KleafProjectSetterError(
+            f"Invalid value for --superproject_tool: {self.superproject_tool}")
+
+    def _find_repo_root(self) -> pathlib.Path:
+        """If --kleaf_repo is under a repo manifest, return repo root.
+
+        Otherwise raise, because we cannot infer a sensible `--manifest-url`
+        for `repo init`.
+        """
+        if not self.kleaf_repo:
+            raise KleafProjectSetterError(
+                "ERROR: _maybe_init_repo called without --kleaf_repo!")
+        repo_root = self._find_repo(self.kleaf_repo)
+        if repo_root:
+            return repo_root
+
+        raise KleafProjectSetterError(textwrap.dedent(f"""\
+            ERROR: repo not initialized at or above {self.kleaf_repo}.
+            Please set up a repo manifest project, then initialize it.
+            For details, please visit
+                https://gerrit.googlesource.com/git-repo/+/HEAD/README.md
+            For example:
+                cd {self._get_prospect_superproject_root()} && repo init -u ...
+        """))
+
+    @staticmethod
+    def _find_repo(curdir: pathlib.Path) -> pathlib.Path | None:
+        """Find repo installation."""
+        while curdir.parent != curdir: # is not root
+            maybe_repo_main = curdir / ".repo"
+            if maybe_repo_main.is_dir():
+                return curdir
+            curdir = curdir.parent
+        return None
+
+    def _get_prospect_superproject_root(self):
+        """Returns a sensible default for superproject root."""
+        if not self.kleaf_repo:
+            raise KleafProjectSetterError(
+                "ERROR: _get_prospect_superproject_root called without "
+                "--kleaf_repo!")
+        if (self.ddk_workspace and
+            self.kleaf_repo.is_relative_to(self.ddk_workspace)):
+            return self.ddk_workspace
+        else:
+            return self.kleaf_repo
 
     def _populate_kleaf_repo_extra_files(self) -> None:
         """Populates kleaf_repo by adding extra files"""
@@ -453,6 +528,16 @@ if __name__ == "__main__":
         "--url_fmt",
         help="URL format endpoint for CI downloads.",
         default=None,
+    )
+    parser.add_argument(
+        "--superproject_tool",
+        help="""Tool to manage the superproject.
+
+            Currently only `repo` is supported. This requires repo to be
+            installed on your machine.
+        """,
+        choices=["repo"],
+        default="repo",
     )
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO,
