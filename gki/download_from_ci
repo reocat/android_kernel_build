@@ -121,17 +121,18 @@ def parse_args():
 
   _args = parser.parse_args()
 
-  if any((
-    _args.update_gki,
-    _args.update_16k,
-    _args.update_u_boot,
-    _args.update_microdroid)):
+  modal_args = [_args.update_gki, _args.update_16k, _args.update_u_boot, _args.update_microdroid]
+
+  if any(modal_args):
     if _args.build_target is not None:
       raise Exception("build_target cannot be specified when updating prebuilts")
     if "ANDROID_BUILD_TOP" not in os.environ:
       raise Exception("$ANDROID_BUILD_TOP must be set to update prebuilts")
     if not _args.bug:
       raise Exception("A bug number must be provided when updating prebuilts")
+
+  if sum(1 for arg in modal_args if arg) > 1:
+    raise Exception("Only one type of kernel can be updated at a time!")
 
 def list_artifacts(url_base):
   # Download BUILD_INFO to get the file list
