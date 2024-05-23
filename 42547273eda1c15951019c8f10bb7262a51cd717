@@ -132,6 +132,53 @@
       },
       "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "664ab1c8_15aada26",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T20:41:59Z",
+      "side": 1,
+      "message": "(This is meant to be commented on L148 but I think you get the idea)",
+      "parentUuid": "f8bac391_afc77781",
+      "range": {
+        "startLine": 140,
+        "startChar": 35,
+        "endLine": 140,
+        "endChar": 60
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45dec3c5_2bdce040",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T20:41:59Z",
+      "side": 1,
+      "message": "You probably want `kernel_abi_label \u003d native.package_relative_label(kernel_abi); kernel_abi_label.same_package_label(kernel_abi_label.name + \"_dist\")`  instead?\n\nhttps://bazel.build/rules/lib/toplevel/native#package_relative_label",
+      "range": {
+        "startLine": 148,
+        "startChar": 20,
+        "endLine": 148,
+        "endChar": 30
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
