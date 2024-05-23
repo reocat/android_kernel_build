@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f0c5edbc_5bb97556",
+        "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
+        "patchSetId": 13
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T06:23:12Z",
+      "side": 1,
+      "message": "nit: This appears to print a blank \"INFO:\" if there is no diff at all and error_msg_file is empty.",
+      "range": {
+        "startLine": 56,
+        "startChar": 18,
+        "endLine": 56,
+        "endChar": 22
+      },
+      "revId": "610c2ce07dddb695b7891815a6189898f717350e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d03960de_e3131f85",
         "filename": "kleaf/impl/abi/abi_stgdiff.bzl",
         "patchSetId": 13
