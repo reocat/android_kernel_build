@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd535f61_20ab0198",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T21:01:31Z",
+      "side": 1,
+      "message": "please also check my comment on an alternative solution in the internal doc \"Separate kernel build and ABI testing targets\".",
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "099da224_390481d5",
         "filename": "kleaf/common_kernels.bzl",
         "patchSetId": 3
