@@ -66,6 +66,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "174021bb_f23be873",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T22:54:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e08cf07a_51ccc7b9",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 20
+      },
+      "revId": "185fe84c124777289c374a564ea6997968bdab69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d60da6dd_a1b6792c",
@@ -103,6 +127,30 @@
       "side": 1,
       "message": "The current code is okay because I call `git add` with the basename of the file. Let me try the commands you suggested above.",
       "parentUuid": "d60da6dd_a1b6792c",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 39
+      },
+      "revId": "185fe84c124777289c374a564ea6997968bdab69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "640ffff2_131b7185",
+        "filename": "kleaf/impl/abi/abi_update.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T22:54:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee87cdd9_d9dba1b7",
       "range": {
         "startLine": 35,
         "startChar": 0,
