@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b379fbc1_404be492",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T20:09:10Z",
+      "side": 1,
+      "message": "I think there\u0027s a kernel_aarch64_abi_nodiff_update target. Did you check that target? Would the code from that target help?",
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "099da224_390481d5",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T20:09:10Z",
+      "side": 1,
+      "message": "I would name this _abi_ignore_diff_dist to indicate that this is a \"dist\" target.",
+      "range": {
+        "startLine": 904,
+        "startChar": 23,
+        "endLine": 904,
+        "endChar": 44
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8666687d_cc318476",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T20:09:10Z",
+      "side": 1,
+      "message": "Default values should be None for macros https://android.googlesource.com/kernel/build/+/refs/heads/main/kleaf/docs/kleaf_development.md#conventions",
+      "range": {
+        "startLine": 46,
+        "startChar": 22,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1e7084c_dfaa9f0d",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T20:09:10Z",
+      "side": 1,
+      "message": "Instead of checking this in shell, IMO it is better to check this in Starlark directly, so you skip executing some shell commands ahead.",
+      "range": {
+        "startLine": 137,
+        "startChar": 39,
+        "endLine": 137,
+        "endChar": 65
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8bac391_afc77781",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-23T20:09:10Z",
+      "side": 1,
+      "message": "You can\u0027t assert that this label actually exist in this context. This is poking into the implementation detail of common_kernels.bzl. Partners may also invoke kernel_abi_dist() with arbitrary names.",
+      "range": {
+        "startLine": 140,
+        "startChar": 35,
+        "endLine": 140,
+        "endChar": 60
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
