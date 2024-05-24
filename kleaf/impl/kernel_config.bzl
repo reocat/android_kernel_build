@@ -114,7 +114,6 @@ def _config_trim(ctx):
         return []
 
     return [
-        _config.disable("UNUSED_SYMBOLS"),
         _config.enable("TRIM_UNUSED_KSYMS"),
     ]
 
