@@ -221,6 +221,8 @@ class Stamp(object):
         self.use_kleaf_localversion = os.environ.get(
             "KLEAF_USE_KLEAF_LOCALVERSION") == "true"
         self.projects = list_projects()
+        self.projects.extend(pathlib.Path(value) for value in os.environ.get(
+            "KLEAF_EXTRA_GIT_PROJECTS", "").split(":"))
         self.init_for_dot_source_date_epoch_dir()
 
     def init_for_dot_source_date_epoch_dir(self) -> None:
