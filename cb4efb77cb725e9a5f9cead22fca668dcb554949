@@ -34,6 +34,24 @@
       "parentUuid": "38228b84_32abeeca",
       "revId": "cb4efb77cb725e9a5f9cead22fca668dcb554949",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4d42b85_aad1bf0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-24T01:31:44Z",
+      "side": 1,
+      "message": "I don\u0027t own this script \u0026 I never touched it before either. I can submit a patch just from looking at it (static analysis with my eyes) but I also don\u0027t know how to test it either.\n\n\u003e since someone was blocked on their task for multiple days w/o this change.\n\nThis surprises me. What the change does is to fail with proper error messages instead of silently exiting, right? So this person should be able to run the script multiple times to update different kernels. There seems to be a workaround and it shouldn\u0027t be blocking, right?",
+      "parentUuid": "428f5a96_8e8055fe",
+      "revId": "cb4efb77cb725e9a5f9cead22fca668dcb554949",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
