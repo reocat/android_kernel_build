@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5be5e3a7_de780505",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1869395
+      },
+      "writtenOn": "2024-05-24T16:16:03Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "d157f207d65f25c35b659e42060c33ba97390f1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b03df10b_50e63e65",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1869395
+      },
+      "writtenOn": "2024-05-24T16:16:03Z",
+      "side": 1,
+      "message": "nit: I have a habit of separating file arguments with -- as sometimes skipping causes git to be confused with command options.",
+      "range": {
+        "startLine": 96,
+        "startChar": 20,
+        "endLine": 96,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "153faba6_d34a1a81",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "kleaf/docs/abi.md",
+              "range": {
+                "startLine": 96,
+                "startChar": 0,
+                "endLine": 97,
+                "endChar": 0
+              },
+              "replacement": "    --signoff --edit -- abi_gki_aarch64.stg\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d157f207d65f25c35b659e42060c33ba97390f1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d36385a_1d82dbba",
+        "filename": "kleaf/impl/abi/abi_update.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1869395
+      },
+      "writtenOn": "2024-05-24T16:16:03Z",
+      "side": 1,
+      "message": "I\u0027m not sure how expansion works here... does this double escape eventually results in a single backslash?",
+      "range": {
+        "startLine": 35,
+        "startChar": 86,
+        "endLine": 35,
+        "endChar": 90
+      },
+      "revId": "d157f207d65f25c35b659e42060c33ba97390f1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c15f3277_a7b949dc",
+        "filename": "kleaf/impl/abi/abi_update.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1869395
+      },
+      "writtenOn": "2024-05-24T16:16:03Z",
+      "side": 1,
+      "message": "nit: maybe a new separate `echo` line would help with indentation here.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 4
+      },
+      "revId": "d157f207d65f25c35b659e42060c33ba97390f1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
