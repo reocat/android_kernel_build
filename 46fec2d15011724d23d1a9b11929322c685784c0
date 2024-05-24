@@ -22,6 +22,30 @@
       },
       "revId": "46fec2d15011724d23d1a9b11929322c685784c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4218383_8d4364b1",
+        "filename": "gki/download_from_ci",
+        "patchSetId": 3
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-05-24T19:44:30Z",
+      "side": 1,
+      "message": "there are a few bigger issues we need to fix first, see email thread.\n\nAnyway, we want to make update_16k happen by default now (or maybe everything by default).\n\nBut at least to remove the returns here, you would need to add a new way to specify the option when none of these args are set.\n\nSo we should focus on fixing the 4 other functional issues with this script.\n\nbut yeah, I agree with that direction.",
+      "parentUuid": "55d674d9_2c68e469",
+      "range": {
+        "startLine": 791,
+        "startChar": 2,
+        "endLine": 805,
+        "endChar": 10
+      },
+      "revId": "46fec2d15011724d23d1a9b11929322c685784c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
