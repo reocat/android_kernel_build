@@ -98,6 +98,7 @@ def kernel_build(
         make_goals = None,
         kconfig_ext = None,
         dtstree = None,
+        allow_absolute_paths_in_config = None,
         kmi_symbol_list = None,
         protected_exports_list = None,
         protected_modules_list = None,
@@ -302,6 +303,16 @@ def kernel_build(
 
           Labels are created for each item in `module_implicit_outs` as in `outs`.
 
+        allow_absolute_paths_in_config: If true, `.config` does not contain
+          absolute paths for files like `kmi_symbol_list`, `module_signing_key`,
+          `system_trusted_key`. A relative path is written instead and the file
+          is restored to that relative path under `$OUT_DIR`.
+
+          Requires patch "module: allow UNUSED_KSYMS_WHITELIST to be relative
+          against objtree.". See these links for backports:
+
+          * android14-5.15: http://r.android.com/3101435
+          * android14-6.1: http://r.android.com/3101434
         kmi_symbol_list: A label referring to the main KMI symbol list file. See `additional_kmi_symbol_lists`.
 
           This is the Bazel equivalent of `ADDITIONAL_KMI_SYMBOL_LISTS`.
@@ -548,6 +559,7 @@ def kernel_build(
         raw_kmi_symbol_list = raw_kmi_symbol_list_target_name,
         module_signing_key = module_signing_key,
         system_trusted_key = system_trusted_key,
+        allow_absolute_paths_in_config = allow_absolute_paths_in_config,
         lto = lto,
         defconfig_fragments = defconfig_fragments,
         **internal_kwargs
