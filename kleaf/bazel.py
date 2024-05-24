@@ -21,7 +21,7 @@ import shlex
 import shutil
 import sys
 import textwrap
-from typing import BinaryIO, Generator, Tuple, Optional
+from typing import BinaryIO, Callable, Generator, Tuple, Optional
 
 from kleaf_help import KleafHelpPrinter, FLAGS_BAZEL_RC
 
@@ -318,9 +318,28 @@ class BazelWrapper(KleafHelpPrinter):
                     and may be removed in the future.
                 - <REPO_ROOT>:<REPO_MANIFEST>, where REPO_ROOT is the absolute
                     path to the repo root where `repo manifest -r` was executed.
+
+                This is used to gather the list of Git projects under the
+                workspace to get scmversion. If your workspace is not controlled
+                with `repo`, use --extra_git_project.
                 """),
             type=_check_repo_manifest,
             default=(None, None),
+        )
+        group.add_argument(
+            "--extra_git_project", metavar="PATH",
+            dest="extra_git_projects", action="append",
+            help=textwrap.dedent("""\
+                Multiple uses are accumulated. Specify a Git project besides
+                the ones in `repo` or in --repo_manifest. The value should be
+                the path to the root of the Git project relative to the
+                workspace.
+
+                This is useful if you have an extra Git project not in the
+                repo manifest, but you need to stamp scmversion on the kernel
+                or kernel modules built from this directory.
+            """),
+            type=self._check_extra_git_project,
         )
         group.add_argument(
             "--ignore_missing_projects",
@@ -350,6 +369,16 @@ class BazelWrapper(KleafHelpPrinter):
             metavar="PATH",
             help="Absolute path to a custom clang toolchain",
             type=_require_absolute_path,
+        )
+
+    def _check_extra_git_project(self, value: str) -> pathlib.Path:
+        path = pathlib.Path(value)
+        if not path.is_absolute():
+            return path
+        if path.is_relative_to(self.kleaf_repo_dir):
+            return path.relative_to(self.kleaf_repo_dir)
+        raise argparse.ArgumentTypeError(
+            f"Must be a relative path against {self.kleaf_repo_dir}",
         )
 
     def _parse_command_args(self):
@@ -405,6 +434,10 @@ class BazelWrapper(KleafHelpPrinter):
             self.env["KLEAF_REPO_MANIFEST"] = f"{repo_root}:{repo_manifest}"
         else:
             self.env["KLEAF_REPO_MANIFEST"] = f"{repo_root}:"
+
+        if self.known_args.extra_git_projects:
+            self.env["KLEAF_EXTRA_GIT_PROJECTS"] = ":".join(
+                str(path) for path in self.known_args.extra_git_projects)
 
         if self.known_args.ignore_missing_projects:
             self.env["KLEAF_IGNORE_MISSING_PROJECTS"] = "true"

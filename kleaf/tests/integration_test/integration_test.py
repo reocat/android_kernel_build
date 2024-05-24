@@ -1052,10 +1052,13 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
                            lambda x: re.search(extraversion_pattern, x),
                            ["EXTRAVERSION ="])
 
-    def _get_vmlinux_scmversion(self, workspace_root=pathlib.Path(".")):
+    def _get_vmlinux_scmversion(self, workspace_root=pathlib.Path("."),
+                                package : str | pathlib.Path | None = None):
+        if not package:
+            package = self._common()
         strings_output = Exec.check_output([
             self.strings,
-            str(workspace_root / f"bazel-bin/{self._common()}/kernel_aarch64/vmlinux")
+            str(workspace_root / f"bazel-bin/{package}/kernel_aarch64/vmlinux")
         ])
         ret = []
         for line in strings_output.splitlines():
@@ -1220,6 +1223,32 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
         scmversion_pat = re.compile(
             r"^-rc999-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?$")
         for scmversion in self._get_vmlinux_scmversion(workspace_root):
+            self.assertRegexpMatches(scmversion, scmversion_pat)
+
+    def test_stamp_if_kernel_dir_is_symlink(self):
+        """Tests that --stamp works if KERNEL_DIR is a symlink."""
+        self._setup_mainline()
+
+        new_kernel_dir = pathlib.Path("test_symlink")
+        with open(self.build_config_gki_aarch64_path, "a") as f:
+            f.write(f"KERNEL_DIR={new_kernel_dir}\n")
+
+        if not new_kernel_dir.is_symlink():
+            new_kernel_dir.symlink_to(self._common(), True)
+        self.addCleanup(new_kernel_dir.unlink)
+
+        self._check_call(
+            "build",
+            _FASTEST + [
+                "--config=stamp",
+                "--config=local",
+                f"//{new_kernel_dir}:kernel_aarch64",
+                f"--extra_git_project={new_kernel_dir}"
+            ],
+            env=ScmversionIntegrationTest._env_without_build_number())
+        scmversion_pat = re.compile(
+            r"^-rc999-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?$")
+        for scmversion in self._get_vmlinux_scmversion(package=new_kernel_dir):
             self.assertRegexpMatches(scmversion, scmversion_pat)
 
 
