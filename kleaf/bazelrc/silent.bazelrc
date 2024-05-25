@@ -20,7 +20,7 @@ common:silent --noshow_progress
 # Suppresses warnings like
 #   WARNING: Build option [...] has changed, discarding analysis cache
 # We only care about error and failures from Bazel.
-common:silent --ui_event_filters=error,fail
+common:silent --ui_event_filters=,+error,+fail
 
 # suppresses "Target X up-to-date" "bazel-bin/..." lines
 common:silent --show_result=0
