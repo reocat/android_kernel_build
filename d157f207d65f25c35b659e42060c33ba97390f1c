@@ -61,6 +61,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e08f6ff9_884fc2f1",
+        "filename": "kleaf/docs/abi.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-25T00:45:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b03df10b_50e63e65",
+      "range": {
+        "startLine": 96,
+        "startChar": 20,
+        "endLine": 96,
+        "endChar": 21
+      },
+      "revId": "d157f207d65f25c35b659e42060c33ba97390f1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1d36385a_1d82dbba",
         "filename": "kleaf/impl/abi/abi_update.bzl",
         "patchSetId": 5
@@ -84,6 +108,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d8cf096d_b1b008d5",
+        "filename": "kleaf/impl/abi/abi_update.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-25T00:45:38Z",
+      "side": 1,
+      "message": "Yes.\n\nThis is a Bazel string, so \\\\\\\\ becomes \\\\ in the shell script. The shell script executed is:\n\n```\necho \"... \\\\\n   ... \\\\\n   ...\"\n```\n\nwhich prints \n\n```\n... \\\n   ... \\\n   ...\n```",
+      "parentUuid": "1d36385a_1d82dbba",
+      "range": {
+        "startLine": 35,
+        "startChar": 86,
+        "endLine": 35,
+        "endChar": 90
+      },
+      "revId": "d157f207d65f25c35b659e42060c33ba97390f1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c15f3277_a7b949dc",
         "filename": "kleaf/impl/abi/abi_update.bzl",
         "patchSetId": 5
@@ -95,6 +143,30 @@
       "writtenOn": "2024-05-24T16:16:03Z",
       "side": 1,
       "message": "nit: maybe a new separate `echo` line would help with indentation here.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 4
+      },
+      "revId": "d157f207d65f25c35b659e42060c33ba97390f1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15aa9ca7_16a44c09",
+        "filename": "kleaf/impl/abi/abi_update.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-25T00:45:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c15f3277_a7b949dc",
       "range": {
         "startLine": 36,
         "startChar": 0,
