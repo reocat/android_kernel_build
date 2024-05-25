@@ -16,6 +16,24 @@
       "message": "It looks like the removal of UNUSED_SYMBOLS was merged in 5.11, and I\u0027m not immediately seeing any kernel older than 5.15 that\u0027s built with kleaf (at least android13-5.10 doesn\u0027t seem to be), so it\u0027s probably OK to remove unilaterally. Is that correct though? Do we have 5.10 kernels or older that support kleaf?",
       "revId": "f92a6856e9770c9cbe8e2bfcda2bccc60b65a2b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af9aa605_d416a849",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-25T00:10:29Z",
+      "side": 1,
+      "message": "This change only applies to android15-6.6 and mainline. android14-6.1 and before uses a different branch (e.g. android14 uses main-kernel-build-2023, and android13 uses master-kernel-build-2022).",
+      "parentUuid": "56cd6612_b7c9c1c6",
+      "revId": "f92a6856e9770c9cbe8e2bfcda2bccc60b65a2b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
