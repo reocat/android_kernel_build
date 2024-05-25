@@ -297,13 +297,15 @@ class KleafProjectSetter:
         files_dict = self._infer_download_list()
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = []
-            for file, config in files_dict.items():
-                dst = self.prebuilts_dir / file
+            for local_filename, config in files_dict.items():
+                remote_filename = config["remote_filename_fmt"].format(
+                    build_number = self.build_id,
+                )
+                dst = self.prebuilts_dir / local_filename
                 dst.parent.mkdir(parents=True, exist_ok=True)
                 futures.append(
-                    executor.submit(
-                        self._download, file, dst, config["mandatory"]
-                    )
+                    executor.submit(self._download, remote_filename, dst,
+                                    config["mandatory"])
                 )
             for complete_ret in concurrent.futures.as_completed(futures):
                 complete_ret.result()  # Raise exception if any
