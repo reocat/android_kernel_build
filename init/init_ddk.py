@@ -281,16 +281,27 @@ class KleafProjectSetter:
             check=mandatory,
         )
 
-    def _infer_download_list(self) -> dict[str, dict]:
+    def _download_meta_files(self):
+        if self.prebuilts_dir:
+            self._download_meta_files_to(self.prebuilts_dir)
+        else:
+            with tempfile.TemporaryDirectory() as meta_files_dir:
+                self._download_meta_files_to(pathlib.Path(meta_files_dir))
+
+    def _download_meta_files_to(self, meta_files_dir: pathlib.Path):
+        meta_files_dir.mkdir(parents=True, exist_ok=True)
+        self._download_list = self._infer_download_list(meta_files_dir)
+
+    def _infer_download_list(self, meta_files_dir: pathlib.Path) \
+        -> dict[str, dict]:
         """Infers the list of files to be downloaded using download_configs.json."""
-        if not self.prebuilts_dir:
-            raise KleafProjectSetterError(
-                "ERROR: _infer_download_list called without --prebuilts_dir!"
-            )
-        download_configs = self.prebuilts_dir / "download_configs.json"
-        with open(download_configs, "w+", encoding="utf-8") as config:
-            self._download("download_configs.json", pathlib.Path(config.name))
-            return json.load(config)
+        download_configs = meta_files_dir / "download_configs.json"
+        if self._can_download_artifacts():
+            with open(download_configs, "w+", encoding="utf-8") as f:
+                self._download("download_configs.json", pathlib.Path(f.name))
+                return json.load(f)
+        with open(download_configs, "r") as f:
+            return json.load(f)
 
     def _download_prebuilts(self) -> None:
         """Downloads prebuilts from a given build_id when provided."""
@@ -299,10 +310,9 @@ class KleafProjectSetter:
                 "ERROR: _download_prebuilts called without --prebuilts_dir!"
             )
         logging.info("Downloading prebuilts into %s", self.prebuilts_dir)
-        files_dict = self._infer_download_list()
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = []
-            for local_filename, config in files_dict.items():
+            for local_filename, config in self._download_list.items():
                 remote_filename = config["remote_filename_fmt"].format(
                     build_number = self.build_id,
                 )
@@ -402,6 +412,7 @@ class KleafProjectSetter:
 
     def run(self) -> None:
         self._handle_ddk_workspace()
+        self._download_meta_files()
         self._handle_prebuilts()
         self._handle_kleaf_repo()
         self._run()
