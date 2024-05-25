@@ -281,16 +281,33 @@ class KleafProjectSetter:
             check=mandatory,
         )
 
-    def _infer_download_list(self) -> dict[str, dict]:
-        """Infers the list of files to be downloaded using download_configs.json."""
-        if not self.prebuilts_dir:
+    def _load_meta_files(self):
+        """Loads meta files, possibly downloading them."""
+        if self.prebuilts_dir:
+            if self._can_download_artifacts():
+                self._download_meta_files_to(self.prebuilts_dir)
+            # Otherwise meta files are already in prebuilts_dir.
+            self._load_meta_files_from(self.prebuilts_dir)
+        elif self._can_download_artifacts():
+            with tempfile.TemporaryDirectory() as meta_files_dir:
+                self._download_meta_files_to(pathlib.Path(meta_files_dir))
+                self._load_meta_files_from(pathlib.Path(meta_files_dir))
+
+    def _download_meta_files_to(self, meta_files_dir: pathlib.Path):
+        if not self._can_download_artifacts():
             raise KleafProjectSetterError(
-                "ERROR: _infer_download_list called without --prebuilts_dir!"
+                "ERROR: _download_meta_files_to called without --url_fmt set!"
             )
-        download_configs = self.prebuilts_dir / "download_configs.json"
-        with open(download_configs, "w+", encoding="utf-8") as config:
-            self._download("download_configs.json", pathlib.Path(config.name))
-            return json.load(config)
+        meta_files_dir.mkdir(parents=True, exist_ok=True)
+
+        download_configs = meta_files_dir / "download_configs.json"
+        with open(download_configs, "w+", encoding="utf-8") as f:
+            self._download("download_configs.json", pathlib.Path(f.name))
+
+    def _load_meta_files_from(self, meta_files_dir: pathlib.Path):
+        download_configs = meta_files_dir / "download_configs.json"
+        with open(download_configs, "r") as f:
+            self._download_list = json.load(f)
 
     def _download_prebuilts(self) -> None:
         """Downloads prebuilts from a given build_id when provided."""
@@ -299,10 +316,9 @@ class KleafProjectSetter:
                 "ERROR: _download_prebuilts called without --prebuilts_dir!"
             )
         logging.info("Downloading prebuilts into %s", self.prebuilts_dir)
-        files_dict = self._infer_download_list()
         with concurrent.futures.ThreadPoolExecutor() as executor:
             futures = []
-            for local_filename, config in files_dict.items():
+            for local_filename, config in self._download_list.items():
                 remote_filename = config["remote_filename_fmt"].format(
                     build_number = self.build_id,
                 )
@@ -402,6 +418,7 @@ class KleafProjectSetter:
 
     def run(self) -> None:
         self._handle_ddk_workspace()
+        self._load_meta_files()
         self._handle_prebuilts()
         self._handle_kleaf_repo()
         self._run()
