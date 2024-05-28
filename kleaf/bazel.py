@@ -104,21 +104,6 @@ def _require_absolute_path(p: str | pathlib.Path) -> pathlib.Path:
     return p
 
 
-def _check_repo_manifest(value: str) \
-        -> tuple[pathlib.Path | None, pathlib.Path | None]:
-    tokens = value.split(":")
-    match len(tokens):
-        case 0: return (None, None)
-        case 1: return (None, _require_absolute_path(value))
-        case 2:
-            repo_root, repo_manifest = tokens
-            return (_require_absolute_path(repo_root),
-                    _require_absolute_path(repo_manifest))
-    raise argparse.ArgumentTypeError(
-        "Must be <REPO_MANIFEST> or <REPO_ROOT>:<REPO_MANIFEST>"
-    )
-
-
 def _partition(lst: list[str], index: Optional[int]) \
         -> Tuple[list[str], Optional[str], list[str]]:
     """Returns the triple split by index.
@@ -318,8 +303,12 @@ class BazelWrapper(KleafHelpPrinter):
                     and may be removed in the future.
                 - <REPO_ROOT>:<REPO_MANIFEST>, where REPO_ROOT is the absolute
                     path to the repo root where `repo manifest -r` was executed.
+
+                If unspecified, REPO_ROOT is the root of the repo repository
+                determined by .repo, and REPO_MANIFEST is retrieved with
+                `repo manifest -r`.
                 """),
-            type=_check_repo_manifest,
+            type=self._check_repo_manifest,
             default=(None, None),
         )
         group.add_argument(
@@ -350,6 +339,20 @@ class BazelWrapper(KleafHelpPrinter):
             metavar="PATH",
             help="Absolute path to a custom clang toolchain",
             type=_require_absolute_path,
+        )
+
+    def _check_repo_manifest(self, value: str) \
+            -> tuple[pathlib.Path | None, pathlib.Path | None]:
+        tokens = value.split(":")
+        match len(tokens):
+            case 0: return (None, None)
+            case 1: return (self.workspace_dir, _require_absolute_path(value))
+            case 2:
+                repo_root, repo_manifest = tokens
+                return (_require_absolute_path(repo_root),
+                        _require_absolute_path(repo_manifest))
+        raise argparse.ArgumentTypeError(
+            "Must be <REPO_MANIFEST> or <REPO_ROOT>:<REPO_MANIFEST>"
         )
 
     def _parse_command_args(self):
@@ -399,12 +402,7 @@ class BazelWrapper(KleafHelpPrinter):
         self.env["KLEAF_MAKE_KEEP_GOING"] = "true" if self.known_args.make_keep_going else "false"
 
         repo_root, repo_manifest = self.known_args.repo_manifest
-        if repo_root is None:
-            repo_root = self.workspace_dir
-        if repo_manifest is not None:
-            self.env["KLEAF_REPO_MANIFEST"] = f"{repo_root}:{repo_manifest}"
-        else:
-            self.env["KLEAF_REPO_MANIFEST"] = f"{repo_root}:"
+        self.env["KLEAF_REPO_MANIFEST"] = f"{repo_root or ''}:{repo_manifest or ''}"
 
         if self.known_args.ignore_missing_projects:
             self.env["KLEAF_IGNORE_MISSING_PROJECTS"] = "true"
