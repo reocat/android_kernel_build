@@ -45,6 +45,9 @@ e.g. for generated executables and tests""",
         "run_additional_setup": """**IMPLEMENTATION DETAIL; DO NOT USE.**
 
 Like `run_setup` but preserves original `PATH`.""",
+        "internal_hermetic_base": """**IMPLEMENTATION DETAIL; DO NOT USE.**
+
+Path to hermetic tools relative to execroot""",
     },
 )
 
@@ -154,6 +157,7 @@ def _hermetic_tools_impl(ctx):
         setup = setup,
         run_setup = run_setup,
         run_additional_setup = run_additional_setup,
+        internal_hermetic_base = hermetic_base,
     )
 
     infos = [
