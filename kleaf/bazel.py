@@ -318,6 +318,10 @@ class BazelWrapper(KleafHelpPrinter):
                     and may be removed in the future.
                 - <REPO_ROOT>:<REPO_MANIFEST>, where REPO_ROOT is the absolute
                     path to the repo root where `repo manifest -r` was executed.
+
+                If unspecified, REPO_ROOT is the root of the repo repository
+                determined by .repo, and REPO_MANIFEST is retreived with
+                `repo manifest -r`.
                 """),
             type=_check_repo_manifest,
             default=(None, None),
@@ -399,12 +403,10 @@ class BazelWrapper(KleafHelpPrinter):
         self.env["KLEAF_MAKE_KEEP_GOING"] = "true" if self.known_args.make_keep_going else "false"
 
         repo_root, repo_manifest = self.known_args.repo_manifest
-        if repo_root is None:
-            repo_root = self.workspace_dir
-        if repo_manifest is not None:
-            self.env["KLEAF_REPO_MANIFEST"] = f"{repo_root}:{repo_manifest}"
+        if repo_root is None and repo_manifest is not None:
+            self.env["KLEAF_REPO_MANIFEST"] = f"{self.workspace_dir}:{repo_manifest}"
         else:
-            self.env["KLEAF_REPO_MANIFEST"] = f"{repo_root}:"
+            self.env["KLEAF_REPO_MANIFEST"] = f"{repo_root or ''}:{repo_manifest or ''}"
 
         if self.known_args.ignore_missing_projects:
             self.env["KLEAF_IGNORE_MISSING_PROJECTS"] = "true"
