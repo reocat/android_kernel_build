@@ -682,8 +682,8 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         Exec.check_call(git_clean_args, cwd=self.ddk_workspace)
 
         # Delete generated files at the end
-        self.addCleanup(Exec.check_call, git_clean_args,
-                        cwd=self.ddk_workspace)
+        # self.addCleanup(Exec.check_call, git_clean_args,
+        #                 cwd=self.ddk_workspace)
 
         self._mount(kleaf_repo)
 
@@ -709,7 +709,7 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
 
         self._check_call("clean", ["--expunge"], cwd=self.ddk_workspace)
 
-        args = []
+        args = ["--verbose_failures"]
         # Switch base kernel when using prebuilts
         if prebuilts_dir:
             args.append("--//tests:kernel=@gki_prebuilts//kernel_aarch64")
