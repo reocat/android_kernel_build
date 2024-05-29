@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfe59127_949eb15f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-29T23:45:12Z",
+      "side": 1,
+      "message": "Name suggestions welcomed.\n\nThe files listed in the kernel_dtstree.generated aren\u0027t necessarily generated files. It is usually for generated files so that we automatically adjust DTC_INCLUDE to include these files. Behind the scenes, kernel_dtstree just blindly copies all files in this directory to a `generated/` directory.",
+      "range": {
+        "startLine": 13,
+        "startChar": 27,
+        "endLine": 14,
+        "endChar": 36
+      },
+      "revId": "2b57433a32cfd31ea6db48da3875677471f47402",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
