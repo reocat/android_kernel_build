@@ -21,4 +21,4 @@ common:android_ci --noshow_progress
 build:android_ci --config=stamp
 
 # Upload test results
-test:android_ci --config=ants
+# test:android_ci --config=ants
