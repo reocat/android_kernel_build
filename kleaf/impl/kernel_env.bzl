@@ -312,6 +312,7 @@ def _kernel_env_impl(ctx):
         out_file,
         ctx.version_file,
     ]
+    setup_inputs += env_setup_cmds.extra_setup_inputs
     if kconfig_ext:
         setup_inputs.append(kconfig_ext)
     setup_inputs += dtstree_srcs
@@ -362,6 +363,16 @@ def _get_env_setup_cmds(ctx):
     kleaf_repo_workspace_root = Label(":kernel_env.bzl").workspace_root
     kleaf_repo_workspace_root_slash = (kleaf_repo_workspace_root + "/") if kleaf_repo_workspace_root else ""
 
+    extra_setup_inputs = []
+    setup_dtstree_generated_cmd = ""
+    if ctx.attr.dtstree != None and ctx.attr.dtstree[DtstreeInfo].generated_dir != None:
+        extra_setup_inputs.append(ctx.attr.dtstree[DtstreeInfo].generated_dir)
+        setup_dtstree_generated_cmd = """
+            export DTC_INCLUDE="${{DTC_INCLUDE}} $(realpath {gen_dtstree_dir})"
+        """.format(
+            gen_dtstree_dir = ctx.attr.dtstree[DtstreeInfo].generated_dir.path,
+        )
+
     pre_env += """
         # KLEAF_REPO_WORKSPACE_ROOT: workspace_root of the Kleaf repository. See Label.workspace_root.
         # This should be:
@@ -411,6 +422,7 @@ def _get_env_setup_cmds(ctx):
         if [ -n "${{DTSTREE_MAKEFILE}}" ]; then
             export dtstree=$(realpath -s $(dirname ${{DTSTREE_MAKEFILE}}) --relative-to ${{ROOT_DIR}}/${{KERNEL_DIR}})
         fi
+        {setup_dtstree_generated_cmd}
 
         # Redeclare KERNEL_DIR to be under $KLEAF_REPO_WORKSPACE_ROOT.
         if [ -n "${{KLEAF_REPO_WORKSPACE_ROOT}}" ]; then
@@ -442,12 +454,14 @@ def _get_env_setup_cmds(ctx):
     """.format(
         get_make_jobs_cmd = status.get_volatile_status_cmd(ctx, "MAKE_JOBS"),
         get_make_keep_going_cmd = status.get_volatile_status_cmd(ctx, "MAKE_KEEP_GOING"),
+        setup_dtstree_generated_cmd = setup_dtstree_generated_cmd,
         linux_x86_libs_path = ctx.files._linux_x86_libs[0].dirname,
         kleaf_repo_workspace_root_slash = kleaf_repo_workspace_root_slash,
     )
     return struct(
         pre_env = pre_env,
         post_env = post_env,
+        extra_setup_inputs = extra_setup_inputs,
     )
 
 def _get_make_verbosity_command(ctx):
