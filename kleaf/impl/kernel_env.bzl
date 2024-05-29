@@ -290,6 +290,16 @@ def _kernel_env_impl(ctx):
         get_make_jobs_cmd = status.get_volatile_status_cmd(ctx, "MAKE_JOBS"),
     )
 
+    extra_setup_inputs = []
+    setup_dtstree_generated_cmd = ""
+    if ctx.attr.dtstree != None and ctx.attr.dtstree[DtstreeInfo].generated_dir != None:
+        extra_setup_inputs.append(ctx.attr.dtstree[DtstreeInfo].generated_dir)
+        setup_dtstree_generated_cmd = """
+            export DTC_INCLUDE="${{DTC_INCLUDE}} $(realpath {gen_dtstree_dir})"
+        """.format(
+            gen_dtstree_dir = ctx.attr.dtstree[DtstreeInfo].generated_dir.path,
+        )
+
     setup += """
          # error on failures
            set -e
@@ -308,6 +318,7 @@ def _kernel_env_impl(ctx):
            if [ -n "${{DTSTREE_MAKEFILE}}" ]; then
              export dtstree=$(realpath -s $(dirname ${{DTSTREE_MAKEFILE}}) --relative-to ${{ROOT_DIR}}/${{KERNEL_DIR}})
            fi
+           {setup_dtstree_generated_cmd}
          # Set up KCPPFLAGS
          # For Kleaf local (non-sandbox) builds, $ROOT_DIR is under execroot but
          # $ROOT_DIR/$KERNEL_DIR is a symlink to the real source tree under
@@ -320,6 +331,7 @@ def _kernel_env_impl(ctx):
         build_utils_sh = ctx.file._build_utils_sh.path,
         linux_x86_libs_path = ctx.files._linux_x86_libs[0].dirname,
         set_up_jobs_cmd = set_up_jobs_cmd,
+        setup_dtstree_generated_cmd = setup_dtstree_generated_cmd,
     )
 
     setup_tools = [
@@ -335,6 +347,7 @@ def _kernel_env_impl(ctx):
         out_file,
         ctx.version_file,
     ]
+    setup_inputs += extra_setup_inputs
     if kconfig_ext:
         setup_inputs.append(kconfig_ext)
     setup_inputs += dtstree_srcs
