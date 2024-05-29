@@ -142,9 +142,11 @@ def _kernel_env_impl(ctx):
     kconfig_ext = ctx.file.kconfig_ext
     dtstree_makefile = None
     dtstree_srcs = []
+    dtstree_generated = []
     if ctx.attr.dtstree != None:
         dtstree_makefile = ctx.attr.dtstree[DtstreeInfo].makefile
         dtstree_srcs = ctx.attr.dtstree[DtstreeInfo].srcs
+        dtstree_generated = ctx.attr.dtstree[DtstreeInfo].generated
 
     setup_env = ctx.file.setup_env
     preserve_env = ctx.executable.preserve_env
@@ -290,6 +292,32 @@ def _kernel_env_impl(ctx):
         get_make_jobs_cmd = status.get_volatile_status_cmd(ctx, "MAKE_JOBS"),
     )
 
+    setup_inputs = []
+
+    setup_dtstree_generated_cmd = ""
+    if dtstree_generated:
+        gen_dtstree_dir = ctx.actions.declare_directory(ctx.attr.name + "/dtstree")
+        gen_dtstree_dir_cmd = hermetic_tools.setup + """
+            cp -aL -t {out_dir} {dtstree_generated_files}
+        """.format(
+            out_dir = gen_dtstree_dir.path,
+            dtstree_generated_files = " ".join([file.path for file in dtstree_generated]),
+        )
+        ctx.actions.run_shell(
+            command = gen_dtstree_dir_cmd,
+            inputs = dtstree_generated,
+            outputs = [gen_dtstree_dir],
+            tools = hermetic_tools.deps,
+            mnemonic = "KernelEnvGenerateDtstree",
+            progress_message = "Generating DTS Tree {}".format(ctx.label),
+        )
+        setup_dtstree_generated_cmd = """
+            export KLEAF_GENERATED_DTS=$(realpath {gen_dtstree_dir})
+        """.format(
+            gen_dtstree_dir = gen_dtstree_dir.path,
+        )
+        setup_inputs.append(gen_dtstree_dir)
+
     setup += """
          # error on failures
            set -e
@@ -308,6 +336,7 @@ def _kernel_env_impl(ctx):
            if [ -n "${{DTSTREE_MAKEFILE}}" ]; then
              export dtstree=$(realpath -s $(dirname ${{DTSTREE_MAKEFILE}}) --relative-to ${{ROOT_DIR}}/${{KERNEL_DIR}})
            fi
+           {setup_dtstree_generated_cmd}
          # Set up KCPPFLAGS
          # For Kleaf local (non-sandbox) builds, $ROOT_DIR is under execroot but
          # $ROOT_DIR/$KERNEL_DIR is a symlink to the real source tree under
@@ -320,6 +349,7 @@ def _kernel_env_impl(ctx):
         build_utils_sh = ctx.file._build_utils_sh.path,
         linux_x86_libs_path = ctx.files._linux_x86_libs[0].dirname,
         set_up_jobs_cmd = set_up_jobs_cmd,
+        setup_dtstree_generated_cmd = setup_dtstree_generated_cmd,
     )
 
     setup_tools = [
@@ -331,7 +361,7 @@ def _kernel_env_impl(ctx):
         hermetic_tools.deps,
     ]
 
-    setup_inputs = [
+    setup_inputs += [
         out_file,
         ctx.version_file,
     ]
