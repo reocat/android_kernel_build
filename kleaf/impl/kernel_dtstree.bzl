@@ -41,7 +41,7 @@ def _generate_dtstree_dir(ctx):
     hermetic_tools = hermetic_toolchain.get(ctx)
 
     if not ctx.files.generated:
-        return
+        return None
 
     _check_duplicated_basename(ctx, ctx.files.generated)
     gen_dtstree_dir = ctx.actions.declare_directory(ctx.attr.name + "/dtstree")
@@ -60,6 +60,7 @@ def _generate_dtstree_dir(ctx):
         mnemonic = "KernelDtstreeGenerate",
         progress_message = "Generating DTS Tree {}".format(ctx.label),
     )
+    return gen_dtstree_dir
 
 def _kernel_dtstree_impl(ctx):
     gen_dtstree_dir = _generate_dtstree_dir(ctx)
