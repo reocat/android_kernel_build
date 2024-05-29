@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13930a03_98770e7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-29T17:45:17Z",
+      "side": 1,
+      "message": "@maennich@google.com\n\nMatthias, the expand_template rule can be found in bazel_skylib but only after CL:2839138. Could you please help fast-forwarding external/bazel-skylib main-kernel-build-2023 to 1.5.0? Or should we upload a separate merge commit?",
+      "revId": "45301bb7943d4b5fdfdde5bbc3f6ca7ef0d31b14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
