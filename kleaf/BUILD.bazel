@@ -607,6 +607,7 @@ docs(
         "constants.bzl",
         "directory_with_structure.bzl",
         "download_repo.bzl",
+        "expand_template.bzl",
         "fail.bzl",
         "hermetic_tools.bzl",
         "kernel.bzl",
