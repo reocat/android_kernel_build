@@ -14,17 +14,53 @@
 
 """Specify a kernel DTS tree."""
 
+load(":hermetic_toolchain.bzl", "hermetic_toolchain")
+
 visibility("//build/kernel/kleaf/...")
 
 DtstreeInfo = provider("DTS tree info", fields = {
     "srcs": "DTS tree sources",
     "makefile": "DTS tree makefile",
+    "generated_dir": """directory of of generated files""",
 })
 
+def _check_duplicated_basename(ctx, file_list):
+    files_by_basename = {}
+    for file in file_list:
+        if file.basename not in files_by_basename:
+            files_by_basename[file.basename] = []
+        files_by_basename[file.basename].append(file)
+    dup_files_by_basename = {}
+    for basename, files in files_by_basename.items():
+        if len(files) > 1:
+            dup_files_by_basename[basename] = files
+    if dup_files_by_basename:
+        fail("{}: Duplicated file names found in generated: {}".format(ctx.label, dup_files_by_basename))
+
 def _kernel_dtstree_impl(ctx):
+    hermetic_tools = hermetic_toolchain.get(ctx)
+    _check_duplicated_basename(ctx, ctx.files.generated)
+    gen_dtstree_dir = ctx.actions.declare_directory(ctx.attr.name + "/dtstree")
+    gen_dtstree_dir_cmd = hermetic_tools.setup + """
+        mkdir -p {out_dir}/generated
+        cp -aL -t {out_dir}/generated {dtstree_generated_files}
+    """.format(
+        out_dir = gen_dtstree_dir.path,
+        dtstree_generated_files = " ".join([file.path for file in ctx.files.generated]),
+    )
+    ctx.actions.run_shell(
+        command = gen_dtstree_dir_cmd,
+        inputs = ctx.files.generated,
+        outputs = [gen_dtstree_dir],
+        tools = hermetic_tools.deps,
+        mnemonic = "KernelDtstreeGenerate",
+        progress_message = "Generating DTS Tree {}".format(ctx.label),
+    )
+
     return DtstreeInfo(
         srcs = ctx.files.srcs,
         makefile = ctx.file.makefile,
+        generated_dir = gen_dtstree_dir,
     )
 
 _kernel_dtstree = rule(
@@ -32,13 +68,16 @@ _kernel_dtstree = rule(
     attrs = {
         "srcs": attr.label_list(doc = "kernel device tree sources", allow_files = True),
         "makefile": attr.label(mandatory = True, allow_single_file = True),
+        "generated": attr.label_list(allow_files = True),
     },
+    toolchains = [hermetic_toolchain.type],
 )
 
 def kernel_dtstree(
         name,
         srcs = None,
         makefile = None,
+        generated = None,
         **kwargs):
     """Specify a kernel DTS tree.
 
@@ -56,6 +95,11 @@ def kernel_dtstree(
         ```
       makefile: Makefile of the DTS tree. Default is `:Makefile`, i.e. the `Makefile`
         at the root of the package.
+      generated: A list of generated files.
+
+        To include these files, use `#include "generated/base_name_of_file.dtsi"`
+        in files in `srcs`. Only append the base name of the file, not the
+        full path, after `generated/`.
       **kwargs: Additional attributes to the internal rule, e.g.
         [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
         See complete list
@@ -79,5 +123,6 @@ def kernel_dtstree(
         name = name,
         srcs = srcs,
         makefile = makefile,
+        generated = generated,
     )
     _kernel_dtstree(**kwargs)
