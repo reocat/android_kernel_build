@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fbd2cc2_4a8990fc",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-29T21:42:29Z",
+      "side": 1,
+      "message": "Add \n\n```\n[Nonconfigurable](https://bazel.build/reference/be/common-definitions#configurable-attributes)\n```\n\ne.g. https://cs.android.com/android/kernel/superproject/+/common-android-mainline:common/abi.bzl;l\u003d61;drc\u003d71f973ebfe389ccb1594b47743f20d795af29bdd\n\nbecause the value is parsed in macros",
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6eef975_22526611",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-29T21:42:29Z",
+      "side": 1,
+      "message": "You may drop this. stardoc will say \"Default is None\"",
+      "range": {
+        "startLine": 99,
+        "startChar": 64,
+        "endLine": 99,
+        "endChar": 82
+      },
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5edd82c1_e06059a4",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-29T21:42:29Z",
+      "side": 1,
+      "message": "Same here, add Non-configurable marker",
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d49e471c_a1668bfa",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-29T21:42:29Z",
+      "side": 1,
+      "message": "do you mean \"recommended as an alternative when there\u0027s an ABI difference\"? This sentence seems a bit awkward: \"If `ignore_diff` is `True`, this needs to be set ... where `ignore_diff` is `False`\"; it sounds like ignore_diff is True and False at the same time.",
+      "range": {
+        "startLine": 101,
+        "startChar": 64,
+        "endLine": 102,
+        "endChar": 18
+      },
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d0e2863_cdf86e80",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-29T21:42:29Z",
+      "side": 1,
+      "message": "This can be deleted, right?",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 27
+      },
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7f9e417_fb7d40c2",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-29T21:42:29Z",
+      "side": 1,
+      "message": "nit: I think these are big enough that it is worth its own rule. But this doesn\u0027t have to be addressed in this CL. Perhaps just file a P4 bug and we can clean it up later.",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 9
+      },
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
