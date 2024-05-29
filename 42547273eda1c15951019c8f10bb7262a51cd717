@@ -35,6 +35,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb43df0a_1228700c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-29T19:25:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd535f61_20ab0198",
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9cfa234_1b9d769c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-29T19:25:27Z",
+      "side": 1,
+      "message": "nodiff is quite different, it doesn\u0027t run `stgdiff` at all. In out case we want to run `stgdiff` but don\u0027t fail the build target if it found differences.",
+      "parentUuid": "b379fbc1_404be492",
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "099da224_390481d5",
@@ -82,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "365c9b57_77688201",
+        "filename": "kleaf/common_kernels.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-29T19:25:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "539bb74e_aad6db85",
+      "range": {
+        "startLine": 904,
+        "startChar": 23,
+        "endLine": 904,
+        "endChar": 44
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8666687d_cc318476",
@@ -105,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d67a7b1e_4a814c47",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-29T19:25:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8666687d_cc318476",
+      "range": {
+        "startLine": 46,
+        "startChar": 22,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1e7084c_dfaa9f0d",
@@ -118,6 +202,30 @@
       "writtenOn": "2024-05-23T20:09:10Z",
       "side": 1,
       "message": "Instead of checking this in shell, IMO it is better to check this in Starlark directly, so you skip executing some shell commands ahead.",
+      "range": {
+        "startLine": 137,
+        "startChar": 39,
+        "endLine": 137,
+        "endChar": 65
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "249e18cc_5c853a34",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-29T19:25:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1e7084c_dfaa9f0d",
       "range": {
         "startLine": 137,
         "startChar": 39,
@@ -175,6 +283,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c5a1631_ced581e2",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-29T19:25:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "664ab1c8_15aada26",
+      "range": {
+        "startLine": 140,
+        "startChar": 35,
+        "endLine": 140,
+        "endChar": 60
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45dec3c5_2bdce040",
@@ -212,6 +344,30 @@
       "side": 1,
       "message": "Though, see my comment above; you can\u0027t actually assert that this label exist. But regardless, package_relative_label + same_package_label is a better way to print this label.\n\nhttps://bazel.build/rules/lib/builtins/Label#same_package_label",
       "parentUuid": "45dec3c5_2bdce040",
+      "range": {
+        "startLine": 148,
+        "startChar": 20,
+        "endLine": 148,
+        "endChar": 30
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15725969_1fafee00",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-29T19:25:27Z",
+      "side": 1,
+      "message": "Now I pass `no_ignore_diff_target` to make `common_kernel.bzl` pass the name of the target to the rule without \"poking into the implementation\".\n\nHowever I don\u0027t understand functions you recommend from the documentation links above without usage examples 😞 Could you check my new code for correctness?\n\nNow it prints:\n```\nWARNING: Use \u0027tools/bazel run @@//common:kernel_aarch64_abi_dist\u0027 to fail on ABI difference.\n```\nI\u0027m a little bit confused by `@@` signs, is it correct way to print target name?",
+      "parentUuid": "3f717177_a401bd42",
       "range": {
         "startLine": 148,
         "startChar": 20,
