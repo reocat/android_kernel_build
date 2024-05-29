@@ -25,6 +25,32 @@
       "tag": "",
       "revId": "f583ebd4944253e76a84c33286b1ec3985d6cf91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000079550621",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/3107738?revision\u003d2",
+      "key": {
+        "uuid": "af6fc953_a4bb0893",
+        "filename": "kleaf/expand_template.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2024-05-29T16:59:01Z",
+      "side": 1,
+      "message": "The file has no module docstring.\nA module docstring is a string literal (not a comment) which should be the first statement of a file (it may follow comment lines). http://go/buildifier-warnings#module-docstring",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 1
+      },
+      "tag": "",
+      "revId": "f583ebd4944253e76a84c33286b1ec3985d6cf91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
