@@ -376,6 +376,30 @@
       },
       "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dc33fa3_3fd7e5ac",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-05-29T21:34:37Z",
+      "side": 1,
+      "message": "Yes. For differences about `@@` and `@`, see https://bazel.build/concepts/labels",
+      "parentUuid": "15725969_1fafee00",
+      "range": {
+        "startLine": 148,
+        "startChar": 20,
+        "endLine": 148,
+        "endChar": 30
+      },
+      "revId": "42547273eda1c15951019c8f10bb7262a51cd717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
