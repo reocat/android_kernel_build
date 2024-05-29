@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# do nothing
+
 # Set up remote caching
 # https://developers.google.com/remote-build-execution/docs/set-up/set-up-caching
 test:ants --remote_cache=grpcs://remotebuildexecution.googleapis.com
