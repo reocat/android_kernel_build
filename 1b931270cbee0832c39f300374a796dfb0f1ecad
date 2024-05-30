@@ -199,6 +199,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "27cef593_2570d746",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2024-05-30T00:00:53Z",
+      "side": 1,
+      "message": "I would argue that the changing the page size from 4k -\u003e 16k is as big of a feature change as going from android12-5.10 to android13-5.10 which we indicate in the UTS string. It completely changes ABI compatiblity across the entire software stack from userspace to kernel compatibility. Due to that, I argue it\u0027s important enough to encode in the UTS string. I\u0027ll start an email thread on this to get consensus and establish the format we want to go with.",
+      "parentUuid": "ee792890_04374ef2",
+      "revId": "1b931270cbee0832c39f300374a796dfb0f1ecad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2465fa38_6a23df6b",
         "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
         "patchSetId": 1
