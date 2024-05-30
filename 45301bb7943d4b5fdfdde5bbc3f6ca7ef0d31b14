@@ -34,6 +34,24 @@
       "parentUuid": "13930a03_98770e7e",
       "revId": "45301bb7943d4b5fdfdde5bbc3f6ca7ef0d31b14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5154c882_c38ca973",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-05-30T22:23:01Z",
+      "side": 1,
+      "message": "I am rather uneasy with making major version upgrades to fundamentals like skylib so long after the release.",
+      "parentUuid": "636b0128_2b0ddc2c",
+      "revId": "45301bb7943d4b5fdfdde5bbc3f6ca7ef0d31b14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
