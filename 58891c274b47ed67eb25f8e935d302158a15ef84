@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cf309c1_67e61602",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-30T15:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fbd2cc2_4a8990fc",
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6eef975_22526611",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-05-29T21:42:29Z",
       "side": 1,
       "message": "You may drop this. stardoc will say \"Default is None\"",
+      "range": {
+        "startLine": 99,
+        "startChar": 64,
+        "endLine": 99,
+        "endChar": 82
+      },
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2701da62_527d3380",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-30T15:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6eef975_22526611",
       "range": {
         "startLine": 99,
         "startChar": 64,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae4b8e12_4a63651a",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-30T15:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5edd82c1_e06059a4",
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d49e471c_a1668bfa",
@@ -71,6 +131,30 @@
       "writtenOn": "2024-05-29T21:42:29Z",
       "side": 1,
       "message": "do you mean \"recommended as an alternative when there\u0027s an ABI difference\"? This sentence seems a bit awkward: \"If `ignore_diff` is `True`, this needs to be set ... where `ignore_diff` is `False`\"; it sounds like ignore_diff is True and False at the same time.",
+      "range": {
+        "startLine": 101,
+        "startChar": 64,
+        "endLine": 102,
+        "endChar": 18
+      },
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63a249a5_86250f4e",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-30T15:22:41Z",
+      "side": 1,
+      "message": "Is it better now?",
+      "parentUuid": "d49e471c_a1668bfa",
       "range": {
         "startLine": 101,
         "startChar": 64,
@@ -104,6 +188,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2ab4225_a0d324d9",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-30T15:22:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d0e2863_cdf86e80",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 27
+      },
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7f9e417_fb7d40c2",
@@ -117,6 +225,30 @@
       "writtenOn": "2024-05-29T21:42:29Z",
       "side": 1,
       "message": "nit: I think these are big enough that it is worth its own rule. But this doesn\u0027t have to be addressed in this CL. Perhaps just file a P4 bug and we can clean it up later.",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 9
+      },
+      "revId": "58891c274b47ed67eb25f8e935d302158a15ef84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd25c4e9_d96a464d",
+        "filename": "kleaf/impl/abi/kernel_abi_dist.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1956160
+      },
+      "writtenOn": "2024-05-30T15:22:41Z",
+      "side": 1,
+      "message": "Created bug and added TODO.",
+      "parentUuid": "b7f9e417_fb7d40c2",
       "range": {
         "startLine": 131,
         "startChar": 0,
