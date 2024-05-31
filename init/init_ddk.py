@@ -173,11 +173,16 @@ class KleafProjectSetter:
                 kleaf_repo_relative=self._try_rel_workspace(self.kleaf_repo),
             )
             module_bazel_content += self._get_local_path_overrides()
-            # b/338440785 Due to an issue in Bazel, rules_cc seems to be
-            #  implicitly added in a fallback WORKSPACE.bzlmod file, hence
-            #  forcing an empty one here.
-            workspace_bzlmod = self.ddk_workspace / "WORKSPACE.bzlmod"
-            workspace_bzlmod.touch(exist_ok=True)
+
+            # https://github.com/bazelbuild/bazel/issues/22579
+            # @@rules_cc is implicitly added in a fallback
+            # WORKSPACE file if the file doesn't exist.
+            # Work around the issue by adding an empty file.
+            if (not (self.ddk_workspace / "WORKSPACE").is_file() and
+                not (self.ddk_workspace / "WORKSPACE.bazel").is_file() and
+                not (self.ddk_workspace / "WORKSPACE.bzlmod").is_file()):
+                (self.ddk_workspace / "WORKSPACE.bzlmod").touch()
+
         if self.prebuilts_dir:
             module_bazel_content += "\n"
             module_bazel_content += _LOCAL_PREBUILTS_CONTENT_TEMPLATE.format(
