@@ -22,6 +22,30 @@
       },
       "revId": "2d156f1e7d3d076ab54874cfa928140922d1cd75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0507d7e0_c3ef30a6",
+        "filename": "kleaf/impl/kernel_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-06-03T11:32:52Z",
+      "side": 1,
+      "message": "To a very good approximation only header *files* are stored. So, no.\n\nThe find picks up `-name \"*.h\"`. One set of things is a symlink farm, the other a normal tree, so adding `-type f` or its negation is not helpful. I suppose I could add `-not type d` in case someone adds a directory `foo.h` containing other headers.\n\nI think if we were to make a change, `-not type d` would be better than `,a+x`.",
+      "parentUuid": "4467d53c_e3c8a8a5",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "2d156f1e7d3d076ab54874cfa928140922d1cd75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
