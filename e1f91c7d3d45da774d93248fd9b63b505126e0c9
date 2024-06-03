@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fae1201_68fb449c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-03T18:50:13Z",
+      "side": 1,
+      "message": "why treat $OUT_DIR specially?",
+      "range": {
+        "startLine": 11,
+        "startChar": 24,
+        "endLine": 11,
+        "endChar": 47
+      },
+      "revId": "e1f91c7d3d45da774d93248fd9b63b505126e0c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00aba17f_68840aec",
+        "filename": "kleaf/impl/kernel_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-03T18:50:13Z",
+      "side": 1,
+      "message": "that is, why not just put $OUT_DIR here\n \n is it because it may generate files that conflict with source files (arch / include ) and we are removing the prefix $OUT_DIR later, so we want to make sure files in $OUT_DIR takes precedence?",
+      "revId": "e1f91c7d3d45da774d93248fd9b63b505126e0c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67535f9b_d8edac75",
+        "filename": "kleaf/impl/kernel_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-03T18:50:13Z",
+      "side": 1,
+      "message": "nit: these are already in tar by default, so you could skip these",
+      "range": {
+        "startLine": 46,
+        "startChar": 22,
+        "endLine": 46,
+        "endChar": 57
+      },
+      "revId": "e1f91c7d3d45da774d93248fd9b63b505126e0c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
