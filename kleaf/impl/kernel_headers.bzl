@@ -41,6 +41,7 @@ def _kernel_headers_impl(ctx):
                 cd ${{ROOT_DIR}}/${{KERNEL_DIR}}
                 find arch include ${{OUT_DIR}} -name "*.h" -not -type d -print0 \
                     | tar czf ${{real_out_file}}                                \
+                        --mode=u=rw,go=r                                        \
                         --absolute-names                                        \
                         --dereference                                           \
                         --transform "s,.*$OUT_DIR,,"                            \
