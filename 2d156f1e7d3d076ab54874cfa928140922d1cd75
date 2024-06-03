@@ -70,6 +70,30 @@
       },
       "revId": "2d156f1e7d3d076ab54874cfa928140922d1cd75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09954119_8615c368",
+        "filename": "kleaf/impl/kernel_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-03T12:09:36Z",
+      "side": 1,
+      "message": "`find -name \"*.h\"` also finds files in subdirectories and `-not -type d` is not preventing that:\n\n```\ncd /usr/include \u0026\u0026 find -name \"*.h\" -not -type d | tail\n./asm-generic/param.h\n./asm-generic/ipcbuf.h\n./asm-generic/auxvec.h\n./asm-generic/bitsperlong.h\n./asm-generic/resource.h\n./pty.h\n./libpng16/pngconf.h\n./libpng16/pnglibconf.h\n./libpng16/png.h\n./KHR/khrplatform.h\n```\n\nwhat am I missing?",
+      "parentUuid": "b6b6fb69_8a3003b7",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "2d156f1e7d3d076ab54874cfa928140922d1cd75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
