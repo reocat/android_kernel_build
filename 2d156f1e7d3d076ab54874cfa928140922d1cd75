@@ -94,6 +94,30 @@
       },
       "revId": "2d156f1e7d3d076ab54874cfa928140922d1cd75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d016d76_b162c460",
+        "filename": "kleaf/impl/kernel_headers.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-06-03T12:22:03Z",
+      "side": 1,
+      "message": "\u003e what am I missing?\n\nWell, you should have done:\n\n```\ncd /usr/include \u0026\u0026 find -name \"*.h\" -type d\n```\n\nOr worse:\n\n```\ncd /usr/include \u0026\u0026 find -name *.h -type d\n```\n\nCurrently there are no *directories* matching `*.h`. But even `$OUT_DIR` could be set to `just_for_fun.h` and then we would end up with an extra entry in the tar file.",
+      "parentUuid": "09954119_8615c368",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "2d156f1e7d3d076ab54874cfa928140922d1cd75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
