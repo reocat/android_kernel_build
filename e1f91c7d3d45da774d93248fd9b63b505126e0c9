@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a20220d1_1599d5c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-03T20:46:03Z",
+      "side": 1,
+      "message": "\u003e",
+      "parentUuid": "0fae1201_68fb449c",
+      "range": {
+        "startLine": 11,
+        "startChar": 24,
+        "endLine": 11,
+        "endChar": 47
+      },
+      "revId": "e1f91c7d3d45da774d93248fd9b63b505126e0c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "00aba17f_68840aec",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-06-03T18:50:13Z",
       "side": 1,
       "message": "that is, why not just put $OUT_DIR here\n \n is it because it may generate files that conflict with source files (arch / include ) and we are removing the prefix $OUT_DIR later, so we want to make sure files in $OUT_DIR takes precedence?",
+      "revId": "e1f91c7d3d45da774d93248fd9b63b505126e0c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8326228b_a9bf8c69",
+        "filename": "kleaf/impl/kernel_headers.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-03T20:46:03Z",
+      "side": 1,
+      "message": "\u003e The reason to treat $OUT_DIR specially is that we want determinism but if we just sort paths before tar, the final order will depend where $OUT_DIR sorts relative to arch and include. If it\u0027s guaranteed to begin with \"/\" that\u0027s still a bit arbitrary.\n\u003e \n\u003e We also get deterministic behaviour if there are collisions but that wasn\u0027t what I was worried about.",
+      "parentUuid": "00aba17f_68840aec",
       "revId": "e1f91c7d3d45da774d93248fd9b63b505126e0c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
