@@ -50,6 +50,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32676b83_a252a83f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-06-04T09:59:35Z",
+      "side": 1,
+      "message": "tar --sort applies to directories found during recursion, not the command line arguments\n\nSo there are no issues with OUT_DIR ordering. There is no need to do anything other than rely on the --sort name in the generic wrapper.\n\nUIDs and numeric IDs are already dealt with by the generic wrapper.\n\nThe remaining contributions of this patch are: protecting \"*.h\" and supplying the mode argument.\n\nI will rework it.",
+      "revId": "e1f91c7d3d45da774d93248fd9b63b505126e0c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00aba17f_68840aec",
         "filename": "kleaf/impl/kernel_headers.bzl",
         "patchSetId": 2
