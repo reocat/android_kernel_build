@@ -16,6 +16,29 @@
       "message": "(+2 for",
       "revId": "1ddf05f097226d3eb9b2371cb82cf9fee41a1e90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10f7103c_859bccaa",
+        "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1889140
+      },
+      "writtenOn": "2024-06-04T23:26:26Z",
+      "side": 1,
+      "message": "could you please update build/kernel/kleaf/impl/defconfig/arm64_4k_defconfig with:\n\n```\nCONFIG_LOCALVERSION\u003d\"-4K\"\n```\n\nand leave arm64_16k_defconfig as it is.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 26
+      },
+      "revId": "1ddf05f097226d3eb9b2371cb82cf9fee41a1e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
