@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f4a1622_bdb9f54e",
+        "filename": "abi/dependency_graph_extractor.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-05T10:35:15Z",
+      "side": 1,
+      "message": "consider naming this such that it can be identified as a `dict` and that it is clear what the mapping is: `undefined_symbols_by_module`\n\ngo/python-tips/054",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 115,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "f5a6a786_0aca2712",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/dependency_graph_extractor.py",
+              "range": {
+                "startLine": 115,
+                "startChar": 0,
+                "endLine": 116,
+                "endChar": 0
+              },
+              "replacement": "    undefined_symbols_by_module \u003d {\n"
+            },
+            {
+              "path": "abi/dependency_graph_extractor.py",
+              "range": {
+                "startLine": 129,
+                "startChar": 0,
+                "endLine": 130,
+                "endChar": 0
+              },
+              "replacement": "    create_graph(undefined_symbols_by_module, exported_symbols, args.output)\n"
+            }
+          ]
+        }
+      ],
+      "revId": "1eadd386ad93b79689348797fd99930489428df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "327f8ed3_e990858e",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-05T10:35:15Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 8
+      },
+      "revId": "1eadd386ad93b79689348797fd99930489428df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "409ac5b5_ec41167d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-05T10:35:15Z",
+      "side": 1,
+      "message": "followup is fine for me.",
+      "parentUuid": "e71d1e6b_beda5714",
+      "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf486189_4150ca62",
         "filename": "BUILD.bazel",
         "patchSetId": 7
