@@ -52,6 +52,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e6b566b_28fce814",
+        "filename": "abi/dependency_graph_extractor.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T11:49:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f4a1622_bdb9f54e",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 115,
+        "endChar": 21
+      },
+      "revId": "1eadd386ad93b79689348797fd99930489428df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "327f8ed3_e990858e",
@@ -65,6 +89,30 @@
       "writtenOn": "2024-06-05T10:35:15Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Please remove the trailing whitespace.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease remove the trailing whitespace.",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 8
+      },
+      "revId": "1eadd386ad93b79689348797fd99930489428df5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43fab462_58ebc6a7",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T11:49:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "327f8ed3_e990858e",
       "range": {
         "startLine": 167,
         "startChar": 0,
