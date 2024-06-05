@@ -1116,7 +1116,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
             ],
             env=ScmversionIntegrationTest._env_without_build_number())
         for scmversion in self._get_vmlinux_scmversion():
-            self.assertEqual("-rc999-mainline-maybe-dirty", scmversion)
+            self.assertEqual("-rc999-mainline-maybe-dirty-4k", scmversion)
 
     def test_mainline_stamp(self):
         self._setup_mainline()
@@ -1129,7 +1129,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
             ],
             env=ScmversionIntegrationTest._env_without_build_number())
         scmversion_pat = re.compile(
-            r"^-rc999-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?$")
+            r"^-rc999-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?(-4k)?$")
         for scmversion in self._get_vmlinux_scmversion():
             self.assertRegexpMatches(scmversion, scmversion_pat)
 
@@ -1144,7 +1144,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
             ],
             env=ScmversionIntegrationTest._env_with_build_number("123456"))
         scmversion_pat = re.compile(
-            r"^-rc999-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?-ab123456$"
+            r"^-rc999-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?-ab123456(-4k)?$"
         )
         for scmversion in self._get_vmlinux_scmversion():
             self.assertRegexpMatches(scmversion, scmversion_pat)
@@ -1240,7 +1240,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
         )
 
         scmversion_pat = re.compile(
-            r"^-rc999-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?$")
+            r"^-rc999-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?(-4k)?$")
         for scmversion in self._get_vmlinux_scmversion(workspace_root):
             self.assertRegexpMatches(scmversion, scmversion_pat)
 
@@ -1266,7 +1266,7 @@ class ScmversionIntegrationTest(KleafIntegrationTestBase):
             ],
             env=ScmversionIntegrationTest._env_without_build_number())
         scmversion_pat = re.compile(
-            r"^-rc999-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?$")
+            r"^-rc999-mainline(-[0-9]{5,})?-g[0-9a-f]{12,40}(-dirty)?(-4k)?$")
         for scmversion in self._get_vmlinux_scmversion(package=new_kernel_dir):
             self.assertRegexpMatches(scmversion, scmversion_pat)
 
