@@ -4,9 +4,8 @@ This document briefly explains the distinction between different targets in the
 [Android Common Kernel (ACK) source tree](https://android.googlesource.com/kernel/common/)
 .
 
-The ACK source tree is usually checked out at the
-`//common` [package](https://bazel.build/concepts/build-ref#packages), but it
-may be checked out at other places. See [workspace.md](../workspace.md). The ACK
+The ACK source tree is checked out at the
+`//common` [package](https://bazel.build/concepts/build-ref#packages). The ACK
 source tree will be referred to as `//common` package throughout this document.
 
 For the most up-to-date information about each target, check out the in-line

@@ -13,7 +13,6 @@
 # limitations under the License.
 
 # bzlmod support. Enabled by default.
-# To disable, build with --noenable_bzlmod.
 # See build/kernel/kleaf/docs/bzlmod.md for instructions.
 
 common --config=bzlmod
