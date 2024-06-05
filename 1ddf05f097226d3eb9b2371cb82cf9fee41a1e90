@@ -39,6 +39,30 @@
       },
       "revId": "1ddf05f097226d3eb9b2371cb82cf9fee41a1e90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f84a2fe_7899db9e",
+        "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-05T00:25:22Z",
+      "side": 1,
+      "message": "Please update gki_defconfig to add `CONFIG_LOCALVERSION\u003d\"-4K\"` and in 16k/64k defconfig clear it with `# CONFIG_LOCALVERSION is not set`. This is because:\n\n\u003e BTW if we are going the \"add 4k to UTS string\" route, one will also need to add it to gki_defconfig. The file https://cs.android.com/android/kernel/superproject/+/common-android-mainline:build/kernel/kleaf/impl/defconfig/arm64_4k_defconfig is NOT applied unless --page_size\u003d4k or kernel_build.page_size\u003d\"4k\" is explicitly set. If neither is set (which is the case now), the default is to respect gki_defconfig (or whatever DEFCONFIG set in build.config)",
+      "parentUuid": "10f7103c_859bccaa",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 26
+      },
+      "revId": "1ddf05f097226d3eb9b2371cb82cf9fee41a1e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
