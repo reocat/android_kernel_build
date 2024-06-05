@@ -63,6 +63,30 @@
       },
       "revId": "1ddf05f097226d3eb9b2371cb82cf9fee41a1e90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efd833ba_b69ae981",
+        "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-05T12:10:58Z",
+      "side": 1,
+      "message": "see https://r.android.com/q/topic:uts-4k and https://r.android.com/q/topic:uts-4k-android15-6.6",
+      "parentUuid": "8f84a2fe_7899db9e",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 26
+      },
+      "revId": "1ddf05f097226d3eb9b2371cb82cf9fee41a1e90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
