@@ -593,6 +593,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f4c30a7_ff15c1ae",
+        "filename": "kleaf/impl/abi/dependency_graph.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T08:31:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6c33c661_ec3103ec",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 91
+      },
+      "revId": "cdf2ff07818d098f063b048287b6cde38cff0ae1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb11eb43_296ac19c",

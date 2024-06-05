@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e71d1e6b_beda5714",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T08:31:53Z",
+      "side": 1,
+      "message": "Docs are added to `.bzl` files, `.md` file updates are missing due to a broken target which I\u0027m investigating.\n\nTests could be added in next iteration or as a follow-up CL.",
+      "parentUuid": "93029bd3_761ec202",
+      "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cf486189_4150ca62",
         "filename": "BUILD.bazel",
         "patchSetId": 7
@@ -31,6 +49,30 @@
       "writtenOn": "2024-06-03T17:07:19Z",
       "side": 1,
       "message": "not sure you need them all as separate tools. But ok.",
+      "range": {
+        "startLine": 347,
+        "startChar": 0,
+        "endLine": 363,
+        "endChar": 0
+      },
+      "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd3a6fd8_047627c1",
+        "filename": "BUILD.bazel",
+        "patchSetId": 7
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T08:31:53Z",
+      "side": 1,
+      "message": "ACK. This way they could grow separately to support more use cases / features.",
+      "parentUuid": "cf486189_4150ca62",
       "range": {
         "startLine": 347,
         "startChar": 0,
@@ -112,6 +154,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd88539e_9e97a6ef",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T08:31:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff6b1f75_0e1cc3ef",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 19
+      },
+      "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "107d8e0f_c9e9183a",
@@ -125,6 +191,30 @@
       "writtenOn": "2024-06-03T17:07:19Z",
       "side": 1,
       "message": "request to make this an option in a later change.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 20
+      },
+      "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36a77905_a93a9bc5",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T08:31:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "107d8e0f_c9e9183a",
       "range": {
         "startLine": 41,
         "startChar": 0,
@@ -176,6 +266,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "740f8f9c_1cf76e51",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T08:31:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d61ca340_664cd167",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 7
+      },
+      "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a39ac26a_c5a468bd",
@@ -213,6 +327,30 @@
           ]
         }
       ],
+      "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e88be4ec_c966fded",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T08:31:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a39ac26a_c5a468bd",
+      "range": {
+        "startLine": 65,
+        "startChar": 14,
+        "endLine": 65,
+        "endChar": 33
+      },
       "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -258,6 +396,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c833cfd4_475b3a0b",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T08:31:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62550a17_a3c9c0e4",
+      "range": {
+        "startLine": 69,
+        "startChar": 20,
+        "endLine": 69,
+        "endChar": 25
+      },
+      "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d9ad044_6f4cc397",
@@ -299,6 +461,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e010ae6a_0afd141f",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T08:31:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d9ad044_6f4cc397",
+      "range": {
+        "startLine": 74,
+        "startChar": 40,
+        "endLine": 74,
+        "endChar": 41
+      },
+      "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4b0d7eb_10ace0cc",
@@ -336,6 +522,30 @@
           ]
         }
       ],
+      "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c789f900_cea3c6dd",
+        "filename": "abi/dependency_graph_extractor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T08:31:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4b0d7eb_10ace0cc",
+      "range": {
+        "startLine": 37,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 22
+      },
       "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -387,6 +597,30 @@
           ]
         }
       ],
+      "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5990bdb_95530081",
+        "filename": "abi/dependency_graph_extractor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-05T08:31:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "add1f2a5_0e3d702c",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 0
+      },
       "revId": "842d1bdae8c7912459b3e9c2f5852f1e0288a0ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
