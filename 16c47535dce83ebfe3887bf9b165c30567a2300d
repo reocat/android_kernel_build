@@ -1,0 +1,132 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b37183d_ceb418cd",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-05T17:29:10Z",
+      "side": 1,
+      "message": "nit use \"\"\" for doc comments",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 2
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "9b449d83_c0b74f2e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/dependency_graph_drawer.py",
+              "range": {
+                "startLine": 17,
+                "startChar": 0,
+                "endLine": 18,
+                "endChar": 0
+              },
+              "replacement": "\"\"\"Utility function to create a visualization graph using dot language.\"\"\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "16c47535dce83ebfe3887bf9b165c30567a2300d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "489e3634_d7b6f009",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-05T17:29:10Z",
+      "side": 1,
+      "message": "delete? or change to debug?\n\nYou can change it to a logging.debug and adjust the logging level with command line arguments",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 45,
+        "endChar": 14
+      },
+      "revId": "16c47535dce83ebfe3887bf9b165c30567a2300d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef251962_dee483ec",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-05T17:29:10Z",
+      "side": 1,
+      "message": "I think we have stopped needing encoding from pylintrc. https://android-review.git.corp.google.com/c/kernel/build/+/3077426",
+      "range": {
+        "startLine": 64,
+        "startChar": 34,
+        "endLine": 64,
+        "endChar": 50
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "e915293f_dac17598",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/dependency_graph_drawer.py",
+              "range": {
+                "startLine": 64,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": "    with adjacency_list_file.open() as adjacency_list:\n"
+            }
+          ]
+        }
+      ],
+      "revId": "16c47535dce83ebfe3887bf9b165c30567a2300d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de86673d_d7400b6e",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-05T17:29:10Z",
+      "side": 1,
+      "message": "_read_graph?\n\nIf you do this you can `raise argparse.ArgumentError from err` from _read_path instead of sys.exit(1)",
+      "range": {
+        "startLine": 77,
+        "startChar": 13,
+        "endLine": 77,
+        "endChar": 25
+      },
+      "revId": "16c47535dce83ebfe3887bf9b165c30567a2300d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
