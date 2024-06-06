@@ -62,6 +62,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac31ba40_5907e5c4",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-06T10:54:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0961de4e_fa97d674",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 22
+      },
+      "revId": "d3ff87100cbe92004cca710f5b561baec6697be0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83b739f9_16f37462",
@@ -123,6 +147,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "342b19df_ad06f8fc",
+        "filename": "abi/dependency_graph_extractor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-06T10:54:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83b739f9_16f37462",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 21
+      },
+      "revId": "d3ff87100cbe92004cca710f5b561baec6697be0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "daadce56_786cc8a1",
@@ -136,6 +184,30 @@
       "writtenOn": "2024-06-06T10:46:18Z",
       "side": 1,
       "message": "nit: exported_symbols_by_module",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 20
+      },
+      "revId": "d3ff87100cbe92004cca710f5b561baec6697be0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e088a6e_9cfb76f8",
+        "filename": "abi/dependency_graph_extractor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-06T10:54:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daadce56_786cc8a1",
       "range": {
         "startLine": 51,
         "startChar": 4,
