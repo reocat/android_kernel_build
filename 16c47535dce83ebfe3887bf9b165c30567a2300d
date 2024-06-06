@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9af1486_6407c312",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-06T10:23:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b37183d_ceb418cd",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 2
+      },
+      "revId": "16c47535dce83ebfe3887bf9b165c30567a2300d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "489e3634_d7b6f009",
@@ -55,6 +79,30 @@
       "writtenOn": "2024-06-05T17:29:10Z",
       "side": 1,
       "message": "delete? or change to debug?\n\nYou can change it to a logging.debug and adjust the logging level with command line arguments",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 45,
+        "endChar": 14
+      },
+      "revId": "16c47535dce83ebfe3887bf9b165c30567a2300d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ff1ff31_a6ceb487",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-06T10:23:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "489e3634_d7b6f009",
       "range": {
         "startLine": 45,
         "startChar": 12,
@@ -106,6 +154,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfa409e1_1a1810a7",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-06T10:23:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef251962_dee483ec",
+      "range": {
+        "startLine": 64,
+        "startChar": 34,
+        "endLine": 64,
+        "endChar": 50
+      },
+      "revId": "16c47535dce83ebfe3887bf9b165c30567a2300d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de86673d_d7400b6e",
@@ -119,6 +191,30 @@
       "writtenOn": "2024-06-05T17:29:10Z",
       "side": 1,
       "message": "_read_graph?\n\nIf you do this you can `raise argparse.ArgumentError from err` from _read_path instead of sys.exit(1)",
+      "range": {
+        "startLine": 77,
+        "startChar": 13,
+        "endLine": 77,
+        "endChar": 25
+      },
+      "revId": "16c47535dce83ebfe3887bf9b165c30567a2300d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1de592e9_b8f55caa",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-06T10:23:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de86673d_d7400b6e",
       "range": {
         "startLine": 77,
         "startChar": 13,
