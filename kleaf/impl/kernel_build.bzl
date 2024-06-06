@@ -406,6 +406,12 @@ def kernel_build(
           describe what the defconfig does. However, this is not a requirement.
           These configs are also applied to external modules, including
           `kernel_module`s and `ddk_module`s.
+
+          **NOTE**: `defconfig_fragments` are applied **after** `make defconfig`, similar
+          to `POST_DEFCONFIG_CMDS`. If you migrate from `PRE_DEFCONFIG_CMDS`
+          to `defconfig_fragments`, certain values may change; double check
+          by building the `<target_name>_config` target and examining the
+          generated `.config` file.
         page_size: Default is `"default"`. Page size of the kernel build.
 
           Value may be one of `"default"`, `"4k"`, `"16k"` or `"64k"`. If
