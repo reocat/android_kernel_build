@@ -973,7 +973,6 @@ class QuickIntegrationTest(KleafIntegrationTestBase):
         self._build(["--config=silent", "//build/kernel:hermetic-tools"],
                     startup_options=startup_options)
 
-    @unittest.skip("b/234125794 reenable once allowlist is more restrictive.")
     def test_detect_unexpected_output_error(self):
         """Without --config=silent, there are errors on unexpected lines."""
         allowlist = pathlib.Path("build/kernel/kleaf/spotless_log_regex.txt")
