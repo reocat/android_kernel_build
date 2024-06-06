@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48926f9f_15279dda",
+        "filename": "kleaf/impl/defconfig/arm64_16k_defconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1557540
+      },
+      "writtenOn": "2024-06-06T16:50:28Z",
+      "side": 1,
+      "message": "Please remove. This is already set in the gki_defconfig",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 23
+      },
+      "revId": "53ba7b26778b6ab7b65c76de5a38dc9130ead704",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
