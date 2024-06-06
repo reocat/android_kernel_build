@@ -413,21 +413,37 @@ class KleafIntegrationTestBase(unittest.TestCase):
         parts = [".."] * len(other_parts) + list(path_parts)
         return pathlib.Path(*parts)
 
-    @classmethod
-    def _get_repo_manifest(cls) -> xml.dom.minidom.Document:
-        parser = argparse.ArgumentParser()
-        parser.add_argument("--repo_manifest", type=_require_absolute_path)
-        known, _ = parser.parse_known_args(arguments.bazel_wrapper_args)
-        if known.repo_manifest:
-            with open(known.repo_manifest) as manifest_file:
-                return xml.dom.minidom.parse(manifest_file)
+    def _check_repo_manifest(self, value: str) \
+            -> tuple[pathlib.Path | None, pathlib.Path | None]:
+        tokens = value.split(":")
+        match len(tokens):
+            case 0: return (None, None)
+            case 1:
+                return (pathlib.Path(".").resolve(),
+                        _require_absolute_path(value))
+            case 2:
+                repo_root, repo_manifest = tokens
+                return (_require_absolute_path(repo_root),
+                        _require_absolute_path(repo_manifest))
+        raise argparse.ArgumentTypeError(
+            "Must be <REPO_MANIFEST> or <REPO_ROOT>:<REPO_MANIFEST>"
+        )
 
+    def _get_repo_manifest(self) -> xml.dom.minidom.Document:
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--repo_manifest",
+                            type=self._check_repo_manifest,
+                            default=(None, None))
+        known, _ = parser.parse_known_args(arguments.bazel_wrapper_args)
+        _, repo_manifest = known.repo_manifest
+        if repo_manifest:
+            with open(repo_manifest) as file:
+                return xml.dom.minidom.parse(file)
         manifest_content = Exec.check_output(["repo", "manifest"])
         return xml.dom.minidom.parseString(manifest_content)
 
-    @classmethod
-    def _get_projects(cls) -> list[RepoProject]:
-        manifest_element = cls._get_repo_manifest().documentElement
+    def _get_projects(self) -> list[RepoProject]:
+        manifest_element = self._get_repo_manifest().documentElement
         project_elements = manifest_element.getElementsByTagName("project")
         return [RepoProject.from_element(element)
                 for element in project_elements]
@@ -605,26 +621,6 @@ class DdkWorkspaceSetupTest(KleafIntegrationTestBase):
         self.real_kleaf_repo = pathlib.Path(".").resolve()
         self.ddk_workspace = (pathlib.Path(__file__).resolve().parent /
                               "ddk_workspace_test")
-
-    @classmethod
-    def _get_projects(cls) -> list[RepoProject]:
-        parser = argparse.ArgumentParser()
-        parser.add_argument("--repo_manifest", type=_require_absolute_path)
-        known, _ = parser.parse_known_args(arguments.bazel_wrapper_args)
-        if known.repo_manifest:
-            with open(known.repo_manifest) as manifest_file:
-                return cls._get_projects_from_manifest(manifest_file)
-
-        manifest_content = Exec.check_output(["repo", "manifest"])
-        manifest_file = io.StringIO(manifest_content)
-        return cls._get_projects_from_manifest(manifest_file)
-
-    @staticmethod
-    def _get_projects_from_manifest(manifest_file: TextIO) -> list[RepoProject]:
-        dom = xml.dom.minidom.parse(manifest_file)
-        project_elements = dom.documentElement.getElementsByTagName("project")
-        return [RepoProject.from_element(element)
-                for element in project_elements]
 
     def test_ddk_workspace_below_kleaf_module(self):
         """Tests that DDK workspace is below @kleaf"""
