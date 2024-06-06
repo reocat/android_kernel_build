@@ -249,18 +249,9 @@ class KleafIntegrationTestBase(unittest.TestCase):
             subprocess_args.append(f"--bazelrc={self._bazel_rc.name}")
         subprocess_args.append(command)
 
-        if "--" in command_args:
-            idx = command_args.index("--")
-            bazel_command_args = command_args[:idx]
-            script_args = command_args[idx:]
-        else:
-            bazel_command_args = command_args
-            script_args = []
-
-        subprocess_args.extend(bazel_command_args)
         if use_wrapper_args:
             subprocess_args.extend(arguments.bazel_wrapper_args)
-        subprocess_args.extend(script_args)
+        subprocess_args.extend(command_args)
 
         # kwargs has known arguments filtered out.
         return subprocess_args, kwargs
