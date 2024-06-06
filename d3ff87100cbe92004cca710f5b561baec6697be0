@@ -1,0 +1,149 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0961de4e_fa97d674",
+        "filename": "abi/dependency_graph_drawer.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-06T10:46:18Z",
+      "side": 1,
+      "message": "nit: adjacency_list_file or  adjacency_list_file_name",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 22
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "7cad5952_2ee1365e",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/dependency_graph_drawer.py",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 62,
+                "endChar": 0
+              },
+              "replacement": "    adjacency_list_file: str,\n"
+            },
+            {
+              "path": "abi/dependency_graph_drawer.py",
+              "range": {
+                "startLine": 64,
+                "startChar": 0,
+                "endLine": 65,
+                "endChar": 0
+              },
+              "replacement": "        with pathlib.Path(adjacency_list_file).open() as adjacency_list:\n"
+            },
+            {
+              "path": "abi/dependency_graph_drawer.py",
+              "range": {
+                "startLine": 68,
+                "startChar": 0,
+                "endLine": 69,
+                "endChar": 0
+              },
+              "replacement": "            f\"{adjacency_list_file}\", \"Failed to load.\"\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d3ff87100cbe92004cca710f5b561baec6697be0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83b739f9_16f37462",
+        "filename": "abi/dependency_graph_extractor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-06T10:46:18Z",
+      "side": 1,
+      "message": "nit: undefined_symbols_by_module",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 21
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "064d5f9f_65b0dd7a",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "abi/dependency_graph_extractor.py",
+              "range": {
+                "startLine": 50,
+                "startChar": 0,
+                "endLine": 52,
+                "endChar": 0
+              },
+              "replacement": "    undefined_symbols_by_module: dict[str, list[str]],\n    exported_symbols_by_module: dict[str, list[str]],\n"
+            },
+            {
+              "path": "abi/dependency_graph_extractor.py",
+              "range": {
+                "startLine": 61,
+                "startChar": 0,
+                "endLine": 62,
+                "endChar": 0
+              },
+              "replacement": "    for module, exported in exported_symbols_by_module.items():\n"
+            },
+            {
+              "path": "abi/dependency_graph_extractor.py",
+              "range": {
+                "startLine": 74,
+                "startChar": 0,
+                "endLine": 75,
+                "endChar": 0
+              },
+              "replacement": "    for module, symbols in undefined_symbols_by_module.items():\n"
+            }
+          ]
+        }
+      ],
+      "revId": "d3ff87100cbe92004cca710f5b561baec6697be0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daadce56_786cc8a1",
+        "filename": "abi/dependency_graph_extractor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-06T10:46:18Z",
+      "side": 1,
+      "message": "nit: exported_symbols_by_module",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 20
+      },
+      "revId": "d3ff87100cbe92004cca710f5b561baec6697be0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
