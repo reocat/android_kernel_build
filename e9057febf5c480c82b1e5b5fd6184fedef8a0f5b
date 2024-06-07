@@ -22,6 +22,30 @@
       },
       "revId": "e9057febf5c480c82b1e5b5fd6184fedef8a0f5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e96836bc_29270c8b",
+        "filename": "kleaf/impl/kernel_env.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-07T20:47:06Z",
+      "side": 1,
+      "message": "+1, it isn\u0027t defined anywhere: https://cs.android.com/search?q\u003dKCPPFLAGS_COMPAT\u0026ss\u003dandroid%2Fkernel%2Fsuperproject\u0026ct\u003dos",
+      "parentUuid": "df1a7754_8611ce5f",
+      "range": {
+        "startLine": 452,
+        "startChar": 0,
+        "endLine": 452,
+        "endChar": 44
+      },
+      "revId": "e9057febf5c480c82b1e5b5fd6184fedef8a0f5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
