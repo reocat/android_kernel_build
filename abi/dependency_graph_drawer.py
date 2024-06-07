@@ -35,13 +35,14 @@ def _create_graphviz(
         "\tnode [color=steelblue, shape=plaintext];",
         "\tedge [arrowhead=odot, color=olive];",
     ])
+    leaves = []
     for node in adjacency_list.values():
         # vmlinux is dependency for most of the nodes so skip it.
         if node["name"] == "vmlinux":
             continue
         # Skip nodes without dependents.
         if not node["dependents"]:
-            logging.info("Skipping leaf module %s", node["name"])
+            leaves.append(node["name"])
             continue
         edges = []
         for neighbor in node["dependents"]:
@@ -53,6 +54,7 @@ def _create_graphviz(
             h = hashlib.shake_256(edge_str.encode())
             edge_color = f' [color="  # {h.hexdigest(3)}"]'
         content.append(f'\t"{node["name"]}" -> {edge_str}{edge_color};')
+    logging.warning("Leaf nodes: [%s]", leaves)
     content.append("}")
     output.write_text("\n".join(content), encoding="utf-8")
 
