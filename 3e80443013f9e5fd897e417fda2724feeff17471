@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "363d801d_0e985976",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-07T09:36:49Z",
+      "side": 1,
+      "message": "Not sure if the test break is related to this, but it might be a good idea to check first if downloading is possible with `if self._can_download_artifacts():` see L345.",
+      "range": {
+        "startLine": 284,
+        "startChar": 34,
+        "endLine": 284,
+        "endChar": 35
+      },
+      "revId": "3e80443013f9e5fd897e417fda2724feeff17471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
