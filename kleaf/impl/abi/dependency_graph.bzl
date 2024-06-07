@@ -136,11 +136,16 @@ def _dependency_graph_drawer_impl(ctx):
     out = ctx.actions.declare_file("{}/dependency_graph.dot".format(ctx.attr.name))
     input = ctx.file.adjacency_list
     tool = ctx.executable._dependency_graph_drawer
+    flags = []
+    if ctx.attr.colorful:
+        flags.append("--colors")
+
     command = """
-        {dependency_graph_drawer} {input} {output}
+        {dependency_graph_drawer} {input} {output} {flags}
     """.format(
         input = input.path,
         dependency_graph_drawer = tool.path,
+        flags = " ".join(flags),
         output = out.path,
     )
     debug.print_scripts(ctx, command)
@@ -182,6 +187,9 @@ dependency_graph_drawer = rule(
     """,
     attrs = {
         "adjacency_list": attr.label(allow_single_file = True, mandatory = True),
+        "colorful": attr.bool(
+            doc = "Whether outgoing edges from every node are colored.",
+        ),
         "_dependency_graph_drawer": attr.label(
             default = "//build/kernel:dependency_graph_drawer",
             cfg = "exec",
@@ -190,3 +198,41 @@ dependency_graph_drawer = rule(
         "_debug_print_scripts": attr.label(default = "//build/kernel/kleaf:debug_print_scripts"),
     },
 )
+
+def dependency_graph(name, kernel_build, kernel_modules, colorful = None, **kwargs):
+    """Declare targets for dependency graph visualization.
+
+    Args:
+        name: Name of this target.
+        kernel_build: The [`kernel_build`](#kernel_build).
+        kernel_modules: A list of external [`kernel_module()`](#kernel_module)s.
+        colorful: When set to True, outgoing edges from every node are colored differently.
+        **kwargs: Additional attributes to the internal rule, e.g.
+        [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
+        See complete list
+        [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).
+
+    Output:
+        File with a diagram representing a graph in DOT language.
+    """
+
+    dependency_graph_extractor(
+        name = name + "_extractor",
+        kernel_build = kernel_build,
+        kernel_modules = kernel_modules,
+        **kwargs
+    )
+
+    dependency_graph_drawer(
+        name = name + "_drawer",
+        adjacency_list = name + "_extractor",
+        colorful = colorful,
+    )
+
+    native.filegroup(
+        name = name,
+        srcs = [
+            name + "_drawer",
+        ],
+        **kwargs
+    )
