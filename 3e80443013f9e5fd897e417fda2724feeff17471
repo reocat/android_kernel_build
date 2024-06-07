@@ -22,6 +22,30 @@
       },
       "revId": "3e80443013f9e5fd897e417fda2724feeff17471",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cad0820f_5395b878",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-07T22:04:51Z",
+      "side": 1,
+      "message": "done, I rewrote it",
+      "parentUuid": "363d801d_0e985976",
+      "range": {
+        "startLine": 284,
+        "startChar": 34,
+        "endLine": 284,
+        "endChar": 35
+      },
+      "revId": "3e80443013f9e5fd897e417fda2724feeff17471",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
