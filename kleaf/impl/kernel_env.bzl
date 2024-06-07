@@ -427,7 +427,7 @@ def _get_env_setup_cmds(ctx):
             export KERNEL_DIR=${{KLEAF_REPO_WORKSPACE_ROOT:+$KLEAF_REPO_WORKSPACE_ROOT/}}${{KERNEL_DIR#{kleaf_repo_workspace_root_slash}}}
         fi
 
-        ## Set up KCPPFLAGS
+        ## Set up KCPPFLAGS and KCPPFLAGS_COMPAT
 
         # Replace ${{ROOT_DIR}} with "/proc/self/cwd" in the file name
         # references in the binaries (e.g. debug info).
@@ -449,6 +449,7 @@ def _get_env_setup_cmds(ctx):
         if [[ "$(realpath ${{ROOT_DIR}}/${{KERNEL_DIR}})" != "${{ROOT_DIR}}/${{KERNEL_DIR}}" ]]; then
             export KCPPFLAGS="$KCPPFLAGS -ffile-prefix-map=$(realpath ${{ROOT_DIR}}/${{KERNEL_DIR}}/..)=/proc/self/cwd"
         fi
+        export KCPPFLAGS_COMPAT="$KCPPFLAGS"
     """.format(
         get_make_jobs_cmd = status.get_volatile_status_cmd(ctx, "MAKE_JOBS"),
         get_make_keep_going_cmd = status.get_volatile_status_cmd(ctx, "MAKE_KEEP_GOING"),
