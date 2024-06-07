@@ -150,7 +150,7 @@ ddk_uapi_headers(
 ## dependency_graph_drawer
 
 <pre>
-dependency_graph_drawer(<a href="#dependency_graph_drawer-name">name</a>, <a href="#dependency_graph_drawer-adjacency_list">adjacency_list</a>)
+dependency_graph_drawer(<a href="#dependency_graph_drawer-name">name</a>, <a href="#dependency_graph_drawer-adjacency_list">adjacency_list</a>, <a href="#dependency_graph_drawer-colorful">colorful</a>)
 </pre>
 
 A rule that creates a [Graphviz](https://graphviz.org/) diagram file.
@@ -183,6 +183,7 @@ A rule that creates a [Graphviz](https://graphviz.org/) diagram file.
 | :------------- | :------------- | :------------- | :------------- | :------------- |
 | <a id="dependency_graph_drawer-name"></a>name |  A unique name for this target.   | <a href="https://bazel.build/concepts/labels#target-names">Name</a> | required |  |
 | <a id="dependency_graph_drawer-adjacency_list"></a>adjacency_list |  -   | <a href="https://bazel.build/concepts/labels">Label</a> | required |  |
+| <a id="dependency_graph_drawer-colorful"></a>colorful |  Whether outgoing edges from every node are colored.   | Boolean | optional |  `False`  |
 
 
 <a id="dependency_graph_extractor"></a>
@@ -908,6 +909,32 @@ dependencies are stable, it is recommended to:
 | <a id="ddk_submodule-copts"></a>copts |  See [`ddk_module.copts`](#ddk_module-copts).<br><br>These are only effective in the current submodule, not other submodules declared in the same [`ddk_module.deps`](#ddk_module-deps).<br><br>These are not exported to downstream targets that depends on the `ddk_module` that includes the current target.   |  `None` |
 | <a id="ddk_submodule-conditional_srcs"></a>conditional_srcs |  See [`ddk_module.conditional_srcs`](#ddk_module-conditional_srcs).   |  `None` |
 | <a id="ddk_submodule-kwargs"></a>kwargs |  Additional attributes to the internal rule, e.g. [`visibility`](https://docs.bazel.build/versions/main/visibility.html). See complete list [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).   |  none |
+
+
+<a id="dependency_graph"></a>
+
+## dependency_graph
+
+<pre>
+dependency_graph(<a href="#dependency_graph-name">name</a>, <a href="#dependency_graph-kernel_build">kernel_build</a>, <a href="#dependency_graph-kernel_modules">kernel_modules</a>, <a href="#dependency_graph-colorful">colorful</a>, <a href="#dependency_graph-kwargs">kwargs</a>)
+</pre>
+
+Declare targets for dependency graph visualization.
+
+Output:
+    File with a diagram representing a graph in DOT language.
+
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="dependency_graph-name"></a>name |  Name of this target.   |  none |
+| <a id="dependency_graph-kernel_build"></a>kernel_build |  The [`kernel_build`](#kernel_build).   |  none |
+| <a id="dependency_graph-kernel_modules"></a>kernel_modules |  A list of external [`kernel_module()`](#kernel_module)s.   |  none |
+| <a id="dependency_graph-colorful"></a>colorful |  When set to True, outgoing edges from every node are colored differently.   |  `None` |
+| <a id="dependency_graph-kwargs"></a>kwargs |  Additional attributes to the internal rule, e.g. [`visibility`](https://docs.bazel.build/versions/main/visibility.html). See complete list [here](https://docs.bazel.build/versions/main/be/common-definitions.html#common-attributes).   |  none |
 
 
 <a id="initramfs_modules_lists_test"></a>
