@@ -34,6 +34,8 @@
 
 [Debugging Kleaf](docs/debugging.md)
 
+[Visualizing dependencies](docs/dependencies.md)
+
 ### Advanced topics
 
 [Handling SCM version](docs/scmversion.md)

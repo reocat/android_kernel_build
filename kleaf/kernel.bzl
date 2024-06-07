@@ -25,6 +25,7 @@ load(
 )
 load(
     "//build/kernel/kleaf/impl:abi/dependency_graph.bzl",
+    _dependency_graph = "dependency_graph",
     _dependency_graph_drawer = "dependency_graph_drawer",
     _dependency_graph_extractor = "dependency_graph_extractor",
 )
@@ -62,6 +63,7 @@ ddk_headers_archive = _ddk_headers_archive
 ddk_module = _ddk_module
 ddk_submodule = _ddk_submodule
 ddk_uapi_headers = _ddk_uapi_headers
+dependency_graph = _dependency_graph
 dependency_graph_drawer = _dependency_graph_drawer
 dependency_graph_extractor = _dependency_graph_extractor
 extract_symbols = _extract_symbols
