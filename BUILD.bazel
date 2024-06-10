@@ -391,11 +391,12 @@ py_test(
     ],
 )
 
+# Target for distribution.
 filegroup(
     name = "init_ddk_zip",
     srcs = [":init_ddk"],
     output_group = "python_zip_file",
-    visibility = ["//visibility:private"],
+    visibility = ["//visibility:public"],
 )
 
 _GKI_CERTIFICATION_BINARIES_PREFIX = "//prebuilts/kernel-build-tools:linux-x86/bin/"
