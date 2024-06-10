@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8af4b8e_ca4bd7ac",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-10T15:14:52Z",
+      "side": 1,
+      "message": "nit: Maybe move this after line 302, so it covers other branches where download is not possible as well?",
+      "range": {
+        "startLine": 322,
+        "startChar": 12,
+        "endLine": 322,
+        "endChar": 36
+      },
+      "revId": "7dcd26024ff9c4b98466988d173a9741be167c0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cb53a22_c4a464bf",
+        "filename": "init/repo_wrapper.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1961395
+      },
+      "writtenOn": "2024-06-10T15:14:52Z",
+      "side": 1,
+      "message": "my 2c: I think it\u0027d be easier for tooling to have a consistent name to look for.",
+      "range": {
+        "startLine": 114,
+        "startChar": 21,
+        "endLine": 114,
+        "endChar": 34
+      },
+      "revId": "7dcd26024ff9c4b98466988d173a9741be167c0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
