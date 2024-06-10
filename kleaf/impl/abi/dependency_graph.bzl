@@ -37,9 +37,10 @@ def _dependency_graph_extractor_impl(ctx):
         ),
         required = True,
     )
-    in_tree_modules = utils.find_files(suffix = ".ko", files = ctx.files.kernel_build)
     srcs = [vmlinux]
-    srcs += in_tree_modules
+    if ctx.attr.include_in_tree_modules:
+        include_in_tree_modules = utils.find_files(suffix = ".ko", files = ctx.files.kernel_build)
+        srcs += include_in_tree_modules
 
     # External modules
     for kernel_module in ctx.attr.kernel_modules:
@@ -119,6 +120,9 @@ dependency_graph_extractor = rule(
         "kernel_build": attr.label(providers = [KernelSerializedEnvInfo, KernelBuildAbiInfo]),
         # For label targets they should provide KernelModuleInfo.
         "kernel_modules": attr.label_list(allow_files = True),
+        "include_in_tree_modules": attr.bool(
+            doc = "Whether in-tree modules should be included in the analysis.",
+        ),
         "_dependency_graph_extractor": attr.label(
             default = "//build/kernel:dependency_graph_extractor",
             cfg = "exec",
@@ -199,7 +203,13 @@ dependency_graph_drawer = rule(
     },
 )
 
-def dependency_graph(name, kernel_build, kernel_modules, colorful = None, **kwargs):
+def dependency_graph(
+        name,
+        kernel_build,
+        kernel_modules,
+        colorful = None,
+        include_in_tree_modules = None,
+        **kwargs):
     """Declare targets for dependency graph visualization.
 
     Output:
@@ -210,6 +220,8 @@ def dependency_graph(name, kernel_build, kernel_modules, colorful = None, **kwar
         kernel_build: The [`kernel_build`](#kernel_build).
         kernel_modules: A list of external [`kernel_module()`](#kernel_module)s.
         colorful: When set to True, outgoing edges from every node are colored differently.
+        include_in_tree_modules: Whether in-tree modules should be included in the analysis,
+          defaults to `False`.
         **kwargs: Additional attributes to the internal rule, e.g.
           [`visibility`](https://docs.bazel.build/versions/main/visibility.html).
           See complete list
@@ -221,6 +233,7 @@ def dependency_graph(name, kernel_build, kernel_modules, colorful = None, **kwar
         name = name + "_extractor",
         kernel_build = kernel_build,
         kernel_modules = kernel_modules,
+        include_in_tree_modules = include_in_tree_modules,
         **kwargs
     )
 
