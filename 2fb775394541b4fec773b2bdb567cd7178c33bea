@@ -16,6 +16,24 @@
       "message": "wait cl/640322612",
       "revId": "2fb775394541b4fec773b2bdb567cd7178c33bea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "976212a1_88e41c1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-11T20:46:00Z",
+      "side": 1,
+      "message": "change merged, need to confirm that presubmit actually runs the target with --config\u003dsilent and --stdout-stderr-regex-allowlist",
+      "parentUuid": "e7d754f0_dd1eea39",
+      "revId": "2fb775394541b4fec773b2bdb567cd7178c33bea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
