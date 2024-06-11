@@ -140,18 +140,14 @@ def main(
             path, git_sha1 = line.split(maxsplit=2)
             applied_prop_dict[pathlib.Path(path)].append(git_sha1)
 
-    targets: list[(list[str], str)] = []
+    targets: list[(str, list[str], str)] = []
     for path, git_sha1_list in applied_prop_dict.items():
         if len(git_sha1_list) > 1:
             logging.error("Multiple git sha1 found in %s for %s",
                           applied_prop, path)
             return 1
         path_targets = _find_checkpatch_targets(path)
-        if not path_targets:
-            logging.info(
-                "Skipping %s because no checkpatch() target is found.", path)
-            continue
-        targets.append((path_targets, git_sha1_list[0]))
+        targets.append((path, path_targets, git_sha1_list[0]))
 
     checkpatch_log = dist_dir / "checkpatch.log"
     checkpatch_full_log = dist_dir / "checkpatch_full.log"
@@ -160,21 +156,26 @@ def main(
     if checkpatch_full_log.exists():
         os.unlink(checkpatch_full_log)
     return_codes = []
-    for path_targets, git_sha1 in targets:
-        for target in path_targets:
-            return_codes.append(_run_checkpatch(
-                target=target,
-                git_sha1=git_sha1,
-                log=checkpatch_log,
-                checkpatch_args=checkpatch_args,
-            ))
-            _run_checkpatch(
-                target=target,
-                git_sha1=git_sha1,
-                log=checkpatch_full_log,
-                checkpatch_args=checkpatch_args + ["--ignored_checks", ""],
-                silent=True,
-            )
+    for path, path_targets, git_sha1 in targets:
+        if path_targets:
+            for target in path_targets:
+                return_codes.append(_run_checkpatch(
+                    target=target,
+                    git_sha1=git_sha1,
+                    log=checkpatch_log,
+                    checkpatch_args=checkpatch_args,
+                ))
+        else:
+            logging.info(
+                "Skipping %s because no checkpatch() target is found.", path)
+        _run_checkpatch(
+            target="//common:checkpatch",
+            git_sha1=git_sha1,
+            log=checkpatch_full_log,
+            checkpatch_args=
+                checkpatch_args + ["--ignored_checks", "", "--dir", path],
+            silent=True,
+        )
 
     success = sum(return_codes) == 0
 
