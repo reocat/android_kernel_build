@@ -45,6 +45,30 @@
       },
       "revId": "7dcd26024ff9c4b98466988d173a9741be167c0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b558635_edbfaaff",
+        "filename": "init/repo_wrapper.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-11T20:08:17Z",
+      "side": 1,
+      "message": "The question is whether partners do use a different name for their manifest (i.e. whether they call `repo init` with `-m|--manifest-name` option or not). If they do, we should also support this `-m` option.",
+      "parentUuid": "3cb53a22_c4a464bf",
+      "range": {
+        "startLine": 114,
+        "startChar": 21,
+        "endLine": 114,
+        "endChar": 34
+      },
+      "revId": "7dcd26024ff9c4b98466988d173a9741be167c0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
