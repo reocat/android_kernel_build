@@ -360,6 +360,7 @@ def _kernel_config_impl(ctx):
             file = file.path,
             basename = file.basename,
         )
+        post_setup_deps.append(file)
 
     # <kernel_build>_config_setup.sh
     serialized_env_info_setup_script = ctx.actions.declare_file("{name}/{name}_setup.sh".format(name = ctx.attr.name))
