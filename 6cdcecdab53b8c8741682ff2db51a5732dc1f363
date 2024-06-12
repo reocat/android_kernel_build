@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06b05db1_cd60cd07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1402878
+      },
+      "writtenOn": "2024-06-12T13:09:12Z",
+      "side": 1,
+      "message": "The errors on aosp_kernel-common-android15-6.6-2024-07 can be ignored, but the pixel 6 boottest failure we should not ignore.",
+      "revId": "6cdcecdab53b8c8741682ff2db51a5732dc1f363",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
