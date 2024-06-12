@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "de83534f_06e96cf7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-12T01:27:02Z",
+      "side": 1,
+      "message": "For reference, here are all the //common references below //build/kernel (minus test and docs):\n\nhttps://cs.android.com/search?q\u003df:build%2Fkernel%20-f:test%20-f:docs%20%2F%2Fcommon\u0026sq\u003d\u0026ss\u003dandroid%2Fkernel%2Fsuperproject\n\nAll of them are documentation only, except for build/kernel/kleaf/impl/declare_toolchain_constants.bzl (a known exception, and override-able) and build/kernel/kleaf/workspace.bzl (overridable and will be deleted with CL:3114380).",
+      "parentUuid": "b557dd0a_6350bd94",
+      "revId": "a4072c63f8126ac08e684589bdac6bc06f8c860d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f813433_8770eeae",
         "filename": "static_analysis/checkpatch_presubmit_bazel.py",
         "patchSetId": 1
