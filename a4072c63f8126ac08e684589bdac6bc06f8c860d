@@ -33,6 +33,47 @@
       "message": "I don\u0027t think you should assume the existence of the //common package. Partners may be using a different path for kernel source tree. That\u0027s why this is done by `bazel query`ing the checkpatch() target. Likewise, even with the //common package, you can\u0027t assume that checkpatch() is defined there in //build/kernel. //build/kernel should be agnostic of where is the kernel sources.",
       "revId": "a4072c63f8126ac08e684589bdac6bc06f8c860d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f813433_8770eeae",
+        "filename": "static_analysis/checkpatch_presubmit_bazel.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-12T00:30:32Z",
+      "side": 1,
+      "message": "Is this not part of the return of `_find_checkpatch_targets`? If so, you shouldn\u0027t need to call _run_checkpatch with the hard-coded `//common:checkpatch` If not, that sounds like a bug somewhere else. Either case, it doen\u0027t look like to hard-code //common here.",
+      "range": {
+        "startLine": 172,
+        "startChar": 20,
+        "endLine": 172,
+        "endChar": 39
+      },
+      "fixSuggestions": [
+        {
+          "fixId": "0b677ff4_34abc038",
+          "description": "prompt_to_edit API",
+          "replacements": [
+            {
+              "path": "static_analysis/checkpatch_presubmit_bazel.py",
+              "range": {
+                "startLine": 171,
+                "startChar": 0,
+                "endLine": 171,
+                "endChar": 0
+              },
+              "replacement": "        # TODO(b/285221111): Remove this once we have checkpatch() targets\n        # for all the projects.\n"
+            }
+          ]
+        }
+      ],
+      "revId": "a4072c63f8126ac08e684589bdac6bc06f8c860d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
