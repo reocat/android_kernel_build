@@ -16,6 +16,24 @@
       "message": "The errors on aosp_kernel-common-android15-6.6-2024-07 can be ignored, but the pixel 6 boottest failure we should not ignore.",
       "revId": "6cdcecdab53b8c8741682ff2db51a5732dc1f363",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1838d10_70530cda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1889091
+      },
+      "writtenOn": "2024-06-12T16:17:58Z",
+      "side": 1,
+      "message": "That looks like an infra error:\n\n```\nCould not find device 25261FDF600A23 com.google.devtools.mobileharness.platform.android.atetradefed.AndroidTradefedParser$1@48666e2f [MH|DEPENDENCY_ISSUE|DEVICE_UNAVAILABLE|520750]\nMobileHarnessException: Could not find device 25261FDF600A23\n```",
+      "parentUuid": "06b05db1_cd60cd07",
+      "revId": "6cdcecdab53b8c8741682ff2db51a5732dc1f363",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
