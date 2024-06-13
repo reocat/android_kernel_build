@@ -42,6 +42,7 @@ import hashlib
 import json
 import os
 import pathlib
+import re
 from typing import Any
 
 
@@ -59,6 +60,11 @@ _GENERATED_FROM_RELATIONSHIP = "GENERATED_FROM"
 _VARIANT_OF_RELATIONSHIP = "VARIANT_OF"
 _SPDX_REF = "SPDXRef"
 
+def _spdx_id(identifier: str):
+  # the id string is a "unique string containing letters, numbers, . and/or -."
+  # https://spdx.github.io/spdx-spec/v2.3/file-information/#82-file-spdx-identifier-field
+  sanitized_identifier = re.sub('[^0-9a-zA-Z-\.]+', '-', identifier)
+  return f"{_SPDX_REF}-{sanitized_identifier}"
 
 @dataclasses.dataclass(order=True)
 class File:
@@ -78,7 +84,7 @@ class KernelSbom:
     self._files = sorted(
         [
             File(
-                id=f"{_SPDX_REF}-{file.name}",
+                id=_spdx_id(file.name),
                 name=file.name,
                 path=file,
                 checksum=self._checksum(file),
@@ -125,7 +131,7 @@ class KernelSbom:
     headers = {
         "spdxVersion": _SPDX_VERSION,
         "dataLicense": _DATA_LICENSE,
-        "SPDXID": f"{_SPDX_REF}-DOCUMENT",
+        "SPDXID": _spdx_id("DOCUMENT"),
         "name": self._android_kernel_version,
         "documentNamespace": namespace,
         "creationInfo": {
@@ -146,7 +152,7 @@ class KernelSbom:
   ) -> dict[str, Any]:
     package_dict: dict[str, Any] = {
         "name": package_name,
-        "SPDXID": f"{_SPDX_REF}-{package_name}",
+        "SPDXID": _spdx_id(package_name),
         "downloadLocation": download_location,
         "filesAnalyzed": False,
         "versionInfo": version,
@@ -211,19 +217,19 @@ class KernelSbom:
 
     sbom["relationships"] = [
         self._generate_relationship_dict(
-            f"{_SPDX_REF}-{_MAIN_PACKAGE_NAME}",
-            f"{_SPDX_REF}-{_SOURCE_CODE_PACKAGE_NAME}",
+            _spdx_id(_MAIN_PACKAGE_NAME),
+            _spdx_id(_SOURCE_CODE_PACKAGE_NAME),
             _GENERATED_FROM_RELATIONSHIP,
         ),
         self._generate_relationship_dict(
-            f"{_SPDX_REF}-{_SOURCE_CODE_PACKAGE_NAME}",
-            f"{_SPDX_REF}-{_LINUX_UPSTREAM_PACKAGE_NAME}",
+            _spdx_id(_SOURCE_CODE_PACKAGE_NAME),
+            _spdx_id(_LINUX_UPSTREAM_PACKAGE_NAME),
             _VARIANT_OF_RELATIONSHIP,
         ),
     ] + [
         self._generate_relationship_dict(
             f.id,
-            f"{_SPDX_REF}-{_SOURCE_CODE_PACKAGE_NAME}",
+            _spdx_id(_SOURCE_CODE_PACKAGE_NAME),
             _GENERATED_FROM_RELATIONSHIP,
         )
         for f in self._files
