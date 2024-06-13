@@ -394,7 +394,7 @@ hermetic_genrule(
     srcs = [_GKI_CERTIFICATION_BINARIES_PREFIX + tool for tool in _GKI_CERTIFICATION_BINARIES],
     outs = ["gki_certification_tools.tar.gz"],
     cmd = """
-        tar -czhf $@ \\
+        tar --mode=u=rwx,go=rx -czhf $@ \\
             -C $$(dirname $$(dirname $(location {prefix}{first}))) \\
             {files}
     """.format(
