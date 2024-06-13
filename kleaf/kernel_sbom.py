@@ -160,7 +160,7 @@ class KernelSbom:
         "supplier": f"Organization: {organization}",
     }
     if file_list:
-      package_dict["hasFiles"] = [file.name for file in file_list]
+      package_dict["hasFiles"] = [file.id for file in file_list]
       verification_hash = self._generate_package_verification_code(file_list)
       package_dict["packageVerificationCode"] = {
           "packageVerificationCodeValue": verification_hash
