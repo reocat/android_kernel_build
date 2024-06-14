@@ -111,10 +111,10 @@ class KernelSbom:
       return str(digest.hexdigest())
 
   def _generate_package_verification_code(self, files: list[File]) -> str:
-    hash = hashlib.sha1()
+    combined_checksum = hashlib.sha1()
     for checksum in sorted(f.checksum.encode() for f in files):
-      hash.update(checksum)
-    return hash.hexdigest()
+      combined_checksum.update(checksum)
+    return combined_checksum.hexdigest()
 
   def _generate_doc_headers(self) -> dict[str, Any]:
     timestamp = datetime.datetime.now(tz=datetime.timezone.utc).strftime(
