@@ -34,6 +34,7 @@
 
 # https://github.com/bazelbuild/bazel/issues/4867
 ^Starting local Bazel server and connecting to it...$
+^Extracting Bazel installation...$
 
 # Allow empty lines
 ^$
