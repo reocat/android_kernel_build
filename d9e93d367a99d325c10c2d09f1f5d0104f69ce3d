@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "566f6417_c03c31b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1625880
+      },
+      "writtenOn": "2024-06-14T16:18:18Z",
+      "side": 1,
+      "message": "This is probably OK, but shouldn\u0027t this insert into a dictionary (original -\u003e sanitised) and check for collisions so that references are guaranteed to be unique?",
+      "revId": "d9e93d367a99d325c10c2d09f1f5d0104f69ce3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
