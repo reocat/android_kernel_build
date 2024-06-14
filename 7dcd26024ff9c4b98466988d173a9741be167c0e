@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a13f4fe2_13380810",
+        "filename": "init/init_ddk.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-14T00:02:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8af4b8e_ca4bd7ac",
+      "range": {
+        "startLine": 322,
+        "startChar": 12,
+        "endLine": 322,
+        "endChar": 36
+      },
+      "revId": "7dcd26024ff9c4b98466988d173a9741be167c0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cb53a22_c4a464bf",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "The question is whether partners do use a different name for their manifest (i.e. whether they call `repo init` with `-m|--manifest-name` option or not). If they do, we should also support this `-m` option.",
       "parentUuid": "3cb53a22_c4a464bf",
+      "range": {
+        "startLine": 114,
+        "startChar": 21,
+        "endLine": 114,
+        "endChar": 34
+      },
+      "revId": "7dcd26024ff9c4b98466988d173a9741be167c0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81bb2159_1ce58968",
+        "filename": "init/repo_wrapper.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1121838
+      },
+      "writtenOn": "2024-06-14T00:02:52Z",
+      "side": 1,
+      "message": "I revised the error message if this is the case.",
+      "parentUuid": "2b558635_edbfaaff",
       "range": {
         "startLine": 114,
         "startChar": 21,
