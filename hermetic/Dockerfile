@@ -4,6 +4,7 @@ RUN apt-get -y update                            \
 &&  apt-get -y install                           \
 # Those are likely essential
     git                                          \
+    python3 \
 # To be removed
     rsync                                        \
 && apt-get clean                                 \
