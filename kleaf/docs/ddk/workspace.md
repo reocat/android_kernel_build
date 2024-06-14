@@ -45,7 +45,39 @@ $ python init.py --local \
     --prebuilts_dir /path/to/ddk/workspace/prebuilts/kernel
 ```
 
-Other usages will be added here soon. Stay tuned!
+#### Build against prebuilts from a build
+
+Populate DDK workspace `/path/to/ddk/workspace/`, with the following:
+
+* Kleaf projects will be checked out at `/path/to/ddk/workspace/external/kleaf`
+* Prebuilts will be checked out at `/path/to/ddk/workspace/prebuilts/kernel`
+
+`/path/to/ddk/workspace` must be a valid repo; run `repo init` to initalize it.
+
+To checkout projects and prebuilts associated with the build ID `123456`
+from ci.android.com:
+
+```shell
+$ ( cd /path/to/ddk/workspace && repo init ... )
+$ python init.py --build_id 123456 \
+    --ddk_workspace /path/to/ddk/workspace \
+    --kleaf_repo /path/to/ddk/workspace/external/kleaf \
+    --prebuilts_dir /path/to/ddk/workspace/prebuilts/kernel
+```
+
+To checkout projects and prebuilts associated with the tip of tree of the
+branch, `common-android15-6.6`:
+
+```shell
+$ ( cd /path/to/ddk/workspace && repo init ... )
+$ python init.py --branch aosp_kernel-common-android15-6.6 \
+    --ddk_workspace /path/to/ddk/workspace \
+    --kleaf_repo /path/to/ddk/workspace/external/kleaf \
+    --prebuilts_dir /path/to/ddk/workspace/prebuilts/kernel
+```
+
+`init.py` will run `repo sync` as part of the process. To skip this so you
+can run `repo sync` manually, add the `--dryrun_checkout` flag to `init.py`.
 
 ## Root MODULE.bazel
 
