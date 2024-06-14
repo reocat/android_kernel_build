@@ -42,6 +42,7 @@ import json
 import os
 import pathlib
 import re
+import subprocess
 from typing import Any
 
 
@@ -73,12 +74,16 @@ class File:
   name: str
   path: pathlib.Path
   checksum: str
+  build_id: str | None
 
 
 class KernelSbom:
 
   def __init__(
-      self, android_kernel_version: str, file_list: Iterable[pathlib.Path]
+      self,
+      android_kernel_version: str,
+      file_list: Iterable[pathlib.Path],
+      readelf: pathlib.Path,
   ):
     self._android_kernel_version = android_kernel_version
     self._upstream_kernel_version = android_kernel_version.split("-")[0]
@@ -89,6 +94,7 @@ class KernelSbom:
                 name=file.name,
                 path=file,
                 checksum=self._checksum(file),
+                build_id=self._build_id(file, readelf)
             )
             for file in file_list
         ]
@@ -143,6 +149,20 @@ class KernelSbom:
     }
     return headers
 
+  def _build_id(
+      self, file_path: pathlib.Path, readelf: pathlib.Path
+  ) -> str | None:
+    if not file_path.name.endswith((".ko", "vmlinux")):
+      return None
+
+    out = subprocess.check_output([readelf, "--notes", file_path]).decode()
+    build_id = None
+    for line in out.splitlines():
+      if "Build ID:" in line:
+        assert(build_id is None)
+        build_id = line.strip()
+    return build_id
+
   def _generate_package_dict(
       self,
       version: str,
@@ -169,7 +189,7 @@ class KernelSbom:
     return package_dict
 
   def _generate_file_dict(self, file: File) -> dict[str, Any]:
-    return {
+    result = {
         "fileName": file.name,
         "SPDXID": file.id,
         "checksums": [
@@ -179,6 +199,10 @@ class KernelSbom:
             },
         ],
     }
+    if file.build_id is not None:
+      result.update(comment=file.build_id)
+
+    return result
 
   def _generate_relationship_dict(
       self, element: str, related_element: str, relationship_type: str
@@ -271,6 +295,11 @@ def get_args():
       type=pathlib.Path,
       help="path to the kernel.release file",
   )
+  parser.add_argument(
+      "--readelf",
+      required=True,
+      type=pathlib.Path, help="The readelf binary to process binaries.",
+  )
   return parser.parse_args()
 
 
@@ -292,7 +321,7 @@ def main():
   args = get_args()
   files = args.files or get_file_list(args.dist_dir)
   version = args.version or read_version_from_file(args.version_file)
-  sbom = KernelSbom(version, files)
+  sbom = KernelSbom(version, files, args.readelf)
   sbom.write_sbom_file(args.output_file)
 
 
